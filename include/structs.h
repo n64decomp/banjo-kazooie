@@ -3,6 +3,7 @@
 
 #include <ultra64.h>
 #include "model.h"
+#include "core2/vla.h"
 #define MERGE(a, b) a ## b
 
 #define UNK_TYPE(t) t
@@ -36,17 +37,6 @@ typedef struct{
 }
 
 #define KEY_VALUE_PAIR(T1, T2) struct { T1 key; T2 value; }
-
-typedef struct variable_length_array{
-    s32 elem_size;
-    void * begin;
-    void * end;
-    void * mem_end;
-    u8  data[];
-}VLA;
-
-#define vector(T) struct variable_length_array
-//^defined to keep element type with vla
 
 typedef struct freelist_s{
     s16 elem_size;
@@ -538,12 +528,7 @@ typedef struct{
     f32 unk8[0][3];
 } struct56s;
 
-typedef struct{
-    Mtx mtx_0;
-    s32 size_40;
-    s32 capacity_44;
-    Mtx data[];
-}struct58s;
+
 
 typedef struct {
     f32 (*unk0)[3];
@@ -801,32 +786,9 @@ typedef struct {
     Struct70s unkC;
 }Struct6Es;
 
-typedef struct {
-    f32 unk0;
-    u8 unk4;
-    u8 pad5[0x3];
-    void (* unk8)(struct actorMarker_s *);
-    s32 unkC;
-}Struct7Fs;
 
-typedef struct {
-    struct struct_B1400_1_s *unk0;
-    struct animation_file_s *unk4;
-    f32 unk8;
-    f32 unkC;
-    vector(Struct7Fs) *unk10;
-    u8 unk14;
-    u8 unk15;
-    s16 unk16;
-    s32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s32 unk24;
-    struct struct_B1400_1_s *unk28;
-    f32 unk2C;
-    u8 unk30;
-    // u8 pad31[3];
-}Struct80s;
+
+
 
 
 typedef struct {

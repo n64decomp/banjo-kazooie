@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_802C71F0(Actor *);
-extern void func_80325794(ActorMarker *);
+extern void actor_postdrawMethod(ActorMarker *);
 
 Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802E07E0(Actor *this);
@@ -18,7 +18,7 @@ ActorAnimationInfo D_80368440[] = {
 ActorInfo D_80368450 = {
     MARKER_72_FIRE_SPARKLE, ACTOR_A2_FIRE_SPARKLE, ASSET_3AD_FIRE_SPARKLE, 
     0x1, D_80368440, 
-    func_802E08F0, func_80326224, func_80325888, 
+    func_802E08F0, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -80,7 +80,7 @@ ActorInfo D_80368570 = {
 
 /* .code */
 void func_802E0710(Actor *this){
-    func_803253A0(this);
+    actor_predrawMethod(this);
     func_80361E9C(this);
 }
 
@@ -89,8 +89,8 @@ Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
 
     this = marker_getActorAndRotation(marker, &sp34);
-    modelRender_preDraw( (GenMethod_1)func_802E0710, (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw( (GenFunction_1)func_802E0710, (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp34, this->scale, NULL, func_80330B1C(marker));
     return this;
 }

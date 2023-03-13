@@ -4,14 +4,14 @@
 
 
 typedef struct{
-    GenMethod_0 init_method;
-    GenMethod_0 update_method;
-    GenMethod_0 free_method;
+    GenFunction_0 init_method;
+    GenFunction_0 update_method;
+    GenFunction_0 free_method;
     s32 unkC;
     s32 unk10;
 }CommonParticleType;
 
-void commonParticleType_set(enum common_particle_e arg0, GenMethod_0 init_method, s32 update_method, GenMethod_0 free_method, s32 arg4, s32 arg5);
+void commonParticleType_set(enum common_particle_e arg0, GenFunction_0 init_method, s32 update_method, GenFunction_0 free_method, s32 arg4, s32 arg5);
 
 /* .bss */
 CommonParticleType D_80386260[0x12];
@@ -25,7 +25,7 @@ void commonParticleType_init(void){
     }
 }
 
-void commonParticleType_set(enum common_particle_e id, GenMethod_0 init_method, s32 update_method, GenMethod_0 free_method, s32 arg4, s32 arg5){
+void commonParticleType_set(enum common_particle_e id, GenFunction_0 init_method, s32 update_method, GenFunction_0 free_method, s32 arg4, s32 arg5){
     D_80386260[id].init_method = init_method;
     D_80386260[id].update_method = update_method;
     D_80386260[id].free_method = free_method;
@@ -33,16 +33,16 @@ void commonParticleType_set(enum common_particle_e id, GenMethod_0 init_method, 
     D_80386260[id].unk10 = arg5;
 }
 
-GenMethod_0 commonParticleType_getInitMethod(enum common_particle_e id)
+GenFunction_0 commonParticleType_getInitMethod(enum common_particle_e id)
 {
     return D_80386260[id].init_method;
 }
 
-GenMethod_0 commonParticleType_getUpdateMethod(enum common_particle_e id){
+GenFunction_0 commonParticleType_getUpdateMethod(enum common_particle_e id){
     return D_80386260[id].update_method;
 }
 
-GenMethod_0 commonParticleType_getFreeMethod(enum common_particle_e id){
+GenFunction_0 commonParticleType_getFreeMethod(enum common_particle_e id){
     return D_80386260[id].free_method;
 }
 

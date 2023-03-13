@@ -107,7 +107,7 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(actor->state != 1 && actor->state != 5){
         func_8033A45C(3, 0);
         func_8033A45C(4, 0);
-        actor = func_80325888(marker, gfx, mtx, vtx);
+        actor = actor_draw(marker, gfx, mtx, vtx);
     }
 
     return actor;
@@ -325,7 +325,7 @@ void func_802D9D60(Actor *this){
             this->unk38_0 = TRUE;
             nodeprop_getPosition(node_prop, this->unk1C);
         }
-        __spawnQueue_add_1((GenMethod_1)func_802D9C54, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)func_802D9C54, reinterpret_cast(s32, this->marker));
         this->marker->propPtr->unk8_3 = FALSE;
         this->marker->collidable = FALSE;
         this->initialized = TRUE;

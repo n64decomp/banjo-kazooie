@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80325794(ActorMarker *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern void chBottlesBonus_func_802DD080(Gfx **, Mtx **);
 extern void func_80311714(s32);
 
@@ -65,8 +65,8 @@ Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
     func_80253190(gfx);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp48));
-    modelRender_preDraw((GenMethod_1)func_803253A0,  (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod,  (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, NULL, 4.5f, sp4C, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);

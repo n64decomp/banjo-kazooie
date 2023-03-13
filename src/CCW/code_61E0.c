@@ -13,7 +13,7 @@ typedef struct {
 void func_8038C7A8(Actor *this);
 
 /* .data */
-ActorInfo D_8038F460 = { 0x1BC, 0x2A9, 0x48E, 0x0, NULL, func_8038C7A8, NULL, func_80325888, 0, 0, 0.8f, 0};
+ActorInfo D_8038F460 = { 0x1BC, 0x2A9, 0x48E, 0x0, NULL, func_8038C7A8, NULL, actor_draw, 0, 0, 0.8f, 0};
 
 /* .code */
 void CCW_func_8038C5D0(ActorMarker* marker) {
@@ -31,9 +31,9 @@ void CCW_func_8038C6A0(Actor *this, s32 next_state) {
 
     local = (ActorLocal_CCW_61E0 *)&this->local;
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x25B, 0.0f, 1.0f);
-        func_80335800(this->unk148, 0.5f, CCW_func_8038C5D0, this->marker);
-        func_80335800(this->unk148, 0.7f, CCW_func_8038C638, this->marker);
+        skeletalAnim_set(this->unk148, 0x25B, 0.0f, 1.0f);
+        skeletalAnim_setCallback_1(this->unk148, 0.5f, CCW_func_8038C5D0, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.7f, CCW_func_8038C638, this->marker);
     }
     if (next_state == 3) {
         local->unk0[0] = this->position[0];

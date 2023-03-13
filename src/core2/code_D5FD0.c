@@ -51,7 +51,7 @@ ActorAnimationInfo D_80372DA0[] = {
 ActorInfo D_80372DF8 = {
     MARKER_21A_SEAMAN_GRUBLIN, ACTOR_350_SEAMAN_GRUBLIN, ASSET_49D_MODEL_SEAMAN_GRUBLIN,
     0x1, D_80372DA0, 
-    func_8035D058, func_80326224, func_80325888, 
+    func_8035D058, func_80326224, actor_draw, 
     2500, 0, 1.0f, 0
 };
 

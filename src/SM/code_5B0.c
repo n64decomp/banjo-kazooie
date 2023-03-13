@@ -18,14 +18,14 @@ ActorAnimationInfo D_8038AAF0[] = {
 ActorInfo D_8038AB00 = {
     MARKER_135_QUARRIE, ACTOR_16F_QUARRIE, ASSET_42D_MODEL_QUARRIE, 
     1,  NULL,
-    SM_func_80386EF4, func_80326224, func_80325E78,
+    SM_func_80386EF4, func_80326224, actor_drawFullDepth,
     2000, 0, 5.0f, 0
 };
 
 ActorInfo D_8038AB24 = {
     MARKER_29D_ROCK_TRAPPING_GRUNTY, ACTOR_3CA_ROCK_TRAPPING_GRUNTY, ASSET_47B_MODEL_ROCK,
     1, D_8038AAF0,
-    SM_func_80386A00, func_80326224, func_80325E78, 
+    SM_func_80386A00, func_80326224, actor_drawFullDepth, 
     0, 0, 0.0f, 0
 };
 
@@ -113,7 +113,7 @@ void SM_func_80386D68(Actor *this){
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
-        __spawnQueue_add_4((GenMethod_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+        __spawnQueue_add_4((GenFunction_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }
     marker_despawn(this->marker);
 }

@@ -45,7 +45,7 @@ typedef struct{
 }Struct_core2_560F0_2;
 
 extern void item_set(enum item_e, s32);
-extern void func_80325794(ActorMarker *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern void func_8024CE60(f32, f32);
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -171,8 +171,8 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp50));
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)sp6C);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)sp6C);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
 
     modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, func_80330B1C(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
@@ -269,7 +269,7 @@ f32 chBottlesBonus_func_802DD804(f32 arg0) {
     return sinf(M_PI * arg0 / 2);
 }
 
-void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
+void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
     s32 i;
     f32 spD8[3];
     f32 spD4;
@@ -289,7 +289,7 @@ void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
         D_8037DEB0 = 1;
         for(i = 0; i < 20; i++){
             func_8033A57C(arg0, D_80368254[i], D_8037DEC4[i].unkC);
-            func_8033A670(arg0, D_80368254[i], D_8037DEC4[i].unk1C);
+            boneTransformList_getBoneScale(arg0, D_80368254[i], D_8037DEC4[i].unk1C);
             chBottlesBonus_func_802DD778(arg0, i, D_8037DEC4[i].unk0);
             chBottlesBonusCursor_func_802DF460(i + 20, chBottlesBonusMarker, D_8037DEC4[i].unk0);
         }
@@ -300,9 +300,9 @@ void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
             D_8037DEB4 = 1;
             for(i = 0; i < 20; i++){
                 func_8033A57C(arg0, D_80368254[i], D_8037DEB8[i].unkC);
-                func_8033A670(arg0, D_80368254[i], D_8037DEB8[i].unk1C);
+                boneTransformList_getBoneScale(arg0, D_80368254[i], D_8037DEB8[i].unk1C);
                 chBottlesBonus_func_802DD778(arg0, i, D_8037DEB8[i].unk0);
-                func_80345250(D_8037DEC0[i].unkC, D_8037DEB8[i].unkC);
+                vec4f_clone(D_8037DEC0[i].unkC, D_8037DEB8[i].unkC);
                 D_8037DEC0[i].unk0[0] = D_8037DEB8[i].unk0[0];
                 D_8037DEC0[i].unk0[1] = D_8037DEB8[i].unk0[1];
                 D_8037DEC0[i].unk0[2] = D_8037DEB8[i].unk0[2];
@@ -337,7 +337,7 @@ void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
                     D_8037DEC0[i].unk1C[1] = D_8037DEBC[i].unk1C[1];
                     D_8037DEC0[i].unk1C[2] = D_8037DEBC[i].unk1C[2];
 
-                    func_80345250(D_8037DEC0[i].unkC, D_8037DEBC[i].unkC);
+                    vec4f_clone(D_8037DEC0[i].unkC, D_8037DEBC[i].unkC);
                     break;
                 case 2://L802DDD9C
                     chBottlesBonus_func_802DD484(spD8, spD4, 1.0f, 0.2);
@@ -352,7 +352,7 @@ void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
                     D_8037DEC0[i].unk1C[0] = D_8037DEBC[i].unk1C[0];
                     D_8037DEC0[i].unk1C[1] = D_8037DEBC[i].unk1C[1];
                     D_8037DEC0[i].unk1C[2] = D_8037DEBC[i].unk1C[2];
-                    func_80345250(D_8037DEC0[i].unkC, D_8037DEBC[i].unkC);
+                    vec4f_clone(D_8037DEC0[i].unkC, D_8037DEBC[i].unkC);
                     chBottlesBonusCursor_func_802DF460(40 + i, chBottlesBonusMarker, D_803681A0);
                     break;
 
@@ -375,7 +375,7 @@ void chBottlesBonus_func_802DD8AC(s32 arg0, s32 arg1) {
             spD8[0] = spD8[0] * D_8037DEBC[i].unk1C[0];
             spD8[1] = spD8[1] * D_8037DEBC[i].unk1C[1];
             spD8[2] = spD8[2] * D_8037DEBC[i].unk1C[2];
-            func_8033A928(arg0, D_80368254[i], spD8);
+            boneTransformList_setBoneScale(arg0, D_80368254[i], spD8);
             chBottlesBonus_func_802DD6E0(arg0, i, D_8037DEBC[i].unk0);
             D_8037DEC8[i] += spD0;
             D_8037DF18[i] += spD0;

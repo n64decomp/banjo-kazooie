@@ -22,7 +22,7 @@ void func_8038F620(Actor *this);
 ActorInfo fight_D_80391B00 = {
     MARKER_25C_GRUNTY_SPELL_FIREBALL, ACTOR_389_GRUNTY_SPELL_FIREBALL, ASSET_541_SPRITE_FIREBALL_SPELL_ATTACK,
     0x1, NULL,
-    func_8038F620, func_80326224, func_80325888,
+    func_8038F620, func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 

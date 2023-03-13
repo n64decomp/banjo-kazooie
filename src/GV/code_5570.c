@@ -26,7 +26,7 @@ ActorAnimationInfo D_80391120[] ={
 
 ActorInfo D_80391158 = { MARKER_A6_GRABBA, ACTOR_118_GRABBA, ASSET_371_MODEL_GRABBA, 
     0x1, D_80391120, 
-    GV_func_8038BEA0, func_80326224, func_80325888, 
+    GV_func_8038BEA0, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -200,7 +200,7 @@ void GV_func_8038BEA0(Actor *this){
                     this->unk38_31 = 0;
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 14.0f, 0.92f);
-                    __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x11f, 
+                    __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x11f, 
                         reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z)
                     );
                 }

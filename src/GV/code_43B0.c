@@ -27,7 +27,7 @@ ActorInfo D_80391010 = { MARKER_A7_MAGIC_CARPET_1, ACTOR_119_MAGIC_CARPET_1, ASS
 Actor *func_8038A7A0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor * this;
 
-    this = func_80325888(this_marker, gfx, mtx, vtx);
+    this = actor_draw(this_marker, gfx, mtx, vtx);
     
     if( this->velocity_y != 0.0f
         && this_marker->unk14_21
@@ -68,7 +68,7 @@ void func_8038A948(Actor *this){
         this->initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        __spawnQueue_add_1((GenMethod_1)func_8038A8CC, (s32)this->marker);
+        __spawnQueue_add_1((GenFunction_1)func_8038A8CC, (s32)this->marker);
         this->velocity_y = 0.0f;
     }
 }
@@ -84,7 +84,7 @@ void GV_func_8038A9C0(Actor *this){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
-        __spawnQueue_add_1((GenMethod_1)func_8038A8CC, (s32)this->marker);
+        __spawnQueue_add_1((GenFunction_1)func_8038A8CC, (s32)this->marker);
         sp24 = subaddie_getLinkedActor(this);
         this->unk1C[1] = this->unk48;
         this->pitch = 0.0f;

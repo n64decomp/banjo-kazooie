@@ -39,7 +39,7 @@ Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     
     func_8033A45C(1, 0);
     func_8033A45C(3, 1);
-    this = func_80325888(marker, gfx, mtx, vtx);
+    this = actor_draw(marker, gfx, mtx, vtx);
     if(marker->unk14_21){
         func_8034A174(func_80329934(), 5, this->velocity);
     }
@@ -125,7 +125,7 @@ void func_8038794C(Actor *this){
 
         if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
             if(!jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3) && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)){
-                __spawnQueue_add_1((GenMethod_1)func_80387760, reinterpret_cast(s32, this->marker));
+                __spawnQueue_add_1((GenFunction_1)func_80387760, reinterpret_cast(s32, this->marker));
             }
             this->unk38_31 = 0;
             actor_collisionOff(this);
@@ -151,7 +151,7 @@ void func_8038794C(Actor *this){
                 if(!func_8028ECAC() || func_8028ECAC() == BSGROUP_8_TROT){
                     if(func_80311480(0xbff, 0x2a, this->position, NULL, NULL, NULL)){
                         for(i = 0; i <5; i++ ){
-                            timedFunc_set_1(D_80391BEC[i], (GenMethod_1)func_8038787C, (s32)this->marker);
+                            timedFunc_set_1(D_80391BEC[i], (GenFunction_1)func_8038787C, (s32)this->marker);
                         }
                         this->unk138_24 = TRUE;
                     }
@@ -195,7 +195,7 @@ void func_8038794C(Actor *this){
         case 5://L80387D90
             if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
                 this->unk38_31 = 0;
-                __spawnQueue_add_1((GenMethod_1)func_80387760, reinterpret_cast(s32, this->marker));
+                __spawnQueue_add_1((GenFunction_1)func_80387760, reinterpret_cast(s32, this->marker));
             }
             break;
     }

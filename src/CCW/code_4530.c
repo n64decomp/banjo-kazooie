@@ -41,14 +41,14 @@ void func_8038A920(ActorMarker* marker, enum asset_e text_id, s32 arg2) {
 
 void func_8038A950(Actor *this, s32 next_state) {
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x199, 0.0f, 6.5f);
+        skeletalAnim_set(this->unk148, 0x199, 0.0f, 6.5f);
     }
     if (next_state == 2) {
         func_80311480(0xCDC, 0xA, this->position, this->marker, func_8038A920, NULL);
     }
     if (next_state == 3) {
-        func_80335924(this->unk148, 0x19A, 0.0f, 7.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x19A, 0.0f, 7.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0);
     }
@@ -65,7 +65,7 @@ Actor *func_8038AA38(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     if(this->state == 0)
         return this;
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038AA8C(Actor *this) {
@@ -91,7 +91,7 @@ void func_8038AA8C(Actor *this) {
     }
 
     if (this->state == 1) {
-        func_8033568C(this->unk148, &sp50, &sp4C);
+        skeletalAnim_getProgressRange(this->unk148, &sp50, &sp4C);
         if ((sp50 < 0.21) && (0.21 <= sp4C)) {
             func_8030E878(0xA5, randf2(0.9f, 1.1f), 32000, this->position, 500.0f, 2500.0f);
         }
@@ -106,13 +106,13 @@ void func_8038AA8C(Actor *this) {
         }
     }
     if (this->state == 3) {
-        func_8033568C(this->unk148, &sp44, &sp40);
+        skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         for(iPtr = &D_8038F1B4[0]; iPtr->unk0 > 0.0f; iPtr++){
              if ((sp44 < iPtr->unk0) && (iPtr->unk0 <= sp40)) {
                 func_8030E878(iPtr->unk8, iPtr->unk4, iPtr->unkA, this->position, 500.0f, 2500.0f);
             }
         }
-        if (func_80335794(this->unk148) > 0) {
+        if (skeletalAnim_getLoopCount(this->unk148) > 0) {
             func_8038A950(this, 4);
         }
     }

@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80335A24(void *, s32, f32, f32);
-
 typedef struct {
     f32 unk0;
 }ActorLocal_CCW_4D00;
@@ -21,7 +19,7 @@ void func_8038B19C(Actor *this);
 ActorInfo D_8038F270 = {
     0x1B9, 0x2A6, 0x502,
     0x0, NULL,
-    func_8038B19C, NULL, func_80325888,
+    func_8038B19C, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -42,11 +40,11 @@ void func_8038B0F0(Actor *this, s32 next_state) {
 
     local->unk0 = 0.0f;
     if (next_state == 1) {
-        func_80335A24(this->unk148, 0x1A3, 0.2f, 11.0f);
+        skeletalAnim_swap(this->unk148, 0x1A3, 0.2f, 11.0f);
         local->unk0 = randf2(3.0f, 10.0f);
     }
     if (next_state == 2) {
-        func_80335924(this->unk148, 0x1A4, 0.2f, 3.0f);
+        skeletalAnim_set(this->unk148, 0x1A4, 0.2f, 3.0f);
     }
     this->state = next_state;
 }
@@ -72,7 +70,7 @@ void func_8038B19C(Actor *this) {
     }
 
     if (this->state == 2) {
-        func_8033568C(this->unk148, &sp50, &sp4C);
+        skeletalAnim_getProgressRange(this->unk148, &sp50, &sp4C);
         for(iPtr = &D_8038F294[0]; iPtr->unk0 > 0.0f; iPtr++){
             if ((sp50 < iPtr->unk0) && (iPtr->unk0 <= sp4C)) {
                 func_8030E878(iPtr->unk8, randf2(iPtr->unk4 - 0.05, iPtr->unk4 + 0.05), randi2(iPtr->unkA - 0x1F4, iPtr->unkA + 0x1F4), this->position, 500.0f, 2500.0f);
@@ -86,7 +84,7 @@ void func_8038B19C(Actor *this) {
                 func_8030E878(SFX_4B_GULPING, randf2(1.4f, 1.45f), randi2(24000, 26000), this->position, 500.0f, 2500.0f);
             }
         }
-        if (func_80335794(this->unk148) > 0) {
+        if (skeletalAnim_getLoopCount(this->unk148) > 0) {
             func_8038B0F0(this, 1);
         }
     }

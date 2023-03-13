@@ -7,7 +7,7 @@ void chEngineFanSwitch_update(Actor *this);
 /* .data */
 ActorInfo D_803906B0 = {
     0x194, 0x1BE, 0x412, 0x0, NULL,
-    chEngineFanSwitch_update, NULL, func_80325888,
+    chEngineFanSwitch_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 

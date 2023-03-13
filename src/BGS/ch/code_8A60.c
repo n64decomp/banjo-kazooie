@@ -18,15 +18,15 @@ ActorAnimationInfo D_80390B90[] = {
     {ASSET_D5_ANIM_SWITCH_UP, 0.5f},
     {ASSET_D5_ANIM_SWITCH_UP, 1e+8f}
 };
-ActorInfo D_80390BD8 = {MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH, ACTOR_14E_BGS_ELEVATED_WALKWAY_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038EEA4, func_80326224, func_80325888, 0, 0, 0.0f, 0}; 
-ActorInfo D_80390BFC = {MARKER_FD_BGS_MAZE_SWITCH,             ACTOR_1FB_BGS_MAZE_SWITCH,             ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038F06C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_80390BD8 = {MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH, ACTOR_14E_BGS_ELEVATED_WALKWAY_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038EEA4, func_80326224, actor_draw, 0, 0, 0.0f, 0}; 
+ActorInfo D_80390BFC = {MARKER_FD_BGS_MAZE_SWITCH,             ACTOR_1FB_BGS_MAZE_SWITCH,             ASSET_3F5_BGS_JIGGY_SWITCH, 1, D_80390B90, func_8038F06C, func_80326224, actor_draw, 0, 0, 0.0f, 0};
 
 void func_8038EE50(void){
     f32 sp24[3];
 
     if(nodeProp_findPositionFromActorId(0x14d, sp24)){
         jiggySpawn(JIGGY_20_BGS_ELEVATED_WALKWAY, sp24);
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, 
             reinterpret_cast(s32, sp24[0]), 
             reinterpret_cast(s32, sp24[1]), 
             reinterpret_cast(s32, sp24[2])
@@ -69,7 +69,7 @@ void func_8038F018(void){
 
     if(nodeProp_findPositionFromActorId(0x1fc, sp24)){
         jiggySpawn(JIGGY_25_BGS_MAZE, sp24);
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, 
             reinterpret_cast(s32, sp24[0]), 
             reinterpret_cast(s32, sp24[1]), 
             reinterpret_cast(s32, sp24[2])

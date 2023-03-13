@@ -33,7 +33,7 @@ ActorAnimationInfo D_803685D0[] ={
 ActorInfo D_80368620 = { 
     0x14, 0x68, 0x3B0,
     0x1, D_803685D0,
-    chsnacker_update, func_80326224, func_80325888,
+    chsnacker_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

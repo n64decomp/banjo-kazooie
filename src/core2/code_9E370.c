@@ -21,9 +21,9 @@ f32 player_getYaw(void);
 extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
 extern void func_802C9334(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
-extern void func_8032EE0C(GenMethod_2, s32);
+extern void func_8032EE0C(GenFunction_2, s32);
 extern void func_8032EE20(void);
-extern void __spawnQueue_add_5(GenMethod_5, s32, s32, s32, s32, s32);
+extern void __spawnQueue_add_5(GenFunction_5, s32, s32, s32, s32, s32);
 
 
 void func_8032A6A8(Actor *arg0);
@@ -84,7 +84,7 @@ Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return NULL;
 }
 
-void func_803253A0(Actor *this){
+void actor_predrawMethod(Actor *this){
     s32 pad4C;
     BKModelBin *sp48;
     bool sp44;
@@ -94,13 +94,13 @@ void func_803253A0(Actor *this){
     sp48 = func_80330B1C(this->marker);
     func_80330534(this);
     if(this->animctrl != NULL){
-        func_8028781C(this->animctrl, this->position, 1);
+        animctrl_drawSetup(this->animctrl, this->position, 1);
     }
 
     if(this->marker->unk20 != NULL){
         sp44 = FALSE;
         if(this->unk148 != NULL){
-            func_802EA1A8(&this->marker->unk20, model_getAnimationList(sp48), func_803356A0(this->unk148));
+            animMtxList_setBoned(&this->marker->unk20, model_getAnimationList(sp48), skeletalAnim_getBoneTransformList(this->unk148));
             sp44 = TRUE;
         }//L8032542C
         else if(this->animctrl != NULL && model_getAnimationList(sp48)){
@@ -144,7 +144,7 @@ void func_803253A0(Actor *this){
     }
 
     if(this->unk148 && !this->marker->unk20){
-        func_8033A238(func_803356A0(this->unk148));
+        modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(this->unk148));
     }
 
     func_8033056C(this);
@@ -186,7 +186,7 @@ void func_80325760(Actor *this) {
     func_8033A45C(2, 4);
 }
 
-void func_80325794(ActorMarker *marker){
+void actor_postdrawMethod(ActorMarker *marker){
     marker->unk14_21 = TRUE;
 }
 
@@ -212,13 +212,13 @@ bool func_803257B4(ActorMarker *marker) {
 }
 
 
-Actor *func_80325888(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *actor_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C[3];
     Actor *this;
 
     this = marker_getActorAndRotation(marker, sp3C);
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
@@ -333,14 +333,14 @@ Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
     return this;
 }
 
-Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 rotation[3];
     Actor *this;
 
     this = marker_getActorAndRotation(marker, rotation);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
@@ -348,7 +348,7 @@ Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 Actor *func_80325F2C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A244(30000.0f);
     func_8033A280(2.0f);
-    return func_80325E78(marker, gfx, mtx, vtx);
+    return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
 void func_80325F84(Actor *this){}
@@ -401,7 +401,7 @@ void func_80325FE8(Actor *this) {
         marker->unk48 = 0;
     }
     if (this->unk148 != NULL) {
-        func_80335874(this->unk148);
+        skeletalAnim_free(this->unk148);
         this->unk148 = NULL;
     }
     if (marker->unk50 != 0) {
@@ -579,9 +579,9 @@ void func_803268B4(void) {
                     }
                     if (actor->unk148) {
                         if (!actor->despawn_flag) {
-                            func_80335A94(actor->unk148, time_getDelta(), marker->unk14_21);
+                            skeletalAnim_update(actor->unk148, time_getDelta(), marker->unk14_21);
                         } else {
-                            func_80335924(actor->unk148, 0, 0.0f, 0.0f);
+                            skeletalAnim_set(actor->unk148, 0, 0.0f, 0.0f);
                         }
                     }
                     if ((actor_info->shadow_scale != 0.0f) && actor->unk124_6 && marker->unk14_21) {
@@ -941,7 +941,7 @@ Actor *actor_new(s32 (* position)[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
 
     D_80383390->unk148 = 0;
     if(flags & 0x800){
-        D_80383390->unk148 = func_803358B4();
+        D_80383390->unk148 = skeletalAnim_new();
     }
 
     if(flags & 0x4000){
@@ -2013,7 +2013,7 @@ void func_8032AB84(Actor *arg0) {
     }
 
     if (marker->unk20 == NULL && arg0->unk3C & 0x20) {
-        marker->unk20 = func_802EA154();
+        marker->unk20 = animMtxList_new();
     }
 }
 
@@ -2039,7 +2039,7 @@ void func_8032ACA8(Actor *arg0) {
     }
 
     if (sp30->unk20 != NULL) {
-        func_802EA134(sp30->unk20);
+        animMtxList_free(sp30->unk20);
         sp30->unk20 = 0;
     }
 }
@@ -2116,11 +2116,11 @@ void actorArray_defrag(void) {
             }
 
             if (i_actor->marker->unk20 != NULL) {
-                i_actor->marker->unk20 = func_802EA374(i_actor->marker->unk20);
+                i_actor->marker->unk20 = animMtxList_defrag(i_actor->marker->unk20);
             }
 
             if (i_actor->unk148 != NULL) {
-                i_actor->unk148 = (Struct80s*)defrag(i_actor->unk148);
+                i_actor->unk148 = (SkeletalAnimation*)defrag(i_actor->unk148);
             }
 
             if (i_actor->marker->unk50 != NULL) {
@@ -2169,12 +2169,12 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
             func_8034A174( this->marker->unk44, 0x20, sp38);
         }
         if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
-            __spawnQueue_add_5((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
             return;
         }
         else{
             sp34 = this->position[1] + 50.0f;
-            __spawnQueue_add_5((GenMethod_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
         }
     }
 }
@@ -2290,15 +2290,15 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     }
                     func_8032EE0C(func_8032B38C, this);
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
-                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
                     } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
                         sp50[0] = (f32) sp48->x;
                         sp50[1] = (f32) sp48->y;
                         sp50[2] = (f32) sp48->z;
-                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, sp5C));
                     } else {
                         sp38 = this->position[1] + func_8033229C(arg0);
-                        __spawnQueue_add_5((GenMethod_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, sp5C));
+                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, sp5C));
                     }
                     func_8032EE20();
                 }

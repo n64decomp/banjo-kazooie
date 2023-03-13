@@ -47,7 +47,7 @@ ActorAnimationInfo D_80391FB0[] = {
 ActorInfo D_80392018 = {
     MARKER_285_JINJONATOR, ACTOR_3AC_JINJONATOR, ASSET_551_MODEL_JINJONATOR,
     0x1, D_80391FB0,
-    chjinjonator_update, func_80326224, func_80325888,
+    chjinjonator_update, func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 

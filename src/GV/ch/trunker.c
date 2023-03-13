@@ -18,18 +18,18 @@ ActorInfo chTrunker = {
 void __chTrucker_setState(Actor *this, s32 next_state){
     this->state = next_state;
     if(this->state == 1){
-        func_80335924(this->unk148, ASSET_FE_ANIM_TRUCKER_SHORT, 0.1f, 2.5f);
+        skeletalAnim_set(this->unk148, ASSET_FE_ANIM_TRUCKER_SHORT, 0.1f, 2.5f);
     }
 
     if(this->state == 2){
-        func_80335924(this->unk148, ASSET_FF_ANIM_TRUCKER_GROW, 0.1f, 2.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_FF_ANIM_TRUCKER_GROW, 0.1f, 2.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
 
     if(this->state == 3){
-        func_80335924(this->unk148, ASSET_FF_ANIM_TRUCKER_GROW, 0.0f, 2.5f);
-        func_80335A74(this->unk148, 0.999f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_FF_ANIM_TRUCKER_GROW, 0.0f, 2.5f);
+        skeletalAnim_setProgress(this->unk148, 0.999f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
 }
 
@@ -40,7 +40,7 @@ Actor *chTrucker_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     
     if(this->state == 0) return this;
 
-    this = func_80325888(this_marker, gfx, mtx, vtx);
+    this = actor_draw(this_marker, gfx, mtx, vtx);
     sp38[0] = this->position_x - 150.0f;
     sp38[1] = this->position_y + 2.0f;
     sp38[2] = this->position_z - 170.0f;
@@ -82,7 +82,7 @@ void chTrucker_update(Actor *this){
         sp28 = 2;
     }
 
-    if(this->state == 2 && func_80335794(this->unk148) > 0){
+    if(this->state == 2 && skeletalAnim_getLoopCount(this->unk148) > 0){
         sp28 = 3;
     }
 

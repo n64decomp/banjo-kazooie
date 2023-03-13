@@ -8,7 +8,7 @@ void chwhipcrack_update(Actor *this);
 ActorInfo D_80373100 = { 
     MARKER_1C5_WHIPCRACK, ACTOR_30F_WHIPCRACK, ASSET_4FD_MODEL_WHIPCRACK, 
     0, NULL, 
-    chwhipcrack_update, NULL, func_80325888, 
+    chwhipcrack_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -69,10 +69,10 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
 
 void __chwhipcrack_setState(Actor *this, s32 next_state){
     if(next_state == 1)
-        func_80335924(this->unk148, ASSET_22A_ANIM_WHIPCRACK_IDLE, 0.5f, 1.0f);
+        skeletalAnim_set(this->unk148, ASSET_22A_ANIM_WHIPCRACK_IDLE, 0.5f, 1.0f);
     
     if(next_state == 2)
-        func_80335924(this->unk148, ASSET_229_ANIM_WHIPCRACK_ATTACK, 0.5f, 1.0f);
+        skeletalAnim_set(this->unk148, ASSET_229_ANIM_WHIPCRACK_ATTACK, 0.5f, 1.0f);
 
     if(next_state == 3){
         __chwhipcrack_spawnPieces(this, ASSET_4FE_MODEL_WHIPCRACK_PART_1, 4);
@@ -113,7 +113,7 @@ void chwhipcrack_update(Actor *this){
     }
 
     if(this->state == 2){
-        func_8033568C(this->unk148, &sp44, &sp40);
+        skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if((sp44 < 0.13) && (0.13 <= sp40)){
             func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.05f, 1.1f), 15000, this->position, 500.0f, 1000.0f);
         }

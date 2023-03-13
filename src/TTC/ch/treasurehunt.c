@@ -157,7 +157,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         D_8038D708[1] = (f32)arg0[1];
         D_8038D708[2] = (f32)arg0[2];
         D_8038D708[1] =  func_80309724(D_8038D708);
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
         D_8038D700 = partEmitMgr_newEmitter(3);
         particleEmitter_setRGB(D_8038D700, D_8038C91C);
         particleEmitter_setSprite(D_8038D700, ASSET_700_SPRITE_DUST);
@@ -168,8 +168,8 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         particleEmitter_emitN(D_8038D700, 5);
         D_8038D708[2] += 300.0f;
         gcpausemenu_80314AC8(0);
-        timedFunc_set_2(0.1f, (GenMethod_2) func_8028F45C, 9, (s32)&D_8038D708);
-        timedFunc_set_1(0.1f, (GenMethod_1) gcpausemenu_80314AC8, 1);
+        timedFunc_set_2(0.1f, (GenFunction_2) func_8028F45C, 9, (s32)&D_8038D708);
+        timedFunc_set_1(0.1f, (GenFunction_1) gcpausemenu_80314AC8, 1);
         func_80311480(ASSET_A17_TEXT_BURIED_TREASURE_SPAWNED, 4, NULL, NULL, NULL, NULL);
         D_8037DCB4++;
     }//L80389E70
@@ -239,7 +239,7 @@ Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp40[2] = actor->position[2];
 
     func_8032AA58(actor, sp3C);
-    modelRender_preDraw(func_803253A0, actor);
+    modelRender_preDraw(actor_predrawMethod, actor);
     modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
     return actor;
 }

@@ -35,16 +35,16 @@ void chMotzhand_setState(Actor *this, s32 next_state){
     ActorLocal_Motzhand * local = (ActorLocal_Motzhand *) &this->local;
 
     if(next_state == 1 && this->state == 0){
-        func_80335924(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.0f, 1.8f);
+        skeletalAnim_set(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.0f, 1.8f);
         func_80387410(this->position);
     }
 
     if(next_state == 2){
-        func_80335924(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.9f, 1.8f);
+        skeletalAnim_set(this->unk148, ASSET_A7_ANIM_MOTZHAND_IDLE, 0.9f, 1.8f);
     }
 
     if(next_state == 3){
-        func_80335924(this->unk148, ASSET_A8_ANIM_MOTZHAND_PLAY, 0.9f, 1.8f);
+        skeletalAnim_set(this->unk148, ASSET_A8_ANIM_MOTZHAND_PLAY, 0.9f, 1.8f);
     }
 
     if(next_state == 4){
@@ -66,7 +66,7 @@ Actor *chMotzhand_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(this->state == 0 || this->state == 5)
         return this;
     
-    func_8033A238(func_803356A0(this->unk148));
+    modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(this->unk148));
     
     if(this->state == 4){
         modelRender_setAlpha((s32) (local->alpha * 255.0f));
@@ -178,7 +178,7 @@ void chmotzhand_update(Actor *this){
     }//L803879A4
 
     if(this->state == 3){
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             func_80389D9C(*local->pattern_ptr);
             if(local->unk9){
                 while(*local->pattern_ptr != 0xff){

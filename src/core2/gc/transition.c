@@ -222,7 +222,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     if(D_80382430.animctrl != NULL){
         gDPSetTextureFilter((*gdl)++, G_TF_POINT);
         gDPSetColorDither((*gdl)++, G_CD_DISABLE);
-        func_8028781C(D_80382430.animctrl, sp58, 1);
+        animctrl_drawSetup(D_80382430.animctrl, sp58, 1);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     }
     if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){

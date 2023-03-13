@@ -51,7 +51,7 @@ Actor *chSnowman_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     local = (ActorLocal_chSirSlush *)&actor->local;
     func_8033A45C(1, local->unk9);
     func_8033A45C(2, local->unkA);
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
 }
 
 void __chSnowman_spawnSnowball(ActorMarker *marker){
@@ -186,7 +186,7 @@ void __chSnowman_deathCallback(ActorMarker *marker, ActorMarker *other_marker){
     FUNC_8030E8B4(SFX_3EA_UNKNOWN, 1.0f, 30000, actor->position, 1500, 4500);
     FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
-    __spawnQueue_add_1((GenMethod_1)__chSnowman_spawnHat, (s32)actor->marker);
+    __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnHat, (s32)actor->marker);
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
         fp_sirslushgame_decRemaining();
     __chSnowman_spawnSnowballParticles(actor->position, 0xC);
@@ -312,7 +312,7 @@ void chSnowman_update(Actor *this){
                     && local->unkB
                 ){
                     func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(0.95f, 1.05f), 30000, this->position, 800.0f, 3050.0f);
-                    __spawnQueue_add_1((GenMethod_1)__chSnowman_spawnSnowball, (s32)this->marker);
+                    __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnSnowball, (s32)this->marker);
                     local->unk9 = FALSE;
                 }
                 

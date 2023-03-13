@@ -153,7 +153,7 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, struct58s *arg5, f32 arg6[3], f32 arg7) {
+s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, AnimMtxList *arg5, f32 arg6[3], f32 arg7) {
     f32 spF4[3];
     f32 spE8[3];
     f32 spDC[3];
@@ -191,7 +191,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         spD0[0] *= 2;
         spD0[1] *= 2;
         spD0[2] *= 2;
-        func_802519C8(&D_80380880, func_802EA110(arg5, i_ptr->unk16));
+        func_802519C8(&D_80380880, animMtxList_get(arg5, i_ptr->unk16));
         func_80252E4C(spF4, spD0);
         func_802524F0(spB0, spE8[0], spE8[1], spE8[2]);
         func_802524F0(sp98, spE8[0], spE8[1], spDC[2]);
@@ -270,7 +270,7 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         spAC[0] = (f32) (i_ptr->unkA[0] * 2);
         spAC[1] = (f32) (i_ptr->unkA[1] * 2);
         spAC[2] = (f32) (i_ptr->unkA[2] * 2);
-        func_802519C8(&D_80380880, func_802EA110(arg5, i_ptr->unkE));
+        func_802519C8(&D_80380880, animMtxList_get(arg5, i_ptr->unkE));
         func_80252D8C(spB8, spAC);
         func_802524F0(sp98, 0.0f, 0.0f, (f32) ((-i_ptr->unk2) / 2));
         func_802524F0(sp8C, 0.0f, 0.0f, (f32) (i_ptr->unk2 / 2));
@@ -339,7 +339,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp5C[0] = sp68[0] + (f32) i_ptr->unk0;
         sp5C[1] = sp68[1];
         sp5C[2] = sp68[2];
-        func_80251BCC(func_802EA110(arg5, i_ptr->unk9));
+        mlMtxSet(animMtxList_get(arg5, i_ptr->unk9));
         func_8025235C(sp68, sp68);
         func_8025235C(sp5C, sp5C);
         sp44[0] = sp5C[0] - sp68[0];

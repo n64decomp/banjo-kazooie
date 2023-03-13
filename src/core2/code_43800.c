@@ -52,7 +52,7 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     rotation[1] = this->yaw;
     rotation[2] = this->roll;
     sp44 = ml_map_f(sp54[1] - sp40, 0.0f, 300.0f, 0.43f, 0.28f);
-    modelRender_preDraw((GenMethod_1)func_802CA790, (s32)this);
+    modelRender_preDraw((GenFunction_1)func_802CA790, (s32)this);
     modelRender_draw(gfx, mtx, this->position, rotation, sp44, NULL, func_80330B1C(marker));
     return this;
 }

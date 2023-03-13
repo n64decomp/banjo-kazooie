@@ -61,8 +61,8 @@ s32 func_8038D2F4(Actor *this, f32 *arg1, bool arg2) {
     local->unkA[1] = (s16) arg1[1];
     local->unkA[2] = (s16) arg1[2];
     local->unkA[1] = (s16) (s32) func_80309724(arg1);
-    func_80335924(this->unk148, ASSET_DB_ANIM_FLIBBIT_HOP, 0.2f, (arg2) ? randf2(0.7f, 0.8f) : randf2(0.7f, 0.8f));
-    func_80335A8C(this->unk148, 2);
+    skeletalAnim_set(this->unk148, ASSET_DB_ANIM_FLIBBIT_HOP, 0.2f, (arg2) ? randf2(0.7f, 0.8f) : randf2(0.7f, 0.8f));
+    skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     func_80324D54(0.2f, SFX_3F2_UNKNOWN, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
     return TRUE;
 }
@@ -204,9 +204,9 @@ void func_8038D9D0(Actor *this, s32 next_state) {
         local->unk1C = 0.5f;
     }
     if (next_state == 3) {
-        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
-        func_80335A74(this->unk148, randf2(0.0f, 0.9));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         actor_collisionOn(this);
         this->position[0] = (f32) local->unk10[0];
         this->position[1] = (f32) local->unk10[1];
@@ -226,27 +226,27 @@ void func_8038D9D0(Actor *this, s32 next_state) {
         }
     }
     if (next_state == 6) {
-        func_80335924(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
-        func_80335A74(this->unk148, randf2(0.0f, 1.0f));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 1.0f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         local->unk28 = randf2(1.0f, 3.0f);
     }
     if (next_state == 7) {
-        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
-        func_80335A74(this->unk148, randf2(0.0f, 0.9));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         this->position[1] = func_80309724(this->position);
         local->unk1C = 1.0f;
     }
     if (next_state == 8) {
         FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
-        func_80335924(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = func_80309724(this->position);
         local->unk1C = 1.0f;
     }
     if (next_state == 9) {
-        func_80335924(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
+        skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
         FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
@@ -254,8 +254,8 @@ void func_8038D9D0(Actor *this, s32 next_state) {
         local->unk18 = 1000.0f;
     }
     if (next_state == 0xA) {
-        func_80335924(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 0xB) {
@@ -305,7 +305,7 @@ Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         return this;
     }
     if (local->unk0 && ((this->state == 3) || (this->state == 6))) {
-        temp_a0_2 = func_803356A0(this->unk148);
+        temp_a0_2 = skeletalAnim_getBoneTransformList(this->unk148);
         for(var_s0 = 0; var_s0 < 2; var_s0++){
             if (0.1 <= local->unk20[var_s0]) {
                 var_f2 = (f32) ((local->unk20[var_s0] - 0.1) / 0.1);
@@ -317,10 +317,10 @@ Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp7C[0] = 1.0f;
             sp7C[1] = var_f2 * 0.99 + 0.01;
             sp7C[2] = 1.0f;
-            func_8033A928(temp_a0_2, (var_s0 != 0) ? 0x2D : 0x2E, sp7C);
+            boneTransformList_setBoneScale(temp_a0_2, (var_s0 != 0) ? 0x2D : 0x2E, sp7C);
         };
     }
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
     local->unk0 = marker->unk14_21;
     return this;
 }
@@ -415,11 +415,11 @@ void BGS_func_8038E034(Actor *this) {
     }
 
     if (this->state == 5) {
-        func_8033568C(this->unk148, &sp8C, &sp88);
+        skeletalAnim_getProgressRange(this->unk148, &sp8C, &sp88);
         if (sp8C < 0.8 && 0.8 <= sp88) {
             func_8030E878(SFX_8_BANJO_LANDING_04, randf2(0.8f, 0.9f), randi2(0x61A8, 0x6978), this->position, 100.0f, 1500.0f);
         }
-        if (func_80335794(this->unk148) > 0) {
+        if (skeletalAnim_getLoopCount(this->unk148) > 0) {
             sp7C[0] = (f32) local->unk10[0];
             sp7C[1] = (f32) local->unk10[1];
             sp7C[2] = (f32) local->unk10[2];
@@ -489,7 +489,7 @@ void BGS_func_8038E034(Actor *this) {
     }
 
     if(this->state == 10){
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             func_8038D9D0(this, 11);
         }
     }

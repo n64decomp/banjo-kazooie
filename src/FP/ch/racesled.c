@@ -24,7 +24,7 @@ ActorInfo chRaceSled = {
 Actor *chRaceSled_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(this->unk10_12 == FALSE){
-        return func_80325888(marker, gfx, mtx, vtx);
+        return actor_draw(marker, gfx, mtx, vtx);
     }
     return this;
 }

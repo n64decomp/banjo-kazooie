@@ -18,7 +18,7 @@ ActorAnimationInfo D_8038C700[] = {
 ActorInfo D_8038C718 = { 
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, D_8038C700,
-    chLeaky_update, func_80326224, func_80325888,
+    chLeaky_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -41,7 +41,7 @@ void chLeaky_update(Actor *this) {
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
             levelSpecificFlags_set(5, FALSE);
-            timedFunc_set_1(0.5f, (GenMethod_1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
+            timedFunc_set_1(0.5f, (GenFunction_1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
         if (levelSpecificFlags_get(2) != 0) {
             temp_v0_2 = func_8034C5AC(300);
@@ -94,7 +94,7 @@ void __chLeaky_startCutscene(ActorMarker *caller, enum asset_e text_id, s32 arg2
     timedFunc_set_0(1.0f, func_80388F88);
     func_80324E38(2.5f, 0);
     timedFunc_set_1(2.5f, func_8028F9DC, 2);
-    timedFunc_set_3(2.5f, (GenMethod_3)func_802E4078, MAP_A_TTC_SANDCASTLE, 0, 0);
+    timedFunc_set_3(2.5f, (GenFunction_3)func_802E4078, MAP_A_TTC_SANDCASTLE, 0, 0);
     func_803228D8();
 }
 

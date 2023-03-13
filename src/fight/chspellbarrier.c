@@ -29,7 +29,7 @@ void chspellbarrier_update(Actor *this);
 ActorInfo D_80391AD0 = {
     MARKER_284_GRUNTY_SPELL_BARRIER, ACTOR_3AB_GRUNTY_SPELL_BARRIER, ASSET_546_MODEL_GRUNTY_SPELL_BARRIER,
     0x1, NULL,
-    chspellbarrier_update, func_80326224, func_80325888,
+    chspellbarrier_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

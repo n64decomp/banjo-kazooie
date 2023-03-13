@@ -15,13 +15,13 @@ extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s
 extern void func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
 extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32[3]);
 
-extern void func_8033A670(s32, s32, f32[3]);
-extern void func_8033A928(s32, s32, f32[3]);
+extern void boneTransformList_getBoneScale(s32, s32, f32[3]);
+extern void boneTransformList_setBoneScale(s32, s32, f32[3]);
 extern void func_8033A9A8(s32, s32, f32[3]);
 extern void viewport_getPosition(f32[3]);
 extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
-extern void func_8033A238(s32);
+extern void modelRender_setBoneTransformList(s32);
 extern void func_8028FAB0(f32[3]);
 extern void baModel_802921D4(f32[3]);
 
@@ -90,7 +90,7 @@ void func_80388518(s32 arg0){
     D_80389FA0.unk21 = arg0;
     D_80389FA0.unk38 = 0.0f;
     if(D_80389FA0.unk21 == 1){
-        func_80335924(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 0.0f, 10.0f);
+        skeletalAnim_set(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 0.0f, 10.0f);
     }
     if(D_80389FA0.unk21 == 2){
         func_8030DD90(D_80389FA0.unk4, 0);
@@ -103,7 +103,7 @@ void func_80388518(s32 arg0){
 
     if(D_80389FA0.unk21 == 3){
         if(sp24 != 2){
-            func_80335924(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 0.0f, 10.0f);
+            skeletalAnim_set(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 0.0f, 10.0f);
         }
         D_80389FA0.unk28[1] = 1100.0f;
     }
@@ -151,13 +151,13 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(sp98[0] <  -2600.0f || 11600.0f < sp98[0])
         return;
 
-    s1 = func_803356A0(D_80389FA0.unk0);
-    func_8033A670(s1, 0x40, sp84);
+    s1 = skeletalAnim_getBoneTransformList(D_80389FA0.unk0);
+    boneTransformList_getBoneScale(s1, 0x40, sp84);
     for( i = 0; i < 3; i++){
         sp84[i] = sp84[i] + (1.3 - sp84[i])*D_80389FA0.unk8;
     }
 
-    func_8033A928(s1, 0x40, sp84);
+    boneTransformList_setBoneScale(s1, 0x40, sp84);
 
     if(D_80389FA0.unk21 == 1){
         func_8033A9A8(s1, 0x44, D_80389C0C);
@@ -201,7 +201,7 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A45C(2, tmp_s0);
         func_8033A45C(3, tmp_s0);
     }
-    func_8033A238(s1);
+    modelRender_setBoneTransformList(s1);
     func_8033A450(D_80389FA0.unk34);
     modelRender_setVertexList(D_80389FA0.unk40);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
@@ -248,7 +248,7 @@ int CC_func_80388CA0(void){
 
 void func_80388CB4(void){
     if(D_80389FA0.unk21){
-        func_80335874(D_80389FA0.unk0);
+        skeletalAnim_free(D_80389FA0.unk0);
         func_8030DA44(D_80389FA0.unk4);
         func_80340690(D_80389FA0.unk18);
         func_8034A2A8(D_80389FA0.unk34);
@@ -266,7 +266,7 @@ void func_80388CB4(void){
 void func_80388D54(void){
     D_80389FA0.unk21 = 0;
     if(map_get() == MAP_B_CC_CLANKERS_CAVERN){
-        D_80389FA0.unk0 = func_803358B4();
+        D_80389FA0.unk0 = skeletalAnim_new();
         D_80389FA0.unk4 = func_8030D90C();
         D_80389FA0.unk8 = 1.0f;
         D_80389FA0.unk18 = func_803406B0();
@@ -334,9 +334,9 @@ void CC_func_80388F4C(void){
         D_80389FA0.unk20 = (ml_distance_vec3f(sp6C, D_80389FA0.unkC) < 200.0f);
 
         D_80389FA0.unk38 += sp68;
-        sp64 = func_80335684(D_80389FA0.unk0);
-        func_80335A94(D_80389FA0.unk0, sp68, 1);
-        sp60 = func_80335684(D_80389FA0.unk0);
+        sp64 = skeletalAnim_getProgress(D_80389FA0.unk0);
+        skeletalAnim_update(D_80389FA0.unk0, sp68, 1);
+        sp60 = skeletalAnim_getProgress(D_80389FA0.unk0);
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 5, sp54);
             if(sp60 < sp64){
@@ -359,16 +359,16 @@ void CC_func_80388F4C(void){
         }
 
         if(D_80389FA0.unk21 == 1){
-            if(D_80389FA0.unk20 && func_8033567C(D_80389FA0.unk0) != ASSET_C4_ANIM_CLANKER_BITE){
-                func_80335924(D_80389FA0.unk0, ASSET_C4_ANIM_CLANKER_BITE, 1.0f, 10.0f);
+            if(D_80389FA0.unk20 && skeletalAnim_getAnimId(D_80389FA0.unk0) != ASSET_C4_ANIM_CLANKER_BITE){
+                skeletalAnim_set(D_80389FA0.unk0, ASSET_C4_ANIM_CLANKER_BITE, 1.0f, 10.0f);
                 if(!D_80389FA0.unk48){
                     func_80311480(0xd2b, 0xE, D_80389FA0.unk28, NULL, NULL, NULL);
                     D_80389FA0.unk48 = TRUE;
                 }
             }//L8038918C
             
-            if(!D_80389FA0.unk20 && func_8033567C(D_80389FA0.unk0) == ASSET_C4_ANIM_CLANKER_BITE){
-                func_80335924(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 1.0f, 10.0f);
+            if(!D_80389FA0.unk20 && skeletalAnim_getAnimId(D_80389FA0.unk0) == ASSET_C4_ANIM_CLANKER_BITE){
+                skeletalAnim_set(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 1.0f, 10.0f);
             }
         }//L803891BC
 

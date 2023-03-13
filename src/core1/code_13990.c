@@ -188,7 +188,7 @@ void func_80251B5C(f32 arg0, f32 arg1, f32 arg2){
     *(var_v0++) = arg0; *(var_v0++) = arg1; *(var_v0++) = arg2; *(var_v0++) = 1.0f;
 }
 
-void func_80251BCC(Mtx* arg0) {
+void mlMtxSet(Mtx* arg0) {
     s32 i, j;
     f32 *v0;
     

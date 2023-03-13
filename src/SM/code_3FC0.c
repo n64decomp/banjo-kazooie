@@ -17,7 +17,7 @@ ActorAnimationInfo D_8038AFF0[] = {
 ActorInfo D_8038B008 = { 
     0xE1, 0x198, 0x530,
     2, D_8038AFF0,
-    func_8038A3B0, func_80326224, func_80325888,
+    func_8038A3B0, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };//chBanjosBed
 
@@ -30,7 +30,7 @@ ActorAnimationInfo D_8038B02C[] = {
 ActorInfo D_8038B044 ={
     0xE2, 0x199, 0x52F,
     2, D_8038B02C,
-    func_8038A3B0, func_80326224, func_80325888,
+    func_8038A3B0, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };//chBanjosChair
 
@@ -43,7 +43,7 @@ ActorAnimationInfo D_8038B068[] = {
 ActorInfo D_8038B080 ={
     0xE3, 0x19A, 0x337,
     2, D_8038B068,
-    func_8038A3B0, func_80326224, func_80325888,
+    func_8038A3B0, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };//chBanjosStove
 

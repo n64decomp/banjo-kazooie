@@ -3,8 +3,8 @@
 #include "variables.h"
 
 extern void func_80328B8C(Actor *, s32, f32, s32);
-extern void func_803253A0(Actor *);
-extern void func_80325794(ActorMarker *);
+extern void actor_predrawMethod(Actor *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern Actor *func_8032813C(enum actor_e id, f32[3], s32);
 
 
@@ -45,8 +45,8 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
     if(D_8037DE84)
         return actor;
 
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)actor);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)actor);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};

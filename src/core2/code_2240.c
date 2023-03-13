@@ -6,116 +6,117 @@
 
 //function declarations
 void anim_setIndex(Animation *this, enum asset_e arg1);
-s32  anim_802897A0(Animation *this);
-s32  func_802892FC(Animation *this);
-void func_8033AA50(s32, f32, s32);
-void func_8033A750(s32, s32, s32, f32);
+void anim_drawSetup(Animation *this);
+void animationFile_getBoneTransformList(s32, f32, s32);
+void boneTransformList_interpolate(s32, s32, s32, f32);
 
 //function definitions
-void func_802891D0(Animation *this, s32 arg1){
+static void __anim_resetTransform(Animation *this, s32 arg1){
     s32 *tmp;
-    if(func_80288400(this->unkA[arg1], &tmp) == 0){
-        func_8033A510(tmp);
+    if(animCache_getBoneTransformList(this->animcache_index[arg1], &tmp) == 0){
+        boneTransformList_reset(tmp);
     }; 
 }
 
-void func_8028920C(Animation *this){
-    func_802891D0(this, this->unk8);
+void __anim_resetCurrentTransform(Animation *this){
+    __anim_resetTransform(this, this->unk8);
 }
 
-void func_8028922C(Animation *this){
-    func_802891D0(this, 2);
+void __anim_resetTargetTransform(Animation *this){
+    __anim_resetTransform(this, 2);
 }
 
-s32 func_8028924C(Animation *this, s32 arg1){
-    return func_80288374(this->unkA[arg1]);
+s32 __anim_transformInUse(Animation *this, s32 arg1){
+    return animCache_inUse(this->animcache_index[arg1]);
 }
 
-s32 func_80289274(Animation *this){
-    return func_8028924C(this, this->unk8);
+s32 __anim_currentTransformInUse(Animation *this){
+    return __anim_transformInUse(this, this->unk8);
 }
 
-s32 func_80289294(Animation *this){
-    return func_8028924C(this, (this->unk8 != 0)? 0: 1);
+s32 __anim_startTransformInUse(Animation *this){
+    return __anim_transformInUse(this, (this->unk8 != 0)? 0: 1);
 }
 
-s32 func_802892CC(Animation *this, s32 arg1){
-    s32 tmp;
-    func_80288400(this->unkA[arg1], &tmp);
+BoneTransformList *anim_getTransform(Animation *this, s32 index){
+    BoneTransformList *tmp;
+    animCache_getBoneTransformList(this->animcache_index[index], &tmp);
     return tmp;
 }
 
-s32 func_802892FC(Animation *this){
-    return func_802892CC(this, this->unk8);
+BoneTransformList *animcache_getCurrentTransform(Animation *this){
+    return anim_getTransform(this, this->unk8);
 }
 
-s32 func_8028931C(Animation *this){
-    return func_802892CC(this, (this->unk8 != 0)? 0: 1);
+BoneTransformList *anim_getStartTransform(Animation *this){
+    return anim_getTransform(this, (this->unk8 != 0)? 0: 1);
 }
 
-s32 func_80289354(Animation *this){
-    return func_802892CC(this, 2);
+BoneTransformList *anim_getTargetTransform(Animation *this){
+    return anim_getTransform(this, 2);
 }
 
-void func_80289374(Animation *this){
-    if(this->unk1C == 1 && func_80289274(this)){
-        this->unk8 = (this->unk8)? 0 : 1;
+void __anim_update_doubleBuffer(Animation *this){
+    if(this->reset == 1 && __anim_currentTransformInUse(this)){
+        this->unk8 = (this->unk8)? 0 : 1; //swap current transform and start transfrom
     }
-    this->unk1C = 0;
-    if( this->duration < 1.0f && func_80289294(this)){
-        func_8033AA50(animcache_get(this->index), this->timer, func_802892FC(this));
-        func_8033A750(func_802892FC(this), func_8028931C(this), func_802892FC(this), this->duration);
+    this->reset = 0;
+    if( this->duration < 1.0f && __anim_startTransformInUse(this)){
+        animationFile_getBoneTransformList(animBinCache_get(this->index), this->timer, animcache_getCurrentTransform(this));
+        boneTransformList_interpolate(animcache_getCurrentTransform(this), anim_getStartTransform(this), animcache_getCurrentTransform(this), this->duration);
     }
     else{
-        func_8033AA50(animcache_get(this->index), this->timer, func_802892FC(this));
+        animationFile_getBoneTransformList(animBinCache_get(this->index), this->timer, animcache_getCurrentTransform(this));
     }
 
 }
 
-void func_8028948C(Animation *this){
-    if(this->unk1C == 1 && this->unk1E == 0){
-        if(func_80289274(this)){
-            this->unk8 = (this->unk8)? 0 : 1;
-            func_8028922C(this);
+void __anim_update_tripleBuffer(Animation *this){
+    if(this->reset == 1 && this->unk1E == 0){
+        //smooth a current Xfrom become startXform
+        if(__anim_currentTransformInUse(this)){
+            this->unk8 = (this->unk8)? 0 : 1;//swap current transform and start transfrom
+            __anim_resetTargetTransform(this);
         }
     }
     else{
-        if(this->unk1C == 2)
-            func_8028920C(this);
+        //not smooth
+        if(this->reset == 2)
+            __anim_resetCurrentTransform(this);
     }
-    this->unk1C = 0;
-    if( this->duration < 1.0f && func_80289294(this) && !this->unk1E){
-        func_8033AA50(animcache_get(this->index), this->timer, func_80289354(this));
-        func_8033A750(func_802892FC(this), func_8028931C(this), func_80289354(this), this->duration);
+    this->reset = 0;
+    if( this->duration < 1.0f && __anim_startTransformInUse(this) && !this->unk1E){
+        animationFile_getBoneTransformList(animBinCache_get(this->index), this->timer, anim_getTargetTransform(this));
+        boneTransformList_interpolate(animcache_getCurrentTransform(this), anim_getStartTransform(this), anim_getTargetTransform(this), this->duration);
     }
     else{
-        func_8033AA50(animcache_get(this->index), this->timer, func_802892FC(this));
+        animationFile_getBoneTransformList(animBinCache_get(this->index), this->timer, animcache_getCurrentTransform(this));
         if(this->unk1E && this->index)
             this->unk1E = 0;
     }
 
 }
 
-void func_802895F8(Animation *this){
-    if(this->unk1D == 1){
-        func_8028948C(this);
+void anim_update(Animation *this){
+    if(this->triple_buffer == 1){
+        __anim_update_tripleBuffer(this);
     }
     else{
-        func_80289374(this);
+        __anim_update_doubleBuffer(this);
     }
     if(this->matrices){
-        (*(this->matrices))(func_802892FC(this), this->unk4);
+        (*(this->matrices))(animcache_getCurrentTransform(this), this->unk4);
     }
-    anim_802897A0(this);
+    anim_drawSetup(this);
 }
 
 
-void func_80289674(Animation *this){
-    this->unk1C = 1;
+void anim_resetSmooth(Animation *this){
+    this->reset = 1;
 }
 
-s32 func_80289680(void){
-    return 0x20;
+size_t anim_getSize(void){
+    return sizeof(Animation);
 }
 
 enum asset_e anim_getIndex(Animation *this){
@@ -130,27 +131,27 @@ f32  anim_getDuration(Animation *this){
     return this->duration;
 }
 
-void func_802896A0(Animation *this){
-    func_802883AC(this->unkA[0]);
-    func_802883AC(this->unkA[1]);
-    if(this->unk1D == 1){
-        func_802883AC(this->unkA[2]);
+void anim_release(Animation *this){
+    animCache_release(this->animcache_index[0]);
+    animCache_release(this->animcache_index[1]);
+    if(this->triple_buffer == 1){
+        animCache_release(this->animcache_index[2]);
     }
 }
 
-void func_802896EC(Animation *this, s32 arg1){
-    this->unk1D = arg1;
+void anim_new(Animation *this, bool triple_buffer){
+    this->triple_buffer = triple_buffer;
     anim_setIndex(this,0);
     anim_setTimer(this, 0.0f);
     anim_setDuration(this, 1.0f);
     anim_80289790(this, NULL);
-    this->unk1C = 0;
+    this->reset = 0;
     this->unk1E = 1;
     this->unk8 = 0;
-    this->unkA[0] = func_80288330();
-    this->unkA[1] = func_80288330();
-    if(this->unk1D == 1){
-        this->unkA[2] = func_80288330();
+    this->animcache_index[0] = animCache_getNew();
+    this->animcache_index[1] = animCache_getNew();
+    if(this->triple_buffer == 1){
+        this->animcache_index[2] = animCache_getNew(); //target_bone_transform_list
     }
 }
 
@@ -170,18 +171,18 @@ void anim_80289798(Animation *this, s32 arg1){
     this->unk4 = arg1;
 }
 
-s32 anim_802897A0(Animation *this){
-    return func_8033A238(func_802892FC(this));
+void anim_drawSetup(Animation *this){
+    modelRender_setBoneTransformList(animcache_getCurrentTransform(this));
 }
 
 void anim_setDuration(Animation *this, f32 arg1){
     this->duration = arg1;
 }
 
-void anim_802897D4(Animation *this, BKAnimationList *arg0, Animation *dst){
-    func_802EA1A8(this, arg0, func_802892FC(dst));
+void anim_802897D4(AnimMtxList *this, BKAnimationList *arg0, Animation *dst){
+    animMtxList_setBoned(this, arg0, animcache_getCurrentTransform(dst));
 }
 
-void anim_8028980C(Animation *this){
-    this->unk1C = 2;
+void anim_resetNow(Animation *this){
+    this->reset = 2;
 }

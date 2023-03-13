@@ -20,7 +20,7 @@ ActorInfo D_803948B8 = { 0x16F, 0x1D7, 0x54F, 0x1, D_80394860, func_803902B8, fu
 Actor *func_80390030(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(3, 1);
     func_8033A45C(4, 1);
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
 }
 
 s32 func_80390084(void) {

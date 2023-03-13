@@ -15,7 +15,7 @@ ActorAnimationInfo D_8038F8F0[] = {
 ActorInfo D_8038F908 = { 
     MARKER_1F9_SNARE_BEAR, ACTOR_1E9_SNARE_BEAR, ASSET_440_MODEL_SNAREBEAR,
     0x1, D_8038F8F0,
-    func_8038E0C8, func_80326224, func_80325888,
+    func_8038E0C8, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -44,7 +44,7 @@ void func_8038E060(s32 arg0, ActorMarker *marker){
         
         func_80345C78(sp18, sp28);
         func_8033A8F0(arg0, 1, sp18);
-        func_8033A238(arg0);
+        modelRender_setBoneTransformList(arg0);
     }
 }
 

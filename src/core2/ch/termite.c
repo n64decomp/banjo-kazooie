@@ -237,6 +237,6 @@ void chTermite_update(Actor *this) {
 ActorInfo chTermite = { 
     MARKER_4_TERMITE, ACTOR_5_TERMITE, ASSET_350_MODEL_TERMITE, 
     0x1, chTermiteAnimations, 
-    chTermite_update, func_80326224, func_80325888, 
+    chTermite_update, func_80326224, actor_draw, 
     2000, 0, 0.0f, 0
 };

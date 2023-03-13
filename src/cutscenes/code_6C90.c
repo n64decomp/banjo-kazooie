@@ -52,7 +52,7 @@ void func_8038D080(ParticleEmitter *pCtrl){
 }
 
 Actor* func_8038D13C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    Actor *actor = func_80325888(marker, gfx, mtx, vtx);
+    Actor *actor = actor_draw(marker, gfx, mtx, vtx);
     ActorLocal_cutscenes_6C90 *local = (ActorLocal_cutscenes_6C90 *)&actor->local;
     f32 sp3C[3];
     int i;

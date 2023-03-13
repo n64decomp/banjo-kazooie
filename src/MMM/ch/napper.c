@@ -29,18 +29,18 @@ void __chnapper_setState(Actor *this, s32 next_state){
     local->unk4 = 0.0f;
     actor_collisionOff(this);
     if(next_state == 1)
-        func_80335924(this->unk148, ASSET_A3_ANIM_NAPPER_ASLEEP, 0.2f, 2.5f);
+        skeletalAnim_set(this->unk148, ASSET_A3_ANIM_NAPPER_ASLEEP, 0.2f, 2.5f);
     
     if(next_state == 2){
-        func_80335924(this->unk148, ASSET_A4_ANIM_NAPPER_AWAKE, 0.2f, 5.0f);
+        skeletalAnim_set(this->unk148, ASSET_A4_ANIM_NAPPER_AWAKE, 0.2f, 5.0f);
         actor_collisionOn(this);
         local->jiggy_marker->collidable = FALSE;
         local->unk8 = randf2(2.0f, 6.0f);
     }
 
     if(next_state == 3){
-        func_80335924(this->unk148, ASSET_A5_ANIM_NAPPER_WALK, 0.2f, 1.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_A5_ANIM_NAPPER_WALK, 0.2f, 1.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_8030E484(SFX_41_MUMBO_ERGHHH);
     }
 
@@ -50,7 +50,7 @@ void __chnapper_setState(Actor *this, s32 next_state){
     }
     
     if(next_state == 5){
-        func_80335924(this->unk148, ASSET_A6_ANIM_NAPPER_ALERT, 2.0f, 4.0f);
+        skeletalAnim_set(this->unk148, ASSET_A6_ANIM_NAPPER_ALERT, 2.0f, 4.0f);
         actor_collisionOn(this);
         local->jiggy_marker->collidable = FALSE;
     }
@@ -90,7 +90,7 @@ Actor *chnapper_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         modelRender_setAlpha(0xdc);
     }
 
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void chnapper_update(Actor *this){
@@ -135,7 +135,7 @@ void chnapper_update(Actor *this){
         return;
     }
 
-    func_8033568C(this->unk148, &sp70, &sp74);
+    skeletalAnim_getProgressRange(this->unk148, &sp70, &sp74);
     local->unk4 += sp68;
 
     if(this->state != 1){
@@ -208,9 +208,9 @@ void chnapper_update(Actor *this){
     }//L803870F8
 
     if(this->state == 3){
-        if(func_80335794(this->unk148) > 0){
-            func_80335924(this->unk148, ASSET_A4_ANIM_NAPPER_AWAKE, 1.0f, 5.0f);
-            func_80335A8C(this->unk148, 1);
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
+            skeletalAnim_set(this->unk148, ASSET_A4_ANIM_NAPPER_AWAKE, 1.0f, 5.0f);
+            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         }
 
         if(func_80389524())

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern Actor *func_8032813C(enum actor_e, f32[3], s32);
-extern void func_80325794(ActorMarker *marker);
+extern void actor_postdrawMethod(ActorMarker *marker);
 
 Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chOverlayNoController_update(Actor *this);
@@ -35,8 +35,8 @@ Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vt
     
 
     actor = marker_getActor(marker);
-    modelRender_preDraw((GenMethod_1)func_803253A0,  (s32)actor);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod,  (s32)actor);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};

@@ -15,7 +15,7 @@ extern void func_8025AABC(enum comusic_e);
 extern f32 func_8024E420(s32, s32, s32);
 extern f32 func_8033DDB8(void);
 extern void chBottlesBonus_func_802DEA50(s32);
-extern void func_80325794(ActorMarker *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern void chBottlesBonus_completedPuzzle(void);
 
 
@@ -124,7 +124,7 @@ bool chBottlesBonusCursor_checkPuzzleCompletion(void) {
     for(i = 0; i < 20 && D_8037E5C0.is_completed != 0; i++){
         if((D_8037E248[i].state != 3) 
             || (i != D_8037E248[i].piece_id) 
-            || !func_803454D0(chBottlesBonus_func_802DEAF8(i))
+            || !vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(i))
         ) {
             D_8037E5C0.is_completed = FALSE;
         }
@@ -146,8 +146,8 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C;
 
     this = marker_getActorAndRotation(chBottlesBonusSursorMarker, &rotation);
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)chBottlesBonusSursorMarker);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusSursorMarker);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
     func_8024E030(this->position, D_8037E5C0.unk18);
@@ -177,7 +177,7 @@ ActorMarker *chBottlesBonusCursor_spawn(void){
 void chBottlesBonusCursor_func_802DF928(s32 indx) {
     f32 rotation_3d[3];
 
-    func_80345250(D_8037E248[indx].unk1C, D_8037E248[indx].unkC);
+    vec4f_clone(D_8037E248[indx].unk1C, D_8037E248[indx].unkC);
     rotation_3d[0] = D_8037E248[indx].rotation;
     rotation_3d[1] = 0.0f; 
     rotation_3d[2] = 0.0f;
@@ -312,7 +312,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 ) {
                     if (D_8037E248[D_8037E5B8 - 41].state == 3) {
                         if( D_8037E5B8 - 41 != D_8037E248[D_8037E5B8 - 41].piece_id
-                            || !func_803454D0(chBottlesBonus_func_802DEAF8(D_8037E5B8 - 41))
+                            || !vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(D_8037E5B8 - 41))
                         ) {
                             D_8037E5C0.unk0 = D_8037E5B8 - 41;
                             chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
@@ -341,7 +341,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                     if ((D_8037E5B8 >= 21) && (D_8037E5B8 < 41)) {
                         held_piece->state = 3;
                         held_piece->piece_id = D_8037E5B8 - 21;
-                        if ((D_8037E5C0.unk0 == held_piece->piece_id) && func_803454D0(chBottlesBonus_func_802DEAF8(D_8037E5C0.unk0))) {
+                        if ((D_8037E5C0.unk0 == held_piece->piece_id) && vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(D_8037E5C0.unk0))) {
                             sp44 = COMUSIC_2B_DING_B;
                             func_80328B8C(this, 6, 0.0f, 1);
                             actor_playAnimationOnce(this);

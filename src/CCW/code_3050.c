@@ -16,8 +16,8 @@ void func_80389440(Actor *this, s32 next_state) {
         func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
         this->marker->propPtr->unk8_3 = FALSE;
         fileProgressFlag_set(FILEPROG_E6_SPRING_EYRIE_HATCHED, TRUE);
-        func_80335924(this->unk148, 0x187, 0.0f, 2.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x187, 0.0f, 2.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 2);
         timed_exitStaticCamera(8.0f);
@@ -42,7 +42,7 @@ Actor *CCW_func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     func_8033A45C(3, (this->state < 2) ? 1 : 0);
     func_8033A45C(4, (this->state < 2) ? 0 : 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_803895F4(Actor *this) {
@@ -61,7 +61,7 @@ void func_803895F4(Actor *this) {
     }
 
     if (this->state == 2) {
-        func_8033568C(this->unk148, &sp2C, &sp28);
+        skeletalAnim_getProgressRange(this->unk148, &sp2C, &sp28);
         if ((sp2C < 0.5) && (sp28 >= 0.5)) {
             func_80326310(this);
         }

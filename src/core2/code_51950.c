@@ -89,5 +89,5 @@ void func_802D8B20(enum actor_e actor_id){
 }
 
 void func_802D8BE4(bool gold_feather){
-    __spawnQueue_add_1((GenMethod_1)func_802D8B20, (!gold_feather) ? 0x1FF : 0x200);
+    __spawnQueue_add_1((GenFunction_1)func_802D8B20, (!gold_feather) ? 0x1FF : 0x200);
 }

@@ -1476,7 +1476,7 @@ s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3) {
     rotation[2] = (f32)marker->roll;
 
     scale = (marker->unk3E_0) ? marker_getActor(marker)->scale : 1.0f;
-    if (func_802EA190(marker->unk20)) {
+    if (animMtxList_len(marker->unk20)) {
         return func_802EBAE0(sp58, position, rotation, scale, 0, marker->unk20, arg1, arg2, arg3);
     }
     return 0;

@@ -33,7 +33,7 @@ Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(func_8038BFA0()) return this;
 
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038FF54(Actor *this){

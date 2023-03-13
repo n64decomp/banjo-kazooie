@@ -50,13 +50,13 @@ void func_8038C760(Actor *this, s32 arg1){
     timed_setStaticCameraToNode(0.0f, 8);
     if(arg1 < 3){
         timed_setStaticCameraToNode(3.5f, arg1 + 0x15);
-        timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
+        timedFunc_set_3(3.5f, (GenFunction_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         timed_exitStaticCamera(6.5f);
         func_80324E38(6.5f, 0);
     }
     else{
-        timedFunc_set_2(3.5f, (GenMethod_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
-        timedFunc_set_3(3.5f, (GenMethod_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
+        timedFunc_set_2(3.5f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
+        timedFunc_set_3(3.5f, (GenFunction_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         timed_exitStaticCamera(6.0f);
         func_80324E38(6.0f, 0);
     }
@@ -86,9 +86,9 @@ void func_8038C8A0(Actor *this, s32 next_state){
     }//L8038C9B8
 
     if(next_state == 2){
-        func_80335924(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
-        func_80335A74(this->unk148, 0.27f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
+        skeletalAnim_setProgress(this->unk148, 0.27f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
         local->unkC = 0.0f;
         local->unk18[0] = this->position_x;
         local->unk18[1] = this->position_y;
@@ -101,22 +101,22 @@ void func_8038C8A0(Actor *this, s32 next_state){
 
     if(next_state == 3){
         local->unk24 = 3.0f;
-        func_80335924(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
-        func_80335A74(this->unk148, 0.27f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
+        skeletalAnim_setProgress(this->unk148, 0.27f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
     }//L8038CAB4
 
     if(this->state == 3){
-        func_80335924(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.5f, 3.0f);
-        func_80335A74(this->unk148, 0.99f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.5f, 3.0f);
+        skeletalAnim_setProgress(this->unk148, 0.99f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if(next_state == 4 || next_state == 5)
             FUNC_8030E8B4(SFX_DE_WOOD_SQUEAK, 1.0f, 32675, this->position, 500, 1500);
     }//L8038CB20
 
     if(next_state == 6){
         func_80324E38(0.0f, 3);
-        func_80335924(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.0f, 3.0f);
+        skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.0f, 3.0f);
         func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     }
 
@@ -142,7 +142,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
 Actor *func_8038CC40(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
     if(this->state == 1) return this;
-    return func_80325888(this_marker, gfx, mtx, vtx);
+    return actor_draw(this_marker, gfx, mtx, vtx);
 }
 
 void func_8038CC98(Actor *this){
@@ -250,7 +250,7 @@ void func_8038CC98(Actor *this){
     }//L8038D110
 
     if(this->state == 6){
-        func_8033568C(this->unk148, &sp58, &sp54);
+        skeletalAnim_getProgressRange(this->unk148, &sp58, &sp54);
         if(sp58 < 0.28 && 0.28 <= sp54){
             FUNC_8030E624(SFX_4C_LIP_SMACK, 1.0f, 28000);
         }

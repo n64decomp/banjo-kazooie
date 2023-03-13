@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80335A24(void *, s32, f32, f32);
 extern s32 func_802EDD8C(f32 (*)[3], f32, f32);
 
 void func_8038B900(Actor *this);
@@ -10,17 +9,17 @@ void func_8038B900(Actor *this);
 /* .data */
 ActorInfo RBB_D_80390AB0 = {
     0x30, 0x1C8, 0x41C, 0x0, NULL,
-    NULL, func_8038B900, func_80325888,
+    NULL, func_8038B900, actor_draw,
     0, 0, 0.0f, 0
 };
 
 /* .code */
 void func_8038B880(Actor *this, s32 new_state){
     if(new_state == 1)
-        func_80335924(this->unk148, ASSET_13F_ANIM_SNORKEL_STUCK, 0.0f, 5.5f);
+        skeletalAnim_set(this->unk148, ASSET_13F_ANIM_SNORKEL_STUCK, 0.0f, 5.5f);
 
     if(new_state == 2)
-        func_80335A24(this->unk148, ASSET_13E_ANIM_SNORKEL_SWIM, 1.0f, 0.65f);
+        skeletalAnim_swap(this->unk148, ASSET_13E_ANIM_SNORKEL_SWIM, 1.0f, 0.65f);
 
     this->state = new_state;
 }
@@ -34,7 +33,7 @@ void func_8038B900(Actor *this){
 
     this->marker->propPtr->unk8_3 = 1;
     if(this->marker->unk14_21){
-        sp54 = func_80335684(this->unk148);
+        sp54 = skeletalAnim_getProgress(this->unk148);
         if( ( func_8023DB5C() & (1 << 4) )
             && ( func_8023DB5C() & (1 << 2) )
             && ( randf() < 0.90 )
@@ -53,7 +52,7 @@ void func_8038B900(Actor *this){
                      )
                 )
             ){//L8038BB24
-                func_8034A174(this->marker->unk44, 5, &sp48);
+                func_8034A174(this->marker->unk44, 5, sp48);
                 other = func_802EDD8C(&sp48, 0.0f, -1300.0f);
                 func_802EFB70(other, 0.04f, 0.04f);
                 func_802EFB84(other, 0.18f, 0.18f);
@@ -76,13 +75,13 @@ void func_8038B900(Actor *this){
         }
     }
     else{//L8038BC74
-        func_8033568C(this->unk148, &sp5C, &sp58);
+        skeletalAnim_getProgressRange(this->unk148, &sp5C, &sp58);
         if( sp5C < 0.22 && 0.22 <= sp58 ){
-            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.8f, 0.9f), 0x3a98, &this->position, 1500.0f, 2000.0f);
+            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.8f, 0.9f), 15000, this->position, 1500.0f, 2000.0f);
         }
 
         if( sp5C < 0.54 && 0.54 <= sp58 ){
-            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.9f, 1.0f), 0x4a38, &this->position, 1500.0f, 2000.0f);
+            func_8030E988(SFX_D1_SNORKEL_WAH, randf2(0.9f, 1.0f), 19000, this->position, 1500.0f, 2000.0f);
         }
 
         if(this->state == 1){

@@ -3,8 +3,8 @@
 #include "variables.h"
 
 #include "prop.h"
-extern void func_803253A0(Actor *);
-extern void func_80325794(ActorMarker *);
+extern void actor_predrawMethod(Actor *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern f32 randf (void);
 extern BKModelBin *chvilegame_get_grumblie_model(ActorMarker *marker);
 
@@ -63,13 +63,13 @@ void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
         this->yaw = randf2(0.0f, 360.0f);
         s0->unk4 = func_8038B160(this);
         chvilegame_new_piece(s0->game_marker, this->marker, this->position, s0->unk4);
-        func_80335924(this->unk148, (s0->unk4)? ASSET_128_ANIM_GRUMBLIE_APPEAR : ASSET_125_ANIM_YUMBLIE_APPEAR, 0.0f, 1.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, (s0->unk4)? ASSET_128_ANIM_GRUMBLIE_APPEAR : ASSET_125_ANIM_YUMBLIE_APPEAR, 0.0f, 1.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     if(next_state == 3){
         s0->unk8 = randf2(5.0f, 10.0f);
-        func_80335924(this->unk148, (s0->unk4)? ASSET_12A_ANIM_GRUMBLIE_IDLE : ASSET_127_ANIM_YUMBLIE_IDLE, 0.1f, randf2(0.5f, 1.0f));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, (s0->unk4)? ASSET_12A_ANIM_GRUMBLIE_IDLE : ASSET_127_ANIM_YUMBLIE_IDLE, 0.1f, randf2(0.5f, 1.0f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         if(s0->unk4){
             func_8030E6A4(SFX_C4_TWINKLY_MUNCHER_GRR,randf2(1.0f, 1.2), 30000);
         }else{
@@ -79,8 +79,8 @@ void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
     
     if(next_state == 4){
         chvilegame_remove_piece(s0->game_marker, this->marker);
-        func_80335924(this->unk148, (s0->unk4)? ASSET_129_ANIM_GRUMBLIE_HIDE : ASSET_126_ANIM_YUMBLIE_HIDE, 0.1f, 0.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, (s0->unk4)? ASSET_129_ANIM_GRUMBLIE_HIDE : ASSET_126_ANIM_YUMBLIE_HIDE, 0.1f, 0.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     if(next_state == 5){
         s0->unk8 = randf2(10.0f, 20.0f);
@@ -110,8 +110,8 @@ Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
         return thisActor;
     }
 
-    modelRender_preDraw((GenMethod_1) func_803253A0, (s32)thisActor);
-    modelRender_postDraw((GenMethod_1) func_80325794, (s32)this);
+    modelRender_preDraw((GenFunction_1) actor_predrawMethod, (s32)thisActor);
+    modelRender_postDraw((GenFunction_1) actor_postdrawMethod, (s32)this);
     sp44[0] = thisActor->position_x;
     sp44[1] = thisActor->position_y + sp40->unk0*75.0f;
     sp44[2] = thisActor->position_z;
@@ -160,7 +160,7 @@ void chyumblie_update(Actor *this){
     if(s0->game_marker == NULL){
         s0->game_marker = actorArray_findClosestActorFromActorId(this->position, ACTOR_138_VILE_GAME_CTRL, -1, &sp48)->marker;
     }
-    sp50 = func_80335684(this->unk148);
+    sp50 = skeletalAnim_getProgress(this->unk148);
     if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){
         if(ml_timer_update(&s0->unk8, sp4C)){
             if(mapSpecificFlags_get(6) && (12 > chvilegame_get_piece_count(s0->game_marker))){
@@ -187,7 +187,7 @@ void chyumblie_update(Actor *this){
             func_8030E878(SFX_C5_TWINKLY_POP, randf2(1.0f, 1.2f), 30000, this->position, 500.0f, 3000.0f);
         }
 
-        if( 0 < func_80335794(this->unk148)){
+        if( 0 < skeletalAnim_getLoopCount(this->unk148)){
             s0->unk0 = 1.0f;
             chyumblie_set_state(this,YUMBLIE_STATE_3_ABOVE_GROUND);
         }

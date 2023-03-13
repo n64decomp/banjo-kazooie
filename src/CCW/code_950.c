@@ -16,7 +16,7 @@ typedef struct{
 void chwasp_update(Actor *this);
 
 /* .data */
-ActorInfo D_8038EBD0 = { MARKER_1AE_ZUBBA, ACTOR_29B_ZUBBA, ASSET_446_MODEL_ZUBBA, 0x0, NULL, chwasp_update, NULL, func_80325888, 0, 0, 1.0f, 0};
+ActorInfo D_8038EBD0 = { MARKER_1AE_ZUBBA, ACTOR_29B_ZUBBA, ASSET_446_MODEL_ZUBBA, 0x0, NULL, chwasp_update, NULL, actor_draw, 0, 0, 1.0f, 0};
 
 /* .code */
 void chwasp_setState(Actor *this, s32 next_state) {
@@ -28,10 +28,10 @@ void chwasp_setState(Actor *this, s32 next_state) {
     local->unk18 = 0.0f;
     if (next_state == 1) {
         local->unk18 = 800.0f;
-        func_80335924(this->unk148, ASSET_16F_ANIM_ZUBBA_FLY_MOVE, 0.0f, 0.65f);
+        skeletalAnim_set(this->unk148, ASSET_16F_ANIM_ZUBBA_FLY_MOVE, 0.0f, 0.65f);
     }
     if (next_state == 2) {
-        func_80335924(this->unk148, ASSET_170_ANIM_ZUBBA_FLY_IDLE, 0.1f, 0.65f);
+        skeletalAnim_set(this->unk148, ASSET_170_ANIM_ZUBBA_FLY_IDLE, 0.1f, 0.65f);
         player_getPosition(sp50);
         sp50[1] += 50.0f;
         local->unk8[0] = sp50[0] - this->position[0];
@@ -48,7 +48,7 @@ void chwasp_setState(Actor *this, s32 next_state) {
         actor_collisionOff(this);
     }
     if (next_state == 4) {
-        func_80335924(this->unk148, ASSET_171_ANIM_ZUBBA_DIE, 0.1f, 0.2f);
+        skeletalAnim_set(this->unk148, ASSET_171_ANIM_ZUBBA_DIE, 0.1f, 0.2f);
         FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
         func_80324D54(0.1f, 0x66, randf2(1.6f, 1.7f), 32000, this->position, 500.0f, 3000.0f);
         func_803867C8(local->unk4);
@@ -65,8 +65,8 @@ void chwasp_setState(Actor *this, s32 next_state) {
     }
     if (next_state == 5) {
         func_8030E878(SFX_A_BANJO_LANDING_05, randf2(0.85f, 0.95f), 18000, this->position, 500.0f, 3000.0f);
-        func_80335924(this->unk148, ASSET_172_ANIM_ZUBBA_LAND, 0.0f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_172_ANIM_ZUBBA_LAND, 0.0f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     if (next_state == 6) {
         marker_despawn(this->marker);

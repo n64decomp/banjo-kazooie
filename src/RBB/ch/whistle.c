@@ -72,8 +72,8 @@ void RBB_func_8038B0B8(Actor *this, s32 arg1){
     this->state = arg1;
 
     if(this->state == 2){
-        func_80335924(this->unk148, local->unk0->unk12, 0.0f, 0.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, local->unk0->unk12, 0.0f, 0.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         timed_playSfx(0.1f, local->unk0->unk14, 1.0f, 0x7d00);
         other = partEmitMgr_newEmitter(0xa);
         particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
@@ -105,13 +105,13 @@ Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3){
         return actor;
 
     if(actor->state == 2){
-        func_8033A238(func_803356A0(actor->unk148));
+        modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(actor->unk148));
     }
 
     sp3C[0] = actor->pitch;
     sp3C[1] = actor->yaw;
     sp3C[2] = actor->roll;
-    modelRender_preDraw(&func_803253A0, actor);
+    modelRender_preDraw(&actor_predrawMethod, actor);
     func_8033A450(func_80329934());
     modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, func_80330B1C(marker));
     func_8034A174(func_80329934(), 5, &local->unk4);
@@ -146,7 +146,7 @@ void func_8038B340(Actor * this){
     }
 
     if(this->state == 2){
-        if( func_80335794(this->unk148) > 0 )
+        if( skeletalAnim_getLoopCount(this->unk148) > 0 )
             RBB_func_8038B0B8(this, 1);
     }
 }

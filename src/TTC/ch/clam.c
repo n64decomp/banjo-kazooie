@@ -19,7 +19,7 @@ ActorAnimationInfo chClamAnimations[] = {
 ActorInfo chClam = { 
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
     0x1, chClamAnimations,
-    chClam_update, func_80326224, func_80325888, 
+    chClam_update, func_80326224, actor_draw, 
     4500, 0x366, 1.6f, 0
 };
 
@@ -241,7 +241,7 @@ void __chClam_playerDropsItem(s32 index, enum item_e item_id){
 
     player_getPosition(position);
     func_802C8F70(randf2(0.0f, 359.0f));
-    __spawnQueue_add_4((GenMethod_4)func_802C4218, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
+    __spawnQueue_add_4((GenFunction_4)func_802C4218, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
     item_dec(item_id);
 }
 

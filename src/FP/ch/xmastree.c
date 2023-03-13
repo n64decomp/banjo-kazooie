@@ -19,7 +19,7 @@ Actor *chXmasTree_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(5, this->unk38_31);
     func_8033A45C(6, fileProgressFlag_get(0x13) && !func_8033A0F0(5));
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void __chXmasTree_free(Actor *this){
@@ -99,7 +99,7 @@ void chXmasTree_update(Actor *this){
             sfxsource_setSampleRate(this->unk44_31, 28000);
         }
         __spawnQueue_add_0(__chXmasTree_spawnSwitch);
-        __spawnQueue_add_1((GenMethod_1)__chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)__chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
         if(fileProgressFlag_get(0x13)){
             __chXmasTree_80386F84(this);
             mapSpecificFlags_set(2, FALSE);

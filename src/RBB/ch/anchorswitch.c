@@ -7,7 +7,7 @@ void chAnchorSwitch_update(Actor *this);
 /* .data */
 ActorInfo D_80390A80 = {
     0x2F, 0x1C7, 0x41B, 0x0, NULL,
-    chAnchorSwitch_update, NULL, func_80325888,
+    chAnchorSwitch_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -23,7 +23,7 @@ void __chAnchorSwitch_setState(Actor *this, s32 arg1){
             levelSpecificFlags_set(0x30, TRUE);
             func_803204E4(0xe, 1);
             timedFunc_set_0(1.0f, func_803228D8);
-            timedFunc_set_3(1.0f, (GenMethod_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
+            timedFunc_set_3(1.0f, (GenFunction_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }
     }
     this->state = arg1;

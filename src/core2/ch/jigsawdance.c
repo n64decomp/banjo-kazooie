@@ -34,7 +34,7 @@ Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3
         return thisActor;
     }
     else{
-        return func_80325888(this, gdl, mptr, arg3);
+        return actor_draw(this, gdl, mptr, arg3);
     }
 }
 

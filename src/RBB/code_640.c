@@ -76,37 +76,37 @@ ActorAnimationInfo D_803900C0[4] = {
 
 ActorInfo D_803900E0 = {
     0x107, 0x21D, 0x493, 0x1, NULL,
-    func_802D3D54, func_80326224, func_80325E78,
+    func_802D3D54, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390104 = {
     0x108, 0x21C, 0x492, 0x1, NULL,
-    func_802D3D54, func_80326224, func_80325E78,
+    func_802D3D54, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390128 = {
     0x22D, 0x266, 0x4BA, 0x1, NULL,
-    func_802D3D54, func_80326224, func_80325E78,
+    func_802D3D54, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039014C = {
     0x22E, 0x267, 0x4BB, 0x1, NULL,
-    func_802D3D54, func_80326224, func_80325E78,
+    func_802D3D54, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390170 = {
     0x235, 0x23F, 0x4E2, 0x1, NULL,
-    func_802D3D54, func_80326224, func_80325E78,
+    func_802D3D54, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390194 = {
     0x15F, 0x18F, 0x42F, 0x1, D_803900C0,
-    func_80386BF8, func_80326224, func_80325888,
+    func_80386BF8, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -159,7 +159,7 @@ void func_80386A7C(Actor *this){
 Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     Actor *actor = marker_getActor(marker);
 
-    return (actor->unk38_0) ? func_80325E78(marker, gdl, mptr, arg3): NULL;
+    return (actor->unk38_0) ? actor_drawFullDepth(marker, gdl, mptr, arg3): NULL;
 }
 
 void func_80386BF8(Actor *arg0){

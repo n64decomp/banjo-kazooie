@@ -55,9 +55,9 @@ void func_80357264(Actor *this, s32 next_state){
     this->marker->unk14_20 = MARKER_1D0_CLUCKER_B;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
-        func_80335924(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, 2.5f);
-        func_80335A74(this->unk148, 0.99f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, 2.5f);
+        skeletalAnim_setProgress(this->unk148, 0.99f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
         if(this->state == 4){
             if(local->unk0 == 2){
                 local->unk4 = randf2(0.5f, 0.75f);
@@ -82,10 +82,10 @@ void func_80357264(Actor *this, s32 next_state){
         actor_collisionOn(this);
         local->unk0 = (local->unk0 + 1) % 3; 
         if(local->unk0 < 2)
-            func_80335924(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, randf2( 0.6f, 1.0f));
+            skeletalAnim_set(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, randf2( 0.6f, 1.0f));
         else
-            func_80335924(this->unk148, ASSET_185_ANIM_CLUCKER_ATTACK_LONG, 0.0f, randf2( 2.3f, 2.7f));
-        func_80335A8C(this->unk148, 2);
+            skeletalAnim_set(this->unk148, ASSET_185_ANIM_CLUCKER_ATTACK_LONG, 0.0f, randf2( 2.3f, 2.7f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_8030E6A4(SFX_4A_CLUCKER_AHH, randf2(0.85f, 0.95f), 32000);
     }
 
@@ -100,7 +100,7 @@ void func_80357264(Actor *this, s32 next_state){
             func_80324E38(2.0f, 0);
         }//L80357518
         func_8030E6D4(SFX_1E_HITTING_AN_ENEMY_2);
-        func_80335924(this->unk148, ASSET_186_ANIM_CLUCKER_DIE, 0.05f, 2.0f);
+        skeletalAnim_set(this->unk148, ASSET_186_ANIM_CLUCKER_DIE, 0.05f, 2.0f);
     }//L80357540
 
     this->state = next_state;
@@ -120,7 +120,7 @@ Actor *func_803575B8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     func_8033A45C(3, (this->state == 5)? 1 : 0);
     func_8033A45C(4, (this->state == 0 || this->state == 1 || this->state == 6)? 0 : 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8035765C(Actor *this){
@@ -174,8 +174,8 @@ void func_8035765C(Actor *this){
     }
 
     if(this->state == 4){
-        func_8033568C(this->unk148, &sp4C, &sp48);
-        if(func_8033567C(this->unk148) == 0x185){
+        skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
+        if(skeletalAnim_getAnimId(this->unk148) == 0x185){
             if(sp4C < 0.58 && 0.58 <= sp48){
                 this->marker->unk14_20 = MARKER_1D0_CLUCKER_B;
             }
@@ -206,13 +206,13 @@ void func_8035765C(Actor *this){
                 func_8030E6D4(SFX_2_CLAW_SWIPE);
             }
         }//L80357B30
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             func_80357264(this, 2);
         }
     }//L80357B48
 
     if(this->state == 5){
-        func_8033568C(this->unk148, &sp44, &sp40);
+        skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if(sp44 < 0.1 && 0.1 <= sp40){
             func_8030E6A4(SFX_68_CLUCKER_AAEEGHH, randf2(1.0f, 1.1f), 32000);
         }
@@ -220,7 +220,7 @@ void func_8035765C(Actor *this){
         if(sp44 < 0.7 && 0.7 <= sp40){
             func_8030E6D4(SFX_61_CARTOONY_FALL);
         }
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             func_80357264(this, 6);
         }
     }

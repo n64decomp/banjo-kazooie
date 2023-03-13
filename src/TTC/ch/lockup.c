@@ -51,7 +51,7 @@ Actor *func_803894C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor * actor = marker_getActor(marker);
     func_8033A45C(3, actor->unk38_31);
     func_8033A45C(4, actor->unk38_31);
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
 
 }
 

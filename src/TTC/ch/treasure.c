@@ -15,14 +15,14 @@ ActorAnimationInfo gChTreasureAnim[]={
 ActorInfo gChTreasureInfo = {
     MARKER_DB_BURIED_TREASURE, ACTOR_F4_BURIED_TREASURE, ASSET_42C_MODEL_BURIED_TREASURE, 
     1, gChTreasureAnim, 
-    chtreasure_update, func_80326224, func_80325888,
+    chtreasure_update, func_80326224, actor_draw,
     0, 0, 1.7f, 0
 }; 
 
 /* .code */
 void __chtreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
     Actor *this = marker_getActor(marker);
-    __spawnQueue_add_4((GenMethod_4) func_802C4140, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4) func_802C4140, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     func_802EE278(this, 3, 0xf, 0x3C, 0.2f, 1.2f);
     func_803115C4(0xA19);
     jiggySpawn(JIGGY_11_TTC_RED_X, this->position);

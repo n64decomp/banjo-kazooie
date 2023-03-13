@@ -228,12 +228,12 @@ void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         func_803463D4(ITEM_13_EMPTY_HONEYCOMB, -6);
-                        timedFunc_set_2(0.25f, (GenMethod_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+                        timedFunc_set_2(0.25f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
                         func_803463D4(ITEM_14_HEALTH, 0);
-                        timedFunc_set_1(1.25f, (GenMethod_1)item_inc, ITEM_15_HEALTH_TOTAL);
-                        timedFunc_set_1(1.25f, (GenMethod_1)func_8030E484, SFX_3EA_UNKNOWN);
-                        timedFunc_set_2(1.25f, (GenMethod_2)item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
-                        timedFunc_set_1(1.5f, (GenMethod_1)gcpausemenu_80314AC8, 1);
+                        timedFunc_set_1(1.25f, (GenFunction_1)item_inc, ITEM_15_HEALTH_TOTAL);
+                        timedFunc_set_1(1.25f, (GenFunction_1)func_8030E484, SFX_3EA_UNKNOWN);
+                        timedFunc_set_2(1.25f, (GenFunction_2)item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
+                        timedFunc_set_1(1.5f, (GenFunction_1)gcpausemenu_80314AC8, 1);
                     }
                     break;
                 case 2://L802FECD4

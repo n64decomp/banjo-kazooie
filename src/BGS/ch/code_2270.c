@@ -20,12 +20,12 @@ typedef struct ch_bgs_2270_s{
 } ActorLocal_BGS_2270;
 
 void func_80389080(Actor *this);
-Actor *func_80325888(ActorMarker *, Gfx **, Mtx **, Vtx **);
+Actor *actor_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
 
 ActorInfo D_80390830 = {
     MARKER_19A_TIPTUP, ACTOR_27A_TIPTUP, ASSET_3F8_MODEL_TIPTUP,
     0, NULL,
-    func_80389080, NULL, func_80325888,
+    func_80389080, NULL, actor_draw,
     0, 0, 2.5f, 0
 };
 s16 D_80390854[] = {0, 0xC78, 0xC7A, 0xC7C}; //see again texts
@@ -136,11 +136,11 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
     this->state = arg1;
     unqPtr->unkC = 0.0f;
     if(this->state == 1){
-        func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
+        skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
     }
     if(this->state == 2){
-        func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
+        skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
         if(!this->unk138_24){
             this->unk138_24 = 1;
@@ -167,8 +167,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         for(; i < D_80390864[unqPtr->unkA]; i++){
             tmpf += randf2(1.0f, 1.5f);
             while((rand2 = randi2(1,7)) == prev_member);
-            timedFunc_set_2(tmpf, (GenMethod_2) func_803886B4, reinterpret_cast(s32, this->marker), rand2);
-            timedFunc_set_2(tmpf + 0.1, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
+            timedFunc_set_2(tmpf, (GenFunction_2) func_803886B4, reinterpret_cast(s32, this->marker), rand2);
+            timedFunc_set_2(tmpf + 0.1, (GenFunction_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
             prev_member = rand2;
         }//L80388B7C
         
@@ -179,7 +179,7 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         }
         func_80324E38(sp54 = tmpf + 0.6, 0);
         if(func_803203FC(2)){
-            timedFunc_set_1(sp54, (GenMethod_1)func_803886F4, reinterpret_cast(s32, this->marker));
+            timedFunc_set_1(sp54, (GenFunction_1)func_803886F4, reinterpret_cast(s32, this->marker));
         }else{
             this->state = 0x05;
         }
@@ -194,8 +194,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         for(j = 0; j < vector_size(unqPtr->unk4); j++){
             s1 = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4,j);
             tmpf += randf2(1.0f, 1.5f);
-            timedFunc_set_2(tmpf, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), s1->unk0);
-            timedFunc_set_2(tmpf + 0.1, (GenMethod_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
+            timedFunc_set_2(tmpf, (GenFunction_2)func_803886B4, reinterpret_cast(s32, this->marker), s1->unk0);
+            timedFunc_set_2(tmpf + 0.1, (GenFunction_2)func_803886B4, reinterpret_cast(s32, this->marker), 0);
         }
         timed_exitStaticCamera(tmpf += 2.5);
         func_80324E38(tmpf + 0.6,0);
@@ -238,7 +238,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
         if(arg1 == tmp->unk0){
-            timedFunc_set_1(0.5f, (GenMethod_1)func_80388848, reinterpret_cast(s32, thisActor->marker));
+            timedFunc_set_1(0.5f, (GenFunction_1)func_80388848, reinterpret_cast(s32, thisActor->marker));
         }
         else{
             func_8028F55C(1, thisActor->marker);
@@ -302,12 +302,12 @@ void func_80389080(Actor *this){
     }
     else{
         player_getPosition(player_position);
-        if(func_8033567C(this->unk148) == ASSET_12C_ANIM_TIPTUP_TAPPING && func_80335794(this->unk148) > 0){
-            func_80335924(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
+        if(skeletalAnim_getAnimId(this->unk148) == ASSET_12C_ANIM_TIPTUP_TAPPING && skeletalAnim_getLoopCount(this->unk148) > 0){
+            skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
             unqPtr->unkC = randf2(5.0f, 15.0f);
         }
         if(ml_timer_update(&unqPtr->unkC, sp3C)){
-            func_80335924(this->unk148, ASSET_12C_ANIM_TIPTUP_TAPPING, 1.0f, 4.0f);
+            skeletalAnim_set(this->unk148, ASSET_12C_ANIM_TIPTUP_TAPPING, 1.0f, 4.0f);
         }
         func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp38, &sp34, &sp30);
         this->yaw = this->yaw + 5.0f*sp30;

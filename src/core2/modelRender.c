@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/modelRender.h"
+#include "animation.h"
 
 #define ARRAYLEN(x) (sizeof(x) / sizeof((x)[0]))
 
@@ -19,8 +20,8 @@ extern s32 func_8024DB50(f32[3], f32);
 extern void func_80251788(f32, f32, f32);
 extern void mlMtxScale(f32);
 extern void mlMtxApply(Mtx* mtx);
-extern struct58s *func_802EA154();
-extern struct58s *func_802EA374(struct58s *);
+extern AnimMtxList *animMtxList_new();
+extern AnimMtxList *animMtxList_defrag(AnimMtxList *);
 
 
 typedef struct{
@@ -602,19 +603,19 @@ enum model_render_color_mode_e{
 /* .bss */
 struct5Bs *D_80383650;
 s32  D_80383658[0x2A];
-s32  D_80383700;
+BoneTransformList *modelRenderBoneTransformList;
 bool D_80383704;
 f32  D_80383708;
 f32  D_8038370C;
 s32  D_80383710;
 enum model_render_color_mode_e  modelRenderColorMode;
 BKGfxList *            modelRenderDisplayList;
-struct58s *            D_8038371C;
+AnimMtxList *            D_8038371C;
 static BKTextureList * modelRenderTextureList;
 s32                    modelRenderAnimatedTexturesCacheId;
 static BKVertexList *  modelRendervertexList;
 BKModelUnk20List *     D_8038372C;
-struct58s *            D_80383730;
+AnimMtxList *            modelRenderAnimMtxList;
 f32                    modelRenderScale;
 
 struct{
@@ -631,9 +632,9 @@ struct{
 } D_80383758;
 
 struct{
-    GenMethod_1 pre_method;
+    GenFunction_1 pre_method;
     s32 pre_arg;
-    GenMethod_1 post_method;
+    GenFunction_1 post_method;
     s32 post_arg;
 } modelRenderCallback;
 
@@ -674,7 +675,7 @@ f32 D_80383C98[3];
 
 /* .code */
 void modelRender_reset(void){
-    D_80383700 = 0;
+    modelRenderBoneTransformList = 0;
     D_80383708 = 30000.0f;
     D_80383704 = TRUE;
     D_8038370C = 1.0f;
@@ -794,7 +795,7 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd2 *cmd = (GeoCmd2 *)arg2;
 
     if(D_8038371C){
-        func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unk9));
+        func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk9));
         if(D_80370990){
             mlMtxApply(*mtx);
             gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -874,7 +875,7 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
 
     if(D_80383650){
         if(D_8038371C){
-            func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unkA));
+            func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unkA));
             func_8025235C(sp20, cmd->unkC);
             mlMtxPop();
         }
@@ -969,7 +970,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
 
         sp30 = (f32)cmd->unkE*modelRenderScale;
         if(D_8038371C){
-            func_802519C8(&D_80383BF8, func_802EA110(D_8038371C, cmd->unk12));
+            func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk12));
             func_8025235C(sp34, sp34);
             mlMtxPop();
         }
@@ -1237,13 +1238,13 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         D_8038371C = 0;
     }
     else if(D_8038371C == 0 && modelRenderModelBin->animation_list_offset_18){
-        if(D_80383700 == 0){
-            func_802EA060(&D_80383730, (u8*)model_bin + model_bin->animation_list_offset_18);
+        if(modelRenderBoneTransformList == NULL){
+            animMtxList_setBoneless(&modelRenderAnimMtxList, (u8*)model_bin + model_bin->animation_list_offset_18);
         }
         else{
-            func_802EA1A8(&D_80383730, (u8*)model_bin + model_bin->animation_list_offset_18, D_80383700);
+            animMtxList_setBoned(&modelRenderAnimMtxList, (u8*)model_bin + model_bin->animation_list_offset_18, modelRenderBoneTransformList);
         }
-        D_8038371C = D_80383730;
+        D_8038371C = modelRenderAnimMtxList;
     }
 
     if(D_8038372C){
@@ -1301,8 +1302,8 @@ BKModelUnk28List *func_8033A048(BKModelBin *arg0){
     return (BKModelUnk28List *)((s32)arg0 + arg0->unk28);
 }
 
-s32 func_8033A064(void){
-    return D_80383700;
+BoneTransformList *modelRender_getBoneTransformList(void){
+    return modelRenderBoneTransformList;
 }
 
 s32 func_8033A070(BKModelBin *arg0){
@@ -1373,18 +1374,18 @@ s32 func_8033A170(void){
     return D_80370990;
 }
 
-void func_8033A17C(void){
-    func_802EA134(D_80383730);
-    D_80383730 = NULL;
+void modelRender_free(void){
+    animMtxList_free(modelRenderAnimMtxList);
+    modelRenderAnimMtxList = NULL;
 }
 
-void func_8033A1A4(void){
+void modelRender_init(void){
     modelRender_reset();
     D_80383758.unk18 = 0;
     D_803837E0.cur_lookat = D_803837E0.lookat_buffer;
     D_803837E0.lookat_buffer_end = D_803837E0.cur_lookat + ARRAYLEN(D_803837E0.lookat_buffer);
     D_803837E0.eye_pos[0] = D_803837E0.eye_pos[1] = D_803837E0.eye_pos[2] = 0.0f;
-    D_80383730 = func_802EA154();
+    modelRenderAnimMtxList = animMtxList_new();
 }
 
 void func_8033A1FC(void){
@@ -1394,8 +1395,8 @@ void func_8033A1FC(void){
     }
 }
 
-void func_8033A238(s32 arg0){
-    D_80383700 = arg0;
+void modelRender_setBoneTransformList(BoneTransformList *arg0){
+    modelRenderBoneTransformList = arg0;
 }
 
 f32 func_8033A244(f32 arg0){
@@ -1427,7 +1428,7 @@ void func_8033A298(bool arg0){
 /* moderRender_preDraw() sets a generic 1 argument function that will
  * be called immediately prior to the model being drawn
  */
-void modelRender_preDraw(GenMethod_1 func, s32 arg){
+void modelRender_preDraw(GenFunction_1 func, s32 arg){
     modelRenderCallback.pre_method = func;
     modelRenderCallback.pre_arg = arg;
 }
@@ -1435,7 +1436,7 @@ void modelRender_preDraw(GenMethod_1 func, s32 arg){
 /* moderRender_postDraw() sets a generic 1 argument function that will
  * be called immediately after to the model has been drawn
  */
-void modelRender_postDraw(GenMethod_1 func, s32 arg){
+void modelRender_postDraw(GenFunction_1 func, s32 arg){
     modelRenderCallback.post_method = func;
     modelRenderCallback.post_arg = arg;
 }
@@ -1484,7 +1485,7 @@ void modelRender_setAlpha(s32 a){
     }
 }
 
-void func_8033A444(struct58s *arg0){
+void func_8033A444(AnimMtxList *arg0){
     D_8038371C = arg0;
 }
 
@@ -1523,7 +1524,7 @@ void modelRender_setDepthMode(enum model_render_depth_mode_e renderMode){
 }
 
 void modelRender_defrag(void){
-    if(D_80383730 != NULL){
-        D_80383730 = func_802EA374(D_80383730);
+    if(modelRenderAnimMtxList != NULL){
+        modelRenderAnimMtxList = animMtxList_defrag(modelRenderAnimMtxList);
     }
 }

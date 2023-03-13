@@ -32,7 +32,7 @@ ActorInfo D_8038F614 = {
 /* .code */
 void func_8038D2B0(Actor *this, s32 next_state) {
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x1A6, 0.2f, 5.5f);
+        skeletalAnim_set(this->unk148, 0x1A6, 0.2f, 5.5f);
     }
     
     this->state = next_state;
@@ -42,7 +42,7 @@ Actor *func_8038D30C(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx) {
     if (levelSpecificFlags_get(0x25) == 0) {
         return func_80325340(marker, gfx, mtx, vtx);
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038D368(Actor *this) {

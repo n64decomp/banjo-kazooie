@@ -71,7 +71,7 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     spD0[0] = self->unk0[0] - spDC[0];
     spD0[1] = self->unk0[1] - spDC[1];
     spD0[2] = self->unk0[2] - spDC[2];
-    func_80251BCC(func_8024DD90());
+    mlMtxSet(func_8024DD90());
     func_80252330(spD0[0], spD0[1], spD0[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -79,7 +79,7 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     temp_f2 = D_80380A10[self->unk26] * (self->unk25 / 255.0f);
     spBC = (s32) ((f32)self->unk20 * (1.0f + temp_f2));
     temp_s5 = (s32) ((f32)self->unk20 * ((1.0f - (self->unk25 / 255.0f)) + ((self->unk25 / 255.0f) - temp_f2)));
-    func_80251BCC(&D_80380A18);
+    mlMtxSet(&D_80380A18);
     func_8025235C(spD0, spD0);
     spD0[0] = (-297.0f * spD0[0]) / spD0[2];
     spD0[1] = (297.0f * spD0[1]) / spD0[2];

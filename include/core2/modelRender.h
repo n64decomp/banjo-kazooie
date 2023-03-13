@@ -17,14 +17,14 @@ BKTextureList *model_getTextureList(BKModelBin *arg0);
 void modelRender_reset(void);
 BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation[3], f32 scale, f32*arg5, BKModelBin* model_bin);
 
-void modelRender_preDraw(GenMethod_1 func, s32 arg);
-void modelRender_postDraw(GenMethod_1 func, s32 arg);
+void modelRender_preDraw(GenFunction_1 func, s32 arg);
+void modelRender_postDraw(GenFunction_1 func, s32 arg);
 void modelRender_setDisplayList(BKGfxList *gfx_list);
 void func_8033A308(f32 arg0[3]);
 void modelRender_setPrimAndEnvColors(s32 env[4], s32 prim[4]);
 void modelRender_setEnvColor(s32 r, s32 g, s32 b, s32 a);
 void modelRender_setAlpha(s32 a);
-void func_8033A444(struct58s *arg0);
+void func_8033A444(AnimMtxList *arg0);
 void func_8033A450(struct5Bs *arg0);
 void func_8033A45C(s32 arg0, s32 arg1);
 void func_8033A470(s32 arg0, s32 arg1);

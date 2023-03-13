@@ -58,26 +58,26 @@ void chGobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 2){
         this->marker->propPtr->unk8_3 = TRUE;
-        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
+        skeletalAnim_set(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
     }
 
     if(next_state == 3){
         func_80324E38(0.0f, 3);
-        timedFunc_set_1(0.02f, (GenMethod_1)__chGobi3_func_80388270, (s32)this);
+        timedFunc_set_1(0.02f, (GenFunction_1)__chGobi3_func_80388270, (s32)this);
         timed_setStaticCameraToNode(0.1f, 0x12);
         timed_playSfx(0.2f, SFX_4C_LIP_SMACK, 1.0f, 32000);
-        timedFunc_set_1(0.2f, (GenMethod_1)__chGobi3_spawnHoneyComb, (s32)this);
-        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 1.0f);
+        timedFunc_set_1(0.2f, (GenFunction_1)__chGobi3_spawnHoneyComb, (s32)this);
+        skeletalAnim_set(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 1.0f);
     }
 
     if(next_state == 5){
-        func_80335924(this->unk148, 0xd9, 0.5f, 4.0f);
+        skeletalAnim_set(this->unk148, 0xd9, 0.5f, 4.0f);
         func_80311480(ASSET_A77_TEXT_GOBI3_DONE, 0xe, this->position, this->marker, __chGobi3_runaway, NULL);
     }
 
     if(next_state == 4){
         this->marker->propPtr->unk8_3 = FALSE;
-        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.3f, 0.71f);
+        skeletalAnim_set(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.3f, 0.71f);
     }
 
     if(next_state == 6){
@@ -86,7 +86,7 @@ void chGobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 7){
         FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
-        func_80335924(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
+        skeletalAnim_set(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 
     this->state = next_state;
@@ -97,7 +97,7 @@ Actor *chGobi3_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(this->state == 0 || this->state == 1) return this;
 
-    return func_80325888(this_marker, gfx, mtx, vtx);
+    return actor_draw(this_marker, gfx, mtx, vtx);
 }
 
 void chGobi3_ow(ActorMarker *this_marker, ActorMarker *other_marker){
@@ -138,7 +138,7 @@ void chGobi3_update(Actor *this){
     }
 
     if(this->state == 3){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             chGobi3_setState(this, 5);
     }
 
@@ -149,7 +149,7 @@ void chGobi3_update(Actor *this){
     }
 
     if(this->state == 7){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             chGobi3_setState(this, 2);
     }
 

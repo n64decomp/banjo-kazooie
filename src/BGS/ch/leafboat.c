@@ -35,7 +35,7 @@ Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
 
     thisActor = marker_getActor(this);
     if((thisActor->unk1C_x != 0.0f) && (0x80 < thisActor->alpha_124_19)){
-        thisActor = func_80325888(this, gdl, mtx, vtx);
+        thisActor = actor_draw(this, gdl, mtx, vtx);
     }
     return thisActor;
 }

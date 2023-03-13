@@ -30,7 +30,7 @@ Actor *func_8038A180(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor * this = marker_getActor(this_marker);
     
     if(this->unk1C[0] != 0.0f){
-        this = func_80325888(this_marker, gfx, mtx, vtx);
+        this = actor_draw(this_marker, gfx, mtx, vtx);
         
         if( this->unk54 == 0.0f
             && this->unk48 != this->unk1C[1]
@@ -70,7 +70,7 @@ void func_8038A31C(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         actor_collisionOff(this);
-        __spawnQueue_add_1((GenMethod_1)func_8038A2C0, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)func_8038A2C0, reinterpret_cast(s32, this->marker));
         this->velocity[0] = 0.0f;
     }
 

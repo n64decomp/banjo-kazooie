@@ -8,7 +8,7 @@ void chGobiRope_update(Actor *this);
 /* .data */
 ActorInfo chGobiRope = { MARKER_BD_GOBI_ROPE, ACTOR_12F_GOBI_ROPE, ASSET_3E3_MODEL_GOBI_ROPE, 
     0, NULL, 
-    chGobiRope_update, func_80326224, func_80325888, 
+    chGobiRope_update, func_80326224, actor_draw, 
     0, 0x533, 0.0f, 0
 };
 
@@ -17,16 +17,16 @@ void chGobiRope_setState(Actor *this, s32 next_state){
     this->state = next_state;
 
     if(this->state == 1){
-        func_80335924(this->unk148, ASSET_DD_ANIM_GOBI_ROPE, 0.5f, 4.0f);
+        skeletalAnim_set(this->unk148, ASSET_DD_ANIM_GOBI_ROPE, 0.5f, 4.0f);
     }
 
     if(this->state == 2){
-        func_80335924(this->unk148, ASSET_DC_ANIM_GOBI_ROPE_PULLING, 1.0f, 5.0f);
+        skeletalAnim_set(this->unk148, ASSET_DC_ANIM_GOBI_ROPE_PULLING, 1.0f, 5.0f);
     }
 
     if(this->state == 3){
-        func_80335924(this->unk148, 0xF5, 0.1f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0xF5, 0.1f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
 
     if(this->state == 4){
@@ -65,11 +65,11 @@ void chGobiRope_update(Actor *this){
             }
         }//L80388AB4
         if(this->state == 2){
-            if(func_80335794(this->unk148) > 0)
+            if(skeletalAnim_getLoopCount(this->unk148) > 0)
                 chGobiRope_setState(this, 1);
         }
         if(this->state == 3){
-            if(func_80335794(this->unk148) > 0)
+            if(skeletalAnim_getLoopCount(this->unk148) > 0)
                 chGobiRope_setState(this, 4);
         }
     }

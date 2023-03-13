@@ -15,7 +15,7 @@ void func_8038CFB4(Actor *this);
 ActorInfo D_8038F4D0 = { 
     0x1BE, 0x2AB, 0x48F,
     0x0, NULL,
-    func_8038CFB4, func_8038CFB4, func_80325888,
+    func_8038CFB4, func_8038CFB4, actor_draw,
     0, 0, 2.2f, 0
 };
 
@@ -55,17 +55,17 @@ void func_8038CEB0(Actor *this, s32 next_state) {
     ActorProp *temp_v0;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x1A6, 0.2f, 4.5f);
+        skeletalAnim_set(this->unk148, 0x1A6, 0.2f, 4.5f);
     }
     if (next_state == 2) {
         this->marker->propPtr->unk8_3 = FALSE;
-        func_80335924(this->unk148, 0x1A7, 0.2f, 3.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x1A7, 0.2f, 3.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80311480(0xCD0, 0x24, NULL, NULL, NULL, NULL);
     }
     if (next_state == 3) {
-        func_80335924(this->unk148, 0x1A8, 0.2f, 0.5f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x1A8, 0.2f, 0.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
     if (next_state == 4) {
         marker_despawn(this->marker);
@@ -104,7 +104,7 @@ void func_8038CFB4(Actor *this) {
     }
 
     if (phi_s0 != NULL) {
-        func_8033568C(this->unk148, &sp70, &sp6C);
+        skeletalAnim_getProgressRange(this->unk148, &sp70, &sp6C);
         while(phi_s0->unk0 > 0.0f){
             if (((sp70 < phi_s0->unk0) || (sp6C < sp70)) && (phi_s0->unk0 <= sp6C)) {
                 func_8030E878(phi_s0->unk8, randf2(phi_s0->unk4 - 0.05, phi_s0->unk4 + 0.05), randi2(phi_s0->unkA - 200, phi_s0->unkA + 100), this->position, 500.0f, 1500.0f);
@@ -127,7 +127,7 @@ void func_8038CFB4(Actor *this) {
     }
 
     if (this->state == 2){
-        if((func_80335794(this->unk148) > 0)) {
+        if((skeletalAnim_getLoopCount(this->unk148) > 0)) {
             func_8038CEB0(this, 3);
         }
     }

@@ -76,7 +76,7 @@ void MM_func_80387FF4(Actor * this){
 }
 
 Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
-    Actor* actorPtr = func_80325E78(this, dl, mptr, vtx);
+    Actor* actorPtr = actor_drawFullDepth(this, dl, mptr, vtx);
     f32 sp60[3] = D_803899F4;
     f32 sp54[3] = D_80389A00;
     f32 sp48[3];

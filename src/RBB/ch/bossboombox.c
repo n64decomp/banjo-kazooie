@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_803253A0(Actor *);
-extern void func_80325794(ActorMarker *);
+extern void actor_predrawMethod(Actor *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern void func_8030E394(u8);
 extern void func_80326310(Actor *);
 extern int func_803342AC(f32 (*)[3], f32(*)[3], f32);
@@ -229,7 +229,7 @@ void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
-    timedFunc_set_2(0.0f, (GenMethod_2)RBB_func_8038C370, actor->marker, 3);
+    timedFunc_set_2(0.0f, (GenFunction_2)RBB_func_8038C370, actor->marker, 3);
 }
 
 void chbossboombox_hideJiggy(void){
@@ -298,16 +298,16 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     }
     
     if(this->state == 1){
-        func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.0f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
     }
 
     if(this->state == 2){
         func_8025A58C(0, 0xfa0);
         func_8025A6EC(COMUSIC_62_RBB_BOOMBOX, -1);
         func_8025AABC(COMUSIC_62_RBB_BOOMBOX);
-        func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0);
         timed_playSfx(0.5f, SFX_3F5_UNKNOWN, 1.0f, 0x7fc6);
@@ -319,18 +319,18 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
             timed_exitStaticCamera(2.4f);
             func_80324E38(2.4f, 0);
-            timedFunc_set_2(2.4f, (GenMethod_2)RBB_func_8038C370, (s32)this->marker, 3);
+            timedFunc_set_2(2.4f, (GenFunction_2)RBB_func_8038C370, (s32)this->marker, 3);
         }
         else{//L8038CEFC
-            timedFunc_set_3(2.4f, (GenMethod_3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
+            timedFunc_set_3(2.4f, (GenFunction_3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
             func_80324DBC(2.4f, 0xb9e, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
         }
     }//L8038CF60
 
     if(this->state == 3 || this->state == 4){
         func_8030E878(0x3f2, local->unk0->unk14, 0x6d60, &this->position, 500.0f, 1000.0f);
-        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, (1.0/(local->unk0->unk8)*randf2(1.0f, 1.1f)));
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, (1.0/(local->unk0->unk8)*randf2(1.0f, 1.1f)));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         ml_vec3f_set_length(sp80, (this->state == 4)? -0x32*(2 + func_80326218()) : 300.0f/local->unk0->unk8);
         local->unk14[0] = sp80[0] + this->position_x;
         local->unk14[1] = sp80[1] + this->position_y;
@@ -342,8 +342,8 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     if(this->state == 5){
         actor_collisionOff(this);
         timed_playSfx(0.2f, SFX_D9_WOODEN_CRATE_BREAKING_1, 0.9f, 0x7530);
-        func_80335924(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         ml_vec3f_set_length(sp80, -300.f);
         local->unk14[0] = sp80[0] + this->position_x;
         local->unk14[1] = sp80[1] + this->position_y;
@@ -367,7 +367,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                     func_803204E4(5, 1);
                 }
                 else{//L8038D220
-                    timedFunc_set_3(0.0f, (GenMethod_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
+                    timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
                     func_80311480(0xb9f, 4, 0, 0, 0, 0);
                 }
             }//L8038D278
@@ -376,20 +376,20 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
             sp68[0] = this->position_x + 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            __spawnQueue_add_4((GenMethod_4)func_802C4140, local->unk0->unk0 + 1,  reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
+            __spawnQueue_add_4((GenFunction_4)func_802C4140, local->unk0->unk0 + 1,  reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
 
             sp68[0] = this->position_x - 200.0f*local->unk0->unk4;
             sp68[1] = this->position_y + 80.0f*local->unk0->unk4;
             sp68[2] = this->position_z;
-            __spawnQueue_add_4((GenMethod_4)func_802C4140, local->unk0->unk0 + 1, reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
+            __spawnQueue_add_4((GenFunction_4)func_802C4140, local->unk0->unk0 + 1, reinterpret_cast(s32, sp68[0]), reinterpret_cast(s32, sp68[1]), reinterpret_cast(s32, sp68[2]));
         }
     }//L8038D378
 
     if(this->state == 7){
         actor_collisionOff(this);
         func_803262E4(this);
-        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.0f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.0f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         local->unk8[0] = this->position_x;
         local->unk8[1] = this->position_y;
         local->unk8[2] = this->position_z;
@@ -464,8 +464,8 @@ Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
         func_8033A45C(6, (actor->state == 4)? 2: 1);
         func_8033A45C(7, (actor->state == 4)? 2: 1);
     }
-    modelRender_preDraw( (GenMethod_1)func_803253A0, (s32)actor);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw( (GenFunction_1)actor_predrawMethod, (s32)actor);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, func_80330B1C(marker));
     
     return actor;
@@ -532,8 +532,8 @@ void func_8038D8BC(Actor *this){
 
         if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
             chbossboombox_hideJiggy();
-            func_80335924(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
-            func_80335A8C(this->unk148, 2);
+            skeletalAnim_set(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
+            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
             this->state = 2;
         }
         return;
@@ -554,15 +554,15 @@ void func_8038D8BC(Actor *this){
     }//L8038DAD8
 
     if(this->state == 2){
-        if(func_8033567C(this->unk148) == ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR && func_80335794(this->unk148) > 0){
-            func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2, 1.0f);
-            func_80335A8C(this->unk148, 1);
+        if(skeletalAnim_getAnimId(this->unk148) == ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR && skeletalAnim_getLoopCount(this->unk148) > 0){
+            skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2, 1.0f);
+            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         }
     }//L8038DB30
 
     if( this->state == 2 || this->state == 3 || this->state == 4){
-        if(func_8033567C(this->unk148) == ASSET_147_ANIM_BOOMBOX_MOVE){
-            func_8033568C(this->unk148, &sp5C, &sp58);
+        if(skeletalAnim_getAnimId(this->unk148) == ASSET_147_ANIM_BOOMBOX_MOVE){
+            skeletalAnim_getProgressRange(this->unk148, &sp5C, &sp58);
             if(sp5C < 0.6 && 0.6 <= sp58){
                 func_8030E878(SFX_6C_LOCKUP_CLOSING, randf2(-0.05f, 0.05f) + local->unk0->unk14, 20000, this->position, 500.0f, 1000.0f);
             }//L8038DC04
@@ -580,23 +580,23 @@ void func_8038D8BC(Actor *this){
                 RBB_func_8038CC9C(this, 8);
             }
         }
-        func_8033568C(this->unk148, &sp54, &sp50);
+        skeletalAnim_getProgressRange(this->unk148, &sp54, &sp50);
         if(0.1 <= sp50 && sp50 <= 0.6){
             sp4C = (sp50 - 0.1)/0.5;
             ml_interpolate_vec3f(this->position, local->unk8, local->unk14, sp4C);
             this->yaw = local->unk24 + sp4C*(local->unk28 - local->unk24);
         }
 
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             RBB_func_8038CC9C(this, 3);
         
     }//L8038DD64
 
     if(this->state == 5){
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             RBB_func_8038CC9C(this, 6);
         }else{
-            tmp_f2 = func_80335684(this->unk148);
+            tmp_f2 = skeletalAnim_getProgress(this->unk148);
             if(tmp_f2 <= 0.3)
                 tmp_f2 = tmp_f2/0.3;
             else
@@ -606,7 +606,7 @@ void func_8038D8BC(Actor *this){
     }//L8038DE10
 
     if(this->state == 7){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             RBB_func_8038CC9C(this, 3);
     }
 }

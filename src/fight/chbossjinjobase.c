@@ -12,7 +12,7 @@ void func_8038D568(Actor *this);
 ActorInfo D_80391990 = {
     MARKER_27A_JINJO_STATUE_BASE, ACTOR_3A2_JINJO_STATUE_BASE, ASSET_543_MODEL_JINJO_STATUE_BASE,
     0x1, NULL,
-    func_8038D568, func_80326224, func_80325888,
+    func_8038D568, func_80326224, actor_draw,
     0, 0x800, 0.0f, 0
 };
 
@@ -127,7 +127,7 @@ void func_8038D568(Actor *this){
             this->velocity_y = 100.0f;
         
         func_802BB3DC(0, 8.0f, 0.92f);
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
         func_8038D2EC(this->unk1C, 0x10);
         SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, this->marker);
     }

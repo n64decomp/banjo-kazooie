@@ -15,7 +15,7 @@ ActorAnimationInfo chScarfSledAnimations[] ={
 ActorInfo chScarfSled = {
     MARKER_3B_SCARF_SLED, ACTOR_181_SCARF_SLED, ASSET_352_MODEL_SLED,
     0, chScarfSledAnimations,
-    NULL,  chScarfSled_update, func_80325888,
+    NULL,  chScarfSled_update, actor_draw,
     1000, 0,  0.0f, 0
 };
 

@@ -15,7 +15,7 @@ ActorAnimationInfo D_80391340[] ={
 
 ActorInfo D_80391358 = { 0xAE, 0x121, 0x3E6, 
     0x1, D_80391340, 
-    func_8038E1A0, func_8038E1A8, func_80325888, 
+    func_8038E1A0, func_8038E1A8, actor_draw, 
     2500, 0, 0.0f, 0
 };
 

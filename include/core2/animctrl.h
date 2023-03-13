@@ -2,6 +2,7 @@
 #define __ANIM_CTRL_H__
 
 #include <ultra64.h>
+#include "generic.h"
 
 #ifndef NONMATCHING
 #define animctrl_start(this, file, line) _animctrl_start(this, file, line)
@@ -16,18 +17,24 @@ enum animctrl_playback_e{
     ANIMCTRL_SUBRANGE_LOOP = 4
 };
 
+typedef struct{
+    Mtx mtx_0;
+    s32 size_40;
+    s32 capacity_44;
+    Mtx data[];
+}AnimMtxList;
 
 typedef struct animation_s{
-    void (* matrices)(s32, s32);
+    GenFunction_2 matrices;
     s32     unk4;
     u8      unk8;
     u8      unk9;
-    s16     unkA[3];
+    s16     animcache_index[3];
     u32     index;
     f32     timer;
     f32     duration;
-    u8      unk1C;
-    u8      unk1D;
+    u8      reset;
+    u8      triple_buffer;
     u8      unk1E;
     u8      unk1F;
 } Animation;
@@ -85,8 +92,8 @@ f32 animctrl_getTransistionDuration(AnimCtrl *this);
 f32 animctrl_getAnimTimer(AnimCtrl *this);
 f32 animctrl_getTimer(AnimCtrl *this);
 void  animctrl_setTimer(AnimCtrl *this, f32 arg1);
-s32  animctrl_8028780C(AnimCtrl *this, s32 arg1);
-s32 func_8028781C(AnimCtrl *this, f32 *arg1, s32 arg2);
+s32  animctrl_8028780C(f32 position[3], s32 arg1);
+void animctrl_drawSetup(AnimCtrl *this, f32 *arg1, s32 arg2);
 s32 animctrl_isStopped(AnimCtrl *this);
 int animctrl_isAt(AnimCtrl *this, f32 arg1);
 s32 animctrl_isContiguous(AnimCtrl *this);

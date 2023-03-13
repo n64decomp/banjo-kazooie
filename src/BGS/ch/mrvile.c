@@ -5,11 +5,9 @@
 #include "prop.h"
 #include "core2/modelRender.h"
 
-void func_80335A24(void *, u32, f32, f32);
 Actor *chvile_draw(ActorMarker*, Gfx **, Mtx **, Vtx **);
 void chvile_update(Actor *);
 void func_8038BB40(ActorMarker *);
-extern void func_80335A80(void *, f32);
 extern bool func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
 extern bool chvilegame_find_closest_piece(ActorMarker *, f32[3], f32, f32[3]);
@@ -97,19 +95,19 @@ void BGS_func_8038BBA0(Actor *this, s32 arg1){
     if(arg1 == 101){
         local->unk24 = 0.0f;
         local->unk28[0] = local->unk28[1] = local->unk28[2] = 0.0f;
-        func_80335924(this->unk148, 0xe1, 0.10000000149f, 1.0f); //0xe1 = croc_idle
+        skeletalAnim_set(this->unk148, 0xe1, 0.10000000149f, 1.0f); //0xe1 = croc_idle
     }
     if(arg1 == 102){
         if(local->unk24 < 100.0f){
             local->unk24 = 100.0f;
         };
-        func_80335A24(this->unk148, 0xe0, 0.1f, 0.5f); //0xe1 = croc_walk
+        skeletalAnim_swap(this->unk148, 0xe0, 0.1f, 0.5f); //0xe1 = croc_walk
     }
     if(arg1 == 103){
-        func_80335A24(this->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
+        skeletalAnim_swap(this->unk148, 0x124, 0.1f, 0.5f); //0x124 = croc_munch
         if(this->state == 4){
             timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 25000);
-            timedFunc_set_1(0.31f, (GenMethod_1)func_8038BB40, reinterpret_cast(s32, this->marker));
+            timedFunc_set_1(0.31f, (GenFunction_1)func_8038BB40, reinterpret_cast(s32, this->marker));
         }
         else{
             timed_playSfx(0.31f, SFX_4C_LIP_SMACK, 0.90f, 25000);
@@ -179,7 +177,7 @@ void func_8038BDD4(Actor *this) {
         local->unk24 = (local->unk24 < 10.0f)        ? 10.0f
                      : (local->unk10 < local->unk24) ? local->unk10 
                      : local->unk24;
-        func_80335A80(this->unk148, (200.0f / local->unk24) * 0.5);
+        skeletalAnim_setDuration(this->unk148, (200.0f / local->unk24) * 0.5);
         local->unk28[1] = sp50 * 200.0f;
         temp_f0_3 = func_80309724(this->position);
         if (temp_f0_3 > 125.0f) {
@@ -231,7 +229,7 @@ Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     f32 position[3];
     
 
-    this = func_80325888(marker, gfx, mtx, vtx);
+    this = actor_draw(marker, gfx, mtx, vtx);
     local = (ActorLocal_MrVile *)&this->local;
     if (
         (local->unkC == 104) &&
@@ -401,11 +399,11 @@ void chvile_update(Actor *this) {
                     } else {
                         BGS_func_8038BBA0(this, 102);
                     }
-                } else if (func_80335794(this->unk148) >= 3) {
+                } else if (skeletalAnim_getLoopCount(this->unk148) >= 3) {
                     BGS_func_8038BBA0(this, 102);
                 }
             }
-            if ((local->unkC == 104) && (func_80335794(this->unk148) >= 3)) {
+            if ((local->unkC == 104) && (skeletalAnim_getLoopCount(this->unk148) >= 3)) {
                 BGS_func_8038BBA0(this, 102);
             }
         }
@@ -416,7 +414,7 @@ void chvile_update(Actor *this) {
         if ((local->unkC == 102) && (ml_distance_vec3f(this->position, local->target_position) < 200.0f)) {
             BGS_func_8038BBA0(this, 103);
         }
-        if ((local->unkC == 103) && (func_80335794(this->unk148) >= 2)) {
+        if ((local->unkC == 103) && (skeletalAnim_getLoopCount(this->unk148) >= 2)) {
             func_8038C0C8(this, 1);
         }
     }

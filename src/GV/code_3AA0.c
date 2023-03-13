@@ -8,7 +8,7 @@ void GV_func_80389EA8(Actor *this);
 /* .data */
 ActorInfo D_80390F00 = { MARKER_AB_RUBEES_EGG_POT, ACTOR_11D_RUBEES_EGG_POT, ASSET_3E1_MODEL_RUBEES_EGG_POT, 
     0x1, NULL, 
-    GV_func_80389E90, GV_func_80389EA8, func_80325888, 
+    GV_func_80389E90, GV_func_80389EA8, actor_draw, 
     2500, 0, 0.9f, 0
 };
 

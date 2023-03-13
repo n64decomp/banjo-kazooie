@@ -33,7 +33,7 @@ Actor *GV_func_8038C5D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vt
         || this->state == 5
     ){
         if(!GV_D_80391A90)
-            return func_80325888(this_marker, gfx, mtx, vtx);
+            return actor_draw(this_marker, gfx, mtx, vtx);
     }
     return this;
 }

@@ -36,31 +36,31 @@ void __chnabnut_setState_method(ActorMarker* marker, s32 next_state) {
 void chnabnut_setState(Actor *this, s32 next_state) {
 
     if (next_state == NABNUT_STATE_1_SAD) {
-        func_80335924(this->unk148, ASSET_22C_ANIM_NABNUT_CRY, 0.2f, 10.6f);
+        skeletalAnim_set(this->unk148, ASSET_22C_ANIM_NABNUT_CRY, 0.2f, 10.6f);
     }
 
     if (next_state == NABNUT_STATE_2_WAIT) {
-        timedFunc_set_2(1.0f, (GenMethod_2)__chnabnut_setState_method, (s32)this->marker, NABNUT_STATE_3_BACKFLIP);
+        timedFunc_set_2(1.0f, (GenFunction_2)__chnabnut_setState_method, (s32)this->marker, NABNUT_STATE_3_BACKFLIP);
     }
 
     if (next_state == NABNUT_STATE_3_BACKFLIP) {
         this->marker->propPtr->unk8_3 = FALSE;
-        func_80335924(this->unk148, ASSET_22D_ANIM_NABNUT_BACKFLIP, 0.2f, 3.13f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_22D_ANIM_NABNUT_BACKFLIP, 0.2f, 3.13f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0xB);
         func_80311480(0xCCC, 0x20, this->position, NULL, NULL, NULL);
     }
 
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
-        func_80335924(this->unk148, ASSET_22E_ANIM_NABNUT_STAND, 0.2f, 3.53f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_22E_ANIM_NABNUT_STAND, 0.2f, 3.53f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         func_802C8F70(this->yaw - 40.0f);
         jiggySpawn(JIGGY_4A_CCW_NABNUT, this->position);
     }
 
     if (next_state == NABNUT_STATE_5_EXIT) {
-        func_80335924(this->unk148, ASSET_22F_ANIM_NABNUT_RUN, 0.2f, 0.34f);
+        skeletalAnim_set(this->unk148, ASSET_22F_ANIM_NABNUT_RUN, 0.2f, 0.34f);
     }
 
     if (next_state == NABNUT_STATE_6_DESPAWN) {
@@ -88,17 +88,17 @@ Actor *chnabnut_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A45C(9, 0);
     func_8033A45C(0xA, 1);
     if (this->state == 1) {
-        temp_f2 = func_80335684(this->unk148);
+        temp_f2 = skeletalAnim_getProgress(this->unk148);
         if ((0.116 <= temp_f2) && (temp_f2 <= 0.32)) {
             sp24 = this->unk130;
             this->unk130 = NULL;
             func_8033A45C(1, 4);
-            out = func_80325888(marker, gfx, mtx, vtx);
+            out = actor_draw(marker, gfx, mtx, vtx);
             out->unk130 = sp24;
             return out;
         }
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038BC50(f32 dst[3]){
@@ -154,10 +154,10 @@ void chnabnut_update(Actor *this) {
             }
         }
     }
-    if ((this->state == NABNUT_STATE_3_BACKFLIP) && (func_80335794(this->unk148) > 0)) {
+    if ((this->state == NABNUT_STATE_3_BACKFLIP) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         chnabnut_setState(this, NABNUT_STATE_4_THANK_PLAYER);
     }
-    if ((this->state == NABNUT_STATE_4_THANK_PLAYER) && (func_80335794(this->unk148) > 0)) {
+    if ((this->state == NABNUT_STATE_4_THANK_PLAYER) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         chnabnut_setState(this, NABNUT_STATE_5_EXIT);
     }
     if (this->state == NABNUT_STATE_5_EXIT) {

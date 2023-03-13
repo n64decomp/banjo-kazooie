@@ -211,7 +211,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         }
         func_80253208(gfx, a1->unk30 - a1->unk6C, sp40 - a1->unk6C, 2*a1->unk6C, 2*a1->unk6C, D_803A5D00[func_8024BDA0()]);
         if(a1->anim_ctrl != NULL){
-            func_8028781C(a1->anim_ctrl, sp5C, 1);
+            animctrl_drawSetup(a1->anim_ctrl, sp5C, 1);
         }
         modelRender_draw(gfx, mtx, sp5C, sp68, a1->unk3C*sp3C, sp44, a1->model);
     }//L80300BA4

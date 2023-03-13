@@ -82,25 +82,25 @@ ActorAnimationInfo D_803913E0[] = {
 
 ActorInfo D_80391428 = { MARKER_EC_GV_SUN_SWITCH, ACTOR_13F_GV_SUN_SWITCH, ASSET_400_MODEL_SUN_SWITCH, 
     0x1, D_803913E0, 
-    chSunSwitch_update, func_80326224, func_80325888,
+    chSunSwitch_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039144C = { MARKER_F1_GV_STAR_SWITCH, ACTOR_144_GV_STAR_SWITCH, ASSET_3D7_MODEL_STAR_SWITCH, 
     0x1, D_803913E0, 
-    chStarSwitch_update, func_80326224, func_80325888,
+    chStarSwitch_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391470 = { MARKER_F2_HONEYCOMB_SWITCH, ACTOR_145_HONEYCOMB_SWITCH, ASSET_438_MODEL_HONEYCOMB_SWITCH, 
     0x1, D_803913E0, 
-    chHoneycombSwitch_update, func_80326224, func_80325888,
+    chHoneycombSwitch_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80391494 = { MARKER_23C_GV_SNS_SWITCH, ACTOR_245_GV_SNS_SWITCH, ASSET_515_MODEL_GV_SNS_SWITCH, 
     0x1, D_803913E0, 
-    func_8038EF14, func_80326224, func_80325888,
+    func_8038EF14, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -130,7 +130,7 @@ ActorInfo GV_D_80391524 = { MARKER_EF_GV_STAR_HATCH, ACTOR_142_GV_STAR_HATCH, AS
 
 ActorInfo D_80391548 = { MARKER_F3_GV_KAZOOIE_TARGET, ACTOR_146_GV_KAZOOIE_TARGET, ASSET_3E2_MODEL_GV_KAZOOIE_TARGET, 
     0x1, 0x0, 
-    chKazooieTarget_update, func_80326224, func_80325E78,
+    chKazooieTarget_update, func_80326224, actor_drawFullDepth,
     0, 0x400, 0.0f, 0
 };
 
@@ -448,7 +448,7 @@ void func_8038F028(UNK_TYPE(s32) arg0, ActorMarker *arg1, s32 arg2, s32 arg3){
         sp24[0] = (f32)arg1->propPtr->x;
         sp24[1] = (f32)arg1->propPtr->y;
         sp24[2] = (f32)arg1->propPtr->z;
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x4e, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x4e, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
         func_8025A6EC(COMUSIC_2B_DING_B, 22000);
         if(mapSpecificFlags_get(arg3)){
             timedFunc_set_0(2.0f, func_8038F004);

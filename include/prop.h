@@ -6,6 +6,7 @@
 #include "structs.h"
 #include "core2/animctrl.h"
 #include "core2/modelRender.h"
+#include "core2/skeletalanim.h"
 
 typedef struct sprite_prop_s{
     u32 unk0_31:0xC;
@@ -267,7 +268,7 @@ typedef struct actor_s{
     void (*unk13C)(struct actorMarker_s *);//saved marker->unk30
     f32 unk140;
     f32 unk144;
-    Struct80s *unk148;
+    SkeletalAnimation *unk148;
     void *unk14C[2];
     // void *unk150;
     u32 unk154;

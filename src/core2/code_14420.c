@@ -889,7 +889,7 @@ void func_8029CBC4(void){
 void func_8029CBF4(void){
     if(item_getCount(ITEM_E_JIGGY) == 10){
         if( jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
-            timedFunc_set_3(4.1f, (GenMethod_3)func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
+            timedFunc_set_3(4.1f, (GenFunction_3)func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
         }//L8029CC58
 
         timedFunc_set_0(4.0f, func_8029CBC4);

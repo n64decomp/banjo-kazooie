@@ -13,7 +13,7 @@ void func_803865F4(Actor *this, s32 next_state);
 void func_8038687C(Actor *this);
 
 /* .data */
-ActorInfo D_8038EBA0 = { 0x1AD, 0x299, 0x443, 0x0, NULL, func_8038687C, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038EBA0 = { 0x1AD, 0x299, 0x443, 0x0, NULL, func_8038687C, NULL, actor_draw, 0, 0, 0.0f, 0};
 
 /* .code */
 void CCW_func_80386550(ActorMarker *marker){
@@ -69,7 +69,7 @@ void func_803865F4(Actor *this, s32 next_state) {
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(2.0f, 4);
-            timedFunc_set_1(2.0f, (GenMethod_1)CCW_func_80386550, (s32) this->marker);
+            timedFunc_set_1(2.0f, (GenFunction_1)CCW_func_80386550, (s32) this->marker);
             timed_exitStaticCamera(4.0f);
             func_80324E38(4.0f, 0);
         }
@@ -192,7 +192,7 @@ void func_8038687C(Actor *this) {
                     break;
 
             }
-            __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
+            __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
             local->unk4++;
         }
         local->unkC = randf2(0.5 - ((local->unk8 / 10) * 0.4), 1.0 - ((local->unk8 / 10) * 0.8));

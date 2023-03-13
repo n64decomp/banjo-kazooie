@@ -115,7 +115,7 @@ void func_802D096C(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 }
 
 void func_802D09B8(Actor *this, s32 arg1){
-    __spawnQueue_add_4((GenMethod_4)func_802D096C, 
+    __spawnQueue_add_4((GenFunction_4)func_802D096C, 
         reinterpret_cast(s32, this->position[0]), 
         reinterpret_cast(s32, this->position[1]), 
         reinterpret_cast(s32, this->position[2]), 

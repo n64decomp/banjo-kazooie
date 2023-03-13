@@ -74,7 +74,7 @@ Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **arg3){
     t7 = marker_getActor(this)->state == 3;
     func_8033A45C(1, NOT(sp18 = t7));
     func_8033A45C(2, sp18);
-    return func_80325888(this, gdl, mptr, arg3);
+    return actor_draw(this, gdl, mptr, arg3);
 }
 
 

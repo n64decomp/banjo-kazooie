@@ -26,14 +26,14 @@ ActorAnimationInfo D_80372BE0[] ={
 ActorInfo D_80372C18 = { //TEEHEE
     MARKER_99_TEEHEE, ACTOR_CA_TEEHEE, ASSET_3CB_MODEL_TEEHEE, 
     0x1, D_80372BE0, 
-    func_8035B900, func_80326224, func_80325888, 
+    func_8035B900, func_80326224, actor_draw, 
     6500, 0, 0.9f, 0
 };
 
 ActorInfo D_80372C3C = { //PURPLE_TEEHEE (inside tumblar)
     MARKER_296_TEEHEE_PURPLE, ACTOR_3C1_PURPLE_TEEHEE, ASSET_564_MODEL_PURPLE_TEEHEE, 
     0x1, D_80372BE0, 
-    func_8035B900, func_8035BD48, func_80325888, 
+    func_8035B900, func_8035BD48, actor_draw, 
     6500, 0, 0.9f, 0
 };
 

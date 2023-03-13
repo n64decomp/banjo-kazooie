@@ -41,7 +41,7 @@ Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(1, this->state == 3);
     func_8033A45C(2, func_8033A0F0(1) ^ 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 
 }
 

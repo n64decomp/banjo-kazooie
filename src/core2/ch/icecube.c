@@ -42,7 +42,7 @@ s32 D_80372BD4[3] = {200, 200, 255};
 Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
     func_8033A45C(3, actor->unk38_31);
-    actor = func_80325888(marker, gfx, mtx, vtx);
+    actor = actor_draw(marker, gfx, mtx, vtx);
     return actor;
 }
 
@@ -226,7 +226,7 @@ void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
     if(actor->unkF4_8 != 1){
-        __spawnQueue_add_1((GenMethod_1)__chicecube_spawnHalfCubes, reinterpret_cast(s32, actor->marker));
+        __spawnQueue_add_1((GenFunction_1)__chicecube_spawnHalfCubes, reinterpret_cast(s32, actor->marker));
     }
     marker_despawn(actor->marker);
 }

@@ -98,7 +98,7 @@ void baModel_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8029DD6C();
         modelRender_setEnvColor(env_color[0], env_color[1], env_color[2], baModelEnvAlpha);
         func_8033A280(2.0f);
-        modelRender_preDraw((GenMethod_1)_baModel_preDraw, 0);
+        modelRender_preDraw((GenFunction_1)_baModel_preDraw, 0);
         func_8033A450(D_80363780);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         if(D_8037C150.unk0){
@@ -144,7 +144,7 @@ void baModel_reset(void){
     if(!func_8028ADB4())
         baModel_updateModel();
     player_getPosition(plyr_pos);
-    __spawnQueue_add_4((GenMethod_4)func_802C4140, 
+    __spawnQueue_add_4((GenFunction_4)func_802C4140, 
         ACTOR_17_PLAYER_SHADOW, 
         reinterpret_cast(s32, plyr_pos[0]), 
         reinterpret_cast(s32, plyr_pos[1]), 

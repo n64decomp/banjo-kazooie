@@ -17,7 +17,7 @@ ActorAnimationInfo chBrentildaAnimations[] ={
     {0x26C, 4.0f},
     {0x26B, 4.0f},
 };
-ActorInfo chBrentilda = { 0x1E0, 0x348, 0x539, 0x1, chBrentildaAnimations, chBrentilda_update, func_80326224, func_80325888, 2000, 0, 2.0f, 0};
+ActorInfo chBrentilda = { 0x1E0, 0x348, 0x539, 0x1, chBrentildaAnimations, chBrentilda_update, func_80326224, actor_draw, 2000, 0, 2.0f, 0};
 
 /* .code */
 void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){

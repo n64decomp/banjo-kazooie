@@ -28,7 +28,7 @@ f32 D_803935D0[3];
 Actor *func_8038EBD0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C( 2, mapSpecificFlags_get(0));
     func_8033A45C( 1, mapSpecificFlags_get(0) ^ 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038EC34(ActorMarker *this_marker, ActorMarker *other_marker){

@@ -29,7 +29,7 @@ f32 D_8037E640[3];
 Actor *chSnowball_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
-    this = func_80325888(marker, gfx, mtx, vtx);
+    this = actor_draw(marker, gfx, mtx, vtx);
     if (marker->unk14_21 && this->state != 2) {
         func_8033E73C(marker, 5, func_80329904);
         func_8033E3F0(0xD, marker->unk14_21);

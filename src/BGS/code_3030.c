@@ -33,17 +33,17 @@ void func_80389488(Actor *this, s32 next_state) {
 
     local = (ActorLocal_BGS_3030 *)&this->local;
     if (next_state == 1) {
-        func_80335924(this->unk148, ASSET_12D_ANIM_CHOIR_TURTLE_IDLE, 0.2f, randf2(2.0f, 2.5f));
-        func_80335A74(this->unk148, randf2(0.0f, 1.0f));
+        skeletalAnim_set(this->unk148, ASSET_12D_ANIM_CHOIR_TURTLE_IDLE, 0.2f, randf2(2.0f, 2.5f));
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 1.0f));
     }
     if (next_state == 2) {
-        func_80335924(this->unk148, ASSET_12E_ANIM_CHOIR_TURTLE_SING, 0.1f, 1.6666666f);
+        skeletalAnim_set(this->unk148, ASSET_12E_ANIM_CHOIR_TURTLE_SING, 0.1f, 1.6666666f);
         timed_playSfx(0.8333333, SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
     }
     if (next_state == 3) {
         func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
-        func_80335924(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
-        func_80335800(this->unk148, 0.9f, func_80389420, this->marker);
+        skeletalAnim_set(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
+        skeletalAnim_setCallback_1(this->unk148, 0.9f, func_80389420, this->marker);
         if (local->tiptup_marker != NULL) {
             func_80388E94(local->tiptup_marker, local->unk0);
         }
@@ -62,7 +62,7 @@ void func_803895D0(ActorMarker *marker, ActorMarker *other_marker){
 
 Actor *BGS_func_80389610(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A45C(4, marker->unk14_20 - 0x19A);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_80389668(Actor *this) {
@@ -99,7 +99,7 @@ void func_80389668(Actor *this) {
             func_80389488(this, 2);
         }
     }
-    if (((this->state == 2) || (this->state == 3)) && (func_80335794(this->unk148) > 0)) {
+    if (((this->state == 2) || (this->state == 3)) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         func_80389488(this, 1);
     }
 }

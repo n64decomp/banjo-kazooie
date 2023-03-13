@@ -63,8 +63,8 @@ bool func_8031C6E4(void) {
         if (!mapSpecificFlags_get(0xC)) {
             mapSpecificFlags_set(0xC, TRUE);
             func_802DC528(0, 0);
-            timedFunc_set_2(11.0f, (GenMethod_2)func_802DC560, 0, 0);
-            timedFunc_set_3(12.0f, (GenMethod_3)func_802E4078, MAP_1F_CS_START_RAREWARE, 0, 1);
+            timedFunc_set_2(11.0f, (GenFunction_2)func_802DC560, 0, 0);
+            timedFunc_set_3(12.0f, (GenFunction_3)func_802E4078, MAP_1F_CS_START_RAREWARE, 0, 1);
         } else {
             timedFuncQueue_flush();
         }

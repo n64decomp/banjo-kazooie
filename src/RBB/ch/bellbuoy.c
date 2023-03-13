@@ -18,7 +18,7 @@ void func_8038DF6C(Actor* this);
 /* .data */
 ActorInfo D_80390D20 = {
     0x1AA, 0x296, 0x43B, 0x0, NULL,
-    func_8038DF6C, NULL, func_80325888,
+    func_8038DF6C, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -26,7 +26,7 @@ ActorInfo D_80390D20 = {
 /*.code */
 void func_8038DF10(Actor *this, int arg1){
     if(arg1 == 1){
-        func_80335924(this->unk148, 0x16a, 0, 1.2f);
+        skeletalAnim_set(this->unk148, 0x16a, 0, 1.2f);
     }
     this->state = arg1;
 }

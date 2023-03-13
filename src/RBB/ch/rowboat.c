@@ -17,7 +17,7 @@ void func_8038E3D8(Actor *this);
 /* .data */
 ActorInfo D_80390D50 = {
     0x1ab, 0x297, 0x43C, 0x0, NULL,
-    func_8038E3D8, NULL, func_80325888,
+    func_8038E3D8, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 

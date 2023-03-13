@@ -92,33 +92,33 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
     }
     if ((D_8037BF4C & 1)) {//either big hands or big feet
         __baanim_oscillateScale(scale, sp28, 2.0f, 1.0f);
-        func_8033A928(arg0, 6, scale);
-        func_8033A928(arg0, 0x14, scale);
+        boneTransformList_setBoneScale(arg0, 6, scale);
+        boneTransformList_setBoneScale(arg0, 0x14, scale);
     }
     if (D_8037BF4C & 2) {//either big hands or big feet
         __baanim_oscillateScale(scale, sp28, 2.0f, 1.0f);
-        func_8033A928(arg0, 0x10, scale);
-        func_8033A928(arg0, 0x1E, scale);
+        boneTransformList_setBoneScale(arg0, 0x10, scale);
+        boneTransformList_setBoneScale(arg0, 0x1E, scale);
     }
     if (D_8037BF4C & BAANIM_BIGHEAD) {
         __baanim_oscillateScale(scale, sp28, 2.0f, 1.0f);
-        func_8033A928(arg0, 0x12, scale);
+        boneTransformList_setBoneScale(arg0, 0x12, scale);
     }
     if (D_8037BF4C & BAANIM_SMALLHEAD) {
         __baanim_oscillateScale(scale, sp28, 0.2f, 0.5f);
-        func_8033A928(arg0, 0x12, scale);
+        boneTransformList_setBoneScale(arg0, 0x12, scale);
     }
     if (D_8037BF4C & BAANIM_LONGBODY) {
         func_8033A968(arg0, 1, &D_803635E0);
     }
     if (D_8037BF4C & BAANIM_BIGKAZOOIEHEAD) {
         __baanim_oscillateScale(scale, sp28, 2.0f, 1.0f);
-        func_8033A928(arg0, 0x6C, scale);
+        boneTransformList_setBoneScale(arg0, 0x6C, scale);
     }
     if (D_8037BF4C & BAANIM_BIGWINGS) {
         __baanim_oscillateScale(scale, sp28, 2.0f, 1.0f);
-        func_8033A928(arg0, 0x64, scale);
-        func_8033A928(arg0, 0x67, scale);
+        boneTransformList_setBoneScale(arg0, 0x64, scale);
+        boneTransformList_setBoneScale(arg0, 0x67, scale);
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
         if ((D_8037BF4C & BAANIM_WISHYWASHY) && (player_getTransformation() != TRANSFORM_7_WISHWASHY)) {
@@ -209,7 +209,7 @@ void baanim_80289F30(void){
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    func_8028781C(playerAnimCtrl, sp1C, 1);
+    animctrl_drawSetup(playerAnimCtrl, sp1C, 1);
 }
 
 AnimCtrl *baanim_getAnimCtrlPtr(void){

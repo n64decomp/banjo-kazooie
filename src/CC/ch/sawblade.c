@@ -33,84 +33,84 @@ Struct_CC_3130_0 D_80389C30[] = {
 ActorInfo D_80389C90 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3D_CLANKER_SAWBLADE_PROPELLOR_1, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389CB4 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3E_CLANKER_SAWBLADE_PROPELLOR_2, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389CD8 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3F_CLANKER_SAWBLADE_PROPELLOR_3, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389CFC = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_40_CLANKER_SAWBLADE_PROPELLOR_4, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389D20 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_41_CLANKER_SAWBLADE_PROPELLOR_5, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389D44 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_42_CLANKER_SAWBLADE_PROPELLOR_6, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389D68 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_290_CLANKER_SAWBLADE_PROPELLOR_7, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389D8C = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_291_CLANKER_SAWBLADE_PROPELLOR_8, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389DB0 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_292_CLANKER_SAWBLADE_PROPELLOR_9, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389DD4 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_293_CLANKER_SAWBLADE_PROPELLOR_10, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389DF8 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_294_CLANKER_SAWBLADE_PROPELLOR_11, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389E1C = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_295_CLANKER_SAWBLADE_PROPELLOR_12, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
-    chSawblade_update, NULL, func_80325888, 
+    chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 

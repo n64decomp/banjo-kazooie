@@ -33,12 +33,12 @@ void func_8038AD50(Actor *this, s32 next_state) {
             mapSpecificFlags_set(6, 0);
             timed_setStaticCameraToNode(0.0f, 1);
         }
-        func_80335924(this->unk148, 0x21D, 0.2f, 0.5f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x21D, 0.2f, 0.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
     if (next_state == 3) {
-        func_80335924(this->unk148, 0x21E, 0.2f, 2.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x21E, 0.2f, 2.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     if (next_state == 4) {
         timed_exitStaticCamera(0.0f);
@@ -54,7 +54,7 @@ Actor *func_8038AE64(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     if(this->state < 2)
         return this;
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038AEBC(Actor *this) {
@@ -77,7 +77,7 @@ void func_8038AEBC(Actor *this) {
     }
     if (this->state == 2) {
         func_80326224(this);
-        func_8033568C(this->unk148, &sp38, &sp34);
+        skeletalAnim_getProgressRange(this->unk148, &sp38, &sp34);
         for(iPtr = &D_8038F254[0]; iPtr->unk0 > 0.0f; iPtr++){
              if ((sp38 < iPtr->unk0) && (iPtr->unk0 <= sp34)) {
                 func_8030E878((s32) iPtr->unk8, iPtr->unk4, iPtr->unkA, this->position, 1500.0f, 4500.0f);
@@ -93,11 +93,11 @@ void func_8038AEBC(Actor *this) {
     }
     if (this->state == 3) {
         func_80326224(this);
-        func_8033568C(this->unk148, &sp30, &sp2C);
+        skeletalAnim_getProgressRange(this->unk148, &sp30, &sp2C);
         if ((sp30 <= 0.5) && (sp2C >= 0.5)) {
             jiggySpawn(JIGGY_49_CCW_EYRIE, this->position);
         }
-        if (func_80335794(this->unk148) > 0) {
+        if (skeletalAnim_getLoopCount(this->unk148) > 0) {
             func_8038AD50(this, 2);
         }
     }

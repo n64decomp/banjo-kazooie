@@ -202,8 +202,8 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
             local->unk20[2] = this->position_z;
         }
     }
-    func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.1f, randf2(-0.1f, 0.1f) + (1.0/arg2)*0.4);
-    func_80335A8C(this->unk148, 2);
+    skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.1f, randf2(-0.1f, 0.1f) + (1.0/arg2)*0.4);
+    skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     local->unk14[0] = this->position_x; 
     local->unk14[1] = this->position_y; 
     local->unk14[2] = this->position_z;
@@ -222,8 +222,8 @@ void func_8038F190(Actor *this, s32 arg1){
     }
 
     if(arg1 == 1){
-        func_80335924(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, 1.0f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
     }//L8038F204
 
     if(arg1 == 2){
@@ -247,8 +247,8 @@ void func_8038F190(Actor *this, s32 arg1){
         func_8038FB6C();
         actor_collisionOff(this);
         func_80324D54(0.0f, SFX_1B_EXPLOSION_1, 1.0f, 0x7d00, &this->position, 1000.0f, 2000.0f);
-        func_80335924(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_8038EAB4(this);
         func_8038EC14(this);
         func_8038ED3C(this, 0x53a);
@@ -309,7 +309,7 @@ Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         D_803912A0[2] = actor->roll;
         modelRender_setPrimAndEnvColors(sp28, &D_80390DDC);
     }//L8038F5F8
-    return func_80325888(marker, gdl, mptr, arg3);
+    return actor_draw(marker, gdl, mptr, arg3);
 }
 
 void func_8038F618(Actor *this){
@@ -369,7 +369,7 @@ void func_8038F618(Actor *this){
         if(0.0f == local->unk30 && sp78)
             func_8038E910(this);
 
-        func_8033568C(this->unk148, &sp6C, &sp68);
+        skeletalAnim_getProgressRange(this->unk148, &sp6C, &sp68);
 
         if(0.1 <= sp68 && sp68 <= 0.6)
             ml_interpolate_vec3f(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
@@ -386,7 +386,7 @@ void func_8038F618(Actor *this){
         func_80258A4C(&D_80390DEC,this->yaw - 90.0f, &sp50, &sp4C, &sp48, &sp44);
         
         this->yaw += (sp44*400.0f)*sp70;
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             if(ml_distance_vec3f(&this->position, &local->unk8) < 10.0f){
                 func_8038F190(this, 1);
             }else{

@@ -25,7 +25,7 @@ Actor *func_80387AA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if ((actor->state == 0) || (actor->state == 1) || (actor->state == 6) || (actor->state == 2)) {
         return actor;
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_80387B14(Actor *this, s32 next_state){
@@ -34,9 +34,9 @@ void func_80387B14(Actor *this, s32 next_state){
     this->marker->unk14_20 = 0x1d1;
 
     if(next_state == 1 || next_state == 2){
-        func_80335924(this->unk148, 0x23e, 0.0f, 2.5f);
-        func_80335A74(this->unk148, 0.99f);
-        func_80335A8C(this->unk148, 4);
+        skeletalAnim_set(this->unk148, 0x23e, 0.0f, 2.5f);
+        skeletalAnim_setProgress(this->unk148, 0.99f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
         if(this->state == 4){
             local->unk0 = randf2(0.5f, 1.0f);
         }
@@ -55,8 +55,8 @@ void func_80387B14(Actor *this, s32 next_state){
 
     if(next_state == 4){
         this->marker->unk14_20 = MARKER_254_PORTRAIT_CHOMPA_A;
-        func_80335924(this->unk148, 0x23e, 0.0f, 2.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x23e, 0.0f, 2.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if(this->unk100){
             func_80389484(this->unk100, tmp + 0.55);
         }
@@ -184,7 +184,7 @@ void func_80388028(Actor *this){
         this->unk16C_4 = TRUE;
         this->unk16C_0 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, MMM_func_80387CF4, func_80387D1C);
-        __spawnQueue_add_1((GenMethod_1)func_80387D48, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)func_80387D48, reinterpret_cast(s32, this->marker));
         func_80387B14(this, (this->state < 5) ? 1 : 6);
     }//L803880B4
 
@@ -220,7 +220,7 @@ void func_80388028(Actor *this){
     }
 
     if(this->state == 4){
-        func_8033568C(this->unk148, &sp44, &sp40);
+        skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if(sp44 < 0.56 && 0.56 <= sp40){
             this->marker->unk14_20 = 0x1d1;
         }
@@ -239,7 +239,7 @@ void func_80388028(Actor *this){
         if(sp44 < 0.9 && 0.9 <= sp40){
             func_8030E6D4(SFX_2_CLAW_SWIPE);
         }
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             func_80387B14(this, 2);
         }
     }

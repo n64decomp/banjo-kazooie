@@ -14,7 +14,7 @@ ActorAnimationInfo D_8038BA50[] = {
 ActorInfo D_8038BA68 = {
     MARKER_34_CEMETARY_POT, ACTOR_25_CEMETARY_POT, ASSET_3AE_MODEL_GRAVE_FLOWER_POT, 
     0x1, D_8038BA50, 
-    func_80387280, func_80326224, func_80325888, 
+    func_80387280, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 

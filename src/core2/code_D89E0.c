@@ -29,7 +29,7 @@ ActorAnimationInfo D_80373090[] = {
 ActorInfo D_803730D8 = { 
     MARKER_127_BAT, ACTOR_163_BAT, ASSET_3CA_MODEL_BAT, 
     0x1, D_80373090, 
-    func_80360828, func_80326224, func_80325888, 
+    func_80360828, func_80326224, actor_draw, 
     2500, 0, 0.9f, 0
 };
 

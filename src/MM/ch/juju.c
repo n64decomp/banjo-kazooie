@@ -93,7 +93,7 @@ void func_803891E8(s32 x, s32 y, s32 z, s32 yaw){
 }
 
 void func_80389244(s32 x, s32 y, s32 z, s32 yaw){
-    __spawnQueue_add_4((GenMethod_4)func_803891E8, x, y, z, yaw);
+    __spawnQueue_add_4((GenFunction_4)func_803891E8, x, y, z, yaw);
     func_802BB3DC(0, 10.0f, 0.8f);
     gcpausemenu_80314AC8(1);
 }

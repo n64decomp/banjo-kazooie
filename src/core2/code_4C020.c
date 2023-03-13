@@ -82,22 +82,22 @@ ActorAnimationInfo D_803676B0[] = {
     {0x217, 0.3f}
 };
 
-ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
 ActorInfo D_803677CC = { 0x233, 0x23D, 0x4DD, 0x12, D_803676B0, func_802D4388, func_80326224, func_802D4588, 0, 0, 0.0f, 0};
 ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, 0, 0, 0.0f, 0};
 ActorInfo D_80367814 = { MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, 0, 0, 0.0f, 0};
 ActorInfo D_80367838 = { 0x265, 0x2E4, 0x55A,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, 0, 0, 0.0f, 0};
-ActorInfo D_8036785C = { MARKER_103_MM_WITCH_SWITCH, ACTOR_204_MM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4B94, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367880 = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C34, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_803678A4 = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C5C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_803678C8 = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C84, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_803678EC = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CAC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367910 = { MARKER_22B_FP_WITCH_SWITCH, ACTOR_239_FP_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CD4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367934 = { MARKER_166_CC_WITCH_SWITCH, ACTOR_25B_CC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BBC, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BE4, func_80326224, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, func_80326224, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8036785C = { MARKER_103_MM_WITCH_SWITCH, ACTOR_204_MM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4B94, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_80367880 = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C34, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803678A4 = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C5C, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803678C8 = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C84, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803678EC = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CAC, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_80367910 = { MARKER_22B_FP_WITCH_SWITCH, ACTOR_239_FP_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CD4, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_80367934 = { MARKER_166_CC_WITCH_SWITCH, ACTOR_25B_CC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BBC, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BE4, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, func_80326224, actor_draw, 0, 0, 0.0f, 0};
 
 s32 D_803679A0[4] = {0x87, 0x87, 0x87, 0xA0};
 s16 D_803679B0[] = {0x5, 0x90, 0xA, 0x93, 0xF,0x92, 0x14, 0x91, 0x19, 0x94, -1};
@@ -400,7 +400,7 @@ Actor *func_802D3F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     for(i = 0; i < 9; i++){
         func_8033A45C(i + 1, i+1 == phi_s2);
     }
-    return func_80325E78(marker, gfx, mtx, vtx);
+    return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
 void func_802D3FD4(Actor *this){
@@ -466,7 +466,7 @@ Actor *func_802D41C4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A45C(i+1, FALSE);
     }
     func_8033A45C(sp2C, TRUE);
-    return func_80325E78(marker, gfx, mtx, vtx);
+    return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
 void func_802D4250(Actor *this){
@@ -541,7 +541,7 @@ Actor *func_802D4588(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     phi_a1 = (marker_getActor(marker)->unk38_0) ? ((func_8023DB5C() & 4) != 0) ? 1 : 2 : 2;
     func_8033A45C(1, phi_a1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 bool func_802D4608(void){
@@ -554,7 +554,7 @@ void func_802D4614(enum map_e map_id){
     D_803676AC = TRUE;
     func_8028F918(2);
     func_8025A788(COMUSIC_69_FF_WARP, 0.0f, 1.7f);
-    timedFunc_set_2(1.0f, (GenMethod_2) func_8031CC40, map_id, 2);
+    timedFunc_set_2(1.0f, (GenFunction_2) func_8031CC40, map_id, 2);
 }
 
 void func_802D4680(Actor *this){
@@ -744,7 +744,7 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
             func_8030E6D4(SFX_1B_EXPLOSION_1);
         }
         else{
-            __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, 
+            __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, 
                 reinterpret_cast(s32, sp5C[0]),
                 reinterpret_cast(s32, sp5C[1]),
                 reinterpret_cast(s32, sp5C[2])
@@ -775,7 +775,7 @@ void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
     D_8036769C = 0;
     D_803676A0 = 0;
     if (map_id != D_80367694) {
-        timedFunc_set_1(0.25f, (GenMethod_1)func_802D5000, map_id);
+        timedFunc_set_1(0.25f, (GenFunction_1)func_802D5000, map_id);
     } else {
         timedFunc_set_0(0.25f, func_802D63D4);
     }
@@ -913,21 +913,21 @@ void func_802D5628(void){
         switch(D_8036768C){
             case 0x1: // L802D57C8
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x34, 0x205);
+                    timedFunc_set_2(0.4f, (GenFunction_2) func_802D4D3C, 0x34, 0x205);
                     D_80367690++;
                 }
                 break;
 
             case 0x2: // L802D5808
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x39, 0x207);
+                    timedFunc_set_2(0.4f, (GenFunction_2) func_802D4D3C, 0x39, 0x207);
                     D_80367690++;
                 }
                 break;
 
             case 0x3: // L802D5848
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x36, 0x20a);
+                    timedFunc_set_2(0.4f, (GenFunction_2) func_802D4D3C, 0x36, 0x20a);
                     D_80367690++;
                 }   
                 break;
@@ -935,14 +935,14 @@ void func_802D5628(void){
             case 0x4: // L802D5888
                 func_802D5260();
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x3b, 0x20c);
+                    timedFunc_set_2(0.4f, (GenFunction_2) func_802D4D3C, 0x3b, 0x20c);
                     D_80367690++;
                 }
                 break;
 
             case 0x12: // L802D58D0
                 if(!D_80367690){
-                    timedFunc_set_2(0.4f, (GenMethod_2) func_802D4D3C, 0x3c, 0x238);
+                    timedFunc_set_2(0.4f, (GenFunction_2) func_802D4D3C, 0x3c, 0x238);
                     D_80367690++;
                 }
                 break;
@@ -1141,7 +1141,7 @@ void func_802D6264(f32 delay, enum map_e map_id, s32 arg2, s32 arg3, s32 arg4, e
     D_803676A0 = 0;
 
     if(map_id != D_80367694){
-        timedFunc_set_1(delay, (GenMethod_1) func_802D61FC, map_id);
+        timedFunc_set_1(delay, (GenFunction_1) func_802D61FC, map_id);
     }
     else{
         timedFunc_set_0(delay, func_802D63D4);

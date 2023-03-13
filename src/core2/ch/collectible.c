@@ -78,7 +78,7 @@ void func_802D8C98(Actor *this, s32 arg1) {
 
 bool chCollectible_collectItem(Actor* actor, enum file_progress_e arg1, enum asset_e dialogId, enum comusic_e sfxId, enum item_e itemId, f32 arg5){
     func_8025A6EC(sfxId,32000);
-    timedFunc_set_1(0.75f, (GenMethod_1)func_8035644C, arg1);
+    timedFunc_set_1(0.75f, (GenFunction_1)func_8035644C, arg1);
     if(!func_802FADD4(0x1b)){
         item_inc(itemId);
     } else {

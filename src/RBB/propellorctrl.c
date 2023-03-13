@@ -23,7 +23,7 @@ void __propellorCtrl_setState(s32 arg0){
         levelSpecificFlags_set(0x28, FALSE);
         item_set(ITEM_9_PROPELLOR,0);
         if(arg0 == 3 && !jiggyscore_isCollected(JIGGY_57_RBB_PROPELLOR)){
-            timedFunc_set_1(0.5f, (GenMethod_1)func_802FAD64, 3);
+            timedFunc_set_1(0.5f, (GenFunction_1)func_802FAD64, 3);
             func_80324DBC(1.0f, 0xb9d, 4, NULL, NULL, NULL, NULL);
         }
         else{

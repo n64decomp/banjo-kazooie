@@ -489,7 +489,7 @@ Actor *chMumbo_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_8033A45C(7, (this->unk60 == 1.0f));
     func_8033A45C(8, (this->unk60 == 2.0f));
     func_8033A45C(9, 0);
-    out = func_80325888(marker, gfx, mtx, vtx);
+    out = actor_draw(marker, gfx, mtx, vtx);
     if( marker->unk14_21 && out->state == 8){
         if( actor_animationIsAt(out, 0.2f)
             || actor_animationIsAt(out, 0.28f)

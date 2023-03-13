@@ -9,7 +9,7 @@ void timed_exitStaticCamera(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 void func_8028E668(f32[3], f32, f32, f32);
-extern void __spawnQueue_add_3(GenMethod_3, s32, s32, s32);
+extern void __spawnQueue_add_3(GenFunction_3, s32, s32, s32);
 
 void func_8038F6A4(Actor *);
 
@@ -29,7 +29,7 @@ ActorAnimationInfo BGS_D_80390C20[] = {
 };
 
 ActorInfo D_80390C40 = {MARKER_6C_TANKTUP, ACTOR_E8_TANKTUP, ASSET_3EE_TANKTUP, 0x01, BGS_D_80390C20,
-    func_8038F6A4, func_80326224, func_80325888,
+    func_8038F6A4, func_80326224, actor_draw,
     0, 0x80, 0.0f, 0
 };
 
@@ -124,7 +124,7 @@ void func_8038F6A4(Actor *this)
     {
       if (local->unk0[sp44] == 0)
       {
-        __spawnQueue_add_3((GenMethod_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
+        __spawnQueue_add_3((GenFunction_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
       }
     }
 

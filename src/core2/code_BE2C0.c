@@ -11,7 +11,7 @@ s32 D_80371ED0[3] = {1, 2, 0};
 
 /* .code */
 //vec4f_copy
-void func_80345250(f32 dst[4], f32 src[4]){
+void vec4f_clone(f32 dst[4], f32 src[4]){
     dst[0] = src[0];
     dst[1] = src[1];
     dst[2] = src[2];
@@ -66,14 +66,14 @@ void func_80345274(f32 arg0[4], f32 arg1[3][3]) {
     arg1[2][2] = 1.0 - (sp28 + sp1C);
 }
 
-bool func_80345434(f32 arg0[4]){
+bool vec4f_isZero(f32 arg0[4]){
     return ((arg0[0] == 0.0f) 
         && (arg0[1] == 0.0f)
         && (arg0[2] == 0.0f)
         && (arg0[3] == 1.0f));
 }
 
-bool func_803454D0(f32 arg0[4]) {
+bool vec4f_isAlmostZero(f32 arg0[4]) {
     return (((0.0f <= arg0[0]) ? arg0[0] : - arg0[0]) < 0.01)
         && (((0.0f <= arg0[1]) ? arg0[1] : - arg0[1]) < 0.01)
         && (((0.0f <= arg0[1]) ? arg0[1] : - arg0[1]) < 0.01)
@@ -81,7 +81,7 @@ bool func_803454D0(f32 arg0[4]) {
         && (((0.0f <= arg0[3]) ? arg0[3] : - arg0[3]) > 0.99);
 }
 
-void func_80345630(f32 arg0[4]){
+void vec4f_zero(f32 arg0[4]){
     arg0[0] = arg0[1] = arg0[2] = 0.0f;
     arg0[3] = 1.0f;
 }
@@ -197,7 +197,7 @@ void func_80345A44(f32 arg0[4], f32 arg1[4][4]) {
     }
 }
 
-void func_80345C78(s32 arg0, f32 arg1[3]) {
+void func_80345C78(f32 arg0[4], f32 arg1[3]) {
     mlMtxIdent();
     mlMtxRotYaw(arg1[1]);
     mlMtxRotPitch(arg1[0]);

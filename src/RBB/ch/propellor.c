@@ -16,7 +16,7 @@ void chPropellor_update(Actor *this);
 ActorInfo D_803906E0 = {
     MARKER_185_MODEL_RUSTY_BUCKET_REAR_PROPELLER, ACTOR_175_MODEL_RUSTY_BUCKET_REAR_PROPELLER, ASSET_403_MODEL_RUSTY_BUCKET_REAR_PROPELLER,
     0x0, NULL,
-    chPropellor_update, NULL, func_80325888,
+    chPropellor_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -93,11 +93,11 @@ void chPropellor_update(Actor *this){
         if(levelSpecificFlags_get(local->unk8 ? 4 : 3)){
             ncStaticCamera_setToNode(9);
             func_80324E38(0.0f, 3);
-            timedFunc_set_2(0.1f, (GenMethod_2)levelSpecificFlags_set, local->unk8 ? 0x28 : 0x27, 1);
+            timedFunc_set_2(0.1f, (GenFunction_2)levelSpecificFlags_set, local->unk8 ? 0x28 : 0x27, 1);
             timed_exitStaticCamera(4.5f);
             func_80324E38(4.5f, 0);
-            timedFunc_set_2(4.5f, (GenMethod_2)levelSpecificFlags_set, local->unk8 ? 0x4 : 0x3, 0);
-            timedFunc_set_3(4.5f, (GenMethod_3)func_802E4078, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
+            timedFunc_set_2(4.5f, (GenFunction_2)levelSpecificFlags_set, local->unk8 ? 0x4 : 0x3, 0);
+            timedFunc_set_3(4.5f, (GenFunction_3)func_802E4078, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
             func_803228D8();
         }
     }//L80389EA8

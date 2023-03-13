@@ -29,14 +29,14 @@ Struct_CC_1120_0 D_80389B50[] = {
 ActorInfo D_80389B90 = {
     0x4E, ACTOR_101_CLANKER_TOKEN_TOOTH, ASSET_891_MODEL_CLANKER_TOKEN_TOOTH_OPEN, 
     0, NULL, 
-    chTooth_update, func_80326224, func_80325888, 
+    chTooth_update, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389BB4 = {
     0x4F, ACTOR_102_CLANKER_JIGGY_TOOTH, ASSET_893_MODEL_CLANKER_JIGGY_TOOTH_OPEN, 
     0, NULL, 
-    chTooth_update, func_80326224, func_80325888, 
+    chTooth_update, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 

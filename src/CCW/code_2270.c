@@ -11,7 +11,7 @@ typedef struct{
 
 typedef struct{
     Struct_CCW_2270_0 *unk0;
-    Struct80s *unk4;
+    SkeletalAnimation *unk4;
     BKModelBin *spit_model;
 }ActorLocal_chGobiCCW;
 
@@ -44,30 +44,30 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     local = (ActorLocal_chGobiCCW*)&this->local;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
+        skeletalAnim_set(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
     }
     if (next_state == 2) {
         if (local->unk0->unk4 != 0) {
             func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
         }
-        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
-        func_80335A8C(this->unk148, 2);
-        func_80335924(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
-        func_80335A8C(local->unk4, 2);
+        skeletalAnim_set(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
+        skeletalAnim_set(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
+        skeletalAnim_setBehavior(local->unk4, 2);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(2.0f, SFX_4B_GULPING, 0.8f, 28000);
-        timedFunc_set_2(3.2f, (GenMethod_2) CCW_func_80388660, (s32) this->marker, 3);
+        timedFunc_set_2(3.2f, (GenFunction_2) CCW_func_80388660, (s32) this->marker, 3);
     }
     if (next_state == 3) {
         func_803883F4();
     }
     if (next_state == 4) {
-        func_80335924(this->unk148, ASSET_176_ANIM_GOBI_YAWN, 0.5f, 4.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_176_ANIM_GOBI_YAWN, 0.5f, 4.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
     }
@@ -75,12 +75,12 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
         if (local->unk0->unk6 != 0) {
             func_80311480((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
         }
-        func_80335924(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
+        skeletalAnim_set(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
         timed_setStaticCameraToNode(0.0f, 3);
     }
     if (next_state == 6) {
-        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.1f, 0.71f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.1f, 0.71f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
     if (next_state == 7) {
         timed_exitStaticCamera(0.0f);
@@ -95,7 +95,7 @@ void func_8038894C(ActorMarker* marker, ActorMarker *other_marker) {
     Actor* actor = marker_getActor(marker);
     if (actor->state == 1) {
         actor_collisionOff(actor);
-        timedFunc_set_2(0.5f, (GenMethod_2)CCW_func_80388660, (s32)actor->marker, 2);
+        timedFunc_set_2(0.5f, (GenFunction_2)CCW_func_80388660, (s32)actor->marker, 2);
     }
 }
 
@@ -112,17 +112,17 @@ Actor *chGobiCCW_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         sp2C[1] = this->yaw;
         sp2C[2] = this->roll;
 
-        func_8033A238(func_803356A0(local->unk4, local));
+        modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(local->unk4));
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         modelRender_draw(gfx, mtx, this->position, sp2C, 1.0f, NULL, local->spit_model);
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void chGobiCCW_free(Actor *this){
     ActorLocal_chGobiCCW *local = (ActorLocal_chGobiCCW*)&this->local;
 
-    func_80335874(local->unk4);
+    skeletalAnim_free(local->unk4);
     assetcache_release(local->spit_model);
 }
 
@@ -138,7 +138,7 @@ void chGobiCCW_update(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->unk30 = chGobiCCW_free;
         this->unk138_24 = FALSE;
-        local->unk4 = func_803358B4();
+        local->unk4 = skeletalAnim_new();
         local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         marker_setCollisionScripts(this->marker, 0, func_8038894C, 0);
         if(!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
@@ -171,7 +171,7 @@ void chGobiCCW_update(Actor *this) {
     }
 
     if (this->state == 2) {
-        func_80335A94(local->unk4, time_getDelta(), 1);
+        skeletalAnim_update(local->unk4, time_getDelta(), 1);
     }
 
     if(this->state == 3){
@@ -185,12 +185,12 @@ void chGobiCCW_update(Actor *this) {
     }
 
     if (this->state == 4) {
-        if ((func_8033567C(this->unk148) == ASSET_176_ANIM_GOBI_YAWN) && (func_80335794(this->unk148) > 0)) {
-            func_80335924(this->unk148, ASSET_177_ANIM_GOBI_SLEEP, 0.1f, 4.0f);
-            func_80335A8C(this->unk148, 1);
+        if ((skeletalAnim_getAnimId(this->unk148) == ASSET_176_ANIM_GOBI_YAWN) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
+            skeletalAnim_set(this->unk148, ASSET_177_ANIM_GOBI_SLEEP, 0.1f, 4.0f);
+            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         }
-        if (func_8033567C(this->unk148) == ASSET_177_ANIM_GOBI_SLEEP) {
-            func_8033568C(this->unk148, &sp44, &sp40);
+        if (skeletalAnim_getAnimId(this->unk148) == ASSET_177_ANIM_GOBI_SLEEP) {
+            skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
             if ((sp44 < 0.1) && (0.1 <= (f64) sp40)) {
                 FUNC_8030E8B4(SFX_5E_BANJO_PHEWWW, 0.8f, 15000, this->position, 500, 1500);
             }
@@ -202,7 +202,7 @@ void chGobiCCW_update(Actor *this) {
     }
 
     if (this->state == 5){
-        if(func_80335794(this->unk148) > 0) {
+        if(skeletalAnim_getLoopCount(this->unk148) > 0) {
             CCW_func_8038868C(this, 6);
         }
     }

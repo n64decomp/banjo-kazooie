@@ -423,8 +423,8 @@ void func_8025A70C(enum comusic_e track_id){
 }
 
 void func_8025A788(enum comusic_e comusic_id, f32 delay1, f32 delay2){
-    timedFunc_set_1(delay1, (GenMethod_1) func_8025A70C, comusic_id);
-    timedFunc_set_1(delay1 + delay2, (GenMethod_1) func_8025A7DC, comusic_id);
+    timedFunc_set_1(delay1, (GenFunction_1) func_8025A70C, comusic_id);
+    timedFunc_set_1(delay1 + delay2, (GenFunction_1) func_8025A7DC, comusic_id);
 }
 
 void func_8025A7DC(enum comusic_e track_id){
@@ -594,12 +594,12 @@ s32 func_8025ADD4(enum comusic_e id){
 
 void func_8025AE0C(s32 arg0, f32 arg1){
     func_8025A58C(0, arg0);
-    timedFunc_set_2(arg1, (GenMethod_2)func_8025A58C, -1, arg0);
+    timedFunc_set_2(arg1, (GenFunction_2)func_8025A58C, -1, arg0);
 }
 
 void func_8025AE50(s32 arg0, f32 arg1){
     func_8025A430(0, arg0, 6);
-    timedFunc_set_3(arg1, (GenMethod_3)func_8025A430, -1, arg0, 6);
+    timedFunc_set_3(arg1, (GenFunction_3)func_8025A430, -1, arg0, 6);
 }
 
 void func_8025AEA0(enum comusic_e track_id, s32 arg1){

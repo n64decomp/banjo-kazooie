@@ -34,7 +34,7 @@ Actor *func_8038F0F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(this->unk38_31)
         return this;
     else
-        return func_80325888(marker, gfx, mtx, vtx);
+        return actor_draw(marker, gfx, mtx, vtx);
     
 }
 

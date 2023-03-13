@@ -12,13 +12,13 @@ typedef struct timed_function_queue_s{
     u8  arg_cnt;
     u8  pad5[3];
     union {
-        GenMethod_0 func0;
-        GenMethod_1 func1;
-        GenMethod_2 func2;
-        GenMethod_3 func3;
-        GenMethod_4 func4;
-        GenMethod_5 func5;
-        GenMethod_6 func6;
+        GenFunction_0 func0;
+        GenFunction_1 func1;
+        GenFunction_2 func2;
+        GenFunction_3 func3;
+        GenFunction_4 func4;
+        GenFunction_5 func5;
+        GenFunction_6 func6;
     };
     s32  arg[25];
     
@@ -83,7 +83,7 @@ TimedFunction* __timedFuncQueue_insert(f32 time, s32 cnt, void *funcPtr, s32 arg
     retVal = (TimedFunction * )vector_insertNew((vector(TimedFunction)**)&D_80383380, ((s32)iPtr - (s32)startPtr)/(s32)sizeof(TimedFunction));
     retVal->time = time;
     retVal->arg_cnt = cnt;
-    retVal->func5 = (GenMethod_5) funcPtr;
+    retVal->func5 = (GenFunction_5) funcPtr;
     retVal->arg[0] = arg0;
     retVal->arg[1] = arg1;
     retVal->arg[2] = arg2;
@@ -162,7 +162,7 @@ f32 func_80324C7C(void){
 }
 
 void timed_playSfx(f32 time, enum sfx_e arg0, f32 arg1, s32 arg2){
-    timedFunc_set_3(time, (GenMethod_3)func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
+    timedFunc_set_3(time, (GenFunction_3)func_80324A68, arg0, (s32)(arg1*1000.0f), arg2);
 }
 
 void func_80324CD8(f32 time){
@@ -170,11 +170,11 @@ void func_80324CD8(f32 time){
 }
 
 void func_80324CFC(f32 time, s32 id, s32 volume){
-    timedFunc_set_2(time, (GenMethod_2)func_80324A28, id, volume);
+    timedFunc_set_2(time, (GenFunction_2)func_80324A28, id, volume);
 }
 
 void func_80324D2C(f32 time, enum comusic_e arg0){
-    timedFunc_set_1(time, (GenMethod_1) func_80324A48, arg0);
+    timedFunc_set_1(time, (GenFunction_1) func_80324A48, arg0);
 }
 
 void func_80324D54(f32 time, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 position[3], f32 arg5, f32 arg6){
@@ -188,7 +188,7 @@ void func_80324D54(f32 time, enum sfx_e sfx_id, f32 arg2, s32 arg3, f32 position
     argStruct.unkC[1] = position[1];
     argStruct.unkC[2] = position[2];
     
-    timedFunc_set_6(time, (GenMethod_6) func_80324AA4, (void *) &argStruct);
+    timedFunc_set_6(time, (GenFunction_6) func_80324AA4, (void *) &argStruct);
 }
 
 void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], ActorMarker *caller, void (*callback_method_1)(ActorMarker *, enum asset_e, s32), void (*callback_method_2)(ActorMarker *, enum asset_e, s32)) {
@@ -207,47 +207,47 @@ void func_80324DBC(f32 time, enum asset_e text_id, s32 arg2, f32 position[3], Ac
     } else {
         sp20.position[0] = sp20.position[1] = sp20.position[2] = 0.0f;
     }
-    timedFunc_set_6(time, (GenMethod_6) func_80324AEC, (void *) &sp20);
+    timedFunc_set_6(time, (GenFunction_6) func_80324AEC, (void *) &sp20);
 }
 
 
 void func_80324E38(f32 time, s32 arg0){
-    timedFunc_set_1(time, (GenMethod_1) func_80324BA0, arg0);
+    timedFunc_set_1(time, (GenFunction_1) func_80324BA0, arg0);
 }
 
 void timed_setStaticCameraToNode(f32 time, s32 arg0){
-    timedFunc_set_1(time, (GenMethod_1) ncStaticCamera_setToNode, arg0);
+    timedFunc_set_1(time, (GenFunction_1) ncStaticCamera_setToNode, arg0);
 }
 
 void timed_exitStaticCamera(f32 time){
-    timedFunc_set_0(time, (GenMethod_0) ncStaticCamera_exit);
+    timedFunc_set_0(time, (GenFunction_0) ncStaticCamera_exit);
 }
 
-void timedFunc_set_0(f32 time, GenMethod_0 funcPtr){
+void timedFunc_set_0(f32 time, GenFunction_0 funcPtr){
     __timedFuncQueue_insert(time, 0, (void *) funcPtr, 0, 0, 0, 0, 0);
 }
 
-void timedFunc_set_1(f32 time, GenMethod_1 funcPtr, s32 arg0){
+void timedFunc_set_1(f32 time, GenFunction_1 funcPtr, s32 arg0){
     __timedFuncQueue_insert(time, 1, (void *) funcPtr, arg0, 0, 0, 0, 0);
 }
 
-void timedFunc_set_2(f32 time, GenMethod_2 funcPtr, s32 arg0, s32 arg1){
+void timedFunc_set_2(f32 time, GenFunction_2 funcPtr, s32 arg0, s32 arg1){
     __timedFuncQueue_insert(time, 2, (void *) funcPtr, arg0, arg1, 0, 0, 0);
 }
 
-void timedFunc_set_3(f32 time, GenMethod_3 funcPtr, s32 arg0, s32 arg1, s32 arg2){
+void timedFunc_set_3(f32 time, GenFunction_3 funcPtr, s32 arg0, s32 arg1, s32 arg2){
     __timedFuncQueue_insert(time, 3, (void *) funcPtr, arg0, arg1, arg2, 0, 0);
 }
 
-void timedFunc_set_4(f32 time, GenMethod_4 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+void timedFunc_set_4(f32 time, GenFunction_4 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     __timedFuncQueue_insert(time, 4, (void *) funcPtr, arg0, arg1, arg2, arg3, 0);
 }
 
-void timedFunc_set_5(f32 time, GenMethod_5 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void timedFunc_set_5(f32 time, GenFunction_5 funcPtr, s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     __timedFuncQueue_insert(time, 5, (void *) funcPtr, arg0, arg1, arg2, arg3, arg4);
 }
 
-void timedFunc_set_6(f32 time, GenMethod_6 funcPtr, void* argPtr ){
+void timedFunc_set_6(f32 time, GenFunction_6 funcPtr, void* argPtr ){
     TimedFunction *q = __timedFuncQueue_insert(time, 6, funcPtr, 0, 0, 0, 0, 0);
     memcpy(&q->arg[5], argPtr, 0x50);
 }
@@ -260,7 +260,7 @@ void timedJiggySpawn(f32 time, s32 jiggyId, f32 *position){
     jiggyInfo.pos[1] = position[1];
     jiggyInfo.pos[2] = position[2];
 
-    timedFunc_set_6(time, (GenMethod_6) __spawnjiggy, (void*) &jiggyInfo);
+    timedFunc_set_6(time, (GenFunction_6) __spawnjiggy, (void*) &jiggyInfo);
 }
 
 bool timedFuncQueue_is_empty(void){

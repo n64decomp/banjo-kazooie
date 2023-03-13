@@ -19,7 +19,7 @@ ActorAnimationInfo fight_D_803919F0[] ={
 ActorInfo D_80391A10 = {
     MARKER_276_STONE_JINJO, ACTOR_3A1_STONE_JINJO, ASSET_545_MODEL_STONE_JINJO,
     0x1, fight_D_803919F0,
-    chstonejinjo_update, func_80326224, func_80325888,
+    chstonejinjo_update, func_80326224, actor_draw,
     0, 0x800, 1.0f, 0
 };
 

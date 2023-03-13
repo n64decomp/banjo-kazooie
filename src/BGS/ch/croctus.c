@@ -74,7 +74,7 @@ void func_80387E00(s32 arg0){
     Actor * this = marker_getActor(marker);
 
     func_803262E4(this);
-    __spawnQueue_add_2((GenMethod_2)func_80387D18, reinterpret_cast(s32, marker), 0x1E);
+    __spawnQueue_add_2((GenFunction_2)func_80387D18, reinterpret_cast(s32, marker), 0x1E);
 }
 
 void func_80387E40(ActorMarker * arg0){
@@ -95,10 +95,10 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         func_80328B8C(this, 5, 0.79f, 1);
         func_80326310(this);
         bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
-        timedFunc_set_1(1.1f, (GenMethod_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
+        timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
         timed_setStaticCameraToNode(0.8f, 9);
         func_80324DBC(3.4f, 0xC87, 0xE, NULL, NULL, func_80387E68, NULL);
-        __spawnQueue_add_2((GenMethod_2) func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
+        __spawnQueue_add_2((GenFunction_2) func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
     }
     else{
         timed_exitStaticCamera(0.0f);
@@ -152,18 +152,18 @@ void func_80387FD4(Actor *this){
                 func_80324D2C(4.5f, COMUSIC_43_ENTER_LEVEL_GLITTER);
                 func_80328B8C(this, 5, 0.79f, 1);
                 if (this->unkF4_8 == 5) {
-                    timedFunc_set_1(0.9f, (GenMethod_1) func_80387E40, (s32) this->marker);
+                    timedFunc_set_1(0.9f, (GenFunction_1) func_80387E40, (s32) this->marker);
                 } else {
                     func_80326310(this);
                 }
                 if (this->unkF4_8 < 5) {
                     bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
-                    timedFunc_set_1(1.1f, (GenMethod_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
+                    timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
                     func_802BAFE4(D_803907B0[this->unkF4_8-1]);
                 } else {
-                    timedFunc_set_1(0.8f, (GenMethod_1)func_80387D90, (s32) this->marker);
+                    timedFunc_set_1(0.8f, (GenFunction_1)func_80387D90, (s32) this->marker);
                 }
-                __spawnQueue_add_2((GenMethod_2)func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
+                __spawnQueue_add_2((GenFunction_2)func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
             }
         }
     }//L80388348
@@ -228,5 +228,5 @@ Actor *func_8038860C(ActorMarker *this, Gfx** gdl, Mtx ** mptr, Vtx **vtx){
     Actor *thisActor; 
     thisActor = marker_getActor(this);
     func_8033A45C(1, thisActor->unkF4_8);
-    return func_80325888(this, gdl, mptr, vtx);
+    return actor_draw(this, gdl, mptr, vtx);
 }

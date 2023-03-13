@@ -24,7 +24,7 @@ void chBossBoomBoxCtrl_update(Actor *this){
         if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2)){
             marker_despawn(this->marker);
         }else{
-            __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_281_BOSS_BOOM_BOX_LARGEST, reinterpret_cast(s32,this->position_x), reinterpret_cast(s32,this->position_y), reinterpret_cast(s32,this->position_z));
+            __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_281_BOSS_BOOM_BOX_LARGEST, reinterpret_cast(s32,this->position_x), reinterpret_cast(s32,this->position_y), reinterpret_cast(s32,this->position_z));
             __chBossBoomBoxCtrl_setState(this, 1);
         }
     }//L8038DEF4

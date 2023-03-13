@@ -69,7 +69,7 @@ void func_80387574(ActorMarker *caller, enum asset_e text_id, s32 arg1){
 
     if(nodeProp_findPositionFromActorId(0x14b, sp24)){
         jiggySpawn(JIGGY_14_TTC_BLUBBER, sp24);
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
 
@@ -96,7 +96,7 @@ void func_80387678(Actor *this){
     mapSpecificFlags_set(3, TRUE);
     func_8028F918(2);
     timed_setStaticCameraToNode(0.0f, 4);
-    timedFunc_set_1(1.0f, (GenMethod_1)func_803875D4, (s32)this->marker);
+    timedFunc_set_1(1.0f, (GenFunction_1)func_803875D4, (s32)this->marker);
     func_80328B8C(this, 1, 0.0f, 1);
 }
 
@@ -249,5 +249,5 @@ void TTC_func_80387CF4(Actor *this){
 
 Actor *func_80387D6C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(4, 0);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }

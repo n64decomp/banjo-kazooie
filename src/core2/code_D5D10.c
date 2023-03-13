@@ -50,7 +50,7 @@ ActorAnimationInfo D_80372D20[] = {
 ActorInfo D_80372D78 = { 
     MARKER_218_LIMBO, ACTOR_34E_LIMBO, ASSET_4CC_MODEL_LIMBO, 
     0x1, D_80372D20, 
-    chskeleton_update, func_80326224, func_80325888, 
+    chskeleton_update, func_80326224, actor_draw, 
     2500, 0, 1.0f, 0
 };
 
@@ -73,7 +73,7 @@ void chskeleton_despawn(ActorMarker *marker, s32 arg1) {
     func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
     func_8035CCA0(partEmitMgr_newEmitter(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
-    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(marker);
 }
 

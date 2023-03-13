@@ -12,7 +12,7 @@ void func_8038D85C(Actor *this);
 ActorInfo D_8038F640 = {
     0x1BF, 0x2AC, 0x490,
     0x0, NULL,
-    func_8038D85C, NULL, func_80325888,
+    func_8038D85C, NULL, actor_draw,
     0, 0, 2.2f, 0
 };
 

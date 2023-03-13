@@ -58,9 +58,9 @@ void func_8038CB40(Actor *this, s32 next_state) {
     int i;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x289, 0.2f, 1.1f);
+        skeletalAnim_set(this->unk148, 0x289, 0.2f, 1.1f);
         for(i = 0; i < 10; i++){
-            func_80335800(this->unk148, randf(), func_8038CA10, this->marker);
+            skeletalAnim_setCallback_1(this->unk148, randf(), func_8038CA10, (s32)this->marker);
         }
     }
     this->state = next_state;
@@ -71,7 +71,7 @@ Actor *CCW_func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_CCW_6620 *local;
 
-    this = func_80325888(marker, gfx, mtx, vtx);
+    this = actor_draw(marker, gfx, mtx, vtx);
     local = (ActorLocal_CCW_6620 *)&this->local;
     if (this->marker->unk14_21) {
         func_8034A174(func_80329934(), 5, local->unk4);

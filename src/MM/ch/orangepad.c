@@ -14,7 +14,7 @@ void func_80386768(Actor *);
 /* .data */
 ActorInfo chorangepadInfo = { MARKER_66_ORANGE_PAD, ACTOR_57_ORANGE_PAD, ASSET_2EB_MODEL_ORANGE_PAD, 
     0, NULL,
-    func_80386768, func_80326224, func_80325888,
+    func_80386768, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -51,7 +51,7 @@ void func_80386444(ActorMarker *arg0){
 
             func_802BAFE4(temp_a0);
             sp44[1] += 50.0f;
-            timedFunc_set_3(0.6f, (GenMethod_3) MM_func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
+            timedFunc_set_3(0.6f, (GenFunction_3) MM_func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
             if(!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)){
                 func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);

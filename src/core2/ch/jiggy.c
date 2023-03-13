@@ -62,8 +62,8 @@ void func_802C7AB0(ActorMarker * arg0, u32 arg1){
 }
 
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3){
-    __spawnQueue_add_4((GenMethod_4)func_802C41D8, ACTOR_4C_STEAM, x, y, z);
-    __spawnQueue_add_4((GenMethod_4)func_802C41D8, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
+    __spawnQueue_add_4((GenFunction_4)func_802C41D8, ACTOR_4C_STEAM, x, y, z);
+    __spawnQueue_add_4((GenFunction_4)func_802C41D8, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
     mapSpecificFlags_set(arg3, 1);
 }
 
@@ -80,10 +80,10 @@ void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
         actor_collisionOff(this);
         func_802BAFE4(arg3);
         func_80356520(arg6);
-        timedFunc_set_4(0.6f, (GenMethod_4)func_802C7AF8, (s32)this->position[0], (s32)this->position[1], (s32)this->position[2], arg4);
-        timedFunc_set_2(0.6f, (GenMethod_2)func_802C7AB0, (s32)this->marker, arg5);
-        timedFunc_set_0(1.0f, (GenMethod_0)func_802BE720);
-        timedFunc_set_1(3.9f, (GenMethod_1)func_802C7B6C, arg4);
+        timedFunc_set_4(0.6f, (GenFunction_4)func_802C7AF8, (s32)this->position[0], (s32)this->position[1], (s32)this->position[2], arg4);
+        timedFunc_set_2(0.6f, (GenFunction_2)func_802C7AB0, (s32)this->marker, arg5);
+        timedFunc_set_0(1.0f, (GenFunction_0)func_802BE720);
+        timedFunc_set_1(3.9f, (GenFunction_1)func_802C7B6C, arg4);
         mapSpecificFlags_set(arg1, 1);
     }
 }
@@ -109,7 +109,7 @@ Actor *chjiggy_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
             func_8033A280(10.0f);
             func_8033A244(30000.0f);
         }
-        thisActor = func_80325888(this, gdl, mptr, arg3);
+        thisActor = actor_draw(this, gdl, mptr, arg3);
     }
     return thisActor;
 }

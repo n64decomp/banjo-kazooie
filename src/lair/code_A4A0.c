@@ -40,9 +40,9 @@ ActorAnimationInfo D_803949B0[] ={
     {0x26D, 1000000.0f},
     {0x26D, 1000000.0f},
 };
-ActorInfo D_80394A08 = { MARKER_1EA_GRUNTLING_RED,   ACTOR_367_GRUNTLING_RED,   ASSET_54A_MODEL_GRUNTLING_RED,   0x1, D_803949B0, func_80390AE8, func_80326224, func_80325888, 2500, 0, 1.0f, 0};
-ActorInfo D_80394A2C = { MARKER_295_GRUNTLING_BLUE,  ACTOR_3BF_GRUNTLING_BLUE,  ASSET_561_MODEL_GRUNTLING_BLUE,  0x1, D_803949B0, func_80390AE8, func_80326224, func_80325888, 2500, 0, 1.0f, 0};
-ActorInfo D_80394A50 = { MARKER_1F1_GRUNTLING_BLACK, ACTOR_3C0_GRUNTLING_BLACK, ASSET_562_MODEL_GRUNTLING_BLACK, 0x1, D_803949B0, func_80390AE8, func_80326224, func_80325888, 2500, 0, 1.0f, 0};
+ActorInfo D_80394A08 = { MARKER_1EA_GRUNTLING_RED,   ACTOR_367_GRUNTLING_RED,   ASSET_54A_MODEL_GRUNTLING_RED,   0x1, D_803949B0, func_80390AE8, func_80326224, actor_draw, 2500, 0, 1.0f, 0};
+ActorInfo D_80394A2C = { MARKER_295_GRUNTLING_BLUE,  ACTOR_3BF_GRUNTLING_BLUE,  ASSET_561_MODEL_GRUNTLING_BLUE,  0x1, D_803949B0, func_80390AE8, func_80326224, actor_draw, 2500, 0, 1.0f, 0};
+ActorInfo D_80394A50 = { MARKER_1F1_GRUNTLING_BLACK, ACTOR_3C0_GRUNTLING_BLACK, ASSET_562_MODEL_GRUNTLING_BLACK, 0x1, D_803949B0, func_80390AE8, func_80326224, actor_draw, 2500, 0, 1.0f, 0};
 
 /* .code */
 void func_80390890(ActorMarker *marker, ActorMarker *other_marker) {
@@ -54,7 +54,7 @@ void func_80390890(ActorMarker *marker, ActorMarker *other_marker) {
     func_80328B8C(this, 5, 0.0f, 1);
     actor_playAnimationOnce(this);
     func_8030E878(SFX_C2_GRUBLIN_EGH, local->unkC_27*0.1 + 0.8, 32000, this->position, 1250.0f, 2500.0f);
-    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     actor_collisionOff(this);
     this->unk138_24 = TRUE;
 }

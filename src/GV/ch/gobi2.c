@@ -4,7 +4,7 @@
 
 typedef struct {
     u8 pad0[4];
-    Struct80s  *unk4;
+    SkeletalAnimation  *unk4;
     BKModelBin *unk8;
 }ActorLocal_Gobi2;
 
@@ -49,14 +49,14 @@ void GV_func_80387A00(ActorMarker *this_marker){
 
 void func_80387A2C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     timed_setStaticCameraToNode(0.0f, 0xC);
-    timedFunc_set_1(0.5f, (GenMethod_1) func_80387984, reinterpret_cast(s32, caller));
+    timedFunc_set_1(0.5f, (GenFunction_1) func_80387984, reinterpret_cast(s32, caller));
     timed_playSfx(0.5f, SFX_2C_PULLING_NOISE, 0.9f, 32000);
     timed_playSfx(1.8f, SFX_2C_PULLING_NOISE, 1.0f, 32000);
     timed_playSfx(2.5f, SFX_2C_PULLING_NOISE, 1.1f, 32000);
     timed_setStaticCameraToNode(3.0f, 0xd);
     timedFunc_set_0(3.5f, __chGobi2_spawnJIggy);
     timed_exitStaticCamera(6.0f);
-    timedFunc_set_1(6.0f, (GenMethod_1) GV_func_80387A00, reinterpret_cast(s32, caller));
+    timedFunc_set_1(6.0f, (GenFunction_1) GV_func_80387A00, reinterpret_cast(s32, caller));
     func_80324E38(6.0f, 0);
 }
 
@@ -73,14 +73,14 @@ void chGobi2_setState(Actor *this, s32 next_state){
 
     if(next_state == 2){
         this->marker->propPtr->unk8_3 = TRUE;
-        func_80335924(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
+        skeletalAnim_set(this->unk148, ASSET_F4_ANIM_GOBI_IDLE, 0.5f, 12.0f);
     }
 
     if(next_state == 3){
         timedFunc_set_0(0.05f, GV_func_80387960);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         func_80324E38(0.051f, 1);
-        timedFunc_set_1(0.06f, (GenMethod_1)func_803879D4, reinterpret_cast(s32, this->marker));
+        timedFunc_set_1(0.06f, (GenFunction_1)func_803879D4, reinterpret_cast(s32, this->marker));
         timed_setStaticCameraToNode(0.86f, 0xb);
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
@@ -89,18 +89,18 @@ void chGobi2_setState(Actor *this, s32 next_state){
     }//L80387C94
 
     if(next_state == 4){
-        func_80335924(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
-        func_80335924(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
+        skeletalAnim_set(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
+        skeletalAnim_set(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
     }
 
     if(next_state == 5){
-        func_80335924(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.43f, 0.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.43f, 0.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
 
     if(next_state == 6){
-        func_80335924(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.4f, 0.71f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_F8_ANIM_GOBI_RUNNING, 0.4f, 0.71f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
 
     if(next_state == 7){
@@ -109,7 +109,7 @@ void chGobi2_setState(Actor *this, s32 next_state){
 
     if(next_state == 8){
         FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
-        func_80335924(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
+        skeletalAnim_set(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 
     this->state = next_state;
@@ -130,12 +130,12 @@ Actor *chGobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp3C[0] = this->pitch;
     sp3C[1] = this->yaw;
     sp3C[2] = this->roll;
-    func_8033A238(func_803356A0(this->unk148));
-    modelRender_preDraw((GenMethod_1)func_803253A0, (s32)this);
+    modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(this->unk148));
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
     modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(this_marker));
 
     if(this->state == 4){
-        func_8033A238(func_803356A0(local->unk4));
+        modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(local->unk4));
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, local->unk8);
     }
@@ -147,7 +147,7 @@ void __chGobi2_80387EFC(Actor *this){
     ActorLocal_Gobi2 *local = (ActorLocal_Gobi2 *)&this->local;
 
     chGobi2_setState(this, 0);
-    func_80335874(local->unk4);
+    skeletalAnim_free(local->unk4);
     assetcache_release(local->unk8);
 
 }
@@ -174,7 +174,7 @@ void chGobi2_update(Actor *this){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, __chGobi2_ow, NULL, NULL);
         sp34->unk30 = __chGobi2_80387EFC;
-        local->unk4 = func_803358B4();
+        local->unk4 = skeletalAnim_new();
         local->unk8 = (BKModelBin*) assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         D_80391A50 = 0;
         this->unk1C[0] = 0.0f;
@@ -211,14 +211,14 @@ void chGobi2_update(Actor *this){
     }//L80388194
 
     if(this->state == 4){
-        func_80335A94(local->unk4, sp2C, 1);
-        if(func_80335794(this->unk148) > 0){
+        skeletalAnim_update(local->unk4, sp2C, 1);
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             chGobi2_setState(this, 5);
         }
     }
 
     if(this->state == 5){
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             chGobi2_setState(this, 6);
         }
     }
@@ -228,7 +228,7 @@ void chGobi2_update(Actor *this){
     }
 
     if(this->state == 8){
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             chGobi2_setState(this, 2);
         }
     }

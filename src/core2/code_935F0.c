@@ -139,7 +139,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             func_8025A70C((func_803203FC(5)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
             func_803204E4(0x21, TRUE);
-            timedFunc_set_3(2.0f, (GenMethod_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
+            timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
     func_80328A84(this, arg1);

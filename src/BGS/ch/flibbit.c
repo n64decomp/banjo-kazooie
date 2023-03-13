@@ -47,8 +47,8 @@ bool BGS_func_803863F0(Actor *this, f32 arg1[3], s32 arg2){
     local->unk8[2] = arg1[2];
 
     local->unk8[1] = func_80309724(arg1);
-    func_80335924(this->unk148, 0xdb, 0.2f,(arg2) ?  randf2(0.7f, 0.8f) :  randf2(0.75f, 0.85f));
-    func_80335A8C(this->unk148, 2);
+    skeletalAnim_set(this->unk148, 0xdb, 0.2f,(arg2) ?  randf2(0.7f, 0.8f) :  randf2(0.75f, 0.85f));
+    skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     func_80324D54(0.2f, 0x3f2, randf2(0.7f, 1.3f), randi2(0x61A8, 0x6978), this->position, 500.0f, 2500.0f);
     return TRUE;
 }
@@ -181,9 +181,9 @@ void func_80386AEC(Actor *this, s32 next_state) {
     local->unk24 = 0.0f;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
-        func_80335A74(this->unk148, randf2(0.0f, 0.9f));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         this->position[0] = (f32) local->unkE[0];
         this->position[1] = (f32) local->unkE[1];
         this->position[2] = (f32) local->unkE[2];
@@ -201,38 +201,38 @@ void func_80386AEC(Actor *this, s32 next_state) {
     } 
 
     if (next_state == 3) {
-        func_80335924(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
-        func_80335A74(this->unk148, randf2(0.0f, 1.0f));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 1.0f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         local->unk24 = randf2(1.0f, 3.0f);
     }
 
     if (next_state == 4) {
-        func_80335924(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
-        func_80335A74(this->unk148, randf2(0.0f, 0.9f));
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
+        skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9f));
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         this->position[1] = func_80309724(this->position);
         local->unk18 = 1.0f;
     }
 
     if (next_state == 5) {
         FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
-        func_80335924(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = func_80309724(this->position);
         local->unk18 = 1.0f;
     }
 
     if (next_state == 6) {
-        func_80335924(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
+        skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
         FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         local->unk14 = 1000.0f;
     }
     if (next_state == 7) {
-        func_80335924(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 8) {
@@ -275,7 +275,7 @@ Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     local = (ActorLocal_Flibbit *)&this->local;
     if (local->unk0){
         if(((this->state == 1)) || (this->state == 3)) {
-            temp_a0 = func_803356A0(this->unk148);
+            temp_a0 = skeletalAnim_getBoneTransformList(this->unk148);
             for(i = 0; i < 2; i++){
                 
                 if (0.1 <= local->unk1C[i]) {
@@ -290,11 +290,11 @@ Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 sp7C[2] = 1.0f;
                 sp7C[1] = (f32) (((f64) phi_f2 * 0.99) + 0.01);
 
-                func_8033A928(temp_a0, (i != 0)?0x2D :0x2E, sp7C);
+                boneTransformList_setBoneScale(temp_a0, (i != 0)?0x2D :0x2E, sp7C);
             }
         }
     }
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
     local->unk0 = marker->unk14_21;
 
     return this;
@@ -309,8 +309,8 @@ void chflibbit_update(Actor *this){
     f32 spA0;
     f32 sp9C;
     f32 sp98;
-    f32 sp94;
-    f32 sp90;
+    f32 skel_anim_prev_prog;
+    f32 skel_anim_progress;
     f32 sp84[3];
     f32 temp_f12;
     f32 sp7C;
@@ -367,11 +367,11 @@ void chflibbit_update(Actor *this){
     }//L803873D0
 
     if(this->state == 2){
-        func_8033568C(this->unk148, &sp94, &sp90);
-        if(sp94 < 0.8 && 0.8 <= sp90){
+        skeletalAnim_getProgressRange(this->unk148, &skel_anim_prev_prog, &skel_anim_progress);
+        if(skel_anim_prev_prog < 0.8 && 0.8 <= skel_anim_progress){
             func_8030E878(SFX_8_BANJO_LANDING_04, randf2(0.8f, 0.9f), randi2(25000, 27000), this->position, 100.0f, 1500.0f);
         }//L8038747C
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             sp84[0]  = (f32)local->unkE[0];
             sp84[1]  = (f32)local->unkE[1];
             sp84[2]  = (f32)local->unkE[2];
@@ -384,17 +384,17 @@ void chflibbit_update(Actor *this){
             }
         }
         else{//L80387514
-            if(0.2 <= sp90 && sp90 <= 0.8){
-                temp_f12 = ((sp90 - 0.2) / 0.60000000000000009);
+            if(0.2 <= skel_anim_progress && skel_anim_progress <= 0.8){
+                temp_f12 = ((skel_anim_progress - 0.2) / 0.60000000000000009);
                 this->position_x = local->unk2[0] + (local->unk8[0] - local->unk2[0])*temp_f12;
                 this->position_y = local->unk2[1] + (local->unk8[1] - local->unk2[1])*temp_f12;
                 this->position_z = local->unk2[2] + (local->unk8[2] - local->unk2[2])*temp_f12;
                 if(local->unk1){
-                    if(sp90 <= 0.5){
-                        phi_f2 = ((sp90 - 0.2)/0.3) * 70.0;
+                    if(skel_anim_progress <= 0.5){
+                        phi_f2 = ((skel_anim_progress - 0.2)/0.3) * 70.0;
                     }
                     else{
-                        phi_f2 = (1.0 - (sp90 - 0.5)/ 0.30000000000000004) *70.0;
+                        phi_f2 = (1.0 - (skel_anim_progress - 0.5)/ 0.30000000000000004) *70.0;
                     }
                     this->position_y += phi_f2;
                 }//L80387684
@@ -446,7 +446,7 @@ void chflibbit_update(Actor *this){
     }
 
     if(this->state == 7){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             func_80386AEC(this, 8);
     }
 }

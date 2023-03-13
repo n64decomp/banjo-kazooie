@@ -62,7 +62,7 @@ Actor *func_80387EB0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     
     this = marker_getActor(marker);
     func_8033A45C(3, (this->state == 7)? 0 : 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void TTC_func_80387F18(Actor *this) {

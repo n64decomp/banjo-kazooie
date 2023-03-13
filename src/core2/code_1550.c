@@ -4,13 +4,13 @@
 
 #include "animation.h"
 
-AnimationFile *animcache_get(enum asset_e assest_id);
+AnimationFile *animBinCache_get(enum asset_e assest_id);
 
 /* .data */
 s16 D_803635C0[] = {0x1, 0x3, 0x5, 0xC, 0xE, 0x17, 0x18, 0x19, 0x1A, 0x1C, 0x1D, 0};
 
 /* .bss */
-AnimationCache D_8037A8C0[0x2CA];
+AnimationFileCache D_8037A8C0[0x2CA];
 
 /* .code */
 void func_802884E0(void){
@@ -22,16 +22,16 @@ void func_802884E0(void){
     }
 }
 
-void animcache_loadAll(void){
+void animBinCache_loadAll(void){
     s32 i;
     for(i = 0; i < 0x2CA; i++){
         if(D_8037A8C0[i].unk4_0){
-            animcache_get(i);
+            animBinCache_get(i);
         }
     }
 }
 
-AnimationFile *animcache_get(enum asset_e asset_id){
+AnimationFile *animBinCache_get(enum asset_e asset_id){
     if(!D_8037A8C0[asset_id].unk0){
         D_8037A8C0[asset_id].unk0 = (AnimationFile *) assetcache_get(asset_id);
     }
@@ -39,7 +39,7 @@ AnimationFile *animcache_get(enum asset_e asset_id){
     return D_8037A8C0[asset_id].unk0;
 }
 
-void animcache_free(void){
+void animBinCache_free(void){
     s32 i;
     for(i = 0; i < 0x2CA; i++){
         if(D_8037A8C0[i].unk0){
@@ -48,7 +48,7 @@ void animcache_free(void){
     }
 }
 
-void animcache_init(void){
+void animBinCache_init(void){
     s32 i = 0;
     for(i = 0; i < 0x2CA; i++){
         D_8037A8C0[i].unk0 = NULL;
@@ -56,7 +56,7 @@ void animcache_init(void){
         D_8037A8C0[i].unk4_0 = 0;
     }
     func_802884E0();
-    animcache_loadAll();
+    animBinCache_loadAll();
 }
 
 void func_8028873C(s32 arg0){

@@ -112,7 +112,7 @@ void chShrapnel_explode(ActorMarker *marker, ActorMarker *other_marker) {
 
     this = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
-    __spawnQueue_add_1((GenMethod_1)chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
+    __spawnQueue_add_1((GenFunction_1)chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
     chShrapnel_emitExplosion(this);
     chShrapnel_emitSmoke(this);
     chShrapnel_emitBodyParts(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);
@@ -194,6 +194,6 @@ void chshrapnel_update(Actor *this) {
 ActorInfo chShrapnelDescription = { 
     MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
     0x1, chShrapnelAnimations,
-    chshrapnel_update, func_80326224, func_80325888, 
+    chshrapnel_update, func_80326224, actor_draw, 
     2500, 0x333, 0.0f, 0
 };

@@ -33,25 +33,25 @@ Struct_RBB_40F0 D_80390760[4] = {
 
 ActorInfo D_803907D0 = {
     0x187, 0x177, 0x406, 0x0, NULL,
-    func_8038A724, NULL, func_80325888,
+    func_8038A724, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803907F4 = {
     0x18E, 0x17E, 0x406, 0x0, NULL,
-    func_8038A724, NULL, func_80325888,
+    func_8038A724, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390818 = {
     0x18F, 0x17F, 0x407, 0x0, NULL,
-    func_8038A724, NULL, func_80325888,
+    func_8038A724, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039083C = {
     0x190, 0x180, 0x408, 0x0, NULL,
-    func_8038A724, NULL, func_80325888,
+    func_8038A724, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 

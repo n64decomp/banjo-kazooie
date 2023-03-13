@@ -225,7 +225,7 @@ void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitMgr_newEmitter(u32);
 void func_802BB3DC(s32, f32, f32);
-void __spawnQueue_add_4(GenMethod_4, s32, s32, s32, s32);
+void __spawnQueue_add_4(GenFunction_4, s32, s32, s32, s32);
 Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
@@ -446,7 +446,7 @@ u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 void fileProgressFlag_setN(s32, s32, s32);
 Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-Actor *func_80325E78(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 void func_80326244(Actor *);
 
@@ -477,13 +477,6 @@ void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, 
 BKModelBin *  func_80330B1C(ActorMarker *marker);
 BKVertexList *func_80330C74(Actor *actor);
 BKModelBin *  func_80330DE4(ActorMarker *marker);
-f32  func_80335684(Struct80s *);
-void func_8033568C(Struct80s *, f32 *, f32*);
-void func_80335800(Struct80s *, f32, void (*)(ActorMarker *), ActorMarker *);
-Struct80s *func_803358B4(void);
-void func_80335924(Struct80s *, enum asset_e anim_id, f32, f32);
-void func_80335A74(Struct80s *self, f32 arg1);
-void func_80335A94(Struct80s *, f32, s32);
 BKModelBin *modelRender_draw(Gfx**, Mtx**, f32 [3], f32[3], f32, f32*, BKModelBin*);
 void func_8033A280(f32);
 
@@ -519,7 +512,7 @@ Actor *subaddie_getLinkedActor(Actor *);
  /* used in RBB */
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 int ml_timer_update(f32 *arg0, f32 arg1);
-Actor *func_80325888(ActorMarker *, Gfx**, Mtx**, Vtx **);
+Actor *actor_draw(ActorMarker *, Gfx**, Mtx**, Vtx **);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
@@ -550,7 +543,7 @@ void func_802E4078(enum map_e map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
 void func_803228D8(void);
 
-void func_803253A0(Actor *);
+void actor_predrawMethod(Actor *);
 void mapSpecificFlags_set(s32, s32);
 
 struct0 *func_8031B9D8(void);
@@ -572,8 +565,8 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void func_8024E55C(s32, s32 [6]);
 
-void __spawnQueue_add_1(GenMethod_1, s32);
-#define SPAWNQUEUE_ADD_1(method, arg0) __spawnQueue_add_1((GenMethod_1) (method), reinterpret_cast(s32, (arg0)))
+void __spawnQueue_add_1(GenFunction_1, s32);
+#define SPAWNQUEUE_ADD_1(method, arg0) __spawnQueue_add_1((GenFunction_1) (method), reinterpret_cast(s32, (arg0)))
 
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);

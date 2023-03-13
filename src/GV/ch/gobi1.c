@@ -41,30 +41,30 @@ void chGobi1_setState(Actor *this, s32 next_state){
     GV_D_80391A40.unk1 = FALSE;
 
     if(this->state == 1){
-        func_80335924(this->unk148, 0xd9, 0.5f, 4.0f);
+        skeletalAnim_set(this->unk148, 0xd9, 0.5f, 4.0f);
         local->unk4 = randf2(2.0f, 10.0f);
     }
 
     if(this->state == 2){
-        func_80335924(this->unk148, 0xda, 1.0f, 5.0f);
+        skeletalAnim_set(this->unk148, 0xda, 1.0f, 5.0f);
         local->unkC = 0.9f;
         GV_D_80391A40.unk0 = TRUE;
     }
 
     if(this->state == 3){
         func_8028F918(2);
-        func_80335924(this->unk148, 0xf7, 1.0f, 5.33f);
+        skeletalAnim_set(this->unk148, 0xf7, 1.0f, 5.33f);
         local->unk14 = 0.01f;
         GV_D_80391A40.unk1 = TRUE;
     }
 
     if(this->state == 4){
-        func_80335924(this->unk148, 0xf8, 0.7f, 0.71f);
+        skeletalAnim_set(this->unk148, 0xf8, 0.7f, 0.71f);
     }
 
     if(this->state == 6){
         FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
-        func_80335924(this->unk148, 0x241, 0.2f, 0.5f);
+        skeletalAnim_set(this->unk148, 0x241, 0.2f, 0.5f);
     }
 }
 
@@ -74,7 +74,7 @@ Actor *chgobi1_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         return this;
     }
     else{
-        return func_80325888(this_marker, gfx, mtx, vtx);
+        return actor_draw(this_marker, gfx, mtx, vtx);
     }
 }
 
@@ -171,7 +171,7 @@ void chGobi1_update(Actor *this){
     }
 
     if(this->state == 2){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             sp6C = 1;
     }
 
@@ -197,7 +197,7 @@ void chGobi1_update(Actor *this){
     }//L80387808
 
     if(this->state == 3){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             sp6C = 4;
     }//L80387830
 
@@ -221,7 +221,7 @@ void chGobi1_update(Actor *this){
     }
 
     if(this->state == 6){
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             sp6C = 1;
     }
 

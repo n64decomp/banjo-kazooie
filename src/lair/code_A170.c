@@ -28,7 +28,7 @@ ActorInfo D_80394958 = { 0x172, 0x1DA, 0x549, 0x1, D_80394900, func_803906A0, fu
 Actor *func_80390560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(3, marker->collidable);
     func_8033A45C(4, marker->collidable);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){

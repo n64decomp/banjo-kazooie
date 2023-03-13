@@ -3,8 +3,8 @@
 #include "variables.h"
 
 
-extern GenMethod_0 commonParticleType_getFreeMethod(enum common_particle_e);
-extern GenMethod_0 commonParticleType_getUpdateMethod(enum common_particle_e);
+extern GenFunction_0 commonParticleType_getFreeMethod(enum common_particle_e);
+extern GenFunction_0 commonParticleType_getUpdateMethod(enum common_particle_e);
 
 typedef struct {
     u8 unk0; //prev_particle_type

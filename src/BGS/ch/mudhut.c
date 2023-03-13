@@ -54,7 +54,7 @@ Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     if(thisActor->state == 3)
         return thisActor;
     
-    return func_80325888(this, gdl, mtx, vtx);
+    return actor_draw(this, gdl, mtx, vtx);
 }
 
 void func_8038EB4C(ActorMarker *this){
@@ -103,9 +103,9 @@ void chmudhut_update(Actor *this){
                     if(tmp == 5){
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
-                    __spawnQueue_add_1((GenMethod_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
+                    __spawnQueue_add_1((GenFunction_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
                     if(tmp < 5){
-                        __spawnQueue_add_4((GenMethod_4)func_802C4218, D_80390B50[tmp], 
+                        __spawnQueue_add_4((GenFunction_4)func_802C4218, D_80390B50[tmp], 
                             reinterpret_cast(s32, diffPos[0]), 
                             reinterpret_cast(s32, diffPos[1]), 
                             reinterpret_cast(s32, diffPos[2])

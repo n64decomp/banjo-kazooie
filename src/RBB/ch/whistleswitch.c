@@ -121,7 +121,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         );
         modelRender_setVertexList(local->unkC);
     }
-    return func_80325888(marker, gdl, mptr, arg3);
+    return actor_draw(marker, gdl, mptr, arg3);
 }
 
 void func_8038AEB8(Actor *this){

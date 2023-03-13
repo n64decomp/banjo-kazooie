@@ -16,7 +16,7 @@ ActorAnimationInfo D_80391290[] = {
 };
 ActorInfo D_803912B8 = { MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY, 
     0x1, D_80391290, 
-    func_8038D47C, func_80326224, func_80325888, 
+    func_8038D47C, func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -65,7 +65,7 @@ void func_8038D47C(Actor *this){
         mapSpecificFlags_set(0x10, 0);
         this->unk16C_4 = TRUE;
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -3){
-            timedFunc_set_1(1.5f, (GenMethod_1)func_8038D450, reinterpret_cast(s32, this->marker));
+            timedFunc_set_1(1.5f, (GenFunction_1)func_8038D450, reinterpret_cast(s32, this->marker));
         }
     }//L8038D5EC
 

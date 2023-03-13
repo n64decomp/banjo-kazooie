@@ -179,7 +179,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
     is_black_snippet = this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET;
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 32750, this->position, 950, 1900);
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 28000, this->position, 950, 1900);
-    __spawnQueue_add_4((GenMethod_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     this->unk60 = 5.0f;
     marker->collidable = FALSE;
     this->unk138_27 = 1;
@@ -399,6 +399,6 @@ void chCrab_update(Actor *this) {
 }
 
 /* .data */
-ActorInfo D_803670B8 = { MARKER_13_SNIPPET,         ACTOR_67_SNIPPET,       ASSET_358_SNIPPET,             0x1, chCrabAnimations, chCrab_update, func_80326224, func_80325888, 1900, 0, 0.8f, 0};
-ActorInfo D_803670DC = { MARKER_DD_BLACK_SNIPPET,   ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET, 0x1, chCrabAnimations, chCrab_update, func_80326224, func_80325888, 1900, 0, 0.8f, 0};
-ActorInfo D_80367100 = { MARKER_13_SNIPPET,         ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET, 0x1, chCrabMutantAnimations, chCrab_update, func_80326224, func_80325888, 1900, 0, 0.8f, 0};
+ActorInfo D_803670B8 = { MARKER_13_SNIPPET,         ACTOR_67_SNIPPET,       ASSET_358_SNIPPET,             0x1, chCrabAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+ActorInfo D_803670DC = { MARKER_DD_BLACK_SNIPPET,   ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET, 0x1, chCrabAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+ActorInfo D_80367100 = { MARKER_13_SNIPPET,         ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET, 0x1, chCrabMutantAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};

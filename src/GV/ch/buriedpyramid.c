@@ -38,7 +38,7 @@ Actor *chBuriedPyramid_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx 
         return func_80325340(this_marker, gfx, mtx, vtx);
     }
     else{
-        return func_80325888(this_marker, gfx, mtx, vtx);
+        return actor_draw(this_marker, gfx, mtx, vtx);
     }
 }
 

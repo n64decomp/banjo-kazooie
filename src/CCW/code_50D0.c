@@ -8,7 +8,7 @@ void func_8038B87C(Actor *this);
 ActorInfo D_8038F300 = {
     0x1BA, 0x2A7, 0x503,
     0x0, NULL,
-    func_8038B87C, NULL, func_80325888,
+    func_8038B87C, NULL, actor_draw,
     0, 0, 2.0f, 0
 };
 
@@ -63,22 +63,22 @@ void func_8038B6DC(ActorMarker *marker) {
     int i;
 
     this = marker_getActor(marker);
-    func_80335650(this->unk148);
+    skeletalAnim_clearCallbacks(this->unk148);
     phi_f20 = randf2(0.1f, 0.3f);
     for(i = 0; i < 3; i++){
-        func_80335800(this->unk148, phi_f20, func_8038B610, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, phi_f20, func_8038B610, this->marker);
         phi_f20 += randf2(0.15f, 0.3f);
         if(0.85 < phi_f20)
             break;
     }
-    func_80335800(this->unk148, 0.35f, func_8038B4C0, this->marker);
-    func_80335800(this->unk148, 0.63f, func_8038B58C, this->marker);
-    func_80335800(this->unk148, 0.9f, func_8038B6DC, this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.35f, func_8038B4C0, this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.63f, func_8038B58C, this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.9f, func_8038B6DC, this->marker);
 }
 
 void func_8038B814(Actor *this, s32 next_state) {
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x22B, 0.2f, 11.0f);
+        skeletalAnim_set(this->unk148, 0x22B, 0.2f, 11.0f);
         func_8038B6DC(this->marker);
     }
     this->state = next_state;

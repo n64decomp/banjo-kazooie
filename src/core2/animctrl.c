@@ -101,9 +101,9 @@ void func_802871A4(AnimCtrl *this){
 AnimCtrl *animctrl_new(s32 arg0){ //new
     ActorAnimCtrl *this;
 
-    this = (ActorAnimCtrl *)malloc( func_80289680() + 0x28);
+    this = (ActorAnimCtrl *)malloc( anim_getSize() + 0x28);
     this->animctrl.animation = &this->animation;
-    func_802896EC(&this->animation, 1);
+    anim_new(&this->animation, 1);
     this->animctrl.playback_type = 0;
     this->animctrl.index = 0;
     this->animctrl.default_start = TRUE;
@@ -119,7 +119,7 @@ AnimCtrl *animctrl_new(s32 arg0){ //new
 }
 
 void animctrl_free(AnimCtrl * this){ //free
-    func_802896A0(this->animation);
+    anim_release(this->animation);
     free(this);
 }
 
@@ -193,12 +193,12 @@ void __animctrl_gotoStart(AnimCtrl *this){
 
 void _animctrl_start(AnimCtrl * this, char *file, s32 line){
     if(this->smooth_transition && anim_getIndex(this->animation) != 0){
-        func_80289674(this->animation);
+        anim_resetSmooth(this->animation);
         anim_setIndex(this->animation, this->index);
         __animctrl_gotoStart(this);
         anim_setDuration(this->animation, 0.0f);
     } else{
-        anim_8028980C(this->animation);
+        anim_resetNow(this->animation);
         anim_setIndex(this->animation, this->index);
         __animctrl_gotoStart(this);
         anim_setDuration(this->animation, 1.0f);
@@ -292,29 +292,29 @@ void  animctrl_setTimer(AnimCtrl *this, f32 arg1){
     this->timer = arg1;
 }
 
-s32  animctrl_8028780C(AnimCtrl *this, s32 arg1){
+s32  animctrl_8028780C(f32 position[3], s32 arg1){
     return 0;
 }
 
-s32 func_8028781C(AnimCtrl *this, f32 *arg1, s32 arg2){
+void animctrl_drawSetup(AnimCtrl *this, f32 *position, s32 arg2){
     s32 map;
     map = map_get();
     if( map != MAP_1E_CS_START_NINTENDO 
         && map != MAP_1F_CS_START_RAREWARE
         && map != MAP_20_CS_END_NOT_100 
         && this->unk23 !=0 
-        && arg1 != NULL
+        && position != NULL
     ){
         this->unk24 = this->unk24 -1;
         if(this->unk24 == 0xFF){
-            this->unk24 = animctrl_8028780C(arg1, arg2);
+            this->unk24 = animctrl_8028780C(position, arg2);
         }
         else{
-            anim_802897A0(this->animation);
+            anim_drawSetup(this->animation);
             return;
         }
     }
-    func_802895F8(this->animation);
+    anim_update(this->animation);
 }
 
 s32 animctrl_isStopped(AnimCtrl *this){

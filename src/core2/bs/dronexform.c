@@ -219,7 +219,7 @@ void func_802B0060(UNK_TYPE(s32) arg0, UNK_TYPE(s32) arg1){
     for(i = 0; i < 3; i++){
         sp4C[i] = func_80257AD4(D_8037D470.unk20 + ((f32)i/3.0)*0.5, 0.5f)*(D_8037D470.unk24*D_8037D470.unk28) + D_8037D470.unk24;
     }
-    func_8033A928(arg0, 3, sp4C);
+    boneTransformList_setBoneScale(arg0, 3, sp4C);
 }   
 
 

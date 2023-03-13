@@ -843,7 +843,7 @@ void func_803163A8(gczoombox_t *this, Gfx **gfx, Mtx **mtx) {
     func_8033A308(sp44);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     if (this->anim_ctrl != NULL) {
-        func_8028781C(this->anim_ctrl, sp50, 1);
+        animctrl_drawSetup(this->anim_ctrl, sp50, 1);
     }
     modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, sp38, this->model);
 }

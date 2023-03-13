@@ -186,7 +186,7 @@ void func_80389910() {
 
 void func_803899BC(void){
     func_80324E38(0.0f, 3);
-    timedFunc_set_2(0.0f, (GenMethod_2)func_8025A6EC, COMUSIC_38_MOTZAND_BEATEN, 0x7fff);
+    timedFunc_set_2(0.0f, (GenFunction_2)func_8025A6EC, COMUSIC_38_MOTZAND_BEATEN, 0x7fff);
     timedFunc_set_0(2.25f, func_80389910);
 }
 

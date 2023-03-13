@@ -232,13 +232,13 @@ void gcparade_setState(enum parade_state_e next_state) {
             break;
         case PARADE_STATE_5_WAIT_ON_NAME:
             if ((D_803830F0.parade_id == 1) && (D_803830F0.parade_element->exit >= 0)) {
-                timedFunc_set_1(2.0f, (GenMethod_1)gcparade_setState, PARADE_STATE_6_NAME_DISAPPEAR);// queue state transition
+                timedFunc_set_1(2.0f, (GenFunction_1)gcparade_setState, PARADE_STATE_6_NAME_DISAPPEAR);// queue state transition
             }
             break;
         case PARADE_STATE_7_GOTO_NEXT:
             D_803830F0.indx++;
             D_803830F0.parade_element++;
-            timedFunc_set_1(0.25f, (GenMethod_1)gcparade_setState, (D_803830F0.indx == D_803830F0.count) ? PARADE_STATE_8_END : PARADE_STATE_3_WARP);
+            timedFunc_set_1(0.25f, (GenFunction_1)gcparade_setState, (D_803830F0.indx == D_803830F0.count) ? PARADE_STATE_8_END : PARADE_STATE_3_WARP);
             break;
         case PARADE_STATE_8_END:
             func_803204E4(0x1F, 0);
@@ -294,13 +294,13 @@ void gcparade_update(void) {
                             sp34 = 0xA0;
                             if (D_803830F0.parade_element->exit >= 0) 
                                 sp34 = 0xA8;
-                            timedFunc_set_1(1.0f, (GenMethod_1)func_80311714, 0);
+                            timedFunc_set_1(1.0f, (GenFunction_1)func_80311714, 0);
                             func_80324DBC(1.0f, D_803830F0.indx + 0x11AF, sp34, NULL, NULL, gcparade_textCallback, NULL);
-                            timedFunc_set_1(1.0f, (GenMethod_1)func_80311714, 1);
+                            timedFunc_set_1(1.0f, (GenFunction_1)func_80311714, 1);
                         } else if (D_803830F0.parade_element->exit >= 0) {
                             func_8028F918(2);
                         }
-                        timedFunc_set_1(1.0f, (GenMethod_1)gcparade_setState, PARADE_STATE_4_NAME_APPEAR);
+                        timedFunc_set_1(1.0f, (GenFunction_1)gcparade_setState, PARADE_STATE_4_NAME_APPEAR);
                         D_803830F0.unk5 = 1;
                     }
                 }

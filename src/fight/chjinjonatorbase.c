@@ -12,7 +12,7 @@ void chjinjonatorbase_update(Actor *);
 ActorInfo fight_D_80391A40 = {
     MARKER_27F_JINJONATOR_STATUE_BASE, ACTOR_3A9_JINJONATOR_STATUE_BASE, ASSET_544_MODEL_JINJONATOR_STATUE_BASE,
     0x1, NULL,
-    chjinjonatorbase_update, func_80326224, func_80325888,
+    chjinjonatorbase_update, func_80326224, actor_draw,
     0, 0x800, 0.0f, 0
 };
 
@@ -97,7 +97,7 @@ void func_8038E260(ActorMarker *arg0) {
     Actor *sp24 = marker_getActor(arg0);
 
     func_802BB3DC(0, 18.0f, 0.92f);
-    __spawnQueue_add_4((GenMethod_4) func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
+    __spawnQueue_add_4((GenFunction_4) func_802C4140, 0x3AD, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
     func_8038E03C(sp24->unk1C, 0x10);
 }
 
@@ -139,7 +139,7 @@ void chjinjonatorbase_update(Actor *this){
         func_802FA060(temp_s0, 17000, 17000, 0.0f);
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_A, 15000);
         func_8032BB88(this, 0, 0x7fff);
-        timedFunc_set_1(8.0f, (GenMethod_1)func_8038E2CC, reinterpret_cast(s32,this->marker));
+        timedFunc_set_1(8.0f, (GenFunction_1)func_8038E2CC, reinterpret_cast(s32,this->marker));
         this->unk1C[0] = this->position_x;
         this->unk1C[1] = this->position_y;
         this->unk1C[2] = this->position_z;
@@ -150,10 +150,10 @@ void chjinjonatorbase_update(Actor *this){
         }else{
             this->velocity_y = 100.0f;
         }
-        timedFunc_set_1(this->unk60* 0.05, (GenMethod_1)func_8038E260,  reinterpret_cast(s32,this->marker));
-        timedFunc_set_1(this->unk60* 0.28, (GenMethod_1) func_8038E260, reinterpret_cast(s32,this->marker));
-        timedFunc_set_1(this->unk60* 0.46, (GenMethod_1) func_8038E260, reinterpret_cast(s32,this->marker));
-        timedFunc_set_1(this->unk60* 0.58, (GenMethod_1) func_8038E260, reinterpret_cast(s32,this->marker));
+        timedFunc_set_1(this->unk60* 0.05, (GenFunction_1)func_8038E260,  reinterpret_cast(s32,this->marker));
+        timedFunc_set_1(this->unk60* 0.28, (GenFunction_1) func_8038E260, reinterpret_cast(s32,this->marker));
+        timedFunc_set_1(this->unk60* 0.46, (GenFunction_1) func_8038E260, reinterpret_cast(s32,this->marker));
+        timedFunc_set_1(this->unk60* 0.58, (GenFunction_1) func_8038E260, reinterpret_cast(s32,this->marker));
         SPAWNQUEUE_ADD_1(chjinjonatorbase_spawnStoneJinjo, this->marker);
         
     }

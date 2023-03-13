@@ -7,18 +7,18 @@ void func_8038BF28(Actor *this);
 /* .data */
 ActorInfo RBB_D_80390AE0 = {
     0x31, 0x1C9, 0x41D, 0x0, NULL,
-    func_8038BF28, NULL, func_80325888,
+    func_8038BF28, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 /* .code */
 void RBB_func_8038BEA0(Actor *this, s32 arg1){
     if(arg1 == 1)
-        func_80335924(this->unk148, ASSET_141_ANIM_ANCHOR_LOWERED, 0.0f, 5.5f);
+        skeletalAnim_set(this->unk148, ASSET_141_ANIM_ANCHOR_LOWERED, 0.0f, 5.5f);
     
     if(arg1 == 2){
-        func_80335924(this->unk148, ASSET_142_ANIM_ANCHOR_RISING, 0.0f, 8.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_142_ANIM_ANCHOR_RISING, 0.0f, 8.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     this->state = arg1;
 }

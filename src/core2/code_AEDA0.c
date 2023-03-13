@@ -3,7 +3,7 @@
 #include "variables.h"
 
 Mtx *func_8024DD9C(void);
-void func_80251BCC(Mtx *);
+void mlMtxSet(Mtx *);
 void func_80252330(f32, f32, f32);
 void mlMtxApply(Mtx *);
 void func_803382D8(s32 arg0);
@@ -447,7 +447,7 @@ void func_803380F8(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     sp20[0] = arg2[0] - sp2C[0];
     sp20[1] = arg2[1] - sp2C[1];
     sp20[2] = arg2[2] - sp2C[2];
-    func_80251BCC(func_8024DD90());
+    mlMtxSet(func_8024DD90());
     func_80252330(sp20[0], sp20[1], sp20[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -461,7 +461,7 @@ void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     sp20[0] = arg2[0] - sp2C[0];
     sp20[1] = arg2[1] - sp2C[1];
     sp20[2] = arg2[2] - sp2C[2];
-    func_80251BCC(func_8024DD9C());
+    mlMtxSet(func_8024DD9C());
     func_80252330(sp20[0], sp20[1], sp20[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

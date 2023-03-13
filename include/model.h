@@ -72,8 +72,8 @@ typedef struct {
 
 typedef struct {
     f32 unk0[3];
-    s16 unkC;
-    s16 unkE;
+    s16 bone_id;
+    s16 mtx_id;
 }BKAnimation;
 
 typedef struct {
@@ -155,8 +155,8 @@ typedef struct{
 }BKModelUnk20List;
 
 typedef struct{
-    s16 unk0[3];
-    s8 unk6;
+    s16 coord[3];
+    s8 anim_index;
     u8 vtx_count;
     s16 vtx_list[1];
 }BKModelUnk28;

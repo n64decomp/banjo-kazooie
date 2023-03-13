@@ -50,7 +50,7 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp38[3];
     f32 sp2C[3];
 
-    this = func_80325888(this_marker, gfx, mtx, vtx);
+    this = actor_draw(this_marker, gfx, mtx, vtx);
     
     if(!this_marker->unk14_21) return this;
 

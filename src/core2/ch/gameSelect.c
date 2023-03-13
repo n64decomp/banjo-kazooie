@@ -118,7 +118,7 @@ Actor *func_802C4360(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     else{
         modelRender_setEnvColor(0x64, 0x64, 0x64, 0xFF);
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 Actor *func_802C4464(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -302,7 +302,7 @@ void func_802C4C14(Actor *this){
         return;
 
     if(!this->initialized){
-        __spawnQueue_add_1((GenMethod_1)func_802C4BB4, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)func_802C4BB4, reinterpret_cast(s32, this->marker));
         func_802C7318(this);
         this->unk130 = func_802C71F0;
         if(sp84 == 0){
@@ -352,7 +352,7 @@ void func_802C4C14(Actor *this){
                 case 1://L802C4F10
                     if(sp84 == 1){
                         func_8030E510(SFX_136_GAMEBOY_STARTUP, 15000);
-                        timedFunc_set_3(0.25f, (GenMethod_3)comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
+                        timedFunc_set_3(0.25f, (GenFunction_3)comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
                         func_8025A58C(0, 2000);
                     }
                     else{
@@ -394,19 +394,19 @@ void func_802C4C14(Actor *this){
                     if(animctrl_isStopped(this->animctrl)){
                         chBottlesBonus_func_802DEB80();
                         if(!gameFile_isNotEmpty(sp84)){
-                            timedFunc_set_3(0.0f, (GenMethod_3)func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);
+                            timedFunc_set_3(0.0f, (GenFunction_3)func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);
                         }
                         else{//L802C511C
                             sp44 = 0.0f;
                             if(this->state == 4 &&  (sp84 == 0 || sp84 == 1))
                                 sp44 = 0.25f;
                             if(func_802DA498() && fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE)){
-                                timedFunc_set_2(sp44, (GenMethod_2)func_8031FB14, 0, 0);
+                                timedFunc_set_2(sp44, (GenFunction_2)func_8031FB14, 0, 0);
                             }
                             else{//L802C5188
-                                timedFunc_set_2(sp44, (GenMethod_2)func_8031F678, 0, 0);
+                                timedFunc_set_2(sp44, (GenFunction_2)func_8031F678, 0, 0);
                             }//L802C51A0
-                            timedFunc_set_1(sp44, (GenMethod_1)func_80335110, 1);
+                            timedFunc_set_1(sp44, (GenFunction_1)func_80335110, 1);
                         }//L802C51B8
                         this->state = 6;
                     }
@@ -430,17 +430,17 @@ void func_802C4C14(Actor *this){
                                     case 0://L802C52B8
                                         func_8030E510(SFX_31_BANJO_OHHWAAOOO, 28000);
                                         func_8030E540(SFX_135_CARTOONY_SPRING);
-                                        timedFunc_set_2(0.4f, (GenMethod_2)func_8030E510, SFX_13A_GLASS_BREAKING_7, 0x7fff);
-                                        timedFunc_set_2(0.9f, (GenMethod_2)func_8030E510, SFX_150_PORCELAIN_CRASH, 0x7fff);
-                                        timedFunc_set_2(1.0f, (GenMethod_2)func_8030E510, SFX_151_CAT_MEOW, 0x7fff);
+                                        timedFunc_set_2(0.4f, (GenFunction_2)func_8030E510, SFX_13A_GLASS_BREAKING_7, 0x7fff);
+                                        timedFunc_set_2(0.9f, (GenFunction_2)func_8030E510, SFX_150_PORCELAIN_CRASH, 0x7fff);
+                                        timedFunc_set_2(1.0f, (GenFunction_2)func_8030E510, SFX_151_CAT_MEOW, 0x7fff);
                                         break;
                                     case 1://L802C5320
-                                        timedFunc_set_2(0.4f, (GenMethod_2)func_8030E510, SFX_31_BANJO_OHHWAAOOO, 28000);
-                                        timedFunc_set_2(0.2f, (GenMethod_2)func_8030E510, SFX_E_SHOCKSPRING_BOING, 28000);
+                                        timedFunc_set_2(0.4f, (GenFunction_2)func_8030E510, SFX_31_BANJO_OHHWAAOOO, 28000);
+                                        timedFunc_set_2(0.2f, (GenFunction_2)func_8030E510, SFX_E_SHOCKSPRING_BOING, 28000);
                                         func_8030E540(SFX_2D_KABOING);
                                         break;
                                     case 2://L802C5364
-                                        timedFunc_set_2(0.15f, (GenMethod_2)func_8030E510, SFX_32_BANJO_EGHEE, 28000);
+                                        timedFunc_set_2(0.15f, (GenFunction_2)func_8030E510, SFX_32_BANJO_EGHEE, 28000);
                                         func_8030E510(SFX_3F6_UNKNOWN, 28000);
                                         func_8030E540(SFX_8F_SNOWBALL_FLYING);
                                         break;

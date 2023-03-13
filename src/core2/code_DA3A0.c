@@ -15,14 +15,14 @@ u8 D_80373130[] = {0, 1, 0, 0};
 ActorInfo D_80373134 = { 
     0x1a6, 0x289, 0x431, 
     0x0, NULL, 
-    func_8036158C, NULL, func_80325888, 
+    func_8036158C, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80373158 = { 
     0x1a6, 0x28f, 0x431, 
     0x0, NULL, 
-    func_8036158C, NULL, func_80325888, 
+    func_8036158C, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -68,8 +68,8 @@ void func_80361330(Actor *this, s32 next_state){
         func_802F9F80(tmp_s0, 0.0f, 0.2f, 0.6f);
         func_802FA060(tmp_s0, 27000, 27000, 0.0f);
         local->unk4 = 0.6f;
-        func_80335924(this->unk148, 0x169, 0.0f, 0.6f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x169, 0.0f, 0.6f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
 
     }//L8036155C
     this->state = next_state;

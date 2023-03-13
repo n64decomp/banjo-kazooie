@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
 typedef struct {
     f32 unk0;
     s16 unk4;
@@ -110,7 +109,7 @@ void func_80389700(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 void func_80389740(ActorMarker *marker) {
     Actor *this = marker_getActor(marker);
     if (this->marker->unk14_21) {
-        __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x30C, reinterpret_cast(s32, D_8038FDE0[0]), reinterpret_cast(s32, D_8038FDE0[1]), reinterpret_cast(s32, D_8038FDE0[2]));
+        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x30C, reinterpret_cast(s32, D_8038FDE0[0]), reinterpret_cast(s32, D_8038FDE0[1]), reinterpret_cast(s32, D_8038FDE0[2]));
     }
 }
 
@@ -125,8 +124,8 @@ void func_803897B8(Actor *this, s32 next_state) {
     local->unk8 = NULL;
     if (next_state == 1) {
         if (local->unk0->unk6 != 0) {
-            func_80335924(this->unk148, local->unk0->unk6, 0.2f, 6.0f);
-            func_80335A8C(this->unk148, 1);
+            skeletalAnim_set(this->unk148, local->unk0->unk6, 0.2f, 6.0f);
+            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         }
         local->unk8 = local->unk0->unk8;
     }
@@ -135,14 +134,14 @@ void func_803897B8(Actor *this, s32 next_state) {
     }
     if (next_state == 5) {
         func_8028F784(1);
-        func_80335924(this->unk148, local->unk0->unk26, 0.2f, 2.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, local->unk0->unk26, 0.2f, 2.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         local->unk8 = &D_8038F060[0];
     }
 
     if (next_state == 2) {
-        func_80335924(this->unk148, local->unk0->unkE, 0.2f, 8.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, local->unk0->unkE, 0.2f, 8.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.5f, 3);
         timed_setStaticCameraToNode(0.5f, local->unk0->unk24);
         timed_exitStaticCamera(16.5f);
@@ -151,11 +150,11 @@ void func_803897B8(Actor *this, s32 next_state) {
     }
     if (next_state == 3) {
         actor_collisionOff(this);
-        func_80335924(this->unk148, local->unk0->unk14, 0.5f, 8.5f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, local->unk0->unk14, 0.5f, 8.5f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if (local->unk0->map_id == MAP_43_CCW_SPRING) {
             func_80311480(0xCD6, 4, NULL, NULL, NULL, NULL);
-            func_8033579C(this->unk148, 0x3F266666, &func_80389798);
+            skeletalAnim_setCallback_0(this->unk148, 0.65f, &func_80389798);
         }
         if (local->unk0->map_id == MAP_44_CCW_SUMMER) {
             func_80311480(0xCD9, 4, NULL, NULL, NULL, NULL);
@@ -167,14 +166,14 @@ void func_803897B8(Actor *this, s32 next_state) {
     }
     if (next_state == 4) {
         func_8028F784(0);
-        func_80335924(this->unk148, local->unk0->unk1C, 0.2f, 6.0f);
-        func_80335A8C(this->unk148, 1);
-        func_80335800(this->unk148, 0.2f, func_80389740, this->marker);
-        func_80335800(this->unk148, 0.3f, func_80389740, this->marker);
-        func_80335800(this->unk148, 0.4f, func_80389740, this->marker);
-        func_80335800(this->unk148, 0.72f, func_80389740, this->marker);
-        func_80335800(this->unk148, 0.82f, func_80389740, this->marker);
-        func_80335800(this->unk148, 0.92f, func_80389740, this->marker);
+        skeletalAnim_set(this->unk148, local->unk0->unk1C, 0.2f, 6.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
+        skeletalAnim_setCallback_1(this->unk148, 0.2f, func_80389740, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.3f, func_80389740, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.4f, func_80389740, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.72f, func_80389740, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.82f, func_80389740, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.92f, func_80389740, this->marker);
         local->unk8 = local->unk0->unk20;
     }
     this->state = next_state;
@@ -192,7 +191,7 @@ Actor *func_80389B24(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         return this;
     }
     func_8033A45C(3, (this->state == 4) ? 2 : 1);
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
     func_8034A174(func_80329934(), 5, D_8038FDE0);
     return this;
 }
@@ -245,7 +244,7 @@ void CCW_func_80389BFC(Actor *this) {
     } 
 
     if (local->unk8) {
-        func_8033568C(this->unk148, &sp5C, &sp58);
+        skeletalAnim_getProgressRange(this->unk148, &sp5C, &sp58);
         for(iPtr = local->unk8; iPtr->unk0 > 0.0f; iPtr ++){
             if ((sp5C < iPtr->unk0) && (iPtr->unk0 <= sp58)) {
                 func_8030E878((s32) iPtr->unk4, randf2(iPtr->unk8 - 0.05, iPtr->unk8 + 0.05), iPtr->unkC, this->position, 500.0f, 2500.0f);
@@ -289,13 +288,13 @@ void CCW_func_80389BFC(Actor *this) {
             func_803897B8(this, local->unk0->unkC);
         }
     }
-    if ((this->state == 2) && (func_80335794(this->unk148) > 0)) {
+    if ((this->state == 2) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         func_803897B8(this, 3);
     }
-    if ((this->state == 3) && (func_80335794(this->unk148) > 0)) {
+    if ((this->state == 3) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         func_803897B8(this, 4);
     }
-    if ((this->state == 5) && (func_80335794(this->unk148) > 0)) {
+    if ((this->state == 5) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
         func_803897B8(this, 1);
     }
 }

@@ -30,8 +30,8 @@ void func_803883B0(Actor *this, s32 arg1){
     local->unk5 = 0;
     if(arg1 == 2){
         FUNC_8030E624(SFX_66_BIRD_AUUGHH, 0.6f, 32675);
-        func_80335924(this->unk148, 0x137, 0.0f, 0.8f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x137, 0.0f, 0.8f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     this->state = arg1;
 }
@@ -57,7 +57,7 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     }
 
     if(local->unk4){
-        sp5C = func_803356A0(actor->unk148);
+        sp5C = skeletalAnim_getBoneTransformList(actor->unk148);
         sp40[0] = 0.0f;
         sp40[1] = local->unk0;
         sp40[2] = 0.0f;
@@ -74,11 +74,11 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
         sp34[1] = 0.0f;
         sp34[2] = local->unkC/200.0f;
         func_8033A968(sp5C, 0x12, sp34);
-        func_80335918(actor->unk148);
+        skeletalAnim_func_80335918(actor->unk148);
     }
     func_8033A45C(3, (0.0f < local->unk8)? 1 : 0);
     func_8033A45C(4, (0.0f < local->unk8)? 1 : 0);
-    func_80325888(marker, gdl, mptr, vtx);
+    actor_draw(marker, gdl, mptr, vtx);
     local->unk4 = actor->marker->unk14_21;
     return actor;
 }
@@ -162,7 +162,7 @@ void func_80388620(Actor *this){
     }//L80388AB8
 
     if(this->state == 2){
-        func_8033568C(this->unk148, &sp4C, &sp48);
+        skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
         if(0.6 <= sp48)
             tmp_f2 = 1.0 - 2*(sp48 - 0.6);
         else
@@ -177,7 +177,7 @@ void func_80388620(Actor *this){
             FUNC_8030E8B4(SFX_20_METAL_CLANK_1, 1.0f, 32000, this->position, 500, 2500);
         }
 
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             func_803883B0(this, 1);
     }//L80388BB0
 }

@@ -48,16 +48,16 @@ void func_80387F64(Actor *this, s32 next_state){
 
     if (next_state == 1) {
         this->marker->propPtr->unk8_3 = local->unk0->unk3;
-        func_80335924(this->unk148, local->unk0->unk0, 0.0f, 5.0f);
-        func_80335A8C(this->unk148, local->unk0->unk2);
+        skeletalAnim_set(this->unk148, local->unk0->unk0, 0.0f, 5.0f);
+        skeletalAnim_setBehavior(this->unk148, local->unk0->unk2);
     }
     if (next_state == 2) {
         if (map_get() == MAP_43_CCW_SPRING) {
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
         fileProgressFlag_set(local->unk0->unk8, TRUE);
-        func_80335924(this->unk148, local->unk0->unk4, 0.0f, 6.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, local->unk0->unk4, 0.0f, 6.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if (map_get() == MAP_43_CCW_SPRING) {
             func_80324E38(0.0f, 3);
         }
@@ -80,8 +80,8 @@ void func_80387F64(Actor *this, s32 next_state){
 
     if (next_state == 3) {
         this->marker->propPtr->unk8_3 = TRUE;
-        func_80335924(this->unk148, local->unk0->unk6, 0.1f, 5.0f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, local->unk0->unk6, 0.1f, 5.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
     this->state = next_state;
 }
@@ -111,15 +111,15 @@ Actor *CCW_func_803882F4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         return func_80325340(marker, gfx, mtx, vtx);
     }
 
-    if ((func_8033567C(this->unk148) == 0x175) && (0.49 <= func_80335684(this->unk148))) {
+    if ((skeletalAnim_getAnimId(this->unk148) == 0x175) && (0.49 <= skeletalAnim_getProgress(this->unk148))) {
         sp18 = 1;
     } else {
         sp18 = 0;
     }
-    sp18 = (func_8033567C(this->unk148) == 0x183)? 1  : sp18;
+    sp18 = (skeletalAnim_getAnimId(this->unk148) == 0x183)? 1  : sp18;
     func_8033A45C(3, sp18);
     func_8033A45C(4, sp18);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_803883F4() {

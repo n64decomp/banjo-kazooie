@@ -203,7 +203,7 @@ void func_80387C28(Actor * this){
     if(this->unk38_31){
         this->position_y += 100.0f;
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
-        __spawnQueue_add_4((GenMethod_4)func_802C4218, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
+        __spawnQueue_add_4((GenFunction_4)func_802C4218, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
     func_803252D0(1.5f, 7);
     actor_collisionOff(this);
@@ -228,7 +228,7 @@ Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     else
         func_8033A45C(3, 0);
 
-    return func_80325888(marker, gdl, mptr, arg3);
+    return actor_draw(marker, gdl, mptr, arg3);
 }
 
 void func_80387E64(Actor *this){

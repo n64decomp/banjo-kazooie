@@ -166,7 +166,7 @@ void __baMarker_8028B9A8(s32 arg0){
 }
 
 void __baMarker_8028BA00(s32 arg0){
-    __spawnQueue_add_1((GenMethod_1)__baMarker_8028B9A8, reinterpret_cast(s32, arg0));
+    __spawnQueue_add_1((GenFunction_1)__baMarker_8028B9A8, reinterpret_cast(s32, arg0));
 }
 
 
@@ -543,7 +543,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                             __baMarker_8028B8DC();
                         }
 
-                        __spawnQueue_add_4((GenMethod_4)__baMarker_8028B904, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z), jiggy_id);
+                        __spawnQueue_add_4((GenFunction_4)__baMarker_8028B904, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z), jiggy_id);
                         marker_despawn(marker);
                     }
                 }
@@ -573,7 +573,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case 0x54: //L8028C820
                 func_8025A6EC(COMUSIC_19_LOW_PITCH_FLUTES, 28000);
                 func_803012F8();
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 marker_despawn(marker);
                 break;
 
@@ -746,7 +746,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 miscflag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(BS_INTR_1B);
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 chwadingboots_802D6E54(actor);
                 break;
 
@@ -770,7 +770,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 miscflag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 set_turbo_duration(chtrainers_getDuration(actor));
                 bs_checkInterrupt(BS_INTR_1A);
-                __spawnQueue_add_4((GenMethod_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)func_802C418C, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
                 chtrainers_pickup(actor);
                 break;
 

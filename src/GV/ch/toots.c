@@ -14,7 +14,7 @@ ActorAnimationInfo chTootsAnimations[] = {
 
 ActorInfo chToots = { MARKER_1F4_TOOTS, ACTOR_1E4_TOOTS, ASSET_434_MODEL_TOOTS, 
     0x1, chTootsAnimations, 
-    chtoots_update, func_80326224, func_80325888, 
+    chtoots_update, func_80326224, actor_draw, 
     2000, 0, 0.5f, 0
 };
 

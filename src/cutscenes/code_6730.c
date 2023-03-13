@@ -51,7 +51,7 @@ void cutscenes_func_8038CB20(ParticleEmitter *pCtrl){
 }
 
 Actor* func_8038CBCC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    Actor *actor = func_80325888(marker, gfx, mtx, vtx);
+    Actor *actor = actor_draw(marker, gfx, mtx, vtx);
     ActorLocal_cutscenes_6730 *local = (ActorLocal_cutscenes_6730 *)&actor->local;
     f32 sp3C[3];
     int i;

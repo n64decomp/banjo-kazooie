@@ -5,13 +5,13 @@
 void func_8038D9E0(Actor *this);
 
 /* .data */
-ActorInfo D_8038F6F0 = { 0x1C3, 0x30C, 0x4E4, 0x0, NULL, func_8038D9E0, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038F6F0 = { 0x1C3, 0x30C, 0x4E4, 0x0, NULL, func_8038D9E0, NULL, actor_draw, 0, 0, 0.0f, 0};
 
 /* .code */
 void func_8038D960(Actor *this, s32 next_state) {
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x21C, 0.0f, 6.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, 0x21C, 0.0f, 6.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
     if (next_state == 2) {
         func_80326310(this);
@@ -32,7 +32,7 @@ void func_8038D9E0(Actor *this) {
     }
     if (this->state == 1) {
         this = this;
-        func_8033568C(this->unk148, &sp24, &sp20);
+        skeletalAnim_getProgressRange(this->unk148, &sp24, &sp20);
         if ((sp24 < 0.25f) && (sp20 >= 0.25f)) {
             func_8038D960(this, 2);
         }

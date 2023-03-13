@@ -81,7 +81,7 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     if (D_80371EC0.unk0 != NULL) {
         D_80371EC0.unk0(D_80371EC0.unk4);
     }
-    func_80251BCC(func_8024DD90());
+    mlMtxSet(func_8024DD90());
     func_80252330(sp50[0], sp50[1], sp50[2]);
     if ((scale != NULL) || mirrored) {
         mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], sp38, sp34);
@@ -140,7 +140,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     if (D_80371EC0.unk0 != NULL) {
         D_80371EC0.unk0(D_80371EC0.unk4);
     }
-    func_80251BCC(func_8024DD90());
+    mlMtxSet(func_8024DD90());
     mlMtxRotate(0.0f, 0.0f, rotation);
     func_80252330(sp50[0], sp50[1], sp50[2]);
     if ((scale != NULL) || mirrored) {

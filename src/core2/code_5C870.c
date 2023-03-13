@@ -363,13 +363,13 @@ void func_802E4170(void){
         func_802F4F64();
     timedFuncQueue_free();
     func_802F9C48();
-    func_8033A17C();
+    modelRender_free();
     func_80253420();
     func_802E398C(0);
     func_8030AFD8(0);
     func_80321854();
     func_8031FBF8();
-    func_802880C0();
+    animCache_free();
     comusicPlayer_free();
     func_8030D8DC();
 }
@@ -393,9 +393,9 @@ void func_802E4214(enum map_e map_id){
         func_802F51B8();
     func_802E5F38();
     defragManager_init();
-    func_8033A1A4();
+    modelRender_init();
     func_80253428(1);
-    func_80288070();
+    animCache_init();
     func_8024CCC4();
     func_8024CE60(1.0f, 10000.0f);
     func_8034A6B4();
@@ -585,7 +585,7 @@ s32 game_defrag(void){
         return NULL;
     
     glspline_defrag();
-    func_80288470();
+    animCache_defrag();
     func_802F1320();
     ncCameraNodeList_defrag();
     modelRender_defrag();

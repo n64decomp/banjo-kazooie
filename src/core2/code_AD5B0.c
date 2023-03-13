@@ -145,7 +145,7 @@ void func_80334910(void) {
     func_8033FA24();
     func_80344C80();
     func_80287D70();
-    animcache_free();
+    animBinCache_free();
     func_802BC10C();
     ncCameraNodeList_free();
     func_802F1388();
@@ -184,7 +184,7 @@ void func_80334910(void) {
     func_80322FDC();
     func_8033BD6C();
     func_80255198();//heap_flush_free_queue
-    func_802881AC();
+    animCache_flushAll();
 }
 
 void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
@@ -221,7 +221,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_8031F9E8();
     func_80323230();
     commonParticleType_init();
-    animcache_init();
+    animBinCache_init();
     func_80287C58();
     func_80344C50();
     func_8033F9C0();
@@ -327,7 +327,7 @@ s32 func_80334ECC(void) {
         }
         func_8033E1E0();
         func_802F11E8();
-        func_80288210();
+        animCache_update();
         func_80288834();
         ncCamera_update();
         func_803045D8();

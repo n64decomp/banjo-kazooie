@@ -188,28 +188,28 @@ void func_80387F88(ActorMarker *marker){
     timed_playSfx(3.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.6f, 22000);
     timed_exitStaticCamera(4.0f);
     func_80324E38(4.0f, 0);
-    timedFunc_set_2(4.0f, (GenMethod_2) RBB_func_80387F18, (s32) actor->marker, 3);
+    timedFunc_set_2(4.0f, (GenFunction_2) RBB_func_80387F18, (s32) actor->marker, 3);
 }
 
 void func_80388154(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     func_803879F0();
-    timedFunc_set_0(0.0f, (GenMethod_0) RBB_func_80387F44);
+    timedFunc_set_0(0.0f, (GenFunction_0) RBB_func_80387F44);
     timed_playSfx(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
-    timedFunc_set_2(1.2f, (GenMethod_2) func_80387B8C, 0x19f, 0);
+    timedFunc_set_2(1.2f, (GenFunction_2) func_80387B8C, 0x19f, 0);
     timed_setStaticCameraToNode(1.2f, 8);
-    timedFunc_set_1(1.5f, (GenMethod_1) func_80387F88, (s32) actor->marker);
+    timedFunc_set_1(1.5f, (GenFunction_1) func_80387F88, (s32) actor->marker);
 }
 
 void func_803881E8(Actor *this, s32 arg1){
     this->state = arg1;
     if(this->state == 2){
         RBB_func_80387960(0.05f);
-        timedFunc_set_2(0.05f, (GenMethod_2)func_80387BEC, 0x19f, 0x1f4);
-        timedFunc_set_2(0.1f, (GenMethod_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+        timedFunc_set_2(0.05f, (GenFunction_2)func_80387BEC, 0x19f, 0x1f4);
+        timedFunc_set_2(0.1f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
         timed_setStaticCameraToNode(1.1f, 7);
-        timedFunc_set_1(1.6f, (GenMethod_1)func_80388154, (s32)this->marker);
+        timedFunc_set_1(1.6f, (GenFunction_1)func_80388154, (s32)this->marker);
         levelSpecificFlags_set(0x2D, 1);
     }
 }

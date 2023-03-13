@@ -15,21 +15,21 @@ u8 D_80389E40[] = {3, 3, 2, 0};
 ActorInfo D_80389E44 = { 
     0x1A9, 0x28C, 0x435, 
     0, NULL, 
-    func_80389900, NULL, func_80325888, 
+    func_80389900, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389E68 = { 
     0x1A9, 0x28D, 0x436, 
     0, NULL, 
-    func_80389900, NULL, func_80325888, 
+    func_80389900, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80389E8C = { 
     0x1A9, 0x28E, 0x437, 
     0, NULL, 
-    func_80389900, NULL, func_80325888, 
+    func_80389900, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 

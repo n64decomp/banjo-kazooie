@@ -65,16 +65,16 @@ void CCW_func_8038DB0C(Actor *this);
 void func_8038DAB0(Actor *this);
 
 /* .data */
-ActorInfo D_8038F720 = { 0x239, 0x25F, 0x4FC, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F744 = { 0x236, 0x260, 0x4F9, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F768 = { 0x237, 0x261, 0x4FA, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F78C = { 0x238, 0x262, 0x4FB, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F7B0 = { 0x243, 0x2E6, 0x533, 0x1, NULL, func_802D3D54, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F7D4 = { 0x263, 0x2E7, 0x518, 0x1, NULL, func_8038DAB0, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F7F8 = { 0x21E, 0x233, 0x3B3, 0x1, NULL, func_802D3D74, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F81C = { 0x26B, 0x2DE, 0x531, 0x1, NULL, CCW_func_8038DB0C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F840 = { 0x26C, 0x2DD, 0x53E, 0x1, NULL, CCW_func_8038DB0C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
-ActorInfo D_8038F864 = { 0x26D, 0x2DC, 0x53F, 0x1, NULL, CCW_func_8038DB0C, func_80326224, func_80325E78, 0, 0, 0.0f, 0};
+ActorInfo D_8038F720 = { 0x239, 0x25F, 0x4FC, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F744 = { 0x236, 0x260, 0x4F9, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F768 = { 0x237, 0x261, 0x4FA, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F78C = { 0x238, 0x262, 0x4FB, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F7B0 = { 0x243, 0x2E6, 0x533, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F7D4 = { 0x263, 0x2E7, 0x518, 0x1, NULL, func_8038DAB0, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F7F8 = { 0x21E, 0x233, 0x3B3, 0x1, NULL, func_802D3D74, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F81C = { 0x26B, 0x2DE, 0x531, 0x1, NULL, CCW_func_8038DB0C, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F840 = { 0x26C, 0x2DD, 0x53E, 0x1, NULL, CCW_func_8038DB0C, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
+ActorInfo D_8038F864 = { 0x26D, 0x2DC, 0x53F, 0x1, NULL, CCW_func_8038DB0C, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
 ActorInfo D_8038F888 = { 0x1CC, 0x318, 0x0,   0x0, NULL, func_80325F84, NULL, func_80325340, 0, 0, 0.0f, 0};
 
 

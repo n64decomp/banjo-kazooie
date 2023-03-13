@@ -71,7 +71,7 @@ void func_80388BEC(NodeProp *arg0, ActorMarker *arg1){
                 ((ActorLocal_JujuHitbox *)&sp30->local)->unk4++;
                 func_803892A8(((ActorLocal_JujuHitbox *)&sp30->local)->unk8);
                 func_80353580(arg1);
-                __spawnQueue_add_4((GenMethod_4)func_802C4140, 0x58, *(s32 *)&sp20[0], *(s32 *)&sp20[1], *(s32 *)&sp20[2]);
+                __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x58, *(s32 *)&sp20[0], *(s32 *)&sp20[1], *(s32 *)&sp20[2]);
             }
         }
     }
@@ -123,7 +123,7 @@ void func_80388E20(Actor *this){
     }
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        __spawnQueue_add_2((GenMethod_2)func_80388DFC,this->marker, jujuCtlPtr->unk4);
+        __spawnQueue_add_2((GenFunction_2)func_80388DFC,this->marker, jujuCtlPtr->unk4);
         func_80388D14(this);
     }else{
         if( func_80329530(this, 0xfa) 

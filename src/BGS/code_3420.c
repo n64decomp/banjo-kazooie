@@ -305,7 +305,7 @@ void func_8038A068(Actor *this, s32 next_state) {
             mapSpecificFlags_set(6, TRUE);
             func_8038C3DC(local->vile_marker);
             func_8025A58C(0, 4000);
-            timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_55_BGS_MR_VILE, 28000);
+            timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_55_BGS_MR_VILE, 28000);
         }
     }
     if (this->state == 5) {
@@ -321,29 +321,29 @@ void func_8038A068(Actor *this, s32 next_state) {
     if (next_state == 6) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3C_MINIGAME_LOSS, 28000);
-        timedFunc_set_0(4.0f, (GenMethod_0)func_8038A044);
-        timedFunc_set_1(4.0f, (GenMethod_1)func_80389C58, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3C_MINIGAME_LOSS, 28000);
+        timedFunc_set_0(4.0f, (GenFunction_0)func_8038A044);
+        timedFunc_set_1(4.0f, (GenFunction_1)func_80389C58, (s32) this->marker);
     }
     if (next_state == 8) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_0(3.0f, (GenMethod_0)func_8038A044);
-        timedFunc_set_1(3.0f, (GenMethod_1)func_80389D20, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_0(3.0f, (GenFunction_0)func_8038A044);
+        timedFunc_set_1(3.0f, (GenFunction_1)func_80389D20, (s32) this->marker);
     }
     if (next_state == 9) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenMethod_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_0(3.0f, (GenMethod_0)func_8038A044);
-        timedFunc_set_1(3.0f, (GenMethod_1)func_80389E40, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_0(3.0f, (GenFunction_0)func_8038A044);
+        timedFunc_set_1(3.0f, (GenFunction_1)func_80389E40, (s32) this->marker);
     }
     if (next_state == 0xA) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.5f, 3);
-        timedFunc_set_2(1.0f, (GenMethod_2) func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
-        timedFunc_set_1(3.0f, (GenMethod_1) func_80389F08, (s32) this->marker);
+        timedFunc_set_2(1.0f, (GenFunction_2) func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_1(3.0f, (GenFunction_1) func_80389F08, (s32) this->marker);
     }
     if (next_state == 7) {
         func_8038C384(local->vile_marker);
@@ -374,9 +374,9 @@ void chvilegame_player_consume_piece(Actor *this) {
                         item_inc(ITEM_16_LIFE);
                         func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
                     }
-                    timedFunc_set_1(0.0f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
-                    timedFunc_set_1(0.5f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
-                    timedFunc_set_1(1.0f, (GenMethod_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(0.0f, (GenFunction_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(0.5f, (GenFunction_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
+                    timedFunc_set_1(1.0f, (GenFunction_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
                 }
                 func_8028F6B8(BS_INTR_17, (i_ptr->type != YUMBLIE) ? ASSET_3F7_MODEL_GRUMBLIE : ASSET_3F6_MODEL_YUMBLIE);
                 if (!is_correct_type) {
@@ -406,9 +406,9 @@ bool chvilegame_cpu_consume_piece(ActorMarker *marker, f32 position[3]) {
     for(i_ptr = begin; i_ptr < end; i_ptr++){
         if ((ml_distance_vec3f(i_ptr->position, position) < 50.0f) && func_8038B684(i_ptr->marker)) {
             local->vile_score++;
-            timedFunc_set_1(0.0f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
-            timedFunc_set_1(0.5f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
-            timedFunc_set_1(1.0f, (GenMethod_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(0.0f, (GenFunction_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(0.5f, (GenFunction_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
+            timedFunc_set_1(1.0f, (GenFunction_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
             return TRUE;
         }
     }

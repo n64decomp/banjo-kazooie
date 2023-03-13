@@ -73,7 +73,7 @@ Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE
     sp40[1] = this->unk60;
     sp40[2] = (f32)marker->roll;
     sp3C = this->scale;
-    if(func_802EA190(marker->unk20)){
+    if(animMtxList_len(marker->unk20)){
         return func_802EBAE0(sp5C, sp4C, sp40, sp3C, NULL, marker->unk20, arg1, arg2, arg3);
     }
     else{
@@ -85,7 +85,7 @@ Actor *func_8038C1F8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(2, this->unk38_31);
     func_8033A45C(1, func_8033A0F0(2) ^ 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
@@ -243,7 +243,7 @@ void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
         func_80328A84(this, 6);
-        __spawnQueue_add_1((GenMethod_1)func_8038C8F0, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)func_8038C8F0, reinterpret_cast(s32, this->marker));
     }
 }
 

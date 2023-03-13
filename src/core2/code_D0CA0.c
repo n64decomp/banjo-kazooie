@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80335A8C(Struct80s *, s32);
 extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);
 extern void ml_interpolate_vec3f(f32[3], f32[3], f32[3], f32);
@@ -115,8 +114,8 @@ void func_80357F0C(Actor *this, s32 next_state) {
 
     local = (ActorLocal_core2_D0CA0 *)&this->local;
     if (this->state == 0) {
-        func_80335924(this->unk148, 0x23A, 0.0f, 0.45f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x23A, 0.0f, 0.45f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
 
     this->state = next_state;
@@ -126,8 +125,8 @@ void func_80357F0C(Actor *this, s32 next_state) {
         local->unk28 = randf2(0.0f, 2.0f);
     }
     if (this->state == 2) {
-        func_80335924(this->unk148, 0x23A, 0.3f, 0.45f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x23A, 0.3f, 0.45f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         for(var_s0 = 0; var_s0 < 10; var_s0++){
             sp54[0] = this->position[0];
             sp54[1] = this->position[1];
@@ -154,8 +153,8 @@ void func_80357F0C(Actor *this, s32 next_state) {
     if (this->state == 5) {
         func_8028F55C(1, this->marker);
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
-        func_80335924(this->unk148, 0x23A, 0.4f, 1.0f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x23A, 0.4f, 1.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         timed_playSfx(0.8f, 0x3FC, randf2(0.97f, 1.05f), 32000);
         local->unk39 = 0;
         local->unk28 = 2.0f;
@@ -168,8 +167,8 @@ void func_80357F0C(Actor *this, s32 next_state) {
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
-        func_80335924(this->unk148, 0x23D, 0.3f, 0.45f);
-        func_80335A8C(this->unk148, 1);
+        skeletalAnim_set(this->unk148, 0x23D, 0.3f, 0.45f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         local->unk36 = 0x3E8;
         local->unk39 = 0;
     }
@@ -214,7 +213,7 @@ Actor *func_80358344(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     } else {
         this->alpha_124_19 = 0xff;
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_80358490(Actor *this) {
@@ -364,10 +363,10 @@ void func_80358684(Actor *this) {
                     if (this->state == 2) {
                         local->unk39 = 1;
                     } else if (this->state == 3) {
-                        if (func_8033567C(this->unk148) != 0x23B) {
-                            func_80335924(this->unk148, 0x23B, 0.2f, 0.75f);
-                            func_80335A8C(this->unk148, 2);
-                        } else if (0.575 <= func_80335684(this->unk148)) {
+                        if (skeletalAnim_getAnimId(this->unk148) != 0x23B) {
+                            skeletalAnim_set(this->unk148, 0x23B, 0.2f, 0.75f);
+                            skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
+                        } else if (0.575 <= skeletalAnim_getProgress(this->unk148)) {
                             local->unk39 = 1U;
                         }
                     }
@@ -396,13 +395,13 @@ void func_80358684(Actor *this) {
             sp70 = func_802575BC(local->unk4);
             ml_interpolate_vec3f(this->position, local->unk8, local->unk18, sp70);
             this->yaw = local->unk14 + (sp70 * (local->unk24 - local->unk14));
-            if ((func_8033567C(this->unk148) == 0x23B) && (func_80335794(this->unk148) > 0)) {
-                func_80335924(this->unk148, 0x23C, 0.1f, 0.45f);
-                func_80335A8C(this->unk148, 1);
+            if ((skeletalAnim_getAnimId(this->unk148) == 0x23B) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
+                skeletalAnim_set(this->unk148, 0x23C, 0.1f, 0.45f);
+                skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
             }
-            if ((local->unk39 == 0) || ((func_8033567C(this->unk148) == 0x23C) && (0.7 <= (f64) local->unk4))) {
-                func_80335924(this->unk148, 0x23A, 0.3f, 0.45f);
-                func_80335A8C(this->unk148, 1);
+            if ((local->unk39 == 0) || ((skeletalAnim_getAnimId(this->unk148) == 0x23C) && (0.7 <= (f64) local->unk4))) {
+                skeletalAnim_set(this->unk148, 0x23A, 0.3f, 0.45f);
+                skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
             }
             if (this->state == 3) {
                 if (0.0f <= local->unk4 - 0.2) {
@@ -450,7 +449,7 @@ void func_80358684(Actor *this) {
             this->yaw += 10.0f * sp88;
         }
         if (this->state == 6) {
-            if (func_8033567C(this->unk148) == 0x23D) {
+            if (skeletalAnim_getAnimId(this->unk148) == 0x23D) {
                 sp3C[0] = this->position[0] - sp94[0];
                 sp3C[1] = this->position[1] - sp94[1];
                 sp3C[2] = this->position[2] - sp94[2];
@@ -467,7 +466,7 @@ void func_80358684(Actor *this) {
                     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
                     timed_playSfx(0.1f, SFX_66_BIRD_AUUGHH, 1.6f, 32000);
                 }
-            } else if (func_80335794(this->unk148) > 0) {
+            } else if (skeletalAnim_getLoopCount(this->unk148) > 0) {
                 next_state = 7;
             }
         }

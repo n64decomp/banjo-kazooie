@@ -10,21 +10,21 @@ void func_802CAB70(Actor *this);
 extern ActorInfo D_80366F20 = { 
     0x0D4, ACTOR_B_SHOCKSPRING_PAD, ASSET_489_MODEL_SHOCKSPRING_PAD, 
     0, NULL, 
-    func_802CA9D0, func_80326224, func_80325888,
+    func_802CA9D0, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_80366F44 = { 
     MARKER_45_FLIGHT_PAD, ACTOR_E4_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    func_802CAA44, func_80326224, func_80325888,
+    func_802CAA44, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_80366F68 = { 
     MARKER_261_FIGHT_FLIGHT_PAD, ACTOR_39F_FIGHT_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    func_802CAB70, func_80326224, func_80325888,
+    func_802CAB70, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

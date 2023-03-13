@@ -30,7 +30,7 @@ Struct_CCW_14B0_0 D_8038EC00[] = {
     0
 };
 
-ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, CCW_func_80387A40, NULL, func_80325888, 0, 0, 1.0f, 0};
+ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, CCW_func_80387A40, NULL, actor_draw, 0, 0, 1.0f, 0};
 
 /* .code */
 void func_803878A0(Actor *this, s32 next_state) {
@@ -38,8 +38,8 @@ void func_803878A0(Actor *this, s32 next_state) {
     int i;
 
     if (next_state == 1) {
-        if (func_8033567C(this->unk148) != 0x16F) {
-            func_80335924(this->unk148, 0x16F, 0.1f, 0.65f);
+        if (skeletalAnim_getAnimId(this->unk148) != 0x16F) {
+            skeletalAnim_set(this->unk148, 0x16F, 0.1f, 0.65f);
         }
         for(i = 0; i < 10; i++){
             local->unkC[0] = randf2(-500.0f, 500.0f);

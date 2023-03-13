@@ -25,7 +25,7 @@ ActorAnimationInfo chlmonkeyAnimations[5] = {
 
 ActorInfo chlmonkeyInfo = { MARKER_A_CHIMPY, ACTOR_F_CHIMPY, ASSET_35D_MODEL_CHIMPY, 
     1, chlmonkeyAnimations,
-    NULL, chLMonkey_update, func_80325888,
+    NULL, chLMonkey_update, actor_draw,
     2500, 0, 0.8f, 0
 };
 

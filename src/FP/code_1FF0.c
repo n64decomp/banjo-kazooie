@@ -31,7 +31,7 @@ Actor *func_803883E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(2, this->velocity[0] == 1.0f ? 1 : 0);
     func_8033A45C(3, this->velocity[0] == 3.0f ? 1 : 0);
     func_8033A45C(4, this->velocity[0] == 2.0f ? 1 : 0);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 
 }
 

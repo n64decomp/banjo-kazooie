@@ -6,7 +6,7 @@
 
 Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8035F138(Actor *this);
-extern void func_80325794(ActorMarker *);
+extern void actor_postdrawMethod(ActorMarker *);
 extern f32 func_80257204(f32, f32, f32, f32);
 
 typedef struct {
@@ -50,8 +50,8 @@ Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     local = (ActorLocal_core2_D7D10 *)&this->local;
     func_8033A45C(3, (s32) this->velocity[1]);
     func_8033A45C(4, local->unk0);
-    modelRender_preDraw( (GenMethod_1)func_803253A0, (s32)this);
-    modelRender_postDraw((GenMethod_1)func_80325794, (s32)marker);
+    modelRender_preDraw( (GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, D_80373008, func_803257B4(marker));
     return this;
 }

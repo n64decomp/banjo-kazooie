@@ -43,7 +43,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         viewport_getPosition(sp3C);
         ml_vec3f_diff_copy(sp30, sp48, sp3C);
         if(sp54->unk28_12){
-            func_80251BCC(func_8024DD90());
+            mlMtxSet(func_8024DD90());
         }
         else{
             mlMtxIdent();

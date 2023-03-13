@@ -21,17 +21,17 @@ ActorAnimationInfo D_80394BE0[] = {
 };
 ActorInfo D_80394C28 = { MARKER_29A_FF_PRIZE, ACTOR_3C4_FF_PRIZE_WASHING_CAULDRON, ASSET_55F_MODEL_FF_PRIZE_WASHING_CAULDRON,   
     0x1, D_80394BE0, 
-    func_8039217C, func_80326224, func_80325888,
+    func_8039217C, func_80326224, actor_draw,
     0, 0, 3.0f, 0
 };
 ActorInfo D_80394C4C = { MARKER_29A_FF_PRIZE, ACTOR_3C7_FF_PRIZE_GRUNTY_DOLL, ASSET_560_MODEL_FF_PRIZE_GRUNTY_DOLL,
     0x3, D_80394BE0,
-    func_8039217C, func_80326224, func_80325888,
+    func_8039217C, func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 ActorInfo D_80394C70 = { MARKER_29A_FF_PRIZE, 0x3C6, 0x34C,
     0x0, D_80394BE0,
-    func_8039217C, func_80326224, func_80325888,
+    func_8039217C, func_80326224, actor_draw,
     0, 0, 3.0f, 0
 };
 ActorInfo D_80394C94 = { MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35B_FF_PRIZE_TOOTY,
@@ -44,7 +44,7 @@ ActorInfo D_80394C94 = { MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35
 Actor *func_80391FC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(4, 1);
     func_8033A45C(5, 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_80392014(Actor *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4) {

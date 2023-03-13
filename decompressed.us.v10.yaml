@@ -502,7 +502,7 @@ segments:
   subsegments:
   - [0xF55960, c, animctrl] #DONE
   - [0xF56430, c, code_AD0] #DONE
-  - [0xF56A40, c, code_10E0] #DONE
+  - [0xF56A40, c, animcache] #DONE
   - [0xF56EB0, c, code_1550] #DONE
   - [0xF57290, c, code_1930] #DONE
   - [0xF57BA0, c, code_2240] #DONE
@@ -806,7 +806,7 @@ segments:
   - [0x1002A70, c, code_AD110] #DONE
   - [0x1002F10, c, code_AD5B0] #DONE
   - [0x1003BF0, c, code_AE290] #DONE
-  - [0x1003F30, c, code_AE5D0] #DONE
+  - [0x1003F30, c, skeletalanim] #DONE
   - [0x1004700, c, code_AEDA0]
   - [0x1006D60, c, modelRender]
   - [0x1008EE0, c, code_B3580] #DONE
@@ -1306,7 +1306,7 @@ segments:
   - [0x1047840, .rodata, code_A4D00]
   - [0x1047870, .rodata, code_A5BC0]
   - [0x1047890, .rodata, code_AD110]
-  - [0x10478B0, .rodata, code_AE5D0]
+  - [0x10478B0, .rodata, skeletalanim]
   - [0x10478C0, .rodata, code_AEDA0]
   - [0x1047910, .rodata, modelRender]
   - [0x1047920, .rodata, code_B3A80]
@@ -1367,7 +1367,7 @@ segments:
   - [0x1048460, .rodata, code_DA760]
   - [0x1048480, .rodata, code_DB010]
   - [0x1048560, .bss, code_AD0]
-  - [0x1048560, .bss, code_10E0]
+  - [0x1048560, .bss, animcache]
   - [0x1048560, .bss, code_1550]
   - [0x1048560, .bss, code_1930]
   - [0x1048560, .bss, ba/anim]

@@ -8,11 +8,11 @@ Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx);
 void func_8038C41C(Actor *this);
 
 /* .data */
-ActorInfo D_8038F380 = { 0x1C6, 0x310, 0x501, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
+ActorInfo D_8038F380 = { 0x1C6, 0x310, 0x501, 0x0, NULL, func_8038C41C, NULL, actor_draw, 0, 0, 0.0f, 0};
 ActorInfo D_8038F3A4 = { 0x1C7, 0x311, 0x462, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
-ActorInfo D_8038F3C8 = { 0x1C8, 0x312, 0x463, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_8038F3EC = { 0x1C9, 0x313, 0x464, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 0.0f, 0};
-ActorInfo D_8038F410 = { 0x1CA, 0x314, 0x502, 0x0, NULL, func_8038C41C, NULL, func_80325888, 0, 0, 2.0f, 0};
+ActorInfo D_8038F3C8 = { 0x1C8, 0x312, 0x463, 0x0, NULL, func_8038C41C, NULL, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_8038F3EC = { 0x1C9, 0x313, 0x464, 0x0, NULL, func_8038C41C, NULL, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_8038F410 = { 0x1CA, 0x314, 0x502, 0x0, NULL, func_8038C41C, NULL, actor_draw, 0, 0, 2.0f, 0};
 ActorInfo D_8038F434 = { 0x1CB, 0x315, 0x48D, 0x0, NULL, func_8038C41C, NULL, func_8038C380, 0, 0, 0.0f, 0};
 
 /* .code */
@@ -46,19 +46,19 @@ void CCW_func_8038C16C(Actor *this, s32 next_state) {
 
     if (next_state == 2) {
         if (this->marker->unk14_20 == 0x1CA) {
-            func_80335924(this->unk148, 0x22E, 0.2f, 3.53f);
-            func_80335800(this->unk148, 0.1f, func_8038C0E8, this->marker);
+            skeletalAnim_set(this->unk148, 0x22E, 0.2f, 3.53f);
+            skeletalAnim_setCallback_1(this->unk148, 0.1f, func_8038C0E8, this->marker);
         }
         if (this->marker->unk14_20 == 0x1C7) {
-            func_80335924(this->unk148, 0x230, 0.2f, 4.0f);
+            skeletalAnim_set(this->unk148, 0x230, 0.2f, 4.0f);
         }
         if (this->marker->unk14_20 == 0x1CB) {
-            func_80335924(this->unk148, 0x1A2, 0.2f, 4.0f);
-            func_80335800(this->unk148, 0.3f, func_8038BFE0, this->marker);
-            func_80335800(this->unk148, 0.65f, func_8038C064, this->marker);
+            skeletalAnim_set(this->unk148, 0x1A2, 0.2f, 4.0f);
+            skeletalAnim_setCallback_1(this->unk148, 0.3f, func_8038BFE0, this->marker);
+            skeletalAnim_setCallback_1(this->unk148, 0.65f, func_8038C064, this->marker);
         }
         if (this->marker->unk14_20 == 0x1C8) {
-            func_80335924(this->unk148, 0x231, 0.2f, 4.0f);
+            skeletalAnim_set(this->unk148, 0x231, 0.2f, 4.0f);
         }
         if ((this->marker->unk14_20 == 0x1C7) || (this->marker->unk14_20 == 0x1CB) || (this->marker->unk14_20 == 0x1C8)) {
             other = actorArray_findActorFromActorId(0x313);
@@ -84,7 +84,7 @@ Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx) {
     func_8033A45C(8, 0);
     func_8033A45C(9, 0);
     func_8033A45C(0xA, 1);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void func_8038C41C(Actor *this) {

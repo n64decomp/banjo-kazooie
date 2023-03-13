@@ -341,7 +341,7 @@ Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp40[3];
     
     
-    actor = func_80325888(marker, gfx, mtx, vtx);
+    actor = actor_draw(marker, gfx, mtx, vtx);
     if(marker->unk14_21){
         f32 sp34[3] = {0.0f, 4.0f, -15.0f};
         f32 sp28[3];

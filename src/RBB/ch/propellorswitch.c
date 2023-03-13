@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028F9DC(s32);
-extern void func_803253A0(Actor *);
+extern void actor_predrawMethod(Actor *);
 
 /* typedefs and declarations */
 typedef struct {
@@ -48,8 +48,8 @@ void __chPropellorSwitch_setState(Actor *this, s32 arg1){
         if(this->state == 1){
             levelSpecificFlags_set(local->unk0->unk8, 1);
             func_803228D8();
-            timedFunc_set_1(1.1f, (GenMethod_1)func_8028F9DC, 2);
-            timedFunc_set_3(1.1f, (GenMethod_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
+            timedFunc_set_1(1.1f, (GenFunction_1)func_8028F9DC, 2);
+            timedFunc_set_3(1.1f, (GenFunction_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }else{
             levelSpecificFlags_set(local->unk0->unkA, 1);
         }
@@ -76,7 +76,7 @@ Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 ar
         return actor;
     }
 
-    modelRender_preDraw(func_803253A0, actor);
+    modelRender_preDraw(actor_predrawMethod, actor);
     if(local->unk4){
         modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
     }

@@ -14,13 +14,13 @@ void chHoneycomb_update(Actor *this);
 /* .data */
 ActorInfo D_80366C80 = { MARKER_53_EMPTY_HONEYCOMB, ACTOR_47_EMPTY_HONEYCOMB, ASSET_361_MODEL_EMPTY_HONEYCOMB, 
     0, NULL, 
-    chHoneycomb_update, func_80326224, func_80325888, 
+    chHoneycomb_update, func_80326224, actor_draw, 
     0, 0, 0.8f, 0
 };
 
 ActorInfo D_80366CA4 = { MARKER_55_HONEYCOMB, ACTOR_50_HONEYCOMB, ASSET_363_MODEL_HONEYCOMB, 
     0, NULL, 
-    chHoneycomb_update, func_80326224, func_80325888, 
+    chHoneycomb_update, func_80326224, actor_draw, 
     0, 0, 0.8f, 0
 };
 

@@ -438,7 +438,7 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
         func_8033A45C(3, this->unk38_0 ? TRUE : FALSE);
         func_8033A45C(4, this->unk38_0 ? FALSE : TRUE);
     }
-    this = func_80325888(marker, gfx, mtx, vtx);
+    this = actor_draw(marker, gfx, mtx, vtx);
     if (marker->unk14_21 && this->unk38_0 && (getGameMode() != GAME_MODE_4_PAUSED)) {
         sp3C[1] = randi2(200, 255);
         sp3C[0] = randi2(150, sp3C[1]);

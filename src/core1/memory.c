@@ -353,7 +353,7 @@ void *malloc(s32 size){
             func_8030A850(2);
 
         if(!func_80254B84(0))
-            func_80288120();
+            animCache_flushStale();
 
         if(!func_80254B84(0))
             func_8028873C(0);
@@ -377,7 +377,7 @@ void *malloc(s32 size){
                     func_802F1294(); //particleEmitters
                 
                 if(!func_80254B84(0))
-                    func_8028873C(1); //animationCache
+                    func_8028873C(1); //AnimationFileCache
 
                 if(v1 = func_80254B84(0)){}
                 else

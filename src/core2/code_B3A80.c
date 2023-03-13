@@ -37,7 +37,7 @@ extern s32 assetcache_release(void * arg0);
 f32  func_8033ABA0(AnimationFile *anim_file, f32 arg1);
 f32  func_8033AC38(AnimationFile *anim_file, AnimationFileElement *arg1, f32 arg2);
 s32  func_8033AC0C(AnimationFile *this);
-void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]);
+void func_8033AFB8(BoneTransformList *arg0, s32 arg1, f32 arg2[3][3]);
 void func_8033BAB0(enum asset_e asset_id, s32 offset, s32 size, void *dst_ptr);
 
 /* .core2 */
@@ -47,21 +47,21 @@ f32 func_8033AA10(AnimationFile *this, s32 arg1){
     return (f32)(arg1 - this->unk0)/(f32)(this->unk2 - this->unk0);
 }
 
-void func_8033AA50(AnimationFile *anim_file, f32 arg1, Struct_B1400 *arg2){
-    s32 tmp_s1;
+void animationFile_getBoneTransformList(AnimationFile *anim_file, f32 progress, BoneTransformList *bone_transform_list){
+    s32 bone_id;
     int i;
     f32 tmp_f22;
     AnimationFileElement *tmp_s0;
     f32 sp54[3][3];
 
-    tmp_f22 = func_8033ABA0(anim_file, arg1);
+    tmp_f22 = func_8033ABA0(anim_file, progress);
     tmp_s0 = (AnimationFileElement *)((s32)anim_file + sizeof(AnimationFile));
-    tmp_s1 = 0;
+    bone_id = 0;
     for(i = 0; i < anim_file->elem_cnt; i++){//L8033AAB8
-        if(tmp_s0->unk0_15 != tmp_s1){
-            if(tmp_s1)
-                func_8033AFB8(arg2, tmp_s1, sp54);
-            tmp_s1 = tmp_s0->unk0_15;
+        if(tmp_s0->unk0_15 != bone_id){
+            if(bone_id != 0)
+                func_8033AFB8(bone_transform_list, bone_id, sp54);
+            bone_id = tmp_s0->unk0_15;
             sp54[0][0] = sp54[0][1] = sp54[0][2] = 0.0f;
             sp54[1][0] = sp54[1][1] = sp54[1][2] = 1.0f;
             sp54[2][0] = sp54[2][1] = sp54[2][2] = 0.0f;
@@ -70,7 +70,7 @@ void func_8033AA50(AnimationFile *anim_file, f32 arg1, Struct_B1400 *arg2){
         tmp_s0 += tmp_s0->data_cnt;
         tmp_s0++;
     }//L8033AB60
-    func_8033AFB8(arg2, tmp_s1, sp54);
+    func_8033AFB8(bone_transform_list, bone_id, sp54);
 }
 
 f32 func_8033ABA0(AnimationFile *this, f32 arg1){
@@ -94,7 +94,7 @@ s32 func_8033AC1C(AnimationFile *this){
     return this->unk2 - this->unk0 + 1;
 }
 
-s32 func_8033AC30(AnimationFile *this){
+s32 animationFile_count(AnimationFile *this){
     return this->elem_cnt;
 }
 
@@ -149,12 +149,12 @@ f32 func_8033AC38(AnimationFile *this, AnimationFileElement *elem, f32 time){
     return glspline_catmull_rom_interpolate(temp_f12, 4, knot_list);
 }
 
-void func_8033AFB8(Struct_B1400 *arg0, s32 arg1, f32 arg2[3][3]){
+void func_8033AFB8(BoneTransformList *bone_transform_list, s32 bone_id, f32 arg2[3][3]){
     f32 sp18[4]; 
     func_80345CD4(sp18, arg2[0]);
-    func_8033A8F0(arg0, arg1, sp18);
-    func_8033A928(arg0, arg1, arg2[1]);
-    func_8033A968(arg0, arg1, arg2[2]);
+    func_8033A8F0(bone_transform_list, bone_id, sp18);
+    boneTransformList_setBoneScale(bone_transform_list, bone_id, arg2[1]);
+    func_8033A968(bone_transform_list, bone_id, arg2[2]);
 }
 
 void func_8033B020(void *ptr){

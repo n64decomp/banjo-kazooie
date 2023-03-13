@@ -21,35 +21,35 @@ ActorAnimationInfo D_80367B50[] = {
 ActorInfo D_80367B80 = {
     MARKER_36_ORANGE_COLLECTIBLE, ACTOR_29_ORANGE_COLLECTIBLE, ASSET_2D2_MODEL_ORANGE,
     0x5, NULL,
-    chLevelCollectible_update, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, actor_draw,
     0, 0, 0.6f,0
 };
 
 ActorInfo D_80367BA4 = {
     MARKER_37_GOLD_BULLION, ACTOR_2A_GOLD_BULLION, ASSET_3C7_MODEL_GOLD_BULLION,
     0x5, NULL,
-    chLevelCollectible_update, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, actor_draw,
     0, 0, 0.6f, 0
 };
 
 ActorInfo D_80367BC8 = {
     MARKER_1FD_BLUE_PRESENT_COLLECTIBLE, ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, actor_draw,
     0, 0, 1.8f, 0
 };
 
 ActorInfo D_80367BEC = {
     MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };
 
 ActorInfo D_80367C10 = {
     MARKER_1FF_RED_PRESENT_COLLECTIBLE, ACTOR_1F1_RED_PRESENT_COLLECTIBLE, ASSET_481_MODEL_XMAS_GIFT_RED,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, func_80325888,
+    chLevelCollectible_update, func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };
 
@@ -145,7 +145,7 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
                 break;
         }
         if (dialog_id != 0) {
-            timedFunc_set_1(0.5f, (GenMethod_1)__chLevelCollectible_callDialog, dialog_id);
+            timedFunc_set_1(0.5f, (GenFunction_1)__chLevelCollectible_callDialog, dialog_id);
         }
         func_8028F030(this->modelCacheIndex);
         marker_despawn(marker);

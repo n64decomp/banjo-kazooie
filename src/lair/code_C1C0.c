@@ -23,7 +23,7 @@ Actor *func_803925B0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(3, 0);
     func_8033A45C(4, 0);
     func_8033A45C(5, 0);
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 

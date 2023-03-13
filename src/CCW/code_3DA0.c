@@ -40,14 +40,14 @@ void chcaterpillar_setState(Actor *this, s32 next_state) {
     ActorLocal_Caterpillar *local = (ActorLocal_Caterpillar *)&this->local;
 
     if (next_state == 1) {
-        func_80335924(this->unk148, 0x18D, 0.0f, randf2(1.9f, 2.1f));
+        skeletalAnim_set(this->unk148, 0x18D, 0.0f, randf2(1.9f, 2.1f));
     }
     if (next_state == 2) {
         func_8028F7D4(-25.0f, 90.0f);
-        func_80335924(this->unk148, 0x18E, 0.2f, 2.0f);
+        skeletalAnim_set(this->unk148, 0x18E, 0.2f, 2.0f);
     }
     if (next_state == 3) {
-        func_80335924(this->unk148, 0x18E, 0.2f, 2.0f);
+        skeletalAnim_set(this->unk148, 0x18E, 0.2f, 2.0f);
         local->unkC[0] = this->position[0];
         local->unkC[1] = this->position[1];
         local->unkC[2] = this->position[2];
@@ -68,7 +68,7 @@ Actor*  chcaterpillar_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     if(this->state == 5){
         return func_80325340(marker, gfx, mtx, vtx);
     }
-    return func_80325888(marker, gfx, mtx, vtx);
+    return actor_draw(marker, gfx, mtx, vtx);
 }
 
 void chcaterpillar_update(Actor *this){
@@ -109,7 +109,7 @@ void chcaterpillar_update(Actor *this){
     }//L8038A45C
 
     if(this->state == 1){
-        func_8033568C(this->unk148, &sp64, &sp60);
+        skeletalAnim_getProgressRange(this->unk148, &sp64, &sp60);
         player_getPosition(sp74);
         if(ml_distance_vec3f(this->position, local->unk0) < 10.0f){
             for(i = 0; i < 10; i++){

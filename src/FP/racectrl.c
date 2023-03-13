@@ -117,7 +117,7 @@ void func_8038AC90(s32 indx, s32 arg1){
 }
 
 void func_8038ADE4(s32 indx, s32 arg1){
-    __spawnQueue_add_2((GenMethod_2)func_8038AC90, indx, arg1);
+    __spawnQueue_add_2((GenFunction_2)func_8038AC90, indx, arg1);
 }
 
 void func_8038AE14(s32 indx){
@@ -166,7 +166,7 @@ void func_8038AEE0(s32 indx){
 }
 
 void func_8038B00C(s32 indx){
-    __spawnQueue_add_1((GenMethod_1)func_8038AEE0, indx);
+    __spawnQueue_add_1((GenFunction_1)func_8038AEE0, indx);
 }
 
 void func_8038B034(void){
@@ -218,7 +218,7 @@ void func_8038B1D0(enum jiggy_e jiggy_id){
     timed_setStaticCameraToNode(0.0f, 3);
     timedFunc_set_0(0.0f, func_8038AEA0);
     timedFunc_set_0(0.0f, FP_func_8038B0B8);
-    timedFunc_set_1(0.1f, (GenMethod_1) func_8038B130, jiggy_id);
+    timedFunc_set_1(0.1f, (GenFunction_1) func_8038B130, jiggy_id);
     timedFunc_set_0(5.0f, func_8038B190);
     timedFunc_set_0(5.0f, func_8038B1C4);
     timed_exitStaticCamera(5.0f);

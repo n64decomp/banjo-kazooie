@@ -25,7 +25,7 @@ ActorInfo chGloop = {
 
 /* .code */
 Actor *chgloop_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    Actor *this = func_80325888(marker, gfx, mtx, vtx);
+    Actor *this = actor_draw(marker, gfx, mtx, vtx);
     if(!marker->unk14_21)
         return this;
 

@@ -42,7 +42,7 @@ Actor *func_802DA560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
     ActorLocal_MoleHill * local = (ActorLocal_MoleHill *) &actor->local;
     if(actor->unk16C_4){
-        actor = func_80325888(marker, gfx, mtx, vtx);
+        actor = actor_draw(marker, gfx, mtx, vtx);
         func_8034A174(actor->marker->unk44, 5, actor->velocity);
         func_8034A174(actor->marker->unk44, 6, actor->unk1C);
         func_8034A174(actor->marker->unk44, 7, local->unk4);

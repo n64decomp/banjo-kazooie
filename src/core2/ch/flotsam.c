@@ -58,7 +58,7 @@ void func_8035C080(Actor *this, s32 next_state){
     local->unkD = next_state;
     
     if(next_state == 1){
-        func_80335924(this->unk148, 0, 0.0f, 0.0f);
+        skeletalAnim_set(this->unk148, 0, 0.0f, 0.0f);
         this->yaw = local->unk34[0];
     }
     if( next_state == 3
@@ -66,7 +66,7 @@ void func_8035C080(Actor *this, s32 next_state){
         || next_state == 7
         || next_state == 6
     ){
-        func_80335924(this->unk148, ASSET_132_ANIM_FLOTSAM_MOVE, 0.1f, 0.7f);
+        skeletalAnim_set(this->unk148, ASSET_132_ANIM_FLOTSAM_MOVE, 0.1f, 0.7f);
         local->unk10[0] = this->position_x;
         local->unk10[1] = this->position_y;
         local->unk10[2] = this->position_z;
@@ -176,8 +176,8 @@ void func_8035C080(Actor *this, s32 next_state){
         func_802F9EC4(sp38, this->position, 0x5dc, 0x9c4);
         func_802F9F80(sp38, 0.0f, 2.0f, 2.0f);
         func_802FA060(sp38, 0x6590, 0x6d60, 500.0f);
-        func_80335924(this->unk148, ASSET_189_ANIM_FLOTSAM_DIE, 0.1f, 4.0f);
-        func_80335A8C(this->unk148, 2);
+        skeletalAnim_set(this->unk148, ASSET_189_ANIM_FLOTSAM_DIE, 0.1f, 4.0f);
+        skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         local->pCtrl_8 = particleEmitter_new(20);
         particleEmitter_setSprite(local->pCtrl_8, ASSET_70E_SPRITE_SMOKE_2);
         particleEmitter_setStartingFrameRange(local->pCtrl_8, 0, 7);
@@ -214,7 +214,7 @@ Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(this->state == 0) return this;
 
     if(this->state == 8){
-        sp5C = func_803356A0(this->unk148);
+        sp5C = skeletalAnim_getBoneTransformList(this->unk148);
         if(sp5C){
             sp40[0] = 0.0f;
             sp40[1] = 0.0f;
@@ -224,7 +224,7 @@ Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
             sp34[0] = 1.0  - local->unk0*0.5;
             sp34[1] = 1.0  - local->unk0*0.5;
             sp34[2] = 1.0  - local->unk0*0.5;
-            func_8033A928(sp5C, 3, sp34);
+            boneTransformList_setBoneScale(sp5C, 3, sp34);
         }
     }
 
@@ -232,7 +232,7 @@ Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A450(func_80329934());
     }
     
-    func_80325888(marker, gfx, mtx, vtx);
+    actor_draw(marker, gfx, mtx, vtx);
 
     if(local->pCtrl_8 && this->marker->unk14_21){
         func_8034A174(func_80329934(), 5, sp28);
@@ -296,7 +296,7 @@ void func_8035C8F4(Actor *this){
         ml_interpolate_vec3f(this->position, local->unk10, local->unk1C, local->unk0);
         this->position_y += 100.0f*sinf(local->unk0*3.141592654);
         this->yaw = local->unk0*(local->unk34[2] - local->unk34[1]) + local->unk34[1];
-        if(func_80335794(this->unk148) > 0){
+        if(skeletalAnim_getLoopCount(this->unk148) > 0){
             if(ml_distance_vec3f(this->position, local->unk28) < 10.0f){
                 func_8035C080(this, 1);
             }
@@ -326,7 +326,7 @@ void func_8035C8F4(Actor *this){
 
     if(this->state == 8){
         local->unk0 += 0.25*sp34;
-        if(func_80335794(this->unk148) > 0)
+        if(skeletalAnim_getLoopCount(this->unk148) > 0)
             marker_despawn(this->marker);
     }
 }
