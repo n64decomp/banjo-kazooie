@@ -131,7 +131,7 @@ void func_8023DCF4(void){
 
 
 
-#ifndef NOMATCHING
+#ifndef NONMATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/mainLoop.s")
 #else
 void mainLoop(void){
