@@ -76,7 +76,7 @@ s32 honeycombscore_get_total(void){
     return total;
 }
 
-void honeycombscore_get_size_and_ptr(s32 *size, u8 **addr){
+void honeycombscore_getSizeAndPtr(s32 *size, u8 **addr){
     *size = HONEYCOMBSCORE_SIZE;
     *addr = sHoneycombScore;
 }

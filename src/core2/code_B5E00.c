@@ -47,8 +47,8 @@ void gameFile_8033CE40(void) {
         }
     }
     for(var_s0 = 0; var_s0 < 4; var_s0++){
-        if( (__gameFile_8033CD90(var_s0) == 0) && (gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].unk1 - 1] == -1)) {
-            gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].unk1 - 1] = var_s0;
+        if( (__gameFile_8033CD90(var_s0) == 0) && (gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].slotIndex - 1] == -1)) {
+            gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].slotIndex - 1] = var_s0;
             sp48[var_s0] = 1;
         } else {
             D_80383F04 = var_s0;
@@ -70,18 +70,18 @@ s32 gameFile_8033CFD4(s32 gamenum){
     s32 filenum;
     u32 i = 3;
     s32 eeprom_error;
-    SaveData *var_a1;
+    SaveData *saveData;
 
 
     filenum = D_80383F04;
     next = gameFile_GameIdToFileIdMap[gamenum];
     gameFile_GameIdToFileIdMap[gamenum] = D_80383F04;
     bcopy(&gameFile_saveData[next], &gameFile_saveData[filenum], 0xF*8);
-    var_a1 = gameFile_saveData + filenum;
-    var_a1->unk1 = gamenum + 1;
-    savedata_update_crc(var_a1, sizeof(SaveData));
+    saveData = gameFile_saveData + filenum;
+    saveData->slotIndex = gamenum + 1;
+    savedata_update_crc(saveData, sizeof(SaveData));
     for(eeprom_error = 1; eeprom_error && i > 0; i--){//L8033D070
-        eeprom_error = savedata_8033CC98(filenum, var_a1);
+        eeprom_error = savedata_8033CC98(filenum, saveData);
         if(!eeprom_error){
             __gameFile_8033CE14(gamenum);
         }
@@ -119,7 +119,7 @@ void gameFile_save(s32 gamenum){
 
 bool gameFile_isNotEmpty(s32 gamenum){
     s32 filenum = gameFile_GameIdToFileIdMap[gamenum];
-    return gameFile_saveData[filenum].unk0 != 0;
+    return gameFile_saveData[filenum].magic != 0;
 }
 
 bool gameFile_anyNonEmpty(void){

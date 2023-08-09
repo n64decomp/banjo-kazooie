@@ -124,7 +124,7 @@ void func_8038E094(Actor *this){
     if(this->unk100){
         sp38 = marker_getActor(this->unk100);
         if(sp38->unk1C[1] == 1.0f){
-            if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_13)){
+            if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 if(this->state != 6 && this->state != 7 && 0.0f == this->velocity[0]){
                     timed_setStaticCameraToNode(0.5f, 0xd);
                     func_80311480(ASSET_C15_TEXT_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);

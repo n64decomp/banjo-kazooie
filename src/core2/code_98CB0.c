@@ -145,9 +145,9 @@ void fileProgressFlag_setN(s32 startIndex, s32 set, s32 length) {
     func_8031FEC0();
 }
 
-void func_8032008C(s32 *arg0, u8 **arg1) {
-    *arg0 = 0x25;
-    *arg1 = D_803831A0.unk8;
+void progressflags_getSizeAndPtr(s32 *size, u8 **addr) {
+    *size = 0x25;
+    *addr = D_803831A0.unk8;
 }
 
 // Returns a single bit from a byte array

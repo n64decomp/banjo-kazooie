@@ -418,7 +418,7 @@ s32 itemscore_noteScores_get(enum level_e lvl_id){
     return D_80385FF0[lvl_id];
 }
 
-void func_80346F44(s32 *size, void **ptr) {
+void notescore_getSizeAndPtr(s32 *size, void **ptr) {
     static u64 D_80386040;
     s32 var_s0;
 
@@ -463,7 +463,7 @@ u16 itemscore_timeScores_get(enum level_e level_id) {
     return  (u16) D_80386000[level_id];
 }
 
-void itemscore_timeScores_getSizeAndPtr(s32 *size, void **ptr) {
+void timeScores_getSizeAndPtr(s32 *size, void **ptr) {
     static u16 D_80386048[0xB]; //timescores_truncated
     s32 i;
 
@@ -476,7 +476,7 @@ void itemscore_timeScores_getSizeAndPtr(s32 *size, void **ptr) {
 }
 
 //itemscore_getSavedItemArray
-void func_80347630(s32 *size, u8 **buffer){
+void saveditem_getSizeAndPtr(s32 *size, u8 **buffer){
     static u8 D_80386060[5]; //saved item array
 
     D_80386060[0] = item_getCount(ITEM_1C_MUMBO_TOKEN);

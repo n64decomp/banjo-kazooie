@@ -55,16 +55,16 @@ Struct_B5040 D_80370A20[] = {
 };
 
 /* .bss */
-s32 D_80383CF0;
-s32 D_80383CF4; //jiggy_offset
-s32 D_80383CF8; //honeycomb_offset
-s32 D_80383CFC; //mumbotoken_offset
-s32 D_80383D00; //notescores_offset
-s32 D_80383D04; //timescores_offset
-s32 D_80383D08; //savedata_jiggy_offset
-s32 D_80383D0C; //saved_item_offset
-s32 D_80383D10; //abilities_offset
-s32 D_80383D14; //end_offset
+s32 base_offset;
+s32 jiggy_offset;
+s32 honeycomb_offset;
+s32 mumbotoken_offset;
+s32 notescores_offset;
+s32 timescores_offset;
+s32 progressflags_offset;
+s32 saved_item_offset;
+s32 abilities_offset;
+s32 end_offset;
 u8 D_80383D18[8];
 
 /* .code */
@@ -91,226 +91,226 @@ int _savedata_verify(SaveData *savedata, s32 size){
 }
 
 void savedata_init(void){ //savedata_init
-    s32 sp54;
-    s32 sp50;
-    s32 sp4C;
-    s32 sp48 = 0;
-    s32 sp44 = 0;
-    s32 sp40;
-    s32 sp3C;
-    s32 sp38;
-    u8 *sp34;
-    u8 *sp30;
-    u8 *sp2C;
-    u8 *sp28;
-    u8 *sp24;
-    u8 *sp20;
-    u8 *sp1C;
-    u8 *sp18;
+    s32 jiggy_size;
+    s32 honeycomb_size;
+    s32 mumbotoken_size;
+    s32 notescores_size = 0;
+    s32 timescores_size = 0;
+    s32 progressflags_size;
+    s32 saved_item_size;
+    s32 abilities_size;
+    u8 *jiggy_addr;
+    u8 *honeycomb_addr;
+    u8 *mumbotoken_addr;
+    u8 *progressflags_addr;
+    u8 *notescores_addr;
+    u8 *timescores_addr;
+    u8 *saved_item_addr;
+    u8 *abilities_addr;
     
-    jiggyscore_info(&sp54, &sp34);
-    honeycombscore_get_size_and_ptr(&sp50, &sp30);
-    mumboscore_get_size_and_ptr(&sp4C, &sp2C);
-    func_8032008C(&sp40, &sp28);
-    func_80346F44(&sp48, &sp24);
-    itemscore_timeScores_getSizeAndPtr(&sp44, &sp20);
-    func_80347630(&sp3C, &sp1C);
-    ability_getSizeAndPtr(&sp38, &sp18);
-    D_80383CF0 = 0;
-    D_80383CF4 = D_80383CF0 + 2;
-    D_80383CF8 = D_80383CF4 + sp54;
-    D_80383CFC = D_80383CF8 + sp50;
-    D_80383D00 = D_80383CFC + sp4C;
-    D_80383D04 = D_80383D00 + sp48;
-    D_80383D08 = D_80383D04 + sp44;
-    D_80383D0C = D_80383D08 + sp40;
-    D_80383D10 = D_80383D0C + sp3C;
-    D_80383D14 = D_80383D10 + sp38;
+    jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
+    honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
+    mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
+    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
+    timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
+    saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
+    ability_getSizeAndPtr(&abilities_size, &abilities_addr);
+    base_offset = 0;
+    jiggy_offset = base_offset + 2;
+    honeycomb_offset = jiggy_offset + jiggy_size;
+    mumbotoken_offset = honeycomb_offset + honeycomb_size;
+    notescores_offset = mumbotoken_offset + mumbotoken_size;
+    timescores_offset = notescores_offset + notescores_size;
+    progressflags_offset = timescores_offset + timescores_size;
+    saved_item_offset = progressflags_offset + progressflags_size;
+    abilities_offset = saved_item_offset + saved_item_size;
+    end_offset = abilities_offset + abilities_size;
 }
 
 void __savedata_load_jiggyScore(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 jiggy_size;
+    u8 *jiggy_addr;
     int i;
     
-    jiggyscore_info(&sp2C, &sp28);
-    for(i = D_80383CF4; i < D_80383CF4 + sp2C; i++){
-        sp28[i - D_80383CF4] = savedata[i];
+    jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
+    for(i = jiggy_offset; i < jiggy_offset + jiggy_size; i++){
+        jiggy_addr[i - jiggy_offset] = savedata[i];
     }
     func_8034798C();
 }
 
 void __savedata_load_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
-    s32 sp2C;
-    u8 *sp28;
+    s32 honeycomb_size;
+    u8 *honeycomb_addr;
     int i;
     
-    honeycombscore_get_size_and_ptr(&sp2C, &sp28);
-    for(i = D_80383CF8; i < D_80383CF8 + sp2C; i++){
-        sp28[i - D_80383CF8] = savedata[i];
+    honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
+    for(i = honeycomb_offset; i < honeycomb_offset + honeycomb_size; i++){
+        honeycomb_addr[i - honeycomb_offset] = savedata[i];
     }
     func_80347958();
 }
 
 void __savedata_load_mumboScore(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 mumbotoken_size;
+    u8 *mumbotoken_addr;
     int i;
     
-    mumboscore_get_size_and_ptr(&sp2C, &sp28);
-    for(i = D_80383CFC; i < D_80383CFC + sp2C; i++){
-        sp28[i - D_80383CFC] = savedata[i];
+    mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
+    for(i = mumbotoken_offset; i < mumbotoken_offset + mumbotoken_size; i++){
+        mumbotoken_addr[i - mumbotoken_offset] = savedata[i];
     }
     func_80347984();
 }
 
 void __savedata_load_highNoteScores(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 notescores_size;
+    u8 *notescores_addr;
     int i;
     
-    func_80346F44(&sp2C, &sp28);
-    for(i = D_80383D00; i < D_80383D00 + sp2C; i++){
-        sp28[i - D_80383D00] = savedata[i];
+    notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
+    for(i = notescores_offset; i < notescores_offset + notescores_size; i++){
+        notescores_addr[i - notescores_offset] = savedata[i];
     }
-    itemscore_highNoteScores_fromSaveData(sp28);
+    itemscore_highNoteScores_fromSaveData(notescores_addr);
 }
 
 void __savedata_load_timeScores(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 timescores_size;
+    u8 *timescores_addr;
     int i;
     
-    itemscore_timeScores_getSizeAndPtr(&sp2C, &sp28);
-    for(i = D_80383D04; i < D_80383D04 + sp2C; i++){
-        sp28[i - D_80383D04] = savedata[i];
+    timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
+    for(i = timescores_offset; i < timescores_offset + timescores_size; i++){
+        timescores_addr[i - timescores_offset] = savedata[i];
     }
-    itemscore_timeScores_fromSaveData(sp28);
+    itemscore_timeScores_fromSaveData(timescores_addr);
 }
 
 void func_8033C460(u8 *savedata){ //global_progress
-    s32 sp2C;
-    u8 *sp28;
+    s32 progressflags_size;
+    u8 *progressflags_addr;
     int i;
     
-    func_8032008C(&sp2C, &sp28);
-    for(i = D_80383D08; i < D_80383D08 + sp2C; i++){
-        sp28[i - D_80383D08] = savedata[i];
+    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    for(i = progressflags_offset; i < progressflags_offset + progressflags_size; i++){
+        progressflags_addr[i - progressflags_offset] = savedata[i];
     }
 }
 
 void func_8033C4E4(u8 *savedata){ //saveddata_load_collectibles
-    s32 sp2C;
-    u8 *sp28;
+    s32 saved_item_size;
+    u8 *saved_item_addr;
     int i;
     
-    func_80347630(&sp2C, &sp28);
-    for(i = D_80383D0C; i < D_80383D0C + sp2C; i++){
-        sp28[i - D_80383D0C] = savedata[i];
+    saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
+    for(i = saved_item_offset; i < saved_item_offset + saved_item_size; i++){
+        saved_item_addr[i - saved_item_offset] = savedata[i];
     }
-    func_803479C0(sp28);
+    func_803479C0(saved_item_addr);
 }
 
 void __savedata_load_abilities(u8 *savedata){ //savedata_load_abilities
-    s32 sp2C;
-    u8 *sp28;
+    s32 abilities_size;
+    u8 *abilities_addr;
     int i;
     
-    ability_getSizeAndPtr(&sp2C, &sp28);
-    for(i = D_80383D10; i < D_80383D10 + sp2C; i++){
-        sp28[i - D_80383D10] = savedata[i];
+    ability_getSizeAndPtr(&abilities_size, &abilities_addr);
+    for(i = abilities_offset; i < abilities_offset + abilities_size; i++){
+        abilities_addr[i - abilities_offset] = savedata[i];
     }
 }
 
-void func_8033C5F4(u8 *savedata){
-    savedata[D_80383CF0] = 0x11;
+void __savedata_save_magic(u8 *savedata){
+    savedata[base_offset] = 0x11;
 }
 
 void __savedata_save_jiggyScore(u8 *savedata){ //savedata_save_jiggies
-    s32 sp2C;
-    u8 *sp28;
+    s32 jiggy_size;
+    u8 *jiggy_addr;
     int i;
     
-    jiggyscore_info(&sp2C, &sp28);
-    for(i = D_80383CF4; i < D_80383CF4 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383CF4];
+    jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
+    for(i = jiggy_offset; i < jiggy_offset + jiggy_size; i++){
+        savedata[i] = jiggy_addr[i - jiggy_offset];
     }
 }
 
 void __savedata_save_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
-    s32 sp2C;
-    u8 *sp28;
+    s32 honeycomb_size;
+    u8 *honeycomb_addr;
     int i;
     
-    honeycombscore_get_size_and_ptr(&sp2C, &sp28);
-    for(i = D_80383CF8; i < D_80383CF8 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383CF8];
+    honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
+    for(i = honeycomb_offset; i < honeycomb_offset + honeycomb_size; i++){
+        savedata[i] = honeycomb_addr[i - honeycomb_offset];
     }
 }
 
 void __savedata_save_mumboScore(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 mumbotoken_size;
+    u8 *mumbotoken_addr;
     int i;
     
-    mumboscore_get_size_and_ptr(&sp2C, &sp28);
-    for(i = D_80383CFC; i < D_80383CFC + sp2C; i++){
-        savedata[i] = sp28[i - D_80383CFC];
+    mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
+    for(i = mumbotoken_offset; i < mumbotoken_offset + mumbotoken_size; i++){
+        savedata[i] = mumbotoken_addr[i - mumbotoken_offset];
     }
 }
 
 void __savedata_save_highNoteScores(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 notescores_size;
+    u8 *notescores_addr;
     int i;
     
-    func_80346F44(&sp2C, &sp28);
-    for(i = D_80383D00; i < D_80383D00 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383D00];
+    notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
+    for(i = notescores_offset; i < notescores_offset + notescores_size; i++){
+        savedata[i] = notescores_addr[i - notescores_offset];
     }
 }
 
 void __savedata_save_timeScores(u8 *savedata){
-    s32 sp2C;
-    u8 *sp28;
+    s32 timescores_size;
+    u8 *timescores_addr;
     int i;
     
-    itemscore_timeScores_getSizeAndPtr(&sp2C, &sp28);
-    for(i = D_80383D04; i < D_80383D04 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383D04];
+    timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
+    for(i = timescores_offset; i < timescores_offset + timescores_size; i++){
+        savedata[i] = timescores_addr[i - timescores_offset];
     }
 }
 
 void __savedata_8033C8A0(u8 *savedata){ //global_progress
-    s32 sp2C;
-    u8 *sp28;
+    s32 progressflags_size;
+    u8 *progressflags_addr;
     int i;
     
-    func_8032008C(&sp2C, &sp28);
-    for(i = D_80383D08; i < D_80383D08 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383D08];
+    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    for(i = progressflags_offset; i < progressflags_offset + progressflags_size; i++){
+        savedata[i] = progressflags_addr[i - progressflags_offset];
     }
 }
 
 void __savedata_8033CA2C(u8 *savedata){ //saveddata_save_collectibles
-    s32 sp2C;
-    u8 *sp28;
+    s32 saved_item_size;
+    u8 *saved_item_addr;
     int i;
     
-    func_80347630(&sp2C, &sp28);
-    for(i = D_80383D0C; i < D_80383D0C + sp2C; i++){
-        savedata[i] = sp28[i - D_80383D0C];
+    saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
+    for(i = saved_item_offset; i < saved_item_offset + saved_item_size; i++){
+        savedata[i] = saved_item_addr[i - saved_item_offset];
     }
 }
 
 void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
-    s32 sp2C;
-    u8 *sp28;
+    s32 abilities_size;
+    u8 *abilities_addr;
     int i;
     
-    ability_getSizeAndPtr(&sp2C, &sp28);
-    for(i = D_80383D10; i < D_80383D10 + sp2C; i++){
-        savedata[i] = sp28[i - D_80383D10];
+    ability_getSizeAndPtr(&abilities_size, &abilities_addr);
+    for(i = abilities_offset; i < abilities_offset + abilities_size; i++){
+        savedata[i] = abilities_addr[i - abilities_offset];
     }
 }
 
@@ -320,7 +320,7 @@ s32 savedata_8033CA2C(s32 filenum, SaveData *save_data){
     sp1C = load_file_blocks(filenum, 0, save_data, 0xF);
     if( sp1C 
         || savedata_verify(0x78, save_data) 
-        || ((u8*)save_data)[D_80383CF0] != 0x11
+        || ((u8*)save_data)[base_offset] != 0x11
     ){
         sp1C = 2;
     }
@@ -369,7 +369,7 @@ void saveData_create(SaveData *savedata){
         fileProgressFlag_set(D_80370A20[i].unk2, func_803203FC(D_80370A20[i].unk0));
     }
     savedata_clear(savedata);
-    func_8033C5F4(savedata);
+    __savedata_save_magic(savedata);
     __savedata_save_jiggyScore(savedata);
     __savedata_save_honeycombScore(savedata);
     __savedata_save_mumboScore(savedata);

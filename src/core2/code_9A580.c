@@ -53,7 +53,7 @@ s32 mumboscore_get_total(void){
     return cnt;
 }
 
-void mumboscore_get_size_and_ptr(s32 *size, u8 **addr){
+void mumboscore_getSizeAndPtr(s32 *size, u8 **addr){
     *size = MUMBOSCORE_SIZE;
     *addr = sMumboTokenScore; 
 }
