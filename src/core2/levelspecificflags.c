@@ -61,7 +61,7 @@ void _levelSpecificFlags_updateCRC2(void) {
 }
 
 s32 levelSpecificFlags_get(s32 i){
-    return func_803200A4(D_80383320.unk8, i);
+    return getBitFromArray(D_80383320.unk8, i);
 }
 
 s32 levelSpecificFlags_getN(s32 i, s32 n){
@@ -84,7 +84,7 @@ void levelSpecificFlags_clear(void){
 }
 
 void levelSpecificFlags_set(s32 index, s32 val){
-    func_8032015C(&D_80383320.unk8, index, val);
+    setBitToArray(&D_80383320.unk8, index, val);
     _levelSpecificFlags_updateCRC1();
     _levelSpecificFlags_updateCRC2();
 }

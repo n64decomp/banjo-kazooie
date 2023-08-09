@@ -4,9 +4,9 @@
 
 void func_8031FFAC(void);
 void fileProgressFlag_set(s32 index, s32 set);
-s32 func_803200A4(u8 *array, s32 index);
+s32 getBitFromArray(u8 *array, s32 index);
 s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
-void func_8032015C(u8 *array, s32 index, s32 set);
+void setBitToArray(u8 *array, s32 index, s32 set);
 void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
 void func_8032048C(void);
 void func_803204E4(s32 arg0, s32 arg1);
@@ -108,7 +108,7 @@ void func_8031FEC0(void) {
 }
 
 bool fileProgressFlag_get(enum file_progress_e index) {
-    return func_803200A4(D_803831A0.unk8, index);
+    return getBitFromArray(D_803831A0.unk8, index);
 }
 
 s32 fileProgressFlag_getN(s32 offset, s32 numBits) {
@@ -134,7 +134,7 @@ void func_8031FFAC(void) {
 }
 
 void fileProgressFlag_set(s32 index, s32 set) {
-    func_8032015C(D_803831A0.unk8, index, set);
+    setBitToArray(D_803831A0.unk8, index, set);
     func_8031FC40();
     func_8031FEC0();
 }
@@ -151,7 +151,7 @@ void progressflags_getSizeAndPtr(s32 *size, u8 **addr) {
 }
 
 // Returns a single bit from a byte array
-s32 func_803200A4(u8 *array, s32 index) {
+s32 getBitFromArray(u8 *array, s32 index) {
     s32 ret;
     if (array[index / 8] & (1 << (index & 7))) {
         ret = 1;
@@ -167,13 +167,13 @@ s32 func_803200E4(u8 *array, s32 offset, s32 numBits) {
     s32 i;
 
     for (i = 0; i < numBits; i++) {
-        ret |= (func_803200A4(array, offset + i) << i);
+        ret |= (getBitFromArray(array, offset + i) << i);
     }
     return ret;
 }
 
 // Sets or clears a single bit in a byte array
-void func_8032015C(u8 *array, s32 index, s32 set) {
+void setBitToArray(u8 *array, s32 index, s32 set) {
     if (set) {
         array[index / 8] |=  (1 << (index & 7));
     } else {
@@ -186,7 +186,7 @@ void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length) {
     s32 i;
 
     for (i = 0; i < length; i++) {
-        func_8032015C(array, startIndex + i, (1 << i) & set);
+        setBitToArray(array, startIndex + i, (1 << i) & set);
     }
 }
 
@@ -246,7 +246,7 @@ void func_803203A0(void) {
 }
 
 s32 func_803203FC(s32 index) {
-    return func_803200A4(D_803831D0.unk8, index);
+    return getBitFromArray(D_803831D0.unk8, index);
 }
 
 void func_80320424(s32 index, s32 numBits) {
@@ -271,7 +271,7 @@ void func_8032048C(void) {
 }
 
 void func_803204E4(s32 index, s32 set) {
-    func_8032015C(D_803831D0.unk8, index, set);
+    setBitToArray(D_803831D0.unk8, index, set);
     func_803202D0();
     func_803203A0();
 }

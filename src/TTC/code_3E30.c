@@ -15,35 +15,35 @@ void func_8038B5B4(void);
 u32 func_8038B600(void);
 
 typedef struct {
-    u8 *unk0;
+    u8 *code;
     u8 unk4;
-    u8 unk5;
+    u8 id;
     s16 unk6;
 } struct_ttc_3E30_4_s;
 
 typedef struct {
-    u8 *unk0;
+    u8 *code;
     s16 unk4;
     s16 unk6;
 } struct_ttc_3E30_3_s;
 
 typedef struct {
-    s16 unk0;
-    u8 unk2;
+    s16 meshId;
+    u8 letter;
     u8 unk3;
     f32 unk4;
-}Struct_TTC_3E30_1;
+}LetterButton;
 
 typedef struct {
-    s16 unk0;
-    s16 unk2;
-}Struct_TTC_3E30_2;
+    s16 minId;
+    s16 maxId;
+}IdRange;
 
 s32 __sandcastleCodes_getNumberEntered(void);
 
 /* .data */
 s32 D_8038C980 = 0;
-Struct_TTC_3E30_1 D_8038C984[] ={
+LetterButton letterButtonsTable[] ={
     {0x02, 0x70, 0, 0.0f}, 
     {0x04, 0x35, 0, 0.0f}, 
     {0x06, 0x6E, 0, 0.0f}, 
@@ -76,7 +76,7 @@ Struct_TTC_3E30_1 D_8038C984[] ={
 };
 
 
-struct_ttc_3E30_3_s D_8038CA6C[] = {
+struct_ttc_3E30_3_s codesTable[] = {
     {"knip68n3664j",        0x0001, 0}, //BANJOKAZOOIE
     {"kbgjj552",            0x0002, 0}, //BLUEEGGS
     {"9jlcjndmj92",         0x0004, 0}, //REDFEATHERS
@@ -93,8 +93,8 @@ struct_ttc_3E30_3_s D_8038CA6C[] = {
 };
 
 struct{
-    BKModel *unk0;
-    BKModel *unk4;
+    BKModel *model1;
+    BKModel *model2;
     u8  unk8;
     u8  unk9;
     u8  unkA;
@@ -129,11 +129,11 @@ void func_8038A258(s32 arg0) {
     D_8038D720.unk10 = arg0;
 }
 
-Struct_TTC_3E30_1 *func_8038A2DC(s32 mesh_id) {
-    Struct_TTC_3E30_1 *i_ptr;
+LetterButton *func_8038A2DC(s32 mesh_id) {
+    LetterButton *i_ptr;
 
-    for(i_ptr = D_8038C984; i_ptr->unk0 != 0; i_ptr++){
-        if(i_ptr->unk0 == mesh_id){
+    for(i_ptr = letterButtonsTable; i_ptr->meshId != 0; i_ptr++){
+        if(i_ptr->meshId == mesh_id){
             return i_ptr;
         }
     }
@@ -141,9 +141,9 @@ Struct_TTC_3E30_1 *func_8038A2DC(s32 mesh_id) {
 }
 
 void func_8038A328(void) {
-    Struct_TTC_3E30_1 *i_ptr;
+    LetterButton *i_ptr;
 
-    for(i_ptr = D_8038C984; i_ptr->unk0 != 0; i_ptr++){
+    for(i_ptr = letterButtonsTable; i_ptr->meshId != 0; i_ptr++){
         i_ptr->unk3 = 2;
         i_ptr->unk4 = 0.0f;
     }
@@ -151,7 +151,7 @@ void func_8038A328(void) {
 }
 
 void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
-    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    LetterButton *ptr = (LetterButton *) arg3;
     f32 temp_f2;
 
     if (ptr->unk4 < 0.5) {
@@ -168,7 +168,7 @@ void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
     }
 }
 
-void TTC_func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
+void TTC_func_8038A5D8(LetterButton *arg0, s32 arg1) {
     s32 temp_v0;
 
     temp_v0 = arg0->unk3;
@@ -180,7 +180,7 @@ void TTC_func_8038A5D8(Struct_TTC_3E30_1 *arg0, s32 arg1) {
 }
 
 void func_8038A618(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
-    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    LetterButton *ptr = (LetterButton *) arg3;
     f32 temp_f12;
 
 
@@ -196,7 +196,7 @@ void func_8038A618(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
 }
 
 void func_8038A7DC(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3){
-    Struct_TTC_3E30_1 *ptr = (Struct_TTC_3E30_1 *) arg3;
+    LetterButton *ptr = (LetterButton *) arg3;
     f32 temp_f2;
 
     if (ptr->unk4 < 0.5) {
@@ -215,17 +215,17 @@ void func_8038A7DC(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3){
 
 void func_8038AA2C(void) {
     f32 temp_f20;
-    Struct_TTC_3E30_1 *var_s0;
+    LetterButton *button;
 
     temp_f20 = time_getDelta();
-    for(var_s0 = D_8038C984; var_s0->unk0 != 0; var_s0++){
-        var_s0->unk4 += temp_f20;
-        if (var_s0->unk3 == 1) {
-            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A37C, (s32)var_s0);
-        } else if (var_s0->unk3 == 3) {
-            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A618, (s32)var_s0);
-        } else if (var_s0->unk3 == 5) {
-            BKModel_transformMesh(D_8038D720.unk0, var_s0->unk0, func_8038A7DC, (s32)var_s0);
+    for(button = letterButtonsTable; button->meshId != 0; button++){
+        button->unk4 += temp_f20;
+        if (button->unk3 == 1) {
+            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A37C, (s32)button);
+        } else if (button->unk3 == 3) {
+            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A618, (s32)button);
+        } else if (button->unk3 == 5) {
+            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A7DC, (s32)button);
         }
     }
 }
@@ -234,7 +234,7 @@ void func_8038AB44(void){
     D_8038C980 = func_8038B600();
 }
 
-u32 func_8038AB68(s32 cheato_code_index){
+u32 cheatoCodeUnlocked(s32 cheato_code_index){
     if(fileProgressFlag_get(FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED + cheato_code_index - 1)){
         return 1 << cheato_code_index;
     }
@@ -259,7 +259,7 @@ void func_8038ABA0(u32 arg0){
     }
 }
 
-void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
+void func_8038AC48(LetterButton *arg0) {
     s32 sp40[4];
     s32 sp3C;
     bool temp_s5;
@@ -272,11 +272,11 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
     temp_s5 = func_803203FC(2);
     phi_s7 = FALSE;
     sp3C = func_8038BD10(arg0);
-    for(i_ptr = D_8038CA6C; i_ptr->unk0 != 0; i_ptr++){
+    for(i_ptr = codesTable; i_ptr->code != 0; i_ptr++){
         phi_s1 = (D_8038D720.unk8 == 0) ? 1 : 0;
         if (!temp_s5) {
             for(i = 1; i < 4; i++){
-                phi_s1 |= func_8038AB68(i);
+                phi_s1 |= cheatoCodeUnlocked(i);
             }
 
             for(i = 0; i < 7; i++){
@@ -293,7 +293,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                 i_ptr->unk6 = 0;
                 func_8038A258(2);
             }
-            if (arg0->unk2 == i_ptr->unk0[i_ptr->unk6]) {
+            if (arg0->letter == i_ptr->code[i_ptr->unk6]) {
                 phi_s7 = TRUE;
                 i_ptr->unk6++;
                 if (func_8038BF68()) {
@@ -305,7 +305,7 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                     } else {
                         TTC_func_8038A5D8(arg0, 3);
                     }
-                    if (i_ptr->unk0[i_ptr->unk6] == 0) {
+                    if (i_ptr->code[i_ptr->unk6] == 0) {
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
                         
                         if (temp_s5) {
@@ -323,8 +323,8 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
                                 func_8030E2C4(D_8038D720.unk9);
                                 func_8038A258(2);
                             } else if (var_v0 & 0xE) {
-                                func_8035644C((i_ptr - D_8038CA6C) - 1 + FILEPROG_BE_CHEATO_BLUEEGGS);
-                                switch ((i_ptr - D_8038CA6C) - 1) { /* irregular */
+                                func_8035644C((i_ptr - codesTable) - 1 + FILEPROG_BE_CHEATO_BLUEEGGS);
+                                switch ((i_ptr - codesTable) - 1) { /* irregular */
                                     default:
                                         break;
                                     case 0:
@@ -362,20 +362,20 @@ void func_8038AC48(Struct_TTC_3E30_1 *arg0) {
 void func_8038AFC8(void){
     struct_ttc_3E30_3_s *iPtr;
 
-    for(iPtr = D_8038CA6C; iPtr->unk0 != NULL; iPtr++){
+    for(iPtr = codesTable; iPtr->code != NULL; iPtr++){
         iPtr->unk6 = 0;
     }
 
     if(func_803203FC(2))
-        strcpy(D_8038CA6C[0].unk0, "j4663n86pink"); //EIOOZAKOJNAB
+        strcpy(codesTable[0].code, "j4663n86pink"); //EIOOZAKOJNAB
     else
-        strcpy(D_8038CA6C[0].unk0, "knip68n3664j"); //BANJOKAZOOIE
+        strcpy(codesTable[0].code, "knip68n3664j"); //BANJOKAZOOIE
 
     func_8038B5B4();
 }
 
 void func_8038B04C(void){
-    if(D_8038D720.unk0){
+    if(D_8038D720.model1){
         func_8038A258(0);
         func_8030DA44(D_8038D720.unk9);
         func_8030DA44(D_8038D720.unkA);
@@ -394,7 +394,7 @@ void func_8038B094(void){
             func_8034E71C(sp2C, -600, 0.0f);
         }
     }
-    D_8038D720.unk0 = 0;
+    D_8038D720.model1 = 0;
     if(map_get() != MAP_A_TTC_SANDCASTLE){
         func_8038AB44();
     }
@@ -417,8 +417,8 @@ void func_8038B094(void){
             func_8034E71C(sp28, -500, 0.0f);
         }//L8038B1EC
 
-        D_8038D720.unk0 = mapModel_getModel(0);
-        D_8038D720.unk4 = mapModel_getModel(1);
+        D_8038D720.model1 = mapModel_getModel(0);
+        D_8038D720.model2 = mapModel_getModel(1);
         D_8038D720.unk8 = 0;
         D_8038D720.unk10 = 0;
         D_8038D720.unkC = 0.0f;
@@ -439,7 +439,7 @@ void func_8038B094(void){
         if( jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && !func_803203FC(2)
         ){
-            BKModel_transformMesh(D_8038D720.unk4, 0x3C, func_8038A23C, 0);
+            BKModel_transformMesh(D_8038D720.model2, 0x3C, func_8038A23C, 0);
             D_8038D720.unk8 = 3;
         }//L8038B2CC
         func_8038AB44();
@@ -452,13 +452,13 @@ void func_8038B2F0(void) {
     s32 mesh_id;
     f32 sp24;
     u8 temp_v0;
-    Struct_TTC_3E30_1 *temp_v0_3;
+    LetterButton *temp_v0_3;
 
     sp24 = time_getDelta();
     if (__sandcastleCodes_getNumberEntered() == 3) {
         func_802C5A3C(-1);
     }
-    if (D_8038D720.unk0 != 0) {
+    if (D_8038D720.model1 != 0) {
         func_8038AA2C();
         player_getPosition(sp2C);
         if ((D_8038D720.unk10 == 0) && func_803203FC(2) && func_803203FC(3)) {
@@ -478,7 +478,7 @@ void func_8038B2F0(void) {
                 && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) 
                 && func_8028F20C()
             ) {
-                mesh_id = func_8033F3C0(D_8038D720.unk0, sp2C);
+                mesh_id = func_8033F3C0(D_8038D720.model1, sp2C);
                 if (mesh_id != 0) {
                     temp_v0_3 = func_8038A2DC(mesh_id);
                     if ((temp_v0_3 != NULL) && ((temp_v0_3->unk3 == 2) || (D_8038D720.unk8 == 3))) {
@@ -491,7 +491,7 @@ void func_8038B2F0(void) {
             }
         } else if (D_8038D720.unk8 == 2) {
             D_8038D720.unkC = (f32) (D_8038D720.unkC + sp24);
-            BKModel_transformMesh(D_8038D720.unk4, 0x3C, func_8038A220, 0);
+            BKModel_transformMesh(D_8038D720.model2, 0x3C, func_8038A220, 0);
             if (D_8038D720.unkC > 4.0f) {
                 D_8038D720.unk8 = 3;
                 func_8030E2C4(D_8038D720.unkA);
@@ -506,7 +506,7 @@ bool func_8038B550(void){
 }
 
 s32 D_8038CAD4 = 0;
-struct_ttc_3E30_4_s D_8038CAD8[] = {
+struct_ttc_3E30_4_s secretCodesTable[] = {
     {"0mjnd", 0, 0x00, 00}, //CHEAT
     {"i67knip674bbkjnkbjd62jj4d6iinkigd2dnkbj",            0, 0x01, 00}, //NOW BANJO WILL BE ABLE TO SEE IT ON NABNUTS TABLE
     {"dm422j09jde6gbbkj59nkk4i4idmj0nrdn4i20nk4i",         0, 0x02, 00}, //THIS SECRET YOULL BE GRABBIN IN THE CAPTAINS CABIN
@@ -562,15 +562,15 @@ struct_ttc_3E30_4_s D_8038CAD8[] = {
 };
 
 u8 D_8038CC78 = 0;
-Struct_TTC_3E30_2 D_8038CC7C[] = {
+IdRange bannedCheatCodesIdRanges[] = {
     {0x7A, 0x7F},
     {0x80, 0x86},
     {0x91, 0xA7},
     0
 };
 
-void func_8038B564(s32 arg0, s32 arg1, enum map_e map_id, s32 arg3, s32 arg4){
-    if(arg1 == D_8038CAD8[arg0].unk5){
+void func_8038B564(s32 secretCodeIndex, s32 codeId, enum map_e map_id, s32 arg3, s32 arg4){
+    if(codeId == secretCodesTable[secretCodeIndex].id){
         func_802D6310(1.0f, map_id, arg3, arg4, 0);
     }
 }
@@ -578,7 +578,7 @@ void func_8038B564(s32 arg0, s32 arg1, enum map_e map_id, s32 arg3, s32 arg4){
 void func_8038B5B4(void) {
     struct_ttc_3E30_4_s *i_ptr;
 
-    for(i_ptr = &D_8038CAD8[0]; i_ptr->unk0 != NULL; i_ptr++){
+    for(i_ptr = &secretCodesTable[0]; i_ptr->code != NULL; i_ptr++){
         i_ptr->unk4 = 0;
     }
     D_8038CC78 = 0;
@@ -586,7 +586,7 @@ void func_8038B5B4(void) {
 }
 
 u32 func_8038B600(void) {
-    s32 addr = (s32)&D_8038CAD8;
+    s32 addr = (s32)&secretCodesTable;
     s32 scrambled;
     struct_ttc_3E30_4_s * i_ptr;
     u32 var_a3;
@@ -600,20 +600,20 @@ u32 func_8038B600(void) {
 
     i_ptr = (struct_ttc_3E30_4_s *)addr;
     var_a3 = 0x03148C41;
-    while(i_ptr->unk0 != NULL){
+    while(i_ptr->code != NULL){
         for(var_v0 = 0; var_v0 < i_ptr->unk4; var_v0++){
-            var_a3 = ((i_ptr->unk0[var_v0] ^ var_a3) << 5) + (var_a3 >> 0x18);
+            var_a3 = ((i_ptr->code[var_v0] ^ var_a3) << 5) + (var_a3 >> 0x18);
         }
-        for(var_v0 = var_v0; i_ptr->unk0[var_v0] != 0; var_v0++){
-            var_a3 = (i_ptr->unk0[var_v0] << (var_v0 & 0xF)) ^ (var_a3 + 0xD);
+        for(var_v0 = var_v0; i_ptr->code[var_v0] != 0; var_v0++){
+            var_a3 = (i_ptr->code[var_v0] << (var_v0 & 0xF)) ^ (var_a3 + 0xD);
         }
         i_ptr++;
     }
     return var_a3;
 }
 
-void TTC_func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum file_progress_e prog_id, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
-    if( ((arg2 + 20 == D_8038CAD8[arg1].unk5) && func_803203FC(arg2))
+void TTC_func_8038B6D4(s32 arg0, s32 secretCodeIndex, s32 arg2, enum file_progress_e prog_id, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
+    if( ((arg2 + 20 == secretCodesTable[secretCodeIndex].id) && func_803203FC(arg2))
         || arg0 == 3
     ){
         fileProgressFlag_setN(prog_id, prog_val, prog_bit_size);
@@ -624,15 +624,15 @@ void TTC_func_8038B6D4(s32 arg0, s32 arg1, s32 arg2, enum file_progress_e prog_i
 }
 
 void __sandcastleCodes_setNumberEntered(s32 arg0){
-    fileProgressFlag_setN(FILEPROG_FD_CHEATCODES_ENTERED, arg0, 2);
+    fileProgressFlag_setN(FILEPROG_FD_BANNED_CHEATCODES_ENTERED, arg0, 2);
 }
 
 s32 __sandcastleCodes_getNumberEntered(void){
-    return fileProgressFlag_getN(FILEPROG_FD_CHEATCODES_ENTERED, 2);
+    return fileProgressFlag_getN(FILEPROG_FD_BANNED_CHEATCODES_ENTERED, 2);
 }
 
 void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_diff, s32 item_val) {
-    if (((arg2 + 0x14) == D_8038CAD8[arg1].unk5) || (arg0 == 1)) {
+    if (((arg2 + 0x14) == secretCodesTable[arg1].id) || (arg0 == 1)) {
         if (item_diff != 0) {
             func_803463D4(item_id, item_diff);
             return;
@@ -641,35 +641,35 @@ void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_d
     }
 }
 
-void func_8038B800(s32 arg0) {
-    struct_ttc_3E30_4_s *sp30;
+void func_8038B800(s32 secretCodeIndex) {
+    struct_ttc_3E30_4_s *secretCode;
     s32 sp38;
 
-    sp30 = &D_8038CAD8[arg0];
-    sp38 = sp30->unk5 - 0x14;
-    sns_set_item_and_update_payload(sp30->unk5, 1, 1);
-    func_8038B564(arg0, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
-    func_8038B564(arg0, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
-    func_8038B564(arg0, 3, MAP_2C_MMM_BATHROOM, 0x85, 0x1D);
-    func_8038B564(arg0, 4, MAP_12_GV_GOBIS_VALLEY, 0x86, 0x1E);
-    func_8038B564(arg0, 5, MAP_7_TTC_TREASURE_TROVE_COVE, 0x87, 0x1F);
-    func_8038B564(arg0, 6, MAP_1D_MMM_CELLAR, 0x88, 0x20);
-    func_8038B564(arg0, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
-    if (sp30->unk5 >= 0x14) {
+    secretCode = &secretCodesTable[secretCodeIndex];
+    sp38 = secretCode->id - 0x14;
+    sns_set_item_and_update_payload(secretCode->id, 1, 1);
+    func_8038B564(secretCodeIndex, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
+    func_8038B564(secretCodeIndex, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
+    func_8038B564(secretCodeIndex, 3, MAP_2C_MMM_BATHROOM, 0x85, 0x1D);
+    func_8038B564(secretCodeIndex, 4, MAP_12_GV_GOBIS_VALLEY, 0x86, 0x1E);
+    func_8038B564(secretCodeIndex, 5, MAP_7_TTC_TREASURE_TROVE_COVE, 0x87, 0x1F);
+    func_8038B564(secretCodeIndex, 6, MAP_1D_MMM_CELLAR, 0x88, 0x20);
+    func_8038B564(secretCodeIndex, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
+    if (secretCode->id >= 0x14) {
         func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
         func_803204E4(0x65, 1);
         func_803204E4(sp38, 1);
     }
-    TTC_func_8038B6D4(0, arg0, 0x6C, FILEPROG_60_CC_PUZZLE_PIECES_PLACED,   5, 3, FILEPROG_33_CC_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x6D, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED,  7, 3, FILEPROG_34_BGS_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x6E, FILEPROG_66_FP_PUZZLE_PIECES_PLACED,   8, 4, FILEPROG_35_FP_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x6F, FILEPROG_6A_GV_PUZZLE_PIECES_PLACED,   9, 4, FILEPROG_36_GV_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x70, FILEPROG_6E_MMM_PUZZLE_PIECES_PLACED, 10, 4, FILEPROG_37_MMM_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x71, FILEPROG_72_RBB_PUZZLE_PIECES_PLACED, 0xC, 4, FILEPROG_38_RBB_OPEN);
-    TTC_func_8038B6D4(0, arg0, 0x72, FILEPROG_76_CCW_PUZZLE_PIECES_PLACED, 0xF, 4, FILEPROG_39_CCW_OPEN);
-    func_8038B79C(0, arg0, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
-    func_8038B79C(0, arg0, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
-    func_8038B79C(0, arg0, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x6C, FILEPROG_60_CC_PUZZLE_PIECES_PLACED,   5, 3, FILEPROG_33_CC_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x6D, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED,  7, 3, FILEPROG_34_BGS_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x6E, FILEPROG_66_FP_PUZZLE_PIECES_PLACED,   8, 4, FILEPROG_35_FP_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x6F, FILEPROG_6A_GV_PUZZLE_PIECES_PLACED,   9, 4, FILEPROG_36_GV_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x70, FILEPROG_6E_MMM_PUZZLE_PIECES_PLACED, 10, 4, FILEPROG_37_MMM_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x71, FILEPROG_72_RBB_PUZZLE_PIECES_PLACED, 0xC, 4, FILEPROG_38_RBB_OPEN);
+    TTC_func_8038B6D4(0, secretCodeIndex, 0x72, FILEPROG_76_CCW_PUZZLE_PIECES_PLACED, 0xF, 4, FILEPROG_39_CCW_OPEN);
+    func_8038B79C(0, secretCodeIndex, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
+    func_8038B79C(0, secretCodeIndex, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
+    func_8038B79C(0, secretCodeIndex, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
     if (sp38 == 0x81) {
         fileProgressFlag_set(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED, 1);
         fileProgressFlag_set(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE, 1);
@@ -690,30 +690,30 @@ void __sandcastleCodes_eraseGameDialogCallback(ActorMarker *caller, enum asset_e
     func_8038B5B4();
 }
 
-void TTC_func_8038BBA0(s32 arg0) {
+void TTC_func_8038BBA0(s32 secretCodeIndex) {
     s32 i;
 
-    if ((s32) D_8038CAD8[arg0].unk5 >= 0x14) {
-        if (func_803203FC(D_8038CAD8[arg0].unk5 - 0x14)) {
+    if ((s32) secretCodesTable[secretCodeIndex].id >= 0x14) {
+        if (func_803203FC(secretCodesTable[secretCodeIndex].id - 0x14)) {
             func_8038B5B4();
             return;
         }
-        for( i = 0; D_8038CC7C[i].unk0 != 0; i++){
-            if ((D_8038CAD8[arg0].unk5 >= D_8038CC7C[i].unk0) && (D_8038CC7C[i].unk2 >= D_8038CAD8[arg0].unk5)) {
+        for( i = 0; bannedCheatCodesIdRanges[i].minId != 0; i++){
+            if ((secretCodesTable[secretCodeIndex].id >= bannedCheatCodesIdRanges[i].minId) && (bannedCheatCodesIdRanges[i].maxId >= secretCodesTable[secretCodeIndex].id)) {
                 switch (__sandcastleCodes_getNumberEntered()) {
                     case 0:
                         __sandcastleCodes_setNumberEntered(1);
-                        func_8038B800(arg0);
+                        func_8038B800(secretCodeIndex);
                         func_8038B5B4();
                         return;
                     case 1:
                         __sandcastleCodes_setNumberEntered(2);
-                        func_8038B800(arg0);
+                        func_8038B800(secretCodeIndex);
                         func_8038B5B4();
                         func_80311480(0xFBE, 0xC, NULL, NULL, NULL, NULL);
                         return;
                     case 2:
-                        D_8038CAD4 = arg0;
+                        D_8038CAD4 = secretCodeIndex;
                         func_80311480(0xE38, 0xC, NULL, NULL, __sandcastleCodes_eraseGameDialogCallback, NULL);
                         return;
                 }
@@ -721,15 +721,15 @@ void TTC_func_8038BBA0(s32 arg0) {
             }
         }
     }
-    func_8038B800(arg0);
+    func_8038B800(secretCodeIndex);
     func_8038B5B4();
 }
 
-bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
+bool func_8038BD10(LetterButton *arg0) {
     struct_ttc_3E30_4_s *var_s0;
     struct_ttc_3E30_4_s *var_v0;
     s32 var_a2;
-    s32 var_s1;
+    s32 secretCodeIndex;
     s32 var_s2;
     s32 var_v1;
 
@@ -738,10 +738,10 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
     }
     if (D_8038CC78 == 0) {
         var_a2 = 0;
-        if (*(D_8038CAD8[0].unk4 + D_8038CAD8[0].unk0) == 0) {
-            for(var_v1 = 0; (D_8038CAD8 + var_v1)->unk0 != NULL; var_v1++){
-                if (arg0->unk2 == (D_8038CAD8 + var_v1)->unk0[(D_8038CAD8 + var_v1)->unk4]) {
-                    (D_8038CAD8 + var_v1)->unk4++;
+        if (*(secretCodesTable[0].unk4 + secretCodesTable[0].code) == 0) {
+            for(var_v1 = 0; (secretCodesTable + var_v1)->code != NULL; var_v1++){
+                if (arg0->letter == (secretCodesTable + var_v1)->code[(secretCodesTable + var_v1)->unk4]) {
+                    (secretCodesTable + var_v1)->unk4++;
                     var_a2 += 1;
                 }
             }
@@ -754,9 +754,9 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
             func_8038AB44();
             return 0;
         }
-        if (arg0->unk2 == D_8038CAD8[0].unk0[D_8038CAD8[0].unk4]) {
+        if (arg0->letter == secretCodesTable[0].code[secretCodesTable[0].unk4]) {
             func_8030E58C(SFX_2B_BULL_MOO_1, randf2(0.6f, 0.7f));
-            D_8038CAD8[0].unk4++;
+            secretCodesTable[0].unk4++;
             func_8038AB44();
             return 1;
         }
@@ -768,20 +768,20 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
     func_8038AB44();
     if (D_8038CC78 == 1) {
         var_s2 = 0;
-        for(var_s1 = 1; (D_8038CAD8 + var_s1)->unk0 != 0; var_s1++){
-                if (((D_8038CAD8 + var_s1)->unk4 != 0) && (arg0->unk2 == (D_8038CAD8 + var_s1)->unk0[(D_8038CAD8 + var_s1)->unk4])) {
+        for(secretCodeIndex = 1; (secretCodesTable + secretCodeIndex)->code != 0; secretCodeIndex++){
+                if (((secretCodesTable + secretCodeIndex)->unk4 != 0) && (arg0->letter == (secretCodesTable + secretCodeIndex)->code[(secretCodesTable + secretCodeIndex)->unk4])) {
                     var_s2 += 1;
-                    (D_8038CAD8 + var_s1)->unk4++;
+                    (secretCodesTable + secretCodeIndex)->unk4++;
                     func_8038AB44();
-                    if ((D_8038CAD8 + var_s1)->unk0[(D_8038CAD8 + var_s1)->unk4] == '\0') {
-                        if ((D_8038CAD8 + var_s1)->unk5 != 0) {
-                            TTC_func_8038BBA0(var_s1);
+                    if ((secretCodesTable + secretCodeIndex)->code[(secretCodesTable + secretCodeIndex)->unk4] == '\0') {
+                        if ((secretCodesTable + secretCodeIndex)->id != 0) {
+                            TTC_func_8038BBA0(secretCodeIndex);
                         }
                         return 1;
                     }
                 }
                 else{
-                    (D_8038CAD8 + var_s1)->unk4 = 0U;
+                    (secretCodesTable + secretCodeIndex)->unk4 = 0U;
                     func_8038AB44();
                 }
         }
@@ -795,7 +795,7 @@ bool func_8038BD10(Struct_TTC_3E30_1 *arg0) {
 }
 
 bool func_8038BF68(void){
-    return *(u8*)(D_8038CAD8[0].unk4 + (s32)D_8038CAD8[0].unk0) == 0;
+    return *(u8*)(secretCodesTable[0].unk4 + (s32)secretCodesTable[0].code) == 0;
 }
 
 
