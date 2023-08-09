@@ -37,12 +37,12 @@ int should_shoot_egg(void){
     return button_pressed(BUTTON_C_UP) && can_egg();
 }
 
-int should_flap(void){
-    return button_pressed(BUTTON_A) && can_flap();
+int should_feathery_flap(void){
+    return button_pressed(BUTTON_A) && can_feathery_flap();
 }
 
-int should_flip(void){
-    return button_pressed(BUTTON_A) && can_flip();
+int should_flap_flip(void){
+    return button_pressed(BUTTON_A) && can_flap_flip();
 }
 
 int should_peck(void){

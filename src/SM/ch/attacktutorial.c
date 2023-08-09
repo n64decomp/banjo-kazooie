@@ -72,7 +72,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     {
     case 5:
         if(this->unk10_12 == 0){
-            ability_unlock(ABILITY_4_BEAR_PUNCH);
+            ability_unlock(ABILITY_4_CLAW_SWIPE);
             func_80311480(0xDFF, 0xE, this->unk1C, this->marker, func_80387288, func_80387258);
         }
         else{
@@ -102,7 +102,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
 }
 
 int func_803874C4(void){
-    return ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+    return ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
         && ability_isUnlocked(ABILITY_C_ROLL)
         && ability_isUnlocked(ABILITY_B_RATATAT_RAP);
 }
@@ -123,7 +123,7 @@ void chAttackTutorial_update(Actor *this){
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;}
         }
-        this->unk10_12 = (ability_isUnlocked(ABILITY_C_ROLL))? 2 : (ability_isUnlocked(ABILITY_4_BEAR_PUNCH)? 1:0);
+        this->unk10_12 = (ability_isUnlocked(ABILITY_C_ROLL))? 2 : (ability_isUnlocked(ABILITY_4_CLAW_SWIPE)? 1:0);
         this->initialized = 1;
     }
 
@@ -206,7 +206,7 @@ void func_80387764(ActorMarker * marker){
         func_8028F94C(2, actor->unk1C);
     }
     //L80387848
-    if(!mapSpecificFlags_get(3) && func_802DA498() && temp_a2){
+    if(!mapSpecificFlags_get(3) && learnedAllTutorialAbilities() && temp_a2){
         mapSpecificFlags_set(3, 1);
         sp34 = 0xE12;
     }//L80387898

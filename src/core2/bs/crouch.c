@@ -197,7 +197,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
         if(should_shoot_egg())
             func_80346C10(&arg0, -1, BS_9_EGG_HEAD, ITEM_D_EGGS, 0);
 
-        if(should_flip())
+        if(should_flap_flip())
             arg0 = BS_12_BFLIP;
 
         if(should_beak_barge())

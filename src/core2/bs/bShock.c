@@ -92,7 +92,7 @@ void bsbshock_charge_update(void){
             func_80297970(0.0f);
     }
     else{//L802A6D18
-        if(should_flap())
+        if(should_feathery_flap())
             sp2C = BS_BFLAP;
         
         if(should_beak_bust())
@@ -174,7 +174,7 @@ void bsbshock_update(void){
         if(func_8028B424())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_flap())
+        if(should_feathery_flap())
             sp2C = BS_BFLAP;
 
         if(should_beak_bust())

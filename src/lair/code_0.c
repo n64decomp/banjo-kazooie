@@ -465,7 +465,7 @@ void func_80386D78(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         if (func_803203FC(0x8A)) {
-            ability_unlock(ABILITY_9_FLY);
+            ability_unlock(ABILITY_9_FLIGHT);
             mapSpecificFlags_set(0, TRUE);
             this->unk60 = 0.0f;
             this->position[1] = this->unk1C[1];

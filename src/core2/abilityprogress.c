@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 D_8037C3A0;
-s32 D_8037C3A4;
+s32 learnedAbilities;
+s32 usedAbilities;
 
 void ability_use(s32 arg0){
     s32 sp2C;
@@ -12,7 +12,7 @@ void ability_use(s32 arg0){
     sp2C = 0;
     sp28 = 1;
 
-    if(D_8037C3A4 & (1 << arg0))
+    if(usedAbilities & (1 << arg0))
         return;
 
     switch(arg0){
@@ -53,7 +53,7 @@ void ability_use(s32 arg0){
                     return;
             }
             else{
-                D_8037C3A4 |= (1 << arg0);
+                usedAbilities |= (1 << arg0);
             }
             break;
         case 0x8://L80295738 //fly
@@ -69,49 +69,49 @@ void ability_use(s32 arg0){
     if(sp2C)
         func_80311480(sp2C, 4, NULL, NULL, NULL, 0);
     
-    D_8037C3A4 |= (1 << arg0);
+    usedAbilities |= (1 << arg0);
 }
 
 int ability_hasUsed(enum ability_e move){
-    return (1 << move) & D_8037C3A4;
+    return (1 << move) & usedAbilities;
 }
 
 void ability_setHasUsed(enum ability_e move){
-    D_8037C3A4 |= (1 << move); 
+    usedAbilities |= (1 << move); 
 }
 
 int ability_hasLearned(enum ability_e move){
-    return (1 << move) & D_8037C3A0;
+    return (1 << move) & learnedAbilities;
 }
 
 s32 ability_getAllLearned(void){
-    return D_8037C3A0;
+    return learnedAbilities;
 }
 
 void ability_debug(void){}
 
 void ability_clearAll(void){
-    D_8037C3A0 = 0;
-    D_8037C3A4 = 0;
+    learnedAbilities = 0;
+    usedAbilities = 0;
 }
 
-void func_80295818(s32 move, s32 val){
+void ability_setLearned(s32 move, s32 val){
     if(val){
-        D_8037C3A0 |= (1 << move); 
+        learnedAbilities |= (1 << move); 
     }else{
-        D_8037C3A0 &= ~(1 << move); 
+        learnedAbilities &= ~(1 << move); 
     }
 }
 
 void ability_setAllLearned(s32 val){
-    D_8037C3A0 = val;
+    learnedAbilities = val;
 }
 
 void ability_setAllUsed(s32 val){
-    D_8037C3A4 = val;
+    usedAbilities = val;
 }
 
 void ability_getSizeAndPtr(s32 *size, u8 **addr){
     *size = 8;
-    *addr = &D_8037C3A0;
+    *addr = &learnedAbilities;
 }

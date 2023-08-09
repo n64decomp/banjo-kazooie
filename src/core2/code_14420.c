@@ -752,7 +752,7 @@ void func_8029C748(void) {
 }
 
 enum bs_e func_8029C780(void){
-    if(button_held(BUTTON_Z) && can_flip())
+    if(button_held(BUTTON_Z) && can_flap_flip())
         return BS_12_BFLIP;
 
     if(miscflag_isTrue(MISC_FLAG_2_ON_SPRING_PAD))

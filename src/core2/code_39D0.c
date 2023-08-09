@@ -32,7 +32,7 @@ s32 can_control_camera(void){
 }
 
 s32 can_claw(void){ 
-    return ability_hasLearned(ABILITY_4_BEAR_PUNCH);
+    return ability_hasLearned(ABILITY_4_CLAW_SWIPE);
 }
 
 s32 can_climb(void){ 
@@ -49,18 +49,18 @@ s32 can_egg(void){
     return ability_hasLearned(ABILITY_6_EGGS);
 }
 
-int can_flap(void){
+int can_feathery_flap(void){
     return miscflag_isFalse(MISC_FLAG_12_HAS_FLAPPED) 
         && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED) 
-        && ability_hasLearned(ABILITY_7_FLAP);
+        && ability_hasLearned(ABILITY_7_FEATHERY_FLAP);
 }
 
-s32 can_flip(void){
-    return ability_hasLearned(ABILITY_8_FLIP);
+s32 can_flap_flip(void){
+    return ability_hasLearned(ABILITY_8_FLAP_FLIP);
 }
 
 s32 can_fly(void){
-    return ability_hasLearned(ABILITY_9_FLY);
+    return ability_hasLearned(ABILITY_9_FLIGHT);
 }
 
 s32 can_control_jump_height(void){

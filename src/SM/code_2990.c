@@ -43,7 +43,7 @@ SM2900Struct D_8038AFB4[8] = {
     {0xdfb, 0xdfe, 5, ABILITY_F_DIVE},
     {   -1, 0xe00, 6, ABILITY_B_RATATAT_RAP},
     {0xe04, 0xe06, 8, ABILITY_0_BARGE},
-    {   -1, 0xdfa, 4, ABILITY_8_FLIP},
+    {   -1, 0xdfa, 4, ABILITY_8_FLAP_FLIP},
     {0xe01, 0xe03, 7, ABILITY_5_CLIMB},
     {0xe10, 0xe11, 0x11, -1},
 };
@@ -54,13 +54,13 @@ s32 D_8038AFE4 = 0;
 /* .code */
 int func_80388D80(void){
     return ability_isUnlocked(ABILITY_F_DIVE)
-        || ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+        || ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
         || ability_isUnlocked(ABILITY_C_ROLL)
         || ability_isUnlocked(ABILITY_B_RATATAT_RAP)
         || ability_isUnlocked(ABILITY_0_BARGE)
         || ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)
-        || ability_isUnlocked(ABILITY_7_FLAP)
-        || ability_isUnlocked(ABILITY_8_FLIP)
+        || ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)
+        || ability_isUnlocked(ABILITY_8_FLAP_FLIP)
         || ability_isUnlocked(ABILITY_5_CLIMB);
 }
 
@@ -70,7 +70,7 @@ void func_80388E48(void){
     ability_setHasUsed(ABILITY_1_BEAK_BOMB);
     ability_setHasUsed(ABILITY_2_BEAK_BUSTER);
     ability_setHasUsed(ABILITY_3_CAMERA_CONTROL);
-    ability_setHasUsed(ABILITY_4_BEAR_PUNCH);
+    ability_setHasUsed(ABILITY_4_CLAW_SWIPE);
     ability_setHasUsed(ABILITY_5_CLIMB);
     ability_setHasUsed(ABILITY_B_RATATAT_RAP);
     ability_setHasUsed(ABILITY_C_ROLL);
@@ -79,13 +79,13 @@ void func_80388E48(void){
 
 void func_80388EB0(void){
     ability_unlock(ABILITY_F_DIVE);
-    ability_unlock(ABILITY_4_BEAR_PUNCH);
+    ability_unlock(ABILITY_4_CLAW_SWIPE);
     ability_unlock(ABILITY_C_ROLL);
     ability_unlock(ABILITY_B_RATATAT_RAP);
     ability_unlock(ABILITY_0_BARGE);
     ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
-    ability_unlock(ABILITY_7_FLAP);
-    ability_unlock(ABILITY_8_FLIP);
+    ability_unlock(ABILITY_7_FEATHERY_FLAP);
+    ability_unlock(ABILITY_8_FLAP_FLIP);
     ability_unlock(ABILITY_5_CLIMB);
     func_80388E48();
     mapSpecificFlags_set(3,1);
@@ -190,7 +190,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor;
 
     actor = marker_getActor(marker);
-    if(!mapSpecificFlags_get(3) && func_802DA498()){
+    if(!mapSpecificFlags_get(3) && learnedAllTutorialAbilities()){
         mapSpecificFlags_set(3, 1);
         func_80311480(0xe12, 0xe, actor->position, actor->marker, func_803892C8, NULL);
     }//L8038933C
@@ -311,7 +311,7 @@ void SM_func_80389610(Actor * this){
             break;
             
         case 4://L80389848
-            if( !ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+            if( !ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
                 || !ability_isUnlocked(ABILITY_C_ROLL)
                 || !ability_isUnlocked(ABILITY_B_RATATAT_RAP)
             ){//L803898D4
@@ -324,8 +324,8 @@ void SM_func_80389610(Actor * this){
         
         case 6://L803898A0
             if( !ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)
-                || !ability_isUnlocked(ABILITY_7_FLAP)
-                || !ability_isUnlocked(ABILITY_8_FLIP)
+                || !ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)
+                || !ability_isUnlocked(ABILITY_8_FLAP_FLIP)
             ){//L803898D4
                 mapSpecificFlags_set(0xE, 1);
             }
@@ -397,7 +397,7 @@ void func_803899B0(Actor * this){
         if(func_80388D80()){
             mapSpecificFlags_set(1,1);
 
-            if(func_802DA498()){
+            if(learnedAllTutorialAbilities()){
                 mapSpecificFlags_set(3, 1);
                 mapSpecificFlags_set(2, 1);
                 mapSpecificFlags_set(0xC, 1);

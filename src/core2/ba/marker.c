@@ -723,7 +723,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_45_FLIGHT_PAD: //L8028CE3C
             case MARKER_240_LAIR_SWITCH_FLIGHT_PAD: //L8028CE3C
             case MARKER_261_FIGHT_FLIGHT_PAD: //L8028CE3C
-                if(ability_isUnlocked(ABILITY_9_FLY)){
+                if(ability_isUnlocked(ABILITY_9_FLIGHT)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! func_80320454(0xD, 1)){

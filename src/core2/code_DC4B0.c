@@ -30,7 +30,7 @@ void func_803634BC(void){
 
 void func_80363500(Actor *this){
     if(!this->unk16C_4){
-        if(!func_802DA498()){
+        if(!learnedAllTutorialAbilities()){
             func_803634BC();
         }
         else{
@@ -40,7 +40,7 @@ void func_80363500(Actor *this){
         this->unk16C_4 = 1;
     }//L8036355C
 
-    if(func_802DA498()){
+    if(learnedAllTutorialAbilities()){
         func_80363470();
         marker_despawn(this->marker);
     }

@@ -36,7 +36,7 @@ struct_core2_52290 D_80367DC4[] = {
     {ASSET_B48_DIALOG_BEAKBUSTER_LEARN,    ASSET_B4C_DIALOG_BEAKBUSTER_REFRESHER,    0x17, ABILITY_2_BEAK_BUSTER},
     {ASSET_B49_DIALOG_TALON_TROT_LEARN,    ASSET_B4A_DIALOG_TALON_TROT_REFRESHER,    0x18, ABILITY_10_TALON_TROT},
     {ASSET_A1F_DIALOG_SHOCKJUMP_LEARN,     ASSET_A23_DIALOG_SHOCKJUMP_REFRESHER,     0x0C, ABILITY_D_SHOCK_JUMP},
-    {ASSET_A20_DIALOG_FLY_LEARN,           ASSET_A22_DIALOG_FLY_REFRESHER,           0x0D, ABILITY_9_FLY},
+    {ASSET_A20_DIALOG_FLY_LEARN,           ASSET_A22_DIALOG_FLY_REFRESHER,           0x0D, ABILITY_9_FLIGHT},
     {ASSET_D35_DIALOG_WONDERWING_LEARN,    ASSET_D36_DIALOG_WONDERWING_REFRESHER,    0x01, ABILITY_12_WONDERWING},
     {ASSET_C88_DIALOG_LONGLEG_LEARN,       ASSET_C89_DIALOG_LONGLEG_REFRESHER,       0x10, ABILITY_E_WADING_BOOTS},
     {ASSET_A84_DIALOG_TURBOTRAINERS_LEARN, ASSET_A85_DIALOG_TURBOTRAINERS_REFRESHER, 0x19, ABILITY_11_TURBO_TALON},
@@ -52,7 +52,7 @@ int func_802D9220(enum level_e level){
                 && ability_isUnlocked(ABILITY_10_TALON_TROT);
         case LEVEL_2_TREASURE_TROVE_COVE:
             return ability_isUnlocked(ABILITY_D_SHOCK_JUMP)
-                && ability_isUnlocked(ABILITY_9_FLY);
+                && ability_isUnlocked(ABILITY_9_FLIGHT);
         case LEVEL_3_CLANKERS_CAVERN:
             return ability_isUnlocked(ABILITY_12_WONDERWING);
         case LEVEL_4_BUBBLEGLOOP_SWAMP:
@@ -94,7 +94,7 @@ int func_802D93EC(void){
         && ability_isUnlocked(ABILITY_2_BEAK_BUSTER)
         && ability_isUnlocked(ABILITY_10_TALON_TROT)
         && ability_isUnlocked(ABILITY_D_SHOCK_JUMP)
-        && ability_isUnlocked(ABILITY_9_FLY)
+        && ability_isUnlocked(ABILITY_9_FLIGHT)
         && ability_isUnlocked(ABILITY_12_WONDERWING)
         && ability_isUnlocked(ABILITY_E_WADING_BOOTS)
         && ability_isUnlocked(ABILITY_1_BEAK_BOMB)
@@ -216,7 +216,7 @@ int func_802D997C(Actor *this){
         sp2C = D_80367DC4[this->unkF4_8-9].learn_text; 
         ability_unlock(D_80367DC4[this->unkF4_8-9].ability);
         switch(D_80367DC4[this->unkF4_8-9].ability){
-            case ABILITY_9_FLY:
+            case ABILITY_9_FLIGHT:
             case ABILITY_D_SHOCK_JUMP:
                 func_8030E6A4(SFX_113_PAD_APPEARS, 0.9f, 32000);
                 break;
@@ -440,15 +440,15 @@ void func_802D9D60(Actor *this){
     }//L802DA488
 }
 
-int func_802DA498(void){
+int learnedAllTutorialAbilities(void){
     return ability_isUnlocked(ABILITY_F_DIVE)
-        && ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
+        && ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
         && ability_isUnlocked(ABILITY_C_ROLL)
         && ability_isUnlocked(ABILITY_B_RATATAT_RAP)
         && ability_isUnlocked(ABILITY_0_BARGE)
         && ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)
-        && ability_isUnlocked(ABILITY_7_FLAP)
-        && ability_isUnlocked(ABILITY_8_FLIP)
+        && ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)
+        && ability_isUnlocked(ABILITY_8_FLAP_FLIP)
         && ability_isUnlocked(ABILITY_5_CLIMB)
     ;
 }

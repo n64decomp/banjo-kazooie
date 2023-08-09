@@ -36,7 +36,7 @@ void func_8038A4DC(Actor *this, s32 arg1){
         this->sm_4070.unk0 = 0;
         player_getPosition(this->velocity);
         func_8028F918(0);
-        if(ability_isUnlocked(ABILITY_7_FLAP)){
+        if(ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)){
             mapSpecificFlags_set(9,1);
         }else if(ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)){//L8038A540
             mapSpecificFlags_set(8,1);
@@ -94,7 +94,7 @@ void SM_func_8038A5D8(Actor *this){
         if(!func_803114B0()){
             if(mapSpecificFlags_get(8)){
                 func_8038A460(this);
-                ability_unlock(ABILITY_7_FLAP);
+                ability_unlock(ABILITY_7_FEATHERY_FLAP);
                 func_80311480(0xdf7, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1b;
                 mapSpecificFlags_set(8,0);
@@ -102,7 +102,7 @@ void SM_func_8038A5D8(Actor *this){
 
             if(mapSpecificFlags_get(9)){
                 func_8038A460(this);
-                ability_unlock(ABILITY_8_FLIP);
+                ability_unlock(ABILITY_8_FLAP_FLIP);
                 func_80311480(0xdf8, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1c;
                 mapSpecificFlags_set(9,0);
@@ -112,7 +112,7 @@ void SM_func_8038A5D8(Actor *this){
                 func_8038A460(this);
                 func_8028F94C(2, this->unk1C);
                 
-                if(!mapSpecificFlags_get(3) && func_802DA498()){
+                if(!mapSpecificFlags_get(3) && learnedAllTutorialAbilities()){
                     mapSpecificFlags_set(3,1);
                     temp_a0 = 0xe12;
                 }else{

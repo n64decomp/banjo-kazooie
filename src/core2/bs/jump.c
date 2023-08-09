@@ -141,7 +141,7 @@ void bsjump_update(void){
     if(button_released(BUTTON_A))
         D_8037D4C2 = 0;
 
-    if(should_flap())
+    if(should_feathery_flap())
         sp34 = BS_BFLAP;
 
     if(should_peck())
@@ -218,7 +218,7 @@ void bsjump_fall_update(void){
         if(func_8028B424())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_flap() && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED))
+        if(should_feathery_flap() && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED))
             sp2C = BS_BFLAP;
 
         if(should_peck())
@@ -412,7 +412,7 @@ void bsjump_tumble_update(void){
         pitch_setIdeal(pitch_getIdeal() + 20.0f);
     }
     if(func_8029E348(0)){
-        if(should_flap())
+        if(should_feathery_flap())
             sp1C = BS_BFLAP;
 
         if(should_peck())

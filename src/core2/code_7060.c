@@ -675,7 +675,7 @@ bool func_8028F364(f32 position[3], f32 radius, f32 vert_range, enum actor_e act
 }
 
 void ability_unlock(enum ability_e uid){
-    func_80295818(uid, TRUE);
+    ability_setLearned(uid, TRUE);
 }
 
 void func_8028F3D8(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3){
