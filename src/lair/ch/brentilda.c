@@ -34,7 +34,7 @@ void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
-    fileProgressFlag_set(this->unkF4_8 - 1 + FILEPROG_E9_TALKED_TO_BRENTILDA_1, TRUE);
+    fileProgressFlag_set(this->unkF4_8 - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1, TRUE);
 }
 
 void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
@@ -42,7 +42,7 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 
     this = marker_getActor(marker);
     if (text_id == ((ActorLocal_lair_5640 *)&this->local)->unk0 + 2) {
-        if (!fileProgressFlag_get(this->unkF4_8 - 1 + FILEPROG_E9_TALKED_TO_BRENTILDA_1)) {
+        if (!fileProgressFlag_get(this->unkF4_8 - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1)) {
             if (item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)) {
                 func_80311480(0x10A2, 0xF, this->position, this->marker, func_8038BADC, lair_func_8038BA88);
                 return;
