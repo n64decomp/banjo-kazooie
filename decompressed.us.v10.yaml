@@ -533,7 +533,7 @@ segments:
   - [0xF63310, c, code_D9B0] #DONE
   - [0xF638D0, c, code_DF70] #DONE
   - [0xF63D70, c, code_E410] #DONE
-  - [0xF63FE0, c, code_E680] #DONE
+  - [0xF63FE0, c, abilityprogress] #DONE
   - [0xF64270, c, code_E910] #DONE
   - [0xF647A0, c, code_EE40] #DONE
   - [0xF648B0, c, code_EF50] #DONE
@@ -786,8 +786,8 @@ segments:
   - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
   - [0xFEF300, c, code_999A0] #DONE
   - [0xFEF8E0, c, jiggyscore] #DONE
-  - [0xFEFC80, c, code_9A320] #DONE
-  - [0xFEFEE0, c, code_9A580] #DONE
+  - [0xFEFC80, c, honeycombscore] #DONE
+  - [0xFEFEE0, c, mumboscore] #DONE
   - [0xFF00A0, c, code_9A740] #DONE
   - [0xFF0330, c, code_9A9D0] #DONE
   - [0xFF0660, c, levelspecificflags] #DONE
@@ -1134,7 +1134,7 @@ segments:
   - [0x1043110, .rodata, code_C0E0]
   - [0x1043130, .rodata, code_C4B0]
   - [0x1043170, .rodata, code_D9B0]
-  - [0x1043180, .rodata, code_E680]
+  - [0x1043180, .rodata, abilityprogress]
   - [0x10431B0, .rodata, code_EF50]
   - [0x1043350, .rodata, code_FD60]
   - [0x10433B0, .rodata, code_10CD0]
@@ -1395,7 +1395,7 @@ segments:
   - [0x1048560, .bss, code_D9B0]
   - [0x1048560, .bss, code_DF70]
   - [0x1048560, .bss, code_E410]
-  - [0x1048560, .bss, code_E680]
+  - [0x1048560, .bss, abilityprogress]
   - [0x1048560, .bss, code_E910]
   - [0x1048560, .bss, code_EE40]
   - [0x1048560, .bss, code_EF50]
@@ -1572,8 +1572,8 @@ segments:
   - [0x1048560, .bss, quizquestionaskedbitfield]
   - [0x1048560, .bss, code_999A0]
   - [0x1048560, .bss, jiggyscore]
-  - [0x1048560, .bss, code_9A320]
-  - [0x1048560, .bss, code_9A580]
+  - [0x1048560, .bss, honeycombscore]
+  - [0x1048560, .bss, mumboscore]
   - [0x1048560, .bss, code_9A740]
   - [0x1048560, .bss, code_9A9D0]
   - [0x1048560, .bss, levelspecificflags]
