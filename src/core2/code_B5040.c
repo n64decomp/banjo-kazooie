@@ -4,6 +4,7 @@
 
 #include "save.h"
 
+
 typedef struct {
     s16 unk0;
     s16 unk2;
@@ -401,7 +402,7 @@ int savedata_8033CCD0(s32 filenum){
 
 int savedata_8033CE40(u8 *buffer){
     int out;
-    savedata_update_crc(buffer, 0x20);
+    savedata_update_crc(buffer, sizeof(GlobalData));
     out = write_file_blocks(0, 0x3C, buffer, 4);
     if(out){
         out = 1;
