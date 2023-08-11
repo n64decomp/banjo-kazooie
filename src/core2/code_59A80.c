@@ -5,11 +5,11 @@
 extern void func_8035644C(s32);
 
 typedef struct {
-    s32 unk0;
-}ActorLocal_Core2_59A80;
+    enum mumbotoken_e uid;
+}ActorLocal_MumboToken;
 
 void func_802E0B10(Actor *this);
-s32 func_802E0CB0(Actor *this);
+enum mumbotoken_e func_802E0CB0(Actor *this);
 
 /* .data */
  ActorInfo D_803685A0 = { 
@@ -20,7 +20,7 @@ s32 func_802E0CB0(Actor *this);
 };
 
 /* .bss */
-s32 D_8037E610;
+enum mumbotoken_e D_8037E610;
 
 /* .code */
 void chMumboToken_collect(ActorMarker *marker, ActorMarker *other_marker){
@@ -36,7 +36,7 @@ void chMumboToken_collect(ActorMarker *marker, ActorMarker *other_marker){
     
 }
 
-s32 func_802E0A90(Actor *this){
+enum mumbotoken_e func_802E0A90(Actor *this){
     s32 id;
     s32 pos[3];
 
@@ -54,21 +54,21 @@ s32 func_802E0A90(Actor *this){
 }
 
 void func_802E0B10(Actor *this){
-    ActorLocal_Core2_59A80 *local;
+    ActorLocal_MumboToken *local;
     f32 sp28[3];
 
-    local = (ActorLocal_Core2_59A80 *)&this->local;
+    local = (ActorLocal_MumboToken *)&this->local;
     if(!this->initialized){
         this->initialized = TRUE;
-        if(local->unk0 == NULL){
+        if(local->uid == NULL){
             if(!this->unk44_2){
-                local->unk0 = D_8037E610;
+                local->uid = D_8037E610;
             }
             else{
-                local->unk0 = func_802E0A90(this);
+                local->uid = func_802E0A90(this);
             }
         }
-        if( mumboscore_get(local->unk0)
+        if( mumboscore_get(local->uid)
             || func_803203FC(1)
             || func_803203FC(2)
             || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
@@ -90,14 +90,14 @@ void func_802E0B10(Actor *this){
     }
 }
 
-s32 func_802E0CB0(Actor *this){
-    ActorLocal_Core2_59A80 *local;
+enum mumbotoken_e func_802E0CB0(Actor *this){
+    ActorLocal_MumboToken *local;
     f32 sp28[3];
 
-    local = (ActorLocal_Core2_59A80 *)&this->local;
-    return local->unk0;
+    local = (ActorLocal_MumboToken *)&this->local;
+    return local->uid;
 }
 
-void func_802E0CB8(s32 mumbo_token_id){
+void func_802E0CB8(enum mumbotoken_e mumbo_token_id){
     D_8037E610 = mumbo_token_id;
 }

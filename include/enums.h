@@ -1447,6 +1447,11 @@ enum honeycomb_e
 	HONEYCOMB_18_SM_QUARRIES
 };
 
+enum mumbotoken_e
+{
+	MUMBOTOKEN_01_MM_HILL = 1
+};
+
 enum actor_e
 {
     ACTOR_1_UNKNOWN         = 0x1,

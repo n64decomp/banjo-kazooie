@@ -19,7 +19,7 @@ u8* func_80321538(void){
     return sMumboTokenScore;
 }
 
-bool mumboscore_get(s32 indx){
+bool mumboscore_get(enum mumbotoken_e indx){
     if( indx <= 0 || indx >= MUMBO_TOKEN_COUNT)
         return 0;
     return (sMumboTokenScore[(indx - 1) / 8] & (1 << (indx & 7))) != 0;
@@ -34,7 +34,7 @@ void mumboscore_clear(void){
     }
 }
 
-void mumboscore_set(s32 indx,  bool val){
+void mumboscore_set(enum mumbotoken_e indx,  bool val){
     if( 0 < indx && indx < MUMBO_TOKEN_COUNT){
         if(val)
             sMumboTokenScore[(indx - 1) / 8] |= (1 << (indx & 7));

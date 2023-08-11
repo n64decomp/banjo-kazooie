@@ -5,7 +5,7 @@
 extern void func_80329904(ActorMarker*, s32, f32*);
 
 typedef struct{
-    s32 uid;
+    enum honeycomb_e uid;
     s32 unk4;
 }ActorLocal_EmptyHoneycomb;
 
