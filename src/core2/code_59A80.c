@@ -38,13 +38,13 @@ void chMumboToken_collect(ActorMarker *marker, ActorMarker *other_marker){
 
 s32 func_802E0A90(Actor *this){
     s32 id;
-    s32 sp18[3];
+    s32 pos[3];
 
     map_get();
-    sp18[0] = (s32)this->position[0];
-    sp18[1] = (s32)this->position[1];
-    sp18[2] = (s32)this->position[2];
-    id = func_80307164(sp18);
+    pos[0] = (s32)this->position[0];
+    pos[1] = (s32)this->position[1];
+    pos[2] = (s32)this->position[2];
+    id = func_80307164(pos);
     if(id < 0){
         return 0;
     }
