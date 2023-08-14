@@ -32,7 +32,7 @@ typedef struct {
     u8 letter;
     u8 unk3;
     f32 unk4;
-}LetterButton;
+}LetterFloorTile;
 
 typedef struct {
     s16 minId;
@@ -43,7 +43,7 @@ s32 __sandcastleCodes_getNumberEntered(void);
 
 /* .data */
 s32 D_8038C980 = 0;
-LetterButton letterButtonsTable[] ={
+LetterFloorTile letterFloorTilesTable[] ={
     {0x02, 0x70, 0, 0.0f}, 
     {0x04, 0x35, 0, 0.0f}, 
     {0x06, 0x6E, 0, 0.0f}, 
@@ -129,10 +129,10 @@ void func_8038A258(s32 arg0) {
     D_8038D720.unk10 = arg0;
 }
 
-LetterButton *func_8038A2DC(s32 mesh_id) {
-    LetterButton *i_ptr;
+LetterFloorTile *func_8038A2DC(s32 mesh_id) {
+    LetterFloorTile *i_ptr;
 
-    for(i_ptr = letterButtonsTable; i_ptr->meshId != 0; i_ptr++){
+    for(i_ptr = letterFloorTilesTable; i_ptr->meshId != 0; i_ptr++){
         if(i_ptr->meshId == mesh_id){
             return i_ptr;
         }
@@ -141,9 +141,9 @@ LetterButton *func_8038A2DC(s32 mesh_id) {
 }
 
 void func_8038A328(void) {
-    LetterButton *i_ptr;
+    LetterFloorTile *i_ptr;
 
-    for(i_ptr = letterButtonsTable; i_ptr->meshId != 0; i_ptr++){
+    for(i_ptr = letterFloorTilesTable; i_ptr->meshId != 0; i_ptr++){
         i_ptr->unk3 = 2;
         i_ptr->unk4 = 0.0f;
     }
@@ -151,7 +151,7 @@ void func_8038A328(void) {
 }
 
 void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
-    LetterButton *ptr = (LetterButton *) arg3;
+    LetterFloorTile *ptr = (LetterFloorTile *) arg3;
     f32 temp_f2;
 
     if (ptr->unk4 < 0.5) {
@@ -168,7 +168,7 @@ void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
     }
 }
 
-void TTC_func_8038A5D8(LetterButton *arg0, s32 arg1) {
+void TTC_func_8038A5D8(LetterFloorTile *arg0, s32 arg1) {
     s32 temp_v0;
 
     temp_v0 = arg0->unk3;
@@ -180,7 +180,7 @@ void TTC_func_8038A5D8(LetterButton *arg0, s32 arg1) {
 }
 
 void func_8038A618(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
-    LetterButton *ptr = (LetterButton *) arg3;
+    LetterFloorTile *ptr = (LetterFloorTile *) arg3;
     f32 temp_f12;
 
 
@@ -196,7 +196,7 @@ void func_8038A618(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
 }
 
 void func_8038A7DC(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3){
-    LetterButton *ptr = (LetterButton *) arg3;
+    LetterFloorTile *ptr = (LetterFloorTile *) arg3;
     f32 temp_f2;
 
     if (ptr->unk4 < 0.5) {
@@ -215,17 +215,17 @@ void func_8038A7DC(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3){
 
 void func_8038AA2C(void) {
     f32 temp_f20;
-    LetterButton *button;
+    LetterFloorTile *floor_tile;
 
     temp_f20 = time_getDelta();
-    for(button = letterButtonsTable; button->meshId != 0; button++){
-        button->unk4 += temp_f20;
-        if (button->unk3 == 1) {
-            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A37C, (s32)button);
-        } else if (button->unk3 == 3) {
-            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A618, (s32)button);
-        } else if (button->unk3 == 5) {
-            BKModel_transformMesh(D_8038D720.model1, button->meshId, func_8038A7DC, (s32)button);
+    for(floor_tile = letterFloorTilesTable; floor_tile->meshId != 0; floor_tile++){
+        floor_tile->unk4 += temp_f20;
+        if (floor_tile->unk3 == 1) {
+            BKModel_transformMesh(D_8038D720.model1, floor_tile->meshId, func_8038A37C, (s32)floor_tile);
+        } else if (floor_tile->unk3 == 3) {
+            BKModel_transformMesh(D_8038D720.model1, floor_tile->meshId, func_8038A618, (s32)floor_tile);
+        } else if (floor_tile->unk3 == 5) {
+            BKModel_transformMesh(D_8038D720.model1, floor_tile->meshId, func_8038A7DC, (s32)floor_tile);
         }
     }
 }
@@ -259,7 +259,7 @@ void func_8038ABA0(u32 arg0){
     }
 }
 
-void func_8038AC48(LetterButton *arg0) {
+void func_8038AC48(LetterFloorTile *arg0) {
     s32 sp40[4];
     s32 sp3C;
     bool temp_s5;
@@ -452,7 +452,7 @@ void func_8038B2F0(void) {
     s32 mesh_id;
     f32 sp24;
     u8 temp_v0;
-    LetterButton *temp_v0_3;
+    LetterFloorTile *temp_v0_3;
 
     sp24 = time_getDelta();
     if (__sandcastleCodes_getNumberEntered() == 3) {
@@ -725,7 +725,7 @@ void TTC_func_8038BBA0(s32 secretCodeIndex) {
     func_8038B5B4();
 }
 
-bool func_8038BD10(LetterButton *arg0) {
+bool func_8038BD10(LetterFloorTile *arg0) {
     struct_ttc_3E30_4_s *var_s0;
     struct_ttc_3E30_4_s *var_v0;
     s32 var_a2;

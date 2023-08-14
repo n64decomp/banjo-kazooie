@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 learnedAbilities;
-s32 usedAbilities;
+s32 abilityprogress_learnedAbilities;
+s32 abilityprogress_usedAbilities;
 
 void ability_use(s32 arg0){
     s32 sp2C;
@@ -12,7 +12,7 @@ void ability_use(s32 arg0){
     sp2C = 0;
     sp28 = 1;
 
-    if(usedAbilities & (1 << arg0))
+    if(abilityprogress_usedAbilities & (1 << arg0))
         return;
 
     switch(arg0){
@@ -53,7 +53,7 @@ void ability_use(s32 arg0){
                     return;
             }
             else{
-                usedAbilities |= (1 << arg0);
+                abilityprogress_usedAbilities |= (1 << arg0);
             }
             break;
         case 0x8://L80295738 //fly
@@ -69,49 +69,49 @@ void ability_use(s32 arg0){
     if(sp2C)
         func_80311480(sp2C, 4, NULL, NULL, NULL, 0);
     
-    usedAbilities |= (1 << arg0);
+    abilityprogress_usedAbilities |= (1 << arg0);
 }
 
 int ability_hasUsed(enum ability_e move){
-    return (1 << move) & usedAbilities;
+    return (1 << move) & abilityprogress_usedAbilities;
 }
 
 void ability_setHasUsed(enum ability_e move){
-    usedAbilities |= (1 << move); 
+    abilityprogress_usedAbilities |= (1 << move); 
 }
 
 int ability_hasLearned(enum ability_e move){
-    return (1 << move) & learnedAbilities;
+    return (1 << move) & abilityprogress_learnedAbilities;
 }
 
 s32 ability_getAllLearned(void){
-    return learnedAbilities;
+    return abilityprogress_learnedAbilities;
 }
 
 void ability_debug(void){}
 
 void ability_clearAll(void){
-    learnedAbilities = 0;
-    usedAbilities = 0;
+    abilityprogress_learnedAbilities = 0;
+    abilityprogress_usedAbilities = 0;
 }
 
 void ability_setLearned(s32 move, s32 val){
     if(val){
-        learnedAbilities |= (1 << move); 
+        abilityprogress_learnedAbilities |= (1 << move); 
     }else{
-        learnedAbilities &= ~(1 << move); 
+        abilityprogress_learnedAbilities &= ~(1 << move); 
     }
 }
 
 void ability_setAllLearned(s32 val){
-    learnedAbilities = val;
+    abilityprogress_learnedAbilities = val;
 }
 
 void ability_setAllUsed(s32 val){
-    usedAbilities = val;
+    abilityprogress_usedAbilities = val;
 }
 
 void ability_getSizeAndPtr(s32 *size, u8 **addr){
     *size = 8;
-    *addr = &learnedAbilities;
+    *addr = &abilityprogress_learnedAbilities;
 }

@@ -70,18 +70,18 @@ s32 gameFile_8033CFD4(s32 gamenum){
     s32 filenum;
     u32 i = 3;
     s32 eeprom_error;
-    SaveData *saveData;
+    SaveData *save_data;
 
 
     filenum = D_80383F04;
     next = gameFile_GameIdToFileIdMap[gamenum];
     gameFile_GameIdToFileIdMap[gamenum] = D_80383F04;
     bcopy(&gameFile_saveData[next], &gameFile_saveData[filenum], 0xF*8);
-    saveData = gameFile_saveData + filenum;
-    saveData->slotIndex = gamenum + 1;
-    savedata_update_crc(saveData, sizeof(SaveData));
+    save_data = gameFile_saveData + filenum;
+    save_data->slotIndex = gamenum + 1;
+    savedata_update_crc(save_data, sizeof(SaveData));
     for(eeprom_error = 1; eeprom_error && i > 0; i--){//L8033D070
-        eeprom_error = savedata_8033CC98(filenum, saveData);
+        eeprom_error = savedata_8033CC98(filenum, save_data);
         if(!eeprom_error){
             __gameFile_8033CE14(gamenum);
         }

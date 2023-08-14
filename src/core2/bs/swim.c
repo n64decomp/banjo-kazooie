@@ -72,7 +72,7 @@ void func_802B55DC(void) {
     func_80297970(ml_interpolate_f(sp1C, bsSwimHorzVelocityMin, bsSwimHorzVelocityMax));
 }
 
-void entered_water(void) {
+void swim_enteredWater(void) {
     if (level_get() == LEVEL_9_RUSTY_BUCKET_BAY) {
         func_8035644C(FILEPROG_AB_SWIM_OILY_WATER);
     } else if (map_get() == MAP_46_CCW_WINTER) {
@@ -141,7 +141,7 @@ void func_802B5774(void) {
     func_8029C7F4(1, 3, 3, 2);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);
-    entered_water();
+    swim_enteredWater();
     bsSwimCurrentAnimation = 0;
 }
 
@@ -283,7 +283,7 @@ void func_802B5E8C(void) {
     func_8029C7F4(1, 3, 3, 2);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_80297970(0.0f);
-    entered_water();
+    swim_enteredWater();
     func_802B5E30();
 }
 
@@ -303,7 +303,7 @@ void func_802B5F38(void){
 }
 
 void func_802B5F58(void){
-    entered_water();
+    swim_enteredWater();
     bsdrone_init();
 }
 

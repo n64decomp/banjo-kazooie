@@ -56,16 +56,16 @@ Struct_B5040 D_80370A20[] = {
 };
 
 /* .bss */
-s32 base_offset;
-s32 jiggy_offset;
-s32 honeycomb_offset;
-s32 mumbotoken_offset;
-s32 notescores_offset;
-s32 timescores_offset;
-s32 progressflags_offset;
-s32 saved_item_offset;
-s32 abilities_offset;
-s32 end_offset;
+s32 baseOffset;
+s32 jiggyOffset;
+s32 honeycombOffset;
+s32 mumbotokenOffset;
+s32 notescoresOffset;
+s32 timescoresOffset;
+s32 progressflagsOffset;
+s32 savedItemsOffset;
+s32 abilitiesOffset;
+s32 endOffset;
 u8 D_80383D18[8];
 
 /* .code */
@@ -117,16 +117,16 @@ void savedata_init(void){ //savedata_init
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
-    base_offset = 0;
-    jiggy_offset = base_offset + 2;
-    honeycomb_offset = jiggy_offset + jiggy_size;
-    mumbotoken_offset = honeycomb_offset + honeycomb_size;
-    notescores_offset = mumbotoken_offset + mumbotoken_size;
-    timescores_offset = notescores_offset + notescores_size;
-    progressflags_offset = timescores_offset + timescores_size;
-    saved_item_offset = progressflags_offset + progressflags_size;
-    abilities_offset = saved_item_offset + saved_item_size;
-    end_offset = abilities_offset + abilities_size;
+    baseOffset = 0;
+    jiggyOffset = baseOffset + 2;
+    honeycombOffset = jiggyOffset + jiggy_size;
+    mumbotokenOffset = honeycombOffset + honeycomb_size;
+    notescoresOffset = mumbotokenOffset + mumbotoken_size;
+    timescoresOffset = notescoresOffset + notescores_size;
+    progressflagsOffset = timescoresOffset + timescores_size;
+    savedItemsOffset = progressflagsOffset + progressflags_size;
+    abilitiesOffset = savedItemsOffset + saved_item_size;
+    endOffset = abilitiesOffset + abilities_size;
 }
 
 void __savedata_load_jiggyScore(u8 *savedata){
@@ -135,8 +135,8 @@ void __savedata_load_jiggyScore(u8 *savedata){
     int i;
     
     jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
-    for(i = jiggy_offset; i < jiggy_offset + jiggy_size; i++){
-        jiggy_addr[i - jiggy_offset] = savedata[i];
+    for(i = jiggyOffset; i < jiggyOffset + jiggy_size; i++){
+        jiggy_addr[i - jiggyOffset] = savedata[i];
     }
     func_8034798C();
 }
@@ -147,8 +147,8 @@ void __savedata_load_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     int i;
     
     honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
-    for(i = honeycomb_offset; i < honeycomb_offset + honeycomb_size; i++){
-        honeycomb_addr[i - honeycomb_offset] = savedata[i];
+    for(i = honeycombOffset; i < honeycombOffset + honeycomb_size; i++){
+        honeycomb_addr[i - honeycombOffset] = savedata[i];
     }
     func_80347958();
 }
@@ -159,8 +159,8 @@ void __savedata_load_mumboScore(u8 *savedata){
     int i;
     
     mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
-    for(i = mumbotoken_offset; i < mumbotoken_offset + mumbotoken_size; i++){
-        mumbotoken_addr[i - mumbotoken_offset] = savedata[i];
+    for(i = mumbotokenOffset; i < mumbotokenOffset + mumbotoken_size; i++){
+        mumbotoken_addr[i - mumbotokenOffset] = savedata[i];
     }
     func_80347984();
 }
@@ -171,8 +171,8 @@ void __savedata_load_highNoteScores(u8 *savedata){
     int i;
     
     notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
-    for(i = notescores_offset; i < notescores_offset + notescores_size; i++){
-        notescores_addr[i - notescores_offset] = savedata[i];
+    for(i = notescoresOffset; i < notescoresOffset + notescores_size; i++){
+        notescores_addr[i - notescoresOffset] = savedata[i];
     }
     itemscore_highNoteScores_fromSaveData(notescores_addr);
 }
@@ -183,8 +183,8 @@ void __savedata_load_timeScores(u8 *savedata){
     int i;
     
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
-    for(i = timescores_offset; i < timescores_offset + timescores_size; i++){
-        timescores_addr[i - timescores_offset] = savedata[i];
+    for(i = timescoresOffset; i < timescoresOffset + timescores_size; i++){
+        timescores_addr[i - timescoresOffset] = savedata[i];
     }
     itemscore_timeScores_fromSaveData(timescores_addr);
 }
@@ -195,8 +195,8 @@ void func_8033C460(u8 *savedata){ //global_progress
     int i;
     
     progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
-    for(i = progressflags_offset; i < progressflags_offset + progressflags_size; i++){
-        progressflags_addr[i - progressflags_offset] = savedata[i];
+    for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
+        progressflags_addr[i - progressflagsOffset] = savedata[i];
     }
 }
 
@@ -206,8 +206,8 @@ void func_8033C4E4(u8 *savedata){ //saveddata_load_collectibles
     int i;
     
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
-    for(i = saved_item_offset; i < saved_item_offset + saved_item_size; i++){
-        saved_item_addr[i - saved_item_offset] = savedata[i];
+    for(i = savedItemsOffset; i < savedItemsOffset + saved_item_size; i++){
+        saved_item_addr[i - savedItemsOffset] = savedata[i];
     }
     func_803479C0(saved_item_addr);
 }
@@ -218,13 +218,13 @@ void __savedata_load_abilities(u8 *savedata){ //savedata_load_abilities
     int i;
     
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
-    for(i = abilities_offset; i < abilities_offset + abilities_size; i++){
-        abilities_addr[i - abilities_offset] = savedata[i];
+    for(i = abilitiesOffset; i < abilitiesOffset + abilities_size; i++){
+        abilities_addr[i - abilitiesOffset] = savedata[i];
     }
 }
 
 void __savedata_save_magic(u8 *savedata){
-    savedata[base_offset] = 0x11;
+    savedata[baseOffset] = 0x11;
 }
 
 void __savedata_save_jiggyScore(u8 *savedata){ //savedata_save_jiggies
@@ -233,8 +233,8 @@ void __savedata_save_jiggyScore(u8 *savedata){ //savedata_save_jiggies
     int i;
     
     jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
-    for(i = jiggy_offset; i < jiggy_offset + jiggy_size; i++){
-        savedata[i] = jiggy_addr[i - jiggy_offset];
+    for(i = jiggyOffset; i < jiggyOffset + jiggy_size; i++){
+        savedata[i] = jiggy_addr[i - jiggyOffset];
     }
 }
 
@@ -244,8 +244,8 @@ void __savedata_save_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
     int i;
     
     honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
-    for(i = honeycomb_offset; i < honeycomb_offset + honeycomb_size; i++){
-        savedata[i] = honeycomb_addr[i - honeycomb_offset];
+    for(i = honeycombOffset; i < honeycombOffset + honeycomb_size; i++){
+        savedata[i] = honeycomb_addr[i - honeycombOffset];
     }
 }
 
@@ -255,8 +255,8 @@ void __savedata_save_mumboScore(u8 *savedata){
     int i;
     
     mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
-    for(i = mumbotoken_offset; i < mumbotoken_offset + mumbotoken_size; i++){
-        savedata[i] = mumbotoken_addr[i - mumbotoken_offset];
+    for(i = mumbotokenOffset; i < mumbotokenOffset + mumbotoken_size; i++){
+        savedata[i] = mumbotoken_addr[i - mumbotokenOffset];
     }
 }
 
@@ -266,8 +266,8 @@ void __savedata_save_highNoteScores(u8 *savedata){
     int i;
     
     notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
-    for(i = notescores_offset; i < notescores_offset + notescores_size; i++){
-        savedata[i] = notescores_addr[i - notescores_offset];
+    for(i = notescoresOffset; i < notescoresOffset + notescores_size; i++){
+        savedata[i] = notescores_addr[i - notescoresOffset];
     }
 }
 
@@ -277,8 +277,8 @@ void __savedata_save_timeScores(u8 *savedata){
     int i;
     
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
-    for(i = timescores_offset; i < timescores_offset + timescores_size; i++){
-        savedata[i] = timescores_addr[i - timescores_offset];
+    for(i = timescoresOffset; i < timescoresOffset + timescores_size; i++){
+        savedata[i] = timescores_addr[i - timescoresOffset];
     }
 }
 
@@ -288,8 +288,8 @@ void __savedata_8033C8A0(u8 *savedata){ //global_progress
     int i;
     
     progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
-    for(i = progressflags_offset; i < progressflags_offset + progressflags_size; i++){
-        savedata[i] = progressflags_addr[i - progressflags_offset];
+    for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
+        savedata[i] = progressflags_addr[i - progressflagsOffset];
     }
 }
 
@@ -299,8 +299,8 @@ void __savedata_8033CA2C(u8 *savedata){ //saveddata_save_collectibles
     int i;
     
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
-    for(i = saved_item_offset; i < saved_item_offset + saved_item_size; i++){
-        savedata[i] = saved_item_addr[i - saved_item_offset];
+    for(i = savedItemsOffset; i < savedItemsOffset + saved_item_size; i++){
+        savedata[i] = saved_item_addr[i - savedItemsOffset];
     }
 }
 
@@ -310,8 +310,8 @@ void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
     int i;
     
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
-    for(i = abilities_offset; i < abilities_offset + abilities_size; i++){
-        savedata[i] = abilities_addr[i - abilities_offset];
+    for(i = abilitiesOffset; i < abilitiesOffset + abilities_size; i++){
+        savedata[i] = abilities_addr[i - abilitiesOffset];
     }
 }
 
@@ -321,7 +321,7 @@ s32 savedata_8033CA2C(s32 filenum, SaveData *save_data){
     sp1C = load_file_blocks(filenum, 0, save_data, 0xF);
     if( sp1C 
         || savedata_verify(0x78, save_data) 
-        || ((u8*)save_data)[base_offset] != 0x11
+        || ((u8*)save_data)[baseOffset] != 0x11
     ){
         sp1C = 2;
     }
