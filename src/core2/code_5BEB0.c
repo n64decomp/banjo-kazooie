@@ -8,7 +8,7 @@ typedef struct map_savestate_s{
 }MapSavestate;
 
 /* .bss */
-MapSavestate *D_8037E650[0x9A];
+s32 D_8037E650[0x9A];
 u8 pad_8037E8A8[0x18];
 
 /* public functions */
@@ -26,8 +26,8 @@ void mapSavestate_init(void){
 void mapSavestate_free_all(void){
     int i;
     for(i = 0; i < 0x9A; i++){
-        if(D_8037E650[i]){
-            free(D_8037E650[i]);
+        if((u32*)D_8037E650[i] != NULL){
+            free((void *)D_8037E650[i]);
             D_8037E650[i] = NULL;
         }
     }
@@ -37,7 +37,7 @@ void mapSavestate_defrag_all(void){
     int i;
     for(i = 0; i < 0x9A; i++){
         if(D_8037E650[i]){
-            D_8037E650[i] = (MapSavestate *)defrag(D_8037E650[i]);
+            D_8037E650[i] = defrag(D_8037E650[i]);
         }
     }
 }
@@ -91,22 +91,30 @@ void mapSavestate_save(enum map_e map){
 }  
 #endif
 
-//mapSavestate_apply
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/mapSavestate_apply.s")
-// void mapSavestate_apply(enum map_e map){
-//     u32 **mssp = D_8037E650 + map;
-//     int s0;
-//     int val;
-//     u8 *tmp;
-//     if(*mssp){
-//         mapSpecificFlags_setAll(**mssp);
-//         func_80308230(1);
-//         func_803083B0(-1);
-//         for(s0 = 0x20; func_803083B0((((*mssp)[s0 >> 5]) & (1 << (s0 & 0x1f)))? 1 : 0) != -1; s0++);
-//         func_80308230(0);
-//         tmp = *mssp;
-//         func_8032A09C(tmp, (tmp + 0x10*((s0 + 0x7f) >> 7)));
-//         free(*mssp);
-//         *mssp = NULL;
-//     }
-// }
+#define AS_BOOL(expr) ((expr)? TRUE : FALSE)
+
+void mapSavestate_apply(enum map_e map_id) {
+    s32 var_s0 = 0x1F;
+    u32* t;
+    u32 aligned_index;
+
+    if(D_8037E650[map_id] == NULL)
+        return;
+
+    t = reinterpret_cast(u32*, D_8037E650[map_id]);
+    mapSpecificFlags_setAll(*t);
+    var_s0++;
+    func_80308230(1);
+    func_803083B0(-1);
+    
+    while (func_803083B0( AS_BOOL(((u32*)D_8037E650[map_id])[var_s0 >> 5] & (1 << (var_s0 & 0x1f)))) != -1) {
+        var_s0++;
+    }
+    func_80308230(0);
+
+    aligned_index = ((var_s0 + ((1 << 7) - 1)) >> 7);
+    func_8032A09C(D_8037E650[map_id], (ActorListSaveState *)D_8037E650[map_id] + (aligned_index << 2));
+    free((void *)D_8037E650[map_id] );
+    D_8037E650[map_id] = NULL;
+}
+

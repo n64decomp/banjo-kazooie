@@ -1769,10 +1769,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
     return sp3C;
 }
 
-typedef struct {
-    u32 cnt;
-    Actor *actor_save_state[];
-}ActorListSaveState;
+
 
 void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
     Actor **temp_v1;

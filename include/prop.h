@@ -393,4 +393,9 @@ typedef struct actor_array{
     Actor data[]; //variable size array
 }ActorArray;
 
+typedef struct {
+    u32 cnt;
+    Actor *actor_save_state[];
+}ActorListSaveState;
+
 #endif
