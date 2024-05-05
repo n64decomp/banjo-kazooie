@@ -129,18 +129,12 @@ void func_8023DCF4(void){
     D_80275618--;
 }
 
-
-
-#ifndef NOMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_0/mainLoop.s")
-#else
 void mainLoop(void){
-    s32 x;
-    s32 y;
-    s32 r;
-    s32 g;
-    s32 b;
+    s32 x, y;
+    s32 r, g, b, a;
+    u16 tmp;
     u16 rgba;
+    s32 offset;
 
     if((func_8023DB5C() & 0x7f) == 0x11)
         sns_write_payload_over_heap();
@@ -182,23 +176,24 @@ void mainLoop(void){
     ){
         s32 offset;
         //render weird CRC failure image
-        for(x= 0x1e; x< framebuffer_height - 0x1e; x++){//L8023DEB4
-            g = x >> 3;
-            for(y = 0x14; y < 0xeb; y++){
-                b = ((func_8023DB5C() << 3) + y*y + x*x) >> 3;
-                r = y >> 3;
-                rgba = _SHIFTL(b, 1, 5);
-                rgba |= _SHIFTL(r, 11, 5 );
-                rgba |= _SHIFTL(g, 6, 5);
-                rgba |= _SHIFTL(1, 0, 1 );
-                offset = ((framebuffer_width - 0xff)/2 + y + x*framebuffer_width);
-                D_803A5D00[0][offset] = rgba;
-                D_803A5D00[1][offset] = rgba;
+        for(y= 0x1e; y < framebuffer_height - 0x1e; y++){//L8023DEB4
+            for(x = 0x14; x < 0xeb; x++){
+                tmp = ((8 * func_8023DB5C()) + ((x*x) + (y*y)));
+                
+                r = _SHIFTL(x>>3, 11, 5);
+                g = _SHIFTL(y>>3, 6, 5);
+                b = _SHIFTL(tmp>>3, 1, 5);
+                a = 1;
+                
+                rgba = b | r | g | a;
+                
+                offset = ((framebuffer_width - 0xFF) / 2) + x + (y*framebuffer_width);
+                D_803A5D00[0][offset] = (s32) rgba;
+                D_803A5D00[1][offset] = (s32) rgba;
             }
         }
     }//L8023DF70
 }
-#endif
 
 void __mainMethod(void *arg0){ 
     core1_init();

@@ -47,9 +47,7 @@ s32 item_getCount(enum item_e item){
     return D_80385F30[item];
 }
 
-
-#ifdef NONMATCHING
-s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
+s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
     s32 oldVal;
     s32 sp40;
     s32 sp3C;
@@ -58,10 +56,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     s32 sp30;
     s32 sp2C;
     s32 sp28;
-    s32 sp24; //without this var newVal is too high, but sp1C is correct
-    s32 newVal;
-
-
+    
     oldVal = D_80385F30[item];
 
     if(func_80255D04())
@@ -77,8 +72,9 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
             diff = 0;
         }
     }
-    newVal = MAX(0, D_80385F30[item] + diff);
-    D_80385F30[item] = newVal;
+
+    sp28 =  D_80385F30[item] =  MAX(0, D_80385F30[item] + diff);
+   // sp20;
 
     sp34 = ((fileProgressFlag_get(FILEPROG_B9_DOUBLE_HEALTH))? 2 : 1);
     D_80385F30[ITEM_15_HEALTH_TOTAL] = MIN(sp34*8, D_80385F30[ITEM_15_HEALTH_TOTAL]);
@@ -104,7 +100,7 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
             sp38 = 0;
             break;
     }
-    if(sp38 != 0){
+    if(sp38){
         D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
     if(!arg2){
@@ -114,8 +110,8 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     }
 
     sp3C = item_empty(item);
-    if(item < ITEM_6_HOURGLASS && sp3C)
-        D_80385F30[item + ITEM_6_HOURGLASS] = FALSE;
+    if(item < 6 && sp3C)
+        D_80385F30[item + ITEM_6_HOURGLASS] = 0;
 
     switch(item){
         case ITEM_14_HEALTH:
@@ -124,17 +120,17 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
             break;
         case ITEM_17_AIR:
             sp30 = func_80301D24(oldVal);
-            sp2C = func_80301D24(newVal);
+            sp2C = func_80301D24(sp28);
             if(sp3C){
-                bs_checkInterrupt(BS_INTR_11_DROWN);
+                bs_checkInterrupt(0x11);
                 D_80385FE4 = 1;
             }
-            if(sp2C != 0 && sp30 != sp2C ){
+            if(sp2C && sp30 != sp2C ){
                 if(sp2C < sp30){
                     func_8025A6EC(SFX_AIR_METER_DROPPING, 28000);
                 }
                 else{
-                    func_8030E760(SFX_3E9_UNKNOWN, 1.2f, 28000);
+                    func_8030E760(0x3e9, 1.2f, 28000);
                 }
             }
             break;
@@ -152,9 +148,6 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){\
     }
     return D_80385F30[item];
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_BEF20/func_80345FB4.s")
-#endif
 
 s32 func_803463D4(enum item_e item, s32 diff){
     func_80345FB4(item, diff, 0);

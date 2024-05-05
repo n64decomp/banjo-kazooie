@@ -42,32 +42,27 @@ void mlMtxApply(Mtx *mPtr){
     func_80245A7C(D_80282FD0, mPtr);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802514BC.s")
-#else
-void func_802514BC(Mtx *arg0) {
-    s32 i, j, k;
-    f32 tmp;
-    f32 sp38[4][4];
-    f32 (*sp34)[4];
-    f32 (*var_s0)[4];
+void func_802514BC(Mtx* arg0) {
+    s32 row;
+    s32 col;
+    s32 i;
+    f32 sum;
+    f32 prod[4][4];
 
-
-    sp34 = reinterpret_cast(f32 *, *D_80282FD0);
-    var_s0 = reinterpret_cast(f32 *, arg0);
-    
-    for(i = 0; i < 4; i++){
-        for(j = 0; j < 4; j++){
-            tmp = 0.0f;
-            for(k = 0; k < 4; k++){
-                tmp += var_s0[i][k] * sp34[k][j];
+    for(row = 0; row < 4; row++, arg0 = &arg0->m[1][0])
+    {
+        for(col = 0; col < 4; col++)
+        {
+            sum = 0.0;
+            for(i = 0; i < 4; i++)
+            {
+                sum += reinterpret_cast(f32, arg0->m[0][i]) * reinterpret_cast(f32, D_80282FD0->m[i][col]);
             }
-            sp38[i][j] = tmp;
+            prod[row][col] = sum;
         }
     }
-    func_80253010(sp34, &sp38, sizeof(Mtx));
+    func_80253010(D_80282FD0, prod, sizeof(Mtx));
 }
-#endif
 
 void func_802515D4(f32 arg0[3][3]) {
     f32 var_f0;
@@ -163,7 +158,26 @@ void func_80251878(f32* arg0) {
     D_80282FD0 = var_a2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_13990/func_802519C8.s")
+void func_802519C8(Mtx * arg0, Mtx * arg1) {
+    s32 row;
+    s32 col;
+    Mtx * dst = (D_80282FD0 + 1);
+    
+    for (row = 0; row < 4; row++, arg1 = &arg1->m[1][0])
+    {
+        for (col = 0; col < 4; col++)
+        {
+            reinterpret_cast(f32, dst->m[row][col]) =
+            (
+                reinterpret_cast(f32, arg1->m[0][0]) * reinterpret_cast(f32, arg0->m[0][col]) +
+                reinterpret_cast(f32, arg1->m[0][1]) * reinterpret_cast(f32, arg0->m[1][col]) +
+                reinterpret_cast(f32, arg1->m[0][2]) * reinterpret_cast(f32, arg0->m[2][col]) +
+                reinterpret_cast(f32, arg1->m[0][3]) * reinterpret_cast(f32, arg0->m[3][col])
+            );
+        }
+    }
+    D_80282FD0 = (dst + 0);
+}
 
 //mlMtx
 void mlMtxIdent(void){
