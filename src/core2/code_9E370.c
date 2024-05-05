@@ -1774,27 +1774,23 @@ typedef struct {
     Actor *actor_save_state[];
 }ActorListSaveState;
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_9E370/func_8032A09C.s")
-#else
-void func_8032A09C(s32 arg0, s32 arg1) {
-    ActorListSaveState *var_s1 = (s32)arg1;
+void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
+    Actor **temp_v1;
+    s32 pad;
     Actor *var_s0;
-    u32 var_s2;
-    u32 var_s3;
-    s32 temp_a0;
+    Actor *temp_v0_6;
+    s32 var_s2;
     Actor **sp60;
     Actor **sp5C;
     s32 sp50[3];
-    Actor *temp_v0_6;
-
-
+    s32 var_s3;
+    
     spawnQueue_lock();
     if (suBaddieActorArray != NULL) {
         func_803283BC();
         var_s3 = 0;
-        var_s0 = var_s1->actor_save_state;
-        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--) {
+        var_s0 = arg1->actor_save_state;
+        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
             if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
                 var_s3 = var_s0->unk78_13;
             }
@@ -1807,14 +1803,18 @@ void func_8032A09C(s32 arg0, s32 arg1) {
         }
 
         var_s3++;
+        
         sp60 = malloc(var_s3*sizeof(Actor *));
+        pad = sp5C + var_s2;
         sp5C = malloc(var_s3*sizeof(Actor *));
         for (var_s2 = 0; var_s2 < var_s3; var_s2++) {
-                    sp60[var_s2] = 0;
-                    sp5C[var_s2] = 0;
+            *(u32*)&sp60[var_s2] = 0; 
+            *(u32*)&sp5C[var_s2] = 0;
         }
-        var_s0 = var_s1->actor_save_state;
-        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--) {
+
+       
+        var_s0 = arg1->actor_save_state;
+        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
             if (var_s0->unk78_13 != 0) {
                 sp5C[var_s0->unk78_13] = var_s0;
             }
@@ -1824,34 +1824,39 @@ void func_8032A09C(s32 arg0, s32 arg1) {
             if ((var_s0->unk78_13 != 0)) {
                 sp60[var_s0->unk78_13] = var_s0;
             }
-            var_s0++;
         }
 
         for(var_s2 = 1; var_s2 < var_s3; var_s2++){
-            if ((sp60[var_s2] != NULL) && (sp5C[var_s2] != NULL) && !sp5C[var_s2]->unkF4_22) {
-                actor_copy(sp5C[var_s2], sp60[var_s2]);
-                func_80329B68(sp60[var_s2]);
-                func_803299B4(sp60[var_s2]);
+            pad = sp5C + var_s2;       
+            temp_v1 = sp60 + var_s2;
+            if ((*temp_v1 != NULL) && (*(Actor **)pad != NULL) && !(*(Actor **)pad)->unkF4_22) {
+                var_s0 = *(Actor **)pad;
+                temp_v0_6 = *temp_v1;
+                actor_copy(var_s0, temp_v0_6);
+                func_80329B68(temp_v0_6);
+                func_803299B4(temp_v0_6);
             }
         }
         for(var_s2 = 1; var_s2 < var_s3; var_s2++){
-            if ((sp60[var_s2] != NULL) && !sp60[var_s2]->unk58_1 && (sp5C[var_s2] == NULL)) {
-                marker_despawn(sp60[var_s2]->marker);
-                sp60[var_s2] = NULL;
+            pad = sp5C + var_s2;       
+            temp_v1 = sp60 + var_s2;       
+            if ((*temp_v1 != NULL) && !(*temp_v1)->unk58_1 && (*(Actor **)pad == NULL)) {
+                marker_despawn((*temp_v1)->marker);
+                *temp_v1 = NULL;
             }
         }
 
-        var_s0 = var_s1->actor_save_state;
-        for(var_s2 = var_s1->cnt; var_s2 != 0; var_s2--){
+        var_s0 = arg1->actor_save_state;
+        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--){
             if (var_s0->unk78_13 == 0) {
                 sp50[0] = (s32) var_s0->position[0];
                 sp50[1] = (s32) var_s0->position[1];
                 sp50[2] = (s32) var_s0->position[2];
-                temp_v0_6 = func_8032811C(var_s0->modelCacheIndex, sp50, (s32) var_s0->yaw);
+                pad = var_s0->yaw;
+                temp_v0_6 = func_8032811C(var_s0->modelCacheIndex, (sp50), pad);
                 actor_copy(var_s0, temp_v0_6);
                 func_80329B68(temp_v0_6);
                 func_803299B4(temp_v0_6);
-                if(temp_v0_6);
             }
             var_s0++;
         }
@@ -1861,7 +1866,6 @@ void func_8032A09C(s32 arg0, s32 arg1) {
     }
     spawnQueue_unlock();
 }
-#endif
 
 void func_8032A5F8(void) {
     Actor *var_s0;
