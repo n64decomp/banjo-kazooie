@@ -495,41 +495,40 @@ s32 func_80341C78(s32 arg0[3]) {
     return -1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341D5C.s")
-#else
-s32 func_80341D5C(s32 arg0[3], s32 arg1[3]){
-    int i, j;
-    struct56s *a0;
-    f32 (*a2)[3];
-    f32 spC[3];
-    f32 sp0[3];
-
-    spC[0] = (f32)arg0[0];
-    spC[1] = (f32)arg0[1];
-    spC[2] = (f32)arg0[2];
-
-    sp0[0] = (f32)arg1[0];
-    sp0[1] = (f32)arg1[1];
-    sp0[2] = (f32)arg1[2];
-
-    for(i = 0; i < D_80371E78; i++){
-        a2 = D_80371E70[i]->unk8;
-        for(j = 0; j < D_80371E70[i]->unk0; j++){
-            if( spC[0] == a2[j][0]
-                && spC[1] == a2[j][1]
-                && spC[2] == a2[j][2]
-                && sp0[0] == a2[j +1][0]
-                && sp0[1] == a2[j +1][1]
-                && sp0[2] == a2[j +1][2]
-            ){
-                return i;
-            }
-        }
+s32 func_80341D5C(s32 arg0[3], s32 arg1[3])
+{
+  int i;
+  int j;
+  struct56s *a0;
+  f32 (*a2)[3];
+  f32 spC[3];
+  f32 sp0[3];
+  struct56s *new_var;
+  spC[0] = (f32) arg0[0];
+  spC[1] = (f32) arg0[1];
+  spC[2] = (f32) arg0[2];
+  sp0[0] = (f32) arg1[0];
+  sp0[1] = (f32) arg1[1];
+  sp0[2] = (f32) arg1[2];
+  for (i = 0; i < D_80371E78; i++)
+  {
+    a2 = a0 + 1;
+    new_var = D_80371E70[i];
+    a0 = new_var;
+    a2 = a0 + 1;
+    for (j = 0; j < new_var->unk0; j++)
+    {
+      if (((spC[0] == a2[j][0]) && (spC[1] == a2[j][1]) && (spC[2] == a2[j][2])) \
+          && ((sp0[0] == a2[j + 1][0]) && (sp0[1] == a2[j + 1][1]) && (sp0[2] == a2[j + 1][2])))
+      {
+        return i;
+      }
     }
-    return -1;
+
+  }
+
+  return -1;
 }
-#endif
 
 s32 func_80341EC4(f32 arg0[3]){
     s32 sp1C[3];

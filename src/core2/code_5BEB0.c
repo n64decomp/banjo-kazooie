@@ -94,27 +94,32 @@ void mapSavestate_save(enum map_e map){
 #define AS_BOOL(expr) ((expr)? TRUE : FALSE)
 
 void mapSavestate_apply(enum map_e map_id) {
-    s32 var_s0 = 0x1F;
-    u32* t;
-    u32 aligned_index;
+    s32 iBit = 0;
+    u32* flag_ptr;
+    u32* word_ptr;
+    ActorListSaveState *actor_list_ptr;
+    u32 bit_value;
 
     if(D_8037E650[map_id] == NULL)
         return;
 
-    t = reinterpret_cast(u32*, D_8037E650[map_id]);
-    mapSpecificFlags_setAll(*t);
-    var_s0++;
+    flag_ptr = reinterpret_cast(u32*, D_8037E650[map_id]);
+    mapSpecificFlags_setAll(*flag_ptr);
+    iBit += 8 * sizeof(u32);
     func_80308230(1);
     func_803083B0(-1);
-    
-    while (func_803083B0( AS_BOOL(((u32*)D_8037E650[map_id])[var_s0 >> 5] & (1 << (var_s0 & 0x1f)))) != -1) {
-        var_s0++;
+
+    while (
+        bit_value = AS_BOOL((((u32*)D_8037E650[map_id])[iBit >> 5] & (1 << (iBit & 0x1f)))), 
+        func_803083B0(bit_value) != -1
+    ) {
+        iBit++;
     }
     func_80308230(0);
 
-    aligned_index = ((var_s0 + ((1 << 7) - 1)) >> 7);
-    func_8032A09C(D_8037E650[map_id], (ActorListSaveState *)D_8037E650[map_id] + (aligned_index << 2));
-    free((void *)D_8037E650[map_id] );
+    actor_list_ptr = (ActorListSaveState *)D_8037E650[map_id] + (((iBit + (0x80 - 1)) >> 7) * 4);
+    func_8032A09C(D_8037E650[map_id], actor_list_ptr);
+    free((void*)D_8037E650[map_id] );
     D_8037E650[map_id] = NULL;
 }
 
