@@ -467,11 +467,11 @@ void func_8032DB2C(Cube *cube, NodeProp *arg1) {
     }
 }
 
-void func_8032DC70(void) {
+void func_8032DC70(s32 arg0) {
     NodeProp *sp1C;
     s32 temp_v0;
 
-    sp1C = func_803080C8();
+    sp1C = func_803080C8(arg0);
     if (sp1C != NULL) {
         func_8032DB2C(func_80308224(), sp1C);
     }

@@ -42,54 +42,47 @@ void mapSavestate_defrag_all(void){
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_5BEB0/mapSavestate_save.s")
-#else
-void mapSavestate_save(enum map_e map){
-    u32 wSize;
-    MapSavestate * sp38;
-    s32 iBit;
-    s32 bit_max;
-    s32 reg_s4;
-    u32* reg_v1;
-    u32* valPtr;
-    s32 i;
-
-      
-    wSize = 4;
-    if(D_8037E650[map])
-        free(D_8037E650[map]);
-      
-    D_8037E650[map] = sp38 = (MapSavestate *) malloc(4*sizeof(u32));
-
-    sp38->flags = mapSpecificFlags_getAll();
-    
-    iBit = 0x20;
-    func_80308230(1);
-    func_803083B0(-1);
-    
-    for(reg_s4 = func_803083B0(-2); reg_s4 != -1; reg_s4 = func_803083B0(-2, valPtr)){
-        if( !(iBit < wSize*sizeof(u32)*8)){
-            wSize += 4;
-             D_8037E650[map] = (MapSavestate *)realloc( D_8037E650[map], wSize*sizeof(u32));
-            reg_v1 = ((s32)D_8037E650[map] + wSize*sizeof(u32));
-            reg_v1[-1] = 0;
-            reg_v1[-2] = 0;
-            reg_v1[-3] = 0;
-            reg_v1[-4] = 0;
-        }
-        valPtr =  D_8037E650[map];
-        valPtr[(iBit >> 5)] = (reg_s4)
-            ? valPtr[(iBit >> 5)] | (1 << (iBit & 0x1f))
-            : valPtr[(iBit >> 5)] & ~(1 << (iBit & 0x1f));
-        
-        iBit++;
-        
+void mapSavestate_save(enum map_e map)
+{
+  u32 wSize;
+  s32 iBit;
+  s32 reg_s4;
+  u32 *valPtr;
+  int new_var;
+  wSize = 4;
+  if (D_8037E650[map] != 0)
+  {
+    free(D_8037E650[map]);
+  }
+  D_8037E650[map] = (MapSavestate *) malloc(4 * (sizeof(u32)));
+  valPtr = (u32 *) D_8037E650[map];
+  *valPtr = mapSpecificFlags_getAll();
+  iBit = 0x20;
+  func_80308230(1);
+  func_803083B0(-1);
+  for (reg_s4 = func_803083B0(-2); reg_s4 != (-1); reg_s4 = func_803083B0(-2))
+  {
+    new_var = sizeof(u32);
+    if (!(iBit < ((wSize * (sizeof(u32))) * 8)))
+    {
+      wSize += 4;
+      D_8037E650[map] = (MapSavestate *) realloc(D_8037E650[map], wSize * new_var);
+      valPtr = ((s32) D_8037E650[map]) + (wSize * new_var);
+      valPtr[-1] = 0;
+      new_var = 1;
+      valPtr[-2] = 0;
+      valPtr[-3] = 0;
+      if (1) if (1) if (1) if (1) if (1) if (1) if (1) ;
+      valPtr[-4] = 0;
     }
-    //if(sp38);
-     D_8037E650[map] = actors_appendToSavestate( D_8037E650[map],  (s32)D_8037E650[map] + 16*((iBit + 0x7F) >> 7));   
-}  
-#endif
+    valPtr = D_8037E650[map];
+    valPtr[iBit >> 5] = (reg_s4) ? (valPtr[iBit >> 5] | (1 << (iBit & 0x1f))) : (valPtr[iBit >> 5] & (~((1 ^ 0) << (iBit & 0x1f))));
+    iBit++;
+    wSize = wSize;
+  }
+
+  D_8037E650[map] = actors_appendToSavestate(D_8037E650[map], ((u32 *) D_8037E650[map]) + (4 * ((iBit + 0x7F) >> 7)));
+}
 
 #define AS_BOOL(expr) ((expr)? TRUE : FALSE)
 
