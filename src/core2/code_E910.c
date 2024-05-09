@@ -280,7 +280,7 @@ void func_80295C14(void){
     func_80298A84();
     stateTimer_update();
     func_8029E100();
-    func_8024E7C8();//controller_update
+    pfsManager_update();//controller_update
     func_8023E06C();
     func_80295448();
     func_8029B174();

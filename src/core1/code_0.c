@@ -144,7 +144,7 @@ void mainLoop(void){
         func_8023DCDC();
     
     if(!D_8027BEEC)
-        func_8024E7C8();
+        pfsManager_update();
     D_8027BEEC = 0;
     rumbleManager_80250C08();
 

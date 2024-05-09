@@ -156,7 +156,7 @@ void func_8024E71C(s32 controller_index, f32 dst[2]){
     }
 }
 
-void func_8024E7C8(void) {
+void pfsManager_update(void) {
     int j;
     int i;
     u32 sp5C;
@@ -335,7 +335,7 @@ void pfsManager_getStartReadData(void){
 
 void func_8024F1F0(void){
     osRecvMesg(&pfsManagerContPollingMsqQ, NULL, 1);
-    func_8024E7C8();
+    pfsManager_update();
 }
 
 void func_8024F224(void){
