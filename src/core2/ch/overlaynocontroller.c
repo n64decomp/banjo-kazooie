@@ -23,7 +23,7 @@ ActorInfo D_80368174 = {
 };
 
 /* .bss */
-ActorMarker *D_8037DE90;
+ActorMarker *chOverlayNoController_marker;
 
 /* .code */
 Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **vptr){
@@ -53,7 +53,7 @@ Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vt
 }  
 
 void chOverlayNoController_freeMethod(Actor *this){
-    D_8037DE90 = NULL;
+    chOverlayNoController_marker = NULL;
 }
 
 void chOverlayNoController_update(Actor *this) {
@@ -61,24 +61,24 @@ void chOverlayNoController_update(Actor *this) {
         this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
-        func_80328B8C(this, 1, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 1, 0.0f, 1);
         actor_playAnimationOnce(this);
         marker_setFreeMethod(this->marker, chOverlayNoController_freeMethod);
     }
     if (animctrl_isStopped(this->animctrl) != 0) {
-        func_80328B8C(this, 2, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         actor_loopAnimation(this);
     }
 }
 
 void __chOverlayNoController_spawn(void){
-    if(D_8037DE90 == NULL){
-        D_8037DE90 = func_8032813C(ACTOR_1DF_NO_CONTROLLER_OVERLAY, D_80368168, 0)->marker;
+    if(chOverlayNoController_marker == NULL){
+        chOverlayNoController_marker = func_8032813C(ACTOR_1DF_NO_CONTROLLER_OVERLAY, D_80368168, 0)->marker;
     }
 }
 
 void chOverlayNoController_spawn(s32 arg0, s32 arg1){
-    if(D_8037DE90 == NULL){
+    if(chOverlayNoController_marker == NULL){
         __spawnQueue_add_0(__chOverlayNoController_spawn);
     }
 }
@@ -86,7 +86,7 @@ void chOverlayNoController_spawn(s32 arg0, s32 arg1){
 void chOverlayNoController_func_802DD040(s32 arg0, s32 arg1) {
     ActorMarker *temp_a0;
 
-    temp_a0 = D_8037DE90;
+    temp_a0 = chOverlayNoController_marker;
     if (temp_a0 != 0) {
         func_80326310(marker_getActor(temp_a0));
     }

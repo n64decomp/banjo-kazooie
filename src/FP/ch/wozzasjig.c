@@ -51,7 +51,7 @@ void func_8038FF54(Actor *this){
         other = marker_getActor(this->unk100);
         if(this->state != 9){
             if(other->state == 9){
-                func_80328B8C(this, 9, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 9, 0.01f, 1);
                 actor_playAnimationOnce(this);
             }
             else{

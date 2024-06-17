@@ -76,7 +76,7 @@ void chtreasure_update(Actor *this){
             this->unk5C = animctrl_getAnimTimer(this->animctrl) *300.0; //radius of 300.0f
             if(animctrl_isStopped(this->animctrl)){
                 actor_loopAnimation(this);
-                func_80328AC8(this, 2);
+                subaddie_set_state_forward(this, 2);
                 this->marker->propPtr->unk8_3 = 1;
                 actor_collisionOn(this);
                 func_8030E878(SFX_3F2_UNKNOWN, randf2(1.2f, 1.3f), 20000, this->position, 200.0f, 1500.0f);

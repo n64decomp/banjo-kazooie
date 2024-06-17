@@ -79,10 +79,10 @@ f32 viewport_getYaw(void){
     return viewportRotation[1];
 }
 
-void func_8024C794(f32 *arg0, f32 *arg1, f32 *arg2){
-    *arg0 = viewportRotation[0];
-    *arg1 = viewportRotation[1];
-    *arg2 = viewportRotation[2];
+void func_8024C794(f32 *pitch, f32 *yaw, f32 *roll){
+    *pitch = viewportRotation[0];
+    *yaw = viewportRotation[1];
+    *roll = viewportRotation[2];
 }
 
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){

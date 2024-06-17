@@ -98,7 +98,7 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
         }
         break;
     }//L803874A8
-    func_80328A84(this, arg1);
+    subaddie_set_state(this, arg1);
 }
 
 int func_803874C4(void){

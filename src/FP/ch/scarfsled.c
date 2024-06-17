@@ -21,7 +21,7 @@ ActorInfo chScarfSled = {
 
 /* .code */
 void __chScarfSled_setState(Actor *this, s32 next_state){
-    func_80328A84(this, next_state);
+    subaddie_set_state(this, next_state);
     
     if(next_state == 2){
         mapSpecificFlags_set(0xB, TRUE);

@@ -5,6 +5,7 @@
 
 #include "prop.h"
 #include "enums.h"
+#include "core2/ba/physics.h"
 
 
 extern bool player_isInHorizontalRadius(f32[3], f32);
@@ -539,7 +540,7 @@ BKCollisionTri *func_8028EF48(void){
 }
 
 void player_getVelocity(f32 dst[3]){
-    _get_velocity(dst);
+    baphysics_get_velocity(dst);
 }
 
 f32 func_8028EF88(void){
@@ -683,7 +684,7 @@ void func_8028F3D8(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarke
 }
 
 void func_8028F408(f32 arg0[3]){
-    func_80297BC4(arg0);
+    baphysics_set_goto_position(arg0);
 }
 
 bool func_8028F428(s32 arg0, ActorMarker *marker) {

@@ -92,7 +92,7 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         timed_playSfx(1.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000);
         func_80324CFC(0.4f, COMUSIC_43_ENTER_LEVEL_GLITTER, 22000);
         func_80324D2C(4.5f, COMUSIC_43_ENTER_LEVEL_GLITTER);
-        func_80328B8C(this, 5, 0.79f, 1);
+        subaddie_set_state_with_direction(this, 5, 0.79f, 1);
         func_80326310(this);
         bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
         timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
@@ -144,13 +144,13 @@ void func_80387FD4(Actor *this){
             if (this->unkF4_8 == 1) {
                 func_8028F94C(2, this->position);
                 func_80311480(0xC86, 0xE, this->position, this->marker, func_80387E68, NULL);
-                func_80328B8C(this, 6, 0.79f, 1);
+                subaddie_set_state_with_direction(this, 6, 0.79f, 1);
             } else {
                 timed_playSfx(0.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000); //0.4f
                 timed_playSfx(1.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000); //1.4f
                 func_80324CFC(0.4f, COMUSIC_43_ENTER_LEVEL_GLITTER, 22000);
                 func_80324D2C(4.5f, COMUSIC_43_ENTER_LEVEL_GLITTER);
-                func_80328B8C(this, 5, 0.79f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.79f, 1);
                 if (this->unkF4_8 == 5) {
                     timedFunc_set_1(0.9f, (GenFunction_1) func_80387E40, (s32) this->marker);
                 } else {
@@ -172,7 +172,7 @@ void func_80387FD4(Actor *this){
     case 1:// L80388370
         this->unk60 += time_getDelta();
         if(0.7 <= this->unk60){
-            func_80328B8C(this, 2, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.0f, 1);
             func_80387C90(this);
             this->unk60 = 0.0f;
             func_80324D54(0.1f, SFX_D0_GRIMLET_SQUEAK, 1.0f, 0x7530, this->position, 0.0f, 1800.0f);
@@ -181,14 +181,14 @@ void func_80387FD4(Actor *this){
 
     case 2:// L80388400
         if(actor_animationIsAt(this, 0.62f)){
-            func_80328B8C(this, 3, 0.62f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.62f, 1);
         }
         break;
 
     case 3:// L80388434
         this->unk60 += time_getDelta();
         if( this->unk60 >= 0.13 + 0.7/4 * (5 - this->unkF4_8)){
-            func_80328B8C(this, 4, 0.62f, 1);
+            subaddie_set_state_with_direction(this, 4, 0.62f, 1);
             func_80387C90(this);
             this->unk60 = 0.0f;
             func_80324D54(0.3f, 0x406, 1.0f, 0x55f0, this->position, 0.0f, 1800.0f);
@@ -197,7 +197,7 @@ void func_80387FD4(Actor *this){
 
     case 4:// L8038850C
         if(actor_animationIsAt(this, 0.0f)){
-            func_80328B8C(this, 1, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.0f, 1);
         }
         break;
 

@@ -81,7 +81,7 @@ void func_8039217C(Actor *this) {
     switch(this->state){
         case 1: //L803921F4
             if (randf() < 0.01) {
-                func_80328A84(this, 2U);
+                subaddie_set_state(this, 2U);
             }
             break;
 
@@ -96,13 +96,13 @@ void func_8039217C(Actor *this) {
                 func_80392014(this, SFX_20_METAL_CLANK_1, 0.95f, 1.05f, 15000);
             }
             if (actor_animationIsAt(this, 0.999f)) {
-                func_80328A84(this, 1U);
+                subaddie_set_state(this, 1U);
             }
             break;
 
         case 3: //L803922FC
             if (randf() < 0.01) {
-                func_80328A84(this, 4U);
+                subaddie_set_state(this, 4U);
             }
             break;
 
@@ -114,29 +114,29 @@ void func_8039217C(Actor *this) {
                 func_80392014(this, SFX_9_SQUEAKY_TOY, 1.25f, 1.35f, 28000);
             }
             if (actor_animationIsAt(this, 0.999f)) {
-                func_80328A84(this, 3U);
+                subaddie_set_state(this, 3U);
             }
             break;
 
         case 5: //L803923C0
             if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
-                func_80328A84(this, 8U);
+                subaddie_set_state(this, 8U);
                 break;
             }
             if (mapSpecificFlags_get(9)) {
                 mapSpecificFlags_set(5, 0);
-                func_80328A84(this, 8U);
+                subaddie_set_state(this, 8U);
                 break;
             }
             if ((randf() < 0.1) || mapSpecificFlags_get(5)) {
                 this->unk38_0 = mapSpecificFlags_get(5);
                 this->unk60 = randf2(2.0f, 4.0f);
-                func_80328A84(this, 6U);
+                subaddie_set_state(this, 6U);
                 func_803920E0(this, SFX_134_FREEZING_SHIVER, 1.1f, 1.2f, 15000, this->unk60);
                 break;
             }
             if (randf() < 0.1) {
-                func_80328A84(this, 7U);
+                subaddie_set_state(this, 7U);
             }
             break;
 
@@ -146,13 +146,13 @@ void func_8039217C(Actor *this) {
                 break;
             }
             if (actor_animationIsAt(this, 0.999f) || (mapSpecificFlags_get(5) != this->unk38_0)) {
-                func_80328A84(this, 5U);
+                subaddie_set_state(this, 5U);
             }
             break;
 
         case 7: //L8039255C
             if ((actor_animationIsAt(this, 0.999f)) || (mapSpecificFlags_get(5) != this->unk38_0)) {
-                func_80328A84(this, 5U);
+                subaddie_set_state(this, 5U);
             }
             break;
 

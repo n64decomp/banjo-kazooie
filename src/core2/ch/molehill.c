@@ -79,7 +79,7 @@ void func_802DA740(Actor *this){
             break;
         case 2: //L802DA7C4
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 1, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
             }
             else{
                 if(local->unk0 && actor_animationIsAt(this, 0.05f)){
@@ -89,7 +89,7 @@ void func_802DA740(Actor *this){
             break;
         case 3: //L802DA838
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 1, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
             }
             else if(local->unk0){ 
                 if(actor_animationIsAt(this, 0.3f)){

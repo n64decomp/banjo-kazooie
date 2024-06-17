@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 
 void func_80292E80(s32, f32);
@@ -9,8 +10,8 @@ void ncDynamicCamD_func_802BF2C0(f32);
 
 void func_802B6270(void){
     baanim_playForDuration_once(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802914CC(0xd);
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncDynamicCamD_func_802BF2C0(80.0f);
@@ -50,8 +51,8 @@ void func_802B63F8(void){
     func_8029C848(aCtrl);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
     animctrl_start(aCtrl, "bstimeout.c", 0x7e);
-    func_8029C7F4(1,1,3,7);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3,BA_PHYSICS_FREEZE);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802914CC(0xd);
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncDynamicCamD_func_802BF2C0(80.0f);

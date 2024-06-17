@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 void func_80291930(s32);
 
@@ -20,7 +21,7 @@ void func_80291930(s32 arg0){
             func_8029C984();
             bs_setState(BS_5A_LOADZONE);
             baModel_setVisible(FALSE);
-            func_802978DC(7);
+            baphysics_set_type(BA_PHYSICS_FREEZE);
             func_8029151C(6);
         }
     }

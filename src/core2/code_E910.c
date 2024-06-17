@@ -4,6 +4,7 @@
 #include "bsint.h"
 #include "bs_funcs.h"
 #include "core2/statetimer.h"
+#include "core2/ba/physics.h"
 
 
 u8 D_80363820 = 0;
@@ -200,7 +201,7 @@ void func_80295914(void){
     bs_clearState();
     func_80295DD0();
     func_80296C30();
-    func_802976E4();
+    baphysics_init();
     func_80297C78();
     pitch_reset();
     climbClear();
@@ -286,7 +287,7 @@ void func_80295C14(void){
     func_8029B174();
     func_8029533C(); //dive_cooldown_update
     bs_updateState();
-    func_80297744();
+    baphysics_update();
     func_8029858C();
     func_802932EC();
     func_80293F0C();

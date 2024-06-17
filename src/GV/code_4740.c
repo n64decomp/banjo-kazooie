@@ -104,7 +104,7 @@ void func_8038ADFC(f32 pos[3], s32 cnt){
 
 void func_8038AF10(Actor *this){
     animctrl_setSmoothTransition(this->animctrl, TRUE);
-    func_80328B8C(this, 3, 0.00001f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.00001f, 1);
     actor_loopAnimation(this);
     this->unk28 = 16.0f;
     this->unk1C[0] = 1.0f;
@@ -124,7 +124,7 @@ void func_8038AFF4(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     func_8032B4DC(this, other_marker, 0xC);
     actor_collisionOff(this);
-    func_80328B8C(this, ASSET_9_ANIM_BSDIE, 0.00001f, 1);
+    subaddie_set_state_with_direction(this, ASSET_9_ANIM_BSDIE, 0.00001f, 1);
     actor_playAnimationOnce(this);
     this->unk1C[0] = 0.0f;
     func_8030E878(SFX_D7_GRABBA_DEATH, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
@@ -189,7 +189,7 @@ void func_8038B124(Actor *this){
                 && func_803292E0(this)
             ){
                 animctrl_setSmoothTransition(this->animctrl, 0);
-                func_80328B8C(this, 2, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->yaw = (f32)func_80329784(this);
                 this->unk28 = 0.0f;
@@ -221,12 +221,12 @@ void func_8038B124(Actor *this){
         case 3: //L8038B494
             func_8030E2C4(this->unk44_31);
             if(func_80329530(this, 175)){
-                func_80328B8C(this, 4, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.00001f, 1);
                 actor_loopAnimation(this);
                 this->unk1C[0] = 1.0f;
             }
             else if(!func_80329530(this, 1100) || !func_8038AF78(this, 8.0f, 16.0f)){
-                func_80328B8C(this, 8, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 8, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk1C[0] = 1.0f;
                 func_802BB3DC(0, 6.0f, 0.92f);
@@ -249,7 +249,7 @@ void func_8038B124(Actor *this){
             this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 8.0f);
             if(this->unk38_31 >= 20){
-                func_80328B8C(this, 5, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk38_31 = 0;
                 this->unk1C[0] = 1.0f;
@@ -269,7 +269,7 @@ void func_8038B124(Actor *this){
                 func_8030E878(SFX_3_DULL_CANNON_SHOT, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
             }//L8038B734
             if(0.98 < animctrl_getAnimTimer(this->animctrl)){
-                func_80328B8C(this, 6, 0.99f, 0);
+                subaddie_set_state_with_direction(this, 6, 0.99f, 0);
                 actor_playAnimationOnce(this);
                 this->unk60 = 0.0f;
                 this->unk1C[0] = 1.0f;
@@ -278,7 +278,7 @@ void func_8038B124(Actor *this){
 
         case 6: //L8038B78C
             if(75.0f <= this->unk60){
-                func_80328B8C(this, 7, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 7, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk1C[0] = 1.0f;
             }
@@ -295,14 +295,14 @@ void func_8038B124(Actor *this){
 
         case 8: //L8038B820
             if(0.98 < animctrl_getAnimTimer(this->animctrl)){
-                func_80328B8C(this, 1, 0.00001f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.00001f, 1);
                 this->unk1C[0] = 0.0f;
                 this->unk1C[1] = 2.0f;
             }
             break;
 
         case 9: //L8038B870
-            func_80328A84(this, 0xA);
+            subaddie_set_state(this, 0xA);
             func_8038ACEC(this->position, 2);
             func_8034A174(this->marker->unk44, 5, GV_D_80391A70);
             func_8038ACEC(GV_D_80391A70, 2);

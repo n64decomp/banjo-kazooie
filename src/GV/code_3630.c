@@ -25,13 +25,13 @@ ActorInfo D_80390ED0 = { MARKER_A9_RUBEE, ACTOR_11B_RUBEE, ASSET_3DD_MODEL_RUBEE
 void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     func_8038E18C();
-    func_80328B8C(this, 3, 0.0f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.0f, 1);
 }
 
 void func_80389A60(Actor *this){
     func_80311480(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
     this->unk138_24 = TRUE;
-    func_80328A84(this, 5);
+    subaddie_set_state(this, 5);
 }
 
 void func_80389ABC(Actor *this){
@@ -75,7 +75,7 @@ void func_80389B1C(Actor *this){
                 func_80389ABC(this);
             }
             else if(actor_animationIsAt(this, 0.99f)){
-                func_80328B38(this, 2, 0.9f);
+                subaddie_maybe_set_state(this, 2, 0.9f);
             }
 
             if( actor_animationIsAt(this, 0.42f)
@@ -96,7 +96,7 @@ void func_80389B1C(Actor *this){
                 func_80389ABC(this);
             }
             else if(actor_animationIsAt(this, 0.99f)){
-                func_80328B38(this, 1, 0.4f);
+                subaddie_maybe_set_state(this, 1, 0.4f);
             }
             break;
         case 3: //L80389E14
@@ -106,12 +106,12 @@ void func_80389B1C(Actor *this){
             }
 
             if( actor_animationIsAt(this, 0.99f)){
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
             }
             break; 
         case 4: //L80389E64
             if(!func_8038E178())
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
             break; 
     }//L80389E80
 }

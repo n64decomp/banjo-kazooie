@@ -63,7 +63,7 @@ Struct_core2_C4320_0 *D_80386114; //current attract demo ptr
 s32 D_80386118;
 s32 D_8038611C;
 bool D_80386120;
-s32 D_80386124;
+s32 D_80386124; //stored_gameFile_index
 f32 D_80386128;
 
 /* .code */

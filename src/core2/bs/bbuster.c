@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 /*.data*/
 const f32 D_80364990 = 400.0f;
 const f32 D_80364994 = -800.0f;
@@ -62,11 +64,11 @@ void bsbbuster_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsbbuster.c", 0x81);
-    func_8029C7F4(1,1,3,6);
-    gravity_set(0.0f);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    baphysics_set_gravity(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     ml_vec3f_clear(sp20);
-    func_80297A0C(sp20);
+    baphysics_set_velocity(sp20);
     func_8029E070(1);
     func_802A02B4(0);
     D_8037D2B9 = 0;
@@ -101,16 +103,16 @@ void bsbbuster_update(void){
         case 1://8029FE24
             D_8037D2B0 -= time_getDelta();
             if(D_8037D2B0 <= 0.0f){
-                gravity_reset();
-                func_80297BF8(D_803649A8);
-                gravity_set(D_803649A4);
-                player_setYVelocity(D_803649A0);
+                baphysics_reset_gravity();
+                baphysics_set_terminal_velocity(D_803649A8);
+                baphysics_set_gravity(D_803649A4);
+                baphysics_set_vertical_velocity(D_803649A0);
                 D_8037D2B7 = 1;
                 D_8037D2BA = 2;
             }
             break;
         case 2://8029FEA0
-            if(D_8037D2B5 == 0 && _get_vertVelocity() < 0.0f){
+            if(D_8037D2B5 == 0 && baphysics_get_vertical_velocity() < 0.0f){
                 func_8030E760(SFX_45_KAZOOIE_HUGHH, 1.2f, 0x7530);
                 D_8037D2B5++;
             }
@@ -137,9 +139,9 @@ void bsbbuster_update(void){
                 func_802BB3DC( 0, 45.0f, 0.71f);
                 func_8029AE74(0);
                 func_8029FB30();
-                func_80297A0C(0);
-                gravity_set(0.0f);
-                func_80297970(0.0f);
+                baphysics_set_velocity(0);
+                baphysics_set_gravity(0.0f);
+                baphysics_set_target_horizontal_velocity(0.0f);
                 D_8037D2B7 = 2;
                 D_8037D2B8 = 1;
                 D_8037D2B0 = 0.09f;
@@ -160,11 +162,11 @@ void bsbbuster_update(void){
             D_8037D2B0 -= time_getDelta();
             if(D_8037D2B0 <= 0.0f){
                 if(D_8037D2BB){
-                    player_setYVelocity(D_80364990);
-                    gravity_set(D_80364994);
+                    baphysics_set_vertical_velocity(D_80364990);
+                    baphysics_set_gravity(D_80364994);
                 }else{
-                    player_setYVelocity(D_80364998);
-                    gravity_set(D_8036499C);
+                    baphysics_set_vertical_velocity(D_80364998);
+                    baphysics_set_gravity(D_8036499C);
                 }
             
                 animctrl_setSubRange(aCtrl, 0.0f, 0.7299f);
@@ -196,8 +198,8 @@ void bsbbuster_update(void){
 }//L802A024C
 
 void bsbbuster_end(void){
-    gravity_reset();
-    func_80297B94();
+    baphysics_reset_gravity();
+    baphysics_reset_terminal_velocity();
     func_8029E070(0);
     D_8037D2B7 = 0;
     D_8037D2B8 = 0;

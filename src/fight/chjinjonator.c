@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern f32 func_8038C288(void);
-extern void func_80328B8C(Actor *, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80324CFC(f32, s32, s32);
 extern void func_802F9E44(s32, f32, f32, f32, f32);
 extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
@@ -132,7 +132,7 @@ void chjinjonator_spawnAttackParticles(Actor *this, s32 arg1){
 
 void chjinjonator_803903C4(Actor *this){
     animctrl_setSmoothTransition(this->animctrl, FALSE);
-    func_80328B8C(this, 7, 0.001f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.001f, 1);
     actor_loopAnimation(this);
 }
 
@@ -183,7 +183,7 @@ void chjinjonator_update(Actor *this){
             animctrl_setAnimTimer(this->animctrl, 0.0f);
             this->unk60 -= sp58;
             if(this->unk60 < 0.0){
-                func_80328B8C(this, 2, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 actor_playAnimationOnce(this);
             }
             break;
@@ -199,7 +199,7 @@ void chjinjonator_update(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.999f)){
-                func_80328B8C(this, 3, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E394(this->unk44_31);
                 func_8030DA44(this->unk44_31);
@@ -216,7 +216,7 @@ void chjinjonator_update(Actor *this){
             }//L803907A0
 
             if(320.0f == this->position_y){
-                func_80328B8C(this, 4, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.001f, 1);
                 actor_loopAnimation(this);
                 local->unk4 = func_8038C288();
             }
@@ -224,7 +224,7 @@ void chjinjonator_update(Actor *this){
 
         case 4: //803907D4
             chjinjonator_80390278(this);
-            func_80328B8C(this, 5, 0.001f, 1);
+            subaddie_set_state_with_direction(this, 5, 0.001f, 1);
             actor_playAnimationOnce(this);
             break;
 
@@ -232,7 +232,7 @@ void chjinjonator_update(Actor *this){
             chjinjonator_80390278(this);
             if(actor_animationIsAt(this, 0.998f)){
                 animctrl_setSmoothTransition(this->animctrl, FALSE);
-                func_80328B8C(this, 6, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 6, 0.0001f, 1);
                 actor_loopAnimation(this);
                 if(this->unk44_31 == 0){
                     local->unk18 = 0.1f;
@@ -314,7 +314,7 @@ void chjinjonator_update(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.999f)){
-                func_80328B8C(this, 0xA, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 0xA, 0.001f, 1);
                 actor_loopAnimation(this);
                 local->unk20 = 0xE;
             }
@@ -332,7 +332,7 @@ void chjinjonator_update(Actor *this){
 
             if(local->unk20 <= 0){
                 s32 text_id;
-                func_80328B8C(this, 0xB, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 0xB, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 func_802BB41C(0);
                 text_id = 0x115e + randi2(0,5);
@@ -345,7 +345,7 @@ void chjinjonator_update(Actor *this){
                 FUNC_8030E624(SFX_17B_AIRPLANE_FALLING, 1.0f, 32000);
                 FUNC_8030E624(SFX_147_GRUNTY_SPELL_ATTACK_2, 1.0f, 32000);
                 animctrl_setSmoothTransition(this->animctrl, 0);
-                func_80328B8C(this, 0xC, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 0xC, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 this->velocity[2] = 0.0f;
                 this->velocity[1] = 0.0f;
@@ -389,10 +389,10 @@ void chjinjonator_attack(ActorMarker *marker, s32 hit_count, bool mirrored) {
     animctrl_setSmoothTransition(temp_s0->animctrl, 1);
     actor_playAnimationOnce(temp_s0);
     if (&D_8039203C[hit_count] >= D_80392060) {
-        func_80328B8C(temp_s0, 9, 0.001f, 1);
+        subaddie_set_state_with_direction(temp_s0, 9, 0.001f, 1);
         return;
     }
-    func_80328B8C(temp_s0, 8, 0.001f, 1);
+    subaddie_set_state_with_direction(temp_s0, 8, 0.001f, 1);
     animctrl_setDuration(temp_s0->animctrl, (f32) (1.75 - 0.11 * local->unk24));
 }
 

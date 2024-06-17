@@ -47,7 +47,7 @@ void chCollectible_setState(Actor *arg0, s32 next_state){
             actor_collisionOn(arg0);
             break;
     }
-    func_80328A84(arg0, next_state);
+    subaddie_set_state(arg0, next_state);
 }
 
 void func_802D8C98(Actor *this, s32 arg1) {

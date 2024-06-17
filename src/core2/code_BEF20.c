@@ -119,8 +119,8 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
                 D_80385FE4 = 1;
             break;
         case ITEM_17_AIR:
-            sp30 = func_80301D24(oldVal);
-            sp2C = func_80301D24(sp28);
+            sp30 = fxairscore_time_to_count(oldVal);
+            sp2C = fxairscore_time_to_count(sp28);
             if(sp3C){
                 bs_checkInterrupt(0x11);
                 D_80385FE4 = 1;

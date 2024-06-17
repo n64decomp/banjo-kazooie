@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 /* .bss */
 u8 D_8037D5D0;
 
@@ -14,11 +16,11 @@ void func_802B9980(s32 arg0){
         case 1: //L802B99B8
             func_802BB3DC(0, 30.0f, 0.6f);
             func_8030E58C(SFX_82_METAL_BREAK, 0.8f);
-            player_setYVelocity(400.0f);
+            baphysics_set_vertical_velocity(400.0f);
             break;
         case 2: //L802B99F4
             func_802BB3DC(0, 10.0f, 0.6f);
-            player_setYVelocity(300.0f);
+            baphysics_set_vertical_velocity(300.0f);
             break;
         case 3: //L802B9A20
             func_8029E3C0(0, 0.01f);
@@ -45,7 +47,7 @@ void func_802B9AAC(void){
 
 void func_802B9ACC(void){
     baanim_playForDuration_once(ASSET_281_ANIM_WISHYWASHY_DOOOH, 40.0f);
-    func_8029C7F4(1, 1, 3, 2);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
     func_802900B4();
     func_802B9980(0);
 }

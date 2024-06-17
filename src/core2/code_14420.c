@@ -4,6 +4,7 @@
 #include "core2/yaw.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
@@ -623,12 +624,12 @@ void func_8029C22C(void) {
         return;
 
     D_80364620 = D_80364620 ? FALSE : TRUE;
-    if (_get_horzVelocity() > 100.0f) {
+    if (baphysics_get_horizontal_velocity() > 100.0f) {
         if (D_80364620) {
-            func_80292864(func_80297A7C() - 20.0f, 20.0f);
+            func_80292864(baphysics_get_target_yaw() - 20.0f, 20.0f);
         }
         else{
-            func_80292864(func_80297A7C() + 20.0f, 20.0f);
+            func_80292864(baphysics_get_target_yaw() + 20.0f, 20.0f);
         }
     }
 }
@@ -660,7 +661,7 @@ void func_8029C3E8(f32 arg0, f32 arg1) {
     f32 sp28;
 
     _player_getPosition(sp30);
-    sp28 = ml_map_f(_get_horzVelocity(), 0.0f, 1000.0f, arg0, arg1);
+    sp28 = ml_map_f(baphysics_get_horizontal_velocity(), 0.0f, 1000.0f, arg0, arg1);
     sp2C = player_getYaw();
     func_802589E4(sp3C, sp2C, sp28);
     sp3C[1] = 0.0f;
@@ -764,11 +765,11 @@ enum bs_e func_8029C780(void){
     return BS_5_JUMP;
 }
 
-void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s32 arg2, s32 arg3){
+void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s32 arg2, BaPhysicsType arg3){
     baanim_setUpdateType(arg0);
     yaw_setUpdateState(yaw_state);
     func_8029957C(arg2);
-    func_802978DC(arg3);
+    baphysics_set_type(arg3);
 }
 
 void func_8029C834(enum map_e map_id, s32 exit_id){

@@ -257,7 +257,7 @@ void *func_802F2AEC(void) {
     }
     temp_v0->unk0 = 0;
     temp_v0->unk4 = 0;
-    D_80380A58 = heap_get_size() - func_8025496C();
+    D_80380A58 = heap_get_size() - heap_get_occupied_size();
     return temp_v0;
 }
 
@@ -302,7 +302,7 @@ void func_802F2D8C(Struct64s *arg0) {
     Struct65s *var_s0;
 
     if ((arg0 != NULL) && (arg0->unk4 != 0)) {
-        D_80380A58 = heap_get_size() - func_8025496C();
+        D_80380A58 = heap_get_size() - heap_get_occupied_size();
         for(var_s0 = arg0->unk0; var_s0 < arg0->unk0 + arg0->unk4; var_s0++){
             if (var_s0->unk23 & 1) {
                 if (var_s0->unk10(var_s0->unk0, (f32)var_s0->unk20, var_s0->unkC) == 0) {

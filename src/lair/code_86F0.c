@@ -369,7 +369,7 @@ void func_8038F350(Actor *this, s32 next_state){
         this->unk60 = 3.0f;
             break;
     }
-    func_80328A84(this, next_state);
+    subaddie_set_state(this, next_state);
 }
 
 

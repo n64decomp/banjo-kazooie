@@ -328,7 +328,7 @@ s32 func_80334ECC(void) {
         func_8033E1E0();
         func_802F11E8();
         animCache_update();
-        func_80288834();
+        animBinCache_update();
         ncCamera_update();
         func_803045D8();
         func_80332E08();

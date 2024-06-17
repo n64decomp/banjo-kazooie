@@ -35,7 +35,7 @@ void __chClam_func_803863F0(enum sfx_e sfx_id, f32 arg1, s32 arg2, f32 position[
 }
 
 void __chClam_func_80386454(Actor *this){
-    func_80328B8C(this, 1, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
     actor_loopAnimation(this);
     animctrl_setDuration(this->animctrl, randf2(1.9f, 2.1f));
 }
@@ -286,7 +286,7 @@ void chClam_update(Actor *this){
             if(this->position_y <= sp48 + 15.0f && sp48 - 15.0f <= this->position_y){
                 this->position_y = sp48;
                 this->unk38_31 = sp44;
-                func_80328B8C(this, 3, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.01f, 1);
                 actor_loopAnimation(this);
                 this->velocity_x = 0.0f;
                 animctrl_setDuration(this->animctrl, 0.6f);
@@ -298,7 +298,7 @@ void chClam_update(Actor *this){
     switch(this->state){
         case 1://L80387170
             if(__chClam_rotateTowardTarget(this, 140)){
-                func_80328B8C(this, 2, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 animctrl_setDuration(this->animctrl, 1.0f);
                 __chClam_func_803863F0(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);

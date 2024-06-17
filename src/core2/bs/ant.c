@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/yaw.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 void func_80293D48(f32,f32);
 
@@ -41,10 +42,10 @@ void func_8029E48C(void){
     f32 sp1C = func_8029B30C();
 
     if(func_8029B300() == 0){
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
-        func_80297970(ml_interpolate_f(sp1C, D_80364960, D_80364964));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364960, D_80364964));
     }
 }
 
@@ -79,8 +80,8 @@ int bsant_inSet(s32 move_indx){
 void bsant_idle_init(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 1.2f);
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,YAW_STATE_1_DEFAULT,1,BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     miscflag_set(3);
@@ -115,7 +116,7 @@ void bsant_idle_end(void){
 void bsant_walk_init(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5F_ANIM_BSANT_WALK, 0.8f);
-    func_8029C7F4(2,YAW_STATE_1_DEFAULT,1,2);
+    func_8029C7F4(2, YAW_STATE_1_DEFAULT,1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364960, D_80364964, D_80364968, D_8036496C);
     func_802900B4();
 }
@@ -133,7 +134,7 @@ void bsant_walk_update(void){
     if(animctrl_isAt(aCtrl, 0.2781f))
         func_8029E448(1);
 
-    if(func_8029B300() == 0 && func_80297C04(1.0f))
+    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_35_ANT_IDLE;
 
     if(func_8028B094())
@@ -161,14 +162,14 @@ void bsant_jump_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsant.c", 0x17c);
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,6);
+    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_8029E48C();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364970);
-    gravity_set(D_80364974);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364970);
+    baphysics_set_gravity(D_80364974);
     func_8029E3E0();
     D_8037D294 = 0;
 }
@@ -180,10 +181,10 @@ void bsant_jump_update(void){
     f32 sp1C[3];
 
     func_8029E48C();
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
 
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
-        gravity_reset();
+        baphysics_reset_gravity();
 
     switch(D_8037D294){
         case 0://L8029EA88
@@ -213,7 +214,7 @@ void bsant_jump_update(void){
             break;
     }//L8029EB38
     if(func_8028B2E8()){
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
         if(func_8029B300() > 0)
             sp2C = BS_ANT_WALK;
 
@@ -225,7 +226,7 @@ void bsant_jump_update(void){
 }
 
 void bsant_jump_end(void){
-    gravity_reset();
+    baphysics_reset_gravity();
     func_8029E4EC();
 }
 
@@ -239,7 +240,7 @@ void bsant_fall_init(void){
     animctrl_setStart(aCtrl, 0.4423f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
     animctrl_start(aCtrl, "bsant.c", 0x208);
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,6);
+    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     D_8037D294 = 0;
 }
 
@@ -252,7 +253,7 @@ void bsant_fall_update(void){
     if(D_8037D298)
         func_8029E48C();
 
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     switch(D_8037D294){
         case 0:
             if(func_8028B254(0x5A)){
@@ -300,12 +301,12 @@ static void __bsant_recoil_init(int take_damage){
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(200.0f);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,2,3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(200.0f);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
     func_80292E48();
     D_8037D294 = 0;
@@ -336,7 +337,7 @@ static void __bsant_recoil_update(void){
 
 static void __bsant_recoil_end(void){
     func_80297CA8();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
     func_80292EA4();
     func_8029E4EC();
@@ -387,12 +388,12 @@ void bsant_die_init(void){
     D_8037D290 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(D_8037D290);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,2,3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(D_8037D290);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xd);
     ncDynamicCamD_func_802BF2C0(30.0f);
@@ -406,7 +407,7 @@ void bsant_die_init(void){
 void bsant_die_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    func_80297970(D_8037D290);
+    baphysics_set_target_horizontal_velocity(D_8037D290);
     func_80299628(0);
     switch(D_8037D294){
         case 0://L8029F270
@@ -440,7 +441,7 @@ void bsant_die_update(void){
 
 void bsant_die_end(void){
     func_8024BD08(0);
-    gravity_reset();
+    baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
@@ -450,8 +451,8 @@ void bsant_die_end(void){
 void func_8029F398(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 2.0f);
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }

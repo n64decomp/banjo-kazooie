@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
+
 
 ActorMarker *bssled_gSledMarker;
 
@@ -25,8 +27,8 @@ void func_802B3F60(void){
 void bssled_init(void){
     func_802B3F20();
     baanim_playForDuration_loopSmooth(ASSET_228_ANIM_BANJO_SLED, 1.8f);
-    func_8029C7F4(1, 1, 3, 7);
-    func_80297970(0.0f);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_FREEZE);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_80294A8C(0);
     func_80294378(6);
 }

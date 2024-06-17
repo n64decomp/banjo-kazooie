@@ -191,7 +191,7 @@ f32 MMM_func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
                 this->unk1C[1] = 11.0f;
                 break;
             case 3:
-                func_80328A84(this, 5);
+                subaddie_set_state(this, 5);
                 break;
             }
             func_8030E878(SFX_82_METAL_BREAK, randf2(0.93f, 1.07f), 0x7FF8, this->position, 100.0f, 900.0f);
@@ -290,7 +290,7 @@ void func_80388BDC(Actor *this) {
     if (!this->unk16C_4) {
         if (this->yaw != 0.0f) {
             this->unk60 = 0.5f;
-            func_80328A84(this, 7);
+            subaddie_set_state(this, 7);
             this->unk38_31 = 1;
             this->yaw = 270.0f;
         } else {
@@ -305,7 +305,7 @@ void func_80388BDC(Actor *this) {
         this->yaw = 0.0f;
         if(mapSpecificFlags_get(0)) {
             func_802BAFE4(0x21);
-            func_80328A84(this, 6);
+            subaddie_set_state(this, 6);
             func_80244BB0(0, 0x6A, 0x7FF8, 0.3f);
             mapSpecificFlags_set(2, 0);
             func_8025A6EC(COMUSIC_4_MMM_CLOCK_VERSION, -1);
@@ -316,7 +316,7 @@ void func_80388BDC(Actor *this) {
     case 6:
         func_80388B2C(this, - (((this->yaw == 0.0f) || (359.0 < this->yaw)) ? 0.023 : 1.09));
         if ((this->yaw <= 270.0f) && (this->yaw > 260.0f)) {
-            func_80328A84(this, 7U);
+            subaddie_set_state(this, 7U);
             this->yaw = 270.0f;
             func_8030E540(0x7F);
             func_80244C78(0);
@@ -339,14 +339,14 @@ void func_80388BDC(Actor *this) {
             } else {
                 func_802BAFE4(0x23);
             }
-            func_80328A84(this, 8);
+            subaddie_set_state(this, 8);
             func_80244BB0(0, 0x6A, 0x7FF8, 0.3f);
         }
         break;
     case 8:
         func_80388B2C(this, 1.3f);
         if ((this->yaw >= 0.0f) && (this->yaw < 10.0f)) {
-            func_80328A84(this, 1U);
+            subaddie_set_state(this, 1U);
             this->yaw = 0.0f;
             func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
             mapSpecificFlags_set(0, 0);

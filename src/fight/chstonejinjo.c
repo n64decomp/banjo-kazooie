@@ -4,7 +4,7 @@
 #include "fight.h"
 
 extern Actor *actorArray_findActorFromActorId();
-extern void func_80328B8C(Actor*, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor*, s32, f32, s32);
 extern f32 chbossjinjo_8038D268(void);
 
 void chstonejinjo_update(Actor *);
@@ -100,7 +100,7 @@ void chstonejinjo_update(Actor *this) {
             }
         }
         if (actor_animationIsAt(this, 0.999f)) {
-            func_80328B8C(this, 3, 0.99999f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.99999f, 1);
             actor_playAnimationOnce(this);
             func_80326310(this);
         }
@@ -116,7 +116,7 @@ void chstonejinjo_breakOpen(ActorMarker *marker){
     f32 sp24[3];
     
     if(actor->state != 2){
-        func_80328B8C(actor, 2, 0.0f, 1);
+        subaddie_set_state_with_direction(actor, 2, 0.0f, 1);
         actor_playAnimationOnce(actor);
         animctrl_setDuration(actor->animctrl, actor->unk1C[0]);
         SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor->marker);

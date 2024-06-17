@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
+
 
 enum bsdroneenter_state_e{
     BSDRONEENTER_SUBSTATE_0_UNINITIALIZED,
@@ -108,7 +110,7 @@ void bsDroneEnter_init(void) {
 
     func_8029BCF8(&anim_id, &anim_duration);
     baanim_playForDuration_loopSmooth(anim_id, anim_duration);
-    func_8029C7F4(1, 1, 3, 7);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_FREEZE);
     func_80294378(6);
     __bsDroneEnter_init();
     bsDroneEnterSubstate = BSDRONEENTER_SUBSTATE_0_UNINITIALIZED;

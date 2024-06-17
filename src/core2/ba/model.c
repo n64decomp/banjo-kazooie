@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/model.h"
+#include "core2/ba/physics.h"
 
 void func_80254008(void);
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
@@ -317,7 +318,7 @@ void baModel_80292284(f32 arg0[3], s32 arg1){
                     arg0[1] += sp44[1]; 
                     arg0[2] += sp44[2]; 
                 }
-                func_802976C0(sp38);
+                baphysics_get_position_change(sp38);
                 arg0[0] = arg0[0] + sp38[0];
                 arg0[1] = arg0[1] + sp38[1];
                 arg0[2] = arg0[2] + sp38[2];

@@ -76,7 +76,7 @@ void func_8035B1CC(ActorMarker *this_marker, ActorMarker *other_marker){
     sp30 = this->scale;
     func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
     func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    func_80328B8C(this, 6, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 6, 0.01f, 1);
     actor_playAnimationOnce(this);
     actor_collisionOff(this);
     func_80326310(this);
@@ -88,7 +88,7 @@ void func_8035B2C4(ActorMarker *this_marker, ActorMarker *other_marker){
     f32 sp30 = this->scale;
     func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
     func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    func_80328B8C(this, 6, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 6, 0.01f, 1);
     actor_playAnimationOnce(this);
     actor_collisionOff(this);
     func_8035AFE0(sp30, this->position, 8, ASSET_700_SPRITE_DUST, D_80372C6C);
@@ -160,21 +160,21 @@ void func_8035B56C(Actor *this){
 void func_8035B674(Actor *this){
     ActorLocal_Core2_D4050 *local = (ActorLocal_Core2_D4050 *)&this->local;
     
-    func_80328B8C(this, 1, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
     actor_loopAnimation(this);
     local->unk0 = randf2(1.0f, 4.5f);
     
 }
 
 void func_8035B6CC(Actor *this){
-    func_80328B8C(this, 2, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.01f, 1);
     actor_playAnimationOnce(this);
     this->unk28 = 1.0f;
     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
 }
 
 void func_8035B75C(Actor *this){
-    func_80328B8C(this, 3, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.01f, 1);
     actor_loopAnimation(this);
     this->unk28 = func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0.0 : 12.0;
     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
@@ -183,7 +183,7 @@ void func_8035B75C(Actor *this){
 void func_8035B824(Actor *this){
     ActorLocal_Core2_D4050 *local = (ActorLocal_Core2_D4050 *)&this->local;
 
-    func_80328B8C(this, 4, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 4, 0.01f, 1);
     actor_loopAnimation(this);
     func_80328CEC(this, (s32)this->yaw_ideal, 0xA, 0x1E);
     this->unk28 = 4.0f;
@@ -193,7 +193,7 @@ void func_8035B824(Actor *this){
 }
 
 void func_8035B8A8(Actor *this){
-    func_80328B8C(this, 5, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 5, 0.01f, 1);
     actor_loopAnimation(this);
     func_80328CEC(this, (s32)this->yaw_ideal, 0xE1, 0x87);
 }  
@@ -314,12 +314,12 @@ void func_8035BD48(Actor *this){
                 marker_despawn(this->marker);
             }
             else{//L8035BE04
-                func_80328B8C(this, 1, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.01f, 1);
                 actor_setOpacity(this, 0);
             }
         }
         else{//L8035BE2C
-            func_80328B8C(this, 3, 0.01f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.01f, 1);
             actor_setOpacity(this, 0xff);
         }
     }//L8035BE50
@@ -331,7 +331,7 @@ void func_8035BD48(Actor *this){
                 marker_despawn(this->marker);
             }
             else if(mapSpecificFlags_getClear(3)){
-                func_80328B8C(this, 3, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.01f, 1);
             }
             break;
         case 3: //L8035BECC
@@ -360,7 +360,7 @@ void func_8035BD48(Actor *this){
                     marker_despawn(this->marker);
                 }
                 else{
-                    func_80328B8C(this, 1, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
                     timedFunc_set_2(randf2(5.0f, 10.0f), mapSpecificFlags_set, 3, TRUE);
                 }
             }

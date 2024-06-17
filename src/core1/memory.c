@@ -141,7 +141,7 @@ void memcpy(void * dst, void *src, int size){
     }
 }
 
-void func_80254630(void * dst, void *src, int size){
+void wmemcpy(void * dst, void *src, int size){
     while(size > 0){
         *(u32*)dst = *(u32*)src;
         size -= 4;
@@ -150,22 +150,16 @@ void func_80254630(void * dst, void *src, int size){
     }
 }
 
-void func_80254658(u8* arg0, u8* arg1, s32 arg2) {
-    if(arg0 < arg1){
-        if(arg2--){
-            do{
-                *(arg0++) = *(arg1++);
-                
-            }while(arg2--);
+void memmove(u8* dst, u8* src, s32 n) {
+    if(dst < src){ //copy
+        while(n--){
+            *(dst++) = *(src++);
         }
-    }else{
-        arg0 += arg2 -1;
-        arg1 += arg2 -1;
-        if(arg2--){
-            do{
-                *(arg0--) = *(arg1--);
-                    
-            }while(arg2--);
+    }else{ //copy backwards to avoid data lose
+        dst += n -1;
+        src += n -1;
+        while(n--){
+            *(dst--) = *(src--);
         }
     }
 }
@@ -244,11 +238,11 @@ void func_80254908(void){
     }
 }
 
-u32 _heap_get_occupied_size(void){
+static u32 _heap_get_occupied_size(void){
     return heap_occupiedBytes;
 }
 
-u32 func_8025496C(void){
+u32 heap_get_occupied_size(void){
     return _heap_get_occupied_size();
 }
 
@@ -356,7 +350,7 @@ void *malloc(s32 size){
             animCache_flushStale();
 
         if(!func_80254B84(0))
-            func_8028873C(0);
+            animBinCache_flushStale(0); //nonpersistent anim
 
         if(!func_80254B84(0))
             func_8032AD7C(2);
@@ -377,7 +371,7 @@ void *malloc(s32 size){
                     func_802F1294(); //particleEmitters
                 
                 if(!func_80254B84(0))
-                    func_8028873C(1); //AnimationFileCache
+                    animBinCache_flushStale(1); //persistent anim
 
                 if(v1 = func_80254B84(0)){}
                 else
@@ -591,8 +585,8 @@ void *realloc(void *ptr, s32 size){
     return ptr;
 }
 
-u32 func_80255498(void){
-    return HEAP_SIZE - func_8025496C();
+u32 heap_get_free_size(void){
+    return HEAP_SIZE - heap_get_occupied_size();
 }
 
 s32 heap_findLargestEmptyBlock(s32 *size_ptr){

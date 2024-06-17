@@ -13,6 +13,10 @@ BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
 
+#define CH_BOTTLES_BONUS_PUZZLE_HEIGHT (4)
+#define CH_BOTTLES_BONUS_PUZZLE_WIDTH  (5)
+#define CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT (CH_BOTTLES_BONUS_PUZZLE_HEIGHT * CH_BOTTLES_BONUS_PUZZLE_WIDTH)
+
 /* .extern symbols??? */
 extern u8 D_8037DCC0[7];
 extern u8 D_8037DCC7;
@@ -74,7 +78,7 @@ ActorAnimationInfo chBottlesBonusAnimations[] ={
 
 f32 D_80368250 = 0.999388993f;
 
-s32 D_80368254[20] = {
+s32 D_80368254[CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT] = {
     0x3C, 0x3D, 0x3F, 0x40,
     0x42, 0x41, 0x43, 0x3A,
     0x32, 0x30, 0x2E, 0x3E,
@@ -106,37 +110,37 @@ Struct_core2_560F0_1 *D_8037DEB8;
 Struct_core2_560F0_1 *D_8037DEBC;
 Struct_core2_560F0_1 *D_8037DEC0;
 Struct_core2_560F0_1 *D_8037DEC4;
-f32 D_8037DEC8[20];
-f32 D_8037DF18[20];
+f32 D_8037DEC8[CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT];
+f32 D_8037DF18[CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT];
 s32 chBottleBonusPuzzleIndex;
 f32 D_8037DF70[3];
 f32 D_8037DF80[3];
-s32 D_8037DF90[20];
+s32 D_8037DF90[CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT];
 
 /* .code */
 void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
-    f32 sp24[3];
-    f32 sp18[3];
+    f32 vp_position[3];
+    f32 vp_rotation[3];
 
     func_8024E258();
     func_8024CE60(50.0f, 2000.0f);
     if (getGameMode() == GAME_MODE_A_SNS_PICTURE) {
-        sp18[0] = 0.0f;
-        sp18[1] = 0.0f;
-        sp18[2] = 0.0f;
-        sp24[0] = 0.0f;
-        sp24[1] = 0.0f;
-        sp24[2] = 400.0f;
+        vp_rotation[0] = 0.0f;
+        vp_rotation[1] = 0.0f;
+        vp_rotation[2] = 0.0f;
+        vp_position[0] = 0.0f;
+        vp_position[1] = 0.0f;
+        vp_position[2] = 400.0f;
     } else {
-        sp24[0] = 248.4125; 
-        sp24[1] = 328.9;
-        sp24[2] = -186.4;
-        sp18[0] = 0.0f;
-        sp18[1] = 270.0f;
-        sp18[2] = 0.0f;
+        vp_position[0] = 248.4125; 
+        vp_position[1] = 328.9;
+        vp_position[2] = -186.4;
+        vp_rotation[0] = 0.0f;
+        vp_rotation[1] = 270.0f;
+        vp_rotation[2] = 0.0f;
     }
-    viewport_setPosition(sp24);
-    viewport_setRotation(sp18);
+    viewport_setPosition(vp_position);
+    viewport_setRotation(vp_rotation);
     viewport_update();
     func_8024C904(gfx, mtx);
 }
@@ -153,7 +157,7 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     void *sp50;
 
     sp6C = marker_getActor(marker);
-    sp50 = func_8030C704();
+    sp50 = func_8030C704(); //grabs frame as texture?
     if ((sp50 == NULL) || (getGameMode() != GAME_MODE_8_BOTTLES_BONUS))
         return sp6C;
 
@@ -287,18 +291,18 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
     spD0 = func_8033DDB8();
     if (D_8037DEB0 == 0) {
         D_8037DEB0 = 1;
-        for(i = 0; i < 20; i++){
+        for(i = 0; i < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; i++){
             func_8033A57C(arg0, D_80368254[i], D_8037DEC4[i].unkC);
             boneTransformList_getBoneScale(arg0, D_80368254[i], D_8037DEC4[i].unk1C);
             chBottlesBonus_func_802DD778(arg0, i, D_8037DEC4[i].unk0);
-            chBottlesBonusCursor_func_802DF460(i + 20, chBottlesBonusMarker, D_8037DEC4[i].unk0);
+            chBottlesBonusCursor_func_802DF460(i + CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT, chBottlesBonusMarker, D_8037DEC4[i].unk0);
         }
     }
 
     if((actor->state == 4 || actor->state == 5)){
         if (D_8037DEB4 == 0) {
             D_8037DEB4 = 1;
-            for(i = 0; i < 20; i++){
+            for(i = 0; i < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; i++){
                 func_8033A57C(arg0, D_80368254[i], D_8037DEB8[i].unkC);
                 boneTransformList_getBoneScale(arg0, D_80368254[i], D_8037DEB8[i].unk1C);
                 chBottlesBonus_func_802DD778(arg0, i, D_8037DEB8[i].unk0);
@@ -315,7 +319,7 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
             }
         }
 
-        for(i = 0; i < 20; i++){
+        for(i = 0; i < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; i++){
             spD8[0] = 1.0f;
             spD8[1] = 1.0f;
             spD8[2] = 1.0f;
@@ -466,18 +470,18 @@ void chBottlesBonus_update(Actor *this) {
             func_8034CF74(local, 0, D_8037DEAC, 0xF0);
         }
         func_8028746C(this->animctrl, chBottlesBonus_func_802DD8AC);
-        for(phi_s0 = 0; phi_s0 < 0x14; phi_s0++){
+        for(phi_s0 = 0; phi_s0 < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; phi_s0++){
             func_8034DFB0(func_8034C2C4(this->marker, phi_s0 + 0x190), D_803682B4, D_803682A4, 0.0f);
         }
-        D_8037DEB8 = (Struct_core2_560F0_1 *) malloc(0x14*sizeof(Struct_core2_560F0_1));
-        D_8037DEBC = (Struct_core2_560F0_1 *) malloc(0x14*sizeof(Struct_core2_560F0_1));
-        D_8037DEC0 = (Struct_core2_560F0_1 *) malloc(0x14*sizeof(Struct_core2_560F0_1));
-        D_8037DEC4 = (Struct_core2_560F0_1 *) malloc(0x14*sizeof(Struct_core2_560F0_1));
+        D_8037DEB8 = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
+        D_8037DEBC = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
+        D_8037DEC0 = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
+        D_8037DEC4 = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
     }
     func_8034CF90(local, D_8037DEAC, 0xF0);
     sp48 = chBottlesBonusCursor_func_802E06B4() - 1;
     cursor_state = chBottlesBonusCursor_getState();
-    for(phi_s0_2 = 0; phi_s0_2 < 0x14; phi_s0_2++){
+    for(phi_s0_2 = 0; phi_s0_2 < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; phi_s0_2++){
         sp40 = D_8037DF90[phi_s0_2];
         temp_v0_2 = func_8034C2C4(this->marker, phi_s0_2 + 0x190);
         if ((phi_s0_2 == sp48) && (cursor_state == 1) && !chBottlesBonusCursor_func_802E0538(phi_s0_2)) {
@@ -506,7 +510,7 @@ void chBottlesBonus_update(Actor *this) {
                 func_8025A6EC(COMUSIC_98_BBONUS_PIECES_SHUFFLE, -1);
                 comusic_8025AB44(COMUSIC_95_BBONUS_A, 0, 2000);
                 func_8025AABC(COMUSIC_95_BBONUS_A);
-                func_80328B8C(this, 2, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_playAnimationOnce(this);
             }
             break;
@@ -535,7 +539,7 @@ void chBottlesBonus_update(Actor *this) {
                 }
             }
             break;
-        case 5:
+        case 5: //lose
             break;
     }//L802DE9A0
 }
@@ -550,7 +554,7 @@ void __chBottlesBonus_spawn(void){
     }
 }
 
-void chBottlesBonus_Spawn(s32 arg0, s32 arg1){
+void chBottlesBonus_spawn(s32 arg0, s32 arg1){
     if(chBottlesBonusMarker == NULL){
         __spawnQueue_add_0(__chBottlesBonus_spawn);
     }
@@ -579,7 +583,7 @@ s32 chBottlesBonus_getState(void){
     return actor->state;
 }
 
-f32 *chBottlesBonus_func_802DEAF8(s32 arg0){
+f32 *chBottlesBonus_get_piece_distance_vec4f(s32 arg0){ //returns distance vector of puzzle piece id
     return D_8037DEBC[arg0].unkC;
 }
 

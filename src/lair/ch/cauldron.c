@@ -80,7 +80,7 @@ enum file_progress_e chWarpCauldron_getPairedFileProgressFlagIndex(Actor *this){
 }
 
 void func_8038A704(Actor *this){
-    func_80328B8C(this, 3, 0.99f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.99f, 1);
 }
 
 void func_8038A730(Actor *this, f32 *arg1, enum sfx_e arg2, enum sfx_e arg3, u32 arg4) {
@@ -158,7 +158,7 @@ void func_8038AB90(Actor *this, s32 arg1, s32 arg2, enum sfx_e sfx_id, f32 sfx_t
             func_80324D2C(7.0f, COMUSIC_8C_JINJONATOR_POWERUP);
         }
         this->unk10_12 = 0;
-        func_80328AC8(this, arg1);
+        subaddie_set_state_forward(this, arg1);
         actor_playAnimationOnce(this);
         func_8028FCBC();
         if (sfx_id != SFX_0_BLOOP) {
@@ -235,7 +235,7 @@ void chWarpCauldron_update(Actor *this) {
                 this->unk38_31 = randi2(0, phi_v0 - sp4C);
             }
             this->scale = 1.8f;
-            func_80328B8C(this, 6, 0.99f, 1);
+            subaddie_set_state_with_direction(this, 6, 0.99f, 1);
             func_802D09B8(this, 2);
         }
         if (fileProgressFlag_get(chWarpCauldron_getFileProgressFlagIndex(this))) {
@@ -270,7 +270,7 @@ void chWarpCauldron_update(Actor *this) {
         case 1: //L8038B0F4
             if (func_8038A690(this)) {
                 func_8028F918(2);
-                func_80328AC8(this, 2);
+                subaddie_set_state_forward(this, 2);
                 this->unk38_0 = FALSE;
                 func_8038A96C(this, 1);
                 func_802BAFE4(D_80393620[this->unkF4_8 - 1].unk3);

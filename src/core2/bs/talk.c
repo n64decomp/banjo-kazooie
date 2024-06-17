@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 #include "core2/yaw.h"
 
 /* .bss */
@@ -26,8 +27,8 @@ void bstalk_init(void){
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(YAW_STATE_1_DEFAULT);
     func_8029957C(3);
-    func_802978DC(2);
-    func_80297970(0.0f);
+    baphysics_set_type(BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     bsTalkStayInState = TRUE;
 }
 

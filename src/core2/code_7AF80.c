@@ -2197,44 +2197,43 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
 #pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803083B0.s")
 #else
 s32 func_803083B0(s32 arg0) {
-    s32 temp_v0;
     s32 var_v0;
-    bool var_a2;
     Cube *var_s0;
     static s32 D_80382140;
     static Cube *D_80382144;
 
     if (arg0 == -1) {
-        D_80382144 = D_80381FA0.cube_list;
+        var_s0 = D_80381FA0.cube_list;
+        D_80382144 = var_s0;
         D_80382140 = 0;
         return 0;
     }
+   
     
     var_s0 = D_80382144;
     if (D_80382140 < D_80382144->prop2Cnt) {
-        temp_v0 = func_803082D8(var_s0, &D_80382140, (arg0 < 0) ^ 1, arg0 & 1);
+        if (D_80381FA0.cube_list && D_80381FA0.cube_list && D_80381FA0.cube_list );
+        var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
         if (D_80382140 != 0) {
-            return temp_v0;
-        }
-    }
-    D_80382140 = 0;
-loop_6:
-loop_7:
-    var_s0++;
-    if (var_s0 >= D_80381FA0.cube_list + D_80381FA0.cubeCnt) {
-        D_80382144 = var_s0;
-        return -1;
-    }
-    if (0 < var_s0->prop2Cnt) {
-        var_v0 = func_803082D8(var_s0, &D_80382140, (arg0 < 0) ^ 1, arg0 & 1);
-        if (D_80382140 != 0) {
-            D_80382144 = var_s0;
             return var_v0;
         }
-        goto loop_6;
     }
-    goto loop_7;
-    return -1;
+    
+    D_80382140 = 0;
+    while(D_80382140 == 0) {
+        do{
+            var_s0++;
+            if (var_s0 >= D_80381FA0.cube_list + D_80381FA0.cubeCnt) {
+                D_80382144 = var_s0;
+                return -1;
+            }
+        }while (0 >= var_s0->prop2Cnt);
+
+        var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
+
+    }
+    D_80382144 = var_s0;
+    return var_v0;
 }
 #endif
 

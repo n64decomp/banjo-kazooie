@@ -85,7 +85,7 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
     func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
-    func_80328A84(thisActor, 3);
+    subaddie_set_state(thisActor, 3);
     actor_playAnimationOnce(thisActor);
     this->collidable = 0;
     thisActor->unk124_6 = 0;
@@ -108,7 +108,7 @@ void chpinkegg_update(Actor *this){
         case 1:
             if(!((ActorLocal_PinkEgg *) &this->local)->unk4){
                 this->marker->collidable = 1;
-                func_80328A84(this,2);
+                subaddie_set_state(this,2);
                 
             }else{
                 ((ActorLocal_PinkEgg *) &this->local)->unk4--;

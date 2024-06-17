@@ -47,7 +47,7 @@ void __chXmasTree_80386F3C(void){
 }
 
 void __chXmasTree_80386F84(Actor * this){
-    func_80328A84(this, 2);
+    subaddie_set_state(this, 2);
     __chXmasTree_80386EF4(this, 0);
 }
 
@@ -123,7 +123,7 @@ void chXmasTree_update(Actor *this){
         case 2: // L80387294
             if(!mapSpecificFlags_get(2)) break;
 
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
             this->unk60 = 2.0f;
             func_8025A6EC(COMUSIC_61_XMAS_TREE_LIGHTS_UP, 28000);
             func_802BAFE4(0x1A);
@@ -148,7 +148,7 @@ void chXmasTree_update(Actor *this){
             }
             else{//L803873BC
                 if(func_802BB270()){
-                    func_80328A84(this, 4);
+                    subaddie_set_state(this, 4);
                     __chXmasTree_80386EF4(this, 1);
                     item_set(ITEM_0_HOURGLASS_TIMER, 3600 - 1);
                     item_set(ITEM_6_HOURGLASS, TRUE);
@@ -159,7 +159,7 @@ void chXmasTree_update(Actor *this){
 
         case 4: // L80387400
             if(mapSpecificFlags_get(3)){
-                func_80328A84(this, 6);
+                subaddie_set_state(this, 6);
                 __chXmasTree_80386EF4(this, 1);
                 item_set(ITEM_6_HOURGLASS, FALSE);
                 tmp_a0 = this->unk44_31;
@@ -172,7 +172,7 @@ void chXmasTree_update(Actor *this){
             }
             else{//L80387470
                 if(item_empty(ITEM_6_HOURGLASS)){
-                    func_80328A84(this, 5);
+                    subaddie_set_state(this, 5);
                     mapSpecificFlags_set(2, FALSE);
                     this->unk60 = 0.1f;
                     if(!func_8038BFA0()){

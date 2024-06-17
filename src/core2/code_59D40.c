@@ -69,7 +69,7 @@ void func_802E0CE0(Actor *this) {
                 }
             }
         }
-        func_80328B8C(this, 3, 0.0f, -1);
+        subaddie_set_state_with_direction(this, 3, 0.0f, -1);
     }
 }
 
@@ -84,7 +84,7 @@ bool func_802E0DC0(f32 arg0[3]){
 
 void func_802E0E88(Actor *this){
     this->unk28 = 2.0f;
-    func_80328B8C(this, 5, 0.0f, -1);
+    subaddie_set_state_with_direction(this, 5, 0.0f, -1);
     actor_playAnimationOnce(this);
 }
 
@@ -111,7 +111,7 @@ void func_802E0F60(ActorMarker *marker, ActorMarker *other){
     this = marker_getActor(marker);
     actor_collisionOff(this);
     FUNC_8030E8B4(SFX_179_GRUNTY_DAMAGE, 0.6f, 32750, this->position, 300, 3000);
-    func_80328B8C(this, 9, 0.0f, 1);
+    subaddie_set_state_with_direction(this, 9, 0.0f, 1);
     actor_playAnimationOnce(this);
 }
 
@@ -128,7 +128,7 @@ void func_802E1010(ActorMarker *marker, ActorMarker *other){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_80328B8C(this, 8, 0.0f, 1);
+    subaddie_set_state_with_direction(this, 8, 0.0f, 1);
     actor_playAnimationOnce(this);
 }
 
@@ -190,7 +190,7 @@ void chsnacker_update(Actor *this) {
     
     switch(this->state){
         case 1: //802E12C8
-            if (func_80328BD4(this, 2, 0.0f, 1, 0.03f) != 0) {
+            if (subaddie_maybe_set_state_position_direction(this, 2, 0.0f, 1, 0.03f) != 0) {
                 func_802E0CD0(this);
             }
             func_802E0CE0(this);
@@ -203,7 +203,7 @@ void chsnacker_update(Actor *this) {
             if (func_80329480(this) != 0) {
                 func_80328CEC(this, (s32) this->yaw, 0x5A, 0x96);
             }
-            func_80328BD4(this, 1, 0.0f, 1, 0.0075f);
+            subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.0075f);
             func_802E0CE0(this);
             break;
 
@@ -214,7 +214,7 @@ void chsnacker_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             func_80328FF0(this, 3.0f);
             if (func_80329480(this)) {
-                func_80328B8C(this, 4, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.0f, 1);
                 this->unk28 = 9.0f;
             }
             break;
@@ -237,7 +237,7 @@ void chsnacker_update(Actor *this) {
                 func_802E0CD0(this);
                 func_80328CEC(this, (s32) this->yaw_ideal, 0x87, 0xAF);
                 this->unk38_31 = 0x78;
-                func_80328B8C(this, 2, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
             }
             func_8032CA80(this, (D_8037E62C) ? 15 : 9);
@@ -246,7 +246,7 @@ void chsnacker_update(Actor *this) {
         case 8: //802E15BC
             if (animctrl_isStopped(this->animctrl)) {
                 func_802E0CD0(this);
-                func_80328B8C(this, 2, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
             }
             break;

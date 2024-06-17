@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
-
+#include "core2/ba/physics.h"
 /* .bss */
 f32 D_8037D5A0;
 u8 D_8037D5A4;
@@ -25,11 +25,11 @@ void bstwirl_init(void){
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_8029797C(yaw_getIdeal());
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    func_802978DC(3);
-    D_8037D5A0 = func_80297A64();
-    func_80297970(600.0f);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
+    D_8037D5A0 = baphysics_get_target_horizontal_velocity();
+    baphysics_set_target_horizontal_velocity(600.0f);
     func_80299CF4(SFX_32_BANJO_EGHEE, 1.0f, 0x6590);
     _bstwirlHitboxActive = TRUE;
     func_8029E3C0(0, 0.01f);
@@ -54,7 +54,7 @@ void bstwirl_update(void){
             }
             if(animctrl_isAt(aCtrl, 0.8011f)){
                 animctrl_setDuration(aCtrl, 2.5f);
-                func_80297970(0.0f);
+                baphysics_set_target_horizontal_velocity(0.0f);
                 _bstwirlHitboxActive = 0;
                 D_8037D5A4 = 3;
             }

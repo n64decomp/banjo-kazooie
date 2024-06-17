@@ -691,7 +691,7 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
     switch(phase_id)
     {
         case 0:
-            func_80328B8C(actor, 1, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 1, 0.0001f, 1);
             timed_setStaticCameraToNode(0.0f, 0);
             timed_exitStaticCamera(2.0f);
             timed_setStaticCameraToNode(2.0f, 1);
@@ -699,7 +699,7 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
             return;
 
         case 1:
-            func_80328B8C(actor, 2, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 2, 0.0001f, 1);
             func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, actor->position, 5000.0f, 12000.0f);
             local->unk5 = 0x0;
             actor->unk1C_x = D_803927D0[(local->unk5)][0];
@@ -717,7 +717,7 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
             return;
 
         case 2:
-            func_80328B8C(actor, 0xE, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 0xE, 0.0001f, 1);
             local->unk5 = 0x8;
             actor->unk1C_x = D_803927D0[(local->unk5)][0];
             actor->unk1C_y = D_803927D0[(local->unk5)][1];
@@ -727,7 +727,7 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
 
             
         case 3:
-            func_80328B8C(actor, 0x15, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 0x15, 0.0001f, 1);
             local->unk5 = 0xC;
             actor->unk1C_x = D_803927D0[(local->unk5)][0];
             actor->unk1C_y = D_803927D0[(local->unk5)][1];
@@ -736,7 +736,7 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
             return;
 
         case 4:
-            func_80328B8C(actor, 0x1C, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 0x1C, 0.0001f, 1);
             local->unk5 = 0x10;
             actor->unk1C_x = D_803927D0[(local->unk5)][0];
             actor->unk1C_y = D_803927D0[(local->unk5)][1];
@@ -906,7 +906,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
     sp40 = func_8023DB5C();
     sp3C = animctrl_getAnimTimer(this->animctrl);
     local->phase = 1;
-    func_80328B8C(this, next_state, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, next_state, 0.0001f, 1);
     actor_loopAnimation(this);
     func_80386600(this->marker, 0);
     if (next_state != 9) {
@@ -1201,7 +1201,7 @@ void chfinalboss_phase2_setState(Actor *this, s32 arg1){
     local = (ActorLocal_fight_180 *)&this->local;
     sp28 = func_8023DB5C();
     local->phase = 2;
-    func_80328B8C(this, arg1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
     actor_loopAnimation(this);
     switch (arg1) {
     case 14:
@@ -1382,7 +1382,7 @@ void chfinalboss_phase3_setState(Actor *this, s32 arg1) {
 
     local = (ActorLocal_fight_180 *)&this->local;
     local->phase = 3;
-    func_80328B8C(this, arg1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
     switch (arg1) {
     case 21:
         if((local->unk5 + 1) < 0x10) {
@@ -1584,7 +1584,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
     local = (ActorLocal_fight_180 *)&this->local;
     sp48 = animctrl_getAnimTimer(this->animctrl);
     local->phase = 4;
-    func_80328B8C(this, arg1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
     switch (arg1) {
     case 28:
         animctrl_setAnimTimer(this->animctrl, sp48);
@@ -1847,10 +1847,10 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
     }
 }
 
-void func_80328B8C(Actor *, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 void func_8038AC50(ActorMarker *arg0) {
-    func_80328B8C(marker_getActor(arg0), 0x24, 0.0001f, 1);
+    subaddie_set_state_with_direction(marker_getActor(arg0), 0x24, 0.0001f, 1);
 }
 
 void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
@@ -1863,7 +1863,7 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
     local = (ActorLocal_fight_180 *)&this->local;
     sp28 = 0x12;
     local->phase = 5;
-    func_80328B8C(this, next_state, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, next_state, 0.0001f, 1);
     switch (next_state) {
         case 35:
             func_80311480(randi2(0, 5) + 0x114F, 4, NULL, NULL, NULL, NULL);

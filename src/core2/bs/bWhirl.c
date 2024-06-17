@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 const f32 D_80364AD0 = 80.0f;
 const f32 D_80364AD4 = 425.0f;
@@ -19,9 +20,9 @@ u8 D_8037D3B4;
 void func_802AA400(void){
     f32 sp1C = func_8029B30C();
     if(!func_8029B300()){
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     }else{
-        func_80297970(ml_interpolate_f(sp1C, D_80364AD0, D_80364AD4));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364AD0, D_80364AD4));
     }
 }
 
@@ -79,8 +80,8 @@ void func_802AA58C(enum bs_e *arg0){
 
 void bsbwhirl_enter_init(void){
     baanim_playForDuration_onceSmooth(ASSET_22_ANIM_BSWHIRL_EXIT, 0.5f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_8029E070(1);
@@ -107,8 +108,8 @@ void bsbwhirl_enter_end(void){
 
 void bsbwhirl_stand_init(void){
     baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
 }
 
 void bsbwhirl_stand_update(void){
@@ -134,8 +135,7 @@ void bsbwhirl_stand_end(void){
 void bsbwhirl_walk_init(void){
     baanim_playForDuration_loopSmooth(ASSET_11_ANIM_BSWHIRL_WALK, 0.53f);
     baanim_setVelocityMapRanges(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
-    func_8029C7F4(2,1,1,2);
-
+    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
 }
 
 void bsbwhirl_walk_update(void){
@@ -145,7 +145,7 @@ void bsbwhirl_walk_update(void){
     func_8029AD28(0.97f, 3);
     func_802AA400();
 
-    if(!func_8029B300() && func_80297C04(1.0f))
+    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
         sp1C = BS_1B_WONDERWING_IDLE;
 
     if(button_released(BUTTON_Z))
@@ -180,15 +180,15 @@ void bsbwhirl_jump_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsbwhirl.c", 0x181);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3,BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802AA400();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364AE0);
-    gravity_set(D_80364AE4);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364AE0);
+    baphysics_set_gravity(D_80364AE4);
     func_80299B58(0.91f, 1.09f);
     D_8037D3B4 = 0;
 }
@@ -200,9 +200,9 @@ void bsbwhirl_jump_update(void){
 
     __bsbwhirl_spawnSparkle();
     func_802AA400();
-    _get_velocity(&sp1C);
+    baphysics_get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
-        gravity_reset();
+        baphysics_reset_gravity();
     
     switch(D_8037D3B4){
         case 0://L802AAB48
@@ -236,7 +236,7 @@ void bsbwhirl_jump_update(void){
 }
 
 void bsbwhirl_jump_end(void){
-    gravity_reset();
+    baphysics_reset_gravity();
     __bsbwhirl_end();
 }
 
@@ -252,7 +252,7 @@ void bsbwhirl_exit_init(void){
     animctrl_start(aCtrl, "bsbwhirl.c", 0x201);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     comusic_8025AB44(COMUSIC_25_USING_GOLD_FEATHERS, 0.0f, 0xFA0);
 }
 
@@ -285,8 +285,8 @@ void bsbwhirl_drone_end(void){
 
 void func_802AADBC(void){
     baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
 }
 

@@ -5,7 +5,7 @@
 
 
 extern void viewport_getPosition(f32 (*)[3]);
-extern void func_80328B8C(Actor *, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
@@ -208,7 +208,7 @@ void func_8038C840(Actor *this){
         case 1: //8038C92C
             animctrl_setAnimTimer(this->animctrl, 0.0f);
             if(this->unk60 < 0.0)
-                func_80328B8C(this, 2, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.001f, 1);
             else//L8038C974
                 this->unk60 -= sp74;
             
@@ -219,7 +219,7 @@ void func_8038C840(Actor *this){
                 func_8030E878(SFX_105_EYRIE_YAWN, randf2(0.95f, 1.05f), 32000, this->position, 1000.0f, 5000.0f);
             
             if(actor_animationIsAt(this, 0.999f)){
-                func_80328B8C(this, 3, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.001f, 1);
                 func_8030E878(0x3ee, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
             }
             break;  
@@ -289,14 +289,14 @@ void func_8038C840(Actor *this){
             
             if(sp48){
                 if(actor_animationIsAt(this, 0.96f)){
-                    func_80328B8C(this, 4, 0.0f, -1);
+                    subaddie_set_state_with_direction(this, 4, 0.0f, -1);
                     actor_playAnimationOnce(this);
                 }
             }
             else{//L8038CD68
                 if(actor_animationIsAt(this, 0.9f)){
                     animctrl_setSmoothTransition(this->animctrl, FALSE);
-                    func_80328B8C(this, 5, 0.001f, 1);
+                    subaddie_set_state_with_direction(this, 5, 0.001f, 1);
                     FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                     func_8034A174(this->marker->unk44, 0x1f, this->position);
@@ -356,7 +356,7 @@ void func_8038D014(Actor *this){
         this->alpha_124_19 = 0x7d;
         actor_setOpacity(this, this->alpha_124_19);
         this->scale = (f64)this->scale + this->scale;
-        func_80328B8C(this, 5, 0.001f, 1);
+        subaddie_set_state_with_direction(this, 5, 0.001f, 1);
         func_80343DEC(this);
     }//L8038D0B8
 

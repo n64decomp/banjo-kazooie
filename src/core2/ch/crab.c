@@ -50,14 +50,14 @@ void __chCrab_802CB078(Actor *this) {
                 && ( (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) || func_803292E0(this))
             ) {
                 this->unk28 = 0.0f;
-                func_80328A84(this, 3U);
+                subaddie_set_state(this, 3U);
             }
         }
     }
 }
 
 void __chCrab_802CB140(Actor *this) {
-    func_80328A84(this, 2U);
+    subaddie_set_state(this, 2U);
     __chCrab_802CB040(this);
     func_80328CEC(this, (s32) this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
@@ -70,7 +70,7 @@ void __chCrab_touch(ActorMarker *marker, ActorMarker *other){
     if ((this->state == 4) && func_803294F0(this, 80, func_80329784(this))) {
         FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 28000, this->position, 950, 1900);
         __chCrab_802CB140(this);
-        func_80328A84(this, 1);
+        subaddie_set_state(this, 1);
     }
 }
 
@@ -79,7 +79,7 @@ void __chCrab_ow(ActorMarker *marker, ActorMarker *other) {
 
     this = marker_getActor(marker);
     this->unk60 = 3.0f;
-    func_80328A84(this, 6);
+    subaddie_set_state(this, 6);
     actor_playAnimationOnce(this);
     if (marker->unk14_20 == MARKER_13_SNIPPET) {
         FUNC_8030E8B4(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
@@ -292,14 +292,14 @@ void chCrab_update(Actor *this) {
     }
     if (levelSpecificFlags_get(0xE)) {
         if ((this->state != 8) && (this->state != 9)) {
-            func_80328B8C(this, (this->unk138_24) ? 8 : 9, 0.0f, 1);
+            subaddie_set_state_with_direction(this, (this->unk138_24) ? 8 : 9, 0.0f, 1);
             this->unk138_24 = FALSE;
         }
     }
 
     switch(this->state){
         case 1: //L802CBE30
-            if (func_80328B38(this, 2, 0.03f)) {
+            if (subaddie_maybe_set_state(this, 2, 0.03f)) {
                 __chCrab_802CB040(this);
             }
             __chCrab_802CB078(this);
@@ -307,7 +307,7 @@ void chCrab_update(Actor *this) {
 
         case 9: //L802CBE6C
             if (!levelSpecificFlags_get(0xE)) {
-                func_80328B8C(this, 3, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }
             break;
 
@@ -318,7 +318,7 @@ void chCrab_update(Actor *this) {
             ) {
                 func_80328CEC(this, (s32) this->yaw, 90, 150);
             }
-            func_80328BD4(this, 1, 0.0f, 1, 0.0075f);
+            subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.0075f);
             __chCrab_802CB078(this);
             break;
 
@@ -326,7 +326,7 @@ void chCrab_update(Actor *this) {
             this->yaw_ideal = (f32) func_80329784(this);
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
                 this->unk28 = 12.0f;
             }
             break;
@@ -335,10 +335,10 @@ void chCrab_update(Actor *this) {
             this->yaw_ideal = func_80329784(this) + 90.0;
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
-                func_80328A84(this, 9);
+                subaddie_set_state(this, 9);
                 this->unk28 = 12.0f;
             } else if (!levelSpecificFlags_get(0xE)) {
-                func_80328B8C(this, 3, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }
             break;
 
@@ -355,7 +355,7 @@ void chCrab_update(Actor *this) {
         case 5: //L802CC0AC
             this->unk60 = MAX(0.0, this->unk60 - sp30);
             if (this->unk60 == 0.0f) {
-                func_80328A84(this, 7);
+                subaddie_set_state(this, 7);
                 actor_playAnimationOnce(this);
                 if (this->marker->unk14_20 == 0x16B) {
                     this->marker->unk14_20 = MARKER_13_SNIPPET;
@@ -371,7 +371,7 @@ void chCrab_update(Actor *this) {
                 if (this->unk60 == 0.0f) {
                     func_80326310(this);
                 } else {
-                    func_80328A84(this, 5);
+                    subaddie_set_state(this, 5);
                     actor_loopAnimation(this);
                 }
             }
@@ -379,7 +379,7 @@ void chCrab_update(Actor *this) {
 
         case 7: //L802CC1E8
             if (animctrl_isStopped(this->animctrl)) {
-                func_80328A84(this, 1);
+                subaddie_set_state(this, 1);
                 actor_loopAnimation(this);
             }
             break;

@@ -111,7 +111,7 @@ void func_8038A384(Actor *this){
         if( jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
             || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)
         ){
-            func_80328B8C(this, 2, randf2(0.0f, 0.9f), 1);
+            subaddie_set_state_with_direction(this, 2, randf2(0.0f, 0.9f), 1);
         }
     }//L8038A4E4
 
@@ -153,7 +153,7 @@ void func_8038A384(Actor *this){
                     break;
             }
             if(levelSpecificFlags_get(D_80391E80[sp3C].unk0)){
-                func_80328B8C(this, 2, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 if(sp38 == 0xc19){
                     func_80311480(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
                 }

@@ -31,7 +31,7 @@ Actor *chRaceSled_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void __chRaceSled_setState(Actor *this, s32 next_state){
     if(this->state != 1 || next_state != 1){
-        func_80328A84(this, next_state);
+        subaddie_set_state(this, next_state);
         switch(next_state){
             case 1: //L8038697C
                 this->unk10_12 = TRUE;

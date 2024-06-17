@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80328B8C(Actor *, s32, f32 , s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32 , s32);
 extern f32 func_80309B24(f32*);
 extern void func_80329904(ActorMarker*, s32, f32*);
 extern void func_80326310(Actor *);
@@ -50,7 +50,7 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
             func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
-        func_80328B8C(actorPtr, 6, 0.0f , -1);
+        subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);
         if(func_803463D4(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
@@ -128,9 +128,9 @@ void chJinjo_update(Actor * this){
         case 1:
             if(randf() < 0.015){
                 if(sp60){
-                    func_80328B8C(this, 3, 0.0f, -1);
+                    subaddie_set_state_with_direction(this, 3, 0.0f, -1);
                 }else{
-                    func_80328B8C(this, 2, 0.0f, -1);
+                    subaddie_set_state_with_direction(this, 2, 0.0f, -1);
                 }
                 actor_playAnimationOnce(this);
             }//L802CDF24
@@ -139,13 +139,13 @@ void chJinjo_update(Actor * this){
         case 2: /* 46FA0 802CDF30 3C053F7D */
         case 3:
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 1, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, -1);
             }
             break;
         
         case 4: /* 46FD8 802CDF68 3C053F7D */
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 1, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, -1);
             }else{//L802CDF9C
                 tmp_f0 = this->yaw;
                 if(sp66 >= 0){
@@ -165,7 +165,7 @@ void chJinjo_update(Actor * this){
         case 6:/* 47094 802CE024 02002025 */
             __chJinjo_802CDC9C(this, sp66);
             if(actor_animationIsAt(this, 0.0f) && --(local->unk0) == 0){
-                func_80328B8C(this, 7, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 7, 0.0f, -1);
                 actor_playAnimationOnce(this);
                 if(local->unk4){
                     sp40[0] = this->position_x;
@@ -270,14 +270,14 @@ void chJinjo_update(Actor * this){
 
             if(sp50){
                 if(actor_animationIsAt(this, 0.96f) || actor_animationIsAt(this, 0.99f)){
-                    func_80328B8C(this, 8, 0.0f, -1);
+                    subaddie_set_state_with_direction(this, 8, 0.0f, -1);
                     actor_playAnimationOnce(this);
                 }
             }
             break;
     }//L802CE5F0
     if(this->state < 4 &&  !(((sp66 >= 0)? sp66: -sp66) <= 0x1000)){
-        func_80328B8C(this, 4, 0.0f, -1);
+        subaddie_set_state_with_direction(this, 4, 0.0f, -1);
         actor_playAnimationOnce(this);
     }//L802CE630
     if(!func_803114B0()){

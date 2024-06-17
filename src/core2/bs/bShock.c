@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
-#include "variables.h"s
+#include "variables.h"
+
+#include "core2/ba/physics.h"
 
 /* .data */
 const f32 D_80364A70 = 1250.0f;
@@ -21,14 +23,14 @@ void bsbshock_charge_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
     animctrl_setPlaybackType(aCtrl,1);
     animctrl_start(aCtrl, "bsbshock.c", 0x61);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     func_8029E064(1);
     func_8029E070(1);
     func_80299BD4();
@@ -55,9 +57,9 @@ void bsbshock_charge_update(void){
         func_8029C348();
     }
     func_802B6FA8();
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
-        gravity_reset();
+        baphysics_reset_gravity();
     }
     
     switch(D_8037D381){
@@ -89,7 +91,7 @@ void bsbshock_charge_update(void){
             D_8037D380 = 0;
         }//L802A6CF4
         if(func_8028B2E8())
-            func_80297970(0.0f);
+            baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{//L802A6D18
         if(should_flap())
@@ -102,7 +104,7 @@ void bsbshock_charge_update(void){
         sp2C = BS_BSHOCK_JUMP;
     
     if(animctrl_isAt(aCtrl, 0.5551f)){
-        player_setYVelocity(180.0f);
+        baphysics_set_vertical_velocity(180.0f);
         baModel_80292158(0.0f);
         func_80298528(50.0f);
     }
@@ -132,16 +134,16 @@ void bsbshock_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
     animctrl_setPlaybackType(aCtrl,1);
     animctrl_start(aCtrl, "bsbshock.c", 0x13a);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
     
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364A70);
-    gravity_set(D_80364A74);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364A70);
+    baphysics_set_gravity(D_80364A74);
     func_8030E484(SFX_E_SHOCKSPRING_BOING);
     func_8029E064(1);
     func_8029E070(1);
@@ -157,12 +159,12 @@ void bsbshock_update(void){
     AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
     func_802B6FA8();
-    _get_velocity(sp20);
+    baphysics_get_velocity(sp20);
     if(animctrl_isAt(aCtrl, 0.7f))
         func_8030E484(SFX_53_BANJO_HUIII);
 
     if(button_released(BUTTON_A) && 0.0f < sp20[1])
-        gravity_reset();
+        baphysics_reset_gravity();
 
     if(D_8037D381 == 0){
         func_8029C348();
@@ -186,7 +188,7 @@ void bsbshock_update(void){
 
 void bsbshock_end(void){
     if(bs_getNextState() != BS_11_BPECK)
-        gravity_reset();
+        baphysics_reset_gravity();
 
     func_8029E064(0);
     func_8029E070(0);

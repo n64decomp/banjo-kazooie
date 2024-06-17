@@ -56,12 +56,12 @@ void func_8038F274(void){
 }
 
 void func_8038F2B8(Actor *this){
-    func_80328B8C(this, 3, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.02f, 1);
     actor_loopAnimation(this);
 }
 
 void func_8038F2F0(Actor *this){
-    func_80328B8C(this, 11, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 11, 0.02f, 1);
     actor_loopAnimation(this);
     func_8038F274();
 }
@@ -96,14 +96,14 @@ void func_8038F3F4(ActorMarker *marker){
 }
 
 void func_8038F41C(Actor *this){
-    func_80328B8C(this, 1, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.02f, 1);
     actor_loopAnimation(this);
 }
 
 void func_8038F454(Actor *this){
     if(!mapSpecificFlags_get(7) && func_8028ECAC() != BSGROUP_A_FLYING && func_80329530(this, 1000) ){
         mapSpecificFlags_set(7, TRUE);
-        func_80328A84(this, 2);
+        subaddie_set_state(this, 2);
         actor_loopAnimation(this);
         timed_setStaticCameraToNode(0.0f, 0x2e);
         func_80324DBC(0.0f, 0xc1b, 0x2a, this->position, this->marker, func_8038F330, NULL);
@@ -115,12 +115,12 @@ void func_8038F454(Actor *this){
 }
 
 void func_8038F528(Actor *this){
-    func_80328B8C(this, 4, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 4, 0.02f, 1);
     actor_loopAnimation(this);
 }
 
 void func_8038F560(Actor *this){
-    func_80328B8C(this, 7, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.02f, 1);
     actor_loopAnimation(this);
 }
 
@@ -149,7 +149,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
 bool FP_func_8038F6C4(Actor *this, f32 arg1[3], f32 arg2){
     s32 dTheta;
 
-    func_80328C64(this, func_803297C8(this, arg1));
+    subaddie_set_ideal_yaw(this, func_803297C8(this, arg1));
     func_80328FB0(this, arg2);
     dTheta = this->yaw - this->yaw_ideal;
     if(-arg2 <= dTheta && dTheta <= arg2){
@@ -223,7 +223,7 @@ void FP_func_8038F7AC(Actor *this){
             }
             
             if(func_80329530(this, 1300) && player_getTransformation() == TRANSFORM_4_WALRUS){
-                func_80328B8C(this, 8, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 8, 0.02f, 1);
                 actor_loopAnimation(this);
                 break;
             }
@@ -252,7 +252,7 @@ void FP_func_8038F7AC(Actor *this){
             }
 
             if(func_8038F5D4(this, local->unk0, 30.0f, 12.0f, 0x3C)){
-                func_80328B8C(this, 5, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.02f, 1);
                 actor_playAnimationOnce(this);
             }
             break;
@@ -260,7 +260,7 @@ void FP_func_8038F7AC(Actor *this){
         case 5: //L8038FB50
             FP_func_8038F6C4(this, local->unk18, 1.0f);
             if(0.97 < animctrl_getAnimTimer(this->animctrl)){
-                func_80328B8C(this, 6, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 6, 0.02f, 1);
                 actor_loopAnimation(this);
             }
             break;
@@ -309,7 +309,7 @@ void FP_func_8038F7AC(Actor *this){
 
             if(mapSpecificFlags_get(8)){
                 if(FP_func_8038F6C4(this, D_803925AC, 9.0f)){
-                    func_80328B8C(this, 9, 0.02f, 1);
+                    subaddie_set_state_with_direction(this, 9, 0.02f, 1);
                     actor_playAnimationOnce(this);
                 }
                 break;
@@ -331,7 +331,7 @@ void FP_func_8038F7AC(Actor *this){
         case 9: //L8038FE14
             FP_func_8038F6C4(this, D_803925AC, 9.0f);
             if(0.97 < animctrl_getAnimTimer(this->animctrl)){
-                func_80328B8C(this, 10, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 10, 0.02f, 1);
                 actor_loopAnimation(this);
             }
             break;
@@ -342,7 +342,7 @@ void FP_func_8038F7AC(Actor *this){
 
         case 11: //L8038FE84
             if(func_8038F5D4(this, local->unk24, 30.0f, 12.0f, 0x3C)){
-                func_80328A84(this, 12);
+                subaddie_set_state(this, 12);
             }
             break;
 

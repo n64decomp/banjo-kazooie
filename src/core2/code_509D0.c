@@ -171,7 +171,7 @@ void func_802D7DE8(ActorMarker *marker, f32 arg1[3]) {
         }
     }
     func_8028F010(this->modelCacheIndex);
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
     var_f12 = this->position[1];
     var_f14 = 28.0f;
     var_f18 = 0.0f;
@@ -196,7 +196,7 @@ void func_802D8030(Actor *this){
     local = (s32*)&this->local;
     *local = 1;
     this->marker->unkC = __chLevelCollectible_collide;
-    func_80328A84(this, 2);
+    subaddie_set_state(this, 2);
 }
 
 void __chLevelCollectible_returnObj(Actor *this) {
@@ -252,7 +252,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
             }
         }
         this->unk138_22 = this->unk138_21 = 0;
-        func_80328A84(this, 2);
+        subaddie_set_state(this, 2);
     }
     switch (this->marker->unk14_20) {
         case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
@@ -327,7 +327,7 @@ void chLevelCollectible_update(Actor *this){
         }
         if(this->unk138_22){
             func_8028F7D4(0.0f, 0.0f);
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
         }
     }//L802D85DC
 

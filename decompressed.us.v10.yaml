@@ -537,7 +537,7 @@ segments:
   - [0xF64270, c, code_E910] #DONE
   - [0xF647A0, c, code_EE40] #DONE
   - [0xF648B0, c, code_EF50] #DONE
-  - [0xF656C0, c, code_FD60] #DONE
+  - [0xF656C0, c, ba/physics] #DONE
   - [0xF66630, c, code_10CD0] #DONE
   - [0xF66700, c, pitch]      #DONE
   - [0xF669A0, c, code_11040] #DONE
@@ -906,7 +906,7 @@ segments:
   - [0x1032170, .data, eggshatter]
   - [0x10321C0, .data, code_C0E0]
   - [0x10321F0, .data, code_E910]
-  - [0x1032E10, .data, code_FD60]
+  - [0x1032E10, .data, ba/physics]
   - [0x1032E20, .data, code_117D0]
   - [0x1032F30, .data, code_126C0]
   - [0x1032F50, .data, code_12F30]
@@ -1136,7 +1136,7 @@ segments:
   - [0x1043170, .rodata, code_D9B0]
   - [0x1043180, .rodata, code_E680]
   - [0x10431B0, .rodata, code_EF50]
-  - [0x1043350, .rodata, code_FD60]
+  - [0x1043350, .rodata, ba/physics]
   - [0x10433B0, .rodata, code_10CD0]
   - [0x10433C0, .rodata, pitch]
   - [0x10433F0, .rodata, code_11040]
@@ -1399,7 +1399,7 @@ segments:
   - [0x1048560, .bss, code_E910]
   - [0x1048560, .bss, code_EE40]
   - [0x1048560, .bss, code_EF50]
-  - [0x1048560, .bss, code_FD60]
+  - [0x1048560, .bss, ba/physics]
   - [0x1048560, .bss, code_10CD0]
   - [0x1048560, .bss, pitch]
   - [0x1048560, .bss, code_11040]

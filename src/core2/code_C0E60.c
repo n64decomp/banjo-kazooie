@@ -4,7 +4,7 @@
 
 extern void func_80355C60(f32[3], f32);
 
-void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *textureCount);
+void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 uls, s32 ult, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *frame_width, s32 *frame_height, s32 *texture_x, s32 *texture_y, s32 *textureCount);
 
 #define	rare_gDPLoadMultiBlock(pkt, timg, tmem, rtile, fmt, siz, width, height, \
     uls, ult, \
@@ -111,19 +111,19 @@ void func_80347FA4(s32 arg0, s32 arg1, s32 arg2, s32 tmem){}
 
 void func_80347FB8(s32 arg0){}
 
-void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height){
+void func_80347FC0(Gfx **gfx, BKSprite *sprite, s32 frame, s32 tmem, s32 rtile, s32 uls, s32 ult, s32 cms, s32 cmt, s32 *width, s32 *height){
     s32 sp5C;
     s32 sp58;
     s32 sp54;
     s32 sp50;
     s32 sp4C = -1;
 
-    func_80348044(gfx, sprite, frame, tmem, rtile, arg5, arg6, cms, cmt, width, height,
+    func_80348044(gfx, sprite, frame, tmem, rtile, uls, ult, cms, cmt, width, height,
         &sp5C, &sp58, &sp54, &sp50, &sp4C
     );
 }
 
-void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 arg5, s32 arg6, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *argB, s32 *argC, s32 *argD, s32 *argE, s32 *textureCount) {
+void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 uls, s32 ult, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *frame_width, s32 *frame_height, s32 *texture_x, s32 *texture_y, s32 *textureCount) {
     BKSpriteFrame *sprite_frame;
     s32 palette_addr;
     BKSpriteTextureBlock *texture_block;
@@ -136,8 +136,8 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     s32 maskt;
 
     sprite_frame = spriteGetFramePtr(sprite, frame);
-    *argB = (s32) sprite_frame->w;
-    *argC = (s32) sprite_frame->h;
+    *frame_width = (s32) sprite_frame->w;
+    *frame_height = (s32) sprite_frame->h;
     if (*textureCount == -1) {
         *textureCount = (s32) sprite_frame->chunkCnt;
     }
@@ -163,8 +163,8 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         for(var_a0 = 0; var_a0 < chunk_count; var_a0++) {
             texture_block = (s32)texture_block + (texture_block->w * texture_block->h) + sizeof(BKSpriteTextureBlock);
         }
-        *argD = texture_block->x;
-        *argE = texture_block->y;
+        *texture_x = texture_block->x;
+        *texture_y = texture_block->y;
         gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         gDPLoadTLUT_pal256((*gfx)++, palette_addr);
     } else {
@@ -175,15 +175,15 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     if ((D_8038607C == 0) || (tmem == D_80386078)) {
         D_80386078 = tmem;
         D_80386070 = sprite_frame;
-        D_80386080 = arg5;
-        D_80386084 = arg6;
+        D_80386080 = uls;
+        D_80386084 = ult;
         D_80386088 = rtile;
         sp144 = 0;
     } else {
         D_80386094 = tmem;
         D_80386074 = sprite_frame;
-        D_8038609C = arg5;
-        D_803860A0 = arg6;
+        D_8038609C = uls;
+        D_803860A0 = ult;
         D_803860A4 = rtile;
         sp144 = 1;
     }
@@ -226,52 +226,52 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     }
 
     if ( sprite->type & SPRITE_TYPE_I4) {
-        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_I, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_I, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 4;
         } else {
             D_80386098 = (s32) D_80386098 >> 4;
         }
     } else if (sprite->type & SPRITE_TYPE_IA4) {
-        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_IA, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_IA, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 4;
         } else {
             D_80386098 = (s32) D_80386098 >> 4;
         }
     } else if (sprite->type & SPRITE_TYPE_I8) {
-        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_I, G_IM_SIZ_8b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_I, G_IM_SIZ_8b, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 3;
         } else {
             D_80386098 = (s32) D_80386098 >> 3;
         }
     } else if (sprite->type & SPRITE_TYPE_IA8) {
-       rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_IA, G_IM_SIZ_8b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+       rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_IA, G_IM_SIZ_8b, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 3;
         } else {
             D_80386098 = (s32) D_80386098 >> 3;
         }
     } else if (sprite->type & SPRITE_TYPE_RGBA16) {
-        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, G_IM_SIZ_16b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, G_IM_SIZ_16b, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 2;
         } else {
             D_80386098 = (s32) D_80386098 >> 2;
         }
     } else if (sprite->type & SPRITE_TYPE_RGBA32) {
-        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, G_IM_SIZ_32b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, G_IM_SIZ_32b, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         if (sp144 == 0) {
             D_8038607C = (s32) D_8038607C >> 1;
         } else {
             D_80386098 = (s32) D_80386098 >> 1;
         }
     } else if (sprite->type & SPRITE_TYPE_CI4) {
-        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock_4b((*gfx)++, timg, tmem, rtile, G_IM_FMT_RGBA, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         D_8038607C = D_8038607C >> 4;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
-        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_CI, G_IM_SIZ_8b, *width, *height, arg5, arg6, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+        rare_gDPLoadMultiBlock((*gfx)++, timg, tmem, rtile, G_IM_FMT_CI, G_IM_SIZ_8b, *width, *height, uls, ult, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
         D_8038607C = (s32) D_8038607C >> 3;
     }
     if( D_8038607C != 0 

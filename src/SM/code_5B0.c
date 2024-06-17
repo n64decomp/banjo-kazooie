@@ -145,7 +145,7 @@ void SM_func_80386EF4(Actor *this) {
             } else {
                 this->unk100 = NULL;
             }
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
         }
     }
 }

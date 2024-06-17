@@ -163,7 +163,7 @@ BKVertexList *vtxList_clone(BKVertexList *vtxList){
     
     list_size = sizeof(BKVertexList) + vtxList->count*sizeof(Vtx);
     out_v0 = (BKVertexList *) malloc(list_size);
-    func_80254630(out_v0, vtxList, list_size);
+    wmemcpy(out_v0, vtxList, list_size);
     return out_v0;
 }
 

@@ -23,7 +23,7 @@ void func_802CE7E0(ActorMarker *marker, ActorMarker *other){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_11_WOOD_BREAKING_1, 1.0f, 28000, actor->position, 300, 3000);
     FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.0f, 28000, actor->position, 300, 3000);
-    func_80328A84(actor, 2);
+    subaddie_set_state(actor, 2);
     actor_playAnimationOnce(actor);
     marker->collidable = FALSE;
     actor->unk138_27 = 3;

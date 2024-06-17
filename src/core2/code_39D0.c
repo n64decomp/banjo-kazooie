@@ -4,6 +4,8 @@
 
 #include "prop.h"
 #include "core2/statetimer.h"
+#include "core2/ba/physics.h"
+
 
 extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
@@ -203,11 +205,11 @@ int player_shouldSlideTrot(void){
 }
 
 bool func_8028B254(s32 arg0) {
-    return (func_8028B2E8() || (_get_vertVelocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
+    return (func_8028B2E8() || (baphysics_get_vertical_velocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
 }
 
 int func_8028B2E8(void){
-    return D_8037BF60 && _get_vertVelocity() < 0.0f;
+    return D_8037BF60 && baphysics_get_vertical_velocity() < 0.0f;
 }
 
 int player_isSliding(void){
@@ -296,7 +298,7 @@ void func_8028B59C(void) {
     if (map_get() == MAP_6_TTC_NIPPERS_SHELL) {
         D_8037BF61 = FALSE;
     }
-    if (!sp24 && D_8037BF61 && (_get_vertVelocity() < -40.0)) {
+    if (!sp24 && D_8037BF61 && (baphysics_get_vertical_velocity() < -40.0)) {
         func_8029C0D0();
         func_8030E58C(0xF, 0.7f);
     }

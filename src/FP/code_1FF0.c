@@ -38,7 +38,7 @@ Actor *func_803883E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void func_803884F4(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if(this->state != 2){
-        func_80328B8C(this, 2, 0.0001f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
         func_8030E878(SFX_6A_FLAGPOLE_WOBBLE, randf2(0.9f, 1.1f), 32000, this->position, 1000.0f, 2000.0f);
     }
 }
@@ -78,7 +78,7 @@ void func_80388584(Actor *this){
     func_8028E668(this->position, 200.0f, -10.0f, 30.0f);
     if(this->state == 2){
         if(actor_animationIsAt(this, 0.9999f)){
-            func_80328B8C(this, 1, 0.0001f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
         }
     }
 }

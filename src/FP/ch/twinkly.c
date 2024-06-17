@@ -242,7 +242,7 @@ void func_8038C8F0(ActorMarker *marker){
 void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
-        func_80328A84(this, 6);
+        subaddie_set_state(this, 6);
         __spawnQueue_add_1((GenFunction_1)func_8038C8F0, reinterpret_cast(s32, this->marker));
     }
 }
@@ -261,7 +261,7 @@ void func_8038C9A0(Actor *this){
         this->marker->unk18 = &FP_D_80392018;
         this->unk38_31 = 0;
         if(0.0f != other->velocity[0]){
-            func_80328A84(this, 4);
+            subaddie_set_state(this, 4);
             this->unk1C[1] = this->position_y + 50.0f;
             this->unk1C[2] = this->position_y;
         }
@@ -286,7 +286,7 @@ void func_8038C9A0(Actor *this){
     switch(this->state){
         case 1:// 8038CB2C
             if(!func_8038C718(this, 0)){
-                func_80328B8C(this, 2, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
                 this->unk60 = this->yaw;
             }
@@ -311,7 +311,7 @@ void func_8038C9A0(Actor *this){
 
             if(!func_8038C718(this, 0.0f)){
                 if(func_8038C844(this->position, D_80392088)){
-                    func_80328B8C(this, 3, 0.001f, 1);
+                    subaddie_set_state_with_direction(this, 3, 0.001f, 1);
                     func_8038C428(this, D_80392094, 0.0f);
                 }
                 else{
@@ -341,7 +341,7 @@ void func_8038C9A0(Actor *this){
                 else{
                     func_80311480(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);
                 }
-                func_80328A84(this, 5);
+                subaddie_set_state(this, 5);
                 this->pitch -= 3.0f;
             }
             break;

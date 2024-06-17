@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 int bscroc_inSet(enum bs_e state);
 
@@ -68,10 +69,10 @@ void func_802ABE70(void){
 void func_802ABF54(void){
     f32 sp1C = func_8029B30C();
     if(func_8029B300() == 0){
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
-        func_80297970(ml_interpolate_f(sp1C, bsCrocMinWalkVelocity, __bscroc_getMaxVelocity()));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsCrocMinWalkVelocity, __bscroc_getMaxVelocity()));
     }
 }
 
@@ -103,8 +104,8 @@ int bscroc_inSet(enum bs_e state){
 
 void bscroc_idle_init(void){
     baanim_playForDuration_loopSmooth(0xe1, 1.0f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     func_80293D48(50.0f, 25.0f);
@@ -144,7 +145,7 @@ void bscroc_idle_end(void){
 
 void bscroc_walk_init(void){
     baanim_playForDuration_loopStartingAt(ASSET_E0_ANIM_BSCROC_WALK, 0.8f, 0.4f);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ, 1, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(bsCrocMinWalkVelocity, bsCrocMaxWalkVelocity, bsCrocSlowestWalkDuration, bsCrocFastestWalkDuration);
     func_802900B4();
 }
@@ -158,7 +159,7 @@ void bscroc_walk_update(void){
 
     func_8029AD28(0.1f, 4);
     func_8029AD28(0.6f, 3);
-    if(func_8029B300() == 0 && func_80297C04(1.0f))
+    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
         next_state = BS_5E_CROC_IDLE;
 
     if(func_8028B094())
@@ -189,15 +190,15 @@ void bscroc_jump_init(void){
     animctrl_setStart(aCtrl, 0.1f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bscroc.c", 0x1ac);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802ABF54();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(bsCrocInitialJumpVelocity);
-    gravity_set(bsCrocGravity);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(bsCrocInitialJumpVelocity);
+    baphysics_set_gravity(bsCrocGravity);
     __bscroc_jumpSfx();
     D_8037D3EC = 0;
 }
@@ -209,9 +210,9 @@ void bscroc_jump_update(void){
 
     func_802ABE70();
     func_802ABF54();
-    _get_velocity(player_velocity);
+    baphysics_get_velocity(player_velocity);
     if(button_released(BUTTON_A) && 0.0f < player_velocity[1])
-        gravity_reset();
+        baphysics_reset_gravity();
 
     switch(D_8037D3EC){
         case 0:
@@ -243,7 +244,7 @@ void bscroc_jump_update(void){
         case 3:
             func_80299628(0);
             if(animctrl_isStopped(aCtrl)){
-                func_80297970(0.0f);
+                baphysics_set_target_horizontal_velocity(0.0f);
                 sp2C = BS_5E_CROC_IDLE;
             }
             break;
@@ -264,7 +265,7 @@ void bscroc_jump_update(void){
 }
 
 void bscroc_jump_end(void){
-    gravity_reset();
+    baphysics_reset_gravity();
     func_802ABFBC();
 }
 
@@ -277,7 +278,7 @@ void bscroc_fall_init(void){
     animctrl_setDuration(aCtrl, 0.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
     animctrl_start(aCtrl, "bscroc.c", 0x235);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     D_8037D3EC = 0;
 }
 
@@ -289,7 +290,7 @@ void bscroc_fall_update(void){
     func_802ABE70();
     func_80299628(0);
     func_802ABF54();
-    _get_velocity(player_velocity);
+    baphysics_get_velocity(player_velocity);
     
     switch(D_8037D3EC){
         case 0:
@@ -301,7 +302,7 @@ void bscroc_fall_update(void){
         case 1:
             if(func_8028B2E8()){
                 func_8029AE48();
-                func_80297970(0.0f);
+                baphysics_set_target_horizontal_velocity(0.0f);
                 baanim_setEndAndDuration(1.0f, 1.0f);
                 D_8037D3EC = 2;
             }
@@ -348,12 +349,12 @@ static void __bscroc_recoil_init(s32 damage){
     func_80257F18(sp20, player_position, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(200.0f);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    func_8029C7F4(1,1,2,3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(200.0f);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
     func_80292E48();
     D_8037D3EC = 0;
@@ -383,7 +384,7 @@ static void __bscroc_recoil_update(void){
 
 void __bscroc_recoil_end(void){
     func_80297CA8();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
     func_80292EA4();
     func_802ABFBC();
@@ -427,18 +428,18 @@ void bscroc_die_init(void){
     animctrl_setDuration(aCtrl, 1.7f);
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bscroc.c", 0x32b);
-    func_8029C7F4(1,1,2,3);
+    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
     _player_getPosition(player_position);
     func_80294980(sp20);
     func_80257F18(sp20, player_position, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
     D_8037D3E0 = 250.0f;
-    func_80297970(D_8037D3E0);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    player_setYVelocity(420.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(D_8037D3E0);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(420.0f);
+    baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     baMarker_collisionOff();
     func_80292E48();
@@ -453,7 +454,7 @@ void bscroc_die_init(void){
 void bscroc_die_update(void){
     enum bs_e next_state = 0;
     func_802ABE70();
-    func_80297970(D_8037D3E0);
+    baphysics_set_target_horizontal_velocity(D_8037D3E0);
     func_80299628(0);
     switch(D_8037D3EC){
         case 0:
@@ -461,7 +462,7 @@ void bscroc_die_update(void){
                 baanim_setEnd(0.7453f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
-                player_setYVelocity(400.0f);
+                baphysics_set_vertical_velocity(400.0f);
                 D_8037D3EC = 1;
             }
             break;
@@ -490,7 +491,7 @@ void bscroc_die_update(void){
 
 void bscroc_die_end(void){
     func_8024BD08(0);
-    gravity_reset();
+    baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
@@ -507,12 +508,12 @@ static void func_802ACF58(void){
     sp2C = func_8028B2E8() ? 500.0f : 400.0f;
     func_802589E4(sp20, yaw_get(), sp2C);
     sp20[1] = 200.0f;
-    func_80297A0C(sp20);
+    baphysics_set_velocity(sp20);
 }
 
 void bscroc_bite_init(void){
     baanim_playForDuration_loopStartingAt(ASSET_122_ANIM_BSCROC_BITE, 0.25f, 0.2f);
-    func_8029C7F4(1,1,1,3);
+    func_8029C7F4(1,1,1, BA_PHYSICS_LOCKED_ROTATION);
     func_802ACF58();
     D_8037D3F4 = 0;
     _bscrocHitboxActive = TRUE;
@@ -561,8 +562,8 @@ void bscroc_bite_end(void){
 
 void bscroc_eat_bad_init(void){
     baanim_playForDuration_once(ASSET_123_ANIM_BSCROC_EAT_BAD, 2.41f);
-    func_8029C7F4(1,1,2,3);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_horizontal_velocity(0.0f);
 }
 
 void bscroc_eat_bad_update(void){
@@ -612,7 +613,7 @@ void func_802AD318(void){
 
 void bscroc_eat_good_init(void){
     baanim_playForDuration_loopSmooth(ASSET_122_ANIM_BSCROC_BITE, 0.25f);
-    func_8029C7F4(1,1,1,2);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
     baModel_setPostDraw(func_802AD2A8);
     D_8037D3E8 = assetcache_get(func_80294974());
     D_8037D3F0 = 1.0f;
@@ -668,8 +669,8 @@ void bscroc_eat_good_end(void){
 
 void func_802AD56C(void){
     baanim_playForDuration_loopSmooth(ASSET_E1_ANIM_BSCROC_IDLE, 1.0f);
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }

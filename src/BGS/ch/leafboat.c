@@ -93,7 +93,7 @@ void func_8038FD9C(Actor *this){
             this->unk1C[0] = 1.0f;
             this->alpha_124_19 = 0xff;
             if(this->unk54 != 0.0f){
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
             }
             break;
 
@@ -104,7 +104,7 @@ void func_8038FD9C(Actor *this){
             this->marker->propPtr->unk8_3 = 1;
             this->unk1C[0] = 1.0f;
             if(15.0f <= this->velocity_x){
-                func_80328A84(this, 3);
+                subaddie_set_state(this, 3);
                 this->velocity_x = 0.0f;
             }
             else{
@@ -124,7 +124,7 @@ void func_8038FD9C(Actor *this){
             this->unk1C[0] = 0.0f;
             this->alpha_124_19 = 0;
             if (this->unk54 == 0.0f) {
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
             }
             break;
 
@@ -132,7 +132,7 @@ void func_8038FD9C(Actor *this){
             this->marker->propPtr->unk8_3 = 1;
             this->unk1C[0] = 1.0f;
             if (this->velocity[0] >= 15.0f) {
-                func_80328A84(this, 1);
+                subaddie_set_state(this, 1);
                 this->velocity[0] = 0.0f;
             } else {
                 if(tmp[5-(((s32)this->velocity_x)%6)]) {

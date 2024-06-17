@@ -24,17 +24,17 @@ s32 D_80391A34;
 
 /* .code */
 void GV_func_803863F0(Actor *this){
-    func_80328B8C(this, 1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
     D_80391A30 = FALSE;
 }
 
 void GV_func_80386420(Actor *this){
-    func_80328B8C(this, 2, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     this->unk38_31 = 0x23;
 }
 
 void func_80386464(Actor *this){
-    func_80328B8C(this, 3, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.0001f, 1);
 }
 
 void chtoots_update(Actor *this){

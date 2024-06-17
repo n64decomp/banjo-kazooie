@@ -17,7 +17,7 @@
 
 void func_80328FB0(Actor *, f32);
 
-void func_80328B8C(Actor*, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor*, s32, f32, s32);
 void func_802C8F70(f32);
 void timed_exitStaticCamera(f32);
 Actor *func_8032811C(s32 actor_id, s32 position[3], s32 yaw);
@@ -78,7 +78,7 @@ int func_80386ED0(Actor * this){
 }
 
 void func_80386FB0(Actor *this){
-    func_80328C64(this, func_80329784(this));
+    subaddie_set_ideal_yaw(this, func_80329784(this));
     func_80328FB0(this, 3.0f);
 }
 
@@ -92,7 +92,7 @@ void func_80386FE8(void){
 }
 
 void func_8038708C(Actor *this, s32 anim_id){
-    func_80328B8C(this, anim_id, 0.0f, 1);
+    subaddie_set_state_with_direction(this, anim_id, 0.0f, 1);
     func_8030E58C(SFX_24_KONGA_NOISE_3, randf2(0.9f, 1.1f));
 }
 
@@ -128,7 +128,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             if( actorPtr->unk38_31 == 3 
                 && !jiggyscore_isCollected(JIGGY_A_MM_CONGA)
             ){
-                func_80328B8C(actorPtr, 8, 0 ,1);
+                subaddie_set_state_with_direction(actorPtr, 8, 0 ,1);
                 timed_setStaticCameraToNode(0.0f, 0x10);
                 func_80324E38(0.0f, 3);
                 FUNC_8030E624(SFX_84_GOBI_CRYING, 0.8f, 32750);
@@ -238,7 +238,7 @@ void func_803876D0(Actor *this){
     ){
         if(this->state > 3 && this->state < 8){
             actor_loopAnimation(this);
-            func_80328B8C(this, 1, 0.76f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.76f, 1);
         }
         return;
     }
@@ -269,7 +269,7 @@ void func_803876D0(Actor *this){
                 };
             }//L80387A18
             if(actor_animationIsAt(this, 0.66f)){
-                func_80328BD4(this, 6, 0, 1, 0.38f);
+                subaddie_maybe_set_state_position_direction(this, 6, 0, 1, 0.38f);
             }
             if( sp3C
                 && func_8028ECAC() != 1
@@ -278,14 +278,14 @@ void func_803876D0(Actor *this){
                 && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
                 && !func_803872EC()
             ){
-                func_80328B8C(this, 4, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.0f, 1);
             }//L80387AC0
             if( func_8028ECAC() != 1
                 && func_80386ED0(this)
                 && this->unk38_31 != 0
                 && !func_803872EC()
             ){
-                func_80328B8C(this, 7, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 7, 0.0f, 1);
             }
             break;
 
@@ -296,12 +296,12 @@ void func_803876D0(Actor *this){
             if( animctrl_isPlayedForwards(this->animctrl) == TRUE
                 && actor_animationIsAt(this, 0.0f)
             ){
-                func_80328B8C(this, 5, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             }
             else if( !animctrl_isPlayedForwards(this->animctrl)
                 && actor_animationIsAt(this, 0.001f)
             ){
-                func_80328B8C(this, 1, 0.76f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.76f, 1);
             }
             break;
 
@@ -310,7 +310,7 @@ void func_803876D0(Actor *this){
             actor_loopAnimation(this);
             func_80386FE8();
             if( actor_animationIsAt(this, 0.99f)){
-                func_80328BD4(this, 6, 0.999f, 0, sp3C ? 1.0 : 0.4);
+                subaddie_maybe_set_state_position_direction(this, 6, 0.999f, 0, sp3C ? 1.0 : 0.4);
             }//L80387C30
             if( actor_animationIsAt(this, 0.9f)
                 || actor_animationIsAt(this, 0.4f)
@@ -330,21 +330,21 @@ void func_803876D0(Actor *this){
                 || !timedFuncQueue_is_empty()
                 || func_803872EC()
             ){
-                func_80328B8C(this, 1, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
             }
             break;
 
         case 2: //L80387D0C
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 1, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
             }
             break;
 
         case 8: //L80387D4C
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 3, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
                 func_80311480(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
             }
             break;
@@ -352,7 +352,7 @@ void func_803876D0(Actor *this){
         case 3: //L80387DB8
             actor_loopAnimation(this);
             if(jiggyscore_isCollected(JIGGY_A_MM_CONGA)){
-                func_80328B8C(this, 1, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
             }
             break;
 
@@ -360,7 +360,7 @@ void func_803876D0(Actor *this){
             if(this->unk10_12 == 0){
                 if(actor_animationIsAt(this, 0.97f)){
                     ((ActorLocal_Conga *)&this->local)->unkC = 1;
-                    func_80328B8C(this, 6, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 6, 0.0f, 1);
                 }
             }
             break;

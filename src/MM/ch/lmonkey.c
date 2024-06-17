@@ -4,7 +4,7 @@
 
 void func_8028E668(f32 *, f32, f32, f32);
 int actor_animationIsAt(Actor *, f32);
-void func_80328B8C(Actor *, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 void timed_exitStaticCamera(f32);
 void func_80324E38(f32,s32);
 void timed_setStaticCameraToNode(f32, s32);
@@ -70,7 +70,7 @@ void __chLMonkey_spawnJiggy(s32 x, s32 y, s32 z){
 void __chLMonkey_complete(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
     mapSpecificFlags_set(4,1);
-    func_80328A84(actor, 3);
+    subaddie_set_state(actor, 3);
     timed_setStaticCameraToNode(2.3f, 0x12);
     timedFunc_set_3(2.9f,__chLMonkey_spawnJiggy, actor->position_x, actor->position_y + 150.0f, actor->position_z);
     timed_exitStaticCamera(4.3f);
@@ -90,7 +90,7 @@ void chLMonkey_update(Actor *this){
         switch(this->state){
             case 1://L80388690
                 if(mapSpecificFlags_get(2)){
-                    func_80328A84(this, 4);
+                    subaddie_set_state(this, 4);
                     if(!jiggyscore_isCollected(JIGGY_9_MM_CHIMPY)){
                         func_80311480(ASSET_B40_DIALOG_CHIMPY_COMPLETE, 0xE, this->position, this->marker, __chLMonkey_complete, NULL);
                     }else{//L803886E8
@@ -107,14 +107,14 @@ void chLMonkey_update(Actor *this){
                         this->unk138_24 = 1;
                     }//L80388774
                     actor_loopAnimation(this);
-                    func_80328BD4(this, 2, 0.0f, -1, 0.02f);
+                    subaddie_maybe_set_state_position_direction(this, 2, 0.0f, -1, 0.02f);
                 }
                 break;
             case 2: //L803887A4
                 func_80388300(&this);
                 actor_playAnimationOnce(this);
                 if(actor_animationIsAt(this, 0.99f)){
-                    func_80328B8C(this,1,0.0f,-1);
+                    subaddie_set_state_with_direction(this,1,0.0f,-1);
                 }
                 break;
             case 4: //L803887E4

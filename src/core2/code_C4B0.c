@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
+
 
 extern int        func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 extern f32        func_8031C5D4(struct0*);
@@ -324,7 +326,7 @@ void func_80293F0C(void){
             if ((D_8037C274 == 3) && func_8031C594(D_8037C200) && (D_8037C218[1] > (func_8031C5E4(D_8037C200) - 70.0f))) {
                 D_8037C218[1] = func_8031C5E4(D_8037C200) - 70.0f;
                 D_8037C27E = 1;
-                player_setYVelocity(1.0f);
+                baphysics_set_vertical_velocity(1.0f);
             }
             func_80293668();
             player_setPosition(D_8037C218);
@@ -352,14 +354,14 @@ void func_80293F0C(void){
 
     if(D_8037C278 && D_8037C218[1] < (func_8031C5E4(D_8037C200) - 70.0f)){
         func_80294384(3);
-        if(D_8037C279 && _get_vertVelocity() < 0.0f) {
-            player_setYVelocity(-1.0f);
+        if(D_8037C279 && baphysics_get_vertical_velocity() < 0.0f) {
+            baphysics_set_vertical_velocity(-1.0f);
         }
     }
     else if(D_8037C279){
         func_80294390();
-        if (_get_vertVelocity() < 0.0f) {
-            player_setYVelocity(-1.0f);
+        if (baphysics_get_vertical_velocity() < 0.0f) {
+            baphysics_set_vertical_velocity(-1.0f);
         }
     } else {
         func_80294384(1);

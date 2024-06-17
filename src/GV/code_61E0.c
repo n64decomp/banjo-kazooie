@@ -49,13 +49,13 @@ void GV_func_8038C658(Actor *this){
 
     if(!this->unk16C_4 && this->initialized){
         this->unk16C_4 = TRUE;
-        func_80328B8C(this, this->state, 0.01f, 1);
+        subaddie_set_state_with_direction(this, this->state, 0.01f, 1);
     }
     sp24 = GV_func_8038C5BC();
     if(GV_D_80391A90)
         marker_despawn(this->marker);
     if(this->state != sp24)
-        func_80328A84(this, sp24);
+        subaddie_set_state(this, sp24);
 }
 
 void func_8038C748(void){

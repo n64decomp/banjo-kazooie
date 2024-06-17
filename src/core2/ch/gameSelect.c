@@ -315,7 +315,7 @@ void func_802C4C14(Actor *this){
     func_802C7478(this);
     if(!sp80){
         if(this->state != 1){
-            func_80328A84(this, 1);
+            subaddie_set_state(this, 1);
         }
     }
     else{//L802C4D24
@@ -373,7 +373,7 @@ void func_802C4C14(Actor *this){
                         }
                     }
                     func_802C4768(sp84);
-                    func_80328A84(this, 2);
+                    subaddie_set_state(this, 2);
                     break;
                 case 5://L802C5040
                     if(D_8037DD2C == 0 && 
@@ -383,7 +383,7 @@ void func_802C4C14(Actor *this){
                             func_802C4AC8(sp84);
                             func_8025A6EC(COMUSIC_2B_DING_B, 22000);
                         }
-                        func_80328A84(this, 2);
+                        subaddie_set_state(this, 2);
                         func_8031877C(chGameSelectTopZoombox);
                         func_80318284(chGameSelectTopZoombox, 2, &D_8037DCE0);
                         D_8037DD34 = 0.0f;
@@ -417,7 +417,7 @@ void func_802C4C14(Actor *this){
                             func_8031877C(chGameSelectTopZoombox);
                             func_803183A4(chGameSelectTopZoombox, (&D_80365DFC)[func_8031B5B0()]);
                             D_8037DD2C = 1;
-                            func_80328A84(this, 5);
+                            subaddie_set_state(this, 5);
                         }
                         else{//L802C5240
                             func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
@@ -445,16 +445,16 @@ void func_802C4C14(Actor *this){
                                         func_8030E540(SFX_8F_SNOWBALL_FLYING);
                                         break;
                                 }//L802C5394
-                                func_80328A84(this, 4);
+                                subaddie_set_state(this, 4);
                                 levelSpecificFlags_set(sp84 + 0x35, 1);
                             }
                             else{//L802C53B4
                                 func_8030E484(SFX_3EA_UNKNOWN);
-                                func_80328A84(this, 3);
+                                subaddie_set_state(this, 3);
                             }
                         }else{//L802C53D0
                             func_8030E510(SFX_4F_BANJO_WAHOO, 28000);
-                            func_80328A84(this, 3);
+                            subaddie_set_state(this, 3);
                         }//L802C53E8
                         if(sp84 == 0)
                             func_802C75A0(this, 2);

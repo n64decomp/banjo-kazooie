@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
 
 f32 func_802A2858(void);
 
@@ -19,15 +20,15 @@ u8 D_8037D30C;
 
 void bsbflap_init(void) {
     baanim_playForDuration_onceSmooth(ASSET_18_ANIM_BSBFLAP_ENTER, 0.3f);
-    func_8029C7F4(1, 1, 1, 2);
+    func_8029C7F4(1, 1, 1, BA_PHYSICS_NORMAL);
     if (func_8029B2E8() != 0.0f) {
         yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(0.0f);
-    gravity_set(D_80364A14);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(0.0f);
+    baphysics_set_gravity(D_80364A14);
     func_8029E070(1);
     miscflag_set(MISC_FLAG_12_HAS_FLAPPED);
     func_8029E3C0(0, 2.5f);
@@ -119,9 +120,9 @@ void bsbflap_update(void){
                 animctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
                 animctrl_setStart(sp18, 0.0f);
                 animctrl_start(sp18, "bsbflap.c", 0xe1);
-                player_setYVelocity(D_80364A10);
-                gravity_set(D_80364A14);
-                func_80297BF8(D_80364A18);
+                baphysics_set_vertical_velocity(D_80364A10);
+                baphysics_set_gravity(D_80364A14);
+                baphysics_set_terminal_velocity(D_80364A18);
                 D_8037D300 = 1;
             }
             break;
@@ -144,8 +145,8 @@ void bsbflap_update(void){
             if(D_8037D301 == 4)
                 D_8037D300 = 3;
             if(button_released(BUTTON_A)){
-                gravity_reset();
-                func_80297B94();
+                baphysics_reset_gravity();
+                baphysics_reset_terminal_velocity();
                 animctrl_setDuration(sp18, 1.0f);
                 D_8037D300 = 4;
             }
@@ -157,14 +158,14 @@ void bsbflap_update(void){
             func_802A28CC();
             func_802A298C();
             if(button_released(BUTTON_A)){
-                gravity_reset();
-                func_80297B94();
+                baphysics_reset_gravity();
+                baphysics_reset_terminal_velocity();
                 animctrl_setDuration(sp18, 1.0f);
                 func_80293240(2);
                 D_8037D300 = 4;
             }
             else{
-                func_80297970(func_80297A64() * 0.35);
+                baphysics_set_target_horizontal_velocity(baphysics_get_target_horizontal_velocity() * 0.35);
             }
             break;
         case 4:
@@ -192,8 +193,8 @@ void bsbflap_update(void){
 
 void bsbflap_end(void) {
     ability_use(1);
-    gravity_reset();
-    func_80297B94();
+    baphysics_reset_gravity();
+    baphysics_reset_terminal_velocity();
     func_8029E090(0, 0.2f);
     func_8030DA44(D_8037D30C);
 }

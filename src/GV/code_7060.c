@@ -23,7 +23,7 @@ ActorInfo D_803912B8 = { MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY
 /* .code */
 void func_8038D450(ActorMarker *this_marker){
     Actor *this = marker_getActor(this_marker);
-    func_80328AC8(this, 3);
+    subaddie_set_state_forward(this, 3);
 }
 
 void func_8038D47C(Actor *this){
@@ -83,13 +83,13 @@ void func_8038D47C(Actor *this){
         case 1: //L8038D6C0
             if(!mapSpecificFlags_get(0xE) && mapSpecificFlags_get(0) + mapSpecificFlags_get(1) == 1){
                 mapSpecificFlags_set(0xE, TRUE);
-                func_80328AC8(this, 2);
+                subaddie_set_state_forward(this, 2);
                 this->unk38_31 = 1;
             }
             else if(!mapSpecificFlags_get(0xF) && mapSpecificFlags_get(0) + mapSpecificFlags_get(1) == 2){
                 mapSpecificFlags_set(0xF, TRUE);
                 func_8028F918(2);
-                func_80328AC8(this, 3);
+                subaddie_set_state_forward(this, 3);
                 func_802BAFE4(0);
             }
             break;
@@ -104,7 +104,7 @@ void func_8038D47C(Actor *this){
                 if(--this->unk38_31 == 0){
                     func_80311480(ASSET_A7C_TEXT_JINXY_ONE_EGG, 4, NULL, NULL, NULL, NULL);
                     mapSpecificFlags_set(0x14, TRUE);
-                    func_80328AC8(this, 1);
+                    subaddie_set_state_forward(this, 1);
                 }
             }
             break;
@@ -126,7 +126,7 @@ void func_8038D47C(Actor *this){
                 }
             }
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328AC8(this, 1);
+                subaddie_set_state_forward(this, 1);
             }
             break;
         case 4: //L8038D910

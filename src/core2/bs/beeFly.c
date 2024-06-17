@@ -2,20 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
+
 void func_80354030(f32*, f32);
 f32  func_8029B2E8(void);
 f32 func_8029B33C(void);
-void func_8029797C(f32);
-void func_80297970(f32);
 
 void baModel_setYDisplacement(f32);
-void func_80297BF8(f32);
 void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 void yaw_setVelocityBounded(f32, f32);
 f32 func_8029B2D0(void);
 f32 func_8029B2DC(void);
-f32 func_80297A64(void);
-void func_802979AC(f32, f32);
 void func_8028FDC8(f32);
 void func_80290B40(f32);
 void func_80290A6C(void);
@@ -45,13 +43,13 @@ void func_802A04F0(void){
 void func_802A0590(void){
     func_802A0340();
     baanim_playForDuration_onceSmooth(0x1df, 1.5f);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(yaw_getIdeal());
-    func_80297970(0.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_target_horizontal_velocity(0.0f);
+    baphysics_set_gravity(-1200.0f);
     D_8037D2C0 = 0;
 }
 
@@ -64,7 +62,7 @@ void func_802A0630(void){
         case 0:
             if(!animctrl_isAt(mvmnt, 0.266f))
                 break;
-            player_setYVelocity(1600.0f);
+            baphysics_set_vertical_velocity(1600.0f);
             func_8030E58C(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.7f);
             D_8037D2C0 = 1;
             break;
@@ -72,7 +70,7 @@ void func_802A0630(void){
             func_802A04F0();
             if(animctrl_isStopped(mvmnt))
                 baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
-            if(_get_vertVelocity() < 0.0f)
+            if(baphysics_get_vertical_velocity() < 0.0f)
                 next_state = BS_BEE_FLY;
             break;
     }
@@ -98,8 +96,8 @@ void _bsbeefly_end(void){
     roll_setIdeal(0.0f);
     pitch_setIdeal(0.0f);
     func_80291548();
-    gravity_reset();
-    func_80297B94();
+    baphysics_reset_gravity();
+    baphysics_reset_terminal_velocity();
     func_8028FFBC(0);
     func_8029099C();
 }
@@ -111,8 +109,8 @@ void func_802A07F8(void){
     yaw_setUpdateState(3);
     roll_setAngularVelocity(500.0f, 2.0f);
     func_802A0724();
-    gravity_set(-300.0f);
-    func_80297BF8(-99.9f);
+    baphysics_set_gravity(-300.0f);
+    baphysics_set_terminal_velocity(-99.9f);
     func_8028FEF0();
     func_8028FFBC(1);
     func_802909C4();
@@ -153,13 +151,13 @@ void bsbeefly_enter(void){
 
     mvmnt = bs_getPrevState();
     baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38);
-    func_8029C7F4(1, 1, 3, 3);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
     if(miscflag_isTrue(9))
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     else
-        func_80297970(600.0f);
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    func_8029797C(yaw_getIdeal());
+        baphysics_set_target_horizontal_velocity(600.0f);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802914CC(4);
     func_802A07F8();
     if(mvmnt != 0x8b){
@@ -200,7 +198,7 @@ void bsbeefly_update(void){
     sp40 += *sp24;
     sp3C = pitch_get();
     sp30 = 0.0f;
-    if(_get_vertVelocity() < 0.0f){
+    if(baphysics_get_vertical_velocity() < 0.0f){
         if(sp3C < 300.0f){
             sp30 = ml_map_f(sp3C, 0.0f, 80.0f, 0.0f, 0.23f);
         }
@@ -228,7 +226,7 @@ void bsbeefly_update(void){
             pitch_setIdeal(sp40);
             func_802A0750();
             if(sp44 != 0){
-                player_setYVelocity(sp44*400.0);
+                baphysics_set_vertical_velocity(sp44*400.0);
                 func_802A04F0();
             }
             if((s32)sp24 == (s32)&D_803649C4){
@@ -238,23 +236,23 @@ void bsbeefly_update(void){
             break;
     }//L802A0DF0
     if(miscflag_isTrue(9)){
-        func_80297BF8(0.0f);
-        func_80297A0C(0);
+        baphysics_set_terminal_velocity(0.0f);
+        baphysics_set_velocity(0);
         sp38 = 0.0f;
     }else{
         if(sp3C <= 80.0f){
-            func_80297BF8(ml_map_f(sp3C, 60.0f, 80.0f, -99.9, -1266.66));
+            baphysics_set_terminal_velocity(ml_map_f(sp3C, 60.0f, 80.0f, -99.9, -1266.66));
             sp38 = ml_map_f(sp3C, 60.0f, 80.0f, 600.0f, 60.0f);
         }else{
-            func_80297BF8(ml_map_f(sp3C, 300.0f, 310.0f, -399.99, -99.9));
+            baphysics_set_terminal_velocity(ml_map_f(sp3C, 300.0f, 310.0f, -399.99, -99.9));
             sp38 = ml_map_f(sp3C, 300.0f, 340.0f, 0.0f, 600.0f);
         }
     }
-    func_8029797C(yaw_get());
+    baphysics_set_target_yaw(yaw_get());
     if(button_held(9)){
         sp38 += (f64)sp38;
     }
-    func_80297970(sp38);
+    baphysics_set_target_horizontal_velocity(sp38);
     if(func_8028B2E8() && !player_inWater())
         sp4C = BS_85_BEE_IDLE;
     func_8028FFF0();

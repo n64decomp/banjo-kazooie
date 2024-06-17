@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "bsint.h"
 #include "core2/statetimer.h"
+#include "core2/ba/physics.h"
 
 extern f32 func_8029B2E8(void);
 void yaw_setVelocityBounded(f32, f32);
@@ -91,8 +92,8 @@ void bsstand_init(void){
         climbRelease();
 
     baanim_playForDuration_once(ASSET_6F_ANIM_BSSTAND_IDLE, 5.5f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802900B4();
     D_8037D540 = 0;
     D_8037D544 = 0;
@@ -279,8 +280,8 @@ void bsstand_end(void){
 
 //bsStand_Land_init
 void bsstand_landing_init(void){
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
 }
 
 //bsStand_Land_update

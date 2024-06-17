@@ -70,7 +70,7 @@ void __chSnowball_collisionCallback(Actor *this, bool water_collision) {
         func_8030E878(SFX_F_SMALL_WATER_SPLASH, randf2(0.8f, 1.2f), 32000, this->position, 1250.0f, 2500.0f);
         actor_collisionOff(this);
         func_80326310(this);
-        func_80328A84(this, 2U);
+        subaddie_set_state(this, 2U);
     }
     else{
         func_8030E878(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 1250.0f, 2500.0f);

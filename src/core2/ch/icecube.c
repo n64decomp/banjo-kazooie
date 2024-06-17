@@ -232,20 +232,20 @@ void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
 }
 
 void func_8035A998(Actor *this){
-    func_80328B8C(this, 1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk38_31 = 0;
 }
 
 void func_8035A9E0(Actor *this){
-    func_80328B8C(this, 3, animctrl_getAnimTimer(this->animctrl), 1);
+    subaddie_set_state_with_direction(this, 3, animctrl_getAnimTimer(this->animctrl), 1);
     actor_loopAnimation(this);
     this->unk38_31 = 1;
     this->unk28 = 0.0f;
 }
 
 void func_8035AA40(Actor *this){
-    func_80328B8C(this, 5, 0.9999f, 0);
+    subaddie_set_state_with_direction(this, 5, 0.9999f, 0);
     actor_playAnimationOnce(this);
     this->unk38_31 = 1;
 }
@@ -305,7 +305,7 @@ void chicecube_update(Actor *this){
             if( func_80359DF4(this, 900)
                 || (this->unkF4_8 == 2 && func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE))
             ){
-                func_80328B8C(this, 2, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk38_31 = 0x1;
             }
@@ -330,7 +330,7 @@ void chicecube_update(Actor *this){
             }
             func_8035A694(this);
             if(!func_80359DF4(this, 1300)){
-                func_80328B8C(this, 4, animctrl_getAnimTimer(this->animctrl), 1);
+                subaddie_set_state_with_direction(this, 4, animctrl_getAnimTimer(this->animctrl), 1);
                 actor_loopAnimation(this);
                 this->unk38_31 = 1;
             }

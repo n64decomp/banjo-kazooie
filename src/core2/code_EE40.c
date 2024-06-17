@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 /* .bss */
 struct{
@@ -38,7 +39,7 @@ void func_80295E74(void){
             func_8029B6F0();
         }
         else{
-            func_802978DC(7);
+            baphysics_set_type(BA_PHYSICS_FREEZE);
         }
     }
 }

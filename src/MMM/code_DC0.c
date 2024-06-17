@@ -74,7 +74,7 @@ bool MMM_func_80387340(ActorMarker *marker){
     if(actor->state == 2) 
         return FALSE;
 
-    func_80328A84(actor, 2);
+    subaddie_set_state(actor, 2);
     animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
     sp1C = func_803871B0();
     if(sp1C != 0){

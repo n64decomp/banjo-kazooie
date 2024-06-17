@@ -38,13 +38,13 @@ ActorInfo D_803730D8 = {
 
 /* .code */
 void func_8035F970(Actor *this){
-    func_80328A84(this, 1);
+    subaddie_set_state(this, 1);
     actor_loopAnimation(this);
 }
 
 void func_8035F99C(Actor *this){
     if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
-        func_80328B8C(this, 2, 0.01f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->unk28 = 5.0f;
         FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
@@ -52,30 +52,30 @@ void func_8035F99C(Actor *this){
 }
 
 void func_8035FA0C(Actor *this){
-    func_80328A84(this, 3);
+    subaddie_set_state(this, 3);
     actor_loopAnimation(this);
     this->unk28 = 5.0f;
 }
 
 void func_8035FA48(Actor *this){
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
     actor_loopAnimation(this);
 }
 
 void func_8035FA74(Actor *this){
     ActorLocal_Core2_D89E0 *local = (ActorLocal_Core2_D89E0 *)&this->local;
     this->yaw_ideal = local->unk4;
-    func_80328A84(this, 5);
+    subaddie_set_state(this, 5);
     actor_loopAnimation(this);
 }
 
 void func_8035FAA8(Actor *this){
-    func_80328B8C(this, 6, 0.99f, 0);
+    subaddie_set_state_with_direction(this, 6, 0.99f, 0);
     actor_playAnimationOnce(this);
 }
 
 void func_8035FAE0(Actor *this){
-    func_80328B8C(this, 7, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.01f, 1);
     actor_loopAnimation(this);
     this->yaw += 180.0f;
     this->unk28 = 20.0f;
@@ -483,7 +483,7 @@ void func_80360828(Actor *this){
             func_8032CA80(this, this->unk38_0 ? 0x13 : 0x4);
             if(func_8035FC98(this, this->velocity_x * sp34)){
                 this->position_y =  func_80309724(this->position);
-                func_80328B8C(this, 8, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 8, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
             }

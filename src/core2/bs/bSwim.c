@@ -3,6 +3,8 @@
 #include "variables.h"
 
 #include "core2/ba/model.h"
+#include "core2/ba/physics.h"
+
 
 extern f32  func_8029494C(void);
 extern f32  func_8029B2D0(void);
@@ -17,12 +19,12 @@ u8  D_8037D396;
 f32 D_8037D398;
 
 void func_802A7140() {
-    func_8029C7F4(1, 3, 3, 9);
+    func_8029C7F4(1, 3, 3, BA_PHYSICS_NO_GRAVITY);
 }
 
 f32 func_802A716C() {
     f32 sp24[3];
-    _get_velocity(sp24);
+    baphysics_get_velocity(sp24);
     ml_map_f(gu_sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
 }
 
@@ -71,14 +73,14 @@ void func_802A744C(void) {
         func_8035644C(FILEPROG_AC_DIVE_OILY_WATER);
     }
     roll_setAngularVelocity(30.0f, 0.9f);
-    gravity_set(0.0f);
-    func_80297BF8(-399.99f);
+    baphysics_set_gravity(0.0f);
+    baphysics_set_terminal_velocity(-399.99f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_8029E070(1);
     func_80294378(3);
     baModel_setYDisplacement(60.0f);
-    func_80297B64(2.0f);
+    baphysics_set_acceleration(2.0f);
 }
 
 
@@ -102,8 +104,8 @@ void func_802A75B0(void) {
     if (!bsbswim_inSet(bs_getNextState())) {
         pitch_setIdeal(0.0f);
         roll_setIdeal(0.0f);
-        func_80297B94();
-        gravity_reset();
+        baphysics_reset_terminal_velocity();
+        baphysics_reset_gravity();
         func_8029B0C0();
         func_8029E070(0);
         func_80294378(1);
@@ -114,9 +116,9 @@ void func_802A75B0(void) {
 void func_802A762C() {
     baanim_playForDuration_loopSmooth(0x70, 2.0f);
     func_802A7140();
-    func_80297930(0);
+    baphysics_set_target_velocity(0);
     func_802A744C();
-    func_80297B64(0.4f);
+    baphysics_set_acceleration(0.4f);
 }
 
 void func_802A7674() {
@@ -162,7 +164,7 @@ void func_802A7738(void) {
     func_802A7140();
     func_802A744C();
     D_8037D390 = 0.0f;
-    func_80297B64(1.0f);
+    baphysics_set_acceleration(1.0f);
     func_802906A4(2);
 }
 
@@ -174,8 +176,8 @@ void func_802A77D8(void) {
     sp34 = pitch_get();
     sp30 = yaw_get();
     func_80256E24(sp24, sp34, sp30, 0.0f, 0.0f, D_8037D390);
-    func_80297930(sp24);
-    func_80297A0C(sp24);
+    baphysics_set_target_velocity(sp24);
+    baphysics_set_velocity(sp24);
 }
 
 void func_802A7838(void) {
@@ -237,7 +239,7 @@ void func_802A7A54() {
     func_802A7140();
     func_802A744C();
     D_8037D390 = 120.0f;
-    func_80297B64(2.0f);
+    baphysics_set_acceleration(2.0f);
     func_802906A4(2);
 }
 
@@ -291,10 +293,10 @@ void func_802A7BD0(void) {
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C));
     yaw_applyIdeal();
-    func_80297970(func_802987D4());
-    func_8029797C(sp3C);
-    func_802979AC(sp3C, func_80297A64());
-    func_8029C7F4(1, 1, 2, 3);
+    baphysics_set_target_horizontal_velocity(func_802987D4());
+    baphysics_set_target_yaw(sp3C);
+    baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
     baMarker_collisionOff();
     func_80292E48();
     func_802A744C();
@@ -333,7 +335,7 @@ void bsSwim_dive_init(void) {
     baanim_playForDuration_once(ASSET_3C_ANIM_BSSWIM_DIVE_ENTER, 1.0f);
     func_802A7140();
     yaw_setVelocityBounded(500.0f, 5.0f);
-    func_80297930(0);
+    baphysics_set_target_velocity(0);
     func_802A744C();
     pitch_setAngVel(200.0f, 2.5f);
     func_80299BD4();
@@ -357,7 +359,7 @@ void func_802A7E2C(void) {
             sp34 = pitch_get();
             sp30 = yaw_get();
             func_80256E24(sp24, sp34, sp30, 0.0f, 0.0f, 800.0f);
-            func_80297A0C(sp24);
+            baphysics_set_velocity(sp24);
             func_8029E3C0(1, 0.8f);
             D_8037D396 = TRUE;
         }
@@ -394,9 +396,9 @@ void func_802A7F6C(void) {
     baanim_playForDuration_loopSmooth(ASSET_B9_ANIM_BSSWIM_DIE, 0.7f);
     func_802A7140();
     func_802A744C();
-    func_80297B64(1.0f);
-    func_80297930(0);
-    func_80297A0C(0);
+    baphysics_set_acceleration(1.0f);
+    baphysics_set_target_velocity(0);
+    baphysics_set_velocity(0);
     pitch_setIdeal(275.0f);
     roll_setIdeal(0.0f);
     D_8037D396 = 0;
@@ -415,8 +417,8 @@ void func_802A8098(void) {
 
     next_state = 0;
     func_80256E24(sp40, -90.0f, 0.0f, 0.0f, 0.0f, 100.0f);
-    func_80297930(sp40);
-    func_80297A0C(sp40);
+    baphysics_set_target_velocity(sp40);
+    baphysics_set_velocity(sp40);
     func_8029E22C(1);
     if( func_8029E284(1, 0.2f) 
         || func_8029E284(1, 0.8f) 
@@ -437,7 +439,7 @@ void func_802A8098(void) {
             next_state = BS_2D_SWIM_IDLE;
         }
         if (func_8029E314(1, 1.55f)) {
-            player_setYVelocity(-50.0f);
+            baphysics_set_vertical_velocity(-50.0f);
         }
         if (func_8029E284(1, 1.9f)) {
             func_802914CC(0xD);
@@ -487,8 +489,8 @@ void func_802A8330(void) {
 void func_802A83C0(void) {
     baanim_playForDuration_loopSmooth(0x70, 2.0f);
     func_802A7140();
-    func_80297930(0);
-    func_80297B64(0.4f);
+    baphysics_set_target_velocity(0);
+    baphysics_set_acceleration(0.4f);
     func_802A744C();
     func_802A8330();
 }
@@ -535,10 +537,10 @@ void func_802A846C(void) {
         animctrl_start(temp_s0, "bsbswim.c", 0x41E);
     }
     D_8037D398 = ml_map_f(sp28, 40.0f, 1000.0f, -300.0f, -1200.0f);
-    player_setYVelocity(D_8037D398);
-    func_8029C7F4(1, 3, 3, 9);
+    baphysics_set_vertical_velocity(D_8037D398);
+    func_8029C7F4(1, 3, 3, BA_PHYSICS_NO_GRAVITY);
     func_802A744C();
-    func_802978DC(6);
+    baphysics_set_type(BA_PHYSICS_AIRBORN);
 }
 
 void func_802A85EC(void) {
@@ -554,7 +556,7 @@ void func_802A85EC(void) {
     particleEmitter_emitN(sp34, 1);
     if (D_8037D398 < 0.0f) {
         D_8037D398 += ml_max_f(mlAbsF(D_8037D398) * 0.1, 50.0f);
-        player_setYVelocity(D_8037D398);
+        baphysics_set_vertical_velocity(D_8037D398);
     }
     if (func_8028B2E8()) {
         next_state = BS_2D_SWIM_IDLE;
@@ -562,7 +564,7 @@ void func_802A85EC(void) {
     if (!player_inWater()) {
         next_state = BS_1_IDLE;
     }
-    if (_get_vertVelocity() >= 0.0f) {
+    if (baphysics_get_vertical_velocity() >= 0.0f) {
         next_state = BS_2D_SWIM_IDLE;
     }
     bs_setState(next_state);

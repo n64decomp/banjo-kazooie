@@ -60,9 +60,9 @@ ActorInfo D_80368418 = {
 };
 
 /* .bss */
-ActorMarker *chBottlesBonusSursorMarker;
+ActorMarker *chBottlesBonusCursorMarker;
 f32 D_8037E068[20][2];
-Struct_core2_584D0_0 D_8037E248[20];
+Struct_core2_584D0_0 D_8037E248[20]; //puzzle pieces
 u8 pad_8037E478[0x140];
 s32 D_8037E5B8;
 struct {
@@ -124,7 +124,7 @@ bool chBottlesBonusCursor_checkPuzzleCompletion(void) {
     for(i = 0; i < 20 && D_8037E5C0.is_completed != 0; i++){
         if((D_8037E248[i].state != 3) 
             || (i != D_8037E248[i].piece_id) 
-            || !vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(i))
+            || !vec4f_isAlmostZero(chBottlesBonus_get_piece_distance_vec4f(i))
         ) {
             D_8037E5C0.is_completed = FALSE;
         }
@@ -132,10 +132,10 @@ bool chBottlesBonusCursor_checkPuzzleCompletion(void) {
 
     if (D_8037E5C0.is_completed) {
         item_set(ITEM_6_HOURGLASS, FALSE);
-        timedFunc_set_3(0.25f, comusic_8025AB44, COMUSIC_94_BBONUS, 0, 2000);
-        timedFunc_set_2(0.3f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 22000);
-        timedFunc_set_0(1.5f, chBottlesBonusCursor_func_802DF99C);
-        timedFunc_set_0(1.0f, chBottlesBonus_completedPuzzle);
+        timedFunc_set_3(0.25f, (GenFunction_3)comusic_8025AB44, COMUSIC_94_BBONUS, 0, 2000);
+        timedFunc_set_2(0.3f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 22000);
+        timedFunc_set_0(1.5f, (GenFunction_0)chBottlesBonusCursor_func_802DF99C);
+        timedFunc_set_0(1.0f, (GenFunction_0)chBottlesBonus_completedPuzzle);
     }
     return D_8037E5C0.is_completed;
 }
@@ -145,9 +145,9 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     f32 sp3C;
 
-    this = marker_getActorAndRotation(chBottlesBonusSursorMarker, &rotation);
+    this = marker_getActorAndRotation(chBottlesBonusCursorMarker, rotation);
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusSursorMarker);
+    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusCursorMarker);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
     func_8024E030(this->position, D_8037E5C0.unk18);
@@ -157,7 +157,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         (s32)sp3C, (s32)sp3C,
         D_803A5D00[func_8024BDA0()]
     );
-    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, func_80330B1C(chBottlesBonusSursorMarker));
+    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, func_80330B1C(chBottlesBonusCursorMarker));
     func_8024E030(this->position, D_8037E5C0.unk10);
     if (this->state == 1) {
         D_8037E5C0.unk10[0] -= 24.0f;
@@ -170,8 +170,8 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 ActorMarker *chBottlesBonusCursor_spawn(void){
     Actor *this = func_8032813C(0x2B4, D_80368400, 0);
-    chBottlesBonusSursorMarker = this->marker;
-    return chBottlesBonusSursorMarker;
+    chBottlesBonusCursorMarker = this->marker;
+    return chBottlesBonusCursorMarker;
 }
 
 void chBottlesBonusCursor_func_802DF928(s32 indx) {
@@ -197,7 +197,7 @@ void chBottlesBonusCursor_freeMethod(Actor *this) {
         gameFile_load(func_8034BAFC());
         func_80347AA8();
     }
-    chBottlesBonusSursorMarker = 0;
+    chBottlesBonusCursorMarker = 0;
 }
 
 void chBottlesBonusCursor_update(Actor *this) {
@@ -225,8 +225,8 @@ void chBottlesBonusCursor_update(Actor *this) {
         D_8037E5B8 = -1;
         D_8037E5C0.prev_button = sp5C->button;
         D_8037E5C0.is_completed = 0;
-        timedFunc_set_2(3.0f, func_8025A6EC, COMUSIC_94_BBONUS, 0x5DC0);
-        timedFunc_set_1(3.0f, func_8025AABC, COMUSIC_94_BBONUS);
+        timedFunc_set_2(3.0f, (GenFunction_2)func_8025A6EC, COMUSIC_94_BBONUS, 0x5DC0);
+        timedFunc_set_1(3.0f, (GenFunction_1)func_8025AABC, COMUSIC_94_BBONUS);
         for(i = 0; i < 20; i++){
             bzero(&D_8037E248[i], sizeof(Struct_core2_584D0_0));
             D_8037E068[40 + i][0] = D_8037E068[40 + i][1] = 0.0f;
@@ -275,7 +275,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                 chBottlesBonus_func_802DEA74(D_8037E5C0.unk0);
                 func_8030E58C(SFX_12D_CAMERA_ZOOM_CLOSEST, 0.9f);
-                func_80328B8C(this, 3, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
                 actor_playAnimationOnce(this);
             }
             if((sp5C->button & R_CBUTTONS) && !(D_8037E5C0.prev_button & R_CBUTTONS)){ 
@@ -283,7 +283,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                 chBottlesBonus_func_802DEA74(D_8037E5C0.unk0);
                 func_8030E58C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f);
-                func_80328B8C(this, 4, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.0f, 1);
                 actor_playAnimationOnce(this);
             }
         }
@@ -303,7 +303,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                         chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                         chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                         func_8025A6EC(COMUSIC_96_BBONUS_PICKUP_PIECE, -1);
-                        func_80328B8C(this, 2, 0.0f, 1);
+                        subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     }
                 }
 
@@ -312,7 +312,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 ) {
                     if (D_8037E248[D_8037E5B8 - 41].state == 3) {
                         if( D_8037E5B8 - 41 != D_8037E248[D_8037E5B8 - 41].piece_id
-                            || !vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(D_8037E5B8 - 41))
+                            || !vec4f_isAlmostZero(chBottlesBonus_get_piece_distance_vec4f(D_8037E5B8 - 41))
                         ) {
                             D_8037E5C0.unk0 = D_8037E5B8 - 41;
                             chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
@@ -320,7 +320,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                             held_piece->state = 2;
                             chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                             func_8030E484(SFX_112_TINKER_ATTENTION);
-                            func_80328B8C(this, 2, 0.0f, 1);
+                            subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                         }
                     }
                 }
@@ -330,7 +330,7 @@ void chBottlesBonusCursor_update(Actor *this) {
             case 2://L802E029C 
                 if((sp5C->button & B_BUTTON) && !(D_8037E5C0.prev_button & B_BUTTON)){
                     held_piece->state = 0;
-                    func_80328B8C(this, 5, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 5, 0.0f, 1);
                     func_8025A6EC(COMUISC_97_BBONUS_DROP_PIECE, -1);
                     chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
                     D_8037E5C0.unk0 = -1;
@@ -341,64 +341,71 @@ void chBottlesBonusCursor_update(Actor *this) {
                     if ((D_8037E5B8 >= 21) && (D_8037E5B8 < 41)) {
                         held_piece->state = 3;
                         held_piece->piece_id = D_8037E5B8 - 21;
-                        if ((D_8037E5C0.unk0 == held_piece->piece_id) && vec4f_isAlmostZero(chBottlesBonus_func_802DEAF8(D_8037E5C0.unk0))) {
+                        if ((D_8037E5C0.unk0 == held_piece->piece_id) && vec4f_isAlmostZero(chBottlesBonus_get_piece_distance_vec4f(D_8037E5C0.unk0))) {
+                            //placed correctly
                             sp44 = COMUSIC_2B_DING_B;
-                            func_80328B8C(this, 6, 0.0f, 1);
+                            subaddie_set_state_with_direction(this, 6, 0.0f, 1);
                             actor_playAnimationOnce(this);
                         } else {
+                            //placed incorrectly
                             sp44 = COMUSIC_2C_BUZZER;
-                            func_80328B8C(this, 1, 0.0f, 1);
+                            subaddie_set_state_with_direction(this, 1, 0.0f, 1);
                         }
 
                         if (chBottlesBonusCursor_checkPuzzleCompletion()) {
-                            func_80328B8C(this, 8, 0.0f, 1);
+                            subaddie_set_state_with_direction(this, 8, 0.0f, 1);
                             actor_playAnimationOnce(this);
                         }
 
-                        timedFunc_set_2(0.25f, func_8025A6EC, sp44, 26000);
+                        timedFunc_set_2(0.25f, (GenFunction_2)func_8025A6EC, sp44, 26000);
                         chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
                         D_8037E5C0.unk0 = -1;
                     }
                 }
                 break;
 
+            //rotate CCW
             case 3://L802E0420
                 if (animctrl_isStopped(this->animctrl) ) {
-                    func_80328B8C(this, 2, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
                 break;
 
+            //rotate CW
             case 4://L802E0450
                 if (animctrl_isStopped(this->animctrl) ) {
-                    func_80328B8C(this, 2, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
                 break;
 
             case 7://L802E0480
                 if (animctrl_isStopped(this->animctrl) ) {
-                    func_80328B8C(this, 2, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
                 break;
 
             case 5://L802E04B0
-                func_80328B8C(this, 1, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
                 break;
 
+            //placing correct piece
             case 6://L802E04CC
                 if (actor_animationIsAt(this, 0.5f) != 0) {
                     FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 24000);
                 }
                 if (animctrl_isStopped(this->animctrl) != 0) {
-                    func_80328B8C(this, 1, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
                 break;
 
+            //puzzle complete
             case 8://L802E0510
                 break;
+
             case 9://L802E0510
                 break;
         }
@@ -413,7 +420,7 @@ s32 chBottlesBonusCursor_func_802E0538(s32 indx){
 s32 chBottlesBonusCursor_getState(void){
     Actor *this;
 
-    this = marker_getActor(chBottlesBonusSursorMarker);
+    this = marker_getActor(chBottlesBonusCursorMarker);
     return this->state;
 }
 
@@ -423,13 +430,13 @@ s32 chBottlesBonusCursor_func_802E0588(s32 indx){
 
 f32 *chBottlesBonusCursor_func_802E05AC(s32 indx) {
     if (indx == D_8037E5C0.unk0) {
-        D_8037E5F8[0] = D_8036840C[0] + marker_getActor(chBottlesBonusSursorMarker)->position[0];
-        D_8037E5F8[1] = D_8036840C[1] + marker_getActor(chBottlesBonusSursorMarker)->position[1];
-        D_8037E5F8[2] = D_8036840C[2] + marker_getActor(chBottlesBonusSursorMarker)->position[2];
+        D_8037E5F8[0] = D_8036840C[0] + marker_getActor(chBottlesBonusCursorMarker)->position[0];
+        D_8037E5F8[1] = D_8036840C[1] + marker_getActor(chBottlesBonusCursorMarker)->position[1];
+        D_8037E5F8[2] = D_8036840C[2] + marker_getActor(chBottlesBonusCursorMarker)->position[2];
     } else {
-        ml_vec3f_assign(&D_8037E5F8, 0, 0, 0);
+        ml_vec3f_assign(D_8037E5F8, 0, 0, 0);
     }
-    return &D_8037E5F8;
+    return D_8037E5F8;
 }
 
 f32 *chBottlesBonusCursor_func_802E0664(s32 indx){
@@ -451,7 +458,7 @@ bool chBottlesBonusCursor_isPuzzleCompleted(void){
 void chBottlesBonusCursor_lose(void){
     Actor *this;
 
-    this = marker_getActor(chBottlesBonusSursorMarker);
-    func_80328B8C(this, 9, 0.0f, 1);
+    this = marker_getActor(chBottlesBonusCursorMarker);
+    subaddie_set_state_with_direction(this, 9, 0.0f, 1);
     actor_playAnimationOnce(this);
 }

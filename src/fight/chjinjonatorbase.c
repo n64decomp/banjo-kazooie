@@ -86,7 +86,7 @@ void func_8038E120(ActorMarker * marker, ActorMarker *arg1){
         remaining = local->unk0[0] + local->unk0[1] + local->unk0[2] + local->unk0[3];
         if( remaining <= 0){
             func_8038C148();
-            func_80328A84(actor, 3);
+            subaddie_set_state(actor, 3);
             chstonejinjo_breakOpen(actor->unk100);
         }
     }//L8038E24C
@@ -185,7 +185,7 @@ void chjinjonatorbase_update(Actor *this){
                 other->position_z = sp38[2] + other->position_z;
             }
             else{//L8038E6FC
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000);
                 func_8030E394(this->unk44_31);
                 func_8030DA44(this->unk44_31);

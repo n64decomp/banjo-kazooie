@@ -70,7 +70,7 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 
 void GV_func_8038DB0C(Actor *this){
-    func_80328B8C(this, 1, 0.99f, 0);
+    subaddie_set_state_with_direction(this, 1, 0.99f, 0);
     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
 }
 
@@ -112,7 +112,7 @@ void func_8038DBDC(Actor *this){
                 this->initialized = TRUE;
                 this->marker->propPtr->unk8_3 = TRUE;
                 actor_collisionOff(this);
-                func_80328B8C(this, 1, 0.99f, 0);
+                subaddie_set_state_with_direction(this, 1, 0.99f, 0);
                 animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
                 D_80391AB8 = 0;
                 func_8038DB4C(0);
@@ -120,7 +120,7 @@ void func_8038DBDC(Actor *this){
             }//L8038DC90
             if(func_8038E178() != (s32)this->unk1C[0] || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
                 if(15.0f <= this->unk60){
-                    func_80328B8C(this, 2, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
                     animctrl_setDuration(this->animctrl, 2.0f);
                     this->unk1C[0] = (f32)func_8038E178();
@@ -135,7 +135,7 @@ void func_8038DBDC(Actor *this){
             if(!(func_8038E178() < 5)){
                 func_8038DB88(this);
                 if(D_80391AB8){
-                    func_80328B8C(this, 3, 0.99f, 0);
+                    subaddie_set_state_with_direction(this, 3, 0.99f, 0);
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
                     this->unk1C[0] = 0.0f;
                 }
@@ -158,7 +158,7 @@ void func_8038DBDC(Actor *this){
             break;
         case 3: //8038DE44
             if(!(this->unk38_31 < 0x21)){
-                func_80328B8C(this, 4, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.01f, 1);
                 animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
                 animctrl_setDuration(this->animctrl, 3.0f);
                 func_803865F8();
@@ -170,7 +170,7 @@ void func_8038DBDC(Actor *this){
             break;
         case 4: //8038DEBC
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 5, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.01f, 1);
                 animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
                 animctrl_setDuration(this->animctrl, 2.0f);
                 func_8038DB58(0);
@@ -191,7 +191,7 @@ void func_8038DBDC(Actor *this){
             break;
         case 5: //8038DFC8
             if(func_8038DB64() == 0x127){
-                func_80328B8C(this, 6, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 6, 0.01f, 1);
                 animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
                 animctrl_setDuration(this->animctrl, 1.6f);
                 func_80386608();

@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80297BB8(f32);
+#include "core2/ba/physics.h"
+
 
 /* .bss */
 u8 D_8037D440;
@@ -34,11 +35,11 @@ void func_802AEB60(s32 arg0){
 }
 
 void func_802AEC08(void){
-    func_802978A4();
+    baphysics_reset_horizontal_velocity();
 }
 
 void func_802AEC28(void){
-    func_802978A4();
+    baphysics_reset_horizontal_velocity();
     if(func_8028B2E8() || player_inWater())
         func_802AEB60(2);
 }
@@ -52,9 +53,9 @@ void func_802AEC78(void){
     func_8029BC60(&sp1C, &sp2C);
     baanim_playForDuration_loopSmooth(sp1C, sp2C);
     func_802925F8(&sp20, &sp2C);
-    func_80297BC4(&sp20);
-    func_80297BB8(sp2C);
-    func_8029C7F4(1,1,3,0xC);
+    baphysics_set_goto_position(&sp20);
+    baphysics_set_goto_duration(sp2C);
+    func_8029C7F4(1,1,3,BA_PHYSICS_GOTO);
     func_8029436C(1);
     D_8037D441 = 0;
 }
@@ -64,7 +65,7 @@ void func_802AECE4(void){
     f32 sp20[3];
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    _get_velocity(&sp20);
+    baphysics_get_velocity(sp20);
     if(func_8025801C(sp20, &sp2C)){
         yaw_setIdeal(sp2C);
     }
@@ -77,7 +78,7 @@ void func_802AECE4(void){
         animctrl_start(aCtrl, "bsdronegoto.c", 0x9d);
     }
 
-    if(func_80297C48() && D_8037D441 == 0){
+    if(baphysics_goto_done() && D_8037D441 == 0){
         D_8037D441++;
         func_80292768();
     }
