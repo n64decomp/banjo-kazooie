@@ -37,7 +37,7 @@ enum bs_14420_e{
     BS14420_A_WALRUS_SLED,
     BS14420_B_BEE,
     BS14420_C_CLIMB,
-    BS14420_D_WONDERWING,
+    BS14420_D_WONDERWING
 };
 
 /* .data */ 
@@ -505,6 +505,7 @@ enum bs_e func_8029BD90(void) {
     return D_80364650[func_8029BAF0()].state_id;
 }
 
+//drone_look_exit_state
 enum bs_e func_8029BDBC(void) {
     return D_80364624[func_8029BAF0()];
 }
@@ -839,7 +840,7 @@ s32 func_8029C9C0(s32 arg0){
         arg0 = BS_BBARGE;
 
     if(func_80294F78())
-        arg0 = func_802926C0();
+        arg0 = badrone_look();
     
     if(player_isSliding())
         arg0  = BS_SLIDE;
@@ -849,7 +850,7 @@ s32 func_8029C9C0(s32 arg0){
 
 s32 func_8029CA94(s32 arg0){
     if(miscflag_isTrue(0x19))
-        arg0 = func_80292738();
+        arg0 = badrone_transform();
     
     if(miscflag_isTrue(0x1A))
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;

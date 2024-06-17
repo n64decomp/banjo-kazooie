@@ -522,14 +522,14 @@ segments:
   - [0xF60040, c, statetimer] #DONE
   - [0xF602C0, c, code_A960] #DONE
   - [0xF603C0, c, ba/model] #DONE
-  - [0xF60FB0, c, code_B650] #DONE
+  - [0xF60FB0, c, ba/drone] #DONE
   - [0xF611B0, c, code_B850] #DONE
   - [0xF614B0, c, eggshatter] #DONE
   - [0xF61680, c, code_BD20] #DONE
-  - [0xF61A40, c, code_C0E0] #DONE
+  - [0xF61A40, c, ba/falldamage] #DONE
   - [0xF61D50, c, code_C3F0] #DONE
   - [0xF61E10, c, code_C4B0]
-  - [0xF63160, c, code_D800] #DONE
+  - [0xF63160, c, ba/carry] #DONE
   - [0xF63310, c, code_D9B0] #DONE
   - [0xF638D0, c, code_DF70] #DONE
   - [0xF63D70, c, code_E410] #DONE
@@ -904,7 +904,7 @@ segments:
   - [0x1032150, .data, ba/model]
   - [0x1032150, .data, code_B850]
   - [0x1032170, .data, eggshatter]
-  - [0x10321C0, .data, code_C0E0]
+  - [0x10321C0, .data, ba/falldamage]
   - [0x10321F0, .data, code_E910]
   - [0x1032E10, .data, ba/physics]
   - [0x1032E20, .data, code_117D0]
@@ -1128,10 +1128,10 @@ segments:
   - [0x1042FC0, .rodata, code_9900]
   - [0x1042FD0, .rodata, code_9BD0]
   - [0x1043010, .rodata, ba/model]
-  - [0x10430C0, .rodata, code_B650]
+  - [0x10430C0, .rodata, ba/drone]
   - [0x10430D0, .rodata, code_B850]
   - [0x10430F0, .rodata, code_BD20]
-  - [0x1043110, .rodata, code_C0E0]
+  - [0x1043110, .rodata, ba/falldamage]
   - [0x1043130, .rodata, code_C4B0]
   - [0x1043170, .rodata, code_D9B0]
   - [0x1043180, .rodata, code_E680]
@@ -1385,13 +1385,13 @@ segments:
   - [0x1048560, .bss, code_A600]
   - [0x1048560, .bss, statetimer]
   - [0x1048560, .bss, ba/model]
-  - [0x1048560, .bss, code_B650]
+  - [0x1048560, .bss, ba/drone]
   - [0x1048560, .bss, eggshatter]
   - [0x1048560, .bss, code_BD20]
-  - [0x1048560, .bss, code_C0E0]
+  - [0x1048560, .bss, ba/falldamage]
   - [0x1048560, .bss, code_C3F0]
   - [0x1048560, .bss, code_C4B0]
-  - [0x1048560, .bss, code_D800]
+  - [0x1048560, .bss, ba/carry]
   - [0x1048560, .bss, code_D9B0]
   - [0x1048560, .bss, code_DF70]
   - [0x1048560, .bss, code_E410]

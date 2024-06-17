@@ -36,8 +36,8 @@ void bsbpeck_init(void){
         case BS_57_BOMB_END:
             break;
     }
-    if(func_80293234() == 1)
-        func_80293240(2);
+    if(bafalldamage_get_state() == 1)
+        bafalldamage_set_state(2);
 
     baanim_playForDuration_onceSmooth(ASSET_1A_ANIM_BSBPECK, 0.2f);
     func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, BA_PHYSICS_AIRBORN);

@@ -74,7 +74,7 @@ void func_802A10D4(void){
         s0 = 0x88;
 
     if(func_80294F78())
-        s0 = func_802926C0();
+        s0 = badrone_look();
     
     if(func_8029B300() > 0)
         s0 = BS_BEE_WALK;
@@ -276,7 +276,7 @@ void func_802A170C(void){
     }
     if(func_8028B2E8()){
         if(miscflag_isTrue(0x19)){
-            sp2c = func_80292738();
+            sp2c = badrone_transform();
         }else{
             if(func_8029B300() > 0)
                 sp2c = BS_BEE_WALK;

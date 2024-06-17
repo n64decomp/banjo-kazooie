@@ -122,7 +122,7 @@ void bscroc_idle_update(void){
         next_state = BS_61_CROC_FALL;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8029B300() > 0)
         next_state = BS_CROC_WALK;
@@ -313,7 +313,7 @@ void bscroc_fall_update(void){
     if(func_8028B2E8()){
         if(func_8029B300() > 0 || (D_8037D3EC == 2 && animctrl_isStopped(aCtrl))){
             if(miscflag_isTrue(0x19)){
-                next_state = func_80292738();
+                next_state = badrone_transform();
             }else{
                 next_state = BS_5E_CROC_IDLE;
             }

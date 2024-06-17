@@ -301,7 +301,7 @@ void func_80296608(void){
         case BS_INTR_A:  //L8029666C
             sp2C = 2;
             if(func_8028B2E8()){
-                next_state = func_80292738();
+                next_state = badrone_transform();
             }
             else{
                 miscflag_set(0x19);
@@ -429,7 +429,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_34: //L802969A4
-            next_state = func_802926E8();
+            next_state = badrone_802926E8();
             sp2C = 2;
             break;
         case BS_INTR_27_BANJO_SLED: //L802969BC 
@@ -509,7 +509,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_37: //L80296BB4
-            next_state = func_80292710();
+            next_state = badrone_vanish();
             sp2C = 2;
             break;
         case BS_INTR_2A: //L80296BCC

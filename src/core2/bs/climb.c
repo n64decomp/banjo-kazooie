@@ -91,7 +91,7 @@ void bsclimb_idle_init(void){
 void bsclimb_idle_update(void){
     s32 next_state = 0;
     AnimCtrl *anim_ctrl = baanim_getAnimCtrlPtr();
-    func_80293350();
+    bafalldamage_start();
     switch(D_8037D3D0){
         case 0:
             D_8037D3D4 -= time_getDelta();
@@ -139,7 +139,7 @@ void bsclimb_move_update(void){
     f32 plyr_pos[3];
     s32 map;
 
-    func_80293350();
+    bafalldamage_start();
     func_802AB5C0();
     map = map_get();
 

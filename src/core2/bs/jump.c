@@ -389,7 +389,7 @@ void bsjump_tumble_init(void){
     baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     baModel_setYDisplacement(60.0f);
-    if(func_80293234() == 1){
+    if(bafalldamage_get_state() == 1){
         func_8029E3C0(0, 0.5f);
         func_8029E3C0(1, 0.41f);
         func_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
@@ -436,7 +436,7 @@ void bsjump_tumble_end(void){
         || next_state == BS_BFLAP
         || next_state == BS_11_BPECK
     ){
-        func_80293240(3);
+        bafalldamage_set_state(3);
     }
     func_8029CB84();
     baModel_setYDisplacement(0.0f);

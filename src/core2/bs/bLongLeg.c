@@ -168,7 +168,7 @@ void bsblongleg_stand_update(void){
     func_802A531C();
     func_80299594(1, 0.5f);
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(button_pressed(BUTTON_B))
         stateTimer_clear(STATE_TIMER_2_LONGLEG);

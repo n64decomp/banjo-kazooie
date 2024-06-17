@@ -5,7 +5,7 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
-extern ActorMarker *carriedobj_getMarker(void);
+extern ActorMarker *bacarry_get_marker(void);
 
 /* .bss */
 u8 D_8037D580;
@@ -35,10 +35,10 @@ void bsthrow_update(void){
     f32 sp34[3];
     f32 player_position[3];
     f32 sp24;
-    ActorMarker *sp20 = carriedobj_getMarker();
+    ActorMarker *sp20 = bacarry_get_marker();
 
     if(D_8037D580 == 0 && sp20 != NULL)
-        func_802948F8(sp20);
+        bacarry_set_marker(sp20);
 
     _player_getPosition(player_position);
     get_throw_target_position(sp34);

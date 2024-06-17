@@ -93,7 +93,7 @@ void bspumpkin_idle_update(void) {
         next_state = BS_4B_PUMPKIN_FALL;
     }
     if (func_80294F78()) {
-        next_state = func_802926C0();
+        next_state = badrone_look();
     }
     if (func_8029B300() > 0) {
         next_state = BS_49_PUMPKIN_WALK;
@@ -291,7 +291,7 @@ void bspumpkin_fall_update(void) {
     }
     if (func_8028B2E8() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && animctrl_isStopped(anim_ctrl)))) {
         if (miscflag_isTrue(0x19)) {
-            next_state = func_80292738();
+            next_state = badrone_transform();
         } else {
             next_state = BS_48_PUMPKIN_IDLE;
         }

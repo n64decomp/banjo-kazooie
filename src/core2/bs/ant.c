@@ -23,7 +23,7 @@ s16 D_8036497C[3] = {
 
 /* .bss */
 f32 D_8037D290;
-u8 D_8037D294;
+u8 bsant_substate;
 s32 D_8037D298;
 
 /* .code */
@@ -97,7 +97,7 @@ void bsant_idle_update(void){
         new_state = BS_38_ANT_FALL;
 
     if(func_80294F78())
-        new_state = func_802926C0();
+        new_state = badrone_look();
 
     if(func_8029B300() > 0)
         new_state = BS_ANT_WALK;
@@ -171,7 +171,7 @@ void bsant_jump_init(void){
     baphysics_set_vertical_velocity(D_80364970);
     baphysics_set_gravity(D_80364974);
     func_8029E3E0();
-    D_8037D294 = 0;
+    bsant_substate = 0;
 }
 
 void bsant_jump_update(void){
@@ -186,26 +186,26 @@ void bsant_jump_update(void){
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
 
-    switch(D_8037D294){
+    switch(bsant_substate){
         case 0://L8029EA88
             if(animctrl_isStopped(aCtrl)){
                 animctrl_setDuration(aCtrl, 5.0f);
                 baanim_setEnd(0.5026f);
-                D_8037D294 = 1;
+                bsant_substate = 1;
             }
             break;
         case 1://L8029EABC
             if(func_8028B254(0x82)){
                 animctrl_setDuration(aCtrl, 1.0f);
                 baanim_setEnd(1.0f);
-                D_8037D294 = 2;
+                bsant_substate = 2;
             }
             break;
         case 2://L8029EAF4
             func_80299628(0);
             if(func_8028B2E8()){
                 func_8029C5E8();
-                D_8037D294 = 3;
+                bsant_substate = 3;
             }
             break;
         case 3://L8029EB24
@@ -241,7 +241,7 @@ void bsant_fall_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
     animctrl_start(aCtrl, "bsant.c", 0x208);
     func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
-    D_8037D294 = 0;
+    bsant_substate = 0;
 }
 
 void bsant_fall_update(void){
@@ -254,12 +254,12 @@ void bsant_fall_update(void){
         func_8029E48C();
 
     baphysics_get_velocity(sp1C);
-    switch(D_8037D294){
+    switch(bsant_substate){
         case 0:
             if(func_8028B254(0x5A)){
                 animctrl_setDuration(aCtrl, 2.0f);
                 baanim_setEnd(1.0f);
-                D_8037D294 = 1;
+                bsant_substate = 1;
             }
             break;
         case 1:
@@ -267,7 +267,7 @@ void bsant_fall_update(void){
     }
     if(func_8028B2E8()){
         if(miscflag_isTrue(0x19))
-            sp2C = func_80292738();
+            sp2C = badrone_transform();
         else
             sp2C = BS_35_ANT_IDLE;
     }
@@ -309,7 +309,7 @@ static void __bsant_recoil_init(int take_damage){
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
     func_80292E48();
-    D_8037D294 = 0;
+    bsant_substate = 0;
 }
 
 static void __bsant_recoil_update(void){
@@ -318,11 +318,11 @@ static void __bsant_recoil_update(void){
     if(baanim_isAt(0.5f))
         func_80292EA4();
 
-    switch(D_8037D294){
+    switch(bsant_substate){
         case 0:
             if(func_8028B254(0x5a)){
                 baanim_setEnd(1.0f);
-                D_8037D294 = 1;
+                bsant_substate = 1;
             }
             break;
         case 1:
@@ -398,7 +398,7 @@ void bsant_die_init(void){
     func_802914CC(0xd);
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
-    D_8037D294 = 0;
+    bsant_substate = 0;
     baMarker_collisionOff();
     func_80292E48();
     func_8029E3C0(0, 2.9f);
@@ -409,20 +409,20 @@ void bsant_die_update(void){
 
     baphysics_set_target_horizontal_velocity(D_8037D290);
     func_80299628(0);
-    switch(D_8037D294){
+    switch(bsant_substate){
         case 0://L8029F270
             if(func_8028B2E8()){
                 baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
                 D_8037D290 = 0.0f;
-                D_8037D294 = 1;
+                bsant_substate = 1;
             }
             break;
         case 1://L8029F2C0
             if(animctrl_isAt(aCtrl, 0.72f)){
                 D_8037D290 = 0.0f;
-                D_8037D294 = 2;
+                bsant_substate = 2;
             }
             break;
         case 2://L8029F2F0

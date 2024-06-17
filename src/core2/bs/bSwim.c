@@ -128,7 +128,7 @@ void func_802A7674() {
     func_802A7304();
     
     if (func_80294F78()) {
-        state_id = func_802926C0();
+        state_id = badrone_look();
     }
     if (button_held(BUTTON_A)) {
         state_id = BS_39_DIVE_A;

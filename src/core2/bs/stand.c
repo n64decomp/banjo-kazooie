@@ -74,7 +74,7 @@ s32 func_802B488C(s32 arg0){
         retVal = func_8029C780();
 
     if(func_80294F78())
-        retVal = func_802926C0();
+        retVal = badrone_look();
 
     if(player_isSliding())
         retVal = BS_SLIDE;
@@ -317,7 +317,7 @@ void func_802B5350(void){
         if(bsStoredState_getTransformation() != TRANSFORM_1_BANJO)
             func_8029A86C(1);
         else{
-            func_802948F8(baMarker_8028D688());
+            bacarry_set_marker(baMarker_8028D688());
             bs_setState(BS_3A_CARRY_IDLE);
         }
     }
@@ -332,7 +332,7 @@ void func_802B5350(void){
         func_8029A86C(2);
         bs_setState(BS_3C_TALK);
     }else{
-        func_802948E0();
+        bacarry_reset_marker();
         func_80296608();
     }
 }

@@ -238,7 +238,7 @@ bool func_8028B424(void){
     if (func_8028B2E8()) {
         return FALSE;
     }
-    if (!func_802931DC(&sp1C)) {
+    if (!bafalldamage_get_damage(&sp1C)) {
         return FALSE;
     }
     return TRUE;

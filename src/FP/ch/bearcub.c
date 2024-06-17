@@ -51,7 +51,7 @@ void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum a
     func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
     if(!func_80329530(*this_ptr, 400)) return;
-    if(carriedObj_getMarkerId() != carried_obj_marker_id)        return;
+    if(bacarry_get_markerId() != carried_obj_marker_id)        return;
     if(!func_8028FC34())               return;
 
     func_8028FA34(arg3, *this_ptr);

@@ -163,7 +163,7 @@ void bswalrus_idle_update(void){
         next_state = BS_6A_WALRUS_FALL;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8029B300() > 0)
         next_state = BS_WALRUS_WALK;
@@ -353,7 +353,7 @@ void bswalrus_fall_update(void){
             || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
         ){
             if(miscflag_isTrue(0x19))
-                next_state = func_80292738();
+                next_state = badrone_transform();
             else
                 next_state = BS_67_WALRUS_IDLE;
         }
@@ -579,7 +579,7 @@ void bswalrus_sled_update(void){
     func_80299628(0);
     func_802B7F28();
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(button_pressed(BUTTON_A))
         next_state = BS_7E_WALRUS_SLED;

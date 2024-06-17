@@ -163,7 +163,7 @@ void bswalk_creep_update(void){
         next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -236,7 +236,7 @@ void bswalk_slow_upate(void){
         next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -312,7 +312,7 @@ void bswalk_update(void){
     }
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -387,7 +387,7 @@ void bswalk_fast_update(void){
                 next_state = BS_1_IDLE;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
             
             break;
         case 1:
@@ -396,7 +396,7 @@ void bswalk_fast_update(void){
                 next_state = BS_2_WALK_SLOW;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
 
             break;
         case 3://L802B7A60
@@ -404,7 +404,7 @@ void bswalk_fast_update(void){
                 next_state = BS_WALK;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
             break;
     }//L802B7AA4
     if(func_8028B128())
@@ -461,7 +461,7 @@ void bswalk_mud_update(void){
         next_state = BS_1_IDLE;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;

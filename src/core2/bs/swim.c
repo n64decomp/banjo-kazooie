@@ -171,7 +171,7 @@ void func_802B5950(void) {
         next_state = BS_1_IDLE;
     }
     if (func_80294F78()) {
-        next_state = func_802926C0();
+        next_state = badrone_look();
     }
     if (should_dive()) {
         next_state = BS_30_DIVE_ENTER;

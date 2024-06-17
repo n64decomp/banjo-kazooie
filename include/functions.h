@@ -309,7 +309,7 @@ void func_80292974(f32, f32, f32);
 void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
-void func_80293350(void);
+void bafalldamage_start(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);

@@ -191,7 +191,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
         arg0 = BS_16_BTROT_WALK;
 
     if(func_80294F78())
-        arg0 = func_802926C0();
+        arg0 = badrone_look();
 
     if(func_8028B094())
         arg0 = BS_71_BTROT_FALL;

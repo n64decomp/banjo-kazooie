@@ -47,7 +47,7 @@ void bscarry_idle_update(void){
     if(func_8029B300() > 0)
         sp1C = BS_3B_CARRY_WALK;
 
-    if(carriedobj_getMarker() == NULL)
+    if(bacarry_get_marker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -76,7 +76,7 @@ void bscarry_walk_update(void){
     if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_3A_CARRY_IDLE;
 
-    if(carriedobj_getMarker() == NULL)
+    if(bacarry_get_marker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -94,7 +94,7 @@ int bscarry_inSet(enum bs_e state){
 void bscarry_interrupt(void){
     switch(bs_getInterruptType()){
         case 7:
-            func_802948F8(baMarker_8028D688());
+            bacarry_set_marker(baMarker_8028D688());
             break;
         case 8:
             func_8029A86C(2);
@@ -113,7 +113,7 @@ void bscarry_interrupt(void){
             }
             break;
         default://L802AB260
-            func_802948E0();
+            bacarry_reset_marker();
             func_80296608();
             break;
     }

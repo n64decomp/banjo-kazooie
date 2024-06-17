@@ -110,7 +110,7 @@ void bsbflap_update(void){
     func_802B6FA8();
     switch(D_8037D300){
         case 0:
-            func_80293350();
+            bafalldamage_start();
             func_802A2900();
             func_802A298C();
             if(animctrl_isAt(sp18, 0.9f)){
@@ -127,7 +127,7 @@ void bsbflap_update(void){
             }
             break;
         case 1:
-            func_80293350();
+            bafalldamage_start();
             func_802A2900();
             func_802A2810();
             func_802A28CC();
@@ -137,7 +137,7 @@ void bsbflap_update(void){
             }
             break;
         case 2:
-            func_80293350();
+            bafalldamage_start();
             func_802A2900();
             func_802A2810();
             func_802A28CC();
@@ -152,7 +152,7 @@ void bsbflap_update(void){
             }
             break;
         case 3:
-            func_80293350();
+            bafalldamage_start();
             func_802A2900();
             func_802A2810();
             func_802A28CC();
@@ -161,7 +161,7 @@ void bsbflap_update(void){
                 baphysics_reset_gravity();
                 baphysics_reset_terminal_velocity();
                 animctrl_setDuration(sp18, 1.0f);
-                func_80293240(2);
+                bafalldamage_set_state(2);
                 D_8037D300 = 4;
             }
             else{
