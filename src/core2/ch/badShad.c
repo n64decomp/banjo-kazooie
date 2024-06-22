@@ -4,15 +4,15 @@
 
 extern void __spawnQueue_add_2(void (*)(s32, s32), s32, s32);
 
-Actor *func_802D6F48(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_802D6EA0(Actor *this);
+Actor *chBadShad_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chBadShad_update(Actor *this);
 void func_802D729C(Actor *actor, f32 arg1);
 
 /* .data */
-ActorInfo D_80367A50 = { 
+ActorInfo chBadShad = { 
     0x9B, 0x108, 0x3BF,
     0x1, NULL, 
-    func_802D6EA0, func_80326224, func_802D6F48,
+    chBadShad_update, func_80326224, chBadShad_draw,
     0, 0, 0.0f, 0
 };
 
@@ -21,13 +21,14 @@ f32 D_8037DE10[3];
 f32 D_8037DE20[3];
 
 /* .code */
-void func_802D6EA0(Actor *this){
+void chBadShad_update(Actor *this){
     s32 iVar1;
     if(!this->initialized){
         this->initialized = 1;
         this->marker->collidable = 0;
     }
     if(!this->despawn_flag && this->unk1C_x < (f32)(func_8023DB5C() - 1) ){
+        //unlink
         if(this->unk104){
             marker_getActor(this->unk104)->unk104 = 0;
         }
@@ -35,7 +36,7 @@ void func_802D6EA0(Actor *this){
     }
 }
 
-Actor *func_802D6F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chBadShad_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp44[3];
     f32 sp40;
     Actor *this = marker_getActorAndRotation(marker, sp44);

@@ -81,7 +81,7 @@ extern ActorInfo D_80367934; //witch_switch.cc
 extern ActorInfo D_80367958; //witch_switch.bgs
 extern ActorInfo D_8036797C; //witch_switch.gv
 extern ActorInfo D_80367A20; //wading boots
-extern ActorInfo D_80367A50; //chbadshad
+extern ActorInfo chBadShad; //chbadshad
 extern ActorInfo D_80367AB0;
 extern ActorInfo D_80367AD4;
 extern ActorInfo D_80367AF8;
@@ -248,7 +248,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367184, actor_new, 0x0000000);
     spawnableActorList_add(&chExtraLife, actor_new, 0x0200000); //extralife
     spawnableActorList_add(&D_80365FB0, actor_new, 0x0000004); //shrapnel
-    spawnableActorList_add(&D_80367A50, actor_new, 0x0000004); //chbadshad
+    spawnableActorList_add(&chBadShad, actor_new, 0x0000004); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
     spawnableActorList_add(&chBubble, actor_new, 0x0000004);

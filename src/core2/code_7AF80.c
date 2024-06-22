@@ -127,9 +127,6 @@ s32 D_803820A8[3]; //local static
 s32 D_803820B4; //local static
 s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 s32 pad_80382138;
-s32 D_8038213C;
-s32 D_80382140;
-s32 D_80382144;
 
 
 
@@ -705,6 +702,8 @@ void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
     s32 sp60[3];
     s32 sp5C;
     f32 sp50[3];
+    static s32 D_8038213C;
+
 
     sp5C = 0;
     sp50[0] = (f32) arg0->propPtr->x;
@@ -2193,9 +2192,6 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
     return var_a0;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_803083B0.s")
-#else
 s32 func_803083B0(s32 arg0) {
     s32 var_v0;
     Cube *var_s0;
@@ -2204,14 +2200,13 @@ s32 func_803083B0(s32 arg0) {
 
     if (arg0 == -1) {
         var_s0 = D_80381FA0.cube_list;
-        D_80382144 = var_s0;
         D_80382140 = 0;
+        D_80382144 = var_s0;
         return 0;
     }
    
-    
-    var_s0 = D_80382144;
-    if (D_80382140 < D_80382144->prop2Cnt) {
+    var_s0 = *(Cube **)&D_80382144;
+    if (D_80382140 < var_s0->prop2Cnt) {
         if (D_80381FA0.cube_list && D_80381FA0.cube_list && D_80381FA0.cube_list );
         var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
         if (D_80382140 != 0) {
@@ -2235,7 +2230,6 @@ s32 func_803083B0(s32 arg0) {
     D_80382144 = var_s0;
     return var_v0;
 }
-#endif
 
 enum actor_e func_803084F0(s32 arg0){
     s32 var_v1;
