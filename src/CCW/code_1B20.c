@@ -33,7 +33,7 @@ f32 D_8038EC94[3] = {200.0f,  2120.0f, -5570.0f};
 
 /* .code */
 void func_80387F10() {
-    jiggySpawn(JIGGY_4D_CCW_FLOWER, D_8038EC94);
+    jiggy_spawn(JIGGY_4D_CCW_FLOWER, D_8038EC94);
 }
 
 void func_80387F38(ActorMarker* marker, s32 arg1) {

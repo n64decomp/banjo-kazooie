@@ -163,7 +163,7 @@ void MMM_func_80389810(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
 }
 
 void MMM_func_803898A0() {
-    jiggySpawn(JIGGY_60_MMM_MOTZHAND, D_8038C1E0);
+    jiggy_spawn(JIGGY_60_MMM_MOTZHAND, D_8038C1E0);
 }
 
 void MMM_func_803898C8() {

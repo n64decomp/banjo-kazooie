@@ -72,7 +72,7 @@ void func_8038A274(Actor *this){
 void func_8038A318(ActorMarker *caller, enum asset_e text_id, s32 arg1){
     if(text_id == 0xc19){
         func_802BAFE4(0x25);
-        jiggySpawn(JIGGY_2E_FP_PRESENTS, FP_D_80391E74);
+        jiggy_spawn(JIGGY_2E_FP_PRESENTS, FP_D_80391E74);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
         func_8025A6EC(COMUSIC_5B_FP_IGLOO_HAPPY, 25000);
         func_8025A58C(0, 4000);

@@ -820,7 +820,7 @@ void func_80387F1C(void)
 
     if (nodeProp_findPositionFromActorId(400, tmp))
     {
-        jiggySpawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
+        jiggy_spawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?
         __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
     }

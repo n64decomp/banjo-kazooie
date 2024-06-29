@@ -19,19 +19,19 @@ void func_80347FB8(Struct81s*);
 
 
 typedef struct {
-    void (*unk0)(Struct81s *);
-    void (*unk4)(Struct81s *);
-    void (*unk8)(Struct81s *, Gfx**, Mtx **, Vtx **);
-    void (*unkC)(Struct81s *);
+    void (*init)(Struct81s *);
+    void (*update)(Struct81s *);
+    void (*draw)(Struct81s *, Gfx**, Mtx **, Vtx **);
+    void (*free)(Struct81s *);
     Struct81s unk10;
 }Struct_core2_ABC00_0;
 
 void func_803331D8(enum jiggy_e, f32[3]);
-void func_803332D0(Actor *);
+void jiggy_free(Actor *);
 
 /* .data */
 u8 D_8036E830 = 0;
-Struct_core2_ABC00_0 D_8036E834[] = {
+Struct_core2_ABC00_0 jiggylist_list[] = {
     {func_80347E34, func_80347E60, func_80347FA4, func_80347FB8, {0x7,  NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
     {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
     {func_80347B54, func_80347B80, func_80347C5C, func_80347C70, {0,    NULL, {0.0f, 0.0f, 0.0f}, NULL, NULL}},
@@ -135,10 +135,10 @@ Struct_core2_ABC00_0 D_8036E834[] = {
 };
 
 /* .bss */
-s32 D_80383560;
-s32 D_80383564;
-s32 D_80383568;
-s32 D_8038356C;
+s32 s_jiggyList_level_start_index;
+s32 s_jiggyList_level_end_index;
+s32 s_jiggyList_level_jiggy_count;
+s32 s_jiggylist_current_index;
 
 /* .code */
 void func_80332B90(void){
@@ -150,34 +150,34 @@ void func_80332BB0(void) {
     func_8025A55C(-1, 4000, 5);
 }
 
-void func_80332BEC(enum map_e map_id) {
+void jiggylist_set_level(enum map_e map_id) {
     s32 temp_a2;
     s32 temp_at;
     s32 temp_hi;
     s32 temp_lo;
     s32 temp_t4;
-    s32 var_a1;
+    s32 level_index;
     s32 var_v1;
     s32 var_v0;
 
-    var_v1 = (map_getLevel(map_id) - 1) % (D_80383568 = 0xA);
-    var_a1 = MAX(0, var_v1);
-    D_80383560 = var_a1 * 0xA;
-    D_80383564 = (var_a1 + 1) * 0xA;
-    for(D_8038356C = D_80383560; D_8038356C < D_80383564; D_8038356C++){
-            D_8036E834[D_8038356C].unk10.marker = NULL;
+    var_v1 = (map_getLevel(map_id) - 1) % (s_jiggyList_level_jiggy_count = 0xA);
+    level_index = MAX(0, var_v1);
+    s_jiggyList_level_start_index = level_index * 0xA;
+    s_jiggyList_level_end_index = (level_index + 1) * 0xA;
+    for(s_jiggylist_current_index = s_jiggyList_level_start_index; s_jiggylist_current_index < s_jiggyList_level_end_index; s_jiggylist_current_index++){
+            jiggylist_list[s_jiggylist_current_index].unk10.marker = NULL;
     }
     D_8036E830 = 0;
 }
 
-void func_80332CCC(void) {
-    Actor **temp_v0;
+void jiggylist_map_actors(void) {
+    Actor **jiggy_actors;
     s32 i;
 
-    temp_v0 = actorArray_findJiggyActors();
-    for(D_8038356C = 0; temp_v0[D_8038356C] != NULL; D_8038356C++){
-        if(!temp_v0[D_8038356C]->unk44_2){
-            D_8036E834[chjiggy_getJiggyId(temp_v0[D_8038356C]) - 1].unk10.marker = temp_v0[D_8038356C]->marker;
+    jiggy_actors = actorArray_findJiggyActors();
+    for(s_jiggylist_current_index = 0; jiggy_actors[s_jiggylist_current_index] != NULL; s_jiggylist_current_index++){
+        if(!jiggy_actors[s_jiggylist_current_index]->unk44_2){
+            jiggylist_list[chjiggy_getJiggyId(jiggy_actors[s_jiggylist_current_index]) - 1].unk10.marker = jiggy_actors[s_jiggylist_current_index]->marker;
         }
     }
 }
@@ -200,10 +200,10 @@ void func_80332E08(void) {
     s32 var_v0;
     void *temp_v1;
 
-    for(D_8038356C = D_80383560; D_8038356C < D_80383564; D_8038356C++) {
-            if (D_8036E834[D_8038356C].unk10.marker != NULL) {
-                D_8036E834[D_8038356C].unk4(&D_8036E834[D_8038356C].unk10);
-                var_v0 = D_8038356C;
+    for(s_jiggylist_current_index = s_jiggyList_level_start_index; s_jiggylist_current_index < s_jiggyList_level_end_index; s_jiggylist_current_index++) {
+            if (jiggylist_list[s_jiggylist_current_index].unk10.marker != NULL) {
+                jiggylist_list[s_jiggylist_current_index].update(&jiggylist_list[s_jiggylist_current_index].unk10);
+                var_v0 = s_jiggylist_current_index;
             }
     }
     func_80332D98(MAP_69_GL_MM_LOBBY, JIGGY_34_LAIR_MM_WITCH_SWITCH, FILEPROG_18_MM_WITCH_SWITCH_JIGGY_PRESSED, 0x205);
@@ -217,32 +217,32 @@ void func_80332E08(void) {
     D_8036E830 = 1;
 }
 
-void func_80332F4C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    for(D_8038356C = D_80383560; D_8038356C < D_80383564; D_8038356C++) {
-        if (D_8036E834[D_8038356C].unk10.marker != NULL) {
-            D_8036E834[D_8038356C].unk8(&D_8036E834[D_8038356C].unk10, gfx, mtx, vtx);
+void jiggylist_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+    for(s_jiggylist_current_index = s_jiggyList_level_start_index; s_jiggylist_current_index < s_jiggyList_level_end_index; s_jiggylist_current_index++) {
+        if (jiggylist_list[s_jiggylist_current_index].unk10.marker != NULL) {
+            jiggylist_list[s_jiggylist_current_index].draw(&jiggylist_list[s_jiggylist_current_index].unk10, gfx, mtx, vtx);
         }
     }
 }
 
 void func_8033301C(void) {
-    for(D_8038356C = D_80383560; D_8038356C < D_80383564; D_8038356C++) {
-        if (D_8036E834[D_8038356C].unk10.marker != NULL) {
-            func_803332D0(marker_getActor(D_8036E834[D_8038356C].unk10.marker));
+    for(s_jiggylist_current_index = s_jiggyList_level_start_index; s_jiggylist_current_index < s_jiggyList_level_end_index; s_jiggylist_current_index++) {
+        if (jiggylist_list[s_jiggylist_current_index].unk10.marker != NULL) {
+            jiggy_free(marker_getActor(jiggylist_list[s_jiggylist_current_index].unk10.marker));
         }
     }
 }
 
-void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]) {
+void jiggy_spawn(enum jiggy_e jiggy_id, f32 pos[3]) {
     Struct_core2_ABC00_0 *temp_v0;
 
-    jiggy_id = ((jiggy_id <= 0) || (jiggy_id >= (D_80383568 * 10))) ? 10 : jiggy_id;
-    temp_v0 = &D_8036E834[jiggy_id - 1];
-    if (D_8036E834[jiggy_id - 1].unk10.marker == NULL) {
+    jiggy_id = ((jiggy_id <= 0) || (jiggy_id >= (s_jiggyList_level_jiggy_count * 10))) ? JIGGY_A_MM_CONGA : jiggy_id;
+    temp_v0 = &jiggylist_list[jiggy_id - 1];
+    if (jiggylist_list[jiggy_id - 1].unk10.marker == NULL) {
         temp_v0->unk10.position[0] = pos[0];
         temp_v0->unk10.position[1] = pos[1];
         temp_v0->unk10.position[2] = pos[2];
-        temp_v0->unk0(&temp_v0->unk10);
+        temp_v0->init(&temp_v0->unk10);
         jiggyscore_setSpawned(jiggy_id, TRUE);
         if (!jiggyscore_isCollected(jiggy_id) && (jiggy_id != JIGGY_3E_GV_GRABBA) && (jiggy_id != JIGGY_0B_TTC_JINJO)) {
             func_8024BD08(0);
@@ -254,53 +254,53 @@ void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]) {
 }
 
 void func_803331D8(enum jiggy_e jiggy_id, f32 arg1[3]) {
-    jiggy_id = ((jiggy_id <= 0) || (jiggy_id >= (D_80383568 * 10))) ? JIGGY_A_MM_CONGA : jiggy_id;
+    jiggy_id = ((jiggy_id <= 0) || (jiggy_id >= (s_jiggyList_level_jiggy_count * 10))) ? JIGGY_A_MM_CONGA : jiggy_id;
 
-    D_8036E834[jiggy_id - 1].unk10.position[0] = arg1[0];
-    D_8036E834[jiggy_id - 1].unk10.position[1] = arg1[1];
-    D_8036E834[jiggy_id - 1].unk10.position[2] = arg1[2];
-    D_8036E834[jiggy_id - 1].unk0(&D_8036E834[jiggy_id - 1].unk10);
+    jiggylist_list[jiggy_id - 1].unk10.position[0] = arg1[0];
+    jiggylist_list[jiggy_id - 1].unk10.position[1] = arg1[1];
+    jiggylist_list[jiggy_id - 1].unk10.position[2] = arg1[2];
+    jiggylist_list[jiggy_id - 1].init(&jiggylist_list[jiggy_id - 1].unk10);
     jiggyscore_setSpawned(jiggy_id, TRUE);
 }
 
 void func_80333270(enum jiggy_e jiggy_id, f32 position[3], void (*method)(Actor *, ActorMarker *), ActorMarker *other_marker) {
     Struct_core2_ABC00_0 *ptr;
 
-    ptr = &D_8036E834[jiggy_id - 1];
-    jiggySpawn(jiggy_id, position);
+    ptr = &jiggylist_list[jiggy_id - 1];
+    jiggy_spawn(jiggy_id, position);
     ptr->unk10.unk14 = method;
     ptr->unk10.unk18 = other_marker;
 }
 
-void func_803332D0(Actor *arg0)
+void jiggy_free(Actor *arg0)
 {
   s32 indx = chjiggy_getJiggyId(arg0) - 1;
-  Struct81s *sp18 = &D_8036E834[indx].unk10;
-  if (D_8036E834[indx].unkC)
+  Struct81s *sp18 = &jiggylist_list[indx].unk10;
+  if (jiggylist_list[indx].free)
   {
   }
-  D_8036E834[indx].unkC(sp18);
+  jiggylist_list[indx].free(sp18);
   sp18->marker = 0;
 }
 
 void func_80333334(enum jiggy_e jiggy_id) {
     Struct_core2_ABC00_0 *temp_v0;
 
-    temp_v0 = &D_8036E834[jiggy_id - 1];
-    temp_v0->unk0 = func_80347B54;
-    temp_v0->unk4 = func_80347B80;
-    temp_v0->unk8 = func_80347C5C;
-    temp_v0->unkC = func_80347C70;
+    temp_v0 = &jiggylist_list[jiggy_id - 1];
+    temp_v0->init = func_80347B54;
+    temp_v0->update = func_80347B80;
+    temp_v0->draw = func_80347C5C;
+    temp_v0->free = func_80347C70;
 }
 
 void func_80333388(enum jiggy_e jiggy_id) {
     Struct_core2_ABC00_0 *temp_v0;
 
-    temp_v0 = &D_8036E834[jiggy_id - 1];
-    temp_v0->unk0 = func_80347CC8;
-    temp_v0->unk4 = func_80347CF4;
-    temp_v0->unk8 = func_80347DD0;
-    temp_v0->unkC = func_80347DE4;
+    temp_v0 = &jiggylist_list[jiggy_id - 1];
+    temp_v0->init = func_80347CC8;
+    temp_v0->update = func_80347CF4;
+    temp_v0->draw = func_80347DD0;
+    temp_v0->free = func_80347DE4;
 
 }
 
@@ -311,8 +311,8 @@ void func_803333DC(Struct81s *arg0, Actor *arg1) {
     if (arg0->unk14 != NULL) {
         arg0->unk14(arg1, arg0->unk18);
     }
-    marker_setFreeMethod(arg1->marker, func_803332D0);
-    jiggy_id = ((s32) ((s32)arg0 - (s32)&D_8036E834) / 0x2C) + 1;
+    marker_setFreeMethod(arg1->marker, jiggy_free);
+    jiggy_id = ((s32) ((s32)arg0 - (s32)&jiggylist_list) / 0x2C) + 1;
     chjiggy_setJiggyId(arg1, jiggy_id);
     if ((jiggy_id == JIGGY_49_CCW_EYRIE) || (jiggy_id == JIGGY_39_LAIR_MMM_WITCH_SWITCH) || (jiggy_id == JIGGY_3C_LAIR_CCW_WITCH_SWITCH)) {
         arg1->marker->unk40_21 = TRUE;

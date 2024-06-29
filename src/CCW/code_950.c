@@ -208,8 +208,8 @@ void chwasp_update(Actor *this) {
     } else {
         func_8030DBFC(local->unk0, 0.8f, 0.9f, 0.05f);
     }
-    func_8030DEB4(local->unk0, 500.0f, 1500.0f);
-    func_8030DF68(local->unk0, this->position);
+    sfxsource_set_fade_distances(local->unk0, 500.0f, 1500.0f);
+    sfxsource_set_position(local->unk0, this->position);
     func_8030E2C4(local->unk0);
     sfxsource_setSampleRate(local->unk0, (s32) ((local->unk18 / local->unk14) * 10000.0f));
 }

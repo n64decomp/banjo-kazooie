@@ -140,7 +140,7 @@ void __chCrab_spawn_mutant_crab_jiggy(void) {
     sp1C[0] = 13814.0f;
     sp1C[1] = 3812.0f;
     sp1C[2] = 0.0f;
-    jiggySpawn(JIGGY_16_CC_SNIPPETS, sp1C);
+    jiggy_spawn(JIGGY_16_CC_SNIPPETS, sp1C);
 }
 
 void __chCrab_mutantTextCallback(ActorMarker *caller, enum asset_e text_id, s32 model_id){

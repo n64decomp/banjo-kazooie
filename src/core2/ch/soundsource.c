@@ -60,8 +60,8 @@ void func_802D05A0(Actor *this, s32 next_state){
         sfxsource_setSfxId(local->unk0, D_80367340[(s32)this->yaw].unk0);
         func_8030DD14(local->unk0, 3);
         func_8030DFF0(local->unk0, 1);
-        func_8030DF68(local->unk0, this->position);
-        func_8030DEB4(local->unk0, D_80367340[(s32)this->yaw].unk4*this->scale, D_80367340[(s32)this->yaw].unk6*this->scale);
+        sfxsource_set_position(local->unk0, this->position);
+        sfxsource_set_fade_distances(local->unk0, D_80367340[(s32)this->yaw].unk4*this->scale, D_80367340[(s32)this->yaw].unk6*this->scale);
         func_8030DFB4(local->unk0, 1);
         func_802D0500(this);
         if(-1.0f != D_80367340[(s32)this->yaw].unkC)

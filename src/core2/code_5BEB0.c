@@ -13,7 +13,7 @@ u8 pad_8037E8A8[0x18];
 
 /* public functions */
 void func_802E3BD0(s32 frame_buffer_indx);
-int func_802E49F0(void);
+int game_is_frozen(void);
 
 /* .code */
 void mapSavestate_init(void){

@@ -172,7 +172,7 @@ void chJinjo_update(Actor * this){
                     sp40[1] = this->position_y;
                     sp40[2] = this->position_z;
                     sp40[1] += 50.0f;
-                    jiggySpawn(10*level_get()-9, sp40);
+                    jiggy_spawn(10*level_get()-9, sp40);
                 }//L802CE0CC
                 func_8024BD08(0);
                 func_8032BB88(this, 0, 4000);

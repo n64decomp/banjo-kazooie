@@ -25,7 +25,7 @@ void __chtreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
     __spawnQueue_add_4((GenFunction_4) func_802C4140, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     func_802EE278(this, 3, 0xf, 0x3C, 0.2f, 1.2f);
     func_803115C4(0xA19);
-    jiggySpawn(JIGGY_11_TTC_RED_X, this->position);
+    jiggy_spawn(JIGGY_11_TTC_RED_X, this->position);
     marker_despawn(marker);
 }
 

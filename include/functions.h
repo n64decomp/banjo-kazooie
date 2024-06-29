@@ -162,7 +162,7 @@ Actor *func_802C8C04(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
 Actor *marker_getActor(ActorMarker *);
 
 f32 time_getDelta(void);
-void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]);
+void jiggy_spawn(enum jiggy_e jiggy_id, f32 pos[3]);
 
 struct3s *func_802F8264(s32 arg0);
 struct6s *func_802F8BE0(s32 arg0);
@@ -276,13 +276,6 @@ void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
 f32  cosf(f32);
 
-struct54s * func_80287CA8(void);
-void func_80287F50(struct54s *, struct53s *, s32);
-void func_80287FD0(struct54s *, f32);
-void func_80287F7C(struct54s *arg0, s32 arg1);
-void func_80287F98(struct54s *arg0, s32 arg1);
-void func_80287FDC(struct54s *arg0, s32 arg1);
-
 void baanim_setDurationRange(f32, f32);
 
 
@@ -395,7 +388,7 @@ u8   func_8030D90C(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
 void func_8030DD14(u8, int);
-void func_8030DF68(u8, f32[3]);
+void sfxsource_set_position(u8, f32[3]);
 void func_8030DFF0(u8, s32);
 void func_8030E04C(u8, f32, f32, f32);
 void func_8030E0FC(u8, f32, f32, f32);
@@ -515,7 +508,7 @@ Actor *actorArray_findActorFromActorId(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void *defrag_asset(void *);
 void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
-void func_8030DEB4(u8, f32, f32);
+void sfxsource_set_fade_distances(u8, f32, f32);
 void func_8030DB04(u8, s32, f32 position[3], f32, f32);
 void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
 

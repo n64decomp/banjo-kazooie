@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "code_B6EA0.h"
+#include "core2/anim/sprite.h"
 
 typedef struct {
     s32 unk0;//asset_id
@@ -40,7 +41,7 @@ void func_80355D50(void){}
 void func_80355D58(void){
     ParticleStruct0s * sp3C;
     u8 sp3B;
-    struct54s *sp34;
+    AnimSprite *sp34;
     u8 temp_s0;
     f32 sp24[3];
 
@@ -52,8 +53,8 @@ void func_80355D58(void){
     projectile_setSprite(sp3B, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FFE4(sp3B, D_803726F0.unk4, D_803726F0.unk4);
     func_8033FCD8(sp3B, 0xC);
-    func_80287E9C(sp34);
-    func_80287F7C(sp34, 3);
+    animsprite_default(sp34);
+    animsprite_set_state(sp34, ANIM_SPRITE_STATE_STOPPED);
 
     sp24[0] = randf2(-40.0f, 40.0f);
     sp24[1] = randf2(-40.0f, 40.0f);

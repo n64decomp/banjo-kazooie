@@ -111,7 +111,7 @@ void chmudhut_update(Actor *this){
                             reinterpret_cast(s32, diffPos[2])
                         );
                     } else {
-                        jiggySpawn(JIGGY_23_BGS_HUTS, diffPos);
+                        jiggy_spawn(JIGGY_23_BGS_HUTS, diffPos);
                     }
                 }
                 break;

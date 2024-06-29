@@ -88,7 +88,7 @@ void func_803867F4(void){
     f32 sp24[3];
     func_802BAFE4(4);
     if(nodeProp_findPositionFromActorId(0x148, sp24)){
-        jiggySpawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
+        jiggy_spawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
         __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }

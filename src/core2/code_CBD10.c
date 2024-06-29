@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+
+#include "core2/anim/sprite.h"
 #include "code_B6EA0.h"
 
 extern f32  func_8033DDEC(void);
@@ -13,7 +15,7 @@ extern void func_80344D94(u8, f32[3]);
 extern void func_80344E3C(u8, f32[3]);
 
 /* .data */
-struct53s D_80372670[] = {
+AnimSpriteStep D_80372670[] = {
     { 0x0, 1}, 
     { 0x1, 1}, 
     { 0x2, 1}, 
@@ -68,7 +70,7 @@ s32 func_80352D9C(void) {
 
 void func_80352DE4(void) {
     u8 temp_s0;
-    struct54s *sp58;
+    AnimSprite *sp58;
     u8 sp57;
     ParticleStruct0s *temp_s1;
     f32 sp44[3];
@@ -92,10 +94,10 @@ void func_80352DE4(void) {
     sp2C[1] = 0.0f;
     sp2C[2] = randf() * 359.0f;
     func_8033FD98(temp_s0, sp2C);
-    func_80287E9C(sp58);
-    func_80287F7C(sp58, 1);
-    func_80287F50(sp58, D_80372670, 0x28);
-    func_80287F10(sp58);
+    animsprite_default(sp58);
+    animsprite_set_state(sp58, ANIM_SPRITE_STATE_ONCE);
+    animsprite_set_steps(sp58, D_80372670, sizeof(D_80372670));
+    animsprite_loop(sp58);
     sp38[0] = 0.0f;
     sp38[1] = 40.0f;
     sp38[2] = 0.0f;
@@ -107,10 +109,10 @@ void func_80352DE4(void) {
 
 void func_80352F58(void){
     f32 *sp2C = func_8033E960();
-    struct54s *sp28 = func_8033E8F4();
+    AnimSprite *sp28 = func_8033E8F4();
     u8 sp27 = func_8033E8D0();
     f32 sp20 = func_8033DDEC();
-    if(func_80288034(sp28)){
+    if(animsprite_is_stopped(sp28)){
         func_8033E984();
     }
     else{

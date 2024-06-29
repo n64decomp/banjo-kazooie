@@ -86,10 +86,10 @@ f32 func_802D7038(Actor *this) {
 }
 
 void func_802D7124(Actor *actor, f32 arg1) {
-    f32 sp1C[3];
+    f32 vp[3];
 
-    viewport_getPosition(&sp1C);
-    if ((actor->position[0] - sp1C[0]) * (actor->position[0] - sp1C[0]) + (actor->position[2] - sp1C[2]) * (actor->position[2] - sp1C[2]) < 12250000.0f) {
+    viewport_getPosition(&vp);
+    if ((actor->position[0] - vp[0]) * (actor->position[0] - vp[0]) + (actor->position[2] - vp[2]) * (actor->position[2] - vp[2]) < 12250000.0f) {
         func_802D729C(actor, arg1);
     }
 }

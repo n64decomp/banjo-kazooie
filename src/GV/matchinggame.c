@@ -63,7 +63,7 @@ void func_80390218(void *arg0){
 
 void __matchingGame_spawnJIggy(void){
     static f32 jiggy_position[3] = {0.0f, 100.0f, 0.0f};
-    jiggySpawn(JIGGY_40_GV_MATCHING_GAME, jiggy_position);
+    jiggy_spawn(JIGGY_40_GV_MATCHING_GAME, jiggy_position);
 }
 
 void __matchingGame_setState(s32 next_state){

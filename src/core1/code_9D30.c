@@ -318,28 +318,38 @@ void func_80248098(f32 arg0) {
     func_80248520();
 }
 
+//letter to font index???
 s32 func_8024824C(s32 arg0) {
+    //lowercase_letter
     if ((arg0 >= (s32) D_80275BE8[0]) && ((s32) D_80275BE8[1] >= arg0)) {
         return (arg0 - D_80275BE8[0]) + 0xA;
     }
 
+    //uppercase_letter
     if ((arg0 >= (s32) D_80275BE8[2]) && ((s32) D_80275BE8[3] >= arg0)) {
         return (arg0 - D_80275BE8[2]) + 0xA;
     }
 
+    //number
     if ((arg0 >= (s32) D_80275BE8[4]) && ((s32) D_80275BE8[5] >= arg0)) {
         return (arg0 - D_80275BE8[4]);
     }
 
+    //.
     if (arg0 == D_80275BE8[6]) {
         return 0x24;
     }
+
+    //:
     if (arg0 == D_80275BE8[7]) {
         return 0x25;
     }
+
+    //-
     if (arg0 == D_80275BE8[8]) {
         return 0x26;
     }
+    // 
     if (arg0 == D_80275BE8[9]) {
         return 0x27;
     }

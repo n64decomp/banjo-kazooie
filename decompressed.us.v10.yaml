@@ -501,7 +501,7 @@ segments:
   follows_vram: core1
   subsegments:
   - [0xF55960, c, animctrl] #DONE
-  - [0xF56430, c, code_AD0] #DONE
+  - [0xF56430, c, anim/sprite] #DONE
   - [0xF56A40, c, animcache] #DONE
   - [0xF56EB0, c, code_1550] #DONE
   - [0xF57290, c, code_1930] #DONE
@@ -1116,7 +1116,7 @@ segments:
   - [0x1041CB0, .data, code_DB010]
   - [0x1042790, .data, code_DC4B0]
   - [0x10427C0, ".rodata", animctrl]
-  - [0x10427F0, .rodata, code_AD0]
+  - [0x10427F0, .rodata, anim/sprite]
   - [0x1042800, .rodata, code_1930]
   - [0x1042880, .rodata, ba/anim]
   - [0x1042890, .rodata, code_3480]
@@ -1366,7 +1366,7 @@ segments:
   - [0x1048450, .rodata, code_DA3A0]
   - [0x1048460, .rodata, code_DA760]
   - [0x1048480, .rodata, code_DB010]
-  - [0x1048560, .bss, code_AD0]
+  - [0x1048560, .bss, anim/sprite]
   - [0x1048560, .bss, animcache]
   - [0x1048560, .bss, code_1550]
   - [0x1048560, .bss, code_1930]

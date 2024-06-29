@@ -207,7 +207,7 @@ void func_8038F6A4(Actor *this)
       func_8034A174(this->marker->unk44, 6, sp34);
       func_802C8F70(this->yaw);
       sp34[1] -= 125.0f;
-      jiggySpawn(JIGGY_26_BGS_TANKTUP, sp34);
+      jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);
     }
       if (actor_animationIsAt(this, 0.9f) != 0)
     {

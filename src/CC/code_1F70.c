@@ -110,7 +110,7 @@ void func_80388518(s32 arg0){
 }
 
 void func_80388664(void) {
-    jiggySpawn(JIGGY_17_CC_CLANKER_RAISED, D_80389C00);
+    jiggy_spawn(JIGGY_17_CC_CLANKER_RAISED, D_80389C00);
 }
 
 void CC_func_8038868C(void) {

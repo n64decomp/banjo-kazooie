@@ -89,7 +89,7 @@ void func_803891E8(s32 x, s32 y, s32 z, s32 yaw){
     sp1C[0] = x;
     sp1C[1] = y + 0x14;
     sp1C[2] = z;
-    jiggySpawn(JIGGY_4_MM_JUJU, sp1C);
+    jiggy_spawn(JIGGY_4_MM_JUJU, sp1C);
 }
 
 void func_80389244(s32 x, s32 y, s32 z, s32 yaw){

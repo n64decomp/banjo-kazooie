@@ -6,8 +6,8 @@
 extern void func_8030DBFC(u32, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern void fileProgressFlag_set(s32, bool);
-extern void func_8030DEB4(u8, f32, f32);
-extern void func_8030DF68(u8, f32[3]);
+extern void sfxsource_set_fade_distances(u8, f32, f32);
+extern void sfxsource_set_position(u8, f32[3]);
 extern void func_8030E2C4(u8);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void ml_vec3f_normalize(f32[3]);
@@ -544,8 +544,8 @@ void chBeeSwarm_update(Actor *this) {
                 ((this->state == 3) || (this->state == 4)) ? 1.1 : 0.9, 
                 0.05f
             );
-            func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
-            func_8030DF68(this->unk44_31, this->position);
+            sfxsource_set_fade_distances(this->unk44_31, 500.0f, 1500.0f);
+            sfxsource_set_position(this->unk44_31, this->position);
             func_8030E2C4(this->unk44_31);
             sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
         }

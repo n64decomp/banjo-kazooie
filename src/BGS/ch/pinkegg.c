@@ -92,7 +92,7 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0] != 0){
         __spawnQueue_add_2(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
     } else {
-        jiggySpawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
+        jiggy_spawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     }
 }

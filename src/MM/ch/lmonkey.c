@@ -64,7 +64,7 @@ void MM_func_803883AC(Actor *this){
 void __chLMonkey_spawnJiggy(s32 x, s32 y, s32 z){
     f32 sp1C[3];
     TUPLE_ASSIGN(sp1C, x, y, z);
-    jiggySpawn(JIGGY_9_MM_CHIMPY, sp1C);
+    jiggy_spawn(JIGGY_9_MM_CHIMPY, sp1C);
 }
 
 void __chLMonkey_complete(ActorMarker *marker, enum asset_e arg1, s32 arg2){

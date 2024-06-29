@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/anim/sprite.h"
 #include "code_B6EA0.h"
 
 struct{
@@ -31,7 +32,7 @@ void func_803540AC(void){}
 void func_803540B4(void){
     ParticleStruct0s *sp34;
     u8 sp33;
-    struct54s *sp2C;
+    AnimSprite *sp2C;
     u8 sp2B;
     f32 sp1C[3];
  
@@ -43,8 +44,8 @@ void func_803540B4(void){
     projectile_setSprite(sp33, D_803863D0.unk0 + 0x710);
     func_8033FFE4(sp33, D_803863D0.unk4, D_803863D0.unk4);
     func_8033FCD8(sp33, 0xC);
-    func_80287E9C(sp2C);
-    func_80287F7C(sp2C, 3);
+    animsprite_default(sp2C);
+    animsprite_set_state(sp2C, ANIM_SPRITE_STATE_STOPPED);
     sp1C[0] = randf2(-100.0f, 100.0f);
     sp1C[1] = randf2(-100.0f, 100.0f);
     sp1C[2] = randf2(-100.0f, 100.0f);

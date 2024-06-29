@@ -65,7 +65,7 @@ void *func_80387D90(ActorMarker * arg0){
     spawnPos[2] = this->position_z;
     marker->propPtr->unk8_3 = 0;
     func_802BAFE4(0x19);
-    jiggySpawn(JIGGY_22_CROCTUS, spawnPos);
+    jiggy_spawn(JIGGY_22_CROCTUS, spawnPos);
     func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 }
 

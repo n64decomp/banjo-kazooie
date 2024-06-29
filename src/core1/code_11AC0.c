@@ -258,7 +258,7 @@ void musicInstruments_init(void){
     func_8024FB8C();
 }
 
-ALBank *func_8024F758(void){
+ALBank *music_get_sound_bank(void){
     return D_80282108;
 }
 

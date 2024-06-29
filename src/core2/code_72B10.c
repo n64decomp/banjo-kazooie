@@ -127,8 +127,8 @@ void func_802F9EC4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
     iPtr = vector_at(D_803810A0, arg0);
     if(iPtr->unk0){
-        func_8030DEB4(iPtr->unk0, (f32)arg2, (f32)arg3);
-        func_8030DF68(iPtr->unk0, arg1);
+        sfxsource_set_fade_distances(iPtr->unk0, (f32)arg2, (f32)arg3);
+        sfxsource_set_position(iPtr->unk0, arg1);
     }
 }
 

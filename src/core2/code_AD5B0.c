@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/particle.h"
-
+#include "core2/anim/sprite.h"
 
 /* .data */
 extern u8 D_80370250 = 0;
@@ -43,39 +43,39 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     func_802BBD2C(&sp44, &sp40);
     func_8024CE60(sp44, sp40);
     func_8024C904(gdl, mptr);
-    if (func_80309F78() != 0) {
+    if (mapModel_has_xlu_bin() != 0) {
         mapModel_opa_draw(gdl, mptr, vptr);
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_80322E64(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             player_draw(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_80302C94(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
-            func_80332F4C(gdl, mptr, vptr);
+        if (game_is_frozen() == 0) {
+            jiggylist_draw(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_803500D8(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             partEmitMgr_drawPass0(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             mapModel_xlu_draw(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_8032D3D8(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             partEmitMgr_drawPass1(gdl, mptr, vptr);
         }
-        if (func_802E49F0() == 0) {
+        if (game_is_frozen() == 0) {
             func_8034F6F0(gdl, mptr, vptr);
         }
         func_802D520C(gdl, mptr, vptr);
@@ -86,16 +86,16 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
         player_draw(gdl, mptr, vptr);
         func_80302C94(gdl, mptr, vptr);
         func_8032D3D8(gdl, mptr, vptr);
-        func_80332F4C(gdl, mptr, vptr);
+        jiggylist_draw(gdl, mptr, vptr);
         func_803500D8(gdl, mptr, vptr);
         func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
         func_802D520C(gdl, mptr, vptr);
         partEmitMgr_draw(gdl, mptr, vptr);
     }
-    if (func_802E49F0() == 0) {
+    if (game_is_frozen() == 0) {
         func_80350818(gdl, mptr, vptr);
     }
-    if (func_802E49F0() == 0) {
+    if (game_is_frozen() == 0) {
         func_802BBD0C(gdl, mptr, vptr);
     }
     spawnQueue_lock();
@@ -144,7 +144,7 @@ void func_80334910(void) {
     func_8033E184();
     func_8033FA24();
     func_80344C80();
-    func_80287D70();
+    animsprite_terminate();
     animBinCache_free();
     func_802BC10C();
     ncCameraNodeList_free();
@@ -222,7 +222,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_80323230();
     commonParticleType_init();
     animBinCache_init();
-    func_80287C58();
+    animsprite_init();
     func_80344C50();
     func_8033F9C0();
     ncCameraNodeList_init();
@@ -351,7 +351,7 @@ s32 func_80334ECC(void) {
         overlay_update();
         func_80321924();
         func_80334428();
-        func_8031C880();
+        cutscenetrigger_update();
         func_802D2CDC();
         func_803306C8(1);
         func_8032AD7C(1);

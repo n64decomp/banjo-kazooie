@@ -84,7 +84,7 @@ extern void chTooth_update(Actor * this){
             player_getPosition(sp24);
             if(sp24[0] < 0.0f && 5400.0f < sp24[2]){
                 func_80333334(local->unk0->jiggy_id);
-                jiggySpawn(local->unk0->jiggy_id, local->unk0->jiggy_position);
+                jiggy_spawn(local->unk0->jiggy_id, local->unk0->jiggy_position);
             }
             else{//L8038774C
                 sp24[0] = local->unk0->jiggy_position[0];

@@ -73,7 +73,7 @@ void func_803877A8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     
     if(arg2 == 1){
-        jiggySpawn(JIGGY_2A_FP_BOGGY_1, this->velocity);
+        jiggy_spawn(JIGGY_2A_FP_BOGGY_1, this->velocity);
     }
     else if(arg2 == 2){
         subaddie_set_state_with_direction(this, 4, 0.0001f, 1);

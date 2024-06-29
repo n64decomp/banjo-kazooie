@@ -197,10 +197,10 @@ void func_8038B0F8(void){
 
 void func_8038B130(enum jiggy_e jiggy_id){
     if(jiggy_id == JIGGY_2C_FP_BOGGY_3 && !jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-        jiggySpawn(jiggy_id, D_80391F38);
+        jiggy_spawn(jiggy_id, D_80391F38);
     }
     else{
-        jiggySpawn(jiggy_id, D_80391F2C);
+        jiggy_spawn(jiggy_id, D_80391F2C);
     }
 }
 
