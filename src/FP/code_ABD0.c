@@ -225,7 +225,7 @@ void func_80391744(Actor *this, Actor* other){
 }
 
 void func_8039180C(Actor *this){
-      ActorMarker *sp24;
+      Actor *sp24;
 
       if(!this->initialized){
             sp24 = actorArray_findActorFromActorId(0x254);

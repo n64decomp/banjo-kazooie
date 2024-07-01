@@ -202,7 +202,7 @@ void func_80345C78(f32 arg0[4], f32 arg1[3]) {
     mlMtxRotYaw(arg1[1]);
     mlMtxRotPitch(arg1[0]);
     mlMtxRotRoll(arg1[2]);
-    func_80345A44(arg0, func_80251488());
+    func_80345A44(arg0, mlMtx_get_stack_pointer());
 }
 
 void func_80345CD4(f32 arg0[4], f32 arg1[4]){
@@ -210,7 +210,7 @@ void func_80345CD4(f32 arg0[4], f32 arg1[4]){
     mlMtxRotRoll(arg1[2]);
     mlMtxRotYaw(arg1[1]);
     mlMtxRotPitch(arg1[0]);
-    func_80345A44(arg0, func_80251488());
+    func_80345A44(arg0, mlMtx_get_stack_pointer());
 }
 
 void func_80345D30(f32 arg0[4], f32 arg1[4], f32 arg2[4]) {

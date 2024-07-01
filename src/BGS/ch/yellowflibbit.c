@@ -297,7 +297,7 @@ Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 var_s0;
     f32 var_f2;
     f32 sp7C[3];
-    s32 temp_a0_2;
+    BoneTransformList *temp_a0_2;
 
     this = marker_getActor(marker);
     local = (ActorLocal_Yellow_Flibbit *)&this->local;

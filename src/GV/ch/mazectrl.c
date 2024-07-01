@@ -27,18 +27,18 @@ ActorInfo chMazeCtrl = { MARKER_1CD_GV_MAZE_CTRL, ACTOR_319_GV_MAZE_CTRL, 0x0,
 void func_8038F520(f32 arg0){
     static f32 D_803915E4[3] = {460.0f, 1400.0f, 0.0f};
     static f32 D_803915F0[3] = {0.0f, 0.0f, 0.0f};
-    Struct6Ds *tmp_v0 = func_8034C528(0x19A);
+    Struct70s *tmp_v0 = func_8034C528(0x19A);
     if(tmp_v0 != NULL){
-        func_8034DDF0(tmp_v0, D_803915E4, D_803915F0, arg0, 1);
+        func_8034DDF0(&tmp_v0->type_6D, D_803915E4, D_803915F0, arg0, 1);
     }
 }
 
 void func_8038F56C(f32 arg0){
     static f32 D_803915FC[3] = {0.0f, 0.0f, 0.0f};
     static f32 D_80391608[3] = {460.0f, 1400.0f, 0.0f};
-    Struct6Ds *tmp_v0 = func_8034C528(0x19A);
+    Struct70s *tmp_v0 = func_8034C528(0x19A);
     if(tmp_v0 != NULL){
-        func_8034DDF0(tmp_v0, D_803915FC, D_80391608, arg0, 1);
+        func_8034DDF0(&tmp_v0->type_6D, D_803915FC, D_80391608, arg0, 1);
     }
 }
 
@@ -56,7 +56,7 @@ void __chMazeCtrl_8038F5E4(Actor *this){
 
 void __chMazeCtrl_setState(Actor *this, s32 next_state){
     f32 plyr_pos[3];
-    Struct6Ds *tmp_v0;
+    Struct70s *tmp_v0;
     ActorLocal_GVMazeCtrl *local;
     f32 sp28[3];
 
@@ -111,7 +111,7 @@ void __chMazeCtrl_setState(Actor *this, s32 next_state){
         func_8030E6D4(SFX_52_BANJO_YAH_OH);
         tmp_v0 = func_8034C528(400);
         if(tmp_v0){
-            func_8034DE60(tmp_v0, 0.0f, -1700.0f, 1.0f, 1);
+            func_8034DE60(&tmp_v0->type_6D, 0.0f, -1700.0f, 1.0f, 1);
         }
     }//L8038F8C4
 
@@ -170,7 +170,7 @@ void chMazeCtrl_update(Actor *this){
 
     player_getPosition(sp3C);
     if(this->state == 1){
-        sp38 = func_8034C528(0x191);
+        sp38 = &func_8034C528(0x191)->type_6D;
         if(sp38 != NULL && func_8034DC80(sp38, sp3C)){
             __chMazeCtrl_setState(this, 2);
         }
@@ -200,7 +200,7 @@ void chMazeCtrl_update(Actor *this){
     }
 
     if(this->state == 4){
-        sp30 = func_8034C528(0x190);
+        sp30 = &func_8034C528(0x190)->type_6D;
         if(sp30 != NULL && func_8034DC78(sp30)){
             __chMazeCtrl_setState(this, 0);
         }

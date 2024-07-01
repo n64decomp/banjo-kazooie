@@ -139,8 +139,8 @@ void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
         vp_rotation[1] = 270.0f;
         vp_rotation[2] = 0.0f;
     }
-    viewport_setPosition(vp_position);
-    viewport_setRotation(vp_rotation);
+    viewport_set_position_vec3f(vp_position);
+    viewport_set_rotation_vec3f(vp_rotation);
     viewport_update();
     func_8024C904(gfx, mtx);
 }
@@ -505,7 +505,7 @@ void chBottlesBonus_update(Actor *this) {
     this->unk60 += sp50;
     switch(this->state){
         case 1:
-            if ((this->unk60 > 2.0) && gctransition_8030BD98()) {
+            if ((this->unk60 > 2.0) && gctransition_done()) {
                 this->unk60 = 0.0f;
                 func_8025A6EC(COMUSIC_98_BBONUS_PIECES_SHUFFLE, -1);
                 comusic_8025AB44(COMUSIC_95_BBONUS_A, 0, 2000);

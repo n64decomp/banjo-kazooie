@@ -310,7 +310,7 @@ Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
         this->position[1] -= D_8036E58C[1];
         this->position[2] -= D_8036E58C[2];
     }
-    viewport_getRotation(rotation);
+    viewport_get_rotation_vec3f(rotation);
     rotation[2] += this->roll;
     func_80338338(0xFF, 0xFF, 0xFF);
     if (this->unk124_11 != 0) {
@@ -1054,7 +1054,7 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
 }
 
 Actor *func_8032811C(enum actor_e id, s32 (* pos)[3], s32 rot){
-    return func_803056FC(id, pos, rot);
+    return spawn_actor(id, pos, rot);
 }
 
 Actor *func_8032813C(enum actor_e id, f32 pos[3], s32 rot){
@@ -1063,7 +1063,7 @@ Actor *func_8032813C(enum actor_e id, f32 pos[3], s32 rot){
     for(i = 0; i< 3; i++){
         sp24[i] = pos[i];
     }
-    func_803056FC(id, &sp24, rot);
+    spawn_actor(id, &sp24, rot);
 }
 
 Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
@@ -1073,7 +1073,7 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
     sp1C[0] = (*parent)->position_x;
     sp1C[1] = (*parent)->position_y;
     sp1C[2] = (*parent)->position_z;
-    child = func_803056FC(id, sp1C, (*parent)->yaw);
+    child = spawn_actor(id, sp1C, (*parent)->yaw);
     *parent = marker_getActor(sp28);
     return child;
 }
@@ -1097,7 +1097,7 @@ Actor *func_803282AC(enum actor_e id, s16 (* pos)[3], s32 yaw){
     for(i = 0; i< 3; i++){
         sp24[i] = (*pos)[i];
     }
-    return func_803056FC(id, &sp24, yaw);
+    return spawn_actor(id, &sp24, yaw);
 }
 
 void marker_despawn(ActorMarker *marker){

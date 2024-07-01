@@ -4,7 +4,7 @@
 #include "core2/particle.h"
 
 
-extern void viewport_getPosition(f32 (*)[3]);
+extern void viewport_get_position_vec3f(f32 (*)[3]);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80324CFC(f32, enum comusic_e, s32);
@@ -324,7 +324,7 @@ void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     f32 sp40[3];
     f32 sp34[3];
 
-    viewport_getPosition(&sp40);
+    viewport_get_position_vec3f(&sp40);
 
     sp34[0] = sp40[0] - arg0[0];
     sp34[1] = sp40[1] - arg0[1];

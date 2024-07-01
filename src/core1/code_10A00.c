@@ -178,7 +178,7 @@ void pfsManager_update(void) {
         || (getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)
     ) {
         s0 = 0x1000;
-        if (gctransition_8030BD98()) {
+        if (gctransition_done()) {
             D_802816E0 += time_getDelta();
         }
         if ((D_802816E0 < 1.0) || (getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)) {

@@ -10,13 +10,14 @@ extern void gczoombox_open(gczoombox_t *);
 extern void gczoombox_minimize(gczoombox_t *);
 extern void gczoombox_close(gczoombox_t *);
 extern bool func_803188B4(gczoombox_t *);
+extern char *dialogBin_get(enum asset_e text_id);
 
 s8 D_8036C4D0[] = {1, 0x1E, 0x14, 0xF, 0xB, 8, 6, 4, 3, 2, -1, -1};
-
+ 
 /* .bss */
 struct {
     char output[0x100];
-    u8 *unk100;
+    u8 *dialog_bin_ptr;
     struct13s *string_list[2]; //string ptr
     char *string[2]; //current_string
     u8 string_count[2];   //zoombox string_count
@@ -74,7 +75,7 @@ void gcdialog_init(void) {
     s32 i;
     struct14s *i_ptr;
 
-    D_80382E20.unk100 = 0;
+    D_80382E20.dialog_bin_ptr = 0;
     
     for( i = 0; i < 2; i++){
         D_80382E20.string_list[i] = NULL;
@@ -134,9 +135,9 @@ void func_8030F078(void){
         D_80382E20.string_list[i] = NULL;
     }
     if(D_80382E20.unk130 != -1){
-        func_8031B6D8(D_80382E20.unk130);
+        dialogBin_release(D_80382E20.unk130);
     }
-    D_80382E20.unk100 = NULL;
+    D_80382E20.dialog_bin_ptr = NULL;
 }
 
 void func_8030F130(void){
@@ -579,7 +580,7 @@ void func_80310574(s32 text_id){
     char ch;
     s32 len;
 
-    txt = D_80382E20.unk100 = func_8031B66C(text_id);
+    txt = D_80382E20.dialog_bin_ptr = dialogBin_get(text_id);
     
     for(i = 0; i < 2; i++){
         D_80382E20.string_count[i] = *(txt++);
@@ -637,7 +638,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         D_80382E20.unk11A[j].unk0_5 = 0;
         if(D_80382E20.string_list[j][i].cmd >= 0){
             if(!D_80382E20.unk11A[j].unk0_7){
-                D_80382E20.zoombox[j] =  gczoombox_new(D_80382E20.unk124[j], D_80382E20.string_list[j][i].cmd + 0xC, 0, func_803106A4(j), func_8030F754);
+                D_80382E20.zoombox[j] =  gczoombox_new(D_80382E20.unk124[j], D_80382E20.string_list[j][i].cmd + 0xC, 0, func_803106A4(j), (void *)func_8030F754);
                 if( j == 1 ){
                     func_80347A14(0);
                 }
@@ -674,7 +675,7 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     D_80382E20.caller = marker;
     D_80382E20.unk13C = callback;
     D_80382E20.unk140 = arg4;
-    D_80382E20.unk144 = arg5;
+    D_80382E20.unk144 = (void *)arg5;
     D_80382E20.unk138 = (marker != NULL )? ((marker->unk5C)? marker->unk5C : -1) : 0;
     gcdialog_setState(((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && D_80382E20.unk128_3) ? 6 : 1);
     //L803109EC
@@ -835,7 +836,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
         return 0;
 
     if(!func_803114B0()){
-        func_80310B1C(text_id, arg1, marker, callback, arg5, arg6);
+        func_80310B1C(text_id, arg1, marker, (void *)callback, (void *)arg5, arg6);
         if(arg1 & 8){
             if(!(func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) || !D_80382E20.unk128_3){//L80311214
                 if(pos != NULL){
@@ -877,8 +878,8 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
             }
             D_80382E20.unk148[temp_v1].unk10 = marker;
             D_80382E20.unk148[temp_v1].unk14 = (marker != NULL )? ((marker->unk5C)? marker->unk5C : -1) : 0;
-            D_80382E20.unk148[temp_v1].unk18 = callback;
-            D_80382E20.unk148[temp_v1].unk1C = arg5;
+            D_80382E20.unk148[temp_v1].unk18 = (void *)callback;
+            D_80382E20.unk148[temp_v1].unk1C = (void *)arg5;
             D_80382E20.unk148[temp_v1].unk20 = arg6;
             D_80382E20.unk12C_15++;
             if(arg1 & 0x08){

@@ -5,8 +5,8 @@
 #include "gc/gctransition.h"
 
 extern void func_8024C510(f32);
-extern void func_8024CDF8(f32, f32, f32);
-extern void func_8024CE40(f32, f32, f32);
+extern void viewport_set_position_f3(f32, f32, f32);
+extern void viewport_set_rotation_f3(f32, f32, f32);
 extern void func_8024CE60(f32, f32);
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
@@ -64,8 +64,8 @@ struct{
 } D_8037E8E0;
 
 void func_802E3800(void){
-    func_8024CDF8(0.0f, 0.0f, 0.0f);
-    func_8024CE40(-30.0f, 30.0f, 0.0f);
+    viewport_set_position_f3(0.0f, 0.0f, 0.0f);
+    viewport_set_rotation_f3(-30.0f, 30.0f, 0.0f);
     func_8024C510(3000.0f);
     viewport_update();
 }
@@ -79,13 +79,13 @@ void func_802E3854(void){
         func_802E6820(5);
         modelRender_defrag();
         mapSavestate_defrag_all();
-        gctransition_8030B740();
-        func_802F542C();
+        gctransition_defrag();
+        printbuffer_defrag();
         func_80350E00();
         func_802FA4E0();
         func_8033B5FC();
         timedFuncQueue_defrag();
-        func_8025AF38();
+        comusic_defrag();
     }
 }
 
@@ -536,7 +536,7 @@ bool func_802E4424(void) {
                 && func_8028F070()
                 && (func_8028EC04() == 0)
                 && !gctransition_8030BDC0()
-                && gctransition_8030BD98()
+                && gctransition_done()
                 && (level_get() != 0)
                 && (0.6 < D_8037E8E0.unk10)
                 && gcpausemenu_80314B00()
@@ -596,7 +596,7 @@ s32 game_defrag(void){
     actorArray_defrag();
     spawnQueue_defrag();
     func_802F3300();
-    func_802F542C();
+    printbuffer_defrag();
     gcdialog_defrag();
     if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED)
         gcpausemenu_defrag();

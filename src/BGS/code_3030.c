@@ -43,7 +43,7 @@ void func_80389488(Actor *this, s32 next_state) {
     if (next_state == 3) {
         func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
         skeletalAnim_set(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
-        skeletalAnim_setCallback_1(this->unk148, 0.9f, func_80389420, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.9f, (GenFunction_1)func_80389420, (s32)this->marker);
         if (local->tiptup_marker != NULL) {
             func_80388E94(local->tiptup_marker, local->unk0);
         }

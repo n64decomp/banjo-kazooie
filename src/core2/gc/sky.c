@@ -78,7 +78,7 @@ void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(gcSky.model_bins[0]){
         func_80254084(gfx, 0, 0, (s32)(f32) framebuffer_width, (s32)(f32)framebuffer_height,0, 0, 0); //fill screen with black
         func_8024C904(gfx, mtx);
-        viewport_getPosition(position);
+        viewport_get_position_vec3f(position);
         for(i = 0; i < 3; i++){
             iAsset = gcSky.model_bins[i];
             if(iAsset){

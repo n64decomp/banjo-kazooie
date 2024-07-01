@@ -4,8 +4,8 @@
 
 void func_8031FFAC(void);
 void fileProgressFlag_set(s32 index, s32 set);
-s32 func_803200A4(u8 *array, s32 index);
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
+s32 bitfield_get_bit(u8 *array, s32 index);
+s32 bitfield_get_n_bits(u8 *array, s32 offset, s32 numBits);
 void func_8032015C(u8 *array, s32 index, s32 set);
 void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
 void func_8032048C(void);
@@ -108,11 +108,11 @@ void func_8031FEC0(void) {
 }
 
 bool fileProgressFlag_get(enum file_progress_e index) {
-    return func_803200A4(D_803831A0.unk8, index);
+    return bitfield_get_bit(D_803831A0.unk8, index);
 }
 
 s32 fileProgressFlag_getN(s32 offset, s32 numBits) {
-    return func_803200E4(D_803831A0.unk8, offset, numBits);
+    return bitfield_get_n_bits(D_803831A0.unk8, offset, numBits);
 }
 
 s32 fileProgressFlag_getAndSet(s32 index, s32 set) {
@@ -151,7 +151,7 @@ void func_8032008C(s32 *arg0, u8 **arg1) {
 }
 
 // Returns a single bit from a byte array
-s32 func_803200A4(u8 *array, s32 index) {
+s32 bitfield_get_bit(u8 *array, s32 index) {
     s32 ret;
     if (array[index / 8] & (1 << (index & 7))) {
         ret = 1;
@@ -162,12 +162,12 @@ s32 func_803200A4(u8 *array, s32 index) {
 }
 
 // Extracts an integer of the given number of bits from a byte array at the starting bit offset
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits) {
+s32 bitfield_get_n_bits(u8 *array, s32 offset, s32 numBits) {
     s32 ret = 0;
     s32 i;
 
     for (i = 0; i < numBits; i++) {
-        ret |= (func_803200A4(array, offset + i) << i);
+        ret |= (bitfield_get_bit(array, offset + i) << i);
     }
     return ret;
 }
@@ -246,11 +246,11 @@ void func_803203A0(void) {
 }
 
 s32 func_803203FC(s32 index) {
-    return func_803200A4(D_803831D0.unk8, index);
+    return bitfield_get_bit(D_803831D0.unk8, index);
 }
 
 void func_80320424(s32 index, s32 numBits) {
-    func_803200E4(D_803831D0.unk8, index, numBits);
+    bitfield_get_n_bits(D_803831D0.unk8, index, numBits);
 }
 
 s32 func_80320454(s32 index, s32 arg1) {

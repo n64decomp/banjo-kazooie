@@ -153,7 +153,7 @@ void chnapper_update(Actor *this){
     }//L80386DF4
 
     if(this->state != 4){
-        viewport_getPosition(sp58);
+        viewport_get_position_vec3f(sp58);
         sp4C[0] = this->position_x - sp58[0];
         sp4C[1] = this->position_y - sp58[1];
         sp4C[2] = this->position_z - sp58[2];

@@ -800,7 +800,7 @@ void func_80255A3C(void){
         func_802E6820(1);
 
     if(!func_802559A0())
-        func_802F542C();
+        printbuffer_defrag();
 
     if(!func_802559A0()){
         ml_defrag();

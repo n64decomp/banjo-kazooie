@@ -160,7 +160,7 @@ void gv_matchingGame_update(void){
             player_getPosition(player_position);
             sp4C = func_8033F3E8(mapModel_getModel(0), player_position, 0x190, 0x1a0);
             if(sp4C){
-                sp48 = func_8034C528(sp4C);
+                sp48 = &func_8034C528(sp4C)->type_6D;
                 if(matchingGame.state == 1){
                     __matchingGame_setState(2);
                 }

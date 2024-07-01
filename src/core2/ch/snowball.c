@@ -3,8 +3,9 @@
 #include "variables.h"
 
 extern void func_80329904(ActorMarker *, s32, f32 *);
-extern int func_80320C94(f32 (*)[3], f32(*)[3], f32, s32, s32, u32);
 extern f32 func_8033229C(ActorMarker *);
+extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
+
 
 typedef struct{
     s32 unk0;

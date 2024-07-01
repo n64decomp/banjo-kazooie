@@ -49,9 +49,9 @@ Actor *func_8038F210(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038F274(void){
-    UNK_TYPE(s32) v0 = func_8034C528(0x191);
-    if(v0){
-        func_8034DE60(v0, 0.0f, -500.0f, 0.2f, 1);
+    Struct70s *v0 = func_8034C528(0x191);
+    if(v0 != NULL){
+        func_8034DE60(&v0->type_6D, 0.0f, -500.0f, 0.2f, 1);
     }
 }
 

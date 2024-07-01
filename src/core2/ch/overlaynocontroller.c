@@ -40,8 +40,8 @@ Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vt
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};
-    viewport_setPosition(sp58);
-    viewport_setRotation(sp4C);
+    viewport_set_position_vec3f(sp58);
+    viewport_set_rotation_vec3f(sp4C);
     viewport_update();
     func_8024C904(gdl, mptr);
     {sp40[0] = 0.0f; sp40[1] = 0.0f; sp40[2] = 0.0f;};

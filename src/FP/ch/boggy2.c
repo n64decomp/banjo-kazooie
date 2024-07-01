@@ -3,7 +3,8 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-
+extern Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
+extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
 extern f32 func_8038BE20(f32 arg0[3]);
 
 typedef struct {

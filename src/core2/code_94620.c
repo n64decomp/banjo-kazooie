@@ -8,20 +8,20 @@ s32 D_80383150;
 s32 pad_80383154;
 struct {
     u8 unk0;
-    void *unk4;
-    s32 unk8;
+    char *ptr;
+    s32 index;
 }
-D_80383158;
+s_dialogBin;
 
 s32 func_8031B5B0(void) {
-    return D_80383158.unk0;
+    return s_dialogBin.unk0;
 }
 
 s32 func_8031B5BC(void){ return 1; }
 
 void func_8031B5C4(s32 arg0) {
     if ((arg0 >= 0) && (arg0 < func_8031B5BC())) {
-        D_80383158.unk0 = (s8) arg0;
+        s_dialogBin.unk0 = (s8) arg0;
     }
     D_80383150 = 1;
 }
@@ -31,40 +31,41 @@ bool func_8031B604(char *arg0) {
 }
 
 void func_8031B62C(void) {
-    D_80383158.unk0 = (u8)0;
+    s_dialogBin.unk0 = (u8)0;
 }
 
 s32 func_8031B638(void) {
     return D_80383150;
 }
 
-void func_8031B644(void){
-    D_80383158.unk4 = NULL;
-    D_80383158.unk8 = -1;
+void dialogBin_initialize(void){
+    s_dialogBin.ptr = NULL;
+    s_dialogBin.index = -1;
 }
 
-void func_8031B65C(void){}
+void dialogBin_update(void){}
 
-void func_8031B664(void){}
+void dialogBin_terminate(void){}
 
-char *func_8031B66C(enum asset_e text_id) {
+char *dialogBin_get(enum asset_e text_id) {
     char *sp1C;
-    s32 var_v0;
-    s32 var_a0;
+    char *var_v0;
+    s32 var_a0; //offset where text starts (normally 0x3)
 
-    D_80383158.unk4 = assetcache_get(text_id);
-    sp1C = (s32)D_80383158.unk4 + 1;
+    //get text_bin from asset cache
+    s_dialogBin.ptr = assetcache_get(text_id);
+    sp1C = s_dialogBin.ptr + 1;
     sp1C += func_8031B5B0()*2;
     var_a0 = *(sp1C++);
     var_a0 += *(sp1C++)<< 8;
     if(sp1C);
-    var_v0 = (s32)D_80383158.unk4 + var_a0;
-    D_80383158.unk8 = text_id;
+    var_v0 = s_dialogBin.ptr + var_a0;
+    s_dialogBin.index = text_id;
     return var_v0;
 }
 
-void func_8031B6D8(s32 arg0){
-    assetcache_release(D_80383158.unk4);
-    D_80383158.unk4 = NULL;
-    D_80383158.unk8 = -1;
+void dialogBin_release(s32 arg0){
+    assetcache_release(s_dialogBin.ptr);
+    s_dialogBin.ptr = NULL;
+    s_dialogBin.index = -1;
 }

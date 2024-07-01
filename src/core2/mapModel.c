@@ -498,7 +498,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
 }
 
 bool func_80309D58(f32 arg0[3], UNK_TYPE(s32) arg1) {
-    BKMeshList *temp_v0;
+    BKModelUnk14List *temp_v0;
 
     temp_v0 = func_8033A12C(mapModel.model_bin_opa);
     if (temp_v0 != NULL) {

@@ -67,7 +67,7 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 width;
     s32 height;
 
-    viewport_getPosition(spDC);
+    viewport_get_position_vec3f(spDC);
     spD0[0] = self->unk0[0] - spDC[0];
     spD0[1] = self->unk0[1] - spDC[1];
     spD0[2] = self->unk0[2] - spDC[2];
@@ -326,7 +326,7 @@ void func_802F2ED0(Struct64s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp38[3];
 
     if (arg0 != NULL && arg0->unk4) {
-        viewport_getRotation(sp38);
+        viewport_get_rotation_vec3f(sp38);
         mlMtxIdent();
         mlMtxRotPitch(-sp38[0]);
         mlMtxRotYaw(-sp38[1]);

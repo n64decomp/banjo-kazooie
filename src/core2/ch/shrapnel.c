@@ -85,12 +85,12 @@ void chShrapnel_emitSmoke(Actor *this) {
     func_802EFB84(temp_v0, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    particleEmitter_setRGB(temp_v0, &D_803673F8);
+    particleEmitter_setRGB(temp_v0, D_803673F8);
     particleEmitter_setParticleLifeTimeRange(temp_v0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_v0, 6);
 }
 
-void chShrapnel_emitBodyParts(Actor *this, enum model_e model_id, s32 n) {
+void chShrapnel_emitBodyParts(Actor *this, enum asset_e model_id, s32 n) {
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitMgr_newEmitter(n);

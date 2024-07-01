@@ -3,6 +3,8 @@
 #include "variables.h"
 
 extern Actor *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
+extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
+
 Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3);
 Actor *func_8038C1F8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038C9A0(Actor *this);
@@ -42,7 +44,7 @@ ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, ASSET_44
     0, 0, 1.0f, 0
 };
 
-s32 FP_D_80392018[4] = {0, 0, 0, func_8038C0B0};
+Struct6Cs FP_D_80392018 = {NULL, NULL, NULL, (void*)func_8038C0B0};
 struct43s D_80392028 = {
     {{-200.0f,  200.0f, -200.0f}, {200.0f,  400.0f, 200.0f}}, 
     {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}}, 

@@ -485,15 +485,15 @@ void FP_func_8038BA88(s32 arg0){
 
     switch(FP_D_803935A8.unkC - FP_D_803935A8.unk8){
         case 3:
-            func_8025AEA0(0x3a, 0x411aa);
+            func_8025AEA0(0x3a, 266666);
             break;
         case 2:
-            func_8025AEA0(0x3a, 0x493e0);
+            func_8025AEA0(0x3a, 300000);
             break;
         case 4:
             break;
         default:
-            func_8025AEA0(0x3a, 0x51615);
+            func_8025AEA0(0x3a, 333333);
             break;
 
 

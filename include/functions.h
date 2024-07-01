@@ -381,7 +381,7 @@ extern s32 func_802F9AA8(enum sfx_e);
 
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
-Actor * func_803056FC(enum actor_e id, s32 pos[3], s32 yaw);
+Actor * spawn_actor(enum actor_e id, s32 pos[3], s32 yaw);
 f32  func_80309724(f32[3]);
 BKModelBin *func_8030A428(s32);
 u8   func_8030D90C(void);

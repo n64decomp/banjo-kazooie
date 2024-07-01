@@ -337,7 +337,7 @@ typedef struct {
     s16 y;
     s16 z;
     struct {
-        u16 bit15: 9; //selector_value //volume??? diameter
+        u16 radius: 9; //selector_value //volume??? diameter
         u16 bit6:  6; //category
         u16 bit0:  1;
     }unk6;

@@ -148,7 +148,7 @@ void func_8034B580(s32 arg0) {
     f32 sp1C;
 
     sp1C = D_80386128;
-    if (gctransition_8030BD98() != 0) {
+    if (gctransition_done() != 0) {
         D_80386128 += time_getDelta();
     }
     if ((getGameMode() != GAME_MODE_8_BOTTLES_BONUS) && (getGameMode() != GAME_MODE_A_SNS_PICTURE)) {
@@ -278,7 +278,7 @@ void func_8034BB08(bool arg0) {
 }
 
 bool func_8034BB48(void) {
-    if (D_80386120 && gctransition_8030BD98()) {
+    if (D_80386120 && gctransition_done()) {
         D_80386120 = FALSE;
         return TRUE;
     }
@@ -290,7 +290,7 @@ void func_8034BB90(void) {
     s32 sp18;
 
     sp1C = gctransition_8030BDC0();
-    sp18 = gctransition_8030BD98();
+    sp18 = gctransition_done();
     if (!D_80386118) {
         func_8034B834();
         func_8034B4E4(D_80386114->unk1);

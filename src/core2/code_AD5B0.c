@@ -174,7 +174,7 @@ void func_80334910(void) {
     if (func_802E4A08() == 0) {
         itemPrint_free();
     }
-    func_8031B664();
+    dialogBin_terminate();
     func_802986D0();
     if (func_80322914() == 0) {
         func_8024F7C4(func_803226E8(D_803835D0.map_4));
@@ -211,7 +211,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     if (func_802E4A08() == 0) {
         itemPrint_init();
     }
-    func_8031B644();
+    dialogBin_initialize();
     spawnQueue_malloc();
     func_803329AC();
     func_80350BFC();
@@ -345,7 +345,7 @@ s32 func_80334ECC(void) {
         }
         AnimTextureListCache_update();
         func_80350CA4();
-        func_8031B65C();
+        dialogBin_update();
         func_80310D2C();
         gcparade_update();
         overlay_update();

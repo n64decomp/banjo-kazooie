@@ -616,7 +616,7 @@ int func_8025AEEC(void){
     return out;
 }
 
-void func_8025AF38(void){
+void comusic_defrag(void){
     CoMusic *iPtr;
 
     if(!D_80276E30) return;

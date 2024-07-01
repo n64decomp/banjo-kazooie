@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern bool func_8028F170(f32, f32);
-extern void viewport_getPosition(f32[3]);
+extern void viewport_get_position_vec3f(f32[3]);
 
 typedef struct {
     f32 unk0;
@@ -129,8 +129,8 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     temp_s1 = D_80386170.unk4;
     if (( temp_s1 != NULL) && D_8038617C.unk0) {
-        viewport_getPosition(spDC);
-        viewport_getRotation(spD0);
+        viewport_get_position_vec3f(spDC);
+        viewport_get_rotation_vec3f(spD0);
         sp9C[0] = temp_s1->unk4[0];
         sp9C[1] = temp_s1->unk4[1];
         sp9C[2] = temp_s1->unk4[2];
@@ -196,7 +196,7 @@ void func_80350CA4(void) {
     s32 var_v0;
 
     if (D_80386170.unk4 != NULL) {
-        viewport_getPosition(sp54);
+        viewport_get_position_vec3f(sp54);
         sp48[0] = D_80386170.unk4->unk4[0];
         sp48[1] = D_80386170.unk4->unk4[1];
         sp48[2] = D_80386170.unk4->unk4[2];

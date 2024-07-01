@@ -61,11 +61,11 @@ void _levelSpecificFlags_updateCRC2(void) {
 }
 
 s32 levelSpecificFlags_get(s32 i){
-    return func_803200A4(D_80383320.unk8, i);
+    return bitfield_get_bit(D_80383320.unk8, i);
 }
 
 s32 levelSpecificFlags_getN(s32 i, s32 n){
-    return func_803200E4(D_80383320.unk8, i, n);
+    return bitfield_get_n_bits(D_80383320.unk8, i, n);
 }
 
 s32 levelSpecificFlags_getSet(s32 arg0, s32 arg1){

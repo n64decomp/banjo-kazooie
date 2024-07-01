@@ -88,7 +88,7 @@ f32 func_802D7038(Actor *this) {
 void func_802D7124(Actor *actor, f32 arg1) {
     f32 vp[3];
 
-    viewport_getPosition(&vp);
+    viewport_get_position_vec3f(&vp);
     if ((actor->position[0] - vp[0]) * (actor->position[0] - vp[0]) + (actor->position[2] - vp[2]) * (actor->position[2] - vp[2]) < 12250000.0f) {
         func_802D729C(actor, arg1);
     }
@@ -112,7 +112,7 @@ void func_802D71A0(s32 this, s32 arg1){
         sp2C[0] = (s32) D_8037DE10[0];
         sp2C[1] = (s32) D_8037DE10[1];
         sp2C[2] = (s32) D_8037DE10[2];
-        sp3C = func_803056FC(0x108, sp2C, (s32)sp38->yaw);
+        sp3C = spawn_actor(0x108, sp2C, (s32)sp38->yaw);
         if(sp3C){
             marker_getActor(marker)->unk104 = sp3C->marker;
             sp3C->unk104 = marker;

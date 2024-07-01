@@ -246,23 +246,6 @@ typedef struct struct_8_s{
     f32 unk60;
 }struct8s;
 
-typedef struct struct_9_s{
-    u8 uid;
-    u8 unk1;
-    u8 unk2;
-    // u8 pad3[1];
-    f32 unk4; //duration
-    s32 unk8; //asset_indx
-    s32 unkC; //animation_indx
-    f32 unk10;
-}struct9s;
-
-typedef struct struct_10_s{
-    u8 map_indx;
-    u8 unk1;
-    u8 unk2;
-}struct10s;
-
 typedef struct struct_11_s{
     f32 unk0;
     f32 unk4;

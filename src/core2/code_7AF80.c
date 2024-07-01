@@ -4,6 +4,8 @@
 
 #include "prop.h"
 
+#define SQ(x) ((x) * (x))
+
 extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
@@ -14,14 +16,9 @@ extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
 extern BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
 extern BKCollisionTri *func_80331638(Cube *cube, f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg2[3], s32, u32 flags);
 
-typedef struct {
-    s32 unk0;
-    NodeProp *unk4;
-} Struct_core2_7AF80_0;
-
 typedef struct{
-    s32 unk0[3];
-    s32 unkC;
+    s32 position[3];
+    s32 radius;
     u32 unk10_31: 28;
     u32 unk10_3: 3;
     u32 unk10_0: 1;
@@ -29,7 +26,7 @@ typedef struct{
 } Struct_core2_7AF80_2;
 
 typedef struct {
-    s32 unk0; //count
+    s32 count; //count
     s32 unk4;
     Struct_core2_7AF80_2 *unk8;
 } Struct_core2_7AF80_1;
@@ -381,8 +378,8 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         return;
 
     func_8032D3A8();
-    viewport_getPosition(vp_position);
-    viewport_getRotation(vp_rotation);
+    viewport_get_position_vec3f(vp_position);
+    viewport_get_rotation_vec3f(vp_rotation);
     func_80256664(vp_rotation);
     cube_positionToIndices(vp_cube_indices, vp_position);
     vp_cube_indices[0] -= D_80381FA0.min[0];\
@@ -539,12 +536,12 @@ Cube *cube_atPosition_s32(s32 position[3]) {
 }
 
 Cube *cube_atPosition_f32(f32 position[3]){
-    s32 sp1C[3];
+    s32 pos_s32[3];
 
-    sp1C[0] = (s32)position[0];
-    sp1C[1] = (s32)position[1];
-    sp1C[2] = (s32)position[2];
-    return cube_atPosition_s32(sp1C);
+    pos_s32[0] = (s32)position[0];
+    pos_s32[1] = (s32)position[1];
+    pos_s32[2] = (s32)position[2];
+    return cube_atPosition_s32(pos_s32);
 }
 
 Cube *func_8030364C(void){
@@ -937,7 +934,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
     temp_v0 = cubeList_findNodePropByActorId(arg0, 0);
     if (temp_v0 != 0) {
-        *arg1 = temp_v0->unk6.bit15;
+        *arg1 = temp_v0->unk6.radius;
         return 1;
     }
     return 0;
@@ -1031,7 +1028,7 @@ NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
-    return arg0->unk6.bit15;
+    return arg0->unk6.radius;
 }
 
 void func_80304D4C(NodeProp *arg0, s32 dst[3]) {
@@ -1239,7 +1236,7 @@ NodeProp *func_80305510(s32 arg0) {
 }
 
 Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
-    Actor *actor = func_803056FC(arg0, arg1, arg2);
+    Actor *actor = spawn_actor(arg0, arg1, arg2);
     NodeProp *tmp;
     s32 sp34[3];
     f32 sp28[3];
@@ -1264,14 +1261,11 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
     return actor;
 }
 
-Actor *func_803056FC(enum actor_e arg0, s32 arg1[3], s32 arg2)
-{
+Actor *spawn_actor(enum actor_e arg0, s32 arg1[3], s32 arg2) {
   s32 i;
   arg0 = (!func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);
-  for (i = 0; i < sSpawnableActorSize; i++)
-  {
-    if (arg0 == sSpawnableActorList[i].infoPtr->actorId)
-    {
+  for (i = 0; i < sSpawnableActorSize; i++) {
+    if (arg0 == sSpawnableActorList[i].infoPtr->actorId) {
       return sSpawnableActorList[i].spawnFunc(arg1, arg2, ((0, sSpawnableActorList[i])).infoPtr, sSpawnableActorList[i].unk8);
     }
   }
@@ -1448,18 +1442,18 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
         for(a_list = *arg1; a_list < *arg1 + *arg0; a_list++){
             for(b_list = a_list + 1; b_list < *arg1 + *arg0; b_list++) {
                 //same types and neither A or B are empty
-                if ((a_list->unk4 == b_list->unk4) &&  (a_list->unk0 != 0) &&  (b_list->unk0 != 0)) {
+                if ((a_list->unk4 == b_list->unk4) &&  (a_list->count != 0) &&  (b_list->count != 0)) {
                     
                     continue_loop = TRUE;
-                    for(a_elem = a_list->unk8; (a_elem < a_list->unk8 + a_list->unk0) && continue_loop; a_elem++){
-                        for(b_elem = b_list->unk8; (b_elem < b_list->unk8 + b_list->unk0) && continue_loop; b_elem++) {
-                            if ((((a_elem->unk0[0] - b_elem->unk0[0]) * (a_elem->unk0[0] - b_elem->unk0[0])) + ((a_elem->unk0[2] - b_elem->unk0[2]) * (a_elem->unk0[2] - b_elem->unk0[2]))) < ((a_elem->unkC + b_elem->unkC) * (a_elem->unkC + b_elem->unkC))) {
+                    for(a_elem = a_list->unk8; (a_elem < a_list->unk8 + a_list->count) && continue_loop; a_elem++){
+                        for(b_elem = b_list->unk8; (b_elem < b_list->unk8 + b_list->count) && continue_loop; b_elem++) {
+                            if ((((a_elem->position[0] - b_elem->position[0]) * (a_elem->position[0] - b_elem->position[0])) + ((a_elem->position[2] - b_elem->position[2]) * (a_elem->position[2] - b_elem->position[2]))) < ((a_elem->radius + b_elem->radius) * (a_elem->radius + b_elem->radius))) {
                                 //concat b_list to end of a_list
-                                a_list->unk8 = (Struct_core2_7AF80_2 *) realloc(a_list->unk8, (a_list->unk0 + b_list->unk0)*sizeof(Struct_core2_7AF80_2));
-                                memcpy(a_list->unk8 + a_list->unk0, b_list->unk8, b_list->unk0 * sizeof(Struct_core2_7AF80_2));
-                                a_list->unk0 = (s32) (a_list->unk0 + b_list->unk0);
+                                a_list->unk8 = (Struct_core2_7AF80_2 *) realloc(a_list->unk8, (a_list->count + b_list->count)*sizeof(Struct_core2_7AF80_2));
+                                memcpy(a_list->unk8 + a_list->count, b_list->unk8, b_list->count * sizeof(Struct_core2_7AF80_2));
+                                a_list->count = (s32) (a_list->count + b_list->count);
                                 
-                                b_list->unk0 = 0;
+                                b_list->count = 0;
                                 free(b_list->unk8);
                                 b_list->unk8 = NULL;
                                 
@@ -1474,13 +1468,13 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
 
         //remove empty lists
         for(a_list =  *arg1; a_list < *arg1 + *arg0; a_list++){
-            if (a_list->unk0 == 0) { //A is empty
+            if (a_list->count == 0) { //A is empty
                 continue_loop = TRUE;
                 for(b_list = a_list + 1; (b_list < *arg1 + *arg0) && continue_loop; b_list++){
-                    if (b_list->unk0 != 0) { //B is not empty
+                    if (b_list->count != 0) { //B is not empty
                         //swap A an B
                         memcpy(a_list, b_list, sizeof(Struct_core2_7AF80_1));
-                        b_list->unk0 = 0;
+                        b_list->count = 0;
                         b_list->unk8 = NULL;
 
                         continue_loop = FALSE;
@@ -1490,7 +1484,7 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
         }
 
         //find first empty list (end)
-        for(a_list = *arg1; (a_list < *arg1 + *arg0) && (a_list->unk0 != 0); a_list++) { }
+        for(a_list = *arg1; (a_list < *arg1 + *arg0) && (a_list->count != 0); a_list++) { }
 
         *arg0 = (a_list - *arg1); //count
         *arg1 = (Struct_core2_7AF80_1 *)realloc((void *) *arg1, *arg0 * sizeof(Struct_core2_7AF80_1)); //ptr
@@ -1566,27 +1560,27 @@ Struct_core2_7AF80_1 *func_803064C0(s32 arg0) {
 bool func_80306534(Struct_core2_7AF80_1 *arg0, s32 arg1, s32 arg2[3], s32 arg3) {
     Struct_core2_7AF80_2 *iPtr;
 
-    for(iPtr = arg0->unk8; iPtr < &arg0->unk8[arg0->unk0]; iPtr++){
-        if(((arg2[0] - iPtr->unk0[0])*(arg2[0] - iPtr->unk0[0]) + (arg2[2] - iPtr->unk0[2])*(arg2[2] - iPtr->unk0[2])) < ((arg3 + iPtr->unkC) * (arg3 + iPtr->unkC))) {
+    for(iPtr = arg0->unk8; iPtr < &arg0->unk8[arg0->count]; iPtr++){
+        if(((arg2[0] - iPtr->position[0])*(arg2[0] - iPtr->position[0]) + (arg2[2] - iPtr->position[2])*(arg2[2] - iPtr->position[2])) < ((arg3 + iPtr->radius) * (arg3 + iPtr->radius))) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
-void func_803065E4(s32 arg0, s32 position[3], s32 arg2, s32 arg3, s32 arg4) {
+void func_803065E4(s32 arg0, s32 position[3], s32 radius, s32 arg3, s32 arg4) {
     Struct_core2_7AF80_2 *temp_v1;
 
     func_80306390();
     while(func_803063D8(arg0) != NULL){
-        if (func_80306534(D_8036A9C0, arg0, position, arg2)) {
-            D_8036A9C0->unk0++;
-            D_8036A9C0->unk8 = realloc(D_8036A9C0->unk8, D_8036A9C0->unk0 * sizeof(Struct_core2_7AF80_2));
-            temp_v1 = &D_8036A9C0->unk8[D_8036A9C0->unk0 - 1];
-            temp_v1->unk0[0] = position[0];
-            temp_v1->unk0[1] = position[1];
-            temp_v1->unk0[2] = position[2];
-            temp_v1->unkC = arg2;
+        if (func_80306534(D_8036A9C0, arg0, position, radius)) {
+            D_8036A9C0->count++;
+            D_8036A9C0->unk8 = realloc(D_8036A9C0->unk8, D_8036A9C0->count * sizeof(Struct_core2_7AF80_2));
+            temp_v1 = &D_8036A9C0->unk8[D_8036A9C0->count - 1];
+            temp_v1->position[0] = position[0];
+            temp_v1->position[1] = position[1];
+            temp_v1->position[2] = position[2];
+            temp_v1->radius = radius;
             temp_v1->unk10_31 = arg3;
             temp_v1->unk10_0 = arg4;
             temp_v1->unk10_3 = 0;
@@ -1595,14 +1589,14 @@ void func_803065E4(s32 arg0, s32 position[3], s32 arg2, s32 arg3, s32 arg4) {
     }
     D_8036A9B8++;
     D_8036A9BC = realloc(D_8036A9BC, D_8036A9B8*sizeof(Struct_core2_7AF80_1));
-    D_8036A9BC[D_8036A9B8-1].unk0 = 1;
+    D_8036A9BC[D_8036A9B8-1].count = 1;
     D_8036A9BC[D_8036A9B8-1].unk4 = arg0;
     D_8036A9BC[D_8036A9B8-1].unk8 = malloc(sizeof(Struct_core2_7AF80_2));
     temp_v1 = (D_8036A9BC + D_8036A9B8-1)->unk8;
-    temp_v1->unk0[0] = position[0];
-    temp_v1->unk0[1] = position[1];
-    temp_v1->unk0[2] = position[2];
-    temp_v1->unkC = arg2;
+    temp_v1->position[0] = position[0];
+    temp_v1->position[1] = position[1];
+    temp_v1->position[2] = position[2];
+    temp_v1->radius = radius;
     temp_v1->unk10_31 = arg3;
     temp_v1->unk10_0 = arg4;
     temp_v1->unk10_3 = 0;
@@ -1618,63 +1612,63 @@ s32 func_80306840(s32 arg0){
     return 7;
 }
 
-void func_8030688C(s32 arg0, s32 position[3], s32 arg2, s32 arg3){
+void func_8030688C(s32 arg0, s32 position[3], s32 radius, s32 arg3){
     Struct_core2_7AF80_2 *temp_v1;
 
     func_803063A8();
     while(func_8030644C(arg0) != NULL){
-        if (func_80306534(D_8036A9CC, arg0, position, arg2)) {
-            D_8036A9CC->unk0++;
-            D_8036A9CC->unk8 = realloc(D_8036A9CC->unk8, D_8036A9CC->unk0 * sizeof(Struct_core2_7AF80_2));
-            temp_v1 = &D_8036A9CC->unk8[D_8036A9CC->unk0 - 1];
-            temp_v1->unk0[0] = position[0];
-            temp_v1->unk0[1] = position[1];
-            temp_v1->unk0[2] = position[2];
-            temp_v1->unkC = arg2;
+        if (func_80306534(D_8036A9CC, arg0, position, radius)) {
+            D_8036A9CC->count++;
+            D_8036A9CC->unk8 = realloc(D_8036A9CC->unk8, D_8036A9CC->count * sizeof(Struct_core2_7AF80_2));
+            temp_v1 = &D_8036A9CC->unk8[D_8036A9CC->count - 1];
+            temp_v1->position[0] = position[0];
+            temp_v1->position[1] = position[1];
+            temp_v1->position[2] = position[2];
+            temp_v1->radius = radius;
             temp_v1->unk10_3 = func_80306840(arg3);
             return;
         }
     }
     D_8036A9C4++;
     D_8036A9C8 = realloc(D_8036A9C8, D_8036A9C4*sizeof(Struct_core2_7AF80_1));
-    D_8036A9C8[D_8036A9C4-1].unk0 = 1;
+    D_8036A9C8[D_8036A9C4-1].count = 1;
     D_8036A9C8[D_8036A9C4-1].unk4 = arg0;
     D_8036A9C8[D_8036A9C4-1].unk8 = malloc(sizeof(Struct_core2_7AF80_2));
     temp_v1 = (D_8036A9C8 + D_8036A9C4-1)->unk8;
-    temp_v1->unk0[0] = position[0];
-    temp_v1->unk0[1] = position[1];
-    temp_v1->unk0[2] = position[2];
-    temp_v1->unkC = arg2;
+    temp_v1->position[0] = position[0];
+    temp_v1->position[1] = position[1];
+    temp_v1->position[2] = position[2];
+    temp_v1->radius = radius;
     temp_v1->unk10_3 = func_80306840(arg3);
 }
 
-void func_80306AA8(s32 arg0, s32 position[3], s32 arg2){
+void func_80306AA8(s32 arg0, s32 position[3], s32 radius){
     Struct_core2_7AF80_2 *temp_v1;
 
     func_803063C0();
     while(func_803064C0(arg0) != NULL){
-        if (func_80306534(D_8036A9D8, arg0, position, arg2)) {
-            D_8036A9D8->unk0++;
-            D_8036A9D8->unk8 = realloc(D_8036A9D8->unk8, D_8036A9D8->unk0 * sizeof(Struct_core2_7AF80_2));
-            temp_v1 = &D_8036A9D8->unk8[D_8036A9D8->unk0 - 1];
-            temp_v1->unk0[0] = position[0];
-            temp_v1->unk0[1] = position[1];
-            temp_v1->unk0[2] = position[2];
-            temp_v1->unkC = arg2;
+        if (func_80306534(D_8036A9D8, arg0, position, radius)) {
+            D_8036A9D8->count++;
+            D_8036A9D8->unk8 = realloc(D_8036A9D8->unk8, D_8036A9D8->count * sizeof(Struct_core2_7AF80_2));
+            temp_v1 = &D_8036A9D8->unk8[D_8036A9D8->count - 1];
+            temp_v1->position[0] = position[0];
+            temp_v1->position[1] = position[1];
+            temp_v1->position[2] = position[2];
+            temp_v1->radius = radius;
             temp_v1->unk10_3 = 0;
             return;
         }
     }
     D_8036A9D0++;
     D_8036A9D4 = realloc(D_8036A9D4, D_8036A9D0*sizeof(Struct_core2_7AF80_1));
-    D_8036A9D4[D_8036A9D0-1].unk0 = 1;
+    D_8036A9D4[D_8036A9D0-1].count = 1;
     D_8036A9D4[D_8036A9D0-1].unk4 = arg0;
     D_8036A9D4[D_8036A9D0-1].unk8 = malloc(sizeof(Struct_core2_7AF80_2));
     temp_v1 = (D_8036A9D4 + D_8036A9D0-1)->unk8;
-    temp_v1->unk0[0] = position[0];
-    temp_v1->unk0[1] = position[1];
-    temp_v1->unk0[2] = position[2];
-    temp_v1->unkC = arg2;
+    temp_v1->position[0] = position[0];
+    temp_v1->position[1] = position[1];
+    temp_v1->position[2] = position[2];
+    temp_v1->radius = radius;
     temp_v1->unk10_3 = 0;
 }
 
@@ -1734,9 +1728,9 @@ s32 func_80306DDC(Struct_core2_7AF80_2 *arg0) {
     phi_v1 = D_8036A9BC;
     while(phi_v1 < &D_8036A9BC[D_8036A9B8]){
         phi_a0 = phi_v1->unk8;
-        while(phi_a0 < &phi_v1->unk8[phi_v1->unk0]){
-            if (((phi_a0->unk0[1] - 150) < arg0->unk0[1]) && (arg0->unk0[1] < (phi_a0->unk0[1] + 150))) {
-                if ((((arg0->unk0[0] - phi_a0->unk0[0]) * (arg0->unk0[0] - phi_a0->unk0[0])) + ((arg0->unk0[2] - phi_a0->unk0[2]) * (arg0->unk0[2] - phi_a0->unk0[2]))) < (phi_a0->unkC * phi_a0->unkC)) {
+        while(phi_a0 < &phi_v1->unk8[phi_v1->count]){
+            if (((phi_a0->position[1] - 150) < arg0->position[1]) && (arg0->position[1] < (phi_a0->position[1] + 150))) {
+                if ((SQ(arg0->position[0] - phi_a0->position[0]) + SQ(arg0->position[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
                     return phi_v1 - D_8036A9BC;
                 }
             }
@@ -1759,20 +1753,20 @@ s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
         if (D_80381FE8[var_s1->unk4] != 0) {
             if (arg2 & 1) {
                 var_s0 = var_s1->unk8;
-                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->unk0; var_s0++){
+                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->count; var_s0++){
                     if( (var_s0->unk10_3 & arg2)
-                        && (temp_s4 >= var_s0->unk0[1]) && (temp_s6 < var_s0->unk0[1]) 
-                        && (func_80259328(arg0, (void *) var_s0, var_s0->unkC))
+                        && (temp_s4 >= var_s0->position[1]) && (temp_s6 < var_s0->position[1]) 
+                        && (func_80259328(arg0, (void *) var_s0, var_s0->radius))
                     ) {
                             return var_s1 - D_8036A9C8;
                         }
                 }
             }
             else{
-                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->unk0; var_s0++){
+                for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->count; var_s0++){
                     if( (var_s0->unk10_3 & arg2) 
-                        && ((var_s0->unk10_3 & 2) || ((temp_s4 >= var_s0->unk0[1]) && (temp_s6 < var_s0->unk0[1])))
-                        && (func_80259328(arg0, (void *) var_s0, var_s0->unkC))
+                        && ((var_s0->unk10_3 & 2) || ((temp_s4 >= var_s0->position[1]) && (temp_s6 < var_s0->position[1])))
+                        && (func_80259328(arg0, (void *) var_s0, var_s0->radius))
                     ) {
                         return var_s1 - D_8036A9C8;
                     }
@@ -1783,20 +1777,16 @@ s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
     return -1;
 }
 
-s32 func_80307164(Struct_core2_7AF80_2 *arg0) {
+s32 func_80307164(s32 arg0[3]) {
     Struct_core2_7AF80_1 *phi_v1;
     Struct_core2_7AF80_2 *phi_a0;
 
-    phi_v1 = D_8036A9D4;
-    while(phi_v1 < &D_8036A9D4[D_8036A9D0]){
-        phi_a0 = phi_v1->unk8;
-        while(phi_a0 < &phi_v1->unk8[phi_v1->unk0]){
-            if ((((arg0->unk0[0] - phi_a0->unk0[0]) * (arg0->unk0[0] - phi_a0->unk0[0])) + ((arg0->unk0[2] - phi_a0->unk0[2]) * (arg0->unk0[2] - phi_a0->unk0[2]))) < (phi_a0->unkC * phi_a0->unkC)) {
+    for( phi_v1 = D_8036A9D4; phi_v1 < &D_8036A9D4[D_8036A9D0]; phi_v1++){
+        for(phi_a0 = phi_v1->unk8; phi_a0 < &phi_v1->unk8[phi_v1->count]; phi_a0++){
+            if ((SQ(arg0[0] - phi_a0->position[0]) + SQ(arg0[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
                 return phi_v1 - D_8036A9D4;
             }
-            phi_a0++;
         }
-        phi_v1++;
     }
     return -1;
 }
@@ -1811,14 +1801,14 @@ s32 func_80307258(f32 arg0[3], s32 arg1, s32 arg2) {
 
     temp_v0 = &D_8036A9BC[arg1];
     var_v1 = temp_v0->unk8 + arg2;
-    if (((arg0[0] - var_v1->unk0[0]) * (arg0[0] - var_v1->unk0[0])) + (((arg0[2] - var_v1->unk0[2]) * (arg0[2] - var_v1->unk0[2]))) < (var_v1->unkC * var_v1->unkC)) {
+    if (((arg0[0] - var_v1->position[0]) * (arg0[0] - var_v1->position[0])) + (((arg0[2] - var_v1->position[2]) * (arg0[2] - var_v1->position[2]))) < (var_v1->radius * var_v1->radius)) {
         return arg2;
     }
-    temp_a0 = temp_v0->unk8 + temp_v0->unk0;
+    temp_a0 = temp_v0->unk8 + temp_v0->count;
     for (var_v1 = temp_v0->unk8; var_v1 < temp_a0; var_v1++) {
-        temp_f2 = arg0[2] - var_v1->unk0[2];
-        temp_f14 = arg0[0] - var_v1->unk0[0];
-        if (((temp_f2 * temp_f2) + (temp_f14 * temp_f14)) < (var_v1->unkC * var_v1->unkC)) {
+        temp_f2 = arg0[2] - var_v1->position[2];
+        temp_f14 = arg0[0] - var_v1->position[0];
+        if (((temp_f2 * temp_f2) + (temp_f14 * temp_f14)) < (var_v1->radius * var_v1->radius)) {
             return var_v1 - temp_v0->unk8;
         }
     }
@@ -1839,14 +1829,14 @@ s32 func_803073CC(f32 arg0[3], s32 arg1, s32 arg2) {
 
     temp_v0 = &D_8036A9D4[arg1];
     var_v1 = temp_v0->unk8 + arg2;
-    if (((arg0[0] - var_v1->unk0[0]) * (arg0[0] - var_v1->unk0[0])) + (((arg0[2] - var_v1->unk0[2]) * (arg0[2] - var_v1->unk0[2]))) < (var_v1->unkC * var_v1->unkC)) {
+    if (((arg0[0] - var_v1->position[0]) * (arg0[0] - var_v1->position[0])) + (((arg0[2] - var_v1->position[2]) * (arg0[2] - var_v1->position[2]))) < (var_v1->radius * var_v1->radius)) {
         return arg2;
     }
-    temp_a0 = temp_v0->unk8 + temp_v0->unk0;
+    temp_a0 = temp_v0->unk8 + temp_v0->count;
     for (var_v1 = temp_v0->unk8; var_v1 < temp_a0; var_v1++) {
-        temp_f2 = arg0[2] - var_v1->unk0[2];
-        temp_f14 = arg0[0] - var_v1->unk0[0];
-        if (((temp_f2 * temp_f2) + (temp_f14 * temp_f14)) < (var_v1->unkC * var_v1->unkC)) {
+        temp_f2 = arg0[2] - var_v1->position[2];
+        temp_f14 = arg0[0] - var_v1->position[0];
+        if (((temp_f2 * temp_f2) + (temp_f14 * temp_f14)) < (var_v1->radius * var_v1->radius)) {
             return var_v1 - temp_v0->unk8;
         }
     }
@@ -1871,8 +1861,8 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     min = sp4C[1] - arg3 / 2;
     if (arg4 & 1) {
         if (var_s0->unk10_3 & arg4) {
-            if (!(max < var_s0->unk0[1]) && (min < var_s0->unk0[1])) {
-                if (func_80259328(sp4C, var_s0->unk0, var_s0->unkC)) {
+            if (!(max < var_s0->position[1]) && (min < var_s0->position[1])) {
+                if (func_80259328(sp4C, var_s0->position, var_s0->radius)) {
                     return arg2;
                 }
             }
@@ -1880,24 +1870,24 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     }
     else{
         if( (var_s0->unk10_3 & arg4))
-            if( ((var_s0->unk10_3 & 2) || (!(max < var_s0->unk0[1]) && (min < var_s0->unk0[1]))))
-                if( func_80259328(&sp4C, var_s0->unk0, var_s0->unkC))
+            if( ((var_s0->unk10_3 & 2) || (!(max < var_s0->position[1]) && (min < var_s0->position[1]))))
+                if( func_80259328(&sp4C, var_s0->position, var_s0->radius))
                     return arg2;
     }
 
     if (arg4 & 1) {
-        for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->unk0; var_s0++){
+        for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->count; var_s0++){
             if (var_s0->unk10_3 & arg4)
-                if (!(max < var_s0->unk0[1]) && (min < var_s0->unk0[1]))
-                    if(func_80259328(&sp4C, var_s0, var_s0->unkC))
+                if (!(max < var_s0->position[1]) && (min < var_s0->position[1]))
+                    if(func_80259328(&sp4C, var_s0, var_s0->radius))
                         return (var_s0 - temp_s1->unk8);
         }
     }
     else{
-        for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->unk0; var_s0++){
+        for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->count; var_s0++){
             if ((var_s0->unk10_3 & arg4))
-                if(((var_s0->unk10_3 & 2) || (!(max < var_s0->unk0[1]) && (min < var_s0->unk0[1]))))
-                    if(func_80259328(&sp4C, var_s0, var_s0->unkC))
+                if(((var_s0->unk10_3 & 2) || (!(max < var_s0->position[1]) && (min < var_s0->position[1]))))
+                    if(func_80259328(&sp4C, var_s0, var_s0->radius))
                         return var_s0 - temp_s1->unk8;
         }
     }
@@ -2424,9 +2414,9 @@ void func_80308984(void) {
 void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_s4;
     s32 phi_s0;
-    s32 sp54[3];
+    s32 vp_pos[3];
     Cube *temp_s3;
-    s32 temp_lo;
+    s32 vp_cube_index;
 
     func_8032F464(1);
     phi_s4 = 0;
@@ -2435,9 +2425,9 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             if (!func_80308F54(D_80382150[phi_s4])) {
                 temp_s3 = &D_80381FA0.cube_list[D_80382150[phi_s4]];
                 if (func_8024D8F4(temp_s3)) {
-                    func_8024C5F0(sp54);
-                    temp_lo = cube_atPosition_s32(sp54) - D_80381FA0.cube_list;
-                    for(phi_s0 = 0; (phi_s0 < D_80382150[phi_s4 + 1]) && (temp_lo != D_80382150[phi_s0 + 2]); phi_s0++) {
+                    veiwport_get_position_vec3w(vp_pos);
+                    vp_cube_index = cube_atPosition_s32(vp_pos) - D_80381FA0.cube_list;
+                    for(phi_s0 = 0; (phi_s0 < D_80382150[phi_s4 + 1]) && (vp_cube_index != D_80382150[phi_s0 + 2]); phi_s0++) {
                     }
                     if (phi_s0 < (s32) D_80382150[phi_s4 + 1]) {
                         func_80301F10(temp_s3, gfx, mtx, vtx);

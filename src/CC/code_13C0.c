@@ -149,7 +149,7 @@ void func_80387CC0(void){
     if(getGameMode() == GAME_MODE_7_ATTRACT_DEMO)
         return;
 
-    viewport_getRotation(sp1C);
+    viewport_get_rotation_vec3f(sp1C);
     tmp_v0 = func_8023DB4C(0x7F);
     if(tmp_v0 >= 0x40){
         tmp_v0 = 0x7F - tmp_v0;
@@ -158,7 +158,7 @@ void func_80387CC0(void){
     if(360.0f <= sp1C[2]){
         sp1C[2] -= 360.0f;
     }
-    viewport_setRotation(sp1C);
+    viewport_set_rotation_vec3f(sp1C);
 
 }
 

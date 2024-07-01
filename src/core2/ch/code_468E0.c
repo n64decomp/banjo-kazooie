@@ -88,11 +88,11 @@ void func_802CDAC4(Actor *this){
     f32 sp1C[3];
 
     camera_setType(1);
-    viewport_setPosition(this->position);
+    viewport_set_position_vec3f(this->position);
     sp1C[0] = this->pitch;
     sp1C[1] = this->yaw;
     sp1C[2] = 0.0f;
-    viewport_setRotation(sp1C);
+    viewport_set_rotation_vec3f(sp1C);
 }
 
 void func_802CDB18(Actor *this){

@@ -38,8 +38,8 @@ Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     vp_rotation[0] = 0.0f;
     vp_rotation[1] = 0.0f;
     vp_rotation[2] = 0.0f;
-    viewport_setPosition(vp_position);
-    viewport_setRotation(vp_rotation);
+    viewport_set_position_vec3f(vp_position);
+    viewport_set_rotation_vec3f(vp_rotation);
     viewport_update();
     func_8024C904(gfx, mtx);
     model_position[0] = 0.0f;

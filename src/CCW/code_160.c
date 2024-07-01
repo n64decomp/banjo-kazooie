@@ -162,7 +162,7 @@ void func_8038687C(Actor *this) {
     
     if (local->unk0 != NULL) {
         other = marker_getActor(local->unk0);
-        viewport_getPosition(sp78);
+        viewport_get_position_vec3f(sp78);
         sp6C[0] = this->position[0] - sp78[0];
         sp6C[1] = this->position[1] - sp78[1];
         sp6C[2] = this->position[2] - sp78[2];

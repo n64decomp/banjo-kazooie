@@ -237,7 +237,7 @@ void func_803465E4(void){
     }//L8034667C
     
     if(D_80385FE0){
-        if(gctransition_8030BD98() || func_803203FC(0)){
+        if(gctransition_done() || func_803203FC(0)){
             if(D_80385FE4){
                 item_dec(ITEM_16_LIFE);
                 func_802FACA4(ITEM_14_HEALTH);

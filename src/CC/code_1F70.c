@@ -18,7 +18,7 @@ extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32
 extern void boneTransformList_getBoneScale(s32, s32, f32[3]);
 extern void boneTransformList_setBoneScale(s32, s32, f32[3]);
 extern void func_8033A9A8(s32, s32, f32[3]);
-extern void viewport_getPosition(f32[3]);
+extern void viewport_get_position_vec3f(f32[3]);
 extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
 extern void modelRender_setBoneTransformList(s32);
@@ -146,7 +146,7 @@ void CC_func_80388760(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(D_80389FA0.unk21 == 0)
         return;
     
-    viewport_getPosition(sp98);
+    viewport_get_position_vec3f(sp98);
         
     if(sp98[0] <  -2600.0f || 11600.0f < sp98[0])
         return;

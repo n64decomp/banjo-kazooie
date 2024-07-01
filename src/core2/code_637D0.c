@@ -4,7 +4,7 @@
 
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3], f32[3], f32, s32);
-extern void func_802524F0(f32[3], f32, f32, f32);
+extern void mlMtx_apply_f3(f32[3], f32, f32, f32);
 extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]);
 /* .bss */
 Mtx D_80380880;
@@ -191,10 +191,10 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         spD0[0] *= 2;
         spD0[1] *= 2;
         spD0[2] *= 2;
-        func_802519C8(&D_80380880, animMtxList_get(arg5, i_ptr->unk16));
+        mlMtx_push_multiplied_2(&D_80380880, animMtxList_get(arg5, i_ptr->unk16));
         func_80252E4C(spF4, spD0);
-        func_802524F0(spB0, spE8[0], spE8[1], spE8[2]);
-        func_802524F0(sp98, spE8[0], spE8[1], spDC[2]);
+        mlMtx_apply_f3(spB0, spE8[0], spE8[1], spE8[2]);
+        mlMtx_apply_f3(sp98, spE8[0], spE8[1], spDC[2]);
         spBC[0] = spB0[0] - sp98[0];
         spBC[1] = spB0[1] - sp98[1];
         spBC[2] = spB0[2] - sp98[2];
@@ -208,7 +208,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
             sp8C[1] = arg6[1] - sp98[1];
             sp8C[2] = arg6[2] - sp98[2];
             if (!(arg7 <= -((sp8C[0]*spBC[0]) + (sp8C[1]*spBC[1]) + (sp8C[2]*spBC[2])))) {
-                func_802524F0(sp80, spDC[0], spE8[1], spE8[2]);
+                mlMtx_apply_f3(sp80, spDC[0], spE8[1], spE8[2]);
                 spBC[0] = spB0[0] - sp80[0];
                 spBC[1] = spB0[1] - sp80[1];
                 spBC[2] = spB0[2] - sp80[2];
@@ -219,7 +219,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
                     sp74[1] = arg6[1] - sp80[1];
                     sp74[2] = arg6[2] - sp80[2];
                     if (!(arg7 <= -((sp74[0]*spBC[0]) + (sp74[1]*spBC[1]) + (sp74[2]*spBC[2])))) {
-                        func_802524F0(sp68, spE8[0], spDC[1], spE8[2]);
+                        mlMtx_apply_f3(sp68, spE8[0], spDC[1], spE8[2]);
                         spBC[0] = spB0[0] - sp68[0];
                         spBC[1] = spB0[1] - sp68[1];
                         spBC[2] = spB0[2] - sp68[2];
@@ -270,11 +270,11 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         spAC[0] = (f32) (i_ptr->unkA[0] * 2);
         spAC[1] = (f32) (i_ptr->unkA[1] * 2);
         spAC[2] = (f32) (i_ptr->unkA[2] * 2);
-        func_802519C8(&D_80380880, animMtxList_get(arg5, i_ptr->unkE));
+        mlMtx_push_multiplied_2(&D_80380880, animMtxList_get(arg5, i_ptr->unkE));
         func_80252D8C(spB8, spAC);
-        func_802524F0(sp98, 0.0f, 0.0f, (f32) ((-i_ptr->unk2) / 2));
-        func_802524F0(sp8C, 0.0f, 0.0f, (f32) (i_ptr->unk2 / 2));
-        func_802524F0(sp68, (f32) i_ptr->unk0, 0.0f, (f32) ((-i_ptr->unk2) / 2));
+        mlMtx_apply_f3(sp98, 0.0f, 0.0f, (f32) ((-i_ptr->unk2) / 2));
+        mlMtx_apply_f3(sp8C, 0.0f, 0.0f, (f32) (i_ptr->unk2 / 2));
+        mlMtx_apply_f3(sp68, (f32) i_ptr->unk0, 0.0f, (f32) ((-i_ptr->unk2) / 2));
         sp68[0] -= sp98[0];
         sp68[1] -= sp98[1];
         sp68[2] -= sp98[2];
@@ -445,7 +445,7 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
             i_rotation[2] *= 2;
 
             mlMtxIdent();
-            func_80252EC8(i_position, i_rotation); //rotate about point
+            func_80252EC8(i_position, i_rotation); //derotate about point
             func_80252CC4(arg1, rotation, scale, arg4); 
             func_8025235C(sp68, arg5); //apply matrix to arg5
             for (i = 0; i < 3; i++)
@@ -522,35 +522,35 @@ s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
     mlMtxIdent();
     func_80252CC4(arg1, rotation, scale, arg4);
     func_8025235C(sp54, arg5);
-    for (i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++)
-    {
-        if ((i_ptr->unk8 != 0) && ((arg6 == 0) || (arg6 == i_ptr->unk8)))
-        {
+    for (i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++) {
+        if ((i_ptr->unk8 != 0) && ((arg6 == 0) || (arg6 == i_ptr->unk8))) {
             sp40[0] = i_ptr->unk2[0];
             sp40[1] = i_ptr->unk2[1];
             sp40[2] = i_ptr->unk2[2];
             scale = i_ptr->unk0;
             if (ml_distance_vec3f(sp40, sp54) < scale)
                 return i_ptr->unk8;
-            if (!i_ptr->unk0){
-                
-            }
+            if (!i_ptr->unk0){ }
         }
     }
     return 0U;
 }
 
-s32 func_802EC394(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6) {
+s32 func_802EC394(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6) {
     s32 phi_v0;
 
-    phi_v0 = func_802EBD3C(arg0, arg1, rotation, scale, arg4, arg5, arg6);
+    //transform type 0
+    phi_v0 = func_802EBD3C(arg0, position, rotation, scale, arg4, arg5, arg6);
     if (phi_v0 != NULL) {
         return phi_v0;
     }
 
-    phi_v0 = func_802EC000(arg0, arg1, rotation, scale, arg4, arg5, arg6);
+    //transform type 1
+    phi_v0 = func_802EC000(arg0, position, rotation, scale, arg4, arg5, arg6);
     if (phi_v0 != NULL) {
         return phi_v0;
     }
-    return func_802EC238(arg0, arg1, rotation, scale, arg4, arg5, arg6);
+
+    //transform type 2
+    return func_802EC238(arg0, position, rotation, scale, arg4, arg5, arg6);
 }
