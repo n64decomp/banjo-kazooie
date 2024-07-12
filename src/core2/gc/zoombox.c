@@ -616,7 +616,7 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
      f22 = (this->portrait_id == TALK_PIC_5F_TOOTY_4) ? 0.4 : 0.8;
 
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
-          func_8034A900();
+          sfx_rand_sync_to_rand();
      }
      for(s2 = arg2; s2 <= arg3; s2++){
           if(s1){
@@ -669,7 +669,7 @@ void func_8031594C(gczoombox_t * this, u8 *str, s32 arg2, s32 arg3){
      this->unk189 = s1;
      this->unk187 = 0;
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
-          func_8034A964();
+          rand_sync_to_sfx_rand();
      }
 }
 
@@ -991,7 +991,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
           return;
 
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE)
-          func_8034A900();
+          sfx_rand_sync_to_rand();
      //L80316BCC
      if(this->unk1A4_28 && this->state && this->model){
           func_803162B4(this);
@@ -1027,7 +1027,7 @@ void gczoombox_draw(gczoombox_t *this, Gfx **gdl, Mtx ** mptr, void *vptr){
           }
      }//L80316DD8
      if(getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE){
-          func_8034A964();
+          rand_sync_to_sfx_rand();
      }
 
      

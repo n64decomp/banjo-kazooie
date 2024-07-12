@@ -251,7 +251,7 @@ typedef struct struct_11_s{
     f32 unk4;
     s32 unk8;
     s32 unkC;
-    s16 unk10; //trackId
+    s16 track_id; //trackId
     s16 unk12;
     u8 unk14;
     u8 unk15;

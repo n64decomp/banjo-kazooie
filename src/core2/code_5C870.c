@@ -7,7 +7,7 @@
 extern void func_8024C510(f32);
 extern void viewport_set_position_f3(f32, f32, f32);
 extern void viewport_set_rotation_f3(f32, f32, f32);
-extern void func_8024CE60(f32, f32);
+extern void viewport_set_near_far(f32, f32);
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
@@ -285,7 +285,7 @@ s32 func_802E3F80(void){
 //game_draw
 void func_802E3F8C(s32 arg0){
     Gfx *sp34;
-    Gfx *sp30;
+    Gfx *gfx_start;
     Gfx *sp2C;
     Mtx *sp28;
     Vtx *sp24;
@@ -297,12 +297,12 @@ void func_802E3F8C(s32 arg0){
     if(D_8037E8E0.unkC == 1){
         func_80254404(&sp34, &sp28, &sp24);
     }
-    sp30 = sp34;
+    gfx_start = sp34;
     func_802E39D0(&sp34, &sp28, &sp24, func_8024BDA0(), arg0);
     if(D_8037E8E0.unkC == 0){
         sp2C = sp34;
         func_8024C1DC();
-        func_80253EC4(sp30, sp2C);
+        func_80253EC4(gfx_start, sp2C);
         if(arg0){
             func_80254348();
         }
@@ -396,9 +396,9 @@ void func_802E4214(enum map_e map_id){
     modelRender_init();
     func_80253428(1);
     animCache_init();
-    func_8024CCC4();
-    func_8024CE60(1.0f, 10000.0f);
-    func_8034A6B4();
+    viewport_reset();
+    viewport_set_near_far(1.0f, 10000.0f);
+    rand_reset();
     func_80254348();
     func_80253FE8();
     func_8033DC70();
@@ -434,8 +434,8 @@ bool func_802E4424(void) {
     s32 sp1C;
     u8 temp_v0;
 
-    func_8024CC00();
-    func_8034A85C();
+    viewport_debug();
+    rand_shuffle();
     if (!gctransition_8030BDC0()) {
         temp_v0 = D_8037E8E0.transition;
         D_8037E8E0.transition = TRANSITION_0_NONE;

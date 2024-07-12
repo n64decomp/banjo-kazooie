@@ -50,7 +50,7 @@ typedef struct{
 
 extern void item_set(enum item_e, s32);
 extern void actor_postdrawMethod(ActorMarker *);
-extern void func_8024CE60(f32, f32);
+extern void viewport_set_near_far(f32, f32);
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chBottlesBonus_update(Actor *this);
@@ -123,7 +123,7 @@ void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
     f32 vp_rotation[3];
 
     func_8024E258();
-    func_8024CE60(50.0f, 2000.0f);
+    viewport_set_near_far(50.0f, 2000.0f);
     if (getGameMode() == GAME_MODE_A_SNS_PICTURE) {
         vp_rotation[0] = 0.0f;
         vp_rotation[1] = 0.0f;

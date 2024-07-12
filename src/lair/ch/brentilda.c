@@ -69,7 +69,7 @@ void func_8038BC24(void) {
     s32 phi_s1;
 
     if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !func_803203FC(0x62)) {
-        func_8034A8BC(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
+        rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
         for(phi_s1 = 0; phi_s1 < func_8031A45C(3); phi_s1++){
             phi_s0 = 0x26 + 2*phi_s1;
                 temp_v0 = randi2(0, 3);

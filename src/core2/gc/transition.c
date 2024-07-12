@@ -7,7 +7,7 @@
 void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
-void func_8024CE60(f32, f32);
+void viewport_set_near_far(f32, f32);
 
 typedef enum {
     TRANSITION_ID_1_BLACK_IN = 1,
@@ -265,7 +265,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     vp_rotation[0] = 0.0f;
     vp_rotation[1] = 0.0f;
     vp_rotation[2] = 0.0f;
-    func_8024CE60(D_8036C440, D_8036C444);
+    viewport_set_near_far(D_8036C440, D_8036C444);
     viewport_set_position_vec3f(vp_position); //viewport_get_position_vec3f
     viewport_set_rotation_vec3f(vp_rotation); //viewport_get_rotation_vec3f
     viewport_update(); //camera_updateNormal

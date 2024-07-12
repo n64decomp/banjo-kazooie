@@ -5,7 +5,7 @@
 extern f32  ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern void func_8028F3D8(f32[3], f32, void(*)(ActorMarker *), ActorMarker *);
 extern void func_80324CFC(f32, enum comusic_e, s32);
-extern void func_8034A8BC(s32);
+extern void rand_seed(s32);
 extern void func_8034DF30(s32, f32[3], f32[3], f32);
 extern void func_8034E088(s32, s32, s32,f32);
 
@@ -225,7 +225,7 @@ s32 func_8038F0EC(Actor *this) {
 
     phi_s0 = 0;
     local = (ActorLocal_lair_86F0*)&this->local;
-    func_8034A8BC(this->unkF4_8);
+    rand_seed(this->unkF4_8);
     if (this->unkF4_8 >= 0xA) {
         for(phi_s2 = 0; phi_s2 < local->unk4; phi_s2++){
             sp34 = phi_s2;

@@ -19,11 +19,11 @@ f32 viewportPosition[3];
 f32 viewportRotation[3];
 f32 D_80280ECC;
 f32 D_80280ED0[4][4];
-Vp D_80280F10[8];
+Vp s_viewport_stack[8];
 int D_80280F90;
 f32 D_80280F98[4][4];
 Mtx D_80280FD8;
-s32 D_80281018; //viewport indx
+s32 s_viewport_stack_index; //viewport indx
 
 
 
@@ -34,7 +34,7 @@ void func_8024C964(Gfx **, Mtx **, f32, f32);
 void func_8024CD7C(int);
 void viewport_set_position_f3(f32, f32, f32);
 void viewport_set_rotation_f3(f32, f32, f32);
-void func_8024CE60(f32, f32);
+void viewport_set_near_far(f32, f32);
 void func_8024CE74(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void viewport_set_field_of_view(f32);
 
@@ -88,7 +88,7 @@ void viewport_get_rotation_f3(f32 *pitch, f32 *yaw, f32 *roll){
 }
 
 void func_8024C7B8(Gfx **gfx, Mtx **mtx){
-    gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
+    gSPViewport((*gfx)++, &s_viewport_stack[s_viewport_stack_index]);
 
     guOrtho(*mtx, -(2*(f32)framebuffer_width), (2*(f32)framebuffer_width), -(2*(f32)framebuffer_height), (2*(f32)framebuffer_height), 1.0f, 20.0f, 1.0f);
     gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
@@ -98,7 +98,7 @@ void func_8024C7B8(Gfx **gfx, Mtx **mtx){
 }
 
 void func_8024C904(Gfx **gfx, Mtx **mtx){
-    gSPViewport((*gfx)++, &D_80280F10[D_80281018]);
+    gSPViewport((*gfx)++, &s_viewport_stack[s_viewport_stack_index]);
     func_8024C964(gfx, mtx, s_viewport_near, s_viewport_far);
 }
 
@@ -134,7 +134,7 @@ void func_8024CBD4(Gfx **gfx, Mtx **mtx){
     func_8024C964(gfx, mtx, s_viewport_near, s_viewport_far);
 }
 
-void func_8024CC00(void){}
+void viewport_debug(void){}
 
 void func_8024CC08(f32 arg0){
     if(90.0f < arg0) arg0 = 90.0f;
@@ -150,12 +150,12 @@ void func_8024CC5C(void){
     func_8024CE74((s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2), (s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2));
 }
 
-void func_8024CCC4(void){
+void viewport_reset(void){
     func_8024CD7C(1);
     viewport_set_position_f3(0.0f, 0.0f, 0.0f);
     viewport_set_rotation_f3(0.0f, 0.0f, 0.0f);
     func_8024CC08(40.0f);
-    func_8024CE60(1.0f, 10000.0f);
+    viewport_set_near_far(1.0f, 10000.0f);
     func_8024CC5C();
     viewport_set_field_of_view(VIEWPORT_FOVY_DEFAULT);
     mlMtxIdent();
@@ -194,35 +194,35 @@ void viewport_set_rotation_f3(f32 pitch, f32 yaw, f32 roll){
     viewportRotation[2] = roll;
 }
 
-void func_8024CE60(f32 near, f32 far){
+void viewport_set_near_far(f32 near, f32 far){
     s_viewport_near = near;
     s_viewport_far = far;
 }
 
 void func_8024CE74(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    D_80281018 = (D_80281018 + 1) % 8;
-    D_80280F10[D_80281018].vp.vscale[0] = arg0 << 2;
-    D_80280F10[D_80281018].vp.vscale[1] = arg1 << 2;
-    D_80280F10[D_80281018].vp.vscale[2] = 0x1ff;
-    D_80280F10[D_80281018].vp.vscale[3] = 0;
-    D_80280F10[D_80281018].vp.vtrans[0] = arg2 << 2;
-    D_80280F10[D_80281018].vp.vtrans[1] = arg3 << 2;
-    D_80280F10[D_80281018].vp.vtrans[2] = 0x1ff;
-    D_80280F10[D_80281018].vp.vtrans[3] = 0;
-    osWritebackDCache(&D_80280F10[D_80281018], sizeof(Vp)*8);
+    s_viewport_stack_index = (s_viewport_stack_index + 1) % 8;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[0] = arg0 << 2;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[1] = arg1 << 2;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[2] = 0x1ff;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[3] = 0;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[0] = arg2 << 2;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[1] = arg3 << 2;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[2] = 0x1ff;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[3] = 0;
+    osWritebackDCache(&s_viewport_stack[s_viewport_stack_index], sizeof(Vp)*8);
 }
 
 void func_8024CF10(f32 arg0, f32 arg1, f32 arg2, f32 arg3){
-    D_80281018 = (D_80281018 + 1) % 8;
-    D_80280F10[D_80281018].vp.vscale[0] = arg0*4;
-    D_80280F10[D_80281018].vp.vscale[1] = arg1*4;
-    D_80280F10[D_80281018].vp.vscale[2] = 0x1ff;
-    D_80280F10[D_80281018].vp.vscale[3] = 0;
-    D_80280F10[D_80281018].vp.vtrans[0] = arg2*4;
-    D_80280F10[D_80281018].vp.vtrans[1] = arg3*4;
-    D_80280F10[D_80281018].vp.vtrans[2] = 0x1ff;
-    D_80280F10[D_80281018].vp.vtrans[3] = 0;
-    osWritebackDCache(&D_80280F10[D_80281018], sizeof(Vp)*8);
+    s_viewport_stack_index = (s_viewport_stack_index + 1) % 8;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[0] = arg0*4;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[1] = arg1*4;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[2] = 0x1ff;
+    s_viewport_stack[s_viewport_stack_index].vp.vscale[3] = 0;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[0] = arg2*4;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[1] = arg3*4;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[2] = 0x1ff;
+    s_viewport_stack[s_viewport_stack_index].vp.vtrans[3] = 0;
+    osWritebackDCache(&s_viewport_stack[s_viewport_stack_index], sizeof(Vp)*8);
 }
 
 void viewport_update(void){
