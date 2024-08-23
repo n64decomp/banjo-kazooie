@@ -2359,47 +2359,51 @@ void func_8030895C(s32 arg0){
     D_8036ABD4++;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80308984.s")
-#else
 void func_80308984(void) {
     Cube *iCube;
     s16 temp_s4;
     s32 sp54;
     s32 sp50;
+    u32 padding[2];
     NodeProp *iNode;
     s32 i;
     Cube *jCube;
     NodeProp *jNode;
 
 
-
     D_8036ABD4 = 0;
-    sp54 = 0xF4240;
+    sp54 = 1000000;
     sp50 = 0;
-    for(i = 0; (u32)D_8036ABAC[i] != -1; i++){
-        sp54 = (D_8036ABAC[i] < sp54)? D_8036ABAC[i] : sp54;
-        sp50 = (sp50 < D_8036ABAC[i])? D_8036ABAC[i] : sp50;
+
+    for(i = 0; D_8036ABAC[i] != -1; i++){
+        if (D_8036ABAC[i] < sp54) {
+            sp54 = D_8036ABAC[i];
+        }
+        if (D_8036ABAC[i] > sp50) {
+            sp50 = D_8036ABAC[i];
+        }
     }
+
     for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
         for(iNode = iCube->prop1Ptr; iNode < iCube->prop1Ptr + iCube->prop1Cnt; iNode++){
-            if (iNode->unk6.bit6 == 6 && !iNode->unk6.bit0){
-                if((iNode->unk8 >= (u32)sp54) && ((u32)sp50 >= iNode->unk8)) {
-                    for(i = 0; iNode->unk8 != (u32)D_8036ABAC[i] && -1 != (u32)D_8036ABAC[i]; i++){
+            if (iNode->unk6.bit6 == 6 && iNode->unk6.bit0 == 0){
+                u32 tmp = iNode->unk8;
+
+                if(tmp >= sp54 && tmp <= sp50) {
+                    for(i = 0; D_8036ABAC[i] != tmp && D_8036ABAC[i] != -1; i++){
                     }
-                    if(-1 != (u32)D_8036ABAC[i]){
+
+                    if(D_8036ABAC[i] != -1){
                         temp_s4 = D_8036ABD4;
                         func_8030895C(iCube - D_80381FA0.cube_list);
                         func_8030895C(0);
-                        for(jCube = iCube; jCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; jCube++){
+
+                        for(jCube = D_80381FA0.cube_list; jCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; jCube++){
                             for(jNode = jCube->prop1Ptr; jNode < jCube->prop1Ptr + jCube->prop1Cnt; jNode++){
-                                if(
-                                    jNode->unk6.bit6 == 6 
-                                    && !jNode->unk6.bit0
-                                    && jNode->unk8 == D_8036ABC0[i]
-                                ) {
+                                if (jNode->unk6.bit6 == 6 && jNode->unk6.bit0 == 0 && jNode->unk8 == D_8036ABC0[i]) {
                                     func_8030895C(jCube - D_80381FA0.cube_list);
-                                    D_80382150[temp_s4]++; 
+                                    D_80382150[temp_s4 + 1]++;
+                                    jNode = jCube->prop1Ptr + jCube->prop1Cnt;
                                 }
                             }
                         }
@@ -2409,7 +2413,6 @@ void func_80308984(void) {
         }
     }
 }
-#endif
 
 void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_s4;
