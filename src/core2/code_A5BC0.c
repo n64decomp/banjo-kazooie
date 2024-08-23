@@ -14,13 +14,10 @@ extern s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, 
 extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
 extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], f32[3], f32[3], u32);
 
-
 extern f32 func_8030A590(void);
 extern void func_8030A5EC(Prop *, f32);
 
 Prop *func_80303F7C(s32, f32, s32, s32);
-s32 func_8032D9C0(Cube*, Prop*);
-void func_80332B2C(ActorMarker * arg0);
 s32 func_803058C0(f32);
 void func_80305CD8(s32, s32);
 void func_80330104(Cube*);
@@ -28,6 +25,9 @@ ActorMarker * func_80332A60(void);
 extern void func_8032F3D4(s32 [3], ActorMarker *, s32);
 extern void func_8030A350(Gfx **, Mtx **, Vtx **, f32[3], f32, s32, Cube*,s32 ,s32, s32, s32, s32);  
 extern void func_8030A2D0(Gfx **, Mtx **, Vtx **, f32[3], f32[3], f32, s32, Cube*);
+s32 func_8032D9C0(Cube*, Prop*);
+void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3);
+void func_80332B2C(ActorMarker * arg0);
 
 typedef union{
     struct{
@@ -993,21 +993,25 @@ s32 func_8032F170(Cube **arg0, void **arg1){
     return D_8038340C;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F194.s")
-#else
 void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
-    ActorProp2 sp24;
+    ActorProp sp24;
+    ActorProp *propPtr = marker->propPtr;
+    ActorProp *v0 = &sp24;
 
-    ((s32*)&sp24)[2] = ((s32*)marker->propPtr)[2];
-    sp24.x = (s16) position[0];
-    sp24.y = (s16) position[1];
-    sp24.z = (s16) position[2];
-    func_8032F21C(cube, position, marker, func_8032D9C0(marker->cubePtr, marker->propPtr));
-    ((s32*)marker->propPtr)[1] = ((s32*)&sp24)[1];
-    ((s32*)marker->propPtr)[2] = ((s32*)&sp24)[2];
+    v0 += 0;
+
+    sp24.words[2] = propPtr->words[2];
+
+    v0->x = position[0];
+    v0->y = position[1];
+    v0->z = position[2];
+
+    func_8032F21C(cube, position, marker, func_8032D9C0(marker->cubePtr, propPtr));
+
+    propPtr = marker->propPtr;
+    propPtr->words[1] = sp24.words[1];
+    propPtr->words[2] = sp24.words[2];
 }
-#endif
 
 void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
     ActorProp *sp1C;

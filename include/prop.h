@@ -48,18 +48,23 @@ typedef struct model_prop_s{
 
 
 typedef struct actor_prop_s{
-    struct actorMarker_s* marker;
-    s16 x;
-    s16 y;
-    s16 z;
-    u16 unk8_15:5;
-    u16 unk8_10:5;
-    u16 unk8_5:1;
-    u16 unk8_4:1;
-    u16 unk8_3:1;
-    u16 unk8_2:1;
-    u16 unk8_1:1;
-    u16 unk8_0:1;
+    union {
+        struct {
+            struct actorMarker_s* marker;
+            s16 x;
+            s16 y;
+            s16 z;
+            u16 unk8_15:5;
+            u16 unk8_10:5;
+            u16 unk8_5:1;
+            u16 unk8_4:1;
+            u16 unk8_3:1;
+            u16 unk8_2:1;
+            u16 unk8_1:1;
+            u16 unk8_0:1;
+        };
+        s32 words[3];
+    };
 } ActorProp;
 
 typedef void(*MarkerCollisionFunc)(struct actorMarker_s *this, struct actorMarker_s *other);
