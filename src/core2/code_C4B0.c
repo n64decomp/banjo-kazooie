@@ -112,9 +112,6 @@ void func_8029350C(f32 *arg0) {
     }
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_C4B0/func_80293668.s")
-#else
 void func_80293668(void) {
     f32 sp3AC[3];
     f32 sp3A0[3];
@@ -127,111 +124,111 @@ void func_80293668(void) {
     f32 sp364[3];
     Struct_core2_C4B0_0 *var_s1;
     Struct_core2_C4B0_0 sp90[5];
-    u32 temp_s7;
     s32 temp_v0;
+    Struct_core2_C4B0_0 *sp88;
 
     temp_v0 = baMarker_8028D694();
     func_80244FC0(D_8037C228, sp390, D_8037C1F8[1], D_8037C1F8[0], 1, temp_v0 | 0x1E0000);
-    temp_s7 = temp_v0 | 0x1E0000;
     for(i = 0; i < 5; i++){
+        sp88 = &sp90[i];
         var_s1 = (i != 0) ? &sp90[i - 1] : NULL;
 
         if (i != 0) {
-            ml_vec3f_copy(sp90[i].unk0, var_s1->unk0);
-            ml_vec3f_copy(sp90[i].unkC, var_s1->unkC);
+            ml_vec3f_copy(sp88->unk0, var_s1->unk0);
+            ml_vec3f_copy(sp88->unkC, var_s1->unkC);
         } else {
-            ml_vec3f_copy(sp90[i].unk0, D_8037C218);
-            ml_vec3f_copy(sp90[i].unkC, D_8037C228);
+            ml_vec3f_copy(sp88->unk0, D_8037C218);
+            ml_vec3f_copy(sp88->unkC, D_8037C228);
         }
-        ml_vec3f_copy(sp364, sp90[i].unk0);
-        ml_vec3f_diff_copy(sp380, sp90[i].unk0, sp90[i].unkC);
+        ml_vec3f_copy(sp364, sp88->unk0);
+        ml_vec3f_diff_copy(sp380, sp88->unk0, sp88->unkC);
         temp_f0 = ((D_8037C1F8[1] * 2) - 4.0f);
         if ((sp380[0]*sp380[0] + sp380[1]*sp380[1] + sp380[2]*sp380[2]) > (temp_f0 * temp_f0)) {
-            sp38C = sp90[i].unk0[1];
-            sp90[i].unk40 = func_80244E54(sp90[i].unkC, sp90[i].unk0, sp90[i].unk44, temp_s7, D_8037C1F8[1] - 1.0f, D_8037C1F8[0]);
-            if (sp90[i].unk40 != 0) {
+            sp38C = sp88->unk0[1];
+            sp88->unk40 = func_80244E54(sp88->unkC, sp88->unk0, sp88->unk44, temp_v0 | 0x1E0000, D_8037C1F8[1] - 1.0f, D_8037C1F8[0]);
+            if (sp88->unk40 != 0) {
                 ml_vec3f_normalize(sp380);
-                if ((sp380[0]*sp90[i].unk44[0] + sp380[1]*sp90[i].unk44[1] +  sp380[2]*sp90[i].unk44[2]) > 0.0f) {
-                    sp90[i].unk40 = 0;
-                    ml_vec3f_copy(sp90[i].unk0, sp364);
+                temp_f0 = sp380[0]*sp88->unk44[0][0] + sp380[1]*sp88->unk44[0][1] +  sp380[2]*sp88->unk44[0][2];
+                if (temp_f0 > 0.0f) {
+                    sp88->unk40 = 0;
+                    ml_vec3f_copy(sp88->unk0, sp364);
                 }
             }
-            if (sp90[i].unk40 != 0) {
-                if ((sp90[i].unk44[1] >= 0.0) && (sp90[i].unk44[1] < D_80374770)) {
-                    sp90[i].unk0[1] = sp38C;
+            if (sp88->unk40 != 0) {
+                if ((sp88->unk44[0][1] >= 0.0) && (sp88->unk44[0][1] < 0.02)) {
+                    sp88->unk0[1] = sp38C;
                 }
             }
         } else {
-            sp90[i].unk40 = 0;
+            sp88->unk40 = 0;
         }
-        func_8029350C(sp90[i].unk0);
-        sp90[i].unk8C = D_8037C279;
-        sp90[i].unk34[0] = sp90[i].unkC[0];
-        sp90[i].unk34[1] = sp90[i].unkC[1];
-        sp90[i].unk34[2] = sp90[i].unkC[2];
-        sp90[i].unk34[1] +=D_8037C1F8[0];
 
-        sp90[i].unk28[0] = sp90[i].unk0[0];
-        sp90[i].unk28[1] = sp90[i].unk0[1];
-        sp90[i].unk28[2] = sp90[i].unk0[2];
-        sp90[i].unk28[1] +=D_8037C1F8[0];
+        func_8029350C(sp88->unk0);
 
-        sp90[i].unk18 = func_80320C94(sp90[i].unk34, sp90[i].unk28, D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
-        if (sp90[i].unk18 != NULL) {
+        sp88->unk8C = D_8037C279;
+
+        sp88->unk34[0] = sp88->unkC[0];
+        sp88->unk34[1] = D_8037C1F8[0] + sp88->unkC[1];
+        sp88->unk34[2] = sp88->unkC[2];
+
+        sp88->unk28[0] = sp88->unk0[0];
+        sp88->unk28[1] = D_8037C1F8[0] + sp88->unk0[1];
+        sp88->unk28[2] = sp88->unk0[2];
+
+        sp88->unk18 = func_80320C94(sp88->unk34, sp88->unk28, D_8037C1F8[1], sp88->unk1C, 3, temp_v0 | 0x1E0000);
+        if (sp88->unk18 != NULL) {
             D_8037C27D++;
-            D_8037C204 = sp90[i].unk18;
-            ml_vec3f_copy(D_8037C258, sp90[i].unk1C);
+            D_8037C204 = sp88->unk18;
+            ml_vec3f_copy(D_8037C258, sp88->unk1C);
             if (i == 2) {
-                if ((sp90[i].unk18 == sp90[0].unk18) && (var_s1->unk18 != sp90[0].unk18)) {
-                    ml_vec3f_add(sp380, sp90[i].unk1C, var_s1->unk1C);
+                if ((sp88->unk18 == sp90[0].unk18) && (sp88->unk18 != var_s1->unk18)) {
+                    ml_vec3f_add(sp380, sp88->unk1C, var_s1->unk1C);
                     ml_vec3f_normalize(sp380);
-                    ml_vec3f_copy(sp90[i].unk1C, sp380);
+                    ml_vec3f_copy(sp88->unk1C, sp380);
                 }
             }
             if (i == 2) {
-                if (sp90[i].unk18 == sp90[0].unk18) {
-                    if ((var_s1->unk18 == sp90[i].unk18) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
-                        func_802578A4(sp380, sp90[i].unk0, sp90[i].unk68);
-                        ml_vec3f_diff_copy(sp3A0, sp90[i].unk0, sp380);
+                if (sp88->unk18 == sp90[0].unk18) {
+                    if ((sp88->unk18 == var_s1->unk18) && func_802946FC(sp88->unk68, sp88->unk18)) {
+                        func_802578A4(sp380, sp88->unk0, sp88->unk68[0]);
+                        ml_vec3f_diff_copy(sp3A0, sp88->unk0, sp380);
                         ml_vec3f_set_length_copy(sp3A0, sp3A0, D_8037C1F8[1] + 1.0f);
                         sp380[0] += sp3A0[0];
                         sp380[1] += sp3A0[1];
                         sp380[2] += sp3A0[2];
-                        if (!(sp90[i].unk18->unk8 & 0x00010000)) {
-                            sp90[i].unk18 = func_802457C4(sp380, sp90[i].unk0, D_8037C1F8[0], D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
+                        if (!(sp88->unk18->flags & 0x00010000)) {
+                            sp88->unk18 = func_802457C4(sp380, sp88->unk0, D_8037C1F8[0], D_8037C1F8[1], sp88->unk1C, 3, temp_v0 | 0x1E0000);
                         } else {
-                            ml_vec3f_copy(sp90[i].unk0, sp380);
+                            ml_vec3f_copy(sp88->unk0, sp380);
                         }
                     }
                 }
             }
-            if ((sp90[i].unk8C == 0) && (sp90[i].unk18 != NULL) && (D_8037C238[1] < 0.0f)) {
-                if( (mlAbsF(sp90[i].unk1C[1]) < D_80374778) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
-                    func_802578A4(sp380, sp90[i].unk0, sp90[i].unk68);
-                    ml_vec3f_scale_copy(sp3A0, sp90[i].unk1C, D_8037C1F8[1] + 1.0f);
+            if ((sp88->unk8C == 0) && (sp88->unk18 != NULL) && (D_8037C238[1] < 0.0f)) {
+                if( (mlAbsF(sp88->unk1C[1]) < 0.01) && func_802946FC(sp88->unk68, sp88->unk18)) {
+                    func_802578A4(sp380, sp88->unk0, sp88->unk68[0]);
+                    ml_vec3f_scale_copy(sp3A0, sp88->unk1C, D_8037C1F8[1] + 1.0f);
                     ml_vec3f_add(sp374, sp380, sp3A0);
-                    sp90[i].unk18 = func_802457C4(sp374, sp380, D_8037C1F8[0], D_8037C1F8[1], sp90[i].unk1C, 3, temp_s7);
-                    sp90[i].unk0[0] = sp380[0];
-                    sp90[i].unk0[2] = sp380[2];
+                    sp88->unk18 = func_802457C4(sp374, sp380, D_8037C1F8[0], D_8037C1F8[1], sp88->unk1C, 3, temp_v0 | 0x1E0000);
+                    sp88->unk0[0] = sp380[0];
+                    sp88->unk0[2] = sp380[2];
                 }
             }
-            if ((D_80374780 < sp90[i].unk1C[1]) && func_802946FC(sp90[i].unk68, sp90[i].unk18)) {
-                func_8025778C(sp3AC, sp90[i].unk0, sp90[i].unk68);
-                sp380[0] = sp90[i].unk0[0] - sp3AC[0];
+            if ((0.999 < sp88->unk1C[1]) && func_802946FC(sp88->unk68, sp88->unk18)) {
+                func_8025778C(sp3AC, sp88->unk0, sp88->unk68);
+                sp380[0] = sp88->unk0[0] - sp3AC[0];
                 sp380[1] = 0.0f;
-                sp380[2] = sp90[i].unk0[2] - sp3AC[2];
-                ml_vec3f_set_length_copy(sp380, sp380, D_8037C1F8[1] + 1.0f);
-                sp380[0] = sp380[0] + sp3AC[0];
-                sp380[1] = sp380[1] + sp3AC[1];
-                sp380[2] = sp380[2] + sp3AC[2];
-                sp90[i].unk0[0] = sp380[0];
-                sp90[i].unk0[2] = sp380[2];
-            } else if (ml_isNonzero_vec3f(sp90[i].unk1C)) {
-                func_802450DC(sp90[i].unkC, sp90[i].unk0, sp90[i].unk34, sp90[i].unk28, sp90[i].unk1C);
+                sp380[2] = sp88->unk0[2] - sp3AC[2];
+                ml_vec3f_set_length_copy(sp380, sp380, 1.0f + D_8037C1F8[1]);
+                sp380[0] += sp3AC[0];
+                sp380[1] += sp3AC[1];
+                sp380[2] += sp3AC[2];
+                sp88->unk0[0] = sp380[0];
+                sp88->unk0[2] = sp380[2];
+            } else if (ml_isNonzero_vec3f(sp88->unk1C)) {
+                func_802450DC(sp88->unkC, sp88->unk0, sp88->unk34, sp88->unk28, sp88->unk1C);
             }
-
-        }
-        else{
+        } else {
             break;
         }
     }
@@ -239,15 +236,13 @@ void func_80293668(void) {
     if ((i == 5) && (D_8037C279 == 0) && (D_8037C204 != 0) && (D_8037C218[1] < D_8037C228[1])) {
         D_8037C27C = 1;
     }
-    
+
     if (i == 5) {
         ml_vec3f_copy(D_8037C218, sp390);
-    }
-    else{
-        ml_vec3f_copy(D_8037C218, sp90[i].unk0);
+    } else{
+        ml_vec3f_copy(D_8037C218, sp88->unk0);
     }
 }
-#endif
 
 void func_80293D2C(f32 *arg0, f32 * arg1){
      *arg0 = D_8037C1F8[0];
