@@ -119,13 +119,6 @@ struct {
 
 
 u8 D_80381FE8[0x50];
-Cube *D_80382038[0x1C]; //static?
-s32 D_803820A8[3]; //local static
-s32 D_803820B4; //local static
-s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
-s32 pad_80382138;
-
-
 
 /* .code */
 void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -671,6 +664,7 @@ BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg
     return var_s5;
 }
 
+s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg4, s32 *arg5) {
     ActorProp *phi_s0;
 
@@ -694,12 +688,12 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
     };
 }
 
+s32 D_8038213C;
 void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
     s32 sp6C[3];
     s32 sp60[3];
     s32 sp5C;
     f32 sp50[3];
-    static s32 D_8038213C;
 
 
     sp5C = 0;
@@ -1927,72 +1921,53 @@ bool func_803077FC(f32 arg0[3], s32 *arg1, s32 *arg2, s32 arg3, u32 arg4) {
     return FALSE;
 }
 
-#ifndef NONMATCHING
-Cube **func_80307948(s32 arg0[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307948.s")
-#else
-Cube **func_80307948(s32 arg0[3]) {
-    s32 sp34[3];
-    s32 sp24[3];
-    // ? *var_a2;
-    s32 *var_a1;
-    Cube *var_t2;
-    s32 *var_v0;
-    s32 temp_a0;
-    s32 temp_a1;
-    s32 temp_a1_2;
-    s32 temp_a2;
-    s32 temp_a2_2;
-    s32 temp_lo;
-    s32 temp_t0;
-    s32 temp_t0_2;
-    s32 temp_t5;
-    s32 temp_t6;
-    s32 temp_t6_2;
-    s32 temp_t7;
-    s32 temp_t7_2;
-    s32 temp_t8;
-    s32 temp_t9;
-    s32 temp_v0;
-    s32 temp_v1;
-    s32 var_a0;
-    s32 var_a0_2;
-    s32 var_a3;
-    s32 var_t1;
-    s32 var_v0_2;
-    s32 var_v1;
-    s32 i;
+Cube **func_80307948(int* arg0) {
+    int sp34[3];
+    s32 cubeCount;
+    int sp24[3];
+    static Cube *D_80382038[0x1C];
+    s32 idx;
+    s32 base;
 
-    for(i = 0; i < 3; i++){
-        sp34[i] = ((arg0[i] >= 0) ? (arg0[i] / 1000) : ((arg0[i]/1000) - 1)) - D_80381FA0.min[i];
+    for(cubeCount = 0; cubeCount < 3; cubeCount++){
+        sp34[cubeCount] = ((arg0[cubeCount] >= 0) ? (arg0[cubeCount] / 1000) : ((arg0[cubeCount]/1000) - 1)) - D_80381FA0.min[cubeCount];
     }
 
-    var_v1 = 0;
-    if(    (sp34[0] > 0) && (sp34[0] < (D_80381FA0.width[0] - 1)) 
-        && (sp34[1] > 0) && (sp34[1] < (D_80381FA0.width[1] - 1))
-        && (sp34[2] > 0) && (sp34[2] < (D_80381FA0.width[2] - 1))
+    cubeCount = 0;
+
+    if(    sp34[0] > 0 && sp34[0] < D_80381FA0.width[0] - 1
+        && sp34[1] > 0 && sp34[1] < D_80381FA0.width[1] - 1
+        && sp34[2] > 0 && sp34[2] < D_80381FA0.width[2] - 1
     ) {
-        for(sp24[0] = sp34[0] - 1; sp24[0] < sp34[0] + 2; sp24[0]++){
-            for(sp24[1] = sp34[1] - 1; sp24[1] < sp34[1] + 2; sp24[1]++){
-                for(sp24[2] = sp34[2] - 1; sp24[2] < sp34[2] + 2; sp24[2]++){
-                    temp_lo = sp24[0] + (sp24[1] * D_80381FA0.stride[0]) + (sp24[2] * D_80381FA0.stride[1]);
-                    if (var_t2[temp_lo].unk0_4) {
-                        D_80382038[var_v1++] = D_80381FA0.cube_list + temp_lo;
+        base = (sp34[0] - 1)
+            + (sp34[1] - 1) * D_80381FA0.stride[0]
+            + (sp34[2] - 1) * D_80381FA0.stride[1];
+        idx = base;
+
+        for(sp24[0] = 0; sp24[0] < 3; sp24[0]++){
+            for(sp24[1] = 0; sp24[1] < 3; sp24[1]++, idx += D_80381FA0.stride[0] - 3){
+                for(sp24[2] = 0; sp24[2] < 3; sp24[2]++, idx++){
+                    if (D_80381FA0.cube_list[idx].unk0_4) {
+                        D_80382038[cubeCount] = &D_80381FA0.cube_list[idx];
+                        cubeCount++;
                     }
                 }
             }
+            base += D_80381FA0.stride[1];
+            idx = base;
         }
     } else {
         for(sp24[0] = sp34[0] - 1; sp24[0] < sp34[0] + 2; sp24[0]++){
-            if ((sp24[0] >= 0) && (sp24[0] < D_80381FA0.width[0])) {
+            if (sp24[0] >= 0 && sp24[0] < D_80381FA0.width[0]) {
                 for(sp24[1] = sp34[1] - 1; sp24[1] < sp34[1] + 2; sp24[1]++){
-                    if ((sp24[1] >= 0) && (sp24[1] < D_80381FA0.width[1])) {
+                    if (sp24[1] >= 0 && sp24[1] < D_80381FA0.width[1]) {
                         for(sp24[2] = sp34[2] - 1; sp24[2] < sp34[2] + 2; sp24[2]++){
-                            if ((sp24[2] >= 0) && (sp24[2] < D_80381FA0.width[2])) {
-                                temp_lo = sp24[0] + (sp24[1] * D_80381FA0.stride[0]) + (sp24[2] * D_80381FA0.stride[1]);
-                                if (D_80381FA0.cube_list[temp_lo].unk0_4) {
-                                    D_80382038[var_v1] = D_80381FA0.cube_list + temp_lo;
-                                    var_v1++;
+                            if (sp24[2] >= 0 && sp24[2] < D_80381FA0.width[2]) {
+                                idx = sp24[0] + sp24[1] * D_80381FA0.stride[0] + sp24[2] * D_80381FA0.stride[1];
+
+                                if (D_80381FA0.cube_list[idx].unk0_4) {
+                                    D_80382038[cubeCount] = &D_80381FA0.cube_list[idx];
+                                    cubeCount++;
                                 }
                             }
                         }
@@ -2001,10 +1976,11 @@ Cube **func_80307948(s32 arg0[3]) {
             }
         }
     }
-    D_80382038[var_v1] = NULL;
+
+    D_80382038[cubeCount] = NULL;
     return D_80382038;
 }
-#endif
+
 
 void func_80307CA0(ActorMarker *marker) {
     s32 temp_s4;
@@ -2057,9 +2033,6 @@ u32 func_80307E1C(void) {
     return phi_v1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_7AF80/func_80307EA8.s")
-#else
 u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
     s32 temp_lo;
     s32 temp_t1;
@@ -2116,7 +2089,6 @@ u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
 
     return var_s4;
 }
-#endif
 
 NodeProp *func_803080C8(s32 arg0) {
     s32 sp3C[3];
@@ -2182,11 +2154,12 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
     return var_a0;
 }
 
+Cube *D_80382144;
 s32 func_803083B0(s32 arg0) {
     s32 var_v0;
     Cube *var_s0;
+    static u8 a; 
     static s32 D_80382140;
-    static Cube *D_80382144;
 
     if (arg0 == -1) {
         var_s0 = D_80381FA0.cube_list;
