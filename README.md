@@ -1,4 +1,4 @@
-# banjo (99.7661%)
+# banjo (99.8594%)
 
 <img src="./progress/progress_total.svg">
 
@@ -25,7 +25,6 @@ Be sure to check scratch "family" for any progress that may not be reflected her
 
 | File               | Function        | Scratch Link                             | %      | Notes |
 | ------------------ | --------------- | ---------------------------------------- | ------ | ----- |
-| core2/code_12F30.c | func_80299EC0   | [Ar62G](https://decomp.me/scratch/Ar62G) | 77.65% |
 | core2/code_B9770.c | func_803411B0   | [rHkDu](https://decomp.me/scratch/rHkDu) | 87.70% | spline function
 
 ## Building
