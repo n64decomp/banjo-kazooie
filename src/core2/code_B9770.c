@@ -260,79 +260,96 @@ f32 glspline_catmull_rom_interpolate(f32 x, s32 knotCount, f32 *knotList) {
     return (((((sp24[2] * x) + sp24[1]) * x) + sp24[0]) * x) + (1.0*knotList[1]);
 }
 
-#ifndef NONMATCHING
-void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340BE4.s")
-#else
-void func_80340BE4(f32 x, s32 length, s32 stride, s32 width, f32 *arg4, f32 *dst){
-    s32 spD0;
+void func_80340BE4(f32 x, s32 length, s32 stride, s32 width, f32 *arg4, f32 dst[3]){
+    s32 padding;
     s32 max_interval;
-    s32 i;
-    s32 var_a3;
+    s32 a3;
     f32 temp_f2;
     f32 f3;
     f32 f1;
     f32 f2;
+    f32 *t0;
     f32 sp94[3][3];
 
     max_interval = length - 1;
+
     if (length < 4) {
         /* not enough points in spline to perform catmull-rom interpolation*/
         ml_vec3f_copy(sp94[0], arg4);
         ml_vec3f_copy(sp94[1], arg4);
-        ml_vec3f_copy(sp94[2], arg4 + stride);
+        ml_vec3f_copy(sp94[2], &arg4[stride]);
         if (length - 1 == 1) {
-            ml_vec3f_copy(sp94[3], arg4 + stride);
+            ml_vec3f_copy(sp94[3], &arg4[stride]);
         } else {
-            ml_vec3f_copy(sp94[3], arg4 + 2*stride);
+            ml_vec3f_copy(sp94[3], &arg4[stride*2]);
         }
-        func_80340BE4(x, 4, 3, 3, sp94, dst);
+        func_80340BE4(x, 4, 3, 3, (f32 *) sp94, dst);
         return;
     }
-    
+
     temp_f2 = func_80340700(x, 0.0f, 1.0f) * max_interval;
-    var_a3 = (s32)temp_f2;
-    var_a3 = ((length - 1) < var_a3) ?  (length - 1) :  var_a3;
-    x = temp_f2 - (f32) var_a3;
-    if (0 == var_a3) {
-        /* desired point in interval[0,1], duplicate P0 to left */
-        arg4 = arg4 + 0;
-        for(var_a3 = var_a3; var_a3 < width; var_a3++){
-            f3 = -0.5*arg4[var_a3] +  1.5*arg4[var_a3] + -1.5*arg4[stride + var_a3] +  0.5*arg4[2*stride + var_a3];
-            f1 =  1.0*arg4[var_a3] + -2.5*arg4[var_a3] +  2.0*arg4[stride + var_a3] + -0.5*arg4[2*stride + var_a3];
-            f2 = -0.5*arg4[var_a3] +  0.0*arg4[var_a3] +  0.5*arg4[stride + var_a3] +  0.0*arg4[2*stride + var_a3];
-            dst[var_a3] =  ((((f3 * x) + f1)* x + f2) * x)  + (1.0*arg4[var_a3]);
-        }
-        return;
+    a3 = temp_f2;
+
+    if (a3 > (length - 1)) {
+        a3 = (length - 1);
     }
-    spD0 = var_a3 - 1;
-    if (length == (var_a3 + 1)) {
-        arg4 = arg4 + spD0*stride;
-        for(var_a3 = 0; var_a3 < width; var_a3++){
-            /* desired point in interval[n, inf], linearly interpret */
-            dst[var_a3] = arg4[var_a3];
-        }
-    } else if (length == (spD0 + 2)) {
-         /* desired point in interval[n-1, n], duplicate Pn to right */
-        for(var_a3 = 0; var_a3 < width; var_a3++){
-            f3 = -0.5*arg4[spD0*stride + var_a3] +  1.5*arg4[(spD0 + 1)* stride + var_a3] + -1.5*arg4[(spD0 + 2)* stride + var_a3] +  0.5*arg4[(spD0 + 2)* stride + var_a3];
-            f1 =  1.0*arg4[spD0*stride + var_a3] + -2.5*arg4[(spD0 + 1)* stride + var_a3] +  2.0*arg4[(spD0 + 2)* stride + var_a3] + -0.5*arg4[(spD0 + 2)* stride + var_a3];
-            f2 = -0.5*arg4[spD0*stride + var_a3] +  0.0*arg4[(spD0 + 1)* stride + var_a3] +  0.5*arg4[(spD0 + 2)* stride + var_a3] +  0.0*arg4[(spD0 + 2)* stride + var_a3];
-            dst[var_a3] =  ((((f3 * x) + f1)* x + f2) * x)  + (1.0*arg4[((spD0 + 1) * stride) + var_a3]);
+
+    x = temp_f2 - a3;
+
+    if (a3 == 0) {
+        /* desired point in interval[0,1], duplicate P0 to left */
+        t0 = arg4;
+        t0 += (stride * 2);
+
+        for (; a3 < width; a3++) {
+            f3 = -0.5*arg4[a3] +  1.5*arg4[a3] + -1.5*arg4[stride + a3] +  0.5*t0[a3];
+            f1 =  1.0*arg4[a3] + -2.5*arg4[a3] +  2.0*arg4[stride + a3] + -0.5*t0[a3];
+            if (1);
+            f2 = -0.5*arg4[a3] +  0.0*arg4[a3] +  0.5*arg4[stride + a3] +  0.0*t0[a3];
+
+            dst[a3] = (1.0*arg4[a3]) + (((f3 * x + f1) * x + f2) * x);
         }
     } else {
-        /* normal conditions */
-        for(var_a3 = 0; var_a3 < width; var_a3++){
-            f3 = -0.5*arg4[spD0*stride + var_a3] +  1.5*arg4[(spD0 + 1)*stride + var_a3] + -1.5*arg4[(spD0 + 2)* stride + var_a3] +  0.5*arg4[(spD0 + 3)* stride + var_a3];
-            f1 =  1.0*arg4[spD0*stride + var_a3] + -2.5*arg4[(spD0 + 1)*stride + var_a3] +  2.0*arg4[(spD0 + 2)* stride + var_a3] + -0.5*arg4[(spD0 + 3)* stride + var_a3];
-            f2 = -0.5*arg4[spD0*stride + var_a3] +  0.0*arg4[(spD0 + 1)*stride + var_a3] +  0.5*arg4[(spD0 + 2)* stride + var_a3] +  0.0*arg4[(spD0 + 3)* stride + var_a3];
-            // var_f8 = 
-            dst[var_a3] =  ((((f3 * x) + f1)* x + f2) * x)  + (1.0*arg4[(spD0 + 1)*stride + var_a3]);
+        a3--;
+
+        if (a3 == length - 2) {
+            arg4 += stride * (length - 1);
+
+            for (a3 = 0; a3 < width; a3++) {
+                /* desired point in interval[n, inf], linearly interpret */
+                dst[a3] = arg4[a3];
+            }
+        } else if (a3 == length - 3) {
+            /* desired point in interval[n-1, n], duplicate Pn to right */
+            arg4 += a3 * stride;
+
+            t0 = arg4;
+            t0 += (stride * 2);
+
+            for (a3 = 0; a3 < width; a3++) {
+                f3 = -0.5*arg4[a3] +  1.5*arg4[stride + a3] + -1.5*t0[a3] +  0.5*t0[a3];
+                f1 =  1.0*arg4[a3] + -2.5*arg4[stride + a3] +  2.0*t0[a3] + -0.5*t0[a3];
+                f2 = -0.5*arg4[a3] +  0.0*arg4[stride + a3] +  0.5*t0[a3] +  0.0*t0[a3];
+
+                dst[a3] = (1.0*arg4[stride + a3]) + (((f3 * x + f1) * x + f2) * x);
+            }
+        } else {
+            /* normal conditions */
+            arg4 += a3 * stride;
+
+            t0 = arg4;
+            t0 += (stride * 2);
+
+            for (a3 = 0; a3 < width; a3++) {
+                f3 = -0.5*arg4[a3] +  1.5*arg4[stride + a3] + -1.5*t0[a3] +  0.5*arg4[stride*3 + a3];
+                f1 =  1.0*arg4[a3] + -2.5*arg4[stride + a3] +  2.0*t0[a3] + -0.5*arg4[stride*3 + a3];
+                f2 = -0.5*arg4[a3] +  0.0*arg4[stride + a3] +  0.5*t0[a3] +  0.0*arg4[stride*3 + a3];
+
+                dst[a3] = (1.0*arg4[stride + a3]) + (((f3 * x + f1) * x + f2) * x);
+            }
         }
     }
-    
 }
-#endif
 
 void func_80341180(f32 arg0, s32 arg1, s32 arg2, f32 arg3[3], f32 arg4[3]){
     func_80340BE4(arg0, arg1, arg2, arg2, arg3, arg4);
