@@ -11,19 +11,19 @@ void timed_exitStaticCamera(f32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 //static types
-typedef struct sm_2900_struct{
-    s16 unk0; //text_id
-    s16 unk2; //text_id
-    s8 unk4; 
-    s8 unk5; //ability_id
-}SM2900Struct;
+typedef struct {
+    s16 learn_text;
+    s16 refresher_text;
+    s8 camera_node;
+    s8 ability;
+} struct_smMole;
 
 //public
-void func_803899B0(Actor * this);
+void smMole_Update(Actor * this);
 void SM_func_80389610(Actor * this);
 
 /* .data */
-ActorAnimationInfo D_8038AF60[6] = {
+ActorAnimationInfo smMoleAnimations[6] = {
     {0, 0.0f},
     {ASSET_13A_ANIM_BOTTLES_ENTER, 2000000000.0f},
     {ASSET_13A_ANIM_BOTTLES_ENTER, 4.5f},
@@ -32,27 +32,31 @@ ActorAnimationInfo D_8038AF60[6] = {
     {ASSET_13A_ANIM_BOTTLES_ENTER, 2000000000.0f}
 };
 
-ActorInfo D_8038AF90 = { MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES, 1, D_8038AF60, //bottles
-    func_803899B0, func_80326224, func_802D94B4,
+ActorInfo D_8038AF90 = {
+    MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES,
+    1, smMoleAnimations,
+    smMole_Update, func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
 };
 
-SM2900Struct D_8038AFB4[8] = {
-    {0xdf3, 0xe08, 1, -1},
-    {0xdf4, 0xdf5, 3, ABILITY_3_CAMERA_CONTROL},
-    {0xdfb, 0xdfe, 5, ABILITY_F_DIVE},
-    {   -1, 0xe00, 6, ABILITY_B_RATATAT_RAP},
-    {0xe04, 0xe06, 8, ABILITY_0_BARGE},
-    {   -1, 0xdfa, 4, ABILITY_8_FLIP},
-    {0xe01, 0xe03, 7, ABILITY_5_CLIMB},
-    {0xe10, 0xe11, 0x11, -1},
+struct_smMole smMoleTable[8] = {
+    {ASSET_DF3_TEXT_BOTTLES_INTRODUCTION,         ASSET_E08_TEXT_BOTTLES_FIND_ANOTHER_MOLEHILL,    1, -1},
+    {ASSET_DF4_TEXT_BOTTLES_CAMERA_CONTROL_LEARN, ASSET_DF5_TEXT_BOTTLES_CAMERA_CONTROL_REFRESHER, 3, ABILITY_3_CAMERA_CONTROL},
+    {ASSET_DFB_TEXT_BOTTLES_DIVE_LEARN,           ASSET_DFE_TEXT_BOTTLES_DIVE_REFRESHER,           5, ABILITY_F_DIVE},
+    {   -1,                                       ASSET_E00_TEXT_BOTTLES_ATTACK_REFRESHER,         6, ABILITY_B_RATATAT_RAP},
+    {ASSET_E04_TEXT_BOTTLES_BEAK_BARGE_LEARN,     ASSET_E06_TEXT_BOTTLES_BEAK_BARGE_REFRESHER,     8, ABILITY_0_BARGE},
+    {   -1,                                       ASSET_DFA_TEXT_BOTTLES_JUMP_REFRESHER,           4, ABILITY_8_FLIP},
+    {ASSET_E01_TEXT_BOTTLES_CLIMB_LEARN,          ASSET_E03_TEXT_BOTTLES_CLIMB_REFRESHER,          7, ABILITY_5_CLIMB},
+    {ASSET_E10_TEXT_BOTTLES_BRIDGE_BROKEN,        ASSET_E11_TEXT_BOTTLES_BRIDGE_STILL_BROKEN,      0x11, -1},
 };
 
 s32 D_8038AFE4 = 0;
 
 
 /* .code */
-int func_80388D80(void){
+// func_80388D80
+int code_2990_learnedAnySpiralMountainAbilities(void){
+    // Checks if any Spiral Mountain abilities have been learned
     return ability_isUnlocked(ABILITY_F_DIVE)
         || ability_isUnlocked(ABILITY_4_BEAR_PUNCH)
         || ability_isUnlocked(ABILITY_C_ROLL)
@@ -64,7 +68,10 @@ int func_80388D80(void){
         || ability_isUnlocked(ABILITY_5_CLIMB);
 }
 
-void func_80388E48(void){
+// func_80388E48
+void code_2990_setSpiralMountainAbilitiesAsUsed(void){
+    // Sets all Spiral Mountain abilities to used & disables the noise
+    // played when the player uses an ability for the first time.
     ability_unlock(ABILITY_3_CAMERA_CONTROL);
     ability_setHasUsed(ABILITY_0_BARGE);
     ability_setHasUsed(ABILITY_1_BEAK_BOMB);
@@ -77,7 +84,9 @@ void func_80388E48(void){
     ability_setHasUsed(ABILITY_A_HOLD_A_JUMP_HIGHER);
 }
 
-void func_80388EB0(void){
+// func_80388EB0
+void code_2990_skipIntroTutorial(void){
+    // Unlocks all of the Spiral Mountain moves.
     ability_unlock(ABILITY_F_DIVE);
     ability_unlock(ABILITY_4_BEAR_PUNCH);
     ability_unlock(ABILITY_C_ROLL);
@@ -87,16 +96,20 @@ void func_80388EB0(void){
     ability_unlock(ABILITY_7_FLAP);
     ability_unlock(ABILITY_8_FLIP);
     ability_unlock(ABILITY_5_CLIMB);
-    func_80388E48();
+    code_2990_setSpiralMountainAbilitiesAsUsed();
     mapSpecificFlags_set(3,1);
 }
 
-void func_80388F24(Actor *this){
+// func_80388F24
+void code_2990_setSpiralMountainStaticCamera(Actor *this){
+    // If the player is talking to Intro Bottles for the first time,
+    //   use the camera that points to the lair.
+    // Otherwise, use the camera for the ability.
     if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
         timed_setStaticCameraToNode(0.0f, 0x12);
     }
     else{ //L80388F68
-        timed_setStaticCameraToNode(0.0f, D_8038AFB4[this->unkF4_8 -1].unk4);
+        timed_setStaticCameraToNode(0.0f, smMoleTable[this->unkF4_8 -1].camera_node);
     }
 }
 
@@ -139,7 +152,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             animctrl_setSmoothTransition(this->animctrl, 0);
             break;
         case 5:
-            func_80388F24(this);
+            code_2990_setSpiralMountainStaticCamera(this);
             func_8028F94C(2,this->position);
             SM_func_80389610(this);
             break;
@@ -158,14 +171,16 @@ void func_80388FA0(Actor *this, s32 arg1){
             func_8030DD14(this->unk44_31, 2);
             func_8030DBB4(this->unk44_31, 1.4f);
             sfxsource_setSampleRate(this->unk44_31, 0x6590);
-            func_80388F24(this);
+            code_2990_setSpiralMountainStaticCamera(this);
             func_8028F94C(2, this->position);
             break;
     }
     subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
 }
 
-void func_80389214(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+// func_80389214
+void smMole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+    // Performs actions depending on what move is being learned
     Actor *actor = marker_getActor(marker);
     switch(arg2){
         case 3:
@@ -181,7 +196,7 @@ void func_80389214(ActorMarker *marker, enum asset_e text_id, s32 arg2){
             func_8025A70C(COMUSIC_2B_DING_B);
             break;
         case 0xff:
-            func_80388F24(actor);
+            code_2990_setSpiralMountainStaticCamera(actor);
             break;
     }
 }
@@ -190,43 +205,45 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor;
 
     actor = marker_getActor(marker);
-    if(!mapSpecificFlags_get(3) && func_802DA498()){
+    if(!mapSpecificFlags_get(3) && mole_learnedAllSpiralMountainAbilities()){
         mapSpecificFlags_set(3, 1);
-        func_80311480(0xe12, 0xe, actor->position, actor->marker, func_803892C8, NULL);
+        func_80311480(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, func_803892C8, NULL);
     }//L8038933C
     else{ 
-        if( !(text_id == 0xdf3 || text_id == 0xe1f || text_id == 0xe1d) ){
+        if(!(text_id == ASSET_DF3_TEXT_BOTTLES_INTRODUCTION
+             || text_id == ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER
+             || text_id == ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT)){
             timed_exitStaticCamera(0.0f);
         }
         switch(text_id){
-            case 0xd38:
+            case ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED:
                 break;
-            case 0xdf3:/* 2FB8 803893A8 3C188039 */
-                func_80311480(0xe1f, 0x8e, actor->position, actor->marker, func_803892C8, func_80389214);
+            case ASSET_DF3_TEXT_BOTTLES_INTRODUCTION: /* 2FB8 803893A8 3C188039 */
+                func_80311480(ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER, 0x8e, actor->position, actor->marker, func_803892C8, smMole_additionalAbilityLearnActions);
                 break;
 
-            case 0xe1f:/* 2FEC 803893DC 9209003B */
+            case ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER: /* 2FEC 803893DC 9209003B */
                 actor->unk38_0 = 1;
                 break;
 
-            case 0xe1d:/* 2FFC 803893EC 920B0138 */
+            case ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT: /* 2FFC 803893EC 920B0138 */
                 actor->unk138_24 = 0;
                 actor->unk60 = 0.0f;
                 break;
 
-            case 0xdf6: /* 3014 80389404 0C0A3E46 */
-            case 0xdff: /* 3014 80389404 0C0A3E46 */
+            case ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN: /* 3014 80389404 0C0A3E46 */
+            case ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN: /* 3014 80389404 0C0A3E46 */
                 func_8028F918(0);
                 break;
 
-            case 0xe09:
-            case 0xe12:
+            case ASSET_E09_TEXT_BOTTLES_SKIPPED_TUTORIAL:
+            case ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES:
                 func_80388FA0(actor,4);
                 break;
 
             default:
-                if(actor->state !=5 )
-                    func_80311480(0xd38, 4, NULL, NULL, NULL, NULL);
+                if(actor->state != 5)
+                    func_80311480(ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED, 4, NULL, NULL, NULL, NULL);
                 
                 func_80388FA0(actor, actor->state == 5 ? 1:4);
                 break;
@@ -234,25 +251,28 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     }
 }
 
-void func_80389494(Actor * this, s32* arg1, s32 *arg2){
-    if(ability_isUnlocked(D_8038AFB4[this->unkF4_8 -1].unk5)){
+// func_80389494
+void smMole_learnAbility(Actor * this, s32* arg1, s32 *arg2){
+    // Selects the learn and refresh dialogs.
+    // Gives the player the ability if not learned.
+    if(ability_isUnlocked(smMoleTable[this->unkF4_8 -1].ability)){
         if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
-            *arg1 = D_8038AFE4 + 0xE0A; //dialog index
+            *arg1 = D_8038AFE4 + ASSET_E0A_TEXT_BOTTLES_REFUSE_HELP_1;
             D_8038AFE4++;
             D_8038AFE4 = MIN(D_8038AFE4, 5);
-            if(*arg1 != 0xE0E){
+            if(*arg1 != ASSET_E0E_TEXT_BOTTLES_REFUSE_HELP_5){
                 *arg2 |= 1;
             }
         }else{//L8038956C
             *arg2 |= 1;
-            *arg1 = D_8038AFB4[this->unkF4_8 -1].unk2;
-            if(*arg1 == 0xdfe && !ability_hasUsed(ABILITY_3_CAMERA_CONTROL)){
-                *arg1 = 0xdfd;
+            *arg1 = smMoleTable[this->unkF4_8 -1].refresher_text;
+            if(*arg1 == ASSET_DFE_TEXT_BOTTLES_DIVE_REFRESHER && !ability_hasUsed(ABILITY_3_CAMERA_CONTROL)){
+                *arg1 = ASSET_DFD_TEXT_BOTTLES_SWIM_LEARN;
             }
         }
     }else{//L803895C0
-        *arg1 = D_8038AFB4[this->unkF4_8 -1].unk0;
-        ability_unlock(D_8038AFB4[this->unkF4_8 -1].unk5);
+        *arg1 = smMoleTable[this->unkF4_8 -1].learn_text;
+        ability_unlock(smMoleTable[this->unkF4_8 -1].ability);
     }
 }
 
@@ -272,25 +292,25 @@ void SM_func_80389610(Actor * this){
                     D_8038AFE4++;
                     D_8038AFE4 = MIN(D_8038AFE4, 5);
                 }else{//L803896C0
-                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk2;
+                    sp2C = smMoleTable[this->unkF4_8 -1].refresher_text;
                 }
             }
             else{//L803896E8
-                sp2C = D_8038AFB4[this->unkF4_8 -1].unk0;
+                sp2C = smMoleTable[this->unkF4_8 -1].learn_text;
                 mapSpecificFlags_set(1,1);
             }
             break;
         case 8://L80389720
             if(mapSpecificFlags_get(3)){
                 if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
-                    sp2C = 0xe37;
+                    sp2C = ASSET_E37_TEXT_BOTTLES_STOP_WASTING_TIME_AFTER_FURNACE_FUN;
                     sp28 |= 1;
                 }else{//L80389758
                     if(mapSpecificFlags_get(0xf)){
-                        sp2C = 0xe0f;
+                        sp2C = ASSET_E0F_TEXT_BOTTLES_STOP_WASTING_TIME_BEFORE_FURNACE_FUN;
                         sp28 |= 1;
                     }else{//L80389780
-                        func_80388E48();
+                        code_2990_setSpiralMountainAbilitiesAsUsed();
                         sp2C = fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL) ? 0xe1e : 0xe13;
                         mapSpecificFlags_set(0xf, 1);
                     }
@@ -299,11 +319,11 @@ void SM_func_80389610(Actor * this){
             }
             else{//L803897C8
                 if(mapSpecificFlags_get(2)){
-                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk2;
+                    sp2C = smMoleTable[this->unkF4_8 -1].refresher_text;
                     sp28 |= 1;
                 }
                 else{
-                    sp2C = D_8038AFB4[this->unkF4_8 -1].unk0;
+                    sp2C = smMoleTable[this->unkF4_8 -1].learn_text;
                     mapSpecificFlags_set(2, 1);
                 }
 
@@ -318,7 +338,7 @@ void SM_func_80389610(Actor * this){
                 mapSpecificFlags_set(4, 1);
             }
             else{//L803898E4
-                func_80389494(this, &sp2C, &sp28);
+                smMole_learnAbility(this, &sp2C, &sp28);
             }
             break;
         
@@ -330,25 +350,27 @@ void SM_func_80389610(Actor * this){
                 mapSpecificFlags_set(0xE, 1);
             }
             else{//L803898E4
-                func_80389494(this, &sp2C, &sp28);
+                smMole_learnAbility(this, &sp2C, &sp28);
             }
             break;
         default://L803898F8
-            func_80389494(this, &sp2C, &sp28);
+            smMole_learnAbility(this, &sp2C, &sp28);
             break;
     }//L80389904
     if(sp2C){
-        func_80311480(sp2C, sp28, this->position, this->marker, func_803892C8, func_80389214);
+        func_80311480(sp2C, sp28, this->position, this->marker, func_803892C8, smMole_additionalAbilityLearnActions);
     }
 }
 
-void func_80389948(ActorMarker * marker){
+// func_80389948
+void smMole_spawnMolehill(ActorMarker * marker){
+    // Spawns a molehill for the actor
     Actor *actor;
     Actor *other;
     s32      pad;
 
     actor = marker_getActor(marker);
-    other = spawn_child_actor(0x12c, &actor);
+    other = spawn_child_actor(ACTOR_12C_MOLEHILL, &actor);
     actor->unk100 = other->marker;
     
     if(marker);
@@ -362,13 +384,17 @@ void func_80389984(Actor * this){
         func_8030DA44(tmp);
 }
 
-void func_803899B0(Actor * this){
-    s32 sp50[6]; //face buttons
-    f32 sp44[3]; //player position
+// func_803899B0
+void smMole_Update(Actor * this){
+    // Sets up the initial functions and state for the actor
+    s32 sp50[6]; // face buttons
+    f32 sp44[3]; // player position
     void *sp40;
     int sp34;
     int sp38;
     
+    // Checks the actor's selector value is lower than 0x9
+    // Anything higher is a non-Spiral Mountain ability, and should use a different actor id
     if(this->unkF4_8 >= 9)
         return;
 
@@ -394,10 +420,10 @@ void func_803899B0(Actor * this){
                 }
             }
         }//L80389AC8
-        if(func_80388D80()){
+        if(code_2990_learnedAnySpiralMountainAbilities()){
             mapSpecificFlags_set(1,1);
 
-            if(func_802DA498()){
+            if(mole_learnedAllSpiralMountainAbilities()){
                 mapSpecificFlags_set(3, 1);
                 mapSpecificFlags_set(2, 1);
                 mapSpecificFlags_set(0xC, 1);
@@ -407,7 +433,7 @@ void func_803899B0(Actor * this){
     }//L80389B20
 
     if(!this->unk16C_4){
-        __spawnQueue_add_1((GenFunction_1)func_80389948, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)smMole_spawnMolehill, reinterpret_cast(s32, this->marker));
         this->unk16C_4 = 1;
     }//L80389B4C
 
@@ -443,7 +469,7 @@ void func_803899B0(Actor * this){
                 || func_8028EC04()
             ) break;
             
-            sp34 = !((!(D_8038AFB4[this->unkF4_8-1].unk5 + 1)) || (!ability_isUnlocked( D_8038AFB4[this->unkF4_8-1].unk5)));
+            sp34 = !((!(smMoleTable[this->unkF4_8-1].ability + 1)) || (!ability_isUnlocked( smMoleTable[this->unkF4_8-1].ability)));
             if( (!sp34 && this->unkF4_8 != 1)
                 || fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL) == 0
                 || D_8038AFE4 < 6
@@ -536,9 +562,9 @@ void func_803899B0(Actor * this){
 
             if( sp38 != -1){ //button was pressed
                 fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, (sp38)?0:1);
-                func_80311480((sp38)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, func_80389214);
+                func_80311480((sp38)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, smMole_additionalAbilityLearnActions);
                 if(!sp38){
-                    func_80388EB0(); //give all SM moves
+                    code_2990_skipIntroTutorial(); //give all SM moves
                 }
                 this->unk38_0 = 0;
             }else if(!this->unk138_24 && 5.0 < this->unk60){

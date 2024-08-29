@@ -19,5 +19,5 @@ lair_func_8038E0B0 = 0x8038E0B0;
 lair_func_8038E768 = 0x8038E768;
 fight_func_803863F0 = 0x803863F0;
 cutscene_func_8038C4E0 = 0x8038C4E0;
-func_802DA498 = 0x802DA498;
+mole_learnedAllSpiralMountainAbilities = 0x802DA498;
 
