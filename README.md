@@ -1,4 +1,4 @@
-# banjo (99.8594%)
+# banjo (100.0000%)
 
 <img src="./progress/progress_total.svg">
 
@@ -18,14 +18,6 @@
 - <img src="./progress/progress_lair.svg">
 - <img src="./progress/progress_fight.svg">
 - <img src="./progress/progress_cutscenes.svg">
-
-## Remaining Functions
-These all are the remaining NTSC-USA V1.0 function left to be matched.
-Be sure to check scratch "family" for any progress that may not be reflected here
-
-| File               | Function        | Scratch Link                             | %      | Notes |
-| ------------------ | --------------- | ---------------------------------------- | ------ | ----- |
-| core2/code_B9770.c | func_803411B0   | [rHkDu](https://decomp.me/scratch/rHkDu) | 87.70% | spline function
 
 ## Building
 
