@@ -34,7 +34,7 @@ CC      := ido/ido5.3_recomp/cc
 CPP     := cpp
 GCC     := $(CROSS)gcc
 AS      := $(CROSS)as
-LD      := $(CROSS)ld -b elf32-tradbigmips
+LD      := LD_LIBRARY_PATH=../../papermario ../../papermario/mips-linux-gnu-ld.bfd -b elf32-tradbigmips
 OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy
 PYTHON  := python3
@@ -316,7 +316,7 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 # .o -> .elf (dummy symbols)
 $(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
+	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.txt -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
@@ -330,7 +330,7 @@ $(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
 # .o -> .elf (game)
 $(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T $(COMPRESSED_SYMBOLS) -o $@
+	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) -o $@
 
 # .elf -> .z64 (uncompressed)
 $(UNCOMPRESSED_Z64) : $(ELF)
@@ -361,7 +361,6 @@ clean:
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
 	@$(RM) -rf $(ASM_ROOT)/core1/os
-	@$(RM) -f undefined_syms_auto* undefined_funcs_auto*
 	@$(RM) -f *.ld
 
 # Per-file flag definitions

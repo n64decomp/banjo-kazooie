@@ -42,8 +42,6 @@ struct FF_StorageStruct_48 {
     struct FF_StorageStruct_48_sub data[4];
 }; // 0x90
 
-
-
 // FF: generic storage struct
 struct FF_StorageStruct {
     /* 00 */ BKModel *unk0;

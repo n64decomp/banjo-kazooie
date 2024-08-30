@@ -9,7 +9,6 @@ typedef struct map_savestate_s{
 
 /* .bss */
 s32 D_8037E650[0x9A];
-u8 pad_8037E8A8[0x18];
 
 /* public functions */
 void func_802E3BD0(s32 frame_buffer_indx);

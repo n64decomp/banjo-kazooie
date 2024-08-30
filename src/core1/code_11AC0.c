@@ -9,8 +9,9 @@ extern void func_8025F570(ALCSPlayer *, u8);
 extern void func_8025F510(ALCSPlayer *, u8, u8);
 extern void func_8025F5C0(ALCSPlayer *, u8);
 
-extern ALBankFile D_EA3EB0;
-extern ALWaveTable D_EADE60;
+extern u8 soundfont2ctl_ROM_START[];
+extern u8 soundfont2ctl_ROM_END[];
+extern u8 soundfont2tbl_ROM_START[];
 
 /* dependent functions */
 void func_8024FA98(u8, enum comusic_e);
@@ -220,10 +221,10 @@ void musicInstruments_init(void){
     s32 i;
     f32 tmpf1;
     
-    size = (u8*)&D_EADE60 - (u8*)&D_EA3EB0;
+    size = soundfont2ctl_ROM_END - soundfont2ctl_ROM_START;
     bnk_f = malloc(size);
     osWriteBackDCacheAll();
-    osPiStartDma(func_802405D0(), 0, 0, &D_EA3EB0, bnk_f, size, func_802405C4());
+    osPiStartDma(func_802405D0(), 0, 0, (u32)soundfont2ctl_ROM_START, bnk_f, size, func_802405C4());
     osRecvMesg(func_802405C4(), 0, 1); //osRecvMesg
     D_80282104 = 0xAD;
     D_802820E0 = (MusicTrack **) malloc(D_80282104 * sizeof(MusicTrack *));
@@ -242,7 +243,7 @@ void musicInstruments_init(void){
         n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8);
     }
 
-    alBnkfNew(bnk_f, (u8 *)&D_EADE60);
+    alBnkfNew(bnk_f, soundfont2tbl_ROM_START);
     D_80282108 = bnk_f->bankArray[0];
     for(i = 0; i < 6; i++){
         alCSPSetBank(&D_80281720[i].cseqp, D_80282108);

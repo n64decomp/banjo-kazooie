@@ -41,7 +41,6 @@ s32 D_8037D940;
 f32 D_8037D948[3];
 f32 cameraPosition[3];
 f32 cameraRotation[3];
-f32 D_8037D96C;
 f32 D_8037D974;
 f32 D_8037D978;
 f32 D_8037D97C;
@@ -188,7 +187,7 @@ void func_802BCA58(void) {
     player_getPosition(player_position);
     ml_vec3f_diff_copy(sp34, player_position, cameraPosition);
     sp4C = player_getYaw();
-    sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(D_8037D96C - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
+    sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(cameraRotation[1] - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
     func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
     ml_vec3f_diff_copy(sp34, D_8037D9A8, D_8037D9B8);
     if (func_802BC428()) {

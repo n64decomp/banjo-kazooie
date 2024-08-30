@@ -9,7 +9,7 @@ f32 func_80263FF0(f32);
 f32 cosf(f32);
 
 #ifndef CORE2_DATA_CRC2
-    #define CORE2_DATA_CRC2 0
+    #define CORE2_DATA_CRC2 0x84D7B4F8
 #endif
 
 s32 D_80276570 = 0xFF62C2B8; //WHAT IS THIS?

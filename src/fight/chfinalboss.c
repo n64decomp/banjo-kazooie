@@ -1466,7 +1466,7 @@ u8  D_8039286A;
 u8  D_8039286B;
 u8  D_8039286C[0x4C];
 
-f32 D_803928B8[2];
+f32 D_803928B8[3];
 
 void chfinalboss_phase3_update(ActorMarker *marker) {
     static f32 D_803917A4[4] = {500.0f, 650.0f, 800.0f, 950.0f};

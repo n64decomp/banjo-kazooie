@@ -3,7 +3,8 @@
 #include "variables.h"
 
 
-s32 pad_803912C0[2];
+s32 pad_803912C0[1];
+f32 __propellorTimer2; // TODO rematch __propellorCtrl_setState to merge this with __propellorTimer
 u8 __propellorCtrlState;
 
 void __propellorCtrl_setState(s32 arg0){  
@@ -49,14 +50,12 @@ void rbb_propellorCtrl_start(void){
 }
 
 void rbb_propellorCtrl_update(void){
-    extern f32 __propellorTimer;  
-
     if( __propellorCtrlState == 0)
         if(levelSpecificFlags_get(0x27) && levelSpecificFlags_get(0x28))
             __propellorCtrl_setState(1);
 
     if(__propellorCtrlState == 1)
-        if(ml_timer_update(&__propellorTimer,time_getDelta()))
+        if(ml_timer_update(&__propellorTimer2,time_getDelta()))
             __propellorCtrl_setState(2);
 
     if(__propellorCtrlState == 2)

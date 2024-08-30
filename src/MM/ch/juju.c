@@ -19,6 +19,7 @@ void    func_80389598(Actor *this);
 Actor*  func_80389014(ActorMarker *, Gfx **, Mtx**, Vtx** );
 
 /* .bss */
+u8 MM_pad_80389C80[0x10];
 s32 MM_D_80389C90;
 
 /* .data */

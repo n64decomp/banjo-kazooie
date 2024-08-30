@@ -5,8 +5,9 @@
 
 extern ALBank *music_get_sound_bank(void);
 
-extern u8 D_D846C0;
-extern u8 D_D954B0;
+extern u8 soundfont1ctl_ROM_START[];
+extern u8 soundfont1ctl_ROM_END[];
+extern u8 soundfont1tbl_ROM_START[];
 
 struct {
     s32 unk0; //sound state cnt
@@ -25,12 +26,12 @@ void sfxInstruments_init(void){
     ALBankFile * bnkf;
     
     
-    size = &D_D954B0 - &D_D846C0;
+    size = soundfont1ctl_ROM_END - soundfont1ctl_ROM_START;
     bnkf = (ALBankFile *)malloc(size);
     osWritebackDCache(bnkf, size);
-    osPiStartDma(func_802405D0(), 0, 0, &D_D846C0, bnkf, size, func_802405C4());
+    osPiStartDma(func_802405D0(), 0, 0, (u32)soundfont1ctl_ROM_START, bnkf, size, func_802405C4());
     osRecvMesg(func_802405C4(), NULL, 1);
-    alBnkfNew(bnkf, &D_D954B0);
+    alBnkfNew(bnkf, soundfont1tbl_ROM_START);
     bnk = bnkf->bankArray[0];
     inst = bnk->instArray[0];
     D_803835F0.unk0 = inst->soundCount;
