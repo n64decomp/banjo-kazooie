@@ -189,9 +189,18 @@ f32 D_80391774[3] = {-1290.0f, 0.0f, -1290.0f};
 f32 D_80391780[3] = {1290.0f, 0.0f, -1290.0f};
 f32 D_8039178C[3] = {1290.0f, 0.0f, 1290.0f};
 f32 D_80391798[3] = {0.0f, 0.0f, 0.0f};
+f32 D_803917A4[4] = {500.0f, 650.0f, 800.0f, 950.0f};
+f32 D_803917B4[4] = {3.75f, 3.0f, 2.25f, 1.5f}; 
+s32 D_803917C4[3] = {230, 230, 230};
+f32 D_803917D0[4] = {2.4f, 2.1f, 1.8f, 1.5f};
+f32 D_803917E0[3] = {0.0f, 186.0f, 0.0f};
+f32 D_803917EC[3] = {-827.0f, 793.0f, 1700.0f};
+f32 D_803917F8[3] = {827.0f, 793.0f, -1700.0f};
+f32 D_80391804[3] = {0.0f, 0.0f, 1350.0f};
 
 
 /* .bss */
+f32 D_80392750;
 f32 D_80392758[3];
 f32 D_80392768[3];
 f32 D_80392778[3];
@@ -207,70 +216,10 @@ u8 __chFinalBossJinjonatorHits;
 u8 D_803927C7;
 u8 D_803927C8;
 u8 D_803927C9;
-f32 D_803927D0[4][3]; //actually f32 [0x13][3], but exploded to match .bss wrapping
-//Exploded for .bss matching
-u8  D_80392800;
-u8  D_80392801;
-u8  D_80392802;
-u8  D_80392803;
-u8  D_80392804;
-u8  D_80392805;
-u8  D_80392806;
-u8  D_80392807;
-u8  D_80392808;
-u8  D_80392809;
-u8  D_8039280A;
-u8  D_8039280B;
-u8  D_8039280C;
-u8  D_8039280D;
-u8  D_8039280E;
-u8  D_8039280F;
-u8  D_80392810;
-u8  D_80392811;
-u8  D_80392812;
-u8  D_80392813;
-u8  D_80392814;
-u8  D_80392815;
-u8  D_80392816;
-u8  D_80392817;
-u8  D_80392818;
-u8  D_80392819;
-u8  D_8039281A;
-u8  D_8039281B;
-u8  D_8039281C;
-u8  D_8039281D;
-u8  D_8039281E;
-u8  D_8039281F;
-u8  D_80392820;
-u8  D_80392821;
-u8  D_80392822;
-u8  D_80392823;
-u8  D_80392824;
-u8  D_80392825;
-u8  D_80392826;
-u8  D_80392827;
-u8  D_80392828;
-u8  D_80392829;
-u8  D_8039282A;
-u8  D_8039282B;
-u8  D_8039282C;
-u8  D_8039282D;
-u8  D_8039282E;
-u8  D_8039282F;
-u8  D_80392830;
-u8  D_80392831;
-u8  D_80392832;
-u8  D_80392833;
-u8  D_80392834;
-u8  D_80392835;
-u8  D_80392836;
-u8  D_80392837;
-u8  D_80392838;
-u8  D_80392839;
-u8  D_8039283A;
-u8  D_8039283B;
-
-
+f32 D_803927D0[0x13][3];
+f32 D_803928B8[3];
+s32 D_803928C4;
+f32 D_803928C8[3];
 
 /* .code */
 Actor *chfinalboss_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
@@ -1312,10 +1261,8 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
 }
 
 void __chfinalboss_spawnStatue(enum bossjinjo_e statue_id) {
-    static f32 D_80392750;
-
     s32 pad24_A;
-    s32 pad20_A;
+    f32* D_80392750_ptr = &D_80392750;
     Actor *sp1C;
     ActorLocal_fight_180 *local;
 
@@ -1343,8 +1290,8 @@ void __chfinalboss_spawnStatue(enum bossjinjo_e statue_id) {
         break;
 
     case BOSSJINJO_JINJONATOR:
-        D_80392750 = ((local->mirror_phase5) ? 0.0f : 180.0f);
-        sp1C = func_8032813C(ACTOR_3A9_JINJONATOR_STATUE_BASE, D_80391798, (s32)D_80392750);
+        *D_80392750_ptr = ((local->mirror_phase5) ? 0.0f : 180.0f);
+        sp1C = func_8032813C(ACTOR_3A9_JINJONATOR_STATUE_BASE, D_80391798, (s32)*D_80392750_ptr);
         break;
     }
     sp1C->unk60 = (statue_id == BOSSJINJO_JINJONATOR) ? 5.25f : 1.54f;
@@ -1415,63 +1362,7 @@ void chfinalboss_dropHealth(ActorMarker *marker) {
     SPAWNQUEUE_ADD_1(__chfinalboss_dropHealth, marker);
 }
 
-//exploded for .bss matching
-u8  D_8039283C;
-u8  D_8039283D;
-u8  D_8039283E;
-u8  D_8039283F;
-u8  fight_D_80392840;
-u8  D_80392841;
-u8  D_80392842;
-u8  D_80392843;
-u8  D_80392844;
-u8  D_80392845;
-u8  D_80392846;
-u8  D_80392847;
-u8  D_80392848;
-u8  D_80392849;
-u8  D_8039284A;
-u8  D_8039284B;
-u8  D_8039284C;
-u8  D_8039284D;
-u8  D_8039284E;
-u8  D_8039284F;
-u8  D_80392850;
-u8  D_80392851;
-u8  D_80392852;
-u8  D_80392853;
-u8  D_80392854;
-u8  D_80392855;
-u8  D_80392856;
-u8  D_80392857;
-u8  D_80392858;
-u8  D_80392859;
-u8  D_8039285A;
-u8  D_8039285B;
-u8  D_8039285C;
-u8  D_8039285D;
-u8  D_8039285E;
-u8  D_8039285F;
-u8  D_80392860;
-u8  D_80392861;
-u8  D_80392862;
-u8  D_80392863;
-u8  fight_D_80392864;
-u8  D_80392865;
-u8  D_80392866;
-u8  D_80392867;
-u8  D_80392868;
-u8  D_80392869;
-u8  D_8039286A;
-u8  D_8039286B;
-u8  D_8039286C[0x4C];
-
-f32 D_803928B8[3];
-
 void chfinalboss_phase3_update(ActorMarker *marker) {
-    static f32 D_803917A4[4] = {500.0f, 650.0f, 800.0f, 950.0f};
-    static f32 D_803917B4[4] = {3.75f, 3.0f, 2.25f, 1.5f}; 
-    static s32 D_803917C4[3] = {230, 230, 230};
     Actor *this;
     ActorLocal_fight_180 *local;
     f32 sp3C;
@@ -1578,8 +1469,14 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
     ActorLocal_fight_180 *local;
     f32 sp48;
     f32 sp3C[3];
-    s32 i;
-    static s32 D_803928C4;
+    // TODO this union is only needed to avoid making D_803928C4 a function static.
+    // It uses a trick to generate the same codegen as if it were a function static by taking the address to it
+    // and using that pointer in its place. This avoids needing to deal with bss reordering issues in this file,
+    // but if bss can be solved without it then this union can be removed and just replaced with `i`.
+    union {
+        s32 i;
+        s32 *D_803928C4_ptr;
+    } iter;
     
     local = (ActorLocal_fight_180 *)&this->local;
     sp48 = animctrl_getAnimTimer(this->animctrl);
@@ -1595,6 +1492,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
 
     case 30:
         if ((local->unk3 == 2) && (local->unkA == 0)) {
+            iter.D_803928C4_ptr = &D_803928C4;
             D_803927C8 = 1;
             func_80311480(randi2(0, 5) + 0x1136, 4, NULL, NULL, NULL, NULL);
             if ( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) ) {
@@ -1617,8 +1515,9 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
                 func_80324E38(8.8f, 0);
                 break;
             }
-            for(D_803928C4 = 1; D_803928C4 < 5; D_803928C4++){
-                chfinalboss_spawnStatue(D_803928C4);
+            
+            for(*iter.D_803928C4_ptr = 1; *iter.D_803928C4_ptr < 5; (*iter.D_803928C4_ptr)++){
+                chfinalboss_spawnStatue(*iter.D_803928C4_ptr);
             }
         }
         break;
@@ -1666,17 +1565,16 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         func_8030DD14(this->unk44_31, 2);
         func_8030DBB4(this->unk44_31, D_803927C0);
         sfxsource_setSampleRate(this->unk44_31, 26000);
-        for(i = 0; i < 4; i++){
-            if(__chFinalBossJinjoStatueMarker[i] != NULL){
-                marker_despawn(__chFinalBossJinjoStatueMarker[i]);
-                __chFinalBossJinjoStatueMarker[i] = NULL;
+        for(iter.i = 0; iter.i < 4; iter.i+=1){
+            if(__chFinalBossJinjoStatueMarker[iter.i] != NULL){
+                marker_despawn(__chFinalBossJinjoStatueMarker[iter.i]);
+                __chFinalBossJinjoStatueMarker[iter.i] = NULL;
             }
         }
         break;
     }
 }
 
-f32 D_803928C8[3];
 
 ActorMarker *chfinalboss_findCollidingJinjo(Actor *this, f32 arg1) {
     Actor *jinjo;
@@ -1768,8 +1666,6 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             if (D_803927C4 == 0) {
                 fight_func_80387340(this, 1.0f);
                 if (actor_animationIsAt(this, 0.9999f)) {
-                    static f32 D_803917D0[4] = {2.4f, 2.1f, 1.8f, 1.5f};
-
                     local->unk3++;
                     chfinalboss_phase4_setState(this, 0x1F);
                     this->unk60 = D_803917D0[sp70];
@@ -1976,8 +1872,6 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                     timed_setStaticCameraToNode(4.4f, sp38 + 3 + __chFinalBossJinjonatorHits);
                 }
             } else {
-                static f32 D_803917E0[3] = {0.0f, 186.0f, 0.0f};
-
                 func_802BB3DC(0, 63.0f, 0.9f);
                 chjinjonator_finalAttack(jinjonator_marker);
                 func_8030E6D4(SFX_HEAVY_THUNDERSTORM_01);
@@ -2112,10 +2006,8 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             if (actor_animationIsAt(this, 0.9f)) {
                 ncStaticCamera_exit();
                 if (local->mirror_phase5 == 0) {
-                    static f32 D_803917EC[3] = {-827.0f, 793.0f, 1700.0f};
                     ncStaticCamera_setPositionAndTarget(D_803917EC, this->position);
                 } else {
-                    static f32 D_803917F8[3] = {827.0f, 793.0f, -1700.0f};
                     ncStaticCamera_setPositionAndTarget(D_803917F8, this->position);
                 }
                 func_8038FC2C(1);
@@ -2272,9 +2164,6 @@ void chfinalboss_spawnShadow(ActorMarker *marker) {
 }
 
 void chfinalboss_update(Actor *this){
-    static f32 D_80391804[3] = {0.0f, 0.0f, 1350.0f};
-
-
     ActorLocal_fight_180 *local = (ActorLocal_fight_180 *) &this->local;
     s32 i;
     s32 tmp_s0;
