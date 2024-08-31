@@ -48,7 +48,7 @@ extern void warp_fpExitMumbosHut(s32, s32);
 extern void warp_fpExitBoggyIgloo(s32, s32);
 extern void warp_fpExitXmasTree(s32, s32);
 extern void warp_lairEnterMMLobbyFromMMLevel(s32, s32);
-extern void warp_lairEnterMMLobbyFromSMLevel(s32, s32);
+extern void func_8031EF20(s32, s32);
 extern void warp_lairEnterPuzzlesRoomFromMMLobby(s32, s32);
 extern void warp_lairEnterPointingStatueRoomFromGVLobbyNoteDoor(s32, s32);
 extern void warp_lairEnterPuzzlesRoomFromCCWPuzzleRoom(s32, s32);
