@@ -369,7 +369,8 @@ void warp_ttcExitSandcastle(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x0703);
 }
 
-void warp_ttcEnterLevel(s32 arg0, s32 arg1) {
+// Unused
+void func_8031D550(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x0704);
 }
 
