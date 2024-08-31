@@ -34,7 +34,7 @@ CC      := ido/ido5.3_recomp/cc
 CPP     := cpp
 GCC     := $(CROSS)gcc
 AS      := $(CROSS)as
-LD      := LD_LIBRARY_PATH=../../papermario ../../papermario/mips-linux-gnu-ld.bfd -b elf32-tradbigmips
+LD      := $(CROSS)ld -b elf32-tradbigmips
 OBJDUMP := $(CROSS)objdump
 OBJCOPY := $(CROSS)objcopy
 PYTHON  := python3
@@ -166,7 +166,7 @@ OPT_FLAGS      := -O2
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 GCC_ASFLAGS    := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mtune=vr4300 -march=vr4300 -mfix4300 -G 0 -O -mno-shared -fno-PIC -mno-abicalls
-LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt
+LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T manual_syms.txt
 BINOFLAGS      := -I binary -O elf32-tradbigmips
 
 ### Rules ###

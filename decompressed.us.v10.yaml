@@ -65,7 +65,7 @@ segments:
   - [0x3870, hasm, maptlbrdb]
   - [0x38D0, c, done/pirawread]
   - [0x3930, c, done/ll]
-  - [0x3BF0, bin, padding3BF0] # Empty space
+  - [0x3BF0, hasm, ultra/parameters]
   - [0x3C50, c, done/virtualtophysical]
   - [0x3CD0, c, done/si]
   - [0x3D00, c, done/thread]
@@ -237,7 +237,7 @@ segments:
   - [0xF3F820, c, gu/sinf]                    #DONE
   - [0xF3F9E0, c, audio/cents2ratio]          #DONE
   - [0xF3FA30, c, audio/heapinit]             #DONE
-  - [0xF3FA70, asm, padding] # 0x60 bytes of zeroes?
+  - [0xF3FA70, hasm, ultra/parameters]        #DONE
   - [0xF3FAD0, c, os/createmesgqueue]         #DONE
   - [0xF3FB00, c, io/aisetfreq]               #DONE
   - [0xF3FC60, c, audio/sl]                   #DONE

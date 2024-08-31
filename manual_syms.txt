@@ -1,10 +1,3 @@
-/* Fixed-address libultra symbols */
-osTvType = 0x80000300; 
-osRomBase = 0x80000308; 
-osResetType = 0x8000030C; 
-osCicId     = 0x80000310;
-osAppNMIBuffer = 0x8000031C;
-
 /* Microcode renames to match ucode.h names */
 n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
 n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;
@@ -30,12 +23,6 @@ gOverlayTable = 0x803FFE10;
 D_803A5D00 = 0x803A5D00; /* framebuffers */
 
 /* Renames for the boot segment */
-boot_osTvType = osTvType; 
-boot_osRomBase = osRomBase; 
-boot_osResetType = osResetType; 
-boot_osCicId = osCicId;
-boot_osAppNMIBuffer = osAppNMIBuffer;
-
 boot_D_8002D500 = D_8002D500;
 boot_core1_VRAM = core1_VRAM;
 boot_D_803FBE00 = D_803FBE00;
