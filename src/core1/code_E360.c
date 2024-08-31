@@ -61,12 +61,16 @@ u32 D_80280724;
 u32 D_80280728;
 struct1 D_80280730[8];
 OSMesgQueue D_80280770;
+OSMesg D_80280788[10];
 OSMesgQueue D_802807B0;
+OSMesg D_802807C8[1];
 OSMesgQueue D_802807D0;
+OSMesg D_802807E8[60];
 volatile s32 D_802808D8;
 s32 D_802808DC;
 OSThread D_802808E0;
-u8 pad_80280970[0x520];
+#define THREAD0_STACK_SIZE 0x400
+u8 thread0_stack[THREAD0_STACK_SIZE];
 
 
 extern u8 D_803A5D00[2][0x1ECC0]; //framebuffer
@@ -100,7 +104,6 @@ void func_8024BDAC(OSMesgQueue *mq, OSMesg msg){
 }
 
 void func_8024BE30(void){
-    extern s32 D_80280E90;
     s32 i;
 
     func_8024C428();
@@ -113,9 +116,9 @@ void func_8024BE30(void){
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osViSwapBuffer(&D_803A5D00);
-    osCreateMesgQueue(&D_80280770, (&D_80280770 + 1), 10);
-    osCreateMesgQueue(&D_802807B0, (&D_802807B0 + 1), 1);
-    osCreateMesgQueue(&D_802807D0, (&D_802807D0 + 1), 0x3C);
+    osCreateMesgQueue(&D_80280770, D_80280788, 10);
+    osCreateMesgQueue(&D_802807B0, D_802807C8, 1);
+    osCreateMesgQueue(&D_802807D0, D_802807E8, 60);
     osViSetEvent(&D_80280770,NULL,1);
     D_80280720 = 0;
     D_80280724 = 1;
@@ -125,7 +128,7 @@ void func_8024BE30(void){
     }
     D_802808D8 = 0;
     func_8024BF94(2);
-    osCreateThread(&D_802808E0,0,func_8024C2F8,NULL,&D_80280E90,0x50);
+    osCreateThread(&D_802808E0,0,func_8024C2F8,NULL,&thread0_stack[THREAD0_STACK_SIZE],80);
     osStartThread(&D_802808E0);
 }
 

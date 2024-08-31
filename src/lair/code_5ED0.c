@@ -186,7 +186,7 @@ extern Struct_lair_5ED0_0 D_80393760[FF_QNF_CNT - 1] = {
 };
 
 
-extern struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
+struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
     {  0x0, 100},
     { 0x64, 118},
     { 0xDA,  51},
@@ -194,7 +194,7 @@ extern struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
     {0x12B,   6}
 };
 
-extern struct {
+struct {
     u8 unk0;
     s16 unk2;
     s16 unk4;

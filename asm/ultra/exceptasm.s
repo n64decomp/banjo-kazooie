@@ -1,4 +1,5 @@
 #include <sys/asm.h>
+#include <PR/rcp.h>
 .include "macro.inc"
 
 # assembler directives
@@ -146,8 +147,8 @@ glabel __osException
 /* 2F90 80002390 0369D825 */  or         $k1, $k1, $t1
 /* 2F94 80002394 AF5B0118 */  sw         $k1, 0x118($k0)
 .L80002398:
-/* 2F98 80002398 3C09A430 */  lui        $t1, %hi(D_A430000C)
-/* 2F9C 8000239C 8D29000C */  lw         $t1, %lo(D_A430000C)($t1)
+/* 2F98 80002398 3C09A430 */  lui        $t1, %hi(PHYS_TO_K1(MI_INTR_MASK_REG))
+/* 2F9C 8000239C 8D29000C */  lw         $t1, %lo(PHYS_TO_K1(MI_INTR_MASK_REG))($t1)
 /* 2FA0 800023A0 5120000C */  beql       $t1, $zero, .L800023D4
 /* 2FA4 800023A4 AF490128 */   sw        $t1, 0x128($k0)
 /* 2FA8 800023A8 3C088000 */  lui        $t0, %hi(__OSGlobalIntMask)
@@ -262,21 +263,21 @@ rcp:
 /* 3134 80002534 3C088000 */  lui        $t0, %hi(__OSGlobalIntMask)
 /* 3138 80002538 250850F0 */  addiu      $t0, $t0, %lo(__OSGlobalIntMask)
 /* 313C 8000253C 8D080000 */  lw         $t0, ($t0)
-/* 3140 80002540 3C11A430 */  lui        $s1, %hi(D_A4300008)
-/* 3144 80002544 8E310008 */  lw         $s1, %lo(D_A4300008)($s1)
+/* 3140 80002540 3C11A430 */  lui        $s1, %hi(PHYS_TO_K1(MI_INTR_REG))
+/* 3144 80002544 8E310008 */  lw         $s1, %lo(PHYS_TO_K1(MI_INTR_REG))($s1)
 /* 3148 80002548 00084402 */  srl        $t0, $t0, 0x10
 /* 314C 8000254C 02288824 */  and        $s1, $s1, $t0
 /* 3150 80002550 32290001 */  andi       $t1, $s1, 1
 /* 3154 80002554 51200014 */  beql       $t1, $zero, .L800025A8
 /* 3158 80002558 32290008 */   andi      $t1, $s1, 8
-/* 315C 8000255C 3C0CA404 */  lui        $t4, %hi(D_A4040010)
-/* 3160 80002560 8D8C0010 */  lw         $t4, %lo(D_A4040010)($t4)
+/* 315C 8000255C 3C0CA404 */  lui        $t4, %hi(PHYS_TO_K1(SP_STATUS_REG))
+/* 3160 80002560 8D8C0010 */  lw         $t4, %lo(PHYS_TO_K1(SP_STATUS_REG))($t4)
 /* 3164 80002564 24090008 */  addiu      $t1, $zero, 8
-/* 3168 80002568 3C01A404 */  lui        $at, %hi(D_A4040010)
+/* 3168 80002568 3C01A404 */  lui        $at, %hi(PHYS_TO_K1(SP_STATUS_REG))
 /* 316C 8000256C 318C0300 */  andi       $t4, $t4, 0x300
 /* 3170 80002570 3231003E */  andi       $s1, $s1, 0x3e
 /* 3174 80002574 11800007 */  beqz       $t4, .L80002594
-/* 3178 80002578 AC290010 */   sw        $t1, %lo(D_A4040010)($at)
+/* 3178 80002578 AC290010 */   sw        $t1, %lo(PHYS_TO_K1(SP_STATUS_REG))($at)
 /* 317C 8000257C 0C0009E9 */  jal        send_mesg
 /* 3180 80002580 24040020 */   addiu     $a0, $zero, 0x20
 /* 3184 80002584 52200039 */  beql       $s1, $zero, .L8000266C
@@ -291,9 +292,9 @@ rcp:
 /* 31A4 800025A4 32290008 */  andi       $t1, $s1, 8
 .L800025A8:
 /* 31A8 800025A8 11200007 */  beqz       $t1, .L800025C8
-/* 31AC 800025AC 3C01A440 */   lui       $at, %hi(D_A4400010)
+/* 31AC 800025AC 3C01A440 */   lui       $at, %hi(PHYS_TO_K1(VI_CURRENT_REG))
 /* 31B0 800025B0 32310037 */  andi       $s1, $s1, 0x37
-/* 31B4 800025B4 AC200010 */  sw         $zero, %lo(D_A4400010)($at)
+/* 31B4 800025B4 AC200010 */  sw         $zero, %lo(PHYS_TO_K1(VI_CURRENT_REG))($at)
 /* 31B8 800025B8 0C0009E9 */  jal        send_mesg
 /* 31BC 800025BC 24040038 */   addiu     $a0, $zero, 0x38
 /* 31C0 800025C0 5220002A */  beql       $s1, $zero, .L8000266C
@@ -303,9 +304,9 @@ rcp:
 /* 31CC 800025CC 5120000A */  beql       $t1, $zero, .L800025F8
 /* 31D0 800025D0 32290002 */   andi      $t1, $s1, 2
 /* 31D4 800025D4 24090001 */  addiu      $t1, $zero, 1
-/* 31D8 800025D8 3C01A450 */  lui        $at, %hi(D_A450000C)
+/* 31D8 800025D8 3C01A450 */  lui        $at, %hi(PHYS_TO_K1(AI_STATUS_REG))
 /* 31DC 800025DC 3231003B */  andi       $s1, $s1, 0x3b
-/* 31E0 800025E0 AC29000C */  sw         $t1, %lo(D_A450000C)($at)
+/* 31E0 800025E0 AC29000C */  sw         $t1, %lo(PHYS_TO_K1(AI_STATUS_REG))($at)
 /* 31E4 800025E4 0C0009E9 */  jal        send_mesg
 /* 31E8 800025E8 24040030 */   addiu     $a0, $zero, 0x30
 /* 31EC 800025EC 5220001F */  beql       $s1, $zero, .L8000266C
@@ -313,9 +314,9 @@ rcp:
 /* 31F4 800025F4 32290002 */  andi       $t1, $s1, 2
 .L800025F8:
 /* 31F8 800025F8 11200007 */  beqz       $t1, .L80002618
-/* 31FC 800025FC 3C01A480 */   lui       $at, %hi(D_A4800018)
+/* 31FC 800025FC 3C01A480 */   lui       $at, %hi(PHYS_TO_K1(SI_STATUS_REG))
 /* 3200 80002600 3231003D */  andi       $s1, $s1, 0x3d
-/* 3204 80002604 AC200018 */  sw         $zero, %lo(D_A4800018)($at)
+/* 3204 80002604 AC200018 */  sw         $zero, %lo(PHYS_TO_K1(SI_STATUS_REG))($at)
 /* 3208 80002608 0C0009E9 */  jal        send_mesg
 /* 320C 8000260C 24040028 */   addiu     $a0, $zero, 0x28
 /* 3210 80002610 52200016 */  beql       $s1, $zero, .L8000266C
@@ -325,9 +326,9 @@ rcp:
 /* 321C 8000261C 5120000A */  beql       $t1, $zero, .L80002648
 /* 3220 80002620 32290020 */   andi      $t1, $s1, 0x20
 /* 3224 80002624 24090002 */  addiu      $t1, $zero, 2
-/* 3228 80002628 3C01A460 */  lui        $at, %hi(D_A4600010)
+/* 3228 80002628 3C01A460 */  lui        $at, %hi(PHYS_TO_K1(PI_STATUS_REG))
 /* 322C 8000262C 3231002F */  andi       $s1, $s1, 0x2f
-/* 3230 80002630 AC290010 */  sw         $t1, %lo(D_A4600010)($at)
+/* 3230 80002630 AC290010 */  sw         $t1, %lo(PHYS_TO_K1(PI_STATUS_REG))($at)
 /* 3234 80002634 0C0009E9 */  jal        send_mesg
 /* 3238 80002638 24040040 */   addiu     $a0, $zero, 0x40
 /* 323C 8000263C 5220000B */  beql       $s1, $zero, .L8000266C
@@ -545,9 +546,9 @@ glabel __osEnqueueAndYield
 /* 3530 80002930 0361D824 */  and        $k1, $k1, $at
 /* 3534 80002934 0369D825 */  or         $k1, $k1, $t1
 /* 3538 80002938 ACBB0118 */  sw         $k1, 0x118($a1)
-/* 353C 8000293C 3C1BA430 */  lui        $k1, %hi(D_A430000C)
+/* 353C 8000293C 3C1BA430 */  lui        $k1, %hi(PHYS_TO_K1(MI_INTR_MASK_REG))
 .L80002940:
-/* 3540 80002940 8F7B000C */  lw         $k1, %lo(D_A430000C)($k1)
+/* 3540 80002940 8F7B000C */  lw         $k1, %lo(PHYS_TO_K1(MI_INTR_MASK_REG))($k1)
 /* 3544 80002944 1360000B */  beqz       $k1, .L80002974
 /* 3548 80002948 00000000 */   nop
 /* 354C 8000294C 3C1A8000 */  lui        $k0, %hi(__OSGlobalIntMask)
@@ -689,8 +690,8 @@ glabel __osDispatchThread
 /* 3734 80002B34 275A51D0 */  addiu      $k0, $k0, %lo(__osRcpImTable)
 /* 3738 80002B38 037AD821 */  addu       $k1, $k1, $k0
 /* 373C 80002B3C 977B0000 */  lhu        $k1, ($k1)
-/* 3740 80002B40 3C1AA430 */  lui        $k0, %hi(D_A430000C)
-/* 3744 80002B44 275A000C */  addiu      $k0, $k0, %lo(D_A430000C)
+/* 3740 80002B40 3C1AA430 */  lui        $k0, %hi(PHYS_TO_K1(MI_INTR_MASK_REG))
+/* 3744 80002B44 275A000C */  addiu      $k0, $k0, %lo(PHYS_TO_K1(MI_INTR_MASK_REG))
 /* 3748 80002B48 AF5B0000 */  sw         $k1, ($k0)
 /* 374C 80002B4C 00000000 */  nop
 /* 3750 80002B50 00000000 */  nop

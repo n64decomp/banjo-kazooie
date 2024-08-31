@@ -12,7 +12,6 @@ extern f32 func_8031C5D4(struct0*);
 extern void func_8031C5AC(struct0 *, f32 *);
 
 /* .bss */
-u8 pad_D_8027EF20[0x10];
 f32 D_8027EF30;
 
 /* .code */

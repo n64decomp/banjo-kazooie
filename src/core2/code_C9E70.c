@@ -4,7 +4,7 @@
 
 #include "core2/code_C9E70.h"
 
-struct FF_StorageStruct *D_8037DCB8;
+extern struct FF_StorageStruct *D_8037DCB8;
 
 void func_80350E00(void){
     quizQuestionAskedBitfield_defrag();

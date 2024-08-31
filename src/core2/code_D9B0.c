@@ -14,8 +14,8 @@ enum transformation_e D_8037C2D0;
 f32 D_8037C2D8[3];
 f32 D_8037C2E4;
 enum asset_e D_8037C2E8;
-u8 D_8037C2ED;
 u8 D_8037C2EC;
+u8 D_8037C2ED;
 
 struct{
     f32 unk0;

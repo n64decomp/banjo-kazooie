@@ -21,7 +21,7 @@ void  func_80244978(s32 arg0, s16 type, s32 arg2);
 
 N_ALSndPlayer D_8027EEC0;
 s16 *D_8027EF14;
-extern struct {
+struct {
     s32 volume[4];
 }D_8027EF18;
 

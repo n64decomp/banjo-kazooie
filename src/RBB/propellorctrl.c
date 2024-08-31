@@ -2,16 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
-
 s32 pad_803912C0[2];
 u8 __propellorCtrlState;
+f32 __propellorTimer;
 
-void __propellorCtrl_setState(s32 arg0){  
-    static f32 __propellorTimer;  
+void __propellorCtrl_setState(s32 arg0){
+    f32* timerPtr = &__propellorTimer;
+    
+    *timerPtr = 0.0f;
 
-    __propellorTimer = 0.0f;
-    if(arg0 == 1)
-        __propellorTimer = 6.5f;
+    if(arg0 == 1) {
+        *timerPtr = 6.5f;
+    }
 
     if(arg0 == 2){
         item_set(ITEM_3_PROPELLOR_TIMER, 3900 - 1);
@@ -49,8 +51,6 @@ void rbb_propellorCtrl_start(void){
 }
 
 void rbb_propellorCtrl_update(void){
-    extern f32 __propellorTimer;  
-
     if( __propellorCtrlState == 0)
         if(levelSpecificFlags_get(0x27) && levelSpecificFlags_get(0x28))
             __propellorCtrl_setState(1);
