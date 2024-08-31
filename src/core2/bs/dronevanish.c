@@ -12,6 +12,7 @@ struct {
     f32 unkC;
     f32 unk10;
 }D_8037D450;
+u32 pad_8037D464;
 u8 D_8037D468;
 
 /* .code */

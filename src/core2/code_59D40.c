@@ -39,6 +39,7 @@ ActorInfo D_80368620 = {
 
 /* .bss */
 ActorMarker *D_8037E620;
+f32 D_8037E624;
 f32 D_8037E628;
 s32 D_8037E62C;
 s32 D_8037E630;
@@ -292,7 +293,6 @@ void chsnacker_update(Actor *this) {
     this->depth_mode = (255.0 == local->unk4) ? MODEL_RENDER_DEPTH_FULL : MODEL_RENDER_DEPTH_COMPARE;
 }
 
-extern f32 D_8037E624;
 void func_802E1790(void){
     D_8037E624 = 0.0f;
     D_8037E628 = 1.0f;

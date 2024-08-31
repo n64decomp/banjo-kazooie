@@ -29,8 +29,8 @@ ActorInfo D_80391318 = { MARKER_AA_HISTUP, ACTOR_11C_HISTUP, ASSET_3DE_MODEL_HIS
 extern struct {
     s32 unk0;
     s32 unk4;
+    s32 unk8;
 }GV_D_80391AB0;
-extern s32 D_80391AB8;
 
 /* .code */
 int func_8038D920(Actor *this, f32 arg1){
@@ -114,7 +114,7 @@ void func_8038DBDC(Actor *this){
                 actor_collisionOff(this);
                 subaddie_set_state_with_direction(this, 1, 0.99f, 0);
                 animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
-                D_80391AB8 = 0;
+                GV_D_80391AB0.unk8 = 0;
                 func_8038DB4C(0);
                 this->unk1C[0] = 0.0f;
             }//L8038DC90
@@ -134,7 +134,7 @@ void func_8038DBDC(Actor *this){
         case 2: //8038DD3C
             if(!(func_8038E178() < 5)){
                 func_8038DB88(this);
-                if(D_80391AB8){
+                if(GV_D_80391AB0.unk8){
                     subaddie_set_state_with_direction(this, 3, 0.99f, 0);
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
                     this->unk1C[0] = 0.0f;
@@ -196,7 +196,7 @@ void func_8038DBDC(Actor *this){
                 animctrl_setDuration(this->animctrl, 1.6f);
                 func_80386608();
                 func_8038DB4C(0);
-                D_80391AB8 = FALSE;
+                GV_D_80391AB0.unk8 = FALSE;
                 func_8025A58C(-1, 0x190);
                 func_8025A7DC(COMUSIC_27_GV_RUBEES_SONG);
                 if(!this->unk44_31){

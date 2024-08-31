@@ -2,12 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
-#ifndef CORE2_DATA_CRC2
-    #define CORE2_DATA_CRC2 0
-#endif
-
-extern s32 core2_D_803727F4;
+extern s32 D_803727F4;
 
 extern struct {
     u8 pad0[4];
@@ -32,7 +27,7 @@ typedef struct {
     f32 joystick[2];
 }Struct_core1_10A00_1;
 
-extern s32 D_80276574; // = CORE2_DATA_CRC2
+extern s32 D_80276574;
 
 /* .data */
 s32 D_80275D30 = 0xC3A68832; //WHAT IS THIS?
@@ -73,7 +68,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     f32 phi_f2;
 
     phi_f2 = 0.0125f;
-    if ((D_80379B90.unk4 != core2_D_803727F4) || (D_80379B90.unkC != D_80276574)) {
+    if ((D_80379B90.unk4 != D_803727F4) || (D_80379B90.unkC != D_80276574)) {
         phi_f2 = 0.00625f;
     }
     if (arg0 > 0) {
@@ -340,6 +335,10 @@ void func_8024F1F0(void){
 
 void func_8024F224(void){
     s32 iCont, j;
+
+    // for(iCont = 0; iCont < 4; iCont++){
+    //     D_80281250[iCont].unk0 = 0;
+    // }
 
     for(iCont = 0; iCont < 4; iCont++){
         D_80281250[iCont].unk0 = 0;

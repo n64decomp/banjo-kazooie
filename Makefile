@@ -166,7 +166,7 @@ OPT_FLAGS      := -O2
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 GCC_ASFLAGS    := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mtune=vr4300 -march=vr4300 -mfix4300 -G 0 -O -mno-shared -fno-PIC -mno-abicalls
-LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T undefined_syms.libultra.txt
+LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T manual_syms.txt
 BINOFLAGS      := -I binary -O elf32-tradbigmips
 
 ### Rules ###
@@ -316,7 +316,7 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 # .o -> .elf (dummy symbols)
 $(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T rzip_dummy_addrs.txt -o $@
+	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.txt -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
@@ -330,7 +330,7 @@ $(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
 # .o -> .elf (game)
 $(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T undefined_syms_auto.$(VERSION).txt -T undefined_syms.$(VERSION).txt -T $(COMPRESSED_SYMBOLS) -o $@
+	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) -o $@
 
 # .elf -> .z64 (uncompressed)
 $(UNCOMPRESSED_Z64) : $(ELF)
@@ -361,7 +361,6 @@ clean:
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
 	@$(RM) -rf $(ASM_ROOT)/core1/os
-	@$(RM) -f undefined_syms_auto* undefined_funcs_auto*
 	@$(RM) -f *.ld
 
 # Per-file flag definitions

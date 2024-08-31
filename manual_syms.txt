@@ -1,25 +1,4 @@
-/* lair */
-FF_QuestionTypeInfoArr = 0x80394340;
-D_80392EB0 = 0x80392EB0;
-D_80392E20 = 0x80392E20;
-lair_D_80392D90 = 0x80392D90;
-MMM_D_8038C510 = 0x8038C510;
-func_803863F0 = 0x803863F0;
-D_8038D6A0 = 0x8038D6A0;
-D_8038D378 = 0x8038D378;
-D_8038D4DC = 0x8038D4DC;
-D_8038D534 = 0x8038D534;
-D_8038D590 = 0x8038D590;
-D_8038D6DC = 0x8038D6DC;
-D_8038D844 = 0x8038D844;
-fight_D_80391A10 = 0x80391A10;
-FP_D_80392840 = 0x80392840;
-core1_D_803727F4 = 0x803727F4;
-__osBaseTimer = 0x80285D00;
-FP_D_80392864 = 0x80392864;
-D_803687F0 = 0x803687F0;
-D_80276E70 = 0x80276E70;
-
+/* Microcode renames to match ucode.h names */
 n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
 n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;
 gSPF3DEX_fifoTextStart = _binary_bin_core1_gSPF3DEX_fifo_text_bin_start;
@@ -32,3 +11,21 @@ gSPF3DEX_fifoDataStart = _binary_bin_core1_gSPF3DEX_fifo_data_bin_start;
 gSPF3DEX_fifoDataEnd = _binary_bin_core1_gSPF3DEX_fifo_data_bin_end;
 gSPL3DEX_fifoDataStart = _binary_bin_core1_gSPL3DEX_fifo_data_bin_start;
 gSPL3DEX_fifoDataEnd = _binary_bin_core1_gSPL3DEX_fifo_data_bin_end;
+
+/* Fixed-address buffers */
+D_8000E800 = 0x8000E800;
+D_8002D500 = 0x8002D500;
+D_8023DA00 = 0x8023DA00; /* confirm */
+D_803FBE00 = 0x803FBE00;
+D_803FFE00 = 0x803FFE00;
+D_803FFE10 = 0x803FFE10;
+gOverlayTable = 0x803FFE10;
+D_803A5D00 = 0x803A5D00; /* framebuffers */
+
+/* Renames for the boot segment */
+boot_D_8002D500 = D_8002D500;
+boot_core1_VRAM = core1_VRAM;
+boot_D_803FBE00 = D_803FBE00;
+boot_D_803FFE00 = D_803FFE00;
+boot_gOverlayTable = gOverlayTable;
+boot_func_8023DA20 = func_8023DA20;

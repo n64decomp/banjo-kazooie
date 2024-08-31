@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/code_C9E70.h"
 
 extern void func_8030DBFC(u32, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
@@ -45,8 +46,6 @@ ActorInfo D_80367310 = {MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPR
     0, 0, 1.0f, 0
 }; 
 
-
-/* .bss */
 extern s32 D_8037DCBC;
 
 /* .code */
