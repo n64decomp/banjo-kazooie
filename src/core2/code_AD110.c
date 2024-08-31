@@ -334,7 +334,7 @@ Method_core2_AD110 D_8036F980[] = {
     warp_fpExitBoggyIgloo, warp_fpExitXmasTree, warp_bgsEnterTanktupConditional, warp_ttcEnterNippersShell,
     func_80363388, func_8038A0E4, func_8038A150, func_80334430,
     chOverlayPressStart_spawn, chOverlayPressStart_func_802DCDC0, func_802DC528, func_802DC560,
-    warp_lairEnterMMLobbyFromSMLevel, warp_lairEnterMMLobbyFromMMLevel, func_80334430, warp_lairEnterGVLobbyFromGVLevel,
+    func_8031EF20, warp_lairEnterMMLobbyFromMMLevel, func_80334430, warp_lairEnterGVLobbyFromGVLevel,
     warp_lairEnterGVLobbyFromFPLobby, warp_lairEnterFPLobbyFromGVLobby, warp_lairEnterMMLobbyFromPuzzlesRoom, warp_lairEnterGVLobbyFromPointingStatueRoom,
     warp_ccwExitSpringWhipcrackRoom, warp_ccwExitSummerWhipcrackRoom, warp_ccwExitAutumnWhipcrackRoom, warp_ccwExitWinterWhipcrackRoom,
     warp_gvEnterMatchingPyramid, warp_gvEnterMazePyramid, warp_gvEnterWaterPyramidUpper, warp_gvEnterWaterPyramidLower,
