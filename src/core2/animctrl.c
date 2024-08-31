@@ -5,8 +5,6 @@
 #include "core2/animctrl.h"
 #include "animation.h"
 
-extern u32 D_A0000238;
-
 /* .code */
 void animctrl_80286F90(AnimCtrl *this){
     Animation *anim;

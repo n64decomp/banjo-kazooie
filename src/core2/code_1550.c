@@ -1,3 +1,11 @@
+/**
+ * @file anim/commoncache.c
+ * @brief This file controls a cache of common animations consisting of 
+ *    player move animations. This main difference between this cache and 
+ *    the normal anim/cache.c is that these assets default to persist even
+ *    after they become stall, and are cleaned up much later in memory 
+ *    defragmentation.
+ */
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
