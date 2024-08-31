@@ -268,7 +268,7 @@ extern void warp_lairEnterCCWLobbyFromFurnaceFunPath(s32, s32);
 extern void warp_lairEnterFurnaceFunPathFromCCWLobby(s32, s32);
 extern void warp_smEnterBanjosHouse(s32, s32);
 extern void warp_smExitBanjosHouse(s32, s32);
-extern void warp_lairMMLobbyFromSMLevel(s32, s32);
+extern void warp_lairEnterMMLobbyFromSMLevel(s32, s32);
 extern void warp_smExitLair(s32, s32);
 extern void warp_rbbExitAnchorRoom(s32, s32);
 extern void warp_rbbEnterAnchorRoom(s32, s32);
@@ -384,7 +384,7 @@ Method_core2_AD110 D_8036F980[] = {
     warp_lairEnterFPLobbyFrom640NoteDoorRoom, warp_ccwEnterSpringZubbaHive, warp_ccwEnterSummerZubbaHive, warp_ccwEnterAutumnZubbaHive,
     warp_ccwExitSpringZubbaHive, warp_ccwExitSummerZubbaHive, warp_ccwExitAutumnZubbaHive, warp_lairEnterMMMPuzzleFromRBBLobby,
     warp_lairEnterRBBPuzzleFromRBBLobby, func_8031FB6C, warp_lairEnterCCWLobbyFromFurnaceFunPath, warp_lairEnterFurnaceFunPathFromCCWLobby,
-    warp_smEnterBanjosHouse, warp_smExitBanjosHouse, warp_lairMMLobbyFromSMLevel, warp_smExitLair,
+    warp_smEnterBanjosHouse, warp_smExitBanjosHouse, warp_lairEnterMMLobbyFromSMLevel, warp_smExitLair,
     warp_rbbExitAnchorRoom, warp_rbbEnterAnchorRoom, warp_mmmEnterWellBottom, warp_mmmExitWellBottom,
     warp_mmmEnterBathroomFromLoggo, warp_mmmEnterLoggo, warp_ccwEnterLevel, warp_ccwEnterSpringNabnutWindow,
     warp_ccwEnterSummerNabnutWindow, warp_ccwEnterAutumnNabnutWindow, warp_ccwEnterWinterNabnutWindow, warp_ccwExitSpringNabnutWindow,
