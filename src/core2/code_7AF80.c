@@ -117,9 +117,6 @@ struct {
     s32 unk44;
 } D_80381FA0;
 
-
-u8 D_80381FE8[0x50];
-
 /* .code */
 void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_80308F0C(cube);
@@ -252,6 +249,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         sp44 -= D_80381FA0.stride[0];
     }
 }
+u8 D_80381FE8[0x50];
 
 void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s32 arg5[3]) {
     s32 sp54;
@@ -541,6 +539,7 @@ Cube *func_8030364C(void){
     return D_80381FA0.unk40;
 }
 
+s32 D_803820A8[3];
 Cube *func_80303658(void){
     return D_80381FA0.unk3C;
 }
@@ -637,6 +636,11 @@ BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f
     return var_s5;
 }
 
+s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
+u8 pad_80382138[4];
+s32 D_8038213C;
+
+extern Cube *D_80382144;
 //BKCollisionTri *
 BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
@@ -664,7 +668,6 @@ BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg
     return var_s5;
 }
 
-s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg4, s32 *arg5) {
     ActorProp *phi_s0;
 
@@ -676,7 +679,7 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
         phi_s0 = func_803322F0(cube, marker, arg2, arg3, arg4);
         if (phi_s0 != NULL) {
             if (phi_s0->unk8_0 && phi_s0->marker->unk58 != NULL) {
-                if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
+            if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
                     phi_s0 = NULL;
                 }
             }
@@ -688,7 +691,10 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
     };
 }
 
-s32 D_8038213C;
+Cube *D_80382144;
+s32 D_80382148;
+s16 D_80382150[0x48];
+u32 D_803821E0[0x5B];
 void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
     s32 sp6C[3];
     s32 sp60[3];
@@ -727,17 +733,19 @@ void func_80303F6C(s32 indx, s32 arg1){
 ActorProp *func_80303F7C(ActorMarker *arg0, f32 arg1, s32 arg2, s32 arg3) {
     s32 temp_v1;
     s32 phi_a0;
-    static s32 D_80382148;
+    // This matches without a pointer by using a function static, but
+    // triggers tricky bss reordering.
+    s32* D_80382148_ptr = &D_80382148;
 
     if (arg3 == 0) {
         func_80303D78(arg0, arg1, arg2);
-        D_80382148 = 0;
+        *D_80382148_ptr = 0;
         return 0;
     }
     else{
-        temp_v1 = D_803820B8[D_80382148];
+        temp_v1 = D_803820B8[*D_80382148_ptr];
         if (temp_v1 != 0) {
-            D_80382148++;
+            (*D_80382148_ptr)++;
         }
         return temp_v1;
     }
@@ -2042,9 +2050,7 @@ u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
     u32 var_s4;
     NodeProp *temp_a0;
     Cube *temp_v0;
-    static s32 D_803820A8[3];
     static s32 D_803820B4;
-
 
     var_s4 = 0;
     if (arg0 == 0) {
@@ -2154,11 +2160,9 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
     return var_a0;
 }
 
-Cube *D_80382144;
 s32 func_803083B0(s32 arg0) {
     s32 var_v0;
     Cube *var_s0;
-    static u8 a; 
     static s32 D_80382140;
 
     if (arg0 == -1) {
@@ -2323,9 +2327,6 @@ bool func_803088C8(s32 arg0) {
     return (D_8036ABAC[i] == -1) ? FALSE : TRUE;
 }
 
-/* .bss */ //must be defined AFTER func_80303F7C for local static alignment
-s16 D_80382150[0x48];
-
 /* .code */
 void func_8030895C(s32 arg0){
     D_80382150[D_8036ABD4] = arg0;
@@ -2415,9 +2416,6 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
     func_8032F464(0);
 }
-
-/* .bss */
-u32 D_803821E0[0x5B];
 
 /* .code */
 void func_80308EC8(void){

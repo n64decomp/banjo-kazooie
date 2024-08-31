@@ -15,12 +15,14 @@ options:
     #include "variables.h"
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
-  undefined_funcs_auto_path: undefined_funcs_auto.us.v10.txt
-  undefined_syms_auto_path: undefined_syms_auto.us.v10.txt
+  create_undefined_funcs_auto: no
+  create_undefined_syms_auto: no
   base_path: .
   target_path: decompressed.us.v10.z64
   asset_path: bin
   build_path: build/us.v10
+  libultra_symbols: True
+  hardware_regs: True
 segments:
 - name:  header
   type:  header
@@ -63,7 +65,7 @@ segments:
   - [0x3870, hasm, maptlbrdb]
   - [0x38D0, c, done/pirawread]
   - [0x3930, c, done/ll]
-  - [0x3BF0, bin, padding3BF0] # Empty space
+  - [0x3BF0, hasm, ultra/parameters]
   - [0x3C50, c, done/virtualtophysical]
   - [0x3CD0, c, done/si]
   - [0x3D00, c, done/thread]
@@ -123,18 +125,20 @@ segments:
   start: 0x5E90
   subsegments:
   - [0x5E90, bin, assets]
-- name: soundfont1
+- name: soundfont1ctl
   type: bin
   start: 0xD846C0
-  subsegments:
-  - [0xD846C0, bin, soundfont1.ctl]
-  - [0xD954B0, bin, soundfont1.tbl]
-- name: soundfont2
+- name: soundfont1tbl
+  type: bin
+  start: 0xD954B0
+
+- name: soundfont2ctl
   type: bin
   start: 0xEA3EB0
-  subsegments:
-  - [0xEA3EB0, bin, soundfont2.ctl]
-  - [0xEADE60, bin, soundfont2.tbl]
+- name: soundfont2tbl
+  type: bin
+  start: 0xEADE60
+
 - name: core1
   dir: core1
   type: code
@@ -233,7 +237,7 @@ segments:
   - [0xF3F820, c, gu/sinf]                    #DONE
   - [0xF3F9E0, c, audio/cents2ratio]          #DONE
   - [0xF3FA30, c, audio/heapinit]             #DONE
-  - [0xF3FA70, asm, padding] # 0x60 bytes of zeroes?
+  - [0xF3FA70, hasm, ultra/parameters]        #DONE
   - [0xF3FAD0, c, os/createmesgqueue]         #DONE
   - [0xF3FB00, c, io/aisetfreq]               #DONE
   - [0xF3FC60, c, audio/sl]                   #DONE
@@ -1496,6 +1500,7 @@ segments:
   - [0x1048560, .bss, code_41FB0]
   - [0x1048560, .bss, code_42CB0]
   - [0x1048560, .bss, mapspecificflags]
+  - [0x1048560, .bss, code_47BD0]
   - [0x1048560, .bss, code_4A6F0]
   - [0x1048560, .bss, code_4C020]
   - [0x1048560, .bss, ch/badShad]
@@ -1614,6 +1619,7 @@ segments:
   - [0x1048560, .bss, code_C5440]
   - [0x1048560, .bss, code_C89C0]
   - [0x1048560, .bss, code_C97F0]
+  - [0x1048560, .bss, code_C9E70]
   - [0x1048560, .bss, code_C9F00]
   - [0x1048560, .bss, code_CB8A0]
   - [0x1048560, .bss, code_CBBF0]
@@ -1882,7 +1888,7 @@ segments:
   - [0x1068340, .rodata, ch/grublin]
   - [0x1068350, .rodata, ch/jujuhitbox]
   - [0x1068360, .rodata, ch/juju]
-  - [0x1068370, .bss, bss_pad]
+  - [0x1068370, .bss, ch/hut]
   - [0x1068370, .bss, ch/juju]
 - name: BGS
   dir: BGS
@@ -2112,7 +2118,8 @@ segments:
   - [0x108AB50, .bss, sirslushgame]
   - [0x108AB50, .bss, snowmanbuttongame]
   - [0x108AB50, .bss, racectrl]
-  - [0x108AB50, .bss, bss_end_pad]
+  - [0x108AB50, .bss, ch/xmastreestar]
+  - [0x108AB50, .bss, code_B4D0]
 - name: SM
   dir: SM
   type: code

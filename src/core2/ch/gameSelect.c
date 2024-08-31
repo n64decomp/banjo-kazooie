@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/code_C9E70.h"
 #include "core2/modelRender.h"
 
 #ifndef ABS
@@ -77,10 +78,21 @@ ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, fun
 
 
 /* .bss */
-// Remove this when this memory region is properly symbolized
-u8 unk_8037DCB0[0x8037DCE0 - 0x8037DCB0];
-
-extern u8 D_8037DCCE[0x12];
+s32 D_8037DCB0;
+u32 D_8037DCB4;
+struct FF_StorageStruct* D_8037DCB8;
+s32 D_8037DCBC;
+u8 D_8037DCC0[7];
+u8 D_8037DCC7;
+u8 D_8037DCC8;
+u8 D_8037DCC9;
+u8 D_8037DCCA;
+u8 D_8037DCCB;
+u8 D_8037DCCC;
+u8 D_8037DCCD;
+u8 D_8037DCCE[3];
+s32 pad_8037DCD4;
+s32 pad_8037DCD8;
 
 struct {
     u8 *unk0;

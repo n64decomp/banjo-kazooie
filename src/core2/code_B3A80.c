@@ -437,7 +437,7 @@ void assetCache_init(void){
     assetCacheAssetIdList = (s16 *)malloc(150*sizeof(s16));
     assetCacheLength = 0;
     assetSectionRomHeader = (AssetROMHead *)malloc(sizeof(AssetROMHead));
-    D_80383CC8 = (u32) &D_5E90;
+    D_80383CC8 = (u32)assets_ROM_START;
     func_802405F0(assetSectionRomHeader, D_80383CC8, sizeof(AssetROMHead));
     assetSectionRomMetaList = (AssetFileMeta *)malloc(assetSectionRomHeader->count*sizeof(AssetFileMeta));
     func_802405F0(assetSectionRomMetaList, D_80383CC8 + sizeof(AssetROMHead),assetSectionRomHeader->count*sizeof(AssetFileMeta));

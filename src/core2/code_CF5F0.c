@@ -15,7 +15,7 @@ extern u8 crc_ROM_START[];
 
 // bk_boot segment crc next word
 s32 D_803727F0 = 0;
-s32 core2_D_803727F4 = CORE2_CODE_CRC2;
+s32 D_803727F4 = CORE2_CODE_CRC2;
 s32 D_803727F8 = 0;
 s32 D_803727FC = 0;
 

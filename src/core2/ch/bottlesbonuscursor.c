@@ -7,7 +7,7 @@
 #endif
 
 extern s16 D_803A5D00[2][0xF660]; //framebuffer
-extern u8 D_8037DCC8[]; //bottels bonus flags???
+extern u8 D_8037DCC8; //bottles bonus flags???
 
 
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
@@ -61,9 +61,8 @@ ActorInfo D_80368418 = {
 
 /* .bss */
 ActorMarker *chBottlesBonusCursorMarker;
-f32 D_8037E068[20][2];
+f32 D_8037E068[60][2];
 Struct_core2_584D0_0 D_8037E248[20]; //puzzle pieces
-u8 pad_8037E478[0x140];
 s32 D_8037E5B8;
 struct {
     s32 unk0;
