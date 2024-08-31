@@ -1341,7 +1341,7 @@ void warp_smExitBanjosHouse(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x112);
 }
 
-void warp_lairMMLobbyFromSMLevel(s32 arg0, s32 arg1) {
+void warp_lairEnterMMLobbyFromSMLevel(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x6912);
 }
 
