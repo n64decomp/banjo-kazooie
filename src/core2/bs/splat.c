@@ -25,7 +25,7 @@ void bssplat_init(void){
     baanim_playForDuration_onceSmooth(ASSET_149_ANIM_BSSPLAT, 1.1f);
     func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
     bafalldamage_get_damage(&sp1C);
-    func_803463D4(ITEM_14_HEALTH, -sp1C);
+    item_adjustByDiffWithHud(ITEM_14_HEALTH, -sp1C);
     if(func_8029CEB0() == 4){
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.7f, 32000);
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.8f, 32000);

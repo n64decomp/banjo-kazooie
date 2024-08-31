@@ -20,8 +20,8 @@ void func_802C5740(Actor *this);
 
 extern void func_802C71F0(Actor *);
 extern void func_802C74F4(Actor *, s32, f32 );
-extern void func_8031FB14(s32, s32);
-extern void func_8031F678(s32, s32);
+extern void warp_lairEnterLairFromSMLevel(s32, s32);
+extern void warp_smExitBanjosHouse(s32, s32);
 extern void func_80335110(s32);
 
 extern void func_8024E60C(s32, s32[3]);
@@ -413,10 +413,10 @@ void func_802C4C14(Actor *this){
                             if(this->state == 4 &&  (sp84 == 0 || sp84 == 1))
                                 sp44 = 0.25f;
                             if(mole_learnedAllSpiralMountainAbilities() && fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE)){
-                                timedFunc_set_2(sp44, (GenFunction_2)func_8031FB14, 0, 0);
+                                timedFunc_set_2(sp44, (GenFunction_2)warp_lairEnterLairFromSMLevel, 0, 0);
                             }
                             else{//L802C5188
-                                timedFunc_set_2(sp44, (GenFunction_2)func_8031F678, 0, 0);
+                                timedFunc_set_2(sp44, (GenFunction_2)warp_smExitBanjosHouse, 0, 0);
                             }//L802C51A0
                             timedFunc_set_1(sp44, (GenFunction_1)func_80335110, 1);
                         }//L802C51B8

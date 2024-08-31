@@ -175,7 +175,7 @@ void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
     if (!func_802FADD4(ITEM_1B_VILE_VILE_SCORE)) {
         item_inc(ITEM_C_NOTE);
     } else {
-        func_803463F4(ITEM_C_NOTE, 1);
+        item_adjustByDiffWithoutHud(ITEM_C_NOTE, 1);
     }
     if (item_getCount(ITEM_C_NOTE) < 100) {
         func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 16000);
@@ -532,7 +532,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         || (func_8028B2E8() && !(3600.0f < ml_distanceSquared_vec3f(actor->position, spA0)))
                     ){
                         jiggyscore_setCollected(jiggy_id, TRUE);
-                        func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
+                        item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, 1);
                         if(jiggy_id == JIGGY_20_BGS_ELEVATED_WALKWAY || jiggy_id == JIGGY_25_BGS_MAZE){
                             func_802D6924();
                         }
@@ -687,7 +687,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case MARKER_6B_GLOOPBUBBLE: //L8028CD20
                 if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
-                    func_803463D4(ITEM_17_AIR, fxairscore_count_to_time(2));
+                    item_adjustByDiffWithHud(ITEM_17_AIR, fxairscore_count_to_time(2));
                 }
                 break;
 
@@ -1032,10 +1032,10 @@ void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
 
             if(sp20){
                 if(func_8033D594(collision_flags) == 3){
-                    func_803463D4(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
+                    item_adjustByDiffWithHud(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
                 }
                 else{//L8028D92C
-                    func_803463D4(ITEM_14_HEALTH, -sp20);
+                    item_adjustByDiffWithHud(ITEM_14_HEALTH, -sp20);
                 }
             }//L8028D948
 

@@ -14,11 +14,23 @@ s32 D_80365F30[] = {
     3, 4, 5, 6, 
     7, 7, 8, 8
 };
-ActorInfo D_80365F60 = { 0x58, 0x4E, 0x7DE, 0, NULL, func_802C5A60, func_80326224, func_80325934, 0, 0, 0.0f, 0};
-ActorInfo D_80365F84 = { 0x59, 0x4F, 0x7DE, 0, NULL, func_802C5A60, func_80326224, func_80325934, 0, 0, 0.0f, 0};
+ActorInfo D_80365F60 = {
+    0x58, 0x4E, ASSET_7DE_SPRITE_SHOE_SPARKLES,
+    0, NULL,
+    func_802C5A60, func_80326224, func_80325934,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_80365F84 = {
+    0x59, 0x4F, ASSET_7DE_SPRITE_SHOE_SPARKLES,
+    0, NULL,
+    func_802C5A60, func_80326224, func_80325934,
+    0, 0, 0.0f, 0
+};
 
 /* .code */
 void func_802C5A60(Actor *this){
+    // Spawns a sparkle sprite when touching turbo trainers or wading boots
     ActorLocal_Core2_3EAD0 *local = (ActorLocal_Core2_3EAD0*)&this->local;
     if(!this->initialized){
         switch(this->marker->unk14_20){

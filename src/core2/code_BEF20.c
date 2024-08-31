@@ -6,7 +6,7 @@
 f32 time_getDelta(void);
 void func_80346DB4(s32);
 
-s32  func_803463D4(enum item_e item, s32 diff);
+s32  item_adjustByDiffWithHud(enum item_e item, s32 diff);
 void itemscore_noteScores_clear(void);
 s32 itemscore_noteScores_get(enum level_e lvl_id);
 void itemscore_timeScores_clear(void);
@@ -24,19 +24,19 @@ s32 D_80386038;
 /* .code */
 void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
-        func_803463D4(item, (s32)(-time_getDelta()*60.0f * 1.1));
+        item_adjustByDiffWithHud(item, (s32)(-time_getDelta()*60.0f * 1.1));
     }else{
         func_802FACA4(item);
     }
 }
 
 void item_inc(enum item_e item){
-    func_803463D4(item, 1);
+    item_adjustByDiffWithHud(item, 1);
 }
 
 void item_dec(enum item_e item){
     if(!func_802E4A08())
-        func_803463D4(item, -1);
+        item_adjustByDiffWithHud(item, -1);
 }
 
 s32 item_empty(enum item_e item){
@@ -47,7 +47,10 @@ s32 item_getCount(enum item_e item){
     return D_80385F30[item];
 }
 
-s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
+// func_80345FB4
+s32 item_adjustByDiff(enum item_e item, s32 diff, s32 no_hud){
+    // Modifies the count of an item by the diff
+    // no_hud determines whether the HUD pops up during the adjustment
     s32 oldVal;
     s32 sp40;
     s32 sp3C;
@@ -103,8 +106,8 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
     if(sp38){
         D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
-    if(!arg2){
-        func_802FACA4(item); //displays item on HUD
+    if(!no_hud){
+        func_802FACA4(item); // displays item on HUD
         if(item == ITEM_14_HEALTH || item == ITEM_17_AIR)
             func_802FACA4(ITEM_16_LIFE);
     }
@@ -149,23 +152,34 @@ s32 func_80345FB4(enum item_e item, s32 diff, s32 arg2){
     return D_80385F30[item];
 }
 
-s32 func_803463D4(enum item_e item, s32 diff){
-    func_80345FB4(item, diff, 0);
+// func_803463D4
+s32 item_adjustByDiffWithHud(enum item_e item, s32 diff){
+    // Modifies the count of an item by the diff
+    // Displays the HUD during the adjustment
+    item_adjustByDiff(item, diff, 0);
 }
 
-void func_803463F4(enum item_e item, s32 diff){
-    func_80345FB4(item, diff, 1);
+// func_803463F4
+void item_adjustByDiffWithoutHud(enum item_e item, s32 diff){
+    // Modifies the count of an item by the diff
+    // Does not display the HUD during the adjustment
+    item_adjustByDiff(item, diff, 1);
 }
 
 void item_set(s32 item, s32 val){
-    func_803463D4(item, val - item_getCount(item));
+    item_adjustByDiffWithHud(item, val - item_getCount(item));
 }
 
-void func_80346448(s32 item){
-    func_803463D4(item, 9999999);
+// func_80346448
+void item_setMaxCount(s32 item){
+    // Sets the count of an item to the max
+    // Used for TTC cheats and Lair refill pillows
+    item_adjustByDiffWithHud(item, 9999999);
 }
 
-void func_8034646C(void){
+// func_8034646C
+void item_setItemsStartCounts(void){
+    // Sets the player initial inventory count
     int i;
     for(i = 0; i < 0x2C; i++){
         D_80385F30[i] = 0;
@@ -210,9 +224,11 @@ void itemscore_levelReset(enum level_e level){
 }
 
 void func_803465BC(void){
+    // Calls a function that does nothing?
     func_802FBDFC();
 }
 
+// A function that does nothing?
 void func_803465DC(void){}
 
 void func_803465E4(void){
@@ -226,7 +242,7 @@ void func_803465E4(void){
 
     if(func_80334904() != 2) return;
     if(D_80385FE8){
-        if( ncCamera_getType() != 3 //CAMERA_TYPE_3_STATIC
+        if( ncCamera_getType() != 3 // CAMERA_TYPE_3_STATIC
             && func_8028F070()
             && map_get() != MAP_33_UNUSED
             && map_get() != MAP_91_FILE_SELECT
@@ -257,11 +273,11 @@ void func_803465E4(void){
     }//L80346710
 
     if(sp50){
-        func_803463D4(ITEM_14_HEALTH, 0);
+        item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
     }
 
     if(sp54 == BS_24_FLY || sp54 == BS_23_FLY_ENTER){
-        func_803463D4(ITEM_F_RED_FEATHER, 0);
+        item_adjustByDiffWithHud(ITEM_F_RED_FEATHER, 0);
     }
 
     if(!func_8028EC04() && func_8028F070()){
@@ -276,15 +292,15 @@ void func_803465E4(void){
                 D_80385FEC = MAX(0.0, D_80385FEC - time_getDelta());
             }//L80346870
             if( (!is_in_polluted_or_winter_water && is_underwater) || (is_in_polluted_or_winter_water && is_on_water_surface) ){//L80346894
-                func_803463D4(ITEM_17_AIR, (s32)((f64)((-time_getDelta())*60.0f)*1.1));
+                item_adjustByDiffWithHud(ITEM_17_AIR, (s32)((f64)((-time_getDelta())*60.0f)*1.1));
             }
             else{ 
                 if(is_in_polluted_or_winter_water && is_underwater){//L803468D8
-                    func_803463D4(ITEM_17_AIR, (s32)(f64)((-time_getDelta()*60.0f)*2.1));
+                    item_adjustByDiffWithHud(ITEM_17_AIR, (s32)(f64)((-time_getDelta()*60.0f)*2.1));
                 }//L80346930
                 if(!is_in_polluted_or_winter_water || D_80385FEC == 0.0f){
                     if(!D_80385FE4 && D_80385F30[ITEM_17_AIR] < 3600){
-                        func_803463D4(ITEM_17_AIR, (s32)(((time_getDelta()*60.0f)*100.0)*1.1));
+                        item_adjustByDiffWithHud(ITEM_17_AIR, (s32)(((time_getDelta()*60.0f)*100.0)*1.1));
                         D_80385F30[ITEM_17_AIR] = MIN(D_80385F30[ITEM_17_AIR], 3600);
                     }
                 }
@@ -321,7 +337,7 @@ void func_803465E4(void){
 
 void func_80346C10(enum bs_e *retVal, enum bs_e fail_state, enum bs_e success_state, enum item_e item_id, int use_item){
     if(item_empty(item_id)){
-        func_803463D4(item_id, 0);
+        item_adjustByDiffWithHud(item_id, 0);
         func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
         if(fail_state != -1){
             *retVal = fail_state;

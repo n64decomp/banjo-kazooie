@@ -116,7 +116,7 @@ void chLoggo_update(Actor *this){
                 this->unk60 -= sp44;
             }
             else{
-                func_8031F7D4(0, 0);
+                warp_mmmEnterLoggo(0, 0);
             }
             break;
     }

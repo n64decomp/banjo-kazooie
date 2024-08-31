@@ -163,7 +163,7 @@ static void __chMumbo_textCallback(ActorMarker *caller, enum asset_e text_id, s3
             this->unk138_24 = FALSE;
             if(this->unk38_31 != 0){
                 func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
                 this->unk38_31 = 0;
             }
             subaddie_set_state_with_direction(this, 5, 0.0f, 1);
@@ -176,7 +176,7 @@ static void __chMumbo_textCallback(ActorMarker *caller, enum asset_e text_id, s3
             this->unk10_12 = 1;
             if(this->unk38_31){
                 func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
             }
             
         case ASSET_DAE_DIALOG_MUMBO_TREX_START: //L802D1B48
@@ -224,7 +224,7 @@ void chMumbo_update(Actor *this) {
     if( !func_803203FC(1)
         && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
         && map_get() != MAP_7A_GL_CRYPT) {
-        func_803463D4(ITEM_1C_MUMBO_TOKEN, 0);
+        item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, 0);
     }
     if(!this->initialized){
         this->initialized = TRUE;
@@ -351,7 +351,7 @@ void chMumbo_update(Actor *this) {
                         } else {
                             if (this->unk38_31) {
                                 func_8025A6EC(SFX_2B_BULL_MOO_1, 28000);
-                                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
                             }
                             subaddie_set_state(this, 5);
                         }

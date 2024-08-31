@@ -165,5 +165,5 @@ void func_8028DF48(enum actor_e actor_id){
 }
 
 void func_8028DFB8(enum actor_e actor_id){
-    func_803463D4(carriedobj_actorId2ItemId(actor_id), 0);
+    item_adjustByDiffWithHud(carriedobj_actorId2ItemId(actor_id), 0);
 }

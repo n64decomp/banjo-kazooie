@@ -200,13 +200,13 @@ void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, 
             mole_setStaticCamera(actor);
             break;
         case 5: // Egg Firing
-            func_803463D4(ITEM_D_EGGS, 50);
+            item_adjustByDiffWithHud(ITEM_D_EGGS, 50);
             break;
         case 6: // Flight
-            func_803463D4(ITEM_F_RED_FEATHER, 25);
+            item_adjustByDiffWithHud(ITEM_F_RED_FEATHER, 25);
             break;
         case 7: // Wonderwing
-            func_803463D4(ITEM_10_GOLD_FEATHER, 5);
+            item_adjustByDiffWithHud(ITEM_10_GOLD_FEATHER, 5);
             break;
         case 8: // Refill Health
             item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));

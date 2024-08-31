@@ -65,7 +65,7 @@ extern void ability_setAllLearned(s32);  // set unlocked moves bitfield
 extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
 
 extern s32  item_getCount(s32); // item count get
-extern void func_803463F4(s32, s32); // item count set
+extern void item_adjustByDiffWithoutHud(s32, s32); // item count set
 
 extern void func_80318614(gczoombox_t *, s32);
 extern bool func_803183A4(gczoombox_t *, u8 *);
@@ -608,7 +608,7 @@ void func_8038CE28(void)
         D_8037DCB8->unk3C[i] = 0;
 
     // set joker card count to 0
-    func_803463F4(ITEM_27_JOKER_CARD, item_getCount(0x27) * -1);
+    item_adjustByDiffWithoutHud(ITEM_27_JOKER_CARD, item_getCount(0x27) * -1);
 
     D_8037DCB8->unk8     = 0;
     D_8037DCB8->unk4     = NULL;
@@ -642,7 +642,7 @@ void lair_func_8038CF18(void)
             D_8037DCB8->unk3C[i] = 0;
 
         // set joker card count to 0
-        func_803463F4(ITEM_27_JOKER_CARD, item_getCount(ITEM_27_JOKER_CARD) * -1);
+        item_adjustByDiffWithoutHud(ITEM_27_JOKER_CARD, item_getCount(ITEM_27_JOKER_CARD) * -1);
     }
 
     lair_func_8038C6BC();
@@ -964,7 +964,7 @@ void func_8038D670(enum FF_Action next_state) {
                     func_8038C2D4(D_8037DCB8->ffQuestionType);
                 }
                 if (((s32) D_8037DCB8->unk4->unk8 >= 7) && (quizQuestionAskedBitfield_get(func_8038D60C(D_8037DCB8->unk8)) == 0)) {
-                    func_803463D4(ITEM_27_JOKER_CARD, D_8037DCB8->unk4->unk8 - 6);
+                    item_adjustByDiffWithHud(ITEM_27_JOKER_CARD, D_8037DCB8->unk4->unk8 - 6);
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     func_80356540(0xA8);
                 }
