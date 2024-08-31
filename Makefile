@@ -44,7 +44,7 @@ PRINT   := printf
 ASM_PROCESSOR_DIR := tools/asm-processor
 BK_ROM_COMPRESS   := tools/bk_rom_compressor/target/release/bk_rom_compress
 BK_ROM_DECOMPRESS := tools/bk_rom_compressor/target/release/bk_rom_decompress
-BK_ASSET_TOOL     := tools/bk_asset_tool/bk_asset_tool
+BK_ASSET_TOOL     := tools/bk_asset_tool/target/release/bk_asset_tool
 ASM_PROCESSOR     := $(PYTHON) $(ASM_PROCESSOR_DIR)/asm_processor.py
 SPLAT_INPUTS      := $(PYTHON) tools/splat_inputs.py
 PROGRESS          := $(PYTHON) tools/progress.py
@@ -341,15 +341,18 @@ $(UNCOMPRESSED_Z64) : $(ELF)
 $(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) $(ELF) $(UNCOMPRESSED_Z64) $@
 
+# TOOLS
+# Tool for spliting BK asset sections into and from ROM Bin and transforming certain file types
 $(BK_ASSET_TOOL):
-	@$(CD) tools/bk_asset_tool && cargo build --release
-	@$(CP) tools/bk_asset_tool/target/release/bk_asset_tool $@
+	@$(CD) tools/bk_asset_tool && cargo build --release 2> /dev/null
 
+# Tool to compress BK and correct checksums from elf and uncompressed rom
 $(BK_ROM_COMPRESS):
-	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_compress
+	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_compress 2> /dev/null
 
+# Tool to turn compressed BK into uncompressed ROM
 $(BK_ROM_DECOMPRESS):
-	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_decompress
+	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_decompress 2> /dev/null
 
 clean:
 	$(call print0,Cleaning build artifacts)
@@ -415,7 +418,9 @@ MAKEFLAGS += -r
 .SUFFIXES:
 
 # Phony targets
-.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
+.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS)) \
+	$(BK_ASSET_TOOL) $(BK_ROM_COMPRESS) $(BK_ROM_DECOMPRESS)
+
 
 # Set up pipefail
 SHELL = /bin/bash -e -o pipefail
