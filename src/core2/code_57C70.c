@@ -100,7 +100,7 @@ void func_802DEE1C(Actor *this) {
         sp4C = map_getLevel(map_get());
         sp44 = sp4C == D_8037DFE4;
         if (sp44) {
-            func_80328B8C(this, 2, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.0f, 1);
             actor_loopAnimation(this);
         }
         switch(sp4C){
@@ -126,7 +126,7 @@ void func_802DEE1C(Actor *this) {
     switch(this->state){
         case 1:
             if (animctrl_isStopped(this->animctrl)) {
-                func_80328B8C(this, 2, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
             }
             break;
@@ -140,7 +140,7 @@ void func_802DEE1C(Actor *this) {
 
         case 2:
             if(gctransition_8030BDC0()) {
-                func_80328B8C(this, 5, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             }
             break;
 
@@ -172,7 +172,7 @@ void func_802DF0C8(void) {
 
     sp1C = marker_getActor(D_8037DFE0);
     if (sp1C->state != 3) {
-        func_80328B8C(sp1C, 3, 0.0f, 1);
+        subaddie_set_state_with_direction(sp1C, 3, 0.0f, 1);
         actor_playAnimationOnce(sp1C);
     }
 }

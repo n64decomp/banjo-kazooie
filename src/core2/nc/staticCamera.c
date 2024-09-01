@@ -33,8 +33,8 @@ void ncStaticCamera_setPosition(f32 arg0[3]){
 }
 
 void ncStaticCamera_update(void){
-    viewport_setPosition(ncStaticCameraPosition);
-    viewport_setRotation(ncStaticCameraRotation);
+    viewport_set_position_vec3f(ncStaticCameraPosition);
+    viewport_set_rotation_vec3f(ncStaticCameraRotation);
 }
 
 void __ncStaticCamera_setToNode(s32 camera_node_index){

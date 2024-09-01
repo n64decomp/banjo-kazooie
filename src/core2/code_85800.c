@@ -18,8 +18,8 @@ extern f32 sfx_randf2(f32, f32);
 
 typedef struct {
     f32 position[3];
-    f32 unkC; //inner_radius_squared
-    f32 unk10; //outer_radius_squared
+    f32 fade_inner_radius_sqr; //inner_radius_squared
+    f32 fade_outer_radius_sqr; //outer_radius_squared
     s16 unk14;
     u8 unk16;
     u8 pad17[0x1];
@@ -202,10 +202,10 @@ s32 func_8030CCF0(struct45s *arg0, s32 arg1){
     diff[1] = arg0->position[1] - plyr_pos[1];
     diff[2] = arg0->position[2] - plyr_pos[2];
     dist_sqr = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
-    if( dist_sqr < arg0->unkC)
+    if( dist_sqr < arg0->fade_inner_radius_sqr)
         retVal = arg1;
-    else if( dist_sqr < arg0->unk10) 
-        retVal = arg0->unk14 + (((arg0->unk10-dist_sqr))/(arg0->unk10 - arg0->unkC))*(arg1 - arg0->unk14);
+    else if( dist_sqr < arg0->fade_outer_radius_sqr) 
+        retVal = arg0->unk14 + (((arg0->fade_outer_radius_sqr-dist_sqr))/(arg0->fade_outer_radius_sqr - arg0->fade_inner_radius_sqr))*(arg1 - arg0->unk14);
     else
         retVal = arg0->unk14;
     return retVal;
@@ -218,7 +218,7 @@ s32 func_8030CDE4(struct45s *arg0){
     f32 temp_f0;
     f32 pad;
 
-    viewport_getPosition(&sp44);
+    viewport_get_position_vec3f(&sp44);
     func_8024C5A8(&sp38);
     sp2C[0] = arg0->position[0] - sp44[0];
     sp2C[1] = arg0->position[1] - sp44[1];
@@ -497,8 +497,8 @@ u8 func_8030D90C(void){
     sfxsource_setFlag(s0, SFX_SRC_FLAG_2_UNKOWN);
     sfxsource_setFlag(s0, SFX_SRC_FLAG_3_UNKOWN);
     sfxsource_setFlag(s0, SFX_SRC_FLAG_4_UNKOWN);
-    s0->unkC = 62500.0f;
-    s0->unk10 = 1440000.0f;
+    s0->fade_inner_radius_sqr = 62500.0f;
+    s0->fade_outer_radius_sqr = 1440000.0f;
     s0->unk14 = 0xa;
     s0->unk16 = 0;
     s0->unk18 = 64.0f;
@@ -643,12 +643,12 @@ void func_8030DE44(u8 indx, s32 arg1, f32 arg2){
     }
 }
 
-void func_8030DEB4(u8 indx, f32 arg1, f32 arg2){
+void sfxsource_set_fade_distances(u8 indx, f32 min, f32 max){
     struct45s *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
-        ptr->unkC = arg1*arg1;
-        ptr->unk10 = arg2*arg2;
+        ptr->fade_inner_radius_sqr = min*min;
+        ptr->fade_outer_radius_sqr = max*max;
         func_8030DFF0(indx, 1);
     }
 }
@@ -662,8 +662,7 @@ void func_8030DF18(u8 indx, f32 arg1){
     }
 }
 
-//sfxsource_setPostion
-void func_8030DF68(u8 indx, f32 position[3]){
+void sfxsource_set_position(u8 indx, f32 position[3]){
     struct45s *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
@@ -914,8 +913,8 @@ void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32 position[3], f32 arg4
             sfxsource_setSfxId(s0, uid);
             sfxsource_setSampleRate(s0, arg2);
             func_8030DBB4(s0, arg1);
-            func_8030DEB4(s0, arg4, arg5);
-            func_8030DF68(s0, position);
+            sfxsource_set_fade_distances(s0, arg4, arg5);
+            sfxsource_set_position(s0, position);
             func_8030DD14(s0, 1);
             func_8030E2C4(s0);
         }
@@ -984,7 +983,7 @@ void func_8030EC74(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4, f32 a
         sfxsource_setSfxId(indx, uid);
         sfxsource_setSampleRate(indx, sfx_randi2(arg3, arg4));
         func_8030DBB4(indx, sfx_randf2(arg1, arg2));
-        func_8030DF68(indx, arg5);
+        sfxsource_set_position(indx, arg5);
         func_8030DD14(indx, 1);
         func_8030E2C4(indx);
     }

@@ -9,15 +9,15 @@
 extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
 extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
-extern void mlMtxRotate(f32, f32, f32);
-extern void viewport_getPosition(f32[3]);
-extern void viewport_getRotation(f32[3]);
-extern void viewport_setPosition(f32[3]);
-extern void viewport_setRotation(f32[3]);
+extern void mlMtxRotatePYR(f32, f32, f32);
+extern void viewport_get_position_vec3f(f32[3]);
+extern void viewport_get_rotation_vec3f(f32[3]);
+extern void viewport_set_position_vec3f(f32[3]);
+extern void viewport_set_rotation_vec3f(f32[3]);
 extern void viewport_update(void);
 extern void func_8033BD4C(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);
-extern void func_80251788(f32, f32, f32);
+extern void mlMtx_push_translation(f32, f32, f32);
 extern void mlMtxScale(f32);
 extern void mlMtxApply(Mtx* mtx);
 extern AnimMtxList *animMtxList_new();
@@ -696,8 +696,8 @@ void modelRender_reset(void){
     func_8033A45C(1,1);
     func_8033A45C(2,0);
     if(D_80383758.unk18){
-        viewport_setPosition(D_80383758.unk1C);
-        viewport_setRotation(D_80383758.unk28);
+        viewport_set_position_vec3f(D_80383758.unk1C);
+        viewport_set_rotation_vec3f(D_80383758.unk28);
         viewport_update();
     }
 }
@@ -714,7 +714,7 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
 
     if(cmd->unk8){
         func_8025235C(sp30, cmd->unkC);
-        func_80251788(sp30[0], sp30[1], sp30[2]);
+        mlMtx_push_translation(sp30[0], sp30[1], sp30[2]);
         mlMtxRotYaw(modelRenderCameraRotation[1]);
         if(!cmd->unkA){
             mlMtxRotPitch(modelRenderCameraRotation[0]);
@@ -795,7 +795,7 @@ void func_803387F8(Gfx **gfx, Mtx **mtx, void *arg2){
     GeoCmd2 *cmd = (GeoCmd2 *)arg2;
 
     if(D_8038371C){
-        func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk9));
+        mlMtx_push_multiplied_2(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk9));
         if(D_80370990){
             mlMtxApply(*mtx);
             gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -875,7 +875,7 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
 
     if(D_80383650){
         if(D_8038371C){
-            func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unkA));
+            mlMtx_push_multiplied_2(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unkA));
             func_8025235C(sp20, cmd->unkC);
             mlMtxPop();
         }
@@ -970,7 +970,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
 
         sp30 = (f32)cmd->unkE*modelRenderScale;
         if(D_8038371C){
-            func_802519C8(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk12));
+            mlMtx_push_multiplied_2(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk12));
             func_8025235C(sp34, sp34);
             mlMtxPop();
         }
@@ -1034,8 +1034,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     D_80370990 = 0;
-    viewport_getPosition(modelRenderCameraPosition);
-    viewport_getRotation(modelRenderCameraRotation);
+    viewport_get_position_vec3f(modelRenderCameraPosition);
+    viewport_get_rotation_vec3f(modelRenderCameraRotation);
     if(D_80383758.unk18){
         D_80383758.unk1C[0] = modelRenderCameraPosition[0];
         D_80383758.unk1C[1] = modelRenderCameraPosition[1];
@@ -1075,8 +1075,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         modelRenderCameraRotation[0] = D_80383758.unkC[0],
         modelRenderCameraRotation[1] = D_80383758.unkC[1],
         modelRenderCameraRotation[2] = D_80383758.unkC[2];
-        viewport_setPosition(modelRenderCameraPosition);
-        viewport_setRotation(modelRenderCameraRotation);
+        viewport_set_position_vec3f(modelRenderCameraPosition);
+        viewport_set_rotation_vec3f(modelRenderCameraRotation);
         viewport_update();
         camera_focus[0] = object_position[0] - modelRenderCameraPosition[0];
         camera_focus[1] = object_position[1] - modelRenderCameraPosition[1];
@@ -1264,7 +1264,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     if(D_803837B0.unk0){
-        mlMtxRotate(D_803837B0.unk4[0], D_803837B0.unk4[1], D_803837B0.unk4[2]);
+        mlMtxRotatePYR(D_803837B0.unk4[0], D_803837B0.unk4[1], D_803837B0.unk4[2]);
     }
     mlMtxGet(&D_80383BF8);
 
@@ -1420,8 +1420,8 @@ void func_8033A28C(bool arg0){
 void func_8033A298(bool arg0){
     D_80383758.unk18 = arg0;
     if(arg0){
-        viewport_getPosition(D_80383758.unk0);
-        viewport_getRotation(D_80383758.unkC);
+        viewport_get_position_vec3f(D_80383758.unk0);
+        viewport_get_rotation_vec3f(D_80383758.unkC);
     }
 }
 

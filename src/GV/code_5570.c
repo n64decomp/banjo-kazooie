@@ -47,7 +47,7 @@ extern s32 D_80391A80;
 /* .code */
 void func_8038B988(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
-    func_80328B8C(this, 5, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 5, 0.01f, 1);
     actor_loopAnimation(this);
     func_802BAFE4(0x13);
     FUNC_8030E624(SFX_8D_BOGGY_OHWW, 0.9f, 32000);
@@ -56,7 +56,7 @@ void func_8038B988(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_8038BA08(Actor *this){
-    func_80328B8C(this, 6, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 6, 0.01f, 1);
     actor_loopAnimation(this);
     this->unk100 = NULL;
     D_80391A80 = 3;
@@ -182,7 +182,7 @@ void GV_func_8038BEA0(Actor *this){
             this->unk100 = func_8032B16C(JIGGY_3E_GV_GRABBA);
             local->unk0 =  this->unk100 != NULL ? this->unk100->unk5C : NULL;
         }
-        func_80328B8C(this, this->state, 0.01f, 1);
+        subaddie_set_state_with_direction(this, this->state, 0.01f, 1);
         this->unk58_0 = FALSE;
         this->marker->propPtr->unk8_3 = FALSE;
     }//L8038BFF4
@@ -195,7 +195,7 @@ void GV_func_8038BEA0(Actor *this){
                 this->unk58_0 = FALSE;
                 this->marker->propPtr->unk8_3 = FALSE;
                 if(func_8038BB24(this)){
-                    func_80328B8C(this, 2, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                     actor_playAnimationOnce(this);
                     this->unk38_31 = 0;
                     D_80391A80 = this->state;
@@ -208,7 +208,7 @@ void GV_func_8038BEA0(Actor *this){
 
             case 2: //L8038C108
                 if(actor_animationIsAt(this, 0.69f)){
-                    func_80328B8C(this, 3, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 3, 0.01f, 1);
                     actor_loopAnimation(this);
                     D_80391A80 = this->state;
                     if(this->unk100){
@@ -230,7 +230,7 @@ void GV_func_8038BEA0(Actor *this){
                     func_8038BA08(this);
                 }
                 else if(this->unk38_31 >= 0xC){
-                    func_80328B8C(this, 4, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 4, 0.01f, 1);
                     actor_playAnimationOnce(this);
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 12.0f, 0.92f);
@@ -257,7 +257,7 @@ void GV_func_8038BEA0(Actor *this){
                     func_8038BA08(this);
                 }
                 else if(actor_animationIsAt(this, 0.89f)){
-                    func_80328B8C(this, 1, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
                     actor_loopAnimation(this);
                     D_80391A80 = this->state;
                 }

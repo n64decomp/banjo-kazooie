@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
+
 
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 
@@ -58,13 +60,13 @@ void func_80292974(f32 arg0, f32 arg1, f32 arg2){
 void func_802929F8(void){
     switch (D_80363790) {
     case 0: //L80292A2C
-        func_80292864(func_80297A7C() - 20.0f, 40.0f);
+        func_80292864(baphysics_get_target_yaw() - 20.0f, 40.0f);
         break;
     case 1: //L80292A2C
-        func_80292864(func_80297A7C() + 20.0f, 40.0f);
+        func_80292864(baphysics_get_target_yaw() + 20.0f, 40.0f);
         break;
     case 2: //L80292A94
-        func_80292864(func_80297A7C(), 30.0f);
+        func_80292864(baphysics_get_target_yaw(), 30.0f);
         break;
     default: //L80292AC0
         break;

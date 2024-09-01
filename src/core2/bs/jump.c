@@ -5,10 +5,9 @@
 #include "core2/ba/model.h"
 #include "core2/ba/anim.h"
 
+#include "core2/ba/physics.h"
+
 f32 func_80294438(void);
-void func_8029797C(f32);
-void func_802979AC(f32, f32);
-f32 func_80297A64(void);
 void func_80299B58(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
@@ -59,19 +58,19 @@ void bsjump_init(void){
         animctrl_setSubRange(aCtrl, 0.0f, 0.5042f);
         animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         animctrl_start(aCtrl, "bsjump.c", 0x95);
-        func_8029C7F4(1,1,3,6);
+        func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
         if(func_8029B2E8() != 0.0f){
             yaw_setIdeal(func_8029B33C());
         }
-        func_8029797C(yaw_getIdeal());
+        baphysics_set_target_yaw(yaw_getIdeal());
         func_802B6FA8();
-        func_802979AC(yaw_getIdeal(), func_80297A64());
+        baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
         if(D_8037D4C1){
-            player_setYVelocity(D_80364CE4);
+            baphysics_set_vertical_velocity(D_80364CE4);
         } else {
-            player_setYVelocity(D_80364CD0);
+            baphysics_set_vertical_velocity(D_80364CD0);
         }
-        gravity_set(D_80364CD4);
+        baphysics_set_gravity(D_80364CD4);
         D_8037D4C0 = 0;
         if(D_8037D4C2){
             func_8030E6D4(SFX_33_BANJO_AHOO);
@@ -91,14 +90,14 @@ void bsjump_update(void){
         func_8029C348();
     
     if(miscflag_isTrue(0xf)){
-        func_802978A4();
+        baphysics_reset_horizontal_velocity();
     }else{
         func_802B6FA8();
     }
 
-    _get_velocity(velocity);
+    baphysics_get_velocity(velocity);
     if((button_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !can_control_jump_height()){
-        gravity_reset();
+        baphysics_reset_gravity();
     }
 
     switch(D_8037D4C0){
@@ -166,15 +165,15 @@ void bsjump_end(void){
         ability_use(0);
 
     if(bs_getNextState() != BS_11_BPECK)
-        gravity_reset();
+        baphysics_reset_gravity();
 }
 
 void bsjump_fall_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int sp20;
 
-    if(miscflag_isTrue(7) && 700.0f < _get_vertVelocity())
-        player_setYVelocity(700.0f);
+    if(miscflag_isTrue(7) && 700.0f < baphysics_get_vertical_velocity())
+        baphysics_set_vertical_velocity(700.0f);
 
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;
     animctrl_reset(aCtrl);
@@ -183,7 +182,7 @@ void bsjump_fall_init(void){
     animctrl_setTransitionDuration(aCtrl, 0.3f);
     animctrl_setDuration(aCtrl, 0.38f);
     animctrl_start(aCtrl, "bsjump.c", 0x188);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     D_8037D4C0 = 0;
 }
 
@@ -193,11 +192,11 @@ void bsjump_fall_update(void){
     f32 player_velocity[3];
 
     if(miscflag_isTrue(0xf))
-        func_802978A4();
+        baphysics_reset_horizontal_velocity();
     else
         func_802B6FA8();
 
-    _get_velocity(player_velocity);
+    baphysics_get_velocity(player_velocity);
 
     switch(D_8037D4C0){
         case 0://L802B17B8
@@ -264,12 +263,12 @@ void func_802B1928(void) {
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_802978DC(3);
-    func_8029797C(yaw_getIdeal());
-    func_80297970(60.0f);
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364CDC);
-    gravity_set(D_80364CE0);
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_target_horizontal_velocity(60.0f);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364CDC);
+    baphysics_set_gravity(D_80364CE0);
     func_80294378(6);
     D_8037D4C0 = 0;
     func_802B1100();
@@ -282,7 +281,7 @@ void func_802B1A54(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    _get_velocity(velocity);
+    baphysics_get_velocity(velocity);
     if (velocity[1] < 0.0f) {
         func_80294378(1);
     }
@@ -321,7 +320,7 @@ void func_802B1A54(void) {
 
 void func_802B1BCC(void){
     func_80294378(1);
-    gravity_reset();
+    baphysics_reset_gravity();
 }
 
 void func_802B1BF4(void) {
@@ -345,9 +344,9 @@ void func_802B1BF4(void) {
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_802978DC(6);
-    func_80297970(0.0f);
-    func_80297A0C(0);
+    baphysics_set_type(BA_PHYSICS_AIRBORN);
+    baphysics_set_target_horizontal_velocity(0.0f);
+    baphysics_set_velocity(0);
     D_8037D4C0 = 0;
     baMarker_collisionOff();
 }
@@ -359,7 +358,7 @@ void func_802B1CF8(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    _get_velocity(velocity);
+    baphysics_get_velocity(velocity);
     switch (D_8037D4C0) {
     case 0:
         if (func_8028B254(90)) {
@@ -388,9 +387,9 @@ bool bsjump_jumpingFromWater(void){
 
 void bsjump_tumble_init(void){
     baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     baModel_setYDisplacement(60.0f);
-    if(func_80293234() == 1){
+    if(bafalldamage_get_state() == 1){
         func_8029E3C0(0, 0.5f);
         func_8029E3C0(1, 0.41f);
         func_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
@@ -437,7 +436,7 @@ void bsjump_tumble_end(void){
         || next_state == BS_BFLAP
         || next_state == BS_11_BPECK
     ){
-        func_80293240(3);
+        bafalldamage_set_state(3);
     }
     func_8029CB84();
     baModel_setYDisplacement(0.0f);

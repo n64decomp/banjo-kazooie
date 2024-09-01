@@ -6,6 +6,9 @@
 extern f32 func_80309724(f32[3]);
 extern f32 func_80257204(f32, f32, f32, f32);
 
+#define SQ(x) ((x) * (x))
+
+
 typedef struct {
     f32 unk0;
     f32 unk4;
@@ -35,13 +38,13 @@ ActorInfo D_803730D8 = {
 
 /* .code */
 void func_8035F970(Actor *this){
-    func_80328A84(this, 1);
+    subaddie_set_state(this, 1);
     actor_loopAnimation(this);
 }
 
 void func_8035F99C(Actor *this){
     if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
-        func_80328B8C(this, 2, 0.01f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->unk28 = 5.0f;
         FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
@@ -49,30 +52,30 @@ void func_8035F99C(Actor *this){
 }
 
 void func_8035FA0C(Actor *this){
-    func_80328A84(this, 3);
+    subaddie_set_state(this, 3);
     actor_loopAnimation(this);
     this->unk28 = 5.0f;
 }
 
 void func_8035FA48(Actor *this){
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
     actor_loopAnimation(this);
 }
 
 void func_8035FA74(Actor *this){
     ActorLocal_Core2_D89E0 *local = (ActorLocal_Core2_D89E0 *)&this->local;
     this->yaw_ideal = local->unk4;
-    func_80328A84(this, 5);
+    subaddie_set_state(this, 5);
     actor_loopAnimation(this);
 }
 
 void func_8035FAA8(Actor *this){
-    func_80328B8C(this, 6, 0.99f, 0);
+    subaddie_set_state_with_direction(this, 6, 0.99f, 0);
     actor_playAnimationOnce(this);
 }
 
 void func_8035FAE0(Actor *this){
-    func_80328B8C(this, 7, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.01f, 1);
     actor_loopAnimation(this);
     this->yaw += 180.0f;
     this->unk28 = 20.0f;
@@ -274,15 +277,11 @@ bool func_80360198(Actor *this) {
     return TRUE;
 }
 
-#ifndef NONMATCHING
-f32 func_803603AC(Actor *this, s32 arg1, u8 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_D89E0/func_803603AC.s")
-#else
 f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
-    f32 num;
-    f32 den;
     f32 phi_f2;
-    f32 sp2C[3];
+    f32 dy;
+    f32 D1, D2;
+    f32 unused;
     f32 sp20[3];
 
     switch (arg2) {
@@ -297,25 +296,23 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
         break;
     }
 
-    sp2C[0] = (this->position[0] - sp20[0]);
-    sp2C[1] = (this->position[1] - sp20[1]);
-    sp2C[2] = (this->position[2] - sp20[2]);
-
-    den =(sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2]);
-    // if(den);
-    num = (sp2C[1] - arg1);
-    if(num == 0.0 || den == 0.0)
+    D1 = SQ(this->position[0] - sp20[0]);
+    D2 = SQ(this->position[2] - sp20[2]);
+    
+    dy = this->position[1] - sp20[1] - arg1;
+    
+    if(dy == 0.0 || D1 + D2 == 0.0)
         return 0.0f;
+    
         
-    phi_f2 = -(this->unk28*num)/den;
+    phi_f2 = -(this->unk28*(dy))/(D1 + D2);
     if (phi_f2 >= 4.0f) {
-        return 4.0f;
+        phi_f2 = 4.0f;
+    } else  if (phi_f2 <= -4.0f) {
+        phi_f2 = -4.0f;
     }
-    if(-4.0f >= phi_f2) 
-        phi_f2 = -4.0f; 
     return phi_f2;
 }
-#endif
 
 int func_803604E8(Actor *this){
     f32 tmp_f0;
@@ -486,7 +483,7 @@ void func_80360828(Actor *this){
             func_8032CA80(this, this->unk38_0 ? 0x13 : 0x4);
             if(func_8035FC98(this, this->velocity_x * sp34)){
                 this->position_y =  func_80309724(this->position);
-                func_80328B8C(this, 8, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 8, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
             }

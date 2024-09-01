@@ -4,7 +4,7 @@
 
 extern int func_802592C4(f32[3], f32[3], f32);
 extern void func_802EFA20(ParticleEmitter *, f32, f32);
-extern void func_80328B8C(Actor *, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80328FB0(Actor *, f32);
 extern void func_803300C0(ActorMarker *, void *);
 
@@ -133,13 +133,13 @@ void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
 
 void __chSnowman_enterIdle(Actor *this){
     ActorLocal_chSirSlush *local = (ActorLocal_chSirSlush *) &this->local;
-    func_80328B8C(this, CHSNOWMAN_STATE_1_IDLE, 0.01f, 1);
+    subaddie_set_state_with_direction(this, CHSNOWMAN_STATE_1_IDLE, 0.01f, 1);
     actor_loopAnimation(this);
     local->unk4 = 0.4f;
 }
 
 void __chSnowman_enterDeath(Actor *this){
-    func_80328B8C(this, CHSNOWMAN_STATE_3_DIE, 0.01f, 1);
+    subaddie_set_state_with_direction(this, CHSNOWMAN_STATE_3_DIE, 0.01f, 1);
     actor_playAnimationOnce(this);
 }
 
@@ -272,7 +272,7 @@ void chSnowman_update(Actor *this){
                         && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
                         && !__chSnowman_CCW_playerInProtectedZone()
                     ){
-                        func_80328B8C(this, CHSNOWMAN_STATE_2_ATTACK, 0.01f, 1);
+                        subaddie_set_state_with_direction(this, CHSNOWMAN_STATE_2_ATTACK, 0.01f, 1);
                         actor_playAnimationOnce(this);
                     }
                 }

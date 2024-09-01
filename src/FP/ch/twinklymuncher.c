@@ -35,23 +35,23 @@ Actor *func_8038DD70(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void func_8038DDC8(Actor *this){
     actor_collisionOn(this);
-    func_80328B8C(this, 2, 0.03f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
 void func_8038DE08(Actor *this){
-    func_80328B8C(this, 3, 0.03f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.03f, 1);
     actor_loopAnimation(this);
 }
 
 void func_8038DE40(Actor *this){
-    func_80328B8C(this, 4, 0.03f, 1);
+    subaddie_set_state_with_direction(this, 4, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
 void func_8038DE78(Actor *this){
     actor_collisionOff(this);
-    func_80328B8C(this, 5, 0.03f, 1);
+    subaddie_set_state_with_direction(this, 5, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
@@ -93,7 +93,7 @@ Actor *func_8038DF34(Actor *this){
 void func_8038E040(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     timed_exitStaticCamera(0.5f);
-    func_80328B8C(this, 7, 0.03f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
@@ -129,7 +129,7 @@ void func_8038E094(Actor *this){
                     timed_setStaticCameraToNode(0.5f, 0xd);
                     func_80311480(ASSET_C15_TEXT_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
                     this->velocity[0] = 1.0f;
-                    func_80328B8C(this, 6, 0.03f, 1);
+                    subaddie_set_state_with_direction(this, 6, 0.03f, 1);
                     actor_loopAnimation(this);
                 }
             }
@@ -214,7 +214,7 @@ void func_8038E094(Actor *this){
         case 5: //L8038E644
             this->marker->propPtr->unk8_3 = TRUE;
             if(actor_animationIsAt(this, 0.97f)){
-                func_80328B8C(this, 1, 0.97f, 0);
+                subaddie_set_state_with_direction(this, 1, 0.97f, 0);
                 actor_playAnimationOnce(this);
                 this->unk60 = 0.0f;
             }

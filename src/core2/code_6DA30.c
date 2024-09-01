@@ -479,7 +479,7 @@ void func_802F53D0(void){
     D_80380B18 = 0;
 }
 
-void func_802F542C(void){
+void printbuffer_defrag(void){
     print_sFonts[0] = (FontLetter *)defrag(print_sFonts[0]);
     print_sFonts[1] = (FontLetter *)defrag(print_sFonts[1]);
     if(print_sFonts[3]){

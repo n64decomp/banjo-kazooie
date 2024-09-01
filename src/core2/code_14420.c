@@ -4,6 +4,7 @@
 #include "core2/yaw.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
@@ -36,7 +37,7 @@ enum bs_14420_e{
     BS14420_A_WALRUS_SLED,
     BS14420_B_BEE,
     BS14420_C_CLIMB,
-    BS14420_D_WONDERWING,
+    BS14420_D_WONDERWING
 };
 
 /* .data */ 
@@ -202,7 +203,7 @@ f32 func_8029B41C(void){
     f32 sp1C;
 
     player_getPosition(sp2C);
-    viewport_getPosition(sp20);
+    viewport_get_position_vec3f(sp20);
     func_80257F18(sp2C, sp20, &sp1C);
     return sp1C;
 }
@@ -362,7 +363,7 @@ void func_8029B984(f32 dst[3]){
     f32 sp18[3];
 
     _player_getPosition(plyr_pos);
-    viewport_getPosition(sp18);
+    viewport_get_position_vec3f(sp18);
     ml_vec3f_diff_copy(dst, sp18, plyr_pos);
 }
 
@@ -504,6 +505,7 @@ enum bs_e func_8029BD90(void) {
     return D_80364650[func_8029BAF0()].state_id;
 }
 
+//drone_look_exit_state
 enum bs_e func_8029BDBC(void) {
     return D_80364624[func_8029BAF0()];
 }
@@ -623,12 +625,12 @@ void func_8029C22C(void) {
         return;
 
     D_80364620 = D_80364620 ? FALSE : TRUE;
-    if (_get_horzVelocity() > 100.0f) {
+    if (baphysics_get_horizontal_velocity() > 100.0f) {
         if (D_80364620) {
-            func_80292864(func_80297A7C() - 20.0f, 20.0f);
+            func_80292864(baphysics_get_target_yaw() - 20.0f, 20.0f);
         }
         else{
-            func_80292864(func_80297A7C() + 20.0f, 20.0f);
+            func_80292864(baphysics_get_target_yaw() + 20.0f, 20.0f);
         }
     }
 }
@@ -660,7 +662,7 @@ void func_8029C3E8(f32 arg0, f32 arg1) {
     f32 sp28;
 
     _player_getPosition(sp30);
-    sp28 = ml_map_f(_get_horzVelocity(), 0.0f, 1000.0f, arg0, arg1);
+    sp28 = ml_map_f(baphysics_get_horizontal_velocity(), 0.0f, 1000.0f, arg0, arg1);
     sp2C = player_getYaw();
     func_802589E4(sp3C, sp2C, sp28);
     sp3C[1] = 0.0f;
@@ -764,11 +766,11 @@ enum bs_e func_8029C780(void){
     return BS_5_JUMP;
 }
 
-void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s32 arg2, s32 arg3){
+void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s32 arg2, BaPhysicsType arg3){
     baanim_setUpdateType(arg0);
     yaw_setUpdateState(yaw_state);
     func_8029957C(arg2);
-    func_802978DC(arg3);
+    baphysics_set_type(arg3);
 }
 
 void func_8029C834(enum map_e map_id, s32 exit_id){
@@ -838,7 +840,7 @@ s32 func_8029C9C0(s32 arg0){
         arg0 = BS_BBARGE;
 
     if(func_80294F78())
-        arg0 = func_802926C0();
+        arg0 = badrone_look();
     
     if(player_isSliding())
         arg0  = BS_SLIDE;
@@ -848,7 +850,7 @@ s32 func_8029C9C0(s32 arg0){
 
 s32 func_8029CA94(s32 arg0){
     if(miscflag_isTrue(0x19))
-        arg0 = func_80292738();
+        arg0 = badrone_transform();
     
     if(miscflag_isTrue(0x1A))
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+
+#include "core2/anim/sprite.h"
 #include "code_B6EA0.h"
 
 extern u8 func_8033E8D0(void);
@@ -27,7 +29,7 @@ void func_80352614(void){}
 void func_8035261C(void) {
     ParticleStruct0s *sp2C;
     u8 sp2B;
-    struct54s *sp24;
+    AnimSprite *sp24;
     u8 sp23;
     s32 sp1C;
     f32 temp_f6;
@@ -43,8 +45,8 @@ void func_8035261C(void) {
     projectile_setSprite(sp2B, ASSET_718_SPRITE_SPARKLE_WHITE_2);
     func_8033FFE4(sp2B, sp1C, sp1C);
     func_8033FCD8(sp2B, 0xC);
-    func_80287E9C(sp24);
-    func_80287F7C(sp24, 3);
+    animsprite_default(sp24);
+    animsprite_set_state(sp24, ANIM_SPRITE_STATE_STOPPED);
     func_80344E18(sp23, 3);
 }
 

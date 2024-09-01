@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "code_B6EA0.h"
+#include "core2/anim/sprite.h"
 
 extern void func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 
@@ -27,7 +28,7 @@ extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
 void fxegg_collide(s32 arg0, ActorMarker *arg1, s32 arg2);
 
 /* .data */
-struct53s D_803726A0[] = {
+AnimSpriteStep D_803726A0[] = {
     {9, 1}, 
     {8, 1}, 
     {7, 1}, 
@@ -156,7 +157,7 @@ void func_80353580(ActorMarker *marker){
 
 void fxegg_head_spawn(void){
     u8 projectile_indx = func_8033E8D0();
-    struct54s *sp78 = func_8033E8F4();
+    AnimSprite *sp78 = func_8033E8F4();
     u8 sp77 = func_8033E93C();
     f32 sp68[3];
     f32 sp5C[3];
@@ -187,9 +188,9 @@ void fxegg_head_spawn(void){
     projectile_setPosition(projectile_indx, sp50);
     func_8033FCD8(projectile_indx, 0xe);
 
-    func_80287E9C(sp78);
-    func_80287F50(sp78, D_803726A0, 0x14);
-    func_80287F10(sp78);
+    animsprite_default(sp78);
+    animsprite_set_steps(sp78, D_803726A0, sizeof(D_803726A0));
+    animsprite_loop(sp78);
 
     func_80344E18(sp77, 1);
     func_80344EE4(sp77, 0.0f, 0.0f);
@@ -263,7 +264,7 @@ void fxegg_head_destroy(void){}
 
 void fxegg_ass_spawn(void) {
     u8 projectile_indx;
-    struct54s *sp58;
+    AnimSprite *sp58;
     u8 sp57;
     f32 sp48[3];
     f32 marker[3];
@@ -293,9 +294,9 @@ void fxegg_ass_spawn(void) {
     func_8033FFE4(projectile_indx, (s32)temp_f18, (s32)temp_f18);
     projectile_setPosition(projectile_indx, marker);
     func_8033FCD8(projectile_indx, 0xE);
-    func_80287E9C(sp58);
-    func_80287F50(sp58, &D_803726A0, 0x14);
-    func_80287F10(sp58);
+    animsprite_default(sp58);
+    animsprite_set_steps(sp58, D_803726A0, sizeof(D_803726A0));
+    animsprite_loop(sp58);
     func_80344E18(sp57, 4);
     func_80344EE4(sp57, -2200.0f, -22000.0f);
     func_80344D94(sp57, marker);

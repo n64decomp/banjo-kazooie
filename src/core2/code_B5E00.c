@@ -16,12 +16,12 @@ int __gameFile_8033CD90(s32 filenum){
     void *save_data_ptr;
     save_data_ptr = &gameFile_saveData[filenum];
     i = 3;
-    while(i != 0){
+    do{
         tmp_v1 = savedata_8033CA2C(filenum, save_data_ptr);
         if(!tmp_v1)
             break;
         i--;
-    }
+    }while(i != 0);
     if(tmp_v1)
         savedata_clear(save_data_ptr);
     return tmp_v1;
@@ -32,34 +32,39 @@ void __gameFile_8033CE14(s32 gamenum){
 }
 
 void gameFile_8033CE40(void) {
-    s32 i;
-    s32 var_s0;
-    s32 sp48[4];
+    s32 game_index;
+    s32 file_index;
+    s32 file_state[4];
     
-
+    //unmap all files
     D_80383F04 = -1;
-    sp48[3] = i = 0;
-    if (sp48[3] < 3) {
-        for(i = i; i < 3; i++) {
-            gameFile_GameIdToFileIdMap[i] = -1;
-            sp48[i] = 0;
-            i++; i--; //do nothing
+    file_state[3] = game_index = 0;
+    if (file_state[3] < 3) {
+        for(game_index = game_index; game_index < 3; game_index++) {
+            gameFile_GameIdToFileIdMap[game_index] = -1;
+            file_state[game_index] = 0;
+            game_index++; game_index--; //do nothing
         }
     }
-    for(var_s0 = 0; var_s0 < 4; var_s0++){
-        if( (__gameFile_8033CD90(var_s0) == 0) && (gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].slotIndex - 1] == -1)) {
-            gameFile_GameIdToFileIdMap[gameFile_saveData[var_s0].slotIndex - 1] = var_s0;
-            sp48[var_s0] = 1;
+
+    //map games to files
+    for(file_index = 0; file_index < 4; file_index++){
+        if( (__gameFile_8033CD90(file_index) == 0)
+            && (gameFile_GameIdToFileIdMap[gameFile_saveData[file_index].slotIndex - 1] == -1)
+        ) {
+            gameFile_GameIdToFileIdMap[gameFile_saveData[file_index].slotIndex - 1] = file_index;
+            file_state[file_index] = 1;
         } else {
-            D_80383F04 = var_s0;
+            D_80383F04 = file_index;
         }
     }
-    sp48[D_80383F04] = 1;
-    for(i = 0; i < 3; i++){
-        for(var_s0 = 0; (var_s0 < 4) && (gameFile_GameIdToFileIdMap[i] == -1);  var_s0++){
-            if (sp48[var_s0] == 0) {
-                sp48[var_s0] = 1;
-                gameFile_GameIdToFileIdMap[i] = var_s0;
+    
+    file_state[D_80383F04] = 1;
+    for(game_index = 0; game_index < 3; game_index++){
+        for(file_index = 0; (file_index < 4) && (gameFile_GameIdToFileIdMap[game_index] == -1);  file_index++){
+            if (file_state[file_index] == 0) {
+                file_state[file_index] = 1;
+                gameFile_GameIdToFileIdMap[game_index] = file_index;
             }
         }
     }

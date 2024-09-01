@@ -2,9 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "gc/zoombox.h"
+
 extern void item_set(enum item_e, s32);
 extern void func_8025A55C(s32, s32, s32);
-extern void func_803184C8(gczoombox_t *, f32, s32, s32, f32, bool, bool);
 
 
 typedef struct {
@@ -47,7 +48,7 @@ typedef struct {
     u8 unk18[4];
     s8 unk1C[4];
     s8 unk20[4]; //portrait_id
-    gczoombox_t *unk24[4]; //zoombox
+    GcZoombox *unk24[4]; //zoombox
     Struct_Core2_91E10_1 unk34;
 }Struct_Core2_91E10;
 
@@ -57,50 +58,50 @@ void func_8031A3E4(void);
 
 u8 D_8036D940[] = {
     0,
-    TALK_PIC_11_CHIMPY,
-    TALK_PIC_12_CONGA,
-    TALK_PIC_13_BLUBBER,
-    TALK_PIC_14_NIPPER,
-    TALK_PIC_15_CLANKER,
-    TALK_PIC_16_SNIPPET,
-    TALK_PIC_17_VILE_4,
-    TALK_PIC_18_TIPTUP,
-    TALK_PIC_19_TANKTUP,
-    TALK_PIC_1A_FLIBBIT,
-    TALK_PIC_1B_TRUNKER,
-    TALK_PIC_1C_RUBEE,
-    TALK_PIC_1D_GOBI,
-    TALK_PIC_1E_GRABBA,
-    TALK_PIC_1F_TEEHEE,
-    TALK_PIC_3B_SNACKER,
-    TALK_PIC_3C_ANCIENT_ONE,
-    TALK_PIC_43_BOGGY,
-    TALK_PIC_44_WOZZA,
-    TALK_PIC_5B_CHEATO,
-    TALK_PIC_64_CROC_BANJO,
-    TALK_PIC_35_JUJU,
-    TALK_PIC_34_TERMITE,
-    TALK_PIC_38_LEAKY,
-    TALK_PIC_37_LITTLE_LOCKUP,
-    TALK_PIC_59_BLACK_SNIPPET,
-    TALK_PIC_39_GLOOP,
-    TALK_PIC_40_CROCTUS,
-    TALK_PIC_33_PIRANHA,
-    TALK_PIC_4B_TWINKLY,
-    TALK_PIC_4C_TWINKLY_CHOMPER,
-    TALK_PIC_3F_JINXY,
-    TALK_PIC_45_MOTZHAND,
-    TALK_PIC_5A_LOGGO,
-    TALK_PIC_3E_SNORKEL,
-    TALK_PIC_4E_BOSS_BOOM_BOX,
-    TALK_PIC_50_NABNUT,
-    TALK_PIC_55_ADULT_EEYRIE,
-    TALK_PIC_4D_GNAWTY,
-    TALK_PIC_4F_ZUBBA,
-    TALK_PIC_36_YUMYUM,
-    TALK_PIC_3D_SAND_EEL,
-    TALK_PIC_3A_TIPTUP_CHOIR_MEMBER,
-    TALK_PIC_67_VILE_5,
+    ZOOMBOX_SPRITE_11_CHIMPY,
+    ZOOMBOX_SPRITE_12_CONGA,
+    ZOOMBOX_SPRITE_13_BLUBBER,
+    ZOOMBOX_SPRITE_14_NIPPER,
+    ZOOMBOX_SPRITE_15_CLANKER,
+    ZOOMBOX_SPRITE_16_SNIPPET,
+    ZOOMBOX_SPRITE_17_VILE_4,
+    ZOOMBOX_SPRITE_18_TIPTUP,
+    ZOOMBOX_SPRITE_19_TANKTUP,
+    ZOOMBOX_SPRITE_1A_FLIBBIT,
+    ZOOMBOX_SPRITE_1B_TRUNKER,
+    ZOOMBOX_SPRITE_1C_RUBEE,
+    ZOOMBOX_SPRITE_1D_GOBI,
+    ZOOMBOX_SPRITE_1E_GRABBA,
+    ZOOMBOX_SPRITE_1F_TEEHEE,
+    ZOOMBOX_SPRITE_3B_SNACKER,
+    ZOOMBOX_SPRITE_3C_ANCIENT_ONE,
+    ZOOMBOX_SPRITE_43_BOGGY,
+    ZOOMBOX_SPRITE_44_WOZZA,
+    ZOOMBOX_SPRITE_5B_CHEATO,
+    ZOOMBOX_SPRITE_64_CROC_BANJO,
+    ZOOMBOX_SPRITE_35_JUJU,
+    ZOOMBOX_SPRITE_34_TERMITE,
+    ZOOMBOX_SPRITE_38_LEAKY,
+    ZOOMBOX_SPRITE_37_LITTLE_LOCKUP,
+    ZOOMBOX_SPRITE_59_BLACK_SNIPPET,
+    ZOOMBOX_SPRITE_39_GLOOP,
+    ZOOMBOX_SPRITE_40_CROCTUS,
+    ZOOMBOX_SPRITE_33_PIRANHA,
+    ZOOMBOX_SPRITE_4B_TWINKLY,
+    ZOOMBOX_SPRITE_4C_TWINKLY_CHOMPER,
+    ZOOMBOX_SPRITE_3F_JINXY,
+    ZOOMBOX_SPRITE_45_MOTZHAND,
+    ZOOMBOX_SPRITE_5A_LOGGO,
+    ZOOMBOX_SPRITE_3E_SNORKEL,
+    ZOOMBOX_SPRITE_4E_BOSS_BOOM_BOX,
+    ZOOMBOX_SPRITE_50_NABNUT,
+    ZOOMBOX_SPRITE_55_ADULT_EEYRIE,
+    ZOOMBOX_SPRITE_4D_GNAWTY,
+    ZOOMBOX_SPRITE_4F_ZUBBA,
+    ZOOMBOX_SPRITE_36_YUMYUM,
+    ZOOMBOX_SPRITE_3D_SAND_EEL,
+    ZOOMBOX_SPRITE_3A_TIPTUP_CHOIR_MEMBER,
+    ZOOMBOX_SPRITE_67_VILE_5,
 };
 
 /* .bss */
@@ -332,7 +333,7 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
 void func_803196D0(s32 arg0) {
     gczoombox_open(D_803830E0->unk24[arg0]);
     gczoombox_maximize(D_803830E0->unk24[arg0]);
-    func_80318284(D_803830E0->unk24[arg0], D_803830E0->unk18[D_803830E0->unk1C[arg0]], D_803830E0->unk34.unk0[D_803830E0->unk1C[arg0]]);
+    gczoombox_setStrings(D_803830E0->unk24[arg0], D_803830E0->unk18[D_803830E0->unk1C[arg0]], D_803830E0->unk34.unk0[D_803830E0->unk1C[arg0]]);
 }
 
 //__gcquiz_set_box_highlight
@@ -368,7 +369,7 @@ void func_803197AC(s32 arg0){
         case 1: //80319910
             gczoombox_open(D_803830E0->unk24[0]);
             gczoombox_maximize(D_803830E0->unk24[0]);
-            func_80318284(D_803830E0->unk24[0], D_803830E0->unk18[0], D_803830E0->unk34.unk0[0]);
+            gczoombox_setStrings(D_803830E0->unk24[0], D_803830E0->unk18[0], D_803830E0->unk34.unk0[0]);
             break;
 
         case 2: //8031994C
@@ -583,7 +584,7 @@ bool func_8031A22C(u8 *arg0, s8 *arg1, Struct_Core2_91E10_1 *arg2, s32 arg3, voi
         D_803830E0->unk1C[i] = i;
     }
     if (D_803830E0->unk20[0] != 0) {
-        func_803189C4(D_803830E0->unk24[0], D_803830E0->unk20[0]);
+        gczoombox_loadSprite(D_803830E0->unk24[0], D_803830E0->unk20[0]);
     }
     D_803830E0->unk0 = -1;
     D_803830E0->unk1 = -1;
@@ -639,8 +640,8 @@ void func_8031A4CC(void) {
 
     if (D_803830E0 != NULL) {
         for(i = 0; i < 4; i++){
-            func_80318C0C(D_803830E0->unk24[i]);
-            D_803830E0->unk24[i] = (gczoombox_t *)defrag(D_803830E0->unk24[i]);
+            gczoombox_defrag(D_803830E0->unk24[i]);
+            D_803830E0->unk24[i] = (GcZoombox *)defrag(D_803830E0->unk24[i]);
         }
 
         if (func_8031A3BC() == 0) {

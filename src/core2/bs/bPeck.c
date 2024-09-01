@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "core2/yaw.h"
 
+#include "core2/ba/physics.h"
+
 void baModel_80292048(s32, f32, f32, f32);
 void animctrl_start(AnimCtrl *, char *, s32);
 
@@ -34,15 +36,15 @@ void bsbpeck_init(void){
         case BS_57_BOMB_END:
             break;
     }
-    if(func_80293234() == 1)
-        func_80293240(2);
+    if(bafalldamage_get_state() == 1)
+        bafalldamage_set_state(2);
 
     baanim_playForDuration_onceSmooth(ASSET_1A_ANIM_BSBPECK, 0.2f);
-    func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, 6);
+    func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, BA_PHYSICS_AIRBORN);
     yaw_setVelocityBounded(1200.0f, 10.0f);
     func_8029E070(1);
-    gravity_set(D_80364A60);
-    player_setYVelocity(D_80364A64);
+    baphysics_set_gravity(D_80364A60);
+    baphysics_set_vertical_velocity(D_80364A64);
     baModel_80292048(1, -38.0f, 0.0f, 105.0f);
     baModel_80292048(0, -38.0f, 0.0f, -7.0f);
     baMarker_8028D638(0x23, 0x2A);
@@ -66,7 +68,7 @@ void func_802A664C(void){
     }
     miscflag_set(MISC_FLAG_5_HAS_PECKED);
     func_8030E58C(SFX_42_KAZOOIE_RAH, sp1C);
-    player_setYVelocity(D_80364A64);
+    baphysics_set_vertical_velocity(D_80364A64);
     D_8037D375++;
 }
 
@@ -76,7 +78,7 @@ void bsbpeck_update(void){
 
     func_802B6FA8();
     if(D_8037D377){
-        func_80297970(func_80297A64() * 0.1);
+        baphysics_set_target_horizontal_velocity(baphysics_get_target_horizontal_velocity() * 0.1);
     }
 
     switch(D_8037D374){
@@ -134,5 +136,5 @@ void bsbpeck_end(void){
     baModel_80292048(0, 0.0f, 0.0f, 0.0f);
     baMarker_8028D638(0, 0);
     func_8029E070(0);
-    gravity_reset();
+    baphysics_reset_gravity();
 }

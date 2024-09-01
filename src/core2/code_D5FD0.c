@@ -60,7 +60,7 @@ void func_8035CF60(ActorMarker * marker, s32 arg1) {
     Actor *actor;
 
     actor = marker_getActor(marker);
-    func_80328B8C(actor, 5, 0.0f, 1);
+    subaddie_set_state_with_direction(actor, 5, 0.0f, 1);
     actor_playAnimationOnce(actor);
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     actor_collisionOff(actor);

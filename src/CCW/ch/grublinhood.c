@@ -36,11 +36,11 @@ typedef struct {
     f32 unk3C;
 } ActorLocal_CCW_8050;
 
-void func_8038E964(Actor *this);
-Actor *func_8038E56C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chgrublinhood_update(Actor *this);
+Actor *chgrublinhood_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorAnimationInfo D_8038F930[] = {
+ActorAnimationInfo chGrublinHood_animations[] = {
     {0x000, 0.0f},
     {0x243, 4.0f},
     {0x243, 0.7f},
@@ -54,15 +54,15 @@ ActorAnimationInfo D_8038F930[] = {
     {0x243, 1e+06f}
 };
 
-ActorInfo D_8038F988 = {
+ActorInfo chGrublinHood = {
     MARKER_1E2_GRUBLIN_HOOD, ACTOR_375_GRUBLIN_HOOD, ASSET_52C_MODEL_GRUBLIN_HOOD,
-    0x1, D_8038F930,
-    func_8038E964, func_80326224, func_8038E56C,
+    0x1, chGrublinHood_animations,
+    chgrublinhood_update, func_80326224, chgrublinhood_draw,
     2500, 0, 1.0f, 0
 };
 
 /* .code */
-void func_8038E440(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
+void __chgrublinhood_emitHat(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
     static struct43s D_8038F9AC = {
         {{-200.0f,   200.0f, -200.0f}, {200.0f,   400.0f, 200.0f}},
         {{   0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}},
@@ -78,21 +78,21 @@ void func_8038E440(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
     particleEmitter_emitN(pCtrl, 1);
 }
 
-void func_8038E4C0(ActorMarker* marker, s32 arg1) {
+void __chgrublinhood_die(ActorMarker* marker, s32 arg1) {
     Actor* actor = marker_getActor(marker);
     ParticleEmitter *pCtrl;
 
-    func_80328B8C(actor, 5, 0.0f, 1);
+    subaddie_set_state_with_direction(actor, 5, 0.0f, 1);
     actor_playAnimationOnce(actor);
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     pCtrl = partEmitMgr_newEmitter(1);
-    func_8038E440(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
+    __chgrublinhood_emitHat(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
     __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);
     actor->unk138_24 = 1;
 }
 
-Actor *func_8038E56C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chgrublinhood_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_CCW_8050 *local;
 
@@ -113,9 +113,8 @@ Actor *func_8038E56C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void func_8038E868(Actor *this){
+void __chgrublinhood_initialize(Actor *this){
     ActorLocal_CCW_8050 *local = (ActorLocal_CCW_8050 *)&this->local;
-
 
     local->unk8 = 6;
     local->unk9 = 0xC;
@@ -126,14 +125,14 @@ void func_8038E868(Actor *this){
     local->unk12 = 25000;
     local->unkC_28 = 1;
     local->unk30 = func_802DB548;
-    local->unk34 = func_8038E4C0;
+    local->unk34 = __chgrublinhood_die;
     local->unk0 = 5.0f;
     local->unk4 = 8.0f;
     local->unk14 = 1.0f;
     local->unk3C = 1.5f;
 }
 
-enum ccw_season_e func_8038E8FC(Actor *this){
+enum ccw_season_e __get_current_season(Actor *this){
     switch(map_get()){
         case MAP_43_CCW_SPRING: //// 8038E930
         case MAP_4A_CCW_SPRING_MUMBOS_SKULL:// 8038E930
@@ -171,15 +170,15 @@ enum ccw_season_e func_8038E8FC(Actor *this){
     }
 }
 
-void func_8038E964(Actor *this) {
+void chgrublinhood_update(Actor *this) {
     ActorLocal_CCW_8050 *local;
     f32 temp_a0;
     
     local = (ActorLocal_CCW_8050 *)&this->local;
 
     if (!this->unk16C_4) {
-        func_8038E868(this);
-        local->season = func_8038E8FC(this);
+        __chgrublinhood_initialize(this);
+        local->season = __get_current_season(this);
     }
 
     if(local->season < 4){

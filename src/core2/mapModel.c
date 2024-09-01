@@ -343,7 +343,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         }
         modelRender_setEnvColor(mapModel.env_red, mapModel.env_green, mapModel.env_blue, 0xFF);
         modelRender_draw(gfx, mtx, NULL, NULL, mapModel.description->scale, NULL, mapModel.model_bin_opa);
-        if (!func_80309F78()) {
+        if (!mapModel_has_xlu_bin()) {
             func_802F7BC0(gfx, mtx, vtx);
         }
     }
@@ -498,7 +498,7 @@ BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFil
 }
 
 bool func_80309D58(f32 arg0[3], UNK_TYPE(s32) arg1) {
-    BKMeshList *temp_v0;
+    BKModelUnk14List *temp_v0;
 
     temp_v0 = func_8033A12C(mapModel.model_bin_opa);
     if (temp_v0 != NULL) {
@@ -539,7 +539,7 @@ UNK_TYPE(s32) func_80309EB0(f32 arg0[3], f32 arg1, f32 arg2[3], s32 arg3) {
     return (temp_v0_2 != 0) ? temp_v0_2 : sp24;
 }
 
-bool func_80309F78(void) {
+bool mapModel_has_xlu_bin(void) {
     return (mapModel.model_bin_opa != NULL) && (mapModel.model_bin_xlu != NULL);
 }
 

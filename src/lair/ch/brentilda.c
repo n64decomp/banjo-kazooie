@@ -51,7 +51,7 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
         func_80311480(0xD38, 0xC, this->position, this->marker, func_8038BADC, NULL);
         return;
     }
-    func_80328A84(this, 1);
+    subaddie_set_state(this, 1);
 }
 
 void func_8038BBC0(Actor *this) {
@@ -69,7 +69,7 @@ void func_8038BC24(void) {
     s32 phi_s1;
 
     if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !func_803203FC(0x62)) {
-        func_8034A8BC(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
+        rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
         for(phi_s1 = 0; phi_s1 < func_8031A45C(3); phi_s1++){
             phi_s0 = 0x26 + 2*phi_s1;
                 temp_v0 = randi2(0, 3);
@@ -181,14 +181,14 @@ void chBrentilda_update(Actor *this) {
             if (!fileProgressFlag_get(FILEPROG_96_MET_BRENTILDA)) {
                 func_80311480(ASSET_10A1_DIALOG_BRENTILDA_MEET, 0xA, this->position, this->marker, func_8038BADC, NULL);
                 fileProgressFlag_set(FILEPROG_96_MET_BRENTILDA, TRUE);
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 return;
             }
             if (func_8028EFC8() && (sp78[FACE_BUTTON(BUTTON_B)] == 1)) {
                 this->unk10_12++;
                 this->unk10_12 %= 3;
                 func_80311174(local->unk0 + this->unk10_12, 0xB, this->position, this->marker, func_8038BADC, NULL, func_8038BA30);
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 return;
             }
         } else {
@@ -197,13 +197,13 @@ void chBrentilda_update(Actor *this) {
         break;
     case 2:
         if (actor_animationIsAt(this, 0.999f)) {
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
             return;
         }
         break;
     case 3:
         if (actor_animationIsAt(this, 0.999f)) {
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
         }
         break;
     }

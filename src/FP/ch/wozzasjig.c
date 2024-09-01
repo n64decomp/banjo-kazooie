@@ -51,7 +51,7 @@ void func_8038FF54(Actor *this){
         other = marker_getActor(this->unk100);
         if(this->state != 9){
             if(other->state == 9){
-                func_80328B8C(this, 9, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 9, 0.01f, 1);
                 actor_playAnimationOnce(this);
             }
             else{
@@ -75,7 +75,7 @@ void func_8038FF54(Actor *this){
             sp40[1] = (f32)(s32)sp40[1];
             sp40[2] = (f32)(s32)sp40[2];
             func_802C8F70(this->yaw + 90.0f);
-            jiggySpawn(JIGGY_32_FP_WOZZA, sp40);
+            jiggy_spawn(JIGGY_32_FP_WOZZA, sp40);
             levelSpecificFlags_set(0x26, TRUE);
             marker_despawn(this->marker);
        }

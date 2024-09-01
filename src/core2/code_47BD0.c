@@ -2,12 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "code_C9E70.h"
 
 extern void func_8030DBFC(u32, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern void fileProgressFlag_set(s32, bool);
-extern void func_8030DEB4(u8, f32, f32);
-extern void func_8030DF68(u8, f32[3]);
+extern void sfxsource_set_fade_distances(u8, f32, f32);
+extern void sfxsource_set_position(u8, f32[3]);
 extern void func_8030E2C4(u8);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void ml_vec3f_normalize(f32[3]);
@@ -39,14 +40,13 @@ Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 
 /* .data */
-ActorInfo D_80367310 = {MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPRITE_BEE_SWARM, 
+ActorInfo D_80367310 = {
+    MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPRITE_BEE_SWARM, 
     1, NULL, 
     chBeeSwarm_update, NULL, chBeeSwarm_draw,
     0, 0, 1.0f, 0
 }; 
 
-
-/* .bss */
 extern s32 D_8037DCBC;
 
 /* .code */
@@ -250,7 +250,7 @@ void chBeeSwarm_802CF518(Actor *this) {
         && func_8028EE84() == BSWATERGROUP_0_NONE 
         && player_getTransformation() != TRANSFORM_6_BEE
     ) {
-        func_80328A84(this, 3);
+        subaddie_set_state(this, 3);
     }
 }
 
@@ -259,7 +259,7 @@ void chBeeSwarm_802CF57C(Actor *this) {
 
     local = (ActorLocal_core2_47BD0 *) &this->local;
     if (!func_803292E0(this) || !func_80329530(this, 900) || func_8028EE84() != BSWATERGROUP_0_NONE) {
-        func_80328A84(this, 5);
+        subaddie_set_state(this, 5);
         func_802CEF54(this, local->unkC, 100.0f);
     }
 }
@@ -308,8 +308,8 @@ void chBeeSwarm_update(Actor *this) {
     Actor *beehive;
     ActorLocal_core2_47BD0 *local = (ActorLocal_core2_47BD0 *)&this->local;
     f32 spB4[3];
-    f32 spB0;
-    f32 spAC;
+    f32 distance_to_home;
+    f32 dt;
     f32 spA0[3];
     f32 position[3];
     f32 next_position[3];
@@ -318,13 +318,13 @@ void chBeeSwarm_update(Actor *this) {
     f32 temp_f0;
     f32 sp68[3];
     
-    spAC = time_getDelta();
+    dt = time_getDelta();
     sp78 = 0;
     if (!this->initialized) {
         this->initialized = TRUE;
-        beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+        beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &distance_to_home);
         this->unk100 = (beehive != NULL) ? beehive->marker : NULL;
-        if(500.0f < spB0){
+        if(500.0f < distance_to_home){
             this->unk100 = NULL;
         }
         sp78 = 1;
@@ -360,13 +360,13 @@ void chBeeSwarm_update(Actor *this) {
         actor_collisionOff(this);
         local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);
         if (sp78 == 0) {
-            beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+            beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &distance_to_home);
             if (beehive != NULL) {
                 this->unk100 = beehive->marker;
             } else {
                 this->unk100 = NULL;
             }
-            if (spB0 > 500.0f) {
+            if (distance_to_home > 500.0f) {
                 this->unk100 = NULL;
             }
         }
@@ -375,7 +375,7 @@ void chBeeSwarm_update(Actor *this) {
         if (this->unk100 != NULL) {
             fileProgressFlag_set(FILEPROG_D_BEEHIVE_TEXT, TRUE);
         }
-        func_80328A84(this, (this->unk100 != NULL) ? 1 : 2);
+        subaddie_set_state(this, (this->unk100 != NULL) ? 1 : 2);
         this->unk60 = 0.0f;
         chBeeSwarm_802CF040(this);
         this->unk38_0 = func_803203FC(1) | func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
@@ -400,9 +400,9 @@ void chBeeSwarm_update(Actor *this) {
     position[0] = this->position[0];
     position[1] = this->position[1];
     position[2] = this->position[2];
-    next_position[0] = this->position[0] + (this->velocity[0] * spAC);
-    next_position[1] = this->position[1] + (this->velocity[1] * spAC);
-    next_position[2] = this->position[2] + (this->velocity[2] * spAC);
+    next_position[0] = this->position[0] + (this->velocity[0] * dt);
+    next_position[1] = this->position[1] + (this->velocity[1] * dt);
+    next_position[2] = this->position[2] + (this->velocity[2] * dt);
     if (this->state != 7) {
         if (func_80309DBC(position, next_position, 75.0f, sp7C, 3, 0)) {
             ml_vec3f_normalize(sp7C);
@@ -415,7 +415,7 @@ void chBeeSwarm_update(Actor *this) {
             this->unk1C[2] = this->position[2] + sp7C[2] * 37.5;
             if (this->state != 6) {
                 local->unk6 = this->state;
-                func_80328A84(this, 6);
+                subaddie_set_state(this, 6);
             }
         }
         chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->unk28, 100.0f, 0, &spA0);
@@ -437,7 +437,7 @@ void chBeeSwarm_update(Actor *this) {
                 if (this->state != 7) {
                     local->unk7 = this->state;
                     local->unk4 = local->unk0;
-                    func_80328A84(this, 7);
+                    subaddie_set_state(this, 7);
                 }
             }
         }
@@ -453,7 +453,7 @@ void chBeeSwarm_update(Actor *this) {
             fileProgressFlag_set(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE, TRUE);
         }
         if (chBeeSwarm_802CF5E4(this)) {
-            func_80328A84(this, 2U);
+            subaddie_set_state(this, 2U);
         }
         if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, local->unkC, 100.0f);
@@ -473,13 +473,13 @@ void chBeeSwarm_update(Actor *this) {
         this->unk28 = 400.0f;
         if (ml_distance_vec3f(this->position, this->unk1C) < 100.0f) {
             func_802CEF54(this, spB4, 50.0f);
-            func_80328A84(this, 4);
+            subaddie_set_state(this, 4);
         }
         chBeeSwarm_802CF57C(this);
         break;
     case 4:
         spB4[1] += 50.0f;
-        this->unk60 += spAC;
+        this->unk60 += dt;
         if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
             func_8028F504(0xD);
             this->unk60 -= 0.5;
@@ -500,19 +500,19 @@ void chBeeSwarm_update(Actor *this) {
             func_802CEF54(this, (s32 *) spB4, 50.0f);
         }
         if (ml_distance_vec3f(this->position, spB4) > 100.0f) {
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
         }
         chBeeSwarm_802CF57C(this);
         break;
     case 5:
         if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
         }
         chBeeSwarm_802CF518(this);
         break;
     case 6:
         if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
-            func_80328A84(this, local->unk6);
+            subaddie_set_state(this, local->unk6);
         }
         break;
     case 7:
@@ -525,7 +525,7 @@ void chBeeSwarm_update(Actor *this) {
             if (local->unk0 < local->unk4) {
                 local->unk0++;
             } else {
-                func_80328A84(this, local->unk7);
+                subaddie_set_state(this, local->unk7);
             }
         }
         break;
@@ -544,8 +544,8 @@ void chBeeSwarm_update(Actor *this) {
                 ((this->state == 3) || (this->state == 4)) ? 1.1 : 0.9, 
                 0.05f
             );
-            func_8030DEB4(this->unk44_31, 500.0f, 1500.0f);
-            func_8030DF68(this->unk44_31, this->position);
+            sfxsource_set_fade_distances(this->unk44_31, 500.0f, 1500.0f);
+            sfxsource_set_position(this->unk44_31, this->position);
             func_8030E2C4(this->unk44_31);
             sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
         }

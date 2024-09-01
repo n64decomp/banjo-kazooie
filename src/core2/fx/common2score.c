@@ -131,8 +131,8 @@ struct8s D_80369960[] = {
 void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 tmp_s2 = 0;
     s32 tmp_s4;
-    s32 spAC;
-    s32 spA8;
+    s32 texture_width;
+    s32 texture_height;
     f32 tmp_f26;
     f32 f2;
 
@@ -148,15 +148,15 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(arg0->unk20 == ITEM_0_HOURGLASS_TIMER){
         tmp_s2 = 0xC;
     }
-    func_80347FC0(gfx, arg0->unk50, ((s32)arg0->unk60 + tmp_s2)%arg0->unk2C, 0, 0, 0, 0, 2, 2, &spAC, &spA8);
-    tmp_f26 = (arg0->unk20 == ITEM_0_HOURGLASS_TIMER && spAC == 0x10) ? 1.0f : 0.0f;
+    func_80347FC0(gfx, arg0->unk50, ((s32)arg0->unk60 + tmp_s2)%arg0->unk2C, 0, 0, 0, 0, 2, 2, &texture_width, &texture_height);
+    tmp_f26 = (arg0->unk20 == ITEM_0_HOURGLASS_TIMER && texture_width == 0x10) ? 1.0f : 0.0f;
     for(tmp_s4 = 0; tmp_s4 < 2; tmp_s4++){//L802FD528
         for(tmp_s2 = 0; tmp_s2 < 2; tmp_s2++){//
-            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((spAC*arg0->unk40*tmp_s2 - spAC*arg0->unk40/2) - (f32)framebuffer_width/2) + arg0->unk38)) + tmp_f26) * 4.0f;
-            (*vtx)->v.ob[1] =  ((((spA8*arg0->unk40/2 - spA8*arg0->unk40*tmp_s4) + (f32)framebuffer_height/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
+            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((texture_width*arg0->unk40*tmp_s2 - texture_width*arg0->unk40/2) - (f32)framebuffer_width/2) + arg0->unk38)) + tmp_f26) * 4.0f;
+            (*vtx)->v.ob[1] =  ((((texture_height*arg0->unk40/2 - texture_height*arg0->unk40*tmp_s4) + (f32)framebuffer_height/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
             (*vtx)->v.ob[2] = -0x14;
-            (*vtx)->v.tc[0] =  ((spAC -1) * tmp_s2) << 6;
-            (*vtx)->v.tc[1] =  ((spA8 -1) * tmp_s4) << 6;
+            (*vtx)->v.tc[0] =  ((texture_width -1) * tmp_s2) << 6;
+            (*vtx)->v.tc[1] =  ((texture_height -1) * tmp_s4) << 6;
             if(arg0->unk20 == ITEM_C_NOTE){
                 if(tmp_s4 == 0){
                     (*vtx)->v.cn[0] = 0xff;

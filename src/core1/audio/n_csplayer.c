@@ -51,7 +51,7 @@ void		__n_seqpReleaseVoice(ALSeqPlayer *seqp, ALVoice *voice, ALMicroTime deltaT
  *      1       Fine Tuning
  *      2       Coarse Tuning
  */
-void func_8025D7C0(ALCSPlayer *seqp);
+void __n_CSPPostNextSeqEvent(ALCSPlayer *seqp);
 
 static ALMicroTime      __n_CSPVoiceHandler(void *node);
 static void		__CSPHandleNextSeqEvent(ALCSPlayer *seqp);
@@ -232,7 +232,7 @@ static ALMicroTime __n_CSPVoiceHandler(void *node)
 	    {
 		seqp->state = AL_PLAYING;
         func_80250650();    
-		func_8025D7C0(seqp);	/* seqp must be AL_PLAYING before we call this routine. */
+		__n_CSPPostNextSeqEvent(seqp);	/* seqp must be AL_PLAYING before we call this routine. */
 	    }
 	    break;
 
@@ -344,7 +344,7 @@ static ALMicroTime __n_CSPVoiceHandler(void *node)
  is no target sequence.
  sct 11/7/95
 */
-void func_8025D7C0(ALCSPlayer *seqp) 
+void __n_CSPPostNextSeqEvent(ALCSPlayer *seqp) 
 {
     ALEvent     evt;
     s32		deltaTicks;
@@ -383,12 +383,12 @@ __CSPHandleNextSeqEvent(ALCSPlayer *seqp)
     {
       case AL_SEQ_MIDI_EVT:
           __n_CSPHandleMIDIMsg(seqp, &evt);
-	  func_8025D7C0(seqp);
+	  __n_CSPPostNextSeqEvent(seqp);
 	  break;
 
       case AL_TEMPO_EVT:
           __CSPHandleMetaMsg(seqp, &evt);
-	  func_8025D7C0(seqp);
+	  __n_CSPPostNextSeqEvent(seqp);
 	  break;
 
       case AL_SEQ_END_EVT:
@@ -400,7 +400,7 @@ __CSPHandleNextSeqEvent(ALCSPlayer *seqp)
       case AL_TRACK_END:
       case AL_CSP_LOOPSTART:
       case AL_CSP_LOOPEND:
-	  func_8025D7C0(seqp);
+	  __n_CSPPostNextSeqEvent(seqp);
 	  break;
 	  
       default:

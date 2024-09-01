@@ -696,9 +696,9 @@ void func_802AADBC(void);
 void func_802AAE08(void);
 void func_802AAE4C(void);
 
-void func_802AEDE8(void);
-void func_802AEE48(void);
-void func_802AEE9C(void);
+void bsDroneGoTo_init(void);
+void bsDroneGoTo_update(void);
+void bsDroneGoTo_end(void);
 void bsDroneLook_init(void);
 void bsDroneLook_update(void);
 void bsDroneLook_end(void);

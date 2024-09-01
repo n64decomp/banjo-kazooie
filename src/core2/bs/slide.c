@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 /* .bss */
 s32 D_8037D520;
 s32 D_8037D524;
@@ -66,11 +68,11 @@ void bsslide_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_setDuration(aCtrl, 1.0f);
     animctrl_start(aCtrl, "bsslide.c", 0x7f);
-    func_8029C7F4(1,1,3,3);
-    func_8029797C(yaw_getIdeal());
-    func_802979AC(yaw_getIdeal() ,func_80297A64());
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_horizontal_velocity(yaw_getIdeal() ,baphysics_get_target_horizontal_velocity());
     pitch_setAngVel(800.0f, 8.0f);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_80299AAC();
     D_8037D524 = 0;
     D_8037D528 = 1.0f;
@@ -95,10 +97,10 @@ void bsslide_update(void){
                 yaw_setIdeal(sp2C);
                 pitch_setIdeal(sp28);
             }
-            func_80297970(ml_map_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));
-            func_8029797C(sp2C);
+            baphysics_set_target_horizontal_velocity(ml_map_f(sp28,20.0f, 60.0f, 550.0f, 700.0f));
+            baphysics_set_target_yaw(sp2C);
         }else{
-            func_80297970(500.0f);
+            baphysics_set_target_horizontal_velocity(500.0f);
         }
         func_802B40D0();
     }else{//L802B44C4

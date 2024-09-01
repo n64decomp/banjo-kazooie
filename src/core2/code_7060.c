@@ -5,13 +5,15 @@
 
 #include "prop.h"
 #include "enums.h"
+#include "core2/ba/carry.h"
+#include "core2/ba/drone.h"
+#include "core2/ba/physics.h"
 
+#include "snackerctl.h"
 
 extern bool player_isInHorizontalRadius(f32[3], f32);
 extern bool player_isInVerticalRange(f32[3], f32);
-extern enum bs_e func_80292658(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3);
 extern void miscflag_clear(s32);
-extern void func_80294924(f32, f32);
 extern void func_80295A8C(void);
 extern void climbSet(f32[3], f32[3], f32, u32);
 extern void func_80296C90(f32);
@@ -147,7 +149,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         func_8028E060(arg0, &sp6C);
         yaw_setIdeal((f32) sp6C);
         yaw_applyIdeal();
-        bs_setState(func_80292658(&sp7C, 1.0f, func_8028E0B0, NULL));
+        bs_setState(badrone_goto(sp7C, 1.0f, func_8028E0B0, NULL));
         return;
     }
     func_8028F85C(&sp7C);
@@ -284,13 +286,13 @@ void func_8028E84C(f32 arg0[3]){
 }
 
 ActorMarker *func_8028E86C(void){
-    return carriedobj_getMarker();
+    return bacarry_get_marker();
 }
 
-enum marker_e carriedObj_getMarkerId(void){
+enum marker_e bacarry_get_markerId(void){
     ActorMarker *marker;
 
-    marker = carriedobj_getMarker();
+    marker = bacarry_get_marker();
     if(marker){
         return marker->unk14_20;
     }
@@ -301,7 +303,7 @@ enum actor_e carriedObj_getActorId(void){
     ActorMarker *marker;
     Actor *actor;
 
-    marker = carriedobj_getMarker();
+    marker = bacarry_get_marker();
     
     if(marker != NULL){
         actor = marker_getActor(marker);
@@ -539,7 +541,7 @@ BKCollisionTri *func_8028EF48(void){
 }
 
 void player_getVelocity(f32 dst[3]){
-    _get_velocity(dst);
+    baphysics_get_velocity(dst);
 }
 
 f32 func_8028EF88(void){
@@ -679,11 +681,11 @@ void ability_unlock(enum ability_e uid){
 }
 
 void func_8028F3D8(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3){
-    bs_setState(func_80292658(arg0, arg1, arg2, arg3));
+    bs_setState(badrone_goto(arg0, arg1, arg2, arg3));
 }
 
 void func_8028F408(f32 arg0[3]){
-    func_80297BC4(arg0);
+    baphysics_set_goto_position(arg0);
 }
 
 bool func_8028F428(s32 arg0, ActorMarker *marker) {
@@ -800,7 +802,7 @@ void func_8028F7C8(bool arg0){
 }
 
 void func_8028F7D4(f32 arg0, f32 arg1){
-    func_80294924(arg0, arg1);
+    bacarry_set_offsets(arg0, arg1);
 }
 
 void func_8028F7F4(s32 arg0, s32 arg1){}
@@ -817,7 +819,7 @@ void func_8028F800(s32 arg0[3]){
 void func_8028F85C(f32 arg0[3]){
     func_80298464(arg0);
     func_80293F0C();
-    func_8028A8D0();
+    snackerctl_update();
     func_8028B71C();
     func_80290B6C();
     cameraMode_update();
@@ -903,7 +905,7 @@ void func_8028FAEC(f32 rotation[3]){
 }
 
 void func_8028FB28(void){
-    func_802948E0();
+    bacarry_reset_marker();
 }
 
 void func_8028FB48(u32 mask){

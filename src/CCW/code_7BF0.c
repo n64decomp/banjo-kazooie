@@ -21,12 +21,12 @@ ActorInfo D_8038F908 = {
 
 /* .code */
 void func_8038DFE0(Actor* actor) {
-    func_80328B8C(actor, 1, 0.001f, 1);
+    subaddie_set_state_with_direction(actor, 1, 0.001f, 1);
     actor->unk38_31 = randi2(0, 0);
 }
 
 void CCW_func_8038E034(Actor* actor) {
-    func_80328B8C(actor, 2, 0.001f, 1);
+    subaddie_set_state_with_direction(actor, 2, 0.001f, 1);
 }
 
 void func_8038E060(s32 arg0, ActorMarker *marker){

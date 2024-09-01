@@ -3,8 +3,9 @@
 #include "variables.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
-extern ActorMarker *carriedobj_getMarker(void);
+extern ActorMarker *bacarry_get_marker(void);
 
 /* .bss */
 u8 D_8037D580;
@@ -22,9 +23,9 @@ void bsthrow_init(void){
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_802978DC(3);
-    func_80297970(0.0f);
-    func_80297A0C(0);
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_horizontal_velocity(0.0f);
+    baphysics_set_velocity(0);
     D_8037D580 = 0;
 }
 
@@ -34,10 +35,10 @@ void bsthrow_update(void){
     f32 sp34[3];
     f32 player_position[3];
     f32 sp24;
-    ActorMarker *sp20 = carriedobj_getMarker();
+    ActorMarker *sp20 = bacarry_get_marker();
 
     if(D_8037D580 == 0 && sp20 != NULL)
-        func_802948F8(sp20);
+        bacarry_set_marker(sp20);
 
     _player_getPosition(player_position);
     get_throw_target_position(sp34);

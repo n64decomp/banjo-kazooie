@@ -8,7 +8,7 @@ void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
 void func_8030DA44(u8);
 void timed_exitStaticCamera(f32);
-void func_80328B8C(Actor *, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 //static types
 typedef struct sm_2900_struct{
@@ -126,7 +126,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             other = subaddie_getLinkedActor(this);
             myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
-                func_80328B8C(other, 3, 0.0001f, 1);
+                subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
             actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
             sfxsource_setSfxId(this->unk44_31, 0x3f9);
@@ -150,7 +150,7 @@ void func_80388FA0(Actor *this, s32 arg1){
              other = subaddie_getLinkedActor(this);
              myOther = this->unk100;
             if(myOther && other && myOther->unk14_20 == 0xB8)
-                 func_80328B8C(other, 2, 0.0001f, 1);
+                 subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
             animctrl_setSmoothTransition(this->animctrl, 1);
             actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
@@ -162,7 +162,7 @@ void func_80388FA0(Actor *this, s32 arg1){
             func_8028F94C(2, this->position);
             break;
     }
-    func_80328B8C(this, arg1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
 }
 
 void func_80389214(ActorMarker *marker, enum asset_e text_id, s32 arg2){

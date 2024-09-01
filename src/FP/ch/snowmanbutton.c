@@ -50,7 +50,7 @@ void FP_func_80386BEC(Actor *this){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(12);
     
     player_getPosition(plyr_pos);
-    func_80328B8C(this, 2, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.01f, 1);
     actor_collisionOff(this);
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     FUNC_8030E624(SFX_90_SWITCH_PRESS, 1.0f, 32000);
@@ -93,7 +93,7 @@ void FP_func_80386CF8(Actor *this){
             break;
         case 2:
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 3, 0.99f, 0);
+                subaddie_set_state_with_direction(this, 3, 0.99f, 0);
             }
             break;
         case 3:

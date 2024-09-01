@@ -79,7 +79,7 @@ void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
     func_8030AFA0(map_get());
     func_803204E4(0xc4, 1);
     func_8024F224();
-    func_8034A6B4();
+    rand_reset();
     func_8023DB68();
 }//*/
 

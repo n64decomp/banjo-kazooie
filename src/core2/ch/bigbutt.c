@@ -52,19 +52,19 @@ void func_802C5EB8(Actor *this){
     }
     else{
         if(func_80329530(this, 1200) && func_803292E0(this)){
-            func_80328A84(this, 8);
+            subaddie_set_state(this, 8);
         }
     }
 }
 
 void func_802C5F44(Actor *this){
     if(!func_80329530(this, 1200) || !func_803292E0(this)){
-        func_80328B8C(this, 1, 0.16f, 1);
+        subaddie_set_state_with_direction(this, 1, 0.16f, 1);
     }
 }
 
 void func_802C5F94(Actor *this){
-    func_80328A84(this, 2);
+    subaddie_set_state(this, 2);
     func_802C5E80(this);
     func_80328CEC(this, (s32)this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
@@ -87,14 +87,14 @@ void func_802C60AC(ActorMarker *marker, ActorMarker *other_marker){
         && func_803294F0(actor, 80, func_80329784(actor))
     ){
         animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
-        func_80328A84(actor, 5);
+        subaddie_set_state(actor, 5);
         func_8030E58C(SFX_1E_HITTING_AN_ENEMY_2, 1.0f);
     }
 }
 
 void func_802C6150(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    func_80328AC8(actor, 0xC);
+    subaddie_set_state_forward(actor, 0xC);
     func_8030E878(SFX_2B_BULL_MOO_1, randf2(1.28f, 1.37f), 32000, actor->position, 0.0f, 2000.0f);
 }
 
@@ -104,7 +104,7 @@ void func_802C61C0(ActorMarker *marker, ActorMarker *other_marker){
         && actor->state != 0xe
         && actor->state != 0xf
     ){
-        func_80328AC8(actor, 0xd);
+        subaddie_set_state_forward(actor, 0xd);
         FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
         FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
     }
@@ -147,7 +147,7 @@ void func_802C6240(Actor *this){
             func_802C5FF8(this);
             if( func_8032863C(this->animctrl, 0.65f, 0.99f) >= 2 
                 && !func_80328A2C(this, 0.0f, -1, 0.45f)
-                && func_80328BD4(this, 2, 0.0f, -1, 0.58f)
+                && subaddie_maybe_set_state_position_direction(this, 2, 0.0f, -1, 0.58f)
             ){
                 func_80328CEC(this, (s32)this->yaw, 10, 45);
                 func_802C5E80(this);
@@ -165,11 +165,11 @@ void func_802C6240(Actor *this){
                 func_80328CEC(this, (s32)this->yaw_ideal, 10, 20);
             
             if(!(func_8023DB5C() & 0x7))
-                func_80328BD4(this, 1, 0.16f, 1, 0.02f);
+                subaddie_maybe_set_state_position_direction(this, 1, 0.16f, 1, 0.02f);
             
             if( !(func_8023DB5C() & 0xf)
                 && func_80329078(this, (s32)this->yaw_ideal, 150)
-                && func_80328B38(this, 3, 0.13f)
+                && subaddie_maybe_set_state(this, 3, 0.13f)
             ){
                 this->unk28 = randf2(7.1f, 8.4f);
             }
@@ -181,17 +181,17 @@ void func_802C6240(Actor *this){
             this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 4.0f);
             if(func_80329480(this))
-                func_80328A84(this, 6);
+                subaddie_set_state(this, 6);
             break;
 
         case 0x3: //L802C6620
             func_80328FB0(this, 3.0f);
             if(! func_80329030(this, 0) && func_80329480(this)){
                 func_80328CEC(this, (s32)this->yaw, 120, 180);
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 func_802C5E80(this);
             }
-            if(!(func_8023DB5C() & 0xf) && func_80328B38(this, 2, 0.08f))
+            if(!(func_8023DB5C() & 0xf) && subaddie_maybe_set_state(this, 2, 0.08f))
                 func_802C5E80(this);
             func_802C5EB8(this);
             break;
@@ -200,7 +200,7 @@ void func_802C6240(Actor *this){
             animctrl_setDuration(this->animctrl, D_80366010[6].duration - (3 - this->unk10_12)*0.1085);
             this->yaw_ideal = (f32)func_80329784(this);
             if(!func_803294B4(this, 0x21)){
-                func_80328A84(this, 8);
+                subaddie_set_state(this, 8);
             }
             func_802C5F44(this);
             if(actor_animationIsAt(this, 0.35f) && func_8028EE84() != BSWATERGROUP_2_UNDERWATER){
@@ -211,7 +211,7 @@ void func_802C6240(Actor *this){
                 func_802C5F94(this);
 
             if(this->unk10_12 == 0 || (this->unk10_12 < 3 && func_80329530(this, 300))){
-                func_80328A84(this, 9);
+                subaddie_set_state(this, 9);
                 this->unk28 = 13.0f;
             }
             break;
@@ -232,7 +232,7 @@ void func_802C6240(Actor *this){
             if(func_80329530(this, 320)){
                 if(func_80329078(this, (s32)this->yaw_ideal,200)){
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
-                    func_80328A84(this, 4);
+                    subaddie_set_state(this, 4);
                     this->unk28  += 5.7;
                     tmp_a0 = this->unk44_31;
                     if(this->unk44_31 == 0){
@@ -261,7 +261,7 @@ void func_802C6240(Actor *this){
                 func_80329878(this, func_80329530(this, 250)? 0.8: 1.2);
                 if(0.0f == this->unk28){
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
-                    func_80328B8C(this, 1, 0.65f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                     func_8030DA44(this->unk44_31);
                     this->unk44_31 = 0;
                     func_8030E484(SFX_19_BANJO_LANDING_08);
@@ -282,7 +282,7 @@ void func_802C6240(Actor *this){
         case 0xc: //L802C6BDC
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                func_80328B8C(this, 1, 0.65f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                 actor_loopAnimation(this);
             }
             break;
@@ -290,7 +290,7 @@ void func_802C6240(Actor *this){
         case 0xd: //L802C6C28
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                func_80328B8C(this, 0xe, 0.99f, 1);
+                subaddie_set_state_with_direction(this, 0xe, 0.99f, 1);
                 this->unk60 = 4.0f;
             }
             break;
@@ -300,7 +300,7 @@ void func_802C6240(Actor *this){
             this->unk60 -= time_getDelta();
             if(this->unk60 <= 0.0f){
                 this->unk166 = 0x63;
-                func_80328AC8(this, 0xF);
+                subaddie_set_state_forward(this, 0xF);
             }
 
             break;
@@ -308,7 +308,7 @@ void func_802C6240(Actor *this){
         case 0xf: //L802C6CD4
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                func_80328B8C(this, 1, 0.65f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                 actor_loopAnimation(this);
             }
             break;

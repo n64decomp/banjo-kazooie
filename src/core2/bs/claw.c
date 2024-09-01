@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "core2/ba/physics.h"
 
 
 void func_802915CC(f32);
@@ -17,9 +17,9 @@ int bsclaw_hitboxActive(void){
 
 void bsclaw_init(void){
     baanim_playForDuration_once(ASSET_5_ANIM_BSPUNCH, 1.3f);
-    func_8029C7F4(1,1,3,3);
-    func_8029797C(yaw_getIdeal());
-    func_80297970(160.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_target_horizontal_velocity(160.0f);
     func_802915CC(80.0f);
     _bsclawHitboxActive = 0;
 }
@@ -37,7 +37,7 @@ void bsclaw_update(void){
               || animctrl_isAt(aCtrl, 0.5788f)
               || (0.4788 < sp24 && sp24 < 0.6788);
     if(animctrl_isAt(aCtrl, 0.5788f))
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
 
     func_8029AD28(0.08f, 3);
     func_8029AD28(0.34f, 4);

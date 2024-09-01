@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "code_B6EA0.h"
+#include "core2/anim/sprite.h"
 
 extern f32 player_getYaw(void);
 extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
@@ -22,7 +23,7 @@ void func_80354670(u8 arg0, s32 arg1) {
 
 void func_803546E8(void) {
     u8 sp4F;
-    struct54s* sp48;
+    AnimSprite* sp48;
     u8 sp47;
     ParticleStruct1s* temp_s0;
     f32 sp34[3];
@@ -44,8 +45,8 @@ void func_803546E8(void) {
     projectile_setSprite(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
     projectile_setPosition(sp4F, sp34);
     func_8033FCD8(sp4F, 0xC);
-    func_80287E9C(sp48);
-    func_80287F7C(sp48, 3);
+    animsprite_default(sp48);
+    animsprite_set_state(sp48, ANIM_SPRITE_STATE_STOPPED);
     func_80344E18(sp47, 5);
     func_80344EE4(sp47, -700.0f, -22000.0f);
     func_802589E4(sp28, D_803726EC, 250.0f);
@@ -90,7 +91,7 @@ void func_80354990(void){}
 void func_80354998(void) {
     u8 sp57;
     ActorMarker *sp50;
-    struct54s *sp4C;
+    AnimSprite *sp4C;
     u8 sp4B;
     ParticleStruct1s *temp_s0;
     f32 sp38[3];
@@ -110,9 +111,9 @@ void func_80354998(void) {
     temp_s0->unkC[0] = 0.0f;
     temp_s0->unkC[1] = -0.05f;
     temp_s0->unkC[2] = 0.0f;
-    func_80287E9C(sp4C);
-    func_80287FD0(sp4C, 3.0f);
-    func_80287F7C(sp4C, 3);
+    animsprite_default(sp4C);
+    animsprite_set_speed(sp4C, 3.0f);
+    animsprite_set_state(sp4C, ANIM_SPRITE_STATE_STOPPED);
     switch (sp50->modelId) {                        /* irregular */
     case 0x3BB:
         sp28 = 7;
@@ -216,7 +217,7 @@ void func_80354DC8(void){}
 
 void func_80354DD0(void) {
     ParticleStruct1s* temp_s0;
-    struct54s* sp40;
+    AnimSprite* sp40;
     u8 sp3F;
     u8 pad3C[3];
     u8 temp_s1;
@@ -234,8 +235,8 @@ void func_80354DD0(void) {
     projectile_setSprite(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FC60(temp_s1, 0xE1, 0xFF, 0);
     projectile_setPosition(temp_s1, sp2C);
-    func_80287E9C(sp40);
-    func_80287F7C(sp40, 3);
+    animsprite_default(sp40);
+    animsprite_set_state(sp40, ANIM_SPRITE_STATE_STOPPED);
     func_80344E18(sp3F, 3);
     sp20[0] = 0.0f;
     sp20[1] = 0.0f;
@@ -285,7 +286,7 @@ void func_80355004(void){}
 
 void func_8035500C(void) {
     u8 sp47;
-    struct54s* sp40;
+    AnimSprite* sp40;
     u8 sp3F;
     ParticleStruct1s* temp_s0;
     f32 sp2C[3];
@@ -302,9 +303,9 @@ void func_8035500C(void) {
     projectile_setSprite(sp47, 0x70F);
     func_8033FC60(sp47, 0xFF, 0xE6, 0xF5);
     projectile_setPosition(sp47, sp2C);
-    func_80287E9C(sp40);
-    func_80287F7C(sp40, 3);
-    func_80287FB4(sp40, 0); //set frame
+    animsprite_default(sp40);
+    animsprite_set_state(sp40, ANIM_SPRITE_STATE_STOPPED);
+    animsprite_set_frame(sp40, 0); //set frame
     func_80344E18(sp3F, 3);
     sp20[0] = 0.0f;
     sp20[1] = 0.0f;
@@ -356,7 +357,7 @@ void func_80355294(void){}
 
 void func_8035529C(void) {
     u8 sp4F;
-    struct54s* sp48;
+    AnimSprite* sp48;
     u8 sp47;
     ParticleStruct1s* sp40;
     f32 sp34[3];
@@ -373,9 +374,9 @@ void func_8035529C(void) {
     projectile_setSprite(sp4F, 0x70F);
     func_8033FC60(sp4F, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
     projectile_setPosition(sp4F, sp34);
-    func_80287E9C(sp48);
-    func_80287F7C(sp48, 3);
-    func_80287FB4(sp48, 0);
+    animsprite_default(sp48);
+    animsprite_set_state(sp48, ANIM_SPRITE_STATE_STOPPED);
+    animsprite_set_frame(sp48, 0);
     func_80344E18(sp47, 3);
     sp28[0] = 0.0f;
     sp28[1] = 0.0f;
@@ -428,7 +429,7 @@ void func_80355548(void){}
 void func_80355550(void) {
     static s32 D_803863E0;
     u8 sp3F;
-    struct54s *sp38;
+    AnimSprite *sp38;
     u8 sp37;
     ParticleStruct1s *sp30;
     f32 sp24[3];
@@ -451,9 +452,9 @@ void func_80355550(void) {
     }
     func_8033FC60(sp3F, 0xFF, 0xFF, 0xFF);
     projectile_setPosition(sp3F, sp24);
-    func_80287E9C(sp38);
-    func_80287F7C(sp38, 3);
-    func_80287FB4(sp38, 0);
+    animsprite_default(sp38);
+    animsprite_set_state(sp38, ANIM_SPRITE_STATE_STOPPED);
+    animsprite_set_frame(sp38, 0);
     if (D_803863E0 >= 4) {
         D_803863E0 = 0;
     }
@@ -506,7 +507,7 @@ void func_8035585C(void){}
 
 void func_80355864(void) {
     u8 sp5F;
-    struct54s *sp58;
+    AnimSprite *sp58;
     u8 sp57;
     static s32 D_803863E4;
     f32 var_f2;
@@ -533,9 +534,9 @@ void func_80355864(void) {
     projectile_setSprite(sp5F, 0x713);
     projectile_setPosition(sp5F, &sp38);
     func_8033FCD8(sp5F, 0xC);
-    func_80287E9C(sp58);
-    func_80287F7C(sp58, 3);
-    func_80287FD0(sp58, (sp44)? 16.0 : 3.0);
+    animsprite_default(sp58);
+    animsprite_set_state(sp58, ANIM_SPRITE_STATE_STOPPED);
+    animsprite_set_speed(sp58, (sp44)? 16.0 : 3.0);
     func_80344E18(sp57, 5);
     func_80344EE4(sp57, -700.0f, -22000.0f);
     sp28 = (sp44) ? randf2(-75.0f, 75.0f) + 400.0f

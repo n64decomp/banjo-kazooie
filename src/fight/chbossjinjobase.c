@@ -66,7 +66,7 @@ void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
         func_8025A70C(COMUSIC_2B_DING_B);
         temp_v0->unk38_31++;
         if (temp_v0->unk38_31 >= 3) {
-            func_80328A84(temp_v0, 3);
+            subaddie_set_state(temp_v0, 3);
             chstonejinjo_breakOpen(temp_v0->unk100);
             func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, 1.2f);
             func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 32000, temp_v0->position, 1000.0f, 2000.0f);
@@ -158,7 +158,7 @@ void func_8038D568(Actor *this){
 
             }
             else{//L8038D8E0
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
                 func_8030DA44(local->unk0);

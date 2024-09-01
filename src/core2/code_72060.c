@@ -7,11 +7,11 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern f32  viewport_getYaw();
+extern f32  viewport_get_yaw();
 extern int  func_8024DD34(f32, f32, f32);
 extern void func_80251B5C(f32, f32, f32);
-extern void func_80251F8C(f32);
-extern void func_8025208C(f32);
+extern void mlMtx_rotate_pitch_deg(f32);
+extern void mlMtx_rotate_yaw_deg(f32);
 extern void func_80252A38(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
@@ -101,7 +101,7 @@ void func_802F9114(void){
 void func_802F9134(s32 gfx){
     D_80369284 = D_80369284 - 1;
     if(gfx < D_80369284){
-        func_80254630(D_80369280->unk1C + gfx, D_80369280->unk1C + D_80369284, sizeof(struct4Ds));
+        wmemcpy(D_80369280->unk1C + gfx, D_80369280->unk1C + D_80369284, sizeof(struct4Ds));
     }
 }
 
@@ -166,7 +166,7 @@ void func_802F919C(void) {
                 } else {
                     var_f20 = 70.0f;
                 }
-                ml_vec3f_yaw_rotate_copy(sp4C, sp4C, viewport_getYaw() + randf2(-var_f20, var_f20));
+                ml_vec3f_yaw_rotate_copy(sp4C, sp4C, viewport_get_yaw() + randf2(-var_f20, var_f20));
                 sp4C[0] += D_80381040[0];
                 sp4C[1] += D_80381040[1];
                 sp4C[2] += D_80381040[2];
@@ -200,8 +200,8 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     void *phi_s0_2;
 
     if ((D_80369280 != NULL) && (D_80369284 != 0)) {
-        viewport_getPosition(D_80381050);
-        viewport_getRotation(D_80381060);
+        viewport_get_position_vec3f(D_80381050);
+        viewport_get_rotation_vec3f(D_80381060);
         D_80381090 = (s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList);
         temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
         D_8038108C = vtxList_getGlobalNorm(temp_s3);
@@ -237,8 +237,8 @@ bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
         mlMtxApply(*mtx);
         func_80252434(&D_80381080, D_80381094->unkC);
         func_80251B5C(D_80381080[0], D_80381080[1], D_80381080[2]);
-        func_8025208C(D_80381060[1]);
-        func_80251F8C(D_80381060[0]);
+        mlMtx_rotate_yaw_deg(D_80381060[1]);
+        mlMtx_rotate_pitch_deg(D_80381060[0]);
         func_80252A38(-(D_80381094->unkC[0]), -(D_80381094->unkC[1]), -(D_80381094->unkC[2]));
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

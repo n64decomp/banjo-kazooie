@@ -28,7 +28,7 @@ void __chWhistleCtrl_setState(Actor *actor, s32 arg1){
 
 void __chWhistleCtrl_soundWhistle(void){
     func_802C8F70(225.0f);
-    jiggySpawn(JIGGY_54_RBB_WHISTLE, D_80390A74);
+    jiggy_spawn(JIGGY_54_RBB_WHISTLE, D_80390A74);
 }
 
 void __chWhistleCtrl_correct(void){

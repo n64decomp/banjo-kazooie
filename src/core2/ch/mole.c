@@ -117,9 +117,9 @@ void func_802D9530(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
     if(this->unk100 && other){
         if(this->unk100->unk14_20 == 0xB8)
-            func_80328B8C(other, 3, 0.0001f, 1);
+            subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
     }
-    func_80328B8C(this, 4, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = func_8030D90C();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
@@ -131,7 +131,7 @@ void func_802D9530(Actor *this){
 
 void func_802D9600(Actor * this){
     animctrl_setSmoothTransition(this->animctrl, 0);
-    func_80328B8C(this, 1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
     this->marker->propPtr->unk8_3 = 0;
 }
 
@@ -232,11 +232,11 @@ int func_802D997C(Actor *this){
 void func_802D9ADC(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
     if(this->unk100 && other && this->unk100->unk14_20 == 0xB8){
-        func_80328B8C(other, 2, 0.0001f, 1);
+        subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
     }
     this->marker->propPtr->unk8_3 = 1;
     animctrl_setSmoothTransition(this->animctrl, TRUE);
-    func_80328B8C(this, 2, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = func_8030D90C();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
@@ -248,14 +248,14 @@ void func_802D9ADC(Actor *this){
 }
 
 void func_802D9BD8(Actor *this){
-    func_80328A84(this, 5);
+    subaddie_set_state(this, 5);
     func_802D9658(this);
     func_8028F94C(2, this->position);
     func_802D997C(this);
 }
 
 void func_802D9C1C(Actor *this){
-    func_80328B8C(this, 3, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 3, 0.0001f, 1);
     actor_loopAnimation(this);
 }
 
@@ -310,7 +310,7 @@ void func_802D9D60(Actor *this){
             if(this->unk100){
                 other = subaddie_getLinkedActor(this);
                 if(other && this->unk100->unk14_20 == 0xB8){
-                    func_80328A84(other, 1);
+                    subaddie_set_state(other, 1);
                 }
             }
         }

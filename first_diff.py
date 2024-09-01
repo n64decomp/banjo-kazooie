@@ -184,7 +184,7 @@ def hexbytes(bs):
 found_instr_diff = []
 map_search_diff = []
 diffs = 0
-shift_cap = 1000
+shift_cap = 100000
 for i in range(24, len(mybin), 4):
     # (mybin[i:i+4] != basebin[i:i+4], but that's slightly slower in CPython...)
     if diffs <= shift_cap and (

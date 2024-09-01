@@ -23,7 +23,7 @@ void func_802CE7E0(ActorMarker *marker, ActorMarker *other){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_11_WOOD_BREAKING_1, 1.0f, 28000, actor->position, 300, 3000);
     FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.0f, 28000, actor->position, 300, 3000);
-    func_80328A84(actor, 2);
+    subaddie_set_state(actor, 2);
     actor_playAnimationOnce(actor);
     marker->collidable = FALSE;
     actor->unk138_27 = 3;
@@ -72,8 +72,8 @@ void func_802CE8D4(Actor *this){
                 sfxsource_setSfxId(this->unk44_31, SFX_67_BEEHIVE_CLONK);
                 sfxsource_setSampleRate(this->unk44_31, 12000);
                 func_8030DBB4(this->unk44_31, (animctrl_getAnimTimer(this->animctrl) + 0.9) - 0.4);
-                func_8030DF68(this->unk44_31, this->position);
-                func_8030DEB4(this->unk44_31, 300.0f, 1500.0f);
+                sfxsource_set_position(this->unk44_31, this->position);
+                sfxsource_set_fade_distances(this->unk44_31, 300.0f, 1500.0f);
                 func_8030DD14(this->unk44_31, 3);
                 func_8030E2C4(this->unk44_31);
             }

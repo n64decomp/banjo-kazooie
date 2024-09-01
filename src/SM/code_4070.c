@@ -52,7 +52,7 @@ void func_8038A4DC(Actor *this, s32 arg1){
         mapSpecificFlags_set(5, 1);
         break;
     }//L8038A5BC
-    func_80328A84(this, arg1);
+    subaddie_set_state(this, arg1);
 }
 
 void SM_func_8038A5D8(Actor *this){

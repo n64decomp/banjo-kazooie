@@ -266,7 +266,7 @@ void func_80386EB0(ActorMarker *this, ActorMarker *other){
 Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_Flibbit *local;
-    s32 temp_a0;
+    BoneTransformList *temp_a0;
     int i;
     f32 sp7C[3];
     f32 phi_f2;

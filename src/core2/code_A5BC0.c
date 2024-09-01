@@ -14,13 +14,10 @@ extern s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, 
 extern void *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
 extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], f32[3], f32[3], u32);
 
-
 extern f32 func_8030A590(void);
 extern void func_8030A5EC(Prop *, f32);
 
 Prop *func_80303F7C(s32, f32, s32, s32);
-s32 func_8032D9C0(Cube*, Prop*);
-void func_80332B2C(ActorMarker * arg0);
 s32 func_803058C0(f32);
 void func_80305CD8(s32, s32);
 void func_80330104(Cube*);
@@ -28,6 +25,9 @@ ActorMarker * func_80332A60(void);
 extern void func_8032F3D4(s32 [3], ActorMarker *, s32);
 extern void func_8030A350(Gfx **, Mtx **, Vtx **, f32[3], f32, s32, Cube*,s32 ,s32, s32, s32, s32);  
 extern void func_8030A2D0(Gfx **, Mtx **, Vtx **, f32[3], f32[3], f32, s32, Cube*);
+s32 func_8032D9C0(Cube*, Prop*);
+void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3);
+void func_80332B2C(ActorMarker * arg0);
 
 typedef union{
     struct{
@@ -100,7 +100,7 @@ void func_8032CB50(Cube *cube, bool global) {
 
     if (cube->prop2Cnt >= 2) {
         if (global == 0) {
-            func_8024C5F0(ref_position); //distance from viewport
+            veiwport_get_position_vec3w(ref_position); //distance from viewport
         } else {
             ref_position[0] = 0;
             ref_position[1] = 0;
@@ -467,11 +467,11 @@ void func_8032DB2C(Cube *cube, NodeProp *arg1) {
     }
 }
 
-void func_8032DC70(void) {
+void func_8032DC70(s32 arg0) {
     NodeProp *sp1C;
     s32 temp_v0;
 
-    sp1C = func_803080C8();
+    sp1C = func_803080C8(arg0);
     if (sp1C != NULL) {
         func_8032DB2C(func_80308224(), sp1C);
     }
@@ -649,7 +649,7 @@ bool func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
                 && (var_v1->unk6.bit6 == 6) 
                 && (arg2 == var_v1->unk8)
             ) {
-                *arg1 = var_v1->unk6.bit15;
+                *arg1 = var_v1->unk6.radius;
                 return TRUE;
             }
             var_v1++;
@@ -993,21 +993,25 @@ s32 func_8032F170(Cube **arg0, void **arg1){
     return D_8038340C;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_A5BC0/func_8032F194.s")
-#else
 void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
-    ActorProp2 sp24;
+    ActorProp sp24;
+    ActorProp *propPtr = marker->propPtr;
+    ActorProp *v0 = &sp24;
 
-    ((s32*)&sp24)[2] = ((s32*)marker->propPtr)[2];
-    sp24.x = (s16) position[0];
-    sp24.y = (s16) position[1];
-    sp24.z = (s16) position[2];
-    func_8032F21C(cube, position, marker, func_8032D9C0(marker->cubePtr, marker->propPtr));
-    ((s32*)marker->propPtr)[1] = ((s32*)&sp24)[1];
-    ((s32*)marker->propPtr)[2] = ((s32*)&sp24)[2];
+    v0 += 0;
+
+    sp24.words[2] = propPtr->words[2];
+
+    v0->x = position[0];
+    v0->y = position[1];
+    v0->z = position[2];
+
+    func_8032F21C(cube, position, marker, func_8032D9C0(marker->cubePtr, propPtr));
+
+    propPtr = marker->propPtr;
+    propPtr->words[1] = sp24.words[1];
+    propPtr->words[2] = sp24.words[2];
 }
-#endif
 
 void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) {
     ActorProp *sp1C;
@@ -1314,7 +1318,7 @@ void func_80330208(Cube *cube) {
                 actor = func_803055E0(i_prop->unk8, position, i_prop->unkC_31, i_prop->unk10_31, i_prop->unk10_19);
                 if (actor != NULL) {
                     actor->unk78_13 = i_prop->unk10_31;
-                    actor->unkF4_8 = i_prop->unk6.bit15;
+                    actor->unkF4_8 = i_prop->unk6.radius;
                     func_8032AA58(actor, (i_prop->unkC_22 != 0) ? ((f32)i_prop->unkC_22 * 0.01) : 1.0);
                 }
             }
@@ -1337,17 +1341,17 @@ void func_803303B8(Cube *cube) {
                 sp4C[0] = (s32) var_s0->x;
                 sp4C[1] = (s32) var_s0->y;
                 sp4C[2] = (s32) var_s0->z;
-                func_803065E4(var_s0->unk8, sp4C, var_s0->unk6.bit15, var_s0->unk10_31, var_s0->unk10_7);
+                func_803065E4(var_s0->unk8, sp4C, var_s0->unk6.radius, var_s0->unk10_31, var_s0->unk10_7);
             } else if (var_s0->unk6.bit6 == 9) {
                 sp4C[0] = (s32) var_s0->x;
                 sp4C[1] = (s32) var_s0->y;
                 sp4C[2] = (s32) var_s0->z;
-                func_8030688C(var_s0->unk8, sp4C, var_s0->unk6.bit15, var_s0->unk10_0);
+                func_8030688C(var_s0->unk8, sp4C, var_s0->unk6.radius, var_s0->unk10_0);
             } else if (var_s0->unk6.bit6 == 0xA) {
                 sp4C[0] = (s32) var_s0->x;
                 sp4C[1] = (s32) var_s0->y;
                 sp4C[2] = (s32) var_s0->z;
-                func_80306AA8(var_s0->unk8, sp4C, var_s0->unk6.bit15);
+                func_80306AA8(var_s0->unk8, sp4C, var_s0->unk6.radius);
             }
             var_s0++;
         }
@@ -1606,7 +1610,7 @@ s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
     arg1[0] = arg0->x;
     arg1[1] = arg0->y;
     arg1[2] = arg0->z;
-    return arg0->unk6.bit15;
+    return arg0->unk6.radius;
 }
 
 void func_80330FBC(UNK_TYPE(void *)arg0, s32 arg1){
@@ -1766,9 +1770,9 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   f32 *new_var2;
   s32 spD8;
   Actor *temp_v0_6;
-  BKModelBin *temp_v0_2;
+  BKModelBin *model_bin;
   BKVertexList *temp_a1;
-  BKCollisionList *temp_v0_3;
+  BKCollisionList *model_collision_list;
   f32 spBC[3];
   f32 spB0[3];
   u32 var_s3;
@@ -1789,13 +1793,13 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   {
     if (((!var_s0->markerFlag) && var_s0->unk8_1) && var_s0->unk8_4)
     {
-      temp_v0_2 = func_8030A4B4(((u32) (*((u16 *) (&var_s0->modelProp)))) >> 4);
-      if (temp_v0_2 == 0)
+      model_bin = func_8030A4B4(((u32) (*((u16 *) (&var_s0->modelProp)))) >> 4);
+      if (model_bin == 0)
       {
         continue;
       }
-      temp_v0_3 = model_getCollisionList(temp_v0_2);
-      if (temp_v0_3 == 0)
+      model_collision_list = model_getCollisionList(model_bin);
+      if (model_collision_list == 0)
       {
         continue;
       }
@@ -1806,7 +1810,10 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       spB0[1] = (f32) (var_s0->modelProp.unk0_15 * 2);
       new_var = spB0;
       spB0[2] = (f32) (var_s0->modelProp.unk0_7 * 2);
-      var_v0 = func_802E9118(temp_v0_3, model_getVtxList(temp_v0_2), spBC, new_var, (f32) (((f32) var_s0->modelProp.unkA) / 100.0), arg1, arg2, arg3, arg4, arg5, flags);
+      var_v0 = func_802E9118(model_collision_list, model_getVtxList(model_bin), 
+        spBC, new_var, (f32) (((f32) var_s0->modelProp.unkA) / 100.0), 
+        arg1, arg2, arg3, arg4, arg5, flags
+    );
       if (var_v0 != 0)
       {
         spD8 = var_v0;
@@ -1815,14 +1822,14 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
     else
       if ((var_s0->markerFlag && var_s0->unk8_3) && var_s0->unk8_4)
     {
-      temp_v0_3 = func_80330DE4(var_s0->actorProp.marker);
-      pad9C = temp_v0_3;
-      if (temp_v0_3 == 0)
+      model_collision_list = func_80330DE4(var_s0->actorProp.marker);
+      pad9C = model_collision_list;
+      if (model_collision_list == 0)
       {
         continue;
       }
-      temp_v0_2 = model_getCollisionList(pad9C);
-      if (temp_v0_2 == 0)
+      model_bin = model_getCollisionList(pad9C);
+      if (model_bin == 0)
       {
         continue;
       }
@@ -1835,7 +1842,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
         sp8C[0] = (f32) var_s0->actorProp.marker->pitch;
         sp8C[1] = (f32) var_s0->actorProp.marker->yaw;
         sp8C[2] = (f32) var_s0->actorProp.marker->roll;
-        var_v0 = func_802E9118(temp_v0_2, temp_a1, sp98, new_var2, temp_v0_6->scale, arg1, arg2, arg3, arg4, arg5, flags);
+        var_v0 = func_802E9118(model_bin, temp_a1, sp98, new_var2, temp_v0_6->scale, arg1, arg2, arg3, arg4, arg5, flags);
       }
       if (var_v0 != 0)
       {
@@ -1865,16 +1872,16 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   return spD8;
 }
 
-BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 arg4[3], u32 arg5){
+BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3, f32 arg4[3], u32 arg5){
     BKCollisionTri *var_s7;
     BKCollisionTri *var_v0;
     s32 var_s3;
     Prop *var_s0;
-    BKCollisionList *temp_v0_3;
+    BKCollisionList *model_collision_list;
     BKVertexList *temp_a1;
     f32 spAC[3];
     f32 spA0[3];
-    BKModelBin *temp_v0_2;
+    BKModelBin *model_bin;
     BKModelBin *new_var;
     ModelProp *mProp;
     f32 sp88[3];
@@ -1883,25 +1890,25 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
     ActorProp *aProp = &var_s0->actorProp;
     
     var_s7 = 0;
-    var_s0 = arg0->prop2Ptr;
-    for (var_s3 = arg0->prop2Cnt; var_s3 != 0; var_s3--, var_s0++) {
+    var_s0 = cube->prop2Ptr;
+    for (var_s3 = cube->prop2Cnt; var_s3 != 0; var_s3--, var_s0++) {
         if (((!var_s0->markerFlag) && var_s0->unk8_1) && var_s0->unk8_4)
         {
             mProp = &var_s0->modelProp;
             new_var = func_8030A4B4(mProp->unk0_31); 
             if (1) { } if (1) { } if (1) { }
-            temp_v0_2 = new_var;
-            if (temp_v0_2 != 0){
-                temp_v0_3 = model_getCollisionList(temp_v0_2);
-                if (temp_v0_3 != 0){
+            model_bin = new_var;
+            if (model_bin != 0){
+                model_collision_list = model_getCollisionList(model_bin);
+                if (model_collision_list != 0){
                     spAC[0] = (f32) mProp->unk4[0];
                     spAC[1] = (f32) mProp->unk4[1];
                     spAC[2] = (f32) mProp->unk4[2];
                     spA0[0] = 0.0f;
                     spA0[1] = (f32) (mProp->unk0_15 * 2);
-                    temp_v0_2 = temp_v0_2;
+                    model_bin = model_bin;
                     spA0[2] = (f32) (mProp->unk0_7 * 2);
-                    var_v0 = func_802E9DD8(temp_v0_3, model_getVtxList(temp_v0_2), spAC, spA0, ((f32) mProp->unkA) / 100.0, arg1, arg2, arg3, arg4);
+                    var_v0 = func_802E9DD8(model_collision_list, model_getVtxList(model_bin), spAC, spA0, ((f32) mProp->unkA) / 100.0, position, radius, arg3, arg4);
                     if (var_v0 != 0)
                         var_s7 = var_v0;
                 }
@@ -1910,10 +1917,9 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
             aProp = &var_s0->actorProp;
             if ((var_s0->markerFlag && var_s0->unk8_3) && var_s0->unk8_4)
             {
-            temp_v0_2 = func_80330DE4(aProp->marker);
-            if (temp_v0_2 != 0)
-            {
-            new_var = model_getCollisionList(temp_v0_2);
+            model_bin = func_80330DE4(aProp->marker);
+            if (model_bin != 0) {
+            new_var = model_getCollisionList(model_bin);
             if (new_var != 0)
             {
         
@@ -1925,7 +1931,7 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
             sp7C[0] = aProp->marker->pitch;
             sp7C[1] = aProp->marker->yaw;
             sp7C[2] = aProp->marker->roll;
-            var_v0 = func_802E9DD8(new_var, temp_a1, sp88, sp7C, temp_v0_6->scale, arg1, arg2, arg3, arg4);
+            var_v0 = func_802E9DD8(new_var, temp_a1, sp88, sp7C, temp_v0_6->scale, position, radius, arg3, arg4);
             if (var_v0 != 0)
             {
             var_s7 = var_v0;
@@ -1942,7 +1948,7 @@ BKCollisionTri *func_803319C0(Cube *arg0, f32 arg1[3], f32 arg2, s32 arg3, f32 a
             {
             if (temp_v0_7->unk8 != 0)
             {
-            var_v0 = temp_v0_7->unk8(aProp->marker, arg1, arg2, arg3, arg4);
+            var_v0 = temp_v0_7->unk8(aProp->marker, position, radius, arg3, arg4);
             if (var_v0 != 0)
             {
             var_s7 = var_v0;

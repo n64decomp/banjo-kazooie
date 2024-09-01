@@ -62,7 +62,7 @@ void func_8038FB40(ActorMarker *this, s32 arg1){
     Actor * thisActor;
 
     thisActor = marker_getActor(this);
-    func_80328A84(thisActor, 2);
+    subaddie_set_state(thisActor, 2);
     actor_playAnimationOnce(thisActor);
     FUNC_8030E624(SFX_A_BANJO_LANDING_05, 0.8f, 32750);
 }

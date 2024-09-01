@@ -1,11 +1,11 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "actor.h"
 
 #include "prop.h"
 
-
-void func_802E1790(void);
+#include "ch/snacker.h"
 
 void spawnQueue_unlock(void);
 void spawnQueue_lock(void);
@@ -80,7 +80,7 @@ extern ActorInfo D_80367934; //witch_switch.cc
 extern ActorInfo D_80367958; //witch_switch.bgs
 extern ActorInfo D_8036797C; //witch_switch.gv
 extern ActorInfo D_80367A20; //wading boots
-extern ActorInfo D_80367A50; //chbadshad
+extern ActorInfo chBadShad; //chbadshad
 extern ActorInfo D_80367AB0;
 extern ActorInfo D_80367AD4;
 extern ActorInfo D_80367AF8;
@@ -120,7 +120,6 @@ extern ActorInfo D_80368528;
 extern ActorInfo D_8036854C;
 extern ActorInfo D_80368570;
 extern ActorInfo D_803685A0; //mumbotoken
-extern ActorInfo D_80368620; //snacker
 extern ActorInfo chSnowman; //sirslush
 extern ActorInfo chSnowball; //snowball
 extern ActorInfo chSnowmanHat; //sir_slush_hat
@@ -190,7 +189,7 @@ void spawnQueue_reset(void){
     spawnQueue_lock();
     spawnQueueLength = 0;
     chmumbo_func_802D1724();
-    func_802E1790();
+    chSnacker_initialize();
     switch(loaded_asm_file){
         case OVERLAY_2_WHALE:
             CC_func_803870E0();
@@ -247,7 +246,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367184, actor_new, 0x0000000);
     spawnableActorList_add(&chExtraLife, actor_new, 0x0200000); //extralife
     spawnableActorList_add(&D_80365FB0, actor_new, 0x0000004); //shrapnel
-    spawnableActorList_add(&D_80367A50, actor_new, 0x0000004); //chbadshad
+    spawnableActorList_add(&chBadShad, actor_new, 0x0000004); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, 0x0000040); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
     spawnableActorList_add(&chBubble, actor_new, 0x0000004);
@@ -262,7 +261,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367E20, actor_new, 0x44); //chmolehill
     spawnableActorList_add(&D_80373DC0, actor_new, 0x80000);
     spawnableActorList_add(&D_80367E70, actor_new, 0x0);
-    spawnableActorList_add(&D_80368620, actor_new, 0x10004); //snacker
+    spawnableActorList_add(&gChSnacker, actor_new, 0x10004); //snacker
     spawnableActorList_add(&D_80366EF0, actor_new, 0x20004); //large_shadow
     spawnableActorList_add(&D_80367B20, actor_new, 0x80); //chclimbbase
     spawnableActorList_add(&D_80367BA4, actor_new, 0x40); //gold_bullion

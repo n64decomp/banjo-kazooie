@@ -120,7 +120,7 @@ void chGobiRock_update(Actor *this){
         particleEmitter_update(local->unkC);
         particleEmitter_update(local->unk10);
         if(ml_timer_update(&local->unk14, sp24)){
-            jiggySpawn(JIGGY_44_GV_GOBI_1, jiggy_position);
+            jiggy_spawn(JIGGY_44_GV_GOBI_1, jiggy_position);
             func_802BB3DC(0, 60.0f, 0.65f);
         }
         if(this->state == 2){

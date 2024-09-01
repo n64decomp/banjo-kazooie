@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "code_B6EA0.h"
+#include "core2/anim/sprite.h"
 
 extern f64 D_80379470;
 extern f32 D_80379478;
@@ -27,7 +28,7 @@ void func_803543F4(void){}
 void func_803543FC(void) {
     ParticleStruct0s* sp3C;
     u8 sp3B;
-    struct54s* sp34;
+    AnimSprite* sp34;
     u8 sp33;
     f32 sp24[3];
     s32 temp_f16;
@@ -42,8 +43,8 @@ void func_803543FC(void) {
     projectile_setSprite(sp3B, ASSET_710_SPRITE_SPARKLE_PURPLE);
     func_8033FFE4(sp3B, temp_f16, temp_f16);
     func_8033FCD8(sp3B, 0xC);
-    func_80287E9C(sp34);
-    func_80287F7C(sp34, 3);
+    animsprite_default(sp34);
+    animsprite_set_state(sp34, ANIM_SPRITE_STATE_STOPPED);
     sp24[0] = randf2(-100.0f, 100.0f);
     sp24[1] = 250.0f;
     sp24[2] = randf2(-100.0f, 100.0f);

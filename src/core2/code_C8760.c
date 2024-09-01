@@ -55,8 +55,8 @@ void func_8034F774(void){
         sfxsource_setSfxId(D_803720A0.unk5, 0x3EC);
         func_8030DD14(D_803720A0.unk5, 3);
         func_8030DFF0(D_803720A0.unk5, 1);
-        func_8030DF68(D_803720A0.unk5, &sp44);
-        func_8030DEB4(D_803720A0.unk5, 400.0f, 3200.0f);
+        sfxsource_set_position(D_803720A0.unk5, &sp44);
+        sfxsource_set_fade_distances(D_803720A0.unk5, 400.0f, 3200.0f);
         func_8030DE44(D_803720A0.unk5, 2, 0.5f);
         func_8030E2C4(D_803720A0.unk5);
     }

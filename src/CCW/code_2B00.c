@@ -70,7 +70,7 @@ void func_80388F50(ActorMarker *marker, ActorMarker *other_marker){
     if ((func_8028ECAC() != 1) && !this->unk38_0) {
         this->unk38_0 = TRUE;
         actor_collisionOff(this);
-        func_80328B8C(this, 4, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 4, 0.0f, 1);
         actor_playAnimationOnce(this);
         func_8030E6D4(SFX_90_SWITCH_PRESS);
     }
@@ -87,7 +87,7 @@ void func_80388FD4(Actor *this) {
     if (!this->unk16C_4) {
         if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
             actor_playAnimationOnce(this);
-            func_80328B8C(this, 4, 0.999f, 1);
+            subaddie_set_state_with_direction(this, 4, 0.999f, 1);
             actor_collisionOff(this);
         } else {
             marker_setCollisionScripts(this->marker, 0, &func_80388F50, 0);
@@ -143,7 +143,7 @@ void func_80389268(Actor *this) {
 
         this->unk16C_4 = TRUE;
         if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
         }
     }
 
@@ -153,14 +153,14 @@ void func_80389268(Actor *this) {
         if (levelSpecificFlags_get(this->unk10_12 + 7)) {
             timedFunc_set_1(0.05f, func_803891B0, (s32) this->marker);
             timedFunc_set_1(4.0f, func_8038921C, (s32) this->marker);
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
         }
         break;
     case 2:
         this->position[1] += 60.0f * time_getDelta();
         if (this->unk1C[1] <= this->position[1]) {
             levelSpecificFlags_set(this->unk10_12 + 7, FALSE);
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
         }
         break;
     case 3:

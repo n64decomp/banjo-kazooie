@@ -4,7 +4,7 @@
 
 extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);
 extern void func_80252330(f32, f32, f32);
-extern void mlMtxRotate(f32, f32, f32);
+extern void mlMtxRotatePYR(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
 extern void func_80349AD0(void);
 extern void func_8024C5A8(f32[3]);
@@ -51,7 +51,7 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     f32 sp38;
     f32 sp34;
 
-    viewport_getPosition(sp6C);
+    viewport_get_position_vec3f(sp6C);
     func_8024C5A8(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
@@ -109,7 +109,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 sp38;
     f32 sp34;
 
-    viewport_getPosition(sp6C);
+    viewport_get_position_vec3f(sp6C);
     func_8024C5A8(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
@@ -141,7 +141,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
         D_80371EC0.unk0(D_80371EC0.unk4);
     }
     mlMtxSet(func_8024DD90());
-    mlMtxRotate(0.0f, 0.0f, rotation);
+    mlMtxRotatePYR(0.0f, 0.0f, rotation);
     func_80252330(sp50[0], sp50[1], sp50[2]);
     if ((scale != NULL) || mirrored) {
         mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], sp38, sp34);
@@ -167,7 +167,7 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 var_f14;
     BKSpriteFrameDisplayData *temp_a3;
 
-    viewport_getPosition(sp5C);
+    viewport_get_position_vec3f(sp5C);
     func_8024C5A8(sp50);
     sp40[0] = position[0] - sp5C[0];
     sp40[1] = position[1] - sp5C[1];
@@ -191,7 +191,7 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     }
     mlMtxIdent();
     func_80252330(sp40[0], sp40[1], sp40[2]);
-    mlMtxRotate(rotation[0], rotation[1], rotation[2]);
+    mlMtxRotatePYR(rotation[0], rotation[1], rotation[2]);
     mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], scale[1], scale[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

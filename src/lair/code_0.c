@@ -13,7 +13,7 @@ extern void func_802D4830(Actor *, s32, f32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern int  actor_animationIsAt(Actor *, f32);
-extern void func_80328B8C(Actor *, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_8033A45C(s32, s32);
 extern void func_8034E0FC(void *, s32);
 extern void  *func_8034C2C4(ActorMarker *, s32);
@@ -231,7 +231,7 @@ void chFloorCobweb_update(Actor *this)
     {
         if (actor_animationIsAt(this, 0.95f))
         {
-            func_80328B8C(this, 0xD, 0.98f, 1);
+            subaddie_set_state_with_direction(this, 0xD, 0.98f, 1);
             func_80326310(this);
         }
     }
@@ -255,7 +255,7 @@ void chWallCobweb_update(Actor *this)
     {
         if (actor_animationIsAt(this, 0.9f))
         {
-            func_80328B8C(this, 0x10, 0.98f, 1);
+            subaddie_set_state_with_direction(this, 0x10, 0.98f, 1);
             func_80326310(this);
         }
     }
@@ -284,7 +284,7 @@ void lair_func_80386550(Actor *this)
             if (actor_animationIsAt(this, 0.95f))
             {
                 func_80326310(this);
-                func_80328B8C(this, 10, 0.98f, 1);
+                subaddie_set_state_with_direction(this, 10, 0.98f, 1);
 
                 this->pitch = 270.0f;
             }
@@ -820,7 +820,7 @@ void func_80387F1C(void)
 
     if (nodeProp_findPositionFromActorId(400, tmp))
     {
-        jiggySpawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
+        jiggy_spawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?
         __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
     }
@@ -1083,7 +1083,7 @@ void func_80388524(Actor *this) {
         switch(this->modelCacheIndex){
             case ACTOR_2E5_DOOR_OF_GRUNTY: //L80388880
                 if (fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) && (this->state == 0x19)) {
-                    func_80328B8C(this, 0x1B, 0.999f, 1);
+                    subaddie_set_state_with_direction(this, 0x1B, 0.999f, 1);
                 }
                 break;
 
@@ -1167,7 +1167,7 @@ void func_80388524(Actor *this) {
             case 0x2E5:
                 switch (this->state) {
                     case 0x19: //L80388B34
-                        func_80328B8C(this, 0x1A, 0.0f, 1);
+                        subaddie_set_state_with_direction(this, 0x1A, 0.0f, 1);
                         func_8025A6EC(JINGLE_END_OF_INTRO, -1);
                         break;
 
@@ -1179,7 +1179,7 @@ void func_80388524(Actor *this) {
                             func_8030E6D4(SFX_1B_EXPLOSION_1);
                         }
                         if (actor_animationIsAt(this, 0.97f)) {
-                            func_80328B8C(this, 0x1B, 0.999f, 1);
+                            subaddie_set_state_with_direction(this, 0x1B, 0.999f, 1);
                             fileProgressFlag_set(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN, 1);
                             func_8030E6D4(SFX_6C_LOCKUP_CLOSING);
                         }
@@ -1577,7 +1577,7 @@ void func_80389898(Actor *this)
         {
             if (this->unk10_12)
             {
-                func_80328AC8(this, 0x13);
+                subaddie_set_state_forward(this, 0x13);
                 actor_playAnimationOnce(this);
                 fileProgressFlag_set(FILEPROG_9E_CRYPT_COFFIN_LID_OPEN, TRUE);
             }
@@ -1606,7 +1606,7 @@ void func_80389934(Actor *this)
         this->unk16C_4 = TRUE;
 
         if (fileProgressFlag_get(FILEPROG_A2_GV_LOBBY_COFFIN_OPEN))
-            func_80328B8C(this, 0x18, 0.999f, 1);
+            subaddie_set_state_with_direction(this, 0x18, 0.999f, 1);
     }
 
     switch (this->state)
@@ -1617,7 +1617,7 @@ void func_80389934(Actor *this)
             {
                 this->unk1C[0] = 25;
 
-                func_80328AC8(this, 0x16);
+                subaddie_set_state_forward(this, 0x16);
                 fileProgressFlag_set(FILEPROG_A2_GV_LOBBY_COFFIN_OPEN, TRUE);
             }
 
@@ -1627,7 +1627,7 @@ void func_80389934(Actor *this)
         {
             if (--this->unk1C[0] == 0)
             {
-                func_80328AC8(this, 0x17);
+                subaddie_set_state_forward(this, 0x17);
                 actor_playAnimationOnce(this);
                 FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 32000);
                 func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
@@ -1639,7 +1639,7 @@ void func_80389934(Actor *this)
         {
             if (actor_animationIsAt(this, 0.95f))
             {
-                func_80328B8C(this, 0x18, 0.999f, 1);
+                subaddie_set_state_with_direction(this, 0x18, 0.999f, 1);
                 FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 26000,);
             }
 
@@ -1701,7 +1701,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
             }
             case 3:
             {
-                func_80328A84(this, 5);
+                subaddie_set_state(this, 5);
 
                 break;
             }
@@ -1744,7 +1744,7 @@ void func_80389D08(Actor *this)
         {
             if (this->unk60)
             {
-                func_80328AC8(this, 4);
+                subaddie_set_state_forward(this, 4);
 
                 this->unk38_31 = 0;
                 this->unk60 = 0;

@@ -1,8 +1,9 @@
+#include "code_B6EA0.h"
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
 
-#include "code_B6EA0.h"
+#include "core2/anim/sprite.h"
 
 extern s32 func_8033FA84(void);
 extern s32 func_8035287C(void);
@@ -13,7 +14,6 @@ extern void func_8033FFB8(s32 , s32);
 extern void projectile_getPosition(s32 , f32[3]);
 extern void func_8032F64C(f32[3] , ActorMarker *);
 extern void func_8033FB64(s32);
-extern void func_80287D60(s32);
 extern void func_803529DC(s32);
 extern void func_80344D70(s32);
 extern void func_80352B20(s32);
@@ -153,8 +153,8 @@ void func_8033E1E0(void){
                     projectile_getPosition(D_80384490[D_80384FD0].unk45, sp4C);
                     func_803451B0(D_80384490[D_80384FD0].unk47, sp4C);
                     projectile_setPosition(D_80384490[D_80384FD0].unk45, sp4C);
-                    func_80287DC8(D_80384490[D_80384FD0].unk34);
-                    func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
+                    animsprite_update(D_80384490[D_80384FD0].unk34);
+                    func_8033FFB8(D_80384490[D_80384FD0].unk45, animsprite_get_frame(D_80384490[D_80384FD0].unk34));
                     func_8032F64C(sp4C, D_80384490[D_80384FD0].marker_30);
                 }
                 else{
@@ -192,7 +192,7 @@ int func_8033E3F0(enum common_particle_e particle_id, int arg1){
 
     
     D_80384490[D_80384FD0].unk45 = func_8033FA84();
-    D_80384490[D_80384FD0].unk34 = func_80287CA8();
+    D_80384490[D_80384FD0].unk34 = animsprite_new();
     D_80384490[D_80384FD0].unk46 = func_8035287C();
     D_80384490[D_80384FD0].unk47 = func_80344CDC();
     
@@ -207,7 +207,7 @@ int func_8033E3F0(enum common_particle_e particle_id, int arg1){
         }
         a0 = D_80384490[D_80384FD0].unk34;
         if(a0){
-            func_80287D60(a0);
+            animsprite_free(a0);
         }
         a0 = D_80384490[D_80384FD0].unk46;
         if(a0){
@@ -227,7 +227,7 @@ int func_8033E3F0(enum common_particle_e particle_id, int arg1){
     func_8032FFEC(D_80384490[D_80384FD0].marker_30, (u32)D_80384FD0);
     D_80384490[D_80384FD0].marker_30->collidable = FALSE;
     func_80352A38(D_80384490[D_80384FD0].unk46, particle_id);
-    func_8033FFB8(D_80384490[D_80384FD0].unk45, func_80287FFC(D_80384490[D_80384FD0].unk34));
+    func_8033FFB8(D_80384490[D_80384FD0].unk45, animsprite_get_frame(D_80384490[D_80384FD0].unk34));
     projectile_getPosition(D_80384490[D_80384FD0].unk45, sp34);
     func_8032F64C(sp34, D_80384490[D_80384FD0].marker_30);
     return D_80384FD0;
@@ -238,7 +238,7 @@ void func_8033E6D4(s32 arg0){
     func_803529DC(D_80384490[arg0].unk46);
     func_80344D70(D_80384490[arg0].unk47);
     func_8033FB64(D_80384490[arg0].unk45);
-    func_80287D60(D_80384490[arg0].unk34);
+    animsprite_free(D_80384490[arg0].unk34);
     marker_free(D_80384490[arg0].marker_30);
     D_80384490[arg0].marker_30 = NULL;
     D_80384490[arg0].unk38 = 0;
@@ -288,7 +288,7 @@ u8 func_8033E8D0(void){
     return D_80384490[D_80384FD0].unk45;
 }
 
-struct54s * func_8033E8F4(void){
+AnimSprite * func_8033E8F4(void){
     return D_80384490[D_80384FD0].unk34;
 }
 

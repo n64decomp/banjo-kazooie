@@ -28,7 +28,7 @@ Actor *func_8038E720(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 
 void func_8038E774(Actor *this){
-    func_80328B8C(this, 2, 0.05f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.05f, 1);
     actor_playAnimationOnce(this);
     this->marker->collidable = TRUE;
     this->unk38_31 = 0;
@@ -70,7 +70,7 @@ void func_8038E940(Actor *this){
     if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
-        func_80328B8C(this, 3, 0.95f, 0);
+        subaddie_set_state_with_direction(this, 3, 0.95f, 0);
         return;
     }//L8038E9B8
 
@@ -79,7 +79,7 @@ void func_8038E940(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         marker_setCollisionScripts(this->marker, NULL, func_8038E7CC, NULL);
-        func_80328B8C(this, 1, 0.05f, 1);
+        subaddie_set_state_with_direction(this, 1, 0.05f, 1);
         this->unk38_31 = 0;
         this->unk60 = 0.0f;
     }//L8038EA3C
@@ -98,7 +98,7 @@ void func_8038E940(Actor *this){
             if(this->unk38_31 < 3)
                 break;
 
-            func_80328B8C(this, 3, 0.05f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.05f, 1);
             actor_playAnimationOnce(this);
             FUNC_8030E624(SFX_416, 0.8f, 32000);
             this->marker->collidable = FALSE;

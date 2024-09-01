@@ -64,22 +64,22 @@ void func_8035D65C(Actor *this) {
     }
     if (func_80329530(this, 500) && func_8028B470() && func_8035D608(this)) {
         this->unk28 = 2.0f;
-        func_80328B8C(this, 4, 0.0f, -1);
+        subaddie_set_state_with_direction(this, 4, 0.0f, -1);
     }
 }
 
 void func_8035D6FC(Actor *this) {
-    func_80328B8C(this, 3, 0.0f, -1);
+    subaddie_set_state_with_direction(this, 3, 0.0f, -1);
     this->unk28 = 2.0f;
-    func_80328C64(this, (s32) (randf2(-45.0f, 45.0f) + (this->yaw + 180.0f)));
+    subaddie_set_ideal_yaw(this, (s32) (randf2(-45.0f, 45.0f) + (this->yaw + 180.0f)));
     func_80328CA8(this, (s32) func_8035D590(randf2(-45.0f, 45.0f) + (360.0f - this->pitch)));
     this->unk38_31 = 0x78;
 }
 
 void func_8035D7CC(Actor *this) {
-    func_80328B8C(this, 3, 0.0f, -1);
+    subaddie_set_state_with_direction(this, 3, 0.0f, -1);
     this->unk28 = 2.0f;
-    func_80328C64(this, (s32) (randf2(-45.0f, 45.0f) + (this->yaw + 180.0f)));
+    subaddie_set_ideal_yaw(this, (s32) (randf2(-45.0f, 45.0f) + (this->yaw + 180.0f)));
     func_80328CA8(this, (s32) func_8035D590(randf2(-45.0f, 45.0f) + (360.0f - this->pitch)));
 }
 
@@ -87,7 +87,7 @@ void func_8035D88C(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_80328B8C(this, 7, 0.0f, -1);
+    subaddie_set_state_with_direction(this, 7, 0.0f, -1);
     actor_playAnimationOnce(this);
     FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 0.8f, 30000, this->position, 1500, 3000);
     actor_collisionOff(this);
@@ -132,7 +132,7 @@ void func_8035DA1C(Actor *this) {
         LOCAL_D6600(this)->unk4 =(map_get() == MAP_71_GL_STATUE_ROOM) ? 8 : 0xf;
         if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
             this->unk28 = 0.0f;
-            func_80328B8C(this, 1, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.0f, 1);
         }
         func_8032CA80(this, LOCAL_D6600(this)->unk4);
         marker_setCollisionScripts(this->marker, func_8035D8F0, NULL, func_8035D88C);
@@ -151,7 +151,7 @@ void func_8035DA1C(Actor *this) {
             func_80328FB0(this, 0.5f);
             func_80328FF0(this, 0.5f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
-            if (func_80328B38(this, 2, 0.05f) && !func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
+            if (subaddie_maybe_set_state(this, 2, 0.05f) && !func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
                 this->unk28 = 4.0f;
             }
             func_8035D65C(this);
@@ -161,7 +161,7 @@ void func_8035DA1C(Actor *this) {
             func_80328FB0(this, 0.5f);
             func_80328FF0(this, 0.5f);
             if (func_80329480(this) && randf() < 0.01) {
-                func_80328C64(this, (s32)(this->yaw + randf2(-45.0f, 45.0f)));
+                subaddie_set_ideal_yaw(this, (s32)(this->yaw + randf2(-45.0f, 45.0f)));
             }
             if (func_8032944C(this) && randf() < 0.01) {
                 func_80328CA8(this, (s32)func_8035D590(this->pitch + randf2(-45.0f, 45.0f)));
@@ -173,7 +173,7 @@ void func_8035DA1C(Actor *this) {
             if (sp3C & 2) {
                 func_80328CA8(this, 0);
             }
-            if (func_80328BD4(this, 1, 0.0f, 1, 0.005f)) {
+            if (subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.005f)) {
                 this->unk28 = 2.0f;
             }
             func_8035D65C(this);
@@ -184,20 +184,20 @@ void func_8035DA1C(Actor *this) {
             func_80328FF0(this, 3.0f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
             if (func_80329480(this) && func_8032944C(this)) {
-                func_80328B8C(this, 2, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 2, 0.0f, -1);
                 this->unk28 = 4.0f;
             }
             break;
 
         case 4://L8035DDB8
             func_803297FC(this, &sp40, &sp44);
-            func_80328C64(this, (s32) sp44);
+            subaddie_set_ideal_yaw(this, (s32) sp44);
             func_80328CA8(this, (s32) func_8035D590(sp40));
             func_80328FB0(this, 10.0f);
             func_80328FF0(this, 10.0f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
             if (func_80329480(this) && func_8032944C(this)) {
-                func_80328B8C(this, 5, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 5, 0.0f, -1);
                 this->unk28 = 10.5f;
             }
             break;
@@ -209,16 +209,16 @@ void func_8035DA1C(Actor *this) {
         case 5://L8035DE84
             this->marker->unk14_20 = MARKER_173_CHUMP_FISH_2;
             func_803297FC(this, &sp40, &sp44);
-            func_80328C64(this, (s32) sp44);
+            subaddie_set_ideal_yaw(this, (s32) sp44);
             func_80328CA8(this, (s32) func_8035D590(sp40));
             func_80328FB0(this, 10.0f);
             func_80328FF0(this, 10.0f);
             sp38 = func_80329530(this, 0x12C);
             if ((this->state == 5) && sp38) {
-                func_80328B8C(this, 6, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 6, 0.0f, -1);
             }
             if ((this->state == 6) && !sp38) {
-                func_80328B8C(this, 5, 0.0f, -1);
+                subaddie_set_state_with_direction(this, 5, 0.0f, -1);
             }
             if ((func_8032CA80(this, LOCAL_D6600(this)->unk4) & ~2)) {
                 func_8035D7CC(this);

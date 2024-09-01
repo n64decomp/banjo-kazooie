@@ -150,7 +150,7 @@ void func_80324BA0(s32 arg0){
 }
 
 void __spawnjiggy(DelayedJiggyInfo *jigInfo){
-    jiggySpawn(jigInfo->id, jigInfo->pos);
+    jiggy_spawn(jigInfo->id, jigInfo->pos);
 }
 
 void func_80324C58(void){

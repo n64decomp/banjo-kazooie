@@ -4,7 +4,8 @@
 #include "bsint.h"
 #include "bs_funcs.h"
 #include "core2/statetimer.h"
-
+#include "core2/ba/physics.h"
+#include "snackerctl.h"
 
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
@@ -186,10 +187,10 @@ void func_80295914(void){
     D_8037C3B0 = NULL;
     update_void_return_Location();
     func_802983F0();
-    snacker_reset();
+    snackerctl_reset();
     func_80291910();
-    func_8029279C();
-    func_802932AC();
+    badrone_init();
+    bafalldamage_init();
     miscflag_clearAll();
     func_8028B6FC();
     func_80291590();
@@ -200,7 +201,7 @@ void func_80295914(void){
     bs_clearState();
     func_80295DD0();
     func_80296C30();
-    func_802976E4();
+    baphysics_init();
     func_80297C78();
     pitch_reset();
     climbClear();
@@ -216,7 +217,7 @@ void func_80295914(void){
     func_80290664();
     stateTimer_init();
     eggShatter_init();
-    func_80294790();
+    bacarry_init();
     func_80293DA4();
     baAnim_init();
     baModel_reset();
@@ -233,7 +234,7 @@ void func_80295A8C(void){
     stateTimer_set(STATE_TIMER_2_LONGLEG, bsStoredState_getLongLegTimer());
     stateTimer_set(STATE_TIMER_3_TURBO_TALON, bsStoredState_getTurboTimer());
     if(func_8028ADB4())
-        bs_setState(func_80292630());
+        bs_setState(badrone_enter());
     else
         bs_setState(bs_getIdleState());
 
@@ -263,7 +264,7 @@ void func_80295B04(void){
     baModel_free();
     baAnim_free();
     func_80293E88();
-    func_802947C4();
+    bacarry_end();
     func_80299A20();
     func_8029A54C();
     func_8029ADA8();
@@ -280,15 +281,15 @@ void func_80295C14(void){
     func_80298A84();
     stateTimer_update();
     func_8029E100();
-    func_8024E7C8();//controller_update
+    pfsManager_update();//controller_update
     func_8023E06C();
     func_80295448();
     func_8029B174();
     func_8029533C(); //dive_cooldown_update
     bs_updateState();
-    func_80297744();
+    baphysics_update();
     func_8029858C();
-    func_802932EC();
+    bafalldamage_update();
     func_80293F0C();
     pitch_update();
     roll_update();
@@ -303,8 +304,8 @@ void func_80295C14(void){
     baModel_update();
     func_8029842C();
     baMarker_update();
-    func_80294890();
-    func_8028A8D0();
+    bacarry_update();
+    snackerctl_update();
     func_8028B71C();
     func_8029D968();
     func_80297CF8();

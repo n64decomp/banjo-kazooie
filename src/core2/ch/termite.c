@@ -52,7 +52,7 @@ void __chTermite_updateWalkSFX(Actor *this) {
     f32 sp24[3];
     f32 sp20;
 
-    viewport_getPosition(&sp24);
+    viewport_get_position_vec3f(&sp24);
     sp20 = ml_map_f( (300.0f - sp24[0])*(300.0f - sp24[0]) + (this->position[1] - sp24[1])*(this->position[1] - sp24[1]) + (-858.0f - sp24[2])*(-858.0f - sp24[2])
                       , 7617600.0f, 8236900.0f
                       , 8000.0f, 1000.0f
@@ -121,7 +121,7 @@ void __chTermite_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_80328AC8(this, 6);
+    subaddie_set_state_forward(this, 6);
 }
 
 void __chTermite_die(ActorMarker *marker, ActorMarker *other_marker){
@@ -187,7 +187,7 @@ void chTermite_update(Actor *this) {
     }
     switch (this->state) {
     case 1:
-        if (func_80328BD4(this, 2, 0.0f, 1, 0.06f)) {
+        if (subaddie_maybe_set_state_position_direction(this, 2, 0.0f, 1, 0.06f)) {
             __chTermite_updateRandomRotationSpeed(this);
             __chTermite_updateRandomSpeed(this);
             this->unk28 = 0.0f;
@@ -222,11 +222,11 @@ void chTermite_update(Actor *this) {
         }
         __chTermite_updateAnimationSpeed(this);
         func_80329030(this, 0);
-        func_80328BD4(this, 1, 0.0f, 1, 0.047f);
+        subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.047f);
         return;
     case 6:
         if (actor_animationIsAt(this, 0.95f) != 0) {
-            func_80328AC8(this, 1);
+            subaddie_set_state_forward(this, 1);
         }
         break;
     }

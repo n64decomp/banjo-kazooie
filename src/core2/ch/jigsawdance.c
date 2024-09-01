@@ -81,15 +81,15 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
     switch(arg1){
         case 3:
             if(this->state == 1){
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_ONCE);
             }
             break;
         case 2:
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
             break;
         case 1:
-            func_80328A84(this, 4);
+            subaddie_set_state(this, 4);
             break;
         case 4:
             player_getPosition(this->position);
@@ -100,7 +100,7 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
             animctrl_start(this->animctrl, "chjigsawdance.c", 0x97);
             break;
         case 5:
-            func_80328A84(this, 5);
+            subaddie_set_state(this, 5);
             this->marker->propPtr->unk8_4 = 0;
             break;
     }

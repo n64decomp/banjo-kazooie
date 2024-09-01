@@ -21,7 +21,7 @@ void  func_80244978(s32 arg0, s16 type, s32 arg2);
 
 N_ALSndPlayer D_8027EEC0;
 s16 *D_8027EF14;
-extern struct {
+struct {
     s32 volume[4];
 }D_8027EF18;
 
@@ -329,10 +329,10 @@ void func_802432F8(N_ALSndPlayer *sndp, N_ALEvent *event) {
             case 0x200:
                 if (temp_s0->unk3F & 0x10) {
                     sp68 = func_80244608(var_s5->msg.midi.duration, (s16)var_s5->msg.generic.data[1].i, temp_s0->unk30);
-                    func_80244978(sp68, 8, temp_s0->unk34);
-                    func_80244978(sp68, 4, temp_s0->unk3D);
+                    func_80244978(sp68, AL_SEQP_PROG_EVT, temp_s0->unk34);
+                    func_80244978(sp68, AL_SEQ_END_EVT, temp_s0->unk3D);
                     func_80244978(sp68, 0x100, temp_s0->unk3E);
-                    func_80244978(sp68, 0x10, reinterpret_cast(s32, temp_s0->unk2C));
+                    func_80244978(sp68, AL_SEQP_STOP_EVT, reinterpret_cast(s32, temp_s0->unk2C));
                 }
                 
                 break;

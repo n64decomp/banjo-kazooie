@@ -46,7 +46,7 @@ void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     func_8030E6D4(SFX_EA_GRUNTY_LAUGH_1);
-    func_80328B8C(this, 5, 0.0f, 1);
+    subaddie_set_state_with_direction(this, 5, 0.0f, 1);
     actor_loopAnimation(this);
     this->yaw_ideal = 79.0f;
     animctrl_setTransitionDuration(this->animctrl, 0.4f);
@@ -72,17 +72,17 @@ void func_80392700(Actor *this) {
         func_8028F94C(2, this->position);
         func_80311480(0x103F, 0x2A, this->position, this->marker, func_80392690, func_80392610);
         mapSpecificFlags_set(6, 0);
-        func_80328B8C(this, 3, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 3, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
     if ((this->state == 3) && (actor_animationIsAt(this, 0.999f) != 0)) {
-        func_80328B8C(this, 4, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 4, 0.0f, 1);
         actor_loopAnimation(this);
     }
     if (this->state == 5) {
         func_80328FB0(this, 12.0f);
         if (func_80329480(this) != 0) {
-            func_80328B8C(this, 5, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             this->marker->unk2C_2 = TRUE;
         }
     }

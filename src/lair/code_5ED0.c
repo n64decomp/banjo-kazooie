@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/code_C9E70.h"
+#include "../core2/gc/zoombox.h"
+#include "../core2/code_C9E70.h"
 #include "core2/nc/camera.h"
 
 
@@ -67,18 +68,11 @@ extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
 extern s32  item_getCount(s32); // item count get
 extern void func_803463F4(s32, s32); // item count set
 
-extern void func_80318614(gczoombox_t *, s32);
-extern bool func_803183A4(gczoombox_t *, u8 *);
-extern void gczoombox_minimize(gczoombox_t *);
-extern void gczoombox_close(gczoombox_t *);
-
 extern void func_80250530(s32, u16, f32);
 
 extern void func_8025A55C(s32, s32, s32);
 
 extern void func_80324CFC(f32, s16, s16);
-extern void gczoombox_open(gczoombox_t *);
-extern void gczoombox_maximize(gczoombox_t *);
 
 extern void *mapModel_getModel(s32);
 extern void  player_setTransformation(s32); // set transformation
@@ -186,7 +180,7 @@ extern Struct_lair_5ED0_0 D_80393760[FF_QNF_CNT - 1] = {
 };
 
 
-extern struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
+struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
     {  0x0, 100},
     { 0x64, 118},
     { 0xDA,  51},
@@ -194,7 +188,7 @@ extern struct FF_QuestionTypeInfo FF_QuestionTypeInfoArr[5] = {
     {0x12B,   6}
 };
 
-extern struct {
+struct {
     u8 unk0;
     s16 unk2;
     s16 unk4;
@@ -208,31 +202,31 @@ extern struct {
     {1, COMUSIC_9_NOTE_COLLECTED,              32000,  3.0f},
     {1, COMUSIC_14_GOLD_FEATHER_COLLECTED,    0x7FFF,  3.0f},
     {1, COMUSIC_17_EMPTY_HONEYCOMB_COLLECTED, 0x7FFF,  3.0f},
-    {2, TALK_PIC_1D_GOBI,            0,  0.0f},
-    {2, TALK_PIC_15_CLANKER,         0,  0.0f},
-    {2, TALK_PIC_1B_TRUNKER,         0,  0.0f},
-    {2, TALK_PIC_17_VILE_4,          0,  0.0f},
-    {2, TALK_PIC_13_BLUBBER,         0,  0.0f},
-    {2, TALK_PIC_10_MUMBO_1,         0,  0.0f},
-    {2, TALK_PIC_12_CONGA,           0,  0.0f},
-    {2, TALK_PIC_F_BOTTLES,          0,  0.0f},
-    {2, TALK_PIC_11_CHIMPY,          0,  0.0f},
-    {2, TALK_PIC_18_TIPTUP,          0,  0.0f},
-    {2, TALK_PIC_1C_RUBEE,           0,  0.0f},
-    {2, TALK_PIC_1F_TEEHEE,          0,  0.0f},
-    {2, TALK_PIC_3E_SNORKEL,         0,  0.0f},
-    {2, TALK_PIC_41_GRUNTILDA_3,     0,  0.0f},
-    {2, TALK_PIC_43_BOGGY,           0,  0.0f},
-    {2, TALK_PIC_44_WOZZA,           0,  0.0f},
-    {2, TALK_PIC_50_NABNUT,          0,  0.0f},
-    {2, TALK_PIC_51_POLAR_BEAR_CUBS, 0,  0.0f},
-    {2, TALK_PIC_55_ADULT_EEYRIE,    0,  0.0f},
-    {2, TALK_PIC_57_BRENTILDA,       0,  0.0f},
-    {2, TALK_PIC_58_TOOTY_3,         0,  0.0f},
-    {2, TALK_PIC_5A_LOGGO,           0,  0.0f},
-    {2, TALK_PIC_14_NIPPER,          0,  0.0f},
-    {2, TALK_PIC_19_TANKTUP,         0,  0.0f},
-    {2, TALK_PIC_20_JINJO_YELLOW,    0,  0.0f},
+    {2, ZOOMBOX_SPRITE_1D_GOBI,            0,  0.0f},
+    {2, ZOOMBOX_SPRITE_15_CLANKER,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_1B_TRUNKER,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_17_VILE_4,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_13_BLUBBER,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_10_MUMBO_1,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_12_CONGA,           0,  0.0f},
+    {2, ZOOMBOX_SPRITE_F_BOTTLES,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_11_CHIMPY,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_18_TIPTUP,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_1C_RUBEE,           0,  0.0f},
+    {2, ZOOMBOX_SPRITE_1F_TEEHEE,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_3E_SNORKEL,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_41_GRUNTILDA_3,     0,  0.0f},
+    {2, ZOOMBOX_SPRITE_43_BOGGY,           0,  0.0f},
+    {2, ZOOMBOX_SPRITE_44_WOZZA,           0,  0.0f},
+    {2, ZOOMBOX_SPRITE_50_NABNUT,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_51_POLAR_BEAR_CUBS, 0,  0.0f},
+    {2, ZOOMBOX_SPRITE_55_ADULT_EEYRIE,    0,  0.0f},
+    {2, ZOOMBOX_SPRITE_57_BRENTILDA,       0,  0.0f},
+    {2, ZOOMBOX_SPRITE_58_TOOTY_3,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_5A_LOGGO,           0,  0.0f},
+    {2, ZOOMBOX_SPRITE_14_NIPPER,          0,  0.0f},
+    {2, ZOOMBOX_SPRITE_19_TANKTUP,         0,  0.0f},
+    {2, ZOOMBOX_SPRITE_20_JINJO_YELLOW,    0,  0.0f},
     {1, COMUSIC_57_TURBO_TRAINERS,       32000, 10.0f},
     {1, COMUSIC_58_WADING_BOOTS,         32000, 10.0f},
     {1, COMUSIC_25_USING_GOLD_FEATHERS,  32000, 10.0f},

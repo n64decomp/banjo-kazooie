@@ -42,11 +42,11 @@ void func_802BE940(void)
   D_8037DA30[2] = sp24[2];
 }
 
-void func_802BEA4C(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3]) {
+void func_802BEA4C(f32 rotation[3], f32 position[3], f32 arg2, f32 dest[3]) {
     f32 sp24[3];
 
-    func_80256E24(sp24, arg0[0], arg0[1], 0.0f, 0.0f, -arg2);
-    ml_vec3f_add(arg3, sp24, arg1);
+    func_80256E24(sp24, rotation[0], rotation[1], 0.0f, 0.0f, -arg2);
+    ml_vec3f_add(dest, sp24, position);
 }
 
 

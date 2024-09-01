@@ -197,10 +197,10 @@ void func_8038B0F8(void){
 
 void func_8038B130(enum jiggy_e jiggy_id){
     if(jiggy_id == JIGGY_2C_FP_BOGGY_3 && !jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-        jiggySpawn(jiggy_id, D_80391F38);
+        jiggy_spawn(jiggy_id, D_80391F38);
     }
     else{
-        jiggySpawn(jiggy_id, D_80391F2C);
+        jiggy_spawn(jiggy_id, D_80391F2C);
     }
 }
 
@@ -485,15 +485,15 @@ void FP_func_8038BA88(s32 arg0){
 
     switch(FP_D_803935A8.unkC - FP_D_803935A8.unk8){
         case 3:
-            func_8025AEA0(0x3a, 0x411aa);
+            func_8025AEA0(0x3a, 266666);
             break;
         case 2:
-            func_8025AEA0(0x3a, 0x493e0);
+            func_8025AEA0(0x3a, 300000);
             break;
         case 4:
             break;
         default:
-            func_8025AEA0(0x3a, 0x51615);
+            func_8025AEA0(0x3a, 333333);
             break;
 
 

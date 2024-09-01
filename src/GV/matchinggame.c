@@ -63,7 +63,7 @@ void func_80390218(void *arg0){
 
 void __matchingGame_spawnJIggy(void){
     static f32 jiggy_position[3] = {0.0f, 100.0f, 0.0f};
-    jiggySpawn(JIGGY_40_GV_MATCHING_GAME, jiggy_position);
+    jiggy_spawn(JIGGY_40_GV_MATCHING_GAME, jiggy_position);
 }
 
 void __matchingGame_setState(s32 next_state){
@@ -160,7 +160,7 @@ void gv_matchingGame_update(void){
             player_getPosition(player_position);
             sp4C = func_8033F3E8(mapModel_getModel(0), player_position, 0x190, 0x1a0);
             if(sp4C){
-                sp48 = func_8034C528(sp4C);
+                sp48 = &func_8034C528(sp4C)->type_6D;
                 if(matchingGame.state == 1){
                     __matchingGame_setState(2);
                 }

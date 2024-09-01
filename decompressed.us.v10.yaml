@@ -15,12 +15,14 @@ options:
     #include "variables.h"
   undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
-  undefined_funcs_auto_path: undefined_funcs_auto.us.v10.txt
-  undefined_syms_auto_path: undefined_syms_auto.us.v10.txt
+  create_undefined_funcs_auto: no
+  create_undefined_syms_auto: no
   base_path: .
   target_path: decompressed.us.v10.z64
   asset_path: bin
   build_path: build/us.v10
+  libultra_symbols: True
+  hardware_regs: True
 segments:
 - name:  header
   type:  header
@@ -63,7 +65,7 @@ segments:
   - [0x3870, hasm, maptlbrdb]
   - [0x38D0, c, done/pirawread]
   - [0x3930, c, done/ll]
-  - [0x3BF0, bin, padding3BF0] # Empty space
+  - [0x3BF0, hasm, ultra/parameters]
   - [0x3C50, c, done/virtualtophysical]
   - [0x3CD0, c, done/si]
   - [0x3D00, c, done/thread]
@@ -123,18 +125,20 @@ segments:
   start: 0x5E90
   subsegments:
   - [0x5E90, bin, assets]
-- name: soundfont1
+- name: soundfont1ctl
   type: bin
   start: 0xD846C0
-  subsegments:
-  - [0xD846C0, bin, soundfont1.ctl]
-  - [0xD954B0, bin, soundfont1.tbl]
-- name: soundfont2
+- name: soundfont1tbl
+  type: bin
+  start: 0xD954B0
+
+- name: soundfont2ctl
   type: bin
   start: 0xEA3EB0
-  subsegments:
-  - [0xEA3EB0, bin, soundfont2.ctl]
-  - [0xEADE60, bin, soundfont2.tbl]
+- name: soundfont2tbl
+  type: bin
+  start: 0xEADE60
+
 - name: core1
   dir: core1
   type: code
@@ -233,7 +237,7 @@ segments:
   - [0xF3F820, c, gu/sinf]                    #DONE
   - [0xF3F9E0, c, audio/cents2ratio]          #DONE
   - [0xF3FA30, c, audio/heapinit]             #DONE
-  - [0xF3FA70, asm, padding] # 0x60 bytes of zeroes?
+  - [0xF3FA70, hasm, ultra/parameters]        #DONE
   - [0xF3FAD0, c, os/createmesgqueue]         #DONE
   - [0xF3FB00, c, io/aisetfreq]               #DONE
   - [0xF3FC60, c, audio/sl]                   #DONE
@@ -501,13 +505,13 @@ segments:
   follows_vram: core1
   subsegments:
   - [0xF55960, c, animctrl] #DONE
-  - [0xF56430, c, code_AD0] #DONE
+  - [0xF56430, c, anim/sprite] #DONE
   - [0xF56A40, c, animcache] #DONE
   - [0xF56EB0, c, code_1550] #DONE
   - [0xF57290, c, code_1930] #DONE
   - [0xF57BA0, c, code_2240] #DONE
   - [0xF581F0, c, ba/anim] #DONE
-  - [0xF58DE0, c, code_3480] #DONE
+  - [0xF58DE0, c, snackerctl] #DONE
   - [0xF59330, c, code_39D0] #DONE
   - [0xF5A120, c, ba/marker] #DONE
   - [0xF5C490, c, code_6B30] #DONE
@@ -522,14 +526,14 @@ segments:
   - [0xF60040, c, statetimer] #DONE
   - [0xF602C0, c, code_A960] #DONE
   - [0xF603C0, c, ba/model] #DONE
-  - [0xF60FB0, c, code_B650] #DONE
+  - [0xF60FB0, c, ba/drone] #DONE
   - [0xF611B0, c, code_B850] #DONE
   - [0xF614B0, c, eggshatter] #DONE
   - [0xF61680, c, code_BD20] #DONE
-  - [0xF61A40, c, code_C0E0] #DONE
+  - [0xF61A40, c, ba/falldamage] #DONE
   - [0xF61D50, c, code_C3F0] #DONE
   - [0xF61E10, c, code_C4B0]
-  - [0xF63160, c, code_D800] #DONE
+  - [0xF63160, c, ba/carry] #DONE
   - [0xF63310, c, code_D9B0] #DONE
   - [0xF638D0, c, code_DF70] #DONE
   - [0xF63D70, c, code_E410] #DONE
@@ -537,7 +541,7 @@ segments:
   - [0xF64270, c, code_E910] #DONE
   - [0xF647A0, c, code_EE40] #DONE
   - [0xF648B0, c, code_EF50] #DONE
-  - [0xF656C0, c, code_FD60] #DONE
+  - [0xF656C0, c, ba/physics] #DONE
   - [0xF66630, c, code_10CD0] #DONE
   - [0xF66700, c, pitch]      #DONE
   - [0xF669A0, c, code_11040] #DONE
@@ -702,7 +706,7 @@ segments:
   - [0xFAF0E0, c, code_59780] #DONE
   - [0xFAF340, c, code_599E0] #DONE
   - [0xFAF3E0, c, code_59A80] #DONE
-  - [0xFAF6A0, c, code_59D40] #DONE
+  - [0xFAF6A0, c, ch/snacker] #DONE
   - [0xFB0490, c, ch/snowman] #DONE
   - [0xFB1000, c, ch/snowball] #DONE
   - [0xFB16F0, c, ch/snowmanhat] #DONE
@@ -771,7 +775,7 @@ segments:
   - [0xFDAB30, c, code_851D0] #DONE
   - [0xFDB110, c, code_857B0] #DONE
   - [0xFDB160, c, code_85800] #DONE
-  - [0xFDD790, c, code_87E30]
+  - [0xFDD790, c, gc/dialog]
   - [0xFE0110, c, gc/pauseMenu] #DONE
   - [0xFE3580, c, code_8DC20] #DONE
   - [0xFE3BD0, c, gc/zoombox] #DONE
@@ -897,16 +901,16 @@ segments:
   - [0x1031F60, bin, data_DC600] #unreferenced
   - [0x1031F90, .data, code_1550]
   - [0x1031FB0, .data, ba/anim]
-  - [0x1031FE0, .data, code_3480]
+  - [0x1031FE0, .data, snackerctl]
   - [0x1032000, .data, ba/marker]
   - [0x1032060, .data, code_7060]
   - [0x10320A0, .data, code_90E0]
   - [0x1032150, .data, ba/model]
   - [0x1032150, .data, code_B850]
   - [0x1032170, .data, eggshatter]
-  - [0x10321C0, .data, code_C0E0]
+  - [0x10321C0, .data, ba/falldamage]
   - [0x10321F0, .data, code_E910]
-  - [0x1032E10, .data, code_FD60]
+  - [0x1032E10, .data, ba/physics]
   - [0x1032E20, .data, code_117D0]
   - [0x1032F30, .data, code_126C0]
   - [0x1032F50, .data, code_12F30]
@@ -999,7 +1003,7 @@ segments:
   - [0x1036D80, .data, ch/bottlesbonuscursor]
   - [0x1036E10, .data, code_59780]
   - [0x1036F70, .data, code_59A80]
-  - [0x1036FA0, .data, code_59D40]
+  - [0x1036FA0, .data, ch/snacker]
   - [0x1037020, .data, ch/snowman]
   - [0x10370E0, .data, ch/snowball]
   - [0x1037190, .data, ch/snowmanhat]
@@ -1044,7 +1048,7 @@ segments:
   - [0x103A710, .data, gc/sky]
   - [0x103AB20, .data, gc/transition]
   - [0x103AE20, .data, code_851D0]
-  - [0x103AEA0, .data, code_87E30]
+  - [0x103AEA0, .data, gc/dialog]
   - [0x103AEB0, .data, gc/pauseMenu]
   - [0x103B000, .data, code_8DC20]
   - [0x103B090, .data, gc/zoombox]
@@ -1116,10 +1120,10 @@ segments:
   - [0x1041CB0, .data, code_DB010]
   - [0x1042790, .data, code_DC4B0]
   - [0x10427C0, ".rodata", animctrl]
-  - [0x10427F0, .rodata, code_AD0]
+  - [0x10427F0, .rodata, anim/sprite]
   - [0x1042800, .rodata, code_1930]
   - [0x1042880, .rodata, ba/anim]
-  - [0x1042890, .rodata, code_3480]
+  - [0x1042890, .rodata, snackerctl]
   - [0x10428A0, .rodata, code_39D0]
   - [0x1042940, .rodata, ba/marker]
   - [0x1042D70, .rodata, code_6B30]
@@ -1128,15 +1132,15 @@ segments:
   - [0x1042FC0, .rodata, code_9900]
   - [0x1042FD0, .rodata, code_9BD0]
   - [0x1043010, .rodata, ba/model]
-  - [0x10430C0, .rodata, code_B650]
+  - [0x10430C0, .rodata, ba/drone]
   - [0x10430D0, .rodata, code_B850]
   - [0x10430F0, .rodata, code_BD20]
-  - [0x1043110, .rodata, code_C0E0]
+  - [0x1043110, .rodata, ba/falldamage]
   - [0x1043130, .rodata, code_C4B0]
   - [0x1043170, .rodata, code_D9B0]
   - [0x1043180, .rodata, abilityprogress]
   - [0x10431B0, .rodata, code_EF50]
-  - [0x1043350, .rodata, code_FD60]
+  - [0x1043350, .rodata, ba/physics]
   - [0x10433B0, .rodata, code_10CD0]
   - [0x10433C0, .rodata, pitch]
   - [0x10433F0, .rodata, code_11040]
@@ -1255,7 +1259,7 @@ segments:
   - [0x10459A0, .rodata, ch/bottlesbonuscursor]
   - [0x1045A00, .rodata, code_599E0]
   - [0x1045A10, .rodata, code_59A80]
-  - [0x1045A20, .rodata, code_59D40]
+  - [0x1045A20, .rodata, ch/snacker]
   - [0x1045A70, .rodata, ch/snowman]
   - [0x1045AA0, .rodata, ch/snowball]
   - [0x1045AD0, .rodata, code_5C240]
@@ -1291,7 +1295,7 @@ segments:
   - [0x1046E10, .rodata, gc/sky]
   - [0x1046E20, .rodata, gc/transition]
   - [0x1046E80, .rodata, code_85800]
-  - [0x1046EA0, .rodata, code_87E30]
+  - [0x1046EA0, .rodata, gc/dialog]
   - [0x1046F10, .rodata, gc/pauseMenu]
   - [0x1047250, .rodata, gc/zoombox] 
   - [0x1047320, .rodata, code_91E10]
@@ -1366,12 +1370,12 @@ segments:
   - [0x1048450, .rodata, code_DA3A0]
   - [0x1048460, .rodata, code_DA760]
   - [0x1048480, .rodata, code_DB010]
-  - [0x1048560, .bss, code_AD0]
+  - [0x1048560, .bss, anim/sprite]
   - [0x1048560, .bss, animcache]
   - [0x1048560, .bss, code_1550]
   - [0x1048560, .bss, code_1930]
   - [0x1048560, .bss, ba/anim]
-  - [0x1048560, .bss, code_3480]
+  - [0x1048560, .bss, snackerctl]
   - [0x1048560, .bss, code_39D0]
   - [0x1048560, .bss, ba/marker]
   - [0x1048560, .bss, code_6B30]
@@ -1385,13 +1389,13 @@ segments:
   - [0x1048560, .bss, code_A600]
   - [0x1048560, .bss, statetimer]
   - [0x1048560, .bss, ba/model]
-  - [0x1048560, .bss, code_B650]
+  - [0x1048560, .bss, ba/drone]
   - [0x1048560, .bss, eggshatter]
   - [0x1048560, .bss, code_BD20]
-  - [0x1048560, .bss, code_C0E0]
+  - [0x1048560, .bss, ba/falldamage]
   - [0x1048560, .bss, code_C3F0]
   - [0x1048560, .bss, code_C4B0]
-  - [0x1048560, .bss, code_D800]
+  - [0x1048560, .bss, ba/carry]
   - [0x1048560, .bss, code_D9B0]
   - [0x1048560, .bss, code_DF70]
   - [0x1048560, .bss, code_E410]
@@ -1399,7 +1403,7 @@ segments:
   - [0x1048560, .bss, code_E910]
   - [0x1048560, .bss, code_EE40]
   - [0x1048560, .bss, code_EF50]
-  - [0x1048560, .bss, code_FD60]
+  - [0x1048560, .bss, ba/physics]
   - [0x1048560, .bss, code_10CD0]
   - [0x1048560, .bss, pitch]
   - [0x1048560, .bss, code_11040]
@@ -1496,6 +1500,7 @@ segments:
   - [0x1048560, .bss, code_41FB0]
   - [0x1048560, .bss, code_42CB0]
   - [0x1048560, .bss, mapspecificflags]
+  - [0x1048560, .bss, code_47BD0]
   - [0x1048560, .bss, code_4A6F0]
   - [0x1048560, .bss, code_4C020]
   - [0x1048560, .bss, ch/badShad]
@@ -1511,7 +1516,7 @@ segments:
   - [0x1048560, .bss, code_581D0]
   - [0x1048560, .bss, ch/bottlesbonuscursor]
   - [0x1048560, .bss, code_59A80]
-  - [0x1048560, .bss, code_59D40]
+  - [0x1048560, .bss, ch/snacker]
   - [0x1048560, .bss, ch/snowball]
   - [0x1048560, .bss, code_5BEB0]
   - [0x1048560, .bss, code_5C240]
@@ -1559,7 +1564,7 @@ segments:
   - [0x1048560, .bss, code_851D0]
   - [0x1048560, .bss, code_857B0]
   - [0x1048560, .bss, code_85800]
-  - [0x1048560, .bss, code_87E30]
+  - [0x1048560, .bss, gc/dialog]
   - [0x1048560, .bss, gc/pauseMenu]
   - [0x1048560, .bss, code_8DC20]
   - [0x1048560, .bss, gc/zoombox]
@@ -1614,6 +1619,7 @@ segments:
   - [0x1048560, .bss, code_C5440]
   - [0x1048560, .bss, code_C89C0]
   - [0x1048560, .bss, code_C97F0]
+  - [0x1048560, .bss, code_C9E70]
   - [0x1048560, .bss, code_C9F00]
   - [0x1048560, .bss, code_CB8A0]
   - [0x1048560, .bss, code_CBBF0]
@@ -1882,7 +1888,7 @@ segments:
   - [0x1068340, .rodata, ch/grublin]
   - [0x1068350, .rodata, ch/jujuhitbox]
   - [0x1068360, .rodata, ch/juju]
-  - [0x1068370, .bss, bss_pad]
+  - [0x1068370, .bss, ch/hut]
   - [0x1068370, .bss, ch/juju]
 - name: BGS
   dir: BGS
@@ -2112,7 +2118,8 @@ segments:
   - [0x108AB50, .bss, sirslushgame]
   - [0x108AB50, .bss, snowmanbuttongame]
   - [0x108AB50, .bss, racectrl]
-  - [0x108AB50, .bss, bss_end_pad]
+  - [0x108AB50, .bss, ch/xmastreestar]
+  - [0x108AB50, .bss, code_B4D0]
 - name: SM
   dir: SM
   type: code
@@ -2300,8 +2307,8 @@ segments:
   - [0x10BA9E0, c, code_76C0] #DONE
   - [0x10BAEE0, c, code_7BC0] #DONE
   - [0x10BAF10, c, code_7BF0] #DONE
-  - [0x10BB370, c, code_8050] #DONE
-  - [0x10BB990, c, code_8670] #DONE
+  - [0x10BB370, c, ch/grublinhood] #DONE
+  - [0x10BB990, c, ch/vacationtexttrigger] #DONE
   - [0x10BBA80, .data, code_0]
   - [0x10BBAD0, .data, code_160]
   - [0x10BBB00, .data, code_950]
@@ -2328,8 +2335,8 @@ segments:
   - [0x10BC650, .data, code_76C0]
   - [0x10BC7E0, .data, code_7BC0]
   - [0x10BC820, .data, code_7BF0]
-  - [0x10BC860, .data, code_8050]
-  - [0x10BC930, .data, code_8670]
+  - [0x10BC860, .data, ch/grublinhood]
+  - [0x10BC930, .data, ch/vacationtexttrigger]
   - [0x10BC960, .rodata, code_160]
   - [0x10BC980, .rodata, code_950]
   - [0x10BC9E0, .rodata, code_1B20]
@@ -2348,7 +2355,7 @@ segments:
   - [0x10BCC20, .rodata, code_6AC0]
   - [0x10BCC40, .rodata, code_76C0]
   - [0x10BCC50, .rodata, code_7BF0]
-  - [0x10BCC60, .rodata, code_8050]
+  - [0x10BCC60, .rodata, ch/grublinhood]
   - [0x10BCD00, .bss, bss_pad]
   - [0x10BCD00, .bss, code_3310]
 - name: emptyLvl

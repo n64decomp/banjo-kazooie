@@ -198,7 +198,7 @@ void chbossboombox_respawnJiggy(s32 position_x, s32 position_y, s32 position_z){
     D_80391288[0] = (f32)position_x;
     D_80391288[1] = (f32)(position_y + 0x28);
     D_80391288[2] = (f32)position_z;
-    jiggySpawn(JIGGY_56_RBB_BOSS_BOOM_BOX, &D_80391288);
+    jiggy_spawn(JIGGY_56_RBB_BOSS_BOOM_BOX, &D_80391288);
 }
 
 void func_8038CA70(Actor *this, f32(*arg1)[3]){

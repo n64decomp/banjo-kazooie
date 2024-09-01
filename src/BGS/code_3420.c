@@ -74,7 +74,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
             sp94[1] = vile->position[1] + sp7C[1];
             sp94[2] = vile->position[2] + sp7C[2];
             func_802C8F70(vile->yaw);
-            jiggySpawn(JIGGY_28_BGS_MR_VILE, sp94);
+            jiggy_spawn(JIGGY_28_BGS_MR_VILE, sp94);
         } else {
             sp7C[0] = 0.0f - vile->position[0];
             sp7C[1] = 0.0f;
@@ -85,7 +85,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
             sp94[1] = vile->position[1] + sp7C[1];
             sp94[2] = vile->position[2] + sp7C[2];
             func_802C8F70(func_8025715C(sp7C[0], sp7C[2]));
-            jiggySpawn(JIGGY_28_BGS_MR_VILE, sp94);
+            jiggy_spawn(JIGGY_28_BGS_MR_VILE, sp94);
         }
     }
     for(var_s0 = 2; var_s0 != 0x3C; var_s0++){

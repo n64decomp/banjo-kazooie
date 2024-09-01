@@ -61,7 +61,7 @@ s32 D_8027599C = 0;
 
 /* .bss */
 u64 D_8027EF40[OS_YIELD_DATA_SIZE / sizeof(u64)];
-static u8 pad[0x28]; // 8027FB40
+static u8 pad[0x20]; // 8027FB40
 OSMesgQueue D_8027FB60;
 OSMesg      D_8027FB78[20];
 OSMesgQueue D_8027FBC8;
@@ -74,7 +74,7 @@ s32 D_8027FC18;
 s32 D_8027FC1C;
 s32 D_8027FC20;
 s32 D_8027FC24;
-u8 D_8027FC28[2040]; //stack for thread D_80280428;
+u8 D_8027FC28[2048]; //stack for thread D_80280428;
 OSThread D_80280428;
 Struct_Core1_8C50_s * D_802805D8[20];
 volatile s32 D_80280628;
@@ -458,7 +458,7 @@ void func_80247560(void){
     tmp_v0 = D_8027EF40;
     while((u32)tmp_v0 % 0x10){((u32)tmp_v0)++;}
     D_80275950.t.yield_data_ptr = tmp_v0;
-    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &D_8027FC28[2040], 60);
+    osCreateThread(&D_80280428, 5, func_802473B4, NULL, &D_8027FC28[2048], 60);
     osStartThread(&D_80280428);
 }
 

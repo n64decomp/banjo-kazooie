@@ -2,9 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 extern f32 func_80296548(void);
 extern f32 func_8029653C(void);
-extern f32 func_80297A4C(void);
 extern f32 func_8029B56C(f32, f32, f32, f32);
 
 /* .bss */
@@ -18,7 +19,7 @@ void func_802B35D0(s32 arg0){
 
 void func_802B35DC(void) {
     if (D_8037D500 == 1) {
-        func_80297A0C(0);
+        baphysics_set_velocity(0);
     }
 }
 
@@ -37,31 +38,31 @@ void func_802B360C(void) {
     func_80257F18(sp38, sp2C, &sp28);
     if ((sp1C == 0xE) || (sp1C == 0x10)) {
         func_802B35D0(1);
-        func_8029C7F4(1, 1, 2, 1);
+        func_8029C7F4(1, 1, 2, BA_PHYSICS_UNK1);
         yaw_setIdeal(mlNormalizeAngle(sp28));
-        gravity_set(func_80296548());
+        baphysics_set_gravity(func_80296548());
         sp20 = func_8029653C();
-        sp24 = func_8029B56C(sp2C[1], sp38[1], sp20, func_80297A4C());
+        sp24 = func_8029B56C(sp2C[1], sp38[1], sp20, baphysics_get_gravity());
         ml_vec3f_diff_copy(sp44, sp38, sp2C);
         D_8037D504 = sp24;
         sp44[0] /= sp24;
         sp44[1] /= sp24;
         sp44[2] /= sp24;
         sp44[1] = sp20;
-        func_80297A0C(sp44);
+        baphysics_set_velocity(sp44);
         func_8029E3C0(6, sp24);
     } else {
         func_802B35D0(0);
         func_80298760(sp1C);
         yaw_setIdeal(mlNormalizeAngle(sp28 + 180.0f));
-        func_80297970(func_802987D4());
-        func_8029797C(sp28);
-        func_802979AC(sp28, func_80297A64());
-        player_setYVelocity(func_802987C4());
-        gravity_set(func_802987E4());
-        func_8029C7F4(1, 1, 2, 3);
+        baphysics_set_target_horizontal_velocity(func_802987D4());
+        baphysics_set_target_yaw(sp28);
+        baphysics_set_horizontal_velocity(sp28, baphysics_get_target_horizontal_velocity());
+        baphysics_set_vertical_velocity(func_802987C4());
+        baphysics_set_gravity(func_802987E4());
+        func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
         if (func_802987B4() == 2) {
-            func_802978DC(6);
+            baphysics_set_type(BA_PHYSICS_AIRBORN);
         }
     }
     yaw_applyIdeal();
@@ -72,11 +73,11 @@ void func_802B37DC(void) {
 
     if (D_8037D500 != 0) {
         if ((D_8037D500 == 1) && func_8029E1A8(6)) {
-            _get_velocity(velocity);
+            baphysics_get_velocity(velocity);
             velocity[0] = 0.0f;
             velocity[2] = 0.0f;
-            func_80297A0C(velocity);
-            func_80297970(0.0f);
+            baphysics_set_velocity(velocity);
+            baphysics_set_target_horizontal_velocity(0.0f);
         }
     } else if (func_802987B4() == 2) {
         func_802B6FA8();
@@ -132,6 +133,6 @@ void func_802B3954(void) {
 
 void func_802B3A20(void) {
     func_802B35DC();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
 }

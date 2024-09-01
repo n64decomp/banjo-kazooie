@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "bsint.h"
 
+#include "core2/ba/physics.h"
+
 void func_80292900(f32, f32);
 void rumbleManager_80250D94(f32, f32, f32);
 
@@ -21,8 +23,8 @@ void func_802B4570(void) {
 void bssplat_init(void){
     s32 sp1C;
     baanim_playForDuration_onceSmooth(ASSET_149_ANIM_BSSPLAT, 1.1f);
-    func_8029C7F4(1,1,3,3);
-    func_802931DC(&sp1C);
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    bafalldamage_get_damage(&sp1C);
     func_803463D4(ITEM_14_HEALTH, -sp1C);
     if(func_8029CEB0() == 4){
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.7f, 32000);
@@ -45,12 +47,12 @@ void bssplat_init(void){
 void bssplat_update(void){
     enum bs_e sp1C = 0;
     AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
-    func_80297970(ml_max_f(0.0f, func_80297A64() - 15.0f));
+    baphysics_set_target_horizontal_velocity(ml_max_f(0.0f, baphysics_get_target_horizontal_velocity() - 15.0f));
 
     switch (D_8037D530)
     {
     case 0://L802B4760
-        if(140.0f < func_80297A64())
+        if(140.0f < baphysics_get_target_horizontal_velocity())
             func_802929F8();
 
         if(func_8028B094())

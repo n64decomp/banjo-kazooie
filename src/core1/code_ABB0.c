@@ -535,7 +535,7 @@ void draw_texture_ci4(s32 x, s32 y, void *tmem, s32 w, s32 h, bool alpha_enabled
     }
 }
 
-void func_80249CEC(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled) {
+void draw_sprite(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled) {
     s16 temp_v0;
 
     temp_v0 = sprite->type;

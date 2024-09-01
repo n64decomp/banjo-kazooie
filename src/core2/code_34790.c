@@ -106,7 +106,7 @@ f32 func_802BB938(f32 arg0[3], f32 arg1[3]) {
         phi_f20 = 65.0f;
     }
 
-    if (gctransition_8030BDAC()) {
+    if (gctransition_active()) {
         phi_f20 = ml_min_f(phi_f20, gctransition_8030BD88() * 0.8);
     }
     return phi_f20;
@@ -120,8 +120,8 @@ void func_802BBA84(void) {
     f32 max[3];
 
     mapModel_getBounds(min, max);
-    viewport_getPosition(vp_position);
-    viewport_getRotation(vp_rotation);
+    viewport_get_position_vec3f(vp_position);
+    viewport_get_rotation_vec3f(vp_rotation);
     func_8024C5A8(sp48);
     D_8037D8CC = (f32) func_8033EAF8(min, max, vp_position, sp48);
     D_8037D8CC += 100.0f;
@@ -295,11 +295,11 @@ void ncCamera_update(void){
             break;
     }
 
-    viewport_getPosition(sp2C);
-    viewport_getRotation(sp20);
+    viewport_get_position_vec3f(sp2C);
+    viewport_get_rotation_vec3f(sp20);
     func_802BB4D8(sp2C, sp20);
-    viewport_setPosition(sp2C);
-    viewport_setRotation(sp20);
+    viewport_set_position_vec3f(sp2C);
+    viewport_set_rotation_vec3f(sp20);
     viewport_update();
     func_802BEFB0();
     func_802BBA84();
@@ -352,8 +352,8 @@ void func_802BC2CC(s32 arg0) {
     if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
         func_802BE894(D_8037D918, D_8037D908);
     }
-    viewport_setPosition(D_8037D908);
-    viewport_setRotation(D_8037D918);
+    viewport_set_position_vec3f(D_8037D908);
+    viewport_set_rotation_vec3f(D_8037D918);
     viewport_update();
     __spawnQueue_add_2((GenFunction_2)func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
     if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {

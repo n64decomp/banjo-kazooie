@@ -68,7 +68,7 @@ void func_802D77D4(Actor *this) {
     case 1:
         func_802D76E0(this, sp30);
         ml_vec3f_copy(local->unk0, sp30);
-        func_80328A84(this, 2);
+        subaddie_set_state(this, 2);
         return;
 
     case 2:

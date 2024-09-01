@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void mlMtxRotate(f32, f32, f32);
+extern void mlMtxRotatePYR(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
 
@@ -40,7 +40,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(sp54->unk28_23 != 1){
         ml_vec3f_copy(sp48,  sp54->unk4);
         sp48[1] += (sp54->unk1C*sp54->unk20[1])/100.0;
-        viewport_getPosition(sp3C);
+        viewport_get_position_vec3f(sp3C);
         ml_vec3f_diff_copy(sp30, sp48, sp3C);
         if(sp54->unk28_12){
             mlMtxSet(func_8024DD90());
@@ -48,7 +48,7 @@ void func_8033F7F0(u8 arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         else{
             mlMtxIdent();
         }
-        mlMtxRotate(sp54->unk10[0], sp54->unk10[1], sp54->unk10[2]);
+        mlMtxRotatePYR(sp54->unk10[0], sp54->unk10[1], sp54->unk10[2]);
         func_80252330(sp30[0], sp30[1], sp30[2]);
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

@@ -4,6 +4,7 @@
 
 #include "core2/ba/model.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 extern void baanim_playForDuration_loop(s32, f32);
 extern void func_8029AD68(f32, s32);
@@ -43,10 +44,10 @@ void func_802B223C(void) {
 
     sp1C = func_8029B30C();
     if (func_8029B300() == 0) {
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
-    func_80297970(ml_interpolate_f(sp1C, D_80364CF0, D_80364CF4));
+    baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364CF0, D_80364CF4));
 }
 
 void func_802B229C(void) {
@@ -74,8 +75,8 @@ int bspumpkin_inSet(s32 move_indx){
 
 void bspumpkin_idle_init(void) {
     baanim_playForDuration_loop(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
-    func_8029C7F4(1, 1, 1, 2);
-    func_80297970(0.0f);
+    func_8029C7F4(1, 1, 1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     func_80293D48(50.0f, 25.0f);
@@ -92,7 +93,7 @@ void bspumpkin_idle_update(void) {
         next_state = BS_4B_PUMPKIN_FALL;
     }
     if (func_80294F78()) {
-        next_state = func_802926C0();
+        next_state = badrone_look();
     }
     if (func_8029B300() > 0) {
         next_state = BS_49_PUMPKIN_WALK;
@@ -118,7 +119,7 @@ void bspumpkin_walk_init(void) {
     animctrl_setDuration(anim_ctrl, 0.8f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
     animctrl_start(anim_ctrl, "bspumpkin.c", 0x11D);
-    func_8029C7F4(2, 1, 1, 2);
+    func_8029C7F4(2, 1, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364CF0, D_80364CF4, D_80364CF8, D_80364CFC);
     func_802900B4();
 }
@@ -130,7 +131,7 @@ void bspumpkin_walk_update(void) {
     next_state = 0;
     func_802B223C();
     func_8029AD68(0.3f, 4);
-    if ((func_8029B300() == 0) && func_80297C04(1.0f)) {
+    if ((func_8029B300() == 0) && baphysics_is_slower_than(1.0f)) {
         next_state = BS_48_PUMPKIN_IDLE;
     }
     if (func_8028B094()) {
@@ -157,15 +158,15 @@ void bspumpkin_jump_init(void) {
     animctrl_setDuration(anim_ctrl, 1.2f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     animctrl_start(anim_ctrl, "bspumpkin.c", 0x16C);
-    func_8029C7F4(1, 1, 3, 6);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
     if (func_8029B2E8() != 0.0f) {
         yaw_setIdeal(func_8029B33C());
     }
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802B223C();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364D00);
-    gravity_set(D_80364D04);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364D00);
+    baphysics_set_gravity(D_80364D04);
     func_802B21D0();
     D_8037D4E0 = 0;
 }
@@ -178,13 +179,13 @@ void bspumpkin_jump_update(void) {
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
     func_802B223C();
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     if (button_released(BUTTON_A) && sp1C[1] > 0.0f) {
-        gravity_reset();
+        baphysics_reset_gravity();
     }
     switch (D_8037D4E0) {
     case 0:
-        if (_get_vertVelocity() < 0.0f) {
+        if (baphysics_get_vertical_velocity() < 0.0f) {
             if (func_8028B254(130)) {
                 func_80292E48();
                 animctrl_setDuration(anim_ctrl, 0.7f);
@@ -218,7 +219,7 @@ void bspumpkin_jump_update(void) {
     case 3:
         if (animctrl_isStopped(anim_ctrl)) {
             func_80292EA4();
-            func_80297970(0.0f);
+            baphysics_set_target_horizontal_velocity(0.0f);
             next_state = BS_48_PUMPKIN_IDLE;
         }
         break;
@@ -236,7 +237,7 @@ void bspumpkin_jump_update(void) {
 
 void bspumpkin_jump_end(void){
     func_80292EA4();
-    gravity_reset();
+    baphysics_reset_gravity();
     func_802B229C();
 }
 
@@ -251,7 +252,7 @@ void bspumpkin_fall_init(void) {
     animctrl_setDuration(anim_ctrl, 0.7f);
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
     animctrl_start(anim_ctrl, "bspumpkin.c", 0x1F1);
-    func_8029C7F4(1, 1, 3, 6);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
     D_8037D4E0 = 0;
 }
 
@@ -266,7 +267,7 @@ void bspumpkin_fall_update(void) {
     if (D_8037D4E4) {
         func_802B223C();
     }
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     switch (D_8037D4E0) {
     case 0:
         if (func_8028B254(130)) {
@@ -278,7 +279,7 @@ void bspumpkin_fall_update(void) {
     case 1:
         if (func_8028B2E8()) {
             func_8029AE48();
-            func_80297970(0.0f);
+            baphysics_set_target_horizontal_velocity(0.0f);
             animctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
             animctrl_setDuration(anim_ctrl, 1.2f);
             animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
@@ -290,7 +291,7 @@ void bspumpkin_fall_update(void) {
     }
     if (func_8028B2E8() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && animctrl_isStopped(anim_ctrl)))) {
         if (miscflag_isTrue(0x19)) {
-            next_state = func_80292738();
+            next_state = badrone_transform();
         } else {
             next_state = BS_48_PUMPKIN_IDLE;
         }
@@ -306,7 +307,7 @@ void func_802B2BF0(void) {
     func_8029656C(D_8037D4E8);
     func_8028FAB0(D_8037D4E8);
     baanim_playForDuration_loop(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
-    func_8029C7F4(1, 1, 2, 7);
+    func_8029C7F4(1, 1, 2, BA_PHYSICS_FREEZE);
     func_80294378(6);
     func_8029E3C0(0, 0.0f);
 }
@@ -357,12 +358,12 @@ void __bspumpkin_bounce_init(s32 arg0) {
     func_80257F18(sp20, plyr_pos, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(200.0f);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    func_8029C7F4(1, 1, 2, 3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(200.0f);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
     func_80292E48();
     D_8037D4E0 = 0;
@@ -394,7 +395,7 @@ void __bspumpkin_bounce_update(void) {
 
 void __bspumpkin_bounce_end(void) {
     func_80297CA8();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
     func_80292EA4();
     func_802B229C();
@@ -446,12 +447,12 @@ void bspumpkin_die_init(void) {
     D_8037D4F4 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(D_8037D4F4);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
-    func_8029C7F4(1, 1, 2, 3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1200.0f);
+    baphysics_set_target_horizontal_velocity(D_8037D4F4);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xD);
     ncDynamicCamD_func_802BF2C0(30.0f);
@@ -463,7 +464,7 @@ void bspumpkin_die_init(void) {
 }
 
 void bspumpkin_die_update(void){
-    func_80297970(D_8037D4F4);
+    baphysics_set_target_horizontal_velocity(D_8037D4F4);
     func_80299628(0);
     switch(D_8037D4E0){
     case 0://L802B3284
@@ -485,7 +486,7 @@ void bspumpkin_die_update(void){
 
     case 2://L802B3300
         if(baanim_isStopped()) {
-            player_setYVelocity(400.0f);
+            baphysics_set_vertical_velocity(400.0f);
             baanim_setEnd(0.355f);
             D_8037D4E0 = 3;
         }
@@ -524,7 +525,7 @@ void bspumpkin_die_update(void){
 void bspumpkin_die_end(void) {
     func_802B229C();
     func_8024BD08(0);
-    gravity_reset();
+    baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80292EA4();
@@ -533,8 +534,8 @@ void bspumpkin_die_end(void) {
 
 void func_802B34A0(void) {
     baanim_playForDuration_loopSmooth(0xA0, 0.8f);
-    func_8029C7F4(1, 1, 3, 2);
-    func_80297970(0.0f);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }

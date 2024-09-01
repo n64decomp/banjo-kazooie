@@ -4,8 +4,8 @@
 
 void func_8031FFAC(void);
 void fileProgressFlag_set(s32 index, s32 set);
-s32 getBitFromArray(u8 *array, s32 index);
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits);
+s32 bitfield_get_bit(u8 *array, s32 index);
+s32 bitfield_get_n_bits(u8 *array, s32 offset, s32 numBits);
 void setBitToArray(u8 *array, s32 index, s32 set);
 void func_803201C8(u8 *array, s32 startIndex, s32 set, s32 length);
 void func_8032048C(void);
@@ -41,50 +41,48 @@ u8 D_803831F8[0x21]; //copy of D_803831D0
 
 
 /* .code */
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_98CB0/func_8031FC40.s")
-// void func_8031FC40(void) {
-//     s32 scrambled_ptr;
-//     s32 temp_a1;
-//     s32 temp_lo;
-//     s32 temp_t0;
-//     s32 temp_t1;
-//     s32 temp_t6;
-//     s32 temp_t9;
-//     s32 var_a0;
-//     s32 var_t3;
-//     u32 var_v0;
-//     u32 var_v1;
-//     u8 temp_a3;
+void func_8031FC40(void) {
+    s32 *scrambled_ptr;
+    s32 *unscrambled_ptr;
+    u32 a1;
+    s32 t0;
+    s32 t1;
+    u32 a0;
+    u8 *ptr;
+    u32 v0 = 0x17536C34;
+    u32 v1;
 
-//     temp_t0 = (((s32) &D_803831A0.unk8 & 0xE0000000) >> 0xF) 
-//         + (((s32) &D_803831A0.unk8 & 0x1FC00000) >> 0x16) 
-//         + (((s32) &D_803831A0.unk8 & 0x300000) << 0xA) 
-//         + (((s32) &D_803831A0.unk8 & 0xF0000) << 7) 
-//         + (((s32) &D_803831A0.unk8 & 0xE000) << 0xE) 
-//         + (((s32) &D_803831A0.unk8 & 0x1800) >> 4) 
-//         + (((s32) &D_803831A0.unk8 & 0x780) << 0xA) 
-//         + (((s32) &D_803831A0.unk8 & 0x60) << 4) 
-//         + (((s32) &D_803831A0.unk8 & 0x18) << 0x12) 
-//         + (((s32) &D_803831A0.unk8 & 7) << 0xB);
-//     temp_t9 = (temp_t0 & 0x38000000);
-//     var_v0 = 0x17536C34;
-//     var_t3 = temp_t9 >> 0x18;
-//     if (temp_t9 < 0) {
-//         var_t3 = (s32) (0xFFFFFF + temp_t9) >> 0x18;
-//     }
-//     temp_a1 = (((temp_t0 & 0x1C07F) << 0xF) + ((u32) (temp_t0 & 0xC7800000) >> 0x11)) | (var_t3 + ((s32) (temp_t0 & 0x180) >> 6));
-//     temp_t1 = ((temp_t0 & 0x1E0600) << 0xB) | ((s32) (temp_t0 & 0x603800) >> 3);
-//     var_a0 = ((temp_a1 & 0x3FE000) << 7) 
-//            | (((temp_t1 >> 8) & 7) + ((temp_a1 << 0xA) & 0xFF800)) 
-//            | ((((u32) (temp_t1 & 0xF0000000) >> 0x15) + (temp_a1 & 0xE0000000)) ^ ((s32) ((temp_t1 >> 6) & 0xF000) >> 9));
-//     for(var_v1 = 0; var_v1 < 0x25; var_v1++){
-//         u8 byte = *(u8*)(var_a0 + var_v1);
-//         var_v0 = ((byte * 0x1B) + (var_v0 >> 0xB)) ^ (((var_v0 - byte) & 0x1F) << 0xF);
-//     }
-//     scrambled_ptr = (((s32) &D_803831A0 & 0x55555555) * 2) + ((u32) ((s32) &D_803831A0 & 0xAAAAAAAA) >> 1);
-//     *(s32 *)(((scrambled_ptr & 0x55555555) * 2) | ((u32) (scrambled_ptr & 0xAAAAAAAA) >> 1)) = var_v0;
-// }
+    //obsucre address
+    t0 = (((s32)&D_803831A0.unk8 & 0xE0000000) >> 15) +
+              (((s32)&D_803831A0.unk8 & 0x1FC00000) >> 22) +
+              (((s32)&D_803831A0.unk8 & 0x00300000) << 10) +
+              (((s32)&D_803831A0.unk8 & 0x000F0000) << 7) +
+              (((s32)&D_803831A0.unk8 & 0x0000E000) << 14) +
+              (((s32)&D_803831A0.unk8 & 0x00001800) >> 4) +
+              (((s32)&D_803831A0.unk8 & 0x00000780) << 10) +
+              (((s32)&D_803831A0.unk8 & 0x00000060) << 4) +
+              (((s32)&D_803831A0.unk8 & 0x00000018) << 18) +
+              (((s32)&D_803831A0.unk8 & 0x00000007) << 11);
 
+    //unobscure address
+    t1 = ((t0 & 0x1E0600) << 0xB) | ((s32) (t0 & 0x603800) / 8);
+    a0 = (((t0 & 0x1C07F) << 0xF) + ((u32) (t0 & 0xC7800000) >> 0x11)) | (((t0 & 0x38000000) / (1 << 24)) + ((s32) (t0 & 0x180) >> 6)); \
+    a1 = a0; \
+    a0 = (((a1 & 0x3FE000) << 7)
+           | (((t1 >> 8) & 7) + ((a1 << 0xA) & 0xFF800))
+           | ((((u32) (t1 & 0xF0000000) >> 0x15) + (a1 & 0xE0000000)) ^ ((s32) ((t1 /0x40) & 0xF000) >> 9)));
+
+    //calculate checksum
+    ptr = (u8*)(a0);
+    a1 = 0x25;
+    for(v1 = 0; v1 < a1; v1++){
+        v0 = (((v0 - ptr[v1]) & 0x1F) << 0xF) ^ ((ptr[v1]* 0x1B) + (v0 >> 0xB));
+    }
+
+    scrambled_ptr = (s32 *) ((((s32) &D_803831A0 & 0x55555555) << 1) + (((s32) &D_803831A0 & 0xAAAAAAAA) >> 1));
+    unscrambled_ptr = (s32 *) ((((s32) scrambled_ptr & 0x55555555) << 1) | (((s32) scrambled_ptr & 0xAAAAAAAA) >> 1));
+    *unscrambled_ptr = v0;
+}
 
 u32 func_8031FE40(void) {
     u8 *obscured_addr;
@@ -108,11 +106,11 @@ void func_8031FEC0(void) {
 }
 
 bool fileProgressFlag_get(enum file_progress_e index) {
-    return getBitFromArray(D_803831A0.unk8, index);
+    return bitfield_get_bit(D_803831A0.unk8, index);
 }
 
 s32 fileProgressFlag_getN(s32 offset, s32 numBits) {
-    return func_803200E4(D_803831A0.unk8, offset, numBits);
+    return bitfield_get_n_bits(D_803831A0.unk8, offset, numBits);
 }
 
 s32 fileProgressFlag_getAndSet(s32 index, s32 set) {
@@ -151,7 +149,7 @@ void progressflags_getSizeAndPtr(s32 *size, u8 **addr) {
 }
 
 // Returns a single bit from a byte array
-s32 getBitFromArray(u8 *array, s32 index) {
+s32 bitfield_get_bit(u8 *array, s32 index) {
     s32 ret;
     if (array[index / 8] & (1 << (index & 7))) {
         ret = 1;
@@ -162,12 +160,12 @@ s32 getBitFromArray(u8 *array, s32 index) {
 }
 
 // Extracts an integer of the given number of bits from a byte array at the starting bit offset
-s32 func_803200E4(u8 *array, s32 offset, s32 numBits) {
+s32 bitfield_get_n_bits(u8 *array, s32 offset, s32 numBits) {
     s32 ret = 0;
     s32 i;
 
     for (i = 0; i < numBits; i++) {
-        ret |= (getBitFromArray(array, offset + i) << i);
+        ret |= (bitfield_get_bit(array, offset + i) << i);
     }
     return ret;
 }
@@ -246,11 +244,11 @@ void func_803203A0(void) {
 }
 
 s32 func_803203FC(s32 index) {
-    return getBitFromArray(D_803831D0.unk8, index);
+    return bitfield_get_bit(D_803831D0.unk8, index);
 }
 
 void func_80320424(s32 index, s32 numBits) {
-    func_803200E4(D_803831D0.unk8, index, numBits);
+    bitfield_get_n_bits(D_803831D0.unk8, index, numBits);
 }
 
 s32 func_80320454(s32 index, s32 arg1) {

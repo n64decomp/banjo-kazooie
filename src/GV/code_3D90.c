@@ -88,7 +88,7 @@ void func_8038A31C(Actor *this){
         this->unk1C[0] = 1.0;
         this->alpha_124_19 = 0xff;
         if(this->unk54 != 0.0f){
-            func_80328B8C(this, 2, 0.02f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.02f, 1);
             animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
         }
         break;
@@ -96,7 +96,7 @@ void func_8038A31C(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[0] = 1.0;
         if(45.0f <= this->velocity[0]){
-            func_80328B8C(this, 3, 0.02f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.02f, 1);
             this->velocity[0] = 0.0f;
         }
         else{
@@ -115,7 +115,7 @@ void func_8038A31C(Actor *this){
         this->unk1C[0] = 0.0;
         this->alpha_124_19 = 0;
         if(this->unk54 == 0.0f){
-            func_80328B8C(this, 4, 0.02f, 1);
+            subaddie_set_state_with_direction(this, 4, 0.02f, 1);
         }
         break;
         
@@ -123,7 +123,7 @@ void func_8038A31C(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[0] = 1.0;
         if(45.0f <= this->velocity[0]){
-            func_80328B8C(this, 1, 0.02f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.02f, 1);
             animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
             this->velocity[0] = 0.0f;
         }

@@ -108,10 +108,6 @@ void pitch_setIdeal(f32);
 f32 pitch_get(void);
 f32 player_getYPosition(void);
 
-void func_80297970(f32);
-
-f32  _get_vertVelocity(void);
-
 void climbGetBottom(f32 dst[3]);
 
 void yaw_setIdeal(f32);
@@ -155,7 +151,7 @@ void actor_collisionOff(Actor *);
 
 void *assetcache_get(enum asset_e assetId);
 
-Actor *actor_new(s32 (*position)[3], s32 yaw, ActorInfo *actorInfo, u32 flags);
+Actor *actor_new(s32 position[3], s32 yaw, ActorInfo *actorInfo, u32 flags);
 Actor *func_802C8A54(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
 Actor *func_802C8AA8(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
 Actor *func_802C8AF8(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
@@ -166,7 +162,7 @@ Actor *func_802C8C04(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags);
 Actor *marker_getActor(ActorMarker *);
 
 f32 time_getDelta(void);
-void jiggySpawn(enum jiggy_e jiggy_id, f32 pos[3]);
+void jiggy_spawn(enum jiggy_e jiggy_id, f32 pos[3]);
 
 struct3s *func_802F8264(s32 arg0);
 struct6s *func_802F8BE0(s32 arg0);
@@ -209,7 +205,7 @@ void fxhealthscore_free(enum item_e, struct8s *);
 struct7s *fxairscore_new(s32);
 void fxairscore_update(enum item_e, struct7s *);
 void fxairscore_draw(enum item_e, struct8s *, Gfx**, Mtx**, Vtx **);
-void fxairscore_free(s32, struct8s *);
+void fxairscore_free(s32, struct7s *);
 
 
 
@@ -252,9 +248,9 @@ void particleEmitter_setParticleVelocityRange(ParticleEmitter *, f32, f32, f32, 
 void func_802EFF50(ParticleEmitter *, f32);
 void particleEmitter_setRGB(ParticleEmitter *this, s32 arg1[3]);
 void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
-
 int  func_8024DC04(f32, f32, f32);
 void func_8024E3A8(f32 [3], f32);
+OSContPad *func_8024F3F4(void);
 OSMesgQueue *pfsManager_getFrameReplyQ(void);
 
 void ml_vec3f_clear(f32 dst[3]);
@@ -279,13 +275,6 @@ void func_8025A70C(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
 f32  cosf(f32);
-
-struct54s * func_80287CA8(void);
-void func_80287F50(struct54s *, struct53s *, s32);
-void func_80287FD0(struct54s *, f32);
-void func_80287F7C(struct54s *arg0, s32 arg1);
-void func_80287F98(struct54s *arg0, s32 arg1);
-void func_80287FDC(struct54s *arg0, s32 arg1);
 
 void baanim_setDurationRange(f32, f32);
 
@@ -313,7 +302,7 @@ void func_80292974(f32, f32, f32);
 void func_80292900(f32, f32);
 
 void func_80292E80(s32, f32);
-void func_80293350(void);
+void bafalldamage_start(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
 f32  func_80294500(void);
@@ -322,20 +311,6 @@ void func_80294980(f32 arg0[3]);
 f32  get_slope_timer(void);
 f32  get_turbo_duration(void);
 void func_80295C08(void (* arg0)(void));
-void func_802978DC(int);
-void func_80297970(f32);
-void func_8029797C(f32);
-void player_setYVelocity(f32);
-void func_802979AC(f32, f32);
-f32  func_80297A64(void);
-f32  func_80297A70(void);
-f32  func_80297A7C(void);
-f32  _get_horzVelocity(void);
-f32  func_80297AF0(void);
-void gravity_set(f32);
-void func_80297B64(f32);
-void func_80297BF8(f32);
-int  func_80297C04(f32);
 void func_80297CCC(f32);
 f32  pitch_getIdeal(void);
 void pitch_setAngVel(f32, f32);
@@ -406,14 +381,14 @@ extern s32 func_802F9AA8(enum sfx_e);
 
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
-Actor * func_803056FC(enum actor_e id, s32 pos[3], s32 yaw);
+Actor * spawn_actor(enum actor_e id, s32 pos[3], s32 yaw);
 f32  func_80309724(f32[3]);
 BKModelBin *func_8030A428(s32);
 u8   func_8030D90C(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
 void func_8030DBB4(u8, f32);
 void func_8030DD14(u8, int);
-void func_8030DF68(u8, f32[3]);
+void sfxsource_set_position(u8, f32[3]);
 void func_8030DFF0(u8, s32);
 void func_8030E04C(u8, f32, f32, f32);
 void func_8030E0FC(u8, f32, f32, f32);
@@ -455,11 +430,11 @@ void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 Actor *func_8032813C(enum actor_e actor_id, f32 position[3], s32 yaw);
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
-void func_80328A84(Actor *, u32);
+void subaddie_set_state(Actor *, u32);
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id);
-int  func_80328B38(Actor *, s32, f32);
-void func_80328B8C(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
-int  func_80328BD4(Actor *, s32, f32, s32, f32 );
+int  subaddie_maybe_set_state(Actor *, s32, f32);
+void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
+int  subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
 void func_80328FB0(Actor *, f32);
 int  func_80329030(Actor *, s32);
@@ -501,7 +476,6 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 AnimCtrl *baanim_getAnimCtrlPtr(void);
-void _get_velocity(f32 dst[3]);
 void player_setYPosition(f32);
 
 NodeProp *func_80304C38(enum actor_e arg0, Actor *arg1);
@@ -534,7 +508,7 @@ Actor *actorArray_findActorFromActorId(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void *defrag_asset(void *);
 void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
-void func_8030DEB4(u8, f32, f32);
+void sfxsource_set_fade_distances(u8, f32, f32);
 void func_8030DB04(u8, s32, f32 position[3], f32, f32);
 void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
 
@@ -576,6 +550,6 @@ void ability_unlock(enum ability_e);
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
 extern void fxSparkle_chTreasure(s16[3]);
 extern void actor_collisionOn(Actor *);
-extern void func_80328AC8(Actor *, s32);
+extern void subaddie_set_state_forward(Actor *, s32);
 
 #endif

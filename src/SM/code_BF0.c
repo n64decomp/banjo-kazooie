@@ -25,7 +25,7 @@ void SM_func_80386FE0(Actor *this){
         case 1://L80387064
             if(this->unk38_31++ == 2){
                 this->unk10_12 = actorArray_actorCount(ACTOR_16F_QUARRIE);
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
             }
             break;
         case 2://L803870C4

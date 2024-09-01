@@ -37,7 +37,7 @@ s32 D_80390E88[4] = {0, 0, 0, 0};
 void GV_func_803894B0(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
-    func_80328B8C(this, 1, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
     this->unk38_31 = 0;
     this->initialized = TRUE;
 }
@@ -72,7 +72,7 @@ void chSarcophagus_update(Actor *this){
                 GV_func_803894B0(this);
             }
             if(func_80329530(this, 500) && func_8038957C(this)){
-                func_80328B8C(this, 2, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                 FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
                 FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
 
@@ -88,13 +88,13 @@ void chSarcophagus_update(Actor *this){
                 this->unk38_31 = 1;
             }
             if(actor_animationIsAt(this, 0.5f)){
-                func_80328B8C(this, 3, 0.5f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.5f, 1);
             }
             break;
 
         case 3: //L80389788
             if(!func_80329530(this, 700)){
-                func_80328B8C(this, 4, 0.5f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.5f, 1);
                 FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
                 FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
             }
@@ -110,7 +110,7 @@ void chSarcophagus_update(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 1, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.01f, 1);
             }
             else if(actor_animationIsAt(this, 0.9f)){
                 FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32000, this->position, 1250, 2500);
@@ -123,7 +123,7 @@ void chSarcophagus_updateSNS(Actor *this){
     if(!this->initialized){
         GV_func_803894B0(this);
         if(fileProgressFlag_get(FILEPROG_A4_GV_SNS_SARCOPHAGUS_OPEN))
-            func_80328B8C(this, 3, 0.5f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.5f, 1);
         this->unk1C[0] = 0.0f;
     }
 
@@ -132,7 +132,7 @@ void chSarcophagus_updateSNS(Actor *this){
             if(this->unk1C[0] != 0.0f){
                 this->unk1C[0] -= 1.0f;
                 if(this->unk1C[0] == 0.0f){
-                    func_80328B8C(this, 5, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 5, 0.01f, 1);
                     FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 0.5f, 32000, this->position, 1250, 2500);
                     FUNC_8030E8B4(SFX_3F6_UNKNOWN, 0.5f, 32000, this->position, 1250, 2500);
                 }
@@ -145,7 +145,7 @@ void chSarcophagus_updateSNS(Actor *this){
             break;
         case 5://L803899DC
             if(actor_animationIsAt(this, 0.5f)){
-                func_80328B8C(this, 3, 0.5f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.5f, 1);
                 FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 25000);
             }
             break;

@@ -9,7 +9,7 @@ extern f32 player_stateTimer_get(enum state_timer_e);
 
 
 void func_802C4218(u32,f32,f32,f32);
-void func_80328A84(Actor *, u32);
+void subaddie_set_state(Actor *, u32);
 
 /* local declarations */
 Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx);
@@ -97,7 +97,7 @@ void chmudhut_update(Actor *this){
                     diffPos[1] += 130.0;
 
                     FUNC_8030E8B4(SFX_5B_HEAVY_STUFF_FALLING, 1.0f, 28000, this->position, 0x12C, 0xBB8);
-                    func_80328A84(this, 2);
+                    subaddie_set_state(this, 2);
                     this->marker->propPtr->unk8_3 = 0;
                     actor_playAnimationOnce(this);
                     if(tmp == 5){
@@ -111,7 +111,7 @@ void chmudhut_update(Actor *this){
                             reinterpret_cast(s32, diffPos[2])
                         );
                     } else {
-                        jiggySpawn(JIGGY_23_BGS_HUTS, diffPos);
+                        jiggy_spawn(JIGGY_23_BGS_HUTS, diffPos);
                     }
                 }
                 break;

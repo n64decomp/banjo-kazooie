@@ -53,7 +53,7 @@ void fp_sirslushgame_update(void){
 
                 if(D_80392F30.unk1C){
                     func_802BAFE4(0x12);
-                    jiggySpawn(JIGGY_31_FP_SIR_SLUSH, D_80392F30.spawn_pos);
+                    jiggy_spawn(JIGGY_31_FP_SIR_SLUSH, D_80392F30.spawn_pos);
                     __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, 
                         reinterpret_cast(s32, D_80392F30.spawn_pos[0]),
                         reinterpret_cast(s32, D_80392F30.spawn_pos[1]),

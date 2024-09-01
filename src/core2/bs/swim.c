@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 extern void func_80295328(s32, f32);
 
@@ -66,10 +67,10 @@ void func_802B55DC(void) {
 
     sp1C = func_8029B30C();
     if (func_8029B300() == 0) {
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
-    func_80297970(ml_interpolate_f(sp1C, bsSwimHorzVelocityMin, bsSwimHorzVelocityMax));
+    baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsSwimHorzVelocityMin, bsSwimHorzVelocityMax));
 }
 
 void swim_enteredWater(void) {
@@ -78,8 +79,8 @@ void swim_enteredWater(void) {
     } else if (map_get() == MAP_46_CCW_WINTER) {
         func_8035644C(FILEPROG_DD_HAS_TOUCHED_CCW_ICY_WATER);
     }
-    gravity_set(100.0f);
-    func_80297BF8(133.33f);
+    baphysics_set_gravity(100.0f);
+    baphysics_set_terminal_velocity(133.33f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_80294378(3);
@@ -88,8 +89,8 @@ void swim_enteredWater(void) {
 
 void func_802B56D4(void) {
     if (!bsswim_inset(bs_getNextState())) {
-        func_80297B94();
-        gravity_reset();
+        baphysics_reset_terminal_velocity();
+        baphysics_reset_gravity();
         func_8029B0C0();
         func_80294378(1);
     }
@@ -138,9 +139,9 @@ void func_802B5774(void) {
         animctrl_setDuration(anim_ctrl, 1.2f);
         animctrl_start(anim_ctrl, "bsswim.c", 0xFD);
     }
-    func_8029C7F4(1, 3, 3, 2);
+    func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     swim_enteredWater();
     bsSwimCurrentAnimation = 0;
 }
@@ -170,7 +171,7 @@ void func_802B5950(void) {
         next_state = BS_1_IDLE;
     }
     if (func_80294F78()) {
-        next_state = func_802926C0();
+        next_state = badrone_look();
     }
     if (should_dive()) {
         next_state = BS_30_DIVE_ENTER;
@@ -212,7 +213,7 @@ void func_802B5B18(void) {
     yaw_setUpdateState(3);
     yaw_setVelocityBounded(500.0f, 5.0f);
     func_8029957C(1);
-    func_802978DC(2);
+    baphysics_set_type(BA_PHYSICS_NORMAL);
 }
 
 void func_802B5C40(void) {
@@ -280,9 +281,9 @@ void func_802B5E30(void) {
 
 void func_802B5E8C(void) {
     baanim_playForDuration_loopSmooth(0x57, 1.2f);
-    func_8029C7F4(1, 3, 3, 2);
+    func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     swim_enteredWater();
     func_802B5E30();
 }

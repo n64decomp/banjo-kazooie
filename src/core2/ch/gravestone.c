@@ -3,9 +3,9 @@
 #include "variables.h"
 #include "core2/particle.h"
 
-
 Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8035F138(Actor *this);
+BKModelBin *func_803257B4(ActorMarker *marker);
 extern void actor_postdrawMethod(ActorMarker *);
 extern f32 func_80257204(f32, f32, f32, f32);
 
@@ -97,14 +97,14 @@ void func_8035EE48(Actor *this){
 }
 
 void func_8035EE80(Actor *this){
-    func_80328A84(this, 3);
+    subaddie_set_state(this, 3);
     actor_loopAnimation(this);
     this->unk28 = 10.5f;
     func_8035EE48(this);
 }
 
 void func_8035EEC0(Actor *this){
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
     actor_loopAnimation(this);
     this->unk28 = 9.0f;
     func_8035EE48(this);
@@ -130,7 +130,7 @@ void func_8035EF9C(ActorMarker *marker, ActorMarker *other_marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_core2_D7D10 *)&this->local;
     this->velocity[2] = 0.0f;
-    func_80328B8C(this, 7, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 7, 0.02f, 1);
     actor_playAnimationOnce(this);
     local->unk0 = 2;
     actor_collisionOff(this);
@@ -149,7 +149,7 @@ void func_8035F048(ActorMarker *marker, ActorMarker *other_marker) {
     FUNC_8030E8B4(SFX_F9_GRUNTLING_NOISE_1,  1.2f, 22000, this->position, 1750, 3500);
     FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0.9f, 22000, this->position, 1750, 3500);
     this->velocity[2] = 0.0f;
-    func_80328B8C(this, 6, 0.02f, 1);
+    subaddie_set_state_with_direction(this, 6, 0.02f, 1);
     actor_playAnimationOnce(this);
     local->unk0 = 2;
     func_8035EE48(this);
@@ -199,7 +199,7 @@ void func_8035F138(Actor *this) {
             }
             animctrl_setAnimTimer(this->animctrl, 0.0f);
             if (func_80329530(this, (s32) (this->scale * 650.0f)) && func_803292E0(this)) {
-                func_80328A84(this, 2U);
+                subaddie_set_state(this, 2U);
                 actor_playAnimationOnce(this);
                 this->unk1C[1] = 1.0f;
                 this->unk44_31 = func_8030ED2C(SFX_2C_PULLING_NOISE, 3);
@@ -251,7 +251,7 @@ void func_8035F138(Actor *this) {
             }
             this->unk38_31 -= sp2C;
             if (func_8035ED60(this)) {
-                func_80328B8C(this, 5, 0.99f, 0);
+                subaddie_set_state_with_direction(this, 5, 0.99f, 0);
                 actor_playAnimationOnce(this);
                 this->unk28 = 0.0f;
                 this->unk1C[1] = 1.9f;
@@ -275,7 +275,7 @@ void func_8035F138(Actor *this) {
                 func_8030DBB4(this->unk44_31, this->unk1C[1]);
             }
             if (animctrl_getAnimTimer(this->animctrl) <= 0.02) {
-                func_80328B8C(this, 1, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.02f, 1);
                 actor_playAnimationOnce(this);
                 this->unk28 = 0.0f;
                 func_8035EE48(this);

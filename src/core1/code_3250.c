@@ -1,7 +1,7 @@
 #include <ultra64.h>
 extern f32 gu_sqrtf(f32);
 
-static void _guMtxF2L(float mf[4][4], Mtx *m)
+static void __guMtxF2L(float mf[4][4], Mtx *m)
 {
     int	i, j;
     int	e1,e2;
@@ -142,7 +142,7 @@ void guScale(Mtx *m, float x, float y, float z)
     float	mf[4][4];
 
     guScaleF(mf, x, y, z);
-    _guMtxF2L(mf, m);
+    __guMtxF2L(mf, m);
 }
 
 void guRotateRPYF(f32 mf[4][4], f32 r, f32 p, f32 h) {

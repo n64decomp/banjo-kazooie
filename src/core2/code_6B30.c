@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/carry.h"
+#include "core2/ba/physics.h"
 
 extern Actor *func_8032813C(enum actor_e, f32[3], s32);
 
@@ -75,10 +77,10 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
             break;
         case BS_5_JUMP://8028DCD8
         case BS_3D_FALL_TUMBLING:
-            if(_get_vertVelocity() < 0.0f && !func_8028B2E8())
+            if(baphysics_get_vertical_velocity() < 0.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
         case BS_2F_FALL://8028DD10
-            if(_get_vertVelocity() < -1400.0f && !func_8028B2E8())
+            if(baphysics_get_vertical_velocity() < -1400.0f && !func_8028B2E8())
                 return HITBOX_A_FAST_FALLING;
         default://8028DD4C
             return HITBOX_0_NONE;
@@ -93,7 +95,7 @@ bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
     Actor *actor;
     
     m1 = (*arg1)->marker;
-    m2 = carriedobj_getMarker();
+    m2 = bacarry_get_marker();
     if(m2){
         actor = marker_getActor(m2);
     }
@@ -116,7 +118,7 @@ void func_8028DE0C(enum actor_e actor_id){
     baModel_getPosition(sp20);
     actor = func_8032813C(actor_id, sp20, (s32) yaw_get());
     actor->unk138_22 = TRUE;
-    func_802948F8(actor->marker);
+    bacarry_set_marker(actor->marker);
     bs_setState(BS_3A_CARRY_IDLE);
 }
 
@@ -124,13 +126,13 @@ void func_8028DE6C(enum actor_e actor_id){
     ActorMarker *marker;
     Actor *actor;
     
-    marker = carriedobj_getMarker();
+    marker = bacarry_get_marker();
     if(marker){
         actor = marker_getActor(marker);
     }
 
     if(marker && actor->modelCacheIndex == actor_id){
-        func_802948F8(marker);
+        bacarry_set_marker(marker);
     }
     else{
         __spawnQueue_add_1((GenFunction_1)func_8028DE0C, baMarker_getCarriedObjectActorId());
@@ -152,12 +154,12 @@ void func_8028DF48(enum actor_e actor_id){
     ActorMarker *marker;
     Actor* actor;
 
-    marker = carriedobj_getMarker();
+    marker = bacarry_get_marker();
     if(marker)
         actor = marker_getActor(marker);
 
     if(marker && actor->modelCacheIndex == actor_id){
-        func_802948E0();
+        bacarry_reset_marker();
     }
     item_dec(carriedobj_actorId2ItemId(actor_id));
 }

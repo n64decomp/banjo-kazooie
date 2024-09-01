@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
 
 void func_802B3A50(void) {
     f32 sp34;
@@ -40,8 +41,8 @@ void func_802B3AAC(enum asset_e anim_id, f32 anim_duration) {
     } else {
         baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     }
-    func_8029C7F4(1, 1, 3, 2);
-    func_80297970(0.0f);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802B3A50();
 }
 

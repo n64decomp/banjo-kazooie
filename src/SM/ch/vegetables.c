@@ -8,7 +8,7 @@
 f32 func_80309724(f32*);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);
-void func_80328B8C(Actor *, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 //typedefs
 typedef struct ch_vegatable{
@@ -208,7 +208,7 @@ void func_80387C28(Actor * this){
     func_803252D0(1.5f, 7);
     actor_collisionOff(this);
     if(local->unkC != 3){
-        func_80328B8C(this, 3, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 3, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
     else{
@@ -337,7 +337,7 @@ void func_80388080(Actor *this){
                 this->unk1C_y += (local->unkC == 3)? 270.0 : 85.0;
             }
             //L80388384
-            func_80328A84(this, 4);
+            subaddie_set_state(this, 4);
         }
         break;
     case 4: //L8038839C
@@ -352,7 +352,7 @@ void func_80388080(Actor *this){
                 func_80387F00(this);
 
             actor_collisionOn(this);
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
         }//L80388494
 
         if(!this->unk138_23){

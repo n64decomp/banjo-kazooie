@@ -93,14 +93,14 @@ struct {
 D_8037C6F0;
 
 /*.code */
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_12F30/func_80299EC0.s")
-#else
 void func_80299EC0(f32 arg0[3]) {
     f32 spEC[3]; //player_pos
     f32 spE0[3];
     f32 spD4[3];
+    f32 a;
+    f32 f0;
     BKModelBin *spC8;
+    f32 f2;
     f32 spB8[3];
     f32 spAC[3];
     f32 spA0[3];
@@ -110,17 +110,14 @@ void func_80299EC0(f32 arg0[3]) {
     f32 sp70;
     BKCollisionTri *sp6C; //floor_vtx_list
     f32 sp48[3][3]; //tri_vtx_coord
-    f32 temp_f0_2;
-    f32 temp_f2_2;
-    f32 temp_f2_4;
     Vtx *vtx_buffer;
     Vtx *temp_v1;
-    f32 phi_f18;
+    f32 f18;
 
+    arg0[2] = 
+    arg0[1] = 
+    arg0[0] = 255;
 
-    arg0[0] = 255.0f;\
-    arg0[1] = 255.0f;\
-    arg0[2] = 255.0f;
     if (D_8037C6F0.unk0 == 1) {
         sp78 = 50;
     } else if (func_8028EE84() == BSWATERGROUP_0_NONE) {
@@ -134,77 +131,89 @@ void func_80299EC0(f32 arg0[3]) {
     if (spC8 == NULL) {
         sp6C = NULL;
     }
-    if ((spEC[1] - func_80294438()) > 100.0f) {
+    if ((spEC[1] - func_80294438()) > 100) {
         sp6C = NULL;
     }
     if (sp6C == NULL) return;
     if (sp6C->unk6 &2) return;
 
     vtx_buffer = vtxList_getVertices(model_getVtxList(spC8));
+
     for(i = 0; i<3; i++){
         temp_v1 =  vtx_buffer + sp6C->unk0[i];
         sp48[i][0] = (f32) temp_v1->v.ob[0];
         sp48[i][1] = (f32) temp_v1->v.ob[1];
         sp48[i][2] = (f32) temp_v1->v.ob[2];
-        sp48[i][1] = 0.0f;
+        sp48[i][1] = 0;
 
         sp7C[i][0] = (f32) temp_v1->v.cn[0];
         sp7C[i][1] = (f32) temp_v1->v.cn[1];
         sp7C[i][2] = (f32) temp_v1->v.cn[2];
     }
-    // spEC[1] = 0.0f;
+
+    spEC[1] = 0;
 
     spE0[0] = spEC[0] - sp48[0][0];
+    spE0[1] = 0;
     spE0[2] = spEC[2] - sp48[0][2];
-    spE0[1] = 0.0f;
 
     spAC[0] = sp48[0][0] - sp48[1][0];
+    spAC[1] = 0;
     spAC[2] = sp48[0][2] - sp48[1][2];
-    spAC[1] = 0.0f;
+    
+    spB8[0] = sp48[2][0] - sp48[1][0];
+    spB8[1] = 0;
+    spB8[2] = sp48[2][2] - sp48[1][2];
 
-    spB8[0] = -(sp48[2][2] - sp48[1][2]);
-    spB8[2] = sp48[2][0] - sp48[1][0];
-    spB8[1] = 0.0f;
-
-    phi_f18 =  (spE0[0] * spB8[0]) + (spE0[1] * spB8[1]) + (spB8[2] * spE0[2]);
-    phi_f18 = (phi_f18 == 0.0f)? 0.1f : phi_f18;
-
-    temp_f0_2 = -((spB8[2] * spAC[2]) + ((spAC[0] * spB8[0]) + 0.0f)) / phi_f18;
-    spA0[0] = (spE0[0] * temp_f0_2) + sp48[0][0];
-    spA0[1] = 0.0f;
-    spA0[2] = (spE0[2] * temp_f0_2) + sp48[0][2];
-
+    //swap
+    sp70 = spB8[0];
+    spB8[0] = -spB8[2];
+    spB8[2] = sp70;
+    
+    f18 = spE0[0]*spB8[0] + spE0[1]*spB8[1] + spE0[2]*spB8[2];
+    if (f18 == 0) {
+        f18 = 0.1;
+    } 
+    
+    f0 = -(spAC[0]*spB8[0] + spAC[1]*spB8[1] + spAC[2]*spB8[2]) / f18;
+    spA0[0] = sp48[0][0] + (spE0[0] * f0);
+    spA0[1] = 0;
+    spA0[2] = sp48[0][2] + (spE0[2] * f0);
+    
     spD4[0] = spA0[0] - sp48[1][0];
     spD4[1] = spA0[1] - sp48[1][1];
     spD4[2] = spA0[2] - sp48[1][2];
 
-    temp_f2_2 = gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) / (gu_sqrtf(spB8[0] * spB8[0] + spB8[1] * spB8[1] + spB8[2] * spB8[2]) + 0.01);
+    f2 = gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2])
+        / (gu_sqrtf(spB8[0]*spB8[0] + spB8[1]*spB8[1] + spB8[2]*spB8[2]) + 0.01);
     for(i = 0; i < 3; i++){
-        arg0[i] = sp7C[1][i] + (sp7C[2][i] - sp7C[1][i])*temp_f2_2;
+        arg0[i] = sp7C[1][i] + (sp7C[2][i] - sp7C[1][i]) * f2;
     }
 
     spD4[0] = spA0[0] - sp48[0][0];
     spD4[1] = spA0[1] - sp48[0][1];
     spD4[2] = spA0[2] - sp48[0][2];
-    temp_f2_4 = (1.0 - (gu_sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2]) / (gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + 0.01)));
 
+    f2 = 1 - (gu_sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2])
+            / (gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + 0.01));
     for(i = 0; i < 3; i++){
-        arg0[i] += (sp7C[0][i] - arg0[i])*temp_f2_4;
+        arg0[i] = arg0[i] + (sp7C[0][i] - arg0[i]) * f2;
+    }
+
+    f2 = func_80294404() / 100;
+    for(i = 0; i < 3; i++){
+        arg0[i] = arg0[i] + (255 - arg0[i]) * f2;
     }
 
     for(i = 0; i < 3; i++){
-        arg0[i] += (255.0f - arg0[i]) * (func_80294404() / 100.0f);
+        if(arg0[i] > 255){ arg0[i] = 255; }
+        if(arg0[i] < 0) {  arg0[i] = 0; }
     }
 
-    for(i = 0; i < 3; i++){
-        if(arg0[i] > 255.0f){ arg0[i] = 255.0f; }
-        if(arg0[i] < 0.0f) {  arg0[i] = 0.0f; }
-    }
-    arg0[0] = ((arg0[0] + arg0[1] + arg0[2]) * (f32) (0xFF - sp78)) / 765.0f + sp78;
+    arg0[0] = ((arg0[0] + arg0[1] + arg0[2]) * (255 - sp78)) / 765 + sp78;
     arg0[1] = arg0[0];
     arg0[2] = arg0[0];
 }
-#endif
 
 void func_8029A47C(s32 arg0[3]){
     arg0[0] = (s32)(D_8037C6F0.unk4[0] + 0.5);

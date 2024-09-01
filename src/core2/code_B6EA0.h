@@ -4,6 +4,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/anim/sprite.h"
 
 typedef s32 (*FuncUnk40)(ActorMarker *, s32, f32[3]);
 
@@ -16,7 +17,7 @@ typedef struct particle_struct_1_s{
     s32 unk28;
     u8 pad24[0x4];
     ActorMarker *marker_30;
-    struct54s *unk34;
+    AnimSprite *unk34;
     ActorMarker *unk38;
     s32 unk3C;
     FuncUnk40 unk40;
@@ -39,7 +40,7 @@ typedef struct particle_struct_0_s{
     s32 unk28;
     u8 pad24[0x4];
     ActorMarker *marker_30;
-    struct54s *unk34;
+    AnimSprite *unk34;
     ActorMarker *unk38;
     s32 unk3C;
     FuncUnk40 unk40;
@@ -52,7 +53,7 @@ typedef struct particle_struct_0_s{
 ActorMarker *func_8033E864(void);
 FuncUnk40 func_8033E888(void);
 u8 func_8033E8D0(void);
-struct54s *func_8033E8F4(void);
+AnimSprite *func_8033E8F4(void);
 ParticleStruct0s *func_8033E960(void);
 void func_8033E984(void);
 void projectile_setSprite(u8, enum asset_e);

@@ -41,7 +41,6 @@ s32 D_8037D940;
 f32 D_8037D948[3];
 f32 cameraPosition[3];
 f32 cameraRotation[3];
-f32 D_8037D96C;
 f32 D_8037D974;
 f32 D_8037D978;
 f32 D_8037D97C;
@@ -188,7 +187,7 @@ void func_802BCA58(void) {
     player_getPosition(player_position);
     ml_vec3f_diff_copy(sp34, player_position, cameraPosition);
     sp4C = player_getYaw();
-    sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(D_8037D96C - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
+    sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(cameraRotation[1] - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
     func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
     ml_vec3f_diff_copy(sp34, D_8037D9A8, D_8037D9B8);
     if (func_802BC428()) {
@@ -212,8 +211,8 @@ void func_802BCBD4(void) {
     func_802C0120();
     func_802C2258();
     func_802C0F4C();
-    viewport_getRotation(cameraRotation);
-    viewport_getPosition(cameraPosition);
+    viewport_get_rotation_vec3f(cameraRotation);
+    viewport_get_position_vec3f(cameraPosition);
     ml_vec3f_copy(D_8037D948, cameraPosition);
     ml_vec3f_clear(D_8037D9C8);
     ml_vec3f_clear(D_8037D9E0);
@@ -366,8 +365,8 @@ void ncDynamicCamera_update(void){
     if(dynamicCameraInFirstPerson){
         ncFirstPersonCamera_getPositionAndRotation(sp24, sp18);
     }
-    viewport_setPosition(sp24);
-    viewport_setRotation(sp18);
+    viewport_set_position_vec3f(sp24);
+    viewport_set_rotation_vec3f(sp18);
 }
 
 int ncDynamicCamera_getState(void){
@@ -940,8 +939,8 @@ void func_802BE720(void){
     f32 sp28[3];
     f32 sp1C[3];
 
-    viewport_getPosition(sp28);
-    viewport_getRotation(sp1C);
+    viewport_get_position_vec3f(sp28);
+    viewport_get_rotation_vec3f(sp1C);
     ncDynamicCamera_setPosition(sp28);
     ncDynamicCamera_setRotation(sp1C);
 
@@ -961,8 +960,8 @@ void func_802BE794(void){
         sp2C[1] += 100.0f;
         player_getRotation(sp20);
         sp20[1] = mlNormalizeAngle(sp20[1] + 180.0f);
-        viewport_setPosition(sp2C);
-        viewport_setRotation(sp20);
+        viewport_set_position_vec3f(sp2C);
+        viewport_set_rotation_vec3f(sp20);
         func_8024C510(300.0f);
         func_802BE720();
     }//L802BE828

@@ -82,7 +82,7 @@ void    chhut_update(Actor *this){
                 sp3C[2] = this->position_z;
                 sp3C[1] += 125.0;
                 func_8030E484(SFX_5B_HEAVY_STUFF_FALLING);
-                func_80328A84(this, 1);
+                subaddie_set_state(this, 1);
                 actor_playAnimationOnce(this);
                 __spawnQueue_add_1((GenFunction_1)func_803869EC, (s32)this->marker);
                 func_802C8F70(this->yaw);
@@ -90,7 +90,7 @@ void    chhut_update(Actor *this){
                     __spawnQueue_add_4((GenFunction_4)func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&sp3C[0]),*(s32*)(&sp3C[1]),*(s32*)(&sp3C[2]));
                 }
                 else{
-                    jiggySpawn(JIGGY_5_MM_HUTS, sp3C);
+                    jiggy_spawn(JIGGY_5_MM_HUTS, sp3C);
                 }
                 D_8037DCB0 = ( D_8037DCB0 + 1 ) % 6;
             }
@@ -98,7 +98,7 @@ void    chhut_update(Actor *this){
         case 1: //L80386C2C
             if(animctrl_getAnimTimer(this->animctrl) > 0.99){
                 animctrl_setTransitionDuration(this->animctrl, 0.0f);
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 this->position_y -= 160.0f;
             }
             break;

@@ -210,7 +210,7 @@ void func_80391810(Actor *this, s32 next_state) {
         func_803917DC();
         break;
     }
-    func_80328A84(this, next_state);
+    subaddie_set_state(this, next_state);
 }
 
 

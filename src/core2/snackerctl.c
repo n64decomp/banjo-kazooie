@@ -1,6 +1,10 @@
+#include "snackerctl.h"
+
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "ch/snacker.h"
 
 s32 func_80259254(f32 *, f32, f32, f32);
 void ncFirstPersonCamera_getZoomedInRotation(f32 *);
@@ -14,64 +18,59 @@ f32 D_80363610[3] = {350.0f, 200.0f, -100.0f};
 f32 D_8036361C[2] = {29.25f, 269.5f};
 
 /* .bss */
-s32 D_8037BF50;
+SnackerCtlState s_snackerctl_state;
 
 /* .code */
-//snacker_clearState
-void snacker_reset(void){
-    D_8037BF50 = 0;
+void snackerctl_reset(void){
+    s_snackerctl_state = SNACKER_CTL_STATE_0_INACTIVE;
 }
 
-//__playerWithinHorizontalDistance
-s32 func_8028A41C(f32 x, f32 z, f32 dist){
+static s32 __snackerctl_player_within_distance(f32 x, f32 z, f32 dist){
     f32 player_position[3];
 
     _player_getPosition(player_position);
     return func_80259254(player_position, x, z, dist);
 }
 
-//_snacker_ttc_update
-s32 func_8028A45C(void){
-    s32 nextState = 0;
+static SnackerCtlState __snackerctl_update_ttc(void){
+    SnackerCtlState nextState = 0;
     f32 player_position[3];
 
     _player_getPosition(player_position);
     if(func_8028B470() || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
         if(player_position[1] < 600.0f
-            && !func_8028A41C(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
-            && !func_8028A41C(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
+            && !__snackerctl_player_within_distance(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
+            && !__snackerctl_player_within_distance(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
         ){
-            nextState = 2;
+            nextState = SNACKER_CTL_STATE_2_TTC;
         }
     }
-    func_802E1A04(nextState);
+    chsnacker_setControlState(nextState);
     return nextState;
 }
 
-//_snacker_rbb_update
-s32 func_8028A504(void){
-    s32 nextState = 0;
+static SnackerCtlState __snackerctl_update_rbb(void){
+    SnackerCtlState nextState = 0;
     f32 sp18[3];
     if(func_8028B470()){
         func_8028E964(sp18);
         if(func_80309D58(sp18, 0))
-            nextState = 1;
+            nextState = SNACKER_CTL_STATE_1_RBB;
     }
-    func_802E1A04(nextState);
+    chsnacker_setControlState(nextState);
     return nextState;
 }
 
-void func_8028A558(s32 arg0, s32 arg1, s32 arg2){
+static void func_8028A558(ActorMarker *arg0, enum asset_e arg1, s32 arg2){
     func_8028F918(0);
 }
 
-void func_8028A584(s32 arg0, s32 arg1, s32 arg2){
+static void func_8028A584(ActorMarker *arg0, enum asset_e arg1, s32 arg2){
     func_803219F4(3);
     func_8034B9BC(chBottlesBonus_getPuzzleIndex());
 }
 
-//snacker_update_bottlesBonusPuzzle
-s32 func_8028A5C0(void){
+static SnackerCtlState _snackerctl_update_bottles_bonus(void){
     s32 tmp;
     f32 sp30[3];
 
@@ -79,22 +78,22 @@ s32 func_8028A5C0(void){
         return 0;
 
     if(func_8034BB48() && chBottlesBonus_getPuzzleIndex() != 7){
-        func_80311480(0xe26 + (chBottlesBonus_getPuzzleIndex() << 1), 6, &D_80363610, 0, 0, 0);
+        func_80311480(0xe26 + (chBottlesBonus_getPuzzleIndex() << 1), 6, D_80363610, NULL, NULL, NULL);
     }
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
 
     if(miscflag_isTrue(0x17) && !func_8028F25C()){
-        if(func_8028A41C(183.0f, -100.0f, 75.0f)){
+        if(__snackerctl_player_within_distance(183.0f, -100.0f, 75.0f)){
             if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){
                     func_8028F94C(4, &D_80363610);
-                    func_80311480(0xe33, 0x6, &D_80363610, 0, func_8028A584, NULL);
+                    func_80311480(0xe33, 0x6, D_80363610, NULL, func_8028A584, NULL);
                 }
             }//L8028A70C
             else if(chBottlesBonus_getPuzzleIndex() == 7){
                 func_8028F94C(4, &D_80363610);
-                func_80311480(0xe35, 0x6, &D_80363610, 0, func_8028A558, NULL);
+                func_80311480(0xe35, 0x6, D_80363610, NULL, func_8028A558, NULL);
                 D_8037DCCC = 1;
             }//L8028A764
             else if(jiggyscore_isCollected(0x10)){
@@ -104,7 +103,7 @@ s32 func_8028A5C0(void){
                 ){
                     if(!D_8037DCCA){
                         func_8028F94C(4, &D_80363610);
-                        func_80311480(0xe21, 6, &D_80363610, 0, func_8028A584, NULL);
+                        func_80311480(0xe21, 6, D_80363610, 0, func_8028A584, NULL);
                         D_8037DCCA = 1;
                     }else{
                         func_8028A584(0,0,0);
@@ -114,31 +113,29 @@ s32 func_8028A5C0(void){
             else{
                 if(!D_8037DCCB){
                     func_8028F94C(4, &D_80363610);
-                    func_80311480(0xe20, 6, &D_80363610, 0, func_8028A558, NULL);
+                    func_80311480(0xe20, 6, D_80363610, 0, func_8028A558, NULL);
                     D_8037DCCB = 1;
                 }
             }
         }
     }
-    return 0;
+    return SNACKER_CTL_STATE_0_INACTIVE;
 }
 
-//snacker_updateState
-void func_8028A8D0(void){
+void snackerctl_update(void){
     switch(map_get()){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
-            D_8037BF50 = func_8028A45C();
+            s_snackerctl_state = __snackerctl_update_ttc();
             break;
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
-            D_8037BF50 = func_8028A504();
+            s_snackerctl_state = __snackerctl_update_rbb();
             break;
         case MAP_8C_SM_BANJOS_HOUSE:
-            D_8037BF50 = func_8028A5C0();
+            s_snackerctl_state = _snackerctl_update_bottles_bonus();
             break;
     }
 }
 
-//snacker_getState
-s32 func_8028A94C(void){
-    return D_8037BF50;
+SnackerCtlState snackerctl_get_state(void){
+    return s_snackerctl_state;
 }

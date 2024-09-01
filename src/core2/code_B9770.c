@@ -14,9 +14,7 @@ extern f32  func_80323FDC(struct56s *, f32, f32, s32 *);
 extern f32  func_803240E0(struct56s *, f32, f32, s32 *);
 extern void func_8032417C(struct56s *, f32, f32[3], f32[3]);
 extern void func_80328FF0(Actor *, f32);
-
-
-
+extern void func_8032DC70(s32);
 
 typedef struct {
     f32 unk0;
@@ -153,6 +151,7 @@ typedef struct {
     u16 pad8_12:13;
 }Struct_glspline_803411B0;
 
+
 s32 func_80341BC8(struct56s *arg0, SplineList * arg1);
 
 /* .data */
@@ -260,168 +259,268 @@ f32 glspline_catmull_rom_interpolate(f32 x, s32 knotCount, f32 *knotList) {
     return (((((sp24[2] * x) + sp24[1]) * x) + sp24[0]) * x) + (1.0*knotList[1]);
 }
 
-void func_80340BE4(f32 arg0, s32 arg1, s32 arg2, s32 arg3, f32 * arg4, f32 arg5[3]);
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80340BE4.s")
+void func_80340BE4(f32 x, s32 length, s32 stride, s32 width, f32 *arg4, f32 dst[3]){
+    s32 padding;
+    s32 max_interval;
+    s32 a3;
+    f32 temp_f2;
+    f32 f3;
+    f32 f1;
+    f32 f2;
+    f32 *t0;
+    f32 sp94[3][3];
+
+    max_interval = length - 1;
+
+    if (length < 4) {
+        /* not enough points in spline to perform catmull-rom interpolation*/
+        ml_vec3f_copy(sp94[0], arg4);
+        ml_vec3f_copy(sp94[1], arg4);
+        ml_vec3f_copy(sp94[2], &arg4[stride]);
+        if (length - 1 == 1) {
+            ml_vec3f_copy(sp94[3], &arg4[stride]);
+        } else {
+            ml_vec3f_copy(sp94[3], &arg4[stride*2]);
+        }
+        func_80340BE4(x, 4, 3, 3, (f32 *) sp94, dst);
+        return;
+    }
+
+    temp_f2 = func_80340700(x, 0.0f, 1.0f) * max_interval;
+    a3 = temp_f2;
+
+    if (a3 > (length - 1)) {
+        a3 = (length - 1);
+    }
+
+    x = temp_f2 - a3;
+
+    if (a3 == 0) {
+        /* desired point in interval[0,1], duplicate P0 to left */
+        t0 = arg4;
+        t0 += (stride * 2);
+
+        for (; a3 < width; a3++) {
+            f3 = -0.5*arg4[a3] +  1.5*arg4[a3] + -1.5*arg4[stride + a3] +  0.5*t0[a3];
+            f1 =  1.0*arg4[a3] + -2.5*arg4[a3] +  2.0*arg4[stride + a3] + -0.5*t0[a3];
+            if (1);
+            f2 = -0.5*arg4[a3] +  0.0*arg4[a3] +  0.5*arg4[stride + a3] +  0.0*t0[a3];
+
+            dst[a3] = (1.0*arg4[a3]) + (((f3 * x + f1) * x + f2) * x);
+        }
+    } else {
+        a3--;
+
+        if (a3 == length - 2) {
+            arg4 += stride * (length - 1);
+
+            for (a3 = 0; a3 < width; a3++) {
+                /* desired point in interval[n, inf], linearly interpret */
+                dst[a3] = arg4[a3];
+            }
+        } else if (a3 == length - 3) {
+            /* desired point in interval[n-1, n], duplicate Pn to right */
+            arg4 += a3 * stride;
+
+            t0 = arg4;
+            t0 += (stride * 2);
+
+            for (a3 = 0; a3 < width; a3++) {
+                f3 = -0.5*arg4[a3] +  1.5*arg4[stride + a3] + -1.5*t0[a3] +  0.5*t0[a3];
+                f1 =  1.0*arg4[a3] + -2.5*arg4[stride + a3] +  2.0*t0[a3] + -0.5*t0[a3];
+                f2 = -0.5*arg4[a3] +  0.0*arg4[stride + a3] +  0.5*t0[a3] +  0.0*t0[a3];
+
+                dst[a3] = (1.0*arg4[stride + a3]) + (((f3 * x + f1) * x + f2) * x);
+            }
+        } else {
+            /* normal conditions */
+            arg4 += a3 * stride;
+
+            t0 = arg4;
+            t0 += (stride * 2);
+
+            for (a3 = 0; a3 < width; a3++) {
+                f3 = -0.5*arg4[a3] +  1.5*arg4[stride + a3] + -1.5*t0[a3] +  0.5*arg4[stride*3 + a3];
+                f1 =  1.0*arg4[a3] + -2.5*arg4[stride + a3] +  2.0*t0[a3] + -0.5*arg4[stride*3 + a3];
+                f2 = -0.5*arg4[a3] +  0.0*arg4[stride + a3] +  0.5*t0[a3] +  0.0*arg4[stride*3 + a3];
+
+                dst[a3] = (1.0*arg4[stride + a3]) + (((f3 * x + f1) * x + f2) * x);
+            }
+        }
+    }
+}
 
 void func_80341180(f32 arg0, s32 arg1, s32 arg2, f32 arg3[3], f32 arg4[3]){
     func_80340BE4(arg0, arg1, arg2, arg2, arg3, arg4);
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_803411B0.s")
-#else
-void func_803411B0(void) {
+void func_803411B0(void){
     s32 spE4;
     s32 spE0;
+    s32 a0;
     Struct_glspline_803411B0 *spD8;
     s32 spCC[3];
     s32 spC8;
     s32 spC4;
+    s32 padding[3];
     struct56s *spB4;
-    SplineList *spA8;
-    struct56s *spA4;
-    Union_glspline *sp80;
-    Struct_glspline_803411B0 *sp50;
-    Union_glspline *temp_s6;
+    Struct_glspline_803411B0 *spline;
     Union_glspline *var_s0_2;
+    SplineList *spA8;
+    f32 *spA4;
     Union_glspline *var_s1_2;
-    s32 temp_v0_2;
-    s32 var_a0;
-    s32 var_a0_3;
-    s32 var_a0_4;
-    s32 var_a0_5;
     s32 var_fp;
     s32 var_s0;
     s32 var_s2;
-    s32 var_s2_2;
+    Union_glspline sp80;
     s32 var_s5;
-    s32 var_s7;
-    s32 var_v1;
+    u32 var_s7;
     Union_glspline *temp_s3_2;
     Union_glspline *temp_v0_16;
-    Struct_glspline_803411B0 *temp_v0_17;
-    Struct_glspline_803411B0 *var_v0_4;
-    s16 *i_ptr;
+    s32 tmp;
 
     D_80371E80 = 0;
     D_80371E70 = malloc(0);
     D_80371E74 = malloc(0);
     D_80371E78 = 0;
-    D_803858A0 = (s16 *) malloc(0x80*sizeof(s16));
-    for(var_v1 = 0; var_v1 < 0x80; var_v1++){
-        D_803858A0[var_v1] = 0;
+    D_803858A0 = malloc(128 * sizeof(s16));
+
+    for (spE0 = 0; spE0 < 128; spE0++) {
+        D_803858A0[spE0] = 0;
     }
-    spE4 = func_80307E1C(D_803858A0) + 1;
-    if (spE4 > 1) {
-        spD8 = (Struct_glspline_803411B0 *)malloc(spE4 * sizeof(Struct_glspline_803411B0));
-        for(var_a0 = 0; var_a0 < spE4; var_a0++){
-            spD8[var_a0].unk0 = -1;
+
+    spE4 = func_80307E1C() + 1;
+
+    if (spE4 <= 1) {
+        return;
+    }
+
+    spD8 = (Struct_glspline_803411B0 *) malloc(spE4 * sizeof(Struct_glspline_803411B0));
+
+    for (spE0 = 0; spE0 < spE4; spE0++) {
+        (spD8 + spE0)->unk0 = -1;
+    }
+
+    func_80307EA8(0, spCC, &spC8, &spC4);
+
+    do {
+        spE0 = func_80307EA8(1, spCC, &spC8, &spC4);
+
+        if (spE0 >= 0) {
+            (spD8+spE0)->unk0 = spC8;
+            (spD8+spE0)->unk8_13 = spC4;
+            (spD8+spE0)->unk2[0] = spCC[0];
+            (spD8+spE0)->unk2[1] = spCC[1];
+            (spD8+spE0)->unk2[2] = spCC[2];
         }
+    } while (spE0 >= 0);
 
+    for (spE0 = 1; spE0 < spE4; spE0++) {
+        (spD8+spE0)->unk8_15 = 0;
 
-        func_80307EA8(0, spCC, &spC8, &spC4);
-        do {
-            temp_v0_2 = func_80307EA8(1, spCC, &spC8, &spC4);
-            if (temp_v0_2 >= 0) {
-                spD8[temp_v0_2].unk0 = (s16) spC8;
-                spD8[temp_v0_2].unk2[0] = (s16) spCC[0];
-                spD8[temp_v0_2].unk2[1] = (s16) spCC[1];
-                spD8[temp_v0_2].unk2[2] = (s16) spCC[2];
-                spD8[temp_v0_2].unk8_13 = spC4;
-            }
-        } while (temp_v0_2 >= 0);
-
-        for(spE0 = 1; spE0 < spE4; spE0++) {
-            spD8[spE0].unk8_15 = 0;
-            if ((spD8[spE0].unk0 >= spE4) || (spD8[spE0].unk0 == -1)) {
-                spD8[spE0].unk0 = 0;
-            }
+        if ((spD8+spE0)->unk0 >= spE4 || (spD8+spE0)->unk0 == -1) {
+            (spD8+spE0)->unk0 = 0;
         }
+    }
 
-        for(spE0 = 1; spE0 < spE4; spE0++) {
-            if (spD8[spE0].unk0 > 0) {
-                spD8[spD8[spE0].unk0].unk8_15 = 1;
-            }
+    for (spE0 = 1; spE0 < spE4; spE0++) {
+        if ((spD8+spE0)->unk0 > 0) {
+            (spD8+(spD8+spE0)->unk0)->unk8_15 = 1;
         }
+    }
 
-        for(spE0 = 1; spE0 < spE4; spE0++) {
-                if( (spD8[spE0].unk8_13 == 1) 
-                    && ((spD8[spE0].unk8_15 != 0) || (spD8[spE0].unk0 <= 0)) 
-                    && ((spD8[spE0].unk8_15 != 1) || (spD8[spE0].unk0 <= 0)) 
-                    && ((spD8[spE0].unk8_15 != 1) || (spD8[spE0].unk0 != 0))
-                ) {
-                    func_8032DC70();
-                    spD8[spE0].unk0 = -1;
-                    spD8[spE0].unk8_13 = 0;
+    for (spE0 = 1; spE0 < spE4; spE0++) {
+        if ((spD8+spE0)->unk8_13 == 1
+                && ((spD8+spE0)->unk8_15 != 0 || (spD8+spE0)->unk0 <= 0)
+                && ((spD8+spE0)->unk8_15 != 1 || (spD8+spE0)->unk0 <= 0)
+                && ((spD8+spE0)->unk8_15 != 1 || (spD8+spE0)->unk0 != 0)) {
+            func_8032DC70(spE0);
+
+            (spD8+spE0)->unk0 = -1;
+            (spD8+spE0)->unk8_13 = 0;
+        }
+    }
+
+    for (spE0 = 1; spE0 < spE4; spE0++) {
+        if ((spD8+spE0)->unk0 > 0 && (spD8+spE0)->unk8_15 == 0 && (spD8+spE0)->unk8_13 == 0) {
+            var_s5 = 1;
+            var_s7 = 1;
+            var_s0 = 0;
+            var_fp = 0;
+
+            for (; var_s5 < spE4; var_s5++) {
+                (spD8+var_s5)->unk8_14 = 0;
+            }
+
+            for (var_s5 = spE0; (spD8+var_s5)->unk0 != 0 && !(spD8+var_s5)->unk8_14; var_s5 = (spD8+var_s5)->unk0) {
+                (spD8+var_s5)->unk8_14 = 1;
+                tmp = (spD8+var_s5)->unk8_13 == 0 ? 1 : 0;
+                var_s7 += tmp;
+                var_s0 += ((spD8+var_s5)->unk8_13 == 0) ? 0 : 1;
+            }
+
+            tmp = var_s7 * 3;
+            spB4 = (struct56s *) malloc(8 + tmp * sizeof(f32));
+            spA4 = (f32 *) spB4;
+            spB4->unk0 = var_s7;
+            spB4->unk4 = 0;
+
+            spA8 = (SplineList *) malloc(4 + var_s0 * sizeof(Union_glspline));
+            spA8->unk0 = var_s0;
+
+            var_s1_2 = &spA8->spline[0];
+            a0 = spE0;
+            var_s2 = spA8->unk0;
+
+            for (; var_s2 != 0; a0 = (spD8+a0)->unk0) {
+                if (0);
+                if ((spD8+a0)->unk8_13 == 1) {
+                    temp_v0_16 = func_803080C8(a0);
+                    temp_v0_16->t1.unk8.pad_bit7 = D_80371E78;
+
+                    memcpy(var_s1_2, temp_v0_16, sizeof(Union_glspline));
+
+                    var_s1_2++;
+                    var_s2--;
                 }
-        }
+            }
 
-        for(spE0 = 1; spE0 < spE4; spE0++) {
-            if (spD8[spE0].unk0 > 0) {
-                if (spD8[spE0].unk8_15 == 0) {
-                    if (!spD8[spE0].unk8_13) {
-                            var_s7 = 1;
-                            var_s0 = 0;
-                            var_fp = 0;
-                            for(var_s5 = 1; var_s5 < spE4; var_s5++){
-                                spD8[var_s5].unk8_14 = 0;
-                            }
+            temp_s3_2 = spA8->unk0 - 1 + spA8->spline;
 
-                            var_v0_4 = &spD8[spE0];
-                            while ((var_v0_4->unk0 != 0) && !(var_v0_4->unk8_14)) {
-                                var_v0_4->unk8_14 = 1;
-                                var_s7 += (var_v0_4->unk8_13 == 0) ? 1 : 0;
-                                var_s0 += (var_v0_4->unk8_13 == 0) ? 0 : 1;
-                                var_v0_4 = &spD8[var_v0_4->unk0];
-                            }
+            do {
+                var_s2 = 0;
 
-                            spB4 = (struct56s *) malloc(sizeof(struct56s) + (var_s7 * 3* sizeof(f32)));
-                            spB4->unk0 = var_s7;
-                            spB4->unk4 = 0;
-                            spA8 = (SplineList *)malloc(sizeof(SplineList) + var_s0*sizeof(Union_glspline));
-                            spA8->unk0 = var_s0;
-                            var_s1_2 = &spA8->spline[0];
-                            var_s2 = var_s0;
-                            for(var_a0_4 = spE0; (var_s2 != 0);  var_a0_4 = spD8[var_a0_4].unk0){
-                                if (spD8[var_a0_4].unk8_13 == 1) {
-                                        temp_v0_16 = func_803080C8();
-                                        temp_v0_16->t1.unk8.pad_bit7 = (s8) D_80371E78;
-                                        memcpy(var_s1_2, temp_v0_16, 0x14);
-                                        var_s1_2++;
-                                        var_s2--;
-                                    }
-                            }
-                            temp_s6 = &spA8->spline[0];
-                            temp_s3_2 = &spA8->spline[spA8->unk0];
-                            var_s2_2 = 0;
-                            do {
-                                for(var_s0_2 = temp_s6; var_s0_2 < temp_s3_2; var_s0_2++){
-                                    if ((var_s0_2 + 1)->common.unk0 < var_s0_2->common.unk0) {
-                                        memcpy(sp80, var_s0_2, sizeof(Union_glspline));
-                                        memcpy(var_s0_2, var_s0_2 + 1, sizeof(Union_glspline));
-                                        memcpy(var_s0_2 + 1, sp80, sizeof(Union_glspline));
-                                        var_s2_2++;
-                                    }
-                                }
-                            } while (var_s2_2 != 0);
-                            while(var_s7 != 0){
-                                    temp_v0_17 = &spD8[spE0];
-                                    if (!(temp_v0_17->unk8_13)) {
-                                        spB4->unk8[var_fp][0] = (f32) temp_v0_17->unk2[0];
-                                        spB4->unk8[var_fp][1] = (f32) temp_v0_17->unk2[1];
-                                        spB4->unk8[var_fp][2] = (f32) temp_v0_17->unk2[2];
-                                        var_s7--;
-                                    }
-                            }
-                            func_80341BC8(spB4, spA8);
+                for (var_s0_2 = &spA8->spline[0]; var_s0_2 < temp_s3_2; var_s0_2++) {
+                    var_s1_2 = var_s0_2 + 1;
+
+                    if (var_s0_2->common.unk0 > var_s1_2->common.unk0) {
+                        memcpy(&sp80, var_s0_2, sizeof(Union_glspline));
+                        memcpy(var_s0_2, var_s1_2, sizeof(Union_glspline));
+                        memcpy(var_s1_2, &sp80, sizeof(Union_glspline));
+                        var_s2++;
                     }
                 }
+            } while (var_s2);
+
+            a0 = var_s7;
+
+            for (var_s5 = spE0; a0 != 0; var_s5 = (spD8 + var_s5)->unk0) {
+                if (!(spD8 + var_s5)->unk8_13) {
+                    spA4[var_fp + 2] = (spD8 + var_s5)->unk2[0];
+                    spA4[var_fp + 3] = (spD8 + var_s5)->unk2[1];
+                    spA4[var_fp + 4] = (spD8 + var_s5)->unk2[2];
+
+                    var_fp += 3;
+                    a0--;
+                }
             }
+
+            func_80341BC8(spB4, spA8);
         }
-        free(spD8);
     }
+
+    free(spD8);
 }
-#endif
 
 //glspline_free
 void func_80341A54(void) {
@@ -495,41 +594,40 @@ s32 func_80341C78(s32 arg0[3]) {
     return -1;
 }
 
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core2/code_B9770/func_80341D5C.s")
-#else
-s32 func_80341D5C(s32 arg0[3], s32 arg1[3]){
-    int i, j;
-    struct56s *a0;
-    f32 (*a2)[3];
-    f32 spC[3];
-    f32 sp0[3];
-
-    spC[0] = (f32)arg0[0];
-    spC[1] = (f32)arg0[1];
-    spC[2] = (f32)arg0[2];
-
-    sp0[0] = (f32)arg1[0];
-    sp0[1] = (f32)arg1[1];
-    sp0[2] = (f32)arg1[2];
-
-    for(i = 0; i < D_80371E78; i++){
-        a2 = D_80371E70[i]->unk8;
-        for(j = 0; j < D_80371E70[i]->unk0; j++){
-            if( spC[0] == a2[j][0]
-                && spC[1] == a2[j][1]
-                && spC[2] == a2[j][2]
-                && sp0[0] == a2[j +1][0]
-                && sp0[1] == a2[j +1][1]
-                && sp0[2] == a2[j +1][2]
-            ){
-                return i;
-            }
-        }
+s32 func_80341D5C(s32 arg0[3], s32 arg1[3])
+{
+  int i;
+  int j;
+  struct56s *a0;
+  f32 (*a2)[3];
+  f32 spC[3];
+  f32 sp0[3];
+  struct56s *new_var;
+  spC[0] = (f32) arg0[0];
+  spC[1] = (f32) arg0[1];
+  spC[2] = (f32) arg0[2];
+  sp0[0] = (f32) arg1[0];
+  sp0[1] = (f32) arg1[1];
+  sp0[2] = (f32) arg1[2];
+  for (i = 0; i < D_80371E78; i++)
+  {
+    a2 = a0 + 1;
+    new_var = D_80371E70[i];
+    a0 = new_var;
+    a2 = a0 + 1;
+    for (j = 0; j < new_var->unk0; j++)
+    {
+      if (((spC[0] == a2[j][0]) && (spC[1] == a2[j][1]) && (spC[2] == a2[j][2])) \
+          && ((sp0[0] == a2[j + 1][0]) && (sp0[1] == a2[j + 1][1]) && (sp0[2] == a2[j + 1][2])))
+      {
+        return i;
+      }
     }
-    return -1;
+
+  }
+
+  return -1;
 }
-#endif
 
 s32 func_80341EC4(f32 arg0[3]){
     s32 sp1C[3];

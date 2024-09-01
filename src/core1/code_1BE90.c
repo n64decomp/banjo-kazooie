@@ -24,17 +24,24 @@ CoMusic *D_80276E30 = NULL; //active track ptr
 int D_80276E34 = 0;
 
 /* .code */
-CoMusic *func_802598B0(enum comusic_e track_id) {
+/**
+ * @brief returns a pointer to the CoMusic struct with the corresponding track_id
+ * if it exists OR the first free CoMusic struct.
+ * 
+ * @param track_id 
+ * @return CoMusic* 
+ */
+CoMusic *__find_track(enum comusic_e track_id) {
     CoMusic *iMusPtr;
     CoMusic *freeSlotPtr;
 
     freeSlotPtr = NULL;
     for(iMusPtr = D_80276E30 + 1; iMusPtr < D_80276E30 + 5; iMusPtr++) {
-        if (track_id == iMusPtr->unk10) {
+        if (track_id == iMusPtr->track_id) {
             return iMusPtr;
         }
         if (freeSlotPtr == 0) {
-            if ((s32) iMusPtr->unk10 < 0) {
+            if ((s32) iMusPtr->track_id < 0) {
                 freeSlotPtr = iMusPtr;
             }
         }
@@ -61,8 +68,8 @@ void func_80259994(CoMusic *this, s32 arg1){
 }
 
 void func_802599B4(CoMusic *this){
-    func_80259994(this, func_80250034(this->unk10));
-    this->unk10 = -1;
+    func_80259994(this, func_80250034(this->track_id));
+    this->track_id = -1;
     this->unk14 = 0;
     this->unk15 = 0;
     func_8024FC1C(this - D_80276E30, -1);
@@ -77,7 +84,7 @@ void comusicPlayer_init(void){
 
     D_80276E30 = (CoMusic *) malloc(6*sizeof(CoMusic));
     for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
-        iPtr->unk10 = -1;
+        iPtr->track_id = -1;
         iPtr->unk8 = 0;
         iPtr->unk12 = 0;
         iPtr->unkC = 0;
@@ -105,12 +112,11 @@ void comusicPlayer_free(void){
     D_80276E30 = NULL;
 }
 
-//comusic_count
-s32 func_80259B8C(void){
+s32 comusic_active_track_count(void){
     CoMusic * iPtr;
     s32 cnt = 0;
     for(iPtr = D_80276E30; iPtr < D_80276E30 + 6; iPtr++){
-        if(iPtr->unk10 >= 0)
+        if(iPtr->track_id >= 0)
             cnt++;
     }
     return cnt;
@@ -124,11 +130,11 @@ void comusicPlayer_update(void) {
 
     dt = time_getDelta();
     for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
-        if (var_s0->unk10 >= 0) {
+        if (var_s0->track_id >= 0) {
             temp_lo = var_s0 - D_80276E30; 
             var_s0->unk4 = ml_min_f(var_s0->unk4 + dt, 600.0f);
             if ((var_s0->unk4 > 1.0f) && func_80250074(temp_lo)) {
-                func_8025A7DC(var_s0->unk10);
+                func_8025A7DC(var_s0->track_id);
             }
         }
     }
@@ -138,7 +144,7 @@ void comusicPlayer_update(void) {
 
     D_80276E34 = FALSE;
     for(var_s0 = D_80276E30; var_s0 < &D_80276E30[6]; var_s0++){
-        if (var_s0->unk10 >= 0) {
+        if (var_s0->track_id >= 0) {
             if (var_s0->unk12 != 0) {
                 temp_lo = var_s0 - D_80276E30;
                 if (var_s0->unk0 > 0.0f) {
@@ -212,8 +218,8 @@ void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
 
     if (var_s2 < 0) {
         temp_v0 = (struct12s *)freelist_at(self->unk18, 1);
-        if (temp_v0->unk0 < func_80250034(self->unk10)) {
-            var_s2 = func_80250034(self->unk10);
+        if (temp_v0->unk0 < func_80250034(self->track_id)) {
+            var_s2 = func_80250034(self->track_id);
         }
         else{
             var_s2 = temp_v0->unk0;
@@ -245,11 +251,11 @@ void func_80259F7C(CoMusic *self, s32 *arg1, s32 *arg2, s32 *arg3) {
 }
 
 void func_8025A104(enum comusic_e arg0, s32 arg1){
-    if (arg0 != D_80276E30[0].unk10){
+    if (arg0 != D_80276E30[0].track_id){
         func_8024FC1C(0, arg0);
     }
     func_8024FD28(0, (s16)arg1);
-    D_80276E30[0].unk10 = (s16) arg0;
+    D_80276E30[0].track_id = (s16) arg0;
     D_80276E30[0].unk8 = arg1;
     D_80276E30[0].unk0 = 0.0f;
     D_80276E30[0].unk12 = 0;
@@ -260,9 +266,9 @@ void func_8025A104(enum comusic_e arg0, s32 arg1){
 
 void func_8025A1A8(enum comusic_e  arg0){
 
-    if (arg0 != D_80276E30[0].unk10){
+    if (arg0 != D_80276E30[0].track_id){
         func_8024FC1C(0, arg0);
-        D_80276E30[0].unk10 = (s16) arg0;
+        D_80276E30[0].track_id = (s16) arg0;
         D_80276E30[0].unk8 = func_80250034(arg0);
         D_80276E30[0].unk0 = 0.0f;
         D_80276E30[0].unk12 = 0;
@@ -276,9 +282,9 @@ void func_8025A23C(s32 arg0){
     CoMusic *music = &D_80276E30[5];
     s32 temp_v0;
 
-    if (arg0 != music->unk10){
+    if (arg0 != music->track_id){
         func_8024FC1C(5, arg0);
-        music->unk10 = (s16) arg0;
+        music->track_id = (s16) arg0;
         temp_v0 = func_80250034(arg0);
         music->unk8 = temp_v0;
         music->unk12 = 0;
@@ -302,7 +308,7 @@ void func_8025A2FC(s32 arg0, s32 arg1){
 
     func_8025A55C(arg0, arg1, 1);
     for (i = 1; i < 5; i++){
-        s16 val = (i + D_80276E30)->unk10; // Doesn't match with D_80276E30[i]
+        s16 val = (i + D_80276E30)->track_id; // Doesn't match with D_80276E30[i]
         if (val >= 0){
             func_8025ABB8(val, arg0, arg1, 1);
         }
@@ -317,8 +323,8 @@ void func_8025A388(s32 arg0, s32 arg1) {
     }
     for (i = 1; i < 5; i++){
         CoMusic *current = (i + D_80276E30); // Doesn't match with D_80276E30[i]
-        if (current->unk10 >= 0 && current->unk14 == 0){
-            func_8025ABB8(current->unk10, arg0, arg1, 1);
+        if (current->track_id >= 0 && current->unk14 == 0){
+            func_8025ABB8(current->track_id, arg0, arg1, 1);
         }
     }
 }
@@ -328,7 +334,7 @@ void func_8025A430(s32 arg0, s32 arg1, s32 arg2){
 
     func_8025A55C(arg0, arg1, arg2);
     for (i = 1; i < 5; i++){
-        s16 val = (i + D_80276E30)->unk10; // Doesn't match with D_80276E30[i]
+        s16 val = (i + D_80276E30)->track_id; // Doesn't match with D_80276E30[i]
         if (val >= 0){
             func_8025ABB8(val, arg0, arg1, arg2);
         }
@@ -336,7 +342,7 @@ void func_8025A430(s32 arg0, s32 arg1, s32 arg2){
 }
 
 void func_8025A4C4(s32 arg0, s32 arg1, s32 *arg2){
-    if(D_80276E30[0].unk10 >= 0){
+    if(D_80276E30[0].track_id >= 0){
         func_80259F7C(&D_80276E30[0], &arg0, &arg1, arg2);
         if(arg0 != D_80276E30[0].unk8){
             if(D_80276E30[0].unk8 < arg0){
@@ -368,21 +374,22 @@ void func_8025A5AC(enum comusic_e comusic_id, s32 arg1, s32 arg2){
         arg1 = func_80250034(comusic_id);
     }
 
-    tmp_a2 = func_802598B0(comusic_id);
+    tmp_a2 = __find_track(comusic_id);
     if(tmp_a2 == NULL)
         return;
 
     sp20 = (tmp_a2 - D_80276E30);
-    if(tmp_a2->unk10 < 0 || arg2){
+    if(tmp_a2->track_id < 0 || arg2){
         switch(comusic_id){
             case COMUSIC_15_EXTRA_LIFE_COLLECTED:
-                if(map_get() != MAP_10_BGS_MR_VILE){
+                if(map_get() == MAP_10_BGS_MR_VILE){
+                    break;
+                }
             case COMUSIC_3B_MINIGAME_VICTORY:
             case COMUSIC_3C_MINIGAME_LOSS:
-                    func_8025AE50(4000, 2.0f);
-                }//L8025A668
+                func_8025AE50(4000, 2.0f);
         }
-        tmp_a2->unk10 = comusic_id;
+        tmp_a2->track_id = comusic_id;
         tmp_a2->unk12 = 0;
         tmp_a2->unk15 = 0;
         tmp_a2->unk4 = 0.0f;
@@ -407,13 +414,13 @@ void func_8025A70C(enum comusic_e track_id){
     CoMusic *trackPtr;
     s32 indx;
 
-    trackPtr = func_802598B0(track_id);
+    trackPtr = __find_track(track_id);
     if(trackPtr == NULL)
         return;
     
     indx = trackPtr - D_80276E30;
-    if(trackPtr->unk10 < 0){
-        trackPtr->unk10 = track_id;
+    if(trackPtr->track_id < 0){
+        trackPtr->track_id = track_id;
         trackPtr->unk12 = 0;
         trackPtr->unk4 = 0.0f;
         func_8024FC1C( indx, track_id);
@@ -430,8 +437,8 @@ void func_8025A788(enum comusic_e comusic_id, f32 delay1, f32 delay2){
 void func_8025A7DC(enum comusic_e track_id){
     CoMusic *trackPtr;
 
-    trackPtr = func_802598B0(track_id);
-    if (trackPtr != NULL && trackPtr->unk10 >= 0){
+    trackPtr = __find_track(track_id);
+    if (trackPtr != NULL && trackPtr->track_id >= 0){
         func_802599B4(trackPtr);
     }
 }
@@ -447,7 +454,7 @@ s32 func_8025A818(void){
 s32 func_8025A864(enum comusic_e track_id){
     CoMusic *trackPtr;
 
-    trackPtr = func_802598B0(track_id);
+    trackPtr = __find_track(track_id);
     if (trackPtr != NULL && trackPtr->unkC == 0 && trackPtr->unk8 <= 0){
         func_802599B4(trackPtr);
         return 1;
@@ -458,14 +465,14 @@ s32 func_8025A864(enum comusic_e track_id){
 void func_8025A8B8(enum comusic_e track_id, s32 arg1){
     CoMusic *trackPtr;
 
-    trackPtr = func_802598B0(track_id);
+    trackPtr = __find_track(track_id);
     if (trackPtr != NULL){
         trackPtr->unk14 = arg1;
     }
 }
 
 void func_8025A8E4(s32 arg0) {
-    if (D_80276E30[0].unk10 >= 0) {
+    if (D_80276E30[0].track_id >= 0) {
         D_80276E30[0].unk14 = arg0;
     }
 }
@@ -474,7 +481,7 @@ void func_8025A904(void){
     CoMusic *trackPtr = &D_80276E30[0];
 
     while (trackPtr < &D_80276E30[6]){
-        if (trackPtr->unk10 >= 0){
+        if (trackPtr->track_id >= 0){
             func_802599B4(trackPtr);
         }
         trackPtr++;
@@ -486,7 +493,7 @@ void func_8025A96C(void){
     CoMusic *iPtr;
 
     for(iPtr = &D_80276E30[1]; iPtr < &D_80276E30[6]; iPtr++){
-        if(iPtr->unk10 >= 0){
+        if(iPtr->track_id >= 0){
             func_802599B4(iPtr);
         }
     }
@@ -497,7 +504,7 @@ void func_8025A9D4(void){
     CoMusic *iPtr;
 
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
-        if(iPtr->unk10 >= 0 && !iPtr->unk14){
+        if(iPtr->track_id >= 0 && !iPtr->unk14){
             func_802599B4(iPtr);
         }
     }
@@ -508,7 +515,7 @@ void func_8025AA48(void){
     CoMusic *iPtr;
 
     for(iPtr = &D_80276E30[1]; iPtr < &D_80276E30[6]; iPtr++){
-        if(iPtr->unk10 >= 0 && !iPtr->unk14){
+        if(iPtr->track_id >= 0 && !iPtr->unk14){
             func_802599B4(iPtr);
         }
     }
@@ -518,7 +525,7 @@ void func_8025AA48(void){
 void func_8025AABC(enum comusic_e track_id){
     CoMusic *trackPtr;
     
-    if(trackPtr = func_802598B0(track_id)){
+    if(trackPtr = __find_track(track_id)){
         trackPtr->unk15 = 1;
         if(!trackPtr->unk8)
             func_802599B4(trackPtr);
@@ -541,32 +548,34 @@ void comusic_8025AB78(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
 }
 
 void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(func_802598B0(comusic_id)->unk1C[arg3]), "comusic.c", 0x3aa);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(__find_track(comusic_id)->unk1C[arg3]), "comusic.c", 0x3aa);
 }
 
 void func_8025AC20(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) func_802598B0(comusic_id)->unk1C, "comusic.c", 0x3b1);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) __find_track(comusic_id)->unk1C, "comusic.c", 0x3b1);
 }
 
 void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
     CoMusic *trackPtr;
-    u32 sp24;
+    u32 slot_index;
 
-    trackPtr = func_802598B0(comusic_id);
+    //get track location
+    trackPtr = __find_track(comusic_id);
     if(trackPtr == NULL)
         return;
 
-    if(trackPtr->unk10 < 0){ //Track not ready
+    //check if track is loaded in slot
+    if(trackPtr->track_id < 0){ //Track not loaded
         if(arg1 == 0)
             return;
-        sp24 = (trackPtr - D_80276E30);
-        func_8024FC1C(sp24, comusic_id);
-        trackPtr->unk10 = comusic_id;
+        slot_index = (trackPtr - D_80276E30);
+        func_8024FC1C(slot_index, comusic_id);
+        trackPtr->track_id = comusic_id;
         trackPtr->unk8 = 0;
         trackPtr->unk15 = 0;
         trackPtr->unk4 = 0.0f;
         func_80259994(trackPtr, 0);
-        func_8024FD28(sp24, 0);
+        func_8024FD28(slot_index, 0);
     }
     func_80259F7C(trackPtr,&arg1, &arg2, arg4);
     trackPtr->unk0 = arg3;
@@ -578,17 +587,17 @@ void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 
 
 //comusic_trackQueued
 int func_8025AD7C(enum comusic_e arg0){
-    CoMusic * trackPtr = func_802598B0(arg0);
-    return (trackPtr == NULL || trackPtr->unk10 == -1)? 0 : 1;
+    CoMusic * trackPtr = __find_track(arg0);
+    return (trackPtr == NULL || trackPtr->track_id == -1)? 0 : 1;
 }
 
 //comusic_isPrimaryTrack
 int func_8025ADBC(enum comusic_e arg0){
-    return D_80276E30[0].unk10 == arg0;
+    return D_80276E30[0].track_id == arg0;
 }
 
 s32 func_8025ADD4(enum comusic_e id){
-    CoMusic * ptr = func_802598B0(id);
+    CoMusic * ptr = __find_track(id);
     return ptr - D_80276E30;
 }
 
@@ -603,7 +612,7 @@ void func_8025AE50(s32 arg0, f32 arg1){
 }
 
 void func_8025AEA0(enum comusic_e track_id, s32 arg1){
-    CoMusic *ptr = func_802598B0(track_id);
+    CoMusic *ptr = __find_track(track_id);
     
     if(!ptr) return;
     func_8024FDDC(ptr - D_80276E30, arg1);
@@ -616,7 +625,7 @@ int func_8025AEEC(void){
     return out;
 }
 
-void func_8025AF38(void){
+void comusic_defrag(void){
     CoMusic *iPtr;
 
     if(!D_80276E30) return;

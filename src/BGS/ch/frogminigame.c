@@ -22,7 +22,7 @@ u8 D_80391240[4];
 /* .code */
 static void __chFrogMinigame_spawnJiggy(void){
     static f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};
-    jiggySpawn(JIGGY_24_BGS_FLIBBITS, D_80390AD4);
+    jiggy_spawn(JIGGY_24_BGS_FLIBBITS, D_80390AD4);
 }
 
 static void __chFrogMinigame_textCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2){

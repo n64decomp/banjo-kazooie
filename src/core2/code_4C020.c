@@ -158,7 +158,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0xA0:
         case 0xFF:
             func_8030E540(SFX_82_METAL_BREAK);
-            func_80328A84(sp2C, 4);
+            subaddie_set_state(sp2C, 4);
             break;
 
         case 0x17D:
@@ -172,7 +172,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case MARKER_109_BREAKABLE_BRICK_WALL:
             func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
             func_8030E510(SFX_11_WOOD_BREAKING_1, 28000);
-            func_80328AEC(sp2C, 9);
+            subaddie_set_state_looped(sp2C, 9);
             fileProgressFlag_set((sp2C->unkF4_8 == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
             break;
 
@@ -185,7 +185,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case MARKER_224_BREAKABLE_FLOOR_COBWEB:
             func_8025A70C(COMUSIC_2B_DING_B);
             func_8030E6A4(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
-            func_80328AEC(sp2C, 0xC);
+            subaddie_set_state_looped(sp2C, 0xC);
             func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
             fileProgressFlag_set((sp2C->unkF4_8== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
             break;
@@ -193,7 +193,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case MARKER_225_BREAKABLE_WALL_COBWEB:
             func_8025A70C(COMUSIC_2B_DING_B);
             func_8030E540(SFX_129_SWOOSH);
-            func_80328AEC(sp2C, 0xF);
+            subaddie_set_state_looped(sp2C, 0xF);
             func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
             fileProgressFlag_set(FILEPROG_CA_COBWEB_BLOCKING_PURPLE_CAULDRON_BROKEN, 1);
             break;
@@ -508,7 +508,7 @@ void func_802D4388(Actor *this){
     switch(this->state){
         case 0x12: //L802D4468
             if(this->unk38_0 && mapSpecificFlags_get(0x1F)){
-                func_80328B8C(this, 0x13, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 0x13, 0.0f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E6D4(SFX_90_SWITCH_PRESS);
             }
@@ -516,20 +516,20 @@ void func_802D4388(Actor *this){
 
         case 0x13: //L802D44B0
             if(0.66 <= animctrl_getAnimTimer(this->animctrl)){
-                func_80328B8C(this, 0x14, 0.66f, 0);
+                subaddie_set_state_with_direction(this, 0x14, 0.66f, 0);
             }
             break;
 
         case 0x14: //L802D44F0
             if(!this->unk38_0 || !mapSpecificFlags_get(0x1F)){
-                func_80328B8C(this, 0x15, 0.66f, 0);
+                subaddie_set_state_with_direction(this, 0x15, 0.66f, 0);
                 actor_playAnimationOnce(this);
             }
             break;
 
         case 0x15: //L802D4534
              if(animctrl_getAnimTimer(this->animctrl) < 0.03){
-                func_80328B8C(this, 0x12, 0.0f, 1);
+                subaddie_set_state_with_direction(this, 0x12, 0.0f, 1);
             }
             break;
     }//L802D456C
@@ -564,7 +564,7 @@ void func_802D4680(Actor *this){
     switch(this->state){
         case 0:
             if(150.0f < func_80258640(this->position, sp1C)){
-                func_80328A84(this, 1);
+                subaddie_set_state(this, 1);
                 D_803676AC = 0;
             }
             break;
@@ -628,7 +628,7 @@ void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
         ) 
         && (arg2 != this->state)
     ) {
-        func_80328B8C(this, arg2, 0.0f, 1);
+        subaddie_set_state_with_direction(this, arg2, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
     if( ( (((arg1 & 0xC00000) == 0) && !mapSpecificFlags_get(arg1 - 0)) 
@@ -637,7 +637,7 @@ void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
         ) 
         && (arg2 == this->state)
     ) {
-        func_80328B8C(this, arg3, 0.0f, 1);
+        subaddie_set_state_with_direction(this, arg3, 0.0f, 1);
         actor_playAnimationOnce(this);
     }
 }
@@ -658,7 +658,7 @@ void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
     if( (((arg1 & 0x800000) && (fileProgressFlag_get(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (func_803203FC(arg1 + 0xFFC00000)))) 
         && (fileProgressFlag_get(arg2)) && (this->animctrl == NULL)
     ) {
-        func_80328B8C(this, 8, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 8, 0.0f, 1);
     }
     func_802D4A9C(this, arg1);
 }

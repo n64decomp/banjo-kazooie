@@ -66,7 +66,7 @@ Actor *func_80387EB0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 void TTC_func_80387F18(Actor *this) {
-    func_80328AEC(this, 3);
+    subaddie_set_state_looped(this, 3);
     this->unk1C[0] = 0.0f;
     switch((s32)this->unk60){
         case 0x78:
@@ -94,7 +94,7 @@ void TTC_func_80387FB0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 void TTC_func_80387FF4(Actor *this) {
     s32 i;
 
-    func_80328B8C(this, 4, 0.01f, 1);
+    subaddie_set_state_with_direction(this, 4, 0.01f, 1);
     actor_playAnimationOnce(this);
     for(i = 0; i < 3; i ++){
         FUNC_8030E8B4(SFX_79_TICKER_DEATH, 0.5f, 17000, this->position, 1500, 3000);
@@ -127,7 +127,7 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
     func_8032B4DC(this, other_marker, 7);
 
     if (this->unk60 == 40.0f) {
-        func_80328B8C(this, 6, 0.01f, 1);
+        subaddie_set_state_with_direction(this, 6, 0.01f, 1);
         actor_playAnimationOnce(this);
         for(i = 0; i < 3; i++){
             FUNC_8030E8B4(SFX_78_EAGLECRY, 0.7f, 20000, this->position, 1500, 3000);
@@ -220,7 +220,7 @@ void func_80388434(Actor *this){
         case 1:// L80388578
             if(!this->initialized){
                 animctrl_setTransitionDuration(this->animctrl, 0.35f);
-                func_80328B8C(this, 1, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.01f, 1);
                 this->unk60 = 120.0f;
                 this->marker->propPtr->unk8_3 = TRUE;
                 marker_setCollisionScripts(this->marker, func_803883C8, func_80388344, func_80388178);
@@ -233,7 +233,7 @@ void func_80388434(Actor *this){
                     && temp_v0 != 1
                     && temp_v0 != 10
                 ){
-                    func_80328B8C(this, 5, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, 5, 0.01f, 1);
                     if(func_80311480(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
                         this->unk138_24 = TRUE;
                     }
@@ -258,7 +258,7 @@ void func_80388434(Actor *this){
 
         case 2:// L8038872C
             if(!func_8038812C(this)){
-                func_80328AEC(this, 1);
+                subaddie_set_state_looped(this, 1);
                 break;
             }
 
@@ -284,7 +284,7 @@ void func_80388434(Actor *this){
             }
 
             if(2.0f <= this->unk1C[0]){
-                func_80328AEC(this, 2);
+                subaddie_set_state_looped(this, 2);
                 this->unk38_31 = 0;
                 break;
             }
@@ -322,7 +322,7 @@ void func_80388434(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.99f)){
-                func_80328B8C(this, 7, 0.01f, 1);
+                subaddie_set_state_with_direction(this, 7, 0.01f, 1);
             }
             break;
 

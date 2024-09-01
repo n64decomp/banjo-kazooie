@@ -3,7 +3,8 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-
+extern Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
+extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
 extern f32 func_8038BE20(f32 arg0[3]);
 
 typedef struct {
@@ -90,7 +91,7 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void FP_func_803888E4(Actor *this){
     static f32 D_80391D0C[3] = {1842.0f, 658.0f, 5758.0f};
     static f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};
-    func_80328B8C(this, 0xC, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 0xC, 0.0001f, 1);
     if(!jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
         if(mapSpecificFlags_get(5)){
             func_80324DBC(0.1f, 0xc06, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
@@ -115,7 +116,7 @@ void FP_func_803888E4(Actor *this){
 void func_80388A50(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
-    func_80328B8C(this, 2, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     timed_setStaticCameraToNode(0.0f, 4);
     local->unk18 = 0;
 }
@@ -206,7 +207,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
             local->unk4 = partEmitMgr_newEmitter(16);
             func_80388EE8(local->unk0);
             func_80388EE8(local->unk4);
-            func_80328B8C(this, 4, 0.0001f, 1);
+            subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
             local->unk14 = (local->unk19 == 2) ? 1.0f : 0.0f;
             this->marker->unk40_23 = TRUE;
             break;
@@ -217,10 +218,10 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
                     mapSpecificFlags_set(6, TRUE);
                     break;
                 case 0:
-                    func_80328B8C(this, 1, 0.0001f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
                     break;
                 default:
-                    func_80328B8C(this, 1, 0.0001f, 1);
+                    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
                     break;
             }
             break;
@@ -432,7 +433,7 @@ void func_803896FC(Actor *this){
             local->unk19 = 1;
             this->unk38_31 = 2;
             this->unk4C = 600.0f;
-            func_80328B8C(this, 11, 0.0001f, 1);
+            subaddie_set_state_with_direction(this, 11, 0.0001f, 1);
         }
         else{
             local->unk19  = 1;
@@ -445,10 +446,10 @@ void func_803896FC(Actor *this){
     if(!func_8038A1A0(this->marker)){
         switch(this->unk38_31){
             case 1://L80389920
-                func_80328B8C(this, 9, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 9, 0.0001f, 1);
                 break;
             case 2://L80389938
-                func_80328B8C(this, 10, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 10, 0.0001f, 1);
                 break;
         }
     }//L80389950
@@ -500,9 +501,9 @@ void func_803896FC(Actor *this){
                 local->unk14 = 0.0f;
                 if( randf() < 0.02 && sp58 < 0.0){
                     if(randf() < 0.5)
-                        func_80328B8C(this, 5, 0.0001f, 1);
+                        subaddie_set_state_with_direction(this, 5, 0.0001f, 1);
                     else
-                        func_80328B8C(this, 6, 0.0001f, 1);
+                        subaddie_set_state_with_direction(this, 6, 0.0001f, 1);
                 }//L80389C18
 
                 func_803893E4(this, sp58, local->unk19);
@@ -516,7 +517,7 @@ void func_803896FC(Actor *this){
         case 5:// L80389C80
         case 6:// L80389C80
             if(actor_animationIsAt(this, 0.9999f) || sp58 >= 0.0){
-                func_80328B8C(this, 4, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
             }//L80389CC8
             
             func_803893E4(this, sp58, local->unk19);
@@ -528,7 +529,7 @@ void func_803896FC(Actor *this){
 
         case 7:// L80389D34
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 4, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
             }//L80389D60
             func_803893E4(this, sp58, local->unk19);
             func_80388F90(this);
@@ -556,7 +557,7 @@ void func_803896FC(Actor *this){
                 func_80388F90(this);
             }
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 11, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 11, 0.0001f, 1);
             }
             break;
 
@@ -567,7 +568,7 @@ void func_803896FC(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 11, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 11, 0.0001f, 1);
             }
             break;
 
@@ -629,10 +630,10 @@ void func_8038A0E4(UNK_TYPE(s32) arg0, ActorMarker *marker){
     
     if(actor){
         if(actor->state != 7){
-            func_80328B8C(actor, 7, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 7, 0.0001f, 1);
         }
         else{
-            func_80328B8C(actor, 4, 0.0001f, 1);
+            subaddie_set_state_with_direction(actor, 4, 0.0001f, 1);
         }
     };
 }
@@ -641,7 +642,7 @@ void func_8038A150(UNK_TYPE(s32) arg0, ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     
     if(actor && actor->state != 8){
-        func_80328B8C(actor, 8, 0.0001f, 1);
+        subaddie_set_state_with_direction(actor, 8, 0.0001f, 1);
     };
 }
 

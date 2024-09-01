@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 extern f32 func_8029B2D0(void);
 
@@ -18,9 +19,9 @@ void bsDroneLook_init(void) {
     func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.2f, 12000);
     func_8029BCF8(&anim_id, &anim_duration);
     baanim_playForDuration_loopSmooth(anim_id, anim_duration);
-    func_8029C7F4(1, 1, 3, 2);
-    func_80297970(0.0f);
-    func_80297A0C(0);
+    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
+    baphysics_set_velocity(0);
     ncDynamicCamera_enterFirstPerson();
     __bsDroneLook_getEyePos(eye_position);
     ncFirstPersonCamera_setZoomedOutPosition(eye_position);
@@ -42,6 +43,7 @@ void bsDroneLook_update(void) {
     next_state = 0;
     dt = time_getDelta();
     if (ncFirstPersonCamera_getState() == 2) {
+        //camera is in "idle" state
         ncFirstPersonCamera_getZoomedInRotation(eye_rotation);
         eye_rotation[0] -= func_8029B2DC() * 90.0f * dt;
         eye_rotation[1] -= func_8029B2D0() * 90.0f * dt;
@@ -49,10 +51,13 @@ void bsDroneLook_update(void) {
         eye_rotation[0] = (eye_rotation[0] > 180.0f) ? ml_max_f(305.0f, eye_rotation[0]) : ml_min_f(70.0f, eye_rotation[0]);
         ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
         yaw_setIdeal(eye_rotation[1] + 180.0f);
+
         exit_first_person = FALSE;
+        // 1st person cancelled via input
         if (button_pressed(BUTTON_B) || button_pressed(BUTTON_A) || button_pressed(BUTTON_C_UP)) {
             exit_first_person = TRUE;
         }
+        // 1st person cancelled via entering water
         if (player_inWater()) {
             if (player_getTransformation() == TRANSFORM_1_BANJO && func_8028EE84() == BSWATERGROUP_0_NONE) {
                 exit_first_person += TRUE;

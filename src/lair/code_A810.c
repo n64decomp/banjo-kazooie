@@ -58,7 +58,7 @@ void func_80390D3C(Actor *this, s32 val)
     ActorLocal_lair_A810 *local;
 
     local = (ActorLocal_lair_A810 *)&this->local;
-    func_80328A84(this, val);
+    subaddie_set_state(this, val);
 
     switch (val)
     {
