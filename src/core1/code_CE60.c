@@ -266,7 +266,7 @@ void func_8024AF48(void){
                 func_8024A880(0x9000);
             }
             else{
-                if(mole_learnedAllSpiralMountainAbilities())
+                if(chmole_learnedAllSpiralMountainAbilities())
                     func_8024A9EC(0);
                 func_8024A880(0x6fff);
             }

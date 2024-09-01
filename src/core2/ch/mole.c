@@ -2,16 +2,16 @@
 #include "functions.h"
 #include "variables.h"
 
-void mole_update(Actor *this);
+void chmole_update(Actor *this);
 Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, s32 arg2);
+void chmole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, s32 arg2);
 
 typedef struct{
     s16 learn_text;
     s16 refresher_text;
     s8 camera_node;
     s8 ability;
-} struct_mole;
+} ChMoleDescription;
 
 /* .data */
 ActorAnimationInfo moleAnimations[]= {
@@ -23,15 +23,15 @@ ActorAnimationInfo moleAnimations[]= {
     {ASSET_13A_ANIM_BOTTLES_ENTER,  2000000000.0f},
 };
 
-ActorInfo D_80367DA0 = {
+ActorInfo gChMole = {
     0x1DF, ACTOR_37A_BOTTLES, ASSET_387_MODEL_BOTTLES, 
     1, moleAnimations,
-    mole_update, func_80326224, func_802D94B4,
+    chmole_update, func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
 }; 
 
 // D_80367DC4
-struct_mole moleTable[] = {
+ChMoleDescription moleTable[] = {
     {ASSET_C23_DIALOG_BEAKBOMB_LEARN,      ASSET_C24_DIALOG_BEAKBOMB_REFRESHER,      0x0F, ABILITY_1_BEAK_BOMB}, 
     {ASSET_B47_DIALOG_EGGS_LEARN,          ASSET_B4B_DIALOG_EGGS_REFRESHER,          0x16, ABILITY_6_EGGS},
     {ASSET_B48_DIALOG_BEAKBUSTER_LEARN,    ASSET_B4C_DIALOG_BEAKBUSTER_REFRESHER,    0x17, ABILITY_2_BEAK_BUSTER},
@@ -46,7 +46,7 @@ struct_mole moleTable[] = {
 
 /* .code */
 // func_802D9220
-int mole_learnedAllLevelAbilities(enum level_e level){
+int chmole_learnedAllLevelAbilities(enum level_e level){
     // Checks if all of the level's abilities are learned.
     switch (level){
         case LEVEL_1_MUMBOS_MOUNTAIN:
@@ -70,11 +70,11 @@ int mole_learnedAllLevelAbilities(enum level_e level){
 }
 
 // func_802D9304
-enum asset_e mole_learnedAllLevelAbilitiesDialog(void){
+enum asset_e chmole_learnedAllLevelAbilitiesDialog(void){
     // If the player has learned all game abilities, use "learned all abilities" dialog
     // If the player learned all level abilities, use "learned world abilities" dialog
     s32 level_id = level_get();
-    int learned_all_moves = mole_learnedAllLevelAbilities(level_id);
+    int learned_all_moves = chmole_learnedAllLevelAbilities(level_id);
     switch(level_id){
         case LEVEL_1_MUMBOS_MOUNTAIN:
             return learned_all_moves ? ASSET_B4E_TEXT_BOTTLES_ALL_MM_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
@@ -95,7 +95,7 @@ enum asset_e mole_learnedAllLevelAbilitiesDialog(void){
 }
 
 // func_802D93EC
-int mole_learnedAllGameAbilities(void){
+int chmole_learnedAllGameAbilities(void){
     // Checks if the player has learned all non-Spiral Mountain abilities.
     return ability_isUnlocked(ABILITY_6_EGGS)
         && ability_isUnlocked(ABILITY_2_BEAK_BUSTER)
@@ -143,13 +143,13 @@ void func_802D9600(Actor * this){
 }
 
 // func_802D9658
-void mole_setStaticCamera(Actor *this){
+void chmole_setStaticCamera(Actor *this){
     // Sets the camera to a static camera
     timed_setStaticCameraToNode(0.0f, moleTable[this->unkF4_8-9].camera_node);
 }
 
 // func_802D9698
-void mole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
+void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     // Refills the player's health upon learning a new ability, if needed
     // Also releases the camera
     Actor *actor = marker_getActor(marker);
@@ -157,10 +157,10 @@ void mole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     if( arg1 == moleTable[actor->unkF4_8-9].learn_text 
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, mole_healthRefill, mole_additionalAbilityLearnActions);
+        func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
     else if(arg1 == moleTable[actor->unkF4_8-9].learn_text || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
-        func_80311480(mole_learnedAllGameAbilities()? 0xa87 : mole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, mole_healthRefill, NULL);
+        func_80311480(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
         if(actor->unk138_24){
@@ -179,7 +179,7 @@ void mole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
 }
 
 // func_802D9830
-void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, s32 arg2){
+void chmole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     // Performs actions depending on what move is being learned
     Actor *actor = marker_getActor(marker);
     switch(arg2){
@@ -189,7 +189,7 @@ void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, 
             break;
         case 2:
             levelSpecificFlags_set(0x1A, 0);
-            mole_setStaticCamera(actor);
+            chmole_setStaticCamera(actor);
             break;
         case 3: // Turbo Talon Trainer
             timed_setStaticCameraToNode(0.0f, 0x29);
@@ -197,7 +197,7 @@ void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, 
             break;
         case 4:
             levelSpecificFlags_set(0x1A, 0);
-            mole_setStaticCamera(actor);
+            chmole_setStaticCamera(actor);
             break;
         case 5: // Egg Firing
             item_adjustByDiffWithHud(ITEM_D_EGGS, 50);
@@ -212,13 +212,13 @@ void mole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, 
             item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
             break;
         case 0xff:
-            mole_setStaticCamera(actor);
+            chmole_setStaticCamera(actor);
             break;
     }
 }
 
 // func_802D997C
-int mole_learnAbility(Actor *this){
+int chmole_learnAbility(Actor *this){
     s32 sp2C;
     s32 sp28 = 0xe;
     // Known Ability: Refresher Dialog
@@ -242,7 +242,7 @@ int mole_learnAbility(Actor *this){
                 break;
         }
     }//L802D9A9C
-    func_80311480(sp2C, sp28, this->position, this->marker, mole_healthRefill, mole_additionalAbilityLearnActions);
+    func_80311480(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     return TRUE;
 }
 
@@ -260,28 +260,28 @@ void func_802D9ADC(Actor *this){
     func_8030DD14(this->unk44_31, 2);
     func_8030DBB4(this->unk44_31, 1.4f);
     sfxsource_setSampleRate(this->unk44_31, 26000);
-    mole_setStaticCamera(this);
+    chmole_setStaticCamera(this);
     func_8028F94C(2, this->position);
 }
 
 // func_802D9BD8
-void mole_Refresher(Actor *this){
+void chmole_Refresher(Actor *this){
     // Plays the scene where Bottles gives the player a refresher on the ability.
     subaddie_set_state(this, 5);
-    mole_setStaticCamera(this);
+    chmole_setStaticCamera(this);
     func_8028F94C(2, this->position);
-    mole_learnAbility(this);
+    chmole_learnAbility(this);
 }
 
 // func_802D9C1C
-void mole_setFacingDirection(Actor *this){
+void chmole_setFacingDirection(Actor *this){
     // Sets the actor to always be facing the player
     subaddie_set_state_with_direction(this, 3, 0.0001f, 1);
     actor_loopAnimation(this);
 }
 
 // func_802D9C54
-void mole_spawnMolehill(ActorMarker *marker){
+void chmole_spawnMolehill(ActorMarker *marker){
     // Spawns a molehill for the actor
     Actor *actor = marker_getActor(marker);
     Actor *other = spawn_child_actor(ACTOR_12C_MOLEHILL, &actor);
@@ -299,11 +299,11 @@ void func_802D9C90(Actor *this){
 }
 
 // func_802D9CBC
-void mole_startingDialog(Actor *this){
+void chmole_startingDialog(Actor *this){
     // If the player knows the ability, use refresher function
     // Otherwise, set player's position and spawn mole
     if(ability_isUnlocked(moleTable[this->unkF4_8 - 9].ability)){
-        mole_Refresher(this);
+        chmole_Refresher(this);
     }
     else{
         if(func_80329530(this, 150)){
@@ -317,7 +317,7 @@ void mole_startingDialog(Actor *this){
 }
 
 // func_802D9D60
-void mole_update(Actor *this){
+void chmole_update(Actor *this){
     // Sets up the initial functions and state for the actor
     s32 sp50[6];
     f32 sp4C;
@@ -358,7 +358,7 @@ void mole_update(Actor *this){
             nodeprop_getPosition(node_prop, this->unk1C);
         }
         // Spawns molehill
-        __spawnQueue_add_1((GenFunction_1)mole_spawnMolehill, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_1((GenFunction_1)chmole_spawnMolehill, reinterpret_cast(s32, this->marker));
         this->marker->propPtr->unk8_3 = FALSE;
         this->marker->collidable = FALSE;
         this->initialized = TRUE;
@@ -388,7 +388,7 @@ void mole_update(Actor *this){
                 ){
                     player_getPosition(sp34);
                     if(ml_distance_vec3f(sp34, this->velocity) < this->unk28){
-                        mole_startingDialog(this);
+                        chmole_startingDialog(this);
                     }
                 }
                 else{//L802DA054
@@ -397,7 +397,7 @@ void mole_update(Actor *this){
                         && func_8028EFC8()
                         && sp50[FACE_BUTTON(BUTTON_B)] == 1
                     ){
-                        mole_startingDialog(this);
+                        chmole_startingDialog(this);
                     }
                 }
             }
@@ -412,7 +412,7 @@ void mole_update(Actor *this){
                 func_8030E2C4(this->unk44_31);
             }//L802DA128
             if(actor_animationIsAt(this, 0.9999f)){
-                mole_setFacingDirection(this);
+                chmole_setFacingDirection(this);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
             }
@@ -426,7 +426,7 @@ void mole_update(Actor *this){
                 FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.35f)){//L802DA1EC
-                mole_learnAbility(this);
+                chmole_learnAbility(this);
             }
             break;
         case 3://L802DA210
@@ -474,7 +474,7 @@ void mole_update(Actor *this){
 }
 
 // func_802DA498
-int mole_learnedAllSpiralMountainAbilities(void){
+int chmole_learnedAllSpiralMountainAbilities(void){
     // Checks if the player has learned all of the Spiral Mountain abilities.
     return ability_isUnlocked(ABILITY_F_DIVE)
         && ability_isUnlocked(ABILITY_4_BEAR_PUNCH)

@@ -97,7 +97,7 @@ extern ActorInfo D_80367CB4; //spent_goldfeather
 extern ActorInfo D_80367D00; //egg
 extern ActorInfo D_80367D24; //redfeather
 extern ActorInfo D_80367D48; //goldfeather 
-extern ActorInfo D_80367DA0; //bottles
+extern ActorInfo gChMole; //bottles
 extern ActorInfo D_80367E20; //chmolehill
 extern ActorInfo D_80367E70;
 extern ActorInfo D_80367F30;
@@ -259,7 +259,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367D48, actor_new, 0x0200000); //goldfeather 
     spawnableActorList_add(&D_80367C90, actor_new, 0x0000004); //spent_redfeather
     spawnableActorList_add(&D_80367CB4, actor_new, 0x0000004); //spent_goldfeather
-    spawnableActorList_add(&D_80367DA0, actor_new, 0x0000180); //bottles
+    spawnableActorList_add(&gChMole, actor_new, 0x0000180); //bottles
     spawnableActorList_add(&D_80367E20, actor_new, 0x44); //chmolehill
     spawnableActorList_add(&D_80373DC0, actor_new, 0x80000);
     spawnableActorList_add(&D_80367E70, actor_new, 0x0);

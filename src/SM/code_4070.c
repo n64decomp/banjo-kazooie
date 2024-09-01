@@ -112,7 +112,7 @@ void SM_func_8038A5D8(Actor *this){
                 func_8038A460(this);
                 func_8028F94C(2, this->unk1C);
                 
-                if(!mapSpecificFlags_get(3) && mole_learnedAllSpiralMountainAbilities()){
+                if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities()){
                     mapSpecificFlags_set(3,1);
                     temp_a0 = 0xe12;
                 }else{

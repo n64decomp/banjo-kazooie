@@ -412,7 +412,7 @@ void func_802C4C14(Actor *this){
                             sp44 = 0.0f;
                             if(this->state == 4 &&  (sp84 == 0 || sp84 == 1))
                                 sp44 = 0.25f;
-                            if(mole_learnedAllSpiralMountainAbilities() && fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE)){
+                            if(chmole_learnedAllSpiralMountainAbilities() && fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE)){
                                 timedFunc_set_2(sp44, (GenFunction_2)warp_lairEnterLairFromSMLevel, 0, 0);
                             }
                             else{//L802C5188
