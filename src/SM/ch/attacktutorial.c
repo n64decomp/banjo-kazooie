@@ -206,7 +206,7 @@ void func_80387764(ActorMarker * marker){
         func_8028F94C(2, actor->unk1C);
     }
     //L80387848
-    if(!mapSpecificFlags_get(3) && learnedAllTutorialAbilities() && temp_a2){
+    if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2){
         mapSpecificFlags_set(3, 1);
         sp34 = 0xE12;
     }//L80387898

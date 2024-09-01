@@ -11,59 +11,59 @@ extern void chOverlayPressStart_spawn(s32, s32);
 extern void chOverlayPressStart_func_802DCDC0(s32, s32);
 extern void func_8031D06C(s32, s32);
 extern void func_8031D09C(s32, s32);
-extern void func_8031D11C(s32, s32);
-extern void func_8031D140(s32, s32);
-extern void func_8031D164(s32, s32);
-extern void func_8031D188(s32, s32);
-extern void func_8031D1AC(s32, s32);
-extern void func_8031D1D0(s32, s32);
-extern void func_8031D1F4(s32, s32);
-extern void func_8031DD10(s32, s32);
-extern void func_8031DD44(s32, s32);
-extern void func_8031DE2C(s32, s32);
-extern void func_8031DE50(s32, s32);
-extern void func_8031E818(s32, s32);
-extern void func_8031E83C(s32, s32);
-extern void func_8031E860(s32, s32);
-extern void func_8031E884(s32, s32);
-extern void func_8031E8A8(s32, s32);
-extern void func_8031E8CC(s32, s32);
-extern void func_8031E8F0(s32, s32);
-extern void func_8031E914(s32, s32);
-extern void func_8031E938(s32, s32);
-extern void func_8031EA7C(s32, s32);
-extern void func_8031EAA0(s32, s32);
-extern void func_8031EAC4(s32, s32);
-extern void func_8031EAE8(s32, s32);
-extern void func_8031EC98(s32, s32);
-extern void func_8031ECBC(s32, s32);
-extern void func_8031ECE0(s32, s32);
-extern void func_8031ED04(s32, s32);
-extern void func_8031ED28(s32, s32);
-extern void func_8031ED4C(s32, s32);
-extern void func_8031ED70(s32, s32);
-extern void func_8031ED94(s32, s32);
-extern void func_8031EDB8(s32, s32);
-extern void func_8031EDDC(s32, s32);
-extern void func_8031EE00(s32, s32);
-extern void func_8031EE24(s32, s32);
-extern void func_8031EEFC(s32, s32);
+extern void warp_mmEnterMumbosHut(s32, s32);
+extern void warp_mmExitMumbosHut(s32, s32);
+extern void warp_mmEnterTickersTowerLower(s32, s32);
+extern void warp_mmExitTickersTowerLower(s32, s32);
+extern void warp_mmEnterTickersTowerUpper(s32, s32);
+extern void warp_mmExitTickersTowerUpper(s32, s32);
+extern void warp_csNintendoLogo(s32, s32);
+extern void warp_bgsEnterTanktupConditional(s32, s32);
+extern void warp_ttcEnterNippersShell(s32, s32);
+extern void warp_gvEnterJinxy(s32, s32);
+extern void warp_gvExitJinxy(s32, s32);
+extern void warp_bgsExitMumbosHut(s32, s32);
+extern void warp_bgsEnterMumbosHut(s32, s32);
+extern void warp_ttcEnterLevel(s32, s32);
+extern void warp_ccEnterLevel(s32, s32);
+extern void warp_bgsEnterLevel(s32, s32);
+extern void warp_gvEnterLevel(s32, s32);
+extern void warp_mmmEnterLevel(s32, s32);
+extern void warp_rbbEnterLevel(s32, s32);
+extern void warp_ttcExitNipper(s32, s32);
+extern void warp_ccwEnterSpringWhipcrackRoom(s32, s32);
+extern void warp_ccwEnterSummerWhipcrackRoom(s32, s32);
+extern void warp_ccwEnterAutumnWhipcrackRoom(s32, s32);
+extern void warp_ccwEnterWinterWhipcrackRoom(s32, s32);
+extern void warp_ccwEnterWinterAcornStorage(s32, s32);
+extern void warp_ccwEnterAutumnFloodedAttic(s32, s32);
+extern void warp_ccwEnterWinterFloodedAttic(s32, s32);
+extern void warp_ccwExitWinterAcornStorage(s32, s32);
+extern void warp_ccwExitAutumnFloodedAttic(s32, s32);
+extern void warp_ccwExitWinterFloodedAttic(s32, s32);
+extern void warp_fpEnterMumbosHut(s32, s32);
+extern void warp_fpEnterBoggyIgloo(s32, s32);
+extern void warp_fpEnterXmasTree(s32, s32);
+extern void warp_fpExitMumbosHut(s32, s32);
+extern void warp_fpExitBoggyIgloo(s32, s32);
+extern void warp_fpExitXmasTree(s32, s32);
+extern void warp_lairEnterMMLobbyFromMMLevel(s32, s32);
 extern void func_8031EF20(s32, s32);
-extern void func_8031EF44(s32, s32);
-extern void func_8031EF68(s32, s32);
-extern void func_8031EF8C(s32, s32);
-extern void func_8031EFB0(s32, s32);
-extern void func_8031EFD4(s32, s32);
-extern void func_8031EFF8(s32, s32);
-extern void func_8031F01C(s32, s32);
-extern void func_8031F040(s32, s32);
-extern void func_8031F064(s32, s32);
-extern void func_8031F088(s32, s32);
-extern void func_8031F0AC(s32, s32);
-extern void func_8031F13C(s32, s32);
-extern void func_8031F160(s32, s32);
-extern void func_8031F57C(s32, s32);
-extern void func_8031F5A0(s32, s32);
+extern void warp_lairEnterPuzzlesRoomFromMMLobby(s32, s32);
+extern void warp_lairEnterPointingStatueRoomFromGVLobbyNoteDoor(s32, s32);
+extern void warp_lairEnterPuzzlesRoomFromCCWPuzzleRoom(s32, s32);
+extern void warp_lairEnterCCWPuzzleRoomFromPuzzlesRoom(s32, s32);
+extern void warp_lairEnterCCWPuzzleRoomFromRedCauldronRoom(s32, s32);
+extern void warp_lairEnterRedCauldronRoomFromCCWPuzzleRoom(s32, s32);
+extern void warp_lairEnterCCWPuzzleRoomFromTTCLobby(s32, s32);
+extern void warp_lairEnterTTCLobbyFromCCWPuzzleRoom(s32, s32);
+extern void warp_lairEnterCCWPuzzleRoomFromCCLobby(s32, s32);
+extern void warp_lairEnterCCLobbyFromCCWPuzzleRoom(s32, s32);
+extern void warp_lairEnterCCLobbyFromCCLevel(s32, s32);
+extern void warp_lairEnterCCWPuzzleFromPointingGruntyStatueRoom(s32, s32);
+extern void warp_lairEnterPointingGruntyStatueFromCCWPuzzleRoom(s32, s32);
+extern void warp_lairEnterRBBLobbyFromRBBPuzzleRoom(s32, s32);
+extern void warp_lairEnterRBBLobbyFromMMMPuzzleRoom(s32, s32);
 extern void func_80334430(s32, s32);
 extern void func_80363388(s32, s32);
 extern void func_80386744(s32, s32);
@@ -77,110 +77,110 @@ extern void func_8038A150(s32, s32);
 extern void func_8038F10C(s32, s32);
 extern void func_8038F130(s32, s32);
 
-extern void func_8031EE48(s32, s32);
-extern void func_8031EE6C(s32, s32);
-extern void func_8031EE90(s32, s32);
-extern void func_8031EED8(s32, s32);
-extern void func_8031EEB4(s32, s32);
-extern void func_8031EB0C(s32, s32);
-extern void func_8031EB30(s32, s32);
-extern void func_8031EB54(s32, s32);
-extern void func_8031EB78(s32, s32);
-extern void func_8031D27C(s32, s32);
-extern void func_8031D2F4(s32, s32);
-extern void func_8031D2B4(s32, s32);
-extern void func_8031D218(s32, s32);
-extern void func_8031D23C(s32, s32);
-extern void func_8031D334(s32, s32);
-extern void func_8031D358(s32, s32);
-extern void func_8031D37C(s32, s32);
-extern void func_8031D3A0(s32, s32);
-extern void func_8031D3C4(s32, s32);
-extern void func_8031DCC8(s32, s32);
-extern void func_8031DCEC(s32, s32);
-extern void func_8031D3E8(s32, s32);
-extern void func_8031D40C(s32, s32);
-extern void func_8031D430(s32, s32);
-extern void func_8031D454(s32, s32);
-extern void func_8031D478(s32, s32);
-extern void func_8031D49C(s32, s32);
-extern void func_8031D4C0(s32, s32);
-extern void func_8031D4E4(s32, s32);
+extern void warp_lairEnterGVLobbyFromPointingStatueRoom(s32, s32);
+extern void warp_lairEnterMMLobbyFromPuzzlesRoom(s32, s32);
+extern void warp_lairEnterFPLobbyFromGVLobby(s32, s32);
+extern void warp_lairEnterGVLobbyFromGVLevel(s32, s32);
+extern void warp_lairEnterGVLobbyFromFPLobby(s32, s32);
+extern void warp_ccwExitSpringWhipcrackRoom(s32, s32);
+extern void warp_ccwExitSummerWhipcrackRoom(s32, s32);
+extern void warp_ccwExitAutumnWhipcrackRoom(s32, s32);
+extern void warp_ccwExitWinterWhipcrackRoom(s32, s32);
+extern void warp_gvEnterMatchingPyramid(s32, s32);
+extern void warp_gvEnterMazePyramid(s32, s32);
+extern void warp_gvEnterWaterPyramidUpper(s32, s32);
+extern void warp_gvEnterWaterPyramidLower(s32, s32);
+extern void warp_gvEnterRubeePyramid(s32, s32);
+extern void warp_gvExitMatchingPyramid(s32, s32);
+extern void warp_gvExitMazePyramid(s32, s32);
+extern void warp_gvExitWaterPyramidLower(s32, s32);
+extern void warp_gvExitRubeePyramid(s32, s32);
+extern void warp_bgsEnterTanktup(s32, s32);
+extern void warp_bgsEnterMrVileRightNostril(s32, s32);
+extern void warp_bgsEnterMrVileLeftNostril(s32, s32);
+extern void warp_bgsExitTanktup(s32, s32);
+extern void warp_bgsExitVileRightNostril(s32, s32);
+extern void warp_bgsExitVileLeftNostril(s32, s32);
+extern void warp_ttcEnterSandcastle(s32, s32);
+extern void warp_ttcStairAlcoveDown(s32, s32);
+extern void warp_ttcStairAlcoveUp(s32, s32);
+extern void warp_ttcEnterBlubbersShipUpper(s32, s32);
+extern void warp_ttcEnterBlubbersShipSide(s32, s32);
 extern void func_8031D628(s32, s32);
-extern void func_8031D508(s32, s32);
-extern void func_8031D52C(s32, s32);
-extern void func_8031F0D0(s32, s32);
+extern void warp_ttcExitLighthouseTop(s32, s32);
+extern void warp_ttcExitSandcastle(s32, s32);
+extern void warp_fpEnterLevel(s32, s32);
 extern void func_8031FAB4(s32, s32);
-extern void func_8031D598(s32, s32);
-extern void func_8031D5BC(s32, s32);
-extern void func_8031FA6C(s32, s32);
+extern void warp_ttcExitBlubbersShipUpper(s32, s32);
+extern void warp_ttcExitBlubbersShipSide(s32, s32);
+extern void warp_lairEnterDingpotRoomFromFurnaceFun(s32, s32);
 extern void func_8031FA90(s32, s32);
-extern void func_8031D670(s32, s32);
-extern void func_8031D694(s32, s32);
-extern void func_8031D6B8(s32, s32);
-extern void func_8031D6DC(s32, s32);
+extern void warp_mmmEnterDiningRoomDoor(s32, s32);
+extern void warp_mmmEnterDiningRoomChimney(s32, s32);
+extern void warp_mmmEnterWellTop(s32, s32);
+extern void warp_mmmEnterTumblarShed(s32, s32);
 extern void func_8031DAE0(s32, s32);
-extern void func_8031DA84(s32, s32);
+extern void warp_mmmEnterChurchSecretRoom(s32, s32);
 extern void func_8031DC10(s32, s32);
-extern void func_8031DC68(s32, s32);
-extern void func_8031D700(s32, s32);
-extern void func_8031D724(s32, s32);
-extern void func_8031D748(s32, s32);
-extern void func_8031D76C(s32, s32);
-extern void func_8031D790(s32, s32);
-extern void func_8031D7B4(s32, s32);
-extern void func_8031D7D8(s32, s32);
-extern void func_8031D7FC(s32, s32);
+extern void warp_mmmEnterRainBarrelBottom(s32, s32);
+extern void warp_mmmEnterCellar(s32, s32);
+extern void warp_mmmEnterRedFeatherRoom(s32, s32);
+extern void warp_mmmEnterBlueEggRoom(s32, s32);
+extern void warp_mmmEnterNoteRoom(s32, s32);
+extern void warp_mmmEnterBrokenFloorboardRoom(s32, s32);
+extern void warp_mmmEnterBedroom(s32, s32);
+extern void warp_mmmEnterBathroomWindow(s32, s32);
+extern void warp_mmmExitDiningRoomDoor(s32, s32);
 extern void func_8031D820(s32, s32);
-extern void func_8031D844(s32, s32);
-extern void func_8031D868(s32, s32);
-extern void func_8031D88C(s32, s32);
-extern void func_8031D8B0(s32, s32);
+extern void warp_mmmExitWellTop(s32, s32);
+extern void warp_mmmExitTumblarShed(s32, s32);
+extern void warp_mmmExitChurchFrontDoor(s32, s32);
+extern void warp_mmmExitChurchSecretRoom(s32, s32);
 extern void func_8031D8D4(s32, s32);
-extern void func_8031D8F8(s32, s32);
-extern void func_8031D91C(s32, s32);
-extern void func_8031D940(s32, s32);
-extern void func_8031D964(s32, s32);
-extern void func_8031D988(s32, s32);
-extern void func_8031D9AC(s32, s32);
-extern void func_8031D9D0(s32, s32);
-extern void func_8031D9F4(s32, s32);
-extern void func_8031DA18(s32, s32);
-extern void func_8031DA3C(s32, s32);
-extern void func_8031DA60(s32, s32);
-extern void func_8031DB88(s32, s32);
-extern void func_8031DD78(s32, s32);
-extern void func_8031DD9C(s32, s32);
-extern void func_8031DDC0(s32, s32);
-extern void func_8031DDE4(s32, s32);
-extern void func_8031DE08(s32, s32);
-extern void func_8031DE74(s32, s32);
-extern void func_8031DE98(s32, s32);
-extern void func_8031DEBC(s32, s32);
-extern void func_8031DF04(s32, s32);
-extern void func_8031DF28(s32, s32);
-extern void func_8031DF4C(s32, s32);
-extern void func_8031DEE0(s32, s32);
-extern void func_8031DF70(s32, s32);
-extern void func_8031DF94(s32, s32);
-extern void func_8031DFB8(s32, s32);
-extern void func_8031DFDC(s32, s32);
-extern void func_8031E000(s32, s32);
-extern void func_8031E024(s32, s32);
-extern void func_8031E048(s32, s32);
-extern void func_8031E06C(s32, s32);
-extern void func_8031E090(s32, s32);
-extern void func_8031E0B4(s32, s32);
-extern void func_8031E0D8(s32, s32);
-extern void func_8031E0FC(s32, s32);
-extern void func_8031E120(s32, s32);
-extern void func_8031E144(s32, s32);
-extern void func_8031E168(s32, s32);
-extern void func_8031E18C(s32, s32);
-extern void func_8031E1B0(s32, s32);
-extern void func_8031E1D4(s32, s32);
-extern void func_8031E2B8(s32, s32);
-extern void func_8031E2E0(s32, s32);
+extern void warp_mmmExitRainBarrelBottom(s32, s32);
+extern void warp_mmmExitCellar(s32, s32);
+extern void warp_mmmExitRedFeatherRoom(s32, s32);
+extern void warp_mmmExitBlueEggRoom(s32, s32);
+extern void warp_mmmExitBathroomWindow(s32, s32);
+extern void warp_mmmExitBrokenFloorboardRoom(s32, s32);
+extern void warp_mmmExitBedroom(s32, s32);
+extern void warp_mmmExitNoteRoom(s32, s32);
+extern void warp_mmmChurchTowerUp(s32, s32);
+extern void warp_mmmChurchTowerDown(s32, s32);
+extern void warp_mmmExitMumbosHut(s32, s32);
+extern void warp_mmmEnterMumbosHut(s32, s32);
+extern void warp_ccExitWonderwingRoom(s32, s32);
+extern void warp_ccEnterClankerBelly(s32, s32);
+extern void warp_ccEnterClankerMouth(s32, s32);
+extern void warp_ccEnterWonderwingRoom(s32, s32);
+extern void warp_mmEnterLevel(s32, s32);
+extern void warp_rbbEnterCaptainsRoomWindow(s32, s32);
+extern void warp_rbbEnterCabinRoomWindow(s32, s32);
+extern void warp_rbbEnterEngineRoomPipe(s32, s32);
+extern void warp_rbbEnterKitchenPipe(s32, s32);
+extern void warp_rbbEnterNavigationRoomWindow(s32, s32);
+extern void warp_rbbEnterBoomBoxPipe(s32, s32);
+extern void warp_rbbEnterEngineRoomDoor(s32, s32);
+extern void warp_rbbEnterChumpWarehouseWindow(s32, s32);
+extern void warp_rbbEnterBoatRoom(s32, s32);
+extern void warp_rbbEnterChompaContainer(s32, s32);
+extern void warp_rbbEnterSeamanGrublinContainer(s32, s32);
+extern void warp_rbbEnterBoomBoxContainer(s32, s32);
+extern void warp_rbbExitCaptainsRoomWindow(s32, s32);
+extern void warp_rbbExitCabinRoomWindow(s32, s32);
+extern void warp_rbbExitEngineRoomPipe(s32, s32);
+extern void warp_rbbExitKitchenPipe(s32, s32);
+extern void warp_rbbExitNavigationRoomWindow(s32, s32);
+extern void warp_rbbExitBoomBoxPipe(s32, s32);
+extern void warp_rbbExitEngineRoomDoor(s32, s32);
+extern void warp_rbbExitBoatRoom(s32, s32);
+extern void warp_rbbExitChompaContainer(s32, s32);
+extern void warp_rbbExitSeamanGrublinContainer(s32, s32);
+extern void warp_rbbExitBoomBoxContainer(s32, s32);
+extern void warp_rbbExitBossBoomBoxRoom(s32, s32);
+extern void warp_rbbEnterBossBoomBoxRoom(s32, s32);
+extern void warp_rbbEnterChumpWarehouseDoor(s32, s32);
+extern void warp_rbbExitChumpWarehouseDoor(s32, s32);
 extern void func_8031E308(s32, s32);
 extern void func_8031E32C(s32, s32);
 extern void func_8031E350(s32, s32);
@@ -208,86 +208,86 @@ extern void func_8031E644(s32, s32);
 extern void func_8031E668(s32, s32);
 extern void func_8031E68C(s32, s32);
 extern void func_8031E6B0(s32, s32);
-extern void func_8031E6D4(s32, s32);
-extern void func_8031E6F8(s32, s32);
-extern void func_8031E71C(s32, s32);
-extern void func_8031E740(s32, s32);
-extern void func_8031E764(s32, s32);
-extern void func_8031E788(s32, s32);
-extern void func_8031E7AC(s32, s32);
-extern void func_8031E7D0(s32, s32);
-extern void func_8031E7F4(s32, s32);
-extern void func_8031E9EC(s32, s32);
-extern void func_8031EA10(s32, s32);
-extern void func_8031EA34(s32, s32);
-extern void func_8031EA58(s32, s32);
-extern void func_8031E95C(s32, s32);
-extern void func_8031E980(s32, s32);
-extern void func_8031E9A4(s32, s32);
-extern void func_8031E9C8(s32, s32);
-extern void func_8031EB9C(s32, s32);
-extern void func_8031EBC0(s32, s32);
-extern void func_8031EBE4(s32, s32);
-extern void func_8031EC08(s32, s32);
-extern void func_8031EC2C(s32, s32);
-extern void func_8031EC50(s32, s32);
-extern void func_8031EC74(s32, s32);
+extern void warp_ccwExitWinterToHub(s32, s32);
+extern void warp_ccwExitSpringToHub(s32, s32);
+extern void warp_ccwExitSummerToHub(s32, s32);
+extern void warp_ccwExitAutumnToHub(s32, s32);
+extern void warp_ccwEnterWinter(s32, s32);
+extern void warp_ccwEnterSpring(s32, s32);
+extern void warp_ccwEnterSummer(s32, s32);
+extern void warp_ccwEnterAutumn(s32, s32);
+extern void warp_gvExitSandybuttMazeBack(s32, s32);
+extern void warp_ttcExitSpringMumbosHut(s32, s32);
+extern void warp_ttcExitSummerMumbosHut(s32, s32);
+extern void warp_ttcExitAutumnMumbosHut(s32, s32);
+extern void warp_ttcExitWinterMumbosHut(s32, s32);
+extern void warp_ttcEnterSpringMumbosHut(s32, s32);
+extern void warp_ttcEnterSummerMumbosHut(s32, s32);
+extern void warp_ttcEnterAutumnMumbosHut(s32, s32);
+extern void warp_ttcEnterWinterMumbosHut(s32, s32);
+extern void warp_ccwEnterSpringNabnutDoor(s32, s32);
+extern void warp_ccwEnterSummerNabnutDoor(s32, s32);
+extern void warp_ccwEnterAutumnNabnutDoor(s32, s32);
+extern void warp_ccwExitSpringNabnutDoor(s32, s32);
+extern void warp_ccwExitSummerNabnutDoor(s32, s32);
+extern void warp_ccwExitAutumnNabnutDoor(s32, s32);
+extern void warp_ccwExitWinterNabnutDoor(s32, s32);
 extern void func_8031F0F4(s32, s32);
 extern void func_8031F118(s32, s32);
-extern void func_8031F184(s32, s32);
-extern void func_8031FA00(s32, s32);
-extern void func_8031F558(s32, s32);
-extern void func_8031F314(s32, s32);
-extern void func_8031F2CC(s32, s32);
-extern void func_8031F2F0(s32, s32);
-extern void func_8031F25C(s32, s32);
-extern void func_8031F294(s32, s32);
-extern void func_8031F214(s32, s32);
-extern void func_8031F238(s32, s32);
-extern void func_8031F1A8(s32, s32);
-extern void func_8031F1CC(s32, s32);
-extern void func_8031F1F0(s32, s32);
-extern void func_8031F338(s32, s32);
-extern void func_8031F35C(s32, s32);
-extern void func_8031F380(s32, s32);
-extern void func_8031F3A4(s32, s32);
-extern void func_8031F3C8(s32, s32);
-extern void func_8031F3EC(s32, s32);
-extern void func_8031F410(s32, s32);
-extern void func_8031F520(s32, s32);
-extern void func_8031F4E8(s32, s32);
-extern void func_8031F434(s32, s32);
-extern void func_8031F458(s32, s32);
-extern void func_8031F47C(s32, s32);
-extern void func_8031F4A0(s32, s32);
-extern void func_8031F4C4(s32, s32);
-extern void func_8031F5C4(s32, s32);
-extern void func_8031F5E8(s32, s32);
+extern void warp_lairEnterGVPuzzleRoomFromMMMLobby(s32, s32);
+extern void warp_ttcExitSharkfoodIsland(s32, s32);
+extern void warp_lairEnterRBBLobbyFromRBBLevel(s32, s32);
+extern void warp_lairEnterBGSLobbyFromBGSLevel(s32, s32);
+extern void warp_fpExitWozzasCave(s32, s32);
+extern void warp_fpEnterWozzasCave(s32, s32);
+extern void warp_lairEnterCryptFromMMMLobby(s32, s32);
+extern void warp_lairEnterMMMLobbyFromCrypt(s32, s32);
+extern void warp_lairEnterPointingGruntyStatueFromBGSLobby(s32, s32);
+extern void warp_lairEnterBGSLobbyFromPointingGruntyStatueRoom(s32, s32);
+extern void warp_lairEnterMMMLobbyFromGVPuzzleRoom(s32, s32);
+extern void warp_lairEnterGVPuzzleRoomFromFPLobby(s32, s32);
+extern void warp_lairFPLobbyFromGVPuzzleRoom(s32, s32);
+extern void warp_lairEnter640NoteDoorRoomFromFPLobby(s32, s32);
+extern void warp_lairEnter640NoteDoorRoomFromCCWLobbyTokenEntrance(s32, s32);
+extern void warp_lairEnter640NoteDoorRoomFromCCWLobbyDoorEntrance(s32, s32);
+extern void warp_lairEnter640NoteDoorRoomFromRBBLobby(s32, s32);
+extern void warp_lairRBBLobbyFrom640NoteDoorRoom(s32, s32);
+extern void warp_lairCCWLobbyFrom640NoteDoorRoomDoorEntrance(s32, s32);
+extern void warp_lairCCWLobbyFrom640NoteDoorRoomTokenEntrance(s32, s32);
+extern void warp_lairEnterFPLobbyFrom640NoteDoorRoom(s32, s32);
+extern void warp_ccwEnterSpringZubbaHive(s32, s32);
+extern void warp_ccwEnterSummerZubbaHive(s32, s32);
+extern void warp_ccwEnterAutumnZubbaHive(s32, s32);
+extern void warp_ccwExitSpringZubbaHive(s32, s32);
+extern void warp_ccwExitSummerZubbaHive(s32, s32);
+extern void warp_ccwExitAutumnZubbaHive(s32, s32);
+extern void warp_lairEnterMMMPuzzleFromRBBLobby(s32, s32);
+extern void warp_lairEnterRBBPuzzleFromRBBLobby(s32, s32);
 extern void func_8031FB6C(s32, s32);
-extern void func_8031F60C(s32, s32);
-extern void func_8031F630(s32, s32);
-extern void func_8031F654(s32, s32);
-extern void func_8031F678(s32, s32);
-extern void func_8031F69C(s32, s32);
-extern void func_8031F6C0(s32, s32);
-extern void func_8031F6E4(s32, s32);
-extern void func_8031F708(s32, s32);
-extern void func_8031F72C(s32, s32);
-extern void func_8031F764(s32, s32);
-extern void func_8031F79C(s32, s32);
-extern void func_8031F7D4(s32, s32);
-extern void func_8031F878(s32, s32);
-extern void func_8031F8C0(s32, s32);
-extern void func_8031F8E4(s32, s32);
-extern void func_8031F908(s32, s32);
-extern void func_8031F92C(s32, s32);
-extern void func_8031F950(s32, s32);
-extern void func_8031F974(s32, s32);
-extern void func_8031F998(s32, s32);
-extern void func_8031F9BC(s32, s32);
-extern void func_8031FA24(s32, s32);
-extern void func_8031FA48(s32, s32);
-extern void func_8031FB14(s32, s32);
+extern void warp_lairEnterCCWLobbyFromFurnaceFunPath(s32, s32);
+extern void warp_lairEnterFurnaceFunPathFromCCWLobby(s32, s32);
+extern void warp_smEnterBanjosHouse(s32, s32);
+extern void warp_smExitBanjosHouse(s32, s32);
+extern void warp_lairEnterMMLobbyFromSMLevel(s32, s32);
+extern void warp_smExitLair(s32, s32);
+extern void warp_rbbExitAnchorRoom(s32, s32);
+extern void warp_rbbEnterAnchorRoom(s32, s32);
+extern void warp_mmmEnterWellBottom(s32, s32);
+extern void warp_mmmExitWellBottom(s32, s32);
+extern void warp_mmmEnterBathroomFromLoggo(s32, s32);
+extern void warp_mmmEnterLoggo(s32, s32);
+extern void warp_ccwEnterLevel(s32, s32);
+extern void warp_ccwEnterSpringNabnutWindow(s32, s32);
+extern void warp_ccwEnterSummerNabnutWindow(s32, s32);
+extern void warp_ccwEnterAutumnNabnutWindow(s32, s32);
+extern void warp_ccwEnterWinterNabnutWindow(s32, s32);
+extern void warp_ccwExitSpringNabnutWindow(s32, s32);
+extern void warp_ccwExitSummerNabnutWindow(s32, s32);
+extern void warp_ccwExitAutumnNabnutWindow(s32, s32);
+extern void warp_ccwExitWinterNabnutWindow(s32, s32);
+extern void warp_gvEnterSNSChamper(s32, s32);
+extern void warp_gvExitSNSChamper(s32, s32);
+extern void warp_lairEnterLairFromSMLevel(s32, s32);
 
 extern void func_802C1674(s32, s32);
 extern void func_802C169C(s32, s32);
@@ -315,81 +315,81 @@ typedef void (*Method_core2_AD110)(s32, s32);
 /* .data */
 Method_core2_AD110 D_8036F980[] = {
     func_80388BEC, func_80334430, func_80386744, func_80386744,
-    func_80386744, func_8031DE2C, func_8031DE50, func_8038F10C,
-    func_8038F130, func_8031E83C, func_8031E818, func_8031E938,
-    func_8031E860, func_8031E884, func_8031E8A8, func_8031E8CC,
-    func_8031E8F0, func_8031E914, func_8031EA7C, func_8031EAA0,
-    func_8031EAC4, func_8031EAE8, func_8031D11C, func_8031D140,
-    func_8031D164, func_8031D188, func_8031D1AC, func_8031D1D0,
-    func_8031D1F4, func_8031D09C, func_8031D06C, func_80334430,
-    func_80334430, func_80334430, func_8031F13C, func_8031F160,
-    func_8031F0AC, func_8031F088, func_8031F064, func_8031F01C,
-    func_8031F040, func_8031EC98, func_8031ECBC, func_8031ECE0,
-    func_8031ED04, func_8031ED28, func_8031ED4C, func_80388C00,
+    func_80386744, warp_gvEnterJinxy, warp_gvExitJinxy, func_8038F10C,
+    func_8038F130, warp_bgsEnterMumbosHut, warp_bgsExitMumbosHut, warp_ttcExitNipper,
+    warp_ttcEnterLevel, warp_ccEnterLevel, warp_bgsEnterLevel, warp_gvEnterLevel,
+    warp_mmmEnterLevel, warp_rbbEnterLevel, warp_ccwEnterSpringWhipcrackRoom, warp_ccwEnterSummerWhipcrackRoom,
+    warp_ccwEnterAutumnWhipcrackRoom, warp_ccwEnterWinterWhipcrackRoom, warp_mmEnterMumbosHut, warp_mmExitMumbosHut,
+    warp_mmEnterTickersTowerLower, warp_mmExitTickersTowerLower, warp_mmEnterTickersTowerUpper, warp_mmExitTickersTowerUpper,
+    warp_csNintendoLogo, func_8031D09C, func_8031D06C, func_80334430,
+    func_80334430, func_80334430, warp_lairEnterCCWPuzzleFromPointingGruntyStatueRoom, warp_lairEnterPointingGruntyStatueFromCCWPuzzleRoom,
+    warp_lairEnterCCLobbyFromCCLevel, warp_lairEnterCCLobbyFromCCWPuzzleRoom, warp_lairEnterCCWPuzzleRoomFromCCLobby, warp_lairEnterCCWPuzzleRoomFromTTCLobby,
+    warp_lairEnterTTCLobbyFromCCWPuzzleRoom, warp_ccwEnterWinterAcornStorage, warp_ccwEnterAutumnFloodedAttic, warp_ccwEnterWinterFloodedAttic,
+    warp_ccwExitWinterAcornStorage, warp_ccwExitAutumnFloodedAttic, warp_ccwExitWinterFloodedAttic, func_80388C00,
     func_80388C28, func_80388C50, CC_func_80388C78, func_80334430,
     func_80334430, func_80334430, func_802DC748, func_802DC780,
-    func_8031F57C, func_8031F5A0, func_8031EFD4, func_8031EFF8,
-    func_8031EF8C, func_8031EFB0, func_8031EF68, func_8031EF44,
-    func_8031ED70, func_8031ED94, func_8031EDB8, func_8031EDDC,
-    func_8031EE00, func_8031EE24, func_8031DD10, func_8031DD44,
+    warp_lairEnterRBBLobbyFromRBBPuzzleRoom, warp_lairEnterRBBLobbyFromMMMPuzzleRoom, warp_lairEnterCCWPuzzleRoomFromRedCauldronRoom, warp_lairEnterRedCauldronRoomFromCCWPuzzleRoom,
+    warp_lairEnterPuzzlesRoomFromCCWPuzzleRoom, warp_lairEnterCCWPuzzleRoomFromPuzzlesRoom, warp_lairEnterPointingStatueRoomFromGVLobbyNoteDoor, warp_lairEnterPuzzlesRoomFromMMLobby,
+    warp_fpEnterMumbosHut, warp_fpEnterBoggyIgloo, warp_fpEnterXmasTree, warp_fpExitMumbosHut,
+    warp_fpExitBoggyIgloo, warp_fpExitXmasTree, warp_bgsEnterTanktupConditional, warp_ttcEnterNippersShell,
     func_80363388, func_8038A0E4, func_8038A150, func_80334430,
     chOverlayPressStart_spawn, chOverlayPressStart_func_802DCDC0, func_802DC528, func_802DC560,
-    func_8031EF20, func_8031EEFC, func_80334430, func_8031EED8,
-    func_8031EEB4, func_8031EE90, func_8031EE6C, func_8031EE48,
-    func_8031EB0C, func_8031EB30, func_8031EB54, func_8031EB78,
-    func_8031D27C, func_8031D2F4, func_8031D2B4, func_8031D218,
-    func_8031D23C, func_8031D334, func_8031D358, func_8031D37C,
-    func_8031D3A0, func_8031D3C4, func_8031DCC8, func_8031DCEC,
-    func_8031D3E8, func_8031D40C, func_8031D430, func_8031D454,
-    func_8031D478, func_8031D49C, func_8031D4C0, func_8031D4E4,
-    func_8031D628, func_8031D508, func_8031D52C, func_8031F0D0,
-    func_8031FAB4, func_8031D598, func_8031D5BC, func_8031FA6C,
-    func_8031FA90, func_8031D670, func_8031D694, func_8031D6B8,
-    func_8031D6DC, func_8031DAE0, func_8031DA84, func_8031DC10,
-    func_8031DC68, func_8031D700, func_8031D724, func_8031D748,
-    func_8031D76C, func_8031D790, func_8031D7B4, func_8031D7D8,
-    func_8031D7FC, func_8031D820, func_8031D844, func_8031D868,
-    func_8031D88C, func_8031D8B0, func_8031D8D4, func_8031D8F8,
-    func_8031D91C, func_8031D940, func_8031D964, func_8031D988,
-    func_8031D9AC, func_8031D9D0, func_8031D9F4, func_8031DA18,
-    func_8031DA3C, func_8031DA60, func_8031DB88, func_8031DD78,
-    func_8031DD9C, func_8031DDC0, func_8031DDE4, func_8031DE08,
-    func_8031DE74, func_8031DE98, func_8031DEBC, func_8031DF04,
-    func_8031DF28, func_8031DF4C, func_8031DEE0, func_8031DF70,
-    func_8031DF94, func_8031DFB8, func_8031DFDC, func_8031E000,
-    func_8031E024, func_8031E048, func_8031E06C, func_8031E090,
-    func_8031E0B4, func_8031E0D8, func_8031E0FC, func_8031E120,
-    func_8031E144, func_8031E168, func_8031E18C, func_8031E1B0,
-    func_8031E1D4, func_8031E2B8, func_8031E2E0, func_8031E308,
+    func_8031EF20, warp_lairEnterMMLobbyFromMMLevel, func_80334430, warp_lairEnterGVLobbyFromGVLevel,
+    warp_lairEnterGVLobbyFromFPLobby, warp_lairEnterFPLobbyFromGVLobby, warp_lairEnterMMLobbyFromPuzzlesRoom, warp_lairEnterGVLobbyFromPointingStatueRoom,
+    warp_ccwExitSpringWhipcrackRoom, warp_ccwExitSummerWhipcrackRoom, warp_ccwExitAutumnWhipcrackRoom, warp_ccwExitWinterWhipcrackRoom,
+    warp_gvEnterMatchingPyramid, warp_gvEnterMazePyramid, warp_gvEnterWaterPyramidUpper, warp_gvEnterWaterPyramidLower,
+    warp_gvEnterRubeePyramid, warp_gvExitMatchingPyramid, warp_gvExitMazePyramid, warp_gvExitWaterPyramidLower,
+    warp_gvExitRubeePyramid, warp_bgsEnterTanktup, warp_bgsEnterMrVileRightNostril, warp_bgsEnterMrVileLeftNostril,
+    warp_bgsExitTanktup, warp_bgsExitVileRightNostril, warp_bgsExitVileLeftNostril, warp_ttcEnterSandcastle,
+    warp_ttcStairAlcoveDown, warp_ttcStairAlcoveUp, warp_ttcEnterBlubbersShipUpper, warp_ttcEnterBlubbersShipSide,
+    func_8031D628, warp_ttcExitLighthouseTop, warp_ttcExitSandcastle, warp_fpEnterLevel,
+    func_8031FAB4, warp_ttcExitBlubbersShipUpper, warp_ttcExitBlubbersShipSide, warp_lairEnterDingpotRoomFromFurnaceFun,
+    func_8031FA90, warp_mmmEnterDiningRoomDoor, warp_mmmEnterDiningRoomChimney, warp_mmmEnterWellTop,
+    warp_mmmEnterTumblarShed, func_8031DAE0, warp_mmmEnterChurchSecretRoom, func_8031DC10,
+    warp_mmmEnterRainBarrelBottom, warp_mmmEnterCellar, warp_mmmEnterRedFeatherRoom, warp_mmmEnterBlueEggRoom,
+    warp_mmmEnterNoteRoom, warp_mmmEnterBrokenFloorboardRoom, warp_mmmEnterBedroom, warp_mmmEnterBathroomWindow,
+    warp_mmmExitDiningRoomDoor, func_8031D820, warp_mmmExitWellTop, warp_mmmExitTumblarShed,
+    warp_mmmExitChurchFrontDoor, warp_mmmExitChurchSecretRoom, func_8031D8D4, warp_mmmExitRainBarrelBottom,
+    warp_mmmExitCellar, warp_mmmExitRedFeatherRoom, warp_mmmExitBlueEggRoom, warp_mmmExitBathroomWindow,
+    warp_mmmExitBrokenFloorboardRoom, warp_mmmExitBedroom, warp_mmmExitNoteRoom, warp_mmmChurchTowerUp,
+    warp_mmmChurchTowerDown, warp_mmmExitMumbosHut, warp_mmmEnterMumbosHut, warp_ccExitWonderwingRoom,
+    warp_ccEnterClankerBelly, warp_ccEnterClankerMouth, warp_ccEnterWonderwingRoom, warp_mmEnterLevel,
+    warp_rbbEnterCaptainsRoomWindow, warp_rbbEnterCabinRoomWindow, warp_rbbEnterEngineRoomPipe, warp_rbbEnterKitchenPipe,
+    warp_rbbEnterNavigationRoomWindow, warp_rbbEnterBoomBoxPipe, warp_rbbEnterEngineRoomDoor, warp_rbbEnterChumpWarehouseWindow,
+    warp_rbbEnterBoatRoom, warp_rbbEnterChompaContainer, warp_rbbEnterSeamanGrublinContainer, warp_rbbEnterBoomBoxContainer,
+    warp_rbbExitCaptainsRoomWindow, warp_rbbExitCabinRoomWindow, warp_rbbExitEngineRoomPipe, warp_rbbExitKitchenPipe,
+    warp_rbbExitNavigationRoomWindow, warp_rbbExitBoomBoxPipe, warp_rbbExitEngineRoomDoor, warp_rbbExitBoatRoom,
+    warp_rbbExitChompaContainer, warp_rbbExitSeamanGrublinContainer, warp_rbbExitBoomBoxContainer, warp_rbbExitBossBoomBoxRoom,
+    warp_rbbEnterBossBoomBoxRoom, warp_rbbEnterChumpWarehouseDoor, warp_rbbExitChumpWarehouseDoor, func_8031E308,
     func_8031E32C, func_8031E350, func_8031E374, func_8031E398,
     func_8031E3BC, func_8031E3E0, func_8031E404, func_8031E428,
     func_8031E44C, func_8031E470, func_8031E494, func_8031E4B8,
     func_8031E4DC, func_8031E500, func_8031E524, func_8031E548,
     func_8031E56C, func_8031E590, func_8031E5B4, func_8031E5D8,
     func_8031E5FC, func_8031E620, func_8031E644, func_8031E668,
-    func_8031E68C, func_8031E6B0, func_8031E6D4, func_8031E6F8,
-    func_8031E71C, func_8031E740, func_8031E764, func_8031E788,
-    func_8031E7AC, func_8031E7D0, func_8031E7F4, func_8031E9EC,
-    func_8031EA10, func_8031EA34, func_8031EA58, func_8031E95C,
-    func_8031E980, func_8031E9A4, func_8031E9C8, func_8031EB9C,
-    func_8031EBC0, func_8031EBE4, func_80334430, func_8031EC08,
-    func_8031EC2C, func_8031EC50, func_8031EC74, func_8031F0F4,
-    func_8031F118, func_8031F184, func_80334430, func_80334430,
+    func_8031E68C, func_8031E6B0, warp_ccwExitWinterToHub, warp_ccwExitSpringToHub,
+    warp_ccwExitSummerToHub, warp_ccwExitAutumnToHub, warp_ccwEnterWinter, warp_ccwEnterSpring,
+    warp_ccwEnterSummer, warp_ccwEnterAutumn, warp_gvExitSandybuttMazeBack, warp_ttcExitSpringMumbosHut,
+    warp_ttcExitSummerMumbosHut, warp_ttcExitAutumnMumbosHut, warp_ttcExitWinterMumbosHut, warp_ttcEnterSpringMumbosHut,
+    warp_ttcEnterSummerMumbosHut, warp_ttcEnterAutumnMumbosHut, warp_ttcEnterWinterMumbosHut, warp_ccwEnterSpringNabnutDoor,
+    warp_ccwEnterSummerNabnutDoor, warp_ccwEnterAutumnNabnutDoor, func_80334430, warp_ccwExitSpringNabnutDoor,
+    warp_ccwExitSummerNabnutDoor, warp_ccwExitAutumnNabnutDoor, warp_ccwExitWinterNabnutDoor, func_8031F0F4,
+    func_8031F118, warp_lairEnterGVPuzzleRoomFromMMMLobby, func_80334430, func_80334430,
     func_80334430, func_80334430, func_80334430, func_80334430,
-    func_80334430, func_8031FA00, func_8031F558, func_8031F314,
-    func_8031F2CC, func_8031F2F0, func_8031F25C, func_8031F294,
-    func_8031F214, func_8031F238, func_8031F1A8, func_8031F1CC,
-    func_8031F1F0, func_8031F338, func_8031F35C, func_8031F380,
-    func_8031F3A4, func_8031F3C8, func_8031F3EC, func_8031F410,
-    func_8031F520, func_8031F4E8, func_8031F434, func_8031F458,
-    func_8031F47C, func_8031F4A0, func_8031F4C4, func_8031F5C4,
-    func_8031F5E8, func_8031FB6C, func_8031F60C, func_8031F630,
-    func_8031F654, func_8031F678, func_8031F69C, func_8031F6C0,
-    func_8031F6E4, func_8031F708, func_8031F72C, func_8031F764,
-    func_8031F79C, func_8031F7D4, func_8031F878, func_8031F8C0,
-    func_8031F8E4, func_8031F908, func_8031F92C, func_8031F950,
-    func_8031F974, func_8031F998, func_8031F9BC, func_8031FA24,
-    func_8031FA48, func_8031FB14, func_80334430, func_80334430,
+    func_80334430, warp_ttcExitSharkfoodIsland, warp_lairEnterRBBLobbyFromRBBLevel, warp_lairEnterBGSLobbyFromBGSLevel,
+    warp_fpExitWozzasCave, warp_fpEnterWozzasCave, warp_lairEnterCryptFromMMMLobby, warp_lairEnterMMMLobbyFromCrypt,
+    warp_lairEnterPointingGruntyStatueFromBGSLobby, warp_lairEnterBGSLobbyFromPointingGruntyStatueRoom, warp_lairEnterMMMLobbyFromGVPuzzleRoom, warp_lairEnterGVPuzzleRoomFromFPLobby,
+    warp_lairFPLobbyFromGVPuzzleRoom, warp_lairEnter640NoteDoorRoomFromFPLobby, warp_lairEnter640NoteDoorRoomFromCCWLobbyTokenEntrance, warp_lairEnter640NoteDoorRoomFromCCWLobbyDoorEntrance,
+    warp_lairEnter640NoteDoorRoomFromRBBLobby, warp_lairRBBLobbyFrom640NoteDoorRoom, warp_lairCCWLobbyFrom640NoteDoorRoomDoorEntrance, warp_lairCCWLobbyFrom640NoteDoorRoomTokenEntrance,
+    warp_lairEnterFPLobbyFrom640NoteDoorRoom, warp_ccwEnterSpringZubbaHive, warp_ccwEnterSummerZubbaHive, warp_ccwEnterAutumnZubbaHive,
+    warp_ccwExitSpringZubbaHive, warp_ccwExitSummerZubbaHive, warp_ccwExitAutumnZubbaHive, warp_lairEnterMMMPuzzleFromRBBLobby,
+    warp_lairEnterRBBPuzzleFromRBBLobby, func_8031FB6C, warp_lairEnterCCWLobbyFromFurnaceFunPath, warp_lairEnterFurnaceFunPathFromCCWLobby,
+    warp_smEnterBanjosHouse, warp_smExitBanjosHouse, warp_lairEnterMMLobbyFromSMLevel, warp_smExitLair,
+    warp_rbbExitAnchorRoom, warp_rbbEnterAnchorRoom, warp_mmmEnterWellBottom, warp_mmmExitWellBottom,
+    warp_mmmEnterBathroomFromLoggo, warp_mmmEnterLoggo, warp_ccwEnterLevel, warp_ccwEnterSpringNabnutWindow,
+    warp_ccwEnterSummerNabnutWindow, warp_ccwEnterAutumnNabnutWindow, warp_ccwEnterWinterNabnutWindow, warp_ccwExitSpringNabnutWindow,
+    warp_ccwExitSummerNabnutWindow, warp_ccwExitAutumnNabnutWindow, warp_ccwExitWinterNabnutWindow, warp_gvEnterSNSChamper,
+    warp_gvExitSNSChamper, warp_lairEnterLairFromSMLevel, func_80334430, func_80334430,
     func_80334430, func_80334430, func_80334430, func_80334430,
     func_80334430, func_80334430, func_80334430,
 };

@@ -137,7 +137,7 @@ bool func_803012B8(f32 arg0, s32 arg1, s32 arg2){
 void func_803012F8(void) {
     D_80381EF0 = 1;
     D_80381F28 = 0.0f;
-    func_803463D4(ITEM_14_HEALTH, 0);
+    item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
     D_80381F04 = (f32) item_getCount(ITEM_14_HEALTH);
 }
 
@@ -170,7 +170,7 @@ void fxhealthscore_update(enum item_e item_id, struct8s *arg1) {
             if (D_80381F28 > 2.5) {
                 D_80381EF0 = 2;
             }
-            func_803463D4(ITEM_14_HEALTH, 0);
+            item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
             break;
 
         case 2:

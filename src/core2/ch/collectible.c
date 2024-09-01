@@ -82,7 +82,7 @@ bool chCollectible_collectItem(Actor* actor, enum file_progress_e arg1, enum ass
     if(!func_802FADD4(0x1b)){
         item_inc(itemId);
     } else {
-        func_803463F4(itemId,1);   
+        item_adjustByDiffWithoutHud(itemId,1);   
     }
 
     if(!actor || !actor->unk38_0)

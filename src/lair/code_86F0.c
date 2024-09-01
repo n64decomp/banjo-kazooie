@@ -74,7 +74,7 @@ void func_8038EB94(void){
     func_802FAFC0(ITEM_14_HEALTH, COMUSIC_2B_DING_B);
     fileProgressFlag_set(FILEPROG_B9_DOUBLE_HEALTH, TRUE);
     func_80347958();
-    func_803463D4(ITEM_14_HEALTH, 0);
+    item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
     gcpausemenu_80314AC8(1);
 }
 
@@ -318,7 +318,7 @@ void func_8038F350(Actor *this, s32 next_state){
                 local->unk4--;
                 local->unk0 &= ~(1 << temp_s1);
                 fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
-                func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
+                item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, 1);
             }
             break;
 
@@ -331,7 +331,7 @@ void func_8038F350(Actor *this, s32 next_state){
                 func_8038F1EC(this, temp_s1, 1);
                 local->unk0 |= (1 << temp_s1);
                 fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
-                func_803463F4(ITEM_26_JIGGY_TOTAL, -1);
+                item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, -1);
                 func_8038F250(this);
             }
             break;
@@ -351,7 +351,7 @@ void func_8038F350(Actor *this, s32 next_state){
                     temp_s1 = func_8038F0EC(this);
                     func_8038F1EC(this, temp_s1, 1);
                     local->unk0 |= (1 << temp_s1);
-                    func_803463F4(ITEM_26_JIGGY_TOTAL, -1);
+                    item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, -1);
                 }
                 fileProgressFlag_setN(D_803947F8[this->unkF4_8 - 1].progress_flag, local->unk4, D_803947F8[this->unkF4_8 - 1].size_bits);
                 func_8038F250(this);

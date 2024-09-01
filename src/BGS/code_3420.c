@@ -36,13 +36,80 @@ void func_8038A068(Actor *this, s32 next_state);
 void chvilegame_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390960 = {MARKER_C6_VILE_GAME_CTRL, ACTOR_138_VILE_GAME_CTRL, 0, 0, NULL, chvilegame_update, NULL, func_80325340, 0, 0, 0.0f, 0};
-enum asset_e D_80390984[] = {    0, 0xC66, 0xC68, 0xC6A, 0xC92, 0xC93, 0xC94,    0};
-enum asset_e D_803909A4[] = {    0, 0xC67, 0xC69,     0, 0xC95, 0xC96, 0xC97};
-enum asset_e D_803909C0[] = {    0, 0xC6E, 0xC6F,     0, 0xC95, 0xC96, 0xC97};
-enum asset_e D_803909DC[] = {0xC65, 0xC65, 0xC65, 0xC8F,     0,     0,     0};
-enum asset_e BGS_D_803909F8[] = {0xC64,     0,     0, 0xC8E,     0,     0,     0,    0}; 
-enum asset_e D_80390A18[] = {0xC6D, 0xC70, 0xC71, 0xC8E,     0,     0,     0,    0};
+ActorInfo D_80390960 = {
+    MARKER_C6_VILE_GAME_CTRL, ACTOR_138_VILE_GAME_CTRL, 0,
+    0, NULL,
+    chvilegame_update, NULL, func_80325340,
+    0, 0, 0.0f, 0
+};
+
+// Vile Wins
+enum asset_e D_80390984[] = {
+    0,
+    ASSET_C66_TEXT_MR_VILE_WINS_ROUND_1,
+    ASSET_C68_TEXT_MR_VILE_WINS_ROUND_2,
+    ASSET_C6A_TEXT_MR_VILE_WINS_ROUND_3,
+    ASSET_C92_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_2,
+    ASSET_C93_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_3,
+    ASSET_C94_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_4,
+    0
+};
+
+// Player Wins
+enum asset_e D_803909A4[] = {
+    0,
+    ASSET_C67_TEXT_MR_VILE_ROUND_2_START,
+    ASSET_C69_TEXT_MR_VILE_ROUND_3_START,
+    0,
+    ASSET_C95_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
+    ASSET_C96_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
+    ASSET_C97_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+};
+
+// Player Wins Rematch
+enum asset_e D_803909C0[] = {
+    0,
+    ASSET_C6E_TEXT_MR_VILE_LOSE_ROUND_2_REMATCH,
+    ASSET_C6F_TEXT_MR_VILE_LOSE_ROUND_3_REMATCH,
+    0,
+    ASSET_C95_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
+    ASSET_C96_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
+    ASSET_C97_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+};
+
+// Player Declines
+enum asset_e D_803909DC[] = {
+    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
+    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
+    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
+    ASSET_C8F_TEXT_MR_VILE_PLAYER_DECLINES_EXTRA_CHALLENGE,
+    0,
+    0,
+    0
+};
+
+// Round 1 Regular & Extra Challenge
+enum asset_e BGS_D_803909F8[] = {
+    ASSET_C64_TEXT_MR_VILE_ROUND_1_START,
+    0,
+    0,
+    ASSET_C8E_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    0,
+    0,
+    0,
+    0
+};
+
+enum asset_e D_80390A18[] = {
+    ASSET_C6D_TEXT_MR_VILE_LOSE_ROUND_1_REMATCH,
+    ASSET_C70_TEXT_MR_VILE_WIN_ROUND_2_REMATCH,
+    ASSET_C71_TEXT_MR_VILE_WIN_ROUND_3_REMATCH,
+    ASSET_C8E_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    0,
+    0,
+    0,
+    0
+};
 
 /* .code */
 bool BGS_func_80389810(f32 arg0[3]) {
@@ -611,9 +678,9 @@ void chvilegame_update(Actor *this) {
                 }
                 if (local->type_change_timer > 3.5) {
                     if (local->current_type != 0) {
-                        func_803463D4(ITEM_1D_GRUMBLIE, FALSE);
+                        item_adjustByDiffWithHud(ITEM_1D_GRUMBLIE, FALSE);
                     } else {
-                        func_803463D4(ITEM_1E_YUMBLIE, FALSE);
+                        item_adjustByDiffWithHud(ITEM_1E_YUMBLIE, FALSE);
                     }
                 }
             }

@@ -51,7 +51,7 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);
-        if(func_803463D4(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
+        if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
         this->collidable = 0;

@@ -328,15 +328,15 @@ void func_8038AC48(LetterFloorTile *arg0) {
                                     default:
                                         break;
                                     case 0:
-                                        func_80346448(ITEM_D_EGGS);
+                                        item_setMaxCount(ITEM_D_EGGS);
                                         func_802FAFAC(ITEM_D_EGGS, COMUSIC_C_EGG_COLLECTED);
                                         break;
                                     case 1:
-                                        func_80346448(ITEM_F_RED_FEATHER);
+                                        item_setMaxCount(ITEM_F_RED_FEATHER);
                                         func_802FAFAC(ITEM_F_RED_FEATHER, COMUSIC_B_RED_FEATHER_COLLECTED);
                                         break;
                                     case 2:
-                                        func_80346448(ITEM_10_GOLD_FEATHER);
+                                        item_setMaxCount(ITEM_10_GOLD_FEATHER);
                                         func_802FAFAC(ITEM_10_GOLD_FEATHER, COMUSIC_14_GOLD_FEATHER_COLLECTED);
                                         break;
                                 }
@@ -634,7 +634,7 @@ s32 __sandcastleCodes_getNumberEntered(void){
 void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_diff, s32 item_val) {
     if (((arg2 + 0x14) == secretCodesTable[arg1].id) || (arg0 == 1)) {
         if (item_diff != 0) {
-            func_803463D4(item_id, item_diff);
+            item_adjustByDiffWithHud(item_id, item_diff);
             return;
         }
         item_set(item_id, item_val);
