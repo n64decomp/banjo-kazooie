@@ -5,7 +5,7 @@
 #include "bs_funcs.h"
 #include "core2/statetimer.h"
 #include "core2/ba/physics.h"
-
+#include "snackerctl.h"
 
 u8 D_80363820 = 0;
 bsMap D_80363824[] ={
@@ -187,7 +187,7 @@ void func_80295914(void){
     D_8037C3B0 = NULL;
     update_void_return_Location();
     func_802983F0();
-    snacker_reset();
+    snackerctl_reset();
     func_80291910();
     badrone_init();
     bafalldamage_init();
@@ -305,7 +305,7 @@ void func_80295C14(void){
     func_8029842C();
     baMarker_update();
     bacarry_update();
-    func_8028A8D0();
+    snackerctl_update();
     func_8028B71C();
     func_8029D968();
     func_80297CF8();

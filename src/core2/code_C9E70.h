@@ -4,6 +4,8 @@
 #include <ultra64.h>
 #include "structs.h"
 
+#include "gc/zoombox.h"
+
 typedef struct {
     s16 unk0[4];
     u8 unk8; //FF_TileType
@@ -68,7 +70,7 @@ struct FF_StorageStruct {
 
     // holds moves involved with the FFM glitch
     /* 1C */ u32   unlockedMoves;
-    /* 20 */ gczoombox_t *unk20;
+    /* 20 */ GcZoombox *unk20;
     /* 24 */ f32   playerPosition[3];
     /* 30 */ f32   playerRotation[3];
 

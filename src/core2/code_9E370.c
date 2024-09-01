@@ -195,7 +195,7 @@ void func_803257A4(ActorMarker *marker){
     marker->unk14_21 = TRUE;
 }
 
-bool func_803257B4(ActorMarker *marker) {
+BKModelBin *func_803257B4(ActorMarker *marker) {
     Actor *actor;
     BKModelBin *model_bin;
     BKVertexList *vtx_list;
@@ -209,7 +209,7 @@ bool func_803257B4(ActorMarker *marker) {
         assetcache_release(model_bin);
     }
     func_8033A4A0(marker->modelId, actor->unk174, actor->unk178);
-    return FALSE;
+    return NULL;
 }
 
 

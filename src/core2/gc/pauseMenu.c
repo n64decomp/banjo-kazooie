@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "zoombox.h"
+
 #ifndef MIN
 #define MIN(s,t) (((s) < t)?(s):(t))
 #endif
@@ -20,10 +22,6 @@ typedef struct struct_1A_s{
     u8  unkF;
 }struct1As;
 
-extern void func_803160A8(gczoombox_t *);
-extern void gczoombox_close(gczoombox_t *);
-extern void gczoombox_minimize(gczoombox_t *);
-extern void gczoombox_maximize(gczoombox_t *);
 extern void func_802C5994(void);
 extern void func_802E412C(s32, s32);
 void func_803204E4(s32, s32);
@@ -32,18 +30,14 @@ void mlMtxApply(Mtx*);
 void func_80310D2C(void);
 
 s32 level_get(void);
-void gczoombox_update(gczoombox_t *);
 void func_8024E6E0(s32, void *);
 void func_8024E60C(s32, void *);
 void func_8024E71C(s32, void *);
 s32 getGameMode(void);
 
-void gczoombox_highlight(gczoombox_t *, int);
 void func_802DC5B8(void);
 void func_802DC560(s32, s32);
 s32 func_8024E67C(s32 controller_index);
-bool func_803188B4(gczoombox_t*);
-bool func_803183A4(gczoombox_t*, char *);
 bool fileProgressFlag_get(enum file_progress_e);
 enum map_e map_get(void);
 bool func_802FD2D4(void);
@@ -54,10 +48,6 @@ extern void func_802DC528(s32,s32);
 extern void func_802F5060(enum asset_e);
 extern void func_802F5188(void);
 extern void func_802FACA4(enum item_e);
-extern void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
-extern void func_80318640(gczoombox_t *, s32, f32, f32, s32);
-extern void func_80318734(gczoombox_t *, f32);
-extern void func_80318964(gczoombox_t *);
 extern void func_8033BD20(void *);
 
 enum gcpausemenu_state_e {
@@ -69,17 +59,17 @@ enum gcpausemenu_state_e {
 
 /* .data */
 struct1As D_8036C4E0[4] = {
-    {0.0f, 0.0f,  "RETURN TO GAME",         55, TALK_PIC_4_BANJO_1, 0},
-    {0.3f, 0.0f,  "EXIT TO WITCH'S LAIR", -100, TALK_PIC_4_BANJO_1, 0},
-    {0.1f, 0.0f,  "VIEW TOTALS",            90, TALK_PIC_6_JIGGY_1, 0},
-    {0.2f, 0.0f,  "SAVE AND QUIT",         125, TALK_PIC_7_TOOTY_1, 0},
+    {0.0f, 0.0f,  "RETURN TO GAME",         55, ZOOMBOX_SPRITE_4_BANJO_1, 0},
+    {0.3f, 0.0f,  "EXIT TO WITCH'S LAIR", -100, ZOOMBOX_SPRITE_4_BANJO_1, 0},
+    {0.1f, 0.0f,  "VIEW TOTALS",            90, ZOOMBOX_SPRITE_6_JIGGY_1, 0},
+    {0.2f, 0.0f,  "SAVE AND QUIT",         125, ZOOMBOX_SPRITE_7_TOOTY_1, 0},
 };
 
 struct1As D_8036C520[4] = {
-    {0.0f, 0.0f,  "cc999 / 999cc",  30, TALK_PIC_8_MUSIC_NOTE_1,     0},
-    {0.1f, 0.0f,  "cc999 / 999cc",  66, TALK_PIC_9_JIGGY_2,          0},
-    {0.2f, 0.0f,  "cc999 / 999cc", 102, TALK_PIC_A_EXTRA_HEALTH_MAX, 0},
-    {0.3f, 0.0f,  "cc999 : 999cc", 138, TALK_PIC_B_CLOCK,            0},
+    {0.0f, 0.0f,  "cc999 / 999cc",  30, ZOOMBOX_SPRITE_8_MUSIC_NOTE_1,     0},
+    {0.1f, 0.0f,  "cc999 / 999cc",  66, ZOOMBOX_SPRITE_9_JIGGY_2,          0},
+    {0.2f, 0.0f,  "cc999 / 999cc", 102, ZOOMBOX_SPRITE_A_EXTRA_HEALTH_MAX, 0},
+    {0.3f, 0.0f,  "cc999 : 999cc", 138, ZOOMBOX_SPRITE_B_CLOCK,            0},
 };
 
 struct1Bs D_8036C560[] = {
@@ -153,7 +143,7 @@ struct{
     s8          joystick_frame;
     u8          joystick_frame_count;
     f32         unkC;
-    gczoombox_t *zoombox[4];
+    GcZoombox *zoombox[4];
     f32         unk20;
     BKSprite *  joystick_sprite;
     f32         unk28;
@@ -190,8 +180,8 @@ void gcpausemenu_defrag(void){
     s32 i;
     for(i =0; i< 4; i++){
         if(D_80383010.zoombox[i]){
-            func_80318C0C(D_80383010.zoombox[i]);
-            D_80383010.zoombox[i] = (gczoombox_t *)defrag(D_80383010.zoombox[i]);
+            gczoombox_defrag(D_80383010.zoombox[i]);
+            D_80383010.zoombox[i] = (GcZoombox *)defrag(D_80383010.zoombox[i]);
         }
     }
 }
@@ -561,7 +551,7 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state){
                 else{
                     gczoombox_highlight(D_80383010.zoombox[i], 1);
                 }
-                if(func_80318604(D_80383010.zoombox[i])){
+                if(gczoombox_is_highlighted(D_80383010.zoombox[i])){
                     gczoombox_maximize(D_80383010.zoombox[i]);
                     func_803183A4( D_80383010.zoombox[i], D_8036C520[i].str);
                 }
@@ -741,7 +731,7 @@ s32 gcpausemenu_80312D78(struct1As *arg0, s32 arg1) {
                     gczoombox_open(D_80383010.zoombox[var_s2]);
                     gczoombox_maximize(D_80383010.zoombox[var_s2]);
                 }
-                if (!func_80318604(D_80383010.zoombox[var_s2])) {
+                if (!gczoombox_is_highlighted(D_80383010.zoombox[var_s2])) {
                     func_80318498(D_80383010.zoombox[var_s2]);
                     func_8031843C(D_80383010.zoombox[var_s2]);
                 }
@@ -887,7 +877,7 @@ s32 gcPauseMenu_update(void){
     func_8024E6E0(0, sp50);
     func_80310D2C();
     for(i = 0; i < 4; i++){
-        gczoombox_update(D_80383010.zoombox[i]);//gczoombox_update;
+        gczoombox_update(D_80383010.zoombox[i]);
     }
 
     

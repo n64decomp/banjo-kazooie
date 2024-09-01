@@ -18,7 +18,7 @@ Gfx D_80275880[] = {
 };
 
 /* .code */
-void func_80241490(Gfx **gfx, Vtx **vtx, s32 *arg2[3], s32 arg3[3], s32 arg4[3], s32 arg5[3], s32 arg6, s32 arg7) {
+void func_80241490(Gfx **gfx, Vtx **vtx, s32 arg2[3], s32 arg3[3], s32 arg4[3], s32 arg5[3], s32 arg6, s32 arg7) {
     s32 spB4[3];
     s32 var_a0;
     s32 var_v0;

@@ -9,6 +9,8 @@
 #include "core2/ba/drone.h"
 #include "core2/ba/physics.h"
 
+#include "snackerctl.h"
+
 extern bool player_isInHorizontalRadius(f32[3], f32);
 extern bool player_isInVerticalRange(f32[3], f32);
 extern void miscflag_clear(s32);
@@ -817,7 +819,7 @@ void func_8028F800(s32 arg0[3]){
 void func_8028F85C(f32 arg0[3]){
     func_80298464(arg0);
     func_80293F0C();
-    func_8028A8D0();
+    snackerctl_update();
     func_8028B71C();
     func_80290B6C();
     cameraMode_update();

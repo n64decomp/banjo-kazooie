@@ -2,8 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/code_C9E70.h"
 #include "core2/modelRender.h"
+
+#include "../gc/zoombox.h"
+#include "../code_C9E70.h"
 
 #ifndef ABS
 #define	ABS(d)		((d) >= 0) ? (d) : -(d)
@@ -11,7 +13,6 @@
 
 void func_8031FBF8(void);
 void func_8031FBA0(void);
-void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 
 Actor *func_802C4360(ActorMarker *, Gfx **, Mtx **, Vtx **);
 Actor *func_802C4464(ActorMarker *, Gfx **, Mtx **, Vtx **);
@@ -100,8 +101,8 @@ struct {
 } D_8037DCE0;
 s32 D_8037DCE8;
 s32 D_8037DCEC;
-gczoombox_t *chGameSelectTopZoombox;
-gczoombox_t *chGameSelectBottomZoombox;
+GcZoombox *chGameSelectTopZoombox;
+GcZoombox *chGameSelectBottomZoombox;
 f32 D_8037DCF8[2][3];
 f32 D_8037DD10[2][3];
 s32 D_8037DD28;
@@ -241,7 +242,7 @@ void func_802C4768(s32 gamenum){
     sp20[0] = D_8037DD48;\
     sp20[1] = D_8037DD68;
     func_8031877C(chGameSelectBottomZoombox);
-    func_80318284(chGameSelectBottomZoombox, 2, sp20);
+    gczoombox_setStrings(chGameSelectBottomZoombox, 2, sp20);
     gczoombox_maximize(chGameSelectBottomZoombox);
     gczoombox_resolve_minimize(chGameSelectBottomZoombox);
 }
@@ -397,7 +398,7 @@ void func_802C4C14(Actor *this){
                         }
                         subaddie_set_state(this, 2);
                         func_8031877C(chGameSelectTopZoombox);
-                        func_80318284(chGameSelectTopZoombox, 2, &D_8037DCE0);
+                        gczoombox_setStrings(chGameSelectTopZoombox, 2, &D_8037DCE0);
                         D_8037DD34 = 0.0f;
                     }
                     break;
@@ -523,7 +524,7 @@ void func_802C4C14(Actor *this){
                         D_8037DD34 += sp50;
                         if(20.0 < D_8037DD34){
                             func_8031877C(chGameSelectTopZoombox);
-                            func_80318284(chGameSelectTopZoombox, 2, &D_8037DCE0);
+                            gczoombox_setStrings(chGameSelectTopZoombox, 2, &D_8037DCE0);
                             D_8037DD34 = 0.0f;
                         }
                     }
@@ -557,14 +558,14 @@ void func_802C5740(Actor * this){
     if(!this->initialized){
         gameFile_8033CE40();
          if(chGameSelectBottomZoombox == NULL){
-            chGameSelectBottomZoombox = gczoombox_new(0xA0, TALK_PIC_C_BANJO_2, 2, 0, NULL);
+            chGameSelectBottomZoombox = gczoombox_new(0xA0, ZOOMBOX_SPRITE_C_BANJO_2, 2, 0, NULL);
             gczoombox_open(chGameSelectBottomZoombox);
             func_803184C8(chGameSelectBottomZoombox, 30.0f, 5, 2, 0.4f, 0, 0);
         }//L802C57FC
 
         if(chGameSelectTopZoombox == NULL){
-            chGameSelectTopZoombox = gczoombox_new(0xA, TALK_PIC_D_KAZOOIE_1, 2, 1, func_802C44D0);
-            func_80318284(chGameSelectTopZoombox, 2, &D_8037DCE0);
+            chGameSelectTopZoombox = gczoombox_new(0xA, ZOOMBOX_SPRITE_D_KAZOOIE_1, 2, 1, func_802C44D0);
+            gczoombox_setStrings(chGameSelectTopZoombox, 2, &D_8037DCE0);
             gczoombox_open(chGameSelectTopZoombox);
             gczoombox_maximize(chGameSelectTopZoombox);
         }//L802C5860

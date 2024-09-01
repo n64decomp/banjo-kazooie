@@ -511,7 +511,7 @@ segments:
   - [0xF57290, c, code_1930] #DONE
   - [0xF57BA0, c, code_2240] #DONE
   - [0xF581F0, c, ba/anim] #DONE
-  - [0xF58DE0, c, code_3480] #DONE
+  - [0xF58DE0, c, snackerctl] #DONE
   - [0xF59330, c, code_39D0] #DONE
   - [0xF5A120, c, ba/marker] #DONE
   - [0xF5C490, c, code_6B30] #DONE
@@ -706,7 +706,7 @@ segments:
   - [0xFAF0E0, c, code_59780] #DONE
   - [0xFAF340, c, code_599E0] #DONE
   - [0xFAF3E0, c, code_59A80] #DONE
-  - [0xFAF6A0, c, code_59D40] #DONE
+  - [0xFAF6A0, c, ch/snacker] #DONE
   - [0xFB0490, c, ch/snowman] #DONE
   - [0xFB1000, c, ch/snowball] #DONE
   - [0xFB16F0, c, ch/snowmanhat] #DONE
@@ -775,7 +775,7 @@ segments:
   - [0xFDAB30, c, code_851D0] #DONE
   - [0xFDB110, c, code_857B0] #DONE
   - [0xFDB160, c, code_85800] #DONE
-  - [0xFDD790, c, code_87E30]
+  - [0xFDD790, c, gc/dialog]
   - [0xFE0110, c, gc/pauseMenu] #DONE
   - [0xFE3580, c, code_8DC20] #DONE
   - [0xFE3BD0, c, gc/zoombox] #DONE
@@ -901,7 +901,7 @@ segments:
   - [0x1031F60, bin, data_DC600] #unreferenced
   - [0x1031F90, .data, code_1550]
   - [0x1031FB0, .data, ba/anim]
-  - [0x1031FE0, .data, code_3480]
+  - [0x1031FE0, .data, snackerctl]
   - [0x1032000, .data, ba/marker]
   - [0x1032060, .data, code_7060]
   - [0x10320A0, .data, code_90E0]
@@ -1003,7 +1003,7 @@ segments:
   - [0x1036D80, .data, ch/bottlesbonuscursor]
   - [0x1036E10, .data, code_59780]
   - [0x1036F70, .data, code_59A80]
-  - [0x1036FA0, .data, code_59D40]
+  - [0x1036FA0, .data, ch/snacker]
   - [0x1037020, .data, ch/snowman]
   - [0x10370E0, .data, ch/snowball]
   - [0x1037190, .data, ch/snowmanhat]
@@ -1048,7 +1048,7 @@ segments:
   - [0x103A710, .data, gc/sky]
   - [0x103AB20, .data, gc/transition]
   - [0x103AE20, .data, code_851D0]
-  - [0x103AEA0, .data, code_87E30]
+  - [0x103AEA0, .data, gc/dialog]
   - [0x103AEB0, .data, gc/pauseMenu]
   - [0x103B000, .data, code_8DC20]
   - [0x103B090, .data, gc/zoombox]
@@ -1123,7 +1123,7 @@ segments:
   - [0x10427F0, .rodata, anim/sprite]
   - [0x1042800, .rodata, code_1930]
   - [0x1042880, .rodata, ba/anim]
-  - [0x1042890, .rodata, code_3480]
+  - [0x1042890, .rodata, snackerctl]
   - [0x10428A0, .rodata, code_39D0]
   - [0x1042940, .rodata, ba/marker]
   - [0x1042D70, .rodata, code_6B30]
@@ -1259,7 +1259,7 @@ segments:
   - [0x10459A0, .rodata, ch/bottlesbonuscursor]
   - [0x1045A00, .rodata, code_599E0]
   - [0x1045A10, .rodata, code_59A80]
-  - [0x1045A20, .rodata, code_59D40]
+  - [0x1045A20, .rodata, ch/snacker]
   - [0x1045A70, .rodata, ch/snowman]
   - [0x1045AA0, .rodata, ch/snowball]
   - [0x1045AD0, .rodata, code_5C240]
@@ -1295,7 +1295,7 @@ segments:
   - [0x1046E10, .rodata, gc/sky]
   - [0x1046E20, .rodata, gc/transition]
   - [0x1046E80, .rodata, code_85800]
-  - [0x1046EA0, .rodata, code_87E30]
+  - [0x1046EA0, .rodata, gc/dialog]
   - [0x1046F10, .rodata, gc/pauseMenu]
   - [0x1047250, .rodata, gc/zoombox] 
   - [0x1047320, .rodata, code_91E10]
@@ -1375,7 +1375,7 @@ segments:
   - [0x1048560, .bss, code_1550]
   - [0x1048560, .bss, code_1930]
   - [0x1048560, .bss, ba/anim]
-  - [0x1048560, .bss, code_3480]
+  - [0x1048560, .bss, snackerctl]
   - [0x1048560, .bss, code_39D0]
   - [0x1048560, .bss, ba/marker]
   - [0x1048560, .bss, code_6B30]
@@ -1516,7 +1516,7 @@ segments:
   - [0x1048560, .bss, code_581D0]
   - [0x1048560, .bss, ch/bottlesbonuscursor]
   - [0x1048560, .bss, code_59A80]
-  - [0x1048560, .bss, code_59D40]
+  - [0x1048560, .bss, ch/snacker]
   - [0x1048560, .bss, ch/snowball]
   - [0x1048560, .bss, code_5BEB0]
   - [0x1048560, .bss, code_5C240]
@@ -1564,7 +1564,7 @@ segments:
   - [0x1048560, .bss, code_851D0]
   - [0x1048560, .bss, code_857B0]
   - [0x1048560, .bss, code_85800]
-  - [0x1048560, .bss, code_87E30]
+  - [0x1048560, .bss, gc/dialog]
   - [0x1048560, .bss, gc/pauseMenu]
   - [0x1048560, .bss, code_8DC20]
   - [0x1048560, .bss, gc/zoombox]

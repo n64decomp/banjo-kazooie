@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "core2/code_C9E70.h"
+#include "code_C9E70.h"
 
 extern void func_8030DBFC(u32, f32, f32, f32);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
@@ -40,7 +40,8 @@ Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 
 /* .data */
-ActorInfo D_80367310 = {MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPRITE_BEE_SWARM, 
+ActorInfo D_80367310 = {
+    MARKER_217_BEE_SWARM, ACTOR_34D_BEE_SWARM, ASSET_49E_SPRITE_BEE_SWARM, 
     1, NULL, 
     chBeeSwarm_update, NULL, chBeeSwarm_draw,
     0, 0, 1.0f, 0
@@ -307,8 +308,8 @@ void chBeeSwarm_update(Actor *this) {
     Actor *beehive;
     ActorLocal_core2_47BD0 *local = (ActorLocal_core2_47BD0 *)&this->local;
     f32 spB4[3];
-    f32 spB0;
-    f32 spAC;
+    f32 distance_to_home;
+    f32 dt;
     f32 spA0[3];
     f32 position[3];
     f32 next_position[3];
@@ -317,13 +318,13 @@ void chBeeSwarm_update(Actor *this) {
     f32 temp_f0;
     f32 sp68[3];
     
-    spAC = time_getDelta();
+    dt = time_getDelta();
     sp78 = 0;
     if (!this->initialized) {
         this->initialized = TRUE;
-        beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+        beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &distance_to_home);
         this->unk100 = (beehive != NULL) ? beehive->marker : NULL;
-        if(500.0f < spB0){
+        if(500.0f < distance_to_home){
             this->unk100 = NULL;
         }
         sp78 = 1;
@@ -359,13 +360,13 @@ void chBeeSwarm_update(Actor *this) {
         actor_collisionOff(this);
         local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);
         if (sp78 == 0) {
-            beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &spB0);
+            beehive = actorArray_findClosestActorFromActorId(this->position, ACTOR_12_BEEHIVE, -1, &distance_to_home);
             if (beehive != NULL) {
                 this->unk100 = beehive->marker;
             } else {
                 this->unk100 = NULL;
             }
-            if (spB0 > 500.0f) {
+            if (distance_to_home > 500.0f) {
                 this->unk100 = NULL;
             }
         }
@@ -399,9 +400,9 @@ void chBeeSwarm_update(Actor *this) {
     position[0] = this->position[0];
     position[1] = this->position[1];
     position[2] = this->position[2];
-    next_position[0] = this->position[0] + (this->velocity[0] * spAC);
-    next_position[1] = this->position[1] + (this->velocity[1] * spAC);
-    next_position[2] = this->position[2] + (this->velocity[2] * spAC);
+    next_position[0] = this->position[0] + (this->velocity[0] * dt);
+    next_position[1] = this->position[1] + (this->velocity[1] * dt);
+    next_position[2] = this->position[2] + (this->velocity[2] * dt);
     if (this->state != 7) {
         if (func_80309DBC(position, next_position, 75.0f, sp7C, 3, 0)) {
             ml_vec3f_normalize(sp7C);
@@ -478,7 +479,7 @@ void chBeeSwarm_update(Actor *this) {
         break;
     case 4:
         spB4[1] += 50.0f;
-        this->unk60 += spAC;
+        this->unk60 += dt;
         if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
             func_8028F504(0xD);
             this->unk60 -= 0.5;

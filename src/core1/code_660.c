@@ -65,6 +65,7 @@ u32 D_8027BF2C; //crc1
 u32 D_8027BF30; //crc2
 u32 D_8027BF34; //hufts
 
+static int _rarezip_inflate(u8 * src, u8 * dst, struct huft * arg2);
 
 /* .code */
 s32 rarezip_get_uncompressed_size(u8 *arg0) {

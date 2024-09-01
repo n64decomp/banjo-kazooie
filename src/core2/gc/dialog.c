@@ -2,15 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "zoombox.h"
 
 extern void func_803114D0(void );
-extern void func_803184C8(gczoombox_t *, f32, s32, s32, f32, s32, s32);
 extern int func_803114B0(void);
-extern void gczoombox_open(gczoombox_t *);
-extern void gczoombox_minimize(gczoombox_t *);
-extern void gczoombox_close(gczoombox_t *);
-extern void gczoombox_update(gczoombox_t *);
-extern bool func_803188B4(gczoombox_t *);
 extern char *dialogBin_get(enum asset_e text_id);
 
 s8 D_8036C4D0[] = {1, 0x1E, 0x14, 0xF, 0xB, 8, 6, 4, 3, 2, -1, -1};
@@ -25,7 +20,7 @@ struct {
     s8 string_cmd[2]; //current_cmd
     u8 string_index[2]; //current_string_index
     struct15s unk11A[2];
-    gczoombox_t *zoombox[2];
+    GcZoombox *zoombox[2];
     s16 unk124[2];
     union{
         struct {
@@ -316,7 +311,7 @@ void gcdialog_setState(s32 next_state){
     
 }
 
-void func_8030F754(enum talk_pic_e portrait_id, s32 arg1){
+void func_8030F754(GcZoomboxSprite portrait_id, s32 arg1){
     s32 temp_a0;
     s32 temp_v0;
 
@@ -456,7 +451,7 @@ void gcdialog_update(void) {
                 for(spA8 = g_Dialog.string_index[g_Dialog.u8.active_zoombox]; CMD2(spA8)->cmd < -4; spA8++);
 
                 if (CMD2(spA8)->cmd >= 0) {
-                    func_803189C4(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], CMD2(spA8)->cmd + 0xC);
+                    gczoombox_loadSprite(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], CMD2(spA8)->cmd + 0xC);
                 }
                 if (g_Dialog.string_index[g_Dialog.u8.active_zoombox]) {
                     gczoombox_minimize(g_Dialog.zoombox[g_Dialog.u8.active_zoombox]);
@@ -484,7 +479,7 @@ void gcdialog_update(void) {
                 break;
 
             default:
-                if (!func_80316ED4(CMD(g_Dialog.string_index[g_Dialog.u8.active_zoombox])->str)) {
+                if (!gczoombox_strlen(CMD(g_Dialog.string_index[g_Dialog.u8.active_zoombox])->str)) {
                     g_Dialog.string_index[g_Dialog.u8.active_zoombox]++;
                 } else {
                     if (CMD(g_Dialog.string_index[g_Dialog.u8.active_zoombox] + 1)->cmd == -8) {
@@ -546,7 +541,7 @@ void gcdialog_update(void) {
                         }
                     }
 
-                    if (func_803189C4(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], g_Dialog.string_cmd[g_Dialog.u8.active_zoombox] + 12)) {
+                    if (gczoombox_loadSprite(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], g_Dialog.string_cmd[g_Dialog.u8.active_zoombox] + 12)) {
                         gczoombox_minimize(g_Dialog.zoombox[g_Dialog.u8.active_zoombox]);
                         g_Dialog.unk128_6 = TRUE;
                     }
@@ -561,7 +556,7 @@ void gcdialog_update(void) {
                             sp4C[spA8 - g_Dialog.string_index[g_Dialog.u8.active_zoombox]] = CMD(spA8)->str;
                         }
 
-                        func_80318284(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], spA8 - g_Dialog.string_index[g_Dialog.u8.active_zoombox], sp4C);
+                        gczoombox_setStrings(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], spA8 - g_Dialog.string_index[g_Dialog.u8.active_zoombox], sp4C);
                         g_Dialog.string_index[g_Dialog.u8.active_zoombox] = spA8;
                     } else {
                         func_803183A4(g_Dialog.zoombox[g_Dialog.u8.active_zoombox], g_Dialog.output);
@@ -1012,12 +1007,12 @@ void gcdialog_defrag(void){
     s32 i;
     
     for(i = 0; i< 2; i++){
-        func_80318C0C(g_Dialog.zoombox[i]);
+        gczoombox_defrag(g_Dialog.zoombox[i]);
         if(g_Dialog.string_list[i]){
             g_Dialog.string_list[i] = (struct13s *)defrag(g_Dialog.string_list[i]);
         }
         if(g_Dialog.zoombox[i] != NULL){
-            g_Dialog.zoombox[i] = (gczoombox_t *)defrag(g_Dialog.zoombox[i]);
+            g_Dialog.zoombox[i] = (GcZoombox *)defrag(g_Dialog.zoombox[i]);
         }
     }
 }

@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define BAD_DTOR (BAD_PI/180.0)
-
 /* .data*/
 u32 D_80276CB0 = 0xD22FFFD8; //WHAT IS THIS?
 u32 D_80276CB4 = 0xDEFEF692; //WHAT IS THIS?
