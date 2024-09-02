@@ -40,11 +40,6 @@ typedef struct animation_file_s{
     u8  pad6[2];
 } AnimationFile;
 
-typedef struct animation_file_cache_s{
-    AnimationFile *unk0;
-    u16 unk4_15:15;
-    u16 unk4_0:1;
-    u8  pad6[2];
-}AnimationFileCache;
+
 
 #endif
