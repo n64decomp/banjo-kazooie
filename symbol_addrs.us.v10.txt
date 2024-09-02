@@ -49,5 +49,3 @@ __osRunningThread           = 0x80277380;
 __osFaultedThread           = 0x80277384;
 __osRcpImTable              = 0x80278C60;
 __libm_qnan_f               = 0x80278DB0;
-__propellorTimer = 0x803912CC;  
-
