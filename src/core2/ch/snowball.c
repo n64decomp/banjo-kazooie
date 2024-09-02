@@ -113,7 +113,7 @@ void chSnowball_update(Actor *this) {
         this->initialized = TRUE;
         player_getPosition(sp7C);
         sp7C[1] += 1.0f;
-        phi_a1 = (func_8023DB5C() & 1) ? 0x15 : 0x2B;
+        phi_a1 = (globalTimer_getTime() & 1) ? 0x15 : 0x2B;
         for(i = 0; i < 3; i++){
             sp58[i] = sp7C[i] + (sp7C[i] - this->unk1C[i]) * phi_a1;
         }

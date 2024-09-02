@@ -76,10 +76,10 @@ void chfirefx_update(Actor *this){
     }//L80359934
     if(subaddie_playerIsWithinSphere(this, 2000)){
         if( func_8024DB50(this->position, 50.0f) && this->unk38_31 ){
-            if(!(func_8023DB5C() & 3) && randf() < 0.1){
+            if(!(globalTimer_getTime() & 3) && randf() < 0.1){
                 __chfirefx_spawnSmoke(this->position, this->scale);
             } //L803599AC
-            if(!(func_8023DB5C() & 3) && randf() < 0.3){
+            if(!(globalTimer_getTime() & 3) && randf() < 0.3){
                 __chfirefx_spawnSpark(this->position, this->scale);
             }
         }//L803599F4

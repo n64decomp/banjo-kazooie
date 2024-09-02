@@ -101,7 +101,7 @@ void func_8038FE94(Actor *this){
         this->scale = (f64)this->scale + this->scale;
     }//L8038FF18
     this->roll += 20.0f; 
-    if(func_8023DB5C()%4 == 1){
+    if(globalTimer_getTime()%4 == 1){
         if(randf() < 0.5){
             func_8038EBE0(this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, 
                 &D_80391F3C, &D_80391F54, &D_80391F6C, 

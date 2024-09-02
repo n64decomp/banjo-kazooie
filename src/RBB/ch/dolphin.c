@@ -34,8 +34,8 @@ void func_8038B900(Actor *this){
     this->marker->propPtr->unk8_3 = 1;
     if(this->marker->unk14_21){
         sp54 = skeletalAnim_getProgress(this->unk148);
-        if( ( func_8023DB5C() & (1 << 4) )
-            && ( func_8023DB5C() & (1 << 2) )
+        if( ( globalTimer_getTime() & (1 << 4) )
+            && ( globalTimer_getTime() & (1 << 2) )
             && ( randf() < 0.90 )
         ){
             if( ( this->state == 3 

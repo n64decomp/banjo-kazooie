@@ -131,14 +131,14 @@ bool func_802DAFBC(Actor *this) {
     if (temp_v0 & 4) {
         func_8032C9E0(sp38);
         sp34 = func_80257248(sp38, this->position);
-        if (((func_8023DB5C() - local->unk38) == 0x1E) && ((sp34 - this->yaw_ideal < 15.0f) && (sp34 - this->yaw_ideal > -15.0f))) {
+        if (((globalTimer_getTime() - local->unk38) == 0x1E) && ((sp34 - this->yaw_ideal < 15.0f) && (sp34 - this->yaw_ideal > -15.0f))) {
             func_802DAF2C(this->position, this->yaw, this->unk28);
         } else {
             func_80328CEC(this, (s32) sp34, 0, 0xF);
         }
         this->unk38_31 = 0x1E;
         this->unk38_0 = TRUE;
-        local->unk38 = func_8023DB5C();
+        local->unk38 = globalTimer_getTime();
     } else if (temp_v0 & 8) {
         func_802DAE10(this);
         this->unk38_31 = 0x5A;
@@ -284,13 +284,13 @@ void func_802DB5A0(Actor *this) {
             func_80328FB0(this, 2.0f);
             func_802DB3B0(this);
             if (this->unk38_31 == 0) {
-                if (!(func_8023DB5C() & 0xF)) {
+                if (!(globalTimer_getTime() & 0xF)) {
                     func_80328CEC(this, this->yaw_ideal, 0xA, 0x14);
                 }
-                if (!(func_8023DB5C() & 7)) {
+                if (!(globalTimer_getTime() & 7)) {
                     subaddie_maybe_set_state(this, 1, 0.02f);
                 }
-                if( !(func_8023DB5C() & 0xF) 
+                if( !(globalTimer_getTime() & 0xF) 
                    && func_80329078(this, (s32) this->yaw_ideal, 0x96)
                 ) {
                     if (subaddie_maybe_set_state(this, 3, 0.13f) != 0) {
@@ -316,7 +316,7 @@ void func_802DB5A0(Actor *this) {
         case 3://L802DB930
             func_80328FB0(this, 3.0f);
             func_802DB3B0(this);
-            if (!(func_8023DB5C() & 0xF) && (subaddie_maybe_set_state(this, 2, 0.08f))) {
+            if (!(globalTimer_getTime() & 0xF) && (subaddie_maybe_set_state(this, 2, 0.08f))) {
                 func_802DAE10(this);
             }
             func_802DB220(this);
@@ -351,7 +351,7 @@ void func_802DB5A0(Actor *this) {
             
         case 7://L802DBB4C
             if (this->unk38_31 == 0) {
-                if ((func_8023DB5C() & 0xF) == 9) {
+                if ((globalTimer_getTime() & 0xF) == 9) {
                     this->yaw_ideal = (f32) func_80329784(this);
                 }
             }

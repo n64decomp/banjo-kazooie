@@ -405,7 +405,7 @@ void func_803867A8(Actor *this) {
         this->position[0] = this->unk1C[0] + sp5C[0];
         this->position[2] = this->unk1C[2] + sp5C[2];
         if (this->marker->unk14_21) {
-            sp44 = this->unk158[func_8023DB5C() & 1];
+            sp44 = this->unk158[globalTimer_getTime() & 1];
             if (sp44 != NULL) {
                 particleEmitter_setAlpha(sp44, this->alpha_124_19);
                 phi_f0 = this->unk60 - 10.0f;

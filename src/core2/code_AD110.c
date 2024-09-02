@@ -554,7 +554,7 @@ void func_80334448(NodeProp *arg0, ActorMarker *arg1) {
 
     switch(func_80330F7C(arg0)) {
         case 3: //L80334480
-            sp24 = func_8023DB5C();
+            sp24 = globalTimer_getTime();
             if ((func_80330FC4(arg0) + 1) != sp24) {
                 D_8036F980[func_80330F8C(arg0)](arg0, arg1);
             }

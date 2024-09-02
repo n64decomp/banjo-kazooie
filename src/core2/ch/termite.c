@@ -150,7 +150,7 @@ void chTermite_update(Actor *this) {
     static s32 D_80372F48 = 0;
     static s32 D_80372F4C = 0;
 
-    sp34 = func_8023DB5C();
+    sp34 = globalTimer_getTime();
     if (!this->unk16C_4) {
         marker_setCollisionScripts(this->marker, NULL, __chTermite_ow, __chTermite_die);
         this->unk124_0 = this->unk138_31 = FALSE;

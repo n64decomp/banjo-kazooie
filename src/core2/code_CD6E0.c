@@ -329,7 +329,7 @@ void func_80355134(void) {
     sp3C = func_8033E864();
     sp38 = func_8033E888();
     sp34 = func_8033E8AC();
-    if ((func_8023DB5C() & 1) == 0) {
+    if ((globalTimer_getTime() & 1) == 0) {
         temp_s0->unk20--;
     }
     if (temp_s0->unk20 < 0) {
@@ -400,7 +400,7 @@ void func_803553E8(void) {
     sp3C = func_8033E864();
     sp38 = func_8033E888();
     sp34 = func_8033E8AC();
-    if ((func_8023DB5C() & 1) == 0) {
+    if ((globalTimer_getTime() & 1) == 0) {
         temp_s0->unk20--;
     }
     if (temp_s0->unk20 < 0) {

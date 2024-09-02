@@ -126,7 +126,7 @@ s32 func_8024E67C(s32 controller_index){
 }
 
 s32 func_8024E698(s32 controller_index){
-    if(func_8023DB5C() < 2){
+    if(globalTimer_getTime() < 2){
         return 0;
     }
     

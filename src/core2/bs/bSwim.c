@@ -428,7 +428,7 @@ void func_802A8098(void) {
     }
     switch (D_8037D396) {
     case 0:
-        if (func_8023DB4C(1) == 0) {
+        if (globalTimer_getTimeMasked(1) == 0) {
             _player_getPosition(plyr_pos);
             plyr_pos[1] += 60.0f;
             p_ctrl = func_8029B950(plyr_pos, 25.0f);

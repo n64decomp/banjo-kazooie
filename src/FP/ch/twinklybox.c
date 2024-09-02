@@ -319,7 +319,7 @@ void func_8038D6C8(Actor *this){
         if(!func_80329530(this, 800))
             break;
 
-        if(!(func_8023DB5C() & 1))
+        if(!(globalTimer_getTime() & 1))
             subaddie_set_state_with_direction(this, 2, 0.001f, 1);
         else
             subaddie_set_state_with_direction(this, 2, 0.999f, 0);

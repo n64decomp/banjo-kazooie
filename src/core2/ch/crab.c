@@ -232,7 +232,7 @@ void chCrab_update(Actor *this) {
     static s32 D_803670B0 = 0;
     static s32 D_803670B4 = 0;
 
-    sp34 = func_8023DB5C();
+    sp34 = globalTimer_getTime();
     sp30 = time_getDelta();
     is_mutant_snippet = this->modelCacheIndex == ACTOR_F5_MUTIE_SNIPPET;
     if (!this->unk16C_4) {
@@ -343,7 +343,7 @@ void chCrab_update(Actor *this) {
             break;
 
         case 4: //L802CC024
-            if ((func_8023DB5C() & 0xF) == 9) {
+            if ((globalTimer_getTime() & 0xF) == 9) {
                 this->yaw_ideal = (f32) func_80329784(this);
             }
             func_80328FB0(this, 7.0f);

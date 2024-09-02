@@ -186,7 +186,7 @@ void func_8032CD60(Prop *prop) {
         sp30 = (sp44 == 3) ? sp38 : (sp38 - sp34)*2;
 
         sp2C = (s32)((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) * sp30) / 32;
-        var_v1 = (((func_8023DB5C(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30;
+        var_v1 = (((globalTimer_getTime(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30;
         var_t5 = 0;
         switch (sp40) {                          /* irregular */
             default:
@@ -1398,7 +1398,7 @@ void func_803306C8(s32 arg0) {
     s32 var_s0_2;
     s32 var_s1;
 
-    temp_fp = func_8023DB5C() - func_80255B08(arg0);
+    temp_fp = globalTimer_getTime() - func_80255B08(arg0);
     func_80254BD0(&sp54, 1);
     if(sp54 > 256000) return;
     
@@ -1514,7 +1514,7 @@ BKModelBin *func_80330B1C(ActorMarker *this){
     if(!this->unk18 && this->propPtr->unk8_1 && modelInfo->modelPtr && func_8033A12C(modelInfo->modelPtr)){
         this->unk18 = func_80330B10();
     }
-    modelInfo->unk10 = func_8023DB5C();
+    modelInfo->unk10 = globalTimer_getTime();
     return modelInfo->modelPtr;
 }
 
@@ -1577,7 +1577,7 @@ BKSpriteDisplayData *func_80330E54(ActorMarker *marker, BKSprite **sprite_ptr) {
     if (model_cache_ptr->unk4 == 0) {
         model_cache_ptr->unk4 = func_8033B6C4(marker->modelId, &model_cache_ptr->unk8);
     }
-    model_cache_ptr->unk10 = func_8023DB5C();
+    model_cache_ptr->unk10 = globalTimer_getTime();
     if (sprite_ptr != NULL) {
         *sprite_ptr = model_cache_ptr->unk4;
     }

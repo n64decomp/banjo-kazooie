@@ -217,7 +217,7 @@ void bsbfly_update(void){
     if(button_pressed(BUTTON_A))
         D_8037D347 = 1;
 
-    if(D_8037D347 && func_8023DB5C()%3 == 0){
+    if(D_8037D347 && globalTimer_getTime()%3 == 0){
         D_8037D347 = 0;
         func_80346C10(&sp2C, 0, BS_1_IDLE, ITEM_F_RED_FEATHER, 1);
     }

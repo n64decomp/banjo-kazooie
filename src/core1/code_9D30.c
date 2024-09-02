@@ -195,12 +195,12 @@ void func_80247C20(void) {
     s32 i;
 
     if (D_80275BE4 == 0) {
-        D_80275BE4 = func_8023DB5C();
+        D_80275BE4 = globalTimer_getTime();
         return;
     }
-    if (func_8023DB5C() != D_80275BE4) {
+    if (globalTimer_getTime() != D_80275BE4) {
         D_80275BE0 = FALSE;
-        D_80275BE4 = func_8023DB5C();
+        D_80275BE4 = globalTimer_getTime();
     }
 
     if (D_80275BE0) {

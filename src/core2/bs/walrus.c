@@ -568,7 +568,7 @@ void bswalrus_sled_update(void){
     f32 sp20[3];
 
     if(50.0f < baphysics_get_horizontal_velocity()){
-        if(func_8023DB4C(1)){
+        if(globalTimer_getTimeMasked(1)){
             baModel_80292554(&sp20);
         }else{
             baModel_80292578(&sp20);

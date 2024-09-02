@@ -326,7 +326,7 @@ void func_803465E4(void){
         }
     }//L80346B6C
 
-    if((func_8023DB5C() & 7) == 6){
+    if((globalTimer_getTime() & 7) == 6){
         if(!func_80320708() || !func_80320248()){
             D_80385F30[randi2(0, 0x2C)] = 1;
             D_80385FF0[randi2(0, 0xE)] = 1;

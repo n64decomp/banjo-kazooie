@@ -80,7 +80,7 @@ void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
     func_803204E4(0xc4, 1);
     func_8024F224();
     rand_reset();
-    func_8023DB68();
+    globalTimer_reset();
 }//*/
 
 /* returns offset of current input */

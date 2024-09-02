@@ -444,7 +444,7 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
         sp3C[0] = randi2(150, sp3C[1]);
         sp3C[2] = 0;
         sp3C[3] = randi2(40, 80);
-        if (func_8023DB5C() & 1) {
+        if (globalTimer_getTime() & 1) {
             func_802EE354(this, 0x3E9, 5, randi2(-10, 90), randf2(0.3f, 0.7f), 0.28f, 0.45f, sp3C, 5, 0);
         }
     }

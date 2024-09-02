@@ -49,7 +49,7 @@ void bsbshock_charge_update(void){
     f32 sp1C[3];
 
     if(func_8028B2E8()){ 
-        if(func_8023DB5C() % 2)
+        if(globalTimer_getTime() % 2)
             func_8029C348();
     }
     else

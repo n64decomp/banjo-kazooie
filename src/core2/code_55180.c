@@ -59,7 +59,7 @@ void func_802DC208(Actor *this) {
     }
     if( func_8024DB50(this->position, 50.0f) 
         && func_802DC188() 
-        && !(func_8023DB5C() & 0x1F) 
+        && !(globalTimer_getTime() & 0x1F) 
         && randf() < 0.1
     ){
         switch((s32)this->yaw){

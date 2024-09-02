@@ -74,11 +74,11 @@ void func_80390EB0(Actor *this){
 
     if(func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))
     {
-        if( !(func_8023DB5C() & 3) && randf() < 0.2){
+        if( !(globalTimer_getTime() & 3) && randf() < 0.2){
             func_80390C70(this->position);
         }
 
-        if( !(func_8023DB5C() & 3) && randf() < 0.7){
+        if( !(globalTimer_getTime() & 3) && randf() < 0.7){
             func_80390D58(this->position);
         }
     }

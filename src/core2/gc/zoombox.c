@@ -929,7 +929,7 @@ void func_80316764(GcZoombox *this, s32 arg1) {
         }
     }
     else if (arg1) {
-        if (!this->unk1A4_12 || (sp2C[0] == 0) || !(func_8023DB5C() & 1)){
+        if (!this->unk1A4_12 || (sp2C[0] == 0) || !(globalTimer_getTime() & 1)){
             if (this->unk110[0] == -1.0f) {
                 func_80315C90(this, 1);
             }

@@ -83,7 +83,7 @@ int func_80359F40(Actor *this, f32 arg1[3]){
     f32 sp20;
     
     sp24 = func_80257204(this->position[0], this->position[2], arg1[0], arg1[2]);
-    if((func_8023DB5C() & 0xF) == 4){
+    if((globalTimer_getTime() & 0xF) == 4){
         this->velocity[2] = (f32)randi2(-45, 45);
     }
     sp20 = this->yaw;
@@ -177,7 +177,7 @@ void func_8035A694(Actor *this){
 
     sp3C = this->yaw;
     sp38 = this->unk28*1.5 + 1.0;
-    tmp_v0 = func_8023DB5C();
+    tmp_v0 = globalTimer_getTime();
     this->yaw += sp38;
     if(360.0f < this->yaw)
         this->yaw -= 360.0f;

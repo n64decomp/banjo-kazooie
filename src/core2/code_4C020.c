@@ -539,7 +539,7 @@ void func_802D4388(Actor *this){
 Actor *func_802D4588(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_a1;
 
-    phi_a1 = (marker_getActor(marker)->unk38_0) ? ((func_8023DB5C() & 4) != 0) ? 1 : 2 : 2;
+    phi_a1 = (marker_getActor(marker)->unk38_0) ? ((globalTimer_getTime() & 4) != 0) ? 1 : 2 : 2;
     func_8033A45C(1, phi_a1);
     return actor_draw(marker, gfx, mtx, vtx);
 }

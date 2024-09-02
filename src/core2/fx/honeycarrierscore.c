@@ -224,7 +224,7 @@ void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
                         if(D_8036A014 == NULL){
                             D_8036A014 = assetcache_get(0x7DD);
                         }
-                        D_803815C4 = func_8023DB5C();
+                        D_803815C4 = globalTimer_getTime();
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         item_adjustByDiffWithHud(ITEM_13_EMPTY_HONEYCOMB, -6);

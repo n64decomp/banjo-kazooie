@@ -176,7 +176,7 @@ void chAncientOne_update(Actor *this){
                     }
                 }
                 else{//L80386C64
-                    sp38 = func_8023DB5C() & 0xF;
+                    sp38 = globalTimer_getTime() & 0xF;
                     sp34 = LOCAL_CH_ANCIENT_ONE(this)->unk1C + 40.0f;
                     this->position_y += 18.0;
                     this->position_x += (sp38 & 1) ? 0x17 : -0x17;

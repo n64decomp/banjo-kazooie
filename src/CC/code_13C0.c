@@ -150,7 +150,7 @@ void func_80387CC0(void){
         return;
 
     viewport_get_rotation_vec3f(sp1C);
-    tmp_v0 = func_8023DB4C(0x7F);
+    tmp_v0 = globalTimer_getTimeMasked(0x7F);
     if(tmp_v0 >= 0x40){
         tmp_v0 = 0x7F - tmp_v0;
     }
