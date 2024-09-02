@@ -254,7 +254,7 @@ void func_8028E71C(void) {
 
 
 enum hitbox_e player_getActiveHitbox(ActorMarker *marker){
-    return func_8028DB14(marker);
+    return hitbox_getHitboxForActor(marker);
 }
 
 AnimCtrl *player_getAnimCtrlPtr(void){
@@ -444,8 +444,8 @@ enum bsgroup_e func_8028ECAC(void) {
     if (miscflag_isTrue(MISC_FLAG_1B_TRANSFORMING)) {
         return BSGROUP_D_TRANSFORMING;
     }
-    if (miscflag_isTrue(0x17)) {
-        return 4;
+    if (miscflag_isTrue(MISC_FLAG_17_FPV)) {
+        return BSGROUP_4_LOOK;
     }
     if (bsbfly_inSet(state_id)) {
         return BSGROUP_A_FLYING;
@@ -508,7 +508,7 @@ enum bsgroup_e func_8028ECAC(void) {
 }
    
 
-enum bswatergroup_e func_8028EE84(void) {
+enum bswatergroup_e player_getWaterState(void) {
     enum bswatergroup_e state_id;
 
     state_id = bs_getState();
@@ -609,7 +609,7 @@ bool func_8028F150(void){
 }
 
 bool func_8028F170(void){
-    return miscflag_isTrue(0x17);
+    return miscflag_isTrue(MISC_FLAG_17_FPV);
 }
 
 int ability_isUnlocked(enum ability_e uid){
@@ -629,7 +629,7 @@ bool func_8028F1E0(void){
 }
 
 bool func_8028F20C(void){
-    return func_8028B2E8();
+    return player_isStable();
 }
 
 bool func_8028F22C(void){

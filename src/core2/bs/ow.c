@@ -50,10 +50,10 @@ void bsow_update(void) {
     if (baanim_isAt(0.3f) != 0) {
         func_80292EA4();
     }
-    if (func_8028B424() != 0) {
+    if (player_isFallTumbling() != 0) {
         sp1C = BS_3D_FALL_TUMBLING;
     }
-    if (func_8028B2E8() != 0) {
+    if (player_isStable() != 0) {
         sp1C = BS_2_WALK_SLOW;
     }
     if ((player_inWater() != 0) && (baphysics_get_vertical_velocity() <= 0.0f)) {

@@ -190,7 +190,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
     if( func_8029B300(arg0) > 0)
         arg0 = BS_16_BTROT_WALK;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         arg0 = badrone_look();
 
     if(func_8028B094())
@@ -405,7 +405,7 @@ void bsbtrot_jump_update(void){
             break;
         case 2://L802A95C4
             func_80299628(1);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029C5E8();
                 animctrl_setSubRange(aCtrl, 0.0f, 0.8798f);
                 animctrl_setDuration(aCtrl, 0.9f);
@@ -457,13 +457,13 @@ void bsbtrot_jump_update(void){
     if(should_peck())
         sp2C = BS_11_BPECK;
 
-    if(func_8028B424())
+    if(player_isFallTumbling())
         sp2C = BS_3D_FALL_TUMBLING;
 
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
     
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(button_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
         
@@ -540,7 +540,7 @@ void bsbtrot_slide_update(void){
     if(player_inWater())
         sp3C = BS_2D_SWIM_IDLE;
 
-    if(D_8037D3A0 == 0.0f && button_pressed(BUTTON_A) && func_8028B2E8())
+    if(D_8037D3A0 == 0.0f && button_pressed(BUTTON_A) && player_isStable())
         sp3C = func_802A8D34(sp3C);
     
 
@@ -605,7 +605,7 @@ void bsbtrot_fall_update(void){
         break;
     case 1://L802A9DDC
         func_80299628(1);
-        if(func_8028B2E8()){
+        if(player_isStable()){
             func_8029C5E8();
             animctrl_setSubRange(aCtrl, 0.0f, 0.8798f);
             animctrl_setDuration(aCtrl, 0.9f);
@@ -660,10 +660,10 @@ void bsbtrot_fall_update(void){
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
     
-    if(func_8028B424())
+    if(player_isFallTumbling())
         sp2C = BS_3D_FALL_TUMBLING;
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(button_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
 
@@ -736,10 +736,10 @@ void bsbtrot_ow_update(void){
     if(baanim_isAt(0.3f))
         func_80292EA4();
 
-    if(func_8028B424())
+    if(player_isFallTumbling())
         sp1C = BS_3D_FALL_TUMBLING;
 
-    if(func_8028B2E8() && baanim_isStopped())
+    if(player_isStable() && baanim_isStopped())
         sp1C = BS_15_BTROT_IDLE;
 
     if(animctrl_isStopped(baanim_getAnimCtrlPtr()) && player_inWater())

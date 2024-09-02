@@ -103,7 +103,7 @@ void func_80294B00(int arg0){
 void func_80294B0C(void){
     f32 sp1C = player_getYPosition();
     int sp18 = func_8028ECAC();
-    if( func_8028B2E8() 
+    if( player_isStable() 
         || player_inWater() 
         || (sp18 == BSGROUP_A_FLYING && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
         || sp18 == BSGROUP_5_CLIMB
@@ -180,11 +180,11 @@ void func_80294E54(int arg0){
 }
 
 void func_80294E60(void){
-    if(func_8028B2E8()){
+    if(player_isStable()){
         _player_getPosition(D_8037C2D8);
     }
 
-    if(func_8028B2E8() || bsclimb_inSet(bs_getState())){
+    if(player_isStable() || bsclimb_inSet(bs_getState())){
         miscflag_clear(MISC_FLAG_5_HAS_PECKED);
         miscflag_clear(MISC_FLAG_12_HAS_FLAPPED);
     }

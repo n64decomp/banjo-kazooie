@@ -60,7 +60,7 @@ void bsturn_update(void){
         sp2C = BS_CLAW;
 
     if(button_pressed(BUTTON_A))
-        sp2C = func_8029C780();
+        sp2C = bs_getTypeOfJump();
 
     bs_setState(sp2C);
 }

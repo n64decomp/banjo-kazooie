@@ -118,7 +118,7 @@ void bsbpeck_update(void){
             break;
     }//L802A68D8
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         func_8029C5E8();
         sp24 = BS_1_IDLE;
     }

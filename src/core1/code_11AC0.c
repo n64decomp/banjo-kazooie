@@ -316,7 +316,7 @@ void func_8024F890(u8 arg0, enum comusic_e arg1){
         alCSPSetSeq(&D_80281720[arg0].cseqp, &D_80281720[arg0].cseq);
         alCSPPlay(&D_80281720[arg0].cseqp);
         alCSPSetVol(&D_80281720[arg0].cseqp, D_80281720[arg0].unk0);
-        if(player_is_present() && func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+        if(player_is_present() && player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
             func_8025F3F0(&D_80281720[arg0].cseqp, 0.0f, 1.0f);
         }
         else{
@@ -427,7 +427,7 @@ void func_8024FE44(u8 arg0, f32 arg1, f32 arg2){
     D_80281720[arg0].unk17C = arg1;
     D_80281720[arg0].unk180 = arg2;
     if(func_80250074(arg0) == 0){
-        if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+        if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
             func_8025F3F0(&D_80281720[arg0].cseqp, 0.0f, 1.0f);
         }else{
             func_8025F3F0(&D_80281720[arg0].cseqp, arg1, arg2);

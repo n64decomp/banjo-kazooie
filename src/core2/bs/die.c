@@ -10,7 +10,7 @@ s32 D_8037D414;
 
 /* .code */
 int _bsdie_802ADE00(void){
-    return func_8028B2E8();
+    return player_isStable();
 }
 
 void _bsdie_802ADE20(void){

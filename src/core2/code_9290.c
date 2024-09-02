@@ -35,7 +35,7 @@ void func_80290298(void) {
     is_pumpkin = player_getTransformation() == TRANSFORM_3_PUMPKIN;
     sp30 = (func_8028B528() && !is_pumpkin) ? 6 : 1;
     sp24 = func_8028B528() && !is_pumpkin;
-    if (D_8037C02C || func_8028B2E8() || sp24 || func_8028ECAC() == BSGROUP_5_CLIMB || bs_getState() == BS_B_UNKOWN) {
+    if (D_8037C02C || player_isStable() || sp24 || func_8028ECAC() == BSGROUP_5_CLIMB || bs_getState() == BS_B_UNKOWN) {
         _player_getPosition(D_8037C020);
     }
 

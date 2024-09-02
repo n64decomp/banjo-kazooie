@@ -455,7 +455,7 @@ enum bs_14420_e func_8029BAF0(void){
             return BS14420_D_WONDERWING;
         }
         if (player_inWater()) {
-            switch(func_8028EE84()){
+            switch(player_getWaterState()){
                 case BSWATERGROUP_2_UNDERWATER:
                     return BS14420_5_UNDERWATER;
                 case BSWATERGROUP_1_SURFACE: 
@@ -721,9 +721,9 @@ void func_8029C674(void) {
     f32 sp1C[3];
 
     D_8037D1E8 = FALSE;
-    if (func_80298850() == 4) {
+    if (func_80298850() == BSGROUP_4_LOOK) {
         D_8037D1E8 = TRUE;
-        miscflag_set(0x17);
+        miscflag_set(MISC_FLAG_17_FPV);
         ncDynamicCamera_enterFirstPerson();
         func_8028E9C4(5, sp1C);
         ncFirstPersonCamera_setZoomedOutPosition(sp1C);
@@ -748,12 +748,12 @@ void func_8029C6D0(void) {
 
 void func_8029C748(void) {
     if (D_8037D1E8) {
-        miscflag_clear(0x17);
+        miscflag_clear(MISC_FLAG_17_FPV);
         ncDynamicCamera_exitFirstPerson();
     }
 }
 
-enum bs_e func_8029C780(void){
+enum bs_e bs_getTypeOfJump(void){
     if(button_held(BUTTON_Z) && can_flap_flip())
         return BS_12_BFLIP;
 
@@ -831,7 +831,7 @@ s32 func_8029C9C0(s32 arg0){
         return arg0;
     
     if(button_pressed(BUTTON_A))
-        arg0 = func_8029C780();
+        arg0 = bs_getTypeOfJump();
 
     if(button_pressed(BUTTON_B) && can_claw())
         arg0 = BS_CLAW;
@@ -839,7 +839,7 @@ s32 func_8029C9C0(s32 arg0){
     if(button_held(BUTTON_Z) && should_beak_barge())
         arg0 = BS_BBARGE;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         arg0 = badrone_look();
     
     if(player_isSliding())

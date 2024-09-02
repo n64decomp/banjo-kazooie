@@ -154,7 +154,7 @@ void bsbarge_update(void){
             func_8029F4F0();
             break;
         case 4:
-            if(!func_8028B2E8())
+            if(!player_isStable())
                 sp24 = BS_2F_FALL;
             if(animctrl_isAt(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;

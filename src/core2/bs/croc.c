@@ -121,7 +121,7 @@ void bscroc_idle_update(void){
     if(func_8028B094())
         next_state = BS_61_CROC_FALL;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8029B300() > 0)
@@ -235,7 +235,7 @@ void bscroc_jump_update(void){
             break;
         case 2:
             func_80299628(0);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029AE48();
                 baanim_setEndAndDuration(1.0f, 1.0f);
                 D_8037D3EC = 3;
@@ -250,7 +250,7 @@ void bscroc_jump_update(void){
             break;
     }//L802AC66C
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(func_8029B300() > 0)
             sp2C = BS_CROC_WALK;
         
@@ -300,7 +300,7 @@ void bscroc_fall_update(void){
             }
             break;
         case 1:
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029AE48();
                 baphysics_set_target_horizontal_velocity(0.0f);
                 baanim_setEndAndDuration(1.0f, 1.0f);
@@ -310,7 +310,7 @@ void bscroc_fall_update(void){
             break;
     }//L802AC850
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(func_8029B300() > 0 || (D_8037D3EC == 2 && animctrl_isStopped(aCtrl))){
             if(miscflag_isTrue(0x19)){
                 next_state = badrone_transform();
@@ -376,7 +376,7 @@ static void __bscroc_recoil_update(void){
         case 1:
             break;
     }
-    if(func_8028B2E8())
+    if(player_isStable())
         next_state = BS_5E_CROC_IDLE;
 
     bs_setState(next_state);
@@ -458,7 +458,7 @@ void bscroc_die_update(void){
     func_80299628(0);
     switch(D_8037D3EC){
         case 0:
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 baanim_setEnd(0.7453f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
@@ -467,7 +467,7 @@ void bscroc_die_update(void){
             }
             break;
         case 1:
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
@@ -505,7 +505,7 @@ int bscroc_hitboxActive(void){
 static void func_802ACF58(void){
     f32 sp2C;
     f32 sp20[3];
-    sp2C = func_8028B2E8() ? 500.0f : 400.0f;
+    sp2C = player_isStable() ? 500.0f : 400.0f;
     func_802589E4(sp20, yaw_get(), sp2C);
     sp20[1] = 200.0f;
     baphysics_set_velocity(sp20);
@@ -549,7 +549,7 @@ void bscroc_bite_update(void){
             next_state = BS_CROC_WALK;
     }
 
-    if(func_8028B2E8() && button_pressed(BUTTON_A))
+    if(player_isStable() && button_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
 
     bs_setState(next_state);

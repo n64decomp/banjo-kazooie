@@ -25,7 +25,7 @@ u8 D_8037D347;
 
 /* .code */
 int func_802A3350(void){
-    if(!func_8028B2E8()) 
+    if(!player_isStable()) 
         return 0;
     if(func_80294684() & 8){
         return 0;
@@ -389,7 +389,7 @@ void func_802A411C(void) {
     case 1:
         func_802A36D0();
         D_8037D324 += time_getDelta();
-        sp40 = func_8028B2E8();
+        sp40 = player_isStable();
         if (player_inWater()) {
             next_state = BS_4C_LANDING_IN_WATER;
         }
@@ -495,7 +495,7 @@ void func_802A4548(void){
     if(should_beak_bust())
         next_state = BS_F_BBUSTER;
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         func_8029C5E8();
         next_state = BS_20_LANDING;
     }
@@ -665,7 +665,7 @@ void func_802A4C34(s32 arg0) {
     if (animctrl_isStopped(baanim_getAnimCtrlPtr())) {
         next_state = BS_24_FLY;
     }
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         next_state = BS_2_WALK_SLOW;
     }
     bs_setState(next_state);
@@ -738,7 +738,7 @@ void func_802A4EC8(void) {
 
     next_state = 0;
     sp18 = baanim_getAnimCtrlPtr();
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         next_state = BS_20_LANDING;
     }
     if (animctrl_isStopped(sp18) && (func_8028B094() || func_80294530())) {

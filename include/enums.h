@@ -4640,7 +4640,7 @@ enum common_particle_e{
 
 enum bsgroup_e {
     BSGROUP_3_WONDERWING = 0x3,
-
+    BSGROUP_4_LOOK = 0x4,
     BSGROUP_5_CLIMB = 0x5,
     BSGROUP_6_TURBO_TALON_TRAINERS,
     BSGROUP_7_CROC_ATTACK,
@@ -4673,8 +4673,15 @@ enum misc_flag_e{
     //0x13 in difficult terrain (mud)
     MISC_FLAG_14_LOSE_BOGGY_RACE = 0x14,
     //0x15 touching loadzone?
-
+    MISC_FLAG_17_FPV = 0x17,
     MISC_FLAG_1B_TRANSFORMING = 0x1B
+};
+
+enum nc_first_person_state{
+    FIRSTPERSON_STATE_1_ENTER = 1,
+    FIRSTPERSON_STATE_2_IDLE,
+    FIRSTPERSON_STATE_3_EXIT,
+    FIRSTPERSON_STATE_4_DONE
 };
 
 #endif

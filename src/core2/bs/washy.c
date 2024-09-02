@@ -58,15 +58,15 @@ void func_802B9B14(void){
 
     switch(D_8037D5D0){
         case 0: // L802B9B48
-            if(func_8028B2E8())
+            if(player_isStable())
                 func_802B9980(1);
             break;
         case 1: // L802B9B68
-            if(func_8028B2E8())
+            if(player_isStable())
                 func_802B9980(2);
             break;
         case 2: // L802B9B88
-            if(func_8028B2E8())
+            if(player_isStable())
                 func_802B9980(3);
             break;
         case 3: // L802B9BA8

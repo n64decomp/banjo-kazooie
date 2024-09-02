@@ -135,7 +135,7 @@ void bsbbuster_update(void){
             if(D_8037D2B7 == 2){
                 D_8037D2B7 = 0;
             }
-            if(func_8028B2E8() || D_8037D2B9 || !(D_8037D2BC < 4)){
+            if(player_isStable() || D_8037D2B9 || !(D_8037D2BC < 4)){
                 func_802BB3DC( 0, 45.0f, 0.71f);
                 func_8029AE74(0);
                 func_8029FB30();
@@ -183,7 +183,7 @@ void bsbbuster_update(void){
                 animctrl_setDuration(aCtrl, 15.0f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             }
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.9f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);

@@ -282,8 +282,8 @@ void func_803465E4(void){
 
     if(!func_8028EC04() && func_8028F070()){
         if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(5)){
-            is_underwater = (func_8028EE84() == BSWATERGROUP_2_UNDERWATER);
-            is_on_water_surface = (func_8028EE84() == BSWATERGROUP_1_SURFACE);
+            is_underwater = (player_getWaterState() == BSWATERGROUP_2_UNDERWATER);
+            is_on_water_surface = (player_getWaterState() == BSWATERGROUP_1_SURFACE);
             is_in_polluted_or_winter_water = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (map_get() == MAP_46_CCW_WINTER));
             if( is_in_polluted_or_winter_water && (is_underwater || is_on_water_surface)){ //L803467EC
                 D_80385FEC = 2.0f;

@@ -247,7 +247,7 @@ void chBeeSwarm_802CF434(Actor *this) {
 void chBeeSwarm_802CF518(Actor *this) {
     if( func_803292E0(this) 
         && func_80329530(this, 900) 
-        && func_8028EE84() == BSWATERGROUP_0_NONE 
+        && player_getWaterState() == BSWATERGROUP_0_NONE 
         && player_getTransformation() != TRANSFORM_6_BEE
     ) {
         subaddie_set_state(this, 3);
@@ -258,7 +258,7 @@ void chBeeSwarm_802CF57C(Actor *this) {
     ActorLocal_core2_47BD0 *local;
 
     local = (ActorLocal_core2_47BD0 *) &this->local;
-    if (!func_803292E0(this) || !func_80329530(this, 900) || func_8028EE84() != BSWATERGROUP_0_NONE) {
+    if (!func_803292E0(this) || !func_80329530(this, 900) || player_getWaterState() != BSWATERGROUP_0_NONE) {
         subaddie_set_state(this, 5);
         func_802CEF54(this, local->unkC, 100.0f);
     }

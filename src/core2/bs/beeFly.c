@@ -253,7 +253,7 @@ void bsbeefly_update(void){
         sp38 += (f64)sp38;
     }
     baphysics_set_target_horizontal_velocity(sp38);
-    if(func_8028B2E8() && !player_inWater())
+    if(player_isStable() && !player_inWater())
         sp4C = BS_85_BEE_IDLE;
     func_8028FFF0();
     bs_setState(sp4C);

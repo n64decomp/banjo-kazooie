@@ -6,14 +6,6 @@
 extern void func_802BD780(f32[3], f32[3], f32, f32, f32, f32);
 extern f32 func_80257CF8(f32, f32, f32, f32, f32);
 
-
-enum nc_first_person_state{
-    FIRSTPERSON_STATE_1_ENTER = 1,
-    FIRSTPERSON_STATE_2_IDLE,
-    FIRSTPERSON_STATE_3_EXIT,
-    FIRSTPERSON_STATE_4_DONE,
-};
-
 void ncFirstPersonCamera_setState(enum nc_first_person_state state);
 
 /* .bss */
@@ -42,7 +34,7 @@ void __ncFirstPersonCamera_getPositionAndRotation_entering(f32 arg0[3], f32 arg1
         D_8037DC60.rotation[i] = mlNormalizeAngle(D_8037DC60.zoomed_out_rotation[i] + func_80257CF8(D_8037DC60.transistion_timer, 0.5f, 0.0f, 0.0f, mlDiffDegF(D_8037DC60.zoomed_in_rotation[i], D_8037DC60.zoomed_out_rotation[i])));
     }
     if (D_8037DC60.transistion_timer == 0.0f) {
-        ncFirstPersonCamera_setState(2);
+        ncFirstPersonCamera_setState(FIRSTPERSON_STATE_2_IDLE);
     }
     if (__ncFirstPersonCamera_fullyZoomedIn() && func_8028F150()) {
         func_8028FCC8(0);
@@ -61,7 +53,7 @@ void __ncFirstPersonCamera_getPositionAndRotation_exiting(f32 arg0[3], f32 arg1[
         D_8037DC60.rotation[i] = mlNormalizeAngle(D_8037DC60.zoomed_in_rotation[i] + func_80257CF8(D_8037DC60.transistion_timer, 1.0f, 0.5f, 0.0f, mlDiffDegF(arg1[i], D_8037DC60.zoomed_in_rotation[i])));
     }
     if (D_8037DC60.transistion_timer == 0.0f) {
-        ncFirstPersonCamera_setState(4);
+        ncFirstPersonCamera_setState(FIRSTPERSON_STATE_4_DONE);
     }
     if (!__ncFirstPersonCamera_fullyZoomedIn() && !func_8028F150()) {
         func_8028FCC8(1);

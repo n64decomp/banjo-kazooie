@@ -107,15 +107,15 @@ s32 can_wonderwing(void){
     return ability_hasLearned(ABILITY_12_WONDERWING);
 }
 
-int func_8028ACD8(void){
+int can_view_first_person(void){
     if( map_get() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
         return 0;
     }
 
-    if(ncFirstPersonCamera_getState() == 3)
+    if(ncFirstPersonCamera_getState() == FIRSTPERSON_STATE_3_EXIT)
         return 0;
 
-    if(!func_8028B2E8() && !player_inWater())
+    if(!player_isStable() && !player_inWater())
         return 0;
     return 1;
 }
@@ -205,10 +205,10 @@ int player_shouldSlideTrot(void){
 }
 
 bool func_8028B254(s32 arg0) {
-    return (func_8028B2E8() || (baphysics_get_vertical_velocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
+    return (player_isStable() || (baphysics_get_vertical_velocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
 }
 
-int func_8028B2E8(void){
+int player_isStable(void){
     return D_8037BF60 && baphysics_get_vertical_velocity() < 0.0f;
 }
 
@@ -232,10 +232,10 @@ bool func_8028B3B4(void) {
     return FALSE;
 }
 
-bool func_8028B424(void){
+bool player_isFallTumbling(void){
     s32 sp1C;
 
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         return FALSE;
     }
     if (!bafalldamage_get_damage(&sp1C)) {
@@ -280,7 +280,7 @@ void func_8028B534(void){
         D_8037BF62 = 1;
     }
     else{
-        if(func_8028B2E8() || sp1C == BSGROUP_A_FLYING || sp1C == BSGROUP_5_CLIMB){
+        if(player_isStable() || sp1C == BSGROUP_A_FLYING || sp1C == BSGROUP_5_CLIMB){
             D_8037BF62 = 0;
         }
     }

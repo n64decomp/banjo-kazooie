@@ -446,7 +446,7 @@ void func_802CCC5C(Actor *this) {
                     && !func_8028F25C()
                     && (sp58 > 800.0f) 
                     && (this->marker->unk14_21) 
-                    && (func_8028EE84() != BSWATERGROUP_2_UNDERWATER) 
+                    && (player_getWaterState() != BSWATERGROUP_2_UNDERWATER) 
                     && func_802CC57C(this, sp8C)
                 ) {
                     sp8C[0] = 0.0f;
@@ -463,7 +463,7 @@ void func_802CCC5C(Actor *this) {
                 spBC = 1;
             }
             if (this->state == 3) {
-                if (func_8028F25C() || (func_8028EE84() == BSWATERGROUP_2_UNDERWATER)) {
+                if (func_8028F25C() || (player_getWaterState() == BSWATERGROUP_2_UNDERWATER)) {
                     func_802CC640(this, 4);
                 } else {
                     if (local->unk3A == 0) {
