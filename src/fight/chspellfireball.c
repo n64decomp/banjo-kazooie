@@ -214,7 +214,7 @@ void func_8038F084(ActorMarker *marker){
             chbossjinjo_spawnParticles(actor, 0x712, ASSET_6C3_SPRITE_SMOKE_GREEN, 1.6f);
         }
         local->unk0 = 0.66f;
-        func_80328A84(actor, 2);
+        subaddie_set_state(actor, 2);
     }//L8038F39C
 }
 
