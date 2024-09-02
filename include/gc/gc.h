@@ -3,6 +3,5 @@
 
 #include "gc/gcbound.h"
 #include "gc/gctransition.h"
-#include "gc/gczoombox.h"
 
 #endif
