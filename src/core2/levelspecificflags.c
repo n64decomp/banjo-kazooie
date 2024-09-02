@@ -105,4 +105,3 @@ s32 levelSpecificFlags_validateCRC1(void) {
 s32 levelSpecificFlags_validateCRC2(void){
     return _levelSpecificFlags_calcCRC2() == *(u32 *)((s32)&D_80383320.unk4 ^ 0x7EDDF5F4 ^ 0x7BEF9D80 ^ 0x5326874);
 }
-
