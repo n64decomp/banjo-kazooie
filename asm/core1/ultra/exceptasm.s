@@ -741,4 +741,3 @@ glabel osMapTLBRdb
 /* F4647C 8026AC4C 00000000 */  nop
 endlabel osMapTLBRdb
 .size osMapTLBRdb, . - osMapTLBRdb
-
