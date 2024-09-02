@@ -15,4 +15,3 @@ ABS(osAppNMIBuffer, 0x8000031c)
 
 .space 0x60
 /* padded to 0x60 in the object file */
-
