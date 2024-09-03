@@ -56,7 +56,7 @@ void func_8030EDAC(f32, f32);
 
 /* .bss */
 struct46s D_80382470[10];
-Sfxsource D_803824C0[35];
+Sfxsource sfxsources[35];
 f32 D_80382E0C;
 f32 D_80382E10;
 
@@ -103,11 +103,11 @@ int sfxsource_isFlagCleared(Sfxsource *arg0, s32 arg1){
 void sfxsource_initAll(void){
     int i;
     for(i = 0; i < 35; i++)
-        D_803824C0[i].busy = FALSE;
+        sfxsources[i].busy = FALSE;
 }
 
 Sfxsource *sfxsource_at(u8 indx){
-    return D_803824C0 + indx;
+    return sfxsources + indx;
 }
 
 struct46s *func_8030C8DC(s32 indx){
@@ -121,8 +121,8 @@ Struct81s *func_8030C8F4(s32 indx){
 u8 sfxsource_getNewIndex(void){
     int i;
     for(i = 1; i < 35; i++){
-        if(!D_803824C0[i].busy){
-            D_803824C0[i].busy = TRUE;
+        if(!sfxsources[i].busy){
+            sfxsources[i].busy = TRUE;
             return i;
         }
     }
@@ -159,7 +159,7 @@ void sfxsource_free(u8 indx){
         func_8030C9F4(ptr->unk40);
         ptr->unk40 = 0;
     }
-    D_803824C0[indx].busy = FALSE;
+    sfxsources[indx].busy = FALSE;
 }
 
 void func_8030CBD0(Sfxsource *arg0){
@@ -411,7 +411,7 @@ bool func_8030D5CC(u8 indx){
 void func_8030D644(void){
     int i;
     for(i = 1; i < 35; i++){
-        if(D_803824C0[i].busy){
+        if(sfxsources[i].busy){
             func_8030D310(i);
             if(func_8030D5CC(i))
                 sfxsource_free(i);
@@ -442,14 +442,14 @@ void func_8030D778(void){
     int i;
     int temp_s1;
     for(i = 1; i < 35; i++){
-        if(D_803824C0[i].busy)
+        if(sfxsources[i].busy)
             func_8030DA44(i);
     }
     do{
         temp_s1 = 0;
         func_8030D644();
         for(i = 1; i < 35; i++){
-            if(D_803824C0[i].busy)
+            if(sfxsources[i].busy)
                 temp_s1++;
         }
     }while(temp_s1);
