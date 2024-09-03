@@ -849,12 +849,12 @@ void func_8030E4E4(enum sfx_e uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 0);
 }
 
-void func_8030E510(enum sfx_e uid, s32 arg1){
-    func_8030D6C4(uid, 1.0f, arg1, 0, 2);
+void sfxsource_play(enum sfx_e uid, s32 sample_rate){
+    func_8030D6C4(uid, 1.0f, sample_rate, 0, 2);
 }
 
 void func_8030E540(enum sfx_e uid){
-    func_8030E510(uid, 0x7ff8);
+    sfxsource_play(uid, 0x7ff8);
 }
 
 void func_8030E560(enum sfx_e uid, s32 arg1){

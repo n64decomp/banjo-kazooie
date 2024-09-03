@@ -341,10 +341,10 @@ void func_802C4C14(Actor *this){
             switch(sp84){
                 case 0://L802C4D8C
                     if(actor_animationIsAt(this, 0.1f))
-                        func_8030E510(SFX_5D_BANJO_RAAOWW, 8000);
+                        sfxsource_play(SFX_5D_BANJO_RAAOWW, 8000);
 
                     if(actor_animationIsAt(this, 0.7f))
-                        func_8030E510(SFX_5E_BANJO_PHEWWW, 8000);
+                        sfxsource_play(SFX_5E_BANJO_PHEWWW, 8000);
                     break;
                 case 1://L802C4DD0
                     if(randf() < 0.1){
@@ -364,7 +364,7 @@ void func_802C4C14(Actor *this){
             switch(this->state){
                 case 1://L802C4F10
                     if(sp84 == 1){
-                        func_8030E510(SFX_136_GAMEBOY_STARTUP, 15000);
+                        sfxsource_play(SFX_136_GAMEBOY_STARTUP, 15000);
                         timedFunc_set_3(0.25f, (GenFunction_3)comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
                         func_8025A58C(0, 2000);
                     }
@@ -441,20 +441,20 @@ void func_802C4C14(Actor *this){
                             if(randf() < 0.1){
                                 switch(sp84){
                                     case 0://L802C52B8
-                                        func_8030E510(SFX_31_BANJO_OHHWAAOOO, 28000);
+                                        sfxsource_play(SFX_31_BANJO_OHHWAAOOO, 28000);
                                         func_8030E540(SFX_135_CARTOONY_SPRING);
-                                        timedFunc_set_2(0.4f, (GenFunction_2)func_8030E510, SFX_13A_GLASS_BREAKING_7, 0x7fff);
-                                        timedFunc_set_2(0.9f, (GenFunction_2)func_8030E510, SFX_150_PORCELAIN_CRASH, 0x7fff);
-                                        timedFunc_set_2(1.0f, (GenFunction_2)func_8030E510, SFX_151_CAT_MEOW, 0x7fff);
+                                        timedFunc_set_2(0.4f, (GenFunction_2)sfxsource_play, SFX_13A_GLASS_BREAKING_7, 0x7fff);
+                                        timedFunc_set_2(0.9f, (GenFunction_2)sfxsource_play, SFX_150_PORCELAIN_CRASH, 0x7fff);
+                                        timedFunc_set_2(1.0f, (GenFunction_2)sfxsource_play, SFX_151_CAT_MEOW, 0x7fff);
                                         break;
                                     case 1://L802C5320
-                                        timedFunc_set_2(0.4f, (GenFunction_2)func_8030E510, SFX_31_BANJO_OHHWAAOOO, 28000);
-                                        timedFunc_set_2(0.2f, (GenFunction_2)func_8030E510, SFX_E_SHOCKSPRING_BOING, 28000);
+                                        timedFunc_set_2(0.4f, (GenFunction_2)sfxsource_play, SFX_31_BANJO_OHHWAAOOO, 28000);
+                                        timedFunc_set_2(0.2f, (GenFunction_2)sfxsource_play, SFX_E_SHOCKSPRING_BOING, 28000);
                                         func_8030E540(SFX_2D_KABOING);
                                         break;
                                     case 2://L802C5364
-                                        timedFunc_set_2(0.15f, (GenFunction_2)func_8030E510, SFX_32_BANJO_EGHEE, 28000);
-                                        func_8030E510(SFX_3F6_UNKNOWN, 28000);
+                                        timedFunc_set_2(0.15f, (GenFunction_2)sfxsource_play, SFX_32_BANJO_EGHEE, 28000);
+                                        sfxsource_play(SFX_3F6_UNKNOWN, 28000);
                                         func_8030E540(SFX_8F_SNOWBALL_FLYING);
                                         break;
                                 }//L802C5394
@@ -466,7 +466,7 @@ void func_802C4C14(Actor *this){
                                 subaddie_set_state(this, 3);
                             }
                         }else{//L802C53D0
-                            func_8030E510(SFX_4F_BANJO_WAHOO, 28000);
+                            sfxsource_play(SFX_4F_BANJO_WAHOO, 28000);
                             subaddie_set_state(this, 3);
                         }//L802C53E8
                         if(sp84 == 0)

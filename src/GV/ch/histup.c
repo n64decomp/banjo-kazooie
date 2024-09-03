@@ -216,7 +216,7 @@ void func_8038DBDC(Actor *this){
             }
             else{ 
                 if(actor_animationIsAt(this, 0.42f))
-                    func_8030E510(SFX_7C_CHEBOOF, 32000);
+                    sfxsource_play(SFX_7C_CHEBOOF, 32000);
                 tmp = this->unk44_31;
                 if(tmp && func_8030E3FC(tmp)){
                     if(1.0 < this->unk1C[1]){
