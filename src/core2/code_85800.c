@@ -898,55 +898,56 @@ void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 0);
 }
 
-void func_8030E78C(enum sfx_e uid, f32 arg1, u32 arg2, f32 position[3], f32 arg4, f32 arg5, s32 arg6){
-    u8 s0;
+void sfx_play(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance, s32 arg6){
+    u8 sfxsource;
     f32 plyr_pos[3];
     
     __sfx_getPlayerPositionIfPresent(plyr_pos);
-    if( !(arg5 <= ml_distance_vec3f(plyr_pos, position))
+    if( !(maxFadeDistance <= ml_distance_vec3f(plyr_pos, position))
         && levelSpecificFlags_validateCRC2()
         && func_80320240()
     ){
-        s0 = func_8030D90C();
-        if(s0){
-            func_8030DD90(s0, arg6);
-            sfxsource_setSfxId(s0, uid);
-            sfxsource_setSampleRate(s0, arg2);
-            func_8030DBB4(s0, arg1);
-            sfxsource_set_fade_distances(s0, arg4, arg5);
-            sfxsource_set_position(s0, position);
-            func_8030DD14(s0, 1);
-            func_8030E2C4(s0);
+        sfxsource = func_8030D90C();
+        if(sfxsource){
+            func_8030DD90(sfxsource, arg6); // priority ?
+            sfxsource_setSfxId(sfxsource, uid);
+            sfxsource_setSampleRate(sfxsource, sampleRate);
+            func_8030DBB4(sfxsource, arg1); // volume ?
+            sfxsource_set_fade_distances(sfxsource, minFadeDistance, maxFadeDistance);
+            sfxsource_set_position(sfxsource, position);
+            func_8030DD14(sfxsource, 1);
+            func_8030E2C4(sfxsource);
         }
     }
 }
 
-void func_8030E878(enum sfx_e id, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
-    func_8030E78C(id, arg1, arg2, arg3, arg4, arg5, 2);
+void func_8030E878(enum sfx_e id, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(id, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 2);
 }
 
-void func_8030E8B4(u32 arg0, f32 arg1[3], u32 arg2){
-    func_8030E78C(
+// fadeDistance is a 32-bit value where the lower 16 bits represent minFadeDistance and the upper 16 bits represent maxFadeDistance.
+void func_8030E8B4(u32 arg0, f32 position[3], u32 fadeDistance){
+    sfx_play(
         (arg0 & 0x7ff), (f32)((arg0 >> 0x15) & 0x7ff)/1023.0, ((arg0 >> 0x6) & 0x7fe0),
-        arg1, (f32)(arg2 & 0xffff), (f32)((arg2 >> 0x10) & 0xffff),
+        position, (f32)(fadeDistance & 0xffff), (f32)((fadeDistance >> 0x10) & 0xffff),
         2
     );
 }
 
-void func_8030E988(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
-    func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 1);
+void func_8030E988(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 1);
 }
 
-void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 arg2, f32 arg3[3], f32 arg4, f32 arg5){
-    func_8030E78C(uid, arg1, arg2, arg3, arg4, arg5, 0);
+void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 0);
 }
 
-void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6){
-    func_8030E78C(uid, sfx_randf2(arg1, arg2), arg3, arg4, arg5, arg6, 2);
+void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, sfx_randf2(arg1, arg2), sampleRate, position, minFadeDistance, maxFadeDistance, 2);
 }
 
-void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6){
-    func_8030E78C(uid, sfx_randf2(arg1, arg2), arg3, arg4, arg5, arg6, 1);
+void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, sfx_randf2(arg1, arg2), sampleRate, position, minFadeDistance, maxFadeDistance, 1);
 }
 
 void func_8030EAAC(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3){
