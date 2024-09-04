@@ -124,7 +124,7 @@ void chMumbo_func_802D18B4(Actor *this) {
         player_is_within_range = chMumbo_withinHorzDistToPlayer(0, -107, 188);
     }
     if(player_is_within_range || func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
-        func_80328AC8(this, 2);
+        subaddie_set_state_forward(this, 2);
         if( !fileProgressFlag_get(FILEPROG_11_HAS_MET_MUMBO)
             || (!fileProgressFlag_get(FILEPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE) && this->unk38_0)
         ) {
@@ -163,10 +163,10 @@ static void __chMumbo_textCallback(ActorMarker *caller, enum asset_e text_id, s3
             this->unk138_24 = FALSE;
             if(this->unk38_31 != 0){
                 func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
                 this->unk38_31 = 0;
             }
-            func_80328B8C(this, 5, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             return;
 
         case ASSET_DB0_DIALOG_MUMBO_MISTAKE_0: //L802D1AF8
@@ -176,18 +176,18 @@ static void __chMumbo_textCallback(ActorMarker *caller, enum asset_e text_id, s3
             this->unk10_12 = 1;
             if(this->unk38_31){
                 func_8025A6EC(COMUSIC_2B_DING_B, 28000);
-                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
             }
             
         case ASSET_DAE_DIALOG_MUMBO_TREX_START: //L802D1B48
-            func_80328B8C(this, 5, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             return;
 
         default: //L802D1B64
             gcpausemenu_80314AC8(1);
             break;
     }
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
 }
 
 void chMumbo_func_802D1B8C(Actor *this, enum transformation_e transform_id) {
@@ -206,7 +206,7 @@ void chMumbo_func_802D1B8C(Actor *this, enum transformation_e transform_id) {
             return;
         }
         gcpausemenu_80314AC8(1);
-        func_80328A84(this, 4U);
+        subaddie_set_state(this, 4U);
         return;
     }
     func_80311480(ASSET_D90_DIALOG_MUMBO_MAGIC_PAID_FOR, 0xE, this->position, this->marker, __chMumbo_textCallback, NULL);
@@ -224,7 +224,7 @@ void chMumbo_update(Actor *this) {
     if( !func_803203FC(1)
         && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
         && map_get() != MAP_7A_GL_CRYPT) {
-        func_803463D4(ITEM_1C_MUMBO_TOKEN, 0);
+        item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, 0);
     }
     if(!this->initialized){
         this->initialized = TRUE;
@@ -232,10 +232,10 @@ void chMumbo_update(Actor *this) {
         this->unk60 = 0.0f;
         if (chMumbo_func_802D181C(0x201)) {
             this->unk60 = 1.0f;
-            func_80328A84(this, 7U);
+            subaddie_set_state(this, 7U);
         } else if (chMumbo_func_802D181C(0x202)) {
             this->unk60 = 2.0f;
-            func_80328A84(this, 8U);
+            subaddie_set_state(this, 8U);
         }
     }
 
@@ -281,7 +281,7 @@ void chMumbo_update(Actor *this) {
                     && !func_803203FC(1) 
                     && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
                 ) {
-                    func_80328A84(this, 3);
+                    subaddie_set_state(this, 3);
                     func_80311480(ASSET_D8F_DIALOG_MUMBO_MEET, 0xE, this->position, this->marker, __chMumbo_textCallback, NULL);
                     fileProgressFlag_set(FILEPROG_11_HAS_MET_MUMBO, TRUE);
                     break;
@@ -292,13 +292,13 @@ void chMumbo_update(Actor *this) {
                     && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
                     && this->unk38_0
                 ){
-                    func_80328A84(this, 3);
+                    subaddie_set_state(this, 3);
                     func_80311480(ASSET_DAA_DIALOG_MUMBO_HAS_ENOUGH_TOKENS, 0xE, this->position, this->marker, __chMumbo_textCallback, NULL);
                     fileProgressFlag_set(FILEPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE, TRUE);
                     break;
                 }
 
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
             }
             break;
 
@@ -334,7 +334,7 @@ void chMumbo_update(Actor *this) {
                             func_80311480(ASSET_DAE_DIALOG_MUMBO_TREX_START, 6, NULL, this->marker, __chMumbo_textCallback, NULL);
                             fileProgressFlag_set(FILEPROG_BA_HAS_SEEN_TREX_TEXT, 1);
                             this->unk138_24 = TRUE;
-                            func_80328A84(this, 3);
+                            subaddie_set_state(this, 3);
                         } else if (
                             sp44 
                             && map_get() != MAP_7A_GL_CRYPT  
@@ -347,13 +347,13 @@ void chMumbo_update(Actor *this) {
                             this->unk10_12 = D_8037DDF0;
                             D_8037DDF0 = 7;
                             fileProgressFlag_setN(FILEPROG_BB_MUMBO_MISTAKE_INDEX, ++sp40, 2);
-                            func_80328A84(this, 5);
+                            subaddie_set_state(this, 5);
                         } else {
                             if (this->unk38_31) {
                                 func_8025A6EC(SFX_2B_BULL_MOO_1, 28000);
-                                func_803463D4(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
+                                item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
                             }
-                            func_80328A84(this, 5);
+                            subaddie_set_state(this, 5);
                         }
                         gcpausemenu_80314AC8(0);
 
@@ -412,17 +412,17 @@ void chMumbo_update(Actor *this) {
                 }
                 func_8025A7DC(COMUSIC_1D_MUMBO_TRANSFORMATION);
                 if (player_getTransformation() != TRANSFORM_1_BANJO) {
-                    func_80328A84(this, 3);
+                    subaddie_set_state(this, 3);
                     chMumbo_func_802D1B8C(this, D_8037DDF0);
                     break;
                 }
                 if (this->unk138_24) {
-                    func_80328A84(this, 3);
+                    subaddie_set_state(this, 3);
                     func_80311480(ASSET_DAF_DIALOG_MUMBO_TREX_MISTAKE, 6, NULL, this->marker, __chMumbo_textCallback, NULL);
                     break;
                 }
                 gcpausemenu_80314AC8(1);
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
             }
             break;
 
@@ -460,7 +460,7 @@ void chMumbo_update(Actor *this) {
                 if (randf() < 0.4) {
                     temp_f12 = (randf() - 0.5) * 0.95300000000000007 * 2;
                     this->unk1C[0] = temp_f12 + ((temp_f12 >= 0.0f) ? 0.476 : -0.476);
-                    func_80328AEC(this, 9);
+                    subaddie_set_state_looped(this, 9);
                     break;
                 }
                 if (0.6 < randf()) {
@@ -471,7 +471,7 @@ void chMumbo_update(Actor *this) {
         case 9: //L802D2920
             this->yaw += this->unk1C[0];
             if (actor_animationIsAt(this, 0.99f)) {
-                func_80328AEC(this, 8);
+                subaddie_set_state_looped(this, 8);
             }
             break;
     }

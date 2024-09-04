@@ -163,7 +163,7 @@ BKVertexList *vtxList_clone(BKVertexList *vtxList){
     
     list_size = sizeof(BKVertexList) + vtxList->count*sizeof(Vtx);
     out_v0 = (BKVertexList *) malloc(list_size);
-    func_80254630(out_v0, vtxList, list_size);
+    wmemcpy(out_v0, vtxList, list_size);
     return out_v0;
 }
 
@@ -215,7 +215,7 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 rotati
     f32 temp_f0;
     s32 pad40;
 
-    viewport_getPosition(sp74);
+    viewport_get_position_vec3f(sp74);
     func_8024C5A8(sp68);
     mlMtxIdent();
     func_80252CC4(arg2, rotation, 1.0f, NULL);

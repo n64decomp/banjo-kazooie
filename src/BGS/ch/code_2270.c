@@ -38,7 +38,7 @@ void BGS_func_80388660(ActorMarker *this){
 }
 
 void BGS_func_8038868C(void){
-    jiggySpawn(JIGGY_27_BGS_TIPTUP, D_80390868);
+    jiggy_spawn(JIGGY_27_BGS_TIPTUP, D_80390868);
 }
 
 void func_803886B4(ActorMarker *this, s32 arg1){

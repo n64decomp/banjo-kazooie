@@ -1,23 +1,6 @@
-# banjo (98.6934%)
+# banjo (100.0000%)
 
 <img src="./progress/progress_total.svg">
-
-- <img src="./progress/progress_bk_boot.svg">
-- <img src="./progress/progress_core1.svg">  
-- <img src="./progress/progress_core2.svg">  
-- <img src="./progress/progress_SM.svg">
-- <img src="./progress/progress_MM.svg">
-- <img src="./progress/progress_TTC.svg">
-- <img src="./progress/progress_CC.svg">
-- <img src="./progress/progress_BGS.svg">
-- <img src="./progress/progress_FP.svg">
-- <img src="./progress/progress_GV.svg">
-- <img src="./progress/progress_MMM.svg">
-- <img src="./progress/progress_RBB.svg">
-- <img src="./progress/progress_CCW.svg">
-- <img src="./progress/progress_lair.svg">
-- <img src="./progress/progress_fight.svg">
-- <img src="./progress/progress_cutscenes.svg">
 
 ## Building
 

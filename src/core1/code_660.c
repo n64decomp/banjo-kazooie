@@ -53,7 +53,7 @@ s32 D_80275768 = 6; //dbits
 /* .data */
 extern struct huft D_803FBE00;
 struct huft *D_8027BF00;
-u8 pad_8027BF00[0xC];
+u8 pad_8027BF08[0x8];
 u8 *D_8027BF10; //inbuf
 u8 *D_8027BF14; //slide
 u32 D_8027BF18; //inptr
@@ -65,6 +65,7 @@ u32 D_8027BF2C; //crc1
 u32 D_8027BF30; //crc2
 u32 D_8027BF34; //hufts
 
+static int _rarezip_inflate(u8 * src, u8 * dst, struct huft * arg2);
 
 /* .code */
 s32 rarezip_get_uncompressed_size(u8 *arg0) {

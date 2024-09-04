@@ -114,8 +114,8 @@ void CCW_func_80387A40(Actor *this) {
     if(this->position[0]);
 
     func_8030DBFC(local->unk0, 0.8f, 0.9f, 0.05f);
-    func_8030DEB4(local->unk0, 500.0f, 1500.0f);
-    func_8030DF68(local->unk0, this->position);
+    sfxsource_set_fade_distances(local->unk0, 500.0f, 1500.0f);
+    sfxsource_set_position(local->unk0, this->position);
     func_8030E2C4(local->unk0);
     sfxsource_setSampleRate(local->unk0, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
     if (!mapSpecificFlags_get(local->unk4->unk2)) {

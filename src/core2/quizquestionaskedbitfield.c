@@ -9,7 +9,7 @@ u8* quizQuestionAskedBitfield;
 
 /* .code */
 bool quizQuestionAskedBitfield_get(s32 index){
-    return func_803200A4(quizQuestionAskedBitfield, index);
+    return bitfield_get_bit(quizQuestionAskedBitfield, index);
 }
 
 void quizQuestionAskedBitfield_free(void){
@@ -26,7 +26,7 @@ void quizQuestionAskedBitfield_init(void){
 }
 
 void quizQuestionAskedBitfield_set(s32 index, bool value){
-    func_8032015C(quizQuestionAskedBitfield, index, value);
+    setBitToArray(quizQuestionAskedBitfield, index, value);
 }
 
 void quizQuestionAskedBitfield_defrag(void){

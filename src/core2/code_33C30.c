@@ -29,13 +29,13 @@ bool func_802BAC1C(void) {
 }
 
 void func_802BAC58(void) {
-    f32 sp34[3];
-    f32 sp28[3];
+    f32 vp_position[3];
+    f32 vp_rotation[3];
     f32 sp1C[3];
 
-    viewport_getPosition(sp34);
-    viewport_getRotation(sp28);
-    func_802BEA4C(sp28, sp34, 150.0f, sp1C);
+    viewport_get_position_vec3f(vp_position);
+    viewport_get_rotation_vec3f(vp_rotation);
+    func_802BEA4C(vp_rotation, vp_position, 150.0f, sp1C);
     if (D_8037D810 == NULL) {
         D_8037D810 = func_8032FBE4(sp1C, func_802BABC0, 1, 0x15D);
     }

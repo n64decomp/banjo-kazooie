@@ -17,6 +17,9 @@ s32 D_80386108;
 s32 D_8038610C;
 
 /* .code */
+/**
+ * returns a random float in the range of [0.0, 1.0) 
+ */
 f32 randf(void){
     f32 out;
     if(D_803860E4 & 3){
@@ -38,7 +41,10 @@ f32 randf(void){
     return out;
 }
 
-//only used in some sfx instances;
+/**
+ * returns a random float in the range of [0.0, 1.0).
+ * Is only used in some sfx instances.
+ */
 f32 sfx_rand(void){
     f32 out;
     if(D_803860F0 & 3){
@@ -67,7 +73,10 @@ f32 func_8034A668(void){
     return out;
 }
 
-void func_8034A6B4(void){
+/**
+ * @brief resets all random functions to their default seed
+ */
+void rand_reset(void){
     D_803860E0 = 0x86D;
     D_803860E4 = 0x2c060731;
     D_803860E8 = 0x19f0458b;
@@ -97,7 +106,10 @@ s32 sfx_randi2(s32 min, s32 max){
     return min + sfx_rand()*(max - min);
 }
 
-void func_8034A85C(void){
+/**
+ * @brief calls randf() between 2 to 5 times 
+ */
+void rand_shuffle(void){
     int i;
     int start = randf()*3.0f;
     for(i = 2 + start; i != 0; i--){
@@ -105,14 +117,21 @@ void func_8034A85C(void){
     }
 }
 
-void func_8034A8BC(s32 arg0){
-    func_8034A6B4();
-    for(arg0; arg0 > 0; arg0--){
+/**
+ * @brief seeds rand methods.
+ */
+void rand_seed(s32 seed){
+    rand_reset();
+    for(seed; seed > 0; seed--){
         randf();
     }
 }
 
-void func_8034A900(void){
+/**
+ * @brief syncronizes the internal values of sfx specific rand to those of rand.
+ * 
+ */
+void sfx_rand_sync_to_rand(void){
     D_803860F8 = D_803860E0;
     D_803860FC = D_803860E4;
     D_80386100 = D_803860E8;
@@ -121,7 +140,11 @@ void func_8034A900(void){
     D_8038610C = D_803860F4;
 }
 
-void func_8034A964(void){
+/**
+ * @brief syncronizes the internal values of rand to those of sfx specific rand.
+ * 
+ */
+void rand_sync_to_sfx_rand(void){
     D_803860E0 = D_803860F8;
     D_803860E4 = D_803860FC;
     D_803860E8 = D_80386100;

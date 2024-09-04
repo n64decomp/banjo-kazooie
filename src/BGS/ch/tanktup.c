@@ -47,7 +47,7 @@ void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
     sp18[1] += 50.0f;
 
     leg = func_8032813C(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
-    func_80328B8C(leg, arg1 + 1, 0, -1);
+    subaddie_set_state_with_direction(leg, arg1 + 1, 0, -1);
     leg->unk10_12 = leg_id;
 }
 
@@ -148,7 +148,7 @@ void func_8038F6A4(Actor *this)
     }
       if (local->unk10)
     {
-      func_80328B8C(this, 2, 0.0f, -1);
+      subaddie_set_state_with_direction(this, 2, 0.0f, -1);
       local->unk10 = 0;
       sp44 = 0;
         if(&sp44);
@@ -182,11 +182,11 @@ void func_8038F6A4(Actor *this)
     {
       if (!local->unk14)
       {
-        func_80328B8C(this, 1, 0.0f, -1);
+        subaddie_set_state_with_direction(this, 1, 0.0f, -1);
       }
       else
       {
-        func_80328B8C(this, 3, 0.0f, -1);
+        subaddie_set_state_with_direction(this, 3, 0.0f, -1);
         actor_playAnimationOnce(this);
       }
     }
@@ -207,7 +207,7 @@ void func_8038F6A4(Actor *this)
       func_8034A174(this->marker->unk44, 6, sp34);
       func_802C8F70(this->yaw);
       sp34[1] -= 125.0f;
-      jiggySpawn(JIGGY_26_BGS_TANKTUP, sp34);
+      jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);
     }
       if (actor_animationIsAt(this, 0.9f) != 0)
     {

@@ -3,8 +3,9 @@
 #include "variables.h"
 
 #include "core2/ba/model.h"
-#include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
+#include "core2/statetimer.h"
 
 /* .data */
 f32 D_80364A90 = 30.0f;
@@ -42,7 +43,7 @@ void func_802A880C(s32 arg0){
 void func_802A8850(void){
     if( button_pressed(BUTTON_B) 
         && stateTimer_isActive(STATE_TIMER_3_TURBO_TALON)
-        && func_80297A64() == 0.0f
+        && baphysics_get_target_horizontal_velocity() == 0.0f
     ){
         stateTimer_clear(STATE_TIMER_3_TURBO_TALON);
     }
@@ -90,10 +91,10 @@ f32 func_802A8984(void){
 void func_802A89D4(void){
     f32 sp24 = func_8029B30C();
     if(!func_8029B300()){
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
-        func_80297970(ml_interpolate_f(sp24, func_802A8900(), func_802A88B0()));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp24, func_802A8900(), func_802A88B0()));
     }
 
 }
@@ -190,7 +191,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
         arg0 = BS_16_BTROT_WALK;
 
     if(func_80294F78())
-        arg0 = func_802926C0();
+        arg0 = badrone_look();
 
     if(func_8028B094())
         arg0 = BS_71_BTROT_FALL;
@@ -213,8 +214,8 @@ enum bs_e func_802A8D84(enum bs_e arg0){
 void bsbtrot_enter_init(void){
     func_802A8AD8();
     baanim_playForDuration_onceSmooth(ASSET_16_ANIM_BSBTROT_ENTER, 1.0f);
-    func_8029C7F4(1,1,2,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,2, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
     func_80299BD4();
     func_802952A8(0,0);
@@ -242,8 +243,8 @@ void bsbtrot_enter_end(void){
 
 void bsbtrot_stand_init(void){
     baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
 }
 
@@ -272,7 +273,7 @@ void func_802A9054(void){
     f32 tmp = 1.0f;
     baanim_setVelocityMapRanges(func_802A8900(), func_802A88B0(), func_802A8984(), func_802A8934());
     if(func_8028B394()){
-        tmp = ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.6f, 0.9f);
+        tmp = ml_map_f(baphysics_get_horizontal_velocity_percentage(), 0.0f, 1.0f, 0.6f, 0.9f);
         baanim_scaleDuration(tmp);
     }
     else{
@@ -282,7 +283,7 @@ void func_802A9054(void){
 
 void bsbtrot_walk_init(void){
     baanim_playForDuration_loopSmooth(func_802A9030(), 0.53f);
-    func_8029C7F4(2,1,1,2);
+    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
     func_802A8A40();
     func_802A9054();
 }
@@ -312,7 +313,7 @@ void bsbtrot_walk_update(void){
         if(animctrl_isAt(aCtrl, 0.2115f) || animctrl_isAt(aCtrl, 0.7115f))
             func_802A87C0();
     }
-    if(!func_8029B300() && func_80297C04(1.0f))
+    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
         sp1C = BS_15_BTROT_IDLE;
 
     if(func_8028B094())
@@ -355,15 +356,15 @@ void bsbtrot_jump_init(void){
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_802978DC(6);
+    baphysics_set_type(BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
 
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802A89D4();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364ABC);
-    gravity_set(D_80364AC0);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364ABC);
+    baphysics_set_gravity(D_80364AC0);
     func_8030E484(SFX_48_KAZOOIE_RUUH);
     D_8037D3A4 = 0;
 }
@@ -377,13 +378,13 @@ void bsbtrot_jump_update(void){
         func_802A87C0();
 
     if(miscflag_isTrue(0xF))
-        func_802978A4();
+        baphysics_reset_horizontal_velocity();
     else
         func_802A89D4();
 
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     if(button_released(BUTTON_A) && 0.0f < sp1C[1])
-        gravity_reset();
+        baphysics_reset_gravity();
     
     switch(D_8037D3A4){
         case 0://L802A9530
@@ -411,13 +412,13 @@ void bsbtrot_jump_update(void){
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 func_8029957C(1);
                 D_8037D3A4 = 3;
-                if(220.0f < func_80297A64())
+                if(220.0f < baphysics_get_target_horizontal_velocity())
                     func_80299AAC();
                 func_8029C22C();
             }
             break;
         case 3://L802A9660
-            if(220.0f < func_80297A64())
+            if(220.0f < baphysics_get_target_horizontal_velocity())
                 func_80299AAC();
             func_802A9320();
             func_80299628(1);
@@ -430,7 +431,7 @@ void bsbtrot_jump_update(void){
             func_8029C22C();
             break;
         case 4://L802A96F0
-            if(220.0f < func_80297A64())
+            if(220.0f < baphysics_get_target_horizontal_velocity())
                 func_80299AAC();
             
             func_802A9320();
@@ -444,7 +445,7 @@ void bsbtrot_jump_update(void){
             func_8029C22C();
             break;
         case 5://L802A9780
-            if(220.0f < func_80297A64())
+            if(220.0f < baphysics_get_target_horizontal_velocity())
                 func_80299AAC();
             func_802A9320();
             func_80299628(1);
@@ -474,14 +475,14 @@ void bsbtrot_jump_update(void){
 }
 
 void bsbtrot_jump_end(void){
-    gravity_reset();
+    baphysics_reset_gravity();
     func_802A8BB0();
 }
 
 void bsbtrot_exit_init(void){
     baanim_playForDuration_onceSmooth(ASSET_7_ANIM_BSBTROT_EXIT, 0.6f);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
 }
 
 void bsbtrot_exit_update(void){
@@ -504,14 +505,14 @@ void bsbtrot_slide_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_start(aCtrl, "bsbtrot.c", 0x382);
     func_802A8A40();
-    func_8029C7F4(1,1,3,3);
-    func_8029797C(yaw_getIdeal());
-    func_802979AC(yaw_getIdeal(), func_80297A64());
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_80299AAC();
     D_8037D3A0 = 1.0f;
 }
@@ -530,8 +531,8 @@ void bsbtrot_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299628(1);
-        func_80297970(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
-        func_8029797C(sp2C);
+        baphysics_set_target_horizontal_velocity(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
+        baphysics_set_target_yaw(sp2C);
         func_8029C22C();
     }else{
         sp3C = BS_15_BTROT_IDLE;
@@ -572,10 +573,10 @@ void bsbtrot_fall_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_start(aCtrl, "bsbtrot.c", 0x400);
     func_802A8A40();
-    func_8029C7F4(1,1,3,6);
-    func_8029797C(yaw_getIdeal());
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802A89D4();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     D_8037D3A4 = 0;
 }
 
@@ -588,11 +589,11 @@ void bsbtrot_fall_update(void){
         func_802A87C0();
 
     if(miscflag_isTrue(0xf))
-        func_802978A4();
+        baphysics_reset_horizontal_velocity();
     else
         func_802A89D4();
 
-    _get_velocity(sp1C);
+    baphysics_get_velocity(sp1C);
     switch (D_8037D3A4){
     case 0://L802A9D90
         if(func_8028B254(0x8C)){
@@ -610,7 +611,7 @@ void bsbtrot_fall_update(void){
             animctrl_setDuration(aCtrl, 0.9f);
             animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             func_8029957C(1);
-            if(220.0f < func_80297A64()){
+            if(220.0f < baphysics_get_target_horizontal_velocity()){
                 func_80299AAC();
             }
             func_8029C22C();
@@ -618,7 +619,7 @@ void bsbtrot_fall_update(void){
         }
         break;
     case 2://L802A9E78
-        if(220.0f < func_80297A64())
+        if(220.0f < baphysics_get_target_horizontal_velocity())
             func_80299AAC();
         
         func_802A9320();
@@ -632,7 +633,7 @@ void bsbtrot_fall_update(void){
         func_8029C22C();
         break;
     case 3://L802A9F08
-        if(220.0f < func_80297A64())
+        if(220.0f < baphysics_get_target_horizontal_velocity())
             func_80299AAC();
 
         func_802A9320();
@@ -646,7 +647,7 @@ void bsbtrot_fall_update(void){
         func_8029C22C();
         break;
     case 4://802A9F98
-        if(220.0f < func_80297A64())
+        if(220.0f < baphysics_get_target_horizontal_velocity())
             func_80299AAC();
         
         func_802A9320();
@@ -679,8 +680,8 @@ void bsbtrot_fall_end(void){
 
 void bsbtrot_unk79_init(void){
     baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
@@ -715,14 +716,14 @@ void bsbtrot_ow_init(void){
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));\
     yaw_applyIdeal();
-    func_80297970(func_802987D4());
-    func_8029797C(sp3C);
-    func_802979AC(sp3C, func_80297A64());
-    func_8029C7F4(1,1,2,3);
+    baphysics_set_target_horizontal_velocity(func_802987D4());
+    baphysics_set_target_yaw(sp3C);
+    baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
+    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
     if(func_802987B4() == 2)
-        func_802978DC(6);
-    player_setYVelocity(func_802987C4());
-    gravity_set(func_802987E4());
+        baphysics_set_type(BA_PHYSICS_AIRBORN);
+    baphysics_set_vertical_velocity(func_802987C4());
+    baphysics_set_gravity(func_802987E4());
     baMarker_collisionOff();
     func_80292E48();
 }
@@ -749,7 +750,7 @@ void bsbtrot_ow_update(void){
 
 void bsbtrot_ow_end(void){
     func_80297CA8();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
     func_80292EA4();
     func_802A8BB0();

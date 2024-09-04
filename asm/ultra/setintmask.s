@@ -1,4 +1,5 @@
 #include <sys/asm.h>
+#include <PR/rcp.h>
 .include "macro.inc"
 # assembler directives
 .set noat      # allow manual use of $at
@@ -100,8 +101,8 @@ glabel func_80003A30
 /* 4648 80003A48 01614026 */  xor        $t0, $t3, $at
 /* 464C 80003A4C 3108FF00 */  andi       $t0, $t0, 0xff00
 /* 4650 80003A50 00481025 */  or         $v0, $v0, $t0
-/* 4654 80003A54 3C0AA430 */  lui        $t2, %hi(D_A430000C)
-/* 4658 80003A58 8D4A000C */  lw         $t2, %lo(D_A430000C)($t2)
+/* 4654 80003A54 3C0AA430 */  lui        $t2, %hi(PHYS_TO_K1(MI_INTR_MASK_REG))
+/* 4658 80003A58 8D4A000C */  lw         $t2, %lo(PHYS_TO_K1(MI_INTR_MASK_REG))($t2)
 /* 465C 80003A5C 11400005 */  beqz       $t2, .L80003A74
 /* 4660 80003A60 000B4C02 */   srl       $t1, $t3, 0x10
 /* 4664 80003A64 2401FFFF */  addiu      $at, $zero, -1
@@ -118,8 +119,8 @@ glabel func_80003A30
 /* 468C 80003A8C 3C0A8000 */  lui        $t2, %hi(__osRcpImTable)
 /* 4690 80003A90 01485021 */  addu       $t2, $t2, $t0
 /* 4694 80003A94 954A51D0 */  lhu        $t2, %lo(__osRcpImTable)($t2)
-/* 4698 80003A98 3C01A430 */  lui        $at, %hi(D_A430000C)
-/* 469C 80003A9C AC2A000C */  sw         $t2, %lo(D_A430000C)($at)
+/* 4698 80003A98 3C01A430 */  lui        $at, %hi(PHYS_TO_K1(MI_INTR_MASK_REG))
+/* 469C 80003A9C AC2A000C */  sw         $t2, %lo(PHYS_TO_K1(MI_INTR_MASK_REG))($at)
 /* 46A0 80003AA0 3088FF01 */  andi       $t0, $a0, 0xff01
 /* 46A4 80003AA4 3169FF00 */  andi       $t1, $t3, 0xff00
 /* 46A8 80003AA8 01094024 */  and        $t0, $t0, $t1

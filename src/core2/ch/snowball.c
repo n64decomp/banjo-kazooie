@@ -3,8 +3,9 @@
 #include "variables.h"
 
 extern void func_80329904(ActorMarker *, s32, f32 *);
-extern int func_80320C94(f32 (*)[3], f32(*)[3], f32, s32, s32, u32);
 extern f32 func_8033229C(ActorMarker *);
+extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
+
 
 typedef struct{
     s32 unk0;
@@ -70,7 +71,7 @@ void __chSnowball_collisionCallback(Actor *this, bool water_collision) {
         func_8030E878(SFX_F_SMALL_WATER_SPLASH, randf2(0.8f, 1.2f), 32000, this->position, 1250.0f, 2500.0f);
         actor_collisionOff(this);
         func_80326310(this);
-        func_80328A84(this, 2U);
+        subaddie_set_state(this, 2U);
     }
     else{
         func_8030E878(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 1250.0f, 2500.0f);

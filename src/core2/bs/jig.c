@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 /* .bss */
 u8 D_8037D4B0;
 u8 D_8037D4B1;
@@ -28,8 +30,8 @@ void bsjig_jiggy_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsjig.c", 0x7f);
     yaw_setIdeal(func_8029B41C()); //face camera
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8024BD08(0);
     func_8025A2FC(0,0xfa0);
     tmp = (item_getCount(ITEM_E_JIGGY) == 9); 
@@ -169,8 +171,8 @@ void bsjig_notedoor_init(void){
     animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsjig.c", 0x14d);
     yaw_setIdeal(func_8029B41C());
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     if(bs_getPrevState() != BS_44_JIG_JIGGY){
         func_8024BD08(0);
         func_8025A2FC(0,0xfa0);

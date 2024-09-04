@@ -971,29 +971,30 @@ BKCollisionTri *func_802E92AC(BKCollisionList *collisionList, BKVertexList *vert
     return spD0;
 }
 
-s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 arg2[3], f32 *arg3, f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8) {
+s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 posA[3], f32 *rotA, f32 scaleA, f32 posB[3], f32 radB, f32 arg7[3], s32 arg8) {
     f32 sp34[3];
     s32 sp30;
     s32 i;
 
-    if ((vtxList->global_norm * arg4) <= (ml_distance_vec3f(arg5, arg2) - arg6)) {
+    // check if (sphere around vtx's) <= ((distance between origins) - (radius of B))
+    if ((vtxList->global_norm * scaleA) <= (ml_distance_vec3f(posB, posA) - radB)) {
         return 0;
     }
     mlMtxIdent();
-    func_80252CC4(arg2, arg3, arg4, 0);
-    func_8025235C(sp34, arg5);
-    sp30 = func_802E92AC(collisionList, vtxList, &sp34, arg6 / arg4, arg7, arg8);
+    func_80252CC4(posA, rotA, scaleA, NULL);
+    func_8025235C(sp34, posB);
+    sp30 = func_802E92AC(collisionList, vtxList, &sp34, radB / scaleA, arg7, arg8);
     if (sp30 == 0) {
         return 0;
     }
     mlMtxIdent();
-    func_80252C08(arg2, arg3, arg4, NULL);
-    func_8025235C(arg5, sp34);
+    func_80252C08(posA, rotA, scaleA, NULL);
+    func_8025235C(posB, sp34);
     mlMtxIdent();
-    func_80252C08(NULL, arg3, 1.0f, NULL);
+    func_80252C08(NULL, rotA, 1.0f, NULL);
     func_8025235C(arg7, arg7);
     mlMtxIdent();
-    func_80252C08(arg2, arg3, arg4, NULL);
+    func_80252C08(posA, rotA, scaleA, NULL);
     
     for(i = 0; i < 3; i++){
         func_8025235C(D_8037EAA8[i], D_8037EAA8[i]);

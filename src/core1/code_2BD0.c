@@ -3,40 +3,38 @@
 #include "variables.h"
 
 OSIoMesg D_8027E090;
-OSMesg D_8027E0A8;
-OSMesgQueue D_8027E0AC;
+struct {
+    OSMesg mesg;
+    OSMesgQueue queue;
+} D_8027E0A8;
 OSMesg D_8027E0C8[16]; //g_PimgrMesgBuffer
 OSMesgQueue D_8027E108; //g_PimgrMesgQueue
 
-
-#ifndef NONMATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_2BD0/func_802405F0.s")
-#else
-void func_802405F0(u32 arg0, u32 arg1, s32 size){
-    int i;
+void func_802405F0(u32 * arg0, s32 arg1, s32 size){
     s32 block_cnt;
     s32 block_remainder;
     s32 block_size = 0x20000;
+    int i;
 
     osWritebackDCache(arg0, size);
-    block_cnt = size/block_size;
+    block_cnt       = size / block_size;
+    block_remainder = size % block_size;
+
     for(i = 0; i < block_cnt; i++){
-        osPiStartDma(&D_8027E090, OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, block_size, &D_8027E0AC);
-        osRecvMesg(&D_8027E0AC, NULL, 1);
-        arg0 += 0x20000;
+        osPiStartDma(&D_8027E090, OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, 0x20000, &D_8027E0A8.queue);
+        osRecvMesg(&D_8027E0A8.queue, NULL, 1);
         arg1 += 0x20000;
+        arg0 += 0x8000;
     }
 
-    block_remainder = size%0x20000;
-    osPiStartDma(&D_8027E090,  OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, block_remainder, &D_8027E0AC);
-    osRecvMesg(&D_8027E0AC, NULL, 1);
+    osPiStartDma(&D_8027E090,  OS_MESG_PRI_NORMAL, OS_READ, arg1, arg0, block_remainder, &D_8027E0A8.queue);
+    osRecvMesg(&D_8027E0A8.queue, NULL, 1);
     osInvalDCache(arg0, size);
 
 }
-#endif
 
 void piMgr_create(void){
-    osCreateMesgQueue(&D_8027E0AC, &D_8027E0A8, 1);
+    osCreateMesgQueue(&D_8027E0A8.queue, &D_8027E0A8.mesg, 1);
     osCreateMesgQueue(&D_8027E108, &D_8027E0C8[0], 16);
     osCreatePiManager(OS_PRIORITY_PIMGR, &D_8027E108, &D_8027E0C8[0], 16);
 }

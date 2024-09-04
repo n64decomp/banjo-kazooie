@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 /* .bss */
 struct {
     ParticleEmitter *unk0;
@@ -10,6 +12,7 @@ struct {
     f32 unkC;
     f32 unk10;
 }D_8037D450;
+u32 pad_8037D464;
 u8 D_8037D468;
 
 /* .code */
@@ -93,7 +96,7 @@ void bsDroneVanish_init(void){
 
     func_8029BCF8(&anim_id, &anim_duration);
     baanim_playForDuration_loopSmooth(anim_id, anim_duration);
-    func_8029C7F4(1,1,3,7);
+    func_8029C7F4(1,1,3, BA_PHYSICS_FREEZE);
     func_80294378(6);
     __bsDroneVanish_init();
     D_8037D468 = 0;

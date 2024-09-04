@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 /* .bss */
 f32 D_8037D400;
@@ -62,16 +63,16 @@ void bscrouch_init(void){
     yaw_setVelocityBounded(350.0f, 14.0f);
     func_8029957C(7);
     func_8029932C(8.0f);
-    func_802978DC(3);
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
     func_8029E3C0(0, 0.7f);
     func_8029E3C0(1, 0.2f);
-    _get_velocity(&sp28);
+    baphysics_get_velocity(sp28);
     D_8037D400 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     if(140.0f < D_8037D400)
         func_80299AAC();
 
     if(func_8025801C(sp28, &sp20))
-        func_8029797C(sp20);
+        baphysics_set_target_yaw(sp20);
 
     D_8037D404 = 0;
 }
@@ -88,7 +89,7 @@ void bscrouch_update(void){
     func_8029E1A8(1);
     
     sp30 = ml_map_f(func_8029E270(0), 0.0f, 0.3f, 0.0f, D_8037D400);
-    func_80297970(sp30);
+    baphysics_set_target_horizontal_velocity(sp30);
     if(220.0f < sp30)
         func_802929F8();
     if(160.0f < sp30)
@@ -197,7 +198,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
         if(should_shoot_egg())
             func_80346C10(&arg0, -1, BS_9_EGG_HEAD, ITEM_D_EGGS, 0);
 
-        if(should_flip())
+        if(should_flap_flip())
             arg0 = BS_12_BFLIP;
 
         if(should_beak_barge())

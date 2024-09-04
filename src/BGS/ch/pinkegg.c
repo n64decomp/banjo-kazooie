@@ -85,14 +85,14 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
     func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
-    func_80328A84(thisActor, 3);
+    subaddie_set_state(thisActor, 3);
     actor_playAnimationOnce(thisActor);
     this->collidable = 0;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0] != 0){
         __spawnQueue_add_2(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
     } else {
-        jiggySpawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
+        jiggy_spawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     }
 }
@@ -108,7 +108,7 @@ void chpinkegg_update(Actor *this){
         case 1:
             if(!((ActorLocal_PinkEgg *) &this->local)->unk4){
                 this->marker->collidable = 1;
-                func_80328A84(this,2);
+                subaddie_set_state(this,2);
                 
             }else{
                 ((ActorLocal_PinkEgg *) &this->local)->unk4--;

@@ -5,9 +5,9 @@
 #include "gc/gctransition.h"
 
 extern void func_8024C510(f32);
-extern void func_8024CDF8(f32, f32, f32);
-extern void func_8024CE40(f32, f32, f32);
-extern void func_8024CE60(f32, f32);
+extern void viewport_set_position_f3(f32, f32, f32);
+extern void viewport_set_rotation_f3(f32, f32, f32);
+extern void viewport_set_near_far(f32, f32);
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
@@ -64,8 +64,8 @@ struct{
 } D_8037E8E0;
 
 void func_802E3800(void){
-    func_8024CDF8(0.0f, 0.0f, 0.0f);
-    func_8024CE40(-30.0f, 30.0f, 0.0f);
+    viewport_set_position_f3(0.0f, 0.0f, 0.0f);
+    viewport_set_rotation_f3(-30.0f, 30.0f, 0.0f);
     func_8024C510(3000.0f);
     viewport_update();
 }
@@ -79,13 +79,13 @@ void func_802E3854(void){
         func_802E6820(5);
         modelRender_defrag();
         mapSavestate_defrag_all();
-        gctransition_8030B740();
-        func_802F542C();
+        gctransition_defrag();
+        printbuffer_defrag();
         func_80350E00();
         func_802FA4E0();
         func_8033B5FC();
         timedFuncQueue_defrag();
-        func_8025AF38();
+        comusic_defrag();
     }
 }
 
@@ -141,17 +141,17 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
         func_8030C2D4(gdl, mptr, vptr);
     }
 
-    if(!func_802E49F0() && func_80335134()){
+    if(!game_is_frozen() && func_80335134()){
         func_8032D474(gdl, mptr, vptr);
     }
 
     gcpausemenu_draw(gdl, mptr, vptr);
-    if(!func_802E49F0()){
+    if(!game_is_frozen()){
         func_8025AFC0(gdl, mptr, vptr);
     }
 
     gcdialog_draw(gdl, mptr, vptr);
-    if(!func_802E49F0()){
+    if(!game_is_frozen()){
         itemPrint_draw(gdl, mptr, vptr);
     }
 
@@ -244,7 +244,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
     else if(next_mode == GAME_MODE_4_PAUSED){//L802E3E24
         func_80335110(0);
         FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 1.1f, 32750);
-        func_8024E7C8();
+        pfsManager_update();
         func_8025A430(0, 2000, 3);
         func_8025A23C(COMUSIC_6F_PAUSE_SCREEN);
         gcpausemenu_init();
@@ -274,7 +274,7 @@ void func_802E3E7C(enum game_mode_e mode){
     mapSavestate_apply(map);
     D_8037E8E0.unk0 = prev_mode;
     func_802E3BF8(mode, sp30);
-    func_80332CCC();
+    jiggylist_map_actors();
     func_80346CA8();
 }
 
@@ -285,7 +285,7 @@ s32 func_802E3F80(void){
 //game_draw
 void func_802E3F8C(s32 arg0){
     Gfx *sp34;
-    Gfx *sp30;
+    Gfx *gfx_start;
     Gfx *sp2C;
     Mtx *sp28;
     Vtx *sp24;
@@ -297,12 +297,12 @@ void func_802E3F8C(s32 arg0){
     if(D_8037E8E0.unkC == 1){
         func_80254404(&sp34, &sp28, &sp24);
     }
-    sp30 = sp34;
+    gfx_start = sp34;
     func_802E39D0(&sp34, &sp28, &sp24, func_8024BDA0(), arg0);
     if(D_8037E8E0.unkC == 0){
         sp2C = sp34;
         func_8024C1DC();
-        func_80253EC4(sp30, sp2C);
+        func_80253EC4(gfx_start, sp2C);
         if(arg0){
             func_80254348();
         }
@@ -396,9 +396,9 @@ void func_802E4214(enum map_e map_id){
     modelRender_init();
     func_80253428(1);
     animCache_init();
-    func_8024CCC4();
-    func_8024CE60(1.0f, 10000.0f);
-    func_8034A6B4();
+    viewport_reset();
+    viewport_set_near_far(1.0f, 10000.0f);
+    rand_reset();
     func_80254348();
     func_80253FE8();
     func_8033DC70();
@@ -434,8 +434,8 @@ bool func_802E4424(void) {
     s32 sp1C;
     u8 temp_v0;
 
-    func_8024CC00();
-    func_8034A85C();
+    viewport_debug();
+    rand_shuffle();
     if (!gctransition_8030BDC0()) {
         temp_v0 = D_8037E8E0.transition;
         D_8037E8E0.transition = TRANSITION_0_NONE;
@@ -536,7 +536,7 @@ bool func_802E4424(void) {
                 && func_8028F070()
                 && (func_8028EC04() == 0)
                 && !gctransition_8030BDC0()
-                && gctransition_8030BD98()
+                && gctransition_done()
                 && (level_get() != 0)
                 && (0.6 < D_8037E8E0.unk10)
                 && gcpausemenu_80314B00()
@@ -554,7 +554,7 @@ bool func_802E4424(void) {
             break;
 
         case GAME_MODE_4_PAUSED:                                     /* switch 2 */
-            if (gcPauseMenu_update() || func_8031C880()) {
+            if (gcPauseMenu_update() || cutscenetrigger_update()) {
                 FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 0.899316, 32736);
                 func_80335110(1);
                 func_8025A430(-1, 2000, 3);
@@ -596,7 +596,7 @@ s32 game_defrag(void){
     actorArray_defrag();
     spawnQueue_defrag();
     func_802F3300();
-    func_802F542C();
+    printbuffer_defrag();
     gcdialog_defrag();
     if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED)
         gcpausemenu_defrag();
@@ -615,7 +615,7 @@ void func_802E49E0(void){
     D_8037E8E0.unkC = TRUE;
 }
 
-int func_802E49F0(void){
+int game_is_frozen(void){
     return D_8037E8E0.unkC;
 }
 

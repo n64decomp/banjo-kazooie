@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 /* .bss */
 u8  D_8037D3D0;
@@ -24,7 +25,7 @@ void func_802AB5C0(void){
     sp2C[0] = 0.0f;
     sp2C[1] = f2;
     sp2C[2] = 0.0f;
-    func_80297930(sp2C);
+    baphysics_set_target_velocity(sp2C);
 }
 
 void func_802AB654(void){
@@ -33,8 +34,8 @@ void func_802AB654(void){
     yaw_setVelocityBounded(500.0f, 15.0f);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
-    func_802978DC(0xA);
-    func_80297B64(10.0f);
+    baphysics_set_type(BA_PHYSICS_CLIMB);
+    baphysics_set_acceleration(10.0f);
     func_80294378(5);
     func_80293D48(80.0f, 10.0f);
     func_802914CC(0x10);
@@ -45,7 +46,7 @@ void func_802AB6F0(void){
         func_80291548();
         func_8029B0C0();
         baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
-        func_802978DC(2);
+        baphysics_set_type(BA_PHYSICS_NORMAL);
         func_80294378(1);
         func_80293D74();
     }
@@ -56,7 +57,7 @@ void func_802AB750(f32 arg0, f32 arg1){
 }
 
 int func_802AB788(void){    
-    return (0.0f < mlAbsF(func_80297A70())) || (yaw_get() != yaw_getIdeal());
+    return (0.0f < mlAbsF(baphysics_get_target_vertical_velocity())) || (yaw_get() != yaw_getIdeal());
 }
 
 int bsclimb_inSet(s32 move_indx){
@@ -90,7 +91,7 @@ void bsclimb_idle_init(void){
 void bsclimb_idle_update(void){
     s32 next_state = 0;
     AnimCtrl *anim_ctrl = baanim_getAnimCtrlPtr();
-    func_80293350();
+    bafalldamage_start();
     switch(D_8037D3D0){
         case 0:
             D_8037D3D4 -= time_getDelta();
@@ -138,7 +139,7 @@ void bsclimb_move_update(void){
     f32 plyr_pos[3];
     s32 map;
 
-    func_80293350();
+    bafalldamage_start();
     func_802AB5C0();
     map = map_get();
 
@@ -160,15 +161,15 @@ void bsclimb_move_update(void){
             func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.87f, 22000);
     }//L802ABB84
 
-    if(!func_802AB788() && _get_vertVelocity() < 30.0f)
+    if(!func_802AB788() && baphysics_get_vertical_velocity() < 30.0f)
         next_state = BS_4F_CLIMB_IDLE;
 
     _player_getPosition(plyr_pos);
-    if(func_80297A70() < 0.0f && climbGetBottomY() == plyr_pos[1])
+    if(baphysics_get_target_vertical_velocity() < 0.0f && climbGetBottomY() == plyr_pos[1])
         next_state = BS_1_IDLE;
 
     if( func_8029825C() == 2
-        && 0.0f < func_80297A70()
+        && 0.0f < baphysics_get_target_vertical_velocity()
         && climbGetTopY() == plyr_pos[1]
     ){
         next_state = BS_51_CLIMB_EXIT;
@@ -194,7 +195,7 @@ void func_802ABCCC(void){
     baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
-    func_802978DC(7);
+    baphysics_set_type(BA_PHYSICS_FREEZE);
 }
 
 //bsclimb_unknown_9E_update

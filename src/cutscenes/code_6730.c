@@ -84,7 +84,7 @@ void func_8038CCA8(Actor *this){
         case 1:
             this->unk60 = MAX(0.0, this->unk60 - sp24);
             if(0.0f == this->unk60){
-                func_80328AC8(this, 2);
+                subaddie_set_state_forward(this, 2);
                 actor_playAnimationOnce(this);
             }
             break;

@@ -56,7 +56,7 @@ void chgloop_update(Actor *this){
         case 2://L802D14DC
             actor_loopAnimation(this);
             if(this->unk54 != 0.0f)
-                func_80328A84(this, 4);
+                subaddie_set_state(this, 4);
             
             if( !mapSpecificFlags_get(2) 
                 && func_80329530(this, 350)
@@ -69,7 +69,7 @@ void chgloop_update(Actor *this){
         case 4://L802D1558
             actor_playAnimationOnce(this);
             if(this->unk54 == 0.0f)
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
 
             if(actor_animationIsAt(this, 0.6f)){
                 if(this->marker->unk14_21){

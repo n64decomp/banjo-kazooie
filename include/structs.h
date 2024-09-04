@@ -246,29 +246,12 @@ typedef struct struct_8_s{
     f32 unk60;
 }struct8s;
 
-typedef struct struct_9_s{
-    u8 uid;
-    u8 unk1;
-    u8 unk2;
-    // u8 pad3[1];
-    f32 unk4; //duration
-    s32 unk8; //asset_indx
-    s32 unkC; //animation_indx
-    f32 unk10;
-}struct9s;
-
-typedef struct struct_10_s{
-    u8 map_indx;
-    u8 unk1;
-    u8 unk2;
-}struct10s;
-
 typedef struct struct_11_s{
     f32 unk0;
     f32 unk4;
     s32 unk8;
     s32 unkC;
-    s16 unk10; //trackId
+    s16 track_id; //trackId
     s16 unk12;
     u8 unk14;
     u8 unk15;
@@ -504,23 +487,7 @@ typedef struct{
     u8 pad4[8];
 }struct52s;
 
-typedef struct{
-    u8 unk0;
-    u8 unk1;
-} struct53s;
 
-typedef struct{
-    struct53s *unk0;
-    f32 unk4;
-    f32 unk8;
-    u32 unkC_31:7;
-    u32 unkC_24:7;
-    u32 unkC_17:7;
-    u32 unkC_10:7; 
-    u32 unkC_3:2;
-    u32 unkC_1:1;
-    u32 unkC_0:1;
-} struct54s;
 
 typedef struct{
     s32 unk0;

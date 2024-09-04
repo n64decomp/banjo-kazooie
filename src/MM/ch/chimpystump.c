@@ -44,7 +44,7 @@ void chchimpystump_update(Actor *this){
     {
     case 1:
         if(mapSpecificFlags_get(0))
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
 
         _chchimpystump_80386CA0(this);
         break;
@@ -53,7 +53,7 @@ void chchimpystump_update(Actor *this){
         this->position_y += 2.5;
         if(this->unk28 <= this->position_y){
             this->position_y = this->unk28;
-            func_80328A84(this, 3);
+            subaddie_set_state(this, 3);
             func_802BB41C(1);
             func_80244C78(0);
         }

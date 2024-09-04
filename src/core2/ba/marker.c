@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 #include "prop.h"
 #include "SnS.h"
@@ -105,8 +106,8 @@ void __baMarker_8028B7F4(void){
     yaw_setIdeal(func_8029B41C());
     yaw_setUpdateState(1);
     func_8029957C(3);
-    func_802978DC(2);
-    func_80297970(0.0f);
+    baphysics_set_type(BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_8029151C(0xC);
 }
 
@@ -174,7 +175,7 @@ void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
     if (!func_802FADD4(ITEM_1B_VILE_VILE_SCORE)) {
         item_inc(ITEM_C_NOTE);
     } else {
-        func_803463F4(ITEM_C_NOTE, 1);
+        item_adjustByDiffWithoutHud(ITEM_C_NOTE, 1);
     }
     if (item_getCount(ITEM_C_NOTE) < 100) {
         func_8025A6EC(COMUSIC_9_NOTE_COLLECTED, 16000);
@@ -531,7 +532,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         || (func_8028B2E8() && !(3600.0f < ml_distanceSquared_vec3f(actor->position, spA0)))
                     ){
                         jiggyscore_setCollected(jiggy_id, TRUE);
-                        func_803463F4(ITEM_26_JIGGY_TOTAL, 1);
+                        item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, 1);
                         if(jiggy_id == JIGGY_20_BGS_ELEVATED_WALKWAY || jiggy_id == JIGGY_25_BGS_MAZE){
                             func_802D6924();
                         }
@@ -686,7 +687,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case MARKER_6B_GLOOPBUBBLE: //L8028CD20
                 if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
-                    func_803463D4(ITEM_17_AIR, func_80301DBC(2));
+                    item_adjustByDiffWithHud(ITEM_17_AIR, fxairscore_count_to_time(2));
                 }
                 break;
 
@@ -723,7 +724,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_45_FLIGHT_PAD: //L8028CE3C
             case MARKER_240_LAIR_SWITCH_FLIGHT_PAD: //L8028CE3C
             case MARKER_261_FIGHT_FLIGHT_PAD: //L8028CE3C
-                if(ability_isUnlocked(ABILITY_9_FLY)){
+                if(ability_isUnlocked(ABILITY_9_FLIGHT)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! func_80320454(0xD, 1)){
@@ -891,7 +892,7 @@ void baMarker_update(void){
 
     if ((D_8037BF88 != 0)){
         temp_s0 = func_8024FEEC(func_8025ADD4(COMUSIC_30_5TH_JINJO_COLLECTED) & 0xFF);
-        if((func_80259B8C() < 4 && temp_s0 >= 0xBB9) || !func_8025AD7C(COMUSIC_30_5TH_JINJO_COLLECTED)){
+        if((comusic_active_track_count() < 4 && temp_s0 >= 0xBB9) || !func_8025AD7C(COMUSIC_30_5TH_JINJO_COLLECTED)){
             func_8028F918(0);
             D_8037BF88 = 0;
         }
@@ -1031,10 +1032,10 @@ void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
 
             if(sp20){
                 if(func_8033D594(collision_flags) == 3){
-                    func_803463D4(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
+                    item_adjustByDiffWithHud(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
                 }
                 else{//L8028D92C
-                    func_803463D4(ITEM_14_HEALTH, -sp20);
+                    item_adjustByDiffWithHud(ITEM_14_HEALTH, -sp20);
                 }
             }//L8028D948
 

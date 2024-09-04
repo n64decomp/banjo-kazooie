@@ -56,7 +56,7 @@ Actor *func_803894C0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void TTC_func_80389530(Actor *this){
-    func_80328B8C(this, 1, 0.2f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.2f, 1);
     this->marker->collidable = FALSE;
     this->unk38_31 = 0;
     FUNC_8030E8B4(SFX_6C_LOCKUP_CLOSING, 1.0f, 32000, this->position, 1250, 2500);
@@ -65,7 +65,7 @@ void TTC_func_80389530(Actor *this){
 
 void func_8038959C(Actor *this){
     func_80389468();
-    func_80328B8C(this, 2, 0.2f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.2f, 1);
     this->unk38_31 = 1;
     FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
 }
@@ -94,7 +94,7 @@ void func_80389600(Actor *this){
         case 1: //L803896F0
             if(!this->initialized){
                 this->marker->propPtr->unk8_3 = TRUE;
-                func_80328B8C(this, 1, 0.2f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.2f, 1);
                 this->marker->collidable = FALSE;
                 this->unk38_31 = 0;
                 this->initialized = TRUE;
@@ -119,7 +119,7 @@ void func_80389600(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.5f)){
-                func_80328B8C(this, 3, 0.5f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.5f, 1);
             }
             if(0.15 < animctrl_getAnimTimer(this->animctrl)){
                 this->marker->collidable = TRUE;
@@ -135,7 +135,7 @@ void func_80389600(Actor *this){
             
             if(!(local->unk4 < tmp_v1)){
                 local->unk4 = 0;
-                func_80328B8C(this, 4, 0.5f, 1);
+                subaddie_set_state_with_direction(this, 4, 0.5f, 1);
             }
             break;
 

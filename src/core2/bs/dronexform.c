@@ -1,10 +1,11 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
+
 
 extern void player_setYPosition(f32);
 extern void yaw_applyIdeal(void);
-extern void func_802978DC(int);
 extern f32 func_80257A44(f32, f32);
 extern f32 cosf(f32);
 extern f32 ml_remainder_f(f32, f32);
@@ -260,14 +261,14 @@ static void __bsdronexform_setState(int next_state){
             func_802AFBA0(180.0f);
             func_802AFBAC(0.04f);
             func_802B01B0(0.05f);
-            func_802978DC(7);
+            baphysics_set_type(BA_PHYSICS_FREEZE);
             func_8029E3C0(0, 2.8f);
             FUNC_8030E624(SFX_17E_MUMBO_TRANSFORMATION_01, 1.0f, 15000);
             break; 
         
         case 2:// 802B02A8
             func_8029E3C0(0, 0.5f);
-            func_802978DC(0xb);
+            baphysics_set_type(BA_PHYSICS_TRANSFORM);
             break;
 
         case 3:// 802B02C4
@@ -314,7 +315,7 @@ static void __bsdronexform_setState(int next_state){
         case 9:// 802B0438
             D_8037D470.unk1C = 0;
             func_8029E3C0(0, 0.7f);
-            func_802978DC(7);
+            baphysics_set_type(BA_PHYSICS_FREEZE);
             break; 
     }
 }
@@ -324,9 +325,9 @@ void bsdronexform_init(void){
     enum asset_e sp18;
     func_8029BCAC(&sp18, &sp1C);
     baanim_playForDuration_loopSmooth(sp18, sp1C);
-    func_8029C7F4(1,1,3,7);
-    func_80297A0C(0);
-    func_80297930(0);
+    func_8029C7F4(1,1,3, BA_PHYSICS_FREEZE);
+    baphysics_set_velocity(0);
+    baphysics_set_target_velocity(0);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80294378(6);

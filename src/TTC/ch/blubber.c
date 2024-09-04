@@ -60,7 +60,7 @@ void func_80387520(ActorMarker *caller, enum asset_e text_id, s32 arg1){
         local->unk24 = 0;
     }
     else{
-        func_80328B8C(this, 2, 0, 1);
+        subaddie_set_state_with_direction(this, 2, 0, 1);
     }
 }
 
@@ -68,7 +68,7 @@ void func_80387574(ActorMarker *caller, enum asset_e text_id, s32 arg1){
     f32 sp24[3];
 
     if(nodeProp_findPositionFromActorId(0x14b, sp24)){
-        jiggySpawn(JIGGY_14_TTC_BLUBBER, sp24);
+        jiggy_spawn(JIGGY_14_TTC_BLUBBER, sp24);
         __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
@@ -77,7 +77,7 @@ void func_803875D4(ActorMarker *marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     enum asset_e text_id;
 
-    func_80328A84(this, 4);
+    subaddie_set_state(this, 4);
     actor_loopAnimation(this);
     this->unk28 = 0.0f;
 
@@ -97,7 +97,7 @@ void func_80387678(Actor *this){
     func_8028F918(2);
     timed_setStaticCameraToNode(0.0f, 4);
     timedFunc_set_1(1.0f, (GenFunction_1)func_803875D4, (s32)this->marker);
-    func_80328B8C(this, 1, 0.0f, 1);
+    subaddie_set_state_with_direction(this, 1, 0.0f, 1);
 }
 
 void func_8038771C(Actor *this){
@@ -113,7 +113,7 @@ void func_80387774(Actor **this_ptr){
 
     func_8028F364(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
     if( func_80329530(*this_ptr, 200)
-        && carriedObj_getMarkerId() == MARKER_37_GOLD_BULLION
+        && bacarry_get_markerId() == MARKER_37_GOLD_BULLION
         && func_8028FC34()
     ){
         func_8028FA34(!mapSpecificFlags_get(0)? 0x149 : 0x14a, *this_ptr);
@@ -140,7 +140,7 @@ void func_803878CC(Actor * this){
     
     if(!this->unk16C_4){
         if(this->state == 3){
-            func_80328B8C(this, 2, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         }
         this->unk16C_4 = TRUE;
     }//L80387970
@@ -151,7 +151,7 @@ void func_803878CC(Actor * this){
     ){
         func_80311480(0xa0b, 0xe, this->position, this->marker, func_80387520, NULL);
         this->unk138_24 = TRUE;
-        func_80328AC8(this, 3);
+        subaddie_set_state_forward(this, 3);
     }
 
     if( mapSpecificFlags_get(0) 
@@ -173,7 +173,7 @@ void func_803878CC(Actor * this){
             }
             func_80387774(&this);
             
-            if(func_80328BD4(this, 2, 0.0f, 1, 0.007f))
+            if(subaddie_maybe_set_state_position_direction(this, 2, 0.0f, 1, 0.007f))
                 break;
 
             func_80328FB0(this, 3.0f);
@@ -185,7 +185,7 @@ void func_803878CC(Actor * this){
         case 2:// 80387B10
             func_80387774(&this);
             if( actor_animationIsAt(this, 0.99f) 
-                && func_80328BD4(this, 1, 0.0f, 1, 0.78f)
+                && subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.78f)
             ){
                 this->unk28 = 4.0f;
                 break;
@@ -214,7 +214,7 @@ void func_803878CC(Actor * this){
                 func_80328FB0(this, 3.0f);
                 local =  (ActorLocal_Blubber*)&this->local;
                 if(actor_animationIsAt(this, 0.99f) && !local->unk24){
-                    func_80328A84(this, 5);
+                    subaddie_set_state(this, 5);
                     this->unk28 = 8.0f;
                 }
             }

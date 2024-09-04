@@ -4,7 +4,7 @@
 
 /* typedefs and declarations */
 typedef struct {
-    u8 unk0;
+    u8 sfxsource_index;
 }ActorLocal_RBB_27E0;
 
 void func_80388C20(Actor *this);
@@ -38,7 +38,7 @@ void func_80388BD0(Actor *this, s32 arg1){
 void func_80388BE8(Actor *actor){
     ActorLocal_RBB_27E0 *local = (ActorLocal_RBB_27E0 *)&actor->local;
     if(actor->modelCacheIndex == 0x17b){
-        func_8030DA44(local->unk0);
+        func_8030DA44(local->sfxsource_index);
     }
 }
 
@@ -51,14 +51,14 @@ void func_80388C20(Actor *this){
         this->marker->unk30 = func_80388BE8;
         this->unk16C_4 = 1;
         if(this->modelCacheIndex == 0x17B){
-            local->unk0 = func_8030D90C();
-            func_8030DEB4(local->unk0, 1000.0f, 2000.0f);
-            func_8030DF68(local->unk0, &this->position);
-            func_8030DBB4(local->unk0, 0.5f);
-            sfxsource_setSfxId(local->unk0, SFX_9F_GENERATOR_RUNNING);
-            func_8030DD14(local->unk0, 3);
-            sfxsource_setSampleRate(local->unk0, 0);
-            func_8030E2C4(local->unk0);
+            local->sfxsource_index = func_8030D90C();
+            sfxsource_set_fade_distances(local->sfxsource_index, 1000.0f, 2000.0f);
+            sfxsource_set_position(local->sfxsource_index, &this->position);
+            func_8030DBB4(local->sfxsource_index, 0.5f);
+            sfxsource_setSfxId(local->sfxsource_index, SFX_9F_GENERATOR_RUNNING);
+            func_8030DD14(local->sfxsource_index, 3);
+            sfxsource_setSampleRate(local->sfxsource_index, 0);
+            func_8030E2C4(local->sfxsource_index);
         }//L80388CFC
         if(this->state == 0){
             if(this->modelCacheIndex == 0x17B){
@@ -78,7 +78,7 @@ void func_80388C20(Actor *this){
         if(360.0f <= this->roll)
             this->roll -= 360.0f;
         if(this->modelCacheIndex == 0x17B){
-            func_8030DB04(local->unk0, 0x61a8, &this->position, 1000.0f, 2000.0f);
+            func_8030DB04(local->sfxsource_index, 25000, &this->position, 1000.0f, 2000.0f);
         }
     }
 }

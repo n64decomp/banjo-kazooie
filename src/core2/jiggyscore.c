@@ -104,7 +104,7 @@ s32 jiggyscore_total(void) {
     return cnt;
 }
 
-void jiggyscore_info(s32 *size, u8 **addr){
+void jiggyscore_getSizeAndPtr(s32 *size, u8 **addr){
     *size = 0x0D;
     *addr = jiggyscore.D_803832C0; 
 }

@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 /* .bss */
 f32 D_8037D410;
@@ -41,15 +42,15 @@ void bsdie_init(void){
     D_8037D410 = 250.0f;
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
     yaw_applyIdeal();
-    func_80297970(D_8037D410);
-    func_8029797C(sp38);
-    func_802979AC(sp38, func_80297A64());
+    baphysics_set_target_horizontal_velocity(D_8037D410);
+    baphysics_set_target_yaw(sp38);
+    baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(2);
-    func_802978DC(3);
-    player_setYVelocity(510.0f);
-    gravity_set(-1400.0f);
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_vertical_velocity(510.0f);
+    baphysics_set_gravity(-1400.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_8029E070(1);
     func_8029151C(0xd);
@@ -64,14 +65,14 @@ void bsdie_init(void){
 void bsdie_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     enum bs_e sp28 = 0;
-    func_80297970(D_8037D410);
+    baphysics_set_target_horizontal_velocity(D_8037D410);
     func_80299628(0);
     switch(D_8037D414){
         case 0://L802AE0B8
             if(_bsdie_802ADE00()){
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-                player_setYVelocity(400.0f);
+                baphysics_set_vertical_velocity(400.0f);
                 func_80299DB8();
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.0f, 18000);
                 rumbleManager_80250D94(1.0f, 1.0f, 0.4f);
@@ -124,7 +125,7 @@ void bsdie_update(void){
 
 void bsdie_end(void){
     func_8024BD08(0);
-    gravity_reset();
+    baphysics_reset_gravity();
     func_8029E070(0);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);

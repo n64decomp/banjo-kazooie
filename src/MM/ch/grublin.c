@@ -21,7 +21,7 @@ typedef struct chgrublin_s{
     void    (*unk34)(ActorMarker *, s32);
 }ActorLocal_Grublin;
 
-void func_80328B8C(Actor *, s32, f32, s32);
+void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 void func_80388A80(Actor *);
 
@@ -51,7 +51,7 @@ void func_803889A0(ActorMarker *this, s32 arg1){
     Actor *actorPtr;
 
     actorPtr = marker_getActor(this);
-    func_80328B8C(actorPtr, 5, 0.0f, 1);
+    subaddie_set_state_with_direction(actorPtr, 5, 0.0f, 1);
     actor_playAnimationOnce(actorPtr);
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actorPtr->position, 1250, 2500);
 

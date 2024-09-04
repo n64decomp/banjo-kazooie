@@ -9,13 +9,13 @@ extern f32 func_802944A8(void);
 f32 D_8037C2A0[3]; //recoil_target_position
 f32 D_8037C2B0[3]; //talk_target_position
 f32 D_8037C2C0[3]; //throw_target_position
-f32 D_8037C2CC; //turbo_duration
+f32 s_turbo_duration;
 enum transformation_e D_8037C2D0;
 f32 D_8037C2D8[3];
 f32 D_8037C2E4;
 enum asset_e D_8037C2E8;
-u8 D_8037C2ED;
 u8 D_8037C2EC;
+u8 D_8037C2ED;
 
 struct{
     f32 unk0;
@@ -61,7 +61,7 @@ void get_throw_target_position(f32 dst[3]){
 }
 
 f32 get_turbo_duration(void){
-    return D_8037C2CC;
+    return s_turbo_duration;
 }
 
 enum transformation_e func_80294A4C(void){
@@ -89,7 +89,7 @@ void set_throw_target_position(f32 src[3])
 }
 
 void set_turbo_duration(f32 arg0){
-    D_8037C2CC = arg0;
+    s_turbo_duration = arg0;
 }
 
 void func_80294AF4(enum transformation_e xform){

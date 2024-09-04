@@ -24,7 +24,7 @@ ActorInfo chLoggo = {
 void __chLoggo_flush(ActorMarker* marker) {
     Actor* sp1C = marker_getActor(marker);
     func_8028F918(2);
-    func_80328B8C(sp1C, 2, 0.01, 1);
+    subaddie_set_state_with_direction(sp1C, 2, 0.01, 1);
     actor_playAnimationOnce(sp1C);
     sp1C->unk60 = 3.2f;
 }
@@ -67,7 +67,7 @@ void chLoggo_update(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOn(this);
         marker_setCollisionScripts(this->marker, __chLoggo_collide, NULL, NULL);
-        func_80328B8C(this, 1, 0.01f, 1);
+        subaddie_set_state_with_direction(this, 1, 0.01f, 1);
         actor_loopAnimation(this);
         this->unk60 = 0.0f;
         if(!fileProgressFlag_get(FILEPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(0x33)){
@@ -116,7 +116,7 @@ void chLoggo_update(Actor *this){
                 this->unk60 -= sp44;
             }
             else{
-                func_8031F7D4(0, 0);
+                warp_mmmEnterLoggo(0, 0);
             }
             break;
     }

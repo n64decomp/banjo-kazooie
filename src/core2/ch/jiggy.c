@@ -142,7 +142,7 @@ void chjiggy_update(Actor *this){
                 marker_despawn(this->marker);
             }
             else{
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
                 switch(chjiggy_getJiggyId(this)){
                     case JIGGY_17_CC_CLANKER_RAISED: //L802C7EF8
                     case JIGGY_49_CCW_EYRIE:// L802C7EF8

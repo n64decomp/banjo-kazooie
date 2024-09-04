@@ -62,10 +62,10 @@ void func_802CA9D0(Actor *this){
 void func_802CAA44(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     if(func_803203FC(UNKFLAGS1_8A_SANDCASTLE_FLIGHT_UNLOCKED)){
-        ability_unlock(ABILITY_9_FLY);
+        ability_unlock(ABILITY_9_FLIGHT);
     }
 
-    if(ability_isUnlocked(ABILITY_9_FLY)){
+    if(ability_isUnlocked(ABILITY_9_FLIGHT)){
         actor_setOpacity(this, 0xff);
     }
     else{

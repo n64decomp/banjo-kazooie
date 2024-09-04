@@ -4,7 +4,7 @@
 
 struct {
     s32 unk0;
-    u8 pad4[4];
+    s32 unk4;
     s32 unk8;
 }GV_D_80391AB0;
 

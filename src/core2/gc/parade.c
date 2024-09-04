@@ -2,7 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028A8D0(void);
+#include "../snackerctl.h"
+
+
 extern void func_8028F918(s32);
 extern void func_80311714(int);
 extern void func_803204E4(s32, s32);
@@ -285,7 +287,7 @@ void gcparade_update(void) {
         return;
     }
     if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) != 0) {
-        func_8028A8D0();
+        snackerctl_update();
         switch (D_803830F0.state) {
             case PARADE_STATE_3_WARP:
                 if (D_803830F0.unk5 == 0) {
@@ -315,7 +317,7 @@ void gcparade_update(void) {
                 break;
             case PARADE_STATE_5_WAIT_ON_NAME: //name on screen (wait)
                 gcparade_print(D_803830F0.indx);
-                return;
+                break;
             case PARADE_STATE_6_NAME_DISAPPEAR:// name scroll up off screen
                 gcparade_print(D_803830F0.indx);
                 D_803830F0.scroll_frame--;

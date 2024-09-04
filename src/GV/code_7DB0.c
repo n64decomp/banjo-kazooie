@@ -34,7 +34,7 @@ void func_8038E1A8(Actor *this){
                 if(sp24){
                     sp24->velocity_y = 1.0f;
                 }
-                func_80328B8C(this, 1, 0.02f, 1);
+                subaddie_set_state_with_direction(this, 1, 0.02f, 1);
             }
             else{
                 if(actor_animationIsAt(this, 0.2f))
@@ -57,7 +57,7 @@ void func_8038E2FC(ActorMarker *this_marker){
     Actor *this = marker_getActor(this_marker);
     Actor *other = func_8032A7AC(this);
     if(other){
-        func_80328B8C(this, 2, 0.02f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.02f, 1);
     }
 }
 

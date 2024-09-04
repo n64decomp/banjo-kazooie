@@ -83,7 +83,7 @@ void chLeaky_update(Actor *this) {
 void __chLeaky_startCutscene(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     Struct73s *temp_v0;
-    func_80328A84(this, 2);
+    subaddie_set_state(this, 2);
     temp_v0 = func_8034C5AC(300);
     if(temp_v0 != NULL){
         func_8034E7B8(temp_v0, -600, 4.0f, 2, 10.0f);

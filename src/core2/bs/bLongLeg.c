@@ -4,6 +4,7 @@
 #include "core2/ba/model.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 
 /* .data */
@@ -39,9 +40,9 @@ void func_802A5208(int arg0){
 void func_802A524C(void){
     f32 sp1C = func_8029B30C();
     if(!func_8029B300())
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     else
-        func_80297970(ml_interpolate_f(sp1C, D_80364A40, D_80364A44));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364A40, D_80364A44));
 }
 
 int bslongleg_inSet(s32 move_indx){
@@ -125,8 +126,8 @@ void bsblongleg_enter_init(void){
         __bsblongleg_enterFromTrot();
     else
         __bsblongleg_enter();
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802A5374();
     func_80299BD4();
 }
@@ -156,8 +157,8 @@ void bsblongleg_enter_end(void){
 
 void bsblongleg_stand_enter(void){
     baanim_playForDuration_loopSmooth(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
-    func_8029C7F4(1,1,1,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_802A5374();
 }
@@ -167,7 +168,7 @@ void bsblongleg_stand_update(void){
     func_802A531C();
     func_80299594(1, 0.5f);
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(button_pressed(BUTTON_B))
         stateTimer_clear(STATE_TIMER_2_LONGLEG);
@@ -202,7 +203,7 @@ void bsblongleg_walk_init(void){
     animctrl_setIndex(aCtrl, ASSET_42_ANIM_BSLONGLEG_WALK);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
     animctrl_start(aCtrl, "bsblongleg.c", 0x1a1);
-    func_8029C7F4(2,1,1,2);
+    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
 }
 
@@ -220,10 +221,10 @@ void bsblongleg_walk_update(void){
         func_802A5208(1);
     
     func_802A524C();
-    if(button_pressed(BUTTON_B) && func_80297A64() == 0.0f)
+    if(button_pressed(BUTTON_B) && baphysics_get_target_horizontal_velocity() == 0.0f)
         stateTimer_clear(STATE_TIMER_2_LONGLEG);
 
-    if(!func_8029B300() && func_80297C04(1.0f))
+    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
         next_state = BS_26_LONGLEG_IDLE;
 
     if(player_shouldSlideTrot())
@@ -273,7 +274,7 @@ void bsblongleg_exit_init(void){
     func_802A5AB0();
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     D_8037D361 = func_8030D90C();
     sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 1.4f, 0.4f, -1.2f);
@@ -322,14 +323,14 @@ void bsblongleg_jump_init(void){
     animctrl_setSubRange(aCtrl, 0.0f, 0.42f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsblongleg.c", 0x27F);
-    func_8029C7F4(1,1,3,6);
+    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
-    func_8029797C(yaw_getIdeal());
+    baphysics_set_target_yaw(yaw_getIdeal());
     func_802A524C();
-    func_802979AC(yaw_getIdeal(), func_80297A64());
-    player_setYVelocity(D_80364A50);
-    gravity_set(D_80364A54);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
+    baphysics_set_vertical_velocity(D_80364A50);
+    baphysics_set_gravity(D_80364A54);
     func_8030E58C(SFX_48_KAZOOIE_RUUH, 0.9f);
     D_8037D360 = 0;
 }
@@ -342,9 +343,9 @@ void bsblongleg_jump_update(void){
 
     func_802A531C();
     func_802A524C();
-    _get_velocity(&sp34);
+    baphysics_get_velocity(sp34);
     if(button_released(BUTTON_A) && 0.0f < sp34[1])
-        gravity_reset();
+        baphysics_reset_gravity();
 
     sp30 = player_getYPosition() - func_80294438();
     switch(D_8037D360){
@@ -400,7 +401,7 @@ void bsblongleg_jump_update(void){
 }
 
 void bsblongleg_jump_end(void){
-    gravity_reset();
+    baphysics_reset_gravity();
     func_802A5404();
 }
 
@@ -412,14 +413,14 @@ void bsblongleg_slide_init(void){
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     animctrl_setStart(aCtrl, 0.0865f);
     animctrl_start(aCtrl, "bsblongleg.c", 0x339);
-    func_8029C7F4(1,1,3,3);
-    func_8029797C(yaw_getIdeal());
-    func_802979AC(yaw_getIdeal(), func_80297A64());
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    func_80297970(0.0f);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_80299AAC();
     D_8037D358 = 1.0f;
 }
@@ -437,8 +438,8 @@ void bsblongleg_slide_update(void){
         func_80294480(sp30);
         func_8025801C(sp30, &sp2C);
         func_80299594(1, 0.5f);
-        func_80297970(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
-        func_8029797C(sp2C);
+        baphysics_set_target_horizontal_velocity(ml_map_f(pitch_getIdeal(), 20.0f, 60.0f, 550.0f, 700.0f));
+        baphysics_set_target_yaw(sp2C);
         func_8029C22C();
     }else{//L802A6304
         sp3C = BS_26_LONGLEG_IDLE;
@@ -463,8 +464,8 @@ void func_802A6388(f32 arg0){
 
 void func_802A6394(void){
     baanim_playForDuration_loopSmooth(ASSET_41_ANIM_BSLONGLEG_IDLE, 1.0f);
-    func_8029C7F4(1,1,3,2);
-    func_80297970(0.0f);
+    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    baphysics_set_target_horizontal_velocity(0.0f);
     func_802A5374();
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();

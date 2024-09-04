@@ -67,7 +67,7 @@ void chtrainers_update(Actor *this){
         this->velocity[0] = this->yaw;
         this->velocity[1] = 0.0f;
         this->unk10_12 = !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) && !func_803203FC(0x1);
-        func_80328A84(this, 0);
+        subaddie_set_state(this, 0);
     }
 
     if(!func_803203FC(0xF) && ability_isUnlocked(ABILITY_11_TURBO_TALON)){
@@ -92,14 +92,14 @@ void chtrainers_update(Actor *this){
         case 1://L802CA630
             this->velocity[2] -= time_getDelta();
             if(this->velocity[2] <= 0.0f){
-                func_80328A84(this, 2);
+                subaddie_set_state(this, 2);
             }
             break;
         
         case 2://L802CA670
             if(player_stateTimer_get(STATE_TIMER_3_TURBO_TALON) == 0.0f){
                 this->velocity[2] = 1.0f;
-                func_80328A84(this, 3);
+                subaddie_set_state(this, 3);
             }
             break;
 
@@ -107,7 +107,7 @@ void chtrainers_update(Actor *this){
             this->velocity[2] -= time_getDelta();
             if(this->velocity[2] <= 0.0f){
                 this->unk10_12 = 1;
-                func_80328A84(this, 0);
+                subaddie_set_state(this, 0);
             }
             break;
     }//L802CA6F8
@@ -122,7 +122,7 @@ f32 chtrainers_getDuration(Actor *this){
 }
 
 void chtrainers_pickup(Actor *this){
-    func_80328A84(this, 1);
+    subaddie_set_state(this, 1);
     this->velocity[2] = 1.0f;
     this->unk10_12 = 0;
 }

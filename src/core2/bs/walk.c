@@ -3,18 +3,15 @@
 #include "variables.h"
 #include "animation.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
 
 void baanim_setDurationRange(f32, f32);
-f32 _get_horzVelocity(void);
 void func_802927E0(f32, f32);
 f32 func_8029B2E8(void);
-int func_80297C04(f32);
 void func_8029AD28(f32, s32);
-f32 func_80297AF0(void);
 void baanim_scaleDuration(f32);
 f32 func_8029B30C(void);
 f32 ml_interpolate_f(f32, f32, f32);
-f32 func_80297A64(void);
 void func_80299594(s32, f32);
 
 // .data
@@ -49,27 +46,27 @@ void func_802B6D00(void){
     sp18 = func_8029B300();
     if(func_8028B128()){
         if(sp18 == 0){
-            func_80297970(0.0f);
+            baphysics_set_target_horizontal_velocity(0.0f);
         }else{//L802B6D48
-            func_80297970(ml_interpolate_f(func_8029B2E8(), bsWalkMinMudVelocity, bsWalkMaxMudVelocity));
+            baphysics_set_target_horizontal_velocity(ml_interpolate_f(func_8029B2E8(), bsWalkMinMudVelocity, bsWalkMaxMudVelocity));
         }
     }
     else{//L802B6D78
         switch(sp18){
             case 0://802B6D98
-                func_80297970(0.0f);
+                baphysics_set_target_horizontal_velocity(0.0f);
                 break;
             case 1://802B6DAC
-                func_80297970(ml_interpolate_f(sp1C, bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold));
+                baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold));
                 break;
             case 2://802B6DD0
-                func_80297970(ml_interpolate_f(sp1C, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold));
+                baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold));
                 break;
             case 3://802B6DF4
-                func_80297970(ml_interpolate_f(sp1C, bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold));
+                baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold));
                 break;
             case 4://802B6E18
-                func_80297970(ml_interpolate_f(sp1C, bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity));
+                baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity));
                 break;
         }
     }//L802B6E34
@@ -77,7 +74,7 @@ void func_802B6D00(void){
 
 void func_802B6E44(void){
     if(func_8028B394()){
-        baanim_scaleDuration(ml_map_f(func_80297AF0(), 0.0f, 1.0f, 0.5f, 0.9f));
+        baanim_scaleDuration(ml_map_f(baphysics_get_horizontal_velocity_percentage(), 0.0f, 1.0f, 0.5f, 0.9f));
     }else{
         baanim_scaleDuration(1.0f);
     }
@@ -98,7 +95,7 @@ int func_802B6EF4(void){
 
 s32 func_802B6F20(s32 arg0){
     if(button_pressed(BUTTON_B)){
-        if( bsWalkWalkFastWalkVelocityThreshold < func_80297A64()){
+        if( bsWalkWalkFastWalkVelocityThreshold < baphysics_get_target_horizontal_velocity()){
             if(can_roll())
                 arg0 = BS_ROLL;
         }else{//L802B6F74
@@ -132,7 +129,7 @@ void bswalk_creep_init(void){
     animctrl_setStart(anim_ctrl, start_position);
     animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     animctrl_start(anim_ctrl, "bswalk.c", 0xe4);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowestCreepDuration, bsWalkFastestCreepDuration);
 }
@@ -149,7 +146,7 @@ void bswalk_creep_update(void){
     func_802B6D00();
     switch(func_8029B300()){
         case 0://L802B7160
-            if(func_80297C04(1.0f))
+            if(baphysics_is_slower_than(1.0f))
                 next_state = BS_1_IDLE;
             break;
         case 2://L802B7180
@@ -166,7 +163,7 @@ void bswalk_creep_update(void){
         next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -205,7 +202,7 @@ void bswalk_slow_init(void){
     animctrl_setStart(anim_ctrl, start_position);
     animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     animctrl_start(anim_ctrl, "bswalk.c", 0x168);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold, bsWalkSlowestSlowWalkDuration, bsWalkFastestSlowWalkDuration);
 }
@@ -222,7 +219,7 @@ void bswalk_slow_upate(void){
     func_802B6D00();
     switch(func_8029B300()){
         case 0://L802B7160
-            if(func_80297C04(3.0f))
+            if(baphysics_is_slower_than(3.0f))
                 next_state = BS_1_IDLE;
             break;
         case 1://L802B7180
@@ -239,7 +236,7 @@ void bswalk_slow_upate(void){
         next_state = BS_WALK_MUD;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -283,7 +280,7 @@ void bswalk_init(void){
     animctrl_setStart(anim_ctrl, start_position);
     animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     animctrl_start(anim_ctrl, "bswalk.c", 0x1ed);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold, bsWalkSlowestWalkDuration, bsWalkFastestWalkDuration);
     func_802B6EB0(0.3f);
@@ -300,7 +297,7 @@ void bswalk_update(void){
         case 0:
         case 1:
         case 2:
-            if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold) && func_802B6EF4())
+            if(baphysics_is_slower_than(bsWalkSlowWalkWalkVelocityThreshold) && func_802B6EF4())
                 next_state = BS_2_WALK_SLOW;
             break;
         case 4:
@@ -310,12 +307,12 @@ void bswalk_update(void){
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
+    if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
         next_state = BS_SKID;
     }
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;
@@ -347,7 +344,7 @@ void bswalk_fast_init(void){
     switch(bs_getPrevState()){
         case 1:
         case 2://L802B780C
-            if(_get_horzVelocity() < 200.0f){
+            if(baphysics_get_horizontal_velocity() < 200.0f){
                 func_802927E0(0.0f, 0.0f);
             }
             break;
@@ -367,7 +364,7 @@ void bswalk_fast_init(void){
     animctrl_setStart(anim_ctrl, sp28);
     animctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     animctrl_start(anim_ctrl, "bswalk.c", 0x27d);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity, bsWalkSlowestFastWalkDuration, bsWalkFastestFastWalkDuration);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -386,34 +383,34 @@ void bswalk_fast_update(void){
     func_802B6D00();
     switch(func_8029B300()){
         case 0://L802B79EC
-            if(func_80297C04(18.0f))
+            if(baphysics_is_slower_than(18.0f))
                 next_state = BS_1_IDLE;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
             
             break;
         case 1:
         case 2://L802B7A28
-            if(func_80297C04(bsWalkSlowWalkWalkVelocityThreshold))
+            if(baphysics_is_slower_than(bsWalkSlowWalkWalkVelocityThreshold))
                 next_state = BS_2_WALK_SLOW;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
 
             break;
         case 3://L802B7A60
-            if(func_80297C04(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
+            if(baphysics_is_slower_than(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
                 next_state = BS_WALK;
 
             if(func_80294F78())
-                next_state = func_802926C0();
+                next_state = badrone_look();
             break;
     }//L802B7AA4
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(func_8028B4C4() && bsWalkSkidVelocity < _get_horzVelocity()){
+    if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
         next_state = BS_SKID;
     }
 
@@ -446,7 +443,7 @@ void bswalk_fast_end(void){
 
 void bswalk_mud_init(void){
     baanim_playForDuration_loopSmooth(ASSET_B_ANIM_BSWALK_MUD, 0.43f);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1,2);
+    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkMinMudVelocity, bsWalkMaxMudVelocity, bsWalkSlowestMudDuration, bsWalkFastestMudDuration);
 }
@@ -464,7 +461,7 @@ void bswalk_mud_update(void){
         next_state = BS_1_IDLE;
 
     if(func_80294F78())
-        next_state = func_802926C0();
+        next_state = badrone_look();
 
     if(func_8028B094())
         next_state = BS_2F_FALL;

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 player_getYaw(void);
 extern void chJigsawDance_setState(Actor *, s32);
@@ -299,7 +301,7 @@ void func_80296608(void){
         case BS_INTR_A:  //L8029666C
             sp2C = 2;
             if(func_8028B2E8()){
-                next_state = func_80292738();
+                next_state = badrone_transform();
             }
             else{
                 miscflag_set(0x19);
@@ -427,7 +429,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_34: //L802969A4
-            next_state = func_802926E8();
+            next_state = badrone_802926E8();
             sp2C = 2;
             break;
         case BS_INTR_27_BANJO_SLED: //L802969BC 
@@ -488,8 +490,8 @@ void func_80296608(void){
 
                 }
             }
-            func_80297970(0.0f);
-            func_80297A0C(0);
+            baphysics_set_target_horizontal_velocity(0.0f);
+            baphysics_set_velocity(0);
             break;
         case BS_INTR_25: //L80296B54
             sp2C = 2;
@@ -507,7 +509,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_37: //L80296BB4
-            next_state = func_80292710();
+            next_state = badrone_vanish();
             sp2C = 2;
             break;
         case BS_INTR_2A: //L80296BCC

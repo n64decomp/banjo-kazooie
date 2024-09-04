@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
 /* .data */
 const f32 D_80364A20 = 920.0f;
@@ -18,9 +19,9 @@ void _bsbflip_802A2D60(void){
     f32 sp1C;
     sp1C = func_8029B30C();
     if(!func_8029B300())
-        func_80297970(0.0f);
+        baphysics_set_target_horizontal_velocity(0.0f);
     else
-        func_80297970(ml_interpolate_f(sp1C, D_80364A2C, D_80364A30));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364A2C, D_80364A30));
 }
 
 void _bsbflip_802A2DC0(void){
@@ -33,10 +34,10 @@ void _bsbflip_802A2DC0(void){
     animctrl_setStart(aCtrl, 0.8566f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsbflip.c", 0x69); //nice
-    func_802978DC(3);
-    func_80297970(0.0f);
+    baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_horizontal_velocity(0.0f);
     ml_vec3f_clear(sp20);
-    func_80297A0C(sp20);
+    baphysics_set_velocity(sp20);
     func_8029C5E8();
 }
 
@@ -50,7 +51,7 @@ void bsbflip_init(void){
     animctrl_setStart(aCtrl, 0.0f);
     animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     animctrl_start(aCtrl, "bsbflip.c", 0x80);
-    func_8029C7F4(1,1,2,3);
+    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
     func_8029E070(1);
@@ -79,17 +80,17 @@ void bsbflip_update(void){
                     yaw_setIdeal(func_8029B33C());
                 }
                 yaw_rotateTimed(1.0f);
-                func_802978DC(6);
-                func_8029797C(yaw_getIdeal());
-                func_80297970(200.0f);
-                func_802979AC(yaw_getIdeal(), func_80297A64());
+                baphysics_set_type(BA_PHYSICS_AIRBORN);
+                baphysics_set_target_yaw(yaw_getIdeal());
+                baphysics_set_target_horizontal_velocity(200.0f);
+                baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
             }else{//L802A3098
-                func_802978DC(6);
-                func_80297970(0.0f);
+                baphysics_set_type(BA_PHYSICS_AIRBORN);
+                baphysics_set_target_horizontal_velocity(0.0f);
             }
-            player_setYVelocity(D_80364A20);
-            gravity_set(D_80364A24);
-            func_80297BF8(D_80364A28);
+            baphysics_set_vertical_velocity(D_80364A20);
+            baphysics_set_gravity(D_80364A24);
+            baphysics_set_terminal_velocity(D_80364A28);
             animctrl_setDuration(aCtrl, 1.9f);
             func_8030E4E4(SFX_33_BANJO_AHOO);
             D_8037D310 = 1;
@@ -120,7 +121,7 @@ void bsbflip_update(void){
             animctrl_setDuration(aCtrl, 0.8f);
             animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             animctrl_start(aCtrl, "bsbflip.c", 0xee);
-            func_80297B94();
+            baphysics_reset_terminal_velocity();
             D_8037D310 = 3;
         }//L802A320C
         if(func_8028B2E8()){
@@ -160,8 +161,8 @@ void bsbflip_update(void){
 
 void bsbflip_end(void){
     ability_use(2);
-    gravity_reset();
-    func_80297B94();
+    baphysics_reset_gravity();
+    baphysics_reset_terminal_velocity();
     func_8029E070(0);
     func_8029B0C0();
 }

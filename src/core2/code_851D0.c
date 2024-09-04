@@ -80,7 +80,7 @@ void func_8030C204(void){
 void func_8030C27C(void){
     switch(getGameMode()){
         case GAME_MODE_8_BOTTLES_BONUS:
-            chBottlesBonus_Spawn(0, 0);
+            chBottlesBonus_spawn(0, 0);
             break;
         case GAME_MODE_A_SNS_PICTURE:
             func_802DF090(0, 0);

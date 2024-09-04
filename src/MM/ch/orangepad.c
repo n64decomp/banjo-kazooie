@@ -24,7 +24,7 @@ void MM_func_803863F0(s32 x, s32 y, s32 z){
 
     TUPLE_ASSIGN(pos, x, y, z);
     
-    jiggySpawn(JIGGY_8_MM_ORANGE_PADS, pos);
+    jiggy_spawn(JIGGY_8_MM_ORANGE_PADS, pos);
 }
 
 void func_80386444(ActorMarker *arg0){

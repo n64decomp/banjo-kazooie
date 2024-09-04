@@ -142,7 +142,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
-    func_80328A84(this, arg1);
+    subaddie_set_state(this, arg1);
 }
 
 void __chMinigame_free(Actor *this){

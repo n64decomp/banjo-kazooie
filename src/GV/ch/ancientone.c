@@ -88,7 +88,7 @@ void func_803867F4(void){
     f32 sp24[3];
     func_802BAFE4(4);
     if(nodeProp_findPositionFromActorId(0x148, sp24)){
-        jiggySpawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
+        jiggy_spawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
         __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
     }
 }
@@ -96,7 +96,7 @@ void func_803867F4(void){
 void func_80386850(ActorMarker *caller_marker, enum asset_e text_id, s32 arg2){
     Actor *caller = marker_getActor(caller_marker); 
     if(text_id == 0xA80){
-        func_80328B8C(caller, 2, 0.0f, 1);
+        subaddie_set_state_with_direction(caller, 2, 0.0f, 1);
         actor_playAnimationOnce(caller);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
         timedFunc_set_0(1.0f, func_803867F4);
@@ -162,7 +162,7 @@ void chAncientOne_update(Actor *this){
                                     }
                                 }
                                 
-                                func_80328B8C(this, 2, 0.0f, 1);
+                                subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                                 actor_playAnimationOnce(this);
                                 if(this->unkF4_8 < 5){
                                     D_80390C28[this->unkF4_8]->propPtr->unk8_4 = TRUE;
@@ -198,7 +198,7 @@ void chAncientOne_update(Actor *this){
                 break;
             case 2: //L80386DCC
                 if(actor_animationIsAt(this, 0.999f)){
-                    func_80328B8C(this, 3, 0.9999f, 1);
+                    subaddie_set_state_with_direction(this, 3, 0.9999f, 1);
                     actor_playAnimationOnce(this);
                 }
                 break;

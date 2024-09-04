@@ -75,7 +75,7 @@ void func_803893A4(Actor *this){
             break;
         case 2:
             if(actor_animationIsAt(this, 0.999f)){
-                func_80328B8C(this, 1, 0.001f, 0);
+                subaddie_set_state_with_direction(this, 1, 0.001f, 0);
                 actor_playAnimationOnce(this);
                 this->unk38_31 = 2;
             }
@@ -86,7 +86,7 @@ void func_803893A4(Actor *this){
 void func_80389484(ActorMarker * marker, f32 anim_duration){
     Actor *this = marker_getActor(marker);
 
-    func_80328B8C(this, 2, 0.001f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.001f, 1);
     actor_playAnimationOnce(this);
     animctrl_setDuration(this->animctrl, anim_duration);
     this->unk38_31 = 1;

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/physics.h"
+
 void func_802B37DC(void);
 
 /* .bss */
@@ -54,7 +56,7 @@ void bsow_update(void) {
     if (func_8028B2E8() != 0) {
         sp1C = BS_2_WALK_SLOW;
     }
-    if ((player_inWater() != 0) && (_get_vertVelocity() <= 0.0f)) {
+    if ((player_inWater() != 0) && (baphysics_get_vertical_velocity() <= 0.0f)) {
         sp1C = BS_4C_LANDING_IN_WATER;
     }
 
@@ -65,7 +67,7 @@ void bsow_end(void){
     func_802B35DC();
     func_802B1FD0(0);
     func_80297CA8();
-    gravity_reset();
+    baphysics_reset_gravity();
     baMarker_collisionOn();
     func_80292EA4();
 }

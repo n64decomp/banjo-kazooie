@@ -51,7 +51,7 @@ void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum a
     func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
     if(!func_80329530(*this_ptr, 400)) return;
-    if(carriedObj_getMarkerId() != carried_obj_marker_id)        return;
+    if(bacarry_get_markerId() != carried_obj_marker_id)        return;
     if(!func_8028FC34())               return;
 
     func_8028FA34(arg3, *this_ptr);
@@ -72,7 +72,7 @@ void func_8038A274(Actor *this){
 void func_8038A318(ActorMarker *caller, enum asset_e text_id, s32 arg1){
     if(text_id == 0xc19){
         func_802BAFE4(0x25);
-        jiggySpawn(JIGGY_2E_FP_PRESENTS, FP_D_80391E74);
+        jiggy_spawn(JIGGY_2E_FP_PRESENTS, FP_D_80391E74);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
         func_8025A6EC(COMUSIC_5B_FP_IGLOO_HAPPY, 25000);
         func_8025A58C(0, 4000);
@@ -111,7 +111,7 @@ void func_8038A384(Actor *this){
         if( jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
             || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)
         ){
-            func_80328B8C(this, 2, randf2(0.0f, 0.9f), 1);
+            subaddie_set_state_with_direction(this, 2, randf2(0.0f, 0.9f), 1);
         }
     }//L8038A4E4
 
@@ -153,7 +153,7 @@ void func_8038A384(Actor *this){
                     break;
             }
             if(levelSpecificFlags_get(D_80391E80[sp3C].unk0)){
-                func_80328B8C(this, 2, 0.001f, 1);
+                subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 if(sp38 == 0xc19){
                     func_80311480(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
                 }

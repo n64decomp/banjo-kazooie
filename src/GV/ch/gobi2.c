@@ -34,7 +34,7 @@ void func_80387984(ActorMarker *this){
 
 void __chGobi2_spawnJIggy(void){
     static f32 jiggy_position[3] = {1150.0f, 1150.0f, 9200.0f};
-    jiggySpawn(JIGGY_45_GV_GOBI_2, jiggy_position);
+    jiggy_spawn(JIGGY_45_GV_GOBI_2, jiggy_position);
 }
 
 void func_803879D4(ActorMarker *this_marker){

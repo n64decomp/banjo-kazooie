@@ -1,23 +1,18 @@
 #ifndef __SAVE_H__
 #define __SAVE_H__
 
-typedef struct {    
-    u8 unk0[0x4];
-    u8 unk4[0x14];
-    u8 pad28[0x5C];
-    u32 checksum;
-}SaveFile;
-
 typedef struct{
-    u8 unk0;
-    u8 unk1;
-    u8 pad2[0x76];
+    u8 magic;
+    u8 slotIndex;
+    u8 data[0x70];
+    u8 padding[0x2];
+    u32 checksum;
 }SaveData;
 
 typedef struct {
-    u8 unk0[0x04];
-    u8 unk4[0x18];
+    u32 snsItems;
+    u8 padding[0x18];
     u32 checksum;
-}SaveSettings;
+}GlobalData;
 
 #endif

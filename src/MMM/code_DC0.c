@@ -74,7 +74,7 @@ bool MMM_func_80387340(ActorMarker *marker){
     if(actor->state == 2) 
         return FALSE;
 
-    func_80328A84(actor, 2);
+    subaddie_set_state(actor, 2);
     animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
     sp1C = func_803871B0();
     if(sp1C != 0){
@@ -83,7 +83,7 @@ bool MMM_func_80387340(ActorMarker *marker){
             ml_vec3f_copy(sp20, actor->position);
             sp20[1] += 80.0f;
             func_8025A70C(COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
-            jiggySpawn(JIGGY_63_MMM_FLOWER_POTS, sp20);
+            jiggy_spawn(JIGGY_63_MMM_FLOWER_POTS, sp20);
         }
         else{
             func_8025A70C(COMUSIC_2B_DING_B);

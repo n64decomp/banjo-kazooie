@@ -47,7 +47,7 @@ void chCollectible_setState(Actor *arg0, s32 next_state){
             actor_collisionOn(arg0);
             break;
     }
-    func_80328A84(arg0, next_state);
+    subaddie_set_state(arg0, next_state);
 }
 
 void func_802D8C98(Actor *this, s32 arg1) {
@@ -82,7 +82,7 @@ bool chCollectible_collectItem(Actor* actor, enum file_progress_e arg1, enum ass
     if(!func_802FADD4(0x1b)){
         item_inc(itemId);
     } else {
-        func_803463F4(itemId,1);   
+        item_adjustByDiffWithoutHud(itemId,1);   
     }
 
     if(!actor || !actor->unk38_0)

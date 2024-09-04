@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/anim.h"
+#include "core2/ba/physics.h"
+
 
 extern f32 func_802E4B38(void);
 extern f32 ml_mapRange_f(f32, f32, f32, f32, f32);
@@ -53,14 +55,14 @@ void __baanim_update_scaleToHorizontalVelocity(void) {
     f32 scale;
     
     scale = (baAnimScale.scalable_duration != 0) ? baAnimScale.duration_scale : 1.0f;
-    _get_velocity(velocity);
+    baphysics_get_velocity(velocity);
     temp_f12 = ml_mapRange_f(gu_sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
     animctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, baAnimMinDuration, baAnimMaxDuration));
     animctrl_update(playerAnimCtrl);
 }
 
 void __baanim_update_scaleToVerticalVelocity(void) {
-    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(ml_mapRange_f(mlAbsF(_get_vertVelocity()), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min, baAnimScale.duration_max), baAnimMinDuration, baAnimMaxDuration));
+    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(ml_mapRange_f(mlAbsF(baphysics_get_vertical_velocity()), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min, baAnimScale.duration_max), baAnimMinDuration, baAnimMaxDuration));
     animctrl_update(playerAnimCtrl);
 }
 

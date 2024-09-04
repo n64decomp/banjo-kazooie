@@ -36,13 +36,13 @@ void chShrapnel_func_802D0A38(Actor *this){
     else{
         if(func_80329530(this, 600) && func_803292E0(this)){
             this->unk28 = 0.0f;
-            func_80328B8C(this, 2, 0.0f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         }
     }
 }
 
 void chShrapnel_func_802D0AB8(Actor *this) {
-    func_80328B8C(this, 1, 0.0f, 0);
+    subaddie_set_state_with_direction(this, 1, 0.0f, 0);
     chShrapnel_func_802D0A00(this);
     func_80328CEC(this, (s32) this->yaw_ideal, 0x87, 0xAF);
     this->unk38_31 = 0x1E;
@@ -85,12 +85,12 @@ void chShrapnel_emitSmoke(Actor *this) {
     func_802EFB84(temp_v0, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    particleEmitter_setRGB(temp_v0, &D_803673F8);
+    particleEmitter_setRGB(temp_v0, D_803673F8);
     particleEmitter_setParticleLifeTimeRange(temp_v0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_v0, 6);
 }
 
-void chShrapnel_emitBodyParts(Actor *this, enum model_e model_id, s32 n) {
+void chShrapnel_emitBodyParts(Actor *this, enum asset_e model_id, s32 n) {
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitMgr_newEmitter(n);
@@ -167,7 +167,7 @@ void chshrapnel_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 if (250.0 > ABS(player_position[1] - this->unk1C[1])) {
-                    func_80328A84(this, 3);
+                    subaddie_set_state(this, 3);
                     actor_loopAnimation(this);
                     FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 32750, this->position, 1250, 2500);
                     this->unk28 = 4.0f;

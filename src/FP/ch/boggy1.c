@@ -47,14 +47,14 @@ Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_803876A4(Actor *this){
-    func_80328B8C(this, 2, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
     FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.0f, 32000, this->position, 1250, 2500);
 }
 
 void func_803876F8(Actor *this){
     this->marker->propPtr->unk8_3 = FALSE;
-    func_80328B8C(this, 5, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, 5, 0.0001f, 1);
     this->unk48 = 0.0f;
     func_80343DEC(this);
 }
@@ -73,10 +73,10 @@ void func_803877A8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     
     if(arg2 == 1){
-        jiggySpawn(JIGGY_2A_FP_BOGGY_1, this->velocity);
+        jiggy_spawn(JIGGY_2A_FP_BOGGY_1, this->velocity);
     }
     else if(arg2 == 2){
-        func_80328B8C(this, 4, 0.0001f, 1);
+        subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
         actor_loopAnimation(this);
         actor_collisionOff(this);
     }
@@ -178,7 +178,7 @@ void func_8038794C(Actor *this){
             }//L80387CF4
 
             if(actor_animationIsAt(this, 0.9999f)){
-                func_80328B8C(this, 3, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, 3, 0.0001f, 1);
                 actor_loopAnimation(this);
             }
             break;

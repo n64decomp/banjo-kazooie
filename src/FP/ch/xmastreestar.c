@@ -104,14 +104,14 @@ void func_8038ECD8(Actor *this){
             if(!mapSpecificFlags_get(2)) break;
             if(mapSpecificFlags_get(3))  break;
 
-            func_80328A84(this, 2);
+            subaddie_set_state(this, 2);
             this->unk38_31 = 0;
             break;
 
         case 2://L8038EF5C
             if(!local->unk1A) return;
             if(item_empty(ITEM_6_HOURGLASS)){
-                func_80328A84(this, 1);
+                subaddie_set_state(this, 1);
             }
             else{
                 this->marker->collidable = TRUE;
@@ -136,7 +136,7 @@ void func_8038ECD8(Actor *this){
                 }//L8038F090
 
                 if(!(this->unk38_31 < 3)){
-                    func_80328A84(this, 1);
+                    subaddie_set_state(this, 1);
                     mapSpecificFlags_set(3, 1);
                 }
             }

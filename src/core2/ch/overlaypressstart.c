@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80328B8C(Actor *, s32, f32, s32);
+extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void actor_predrawMethod(Actor *);
 extern void actor_postdrawMethod(ActorMarker *);
 extern Actor *func_8032813C(enum actor_e id, f32[3], s32);
@@ -50,8 +50,8 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
     func_8024E258();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};
-    viewport_setPosition(sp58);
-    viewport_setRotation(sp4C);
+    viewport_set_position_vec3f(sp58);
+    viewport_set_rotation_vec3f(sp4C);
     viewport_update();
     func_8024C904(gdl, mptr);
     {sp40[0] = 0.0f; sp40[1] = 0.0f; sp40[2] = 0.0f;};
@@ -72,13 +72,13 @@ void chOverlayPressStart_update(Actor *this){
         this->initialized = 1;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
-        func_80328B8C(this, 1, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 1, 0.0f, 1);
         actor_playAnimationOnce(this);
         marker_setFreeMethod(this->marker, chOverlayPressStart_func_802DCC78);
     }
 
     if(animctrl_isStopped(this->animctrl)){
-        func_80328B8C(this, 2, 0.0f, 1);
+        subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         actor_loopAnimation(this);
     }
 }

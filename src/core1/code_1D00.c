@@ -147,9 +147,9 @@ ALHeap D_8027CFF0;
 u8 * D_8027D000;
 s32  D_8027D004;
 OSMesgQueue D_8027D008;
-OSMesg D_8027D020;
+OSMesg D_8027D020[50];
 OSIoMesg D_8027D0E8;
-Struct_core1_1D00_4 D_8027D100[58];
+Struct_core1_1D00_4 D_8027D100[50];
 struct {
     u8 unk0;
     Struct_1D00_3 *unk4;
@@ -297,7 +297,7 @@ void audioManager_create(void) {
     int i;
     f32 var_f0;
 
-    osCreateMesgQueue(&D_8027D008, &D_8027D020, 0x32);
+    osCreateMesgQueue(&D_8027D008, D_8027D020, 50);
     osCreateMesgQueue(&audioManager.audioReplyMsgQ, audioManager.audioReplyMsgBuf, 8); //audioReplyMesgQueue
     osCreateMesgQueue(&audioManager.audioFrameMsgQ, audioManager.audioFrameMsgBuf, 8);
     var_f0 = 733.333313f;

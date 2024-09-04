@@ -26,7 +26,7 @@ ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
 /* .code */
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    if( func_8038BFA0() || fileProgressFlag_get(FILEPROG_13) ){
+    if( func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) ){
         if(0.0f == this->velocity[1])
             return this;
     }
@@ -240,7 +240,7 @@ void func_8038D51C(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
     
     item_set(ITEM_6_HOURGLASS, FALSE);
-    fileProgressFlag_set(FILEPROG_13, TRUE);
+    fileProgressFlag_set(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME, TRUE);
     FUNC_8030E624(SFX_416, 0.8f, 32000);
     func_8028F8F8(7, 0);
     this->unk1C[1] = 1.0f;
@@ -268,7 +268,7 @@ void func_8038D5C8(ActorMarker *this_marker, ActorMarker *other_marker){
         func_8024BD08(0);
         this->unk1C[2] = 428571.0f;
         func_8025AEA0(0x68, (s32)this->unk1C[2]);
-        func_80328B8C(this, 3, 0.001f, 1);
+        subaddie_set_state_with_direction(this, 3, 0.001f, 1);
         actor_playAnimationOnce(this);
         this->velocity[0] = 1.0f;
     }//L8038D6B8
@@ -281,7 +281,7 @@ void func_8038D6C8(Actor *this){
     sp24 = time_getDelta();
     mapSpecificFlags_set(0xd, (this->state != 1 && this->state != 2) ? TRUE : FALSE);
     
-    if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13)){
+    if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOff(this);
         func_8028F8F8(7, FALSE);
@@ -303,7 +303,7 @@ void func_8038D6C8(Actor *this){
         this->unk1C[0] = -1.0f;
         func_8028F8F8(7, FALSE);
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -1){
-            func_80328B8C(this, 3, 0.001f, 1);
+            subaddie_set_state_with_direction(this, 3, 0.001f, 1);
             actor_playAnimationOnce(this);
             this->velocity[0] = 1.0f;
         }
@@ -320,9 +320,9 @@ void func_8038D6C8(Actor *this){
             break;
 
         if(!(func_8023DB5C() & 1))
-            func_80328B8C(this, 2, 0.001f, 1);
+            subaddie_set_state_with_direction(this, 2, 0.001f, 1);
         else
-            func_80328B8C(this, 2, 0.999f, 0);
+            subaddie_set_state_with_direction(this, 2, 0.999f, 0);
 
         actor_playAnimationOnce(this);
         this->velocity[2] = randf2(1.4f, 2.0f);
@@ -335,7 +335,7 @@ void func_8038D6C8(Actor *this){
         if( ( sp20 == TRUE && actor_animationIsAt(this, 0.999f) )
             || ( sp20 == FALSE && actor_animationIsAt(this, 0.001f) )
         ){
-            func_80328B8C(this, 1, 0.001f, 0);
+            subaddie_set_state_with_direction(this, 1, 0.001f, 0);
             actor_playAnimationOnce(this);
             break;
         }
@@ -362,7 +362,7 @@ void func_8038D6C8(Actor *this){
 
         timed_exitStaticCamera(0.0f);
         func_8028F784(0);
-        func_80328B8C(this, 4, 0.999f, 1);
+        subaddie_set_state_with_direction(this, 4, 0.999f, 1);
         actor_playAnimationOnce(this);
         item_set(ITEM_0_HOURGLASS_TIMER, 80*60 - 1);
         item_set(ITEM_6_HOURGLASS, TRUE);
@@ -381,7 +381,7 @@ void func_8038D6C8(Actor *this){
 
         func_8025AEA0(COMUSIC_68_TWINKLY_MINIGAME, (s32)this->unk1C[2]);
         if(item_getCount(ITEM_24_TWINKLY_SCORE) == 0){
-            func_80328B8C(this, 1, 0.001f, 1);
+            subaddie_set_state_with_direction(this, 1, 0.001f, 1);
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_8038D3D8();
             func_80324E38(0.0f, 3);
@@ -393,7 +393,7 @@ void func_8038D6C8(Actor *this){
         }
 
         if(item_empty(ITEM_6_HOURGLASS)){
-            func_80328B8C(this, 1, 0.001f, 0);
+            subaddie_set_state_with_direction(this, 1, 0.001f, 0);
             actor_playAnimationOnce(this);
             this->unk38_31 = 0;
             item_set(ITEM_6_HOURGLASS, FALSE);

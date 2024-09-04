@@ -55,6 +55,7 @@ __pycache__/
 *__pycache__/
 expected/
 .*/
+!.gitlab/
 *.ld
 *.map
 *auto.txt

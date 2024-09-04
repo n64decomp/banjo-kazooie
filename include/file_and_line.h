@@ -15,7 +15,7 @@ extern void func_8033F000(const char *, const char *, int);
     #else
         #define FILE(file_name) "file_name"
     #endif
-    #define matching_assert(EX, F, L) assert(EX)
+
     #ifdef __ANSI_CPP__
         #define matching_assert(EX, F, L)  ((EX)?((void)0):func_8033F000( # EX , # F, L))
     #else

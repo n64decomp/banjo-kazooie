@@ -1,15 +1,11 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/physics.h"
 
-void func_8029797C(f32);
-f32 func_80297A64(void);
-void func_80297970(f32);
-f32 func_80297A7C(void);
 
 s32 func_8029E2E0(s32, f32);
 void  func_80292864(f32, f32);
-void func_802979AC(f32, f32);
 void func_8029E3C0(s32, f32);
 
 
@@ -36,15 +32,15 @@ void func_8029F4F0(void){
 
     switch(D_8037D2A4){
         case 0:
-            tmp_f = (func_80297A7C() + 180.0f);
+            tmp_f = (baphysics_get_target_yaw() + 180.0f);
             func_80292864(tmp_f - 70.0f, 20.0f);
             break;
         case 1:
-            tmp_f = (func_80297A7C() + 180.0f);
+            tmp_f = (baphysics_get_target_yaw() + 180.0f);
             func_80292864(tmp_f - 10.0f, 20.0f);
             break;
         case 2:
-            tmp_f = (func_80297A7C() + 180.0f);
+            tmp_f = (baphysics_get_target_yaw() + 180.0f);
             func_80292864(tmp_f + 50.0f, 20.0f);
             break;
     }
@@ -73,10 +69,10 @@ void bsbarge_init(void){
     animctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);
     animctrl_start(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
-    func_8029C7F4(1,1,3,3);
-    func_8029797C(yaw_getIdeal());
-    func_80297970(func_80297A64()*0.3);
-    func_802979AC(yaw_getIdeal(), func_80297A64());
+    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    baphysics_set_target_yaw(yaw_getIdeal());
+    baphysics_set_target_horizontal_velocity(baphysics_get_target_horizontal_velocity()*0.3);
+    baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     func_8029E070(1);
     D_8037D2A6 = 0;
     D_8037D2A5 = 0;
@@ -127,15 +123,15 @@ void bsbarge_update(void){
             
             animctrl_setDuration(plyrMvmnt, 1.0f);
             baanim_setEnd(0.565f);
-            func_80297970(D_8037D2A0);
-            func_802979AC(yaw_getIdeal(), func_80297A64());
+            baphysics_set_target_horizontal_velocity(D_8037D2A0);
+            baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
             func_8030E760(SFX_2_CLAW_SWIPE, 0.558f, 22000);
             D_8037D2A5 = 2;
             func_8029F4F0();
             D_8037D2A6 = 1;
             break;
         case 2:
-            func_80297970(D_8037D2A0);
+            baphysics_set_target_horizontal_velocity(D_8037D2A0);
             if(animctrl_isStopped(plyrMvmnt)){
                 animctrl_setDuration(plyrMvmnt, 2.0f);
                 baanim_setEnd(0.6f);
@@ -149,7 +145,7 @@ void bsbarge_update(void){
             if(miscflag_isFalse(0xC) || func_8029E384(0)){
                 D_8037D2A0 -= 80.0f;
             }
-            func_80297970(D_8037D2A0);
+            baphysics_set_target_horizontal_velocity(D_8037D2A0);
             if(D_8037D2A0 < 200.0f){
                 animctrl_setDuration(plyrMvmnt, 1.5f);
                 baanim_setEnd(1.0f);
@@ -164,7 +160,7 @@ void bsbarge_update(void){
                 D_8037D2A0 = 0.0f;
                 D_8037D2A6 = 0;
             }
-            func_80297970(D_8037D2A0);
+            baphysics_set_target_horizontal_velocity(D_8037D2A0);
             if(animctrl_isAt(plyrMvmnt, 0.9193f))
                 sp24 = BS_20_LANDING;
             break;

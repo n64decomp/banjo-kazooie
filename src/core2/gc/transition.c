@@ -7,75 +7,127 @@
 void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
-void func_8024CE60(f32, f32);
+void viewport_set_near_far(f32, f32);
 
+typedef enum {
+    TRANSITION_ID_1_BLACK_IN = 1,
+    TRANSITION_ID_2_BLACK_OUT,
+    TRANSITION_ID_3_CIRCLE_IN,
+    TRANSITION_ID_4_CIRCLE_OUT,
+    TRANSITION_ID_5_JIGGY_IN,
+    TRANSITION_ID_6_JIGGY_OUT,
+    TRANSITION_ID_7,
+    TRANSITION_ID_8_WHITE_IN,
+    TRANSITION_ID_9_WHITE_OUT,
+    TRANSITION_ID_A_WITCH_HEAD_OUT,
+    TRANSITION_ID_B_CIRCLE_IN_FAST,
+    TRANSITION_ID_C_CIRCLE_OUT_FAST,
+    TRANSITION_ID_D,
+    TRANSITION_ID_E_CIRCLE_IN_SLOW,
+    TRANSITION_ID_F_CIRCLE_OUT_SLOW,
+    TRANSITION_ID_10_FALLING_PIECES_IN,
+    TRANSITION_ID_11_FALLING_PIECES_OUT,
+    TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,
+    TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW,
+    TRANSITION_ID_14_CIRCLE_IN_SUPER_SLOW,
+    TRANSITION_ID_15_CIRCLE_OUT_SUPER_SLOW,
+} TransitionId;
+
+typedef enum {
+    TRANSITION_STATE_0_NONE,
+    TRANSITION_STATE_1_LOADING,
+    TRANSITION_STATE_2_BLACK_IN,
+    TRANSITION_STATE_3_BLACK_OUT,
+    TRANSITION_STATE_4_FADE_IN,
+    TRANSITION_STATE_5_FADE_OUT,
+    TRANSITION_STATE_6_LOADING_WHITE,
+    TRANSITION_STATE_7_WHITE_IN,
+    TRANSITION_STATE_8_WHITE_OUT
+} TransitionState;
+
+typedef struct {
+    u8 uid;
+    u8 state;
+    u8 next_state;
+    // u8 pad3[1];
+    f32 duration;
+    s32 model_index;
+    s32 anim_index;
+    f32 scale;
+}TransitionInfo;
+
+typedef struct {
+    u8 map_indx;
+    u8 in_index;
+    u8 out_index;
+}MapTransitionInfo;
 
 /* .data */
-struct9s D_8036C150[0x16]= {
-    {0x1,  2, 0, 0.1f, 0, 0, 0.0f},
-    {0x2,  3, 1, 0.1f, 0, 0, 0.0f},
-    {0x3,  4, 0, 0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x4,  5, 1, 0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x5,  4, 0, 2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0,   3.5f},
-    {0x6,  5, 1, 0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
-    {0x7,  0, 0, 0.0f, 0, 0, 0.0f},
-    {0x8,  7, 0, 1.1f, 0, 0, 0.0f},
-    {0x9,  8, 6, 0.7f, 0, 0, 0.0f},
-    {0xA,  5, 1, 3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH, 0, 3.7f},
-    {0xB,  4, 0, 0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0xC,  5, 1, 0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0xD,  2, 0, 0.6f, 0, 0, 0.0f},
-    {0xE,  4, 0, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0xF,  5, 1, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x10, 4, 0, 2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
-    {0x11, 5, 1, 2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
-    {0x12, 4, 0, 1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x13, 5, 1, 1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x14, 5, 1, 2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x15, 4, 0, 2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+TransitionInfo D_8036C150[0x16]= {
+    {TRANSITION_ID_1_BLACK_IN,               TRANSITION_STATE_2_BLACK_IN,  TRANSITION_STATE_0_NONE,          0.1f, 0, 0, 0.0f},
+    {TRANSITION_ID_2_BLACK_OUT,              TRANSITION_STATE_3_BLACK_OUT, TRANSITION_STATE_1_LOADING,       0.1f, 0, 0, 0.0f},
+    {TRANSITION_ID_3_CIRCLE_IN,              TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_4_CIRCLE_OUT,             TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       0.5f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_5_JIGGY_IN,               TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY,   0,  3.5f},
+    {TRANSITION_ID_6_JIGGY_OUT,              TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY,   0,  3.5f},
+    {TRANSITION_ID_7,                        TRANSITION_STATE_0_NONE,      TRANSITION_STATE_0_NONE,          0.0f, 0, 0, 0.0f},
+    {TRANSITION_ID_8_WHITE_IN,               TRANSITION_STATE_7_WHITE_IN,  TRANSITION_STATE_0_NONE,          1.1f, 0, 0, 0.0f},
+    {TRANSITION_ID_9_WHITE_OUT,              TRANSITION_STATE_8_WHITE_OUT, TRANSITION_STATE_6_LOADING_WHITE, 0.7f, 0, 0, 0.0f},
+    {TRANSITION_ID_A_WITCH_HEAD_OUT,         TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH,   0,  3.7f},
+    {TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_C_CIRCLE_OUT_FAST,        TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       0.3f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_D,                        TRANSITION_STATE_2_BLACK_IN,  TRANSITION_STATE_0_NONE,          0.6f, 0, 0, 0.0f},
+    {TRANSITION_ID_E_CIRCLE_IN_SLOW,         TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_F_CIRCLE_OUT_SLOW,        TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_10_FALLING_PIECES_IN,     TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {TRANSITION_ID_11_FALLING_PIECES_OUT,    TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW, TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       1.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_14_CIRCLE_IN_SUPER_SLOW,  TRANSITION_STATE_5_FADE_OUT,  TRANSITION_STATE_1_LOADING,       2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_15_CIRCLE_OUT_SUPER_SLOW, TRANSITION_STATE_4_FADE_IN,   TRANSITION_STATE_0_NONE,          2.2f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
     0
 };
 
-struct9s D_8036C308[0xC] = {
-    {0xA,  5, 1, 3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH, 0, 3.7f},
-    {0x10, 4, 0, 2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
-    {0x11, 5, 1, 2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
-    {0x6,  5, 1, 0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
-    {0x5,  4, 0, 2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
-    {0x9,  8, 6, 0.7f, 0, 0, 0.0f},
-    {0x8,  7, 0, 0.7f, 0, 0, 0.0f},
-    {0xE,  4, 0, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0xF,  5, 1, 1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
-    {0x7,  0, 0, 0.0f, 0, 0, 0.0f},
-    {0x8,  7, 0, 1.1f, 0, 0, 0.0f},
-    {0x9,  8, 6, 1.5f, 0, 0, 0.0f}
+TransitionInfo D_8036C308[0xC] = {
+    {TRANSITION_ID_A_WITCH_HEAD_OUT,        TRANSITION_STATE_5_FADE_OUT,     TRANSITION_STATE_1_LOADING,         3.5f, ASSET_7D4_MODEL_TRANSITION_WITCH, 0, 3.7f},
+    {TRANSITION_ID_10_FALLING_PIECES_IN,    TRANSITION_STATE_4_FADE_IN,      TRANSITION_STATE_0_NONE,            2.5f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {TRANSITION_ID_11_FALLING_PIECES_OUT,   TRANSITION_STATE_5_FADE_OUT,     TRANSITION_STATE_1_LOADING,         2.0f, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, ASSET_1F5_ANIM_TRANSITION_FALLING_JIGGIES, 0.269645989f},
+    {TRANSITION_ID_6_JIGGY_OUT,             TRANSITION_STATE_5_FADE_OUT,     TRANSITION_STATE_1_LOADING,         0.9f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
+    {TRANSITION_ID_5_JIGGY_IN,              TRANSITION_STATE_4_FADE_IN,      TRANSITION_STATE_0_NONE,            2.5f, ASSET_7D0_MODEL_TRANSITION_JIGGY, 0, 3.5f},
+    {TRANSITION_ID_9_WHITE_OUT,             TRANSITION_STATE_8_WHITE_OUT,    TRANSITION_STATE_6_LOADING_WHITE,   0.7f, 0, 0, 0.0f},
+    {TRANSITION_ID_8_WHITE_IN,              TRANSITION_STATE_7_WHITE_IN,     TRANSITION_STATE_0_NONE,            0.7f, 0, 0, 0.0f},
+    {TRANSITION_ID_E_CIRCLE_IN_SLOW,        TRANSITION_STATE_4_FADE_IN,      TRANSITION_STATE_0_NONE,            1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_F_CIRCLE_OUT_SLOW,       TRANSITION_STATE_5_FADE_OUT,     TRANSITION_STATE_1_LOADING,         1.0f, ASSET_7CF_MODEL_TRANSITION_UNKNOWN, 0, 25.0f},
+    {TRANSITION_ID_7,                       TRANSITION_STATE_0_NONE,         TRANSITION_STATE_0_NONE,            0.0f, 0, 0, 0.0f},
+    {TRANSITION_ID_8_WHITE_IN,              TRANSITION_STATE_7_WHITE_IN,     TRANSITION_STATE_0_NONE,            1.1f, 0, 0, 0.0f},
+    {TRANSITION_ID_9_WHITE_OUT,             TRANSITION_STATE_8_WHITE_OUT,    TRANSITION_STATE_6_LOADING_WHITE,   1.5f, 0, 0, 0.0f}
 };
 
-struct10s D_8036C3F8[0x18] = {
-    {MAP_20_CS_END_NOT_100,                 0x12, 0x13},
-    {MAP_1F_CS_START_RAREWARE,              0x15, 0x09},
-    {MAP_1E_CS_START_NINTENDO,              0x08, 0x13},
-    {MAP_7D_CS_SPIRAL_MOUNTAIN_1,           0x0B, 0x0C},
-    {MAP_7E_CS_SPIRAL_MOUNTAIN_2,           0x0B, 0x0C},
-    {MAP_85_CS_SPIRAL_MOUNTAIN_3,           0x12, 0x0C},
-    {MAP_86_CS_SPIRAL_MOUNTAIN_4,           0x0B, 0x0C},
-    {MAP_87_CS_SPIRAL_MOUNTAIN_5,           0x12, 0x13},
-    {MAP_88_CS_SPIRAL_MOUNTAIN_6,           0x12, 0x13},
-    {MAP_94_CS_INTRO_SPIRAL_7,              0x12, 0x13},
-    {MAP_95_CS_END_ALL_100,                 0x12, 0x13},
-    {MAP_98_CS_END_SPIRAL_MOUNTAIN_1,       0x12, 0x0A},
-    {MAP_99_CS_END_SPIRAL_MOUNTAIN_2,       0x12, 0x0A},
-    {MAP_7B_CS_INTRO_GL_DINGPOT_1,          0x0B, 0x0C},
-    {MAP_81_CS_INTRO_GL_DINGPOT_2,          0x0B, 0x0C},
-    {MAP_82_CS_ENTERING_GL_MACHINE_ROOM,    0x12, 0x0A},
-    {MAP_83_CS_GAME_OVER_MACHINE_ROOM,      0x12, 0x13},
-    {MAP_84_CS_UNUSED_MACHINE_ROOM,         0x12, 0x0C},
-    {MAP_7C_CS_INTRO_BANJOS_HOUSE_1,        0x0B, 0x0C},
-    {MAP_89_CS_INTRO_BANJOS_HOUSE_2,        0x0B, 0x0A},
-    {MAP_8A_CS_INTRO_BANJOS_HOUSE_3,        0x01, 0x02},
-    {MAP_96_CS_END_BEACH_1,                 0x12, 0x13},
-    {MAP_97_CS_END_BEACH_2,                 0x08, 0x14},
-    {0,                                     0x05, 0x06}
+MapTransitionInfo D_8036C3F8[0x18] = {
+    {MAP_20_CS_END_NOT_100,                 TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_1F_CS_START_RAREWARE,              TRANSITION_ID_15_CIRCLE_OUT_SUPER_SLOW, TRANSITION_ID_9_WHITE_OUT},
+    {MAP_1E_CS_START_NINTENDO,              TRANSITION_ID_8_WHITE_IN,               TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_7D_CS_SPIRAL_MOUNTAIN_1,           TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_7E_CS_SPIRAL_MOUNTAIN_2,           TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_85_CS_SPIRAL_MOUNTAIN_3,           TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_86_CS_SPIRAL_MOUNTAIN_4,           TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_87_CS_SPIRAL_MOUNTAIN_5,           TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_88_CS_SPIRAL_MOUNTAIN_6,           TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_94_CS_INTRO_SPIRAL_7,              TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_95_CS_END_ALL_100,                 TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_98_CS_END_SPIRAL_MOUNTAIN_1,       TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_A_WITCH_HEAD_OUT},
+    {MAP_99_CS_END_SPIRAL_MOUNTAIN_2,       TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_A_WITCH_HEAD_OUT},
+    {MAP_7B_CS_INTRO_GL_DINGPOT_1,          TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_81_CS_INTRO_GL_DINGPOT_2,          TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_82_CS_ENTERING_GL_MACHINE_ROOM,    TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_A_WITCH_HEAD_OUT},
+    {MAP_83_CS_GAME_OVER_MACHINE_ROOM,      TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_84_CS_UNUSED_MACHINE_ROOM,         TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_7C_CS_INTRO_BANJOS_HOUSE_1,        TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_C_CIRCLE_OUT_FAST},
+    {MAP_89_CS_INTRO_BANJOS_HOUSE_2,        TRANSITION_ID_B_CIRCLE_IN_FAST,         TRANSITION_ID_A_WITCH_HEAD_OUT},
+    {MAP_8A_CS_INTRO_BANJOS_HOUSE_3,        TRANSITION_ID_1_BLACK_IN,               TRANSITION_ID_2_BLACK_OUT},
+    {MAP_96_CS_END_BEACH_1,                 TRANSITION_ID_12_CIRCLE_IN_EXTRA_SLOW,  TRANSITION_ID_13_CIRCLE_OUT_EXTRA_SLOW},
+    {MAP_97_CS_END_BEACH_2,                 TRANSITION_ID_8_WHITE_IN,               TRANSITION_ID_14_CIRCLE_IN_SUPER_SLOW},
+    {0,                                     TRANSITION_ID_5_JIGGY_IN,               TRANSITION_ID_6_JIGGY_OUT}
 };
 f32 D_8036C440 = 63.6026115f;
 f32 D_8036C444 = 500.0f;
@@ -84,19 +136,19 @@ f32 D_8036C444 = 500.0f;
 /* .bss */
 struct{
     s32 unk0; //times drawn?
-    struct9s *unk4;
-    u8 unk8; //state
-    u8 pad9[3]; //not needed
-    void * unkC; //asset_ptr
+    TransitionInfo *transistion_info;
+    u8 state;
+    //u8 pad9[3]; //not needed
+    void * model_ptr; //asset_ptr
     f32 rotation;
     f32 timer;
     AnimCtrl *animctrl;
-    s32 unk1C; //times update called?
-} D_80382430;
+    s32 substate; //times update called?
+} s_current_transition;
 
 /* .code */
-struct9s *_gctranstion_8030B400(s32 arg0){
-    struct9s * i;
+TransitionInfo *_gctranstion_8030B400(s32 arg0){
+    TransitionInfo * i;
     for(i = D_8036C150; i->uid != 0; i++){
         if(i->uid == arg0)
             return i;
@@ -104,8 +156,8 @@ struct9s *_gctranstion_8030B400(s32 arg0){
     return NULL;
 }
 
-struct10s *_gctranstion_8030B44C(s32 map_indx){
-    struct10s * i;
+MapTransitionInfo *_gctranstion_get_map_transition_info(s32 map_indx){
+    MapTransitionInfo * i;
     for(i = D_8036C3F8; i->map_indx != 0; i++){
         if(i->map_indx == map_indx)
             return i;
@@ -113,54 +165,57 @@ struct10s *_gctranstion_8030B44C(s32 map_indx){
     return i;
 }
 
-void _gctranstion_changeState(s32 state, struct9s *arg1){
-    if(D_80382430.unkC != NULL){
-        func_8033BD20(&D_80382430.unkC);
+void _gctranstion_changeState(s32 state, TransitionInfo *desc){
+    if(s_current_transition.model_ptr != NULL){
+        func_8033BD20(&s_current_transition.model_ptr);
     }
 
-    if(D_80382430.animctrl != NULL){
-        animctrl_free(D_80382430.animctrl);
-        D_80382430.animctrl = NULL;
+    if(s_current_transition.animctrl != NULL){
+        animctrl_free(s_current_transition.animctrl);
+        s_current_transition.animctrl = NULL;
     }
     
-    D_80382430.unk0 = 0;
-    D_80382430.unk4 = arg1;
-    D_80382430.unk8 = state;
-    D_80382430.timer = 0.0f;
-    if(state == 1)
-        D_80382430.unkC = assetcache_get(0x7D2);
-    else if(state == 6)
-        D_80382430.unkC = assetcache_get(0x7D3);
-    else if(arg1 != NULL && arg1->unk8 != 0)
-        D_80382430.unkC = assetcache_get(arg1->unk8);
+    s_current_transition.unk0 = 0;
+    s_current_transition.transistion_info = desc;
+    s_current_transition.state = state;
+    s_current_transition.timer = 0.0f;
+    
+    //Loading screen model??
+    if(state == TRANSITION_STATE_1_LOADING)
+        s_current_transition.model_ptr = assetcache_get(0x7D2); //scene transition black
+    else if(state == TRANSITION_STATE_6_LOADING_WHITE)
+        s_current_transition.model_ptr = assetcache_get(0x7D3);  //scene transition white
+    else if(desc != NULL && desc->model_index != 0)
+        s_current_transition.model_ptr = assetcache_get(desc->model_index);
 
-    if(arg1 != NULL && arg1->unkC != NULL){
-        D_80382430.animctrl = animctrl_new(0);
-        animctrl_reset(D_80382430.animctrl);
-        animctrl_setIndex(D_80382430.animctrl, arg1->unkC);
-        animctrl_setDuration(D_80382430.animctrl, arg1->unk4);
-        animctrl_setPlaybackType(D_80382430.animctrl,  ANIMCTRL_ONCE);
-        if(state == 5){
-            animctrl_setDirection(D_80382430.animctrl, 0);
+    //load transistion animation
+    if(desc != NULL && desc->anim_index != NULL){
+        s_current_transition.animctrl = animctrl_new(0);
+        animctrl_reset(s_current_transition.animctrl);
+        animctrl_setIndex(s_current_transition.animctrl, desc->anim_index);
+        animctrl_setDuration(s_current_transition.animctrl, desc->duration);
+        animctrl_setPlaybackType(s_current_transition.animctrl,  ANIMCTRL_ONCE);
+        if(state == TRANSITION_STATE_5_FADE_OUT){
+            animctrl_setDirection(s_current_transition.animctrl, 0);
             func_8028F7C8(1); //player_noControl(true)
             func_80335110(0); //objects_update(false)
         }
         else{
             osViBlack(1);
-            animctrl_setAnimTimer(D_80382430.animctrl, 0.25f); //set animation timer
+            animctrl_setAnimTimer(s_current_transition.animctrl, 0.25f); //set animation timer
         }
-        animctrl_start(D_80382430.animctrl, "gctransition.c", 0x125); 
+        animctrl_start(s_current_transition.animctrl, "gctransition.c", 0x125); 
     }
 
-    if(state == 4){
+    if(state == TRANSITION_STATE_4_FADE_IN){
         if(func_802D4608()==0){
             func_8025A70C(COMUSIC_4E_IN_TRANSITION);
             func_8025AC20(COMUSIC_4E_IN_TRANSITION, 0, 1000, 0.4f, "gctransition.c", 0x12d);
             func_8025AABC(COMUSIC_4E_IN_TRANSITION);
         }
     }//L8030B67C
-    else if(state == 5){
-        if(D_80382430.unk4->uid == 0xA){
+    else if(state == TRANSITION_STATE_5_FADE_OUT){
+        if(s_current_transition.transistion_info->uid == 0xA){
             func_8030E704(SFX_EB_GRUNTY_LAUGH_2);
         }
         else{
@@ -171,167 +226,178 @@ void _gctranstion_changeState(s32 state, struct9s *arg1){
             }
         }
     }
-    else if(state == 0){
+    else if(state == TRANSITION_STATE_0_NONE){
         func_80335128(1);
         func_80335110(1);
         if(func_8028F070())
             func_8028F7C8(0);
     }
-    D_80382430.unk1C = 0;
+    s_current_transition.substate = 0;
 }  
 
-void gctransition_8030B740(void){
-    if(D_80382430.unkC != NULL)
-        D_80382430.unkC = defrag_asset(D_80382430.unkC);
+void gctransition_defrag(void){
+    if(s_current_transition.model_ptr != NULL)
+        s_current_transition.model_ptr = defrag_asset(s_current_transition.model_ptr);
 }
 
 void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
-    f32 sp74[3];
-    f32 sp68[3];
-    f32 sp64;
+    f32 vp_position[3];
+    f32 vp_rotation[3];
+    f32 percentage;
     f32 sp58[3];
-    f32 tmp;
+    f32 scale;
 
-    D_80382430.unk0++;
-    if(D_80382430.unk8 == 0)
+    s_current_transition.unk0++;
+    if(s_current_transition.state == 0)
         return;
 
     func_8024E258();
-    if(D_80382430.animctrl != NULL){
-        sp74[0] = 0.0f;
-        sp74[1] = 0.0f;
-        sp74[2] = 350.0f;
+    if(s_current_transition.animctrl != NULL){
+        vp_position[0] = 0.0f;
+        vp_position[1] = 0.0f;
+        vp_position[2] = 350.0f;
     }else{
-        sp74[0] = 0.0f;
-        sp74[1] = 0.0f;
-        sp74[2] = 300.0f;
+        vp_position[0] = 0.0f;
+        vp_position[1] = 0.0f;
+        vp_position[2] = 300.0f;
     }
 
-    sp68[0] = 0.0f;
-    sp68[1] = 0.0f;
-    sp68[2] = 0.0f;
-    func_8024CE60(D_8036C440, D_8036C444);
-    viewport_setPosition(sp74); //viewport_getPosition
-    viewport_setRotation(sp68); //viewport_getRotation
+    vp_rotation[0] = 0.0f;
+    vp_rotation[1] = 0.0f;
+    vp_rotation[2] = 0.0f;
+    viewport_set_near_far(D_8036C440, D_8036C444);
+    viewport_set_position_vec3f(vp_position); //viewport_get_position_vec3f
+    viewport_set_rotation_vec3f(vp_rotation); //viewport_get_rotation_vec3f
     viewport_update(); //camera_updateNormal
     func_8024C904(gdl, mptr);
+
 
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;
     sp58[2] = 0.0f;
-    if(D_80382430.animctrl != NULL){
+    if(s_current_transition.animctrl != NULL){
         gDPSetTextureFilter((*gdl)++, G_TF_POINT);
         gDPSetColorDither((*gdl)++, G_CD_DISABLE);
-        animctrl_drawSetup(D_80382430.animctrl, sp58, 1);
+        animctrl_drawSetup(s_current_transition.animctrl, sp58, 1);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     }
-    if(D_80382430.unk8 == 1 || D_80382430.unk8 == 6){
-        modelRender_draw(gdl, mptr, sp58, sp68, 1.0f, 0, D_80382430.unkC);
-        if(D_80382430.animctrl != NULL){
+
+    //complex animation (from animation bin file)
+    if(s_current_transition.state == 1 || s_current_transition.state == 6){
+        modelRender_draw(gdl, mptr, sp58, vp_rotation, 1.0f, 0, s_current_transition.model_ptr);
+        if(s_current_transition.animctrl != NULL){
             gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
             gDPSetColorDither((*gdl)++, G_CD_MAGICSQ);
         }
+        return;
     }
-    else{
-        sp64 = D_80382430.timer/(D_80382430.unk4->unk4);
-        if(D_80382430.unk8 == 4){
 
-            if(D_80382430.unk4->uid == 0x10){
-                tmp = D_80382430.unk4->unk10;
-                
-            }
-            else{
-                sp68[2] = D_80382430.rotation - 90.0f*sp64;
-                tmp = sp64*D_80382430.unk4->unk10 + 0.1;
-            }
-            modelRender_draw(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
+
+    percentage = s_current_transition.timer/(s_current_transition.transistion_info->duration);
+    if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN){
+        //rotate and zoom in
+        if(s_current_transition.transistion_info->uid == 0x10){
+            scale = s_current_transition.transistion_info->scale;
+            
         }
-        else if(D_80382430.unk8 == 5){//L8030B9EC
-            switch (D_80382430.unk4->uid)
-            {
+        else{
+            vp_rotation[2] = s_current_transition.rotation - 90.0f*percentage;
+            scale = percentage*s_current_transition.transistion_info->scale + 0.1;
+        }
+        modelRender_draw(gdl, mptr, sp58, vp_rotation, scale, 0, s_current_transition.model_ptr);
+    }
+    else if(s_current_transition.state == TRANSITION_STATE_5_FADE_OUT){//L8030B9EC
+        switch (s_current_transition.transistion_info->uid)
+        {
             default:
-                sp68[2] = D_80382430.rotation - 90.0f*sp64;
-                tmp = (1.0f - sp64)*D_80382430.unk4->unk10 + 0.1;
+                //rotate and zoom out
+                vp_rotation[2] = s_current_transition.rotation - 90.0f*percentage;
+                scale = (1.0f - percentage)*s_current_transition.transistion_info->scale + 0.1;
                 break;
             case 0x11:
-                tmp = D_80382430.unk4->unk10;
+                //static
+                scale = s_current_transition.transistion_info->scale;
                 break;
             case 0xA:
-                sp68[2] = 0.0f;
-                tmp = (1.0f - func_80257618())*D_80382430.unk4->unk10 + 0.1;
+                //zoom out only
+                vp_rotation[2] = 0.0f;
+                scale = (1.0f - func_80257618())*s_current_transition.transistion_info->scale + 0.1;
                 break;
-            }
-            if(!(D_80382430.unk1C < 3) || D_80382430.unk4->uid != 0x11){
-                modelRender_draw(gdl, mptr, sp58, sp68, tmp, 0, D_80382430.unkC);
-            }
-            else{
-                modelRender_reset();
-            }
-
         }
-        else if(D_80382430.unk8 == 2){//L8030BAF4
-            gcbound_reset();
-            gcbound_alpha((1.0f - sp64)*255.0f + 0.5);
-            gcbound_color(0,0,0);
-            gcbound_draw(gdl);
+        if(!(s_current_transition.substate < 3) || s_current_transition.transistion_info->uid != 0x11){
+            modelRender_draw(gdl, mptr, sp58, vp_rotation, scale, 0, s_current_transition.model_ptr);
         }
-        else if(D_80382430.unk8 == 3){//L8030BB6C
-            gcbound_reset();
-            gcbound_alpha(sp64*255.0f + 0.5);
-            gcbound_color(0,0,0);
-            gcbound_draw(gdl);
-        }
-        else if(D_80382430.unk8 == 7){//L8030BBD8
-            sp64 = (sp64 <= 0.5)? 1.0 : 1.0 - (sp64-0.5)/0.5;
-            gcbound_reset();
-            gcbound_alpha(sp64*255.0f + 0.5);
-            gcbound_color(0xff,0xff,0xff);
-            gcbound_draw(gdl);
-        }
-        else if(D_80382430.unk8 == 8){//L8030BC8C
-            
-            gcbound_reset();
-            gcbound_alpha(sp64*255.0f + 0.5);
-            gcbound_color(0xff,0xff,0xff);
-            gcbound_draw(gdl);
-        }//L8030BD00
         else{
-            
+            modelRender_reset();
         }
-        if(D_80382430.animctrl != NULL){
-            gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
-        }
-        func_8024E2FC();
-        func_8024C904(gdl, mptr);
+
     }
+    else if(s_current_transition.state == TRANSITION_STATE_2_BLACK_IN){//L8030BAF4
+        //fade in black (i.e. get less black)
+        gcbound_reset();
+        gcbound_alpha((1.0f - percentage)*255.0f + 0.5);
+        gcbound_color(0,0,0);
+        gcbound_draw(gdl);
+    }
+    else if(s_current_transition.state == TRANSITION_STATE_3_BLACK_OUT){//L8030BB6C
+        //fade out black (i.e. get more black)
+        gcbound_reset();
+        gcbound_alpha(percentage*255.0f + 0.5);
+        gcbound_color(0,0,0);
+        gcbound_draw(gdl);
+    }
+    else if(s_current_transition.state == TRANSITION_STATE_7_WHITE_IN){//L8030BBD8
+        //fade in white (i.e. get less white)
+        percentage = (percentage <= 0.5)? 1.0 : 1.0 - (percentage-0.5)/0.5;
+        gcbound_reset();
+        gcbound_alpha(percentage*255.0f + 0.5);
+        gcbound_color(0xff,0xff,0xff);
+        gcbound_draw(gdl);
+    }
+    else if(s_current_transition.state == TRANSITION_STATE_8_WHITE_OUT){//L8030BC8C
+        //fade out white (i.e. get more white)
+        gcbound_reset();
+        gcbound_alpha(percentage*255.0f + 0.5);
+        gcbound_color(0xff,0xff,0xff);
+        gcbound_draw(gdl);
+    }//L8030BD00
+    else{
+        
+    }
+    if(s_current_transition.animctrl != NULL){
+        gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
+    }
+    func_8024E2FC();
+    func_8024C904(gdl, mptr);
+    
 }
 
 void gctransition_8030BD4C(void){
-    struct10s *tmp_10s;
-    struct9s *tmp_a1;
-    tmp_10s = _gctranstion_8030B44C(map_get());
-    tmp_a1 = _gctranstion_8030B400(tmp_10s->unk1);
-   _gctranstion_changeState(tmp_a1->unk1, tmp_a1);
+    MapTransitionInfo *tmp_10s;
+    TransitionInfo *tmp_a1;
+    tmp_10s = _gctranstion_get_map_transition_info(map_get());
+    tmp_a1 = _gctranstion_8030B400(tmp_10s->in_index);
+   _gctranstion_changeState(tmp_a1->state, tmp_a1);
 }
 
 f32 gctransition_8030BD88(void){
     return 300.0f;
 }
 
-int gctransition_8030BD98(void){
-    return D_80382430.unk8 == 0;
+int gctransition_done(void){
+    return s_current_transition.state == TRANSITION_STATE_0_NONE;
 }
 
-int gctransition_8030BDAC(void){
-    return D_80382430.unk8 != 0;
+int gctransition_active(void){
+    return s_current_transition.state != TRANSITION_STATE_0_NONE;
 }
 
 int gctransition_8030BDC0(void){
-    return ( D_80382430.unk8 == 0x3)
-    || (( D_80382430.unk8 == 1) && (D_80382430.unk0 < 2))
-    || ( D_80382430.unk8 == 5)
-    || ( D_80382430.unk8 == 8)
-    || (( D_80382430.unk8 == 6) && (D_80382430.unk0 < 2));
+    return ( s_current_transition.state == TRANSITION_STATE_3_BLACK_OUT)
+    || (( s_current_transition.state == TRANSITION_STATE_1_LOADING) && (s_current_transition.unk0 < 2))
+    || ( s_current_transition.state == TRANSITION_STATE_5_FADE_OUT)
+    || ( s_current_transition.state == TRANSITION_STATE_8_WHITE_OUT)
+    || (( s_current_transition.state == TRANSITION_STATE_6_LOADING_WHITE) && (s_current_transition.unk0 < 2));
 }
 
 void gctransition_8030BE3C(void){
@@ -339,37 +405,37 @@ void gctransition_8030BE3C(void){
 }
 
 void gctransition_8030BE60(void){
-    struct9s *tmp_a1;
-    tmp_a1 = _gctranstion_8030B400(_gctranstion_8030B44C(map_get())->unk2);
+    TransitionInfo *tmp_a1;
+    tmp_a1 = _gctranstion_8030B400(_gctranstion_get_map_transition_info(map_get())->out_index);
    func_8030C180();
-   _gctranstion_changeState(tmp_a1->unk1, tmp_a1);
+   _gctranstion_changeState(tmp_a1->state, tmp_a1);
 }
 
 void gctransition_8030BEA4(s32 arg0){
-    _gctranstion_changeState(D_8036C308[arg0].unk1, &D_8036C308[arg0]);
+    _gctranstion_changeState(D_8036C308[arg0].state, &D_8036C308[arg0]);
 }
 
 void gctransition_reset(void){
-    D_80382430.unk4 = NULL;
-    D_80382430.unk8 = 0;
-    D_80382430.unkC = NULL;
-    D_80382430.rotation = 0.0f;
+    s_current_transition.transistion_info = NULL;
+    s_current_transition.state = TRANSITION_STATE_0_NONE;
+    s_current_transition.model_ptr = NULL;
+    s_current_transition.rotation = 0.0f;
     _gctranstion_changeState(0,0);
 }
 
 void gctransition_update(void){
-    f32 sp24;
+    f32 dt;
     f32 tmp;
     
 
-    sp24 = time_getDelta();
-    if(D_80382430.unk4 == NULL)
+    dt = time_getDelta();
+    if(s_current_transition.transistion_info == NULL)
         return;
     
-    if(D_80382430.animctrl != NULL){
-        animctrl_update(D_80382430.animctrl);
-        if(D_80382430.unk8 == 4){
-            switch(D_80382430.unk1C){
+    if(s_current_transition.animctrl != NULL){
+        animctrl_update(s_current_transition.animctrl);
+        if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN){
+            switch(s_current_transition.substate){
                 case 0:
                     break;
                 case 1:
@@ -380,27 +446,27 @@ void gctransition_update(void){
                     func_80335128(0);
                     break;
                 case 3:
-                    func_802FEF48(D_80382430.unkC); //framebuffer to model texture list
+                    func_802FEF48(s_current_transition.model_ptr); //framebuffer to model texture list
                     break;
                 case 4:
                     osViBlack(0);
                     break;
                 default:
-                   D_80382430.timer += sp24;
+                   s_current_transition.timer += dt;
                    break;
             }
         }
         else{//L8030BFEC
-            switch(D_80382430.unk1C){
+            switch(s_current_transition.substate){
                 default:
-                    D_80382430.timer += sp24;
+                    s_current_transition.timer += dt;
                     break;
                 case 0:
                 case 1:
                     break;
                 case 2:
                     func_80335128(0); 
-                    func_802FEF48(D_80382430.unkC); //framebuffer to model texture list
+                    func_802FEF48(s_current_transition.model_ptr); //framebuffer to model texture list
                     break;
                 
             }
@@ -408,25 +474,26 @@ void gctransition_update(void){
         }
     }
     else{//L8030C034
-        D_80382430.timer += sp24;
+        s_current_transition.timer += dt;
     }
-    if(D_80382430.unk4->unk4 < D_80382430.timer
-        || (D_80382430.animctrl!= NULL && animctrl_isStopped(D_80382430.animctrl))
+    if(s_current_transition.transistion_info->duration < s_current_transition.timer
+        || (s_current_transition.animctrl!= NULL && animctrl_isStopped(s_current_transition.animctrl))
     ){
-        D_80382430.timer = D_80382430.unk4->unk4;
-        if(D_80382430.unk8 == 4 || D_80382430.unk8 == 5){
-            D_80382430.rotation -= 90.0f;
-            if (D_80382430.rotation < -360.0f)
-                D_80382430.rotation += 360.0f;
-            if (360.0f < D_80382430.rotation)
-                D_80382430.rotation -= 360.0f;
+        s_current_transition.timer = s_current_transition.transistion_info->duration;
+        //update next transition rotation
+        if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN || s_current_transition.state == TRANSITION_STATE_5_FADE_OUT){
+            s_current_transition.rotation -= 90.0f;
+            if (s_current_transition.rotation < -360.0f)
+                s_current_transition.rotation += 360.0f;
+            if (360.0f < s_current_transition.rotation)
+                s_current_transition.rotation -= 360.0f;
         }//L8030C104
-        _gctranstion_changeState(D_80382430.unk4->unk2, 0);
-        if(D_80382430.unk8 == 4)
+        _gctranstion_changeState(s_current_transition.transistion_info->next_state, 0);
+        if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN)
             func_8030C180();
 
-        if(D_80382430.animctrl != NULL)
+        if(s_current_transition.animctrl != NULL)
             func_80334ECC();
     }
-    D_80382430.unk1C++;
+    s_current_transition.substate++;
 }

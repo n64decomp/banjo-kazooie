@@ -4,6 +4,8 @@
 
 #include "prop.h"
 #include "core2/statetimer.h"
+#include "core2/ba/physics.h"
+
 
 extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
@@ -32,7 +34,7 @@ s32 can_control_camera(void){
 }
 
 s32 can_claw(void){ 
-    return ability_hasLearned(ABILITY_4_BEAR_PUNCH);
+    return ability_hasLearned(ABILITY_4_CLAW_SWIPE);
 }
 
 s32 can_climb(void){ 
@@ -49,18 +51,18 @@ s32 can_egg(void){
     return ability_hasLearned(ABILITY_6_EGGS);
 }
 
-int can_flap(void){
+int can_feathery_flap(void){
     return miscflag_isFalse(MISC_FLAG_12_HAS_FLAPPED) 
         && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED) 
-        && ability_hasLearned(ABILITY_7_FLAP);
+        && ability_hasLearned(ABILITY_7_FEATHERY_FLAP);
 }
 
-s32 can_flip(void){
-    return ability_hasLearned(ABILITY_8_FLIP);
+s32 can_flap_flip(void){
+    return ability_hasLearned(ABILITY_8_FLAP_FLIP);
 }
 
 s32 can_fly(void){
-    return ability_hasLearned(ABILITY_9_FLY);
+    return ability_hasLearned(ABILITY_9_FLIGHT);
 }
 
 s32 can_control_jump_height(void){
@@ -203,11 +205,11 @@ int player_shouldSlideTrot(void){
 }
 
 bool func_8028B254(s32 arg0) {
-    return (func_8028B2E8() || (_get_vertVelocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
+    return (func_8028B2E8() || (baphysics_get_vertical_velocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
 }
 
 int func_8028B2E8(void){
-    return D_8037BF60 && _get_vertVelocity() < 0.0f;
+    return D_8037BF60 && baphysics_get_vertical_velocity() < 0.0f;
 }
 
 int player_isSliding(void){
@@ -236,7 +238,7 @@ bool func_8028B424(void){
     if (func_8028B2E8()) {
         return FALSE;
     }
-    if (!func_802931DC(&sp1C)) {
+    if (!bafalldamage_get_damage(&sp1C)) {
         return FALSE;
     }
     return TRUE;
@@ -296,7 +298,7 @@ void func_8028B59C(void) {
     if (map_get() == MAP_6_TTC_NIPPERS_SHELL) {
         D_8037BF61 = FALSE;
     }
-    if (!sp24 && D_8037BF61 && (_get_vertVelocity() < -40.0)) {
+    if (!sp24 && D_8037BF61 && (baphysics_get_vertical_velocity() < -40.0)) {
         func_8029C0D0();
         func_8030E58C(0xF, 0.7f);
     }

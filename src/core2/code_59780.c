@@ -145,6 +145,6 @@ void func_802E08F0(Actor *this) {
     if (actor_animationIsAt(this, 0.99f) != 0) {
         marker_despawn(this->marker);
     }
-    viewport_getRotation(sp24);
+    viewport_get_rotation_vec3f(sp24);
     this->yaw = sp24[1];
 }
