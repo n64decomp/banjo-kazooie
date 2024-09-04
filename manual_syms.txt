@@ -1,0 +1,31 @@
+/* Microcode renames to match ucode.h names */
+n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
+n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;
+gSPF3DEX_fifoTextStart = _binary_bin_core1_gSPF3DEX_fifo_text_bin_start;
+gSPF3DEX_fifoTextEnd = _binary_bin_core1_gSPF3DEX_fifo_text_bin_end;
+gSPL3DEX_fifoTextStart = _binary_bin_core1_gSPL3DEX_fifo_text_bin_start;
+gSPL3DEX_fifoTextEnd = _binary_bin_core1_gSPL3DEX_fifo_text_bin_end;
+n_aspMainDataStart = _binary_bin_core1_n_aspMain_data_bin_start;
+n_aspMainDataEnd = _binary_bin_core1_n_aspMain_data_bin_end;
+gSPF3DEX_fifoDataStart = _binary_bin_core1_gSPF3DEX_fifo_data_bin_start;
+gSPF3DEX_fifoDataEnd = _binary_bin_core1_gSPF3DEX_fifo_data_bin_end;
+gSPL3DEX_fifoDataStart = _binary_bin_core1_gSPL3DEX_fifo_data_bin_start;
+gSPL3DEX_fifoDataEnd = _binary_bin_core1_gSPL3DEX_fifo_data_bin_end;
+
+/* Fixed-address buffers */
+D_8000E800 = 0x8000E800;
+D_8002D500 = 0x8002D500;
+D_8023DA00 = 0x8023DA00; /* confirm */
+D_803FBE00 = 0x803FBE00;
+D_803FFE00 = 0x803FFE00;
+D_803FFE10 = 0x803FFE10;
+gOverlayTable = 0x803FFE10;
+D_803A5D00 = 0x803A5D00; /* framebuffers */
+
+/* Renames for the boot segment */
+boot_D_8002D500 = D_8002D500;
+boot_core1_VRAM = core1_VRAM;
+boot_D_803FBE00 = D_803FBE00;
+boot_D_803FFE00 = D_803FFE00;
+boot_gOverlayTable = gOverlayTable;
+boot_func_8023DA20 = func_8023DA20;
