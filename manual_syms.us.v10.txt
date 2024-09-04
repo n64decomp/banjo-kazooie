@@ -29,3 +29,4 @@ boot_D_803FBE00 = D_803FBE00;
 boot_D_803FFE00 = D_803FFE00;
 boot_gOverlayTable = gOverlayTable;
 boot_func_8023DA20 = func_8023DA20;
+

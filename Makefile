@@ -166,7 +166,7 @@ OPT_FLAGS      := -O2
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
 GCC_ASFLAGS    := -c -x assembler-with-cpp -mabi=32 -ffreestanding -mtune=vr4300 -march=vr4300 -mfix4300 -G 0 -O -mno-shared -fno-PIC -mno-abicalls
-LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T manual_syms.txt
+LDFLAGS        := -T $(LD_SCRIPT) -Map $(ELF:.elf=.map) --no-check-sections --accept-unknown-input-arch -T manual_syms.$(VERSION).txt
 BINOFLAGS      := -I binary -O elf32-tradbigmips
 
 ### Rules ###
@@ -186,10 +186,17 @@ $(addprefix progress-,$(OVERLAYS)) : progress-% : progress/progress.%.csv
 	@$(PROGRESS_READ) $< $(VERSION) $*
 
 # Verify that the roms match, also sets up diff_settings
+ifeq ($(VERSION), us.v10)
 verify: $(BASEROM) $(FINAL_Z64)
 	@$(DIFF) $(BASEROM) $(FINAL_Z64) > /dev/null && \
 	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
 	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
+else
+verify: $(DECOMPRESSED_BASEROM) $(PRELIM_Z64)
+	@$(DIFF) $^ > /dev/null && \
+	$(PRINT) "$(YELLOW)        _\n      _( )_\n     [     ]_\n      ) _   _)\n     [_( )_]\n$(BLUE)$(BASENAME).$(VERSION).z64$(NO_COL): $(GREEN)OK$(NO_COL)\n" || \
+	$(PRINT) "$(BLUE)$(BASEROM) $(RED)differs$(NO_COL)\n"
+endif
 
 $(OVERLAY_PROG_SVGS) : progress/progress_%.svg: progress/progress.%.csv
 	$(call print1,Creating progress svg for:,$*)
@@ -293,8 +300,12 @@ $(ASSET_ROOT)/assets.yaml : $(BIN_ROOT)/assets.bin $(BK_ASSET_TOOL)
 	$(call print1,Extracting Assets:,$@)
 	$(BK_ASSET_TOOL) -e $< $(ASSET_ROOT)
 
-# .yaml -> .bin
-ifneq (,$(shell which cargo))
+# .yaml -> .
+ifeq ($(VERSION),pal) 
+$(ASSET_BIN): $(BIN_ROOT)/assets.bin
+	$(call print2,Copying Asset Binary (install cargo to construct instead):,$<,$@)
+	@$(CP) $< $@
+else ifneq (,$(shell which cargo))
 $(ASSET_BIN): $(ASSET_ROOT)/assets.yaml $(BK_ASSET_TOOL) $(ALL_ASSET_FILES)
 	$(call print2,Constructing Asset Binary:,$<,$@)
 	$(BK_ASSET_TOOL) -c $< $@
@@ -316,7 +327,7 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 # .o -> .elf (dummy symbols)
 $(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.txt -o $@
+	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.$(VERSION).txt -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
