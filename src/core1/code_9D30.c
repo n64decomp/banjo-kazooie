@@ -2,7 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "version.h"
 
+#if VERSION == VERSION_USA_1_0
 extern u16 D_803A5D00[2][0xF660]; //framebuffer
 extern s32 framebuffer_width; //framebuffer width
 extern s32 framebuffer_height; //framebuffer height
@@ -437,4 +439,4 @@ s32 func_802485BC(void){
 void func_802485C8(UNK_TYPE(s32) arg0){
 
 }
-
+#endif
