@@ -132,12 +132,12 @@ segments:
 #   type: bin
 #   start: 0xD954B0
 
-# - name: soundfont2ctl
-#   type: bin
-#   start: 0xEA3EB0
-# - name: soundfont2tbl
-#   type: bin
-#   start: 0xEADE60
+- name: soundfont2ctl
+  type: bin
+  start: 0xEC85E0
+- name: soundfont2tbl
+  type: bin
+  start: 0xED2590
 
 - name: core1
   dir: core1
@@ -164,11 +164,11 @@ segments:
   - [0xF475C0, c, code_ABB0]
   - [0xF49870, c, code_CE60]
   - [0xF4AD70, c, code_E360]
-  - [0xF4B4C0, bin, untouched]
-#   # - [0xF27D40, c, code_EAF0]                  #DONE
-#   # - [0xF29C50, c,code_10A00]    
-#   # - [0xF2AD10, c, code_11AC0]                 #DONE
-#   # - [0xF2C160, c, rumblemanager]                 #DONE
+  - [0xF4B4C0, c, code_EAF0]
+  - [0xF4D3D0, c, code_10A00]
+  - [0xF4E490, c, code_11AC0]
+  - [0xF4F890, c, rumblemanager]
+  - [0xF50010, bin, untouched]
 #   # - [0xF2C890, c, code_13640]                 #DONE
 #   # - [0xF2C8D0, c, code_13680]                 #DONE
 #   # - [0xF2C920, c, overlaymanager]                 #DONE
@@ -376,11 +376,10 @@ segments:
   - [0xF74C60, .data, code_ABB0]
   - [0xF74C70, .data, code_CE60]
   - [0xF74CE0, .data, code_E360]
-  - [0xF74DD0, bin, remain_core1_data]
-
-#   # - [0xF51550, .data, code_EAF0]
-#   # - [0xF51560, .data, code_10A00]
-#   # - [0xF51570, .data, code_11AC0]
+  - [0xF74DD0, .data, code_EAF0]
+  - [0xF74DE0, .data, code_10A00]
+  - [0xF74DF0, .data, code_11AC0]
+  - [0xF75380, bin, remain_core1_data]
 #   # - [0xF51B00, .data, overlaymanager]
 #   # - [0xF51DA0, .data, code_13990]
 #   # - [0xF51DB0, .data, code_15B30]
@@ -417,13 +416,12 @@ segments:
   - [0xF76710, .rodata, code_5650]
   - [0xF76770, .rodata, code_72B0]
   - [0xF76790, .rodata, code_7F60]
-  # - [0xF767B0, .rodata, code_9D30]
   - [0xF767B0, .rodata, code_CE60]
-  - [0xF76A80, bin, remain_core1_rodata]
-#   # - [0xF53220, .rodata, code_EAF0]
-#   # - [0xF532A0, .rodata, code_10A00]
-#   # - [0xF539B0, .rodata, code_11AC0]
-#   # - [0xF539C0, .rodata, rumblemanager]
+  - [0xF76A80, .rodata, code_EAF0]
+  - [0xF76B00, .rodata, code_10A00]
+  - [0xF77210, .rodata, code_11AC0]
+  - [0xF77220, .rodata, rumblemanager]
+  - [0xF77230, bin, remain_core1_rodata]
 #   # - [0xF539D0, .rodata, overlaymanager]
 #   # - [0xF53A50, .rodata, code_13990]
 #   # - [0xF53A70, .rodata, code_18350]
@@ -469,10 +467,10 @@ segments:
   - [0xF791D0, .bss, code_ABB0]
   - [0xF791D0, .bss, code_CE60]
   - [0xF791D0, .bss, code_E360]
-#   # - [0xF791D0, .bss, code_EAF0]
-#   # - [0xF791D0, .bss, code_10A00]
-#   # - [0xF791D0, .bss, code_11AC0]
-#   # - [0xF791D0, .bss, rumblemanager]
+  - [0xF791D0, .bss, code_EAF0]
+  - [0xF791D0, .bss, code_10A00]
+  - [0xF791D0, .bss, code_11AC0]
+  - [0xF791D0, .bss, rumblemanager]
 #   # - [0xF791D0, .bss, code_13640]
 #   # - [0xF791D0, .bss, overlaymanager]
 #   # - [0xF791D0, .bss, code_13990]

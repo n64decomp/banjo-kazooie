@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "version.h"
 
 void func_8024F35C(s32);
  
@@ -68,7 +69,7 @@ void __rumbleUpdate(void *arg0) {
     do{
         osRecvMesg(&D_80282390, NULL, 1);
         D_802827E0++;
-        if (!D_802823B0 && ((D_802827E0 % 60) == 0)) {
+        if (!D_802823B0 && ((D_802827E0 % FRAMERATE) == 0)) {
             func_80250930();
         }
         prev_state = rumble_state;
