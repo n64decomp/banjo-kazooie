@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "version.h"
 
 typedef struct {
     s32 unk0;
@@ -283,7 +283,11 @@ void func_80246D78(void){
 
     if(D_802806D0){
         osStopTimer(&D_802806B0);
+#if VERSION == VERSION_USA_1_0
         osSetTimer(&D_802806B0, ((osClockRate / 60)* 2) / 3, 0, &D_8027FB60, CORE1_8C50_EVENT_CONT_TIMER);
+#elif VERSION == VERSION_PAL
+        osSetTimer(&D_802806B0, ((osClockRate / 60.0)* 2) / 3, 0, &D_8027FB60, CORE1_8C50_EVENT_CONT_TIMER);
+#endif
     }
 }
 
@@ -389,16 +393,40 @@ void func_8024730C(void){
             {640, 1024, 0x2501FF, 0xE0204, 2}
         }
     };
-
+#if VERSION == VERSION_PAL
+    static OSViMode D_80275A48 = {
+        OS_VI_PAL_LPN1, /* type */
+        { 
+          VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | 0x3200,       /*ctrl*/
+          320,          /*width*/
+          0x404233A,    /*burst*/
+          0x271,        /*vSync*/
+          0x150C69,        /* hSync*/
+          0xC6F0C6E,    /* leap*/
+          0x800300,     /* hStart*/
+          0, /* xScale*/
+          0, /* vCurrent*/
+        },
+        {
+            {640, 1024, 0x5F0239, 0x9026B, 2},
+            {640, 1024, 0x5F0239, 0x9026B, 2}
+        }
+    };
+#endif
     static s32 D_802806D4;
 
     if(!D_802806D4){
         D_802806D4 = TRUE;
+#if VERSION == VERSION_USA_1_0
         if(osTvType != OS_TV_NTSC){
             osViSetMode(&D_802759A8);
         } else {
             osViSetMode(&D_802759F8);
         }
+#elif VERSION == VERSION_PAL
+        // if(&D_802759A8){}
+        osViSetMode(&D_80275A48);
+#endif
         rumbleManager_80250FC0(); //stop controller motors
         do{ 
             osDpSetStatus(DPC_STATUS_FLUSH);

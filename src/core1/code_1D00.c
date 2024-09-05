@@ -292,9 +292,8 @@ void audioManager_init(void){
     if(osTvType != OS_TV_NTSC)
         osViClock = 0x2e6025c;
 #elif VERSION == VERSION_PAL
-PAL_EXCLUSIVE(
     osViClock = 0x2f5b2d2;
-)
+#endif
     audioManager_create();
     sfxInstruments_init();
     musicInstruments_init();
@@ -610,6 +609,7 @@ void func_802403F0(void) {
 void *audioManager_getThread_PAL(void){
     return &audioManager.thread;
 }
+#endif
 
 void audioManager_stopThread(void){
     if(D_80275774){

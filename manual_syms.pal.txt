@@ -1,5 +1,4 @@
 /* Microcode renames to match ucode.h names */
-/*
 n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
 n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;
 gSPF3DEX_fifoTextStart = _binary_bin_core1_gSPF3DEX_fifo_text_bin_start;
@@ -12,9 +11,9 @@ gSPF3DEX_fifoDataStart = _binary_bin_core1_gSPF3DEX_fifo_data_bin_start;
 gSPF3DEX_fifoDataEnd = _binary_bin_core1_gSPF3DEX_fifo_data_bin_end;
 gSPL3DEX_fifoDataStart = _binary_bin_core1_gSPL3DEX_fifo_data_bin_start;
 gSPL3DEX_fifoDataEnd = _binary_bin_core1_gSPL3DEX_fifo_data_bin_end;
-*/
 
 /* Fixed-address buffers */
+D_80000300 = 0x80000300;
 D_8000E800 = 0x8000E800;
 D_8002D500 = 0x8002D500;
 D_8023DA00 = 0x8023DA00; /* confirm */
@@ -34,8 +33,9 @@ boot_gOverlayTable = gOverlayTable;
 boot_func_8023DA20 = func_8023DA20;
 
 /* Temporary Correct*/
-D_80000300 = 0x80000300;
+func_8024BDAC               = 0x8024ba3c;
 func_8024BE30               = 0x8024BAC0;
+func_8024BFAC               = 0x8024bc18;
 func_8024C428               = 0x8024C078;
 viewport_get_position_vec3f = 0x8024c21c;
 veiwport_get_position_vec3w = 0x8024c240;
@@ -43,10 +43,12 @@ viewport_get_rotation_vec3f = 0x8024c3b4;
 func_8024E71C               = 0x8024e36c;
 pfsManager_update           = 0x8024e418;
 pfsManager_init             = 0x8024ecac;
+pfsManager_getStartReadData = 0x8024ee00;
 musicInstruments_init       = 0x8024f130;
 func_80250650               = 0x802502a0;
 rumbleManager_80250C08      = 0x80250858;
 rumbleManager_init          = 0x802508d4;
+rumbleManager_80250FC0      = 0x80250c10;
 overlayManagerloadCore2     = 0x80250f58;
 func_802535A8               = 0x802531f8;
 func_80254008               = 0x80253c58;
@@ -61,6 +63,7 @@ func_80255ACC               = 0x8025571c;
 write_file_blocks           = 0x80255780;
 func_80255C30               = 0x80255880;
 func_80255CD8               = 0x80255928;
+func_80255D0C               = 0x8025595c;
 func_80255D44               = 0x80255994;
 ml_dotProduct_vec3f         = 0x80255c84;
 ml_distance_vec3f           = 0x80255cb4;
@@ -76,7 +79,9 @@ ml_vec3f_diff_copy          = 0x80258810;
 ml_vec3f_diff               = 0x80258844;
 ml_vec3f_add                = 0x80258898;
 func_8025AFB0               = 0x8025AC00;
+func_8025AFB8               = 0x8025ac08;
 sns_find_and_parse_payload  = 0x8025ae30;
+___osGetSR                  = 0x8025ac30;
 sns_write_payload_over_heap = 0x8025b350;
 DEBUG_use_special_bootmap   = 0x8025b460;
 n_alInit                    = 0x8025bf70;
@@ -98,7 +103,6 @@ osWriteBackDCacheAll        = 0x80263830;
 __osInitialize_common       = 0x80263860;
 osCreateThread              = 0x80263b50;
 sinf                        = 0x80263ca0;
-guMtxIdentF                 = 0x80264e30;
 alCents2Ratio               = 0x80263e60;
 alHeapInit                  = 0x80263eb0;
 osCreateMesgQueue           = 0x80263ef0;
@@ -120,13 +124,27 @@ osDestroyThread             = 0x80264a00;
 osSendMesg                  = 0x80264b00;
 osSetThreadPri              = 0x80264c50;
 guMtxF2L                    = 0x80264d30;
+guMtxIdentF                 = 0x80264e30;
 gu_sqrtf                    = 0x80264fa0;
 cosf                        = 0x80264fb0;
 osSetIntMask                = 0x80265120;
-
+osDpSetStatus               = 0x802651c0;
+osSpTaskLoad                = 0x802652ec;
+osSpTaskStartGo             = 0x8026547c;
+osDpGetStatus               = 0x802654c0;
+osViGetCurrentFramebuffer   = 0x802654d0;
+osStopTimer                 = 0x80265510;
+osSetTimer                  = 0x80265600;
+__d_to_ull                  = 0x80265718;
+__ull_to_d                  = 0x80265884;
+osSpTaskYielded             = 0x802658f0;
+osSpTaskYield               = 0x80265970;
+osViSetMode                 = 0x80265990;
+osSetEventMesg              = 0x80265a00;
 framebuffer_width           = 0x802762d8;
 framebuffer_height          = 0x802762dc;
 n_syn                       = 0x80276bd4;
+osClockRate                 = 0x80276e70;
 osViClock                   = 0x80276e78;
 
 core2_TEXT_START            = 0x80286db0;
