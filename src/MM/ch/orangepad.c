@@ -27,64 +27,67 @@ void MM_func_803863F0(s32 x, s32 y, s32 z){
     jiggy_spawn(JIGGY_8_MM_ORANGE_PADS, pos);
 }
 
-void func_80386444(ActorMarker *arg0){
-    f32 orange_pad_distance;
-    Actor *orange_pad;
-    f32 sp44[3];
-    ParticleEmitter *s0;
+void func_80386444(ActorMarker *marker){
+    f32 distance_to_orange_pad;
+    Actor *closest_orange_pad;
+    f32 position[3];
+    ParticleEmitter *p_ctrl;
     s32 temp_a0;
 
-    sp44[0] = arg0->propPtr->x;
-    sp44[1] = arg0->propPtr->y;
-    sp44[2] = arg0->propPtr->z;
-    orange_pad = actorArray_findClosestActorFromActorId(sp44, ACTOR_57_ORANGE_PAD, 1, &orange_pad_distance);
+    position[0] = marker->propPtr->x;
+    position[1] = marker->propPtr->y;
+    position[2] = marker->propPtr->z;
+
+    closest_orange_pad = actorArray_findClosestActorFromActorId(position, ACTOR_57_ORANGE_PAD, 1, &distance_to_orange_pad);
     
 
-    if(orange_pad && !(500.0f < orange_pad_distance)){
-        orange_pad->state = 1;
-        if(actorArray_findClosestActorFromActorId(sp44, ACTOR_57_ORANGE_PAD, 1, &orange_pad_distance)){
+    if(closest_orange_pad && !(500.0f < distance_to_orange_pad)){
+        closest_orange_pad->state = 1;
+
+        if(actorArray_findClosestActorFromActorId(position, ACTOR_57_ORANGE_PAD, 1, &distance_to_orange_pad)){
             func_8025A6EC(COMUSIC_2B_DING_B, 22000);
         }else{
-            temp_a0 = (orange_pad->unk78_13 == 0x106) ? 0x10 
-                    : (orange_pad->unk78_13 == 0x76)  ? 0xf 
+            temp_a0 = (closest_orange_pad->unk78_13 == 0x106) ? 0x10
+                    : (closest_orange_pad->unk78_13 == 0x76)  ? 0xf
                     : 0xe;
 
             func_802BAFE4(temp_a0);
-            sp44[1] += 50.0f;
-            timedFunc_set_3(0.6f, (GenFunction_3) MM_func_803863F0, (s32)sp44[0], (s32)sp44[1], (s32)sp44[2]);
+            position[1] += 50.0f;
+            timedFunc_set_3(0.6f, (GenFunction_3) MM_func_803863F0, (s32)position[0], (s32)position[1], (s32)position[2]);
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+
             if(!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)){
                 func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);
             }
         }// L803865D8
 
-        //emmit sparkles
-        s0 = partEmitMgr_newEmitter(30);
-        particleEmitter_setPosition(s0, orange_pad->position);
-        particleEmitter_setModel(s0, 0x89f);
-        func_802EFB70(s0, 0.09f, 0.19f);
-        func_802EFB84(s0, 0.0f, 0.0f);
+        // Emmit sparkles
+        p_ctrl = partEmitMgr_newEmitter(30);
+        particleEmitter_setPosition(p_ctrl, closest_orange_pad->position);
+        particleEmitter_setModel(p_ctrl, 0x89f);
+        func_802EFB70(p_ctrl, 0.09f, 0.19f);
+        func_802EFB84(p_ctrl, 0.0f, 0.0f);
 
-        particleEmitter_setParticleVelocityRange(s0,
+        particleEmitter_setParticleVelocityRange(p_ctrl,
             -200.0f, 500.0f, -200.0f,
             200.0f, 700.0f, 200.0f
         );
 
-        particleEmitter_setParticleAccelerationRange(s0, 
+        particleEmitter_setParticleAccelerationRange(p_ctrl,
             0.0f, -1200.0f, 0.0f,
             0.0f, -1200.0f, 0.0f
         );
 
-        particleEmitter_setAngularVelocityRange(s0, 
+        particleEmitter_setAngularVelocityRange(p_ctrl,
             -600.0f, -600.0f, -600.0f,
             600.0f, 600.0f, 600.0f
         );
-        particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
-        particleEmitter_setParticleLifeTimeRange(s0, 4.0f, 4.0f);
-        func_802EF9F8(s0, 0.01f);
-        func_802EFA18(s0, 3);
-        func_802EFA20(s0, 1.0f, 1.3f);
-        particleEmitter_emitN(s0, 30);
+        particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
+        particleEmitter_setParticleLifeTimeRange(p_ctrl, 4.0f, 4.0f);
+        func_802EF9F8(p_ctrl, 0.01f);
+        func_802EFA18(p_ctrl, 3);
+        func_802EFA20(p_ctrl, 1.0f, 1.3f);
+        particleEmitter_emitN(p_ctrl, 30);
     }
 }
 
@@ -93,9 +96,9 @@ void func_80386744(s32 arg0, ActorMarker *arg1) {
 }
 
 void func_80386768(Actor * this){
-    Actor *sp3C;
-    f32 pad;
-    f32 sp34;
+    Actor *closest_actor;
+    f32 unused;
+    f32 min_distance;
     
 
     if(!this->initialized){
@@ -105,33 +108,34 @@ void func_80386768(Actor * this){
     }//L803867B0
 
     if(!this->unk16C_4){
-        this->unk100 = actorArray_findClosestActorFromActorId(this->position, 8,-1, &sp34)->marker;
+        this->unk100 = actorArray_findClosestActorFromActorId(this->position, 8,-1, &min_distance)->marker;
         this->unk16C_4 = 1;
     }//L803867E0
 
     if(this->unk100){
-        sp3C = marker_getActor(this->unk100);
+        closest_actor = marker_getActor(this->unk100);
     }
 
     if( func_80329530(this, 0x28)
         && !func_8028ECAC()
         && !mapSpecificFlags_get(6)
-        && sp3C->state != 3
+        && closest_actor->state != 3
     ){
-        if(func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL))
+        if(func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(6,1);
+        }
     }
 
     if(this->state == 1){
-            if(this->unk60 < 72.0f){
-                func_8033E73C(this->marker, 5, func_80329904);
-                func_8033E3F0(9, this->marker->unk14_21);
-            }
-            this->unk60 = MIN(255.0, this->unk60 + 7.0);
+        if(this->unk60 < 72.0f){
+            func_8033E73C(this->marker, 5, func_80329904);
+            func_8033E3F0(9, this->marker->unk14_21);
+        }
+        this->unk60 = MIN(255.0, this->unk60 + 7.0);
 
-            if(255.0 == this->unk60){
-                marker_despawn(this->marker);
-            }
+        if(255.0 == this->unk60){
+            marker_despawn(this->marker);
+        }
     }else{
     }//L80386928
 

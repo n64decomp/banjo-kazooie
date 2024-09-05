@@ -44,19 +44,19 @@ void func_80388300(Actor **arg0){
     if(arg0);
 }
 
-void MM_func_803883AC(Actor *this){
-    f32 sp2C;
-    f32 sp28;
-    static D_80389A5C = 0;
-    
+void __chLMonkey_playRandomNoise(Actor *this){
+    f32 scaled_noise_volume;
+    f32 random_noise;
+    static sNoiseCooldown = 0;
 
-    sp2C = ml_map_f(func_8032970C(this), 1000000.0f, 343000000.0f, 18000.0f, 0.0f);
-    sp28 = randf();
-    D_80389A5C--;
-    if(D_80389A5C < 0){
+    scaled_noise_volume = ml_map_f(func_8032970C(this), 1000000.0f, 343000000.0f, 18000.0f, 0.0f);
+    random_noise = randf();
+    sNoiseCooldown--;
+
+    if(sNoiseCooldown < 0){
         if(randf() < 0.2){
-            D_80389A5C = 6;
-            func_8030E6A4(((sp28 < 0.5) ? SFX_58_CHIMPY_NOISE_1 : SFX_59_CHIMPY_NOISE_2 ), randf()*0.25 + 0.85, sp2C);
+            sNoiseCooldown = 6;
+            func_8030E6A4(((random_noise < 0.5) ? SFX_58_CHIMPY_NOISE_1 : SFX_59_CHIMPY_NOISE_2 ), randf()*0.25 + 0.85, scaled_noise_volume);
         }
     }
 }
@@ -85,7 +85,7 @@ void chLMonkey_update(Actor *this){
         func_80343DEC(this);
     }else{//L80388630
         if(func_80329530(this, 700) && !func_803114B0()){
-            MM_func_803883AC(this);
+            __chLMonkey_playRandomNoise(this);
         }//L8038865C
         switch(this->state){
             case 1://L80388690

@@ -46,38 +46,40 @@ void func_80388FD0(Actor *this, f32 *arg1, f32 *arg2, s32 arg3){
 }
 
 Actor*  func_80389014(ActorMarker *this, Gfx **dl, Mtx **mPtr, Vtx **arg2){
-    f32 sp34[3];
+    f32 rotation[3];
     Actor * actorPtr;
     ActorLocal_Juju_2 *jujuPtr;
 
-    actorPtr = marker_getActorAndRotation(this, sp34);
+    actorPtr = marker_getActorAndRotation(this, rotation);
     jujuPtr = (ActorLocal_Juju_2 *)&actorPtr->local;
     if(jujuPtr->unk0 != 2){
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        modelRender_draw(dl, mPtr, actorPtr->position, sp34, jujuPtr->unk14, NULL, marker_loadModelBin(this));
+        modelRender_draw(dl, mPtr, actorPtr->position, rotation, jujuPtr->unk14, NULL, marker_loadModelBin(this));
     }
     return actorPtr;
 }
 
-void func_803890A0(ActorMarker *arg0, s32 arg1){
+void func_803890A0(ActorMarker *marker, s32 arg1){
     int s1;
-    Actor* actorPtr = marker_getActor(arg0);
-    f32 sp5C[3];
+    Actor* actorPtr = marker_getActor(marker);
+    f32 position[3];
     s32 i;
     Actor* jujuPtr;
 
-    sp5C[0] = actorPtr->position_x;
-    sp5C[1] = actorPtr->position_y;
-    sp5C[2] = actorPtr->position_z;
+    position[0] = actorPtr->position_x;
+    position[1] = actorPtr->position_y;
+    position[2] = actorPtr->position_z;
     for(i = 0; i < 4; i++){
         jujuPtr = func_8032813C(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
         jujuPtr->marker->collidable = 0;
-        actorPtr = marker_getActor(arg0);
+        actorPtr = marker_getActor(marker);
         func_80388DE8(actorPtr, i, jujuPtr);
+
         s1 = (i >= arg1);
-        func_80388FD0(jujuPtr, sp5C, actorPtr->position, (s1)? 1 : 2);
+        func_80388FD0(jujuPtr, position, actorPtr->position, (s1)? 1 : 2);
+
         if(s1){
-            sp5C[1] += 250.0f;
+            position[1] += 250.0f;
         }
         if(i == arg1){
             ((ActorLocal_Juju_2 *)&jujuPtr->local)->unk18 = 1;

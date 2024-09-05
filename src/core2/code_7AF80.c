@@ -994,21 +994,24 @@ NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3])
     return NULL;
 }
 
-NodeProp *func_80304C38(enum actor_e actor_id, Actor *arg1){
-    s32 vec[3];
-    s32 *phi_a1;
+NodeProp *func_80304C38(enum actor_e actor_id, Actor *actor){
+    s32 tmp_position[3];
+    s32 *position;
 
-    if (arg1 != NULL) {
-        vec[0] = arg1->position_x;
-        vec[1] = arg1->position_y;
-        vec[2] = arg1->position_z;
+    if (actor != NULL) {
+        tmp_position[0] = actor->position_x;
+        tmp_position[1] = actor->position_y;
+        tmp_position[2] = actor->position_z;
     }
-    if (arg1 == NULL) {
-        phi_a1 = NULL;
-    } else {
-        phi_a1 = vec;
+
+    if (actor == NULL) {
+        position = NULL;
     }
-    return cubeList_findNodePropByActorId(actor_id, phi_a1);
+    else {
+        position = tmp_position;
+    }
+
+    return cubeList_findNodePropByActorId(actor_id, position);
 }
 
 NodeProp *func_80304CAC(s32 arg0, f32 *arg1) {

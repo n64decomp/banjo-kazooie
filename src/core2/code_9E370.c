@@ -1570,11 +1570,11 @@ bool func_803296D8(Actor *this, s32 dist){
 
 s32 func_8032970C(Actor *this){
     f32 sp24[3];
-    f32 sp18[3];
+    f32 plyr_pos[3];
 
     func_8028E964(sp24);
-    _player_getPosition(sp18);
-    sp24[1] = sp18[1];
+    _player_getPosition(plyr_pos);
+    sp24[1] = plyr_pos[1];
     return (s32) DIST_SQ_VEC3F(this->position, sp24);
 }
 
