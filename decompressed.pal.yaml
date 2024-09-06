@@ -168,8 +168,8 @@ segments:
   - [0xF4D3D0, c, code_10A00]
   - [0xF4E490, c, code_11AC0]
   - [0xF4F890, c, rumblemanager]
-  - [0xF50010, bin, untouched]
-#   # - [0xF2C890, c, code_13640]                 #DONE
+  - [0xF50010, c, code_13640]
+  - [0xF50050, bin, untouched]
 #   # - [0xF2C8D0, c, code_13680]                 #DONE
 #   # - [0xF2C920, c, overlaymanager]                 #DONE
 #   # - [0xF2CBE0, c, code_13990]   
@@ -471,7 +471,7 @@ segments:
   - [0xF791D0, .bss, code_10A00]
   - [0xF791D0, .bss, code_11AC0]
   - [0xF791D0, .bss, rumblemanager]
-#   # - [0xF791D0, .bss, code_13640]
+  - [0xF791D0, .bss, code_13640]
 #   # - [0xF791D0, .bss, overlaymanager]
 #   # - [0xF791D0, .bss, code_13990]
 #   # - [0xF791D0, .bss, code_15770]
