@@ -2,18 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "version.h"
+
 #include "ml/mtx.h"
 
 void _guRotateF(Mtx*, f32, f32, f32, f32);
 f32 func_80263FF0(f32);
 f32 cosf(f32);
 
-#ifndef CORE2_DATA_CRC2
-    #define CORE2_DATA_CRC2 0x84D7B4F8
+#if VERSION == VERSION_USA_1_0
+    s32 D_80276570 = 0xFF62C2B8; //WHAT IS THIS?
+    s32 D_80276574 = 0x84D7B4F8; //CORE2_DATA_CRC2
+#elif VERSION == VERSION_PAL
+    s32 D_80276570 = 0xF71CBE76; //WHAT IS THIS?
+    s32 D_80276574 = 0xA2B6F47C; //CORE2_DATA_CRC2
 #endif
-
-s32 D_80276570 = 0xFF62C2B8; //WHAT IS THIS?
-s32 D_80276574 = CORE2_DATA_CRC2;
 f32 D_80276578 = BAD_DTOR;
 f32 D_8027657C = BAD_DTOR;
 

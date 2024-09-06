@@ -33,11 +33,7 @@ boot_gOverlayTable = gOverlayTable;
 boot_func_8023DA20 = func_8023DA20;
 
 /* Temporary Correct*/
-mlMtxGet                    = 0x80251000;
-mlMtxIdent                  = 0x8025175c;
-mlMtxRotPitch               = 0x802518c8;
-mlMtxRotYaw                 = 0x802519d4;
-func_8025235C               = 0x80251fac;
+func_80253010               = 0x80252c60;
 func_80253034               = 0x80252c84;
 overlay_load                = 0x80252Ca0;
 func_802535A8               = 0x802531f8;
@@ -183,6 +179,8 @@ osMotorStop                 = 0x80267980;
 osMotorStart                = 0x80267ae8;
 osMotorInit                 = 0x80267dd0;
 osPfsInit                   = 0x80267fa0;
+osInvalICache               = 0x80268060;
+
 
 D_80276574                  = 0x802762c4;
 framebuffer_width           = 0x802762d8;
@@ -257,6 +255,7 @@ func_80323240               = 0x80323690;
 timedFunc_set_3             = 0x803253b4;
 marker_getActor             = 0x80329db0;
 map_get                     = 0x80334d10;
+func_80335134               = 0x80335584;
 sfxInstruments_init         = 0x80335670;
 assetcache_release          = 0x8033b828;
 func_8033B788               = 0x8033bbd8;
@@ -426,4 +425,3 @@ fight_BSS_END               = 0x80393390;
 
 
 /* Temporary */
-

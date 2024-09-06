@@ -171,11 +171,11 @@ segments:
   - [0xF50010, c, code_13640]
   - [0xF50050, c, code_13680]
   - [0xF500a0, c, overlaymanager]
-  - [0xF50360, bin, untouched]
-#   # - [0xF2CBE0, c, code_13990]   
-#   # - [0xF2E840, hasm, code_155F0]              #DONE
-#   # - [0xF2E880, c, overlay]                 #DONE
-#   # - [0xF2E9C0, c, code_15770]                 #DONE
+  - [0xF50360, c, code_13990]   
+  - [0xF51FC0, hasm, code_155F0]
+  - [0xF52000, c, overlay]
+  - [0xF52140, c, code_15770]
+  - [0xF52500, bin, untouched]
 #   # - [0xF2ED80, c, code_15B30]                 #DONE
 #   # - [0xF2FCA0, c, memory]                     #DONE
 #   # - [0xF31360, c, code_18110]                 #DONE
@@ -380,8 +380,8 @@ segments:
   - [0xF74DE0, .data, code_10A00]
   - [0xF74DF0, .data, code_11AC0]
   - [0xF75380, .data, overlaymanager]
-  - [0xF75620, bin, remain_core1_data]
-#   # - [0xF51DA0, .data, code_13990]
+  - [0xF75620, .data, code_13990]
+  - [0xF75630, bin, remain_core1_data]
 #   # - [0xF51DB0, .data, code_15B30]
 #   # - [0xF51DC0, .data, memory]
 #   # - [0xF51DF0, .data, code_18310]
@@ -422,8 +422,8 @@ segments:
   - [0xF77210, .rodata, code_11AC0]
   - [0xF77220, .rodata, rumblemanager]
   - [0xF77230, .rodata, overlaymanager]
-  - [0xF772b0, bin, remain_core1_rodata]
-#   # - [0xF53A50, .rodata, code_13990]
+  - [0xF772B0, .rodata, code_13990]
+  - [0xF772D0, bin, remain_core1_rodata]
 #   # - [0xF53A70, .rodata, code_18350]
 #   # - [0xF53B70, .rodata, code_1BE90]
 #   # - [0xF53BA0, .rodata, code_1D5D0]
@@ -473,8 +473,8 @@ segments:
   - [0xF791D0, .bss, rumblemanager]
   - [0xF791D0, .bss, code_13640]
   - [0xF791D0, .bss, overlaymanager]
-#   # - [0xF791D0, .bss, code_13990]
-#   # - [0xF791D0, .bss, code_15770]
+  - [0xF791D0, .bss, code_13990]
+  - [0xF791D0, .bss, code_15770]
 #   # - [0xF791D0, .bss, code_15B30]
 #   # - [0xF791D0, .bss, memory]
 #   # - [0xF791D0, .bss, code_18210]
