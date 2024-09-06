@@ -169,8 +169,8 @@ segments:
   - [0xF4E490, c, code_11AC0]
   - [0xF4F890, c, rumblemanager]
   - [0xF50010, c, code_13640]
-  - [0xF50050, bin, untouched]
-#   # - [0xF2C8D0, c, code_13680]                 #DONE
+  - [0xF50050, c, code_13680]
+  - [0xF500a0, bin, untouched]
 #   # - [0xF2C920, c, overlaymanager]                 #DONE
 #   # - [0xF2CBE0, c, code_13990]   
 #   # - [0xF2E840, hasm, code_155F0]              #DONE
