@@ -804,7 +804,7 @@ void func_80255A3C(void){
 
     if(!func_802559A0()){
         ml_defrag();
-        func_80254464();
+        dummy_func_80254464();
     }
 
 }

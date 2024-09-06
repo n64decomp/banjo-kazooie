@@ -46,24 +46,24 @@ void func_802E329C(s32 arg0, Gfx **gfx_begin, Gfx **gfx_end) {
     Vtx *vtx;
     Vtx *vtx_start;
 
-    func_80254404(&gfx, &mtx, &vtx);
+    getGraphicsStacks(&gfx, &mtx, &vtx);
     gfx_start = gfx;
     mtx_start = mtx;
     vtx_start = vtx;
-    func_802539AC(&gfx, arg0);
+    scissorBox_SetForGameMode(&gfx, arg0);
     if (D_8037E8C0.unk14 == 2) {
-        func_80254084(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
+        drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
     }
     if ((D_8037E8C0.unk14 == 0) || (D_8037E8C0.unk14 == 3)) {
         func_8024C904(&gfx, &mtx);
         gcbound_draw(&gfx);
     }
     if (D_8037E8C0.unk14 == 1) {
-        func_80254084(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
+        drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
         func_8024C904(&gfx, &mtx);
         func_802F1858(D_8037E8C0.unk10, &gfx, &mtx, &vtx);
     }
-    func_80253DE0(&gfx);
+    finishFrame(&gfx);
     osWritebackDCache(mtx_start, (mtx - mtx_start) * sizeof(Mtx));
     osWritebackDCache(vtx_start, (vtx - vtx_start) * sizeof(Vtx));
     *gfx_begin = gfx_start;
@@ -83,7 +83,7 @@ void func_802E3460(s32 arg0) {
         if (func_8025AD7C(COMUSIC_31_GAME_OVER)) {
             comusic_8025AB44(COMUSIC_31_GAME_OVER, 0, 200);
         }
-        func_802F1934(D_8037E8C0.unk10, func_8024BDA0());
+        func_802F1934(D_8037E8C0.unk10, getActiveFramebuffer());
     }
     else if (D_8037E8C0.unk14 == 3) {
         D_8037E8C0.unk0 = 0.0f;
@@ -106,11 +106,11 @@ void func_802E3580(void) {
     func_802F1884(D_8037E8C0.unk10);
     func_802E5F68();
     comusicPlayer_free();
-    func_80253420();
+    dummy_func_80253420();
     func_8024BF94(2);
 }
 
-void func_802E35D0(void){}
+void dummy_func_802E35D0(void){}
 
 void func_802E35D8(void ) {
     s32 sp40[6];

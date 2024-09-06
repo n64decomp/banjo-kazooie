@@ -16,7 +16,7 @@ extern ActorInfo chJinjonatorBase;
 extern ActorInfo chSpellBarrier;
 extern ActorInfo chSpellFireball;
 extern ActorInfo chSpellGreen;
-extern ActorInfo chSpriteSmokeGreen2;
+extern ActorInfo chGreenBlast;
 extern ActorInfo chJinjonator;
 extern ActorInfo chBossShadow;
 
@@ -26,7 +26,7 @@ u8 pad_fight_80392740[0x10];
 void fight_func_803863F0(void)
 {
     spawnableActorList_add(&chSpellFireball, actor_new, 0X108444);
-    spawnableActorList_add(&chSpriteSmokeGreen2, actor_new, 0X108444);
+    spawnableActorList_add(&chGreenBlast, actor_new, 0X108444);
     spawnableActorList_add(&chFinalBoss, actor_new, 0X300468);
     spawnableActorList_add(&chBossJinjoOrange, actor_new, 0X8464);
     spawnableActorList_add(&chBossJinjoGreen, actor_new, 0X8464);

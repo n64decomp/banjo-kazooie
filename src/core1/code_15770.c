@@ -3,9 +3,9 @@
 #include "variables.h"
 
 struct {
-    u16 *unk0;
+    u16 *data;
     int unk4;
-} D_80282FE0;
+} gzBuffer;
 
 extern u8 D_8000E800;
 extern u16 D_803A5D00[2][0xF660];
@@ -13,14 +13,14 @@ extern u16 D_803A5D00[2][0xF660];
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
 void func_80253190(Gfx **gdl){
-    func_80253208(gdl, 0, 0, framebuffer_width, framebuffer_height, D_803A5D00[func_8024BDA0()]);
+    func_80253208(gdl, 0, 0, framebuffer_width, framebuffer_height, D_803A5D00[getActiveFramebuffer()]);
 }
 
 void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
-    if( D_80282FE0.unk0 != NULL && (getGameMode() != GAME_MODE_4_PAUSED || func_80335134())){
+    if( gzBuffer.data != NULL && (getGameMode() != GAME_MODE_4_PAUSED || func_80335134())){
         //draw z_buffer
         gDPPipeSync((*gdl)++);
-        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(D_80282FE0.unk0));
+        gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(gzBuffer.data));
         gDPSetCycleType((*gdl)++, G_CYC_FILL);
         gDPSetRenderMode((*gdl)++, G_RM_NOOP, G_RM_NOOP2);
         gDPSetFillColor((*gdl)++, 0xFFFCFFFC);
@@ -33,44 +33,42 @@ void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
 }
 
 int func_80253400(void){
-    return D_80282FE0.unk4;
+    return gzBuffer.unk4;
 }
 
 int func_8025340C(void){
-    return D_80282FE0.unk0 != NULL;
+    return gzBuffer.data != NULL;
 }
 
-void func_80253420(void){}
+void dummy_func_80253420(void){}
 
 void func_80253428(int arg0) {
     u16 *var_v0;
     int new_var;
     if (arg0) {
-        var_v0 = (D_80282FE0.unk0 = &D_8000E800);
-        while (((s32) D_80282FE0.unk0) % 0x40) {\
-          var_v0 = (D_80282FE0.unk0 = var_v0 + 1);
+        var_v0 = (gzBuffer.data = &D_8000E800);
+        while (((s32) gzBuffer.data) % 0x40) {\
+          var_v0 = (gzBuffer.data = var_v0 + 1);
         }
         
         do { } while ((&D_8000E800 && 1) * 0); //remove this
     }else{
-        D_80282FE0.unk0 = 0;
+        gzBuffer.data = 0;
     }
-    D_80282FE0.unk4 = 0;
+    gzBuffer.unk4 = 0;
 }
 
 void func_802534A8(int arg0){
-    D_80282FE0.unk4 = (D_80282FE0.unk0 != NULL && arg0);
+    gzBuffer.unk4 = (gzBuffer.data != NULL && arg0);
 }
 
-//zBuffer_set
-void func_802534CC(Gfx **gdl){
-    if(D_80282FE0.unk0 && getGameMode() != GAME_MODE_4_PAUSED){
+void zBuffer_set(Gfx **gdl){
+    if(gzBuffer.data && getGameMode() != GAME_MODE_4_PAUSED){
         gDPPipeSync((*gdl)++);
-        gDPSetDepthImage((*gdl)++, D_80282FE0.unk0);
+        gDPSetDepthImage((*gdl)++, gzBuffer.data);
     }
 }
 
-//zBuffer_get
-void *func_80253540(void){
-    return D_80282FE0.unk0;
+void *zBuffer_get(void){
+    return gzBuffer.data;
 }

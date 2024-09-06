@@ -90,8 +90,8 @@ void func_8030C27C(void){
 }
 
 void func_8030C2D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
-    func_80254348();
-    func_80253640(gdl, D_803A5D00[func_8024BDA0()]);
+    scissorBox_setDefault();
+    func_80253640(gdl, D_803A5D00[getActiveFramebuffer()]);
 }
 
 // Draws a 160x128 image pointed to by D_80382450 into the center of the screen
@@ -128,6 +128,6 @@ s32 func_8030C704(void){
     return D_80382450;
 }
 
-void func_8030C710(void){
-    func_802542F4(0, 0xA0, 0, 0x80);
+void scissorBox_setSmall(void){
+    scissorBox_set(0, 160, 0, 128);
 }

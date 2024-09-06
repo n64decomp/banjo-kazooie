@@ -63,7 +63,7 @@ f32 D_8036E598[4] = {1000.f, 20.0f, 10.5f, 1.0f};
 
 
 /* .bss */
-Actor *D_80383390;
+Actor *suLastBaddie;
 s32 D_80383394;
 Actor *suBaddieJiggyArray[14]; //array of jiggy actor ptrs
 
@@ -768,267 +768,270 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         suBaddieActorArray->cnt = 0;
         suBaddieActorArray->max_cnt = 20;
     }
-    //i = suBaddieActorArray->cnt + 1;
+    
     if(suBaddieActorArray->cnt + 1 > suBaddieActorArray->max_cnt){
         suBaddieActorArray->max_cnt = suBaddieActorArray->cnt + 5;
         suBaddieActorArray = (ActorArray *)realloc(suBaddieActorArray, sizeof(ActorArray) + suBaddieActorArray->max_cnt*sizeof(Actor));
     }
+
     ++suBaddieActorArray->cnt;
-    D_80383390 = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
-    D_80383390->actor_info = actorInfo;
-    D_80383390->unk10_25 = 0;
-    D_80383390->unk10_18 = 0;
-    D_80383390->state = actorInfo->startAnimation;
-    D_80383390->position_x = (f32)position[0];
-    D_80383390->position_y = (f32)position[1];
-    D_80383390->position_z = (f32)position[2];
-    D_80383390->unkF4_8 = 0;
-    D_80383390->yaw = (f32) yaw;
-    D_80383390->yaw_ideal = (f32) yaw;
-    D_80383390->pitch = 0.0f;
-    D_80383390->roll = 0.0f;
-    D_80383390->unk6C = 0.0f;
-    D_80383390->unk28 = 0.0f;
-    D_80383390->unk10_12 = 0;
-    D_80383390->unk38_0 = 0;
-    D_80383390->unk38_31 = 0;
-    D_80383390->unk58_0 = 1;
-    D_80383390->unk40 = 0;
-    D_80383390->unk44_31 = 0;
-    D_80383390->despawn_flag = 0;
-    D_80383390->unk44_14 = -1;
-    D_80383390->unk48 = 0.0f;
-    D_80383390->unk4C = 100.0f;
-    D_80383390->unk10_1 = 1;
-    D_80383390->unkF4_30 = 0;
-    D_80383390->unkF4_29 = 0;
-    D_80383390->scale = 1.0f;
-    D_80383390->unk124_7 = 0;
-    D_80383390->unk124_6 = 1;
-    D_80383390->modelCacheIndex = actorInfo->actorId;
-    D_80383390->unk44_2 = func_80326C18();
-    D_80383390->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->markerId, (flags & 0x400) ? 1 : 0);
-    D_80383390->marker->unk3E_0 = 1;
-    D_80383390->unk138_28 = 1;
-    D_80383390->unk10_3 = -1;
-    D_80383390->unk10_4 = 0;
-    D_80383390->unk10_8 = 0;
-    D_80383390->unk10_7 = 0;
-    D_80383390->unk10_6 = 0;
-    D_80383390->unk54 = 0.0f;
-    D_80383390->unk58_31 = 0;
-    D_80383390->unk5C = 0.0f;
-    D_80383390->unkF4_31 = 0;
-    D_80383390->unk138_30 = 0;
-    D_80383390->unk138_3 = 0;
-    D_80383390->unk38_21 = 0;
-    D_80383390->unk38_13 = 0;
-    D_80383390->unk78_22 = 0;
-    D_80383390->unk78_31 = 0;
-    D_80383390->unk74 = 0.0f;
-    D_80383390->unk70 = 0.0f;
-    D_80383390->unkF4_24 = 0;
-    D_80383390->unk140 = 0.0f;
-    D_80383390->unk144 = 0.0f;
-    D_80383390->unk44_1 = 0;
-    D_80383390->unk44_0 = 0;
-    D_80383390->initialized = FALSE;
-    D_80383390->unk16C_4 = 0;
-    D_80383390->unk60 = 0.0f;
-    D_80383390->unk10_0 = 0;
-    D_80383390->unk104 = NULL;
-    D_80383390->unk100 = NULL;
-    D_80383390->unk158[0] = NULL;
-    D_80383390->unk158[1] = NULL;
-    D_80383390->unk78_13 = 0;
-    D_80383390->unk124_31 = 0;
-    D_80383390->unkF4_20 = 0;
-    D_80383390->sound_timer = 0.0f;
-    func_8032FFD4(D_80383390->marker, suBaddieActorArray->cnt - 1);
-    marker_setModelId(D_80383390->marker, actorInfo->modelId);
-    func_803300C8(D_80383390->marker, actorInfo->update_func);
-    func_803300D0(D_80383390->marker, actorInfo->unk10);
-    ml_vec3f_clear(D_80383390->unk1C);
-    ml_vec3f_clear(D_80383390->velocity);
-    ml_vec3f_clear(D_80383390->spawn_position);
-    D_80383390->stored_animctrl_index = 0;
-    D_80383390->unk58_2 = 1;
-    D_80383390->stored_animctrl_playbackType_ = 0;
-    D_80383390->stored_animctrl_forwards = 0;
-    D_80383390->stored_animctrl_smoothTransistion = 0;
-    D_80383390->stored_animctrl_duration = 0.0f;
-    D_80383390->unkEC = 0.0f;
-    D_80383390->unk138_19 = 0;
-    D_80383390->stored_animctrl_subrangeMin = 0.0f;
-    D_80383390->stored_animctrl_subrangeMax = 1.0f;
-    D_80383390->unkF4_22 = 0;
-    D_80383390->unk58_1 = 0;
-    D_80383390->unk138_29 = 0;
-    D_80383390->unk18 = actorInfo->animations;
-    D_80383390->animctrl = NULL;
-    D_80383390->unkEC = 0.0f;
-    D_80383390->unk130 = 0;
-    D_80383390->unk124_5 = 0;
-    D_80383390->unk124_3 = 0;
-    D_80383390->unk138_9 = 0;
-    D_80383390->unk138_8 = 0;
-    D_80383390->unk138_25 = 0;
-    D_80383390->unk16C_3 = 0;
-    D_80383390->unk16C_2 = 0;
-    D_80383390->unk16C_1 = 0;
-    D_80383390->unk16C_0 = 0;
-    D_80383390->unk17C_31 = 0;
-    D_80383390->unk14C[0] = NULL;
-    D_80383390->unk14C[1] = NULL;
-    D_80383390->unk138_27 = 0;
-    D_80383390->unk138_24 = 0;
-    D_80383390->unk138_23 = 0;
-    D_80383390->unk138_22 = 0;
-    D_80383390->unk138_21 = 0;
-    D_80383390->unk138_20 = 0;
-    D_80383390->unk174 = 0.0f;
-    D_80383390->unk178 = 0.0f;
+    suLastBaddie = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
+
+    suLastBaddie->actor_info = actorInfo;
+    suLastBaddie->unk10_25 = 0;
+    suLastBaddie->unk10_18 = 0;
+    suLastBaddie->state = actorInfo->startAnimation;
+    suLastBaddie->position_x = (f32)position[0];
+    suLastBaddie->position_y = (f32)position[1];
+    suLastBaddie->position_z = (f32)position[2];
+    suLastBaddie->unkF4_8 = 0;
+    suLastBaddie->yaw = (f32) yaw;
+    suLastBaddie->yaw_ideal = (f32) yaw;
+    suLastBaddie->pitch = 0.0f;
+    suLastBaddie->roll = 0.0f;
+    suLastBaddie->unk6C = 0.0f;
+    suLastBaddie->unk28 = 0.0f;
+    suLastBaddie->unk10_12 = 0;
+    suLastBaddie->unk38_0 = 0;
+    suLastBaddie->unk38_31 = 0;
+    suLastBaddie->unk58_0 = 1;
+    suLastBaddie->unk40 = 0;
+    suLastBaddie->unk44_31 = 0;
+    suLastBaddie->despawn_flag = 0;
+    suLastBaddie->unk44_14 = -1;
+    suLastBaddie->unk48 = 0.0f;
+    suLastBaddie->unk4C = 100.0f;
+    suLastBaddie->unk10_1 = 1;
+    suLastBaddie->unkF4_30 = 0;
+    suLastBaddie->unkF4_29 = 0;
+    suLastBaddie->scale = 1.0f;
+    suLastBaddie->unk124_7 = 0;
+    suLastBaddie->unk124_6 = 1;
+    suLastBaddie->modelCacheIndex = actorInfo->actorId;
+    suLastBaddie->unk44_2 = func_80326C18();
+    suLastBaddie->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->markerId, (flags & 0x400) ? 1 : 0);
+    suLastBaddie->marker->unk3E_0 = 1;
+    suLastBaddie->unk138_28 = 1;
+    suLastBaddie->unk10_3 = -1;
+    suLastBaddie->unk10_4 = 0;
+    suLastBaddie->unk10_8 = 0;
+    suLastBaddie->unk10_7 = 0;
+    suLastBaddie->unk10_6 = 0;
+    suLastBaddie->unk54 = 0.0f;
+    suLastBaddie->unk58_31 = 0;
+    suLastBaddie->unk5C = 0.0f;
+    suLastBaddie->unkF4_31 = 0;
+    suLastBaddie->unk138_30 = 0;
+    suLastBaddie->unk138_3 = 0;
+    suLastBaddie->unk38_21 = 0;
+    suLastBaddie->unk38_13 = 0;
+    suLastBaddie->unk78_22 = 0;
+    suLastBaddie->unk78_31 = 0;
+    suLastBaddie->unk74 = 0.0f;
+    suLastBaddie->unk70 = 0.0f;
+    suLastBaddie->unkF4_24 = 0;
+    suLastBaddie->unk140 = 0.0f;
+    suLastBaddie->unk144 = 0.0f;
+    suLastBaddie->unk44_1 = 0;
+    suLastBaddie->unk44_0 = 0;
+    suLastBaddie->initialized = FALSE;
+    suLastBaddie->unk16C_4 = 0;
+    suLastBaddie->unk60 = 0.0f;
+    suLastBaddie->unk10_0 = 0;
+    suLastBaddie->unk104 = NULL;
+    suLastBaddie->unk100 = NULL;
+    suLastBaddie->unk158[0] = NULL;
+    suLastBaddie->unk158[1] = NULL;
+    suLastBaddie->unk78_13 = 0;
+    suLastBaddie->unk124_31 = 0;
+    suLastBaddie->unkF4_20 = 0;
+    suLastBaddie->sound_timer = 0.0f;
+    func_8032FFD4(suLastBaddie->marker, suBaddieActorArray->cnt - 1);
+    marker_setModelId(suLastBaddie->marker, actorInfo->modelId);
+    func_803300C8(suLastBaddie->marker, actorInfo->update_func);
+    func_803300D0(suLastBaddie->marker, actorInfo->unk10);
+    ml_vec3f_clear(suLastBaddie->unk1C);
+    ml_vec3f_clear(suLastBaddie->velocity);
+    ml_vec3f_clear(suLastBaddie->spawn_position);
+    suLastBaddie->stored_animctrl_index = 0;
+    suLastBaddie->unk58_2 = 1;
+    suLastBaddie->stored_animctrl_playbackType_ = 0;
+    suLastBaddie->stored_animctrl_forwards = 0;
+    suLastBaddie->stored_animctrl_smoothTransistion = 0;
+    suLastBaddie->stored_animctrl_duration = 0.0f;
+    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->unk138_19 = 0;
+    suLastBaddie->stored_animctrl_subrangeMin = 0.0f;
+    suLastBaddie->stored_animctrl_subrangeMax = 1.0f;
+    suLastBaddie->unkF4_22 = 0;
+    suLastBaddie->unk58_1 = 0;
+    suLastBaddie->unk138_29 = 0;
+    suLastBaddie->unk18 = actorInfo->animations;
+    suLastBaddie->animctrl = NULL;
+    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->unk130 = 0;
+    suLastBaddie->unk124_5 = 0;
+    suLastBaddie->unk124_3 = 0;
+    suLastBaddie->unk138_9 = 0;
+    suLastBaddie->unk138_8 = 0;
+    suLastBaddie->unk138_25 = 0;
+    suLastBaddie->unk16C_3 = 0;
+    suLastBaddie->unk16C_2 = 0;
+    suLastBaddie->unk16C_1 = 0;
+    suLastBaddie->unk16C_0 = 0;
+    suLastBaddie->unk17C_31 = 0;
+    suLastBaddie->unk14C[0] = NULL;
+    suLastBaddie->unk14C[1] = NULL;
+    suLastBaddie->unk138_27 = 0;
+    suLastBaddie->unk138_24 = 0;
+    suLastBaddie->unk138_23 = 0;
+    suLastBaddie->unk138_22 = 0;
+    suLastBaddie->unk138_21 = 0;
+    suLastBaddie->unk138_20 = 0;
+    suLastBaddie->unk174 = 0.0f;
+    suLastBaddie->unk178 = 0.0f;
     if( actorInfo->animations){
-        sp54 = &D_80383390->unk18[D_80383390->state];
+        sp54 = &suLastBaddie->unk18[suLastBaddie->state];
         if(sp54->index != 0){
-            D_80383390->animctrl = animctrl_new(0);
-            animctrl_reset(D_80383390->animctrl);
-            animctrl_setIndex(D_80383390->animctrl, sp54->index);
-            animctrl_setDuration(D_80383390->animctrl, sp54->duration);
-            animctrl_start(D_80383390->animctrl, "subaddie.c", 0x4A5);
+            suLastBaddie->animctrl = animctrl_new(0);
+            animctrl_reset(suLastBaddie->animctrl);
+            animctrl_setIndex(suLastBaddie->animctrl, sp54->index);
+            animctrl_setDuration(suLastBaddie->animctrl, sp54->duration);
+            animctrl_start(suLastBaddie->animctrl, "subaddie.c", 0x4A5);
         }
     }//L80327BA8
-    D_80383390->unk124_11 = 0;
-    D_80383390->alpha_124_19 = 0xff;
-    D_80383390->depth_mode = MODEL_RENDER_DEPTH_FULL;
-    D_80383390->unk124_0 = D_80383390->unk138_31 = 1;
+    suLastBaddie->unk124_11 = 0;
+    suLastBaddie->alpha_124_19 = 0xff;
+    suLastBaddie->depth_mode = MODEL_RENDER_DEPTH_FULL;
+    suLastBaddie->unk124_0 = suLastBaddie->unk138_31 = 1;
     for(i = 0; i < 0x10; i++){
-        ((s32 *)D_80383390->unk7C)[i] = 0;
+        ((s32 *)suLastBaddie->unk7C)[i] = 0;
     }
     for(i = 0; i < 0x0C; i++){
-        ((s32 *)D_80383390->unkBC)[i] = 0;
+        ((s32 *)suLastBaddie->unkBC)[i] = 0;
     }
     if(flags & ACTOR_FLAG_UNKNOWN_0){
-        D_80383390->unk10_25 = func_80306DDC(position) + 1;
-        if(D_80383390->unk10_25 == 0){
-            D_80383390->unk10_25 = 0;
+        suLastBaddie->unk10_25 = func_80306DDC(position) + 1;
+        if(suLastBaddie->unk10_25 == 0){
+            suLastBaddie->unk10_25 = 0;
         }else{
             sp44[0] = (f32)position[0];
             sp44[1] = (f32)position[1];
             sp44[2] = (f32)position[2];
-            D_80383390->unk10_18 = func_80307258(&sp44, D_80383390->unk10_25 - 1, 0) + 1;
+            suLastBaddie->unk10_18 = func_80307258(&sp44, suLastBaddie->unk10_25 - 1, 0) + 1;
         }
     }//L80327D30
 
     if(flags & ACTOR_FLAG_UNKNOWN_2){
-        D_80383390->unk10_1 = 0;
+        suLastBaddie->unk10_1 = 0;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_3){
-        D_80383390->unkF4_30 = 1;
+        suLastBaddie->unkF4_30 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_1){
-        D_80383390->marker->unk44 = 1;
+        suLastBaddie->marker->unk44 = 1;
     }
     else if(flags & ACTOR_FLAG_UNKNOWN_6){
-        D_80383390->marker->unk44 = func_8034A2C8();
+        suLastBaddie->marker->unk44 = func_8034A2C8();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_12){
-        func_8033F738(D_80383390->marker);
-        func_8034BFF8(D_80383390->marker);
+        func_8033F738(suLastBaddie->marker);
+        func_8034BFF8(suLastBaddie->marker);
     }
 
-    D_80383390->unk148 = 0;
+    suLastBaddie->unk148 = 0;
     if(flags & ACTOR_FLAG_UNKNOWN_11){
-        D_80383390->unk148 = skeletalAnim_new();
+        suLastBaddie->unk148 = skeletalAnim_new();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_14){
-        D_80383390->marker->unk50 = func_803406B0();
+        suLastBaddie->marker->unk50 = func_803406B0();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_4){
-        D_80383390->unk124_31 = -1;
+        suLastBaddie->unk124_31 = -1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_7){
-        D_80383390->unkF4_22 = 1;
+        suLastBaddie->unkF4_22 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_19){
-        D_80383390->unk58_1 = 1;
+        suLastBaddie->unk58_1 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_8){
-        D_80383390->unk130 = func_803255FC;
+        suLastBaddie->unk130 = func_803255FC;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_9){
-        D_80383390->marker->unk40_21 = 1;
+        suLastBaddie->marker->unk40_21 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_15){
-        D_80383390->marker->unk40_20 = 1;
+        suLastBaddie->marker->unk40_20 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_17){
-        D_80383390->marker->unk40_22 = 1;
+        suLastBaddie->marker->unk40_22 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_22){
-        D_80383390->marker->unk40_19 = 1;
+        suLastBaddie->marker->unk40_19 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_16){
-        D_80383390->unk138_9 = 1;
+        suLastBaddie->unk138_9 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_18){
-        D_80383390->unk138_8 = 1;
+        suLastBaddie->unk138_8 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_21){
-        D_80383390->unk138_25 = 1;
+        suLastBaddie->unk138_25 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_23){
-        D_80383390->unk16C_3 = 1;
+        suLastBaddie->unk16C_3 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_24){
-        D_80383390->unk16C_2 = 1;
+        suLastBaddie->unk16C_2 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_25){
-        D_80383390->unk16C_1 = 1;
+        suLastBaddie->unk16C_1 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_26){
-        D_80383390->unk17C_31 = 1;
+        suLastBaddie->unk17C_31 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_13){
-        D_80383390->unk138_29 = 1;
+        suLastBaddie->unk138_29 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_20){
-        D_80383390->unk58_2 = 0;
+        suLastBaddie->unk58_2 = 0;
     }
 
-    D_80383390->unk154 = 0x005e0000;
-    D_80383390->marker->unk54 = func_8032B5C0;
+    suLastBaddie->unk154 = 0x005e0000;
+    suLastBaddie->marker->unk54 = func_8032B5C0;
 
     
     for(i = 0; i < 3; ++i){
-        D_80383390->unk164[i] = 0x63;
+        suLastBaddie->unk164[i] = 0x63;
     }
 
-    D_80383390->unk170 = -10.0f;
-    D_80383390->unk138_7 = 0;
-    D_80383390->unk3C = flags;
-    return D_80383390;
+    suLastBaddie->unk170 = -10.0f;
+    suLastBaddie->unk138_7 = 0;
+    suLastBaddie->unk3C = flags;
+    
+    return suLastBaddie;
 }
 
 static void __actor_free(ActorMarker *arg0, Actor *arg1){

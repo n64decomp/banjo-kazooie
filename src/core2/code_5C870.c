@@ -74,7 +74,7 @@ void func_802E3854(void){
     int i;
 
     func_8033B61C();
-    func_80254464();
+    dummy_func_80254464();
     for(i = 0; i < 0xF; i++){
         func_802E6820(5);
         modelRender_defrag();
@@ -115,16 +115,16 @@ void func_802E398C(s32 arg0) {
     }
 }
 
-void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
+void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 framebuffer_idx, s32 arg4){
     Mtx* m_start = *mptr; 
     Vtx* v_start = *vptr;
 
-    func_802539AC(gdl, arg3);
+    scissorBox_SetForGameMode(gdl, framebuffer_idx);
     D_8037E8E0.unkC = FALSE;
     func_80334540(gdl, mptr, vptr);
     if(!arg4){
         func_802E67AC();
-        func_802E3BD0(func_8024BDA0());
+        func_802E3BD0(getActiveFramebuffer());
         func_802E67C4();
         func_802E5F10(gdl);
     }
@@ -147,7 +147,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
 
     gcpausemenu_draw(gdl, mptr, vptr);
     if(!game_is_frozen()){
-        func_8025AFC0(gdl, mptr, vptr);
+        dummy_func_8025AFC0(gdl, mptr, vptr);
     }
 
     gcdialog_draw(gdl, mptr, vptr);
@@ -163,7 +163,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 arg3, s32 arg4){
     ){
         gctransition_draw(gdl, mptr, vptr);
     }
-    func_80253DE0(gdl);
+    finishFrame(gdl);
     osWritebackDCache(m_start, sizeof(Mtx)*( *mptr - m_start));
     osWritebackDCache(v_start, sizeof(Vtx)*( *vptr - v_start));
 }
@@ -282,29 +282,33 @@ s32 func_802E3F80(void){
     return D_8037E8E0.unk0;
 }
 
-//game_draw
-void func_802E3F8C(s32 arg0){
-    Gfx *sp34;
+void game_draw(s32 arg0){
+    Gfx *gfx;
     Gfx *gfx_start;
     Gfx *sp2C;
-    Mtx *sp28;
-    Vtx *sp24;
-    if(arg0){
-        func_80254348();
+    Mtx *mtx;
+    Vtx *vtx;
+
+    if(arg0) {
+        scissorBox_setDefault();
     }
 
-    func_80254404(&sp34, &sp28, &sp24);
+    getGraphicsStacks(&gfx, &mtx, &vtx);
+
     if(D_8037E8E0.unkC == 1){
-        func_80254404(&sp34, &sp28, &sp24);
+        getGraphicsStacks(&gfx, &mtx, &vtx);
     }
-    gfx_start = sp34;
-    func_802E39D0(&sp34, &sp28, &sp24, func_8024BDA0(), arg0);
+
+    gfx_start = gfx;
+    func_802E39D0(&gfx, &mtx, &vtx, getActiveFramebuffer(), arg0);
+
     if(D_8037E8E0.unkC == 0){
-        sp2C = sp34;
+        sp2C = gfx;
         func_8024C1DC();
         func_80253EC4(gfx_start, sp2C);
-        if(arg0){
-            func_80254348();
+
+        if(arg0) {
+            scissorBox_setDefault();
         }
     }
 }
@@ -364,7 +368,7 @@ void func_802E4170(void){
     timedFuncQueue_free();
     func_802F9C48();
     modelRender_free();
-    func_80253420();
+    dummy_func_80253420();
     func_802E398C(0);
     func_8030AFD8(0);
     func_80321854();
@@ -399,7 +403,7 @@ void func_802E4214(enum map_e map_id){
     viewport_reset();
     viewport_set_near_far(1.0f, 10000.0f);
     rand_reset();
-    func_80254348();
+    scissorBox_setDefault();
     func_80253FE8();
     func_8033DC70();
     func_8033DC04();
