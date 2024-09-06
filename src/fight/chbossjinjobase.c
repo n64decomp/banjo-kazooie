@@ -9,7 +9,7 @@ typedef struct {
 void func_8038D568(Actor *this);
 
 /* .data */
-ActorInfo D_80391990 = {
+ActorInfo chBossJinjoBase = {
     MARKER_27A_JINJO_STATUE_BASE, ACTOR_3A2_JINJO_STATUE_BASE, ASSET_543_MODEL_JINJO_STATUE_BASE,
     0x1, NULL,
     func_8038D568, func_80326224, actor_draw,

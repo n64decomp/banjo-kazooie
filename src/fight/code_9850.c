@@ -6,14 +6,14 @@ extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern Actor *func_80325CAC(ActorMarker *, Gfx **, Mtx **, Vtx**);
 
-void func_8038FE94(Actor *this);
-Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chSpriteSmokeGreen2_update(Actor *this);
+Actor *chSpriteSmokeGreen2_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 
 /* .data */
-ActorInfo D_80391DC0 = {
-    0x25D, 0x38A, ASSET_6C7_SPRITE_SMOKE_GREEN_2,
+ActorInfo chSpriteSmokeGreen2 = {
+    MARKER_25D_SPRITE_SMOKE_GREEN_2, ACTOR_38A_SPRITE_SMOKE_GREEN_2, ASSET_6C7_SPRITE_SMOKE_GREEN_2,
     0x1, NULL,
-    func_8038FE94, func_80326224, func_8038FC40,
+    chSpriteSmokeGreen2_update, func_80326224, chSpriteSmokeGreen2_draw,
     0, 0, 1.0f, 0
 };
 
@@ -48,7 +48,7 @@ f32 D_80391F94[4] = {0.0f, 0.01f, 0.7f, 0.8f};
 f32 D_80391FA4[2] = {0.0f, 0.65f};
 
 /* .code */
-Actor *func_8038FC40(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
+Actor *chSpriteSmokeGreen2_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
     func_80344C2C(1);
     return func_80325CAC(marker, gdl, mptr, arg3);
@@ -88,7 +88,7 @@ void func_8038FCF0(ActorMarker *marker, ActorMarker *other_marker){
     marker_despawn(actor->marker);
 }
 
-void func_8038FE94(Actor *this){
+void chSpriteSmokeGreen2_update(Actor *this){
     f32 sp54 = time_getDelta();
     f32 sp48[3];
 

@@ -6,7 +6,7 @@ Actor *chbossshadow_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3)
 void chbossshadow_update(Actor *this);
 
 /* .data */
-ActorInfo D_80392090 = {
+ActorInfo chBossShadow = {
     MARKER_288_GRUNTY_SHADOW, ACTOR_3AF_GRUNTY_SHADOW, ASSET_3BF_MODEL_PLAYER_SHADOW, 0x1, NULL,
     chbossshadow_update, func_80326224, chbossshadow_draw,
     0, 0, 0.0f, 0

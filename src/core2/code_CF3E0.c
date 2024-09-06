@@ -2,9 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef KEY_VALUE_PAIR(s16, s16) unkD_80372730;
+typedef KEY_VALUE_PAIR(s16, s16) MapProgressFlagToDialogID;
 
-unkD_80372730 D_80372730[] = {
+/* Mapping for file progess flags to Dialog IDs */
+MapProgressFlagToDialogID fileProgressDialogMap[] = {
     { FILEPROG_AB_SWIM_OILY_WATER,                0xBA1},
     { FILEPROG_AC_DIVE_OILY_WATER,                0xBA2},
     { FILEPROG_AA_HAS_TOUCHED_CCW_BRAMBLE_FIELD,  0xCE6},
@@ -33,8 +34,9 @@ unkD_80372730 D_80372730[] = {
     { -1, -1}
 };
 
-
-unkD_80372730 D_80372798[] = {
+/* This progress IDs are not saved in the save file, like when Banjo goes near a Note door which requires more notes than the Banjo has. */
+/* Triggers a dialog every time after the game restarts. */
+MapProgressFlagToDialogID volatileProgressDialogMap[] = {
     {0x9E, 0xBA3}, 
     {0x9F, 0xCE8},
     {0xA0, 0x1032}, 
@@ -59,52 +61,55 @@ unkD_80372730 D_80372798[] = {
     { -1, -1}
 };
 
-static s32 __findIndex(unkD_80372730 *arg0, s32 arg1) {
-    s32 phi_v1 = 0;
+static s32 __findIndex(MapProgressFlagToDialogID *map, s32 key) {
+    s32 i = 0;
 
-    while (arg0[phi_v1].key >= 0) {
-        if (arg1 == arg0[phi_v1].key) {
-            return phi_v1;
+    while (map[i].key >= 0) {
+        if (key == map[i].key) {
+            return i;
         }
-        phi_v1++;
+        i++;
     }
+
     return -1;
 }
 
-s32 func_803563B8(enum file_progress_e arg0, s32 arg1) {
+/* Checks for a specific file progress flag and triggers a dialog only if the progress flag was not set and sets the progress flag */
+s32 func_803563B8(enum file_progress_e progress_flag, s32 arg1) {
     s32 index;
 
-    if (fileProgressFlag_get(arg0) != 0) {
+    if (fileProgressFlag_get(progress_flag) != 0) {
         return 0;
     } else {
-        index = __findIndex(D_80372730, arg0);
+        index = __findIndex(fileProgressDialogMap, progress_flag);
         if (index != -1) {
-            if (func_80311480(D_80372730[index].value, arg1, 0, 0, 0, 0) != 0) {
-                fileProgressFlag_set(arg0, 1);
+            if (func_80311480(fileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
+                fileProgressFlag_set(progress_flag, 1);
             }
-            return fileProgressFlag_get(arg0);
+            return fileProgressFlag_get(progress_flag);
         }
         return 0;
     }
 }
 
-void func_8035644C(enum file_progress_e arg0){
-    func_803563B8(arg0, 0);
+void func_8035644C(enum file_progress_e progress_flag){
+    func_803563B8(progress_flag, 0);
 }
 
-void func_8035646C(s32 arg0) {
-    func_803563B8(arg0, 4);
+void func_8035646C(enum file_progress_e progress_flag) {
+    func_803563B8(progress_flag, 4);
 }
 
+/* Checks for a specific "volatile" progress flag and triggers a dialog only if the progress flag was not set and sets the progress flag */
 s32 func_8035648C(s32 arg0, s32 arg1) {
     s32 index;
 
     if (func_803203FC() != 0) {
         return 0;
     } else {
-        index = __findIndex(D_80372798, arg0);
+        index = __findIndex(volatileProgressDialogMap, arg0);
         if (index != -1) {
-            if (func_80311480(D_80372798[index].value, arg1, 0, 0, 0, 0) != 0) {
+            if (func_80311480(volatileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
                 func_803204E4(arg0, 1);
             }
             return func_803203FC(arg0);

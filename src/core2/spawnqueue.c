@@ -38,8 +38,8 @@ extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
 extern ActorInfo chTrainers;
 extern ActorInfo D_80366EF0; //large_shadow
-extern ActorInfo D_80366F20; //chshockjump
-extern ActorInfo D_80366F44; //flight_pad
+extern ActorInfo chShockJump; //chshockjump
+extern ActorInfo chFlightPad; //flight_pad
 extern ActorInfo D_803670B8; //snippet
 extern ActorInfo D_803670DC; //black_snippet
 extern ActorInfo D_80367100; //mutie_snippet
@@ -251,8 +251,8 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367F30, actor_new, 0x0000400);
     spawnableActorList_add(&chBubble, actor_new, 0x0000004);
     spawnableActorList_add(&chGloop, actor_new, 0x000008A); //gloop
-    spawnableActorList_add(&D_80366F20, actor_new, 0x0000000); //chshockjump
-    spawnableActorList_add(&D_80366F44, actor_new, 0x0000000); //flight_pad
+    spawnableActorList_add(&chShockJump, actor_new, 0x0000000); //chshockjump
+    spawnableActorList_add(&chFlightPad, actor_new, 0x0000000); //flight_pad
     spawnableActorList_add(&D_80367D24, actor_new, 0x0200000); //redfeather
     spawnableActorList_add(&D_80367D48, actor_new, 0x0200000); //goldfeather 
     spawnableActorList_add(&D_80367C90, actor_new, 0x0000004); //spent_redfeather

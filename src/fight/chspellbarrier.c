@@ -26,7 +26,7 @@ typedef struct {
 void chspellbarrier_update(Actor *this);
 
 /* .data */
-ActorInfo D_80391AD0 = {
+ActorInfo chSpellBarrier = {
     MARKER_284_GRUNTY_SPELL_BARRIER, ACTOR_3AB_GRUNTY_SPELL_BARRIER, ASSET_546_MODEL_GRUNTY_SPELL_BARRIER,
     0x1, NULL,
     chspellbarrier_update, func_80326224, actor_draw,

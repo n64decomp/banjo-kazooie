@@ -10,15 +10,15 @@ extern f32 chbossjinjo_8038D268(void);
 void chstonejinjo_update(Actor *);
 
 /* .data */
-ActorAnimationInfo fight_D_803919F0[] ={
+ActorAnimationInfo chStoneJinjo_AnimationInfo[] ={
     {0, 0.0f},
     {0x265, 1e+8f},
     {0x265, 1e+8f},
     {0x265, 1e+8f},
 };
-ActorInfo fight_D_80391A10 = {
+ActorInfo chStoneJinjo = {
     MARKER_276_STONE_JINJO, ACTOR_3A1_STONE_JINJO, ASSET_545_MODEL_STONE_JINJO,
-    0x1, fight_D_803919F0,
+    0x1, chStoneJinjo_AnimationInfo,
     chstonejinjo_update, func_80326224, actor_draw,
     0, 0x800, 1.0f, 0
 };

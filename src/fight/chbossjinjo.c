@@ -12,11 +12,11 @@ extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern void func_80329904(ActorMarker*, s32, f32*);
 
 
-void func_8038C840(Actor *this);
-void func_8038D014(Actor *this);
+void chBossJinjo_update(Actor *this);
+void chBossJinjo_func_8038D014(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80391810[] = {
+ActorAnimationInfo chBossJinjoAnimations[] = {
     {0, 0.0f},
     {0x264, 1000000.0f},
     {0x264, 2.26f},
@@ -25,31 +25,31 @@ ActorAnimationInfo D_80391810[] = {
     {0x262, 2.0f}
 };
 
-ActorInfo D_80391840 = {
+ActorInfo chBossJinjoOrange = {
     MARKER_27B_BOSS_JINJO_ORANGE, ACTOR_3A5_BOSS_JINJO_ORANGE, ASSET_3BC_MODEL_JINJO_ORANGE,
-    0x1, D_80391810,
-    func_8038C840, func_8038D014, actor_draw,
+    0x1, chBossJinjoAnimations,
+    chBossJinjo_update, chBossJinjo_func_8038D014, actor_draw,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_80391864 = {
+ActorInfo chBossJinjoGreen = {
     MARKER_27C_BOSS_JINJO_GREEN, ACTOR_3A6_BOSS_JINJO_GREEN, ASSET_3C2_MODEL_JINJO_GREEN,
-    0x1, D_80391810,
-    func_8038C840, func_8038D014, actor_draw,
+    0x1, chBossJinjoAnimations,
+    chBossJinjo_update, chBossJinjo_func_8038D014, actor_draw,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_80391888 = {
+ActorInfo chBossJinjoPink = {
     MARKER_27D_BOSS_JINJO_PINK, ACTOR_3A7_BOSS_JINJO_PINK, ASSET_3C1_MODEL_JINJO_PINK,
-    0x1, D_80391810,
-    func_8038C840, func_8038D014, actor_draw,
+    0x1, chBossJinjoAnimations,
+    chBossJinjo_update, chBossJinjo_func_8038D014, actor_draw,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_803918AC = {
+ActorInfo chBossJinjoYellow = {
     MARKER_27E_BOSS_JINJO_YELLOW, ACTOR_3A8_BOSS_JINJO_YELLOW, ASSET_3BB_MODEL_JINJO_YELLOW,
-    0x1, D_80391810,
-    func_8038C840, func_8038D014, actor_draw,
+    0x1, chBossJinjoAnimations,
+    chBossJinjo_update, chBossJinjo_func_8038D014, actor_draw,
     0, 0, 1.0f, 0
 };
 
@@ -184,7 +184,7 @@ void func_8038C79C(Actor *this){
     }
 }
 
-void func_8038C840(Actor *this){
+void chBossJinjo_update(Actor *this){
     f32 sp74 = time_getDelta();
     f32 sp68[3];
     f32 sp5C[3];
@@ -346,7 +346,7 @@ void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     particleEmitter_emitN(s0, 1);
 }
 
-void func_8038D014(Actor *this){
+void chBossJinjo_func_8038D014(Actor *this){
     s32 temp_a1;
 
     if(!this->unk16C_4){

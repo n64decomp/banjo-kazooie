@@ -19,14 +19,14 @@ typedef struct {
 void func_8038F620(Actor *this);
 
 /* .data */
-ActorInfo fight_D_80391B00 = {
+ActorInfo chSpellFireball = {
     MARKER_25C_GRUNTY_SPELL_FIREBALL, ACTOR_389_GRUNTY_SPELL_FIREBALL, ASSET_541_SPRITE_FIREBALL_SPELL_ATTACK,
     0x1, NULL,
     func_8038F620, func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_80391B24 = {
+ActorInfo chSpellGreen = {
     MARKER_280_GRUNTY_SPELL_GREEN_ATTACK, ACTOR_3AA_GRUNTY_SPELL_GREEN_ATTACK, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK,
     0x1, NULL,
     func_8038F620, func_80326224, func_80325CAC,

@@ -9,7 +9,7 @@ typedef struct {
 void chjinjonatorbase_update(Actor *);
 
 /* .data */
-ActorInfo fight_D_80391A40 = {
+ActorInfo chJinjonatorBase = {
     MARKER_27F_JINJONATOR_STATUE_BASE, ACTOR_3A9_JINJONATOR_STATUE_BASE, ASSET_544_MODEL_JINJONATOR_STATUE_BASE,
     0x1, NULL,
     chjinjonatorbase_update, func_80326224, actor_draw,

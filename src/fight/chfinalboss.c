@@ -112,7 +112,7 @@ ActorAnimationInfo D_803913A0[] = {
     { 0x266, 4.0f}
 };
 
-ActorInfo fight_D_80391500 = {
+ActorInfo chFinalBoss = {
     MARKER_25E_GRUNTILDA_FINAL_BOSS, ACTOR_38B_GRUNTILDA_FINAL_BOSS, ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS, 
     1,  D_803913A0,
     chfinalboss_update, func_80326224, chfinalboss_draw,
