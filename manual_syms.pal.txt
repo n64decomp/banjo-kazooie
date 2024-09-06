@@ -33,19 +33,20 @@ boot_gOverlayTable = gOverlayTable;
 boot_func_8023DA20 = func_8023DA20;
 
 /* Temporary Correct*/
-spriteGetFramePtr           = 0x80250d18;
-overlayManagerloadCore2     = 0x80250f58;
 mlMtxGet                    = 0x80251000;
 mlMtxIdent                  = 0x8025175c;
 mlMtxRotPitch               = 0x802518c8;
 mlMtxRotYaw                 = 0x802519d4;
 func_8025235C               = 0x80251fac;
 func_80253034               = 0x80252c84;
+overlay_load                = 0x80252Ca0;
 func_802535A8               = 0x802531f8;
 func_80254008               = 0x80253c58;
 func_80254028               = 0x80253c78;
 func_8025425C               = 0x80253eac;
 memcpy                      = 0x80254258;
+heap_get_size               = 0x80254320;
+func_802546DC               = 0x8025432c;
 heap_init                   = 0x80254360;
 malloc                      = 0x802548f8;
 free                        = 0x80254d40;
@@ -190,6 +191,7 @@ n_syn                       = 0x80276bd4;
 osClockRate                 = 0x80276e70;
 osViClock                   = 0x80276e78;
 
+core2_VRAM                  = 0x80286db0;
 core2_TEXT_START            = 0x80286db0;
 player_getPosition          = 0x8028e7c4;
 player_getPosition_s32      = 0x8028e95c;
@@ -272,7 +274,156 @@ func_8034C630               = 0x8034ca90;
 func_8034E698               = 0x8034eaf8;
 D_803727F4                  = 0x80372d74;
 D_80379B90                  = 0x8037A560;
+core2_TEXT_END              = 0x80363a00;
+core2_DATA_START            = 0x80363a00;
+core2_RODATA_END            = 0x8037A560;
+core2_BSS_START             = 0x8037A560;
+core2_BSS_END               = 0x80386dd0;
+core2_VRAM_END              = 0x80386dd0;
+
+CC_VRAM                     = 0x80386dd0;
+CC_VRAM_END                 = 0x8038a9e0;
+CC_ROM_START                = 0x0106c980;
+CC_ROM_END                  = 0x01070500;
+CC_TEXT_START               = 0x80386dd0;
+CC_TEXT_END                 = 0x8038a480;
+CC_DATA_START               = 0x8038a480;
+CC_RODATA_END               = 0x8038a950;
+CC_BSS_START                = 0x8038a950;
+CC_BSS_END                  = 0x8038a9e0;
+
+MMM_VRAM                    = 0x80386dd0;
+MMM_VRAM_END                = 0x8038cf10;
+MMM_ROM_START               = 0x0107bb30;
+MMM_ROM_END                 = 0x01081c00;
+MMM_TEXT_START              = 0x80386dd0;
+MMM_TEXT_END                = 0x8038c3c0;
+MMM_DATA_START              = 0x8038c3c0;
+MMM_RODATA_END              = 0x8038cea0;
+MMM_BSS_START               = 0x8038cea0;
+MMM_BSS_END                 = 0x8038cf10;
+
+GV_VRAM                     = 0x80386dd0;
+GV_VRAM_END                 = 0x803924f0;
+GV_ROM_START                = 0x01070500;
+GV_ROM_END                  = 0x0107bb30;
+GV_TEXT_START               = 0x80386dd0;
+GV_TEXT_END                 = 0x803915b0;
+GV_DATA_START               = 0x803915b0;
+GV_RODATA_END               = 0x80392400;
+GV_BSS_START                = 0x80392400;
+GV_BSS_END                  = 0x803924f0;
+
+TTC_VRAM                    = 0x80386dd0;
+TTC_VRAM_END                = 0x8038e120;
+TTC_ROM_START               = 0x01081c00;
+TTC_ROM_END                 = 0x01088f00;
+TTC_TEXT_START              = 0x80386dd0;
+TTC_TEXT_END                = 0x8038CD90;
+TTC_DATA_START              = 0x8038CD90;
+TTC_RODATA_END              = 0x8038E0D0;
+TTC_BSS_START               = 0x8038E0D0;
+TTC_BSS_END                 = 0x8038e120;
+
+MM_VRAM                     = 0x80386dd0;
+MM_VRAM_END                 = 0x8038a680;
+MM_ROM_START                = 0x01088f00;
+MM_ROM_END                  = 0x0108c790;
+MM_TEXT_START               = 0x80386dd0;
+MM_TEXT_END                 = 0x8038a270;
+MM_DATA_START               = 0x8038a270;
+MM_RODATA_END               = 0x8038a660;
+MM_BSS_START                = 0x8038a660;
+MM_BSS_END                  = 0x8038a680;
+
+BGS_VRAM                    = 0x80386DD0;
+BGS_TEXT_START              = 0x80386DD0;
+BGS_ROM_START               = 0x0108c790;
+BGS_TEXT_END                = 0x80391070;
+BGS_DATA_START              = 0x80391070;
+BGS_RODATA_END              = 0x80391C10;
+BGS_BSS_START               = 0x80391C10;
+BGS_BSS_END                 = 0x80391C30;
+BGS_VRAM_END                = 0x80391C30;
+BGS_ROM_END                 = 0x010975d0;
+
+RBB_VRAM                    = 0x80386DD0;
+RBB_VRAM_END                = 0x80391cd0;
+RBB_ROM_START               = 0x010975d0;
+RBB_ROM_END                 = 0x010a2470;
+RBB_TEXT_START              = 0x80386DD0;
+RBB_TEXT_END                = 0x80390a50;
+RBB_DATA_START              = 0x80390a50;
+RBB_RODATA_END              = 0x80391c70;
+RBB_BSS_START               = 0x80391c70;
+RBB_BSS_END                 = 0x80391cd0;
+
+FP_VRAM                     = 0x80386dd0;
+FP_VRAM_END                 = 0x80393fd0;
+FP_ROM_START                = 0x010a2470;
+FP_ROM_END                  = 0x010aef90;
+FP_TEXT_START               = 0x80386dd0;
+FP_TEXT_END                 = 0x803923d0;
+FP_DATA_START               = 0x803923d0;
+FP_RODATA_END               = 0x803938f0;
+FP_BSS_START                = 0x803938f0;
+FP_BSS_END                  = 0x80393fd0;
+
+CCW_VRAM                    = 0x80386dd0;
+CCW_VRAM_END                = 0x803907d0;
+CCW_ROM_START               = 0x010d7A90;
+CCW_ROM_END                 = 0x010e1470;
+CCW_TEXT_START              = 0x80386dd0;
+CCW_TEXT_END                = 0x8038f530;
+CCW_DATA_START              = 0x8038f530;
+CCW_RODATA_END              = 0x803907b0;
+CCW_BSS_START               = 0x803907b0;
+CCW_BSS_END                 = 0x803907d0;
+
+SM_VRAM                     = 0x80386dd0;
+SM_VRAM_END                 = 0x8038c010;
+SM_ROM_START                = 0x010aef90;
+SM_ROM_END                  = 0x010b4170;
+SM_TEXT_START               = 0x80386dd0;
+SM_TEXT_END                 = 0x8038b6e0;
+SM_DATA_START               = 0x8038b6e0;
+SM_RODATA_END               = 0x8038bfb0;
+SM_BSS_START                = 0x8038bfb0;
+SM_BSS_END                  = 0x8038c010;
+
+cutscenes_VRAM              = 0x80386dd0;
+cutscenes_VRAM_END          = 0x8038f3d0;
+cutscenes_ROM_START         = 0x010b4170;
+cutscenes_ROM_END           = 0x010bc760;
+cutscenes_TEXT_START        = 0x80386dd0;
+cutscenes_TEXT_END          = 0x8038dd30;
+cutscenes_DATA_START        = 0x8038dd30;
+cutscenes_RODATA_END        = 0x8038f3c0;
+cutscenes_BSS_START         = 0x8038f3c0;
+cutscenes_BSS_END           = 0x8038f3d0;
+
+lair_VRAM                   = 0x80386dd0;
+lair_VRAM_END               = 0x80395e50;
+lair_ROM_START              = 0x010bc760;
+lair_ROM_END                = 0x010cb6c0;
+lair_TEXT_START             = 0x80386dd0;
+lair_TEXT_END               = 0x80393690;
+lair_DATA_START             = 0x80393690;
+lair_RODATA_END             = 0x80395d30;
+lair_BSS_START              = 0x80395d30;
+lair_BSS_END                = 0x80395e50;
+
+fight_VRAM                  = 0x80386dd0;
+fight_VRAM_END              = 0x80393390;
+fight_ROM_START             = 0x010cb6c0;
+fight_ROM_END               = 0x010d7a90;
+fight_TEXT_START            = 0x80386dd0;
+fight_TEXT_END              = 0x80391de0;
+fight_DATA_START            = 0x80391de0;
+fight_RODATA_END            = 0x803931a0;
+fight_BSS_START             = 0x803931a0;
+fight_BSS_END               = 0x80393390;
+
 
 /* Temporary */
-
 

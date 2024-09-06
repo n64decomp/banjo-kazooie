@@ -170,8 +170,8 @@ segments:
   - [0xF4F890, c, rumblemanager]
   - [0xF50010, c, code_13640]
   - [0xF50050, c, code_13680]
-  - [0xF500a0, bin, untouched]
-#   # - [0xF2C920, c, overlaymanager]                 #DONE
+  - [0xF500a0, c, overlaymanager]
+  - [0xF50360, bin, untouched]
 #   # - [0xF2CBE0, c, code_13990]   
 #   # - [0xF2E840, hasm, code_155F0]              #DONE
 #   # - [0xF2E880, c, overlay]                 #DONE
@@ -379,8 +379,8 @@ segments:
   - [0xF74DD0, .data, code_EAF0]
   - [0xF74DE0, .data, code_10A00]
   - [0xF74DF0, .data, code_11AC0]
-  - [0xF75380, bin, remain_core1_data]
-#   # - [0xF51B00, .data, overlaymanager]
+  - [0xF75380, .data, overlaymanager]
+  - [0xF75620, bin, remain_core1_data]
 #   # - [0xF51DA0, .data, code_13990]
 #   # - [0xF51DB0, .data, code_15B30]
 #   # - [0xF51DC0, .data, memory]
@@ -421,8 +421,8 @@ segments:
   - [0xF76B00, .rodata, code_10A00]
   - [0xF77210, .rodata, code_11AC0]
   - [0xF77220, .rodata, rumblemanager]
-  - [0xF77230, bin, remain_core1_rodata]
-#   # - [0xF539D0, .rodata, overlaymanager]
+  - [0xF77230, .rodata, overlaymanager]
+  - [0xF772b0, bin, remain_core1_rodata]
 #   # - [0xF53A50, .rodata, code_13990]
 #   # - [0xF53A70, .rodata, code_18350]
 #   # - [0xF53B70, .rodata, code_1BE90]
@@ -472,7 +472,7 @@ segments:
   - [0xF791D0, .bss, code_11AC0]
   - [0xF791D0, .bss, rumblemanager]
   - [0xF791D0, .bss, code_13640]
-#   # - [0xF791D0, .bss, overlaymanager]
+  - [0xF791D0, .bss, overlaymanager]
 #   # - [0xF791D0, .bss, code_13990]
 #   # - [0xF791D0, .bss, code_15770]
 #   # - [0xF791D0, .bss, code_15B30]
@@ -499,11 +499,16 @@ segments:
 #   # - [0xF791D0, .bss, io/leointerrupt]
 - name: core2
   dir: core2
-  type: bin
+  type: code
   start: 0x00F791D0
-#   # vram:  0x80286DB0 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
-#   # follows_vram: core1
-#   # subsegments:
+  vram:  0x80286DB0 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
+  follows_vram: core1
+  subsegments:
+  - [0xF791D0, linker_offset, TEXT_START] #text Section
+  - [0xF791D0, bin, untouched]
+  - [0x1055E20, linker_offset, TEXT_END] #text Section
+  - [0x1055E20, linker_offset, DATA_START] #text Section
+  - [0x1055E20, bin, untouched_data]
 #   # - [0xF791D0, c, animctrl] #DONE
 #   # - [0xF56430, c, anim/sprite] #DONE
 #   # - [0xF56A40, c, animcache] #DONE
@@ -1625,10 +1630,10 @@ segments:
 #   # - [0x1048560, .bss, code_CBBF0]
 #   # - [0x1048560, .bss, code_CD0A0]
 #   # - [0x1048560, .bss, code_CD6E0]
-# - name: CC
-#   dir: CC
-#   type: bin
-#   start: 0x0106C980
+- name: CC
+  dir: CC
+  type: bin
+  start: 0x0106C980
 #   # vram: 0x803863F0
 #   # follows_vram: core2
 #   # exclusive_ram_id: overlay
@@ -2362,7 +2367,7 @@ segments:
   dir: emptyLvl
   type: code
   start: 0x010E1470
-  vram: 0x803863F0
+  vram: 0x80386DD0
   # follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
