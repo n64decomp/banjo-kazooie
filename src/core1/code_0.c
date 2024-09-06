@@ -14,7 +14,7 @@ void func_8023DFF0(s32);
 
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
-u32 D_80275618 = 0;
+u32 gGlobalTimer = 0;
 u32 D_8027561C[] = {
     0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0, 
     0x1, 0x6, 0xD,  -1
@@ -70,16 +70,16 @@ void func_8023DA9C(s32 arg0){
     func_80255CD8();
 }
 
-u32 func_8023DB4C(u32 arg0){
-    return D_80275618 & arg0;
+u32 globalTimer_getTimeMasked(u32 mask){
+    return gGlobalTimer & mask;
 }
 
-s32 func_8023DB5C(void){
-    return D_80275618;
+s32 globalTimer_getTime(void){
+    return gGlobalTimer;
 }
 
-void func_8023DB68(void){
-    D_80275618 = 0;
+void globalTimer_reset(void){
+    gGlobalTimer = 0;
 }
 
 s32 func_8023DB74(void){
@@ -122,16 +122,16 @@ void core1_init(void){
     ml_init();
     gctransition_reset();
     D_8027A130 = 0;
-    D_80275618 = 0;
+    gGlobalTimer = 0;
     func_8023DA9C(3);
 }
 
-void func_8023DCDC(void){
-    D_80275618++;
+void globalTimer_incTimer(void){
+    gGlobalTimer++;
 }
 
-void func_8023DCF4(void){
-    D_80275618--;
+void globalTimer_decTimer(void){
+    gGlobalTimer--;
 }
 
 void mainLoop(void){
@@ -141,12 +141,12 @@ void mainLoop(void){
     u16 rgba;
     s32 offset;
 
-    if((func_8023DB5C() & 0x7f) == 0x11)
+    if((globalTimer_getTime() & 0x7f) == 0x11)
         sns_write_payload_over_heap();
     func_8023DA74();
 
     if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
-        func_8023DCDC();
+        globalTimer_incTimer();
     
     if(!D_8027BEEC)
         pfsManager_update();
@@ -183,7 +183,7 @@ void mainLoop(void){
         //render weird CRC failure image
         for(y= 0x1e; y < framebuffer_height - 0x1e; y++){//L8023DEB4
             for(x = 0x14; x < 0xeb; x++){
-                tmp = ((8 * func_8023DB5C()) + ((x*x) + (y*y)));
+                tmp = ((8 * globalTimer_getTime()) + ((x*x) + (y*y)));
                 
                 r = _SHIFTL(x>>3, 11, 5);
                 g = _SHIFTL(y>>3, 6, 5);

@@ -92,7 +92,7 @@ void bspumpkin_idle_update(void) {
     if (func_8028B094()) {
         next_state = BS_4B_PUMPKIN_FALL;
     }
-    if (func_80294F78()) {
+    if (should_look_first_person_camera()) {
         next_state = badrone_look();
     }
     if (func_8029B300() > 0) {
@@ -208,7 +208,7 @@ void bspumpkin_jump_update(void) {
         }
         break;
     case 2:
-        if (func_8028B2E8()) {
+        if (player_isStable()) {
             func_8029AE48();
             animctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
             animctrl_setDuration(anim_ctrl, 1.2f);
@@ -224,7 +224,7 @@ void bspumpkin_jump_update(void) {
         }
         break;
     }
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         if (func_8029B300() > 0) {
             next_state = BS_49_PUMPKIN_WALK;
         }
@@ -277,7 +277,7 @@ void bspumpkin_fall_update(void) {
         }
         break;
     case 1:
-        if (func_8028B2E8()) {
+        if (player_isStable()) {
             func_8029AE48();
             baphysics_set_target_horizontal_velocity(0.0f);
             animctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
@@ -289,7 +289,7 @@ void bspumpkin_fall_update(void) {
     case 2:
         break;
     }
-    if (func_8028B2E8() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && animctrl_isStopped(anim_ctrl)))) {
+    if (player_isStable() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && animctrl_isStopped(anim_ctrl)))) {
         if (miscflag_isTrue(0x19)) {
             next_state = badrone_transform();
         } else {
@@ -475,7 +475,7 @@ void bspumpkin_die_update(void){
         break;
 
     case 1://L802B32AC
-        if(func_8028B2E8()) {
+        if(player_isStable()) {
             func_8029AE48();
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
             FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
@@ -502,7 +502,7 @@ void bspumpkin_die_update(void){
 
     case 4://L802B3384
         D_8037D4F4 = ml_max_f(0.0f, D_8037D4F4 - 10.0f);
-        if (func_8028B2E8()) {
+        if (player_isStable()) {
             func_8029AE48();
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
             FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);

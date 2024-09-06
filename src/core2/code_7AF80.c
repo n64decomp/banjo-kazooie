@@ -2287,7 +2287,7 @@ void func_803086B4(void) {
             cube = D_80381FA0.cube_list;
         }
     };
-    if (func_8023DB5C() & 1) {
+    if (globalTimer_getTime() & 1) {
         if (D_8036ABA0 != NULL) { 
             D_8036ABA0 = (s16*) defrag(D_8036ABA0);
         }

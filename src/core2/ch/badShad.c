@@ -27,7 +27,7 @@ void chBadShad_update(Actor *this){
         this->initialized = 1;
         this->marker->collidable = 0;
     }
-    if(!this->despawn_flag && this->unk1C_x < (f32)(func_8023DB5C() - 1) ){
+    if(!this->despawn_flag && this->unk1C_x < (f32)(globalTimer_getTime() - 1) ){
         //unlink
         if(this->unk104){
             marker_getActor(this->unk104)->unk104 = 0;
@@ -116,7 +116,7 @@ void func_802D71A0(s32 this, s32 arg1){
         if(sp3C){
             marker_getActor(marker)->unk104 = sp3C->marker;
             sp3C->unk104 = marker;
-            sp3C->unk1C[0] = func_8023DB5C();
+            sp3C->unk1C[0] = globalTimer_getTime();
             sp3C->unk1C[1] = sp40;
             sp3C->unk28 = sp28;
         }
@@ -145,7 +145,7 @@ void func_802D729C(Actor *actor, f32 arg1){
     if(sp1C->despawn_flag == TRUE) 
         return;
 
-    if(!((func_8023DB5C() ^ actor->marker->actrArrayIdx) & 0x7)){
+    if(!((globalTimer_getTime() ^ actor->marker->actrArrayIdx) & 0x7)){
         sp1C->unk28 = func_802D7038(actor);
         sp1C->position_x = D_8037DE10[0];
         sp1C->position_y = D_8037DE10[1] + 6.0f;
@@ -158,6 +158,6 @@ void func_802D729C(Actor *actor, f32 arg1){
         sp1C->position_x = actor->position_x;
         sp1C->position_z = actor->position_z;
     }
-    sp1C->unk1C[0] = func_8023DB5C();
+    sp1C->unk1C[0] = globalTimer_getTime();
     sp1C->unk1C[1] = arg1;
 }

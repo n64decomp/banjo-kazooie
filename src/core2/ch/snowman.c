@@ -98,7 +98,7 @@ void __chSnowman_spawnHat(ActorMarker *marker){
 
     other->velocity[0] = 34.0f;
 
-    sp28 = (func_8023DB5C() & 1)? 0x3C : 0x78;
+    sp28 = (globalTimer_getTime() & 1)? 0x3C : 0x78;
     ml_vec3f_yaw_rotate_copy(other->velocity, other->velocity, other->yaw - sp28);
     other->velocity[1] = 30.0f;
 }
@@ -260,7 +260,7 @@ void chSnowman_update(Actor *this){
                 || fileProgressFlag_get(0x13)
             ){//L802E2318
                 if(0.0 < local->unk4){
-                    if( (func_8023DB5C() & 1)
+                    if( (globalTimer_getTime() & 1)
                         || func_8028ECAC() == BSGROUP_A_FLYING
                     ){//L802E236C
                         local->unk4 -= dt;
@@ -269,7 +269,7 @@ void chSnowman_update(Actor *this){
                 else{//L802E2380
                     if( __chSnowman_isPlayerInAttackRange(this, 500, 2750)
                         && __chSnowman_isYawNearYawTarget(this, 3)
-                        && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
+                        && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
                         && !__chSnowman_CCW_playerInProtectedZone()
                     ){
                         subaddie_set_state_with_direction(this, CHSNOWMAN_STATE_2_ATTACK, 0.01f, 1);
@@ -285,7 +285,7 @@ void chSnowman_update(Actor *this){
             else if( 
                 0.98 < animctrl_getAnimTimer(this->animctrl)
                 || !__chSnowman_isPlayerInAttackRange(this, 500, 2750)
-                || func_8028EE84() == BSWATERGROUP_2_UNDERWATER
+                || player_getWaterState() == BSWATERGROUP_2_UNDERWATER
                 || __chSnowman_CCW_playerInProtectedZone()
             ){
                 __chSnowman_enterIdle(this);

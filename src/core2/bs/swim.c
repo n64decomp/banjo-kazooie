@@ -152,10 +152,10 @@ void func_802B5950(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    if ((func_8023DB4C(7) == 0) && ((f64) randf() < 0.5)) {
+    if ((globalTimer_getTimeMasked(7) == 0) && ((f64) randf() < 0.5)) {
         func_8029C304(1);
     }
-    if ((func_8023DB4C(7) == 0) && ((f64) randf() < 0.5)) {
+    if ((globalTimer_getTimeMasked(7) == 0) && ((f64) randf() < 0.5)) {
         func_802B5480();
     }
     if (animctrl_isAt(anim_ctrl, 0.01f) != 0) {
@@ -170,7 +170,7 @@ void func_802B5950(void) {
     if (!player_inWater()) {
         next_state = BS_1_IDLE;
     }
-    if (func_80294F78()) {
+    if (should_look_first_person_camera()) {
         next_state = badrone_look();
     }
     if (should_dive()) {

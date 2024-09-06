@@ -211,7 +211,7 @@ void sns_write_payload_over_heap(void)
     s32 val2;
     u32 i;
 
-    if (func_8023DB5C() <= 0x3B || snsToRestoreItems)
+    if (globalTimer_getTime() <= 0x3B || snsToRestoreItems)
         return;
 
     sns_generate_payload(snsBasePayloadPtr2);

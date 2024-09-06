@@ -169,7 +169,7 @@ void bsbflap_update(void){
             }
             break;
         case 4:
-            if(func_8028B424())
+            if(player_isFallTumbling())
                 sp1c = BS_3D_FALL_TUMBLING;
             break;
     }//L802A2C94
@@ -180,7 +180,7 @@ void bsbflap_update(void){
     if(should_beak_bust())
         sp1c = BS_F_BBUSTER;
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         func_8029C5E8();
         sp1c = BS_2_WALK_SLOW;
     }

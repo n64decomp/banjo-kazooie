@@ -200,7 +200,7 @@ void func_8035B8A8(Actor *this){
 
 void func_8035B900(Actor *this){
     ActorLocal_Core2_D4050 *local = (ActorLocal_Core2_D4050 *)&this->local;
-    s32 sp30 = func_8023DB5C();
+    s32 sp30 = globalTimer_getTime();
     f32 sp2C = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
@@ -346,7 +346,7 @@ void func_8035BD48(Actor *this){
                     func_80343DEC(this);
                 }
 
-                if((func_8023DB5C() &0x3F) == 7 && randf() < 0.7){
+                if((globalTimer_getTime() &0x3F) == 7 && randf() < 0.7){
                     func_8030E878(0x3f4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
                 }
             }

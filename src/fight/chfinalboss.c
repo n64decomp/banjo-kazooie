@@ -342,7 +342,7 @@ void func_803869BC(Actor *this) {
     u32 temp_t3;
 
     if (this->marker->unk14_21) {
-        sp3C = func_8023DB5C();
+        sp3C = globalTimer_getTime();
         temp_t3 = (u32) this->state;
         if ((temp_t3 == 6) || (temp_t3 == 7)) {
             sp30[0] = D_803916CC[0];
@@ -852,7 +852,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
     f32 temp_f12;
 
     local = (ActorLocal_fight_180 *)&this->local;
-    sp40 = func_8023DB5C();
+    sp40 = globalTimer_getTime();
     sp3C = animctrl_getAnimTimer(this->animctrl);
     local->phase = 1;
     subaddie_set_state_with_direction(this, next_state, 0.0001f, 1);
@@ -936,7 +936,7 @@ void func_8038856C(Actor *actor, f32 *arg1) {
 }
 
 void func_803885DC(Actor *this) {
-    s32 sp24 = func_8023DB5C();
+    s32 sp24 = globalTimer_getTime();
     
     if (func_8030E3FC(this->unk44_31) == 0) {
         func_8030E2C4(this->unk44_31);
@@ -1148,7 +1148,7 @@ void chfinalboss_phase2_setState(Actor *this, s32 arg1){
     s32 sp28;
 
     local = (ActorLocal_fight_180 *)&this->local;
-    sp28 = func_8023DB5C();
+    sp28 = globalTimer_getTime();
     local->phase = 2;
     subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
     actor_loopAnimation(this);

@@ -40,7 +40,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
     sp2C = 0;
     sp28 = 0;
     current_state = bs_getState();
-    if(player_getTransformation() != TRANSFORM_1_BANJO || func_8028EE84() != BSWATERGROUP_0_NONE){
+    if(player_getTransformation() != TRANSFORM_1_BANJO || player_getWaterState() != BSWATERGROUP_0_NONE){
         sp2C = 1;
     }
     if(bsjig_inJiggyJig(current_state)){
@@ -191,7 +191,7 @@ enum bs_e func_802962BC(u32 arg0){
                 if(bsbtrot_inSet(bs_getState()))
                     return BS_BTROT_OW;
 
-                if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER)
+                if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER)
                     return BS_7F_DIVE_OW;
                 
                 if(func_8028ECAC() == BSGROUP_A_FLYING)
@@ -300,7 +300,7 @@ void func_80296608(void){
             break;
         case BS_INTR_A:  //L8029666C
             sp2C = 2;
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 next_state = badrone_transform();
             }
             else{
@@ -443,7 +443,7 @@ void func_80296608(void){
                 !func_80298850() 
                 && !sp1C 
                 && !miscflag_isTrue(0xf)
-                && !func_8028B2E8()
+                && !player_isStable()
             ){
                 next_state = BS_4F_CLIMB_IDLE;
                 sp2C = 2;
@@ -474,7 +474,7 @@ void func_80296608(void){
                 next_state = BS_24_FLY;
             }
             else{
-                switch(func_8028EE84()){
+                switch(player_getWaterState()){
                     case BSWATERGROUP_1_SURFACE:
                         next_state = BS_2D_SWIM_IDLE;
                         break;
@@ -482,7 +482,7 @@ void func_80296608(void){
                         next_state = BS_2B_DIVE_IDLE;
                         break;
                     case BSWATERGROUP_0_NONE://L80296B0C
-                        if(func_8028B2E8())
+                        if(player_isStable())
                             next_state = bs_getIdleState();
                         else
                             next_state = func_8029BA80();

@@ -91,7 +91,7 @@ void func_8038D568(Actor *this){
     ActorLocal_fight_6E90 *local = (ActorLocal_fight_6E90 *)&this->local;
 
     f32 sp48 = time_getDelta();
-    u32 sp44 = func_8023DB5C() & 0xF;
+    u32 sp44 = globalTimer_getTime() & 0xF;
     Actor *other; //sp40
     f32 sp3C;
     f32 sp30[3];

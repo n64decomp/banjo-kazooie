@@ -89,7 +89,7 @@ void func_802906D8(void){
     int underwater_or_walrus_in_water;
 
     func_80290444();
-    underwater_or_walrus_in_water = (func_8028EE84() == BSWATERGROUP_2_UNDERWATER);
+    underwater_or_walrus_in_water = (player_getWaterState() == BSWATERGROUP_2_UNDERWATER);
     if(!underwater_or_walrus_in_water){
         underwater_or_walrus_in_water = (player_getTransformation() == TRANSFORM_4_WALRUS && player_inWater());
     }

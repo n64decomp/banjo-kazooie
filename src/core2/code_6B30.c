@@ -29,7 +29,7 @@ void func_8028DB04(void){
     D_8037BFA0 = 2;
 }
 
-enum hitbox_e func_8028DB14(ActorMarker *arg0){
+enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
     s32 retVal;
     if(D_8037BFA0)
         return HITBOX_3_BEAK_BOMB;
@@ -77,10 +77,10 @@ enum hitbox_e func_8028DB14(ActorMarker *arg0){
             break;
         case BS_5_JUMP://8028DCD8
         case BS_3D_FALL_TUMBLING:
-            if(baphysics_get_vertical_velocity() < 0.0f && !func_8028B2E8())
+            if(baphysics_get_vertical_velocity() < 0.0f && !player_isStable())
                 return HITBOX_A_FAST_FALLING;
         case BS_2F_FALL://8028DD10
-            if(baphysics_get_vertical_velocity() < -1400.0f && !func_8028B2E8())
+            if(baphysics_get_vertical_velocity() < -1400.0f && !player_isStable())
                 return HITBOX_A_FAST_FALLING;
         default://8028DD4C
             return HITBOX_0_NONE;

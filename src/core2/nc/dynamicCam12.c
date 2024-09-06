@@ -130,7 +130,7 @@ s32 func_802C11C8(f32 arg0[3]) {
 
     sp2C = func_802C0EC0();
     func_802C0FF4(sp4C);
-    if (func_8028EE84() == BSWATERGROUP_2_UNDERWATER) {
+    if (player_getWaterState() == BSWATERGROUP_2_UNDERWATER) {
         func_802BD82C(20.0f, 200.0f);
     } else {
         func_802BD82C(80.0f, 200.0f);
@@ -226,7 +226,7 @@ void func_802C16CC(s32 arg0) {
     s32 sp34;
     s16 *sp30;
 
-    if ((func_8028ECAC() != 4) && !__is_flying_in_FP()){
+    if ((func_8028ECAC() != BSGROUP_4_LOOK) && !__is_flying_in_FP()){
         sp38 = func_80334524(arg0);
         if(sp38 != D_8037DBE0.unk28 && D_8037DBE0.unk28 != -1){
             player_getPosition(sp54); 

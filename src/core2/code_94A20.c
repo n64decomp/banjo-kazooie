@@ -254,7 +254,7 @@ void func_8031C29C(struct0 *arg0) {
 
     ml_vec3f_copy(sp30, arg0->unk1C);
     sp48 = ((arg0->unk1C[1] - arg0->posX) > 120.0) ? 1 : 0;
-    sp40 = func_8023DB4C(1);
+    sp40 = globalTimer_getTimeMasked(1);
     if ((sp48 == 0) || (sp40 != 0)) {
         arg0->unk59 = arg0->unk5B;
         temp_v0 = func_8031BBA0(&sp30, 60.0f, -390.0f, arg0->unk54 | 0x1E0000, &sp4C);

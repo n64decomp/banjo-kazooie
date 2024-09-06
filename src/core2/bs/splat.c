@@ -76,7 +76,7 @@ void bssplat_update(void){
         break;
     }//L802B4808
 
-    if(func_8028B2E8() == 0 && player_inWater())
+    if(player_isStable() == 0 && player_inWater())
         sp1C = BS_2D_SWIM_IDLE;
 
     bs_setState(sp1C);

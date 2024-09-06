@@ -118,10 +118,10 @@ void func_802B3954(void) {
         baMarker_collisionOn();
     }
     func_802B37DC();
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         next_state = BS_20_LANDING;
     }
-    if (func_8028B424() && D_8037D500 == 0) {
+    if (player_isFallTumbling() && D_8037D500 == 0) {
         next_state = BS_3D_FALL_TUMBLING;
     }
     if (animctrl_isStopped(anim_ctrl) && func_8028B094() && (D_8037D500 == 0)) {

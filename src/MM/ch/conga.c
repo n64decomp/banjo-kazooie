@@ -83,7 +83,7 @@ void func_80386FB0(Actor *this){
 }
 
 void func_80386FE8(void){
-    if( (func_8023DB5C() & 0xF) == 0xB 
+    if( (globalTimer_getTime() & 0xF) == 0xB 
         && 0.85 < randf ()
         && !func_803114B0()
     ){

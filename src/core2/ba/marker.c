@@ -529,7 +529,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     player_getPosition(spA0);
                     jiggy_id = chjiggy_getJiggyId(actor);
                     if( jiggy_id != JIGGY_2F_FP_XMAS_TREE
-                        || (func_8028B2E8() && !(3600.0f < ml_distanceSquared_vec3f(actor->position, spA0)))
+                        || (player_isStable() && !(3600.0f < ml_distanceSquared_vec3f(actor->position, spA0)))
                     ){
                         jiggyscore_setCollected(jiggy_id, TRUE);
                         item_adjustByDiffWithoutHud(ITEM_26_JIGGY_TOTAL, 1);
@@ -686,7 +686,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 break;
 
             case MARKER_6B_GLOOPBUBBLE: //L8028CD20
-                if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+                if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                     item_adjustByDiffWithHud(ITEM_17_AIR, fxairscore_count_to_time(2));
                 }
                 break;

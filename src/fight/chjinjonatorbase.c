@@ -108,7 +108,7 @@ void func_8038E2CC(ActorMarker *arg0) {
 void chjinjonatorbase_update(Actor *this){
     ActorLocal_fight_7BE0 *local = (ActorLocal_fight_7BE0 *)&this->local;
     f32 sp58 = time_getDelta();
-    s32 temp_s1 = func_8023DB5C() & 0xf;
+    s32 temp_s1 = globalTimer_getTime() & 0xf;
     s32 temp_s0;
     int i;
     Actor *other;

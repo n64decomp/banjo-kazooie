@@ -312,7 +312,7 @@ s32 func_80334ECC(void) {
         func_80351C48();
         func_80330FF4();
         func_8028E71C();
-        phi_v0 = func_8023DB5C();
+        phi_v0 = globalTimer_getTime();
         if (D_80370250) {
             phi_v1 = 0xF;
         } else {

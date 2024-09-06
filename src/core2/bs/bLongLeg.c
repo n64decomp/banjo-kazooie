@@ -167,7 +167,7 @@ void bsblongleg_stand_update(void){
     enum bs_e next_state = 0;
     func_802A531C();
     func_80299594(1, 0.5f);
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(button_pressed(BUTTON_B))
@@ -179,7 +179,7 @@ void bsblongleg_stand_update(void){
     if(player_shouldSlideTrot())
         next_state = BS_LONGLEG_SLIDE;
     
-    if(button_pressed(BUTTON_A) && func_8028B2E8())
+    if(button_pressed(BUTTON_A) && player_isStable())
         next_state = BS_LONGLEG_JUMP;
 
     if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
@@ -230,7 +230,7 @@ void bsblongleg_walk_update(void){
     if(player_shouldSlideTrot())
         next_state = BS_LONGLEG_SLIDE;
 
-    if(button_pressed(BUTTON_A) && func_8028B2E8())
+    if(button_pressed(BUTTON_A) && player_isStable())
         next_state = BS_LONGLEG_JUMP;
 
     if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
@@ -371,7 +371,7 @@ void bsblongleg_jump_update(void){
         case 2://L802A6020
             animctrl_setAnimTimer(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
             func_80299594(1, 0.5f);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029C5E8();
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.3f);

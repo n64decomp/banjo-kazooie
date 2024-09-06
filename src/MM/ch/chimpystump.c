@@ -27,8 +27,8 @@ void _chchimpystump_80386CA0(Actor *this){
             func_802BB3DC(1, 3.0f, 1.0f);
             func_80244BB0(0, 0x6A, 0x7FF8, 0.2f);
         }//L80386D0C
-        this->position_x = ((func_8023DB5C() & 1) * 2) ^ (s32)this->position_x;
-        this->position_z = ((func_8023DB5C() & 2) * 2) ^ (s32)this->position_z;
+        this->position_x = ((globalTimer_getTime() & 1) * 2) ^ (s32)this->position_x;
+        this->position_z = ((globalTimer_getTime() & 2) * 2) ^ (s32)this->position_z;
     }
 }
 
@@ -57,7 +57,7 @@ void chchimpystump_update(Actor *this){
             func_802BB41C(1);
             func_80244C78(0);
         }
-        if((func_8023DB5C() & 3) == 2)
+        if((globalTimer_getTime() & 3) == 2)
             func_80353064(this->position, 40.0f);
         break;
     case 3:

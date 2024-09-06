@@ -111,7 +111,7 @@ void bsslide_update(void){
         sp3C = BS_4C_LANDING_IN_WATER;
     
     if(D_8037D528 == 0.0f && button_pressed(BUTTON_A))
-        sp3C = func_8029C780();
+        sp3C = bs_getTypeOfJump();
 
     bs_setState(sp3C);
 }

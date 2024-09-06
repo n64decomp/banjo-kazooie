@@ -30,7 +30,7 @@ void bsDroneLook_init(void) {
     eye_rotation[1] += 180.0f;
     eye_rotation[2] = 0.0f;
     ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
-    miscflag_set(0x17);
+    miscflag_set(MISC_FLAG_17_FPV);
 }
 
 void bsDroneLook_update(void) {
@@ -42,7 +42,7 @@ void bsDroneLook_update(void) {
 
     next_state = 0;
     dt = time_getDelta();
-    if (ncFirstPersonCamera_getState() == 2) {
+    if (ncFirstPersonCamera_getState() == FIRSTPERSON_STATE_2_IDLE) {
         //camera is in "idle" state
         ncFirstPersonCamera_getZoomedInRotation(eye_rotation);
         eye_rotation[0] -= func_8029B2DC() * 90.0f * dt;
@@ -59,7 +59,7 @@ void bsDroneLook_update(void) {
         }
         // 1st person cancelled via entering water
         if (player_inWater()) {
-            if (player_getTransformation() == TRANSFORM_1_BANJO && func_8028EE84() == BSWATERGROUP_0_NONE) {
+            if (player_getTransformation() == TRANSFORM_1_BANJO && player_getWaterState() == BSWATERGROUP_0_NONE) {
                 exit_first_person += TRUE;
             }
         } else if (func_8028B254(25) == 0) {
@@ -79,5 +79,5 @@ void bsDroneLook_end(void) {
         func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
     ncDynamicCamera_exitFirstPerson();
-    miscflag_clear(0x17);
+    miscflag_clear(MISC_FLAG_17_FPV);
 }

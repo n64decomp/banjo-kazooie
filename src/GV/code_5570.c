@@ -293,7 +293,7 @@ void GV_func_8038BEA0(Actor *this){
                 else{
                     func_8030E2C4(this->unk44_31);
                     this->position_y -= 7.0;
-                    if(func_8023DB5C() & 1){
+                    if(globalTimer_getTime() & 1){
                         sp38[0] = this->position_x;
                         sp38[1] = this->position_y;
                         sp38[2] = this->position_z;

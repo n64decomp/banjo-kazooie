@@ -64,7 +64,7 @@ BKModelBin *func_8030A428(s32 arg0){
     if(D_80382390[arg0].unk0 == NULL){
         D_80382390[arg0].unk0 = assetcache_get(0x2d1 + arg0);
     }
-    D_80382390[arg0].unk4 = func_8023DB5C();
+    D_80382390[arg0].unk4 = globalTimer_getTime();
     return D_80382390[arg0].unk0;
 }
 
@@ -78,7 +78,7 @@ BKSpriteDisplayData *func_8030A4D4(s32 arg0)
     if (((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk0 == 0){
         ((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk0 = func_8033B6C4(arg0 + 0x572, &((struct_7AF80_1 *)((s32)D_80382394 + arg0*sizeof(struct_7AF80_1)))->unk4);
     }
-    D_80382394[arg0].unk8 = func_8023DB5C();
+    D_80382394[arg0].unk8 = globalTimer_getTime();
     return D_80382394[arg0].unk4;
 }
 
@@ -154,7 +154,7 @@ void func_8030A850(s32 arg0) {
     struct_7AF80_0 *sp3C;
     struct_7AF80_1 *temp_a0_2;
 
-    temp_s3 = func_8023DB5C() - func_80255B08(arg0);
+    temp_s3 = globalTimer_getTime() - func_80255B08(arg0);
     for(var_s0 = 0; (D_80382390 != NULL) && (var_s0 < ((arg0 == 1) ? 0x28 : 0x2A1)); var_s0++, D_8036B804 = (D_8036B804 >= 0x2A1)? 0: D_8036B804 + 1){
         sp3C = (struct_7AF80_0*)((u32)D_80382390 + sizeof(struct_7AF80_0)*D_8036B804);
         if ((sp3C->unk0 != 0) && ((sp3C->unk4 < temp_s3) || (arg0 == 3))){

@@ -56,7 +56,7 @@ enum bs_e func_802AA510(enum bs_e arg0){
     if(button_released(BUTTON_Z))
         arg0 = BS_1E_WONDERWING_EXIT;
 
-    if(button_pressed(BUTTON_A) && func_8028B2E8())
+    if(button_pressed(BUTTON_A) && player_isStable())
         arg0 = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
@@ -151,7 +151,7 @@ void bsbwhirl_walk_update(void){
     if(button_released(BUTTON_Z))
         sp1C = BS_1E_WONDERWING_EXIT;
 
-    if(button_pressed(BUTTON_A) && func_8028B2E8())
+    if(button_pressed(BUTTON_A) && player_isStable())
         sp1C = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
@@ -217,7 +217,7 @@ void bsbwhirl_jump_update(void){
             if(player_inWater())
                 sp2C = BS_2D_SWIM_IDLE;
 
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 D_8037D3B4 = 2;
                 func_8029C5E8();
             }

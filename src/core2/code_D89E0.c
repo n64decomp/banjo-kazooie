@@ -435,7 +435,7 @@ void func_80360828(Actor *this){
                 this->unk38_31 = 0x3C;
             }
             else{
-                if(!(func_8023DB5C() & 0xf)){
+                if(!(globalTimer_getTime() & 0xf)){
                     if(randf() < 0.35){
                         FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 1250, 2500);
                     }

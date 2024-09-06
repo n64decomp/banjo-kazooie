@@ -186,7 +186,7 @@ bool func_8029D66C(void){
         case MAP_6E_GL_GV_LOBBY:
         case MAP_72_GL_BGS_LOBBY:
         case MAP_8E_GL_FURNACE_FUN://L8029D6FC
-            return func_80294610(0xE000) && func_8028B2E8();
+            return func_80294610(0xE000) && player_isStable();
 
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
             player_getPosition(sp2C);
@@ -228,7 +228,7 @@ bool func_8029D7B4(void){
                 && func_8028ECAC() != BSGROUP_9_LONG_LEG
                 && miscflag_isFalse(MISC_FLAG_E_TOUCHING_WADING_BOOTS)
                 && sp1C != BS_25_LONGLEG_ENTER
-                && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
+                && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
                 && func_8028EC04() < 1U
                 && func_80297C6C() != 3
                 && bs_getState() != BS_3D_FALL_TUMBLING
@@ -254,7 +254,7 @@ void func_8029D968(void){
         }
         temp_v0 = func_8029463C();
         if(temp_v0 != NULL){
-            sp18 = (temp_v0->flags & 0x4000)  && func_8028B2E8();
+            sp18 = (temp_v0->flags & 0x4000)  && player_isStable();
         }
         if (sp1C || sp18) {
             rumbleManager_80250D94(1.0f, 0.5f, 0.4f);

@@ -323,7 +323,7 @@ void func_8038F620(Actor *this){
                         D_80391CEC, D_80391D34, 
                         D_80391CF4, D_80391D1C, D_80391D2C
                     );
-                    func_8023DB5C();
+                    globalTimer_getTime();
                     break;
             }//L8038F918
             D_803928F8[0] = this->position[0];

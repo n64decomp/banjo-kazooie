@@ -124,7 +124,7 @@ void bafalldamage_init(void){
 void bafalldamage_update(void){
     s32 player_position;
     player_position = func_8028ECAC();
-    if(func_8028B2E8() || (func_8028EE84() != BSWATERGROUP_0_NONE) || player_position == BSGROUP_A_FLYING){
+    if(player_isStable() || (player_getWaterState() != BSWATERGROUP_0_NONE) || player_position == BSGROUP_A_FLYING){
         bafalldamage_start();
         bafalldamage_set_state(1);
     }

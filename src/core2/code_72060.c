@@ -124,7 +124,7 @@ void func_802F919C(void) {
             return;
         }
         temp_f20 = time_getDelta();
-        sp60 = (func_8023DB5C() & 1) * 2;
+        sp60 = (globalTimer_getTime() & 1) * 2;
         player_getPosition(D_80381040);
         
         D_80369280->unkC[0] = D_80381040[0] - D_80369280->unk0[0];

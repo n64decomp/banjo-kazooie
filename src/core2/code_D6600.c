@@ -142,7 +142,7 @@ void func_8035DA1C(Actor *this) {
     if (randf() < 0.01) {
         LOCAL_D6600(this)->unk0 = 5;
     }
-    if (LOCAL_D6600(this)->unk0 != 0 && !(func_8023DB5C() & 0xF)) {
+    if (LOCAL_D6600(this)->unk0 != 0 && !(globalTimer_getTime() & 0xF)) {
         LOCAL_D6600(this)->unk0--;
         func_8035D95C(this->marker);
     }

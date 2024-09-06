@@ -269,7 +269,7 @@ void baModel_setVisible(s32 arg0){
 }
 
 void baModel_802921D4(f32 arg0[3]){
-    if(func_8028EE84() == BSWATERGROUP_0_NONE){
+    if(player_getWaterState() == BSWATERGROUP_0_NONE){
         D_8037C150.unk0 = 1;
         D_8037C150.unk4[0] = arg0[0];
         D_8037C150.unk4[1] = arg0[1];

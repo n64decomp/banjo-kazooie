@@ -276,7 +276,7 @@ void chWarpCauldron_update(Actor *this) {
                 func_802BAFE4(D_80393620[this->unkF4_8 - 1].unk3);
                 func_802D09B8(this, 2);
                 phi_a0 = (fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this)) != 0) ? SFX_107_CAULDRON_ACTIVATION_1 : SFX_108_CAULDRON_ACTIVATION_2;
-                func_8030E510(phi_a0, 32000);
+                sfxsource_play(phi_a0, 32000);
                 if (!fileProgressFlag_get(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET) && !fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this))) {
                     func_80311480(0xF79, 4, NULL, NULL, NULL, NULL);
                 }
@@ -444,7 +444,7 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
         sp3C[0] = randi2(150, sp3C[1]);
         sp3C[2] = 0;
         sp3C[3] = randi2(40, 80);
-        if (func_8023DB5C() & 1) {
+        if (globalTimer_getTime() & 1) {
             func_802EE354(this, 0x3E9, 5, randi2(-10, 90), randf2(0.3f, 0.7f), 0.28f, 0.45f, sp3C, 5, 0);
         }
     }

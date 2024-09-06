@@ -183,7 +183,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
             arg0 = BS_CLAW;
 
         if(button_pressed(BUTTON_A))
-            arg0 = func_8029C780();
+            arg0 = bs_getTypeOfJump();
 
     }else{
         if(should_wonderwing())

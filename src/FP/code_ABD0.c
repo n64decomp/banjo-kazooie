@@ -87,7 +87,7 @@ void func_80391040(Actor *this){
 
       if( !this->marker->unk14_21 ) return;
       if( !func_80390FC0() )        return;
-      if( func_8023DB5C() & 7 )     return;
+      if( globalTimer_getTime() & 7 )     return;
 
       if(randf() < 0.5){
             a1 = 8;
