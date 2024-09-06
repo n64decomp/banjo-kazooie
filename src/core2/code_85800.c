@@ -28,7 +28,7 @@ typedef struct {
     f32 unk20;
     f32 unk24;
     s16 sfx_uid;
-    s16 unk2A;//sample_rate
+    s16 sample_rate;//sample_rate
     u8 unk2C;
     u8 pad2D[3];
     void (*unk30)(u8 indx);
@@ -41,7 +41,7 @@ typedef struct {
     u8 unk43_7:3;
     u8 unk43_4:3;
     u8 unk43_1:2;
-}struct45s;
+}SfxSource;
 
 u8   func_8030D90C(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
@@ -56,7 +56,7 @@ void func_8030EDAC(f32, f32);
 
 /* .bss */
 struct46s D_80382470[10];
-struct45s D_803824C0[35];
+SfxSource sfxsources[35];
 f32 D_80382E0C;
 f32 D_80382E10;
 
@@ -68,46 +68,46 @@ void __sfx_getPlayerPositionIfPresent(f32 arg0[3]){
         ml_vec3f_clear(arg0);
 }
 
-void func_8030C7D0(struct45s *arg0, s32 arg1){
+void func_8030C7D0(SfxSource *arg0, s32 arg1){
     arg0->unk43_7 = arg1;
 }
 
-s32 func_8030C7E8(struct45s *arg0){
+s32 func_8030C7E8(SfxSource *arg0){
     return arg0->unk43_7;
 }
 
-void func_8030C7F8(struct45s *arg0, s32 arg1){
+void func_8030C7F8(SfxSource *arg0, s32 arg1){
     arg0->unk43_4 = arg1;
 }
 
-int func_8030C814(struct45s *arg0, s32 arg1){
+int func_8030C814(SfxSource *arg0, s32 arg1){
     return arg0->unk43_4 == arg1;
 }
 
-void sfxsource_setFlag(struct45s *arg0, s32 arg1){
+void sfxsource_setFlag(SfxSource *arg0, s32 arg1){
     arg0->unk41 |= arg1;
 }
 
-void sfxsource_clearFlag(struct45s *arg0, s32 arg1){
+void sfxsource_clearFlag(SfxSource *arg0, s32 arg1){
     arg0->unk41 &= ~arg1;
 }
 
-s32 sfxsource_isFlagSet(struct45s *arg0, s32 arg1){
+s32 sfxsource_isFlagSet(SfxSource *arg0, s32 arg1){
     return arg0->unk41 & arg1;
 }
 
-int sfxsource_isFlagCleared(struct45s *arg0, s32 arg1){
+int sfxsource_isFlagCleared(SfxSource *arg0, s32 arg1){
     return (arg0->unk41 & arg1) == 0;
 }
 
 void sfxsource_initAll(void){
     int i;
     for(i = 0; i < 35; i++)
-        D_803824C0[i].busy = FALSE;
+        sfxsources[i].busy = FALSE;
 }
 
-struct45s *sfxsource_at(u8 indx){
-    return D_803824C0 + indx;
+SfxSource *sfxsource_at(u8 indx){
+    return sfxsources + indx;
 }
 
 struct46s *func_8030C8DC(s32 indx){
@@ -121,8 +121,8 @@ Struct81s *func_8030C8F4(s32 indx){
 u8 sfxsource_getNewIndex(void){
     int i;
     for(i = 1; i < 35; i++){
-        if(!D_803824C0[i].busy){
-            D_803824C0[i].busy = TRUE;
+        if(!sfxsources[i].busy){
+            sfxsources[i].busy = TRUE;
             return i;
         }
     }
@@ -154,15 +154,15 @@ s32 func_8030CA60(void){
 }
 
 void sfxsource_free(u8 indx){
-    struct45s *ptr = sfxsource_at(indx);
+    SfxSource *ptr = sfxsource_at(indx);
     if(ptr->unk40){
         func_8030C9F4(ptr->unk40);
         ptr->unk40 = 0;
     }
-    D_803824C0[indx].busy = FALSE;
+    sfxsources[indx].busy = FALSE;
 }
 
-void func_8030CBD0(struct45s *arg0){
+void func_8030CBD0(SfxSource *arg0){
     s32 sp24 = func_8030CA60();
     struct46s *temp_a1;
     if(sp24){
@@ -182,7 +182,7 @@ void func_8030CBD0(struct45s *arg0){
     }//L8030CC7C
 }
 
-void func_8030CC90(struct45s *arg0){
+void func_8030CC90(SfxSource *arg0){
     if(func_8030C814(arg0, 1)){
         sfxsource_clearFlag(arg0, SFX_SRC_FLAG_5_UNKOWN);
         func_8030C7F8(arg0, 2);
@@ -192,7 +192,7 @@ void func_8030CC90(struct45s *arg0){
     }
 }
 
-s32 func_8030CCF0(struct45s *arg0, s32 arg1){
+s32 func_8030CCF0(SfxSource *arg0, s32 arg1){
     f32 plyr_pos[3];
     f32 diff[3];
     f32 dist_sqr;
@@ -211,7 +211,7 @@ s32 func_8030CCF0(struct45s *arg0, s32 arg1){
     return retVal;
 }
 
-s32 func_8030CDE4(struct45s *arg0){
+s32 func_8030CDE4(SfxSource *arg0){
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
@@ -264,7 +264,7 @@ void func_8030D004(s32 arg0, s32 arg1){
     }
 }
 
-s32 func_8030D038(struct45s *arg0, s32 arg1){
+s32 func_8030D038(SfxSource *arg0, s32 arg1){
     if(sfxsource_isFlagSet(arg0,SFX_SRC_FLAG_6_UNKOWN)){
         if(sfxsource_isFlagSet(arg0, SFX_SRC_FLAG_7_UNKOWN)){
             if(player_is_present() && player_getWaterState() == BSWATERGROUP_2_UNDERWATER)
@@ -280,7 +280,7 @@ s32 func_8030D038(struct45s *arg0, s32 arg1){
 
 s32 func_8030D10C(u8 indx){
     s32 sp24;
-    struct45s * ptr;
+    SfxSource * ptr;
     s32 tmp_v0;
     f32 tmp_f2;
 
@@ -299,14 +299,14 @@ s32 func_8030D10C(u8 indx){
 
         //L8030D228
         if(sfxsource_isFlagSet(ptr, SFX_SRC_FLAG_1_UNKOWN)){
-            tmp_v0 = func_8030CCF0(ptr, ptr->unk2A);
+            tmp_v0 = func_8030CCF0(ptr, ptr->sample_rate);
             if(tmp_v0 < 100)
                 sp24 = 1;
             func_8030D004(ptr->unk40, func_8030D038(ptr, tmp_v0));
             func_8030CF9C(ptr->unk40, func_8030CDE4(ptr));
         }else{//L8030D288
             if(sfxsource_isFlagSet(ptr, SFX_SRC_FLAG_3_UNKOWN)){
-                tmp_v0 = func_8030D038(ptr, ptr->unk2A);
+                tmp_v0 = func_8030D038(ptr, ptr->sample_rate);
                 if(tmp_v0 < 100)
                     sp24 = 1;
                 func_8030D004(ptr->unk40, tmp_v0);
@@ -326,7 +326,7 @@ void func_8030D310(u8 indx){
     f32 pad0;
     s32 sp30;
     f32 pad1;
-    struct45s * ptr;
+    SfxSource * ptr;
     f32 sp24;
     
     ptr = sfxsource_at(indx);
@@ -396,7 +396,7 @@ void func_8030D310(u8 indx){
 }
 
 bool func_8030D5CC(u8 indx){
-    struct45s * sp1C = sfxsource_at(indx);
+    SfxSource * sp1C = sfxsource_at(indx);
     if(!func_8030C814(sp1C, 3))
         return 0;
 
@@ -411,7 +411,7 @@ bool func_8030D5CC(u8 indx){
 void func_8030D644(void){
     int i;
     for(i = 1; i < 35; i++){
-        if(D_803824C0[i].busy){
+        if(sfxsources[i].busy){
             func_8030D310(i);
             if(func_8030D5CC(i))
                 sfxsource_free(i);
@@ -442,14 +442,14 @@ void func_8030D778(void){
     int i;
     int temp_s1;
     for(i = 1; i < 35; i++){
-        if(D_803824C0[i].busy)
+        if(sfxsources[i].busy)
             func_8030DA44(i);
     }
     do{
         temp_s1 = 0;
         func_8030D644();
         for(i = 1; i < 35; i++){
-            if(D_803824C0[i].busy)
+            if(sfxsources[i].busy)
                 temp_s1++;
         }
     }while(temp_s1);
@@ -478,7 +478,7 @@ void func_8030D8DC(void){
 
 u8 func_8030D90C(void){
     u8 s1 = sfxsource_getNewIndex();
-    struct45s *s0;
+    SfxSource *s0;
 
     if(s1 == 0)
         return 0;
@@ -486,7 +486,7 @@ u8 func_8030D90C(void){
     s0 = sfxsource_at(s1);
     s0->unk30 = NULL;
     s0->sfx_uid = -1;
-    s0->unk2A = 22000;
+    s0->sample_rate = 22000;
     s0->unk2C = 0;
     s0->unk40 = 0;
     s0->unk43_1 = 0;
@@ -511,7 +511,7 @@ u8 func_8030D90C(void){
 }
 
 void func_8030DA44(u8 indx){
-    struct45s * sp1C = sfxsource_at(indx);
+    SfxSource * sp1C = sfxsource_at(indx);
     func_8030E394(indx);
     func_8030C7F8(sp1C, 3);
 }
@@ -522,10 +522,10 @@ void sfxsource_setSfxId(u8 indx, enum sfx_e uid){
 }
 
 void sfxsource_setSampleRate(u8 indx, s32 sample_rate){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
-        temp_v0->unk2A = sample_rate;
+        temp_v0->sample_rate = sample_rate;
         sfxsource_setFlag(temp_v0, SFX_SRC_FLAG_3_UNKOWN);
     }
 }
@@ -550,7 +550,7 @@ void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 min_dist, f32 max_dist){
 }
 
 void func_8030DBB4(u8 indx, f32 arg1){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
         temp_v0->unk34 = arg1;
@@ -581,7 +581,7 @@ void func_8030DBFC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
 }
 
 void func_8030DCCC(u8 indx, s32 arg1){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
         temp_v0->unk2C = arg1;
@@ -590,7 +590,7 @@ void func_8030DCCC(u8 indx, s32 arg1){
 }
 
 void func_8030DD14(u8 indx, int arg1){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
         func_8030C7D0(temp_v0, arg1);
@@ -598,7 +598,7 @@ void func_8030DD14(u8 indx, int arg1){
 }
 
 void func_8030DD54(u8 indx, void (*arg1)(u8)){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
         temp_v0->unk30 = arg1;
@@ -606,7 +606,7 @@ void func_8030DD54(u8 indx, void (*arg1)(u8)){
 }
 
 void func_8030DD90(u8 indx, s32 arg1){
-    struct45s *temp_v0;
+    SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
         switch(arg1){
@@ -627,7 +627,7 @@ void func_8030DD90(u8 indx, s32 arg1){
 }
 
 void func_8030DE44(u8 indx, s32 arg1, f32 arg2){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         switch(arg1){
@@ -644,7 +644,7 @@ void func_8030DE44(u8 indx, s32 arg1, f32 arg2){
 }
 
 void sfxsource_set_fade_distances(u8 indx, f32 min, f32 max){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ptr->fade_inner_radius_sqr = min*min;
@@ -654,7 +654,7 @@ void sfxsource_set_fade_distances(u8 indx, f32 min, f32 max){
 }
 
 void func_8030DF18(u8 indx, f32 arg1){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ptr->unk14 = (s16)arg1;
@@ -663,7 +663,7 @@ void func_8030DF18(u8 indx, f32 arg1){
 }
 
 void sfxsource_set_position(u8 indx, f32 position[3]){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ml_vec3f_copy(ptr->position, position);
@@ -672,7 +672,7 @@ void sfxsource_set_position(u8 indx, f32 position[3]){
 }
 
 void func_8030DFB4(u8 indx, s32 arg1){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ptr->unk16 = arg1;
@@ -680,7 +680,7 @@ void func_8030DFB4(u8 indx, s32 arg1){
 }
 
 void func_8030DFF0(u8 indx, s32 arg1){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         if(arg1){
@@ -693,7 +693,7 @@ void func_8030DFF0(u8 indx, s32 arg1){
 }
 
 void func_8030E04C(u8 indx, f32 arg1, f32 arg2, f32 arg3){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ptr->unk43_1 = 1;
@@ -704,7 +704,7 @@ void func_8030E04C(u8 indx, f32 arg1, f32 arg2, f32 arg3){
 }
 
 void func_8030E0B4(u8 indx, f32 arg1, f32 arg2){
-    struct45s *ptr;
+    SfxSource *ptr;
     if(indx){
         ptr = sfxsource_at(indx);
         ptr->unk38 = arg1;
@@ -713,7 +713,7 @@ void func_8030E0B4(u8 indx, f32 arg1, f32 arg2){
 }
 
 void func_8030E0FC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(indx){
         ptr = sfxsource_at(indx);
@@ -726,7 +726,7 @@ void func_8030E0FC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
 }
 
 enum sfx_e sfxsource_getSfxId(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(!indx)
         return 0;
@@ -737,18 +737,18 @@ enum sfx_e sfxsource_getSfxId(u8 indx){
 }
 
 s32 func_8030E1C4(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(indx == 0)
         return 0;
     else{
         ptr = sfxsource_at(indx);
-        return ptr->unk2A;
+        return ptr->sample_rate;
     }
 }
 
 f32 func_8030E200(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(!indx)
         return 1.0f;
@@ -759,7 +759,7 @@ f32 func_8030E200(u8 indx){
 }
 
 s32 func_8030E244(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(!indx)
         return 0;
@@ -769,19 +769,19 @@ s32 func_8030E244(u8 indx){
     }
 }
 
-bool func_8030E280(struct45s *arg0){
+bool func_8030E280(SfxSource *arg0){
     int temp_v1;
     if(sfxsource_isFlagSet(arg0, SFX_SRC_FLAG_1_UNKOWN)){
-        temp_v1 = func_8030CCF0(arg0, arg0->unk2A);
+        temp_v1 = func_8030CCF0(arg0, arg0->sample_rate);
     }
     else{
-        temp_v1 = arg0->unk2A;
+        temp_v1 = arg0->sample_rate;
     }
     return (temp_v1 > 100);
 }
 
 void func_8030E2C4(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(!indx)
         return;
@@ -810,7 +810,7 @@ void func_8030E2C4(u8 indx){
 }
 
 void func_8030E394(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(indx){
         ptr = sfxsource_at(indx);
@@ -824,7 +824,7 @@ void func_8030E394(u8 indx){
 
 
 int func_8030E3FC(u8 indx){
-    struct45s *ptr;
+    SfxSource *ptr;
 
     if(!indx)
         return 0;
@@ -849,12 +849,12 @@ void func_8030E4E4(enum sfx_e uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 0);
 }
 
-void func_8030E510(enum sfx_e uid, s32 arg1){
-    func_8030D6C4(uid, 1.0f, arg1, 0, 2);
+void sfxsource_play(enum sfx_e uid, s32 sample_rate){
+    func_8030D6C4(uid, 1.0f, sample_rate, 0, 2);
 }
 
 void func_8030E540(enum sfx_e uid){
-    func_8030E510(uid, 0x7ff8);
+    sfxsource_play(uid, 0x7ff8);
 }
 
 void func_8030E560(enum sfx_e uid, s32 arg1){

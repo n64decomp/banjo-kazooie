@@ -84,7 +84,7 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     
     thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
-    func_8030E510(SFX_AA_BGS_EGG_BREAKING_1, 28000);
+    sfxsource_play(SFX_AA_BGS_EGG_BREAKING_1, 28000);
     subaddie_set_state(thisActor, 3);
     actor_playAnimationOnce(thisActor);
     this->collidable = 0;

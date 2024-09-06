@@ -397,7 +397,7 @@ void func_8030E2C4(u8);
 void func_8030E394(u8 indx);
 void func_8030E484(enum sfx_e uid);
 void func_8030E4E4(enum sfx_e uid);
-void func_8030E510(enum sfx_e uid, s32 arg1);
+void sfxsource_play(enum sfx_e uid, s32 sample_rate);
 void func_8030E540(enum sfx_e uid);
 void func_8030E560(enum sfx_e uid, s32 arg1);
 void func_8030E58C(enum sfx_e uid, f32 arg1);

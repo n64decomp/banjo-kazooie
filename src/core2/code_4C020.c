@@ -171,7 +171,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
 
         case MARKER_109_BREAKABLE_BRICK_WALL:
             func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
-            func_8030E510(SFX_11_WOOD_BREAKING_1, 28000);
+            sfxsource_play(SFX_11_WOOD_BREAKING_1, 28000);
             subaddie_set_state_looped(sp2C, 9);
             fileProgressFlag_set((sp2C->unkF4_8 == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
             break;
@@ -329,7 +329,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x164:
         case 0x165:
             if (sp2C->unk1C[1] == sp2C->position[1]) {
-                func_8030E510(SFX_9B_BOULDER_BREAKING_1, 25000);
+                sfxsource_play(SFX_9B_BOULDER_BREAKING_1, 25000);
                 sp2C->unk1C[0] = 1.0f;
             }
             break;
