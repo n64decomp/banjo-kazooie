@@ -71,9 +71,9 @@ s32 func_802B488C(s32 arg0){
         retVal = BS_CLAW;
 
     if(button_pressed(BUTTON_A))
-        retVal = func_8029C780();
+        retVal = bs_getTypeOfJump();
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         retVal = badrone_look();
 
     if(player_isSliding())

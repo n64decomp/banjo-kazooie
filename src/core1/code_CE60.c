@@ -170,7 +170,7 @@ void func_8024AED8(void){
 }
 
 void func_8024AF00(s32 arg0, s32 arg1){
-    if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+    if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
         func_8024A880(arg0);
     }
     else{
@@ -208,7 +208,7 @@ void func_8024AF48(void){
 
         case MAP_7_TTC_TREASURE_TROVE_COVE: // L8024B094
             func_8024A9EC(0);
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x600);
             }
             else if(func_8024A8DC(-0x12C, 0x58c, 0x866) 
@@ -228,7 +228,7 @@ void func_8024AF48(void){
             
         case MAP_B_CC_CLANKERS_CAVERN: // L8024B158
             func_8024A9EC(0);
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 if(!(D_802806F8[1] < 0x28b)){
                     func_8024A8AC(0x8180, 5.0f);
                 }
@@ -242,7 +242,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_12_GV_GOBIS_VALLEY:// L8024B1BC
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x8020);
             }
             else if(func_8024A8DC(-0xf96, 0x1626, 0xe74)){
@@ -262,7 +262,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_1_SM_SPIRAL_MOUNTAIN: // L8024B23C
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x9000);
             }
             else{
@@ -360,7 +360,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_45_CCW_AUTUMN:// L8024B4D4
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x600);
             }
             else{
@@ -382,7 +382,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_27_FP_FREEZEEZY_PEAK:// L8024B538
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x400);
             }
             else if( mapSpecificFlags_get(0) && !jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE)){
@@ -453,7 +453,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_6B_GL_180_NOTE_DOOR:// L8024B704
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x8800);
             }
             else if(func_8024A8DC(0x10eb, 0x4f5, 0x730)) {
@@ -476,7 +476,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_70_GL_CC_LOBBY:// L8024B7B4
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x8100);
             }
             else if(func_8024A8DC(-0x19d6, -0x1d3, 0x71e)){
@@ -520,7 +520,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_71_GL_STATUE_ROOM:// L8024B8C0
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x200);
             }
             else if(func_8024A8DC(-0xf0e, -0x15a, 0x302)){
@@ -570,7 +570,7 @@ void func_8024AF48(void){
             break;
 
         case MAP_78_GL_RBB_AND_MMM_PUZZLE:// L8024BA98
-            if(func_8028EE84() == BSWATERGROUP_2_UNDERWATER){
+            if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER){
                 func_8024A880(0x8200);
             }
             else if(0x15a <= D_802806F8[1] && func_8024A8DC(-0x89a, 0x21a, 0x368)){

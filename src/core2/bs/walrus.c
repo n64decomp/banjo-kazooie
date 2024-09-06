@@ -162,7 +162,7 @@ void bswalrus_idle_update(void){
     if(func_8028B094())
         next_state = BS_6A_WALRUS_FALL;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8029B300() > 0)
@@ -270,7 +270,7 @@ void bswalrus_jump_update(void){
             break;
         case 2://L802B87B4
             func_80299628(0);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029AE48();
                 animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 animctrl_setDuration(aCtrl, 1.0f);
@@ -287,7 +287,7 @@ void bswalrus_jump_update(void){
             break;
     }//L802B8838
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(func_8029B300() > 0)
             next_state = BS_WALRUS_WALK;
 
@@ -335,7 +335,7 @@ void bswalrus_fall_update(void){
         }
         break;
     case 1://L802B89E0
-        if(func_8028B2E8()){
+        if(player_isStable()){
             func_8029AE48();
             baphysics_set_target_horizontal_velocity(0.0f);
             animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
@@ -348,7 +348,7 @@ void bswalrus_fall_update(void){
         break;
     }//L802B8A38
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if( func_8029B300() > 0 
             || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
         ){
@@ -399,7 +399,7 @@ static void __bswalrus_recoil_update(void){
     if(baanim_isAt(0.5f))
         func_80292EA4();
     
-    if(func_8028B2E8())
+    if(player_isStable())
         next_state = BS_67_WALRUS_IDLE;
 
     bs_setState(next_state);
@@ -483,7 +483,7 @@ void bswalrus_die_update(void){
     func_80299628(0);
     switch(D_8037D5C8){
         case 0://L802B8F54
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);
@@ -578,7 +578,7 @@ void bswalrus_sled_update(void){
 
     func_80299628(0);
     func_802B7F28();
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(button_pressed(BUTTON_A))
@@ -648,7 +648,7 @@ void bswalrus_sled_jump_update(void){
         break;
     }//L802B9530
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(button_pressed(BUTTON_A))
             next_state = BS_7E_WALRUS_SLED;
         
@@ -693,7 +693,7 @@ void func_802B963C(void){
             }
             break;
         case 1://L802B96C0
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029AE48();
                 baphysics_set_target_horizontal_velocity(0.0f);
                 D_8037D5C8 = 2;
@@ -703,7 +703,7 @@ void func_802B963C(void){
             break;
     }//L802B96F0
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if( func_8029B300() > 0 
             || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
         ){

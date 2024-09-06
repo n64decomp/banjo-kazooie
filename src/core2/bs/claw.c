@@ -54,14 +54,14 @@ void bsclaw_update(void){
     if(animctrl_isStopped(aCtrl))
         sp2C = BS_1_IDLE;
 
-    if(!func_8028B2E8())
+    if(!player_isStable())
         sp2C = BS_2F_FALL;
     
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
 
     if(button_pressed(BUTTON_A))
-        sp2C = func_8029C780();
+        sp2C = bs_getTypeOfJump();
 
     bs_setState(sp2C);
 }

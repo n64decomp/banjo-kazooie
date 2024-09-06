@@ -73,7 +73,7 @@ void func_802A10D4(void){
     if(func_8028B094())
         s0 = 0x88;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         s0 = badrone_look();
     
     if(func_8029B300() > 0)
@@ -188,7 +188,7 @@ void func_802A1438(void){
         break;
     case 2:
         func_80299628(0);
-        if(func_8028B2E8()){
+        if(player_isStable()){
             func_802A0F90();
             baanim_setEndAndDuration(1.0f, 0.7f);
             D_8037D2D4 = 3;
@@ -202,7 +202,7 @@ void func_802A1438(void){
         }
         break;
     }
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(func_8029B300() > 0)
             sp2c = BS_BEE_WALK;
         if(button_pressed(BUTTON_A)){
@@ -259,7 +259,7 @@ void func_802A170C(void){
             break;
         case 1:
             func_80299628(0);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_802A0F90();
                 baphysics_set_target_horizontal_velocity(0.0f);
                 baanim_setEndAndDuration(1.0f, 0.7f);
@@ -274,7 +274,7 @@ void func_802A170C(void){
             }
             break;
     }
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(miscflag_isTrue(0x19)){
             sp2c = badrone_transform();
         }else{
@@ -352,7 +352,7 @@ void func_802A1A50(void){
         case 1:
             break;
     }
-    if(func_8028B2E8())
+    if(player_isStable())
         sp1C = BS_85_BEE_IDLE;
     if(0.65 < baanim_getTimer() && player_inWater()){
         sp1C = 0x8C;
@@ -436,7 +436,7 @@ void func_802A1DD8(void){
     func_80299628(0);
     switch(D_8037D2D4){
         case 0:
-            if(!func_8028B2E8())
+            if(!player_isStable())
                 break;
             baanim_setEnd(0.7453f);
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
@@ -445,7 +445,7 @@ void func_802A1DD8(void){
             D_8037D2D4 = 1;
             break;
         case 1:
-            if(!func_8028B2E8())
+            if(!player_isStable())
                 break;
             baanim_setEnd(1.0f);
             FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);

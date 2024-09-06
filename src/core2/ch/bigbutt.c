@@ -74,7 +74,7 @@ void func_802C5FF8(Actor *this){
     if( !this->unk138_28
         && actor_animationIsAt(this, 0.4f)
         && randf() < 0.14
-        && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
+        && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
     ){
         func_8030E878(SFX_2B_BULL_MOO_1, randf2(0.9f, 1.1f), 32000, this->position, 0.0f, 2000.0f);
     }
@@ -136,7 +136,7 @@ void func_802C6240(Actor *this){
                     || actor_animationIsAt(this, 0.4f)
                     || actor_animationIsAt(this, 0.536f)
                 ){
-                    if(func_8028EE84() != BSWATERGROUP_2_UNDERWATER){
+                    if(player_getWaterState() != BSWATERGROUP_2_UNDERWATER){
                         func_8030E878(SFX_C8_CRUNCH,randf2(0.93f, 1.07f),10000, this->position, 0.0f, 1800.0f);
                     }
                 }   
@@ -203,7 +203,7 @@ void func_802C6240(Actor *this){
                 subaddie_set_state(this, 8);
             }
             func_802C5F44(this);
-            if(actor_animationIsAt(this, 0.35f) && func_8028EE84() != BSWATERGROUP_2_UNDERWATER){
+            if(actor_animationIsAt(this, 0.35f) && player_getWaterState() != BSWATERGROUP_2_UNDERWATER){
                 func_8030E58C(SFX_3C_BULL_GROWN, randf()/10.0f + 1.0);
                 this->unk10_12--;
             }

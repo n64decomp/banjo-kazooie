@@ -134,7 +134,7 @@ void bsjump_update(void){
             break;
     }//L802B1548
 
-    if(func_8028B424())
+    if(player_isFallTumbling())
         sp34 = BS_3D_FALL_TUMBLING;
 
     if(button_released(BUTTON_A))
@@ -149,7 +149,7 @@ void bsjump_update(void){
     if(should_beak_bust())
         sp34 = BS_F_BBUSTER;
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         func_8029C5E8();
         sp34 = BS_20_LANDING;
     }
@@ -214,7 +214,7 @@ void bsjump_fall_update(void){
             break;
     }//L802B1824
     if(miscflag_isFalse(0xf)){
-        if(func_8028B424())
+        if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
         if(should_feathery_flap() && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED))
@@ -237,7 +237,7 @@ void bsjump_fall_update(void){
 
     }//L802B18E8
 
-    if(func_8028B2E8()){
+    if(player_isStable()){
         func_8029C5E8();
         sp2C = BS_20_LANDING;
     }
@@ -311,7 +311,7 @@ void func_802B1A54(void) {
     case 2:
         break;
     }
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         func_8029C5E8();
         next_state = BS_20_LANDING;
     }
@@ -371,7 +371,7 @@ void func_802B1CF8(void) {
     case 1:
         break;
     }
-    if (func_8028B2E8() != 0) {
+    if (player_isStable() != 0) {
         next_state = 1;
     }
     bs_setState(next_state);
@@ -424,7 +424,7 @@ void bsjump_tumble_update(void){
     if(player_inWater())
         sp1C = BS_4C_LANDING_IN_WATER;
 
-    if(func_8028B2E8())
+    if(player_isStable())
         sp1C = BS_SPLAT;
 
     bs_setState(sp1C);

@@ -162,7 +162,7 @@ void bswalk_creep_update(void){
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -174,7 +174,7 @@ void bswalk_creep_update(void){
     next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        next_state = func_8029C780();
+        next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
         next_state = BS_SLIDE;
@@ -235,7 +235,7 @@ void bswalk_slow_upate(void){
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -247,7 +247,7 @@ void bswalk_slow_upate(void){
     next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        next_state = func_8029C780();
+        next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
         next_state = BS_SLIDE;
@@ -311,7 +311,7 @@ void bswalk_update(void){
         next_state = BS_SKID;
     }
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -323,7 +323,7 @@ void bswalk_update(void){
     next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        next_state = func_8029C780();
+        next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
         next_state = BS_SLIDE;
@@ -386,7 +386,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(18.0f))
                 next_state = BS_1_IDLE;
 
-            if(func_80294F78())
+            if(should_look_first_person_camera())
                 next_state = badrone_look();
             
             break;
@@ -395,7 +395,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(bsWalkSlowWalkWalkVelocityThreshold))
                 next_state = BS_2_WALK_SLOW;
 
-            if(func_80294F78())
+            if(should_look_first_person_camera())
                 next_state = badrone_look();
 
             break;
@@ -403,7 +403,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
                 next_state = BS_WALK;
 
-            if(func_80294F78())
+            if(should_look_first_person_camera())
                 next_state = badrone_look();
             break;
     }//L802B7AA4
@@ -423,7 +423,7 @@ void bswalk_fast_update(void){
     next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        next_state = func_8029C780();
+        next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
         next_state = BS_SLIDE;
@@ -460,7 +460,7 @@ void bswalk_mud_update(void){
     if(!func_8029B300())
         next_state = BS_1_IDLE;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -472,7 +472,7 @@ void bswalk_mud_update(void){
     next_state = func_802B6F20(next_state);
 
     if(button_pressed(BUTTON_A))
-        next_state = func_8029C780();
+        next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
         next_state = BS_SLIDE;

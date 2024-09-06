@@ -13,8 +13,8 @@ int should_beak_bust(void){
     return button_pressed(BUTTON_Z) && can_beak_bust();
 }
 
-int func_80294F78(void){
-    return button_pressed(BUTTON_C_UP) && func_8028ACD8();
+int should_look_first_person_camera(void){
+    return button_pressed(BUTTON_C_UP) && can_view_first_person();
 }
 
 int should_rotate_camera_left(void){

@@ -269,7 +269,7 @@ void chSnowman_update(Actor *this){
                 else{//L802E2380
                     if( __chSnowman_isPlayerInAttackRange(this, 500, 2750)
                         && __chSnowman_isYawNearYawTarget(this, 3)
-                        && func_8028EE84() != BSWATERGROUP_2_UNDERWATER
+                        && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
                         && !__chSnowman_CCW_playerInProtectedZone()
                     ){
                         subaddie_set_state_with_direction(this, CHSNOWMAN_STATE_2_ATTACK, 0.01f, 1);
@@ -285,7 +285,7 @@ void chSnowman_update(Actor *this){
             else if( 
                 0.98 < animctrl_getAnimTimer(this->animctrl)
                 || !__chSnowman_isPlayerInAttackRange(this, 500, 2750)
-                || func_8028EE84() == BSWATERGROUP_2_UNDERWATER
+                || player_getWaterState() == BSWATERGROUP_2_UNDERWATER
                 || __chSnowman_CCW_playerInProtectedZone()
             ){
                 __chSnowman_enterIdle(this);

@@ -112,7 +112,7 @@ void bsbflip_update(void){
         }
         break;
     case 2://L802A3184
-        if(func_8028B424())
+        if(player_isFallTumbling())
             sp24 = BS_3D_FALL_TUMBLING;
         if(button_released(BUTTON_A)){
             animctrl_reset(aCtrl);
@@ -124,7 +124,7 @@ void bsbflip_update(void){
             baphysics_reset_terminal_velocity();
             D_8037D310 = 3;
         }//L802A320C
-        if(func_8028B2E8()){
+        if(player_isStable()){
             _bsbflip_802A2DC0();
             sp24 = func_8029C9C0(sp24);
             D_8037D310 = 4;
@@ -134,9 +134,9 @@ void bsbflip_update(void){
         }
         break;
     case 3://L802A3258
-        if(func_8028B424())
+        if(player_isFallTumbling())
             sp24 = BS_3D_FALL_TUMBLING;
-        if(func_8028B2E8()){
+        if(player_isStable()){
             func_8029E070(0);
             _bsbflip_802A2DC0();
             sp24 = func_8029C9C0(sp24);

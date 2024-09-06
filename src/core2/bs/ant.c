@@ -96,7 +96,7 @@ void bsant_idle_update(void){
     if(func_8028B094())
         new_state = BS_38_ANT_FALL;
 
-    if(func_80294F78())
+    if(should_look_first_person_camera())
         new_state = badrone_look();
 
     if(func_8029B300() > 0)
@@ -203,7 +203,7 @@ void bsant_jump_update(void){
             break;
         case 2://L8029EAF4
             func_80299628(0);
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 func_8029C5E8();
                 bsant_substate = 3;
             }
@@ -213,7 +213,7 @@ void bsant_jump_update(void){
                 sp2C = BS_35_ANT_IDLE;
             break;
     }//L8029EB38
-    if(func_8028B2E8()){
+    if(player_isStable()){
         baphysics_set_target_horizontal_velocity(0.0f);
         if(func_8029B300() > 0)
             sp2C = BS_ANT_WALK;
@@ -265,7 +265,7 @@ void bsant_fall_update(void){
         case 1:
             break;
     }
-    if(func_8028B2E8()){
+    if(player_isStable()){
         if(miscflag_isTrue(0x19))
             sp2C = badrone_transform();
         else
@@ -329,7 +329,7 @@ static void __bsant_recoil_update(void){
             break;
     }
     
-    if(func_8028B2E8())
+    if(player_isStable())
         sp1C = BS_35_ANT_IDLE;
 
     bs_setState(sp1C);
@@ -411,7 +411,7 @@ void bsant_die_update(void){
     func_80299628(0);
     switch(bsant_substate){
         case 0://L8029F270
-            if(func_8028B2E8()){
+            if(player_isStable()){
                 baanim_setEnd(1.0f);
                 FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.8f, 18000);

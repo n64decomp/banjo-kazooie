@@ -40,7 +40,7 @@ void func_802AEC08(void){
 
 void func_802AEC28(void){
     baphysics_reset_horizontal_velocity();
-    if(func_8028B2E8() || player_inWater())
+    if(player_isStable() || player_inWater())
         __bsDroneGoTo_set_substate(2);
 }
 
@@ -91,7 +91,7 @@ void func_802AEDC8(void){
 void bsDroneGoTo_init(void){
     bsdronetogo_substate = 0;
     func_8031F9F4(1);
-    if( !func_8028B2E8() && func_8029BDE8()){
+    if( !player_isStable() && func_8029BDE8()){
         __bsDroneGoTo_set_substate(1);
     }else{
         __bsDroneGoTo_set_substate(2);

@@ -48,9 +48,10 @@ void bsbshock_charge_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp1C[3];
 
-    if(func_8028B2E8()){ 
-        if(globalTimer_getTime() % 2)
+    if(player_isStable()) { 
+        if(globalTimer_getTime() % 2) {
             func_8029C348();
+        }
     }
     else
     {//L802A6B94
@@ -64,7 +65,7 @@ void bsbshock_charge_update(void){
     
     switch(D_8037D381){
         case 0:
-            if(func_8028B424())
+            if(player_isFallTumbling())
                 sp2C = BS_3D_FALL_TUMBLING;
 
             if(func_8028B254(0x82)){
@@ -90,7 +91,7 @@ void bsbshock_charge_update(void){
         if(animctrl_getAnimTimer(aCtrl) < 0.3637 && button_released(8)){
             D_8037D380 = 0;
         }//L802A6CF4
-        if(func_8028B2E8())
+        if(player_isStable())
             baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{//L802A6D18
@@ -172,8 +173,8 @@ void bsbshock_update(void){
             sp2C = BS_2F_FALL;
     }
 
-    if(!func_8028B2E8()){
-        if(func_8028B424())
+    if(!player_isStable()){
+        if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
         if(should_feathery_flap())

@@ -170,7 +170,7 @@ void func_802B5950(void) {
     if (!player_inWater()) {
         next_state = BS_1_IDLE;
     }
-    if (func_80294F78()) {
+    if (should_look_first_person_camera()) {
         next_state = badrone_look();
     }
     if (should_dive()) {

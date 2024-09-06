@@ -120,7 +120,7 @@ void func_80299EC0(f32 arg0[3]) {
 
     if (D_8037C6F0.unk0 == 1) {
         sp78 = 50;
-    } else if (func_8028EE84() == BSWATERGROUP_0_NONE) {
+    } else if (player_getWaterState() == BSWATERGROUP_0_NONE) {
         sp78 = 200;
     } else {
         sp78 = 250;

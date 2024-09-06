@@ -267,11 +267,11 @@ void func_8030D004(s32 arg0, s32 arg1){
 s32 func_8030D038(struct45s *arg0, s32 arg1){
     if(sfxsource_isFlagSet(arg0,SFX_SRC_FLAG_6_UNKOWN)){
         if(sfxsource_isFlagSet(arg0, SFX_SRC_FLAG_7_UNKOWN)){
-            if(player_is_present() && func_8028EE84() == BSWATERGROUP_2_UNDERWATER)
+            if(player_is_present() && player_getWaterState() == BSWATERGROUP_2_UNDERWATER)
                     arg1 *= arg0->unk3C;
         }
         else{//L8030D0B4
-            if(player_is_present() && func_8028EE84() != BSWATERGROUP_2_UNDERWATER)
+            if(player_is_present() && player_getWaterState() != BSWATERGROUP_2_UNDERWATER)
                     arg1 *= arg0->unk38;
         }
     }

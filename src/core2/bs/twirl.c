@@ -66,9 +66,9 @@ void bstwirl_update(void){
     }//L802B6C4C
 
     if(button_pressed(BUTTON_A))
-        sp1C = func_8029C780();
+        sp1C = bs_getTypeOfJump();
 
-    if(0.6 < animctrl_getAnimTimer(aCtrl) && !func_8028B2E8())
+    if(0.6 < animctrl_getAnimTimer(aCtrl) && !player_isStable())
         sp1C = BS_2F_FALL;
 
     if(player_inWater())

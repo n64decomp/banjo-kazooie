@@ -103,7 +103,7 @@ int func_80290D48(void){
 }
 
 int func_80290E8C(void){
-    if(func_8028EE84() != BSWATERGROUP_2_UNDERWATER)
+    if(player_getWaterState() != BSWATERGROUP_2_UNDERWATER)
         return FALSE;
 
     ncDynamicCamera_setState(3);

@@ -127,7 +127,7 @@ void func_802A7674() {
     func_802A71D8();
     func_802A7304();
     
-    if (func_80294F78()) {
+    if (should_look_first_person_camera()) {
         state_id = badrone_look();
     }
     if (button_held(BUTTON_A)) {
@@ -558,7 +558,7 @@ void func_802A85EC(void) {
         D_8037D398 += ml_max_f(mlAbsF(D_8037D398) * 0.1, 50.0f);
         baphysics_set_vertical_velocity(D_8037D398);
     }
-    if (func_8028B2E8()) {
+    if (player_isStable()) {
         next_state = BS_2D_SWIM_IDLE;
     }
     if (!player_inWater()) {

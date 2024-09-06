@@ -30,7 +30,7 @@ Actor *func_802CA7BC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp40;
     f32 sp34[3];
     
-    sp60 = (func_8028EE84() == BSWATERGROUP_2_UNDERWATER) ? 8.0f : 4.0f;
+    sp60 = (player_getWaterState() == BSWATERGROUP_2_UNDERWATER) ? 8.0f : 4.0f;
     this = marker_getActor(marker);
     if( !func_8028F070()
         || !func_8028F150()
