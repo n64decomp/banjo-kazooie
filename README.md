@@ -1,4 +1,4 @@
-# banjo (100.0000%)
+# Banjo-Kazooie (100.0000%)
 
 <img src="./progress/progress_total.svg">
 
@@ -9,7 +9,7 @@
 - `baserom.jp.z64`:     `90726d7e7cd5bf6cdfd38f45c9acbf4d45bd9fd8`
 - `baserom.pal.z64`:    `bb359a75941df74bf7290212c89fbc6e2c5601fe`
 
-## Building
+# Building
 
 The following instructions should work on the following platforms:
 - Ubuntu 18.04 or higher (x86_64)
@@ -17,27 +17,20 @@ The following instructions should work on the following platforms:
     - Linux (x86_64, ARM)
     - macOS (x86_64, ARM)
 
-### Local (Linux)
+## Local (Linux)
 
 Works with Ubuntu 18.04 or higher.
 
-#### 1. Install dependencies
+### 1. Install dependencies
 
 ```sh
 sudo apt-get update && sudo apt-get install -y $(cat packages.txt)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-python3 -m pip install -r requirements.txt
-```
-
-#### 2. Grab tools
-
-```sh
 git submodule update --init --recursive
-cd tools/n64splat
 python3 -m pip install -r requirements.txt
 ```
 
-#### 3. Add baserom
+### 2. Add baserom
 
 Add the file for `US v1.0` as `baserom.us.v10.z64` in the project folder.
 
@@ -49,7 +42,7 @@ sha1sum baserom.us.v10.z64
 
 The output should match the checksum specified above.
 
-#### 4. Build
+### 3. Build
 
 To extract and build everything simply run:
 
@@ -80,9 +73,18 @@ make <module_id>
 - `fight`
 - `cutscenes`
 
-### Local (Docker - Linux/macOS)
+### Version Selection
 
-#### 1. Get the Docker image
+Drop in `us.v10` `us.v11`, `jp`, or `pal` as `baserom.<version>.z64` e.g. `baserom.us.v11.z64`
+
+```sh
+make VERSION=us.v11
+```
+
+
+## Local (Docker - Linux/macOS)
+
+### 1. Get the Docker image
 
 (if available) you can pull it from GitLab (but you need to be logged in):
 
@@ -103,11 +105,11 @@ docker build -t banjo-kazooie .
 docker build --platform linux/amd64 -t banjo-kazooie .
 ```
 
-#### 2. Add baserom
+### 2. Add baserom
 
 Follow the same instructions as Step 3 above in "Local (Linux)".
 
-#### 3. Run the Docker container
+### 3. Run the Docker container
 
 ```sh
 docker run -it --rm -v $(pwd):/banjo banjo-kazooie 
@@ -119,18 +121,18 @@ docker run -it --rm -v $(pwd):/banjo banjo-kazooie
 docker run --platform linux/amd64 -it --rm -v $(pwd):/banjo banjo-kazooie 
 ```
 
-#### 4. Build
+### 4. Build
 
 Follow the same instructions as Step 4 above in "Local (Linux)".
 
 To exit Docker, simply type `exit`.
 
-### Cloud (GitLab CI)
+## Cloud (GitLab CI)
 
 These are the instructions for building on GitLab CI.
 This applies to the main repo - **if you have a fork**, you will need to follow these steps too!
 
-#### 1. Upload the baserom
+### 1. Upload the baserom
 
 Upload the file for `US v1.0` as `baserom.us.v10.enc.z64` to a remote server where it can be downloaded from with `wget` or `curl`. The file has to be encrypted with `AES-256-CBC`, as follows:
 
@@ -142,7 +144,7 @@ Then, upload the encrypted file to a server and get a direct download link.
 
 Sharing services like Google Drive, Dropbox, or OneDrive might not work, as they require manual interaction to download the file.
 
-#### 2. Set up environment variables
+### 2. Set up environment variables
 
 In your GitLab project, go to `Settings > CI/CD > Variables` and add the following variables (for each version):
 
@@ -151,19 +153,11 @@ In your GitLab project, go to `Settings > CI/CD > Variables` and add the followi
 - `BASEROM_<VER>_SHA1`: the SHA1 checksum of the baserom file; simply use the one mentioned above
 
 Replace `<VER>` with the version you are using:
-- `USA10`
-- `USA11`
+- `US10`
+- `US11`
 - `JP`
 - `PAL`
 
-#### 3. Trigger the pipeline
+### 3. Trigger the pipeline
 
 Push a commit to your repository and you should see a new pipeline starting in the `CI/CD > Pipelines` section! 
-
-## Other versions
-
-Drop in `us.v11`, `jp`, or `pal` as `baserom.<version>.z64` e.g. `baserom.us.v11.z64`
-
-```sh
-make VERSION=us.v11
-```
