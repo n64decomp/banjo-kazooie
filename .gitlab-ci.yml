@@ -49,25 +49,24 @@ build-image:
     - docker push --all-tags $CI_REGISTRY_IMAGE                         # Push the image to the registry
 
 # Try to compile the code inside the image to make sure it works (run docker container)
-build-test:
+build-test-us10:
   stage: test
   image:
     name: $CI_REGISTRY_IMAGE:latest
     entrypoint: [""]
   before_script:
-    # Download the baserom from $BASEROM_URL, decrypt with $BASEROM_KEY and save as baserom.us.v10.z64, and check the sha1sum against $BASEROM_SHA1
-    - curl -L "$BASEROM_URL" -o baserom.us.v10.enc.z64
-    - openssl enc -d -aes-256-cbc -in baserom.us.v10.enc.z64 -out baserom.us.v10.z64 -k "$BASEROM_KEY"
+    # Download the baserom from $BASEROM_<VER>_URL, decrypt with $BASEROM_<VER>_KEY and save as baserom.us.v10.z64, and check the sha1sum against $BASEROM_<VER>_SHA1
+    - curl -L "$BASEROM_US10_URL" -o baserom.us.v10.enc.z64
+    - openssl enc -d -aes-256-cbc -in baserom.us.v10.enc.z64 -out baserom.us.v10.z64 -k "$BASEROM_US10_KEY"
     - FILE_SHA1=$(sha1sum baserom.us.v10.z64 | awk '{ print $1 }')
     - echo "Calculated SHA1 - $FILE_SHA1"
-    - echo "Expected SHA1   - $BASEROM_SHA1"
-    - if [ "${FILE_SHA1}" != "${BASEROM_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
+    - echo "Expected SHA1   - $BASEROM_US10_SHA1"
+    - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
   script:
     # Compile the code
     - make
     # Check if the resulting ROM is the same as the expected one
     - FILE_SHA1=$(sha1sum build/us.v10/banjo.us.v10.z64 | awk '{ print $1 }')
     - echo "Calculated SHA1 - $FILE_SHA1"
-    - echo "Expected SHA1   - $BASEROM_SHA1"
-    - if [ "${FILE_SHA1}" != "${BASEROM_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
-
+    - echo "Expected SHA1   - $BASEROM_US10_SHA1"
+    - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi

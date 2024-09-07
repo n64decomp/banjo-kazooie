@@ -144,11 +144,17 @@ Sharing services like Google Drive, Dropbox, or OneDrive might not work, as they
 
 #### 2. Set up environment variables
 
-In your GitLab project, go to `Settings > CI/CD > Variables` and add the following variables:
+In your GitLab project, go to `Settings > CI/CD > Variables` and add the following variables (for each version):
 
-- `BASEROM_URL`: a direct download URL for the baserom.us.v10.z64 file (see above); this file has to be encrypted with `AES-256-CBC`
-- `BASEROM_KEY`: the AES key used to encrypt the baserom file above
-- `BASEROM_SHA1`: the SHA1 checksum of the baserom file; simply use the one mentioned above
+- `BASEROM_<VER>_URL`: a direct download URL for the baserom.us.v10.z64 file (see above); this file has to be encrypted with `AES-256-CBC`
+- `BASEROM_<VER>_KEY`: the AES key used to encrypt the baserom file above
+- `BASEROM_<VER>_SHA1`: the SHA1 checksum of the baserom file; simply use the one mentioned above
+
+Replace `<VER>` with the version you are using:
+- `US_V10`
+- `US_V11`
+- `JP`
+- `PAL`
 
 #### 3. Trigger the pipeline
 
