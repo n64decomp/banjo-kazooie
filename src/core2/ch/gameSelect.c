@@ -114,7 +114,7 @@ f32 D_8037DD34;
 
 /* .code */
 Actor *func_802C4360(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    s32 sp1C = marker->unk14_20 - 0xe4;
+    s32 sp1C = marker->id - 0xe4;
     func_8033A45C(3, sp1C);
     func_8033A45C(1, 1);
     func_8033A45C(4, 1);
@@ -284,7 +284,7 @@ void func_802C4BB4(ActorMarker *marker){
     s32 sp20;
     Actor *other;
     f32 sp18;
-    sp20 = marker->unk14_20 - 0xe4;
+    sp20 = marker->id - 0xe4;
     this = marker_getActor(marker);
     sp18 = this->scale;
     other = func_8032813C(sp20 + 0x198, this->position, (s32)this->yaw);
@@ -308,7 +308,7 @@ void func_802C4C14(Actor *this){
     s32 tmp_a2_2;
     f32 sp34[3];
 
-    sp84 = this->marker->unk14_20 - 0xe4;
+    sp84 = this->marker->id - 0xe4;
     sp80 = (sp84 == D_80365E00);
     sp50 = time_getDelta();
     if(chGameSelectBottomZoombox == NULL)

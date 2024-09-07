@@ -1586,7 +1586,7 @@ ActorMarker *chfinalboss_findCollidingJinjo(Actor *this, f32 arg1) {
     while(prop !=NULL){
         if (prop->markerFlag){
             jinjo = marker_getActor(prop->actorProp.marker);
-            jinjo_marker_id = jinjo->marker->unk14_20;
+            jinjo_marker_id = jinjo->marker->id;
             if(
                 (jinjo_marker_id == MARKER_27B_BOSS_JINJO_ORANGE) 
                 || (jinjo_marker_id == MARKER_27C_BOSS_JINJO_GREEN)
@@ -1637,7 +1637,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             chfinalboss_phase4_setState(this, 0x20);
         }
         else{
-            temp_t6 = marker_getActor(sp6C)->marker->unk14_20;
+            temp_t6 = marker_getActor(sp6C)->marker->id;
             if ((temp_t6 == MARKER_27B_BOSS_JINJO_ORANGE) || (temp_t6 == MARKER_27E_BOSS_JINJO_YELLOW)) {
                 local->mirror_phase5 = FALSE;
             } else {
@@ -1851,7 +1851,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
     sp38 = 0x14;
     sp34 = animctrl_getAnimTimer(this->animctrl);
     jinjonator_marker = chfinalboss_findCollidingJinjo(this, func_8033229C(this->marker) / 3.0f);
-    if ((jinjonator_marker != NULL) && (jinjonator_marker->unk14_20 == MARKER_285_JINJONATOR)) {
+    if ((jinjonator_marker != NULL) && (jinjonator_marker->id == MARKER_285_JINJONATOR)) {
         if (chjinjonator_8039125C(jinjonator_marker)) {
             __chFinalBossJinjonatorHits++;
             if (local->mirror_phase5) {
@@ -2054,29 +2054,29 @@ bool func_8038B834(ActorMarker *marker, ActorMarker * arg1) {
     switch (local->phase) {
     case 1:
         if ((this->state == 6) || (this->state == 7)) {
-            marker->unk14_20 = 0x260;
+            marker->id = 0x260;
         } else {
-            marker->unk14_20 = 0x25E;
+            marker->id = 0x25E;
         }
         break;
     case 2:
         if (local->unkA == 0) {
-            marker->unk14_20 = 0x260;
+            marker->id = 0x260;
         } else {
-            marker->unk14_20 = 0x281;
+            marker->id = 0x281;
         }
         break;
     case 3:
-        marker->unk14_20 = 0x282;
+        marker->id = 0x282;
         break;
     case 4:
-        marker->unk14_20 = 0x283;
+        marker->id = 0x283;
         break;
     case 5:
-        marker->unk14_20 = 0x283;
+        marker->id = 0x283;
         break;
     default:
-        marker->unk14_20 = 0x25E;
+        marker->id = 0x25E;
         break;
     }
     return TRUE;

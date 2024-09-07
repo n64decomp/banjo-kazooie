@@ -46,11 +46,11 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
 
     if(actorPtr->state < 5){
         if(!fileProgressFlag_get(FILEPROG_E_JINJO_TEXT)){
-            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
+            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);
-        if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
+        if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->id + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
         this->collidable = 0;

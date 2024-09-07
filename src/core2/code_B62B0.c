@@ -229,9 +229,9 @@ s16 D_80383F10[0x2A9];
 /* .code */
 s32 func_8033D240(ActorMarker *arg0, ActorMarker *arg1){
     if(arg0){
-        if(!arg0->unk14_20 && player_getActiveHitbox(arg1) == HITBOX_6_WONDERWING)
+        if(!arg0->id && player_getActiveHitbox(arg1) == HITBOX_6_WONDERWING)
             return -1;
-        return arg0->unk14_20;
+        return arg0->id;
     }
     return -1;
 }
@@ -240,7 +240,7 @@ s32 func_8033D2A8(ActorMarker *arg0, ActorMarker *arg1){
     if(!arg0)
         return HITBOX_6_WONDERWING;
     
-    if(!arg0->unk14_20)
+    if(!arg0->id)
         return player_getActiveHitbox(arg1);
     return HITBOX_0_NONE;
 }
@@ -273,7 +273,7 @@ bool func_8033D410(ActorMarker *arg0, ActorMarker *arg1) {
     s16 temp_t0;
     s32 temp_s0;
 
-    sp38 = D_80383F10[arg1->unk14_20];
+    sp38 = D_80383F10[arg1->id];
     if (sp38 == -1) {
         return FALSE;
     }

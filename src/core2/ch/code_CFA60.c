@@ -22,7 +22,7 @@ ActorInfo D_80372840 = {
 void func_803569F0(Actor *this, s32 next_state){
     ActorLocal_Core2_CFA60 *local = (ActorLocal_Core2_CFA60 *)&this->local;
 
-    this->marker->unk14_20 = 0x1cf;
+    this->marker->id = 0x1cf;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
         skeletalAnim_set(this->unk148, ASSET_15A_ANIM_GRILL_CHOMPA_ATTACK, 0, 2.5f);
@@ -42,7 +42,7 @@ void func_803569F0(Actor *this, s32 next_state){
         local->unk0 = 0.2f;
     }
     if(next_state == 4){
-        this->marker->unk14_20 = 0x29;
+        this->marker->id = 0x29;
         actor_collisionOn(this);
         skeletalAnim_set(this->unk148, ASSET_15A_ANIM_GRILL_CHOMPA_ATTACK, 0, randf2(2.3f, 2.7f));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
@@ -123,7 +123,7 @@ void func_80356CCC(Actor *this){
     if(this->state == 4){
         skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
         if(sp4C < 0.59 && 0.59 <= sp48){
-            this->marker->unk14_20 = 0x1cf;
+            this->marker->id = 0x1cf;
         }
         if(sp4C < 0.5 && 0.5 <= sp48){
             func_8030E760(SFX_2_CLAW_SWIPE, 0.9f, 32000);

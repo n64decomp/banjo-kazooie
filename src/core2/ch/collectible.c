@@ -53,7 +53,7 @@ void chCollectible_setState(Actor *arg0, s32 next_state){
 void func_802D8C98(Actor *this, s32 arg1) {
     s32 phi_v0;
 
-    switch (this->marker->unk14_20)
+    switch (this->marker->id)
     {
     case MARKER_60_BLUE_EGG_COLLECTIBLE:
         phi_v0 = TRUE;
@@ -143,7 +143,7 @@ void chCollectible_update(Actor *this) {
     u32 temp_v0;
 
     if (!this->initialized) {
-        if (this->marker->unk14_20 != 0x60) {
+        if (this->marker->id != 0x60) {
             func_8032AA58(this, 0.56f);
         }
         this->unk10_12 = -1;

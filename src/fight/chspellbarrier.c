@@ -88,7 +88,7 @@ void chspellbarrier_update(Actor *this){
     }//L8038E97C
     jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);
     if(jinjo_marker){
-        if(jinjo_marker->unk14_20 == MARKER_285_JINJONATOR){
+        if(jinjo_marker->id == MARKER_285_JINJONATOR){
             marker_despawn(this->marker);
             chfinalboss_spellBarrierInactive();
             return;

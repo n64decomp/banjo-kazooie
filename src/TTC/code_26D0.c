@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "prop.h"
 #include "SnS.h"
+#include "actor.h"
 
 extern ActorInfo chClam;
 extern ActorInfo TTC_D_8038C510;
@@ -90,25 +91,25 @@ ActorInfo D_8038C6DC = {
 /* .code */
 void TTC_func_80388AC0(void)
 {
-    spawnableActorList_add(&D_8038C5E0, actor_new, 0);
-    spawnableActorList_add(&D_8038C604, actor_new, 0);
-    spawnableActorList_add(&D_8038C580, actor_new, 0X4100168);
-    spawnableActorList_add(&TTC_D_8038C510, actor_new, 0X4000101);
-    spawnableActorList_add(&D_8038C718, actor_new, 0X188);
-    spawnableActorList_add(&D_8038C790, actor_new, 0X148);
-    spawnableActorList_add(&D_8038C7B4, actor_new, 0X148);
-    spawnableActorList_add(&D_8038C7D8, actor_new, 0X148);
-    spawnableActorList_add(&D_8038C8B0, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C8D4, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C8F8, actor_new, 0X400);
-    spawnableActorList_add(&gChTreasureInfo, actor_new, 0X2000048);
-    spawnableActorList_add(&D_8038C628, actor_new, 0X8680);
-    spawnableActorList_add(&D_8038C64C, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C670, actor_new, 0X20404);
-    spawnableActorList_add(&D_8038C694, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C6B8, actor_new, 0X400);
-    spawnableActorList_add(&D_8038C6DC, actor_new, 0X400);
-    spawnableActorList_add(&chClam, actor_new, 0X2000041);
+    spawnableActorList_add(&D_8038C5E0, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_8038C604, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_8038C580, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
+    spawnableActorList_add(&TTC_D_8038C510, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
+    spawnableActorList_add(&D_8038C718, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&D_8038C790, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&D_8038C7B4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&D_8038C7D8, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&D_8038C8B0, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8038C8D4, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8038C8F8, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gChTreasureInfo, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&D_8038C628, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&D_8038C64C, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8038C670, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17);
+    spawnableActorList_add(&D_8038C694, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8038C6B8, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8038C6DC, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chClam, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
 }
 
 void TTC_func_80388C78(Actor *this){

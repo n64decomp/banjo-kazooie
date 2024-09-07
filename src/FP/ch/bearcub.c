@@ -88,7 +88,7 @@ void func_8038A384(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
-        switch(this->marker->unk14_20){
+        switch(this->marker->id){
             case MARKER_1FA_POLAR_BEAR_CUB_BLUE://L8038A404
                 this->unk1C[0] = 1.0f;
                 this->unk1C[1] = 1.2f;
@@ -139,7 +139,7 @@ void func_8038A384(Actor *this){
 
             }//L8038A648
 
-            switch(this->marker->unk14_20){
+            switch(this->marker->id){
                 case MARKER_1FA_POLAR_BEAR_CUB_BLUE:
                     sp3C = 0;
                     break;

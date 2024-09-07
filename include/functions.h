@@ -555,5 +555,9 @@ extern void subaddie_set_state_forward(Actor *, s32);
 extern BKModelBin *marker_loadModelBin(ActorMarker *this);
 extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
 extern void func_80326310(Actor *this);
+extern ActorMarker *marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4);
+extern s32 asset_getFlag(enum asset_e arg0);
+extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2);
+extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3);
 
 #endif

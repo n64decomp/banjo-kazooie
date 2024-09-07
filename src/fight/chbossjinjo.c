@@ -133,7 +133,7 @@ void chbossjinjo_spawnParticles(Actor *this, enum asset_e arg1, enum asset_e arg
 void chbossjinjo_spawnAttackParticles(Actor *this){
     s32 sparkle_sprite_id;
     s32 smoke_sprite_id;
-    switch(this->marker->unk14_20){
+    switch(this->marker->id){
         default:
             sparkle_sprite_id = ASSET_718_SPRITE_SPARKLE_WHITE_2;
             smoke_sprite_id = ASSET_6C2_SPRITE_SMOKE_WHITE;
@@ -374,7 +374,7 @@ void chBossJinjo_func_8038D014(Actor *this){
                 func_8030E6A4(0x3ee, randf2(1.0f, 1.15f), 32000);
                 timed_playSfx(0.1f, 0x416, 0.6f, 32000);
                 marker_despawn(this->marker);
-                switch (this->marker->unk14_20)
+                switch (this->marker->id)
                 {
                 case MARKER_27B_BOSS_JINJO_ORANGE:
                     temp_a1 = 0x557;

@@ -1,9 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
 #include "prop.h"
 #include "SnS.h"
+#include "actor.h"
 
 extern ActorInfo D_80367FE0;
 
@@ -91,7 +91,7 @@ void func_80391040(Actor *this){
 
       if(randf() < 0.5){
             a1 = 8;
-            switch(this->marker->unk14_20){
+            switch(this->marker->id){
                   case 0x247://L80391128
                         sp2C = 0x710;
                         break;
@@ -126,7 +126,7 @@ void func_80391180(Actor *this){
       }
       this->unk58_0 = func_8038DD14() ? 0 : 1;
 
-      if(this->marker->unk14_20 == 0x21F){
+      if(this->marker->id == 0x21F){
             this->marker->unk40_22 = subaddie_playerIsWithinSphere(this, 2000) ? 1 : 0;
       }
 }
@@ -135,10 +135,10 @@ void FP_func_80391254(Actor *this){
       func_802D3D74(this);
       if(!this->unk16C_4){
             this->unk16C_4 = TRUE;
-            if(this->marker->unk14_20 ==  0x221 || this->marker->unk14_20 == 0x223){
+            if(this->marker->id ==  0x221 || this->marker->id == 0x223){
                   this->pitch = 3.0f;
             }
-            if(this->marker->unk14_20 == 0x222){
+            if(this->marker->id == 0x222){
                   this->pitch = 2.0f;
             }
       }
@@ -154,54 +154,54 @@ void func_803912EC(Actor *this){
 
 void FP_func_80391324(void)
 {
-      spawnableActorList_add(&FP_D_80391AB0, actor_new, 0X600);
-      spawnableActorList_add(&D_80391BB0, actor_new, 0X2A);
-      spawnableActorList_add(&D_80391C18, actor_new, 0X180084);
-      spawnableActorList_add(&D_80391C58, actor_new, 0X180084);
-      spawnableActorList_add(&D_80391CE8, actor_new, 0X2002E);
-      spawnableActorList_add(&D_80391E08, actor_new, 0X100);
-      spawnableActorList_add(&FP_D_80391E2C, actor_new, 0X100);
-      spawnableActorList_add(&D_80391E50, actor_new, 0X100);
-      spawnableActorList_add(&D_80391F88, actor_new, 0X2100C);
-      spawnableActorList_add(&D_80391FAC, actor_new, 0X2100C);
-      spawnableActorList_add(&D_80391FD0, actor_new, 0X2100C);
-      spawnableActorList_add(&D_80391FF4, actor_new, 0X2100C);
-      spawnableActorList_add(&D_803920E8, actor_new, 0X408);
-      spawnableActorList_add(&D_803923D0, actor_new, 0X100006C);
-      spawnableActorList_add(&chXmasTree, actor_new, 0X20400);
-      spawnableActorList_add(&D_80392420, actor_new, 4);
-      spawnableActorList_add(&D_80392470, actor_new, 0X444);
-      spawnableActorList_add(&D_803924B0, actor_new, 8);
-      spawnableActorList_add(&D_803924D4, actor_new, 8);
-      spawnableActorList_add(&D_803924F8, actor_new, 8);
-      spawnableActorList_add(&chScarfSled, actor_new, 0);
-      spawnableActorList_add(&chRaceSled, actor_new, 0X20);
-      spawnableActorList_add(&D_80392588, actor_new, 0X80108);
-      spawnableActorList_add(&D_80392628, actor_new, 0X44);
-      spawnableActorList_add(&D_80392690, actor_new, 0XA8);
-      spawnableActorList_add(&D_803926C0, actor_new, 0X8000400);
-      spawnableActorList_add(&D_80392700, actor_new, 0X108);
-      spawnableActorList_add(&FP_D_80392840, actor_new, 0);
-      spawnableActorList_add(&D_80392730, actor_new, 0X20000);
-      spawnableActorList_add(&D_80367FE0, actor_new, 0);
-      spawnableActorList_add(&FP_D_803928E0, actor_new, 0X40);
-      spawnableActorList_add(&D_80392904, actor_new, 0X40);
-      spawnableActorList_add(&D_80392928, actor_new, 0X40);
-      spawnableActorList_add(&D_8039294C, actor_new, 0X40);
-      spawnableActorList_add(&D_80392B20, actor_new, 0X400);
-      spawnableActorList_add(&D_80392B44, actor_new, 0X400);
-      spawnableActorList_add(&D_80392970, actor_new, 0X400);
-      spawnableActorList_add(&D_80392994, actor_new, 0X400);
-      spawnableActorList_add(&D_803929B8, actor_new, 0X404);
-      spawnableActorList_add(&D_803929DC, actor_new, 0X404);
-      spawnableActorList_add(&D_80392A00, actor_new, 0X404);
-      spawnableActorList_add(&D_80392A24, actor_new, 0X20004);
-      spawnableActorList_add(&D_80392A48, actor_new, 4);
-      spawnableActorList_add(&D_80392A6C, actor_new, 0X20004);
-      spawnableActorList_add(&D_80392A90, actor_new, 0X20004);
-      spawnableActorList_add(&D_80392AB4, actor_new, 0X400);
-      spawnableActorList_add(&D_80392AD8, actor_new, 0X400);
-      spawnableActorList_add(&D_80392AFC, actor_new, 0X400);
+      spawnableActorList_add(&FP_D_80391AB0, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80391BB0, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5);
+      spawnableActorList_add(&D_80391C18, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_19 | ACTOR_FLAG_UNKNOWN_20);
+      spawnableActorList_add(&D_80391C58, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_19 | ACTOR_FLAG_UNKNOWN_20);
+      spawnableActorList_add(&D_80391CE8, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80391E08, actor_new, ACTOR_FLAG_UNKNOWN_8);
+      spawnableActorList_add(&FP_D_80391E2C, actor_new, ACTOR_FLAG_UNKNOWN_8);
+      spawnableActorList_add(&D_80391E50, actor_new, ACTOR_FLAG_UNKNOWN_8);
+      spawnableActorList_add(&D_80391F88, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80391FAC, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80391FD0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80391FF4, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_803920E8, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_803923D0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_24);
+      spawnableActorList_add(&chXmasTree, actor_new, ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80392420, actor_new, ACTOR_FLAG_UNKNOWN_2);
+      spawnableActorList_add(&D_80392470, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_803924B0, actor_new, ACTOR_FLAG_UNKNOWN_3);
+      spawnableActorList_add(&D_803924D4, actor_new, ACTOR_FLAG_UNKNOWN_3);
+      spawnableActorList_add(&D_803924F8, actor_new, ACTOR_FLAG_UNKNOWN_3);
+      spawnableActorList_add(&chScarfSled, actor_new, ACTOR_FLAG_NONE);
+      spawnableActorList_add(&chRaceSled, actor_new, ACTOR_FLAG_UNKNOWN_5);
+      spawnableActorList_add(&D_80392588, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_19);
+      spawnableActorList_add(&D_80392628, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6);
+      spawnableActorList_add(&D_80392690, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7);
+      spawnableActorList_add(&D_803926C0, actor_new, ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_27);
+      spawnableActorList_add(&D_80392700, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_8);
+      spawnableActorList_add(&FP_D_80392840, actor_new, ACTOR_FLAG_NONE);
+      spawnableActorList_add(&D_80392730, actor_new, ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80367FE0, actor_new, ACTOR_FLAG_NONE);
+      spawnableActorList_add(&FP_D_803928E0, actor_new, ACTOR_FLAG_UNKNOWN_6);
+      spawnableActorList_add(&D_80392904, actor_new, ACTOR_FLAG_UNKNOWN_6);
+      spawnableActorList_add(&D_80392928, actor_new, ACTOR_FLAG_UNKNOWN_6);
+      spawnableActorList_add(&D_8039294C, actor_new, ACTOR_FLAG_UNKNOWN_6);
+      spawnableActorList_add(&D_80392B20, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392B44, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392970, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392994, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_803929B8, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_803929DC, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392A00, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392A24, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80392A48, actor_new, ACTOR_FLAG_UNKNOWN_2);
+      spawnableActorList_add(&D_80392A6C, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80392A90, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_17);
+      spawnableActorList_add(&D_80392AB4, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392AD8, actor_new, ACTOR_FLAG_UNKNOWN_10);
+      spawnableActorList_add(&D_80392AFC, actor_new, ACTOR_FLAG_UNKNOWN_10);
 }
 
 

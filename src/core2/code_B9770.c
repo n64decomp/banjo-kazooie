@@ -857,7 +857,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
             if (sp68 != 0) {
                 if (sp50 != (-9999.0f)) {
                     arg0->yaw = sp50;
-                    if (arg0->marker->unk14_20 == 0x12) {
+                    if (arg0->marker->id == 0x12) {
                         arg0->yaw = (f32) func_80342244((s32) arg0->yaw);
                     }
                     arg0->yaw_ideal = arg0->yaw;
@@ -1012,7 +1012,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
                 arg0->unk38_21 = sp48->unkC.bit31;
                 arg0->unk78_31 = arg1->t1.unk4.bit15;
                 arg0->unk78_22 = sp48->unk4.bit15;
-                if (arg0->marker->unk14_20 == 0x12)
+                if (arg0->marker->id == 0x12)
                 {
                     arg0->unk38_13 = func_80342244(arg0->unk38_13);
                     arg0->unk38_21 = func_80342244(arg0->unk38_21);
@@ -1028,7 +1028,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
         if (!arg0->unk10_4){
             if (arg0->unk10_8){
                 arg0->yaw_ideal = (f32) arg1->t1.unkC.bit31;
-                if (arg0->marker->unk14_20 == 0x12){
+                if (arg0->marker->id == 0x12){
                     arg0->yaw_ideal = (f32) func_80342244((s32) arg0->yaw_ideal);
                 }
             }
@@ -1043,7 +1043,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
 void func_803430B4(Actor *arg0) {
     f32 d_yaw;
 
-    if ((arg0->marker->unk14_20 == 0x12) && (arg0->unk138_30 == 1)) {
+    if ((arg0->marker->id == 0x12) && (arg0->unk138_30 == 1)) {
         d_yaw = arg0->yaw_ideal - arg0->yaw;
         while (d_yaw >= 360.0f) { d_yaw -= 360.0f; }
         while (d_yaw < 0.0f)    { d_yaw += 360.0f; }
@@ -1091,7 +1091,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (arg0->unk10_4) {
         player_getPosition(sp4C);
         func_802BC434(sp40, sp4C, arg0->position);
-        if (arg0->marker->unk14_20 != 0x12) {
+        if (arg0->marker->id != 0x12) {
             sp40[1] += 180.0f;
             while (sp40[1] >= 360.0f) {
                     sp40[1] -= 360.0f;
@@ -1196,7 +1196,7 @@ s32 func_803438E0(Actor *actor, s32 arg1, s32 arg2, s32 arg3) {
     }
     sp4C = func_803421A4(actor->unk44_14, actor->unk48);
     if ((actor->unk54 == 0.0f) && (actor->unk138_3 == 0)) {
-        if (actor->marker->unk14_20 == 0xB0) {
+        if (actor->marker->id == 0xB0) {
             actor->unk48 = func_803240E0(D_80371E70[actor->unk44_14], actor->unk48, sp40, &sp44);
         } else {
             actor->unk48 = func_80323FDC(D_80371E70[actor->unk44_14], actor->unk48, sp40, &sp44);

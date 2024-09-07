@@ -52,7 +52,7 @@ void func_80357264(Actor *this, s32 next_state){
     f32 sp38;
     s32 pad34;
 
-    this->marker->unk14_20 = MARKER_1D0_CLUCKER_B;
+    this->marker->id = MARKER_1D0_CLUCKER_B;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
         skeletalAnim_set(this->unk148, ASSET_184_ANIM_CLUCKER_ATTACK_SHORT, 0.0f, 2.5f);
@@ -78,7 +78,7 @@ void func_80357264(Actor *this, s32 next_state){
         local->unk4 = 0.2f;
 
     if(next_state == 4){
-        this->marker->unk14_20 = MARKER_1B2_CLUCKER_A;
+        this->marker->id = MARKER_1B2_CLUCKER_A;
         actor_collisionOn(this);
         local->unk0 = (local->unk0 + 1) % 3; 
         if(local->unk0 < 2)
@@ -177,7 +177,7 @@ void func_8035765C(Actor *this){
         skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
         if(skeletalAnim_getAnimId(this->unk148) == 0x185){
             if(sp4C < 0.58 && 0.58 <= sp48){
-                this->marker->unk14_20 = MARKER_1D0_CLUCKER_B;
+                this->marker->id = MARKER_1D0_CLUCKER_B;
             }
             if(sp4C < 0.05 && 0.05 <= sp48){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);
@@ -194,7 +194,7 @@ void func_8035765C(Actor *this){
         }
         else{//L803579F0
             if(sp4C < 0.63 && 0.63 <= sp48){
-                this->marker->unk14_20 = MARKER_1D0_CLUCKER_B;
+                this->marker->id = MARKER_1D0_CLUCKER_B;
             }
             if(sp4C < 0.1 && 0.1 <= sp48){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);

@@ -1,8 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
 #include "prop.h"
+#include "actor.h"
 
 extern ActorInfo D_80390D20;
 extern ActorInfo D_80390050;
@@ -169,56 +169,56 @@ void func_80386BF8(Actor *arg0){
 }
 
 void RBB_func_80386C48(void){
-    spawnableActorList_add(&D_80390D20, actor_new, 0x4880);
-    spawnableActorList_add(&D_80390050, actor_new, 0);
-    spawnableActorList_add(&D_80390200, actor_new, 0x80);
-    spawnableActorList_add(&D_80390270, actor_new, 0x80);
-    spawnableActorList_add(&D_80390D50, actor_new, 0x8004480);
-    spawnableActorList_add(&D_803906E0, actor_new, 0x80);
-    spawnableActorList_add(&D_80390738, actor_new, 0x80);
-    spawnableActorList_add(&D_803907D0, actor_new, 0x6488);
-    spawnableActorList_add(&D_803907F4, actor_new, 0x6488);
-    spawnableActorList_add(&D_80390818, actor_new, 0x6488);
-    spawnableActorList_add(&D_8039083C, actor_new, 0x6488);
-    spawnableActorList_add(&D_803904C0, actor_new, 0x6408);
-    spawnableActorList_add(&D_803904E4, actor_new, 0x6408);
-    spawnableActorList_add(&D_80390508, actor_new, 0x6408);
-    spawnableActorList_add(&D_803903B0, actor_new, 0x6408);
-    spawnableActorList_add(&D_803903D4, actor_new, 0x6408);
-    spawnableActorList_add(&D_803903F8, actor_new, 0x6408);
-    spawnableActorList_add(&D_80390640, actor_new, 0x400);
-    spawnableActorList_add(&D_80390664, actor_new, 0x400);
-    spawnableActorList_add(&D_80390688, actor_new, 0x400);
-    spawnableActorList_add(&D_803906B0, actor_new, 0);
-    spawnableActorList_add(&D_803908C0, actor_new, 0x80);
-    spawnableActorList_add(&D_803908E4, actor_new, 0x80);
-    spawnableActorList_add(&D_80390908, actor_new, 0x80);
-    spawnableActorList_add(&D_803909B0, actor_new, 0x880);
-    spawnableActorList_add(&D_803909D4, actor_new, 0x880);
-    spawnableActorList_add(&RBB_D_803909F8, actor_new, 0x880);
-    spawnableActorList_add(&D_80390A50, actor_new, 0x80);
-    spawnableActorList_add(&D_80390380, actor_new, 0x9aa);
-    spawnableActorList_add(&D_80390A80, actor_new, 0x80); //anchorswitch
-    spawnableActorList_add(&RBB_D_80390AB0, actor_new, 0x8C8); //dolphin
-    spawnableActorList_add(&RBB_D_80390AE0, actor_new, 0xC80); //anchor
-    spawnableActorList_add(&RBB_D_80390B10, actor_new, 0x80);
-    spawnableActorList_add(&D_80390B40, actor_new, 0x880); //rarewareflag
-    spawnableActorList_add(&RBB_D_80390BD0, actor_new, 0xc2c);
-    spawnableActorList_add(&D_80390BF4, actor_new, 0xc2c);
-    spawnableActorList_add(&D_80390C18, actor_new, 0xc2c);
-    spawnableActorList_add(&RBB_D_80390C3C, actor_new, 0xc2c);
-    spawnableActorList_add(&RBB_D_80390CF0, actor_new, 0x80);
-    spawnableActorList_add(&D_80390D88, actor_new, 0x2000889);
-    spawnableActorList_add(&D_80390DAC, actor_new, 0x2000889);
-    spawnableActorList_add(&RBB_D_80390E00, actor_new, 0x80);
-    spawnableActorList_add(&D_80390E34, actor_new, 0x80);
-    spawnableActorList_add(&D_80390E58, actor_new, 0x80);
-    spawnableActorList_add(&D_803900E0, actor_new, 0);
-    spawnableActorList_add(&D_80390104, actor_new, 0x8600); //captcabinwooddoor
-    spawnableActorList_add(&D_80390128, actor_new, 0);
-    spawnableActorList_add(&D_8039014C, actor_new, 0);
-    spawnableActorList_add(&D_803901B8, actor_new, 0x8600);
-    spawnableActorList_add(&D_803901DC, actor_new, 0x8600);
-    spawnableActorList_add(&D_80390170, actor_new, 0x8600); //skylight
-    spawnableActorList_add(&D_80390194, actor_new, 0x8); //honeycombswitch
+    spawnableActorList_add(&D_80390D20, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80390050, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_80390200, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390270, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390D50, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_27);
+    spawnableActorList_add(&D_803906E0, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390738, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_803907D0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803907F4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80390818, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_8039083C, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803904C0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803904E4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80390508, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803903B0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803903D4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_803903F8, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_13 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80390640, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80390664, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80390688, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_803906B0, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_803908C0, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_803908E4, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390908, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_803909B0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&D_803909D4, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&RBB_D_803909F8, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&D_80390A50, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390380, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&D_80390A80, actor_new, ACTOR_FLAG_UNKNOWN_7); //anchorswitch
+    spawnableActorList_add(&RBB_D_80390AB0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11); //dolphin
+    spawnableActorList_add(&RBB_D_80390AE0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11); //anchor
+    spawnableActorList_add(&RBB_D_80390B10, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390B40, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11); //rarewareflag
+    spawnableActorList_add(&RBB_D_80390BD0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&D_80390BF4, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&D_80390C18, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&RBB_D_80390C3C, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&RBB_D_80390CF0, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390D88, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&D_80390DAC, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&RBB_D_80390E00, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390E34, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390E58, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_803900E0, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_80390104, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //captcabinwooddoor
+    spawnableActorList_add(&D_80390128, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_8039014C, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_803901B8, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&D_803901DC, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&D_80390170, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //skylight
+    spawnableActorList_add(&D_80390194, actor_new, ACTOR_FLAG_UNKNOWN_3); //honeycombswitch
 }

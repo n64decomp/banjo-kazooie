@@ -314,11 +314,11 @@ void func_802C6240(Actor *this){
             break;
    }//L802C6D1C
    if(this->state == 0xe){
-        if(this->marker->unk14_20 != 0x29e)
-            this->marker->unk14_20 = 0x29e;
+        if(this->marker->id != 0x29e)
+            this->marker->id = 0x29e;
    }else{//L802C6D60
-        if(this->marker->unk14_20 != 3)
-            this->marker->unk14_20 = 3;
+        if(this->marker->id != 3)
+            this->marker->id = 3;
    }
 }
 

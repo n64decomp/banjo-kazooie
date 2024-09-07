@@ -32,7 +32,7 @@ Actor *func_80390560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){
-    switch (marker->unk14_20) {
+    switch (marker->id) {
     case 0x170:
         item_setMaxCount(ITEM_D_EGGS);
         fxSparkle_giantBlueEgg(&marker->propPtr->x);

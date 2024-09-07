@@ -294,7 +294,7 @@ enum marker_e bacarry_get_markerId(void){
 
     marker = bacarry_get_marker();
     if(marker){
-        return marker->unk14_20;
+        return marker->id;
     }
     return 0;
 }

@@ -270,7 +270,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
         if(func_8033D410(playerMarker, marker))
             return;
         
-        switch(marker->unk14_20){
+        switch(marker->id){
             case 0x125: //L8028BE88
             case 0x126: //L8028BE88
                 obj_collision_type = 1;

@@ -2000,7 +2000,7 @@ void func_80307CA0(ActorMarker *marker) {
     s32 temp_v0_3;
     s32 var_s0;
 
-    temp_s4 = D_8036A9E4[marker->unk14_20];
+    temp_s4 = D_8036A9E4[marker->id];
     if ((temp_s4 != 0xFF) && (bitfield_isBitSet(D_8036A9E0, temp_s4) == 1)) {
         func_8032E010(marker->propPtr, sp58);
         cubePtrList = func_80307948(sp58);

@@ -184,7 +184,7 @@ void func_8038F084(ActorMarker *marker){
         timedFunc_set_0(0.3f, func_8038F050);
         actor->unk58_0 = 0;
         actor->scale *=  1.6;
-        if(actor->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+        if(actor->marker->id != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             chSpellFireball_emitSparkles(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
                 D_80391C0C, D_80391C24, D_80391C3C,
                 D_80391C54, D_80391C64, D_80391C74
@@ -220,9 +220,9 @@ void func_8038F084(ActorMarker *marker){
 }
 
 void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
-    if( other->unk14_20 == 0x276
-        || other->unk14_20 == 0x27A
-        || other->unk14_20 == 0x27F
+    if( other->id == 0x276
+        || other->id == 0x27A
+        || other->id == 0x27F
     ) return;
 
     func_8038F084(marker);
@@ -283,7 +283,7 @@ void func_8038F620(Actor *this){
         actor_collisionOn(this);
         this->unk60 = 8.0f;
         this->scale = 0.1f;
-        if( this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+        if( this->marker->id == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             actor_collisionOff(this);
             marker_setFreeMethod(this->marker, func_8038F5F8);
             func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
@@ -303,7 +303,7 @@ void func_8038F620(Actor *this){
             );
         }
     }//L8038F79C
-    if(D_803928E5 && this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+    if(D_803928E5 && this->marker->id == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
         ncStaticCamera_rotateToTarget(this->position);
     }//L8038F7D4
 
@@ -312,7 +312,7 @@ void func_8038F620(Actor *this){
             D_80392914 = sp40*1.4;
             this->scale = (this->scale + D_80392914 < 1.0) ? this->scale + D_80392914 : 1.0f;
 
-            switch(this->marker->unk14_20){
+            switch(this->marker->id){
                 case MARKER_25C_GRUNTY_SPELL_FIREBALL://L8038F8AC
                     chSpellFireball_emitExplosion(this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
                         D_80391CEC, D_80391D34, 
@@ -359,7 +359,7 @@ void func_8038F620(Actor *this){
                 }
             }
             // L8038FABC
-            if( this->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK
+            if( this->marker->id != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK
                 && func_8028F25C()
             ){
                 func_8038F084(this->marker);

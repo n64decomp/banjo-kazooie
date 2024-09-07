@@ -42,7 +42,7 @@ void lair_func_803900DC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 void func_803900EC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     s32 sp1C;
 
-    sp1C =  marker->unk14_20 - 0x16D;
+    sp1C =  marker->id - 0x16D;
     func_8028F918(0);
     if (!fileProgressFlag_get(sp1C + 0xAD)) {
         fileProgressFlag_set(sp1C + 0xAD, 1);
@@ -52,7 +52,7 @@ void func_803900EC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
 s32  func_80390158(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     s32 phi_v1;
-    phi_v1 =  marker->unk14_20 - 0x16D;
+    phi_v1 =  marker->id - 0x16D;
     return phi_v1;
 }
 
@@ -61,7 +61,7 @@ void func_80390174(ActorMarker *marker, s32 arg1) {
     s32 sp28;
 
     this = marker_getActor(marker);
-    sp28 = this->marker->unk14_20 - 0x16D;
+    sp28 = this->marker->id - 0x16D;
     func_8028F94C(2, this->position);
     if (fileProgressFlag_get(sp28 + 0xAD)) {
         func_80311480(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC);
@@ -88,7 +88,7 @@ void func_803902B8(Actor *this) {
     s32 sp54;
     s32 sp3C[6];
 
-    sp54 = this->marker->unk14_20 - 0x16D;
+    sp54 = this->marker->id - 0x16D;
     if (!this->initialized) {
         marker_setFreeMethod(this->marker, func_80390298);
         this->unk138_24 = func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);

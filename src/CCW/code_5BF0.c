@@ -45,22 +45,22 @@ void CCW_func_8038C16C(Actor *this, s32 next_state) {
     }
 
     if (next_state == 2) {
-        if (this->marker->unk14_20 == 0x1CA) {
+        if (this->marker->id == 0x1CA) {
             skeletalAnim_set(this->unk148, 0x22E, 0.2f, 3.53f);
             skeletalAnim_setCallback_1(this->unk148, 0.1f, func_8038C0E8, this->marker);
         }
-        if (this->marker->unk14_20 == 0x1C7) {
+        if (this->marker->id == 0x1C7) {
             skeletalAnim_set(this->unk148, 0x230, 0.2f, 4.0f);
         }
-        if (this->marker->unk14_20 == 0x1CB) {
+        if (this->marker->id == 0x1CB) {
             skeletalAnim_set(this->unk148, 0x1A2, 0.2f, 4.0f);
             skeletalAnim_setCallback_1(this->unk148, 0.3f, func_8038BFE0, this->marker);
             skeletalAnim_setCallback_1(this->unk148, 0.65f, func_8038C064, this->marker);
         }
-        if (this->marker->unk14_20 == 0x1C8) {
+        if (this->marker->id == 0x1C8) {
             skeletalAnim_set(this->unk148, 0x231, 0.2f, 4.0f);
         }
-        if ((this->marker->unk14_20 == 0x1C7) || (this->marker->unk14_20 == 0x1CB) || (this->marker->unk14_20 == 0x1C8)) {
+        if ((this->marker->id == 0x1C7) || (this->marker->id == 0x1CB) || (this->marker->id == 0x1C8)) {
             other = actorArray_findActorFromActorId(0x313);
             if (other != 0) {
                 this->position[0] = other->position[0];
@@ -100,7 +100,7 @@ void func_8038C41C(Actor *this) {
     if (this->state == 0) {
         if( map_get() == MAP_60_CCW_AUTUMN_NABNUTS_HOUSE
             && !jiggyscore_isSpawned(JIGGY_4A_CCW_NABNUT) 
-            && (this->marker->unk14_20 == 0x1C6 || this->marker->unk14_20 == 0x1CA)
+            && (this->marker->id == 0x1C6 || this->marker->id == 0x1CA)
         ){
             CCW_func_8038C16C(this, 1);
         } else {
@@ -108,11 +108,11 @@ void func_8038C41C(Actor *this) {
         }
     }
 
-    if ((this->marker->unk14_20 == 0x1CA) && (this->state != 1)) {
+    if ((this->marker->id == 0x1CA) && (this->state != 1)) {
         func_8028E668(this->position, 300.0f, -50.0f, 120.0f);
     }
 
-    if ((this->marker->unk14_20 == 0x1CB) && (this->state == 2)) {
+    if ((this->marker->id == 0x1CB) && (this->state == 2)) {
         player_getPosition(sp2C);
         if (!this->unk138_24 && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
             this->unk138_24 = TRUE;

@@ -287,7 +287,7 @@ void func_80388080(Actor *this){
     
 
     if(!this->initialized){
-        switch(this->marker->unk14_20){
+        switch(this->marker->id){
             default:
                 local->unkC = 3; //cauliflower
                 break;

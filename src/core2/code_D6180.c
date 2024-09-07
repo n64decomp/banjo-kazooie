@@ -116,12 +116,12 @@ void func_8035D3D8(Actor *this) {
     }
     func_802DB5A0(this);
     if (this->state == 9) {
-        if (this->marker->unk14_20 != MARKER_298_MUMMUM_BALL) {
-            this->marker->unk14_20 = MARKER_298_MUMMUM_BALL;
+        if (this->marker->id != MARKER_298_MUMMUM_BALL) {
+            this->marker->id = MARKER_298_MUMMUM_BALL;
         }
     } else {
-        if (this->marker->unk14_20 != MARKER_219_MUMMUM) {
-            this->marker->unk14_20 = MARKER_219_MUMMUM;
+        if (this->marker->id != MARKER_219_MUMMUM) {
+            this->marker->id = MARKER_219_MUMMUM;
         }
     }
 }

@@ -31,7 +31,7 @@ Actor *func_80387AA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_80387B14(Actor *this, s32 next_state){
     ActorLocal_PortraitChompa *local = (ActorLocal_PortraitChompa *) &this->local;
     f32 tmp = 2.5f;
-    this->marker->unk14_20 = 0x1d1;
+    this->marker->id = 0x1d1;
 
     if(next_state == 1 || next_state == 2){
         skeletalAnim_set(this->unk148, 0x23e, 0.0f, 2.5f);
@@ -54,7 +54,7 @@ void func_80387B14(Actor *this, s32 next_state){
     }
 
     if(next_state == 4){
-        this->marker->unk14_20 = MARKER_254_PORTRAIT_CHOMPA_A;
+        this->marker->id = MARKER_254_PORTRAIT_CHOMPA_A;
         skeletalAnim_set(this->unk148, 0x23e, 0.0f, 2.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if(this->unk100){
@@ -222,7 +222,7 @@ void func_80388028(Actor *this){
     if(this->state == 4){
         skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if(sp44 < 0.56 && 0.56 <= sp40){
-            this->marker->unk14_20 = 0x1d1;
+            this->marker->id = 0x1d1;
         }
 
         if(sp44 < 0.5 && 0.5 <= sp40){

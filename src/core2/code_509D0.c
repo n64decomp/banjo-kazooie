@@ -105,7 +105,7 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
         sp18[0] = this->position[0];
         sp18[1] = this->position[1];
         sp18[2] = this->position[2];
-        switch (marker->unk14_20) {
+        switch (marker->id) {
             case MARKER_36_ORANGE_COLLECTIBLE:
                 if (mapSpecificFlags_get(1))
                     return;
@@ -160,7 +160,7 @@ void func_802D7DE8(ActorMarker *marker, f32 arg1[3]) {
     f32 var_f14;
     f32 var_f18;
 
-    sp4C = marker->unk14_20;
+    sp4C = marker->id;
     this = marker_getActor(marker);
     ml_vec3f_to_vec3w(sp50, arg1);
     if (sp4C == MARKER_37_GOLD_BULLION) {
@@ -204,7 +204,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
     f32 sp20;
 
     local = (s32*)&this->local;
-    if( (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) 
+    if( (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) 
         || (this->unk78_13 == 0)
     ) {
         this->position[0] += this->velocity[0];
@@ -224,13 +224,13 @@ void __chLevelCollectible_returnObj(Actor *this) {
             }
         }
         this->position[1] = sp20;
-        if (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) {
+        if (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) {
             FUNC_8030E8B4(SFX_21_EGG_BOUNCE_1, 0.76f, 25000, this->position, 1000, 2000);
         } else {
             FUNC_8030E8B4(SFX_B3_ORANGE_TALKING, 1.0f, 25000, this->position, 1000, 2000);
         }
         if (this->state == 4) {
-            switch (this->marker->unk14_20) {
+            switch (this->marker->id) {
             case MARKER_37_GOLD_BULLION:
                 break;
             case MARKER_36_ORANGE_COLLECTIBLE:
@@ -254,7 +254,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
         this->unk138_22 = this->unk138_21 = 0;
         subaddie_set_state(this, 2);
     }
-    switch (this->marker->unk14_20) {
+    switch (this->marker->id) {
         case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
             __chLevelCollectible_presentReturnEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
             break;
@@ -316,9 +316,9 @@ void chLevelCollectible_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if( this->marker->unk14_20 == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
-            || this->marker->unk14_20 == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
-            || this->marker->unk14_20 == MARKER_1FF_RED_PRESENT_COLLECTIBLE
+        if( this->marker->id == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
+            || this->marker->id == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
+            || this->marker->id == MARKER_1FF_RED_PRESENT_COLLECTIBLE
         ){
             if(jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
                 marker_despawn(this->marker);
@@ -355,9 +355,9 @@ void chLevelCollectible_update(Actor *this){
             break;
     }
 
-    marker_id = this->marker->unk14_20;
+    marker_id = this->marker->id;
 
-    switch(this->marker->unk14_20){
+    switch(this->marker->id){
 
         case MARKER_37_GOLD_BULLION: //L802D86CC
             func_802D83EC(this);

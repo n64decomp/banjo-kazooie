@@ -153,10 +153,10 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
 
 bool func_803882E4(ActorMarker * this_marker, ActorMarker * other_marker){
     if(this_marker->unk40_31 == 1){
-        this_marker->unk14_20 = 0x16C;
+        this_marker->id = 0x16C;
     }
     else{
-        this_marker->unk14_20 = MARKER_A5_NIPPER;
+        this_marker->id = MARKER_A5_NIPPER;
     }
     return TRUE;
 }
@@ -164,7 +164,7 @@ bool func_803882E4(ActorMarker * this_marker, ActorMarker * other_marker){
 void func_80388344(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this;
 
-    if(other_marker->unk14_20 == 1){
+    if(other_marker->id == 1){
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(7)
             && this->unk138_24

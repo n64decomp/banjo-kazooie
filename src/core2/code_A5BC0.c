@@ -267,7 +267,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 draw_dist_f;
     f32 percentage;
     if(!this->unk3E_0){
-        this->unk8(this, gfx, mtx, vtx);
+        this->drawFunc(this, gfx, mtx, vtx);
         return;
     }
     actor =  marker_getActor(this);
@@ -288,7 +288,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
             percentage = 1.0f;
         }
         func_8033A280(percentage);
-        this->unk8(this, gfx, mtx, vtx);
+        this->drawFunc(this, gfx, mtx, vtx);
     }//L8032D300
     func_8033A244(30000.0f);
     func_8033A280(1.0f);
@@ -1135,12 +1135,12 @@ void func_8032F7EC(f32 position[3], ActorMarker *marker, f32 rotation[3]) {
     func_8032F64C(position, marker);
 }
 
-ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, int arg4){
+ActorMarker * marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4){
     ActorMarker * marker = func_80332A60();
     marker->propPtr = NULL;
     marker->cubePtr = NULL;
-    marker->unk8 = arg1;
-    marker->unk14_20 = arg3;
+    marker->drawFunc = draw_func;
+    marker->id = marker_id;
     marker->unk40_23 = arg4;
     func_8032F3D4(pos, marker, arg2);
     marker->actrArrayIdx = 0;
@@ -1187,7 +1187,7 @@ ActorMarker * func_8032FB80(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_
     sp24[0] = pos[0];
     sp24[1] = pos[1];
     sp24[2] = pos[2];
-    func_8032F9DC(sp24, arg1, arg2, model_id, arg4);
+    marker_init(sp24, arg1, arg2, model_id, arg4);
 }
 
 ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id){
@@ -1207,7 +1207,7 @@ void func_8032FDDC(f32 rotation[3], ActorMarker *marker) {
 }
 
 int func_8032FFB4(ActorMarker *this, s32 arg1){
-    this->unk14_20 = arg1;
+    this->id = arg1;
 }
 
 //marker_setActorArrayIndex

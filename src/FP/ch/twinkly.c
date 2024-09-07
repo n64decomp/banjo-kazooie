@@ -252,7 +252,7 @@ void func_8038C9A0(Actor *this){
     Actor *other; //sp34
     void * sp30;
 
-    if(this->marker->unk14_20 == 0x200){
+    if(this->marker->id == 0x200){
         sp30 = func_8034C2C4(this->marker, 0x190);
     }
     other = marker_getActor(this->unk100);
@@ -278,7 +278,7 @@ void func_8038C9A0(Actor *this){
     }//L8038CA9C
 
     if(1.0f == other->unk1C[1]){
-        func_8038C398(this->position, this->marker->unk14_20);
+        func_8038C398(this->position, this->marker->id);
         FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1.0f, 32000, this->position, 0x6d6, 0xdac);\
         marker_despawn(this->marker);
         return;

@@ -369,7 +369,7 @@ void func_80325FE8(Actor *this) {
     u8 temp_v0;
 
     marker = this->marker;
-    marker->unk14_20 = 0;
+    marker->id = 0;
     if (this->animctrl != NULL) {
         animctrl_free(this->animctrl);
     }
@@ -631,7 +631,7 @@ Actor *actorArray_findActorFromMarkerId(enum marker_e marker_id) {
 
     actor_begin = suBaddieActorArray->data;
     for(i_actor = actor_begin; i_actor - actor_begin < suBaddieActorArray->cnt; i_actor++) {
-        if ((marker_id == i_actor->marker->unk14_20) && !i_actor->despawn_flag) {
+        if ((marker_id == i_actor->marker->id) && !i_actor->despawn_flag) {
             return i_actor;
         }
     }
@@ -809,7 +809,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk124_6 = 1;
     suLastBaddie->modelCacheIndex = actorInfo->actorId;
     suLastBaddie->unk44_2 = func_80326C18();
-    suLastBaddie->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->markerId, (flags & 0x400) ? 1 : 0);
+    suLastBaddie->marker = marker_init(position, actorInfo->draw_func, (asset_getFlag(actorInfo->modelId) == 1) ? 0 : 1, actorInfo->markerId, (flags & 0x400) ? 1 : 0);
     suLastBaddie->marker->unk3E_0 = 1;
     suLastBaddie->unk138_28 = 1;
     suLastBaddie->unk10_3 = -1;
@@ -1373,7 +1373,7 @@ f32 func_80328DCC(Actor *this, f32 angle, f32 angle_ideal, s32 arg3) {
         var_f2 += 360.0f;
     }
 
-    if ((this->marker->unk14_20 != 0x12) && (this->marker->unk2C_2 == 1) && ((var_f2 >= 50.0f) || (var_f2 < -50.0f))) {
+    if ((this->marker->id != 0x12) && (this->marker->unk2C_2 == 1) && ((var_f2 >= 50.0f) || (var_f2 < -50.0f))) {
         return angle_ideal;
     }
     var_f2 = var_f2 / func_80328DAC(this);
@@ -1742,7 +1742,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk100 = NULL;
                 s0->unk158[0] = NULL;
                 s0->unk158[1] = NULL;
-                s0->unk138_19 = s1->marker->unk14_20;
+                s0->unk138_19 = s1->marker->id;
                 s0->unk108 = s1->marker->unkC;
                 s0->unk10C = s1->marker->unk10;
                 s0->unk134 = s1->marker->unk1C;
@@ -2132,7 +2132,7 @@ void actorArray_defrag(void) {
                 i_actor->marker->unk50 = func_803406D4(i_actor->marker->unk50);
             }
 
-            if (i_actor->marker->unk14_20 == MARKER_217_BEE_SWARM) {
+            if (i_actor->marker->id == MARKER_217_BEE_SWARM) {
                 func_802CEB60(i_actor);
             }
         }
@@ -2155,7 +2155,7 @@ ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
     if (suBaddieActorArray != NULL) {
         temp_s3 = &suBaddieActorArray->data[0];
         for(var_s0 = temp_s3; (var_s0 - temp_s3) < suBaddieActorArray->cnt; var_s0++){
-            if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (chjiggy_getJiggyId(&(var_s0->marker)) == jiggy_id)) {
+            if ((var_s0->marker->id == MARKER_52_JIGGY) && (chjiggy_getJiggyId(&(var_s0->marker)) == jiggy_id)) {
                 return var_s0->marker;
             }
         }
@@ -2199,7 +2199,7 @@ void func_8032B3A0(Actor *this, ActorMarker *arg1) {
         sp54[2] = this->position[2];
         func_802EE6CC(sp54, 0, D_8036E5B0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
         func_802F3CF8(sp54, !this->unk16C_0, 
-            (arg1->unk14_20 == 1) ? 1 
+            (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
             : 0
         );
@@ -2215,7 +2215,7 @@ void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
         func_8034A174(this->marker->unk44, arg2, &sp3C);
         func_802EE6CC(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
         func_802F3CF8(sp3C, !this->unk16C_0, 
-            (arg1->unk14_20 == 1) ? 1 
+            (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
             : 0
         );
@@ -2244,7 +2244,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     sp64 = func_8033D574(arg2);
     if (((func_80297C6C() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
         if (sp64 == 0) {
-            if ((sp68 != 0) || (arg1->unk14_20 == 0)) {
+            if ((sp68 != 0) || (arg1->id == 0)) {
                 if (sp68 <= 0) {
                     sp68 = 1;
                 }
@@ -2265,7 +2265,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
             if (this->unk138_25) {
                 func_802C9334(sp6C + 0x21, this);
             } else {
-                if ((this->marker->unk14_20 < 0x1A1) || (this->marker->unk14_20 >= 0x1A5)) {
+                if ((this->marker->id < 0x1A1) || (this->marker->id >= 0x1A5)) {
                     func_802C9334(sp6C + 0x18, this);
                 }
             }

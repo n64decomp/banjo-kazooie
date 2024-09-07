@@ -75,13 +75,13 @@ typedef void (*ActorFreeFunc)(struct actor_s *);
 typedef struct actorMarker_s{
     ActorProp*  propPtr;
     struct cude_s*     cubePtr;
-    MarkerDrawFunc      unk8;
+    MarkerDrawFunc      drawFunc;
     MarkerCollisionFunc unkC; //ow_func
     MarkerCollisionFunc unk10;
     u32         yaw:9;
     u32         unk14_22:1;
     u32         unk14_21:1;
-    u32         unk14_20:10; //contains jingo_id for chjinjo
+    u32         id:10; // marker_id
     u32         unk14_10:11; //used in ch/jiggy
     Struct6Cs   *unk18;
     MarkerCollisionFunc unk1C; //die_func
@@ -220,7 +220,7 @@ typedef struct actor_s{
     f32 unkEC; //animCtrl???
     f32 stored_animctrl_duration; //animCtrlDuration
     u32 unkF4_31:1;
-    u32 unkF4_30:1;
+    u32 unkF4_30:1; // has something to do with vertices
     u32 unkF4_29:1;
     u32 unkF4_28:1; //saved marker->propPtr->unk8_3
     u32 unkF4_27:1; //saved marker->propPtr->unk8_2
@@ -265,7 +265,7 @@ typedef struct actor_s{
     u32 unk138_22:1;
     u32 unk138_21:1;
     u32 unk138_20:1;
-    u32 unk138_19:10; //saved maker->unk14_20
+    u32 unk138_19:10; //saved maker->id
     u32 unk138_9:1;
     u32 unk138_8:1;
     u32 unk138_7:4;

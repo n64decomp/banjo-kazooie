@@ -445,7 +445,7 @@ void func_8038D5BC(ActorMarker *marker, s32 arg1){
 }
 
 void func_8038D608(ActorMarker *marker, ActorMarker *other){
-    func_8038D7E8(marker, other->unk14_20 == 1);
+    func_8038D7E8(marker, other->id == 1);
 }
 
 Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
@@ -504,7 +504,7 @@ void func_8038D8BC(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        local->unk0 = &D_80390B70[this->marker->unk14_20 - 0x1A1];
+        local->unk0 = &D_80390B70[this->marker->id - 0x1A1];
         local->unk4 = 0;
         local->unk20 = 0;
         

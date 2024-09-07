@@ -1,8 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
 #include "SnS.h"
+#include "actor.h"
 
 extern void func_80244BB0(s32, s32, s32, f32);
 extern void func_802D3D54(Actor *this);
@@ -467,47 +467,47 @@ void func_8038F130(UNK_TYPE(s32) arg0, ActorMarker *arg1){
 
 void GV_func_8038F154(void)
 {
-    spawnableActorList_add(&chToots, actor_new, 0X180);
-    spawnableActorList_add(&chAncientOne, actor_new, 0X58A);
-    spawnableActorList_add(&Gobi1, actor_new, 0X9A8);
-    spawnableActorList_add(&chGobiRope, actor_new, 0X880);
-    spawnableActorList_add(&chGobiRock, actor_new, 0X80);
-    spawnableActorList_add(&chGobi2, actor_new, 0XDA8);
-    spawnableActorList_add(&chGobi3, actor_new, 0X9A8);
-    spawnableActorList_add(&chTrunker, actor_new, 0XD80);
-    spawnableActorList_add(&GV_D_80390DD0, actor_new, 0X4004);
-    spawnableActorList_add(&chSarcophagus, actor_new, 0X448);
-    spawnableActorList_add(&chSNSSarcophagus, actor_new, 0X48);
-    spawnableActorList_add(&D_80390ED0, actor_new, 0X180);
-    spawnableActorList_add(&D_80390F00, actor_new, 0X80);
-    spawnableActorList_add(&D_80390FD0, actor_new, 0X4048);
-    spawnableActorList_add(&D_80391010, actor_new, 0X4048);
-    spawnableActorList_add(&D_80391098, actor_new, 0X10069);
-    spawnableActorList_add(&D_80391158, actor_new, 0X48);
-    spawnableActorList_add(&D_803911C0, actor_new, 8);
-    spawnableActorList_add(&D_803911F4, actor_new, 0X80988);
-    spawnableActorList_add(&D_80391218, actor_new, 0X80988);
-    spawnableActorList_add(&D_8039123C, actor_new, 0X80988);
-    spawnableActorList_add(&D_80391260, actor_new, 0X80);
-    spawnableActorList_add(&D_80391318, actor_new, 0X78A);
-    spawnableActorList_add(&D_80391358, actor_new, 0X518);
-    spawnableActorList_add(&D_803912B8, actor_new, 0X500);
-    spawnableActorList_add(&GV_D_80391390, actor_new, 0X500);
-    spawnableActorList_add(&D_803913B4, actor_new, 0X500);
-    spawnableActorList_add(&D_80390F40, actor_new, 0);
-    spawnableActorList_add(&D_80391494, actor_new, 0X408);
-    spawnableActorList_add(&chMazeCtrl, actor_new, 0);
-    spawnableActorList_add(&chBuriedPyramid, actor_new, 0X400);
-    spawnableActorList_add(&D_803914B8, actor_new, 0X400);
-    spawnableActorList_add(&D_803914DC, actor_new, 0X400);
-    spawnableActorList_add(&GV_D_80391500, actor_new, 0X400);
-    spawnableActorList_add(&GV_D_80391524, actor_new, 0X400);
-    spawnableActorList_add(&D_8039156C, actor_new, 0X400);
-    spawnableActorList_add(&D_80391428, actor_new, 8);
-    spawnableActorList_add(&D_8039144C, actor_new, 8);
-    spawnableActorList_add(&D_80391470, actor_new, 8);
-    spawnableActorList_add(&D_80391548, actor_new, 0X400);
-    spawnableActorList_add(&D_80391590, actor_new, 0X400);
+    spawnableActorList_add(&chToots, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&chAncientOne, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&Gobi1, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chGobiRope, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chGobiRock, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chGobi2, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chGobi3, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chTrunker, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&GV_D_80390DD0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&chSarcophagus, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chSNSSarcophagus, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6);
+    spawnableActorList_add(&D_80390ED0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&D_80390F00, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80390FD0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80391010, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);
+    spawnableActorList_add(&D_80391098, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_16);
+    spawnableActorList_add(&D_80391158, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6);
+    spawnableActorList_add(&D_803911C0, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&D_803911F4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&D_80391218, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&D_8039123C, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&D_80391260, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&D_80391318, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80391358, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_4 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_803912B8, actor_new, ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&GV_D_80391390, actor_new, ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_803913B4, actor_new, ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80390F40, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&D_80391494, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chMazeCtrl, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chBuriedPyramid, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_803914B8, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_803914DC, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&GV_D_80391500, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&GV_D_80391524, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_8039156C, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80391428, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&D_8039144C, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&D_80391470, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&D_80391548, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&D_80391590, actor_new, ACTOR_FLAG_UNKNOWN_10);
 }
 
 s32 func_8038F4C0(Actor *arg0, s32 arg1){

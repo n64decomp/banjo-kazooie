@@ -279,7 +279,7 @@ void chClam_update(Actor *this){
     if(this->state != 3){
         sp48 = func_80309724(this->position);
         if(sp4C != NULL){
-            sp44 = sp4C->marker->unk14_20;
+            sp44 = sp4C->marker->id;
         }
 
         if(sp44 == MARKER_60_BLUE_EGG_COLLECTIBLE || sp44 == MARKER_B5_RED_FEATHER_COLLECTIBLE){

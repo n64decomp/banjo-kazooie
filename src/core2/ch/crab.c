@@ -81,13 +81,13 @@ void __chCrab_ow(ActorMarker *marker, ActorMarker *other) {
     this->unk60 = 3.0f;
     subaddie_set_state(this, 6);
     actor_playAnimationOnce(this);
-    if (marker->unk14_20 == MARKER_13_SNIPPET) {
+    if (marker->id == MARKER_13_SNIPPET) {
         FUNC_8030E8B4(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
-        marker->unk14_20 = MARKER_16B_SNIPPET_UPSIDEDOWN;
+        marker->id = MARKER_16B_SNIPPET_UPSIDEDOWN;
     }
-    if (marker->unk14_20 == MARKER_DD_BLACK_SNIPPET) {
+    if (marker->id == MARKER_DD_BLACK_SNIPPET) {
         FUNC_8030E8B4(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
-        marker->unk14_20 = MARKER_DE_BLACK_SNIPPET_UPSIDEDOWN;
+        marker->id = MARKER_DE_BLACK_SNIPPET_UPSIDEDOWN;
     }
 }
 
@@ -357,11 +357,11 @@ void chCrab_update(Actor *this) {
             if (this->unk60 == 0.0f) {
                 subaddie_set_state(this, 7);
                 actor_playAnimationOnce(this);
-                if (this->marker->unk14_20 == 0x16B) {
-                    this->marker->unk14_20 = MARKER_13_SNIPPET;
+                if (this->marker->id == 0x16B) {
+                    this->marker->id = MARKER_13_SNIPPET;
                 }
-                if (this->marker->unk14_20 == 0xDE) {
-                    this->marker->unk14_20 = MARKER_DD_BLACK_SNIPPET;
+                if (this->marker->id == 0xDE) {
+                    this->marker->id = MARKER_DD_BLACK_SNIPPET;
                 }
             }
             break;

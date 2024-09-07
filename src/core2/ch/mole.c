@@ -123,7 +123,7 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void func_802D9530(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
     if(this->unk100 && other){
-        if(this->unk100->unk14_20 == 0xB8)
+        if(this->unk100->id == 0xB8)
             subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
     }
     subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
@@ -248,7 +248,7 @@ int chmole_learnAbility(Actor *this){
 
 void func_802D9ADC(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
-    if(this->unk100 && other && this->unk100->unk14_20 == 0xB8){
+    if(this->unk100 && other && this->unk100->id == 0xB8){
         subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
     }
     this->marker->propPtr->unk8_3 = 1;
@@ -339,7 +339,7 @@ void chmole_update(Actor *this){
             this->unk100 = (other) ? other->marker : NULL;
             if(this->unk100){
                 other = subaddie_getLinkedActor(this);
-                if(other && this->unk100->unk14_20 == 0xB8){
+                if(other && this->unk100->id == 0xB8){
                     subaddie_set_state(other, 1);
                 }
             }
