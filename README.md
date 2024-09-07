@@ -151,8 +151,8 @@ In your GitLab project, go to `Settings > CI/CD > Variables` and add the followi
 - `BASEROM_<VER>_SHA1`: the SHA1 checksum of the baserom file; simply use the one mentioned above
 
 Replace `<VER>` with the version you are using:
-- `US_V10`
-- `US_V11`
+- `USA10`
+- `USA11`
 - `JP`
 - `PAL`
 
