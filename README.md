@@ -5,9 +5,9 @@
 ### Baserom checksums
 
 - `baserom.us.v10.z64`: `1fe1632098865f639e22c11b9a81ee8f29c75d7a`
-- `baserom.us.v11.z64`: TODO
-- `baserom.jp.z64`: TODO
-- `baserom.pal.z64`: TODO
+- `baserom.us.v11.z64`: `ded6ee166e740ad1bc810fd678a84b48e245ab80`
+- `baserom.jp.z64`:     `90726d7e7cd5bf6cdfd38f45c9acbf4d45bd9fd8`
+- `baserom.pal.z64`:    `bb359a75941df74bf7290212c89fbc6e2c5601fe`
 
 ## Building
 
@@ -124,6 +124,35 @@ docker run --platform linux/amd64 -it --rm -v $(pwd):/banjo banjo-kazooie
 Follow the same instructions as Step 4 above in "Local (Linux)".
 
 To exit Docker, simply type `exit`.
+
+### Cloud (GitLab CI)
+
+These are the instructions for building on GitLab CI.
+This applies to the main repo - **if you have a fork**, you will need to follow these steps too!
+
+#### 1. Upload the baserom
+
+Upload the file for `US v1.0` as `baserom.us.v10.enc.z64` to a remote server where it can be downloaded from with `wget` or `curl`. The file has to be encrypted with `AES-256-CBC`, as follows:
+
+```sh
+openssl enc -aes-256-cbc -salt -in baserom.us.v10.z64 -out baserom.us.v10.enc.z64
+```
+
+Then, upload the encrypted file to a server and get a direct download link.
+
+Sharing services like Google Drive, Dropbox, or OneDrive might not work, as they require manual interaction to download the file.
+
+#### 2. Set up environment variables
+
+In your GitLab project, go to `Settings > CI/CD > Variables` and add the following variables:
+
+- `BASEROM_URL`: a direct download URL for the baserom.us.v10.z64 file (see above); this file has to be encrypted with `AES-256-CBC`
+- `BASEROM_KEY`: the AES key used to encrypt the baserom file above
+- `BASEROM_SHA1`: the SHA1 checksum of the baserom file; simply use the one mentioned above
+
+#### 3. Trigger the pipeline
+
+Push a commit to your repository and you should see a new pipeline starting in the `CI/CD > Pipelines` section! 
 
 ## Other versions
 
