@@ -173,7 +173,7 @@ void chGobi2_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, __chGobi2_ow, NULL, NULL);
-        sp34->unk30 = __chGobi2_80387EFC;
+        sp34->actorFreeFunc = __chGobi2_80387EFC;
         local->unk4 = skeletalAnim_new();
         local->unk8 = (BKModelBin*) assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         D_80391A50 = 0;

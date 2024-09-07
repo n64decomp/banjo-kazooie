@@ -99,7 +99,7 @@ void chGobiRock_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        sp34->unk30 = chGobiRock_free;
+        sp34->actorFreeFunc = chGobiRock_free;
         sp34->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, __chGobiRock_destroy);
         local->unkC = particleEmitter_new(20);

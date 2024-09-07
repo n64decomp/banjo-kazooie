@@ -108,7 +108,7 @@ void chJinjo_update(Actor * this){
         local->unk0 = 1;
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));
-        this->marker->unkC = __chJinjo_802CDBA8;
+        this->marker->collisionFunc = __chJinjo_802CDBA8;
         marker_setFreeMethod(this->marker, __chJinjo_802CDD3C);
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);

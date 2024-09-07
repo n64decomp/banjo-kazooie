@@ -121,7 +121,7 @@ void func_802E07E0(Actor *this) {
             func_802C7318(this);
         }
         func_80361E10(this);
-        this->marker->unk30 = func_802E07C0;
+        this->marker->actorFreeFunc = func_802E07C0;
     }
 
     func_80326244(this);

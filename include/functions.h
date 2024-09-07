@@ -559,5 +559,7 @@ extern ActorMarker *marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, in
 extern s32 asset_getFlag(enum asset_e arg0);
 extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2);
 extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3);
+extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method);
+extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 
 #endif

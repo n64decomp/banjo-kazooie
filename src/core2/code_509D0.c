@@ -195,7 +195,7 @@ void func_802D8030(Actor *this){
 
     local = (s32*)&this->local;
     *local = 1;
-    this->marker->unkC = __chLevelCollectible_collide;
+    this->marker->collisionFunc = __chLevelCollectible_collide;
     subaddie_set_state(this, 2);
 }
 

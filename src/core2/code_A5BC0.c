@@ -1159,16 +1159,16 @@ ActorMarker * marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int mark
     marker->unk40_22 = 0;
     marker->unk40_19 = 0;
     marker->unk40_21 = 0;
-    marker->unkC = NULL;
-    marker->unk10 = NULL;
-    marker->unk1C = NULL;
+    marker->collisionFunc = NULL;
+    marker->collision2Func = NULL;
+    marker->dieFunc = NULL;
     marker->unk54 = NULL;
     marker->unk58 = 0;
     marker->unk18 = 0;
-    marker->unk24 = 0;
-    marker->unk30 = NULL;
+    marker->actorUpdateFunc = NULL;
+    marker->actorFreeFunc = NULL;
     marker->unk28 = 0;
-    marker->unk34 = 0;
+    marker->actorUpdate2Func = NULL;
     marker->unk38[0] = 0;
     marker->unk38[1] = 0;
     marker->unk38[2] = 0;
@@ -1222,16 +1222,16 @@ void func_8032FFEC(ActorMarker *this, s32 arg1){
 void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
     switch(type){
         case 0: //ow
-            if(this->unkC)
-                this->unkC(this, other); 
+            if(this->collisionFunc)
+                this->collisionFunc(this, other); 
             break;
         case 1:
-            if(this->unk10)
-                this->unk10(this, other);
+            if(this->collision2Func)
+                this->collision2Func(this, other);
             break;
         case 2: //die
-            if(this->unk1C)
-                this->unk1C(this, other);
+            if(this->dieFunc)
+                this->dieFunc(this, other);
             break;
     }
 }
@@ -1244,9 +1244,9 @@ void func_80330078(ActorMarker *marker, ActorMarker *other_marker, s16 *arg2){
 
 //marker_setCollisionMethods
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func){
-    this->unkC = ow_func;
-    this->unk10 = arg2;
-    this->unk1C = die_func;
+    this->collisionFunc = ow_func;
+    this->collision2Func = arg2;
+    this->dieFunc = die_func;
 }
 
 void func_803300B8(ActorMarker *marker, MarkerCollisionFunc method){
@@ -1257,16 +1257,16 @@ void func_803300C0(ActorMarker *marker, bool (*method)(ActorMarker *, ActorMarke
     marker->unk58 = method;
 }
 
-void func_803300C8(ActorMarker *marker, ActorUpdateFunc method){
-    marker->unk24 = method;
+void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method){
+    marker->actorUpdateFunc = method;
 }
 
-void func_803300D0(ActorMarker *marker, s32 arg1){
-    marker->unk34 = arg1;
+void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method){
+    marker->actorUpdate2Func = method;
 }
 
 void marker_setFreeMethod(ActorMarker *marker, ActorFreeFunc method){
-    marker->unk30 = method;
+    marker->actorFreeFunc = method;
 }
 
 void func_803300E0(ActorMarker *marker, Struct6Cs *arg1){

@@ -71,7 +71,7 @@ void CCW_func_80387A40(Actor *this) {
     sp68 = time_getDelta();
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = CCW_func_80387A20;
+        this->marker->actorFreeFunc = CCW_func_80387A20;
         local->unk4 = &D_8038EC00[0];
         while((local->unk4->unk0 != 0) && (map_get() != local->unk4->unk0)) {
             local->unk4++;

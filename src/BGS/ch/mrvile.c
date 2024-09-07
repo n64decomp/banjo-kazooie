@@ -339,7 +339,7 @@ void chvile_update(Actor *this) {
     local = (ActorLocal_MrVile *)&this->local;
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = chvile_free;
+        this->marker->actorFreeFunc = chvile_free;
         local->unk0 = 0;
         local->unk4 = assetcache_get(0x3F6);
         local->game_marker = NULL;

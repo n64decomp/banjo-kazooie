@@ -116,7 +116,7 @@ void chGobi1_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, func_803873B0, NULL, NULL);
-        marker->unk30 = func_8038736C;
+        marker->actorFreeFunc = func_8038736C;
         marker->propPtr->unk8_3 = TRUE;
         marker->collidable = TRUE;
         GV_D_80391A40.unk0 = 0;

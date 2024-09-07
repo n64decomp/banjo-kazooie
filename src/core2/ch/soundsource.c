@@ -80,7 +80,7 @@ void func_802D07C8(Actor *this){
     f32 sp28;
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        this->marker->unk30 = func_802D07A8;
+        this->marker->actorFreeFunc = func_802D07A8;
         func_802D05A0(this, 1);
     }
     player_getPosition(sp2C);

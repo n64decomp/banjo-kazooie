@@ -292,7 +292,7 @@ void func_80358684(Actor *this) {
     sp88 = time_getDelta();
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = func_80358490;
+        this->marker->actorFreeFunc = func_80358490;
         local->unk38 = 0;
         local->unk39 = 0;
         local->unk28 = 0.0f;

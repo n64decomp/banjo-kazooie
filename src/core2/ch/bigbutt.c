@@ -118,9 +118,9 @@ void func_802C6240(Actor *this){
 
 
     if(!this->initialized){
-        this->marker->unk1C = func_802C61C0;
-        this->marker->unkC = func_802C60AC;
-        this->marker->unk10 = func_802C6150;
+        this->marker->dieFunc = func_802C61C0;
+        this->marker->collisionFunc = func_802C60AC;
+        this->marker->collision2Func = func_802C6150;
         this->unk138_24 = 0;
         this->unk16C_0 = 1;
         this->initialized = TRUE;

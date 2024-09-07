@@ -384,9 +384,9 @@ void func_80325FE8(Actor *this) {
         func_8032BB88(this, -1, 8000);
         this->unk138_7 = 0;
     }
-    if (marker->unk30 != NULL) {
-       marker->unk30(this);
-       marker->unk30 = NULL;
+    if (marker->actorFreeFunc != NULL) {
+       marker->actorFreeFunc(this);
+       marker->actorFreeFunc = NULL;
     }
     if ((s32)marker->unk44 < 0) {
         func_8033E7CC(marker);
@@ -544,13 +544,13 @@ void func_803268B4(void) {
                 }
                 if (!actor->despawn_flag) {
                     if (marker->unk2C_2) {
-                        ((void (*)(Actor *)) marker->unk34)(actor);
+                        marker->actorUpdate2Func(actor);
                         if (anim_ctrl != NULL) {
                                 actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                         }
                     } else if (!temp_s1 || (temp_s1 && func_803296D8(actor, temp_s1))) {
-                        if ( marker->unk24 != NULL) {
-                             marker->unk24(actor);
+                        if ( marker->actorUpdateFunc != NULL) {
+                             marker->actorUpdateFunc(actor);
                             if (anim_ctrl != NULL) {
                                     actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                             }
@@ -848,8 +848,8 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->sound_timer = 0.0f;
     func_8032FFD4(suLastBaddie->marker, suBaddieActorArray->cnt - 1);
     marker_setModelId(suLastBaddie->marker, actorInfo->modelId);
-    func_803300C8(suLastBaddie->marker, actorInfo->update_func);
-    func_803300D0(suLastBaddie->marker, actorInfo->unk10);
+    marker_setActorUpdateFunc(suLastBaddie->marker, actorInfo->update_func);
+    marker_setActorUpdate2Func(suLastBaddie->marker, actorInfo->unk10);
     ml_vec3f_clear(suLastBaddie->unk1C);
     ml_vec3f_clear(suLastBaddie->velocity);
     ml_vec3f_clear(suLastBaddie->spawn_position);
@@ -1650,12 +1650,12 @@ void func_803299B4(Actor *arg0) {
     s32 position[3];
     s32 rotation[3];
 
-    arg0->marker->unkC = arg0->unk108;
-    arg0->marker->unk10 = arg0->unk10C;
-    arg0->marker->unk1C = arg0->unk134;
+    arg0->marker->collisionFunc = arg0->unk108;
+    arg0->marker->collision2Func = arg0->unk10C;
+    arg0->marker->dieFunc = arg0->unk134;
     arg0->marker->unk54 = arg0->unk160;
     arg0->marker->unk58 = arg0->unk168;
-    arg0->marker->unk30 = arg0->unk13C;
+    arg0->marker->actorFreeFunc = arg0->backupFreeFunc;
     arg0->marker->unk5C = arg0->unk16C_31;
     arg0->marker->propPtr->unk8_3 = arg0->unkF4_28;
     arg0->marker->propPtr->unk8_2 = arg0->unkF4_27;
@@ -1743,12 +1743,12 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk158[0] = NULL;
                 s0->unk158[1] = NULL;
                 s0->unk138_19 = s1->marker->id;
-                s0->unk108 = s1->marker->unkC;
-                s0->unk10C = s1->marker->unk10;
-                s0->unk134 = s1->marker->unk1C;
+                s0->unk108 = s1->marker->collisionFunc;
+                s0->unk10C = s1->marker->collision2Func;
+                s0->unk134 = s1->marker->dieFunc;
                 s0->unk160 = s1->marker->unk54;
                 s0->unk168 = s1->marker->unk58;
-                s0->unk13C = s1->marker->unk30;
+                s0->backupFreeFunc = s1->marker->actorFreeFunc;
                 s0->unk16C_31 = s1->marker->unk5C;
                 s0->unkF4_26 = s1->marker->unk2C_1;
                 s0->stored_marker_collidable = s1->marker->collidable;
@@ -1868,6 +1868,7 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
     spawnQueue_unlock();
 }
 
+// only used for GV Jinxy Head 2
 void func_8032A5F8(void) {
     Actor *var_s0;
 
@@ -1881,6 +1882,7 @@ void func_8032A5F8(void) {
     }
 }
 
+// only used by GV Jinxy Head 2
 void func_8032A6A8(Actor *arg0) {
     f32 var_f0;
     f32 var_f2;
@@ -1903,6 +1905,7 @@ void func_8032A6A8(Actor *arg0) {
     }
 }
 
+// only used by GV Jinxy Head 2
 Actor *func_8032A7AC(Actor *arg0) {
     Actor *var_a0;
 
@@ -1945,6 +1948,7 @@ void func_8032A88C(Actor *arg0) {
     }
 }
 
+// only called by blubber
 void func_8032A95C(Actor *arg0, s32 arg1, s32 arg2) {
     func_80343F00(arg1, arg0->position);
     arg0->unk44_14 = arg1;

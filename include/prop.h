@@ -73,20 +73,20 @@ typedef void (*ActorUpdateFunc)(struct actor_s *);
 typedef void (*ActorFreeFunc)(struct actor_s *);
 
 typedef struct actorMarker_s{
-    ActorProp*  propPtr;
-    struct cude_s*     cubePtr;
-    MarkerDrawFunc      drawFunc;
-    MarkerCollisionFunc unkC; //ow_func
-    MarkerCollisionFunc unk10;
+    ActorProp* propPtr;
+    struct cude_s* cubePtr;
+    MarkerDrawFunc drawFunc;
+    MarkerCollisionFunc collisionFunc; //ow_func
+    MarkerCollisionFunc collision2Func;
     u32         yaw:9;
     u32         unk14_22:1;
     u32         unk14_21:1;
     u32         id:10; // marker_id
     u32         unk14_10:11; //used in ch/jiggy
     Struct6Cs   *unk18;
-    MarkerCollisionFunc unk1C; //die_func
+    MarkerCollisionFunc dieFunc;
     s32         unk20;
-    ActorUpdateFunc     unk24;
+    ActorUpdateFunc actorUpdateFunc;
     s32         unk28;
     u32         actrArrayIdx:11; //unk2C
     u32         pitch:9;
@@ -94,8 +94,8 @@ typedef struct actorMarker_s{
     u32         unk2C_2:1;
     u32         unk2C_1:1;
     u32         collidable:1;
-    ActorFreeFunc unk30; //actor free method
-    s32         unk34;
+    ActorFreeFunc actorFreeFunc;
+    ActorUpdateFunc actorUpdate2Func;
     s16         unk38[3];
     u16         pad3E_15:1;
     u16         modelId:13;
@@ -179,9 +179,9 @@ typedef struct actor_s{
     u32 modelCacheIndex:10; //modelCacheIndex
     s32 unk44_14:10;
     u32 despawn_flag:1;
-    u32 unk44_2:1;
-    u32 unk44_1:1;
-    u32 unk44_0:1;
+    u32 unk44_2:1; // is set, when actors created inside Cube?
+    u32 unk44_1:1; // only used by blubber?
+    u32 unk44_0:1; // unused
     f32 unk48; //used in chlmonkey (chimpy)
     f32 unk4C;
     /* 0x50 */ f32 yaw; //0x50
@@ -236,12 +236,12 @@ typedef struct actor_s{
     ActorMarker *unk100;
     ActorMarker *unk104;
     Struct62s *unk108;
-    // void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->unkC
+    // void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->collisionFunc
     s32 unk10C; //saved marker->unk10
     f32 roll;//110
     f32 sound_timer;
     TUPLE(f32, spawn_position); //0x118
-    u32 unk124_31:12;
+    u32 unk124_31:12; // only used by GV Jinxy Head 2
     u32 alpha_124_19:8;
     u32 unk124_11:2; //blend_mode? 
     u32 depth_mode:2; //render_mode (passed to modelRender_setDepthMode())
@@ -253,7 +253,7 @@ typedef struct actor_s{
     f32 scale;
     /* 0x12C */ struct actor_info_s *actor_info;
     void (* unk130)(struct actor_s *);
-    vector(struct2s) **unk134; //vector<struct2s> //saved marker->unk1C
+    vector(struct2s) **unk134; //vector<struct2s> //saved marker->dieFunc
     u32 unk138_31:1;
     u32 unk138_30:1;
     u32 unk138_29:1;
@@ -267,10 +267,10 @@ typedef struct actor_s{
     u32 unk138_20:1;
     u32 unk138_19:10; //saved maker->id
     u32 unk138_9:1;
-    u32 unk138_8:1;
+    u32 unk138_8:1; // set to one by ACTOR_FLAG_UNKNOWN_18, which no actor seems to use
     u32 unk138_7:4;
     u32 unk138_3:4;
-    void (*unk13C)(struct actorMarker_s *);//saved marker->unk30
+    ActorFreeFunc backupFreeFunc; // saved marker->actorFreeFunc
     f32 unk140;
     f32 unk144;
     SkeletalAnimation *unk148;
