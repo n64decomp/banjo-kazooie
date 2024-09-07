@@ -80,7 +80,7 @@ Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     BKModelBin * model_bin =  func_80330DE4(marker);
     if(model_bin && func_8033A12C(model_bin)){
         if(marker->collidable)
-            func_80330B1C(marker);
+            marker_loadModelBin(marker);
     }
     return NULL;
 }
@@ -92,7 +92,7 @@ void actor_predrawMethod(Actor *this){
     BKVertexList *sp40;
     f32 sp34[3];
     
-    sp48 = func_80330B1C(this->marker);
+    sp48 = marker_loadModelBin(this->marker);
     func_80330534(this);
     if(this->animctrl != NULL){
         animctrl_drawSetup(this->animctrl, this->position, 1);

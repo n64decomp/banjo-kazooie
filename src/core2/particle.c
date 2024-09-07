@@ -459,7 +459,7 @@ void func_802EFB84(ParticleEmitter * this, f32 min, f32 max){
     this->particleFinalScaleRange_B4_max = max;
 }
 
-void func_802EFB98(ParticleEmitter *this, struct31s *arg1){
+void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *this, ParticleScaleAndLifetimeRanges *arg1){
     this->particleStartingScaleRange_AC_min = arg1->unk0[0];
     this->particleStartingScaleRange_AC_max = arg1->unk0[1];
     if(-1.0f != arg1->unk8[0]){
@@ -474,7 +474,7 @@ void func_802EFB98(ParticleEmitter *this, struct31s *arg1){
 }
 
 void func_802EFC28(ParticleEmitter *this, struct40s *arg1){
-    func_802EFB98(this, &arg1->unk0);
+    particleEmitter_setScaleAndLifetimeRanges(this, &arg1->unk0);
     particleEmitter_setDrawMode(this, (s32)arg1->unk28);
     particleEmitter_emitN(this, (s32)arg1->unk2C);
 }

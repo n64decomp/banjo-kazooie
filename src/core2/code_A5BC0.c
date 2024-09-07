@@ -1491,8 +1491,7 @@ Struct6Cs *func_80330B10(void){
     return &D_8036E7D0;
 }
 
-//marker_loadModelBin
-BKModelBin *func_80330B1C(ActorMarker *this){
+BKModelBin *marker_loadModelBin(ActorMarker *this){
     Actor* thisActor;
     BKModelBin * model;
     ModelCache *modelInfo;
@@ -1540,7 +1539,7 @@ BKVertexList *func_80330CFC(Actor *this, s32 arg1){
     ModelCache *model_cache_ptr;
     model_cache_ptr = &modelCache[this->modelCacheIndex];
     if(model_cache_ptr->modelPtr == NULL){
-        func_80330B1C(this->marker);
+        marker_loadModelBin(this->marker);
     }
     if(this->unkF4_30 && this->unk14C[this->unkF4_29 ^ arg1] != NULL)
         return this->unk14C[this->unkF4_29 ^ arg1];
@@ -1718,10 +1717,10 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
             if (!(var_s1->actorProp.marker->unk3E_0 && (marker_getActor(var_s1->actorProp.marker)->unk3C & 0x008000000))) {
                 var_a0 = func_80330DE4(var_s1->actorProp.marker);
             } else {
-                var_a0 = func_80330B1C(var_s1->actorProp.marker);
+                var_a0 = marker_loadModelBin(var_s1->actorProp.marker);
             }
 
-            if(var_a0 != NULL || (func_8028F280() && (var_a0 = func_80330B1C(var_s1->actorProp.marker), TRUE))){
+            if(var_a0 != NULL || (func_8028F280() && (var_a0 = marker_loadModelBin(var_s1->actorProp.marker), TRUE))){
                 temp_s0 = model_getCollisionList(var_a0);
                 if (temp_s0 != 0) {
                     temp_s2_2 = marker_getActor(var_s1->actorProp.marker);
@@ -1734,7 +1733,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
                     sp7C[2] = (f32) var_s1->actorProp.marker->roll;
                     temp_s0_2 = func_802E805C(temp_s0, temp_a1, &sp88, &sp7C, temp_s2_2->scale, arg1, arg2, arg3, arg4);
                     if ((temp_s0_2 != 0) && (func_8029453C())) {
-                        func_80330B1C(var_s1->actorProp.marker);
+                        marker_loadModelBin(var_s1->actorProp.marker);
                         if (var_s1->actorProp.marker->unk50 != 0) {
                             D_80383410[0] = arg2[0];
                             D_80383410[1] = arg2[1];
@@ -2007,7 +2006,7 @@ f32 func_80331F54(ActorMarker *marker) {
     f32 model_center[3];
     BKModelBin *model;
 
-    model = func_80330B1C(marker);
+    model = marker_loadModelBin(marker);
     if (model == NULL) {
         return 1.0f;
     }

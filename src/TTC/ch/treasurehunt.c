@@ -57,7 +57,7 @@ ActorInfo D_8038C8F8 = {
 }; 
 
 s32 D_8038C91C[3] = {160, 120, 20};
-struct31s D_8038C928 = {
+ParticleScaleAndLifetimeRanges D_8038C928 = {
     {1.1f, 1.5f}, 
     {4.0f, 4.6f}, 
     {0.0f, 0.01f}, 
@@ -164,7 +164,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         particleEmitter_setStartingFrameRange(D_8038D700, 0, 7);
         particleEmitter_setPosition(D_8038D700, D_8038D708);
         particleEmitter_setPositionAndVelocityRanges(D_8038D700, &D_8038C950);
-        func_802EFB98(D_8038D700, &D_8038C928);
+        particleEmitter_setScaleAndLifetimeRanges(D_8038D700, &D_8038C928);
         particleEmitter_emitN(D_8038D700, 5);
         D_8038D708[2] += 300.0f;
         gcpausemenu_80314AC8(0);
@@ -240,6 +240,6 @@ Actor *func_8038A0D0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     func_8032AA58(actor, sp3C);
     modelRender_preDraw(actor_predrawMethod, actor);
-    modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, marker_loadModelBin(marker));
     return actor;
 }

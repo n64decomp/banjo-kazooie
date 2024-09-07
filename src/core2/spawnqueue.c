@@ -51,7 +51,7 @@ extern ActorInfo chJinjoGreen; //jingo_green
 extern ActorInfo chJinjoYellow; //jingo_yellow
 extern ActorInfo chJinjoPink; //jingo_pink
 extern ActorInfo chJinjoOrange; //jingo_orange
-extern ActorInfo D_803672E0; //chbeehive
+extern ActorInfo chBeehive; //chbeehive
 extern ActorInfo D_80367310; //chswarm
 extern ActorInfo D_80367390; //chwaterfallfx
 extern ActorInfo chShrapnelDescription; //scrapnel
@@ -215,7 +215,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80366090, actor_new, 0x2010103);
     spawnableActorList_add(&D_803660B4, actor_new, 0x0000103);
     spawnableActorList_add(&D_803674E0, actor_new, 0x0000182);
-    spawnableActorList_add(&D_803672E0, actor_new, 0x2000108);
+    spawnableActorList_add(&chBeehive, actor_new, 0x2000108);
     spawnableActorList_add(&D_80367310, actor_new, 0x0020001);
     spawnableActorList_add(&D_80367390, actor_new, 0x0080084);
     spawnableActorList_add(&chJinjoYellow, actor_new, 0x0000140);

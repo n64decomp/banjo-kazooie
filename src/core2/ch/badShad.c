@@ -52,7 +52,7 @@ Actor *chBadShad_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         modelRender_setAlpha(other->alpha_124_19);
     sp40 = ml_map_f(this->unk28, 0.0f , 800.0f, 0.53f, 0.18f)*this->unk1C[1];
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-    modelRender_draw(gfx, mtx, this->position, sp44, sp40, NULL, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, this->position, sp44, sp40, NULL, marker_loadModelBin(marker));
     return this;
 }
 

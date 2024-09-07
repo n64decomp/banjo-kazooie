@@ -80,7 +80,7 @@ ActorInfo D_8038AD7C = { MARKER_1E8_COLLYWOBBLE_B, ACTOR_COLLYWOBBLE_B, MODEL_CO
 
 s32 D_8038ADA0[3] = {0xFF, 0xFF, 0xFF}; 
 
-struct31s D_8038ADAC = {
+ParticleScaleAndLifetimeRanges D_8038ADAC = {
     {0.1f, 0.5f}, 
     {1.5f, 3.0f}, 
     {0.0f, 0.01f}, 
@@ -93,7 +93,7 @@ struct42s D_8038ADD4 = {
     {{-40.0f, -40.0f, -40.0f}, {40.0f, 40.0f, 40.0f}}
 };
 
-struct31s D_8038AE04 = {
+ParticleScaleAndLifetimeRanges D_8038AE04 = {
     {0.5f, 0.75f},
     {0.4f, 0.6f}, 
     {0.0f, 0.01f},
@@ -107,7 +107,7 @@ struct43s D_8038AE2C = {
     {{-80.0f, -80.0f, -80.0f}, {80.0f, 80.0f, 80.0f}}
 };
 
-struct31s D_8038AE74 = {
+ParticleScaleAndLifetimeRanges D_8038AE74 = {
     {1.0f, 1.0f}, 
     {1.0f, 1.0f}, 
     {0.0f, 0.01f}, 
@@ -121,7 +121,7 @@ struct43s D_8038AE9C = {
     {{-20.0f, -20.0f, -20.0f}, {20.0f, 20.0f, 20.0f}}
 };
 
-struct31s D_8038AEE4 = {
+ParticleScaleAndLifetimeRanges D_8038AEE4 = {
     {0.6f, 0.8f}, 
     {0.5f, 0.7f}, 
     {0.0f, 0.01f}, 
@@ -142,7 +142,7 @@ void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){
     particleEmitter_setSprite(arg0, ASSET_700_SPRITE_DUST);
     particleEmitter_setStartingFrameRange(arg0, 0, 7);
     particleEmitter_setPosition(arg0, arg1);
-    func_802EFB98(arg0, &D_8038ADAC);
+    particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038ADAC);
     particleEmitter_setPositionAndVelocityRanges(arg0, &D_8038ADD4);
     particleEmitter_emitN(arg0, arg2);
 }
@@ -154,7 +154,7 @@ void func_803879B8(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e mode
     particleEmitter_setPosition(arg0, arg1);
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB98(arg0, &D_8038AE04);
+    particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AE04);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE2C);
     particleEmitter_emitN(arg0, arg2);
 }
@@ -166,7 +166,7 @@ void func_80387A80(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e mode
     particleEmitter_setPosition(arg0, arg1);
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB98(arg0, &D_8038AE74);
+    particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AE74);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE9C);
     particleEmitter_emitN(arg0, arg2);
 }
@@ -179,7 +179,7 @@ void func_80387B48(ParticleEmitter *arg0, f32 arg1[3], s32 arg2, enum asset_e mo
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
     particleEmitter_setSfx(arg0, SFX_1F_HITTING_AN_ENEMY_3, 8000);
-    func_802EFB98(arg0, &D_8038AEE4);
+    particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AEE4);
     particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AF0C);
     particleEmitter_emitN(arg0, arg2);
 }

@@ -37,7 +37,7 @@ Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038FF54(Actor *this){
-    static struct31s D_8039264C = {{0.3f, 0.5f}, {0.5f, 0.7f}, {0.0f, 0.01f}, {0.3f, 0.4f}, 0.3f, 0.7f};
+    static ParticleScaleAndLifetimeRanges D_8039264C = {{0.3f, 0.5f}, {0.5f, 0.7f}, {0.0f, 0.01f}, {0.3f, 0.4f}, 0.3f, 0.7f};
     Actor *other;
     f32 sp40[3];
     ParticleEmitter *sp3C;
@@ -97,7 +97,7 @@ void func_8038FF54(Actor *this){
                 0.0f, -60.0f, 0.0f,
                 0.0f, -90.0f, 0.0f
             );
-            func_802EFB98(sp3C, &D_8039264C);
+            particleEmitter_setScaleAndLifetimeRanges(sp3C, &D_8039264C);
             particleEmitter_emitN(sp3C, 1);
        }
     }

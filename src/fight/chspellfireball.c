@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 #include "core2/particle.h"
 
 extern void func_80324CFC(f32, s32, s32);

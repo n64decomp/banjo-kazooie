@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 #include "core2/particle.h"
 
 
@@ -68,7 +69,7 @@ f32 D_80391948[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
 f32 D_80391958[4] = {0.33f, 0.33f, 0.33f, 1.0f};
 
-struct31s D_80391968 = {
+ParticleScaleAndLifetimeRanges D_80391968 = {
     {0.1f, 0.1f}, {10.0f, 10.0f}, {0.0f, 0.01f}, {0.8f, 0.8f}, 0.1f, 0.1f
 };
 
@@ -340,7 +341,7 @@ void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     D_80391968.unk0[1] *= arg2;
     D_80391968.unk8[0] *= arg2;
     D_80391968.unk8[1] *= arg2;
-    func_802EFB98(s0, &D_80391968);
+    particleEmitter_setScaleAndLifetimeRanges(s0, &D_80391968);
     particleEmitter_setDrawMode(s0, PART_EMIT_NO_DEPTH);
     func_802EFA78(s0, 1);
     particleEmitter_emitN(s0, 1);

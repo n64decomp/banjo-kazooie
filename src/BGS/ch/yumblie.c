@@ -122,7 +122,7 @@ Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
         modelRender_draw(gfx, mtx, sp44, sp38, 1.0f, NULL, chvilegame_get_grumblie_model(sp40->game_marker));
     }
     else{
-        modelRender_draw(gfx, mtx, sp44, sp38, 1.0f, NULL, func_80330B1C(this));
+        modelRender_draw(gfx, mtx, sp44, sp38, 1.0f, NULL, marker_loadModelBin(this));
     }
     return thisActor;
 }

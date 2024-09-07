@@ -187,7 +187,7 @@ void func_8033F738(ActorMarker *arg0) {
     BKModelBin *sp1C;
     s32 sp18;
 
-    sp1C = func_80330B1C(arg0);
+    sp1C = marker_loadModelBin(arg0);
     sp18 = func_8033A0B0(sp1C);
     arg0->unk48 = func_8033F5F8(sp18, model_getVtxList(sp1C));
 }

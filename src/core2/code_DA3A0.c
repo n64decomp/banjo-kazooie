@@ -26,7 +26,7 @@ ActorInfo D_80373158 = {
     0, 0, 0.0f, 0
 };
 
-struct31s D_8037317C = {
+ParticleScaleAndLifetimeRanges D_8037317C = {
     {0.01f, 0.01f},
     {2.5f, 3.0f},
     {0.05f, 0.05f},
@@ -56,7 +56,7 @@ void func_80361330(Actor *this, s32 next_state){
         particleEmitter_setStartingFrameRange(pctrl, 0, 7);
         particleEmitter_setParticleSpawnPositionRange(pctrl, -20.0f, -20.0f, -20.0f, 20.0f, 20.0f, 20.0f);
         particleEmitter_setPosition(pctrl, this->position);
-        func_802EFB98(pctrl, &D_8037317C);
+        particleEmitter_setScaleAndLifetimeRanges(pctrl, &D_8037317C);
         particleEmitter_setParticleVelocityRange(pctrl, 
             sp40[0] *0.6, sp40[1]*0.6, sp40[2]*0.6,
             sp40[0], sp40[1], sp40[2]

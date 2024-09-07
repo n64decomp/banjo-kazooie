@@ -29,7 +29,7 @@ ActorInfo D_80372C80 = {
     0, 0, 1.0f, 0
 };
 
-struct31s D_80372CA4 = {
+ParticleScaleAndLifetimeRanges D_80372CA4 = {
     {1.0f, 1.2f},
     {1.6f, 2.0f},
     {0.05f, 0.05f},
@@ -183,7 +183,7 @@ void func_8035C080(Actor *this, s32 next_state){
         particleEmitter_setStartingFrameRange(local->pCtrl_8, 0, 7);
         particleEmitter_setPosition(local->pCtrl_8, this->position);
         particleEmitter_setPositionVelocityAndAccelerationRanges(local->pCtrl_8, &D_80372CCC);
-        func_802EFB98(local->pCtrl_8, &D_80372CA4);
+        particleEmitter_setScaleAndLifetimeRanges(local->pCtrl_8, &D_80372CA4);
         particleEmitter_setSpawnInterval(local->pCtrl_8, 4);
     }//L8035C698
 

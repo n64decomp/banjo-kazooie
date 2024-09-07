@@ -33,7 +33,7 @@ Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp38));
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)D_8037E000);
-    modelRender_draw(gfx, mtx, &D_80368360, NULL, 1.0f, NULL, func_80330B1C(D_8037E000));
+    modelRender_draw(gfx, mtx, &D_80368360, NULL, 1.0f, NULL, marker_loadModelBin(D_8037E000));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     return this;
 }

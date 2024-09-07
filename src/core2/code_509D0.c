@@ -55,7 +55,7 @@ ActorInfo D_80367C10 = {
 
 /* .code */
 void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_e sprite_id) {
-    static struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
+    static ParticleScaleAndLifetimeRanges D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
     ParticleEmitter *p_emitter;
 
     p_emitter = partEmitMgr_newEmitter(1);
@@ -64,7 +64,7 @@ void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_
     particleEmitter_setPosition(p_emitter, position);
     particleEmitter_setParticleSpawnPositionRange(p_emitter, -40.0f, 0.0f, -40.0f, 40.0f, 60.0f, 40.0f);
     particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
-    func_802EFB98(p_emitter, &D_80367C34);
+    particleEmitter_setScaleAndLifetimeRanges(p_emitter, &D_80367C34);
     particleEmitter_emitN(p_emitter, 1);
 }
 

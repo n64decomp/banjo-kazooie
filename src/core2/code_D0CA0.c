@@ -238,7 +238,7 @@ void func_803584BC(Actor *this) {
 
 
 void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
-    static struct31s D_803728C4 = { {1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.01f}, {1.2f, 1.2f}, 0.0f, 0.1f};
+    static ParticleScaleAndLifetimeRanges D_803728C4 = { {1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.01f}, {1.2f, 1.2f}, 0.0f, 0.1f};
     static struct43s D_803728EC = {
         {{-250.0f,   500.0f, -250.0f}, { 350.0f,   760.0f,  350.0f}},
         {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1200.0f,    0.0f}},
@@ -257,7 +257,7 @@ void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
     func_802EFA20(p_ctrl, 1.0f, 1.3f);
     particleEmitter_setSfx(p_ctrl, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_803728EC);
-    func_802EFB98(p_ctrl, &D_803728C4);
+    particleEmitter_setScaleAndLifetimeRanges(p_ctrl, &D_803728C4);
     particleEmitter_emitN(p_ctrl, count);
 }
 

@@ -46,7 +46,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
-    static struct31s D_80392444 = {{0.4f, 0.6f}, {0.8f, 1.8f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 0.0f, 0.01f};
+    static ParticleScaleAndLifetimeRanges D_80392444 = {{0.4f, 0.6f}, {0.8f, 1.8f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 0.0f, 0.01f};
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
@@ -62,7 +62,7 @@ void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
         -200.0f, -100.0f, -200.0f,
          200.0f,  300.0f,  200.0f
     );
-    func_802EFB98(pCtrl, &D_80392444);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80392444);
     particleEmitter_emitN(pCtrl, cnt);
 }
 

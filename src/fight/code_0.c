@@ -1,26 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
 #include "prop.h"
+#include "fight.h"
 
-extern ActorInfo chFightFlightPad;
-extern ActorInfo chFinalBoss;
-extern ActorInfo chBossJinjoOrange;
-extern ActorInfo chBossJinjoGreen;
-extern ActorInfo chBossJinjoPink;
-extern ActorInfo chBossJinjoYellow;
-extern ActorInfo chBossJinjoBase;
-extern ActorInfo chStoneJinjo;
-extern ActorInfo chJinjonatorBase;
-extern ActorInfo chSpellBarrier;
-extern ActorInfo chSpellFireball;
-extern ActorInfo chSpellGreen;
-extern ActorInfo chGreenBlast;
-extern ActorInfo chJinjonator;
-extern ActorInfo chBossShadow;
-
-/* .bss */
 u8 pad_fight_80392740[0x10];
 
 void fight_func_803863F0(void)

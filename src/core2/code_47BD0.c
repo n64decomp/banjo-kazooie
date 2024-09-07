@@ -87,7 +87,7 @@ Actor *chBeeSwarm_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     this = marker_getActor(marker);
     local = (ActorLocal_core2_47BD0 *)&this->local;
-    phi_fp = func_80330B1C(marker);
+    phi_fp = marker_loadModelBin(marker);
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
         sp80[0] = 0.0f;
         sp80[1] = phi_s0->unk24[1] - 90.0f;

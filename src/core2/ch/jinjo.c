@@ -5,7 +5,6 @@
 extern void subaddie_set_state_with_direction(Actor *, s32, f32 , s32);
 extern f32 func_80309B24(f32*);
 extern void func_80329904(ActorMarker*, s32, f32*);
-extern void func_80326310(Actor *);
 extern void func_8032BB88(Actor *, s32, s32);
 
 void chJinjo_update(Actor *this);

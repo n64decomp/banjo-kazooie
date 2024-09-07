@@ -29,7 +29,7 @@ extern ActorInfo chFightFlightPad = {
 };
 
 
-extern struct31s chFightFlightPad_D_80366F8C = {
+extern ParticleScaleAndLifetimeRanges chFightFlightPad_D_80366F8C = {
     {0.4f, 0.4f}, 
     {0.0f, 0.0f}, 
     {0.0f, 0.01f}, 
@@ -85,7 +85,7 @@ void chFightFlightPad_emitSparklesAtPosition(f32 position[3]){
     particleEmitter_setSprite(pCtrl, ASSET_715_SPRITE_SPARKLE_RED);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &chFightFlightPad_D_80366FB4);
-    func_802EFB98(pCtrl, &chFightFlightPad_D_80366F8C);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &chFightFlightPad_D_80366F8C);
     func_802EFA78(pCtrl, 1);
     particleEmitter_emitN(pCtrl, 0x18);
 }

@@ -5,7 +5,6 @@
 extern void actor_predrawMethod(Actor *);
 extern void actor_postdrawMethod(ActorMarker *);
 extern void func_8030E394(u8);
-extern void func_80326310(Actor *);
 extern int func_803342AC(f32 (*)[3], f32(*)[3], f32);
 extern void particleEmitter_setModel(ParticleEmitter *, s32);
 
@@ -466,7 +465,7 @@ Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
     }
     modelRender_preDraw( (GenFunction_1)actor_predrawMethod, (s32)actor);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
-    modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, func_80330B1C(marker));
+    modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, marker_loadModelBin(marker));
     
     return actor;
 }

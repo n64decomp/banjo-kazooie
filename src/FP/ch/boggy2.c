@@ -230,7 +230,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 
 void func_80388EE8(ParticleEmitter *pCtrl){
     static s32 D_80391D24[3] = {0xc8, 0xc8, 0xe6};
-    static struct31s D_80391D30 = {
+    static ParticleScaleAndLifetimeRanges D_80391D30 = {
         {0.2f, 0.4f},
         {1.2f, 1.6f},
         {0.0f, 0.001f},
@@ -244,7 +244,7 @@ void func_80388EE8(ParticleEmitter *pCtrl){
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setRGB(pCtrl, D_80391D24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80391D58);
-    func_802EFB98(pCtrl, &D_80391D30);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80391D30);
     particleEmitter_manualFree(pCtrl);
 }
 

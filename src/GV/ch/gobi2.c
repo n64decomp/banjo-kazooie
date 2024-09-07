@@ -132,7 +132,7 @@ Actor *chGobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp3C[2] = this->roll;
     modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(this->unk148));
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(this_marker));
+    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, marker_loadModelBin(this_marker));
 
     if(this->state == 4){
         modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(local->unk4));

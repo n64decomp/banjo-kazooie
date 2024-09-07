@@ -122,7 +122,7 @@ f32 fight_D_80391524[3] = {0.0f, -8.0f, 400.0f};
 
 f32 D_80391530[3] = {0.0f, -8.0f, 0.0f};
 
-struct31s D_8039153C ={
+ParticleScaleAndLifetimeRanges D_8039153C ={
         {1.0f, 1.0f},
         {1.0f, 1.0f},
         {0.0f, 0.01f},
@@ -285,7 +285,7 @@ void chfinalboss_spawnBroomstickParticles(f32 position[3], enum asset_e model_id
     particleEmitter_setPosition(temp_s0, position);
     particleEmitter_setAngularVelocityRange(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(temp_s0, &D_80391564);
-    func_802EFB98(temp_s0, &D_8039153C);
+    particleEmitter_setScaleAndLifetimeRanges(temp_s0, &D_8039153C);
     func_802EFA78(temp_s0, 1);
     particleEmitter_emitN(temp_s0, n);
 }

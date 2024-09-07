@@ -41,7 +41,7 @@ Struct_lair_86F0_0 D_803947F8[0xb] ={
     { 4, 0x3, FILEPROG_7F_DOUBLE_HEALTH_PUZZLE_PIECES_PLACED}
 };
 s32 D_80394824[3] = {0xff, 0xff, 0};
-struct31s D_80394830 = {
+ParticleScaleAndLifetimeRanges D_80394830 = {
     {0.17f, 0.24f},
     {0.08f, 0.13f},
     {0.0f, 0.01f},
@@ -460,7 +460,7 @@ void lair_func_8038F924(Actor *this) {
             sp54 = partEmitMgr_newEmitter(6);
             particleEmitter_setSprite(sp54, ASSET_710_SPRITE_SPARKLE_PURPLE);
             particleEmitter_setAlpha(sp54, 0xFF);
-            func_802EFB98(sp54, &D_80394830);
+            particleEmitter_setScaleAndLifetimeRanges(sp54, &D_80394830);
             particleEmitter_setPosition(sp54, this->position);
             sp58[2] = randf() * 255.0f;
             particleEmitter_setRGB(sp54, sp58);

@@ -30,7 +30,7 @@ ActorInfo D_8038C580 = {
 /* .code */
 void func_80387DC0(f32 *position, s32 count) {
     static s32 D_8038C5A4[3] = {180, 180, 180};
-    static struct31s D_8038C5B0 = {
+    static ParticleScaleAndLifetimeRanges D_8038C5B0 = {
         {0.1f, 0.5f},
         {1.4f, 2.8f},
         {0.0f, 0.01f},
@@ -53,7 +53,7 @@ void func_80387DC0(f32 *position, s32 count) {
         -40.0f, 10.0f, -40.0f,
          40.0f, 40.0f,  40.0f
     );
-    func_802EFB98(pCtrl, &D_8038C5B0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038C5B0);
     particleEmitter_emitN(pCtrl, count);
 }
 

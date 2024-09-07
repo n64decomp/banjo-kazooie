@@ -178,7 +178,7 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)sp6C);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
 
-    modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, marker_loadModelBin(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);
     chBottlesBonusCursor_draw(gfx, mtx, vtx);
@@ -226,7 +226,7 @@ f32 *chBottlesBonus_func_802DD584(s32 arg0){
 
     // temp_f0 = D_80376F48;
     sizeof(BKAnimationList);
-    temp_v1 = (BKAnimation*)(model_getAnimationList(func_80330B1C(chBottlesBonusMarker)) + 1);
+    temp_v1 = (BKAnimation*)(model_getAnimationList(marker_loadModelBin(chBottlesBonusMarker)) + 1);
     D_8037DF70[0] = temp_v1[5 + arg0].unk0[0] * 0.01;
     D_8037DF70[1] = temp_v1[5 + arg0].unk0[1] * 0.01;
     D_8037DF70[2] = temp_v1[5 + arg0].unk0[2] * 0.01;

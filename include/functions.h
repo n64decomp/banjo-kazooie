@@ -238,7 +238,7 @@ void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void func_802EFB70(ParticleEmitter *, f32, f32);
 void func_802EFB84(ParticleEmitter *, f32, f32);
-void func_802EFB98(ParticleEmitter *, struct31s *);
+void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *, ParticleScaleAndLifetimeRanges *);
 void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
 void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
 void particleEmitter_setAngularVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
@@ -551,5 +551,9 @@ extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
 extern void fxSparkle_chTreasure(s16[3]);
 extern void actor_collisionOn(Actor *);
 extern void subaddie_set_state_forward(Actor *, s32);
+
+extern BKModelBin *marker_loadModelBin(ActorMarker *this);
+extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
+extern void func_80326310(Actor *this);
 
 #endif

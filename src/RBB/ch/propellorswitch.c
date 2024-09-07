@@ -81,7 +81,7 @@ Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 ar
         modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
     }
     else{
-        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, func_80330B1C(marker));
+        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, marker_loadModelBin(marker));
     }
     return actor;
 }

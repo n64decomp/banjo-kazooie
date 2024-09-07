@@ -203,7 +203,7 @@ void chGobi1_update(Actor *this){
 
     if(this->state == 4){
         func_80326224(this);
-        tmp_s1 = func_8033A12C(func_80330B1C(this->marker));
+        tmp_s1 = func_8033A12C(marker_loadModelBin(this->marker));
         if(tmp_s1){
             player_getPosition(sp54);
             sp54[1] += 50.0f;

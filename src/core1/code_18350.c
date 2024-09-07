@@ -724,37 +724,37 @@ f32 func_80257AD4(f32 val1, f32 val2)
     return sinf((ml_remainder_f(val1, val2) / val2) * (2*BAD_PI));
 }
 
-f32 ml_map_f(f32 a, f32 b, f32 c, f32 d, f32 e)
+f32 ml_map_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)
 {
-    f32 val;
+    f32 result;
 
-    if (c != b)
+    if (in_max != in_min)
     {
-        if (d < e)
+        if (out_min < out_max)
         {
-            val = (((a - b) / (c - b)) * (e - d)) + d;
+            result = (((val - in_min) / (in_max - in_min)) * (out_max - out_min)) + out_min;
 
-            if (val > e)
-                return e;
+            if (result > out_max)
+                return out_max;
 
-            if (val < d)
-                return d;
+            if (result < out_min)
+                return out_min;
         }
         else
         {
-            val = (((a - b) / (c - b)) * (e - d)) + d;
+            result = (((val - in_min) / (in_max - in_min)) * (out_max - out_min)) + out_min;
 
-            if (val < e)
-                return e;
+            if (result < out_max)
+                return out_max;
 
-            if (val > d)
-                return d;
+            if (result > out_min)
+                return out_min;
         }
 
-        return val;
+        return result;
     }
 
-    return e;
+    return out_max;
 }
 
 f32 ml_mapRange_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max)

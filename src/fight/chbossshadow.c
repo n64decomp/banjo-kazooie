@@ -1,30 +1,29 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 
-Actor *chbossshadow_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void chbossshadow_update(Actor *this);
-
-/* .data */
 ActorInfo chBossShadow = {
     MARKER_288_GRUNTY_SHADOW, ACTOR_3AF_GRUNTY_SHADOW, ASSET_3BF_MODEL_PLAYER_SHADOW, 0x1, NULL,
-    chbossshadow_update, func_80326224, chbossshadow_draw,
+    chBossShadow_update, func_80326224, chBossShadow_draw,
     0, 0, 0.0f, 0
 };
 
-/* .code */
-Actor *chbossshadow_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
-    f32 sp34[3];
-    f32 sp30;
-    Actor *this;
-    this = marker_getActorAndRotation(marker, sp34);
-    sp30 = this->scale * ml_map_f(this->unk1C[0], 0.0f, 1000.0f, 1.75f, 0.9f);
+Actor *chBossShadow_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **vptr) {
+    f32 rotation[3];
+    f32 scale;
+    Actor *actor;
+
+    // unk1C[0] of ACTOR_3AF_GRUNTY_SHADOW is set in chfinalboss_update to the distance between Gruntilda and the floor triangle below her
+    actor = marker_getActorAndRotation(this, rotation);
+    scale = actor->scale * ml_map_f(actor->unk1C[0], 0.0f, 1000.0f, 1.75f, 0.9f);
+
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-    modelRender_draw(gdl, mptr, this->position, sp34, sp30, NULL, func_80330B1C(marker));
-    return this;
+    modelRender_draw(gdl, mptr, actor->position, rotation, scale, NULL, marker_loadModelBin(this));
+
+    return actor;
 }
 
-
-void chbossshadow_update(Actor *this){
+void chBossShadow_update(Actor *this) {
     actor_collisionOff(this);
 }

@@ -25,7 +25,7 @@ ActorInfo D_8038E8A8 = {
 
 s32 D_8038E8CC[3] = {0xff, 0xff, 0xff};
 
-struct31s D_8038E8D8 = {
+ParticleScaleAndLifetimeRanges D_8038E8D8 = {
     {0.6f, 0.6f},
     {0.9f, 0.9f},
     {0.0f, 0.01f},
@@ -46,7 +46,7 @@ void func_8038D080(ParticleEmitter *pCtrl){
     particleEmitter_setAlpha(pCtrl, 60);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038E900);
-    func_802EFB98(pCtrl, &D_8038E8D8);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038E8D8);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_manualFree(pCtrl);
 }

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 
 extern f32 func_8038C288(void);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);

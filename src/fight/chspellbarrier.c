@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "fight.h"
 
 extern ActorMarker *chfinalboss_findCollidingJinjo(Actor*, f32);
 void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);

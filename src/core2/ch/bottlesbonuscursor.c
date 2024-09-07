@@ -156,7 +156,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         (s32)sp3C, (s32)sp3C,
         D_803A5D00[getActiveFramebuffer()]
     );
-    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, func_80330B1C(chBottlesBonusCursorMarker));
+    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, marker_loadModelBin(chBottlesBonusCursorMarker));
     func_8024E030(this->position, D_8037E5C0.unk10);
     if (this->state == 1) {
         D_8037E5C0.unk10[0] -= 24.0f;
