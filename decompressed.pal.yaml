@@ -175,188 +175,188 @@ segments:
   - [0xF51FC0, hasm, code_155F0]
   - [0xF52000, c, overlay]
   - [0xF52140, c, code_15770]
-  - [0xF52500, bin, untouched]
-#   # - [0xF2ED80, c, code_15B30]                 #DONE
-#   # - [0xF2FCA0, c, memory]                     #DONE
-#   # - [0xF31360, c, code_18110]                 #DONE
-#   # - [0xF31460, c, code_18210]                 #DONE
-#   # - [0xF31560, c, code_18310]                 #DONE
-#   # - [0xF315A0, c, code_18350]                 #DONE
-#   # - [0xF350E0, c, code_1BE90]                 #DONE
-#   # - [0xF367E0, c, code_1D590]                 #DONE
-#   # - [0xF36810, hasm, code_1D5C0]              #DONE
-#   # - [0xF36820, c, code_1D5D0]                 #DONE
-#   # - [0xF375B0, c, code_1E360]                 #DONE
-#   # - [0xF37930, c, code_1E6E0]                 #DONE
-#   # - [0xF37A70, hasm, code_1E820]              #DONE
-#   # - [0xF37B10, c, audio/n_sl]                 #DONE
-#   # - [0xF37BA0, c, audio/n_synthesizer]        #DONE
-#   # - [0xF38580, c, audio/event]                #DONE
-#   # - [0xF38860, c, audio/n_synaddplayer]       #DONE
-#   # - [0xF38A30, c, audio/n_synallocvoice]      #DONE
-#   # - [0xF38C30, c, audio/n_synsetvol]          #DONE
-#   # - [0xF38CD0, c, audio/n_synstartvoice]      #DONE
-#   # - [0xF38D50, c, audio/n_synsetpan]          #DONE
-#   # - [0xF38DD0, c, audio/n_synsetpitch]        #DONE
-#   # - [0xF38E50, c, audio/n_synsetfxmix]        #DONE
-#   # - [0xF38EE0, c, audio/n_synstopvoice]       #DONE
-#   # - [0xF38F50, c, audio/n_synfreevoice]       #DONE
-#   # - [0xF38FF0, c, audio/n_csplayer]           #DONE
-#   # - [0xF3A460, c, audio/cspsetbank]           #DONE
-#   # - [0xF3A4A0, c, audio/cspstop]              #DONE
-#   # - [0xF3A4D0, c, audio/n_csq]                #DONE
-#   # - [0xF3AB70, c, audio/cspsetseq]            #DONE
-#   # - [0xF3ABB0, c, audio/cspplay]              #DONE
-#   # - [0xF3ABE0, c, audio/cspsetvol]            #DONE
-#   # - [0xF3AC20, c, audio/code_219D0]           #DONE
-#   # - [0xF3AC60, c, audio/cspsettempo]          #DONE
-#   # - [0xF3ACD0, c, audio/code_21A80]           #DONE
-#   # - [0xF3AD00, c, audio/cspgettempo]          #DONE
-#   # - [0xF3AD40, c, audio/code_21AF0]           #DONE
-#   # - [0xF3ADA0, c, audio/code_21B50]           #DONE
-#   # - [0xF3AE40, c, audio/n_syndelete]          #DONE
-#   # - [0xF3AEA0, c, audio/n_synallocfx]         #DONE
-#   # - [0xF3AF00, c, audio/n_reverb]             #DONE
-#   # - [0xF3B990, c, audio/n_auxbus]             #DONE
-#   # - [0xF3BA40, c, audio/n_drvrNew]            #DONE
-#   # - [0xF3BFA0, c, audio/n_save]               #DONE
-#   # - [0xF3BFF0, c, audio/n_envresample]        #DONE
-#   # - [0xF3C090, c, audio/n_env]                #DONE
-#   # - [0xF3CA40, c, audio/n_seqplayer]          #DONE
-#   # - [0xF3E5B0, c, audio/n_synstartvoiceparam] #DONE
-#   # - [0xF3E690, c, audio/n_mainbus]            #DONE
-#   # - [0xF3E710, c, audio/n_load]               #DONE
-#   # - [0xF3E8D0, c, audio/n_adpcm]              #DONE
-#   # - [0xF3EE90, c, audio/n_resample]           #DONE
-#   # - [0xF3F070, c, audio/n_seq]                #DONE
-#   # - [0xF3F360, c, audio/n_synsetpriority]     #DONE
-#   # - [0xF3F370, asm, os/invaldcache]           #DONE
-#   # - [0xF3F410, asm, os/writebackdcacheall]    #DONE
-#   # - [0xF3F440, c, os/initialize]              #DONE
-#   # - [0xF3F6D0, c, os/createthread]            #DONE
-#   # - [0xF3F820, c, gu/sinf]                    #DONE
-#   # - [0xF3F9E0, c, audio/cents2ratio]          #DONE
-#   # - [0xF3FA30, c, audio/heapinit]             #DONE
-#   # - [0xF3FA70, hasm, ultra/parameters]        #DONE
-#   # - [0xF3FAD0, c, os/createmesgqueue]         #DONE
-#   # - [0xF3FB00, c, io/aisetfreq]               #DONE
-#   # - [0xF3FC60, c, audio/sl]                   #DONE
-#   # - [0xF3FD20, c, audio/heapalloc]            #DONE
-#   # - [0xF3FD80, c, os/recvmesg]                #DONE
-#   # - [0xF3FEC0, c, io/aigetlen]                #DONE
-#   # - [0xF3FED0, c, os/virtualtophysical]       #DONE
-#   # - [0xF3FF50, c, io/aisetnextbuf]            #DONE
-#   # - [0xF40000, c, os/pidma]                   #DONE
-#   # - [0xF40110, c, os/stopthread]              #DONE
-#   # - [0xF401D0, c, os/startthread]             #DONE
-#   # - [0xF40320, hasm, os/writebackdcache]      #DONE
-#   # - [0xF403A0, hasm, invaldcache]             #DONE
-#   # - [0xF40450, c, io/pimgr]                   #DONE
-#   # - [0xF405E0, c, os/destroythread]           #DONE
-#   # - [0xF406E0, c, os/sendmesg]                #DONE
-#   # - [0xF40830, c, os/settreadpri]             #DONE
-#   # - [0xF40910, c, gu/mtxutil]                 #DONE
-#   # - [0xF40B80, c, gu/sqrtf]                   #DONE
-#   # - [0xF40B90, c, gu/cosf]                    #DONE
-#   # - [0xF40D00, hasm, ultra/setintmask]        #DONE
-#   # - [0xF40DA0, c, io/dpsetstat]               #DONE
-#   # - [0xF40DB0, c, io/sptask]                  #DONE
-#   # - [0xF410A0, c, io/dpgetstat]               #DONE
-#   # - [0xF410A0, c, io/vigetcurrframebuf]       #DONE
-#   # - [0xF410F0, c, os/stoptimer]               #DONE
-#   # - [0xF411E0, c, os/settimer]                #DONE
-#   # - [0xF412C0, c, ll]                         #DONE
-#   # - [0xF41580, c, io/sptaskyielded]           #DONE
-#   # - [0xF41600, c, io/sptaskyield]             #DONE
-#   # - [0xF41620, c, io/visetmode]               #DONE
-#   # - [0xF41690, c, os/seteventmesg]            #DONE
-#   # - [0xF41700, c, io/vimgr]                   #DONE
-#   # - [0xF41A60, c, io/visetspecial]            #DONE
-#   # - [0xF41C20, c, io/viswapbuf]               #DONE
-#   # - [0xF41C70, c, io/visetevent]              #DONE
-#   # - [0xF41CE0, c, io/vigetnextframebuf]       #DONE
-#   # - [0xF41D20, c, io/viblack]                 #DONE
-#   # - [0xF41D90, c, gu/ortho]                   #DONE
-#   # - [0xF41F50, c, gu/translate]               #DONE
-#   # - [0xF41FF0, c, gu/rotate]                  #DONE
-#   # - [0xF421E0, c, io/contreaddata]            #DONE
-#   # - [0xF42440, c, io/controller]              #DONE
-#   # - [0xF42800, c, io/contsetch]               #DONE
-#   # - [0xF42870, c, audio/bnkf]                 #DONE
-#   # - [0xF42AC0, c, os/gettime]                 #DONE
-#   # - [0xF42B50, c, audio/cseq]                 #DONE
-#   # - [0xF43610, c, io/motor]                   #DONE
-#   # - [0xF43C30, c, io/pfsinit]                 #DONE
-#   # - [0xF43CF0, hasm, invalicache]             #DONE
-#   # - [0xF43D70, c, io/conteeplongwrite]        #DONE
-#   # - [0xF43EA0, c, io/conteeplongread]         #DONE
-#   # - [0xF43F30, c, io/piread]                  #DONE
-#   # - [0xF43F70, c, audio/copy]                 #DONE
-#   # - [0xF43FF0, c, audio/drvrNew]              #DONE
-#   # - [0xF44790, c, audio/reverb]               #DONE
-#   # - [0xF453E0, c, syncprintf]                 #DONE
-#   # - [0xF45420, c, audio/seq]                  #DONE
-#   # - [0xF45A40, hasm, setsr]                   #DONE
-#   # - [0xF45A50, hasm, getsr]                   #DONE
-#   # - [0xF45A60, hasm, setfpccsr]               #DONE
-#   # - [0xF45A70, c, io/sirawread]               #DONE
-#   # - [0xF45AC0, c, io/sirawwrite]              #DONE
-#   # - [0xF45B10, hasm, ultra/exceptasm]         #DONE
-#   # - [0xF46480, c, io/pirawread]               #DONE
-#   # - [0xF464E0, hasm, interrupt]               #DONE
-#   # - [0xF46520, c, os/thread]                  #DONE
-#   # - [0xF46560, c, audio/synthesizer]          #DONE
-#   # - [0xF46C40, c, audio/syndelete]            #DONE
-#   # - [0xF46C50, hasm, probetlb]                #DONE
-#   # - [0xF46D10, c, io/ai]                      #DONE
-#   # - [0xF46D40, c, os/jammesg]                 #DONE
-#   # - [0xF46E90, c, io/pigetcmdq]               #DONE
-#   # - [0xF46EC0, c, io/cartrominit]             #DONE
-#   # - [0xF46FC0, c, io/leodiskinit]             #DONE
-#   # - [0xF470C0, c, io/piacs]                   #DONE
-#   # - [0xF47180, c, os/getthreadpri]            #DONE
-#   # - [0xF471A0, c, io/pirawdma]                #DONE
-#   # - [0xF47280, c, io/epirawdma]               #DONE
-#   # - [0xF474B0, c, io/devmgr]                  #DONE
-#   # - [0xF47940, hasm, bcopy]                   #DONE
-#   # - [0xF47C50, c, io/spsetstat]               #DONE
-#   # - [0xF47C60, c, io/spsetpc]                 #DONE
-#   # - [0xF47CA0, c, io/sprawdma]                #DONE
-#   # - [0xF47D30, c, io/sp]                      #DONE
-#   # - [0xF47D60, c, io/vi]                      #DONE
-#   # - [0xF47EA0, c, os/timerintr]               #DONE
-#   # - [0xF482A0, hasm, setcompare]              #DONE
-#   # - [0xF482B0, c, io/spgetstat]               #DONE
-#   # - [0xF482C0, c, io/vigetcurrcontext]        #DONE
-#   # - [0xF482D0, c, io/viswapcontext]           #DONE
-#   # - [0xF48630, hasm, getcount]                #DONE
-#   # - [0xF48640, c, gu/normalize]               #DONE
-#   # - [0xF486D0, c, io/siacs]                   #DONE
-#   # - [0xF48790, c, io/sirawdma]                #DONE
-#   # - [0xF48840, c, io/pfsisplug]               #DONE
-#   # - [0xF48BB0, c, io/crc]                     #DONE
-#   # - [0xF48D30, c, io/contramwrite]            #DONE
-#   # - [0xF490B0, c, io/contramread]             #DONE
-#   # - [0xF49440, c, io/pfsgetstatus]            #DONE
-#   # - [0xF49550, c, io/contpfs]                 #DONE
-#   # - [0xF4A2B0, c, io/pfschecker]              #DONE
-#   # - [0xF4AD10, c, io/conteepwrite]            #DONE
-#   # - [0xF4B260, c, io/conteepread]             #DONE
-#   # - [0xF4B5C0, c, audio/filter]               #DONE
-#   # - [0xF4B5E0, c, audio/env]                  #DONE
-#   # - [0xF4C160, c, audio/load]                 #DONE
-#   # - [0xF4CCB0, c, audio/resample]             #DONE
-#   # - [0xF4CFB0, c, audio/auxbus]               #DONE
-#   # - [0xF4D0C0, c, audio/mainbus]              #DONE
-#   # - [0xF4D210, c, audio/save]                 #DONE
-#   # - [0xF4D2D0, c, io/si]                      #DONE
-#   # - [0xF4D300, c, io/leointerrupt]            #DONE
-#   # - [0xF4DB80, c, audio/synallocfx]           #DONE
-#   # - [0xF4DC20, c, os/resetglobalintmask]      #DONE
-#   # - [0xF4DC80, c, io/epirawwrite]             #DONE
-#   # - [0xF4DCD0, c, io/epirawread]              #DONE
-#   # - [0xF4DD20, c, os/setglobalintmask]        #DONE
-#   # - [0xF4DD70, c, os/yieldthread]             #DONE
+  - [0xF52500, c, code_15B30]
+  - [0xF53420, c, memory]
+  - [0xF54AE0, c, code_18110]
+  - [0xF54BE0, c, code_18210]
+  - [0xF54CE0, c, code_18310]
+  - [0xF54D20, c, code_18350]
+  - [0xF58860, c, code_1BE90]
+  - [0xF59F60, c, code_1D590]
+  - [0xF59F90, hasm, code_1D5C0]
+  - [0xF59FA0, c, code_1D5D0]
+  - [0xF5AD30, c, code_1E360]
+  - [0xF5B0B0, c, code_1E6E0]
+  - [0xF5B1F0, hasm, code_1E820]
+  - [0xF5B290, c, audio/n_sl]
+  - [0xF5B320, c, audio/n_synthesizer]
+  - [0xF5BD00, c, audio/event]
+  - [0xF5BFE0, c, audio/n_synaddplayer]
+  - [0xF5C1B0, c, audio/n_synallocvoice]
+  - [0xF5C3B0, c, audio/n_synsetvol]
+  - [0xF5C450, c, audio/n_synstartvoice]
+  - [0xF5C4D0, c, audio/n_synsetpan]
+  - [0xF5C550, c, audio/n_synsetpitch]
+  - [0xF5C5D0, c, audio/n_synsetfxmix]
+  - [0xF5C660, c, audio/n_synstopvoice]
+  - [0xF5C6D0, c, audio/n_synfreevoice]
+  - [0xF5C770, c, audio/n_csplayer]
+  - [0xF5DBE0, c, audio/cspsetbank]
+  - [0xF5DC20, c, audio/cspstop]
+  - [0xF5DC50, c, audio/n_csq]
+  - [0xF5E2F0, c, audio/cspsetseq]
+  - [0xF5E330, c, audio/cspplay]
+  - [0xF5E360, c, audio/cspsetvol]
+  - [0xF5E3A0, c, audio/code_219D0]
+  - [0xF5E3E0, c, audio/cspsettempo]
+  - [0xF5E450, c, audio/code_21A80]
+  - [0xF5E480, c, audio/cspgettempo]
+  - [0xF5E4C0, c, audio/code_21AF0]
+  - [0xF5E520, c, audio/code_21B50]
+  - [0xF5E5C0, c, audio/n_syndelete]
+  - [0xF5E620, c, audio/n_synallocfx]
+  - [0xF5E680, c, audio/n_reverb]
+  - [0xF5F110, c, audio/n_auxbus]
+  - [0xF5F1C0, c, audio/n_drvrNew]
+  - [0xF5F720, c, audio/n_save]
+  - [0xF5F770, c, audio/n_envresample]
+  - [0xF5F810, c, audio/n_env]
+  - [0xF601C0, c, audio/n_seqplayer]
+  - [0xF61D30, c, audio/n_synstartvoiceparam]
+  - [0xF61E10, c, audio/n_mainbus]
+  - [0xF61E90, c, audio/n_load]
+  - [0xF62050, c, audio/n_adpcm]
+  - [0xF62610, c, audio/n_resample]
+  - [0xF627F0, c, audio/n_seq]
+  - [0xF62AE0, c, audio/n_synsetpriority]
+  - [0xF62AF0, asm, os/invaldcache]
+  - [0xF62B90, asm, os/writebackdcacheall]
+  - [0xF62BC0, c, os/initialize]
+  - [0xF62E50, hasm, ultra/parameters]
+  - [0xF62EB0, c, os/createthread]
+  - [0xF63000, c, gu/sinf]
+  - [0xF631C0, c, audio/cents2ratio]
+  - [0xF63210, c, audio/heapinit]
+  - [0xF63250, c, os/createmesgqueue]
+  - [0xF63280, c, io/aisetfreq]
+  - [0xF633E0, c, audio/sl]
+  - [0xF634A0, c, audio/heapalloc]
+  - [0xF63500, c, os/recvmesg]
+  - [0xF63640, c, io/aigetlen]
+  - [0xF63650, c, os/virtualtophysical]
+  - [0xF636D0, c, io/aisetnextbuf]
+  - [0xF63780, c, os/pidma]
+  - [0xF63890, c, os/stopthread]
+  - [0xF63950, c, os/startthread]
+  - [0xF63AA0, hasm, os/writebackdcache]
+  - [0xF63B20, hasm, invaldcache]
+  - [0xF63BD0, c, io/pimgr]
+  - [0xF63D60, c, os/destroythread]
+  - [0xF63E60, c, os/sendmesg]
+  - [0xF63FB0, c, os/settreadpri]
+  - [0xF64090, c, gu/mtxutil]
+  - [0xF64300, c, gu/sqrtf]
+  - [0xF64310, c, gu/cosf]
+  - [0xF64480, hasm, ultra/setintmask]
+  - [0xF64520, c, io/dpsetstat]
+  - [0xF64530, c, io/sptask]
+  - [0xF64820, c, io/dpgetstat]
+  - [0xF64830, c, io/vigetcurrframebuf]
+  - [0xF64870, c, os/stoptimer]
+  - [0xF64960, c, os/settimer]
+  - [0xF64A40, c, ll]
+  - [0xF64C50, c, io/sptaskyielded]
+  - [0xF64CD0, c, io/sptaskyield]
+  - [0xF64CF0, c, io/visetmode]
+  - [0xF64D60, c, os/seteventmesg]
+  - [0xF64DD0, c, io/vimgr]
+  - [0xF65130, c, io/visetspecial]
+  - [0xF652F0, c, io/viswapbuf]
+  - [0xF65340, c, io/visetevent]
+  - [0xF653B0, c, io/vigetnextframebuf]
+  - [0xF653F0, c, io/viblack]
+  - [0xF65460, c, gu/ortho]
+  - [0xF65620, c, gu/translate]
+  - [0xF656C0, c, gu/rotate]
+  - [0xF658B0, c, io/contreaddata]
+  - [0xF65B10, c, io/controller]
+  - [0xF65ED0, c, io/contsetch]
+  - [0xF65F40, c, audio/bnkf]
+  - [0xF66190, c, os/gettime]
+  - [0xF66220, c, audio/cseq]
+  - [0xF66CE0, c, io/motor]
+  - [0xF67300, c, io/pfsinit]
+  - [0xF673C0, hasm, invalicache]
+  - [0xF67440, c, io/conteeplongwrite]
+  - [0xF67570, c, io/conteeplongread]
+  - [0xF67600, c, io/piread]
+  - [0xF67640, c, audio/copy]
+  - [0xF676C0, bin, untouched]
+  # - [0xF43FF0, c, audio/drvrNew]
+  # - [0xF44790, c, audio/reverb]
+  # - [0xF453E0, c, syncprintf]
+  # - [0xF45420, c, audio/seq]
+  # - [0xF45A40, hasm, setsr]
+  # - [0xF45A50, hasm, getsr]
+  # - [0xF45A60, hasm, setfpccsr]
+  # - [0xF45A70, c, io/sirawread]
+  # - [0xF45AC0, c, io/sirawwrite]
+  # - [0xF45B10, hasm, ultra/exceptasm]
+  # - [0xF46480, c, io/pirawread]
+  # - [0xF464E0, hasm, interrupt]
+  # - [0xF46520, c, os/thread]
+  # - [0xF46560, c, audio/synthesizer]
+  # - [0xF46C40, c, audio/syndelete]
+  # - [0xF46C50, hasm, probetlb]
+  # - [0xF46D10, c, io/ai]
+  # - [0xF46D40, c, os/jammesg]
+  # - [0xF46E90, c, io/pigetcmdq]
+  # - [0xF46EC0, c, io/cartrominit]
+  # - [0xF46FC0, c, io/leodiskinit]
+  # - [0xF470C0, c, io/piacs]
+  # - [0xF47180, c, os/getthreadpri]
+  # - [0xF471A0, c, io/pirawdma]
+  # - [0xF47280, c, io/epirawdma]
+  # - [0xF474B0, c, io/devmgr]
+  # - [0xF47940, hasm, bcopy]
+  # - [0xF47C50, c, io/spsetstat]
+  # - [0xF47C60, c, io/spsetpc]
+  # - [0xF47CA0, c, io/sprawdma]
+  # - [0xF47D30, c, io/sp]
+  # - [0xF47D60, c, io/vi]
+  # - [0xF47EA0, c, os/timerintr]
+  # - [0xF482A0, hasm, setcompare]
+  # - [0xF482B0, c, io/spgetstat]
+  # - [0xF482C0, c, io/vigetcurrcontext]
+  # - [0xF482D0, c, io/viswapcontext]
+  # - [0xF48630, hasm, getcount]
+  # - [0xF48640, c, gu/normalize]
+  # - [0xF486D0, c, io/siacs]
+  # - [0xF48790, c, io/sirawdma]
+  # - [0xF48840, c, io/pfsisplug]
+  # - [0xF48BB0, c, io/crc]
+  # - [0xF48D30, c, io/contramwrite]
+  # - [0xF490B0, c, io/contramread]
+  # - [0xF49440, c, io/pfsgetstatus]
+  # - [0xF49550, c, io/contpfs]
+  # - [0xF4A2B0, c, io/pfschecker]
+  # - [0xF4AD10, c, io/conteepwrite]
+  # - [0xF4B260, c, io/conteepread]
+  # - [0xF4B5C0, c, audio/filter]
+  # - [0xF4B5E0, c, audio/env]
+  # - [0xF4C160, c, audio/load]
+  # - [0xF4CCB0, c, audio/resample]
+  # - [0xF4CFB0, c, audio/auxbus]
+  # - [0xF4D0C0, c, audio/mainbus]
+  # - [0xF4D210, c, audio/save]
+  # - [0xF4D2D0, c, io/si]
+  # - [0xF4D300, c, io/leointerrupt]
+  # - [0xF4DB80, c, audio/synallocfx]
+  # - [0xF4DC20, c, os/resetglobalintmask]
+  # - [0xF4DC80, c, io/epirawwrite]
+  # - [0xF4DCD0, c, io/epirawread]
+  # - [0xF4DD20, c, os/setglobalintmask]
+  # - [0xF4DD70, c, os/yieldthread]
   - [0xF71750, bin, n_aspMain_text]
   - [0xF723B0, bin, gSPF3DEX_fifo_text]
   - [0xF737E0, bin, gSPL3DEX_fifo_text]
@@ -381,35 +381,35 @@ segments:
   - [0xF74DF0, .data, code_11AC0]
   - [0xF75380, .data, overlaymanager]
   - [0xF75620, .data, code_13990]
-  - [0xF75630, bin, remain_core1_data]
-#   # - [0xF51DB0, .data, code_15B30]
-#   # - [0xF51DC0, .data, memory]
-#   # - [0xF51DF0, .data, code_18310]
-#   # - [0xF524E0, .data, code_18350]
-#   # - [0xF52660, .data, code_1BE90]
-#   # - [0xF52670, .data, code_1D5D0]
-#   # - [0xF52690, .data, code_1E360]
-#   # - [0xF526A0, .data, data_1E820]
-#   # - [0xF526B0, .data, audio/n_sl]
-#   # - [0xF526C0, .data, audio/n_drvrNew]
-#   # - [0xF52850, .data, audio/n_env]
-#   # - [0xF52950, .data, os/initialize]
-#   # - [0xF52970, .data, audio/sl]
-#   # - [0xF52980, .data, io/aisetnextbuf]
-#   # - [0xF52990, .data, io/pimgr]
-#   # - [0xF529C0, .data, io/vimgr]
-#   # - [0xF529E0, .data, io/controller]
-#   # - [0xF529F0, .data, audio/drvrNew]
-#   # - [0xF52B80, .data, ultra/exceptasm]
-#   # - [0xF52BA0, .data, os/thread]
-#   # - [0xF52BC0, .data, io/piacs]
-#   # - [0xF52BD0, .data, io/vi]
-#   # - [0xF52C40, .data, os/timerintr]
-#   # - [0xF52C50, .data, io/siacs]
-#   # - [0xF52C60, .data, audio/env]
-#   # - [0xF52D60, .data, io/vimodepallan1]
-#   # - [0xF52DB0, .data, io/vimodempallan1]
-#   # - [0xF52DB0, .data, io/vimodentsclan1]
+  - [0xF75630, .data, code_15B30]
+  - [0xF75640, .data, memory]
+  - [0xF75670, .data, code_18310]
+  - [0xF75D60, .data, code_18350]
+  - [0xF75EE0, .data, code_1BE90]
+  - [0xF75EF0, .data, code_1D5D0]
+  - [0xF75F10, .data, code_1E360]
+  - [0xF75F20, .data, data_1E820]
+  - [0xF75F30, .data, audio/n_sl]
+  - [0xF75F40, .data, audio/n_drvrNew]
+  - [0xF760D0, .data, audio/n_env]
+  - [0xF761D0, .data, os/initialize]
+  - [0xF761F0, .data, audio/sl]
+  - [0xF76200, .data, io/aisetnextbuf]
+  - [0xF76210, .data, io/pimgr]
+  - [0xF76240, .data, io/vimgr]
+  - [0xF76260, .data, io/controller]
+  - [0xF76270, bin, remain_core1_data]
+  # - [0xF529F0, .data, audio/drvrNew]
+  # - [0xF52B80, .data, ultra/exceptasm]
+  # - [0xF52BA0, .data, os/thread]
+  # - [0xF52BC0, .data, io/piacs]
+  # - [0xF52BD0, .data, io/vi]
+  # - [0xF52C40, .data, os/timerintr]
+  # - [0xF52C50, .data, io/siacs]
+  # - [0xF52C60, .data, audio/env]
+  # - [0xF52D60, .data, io/vimodepallan1]
+  # - [0xF52DB0, .data, io/vimodempallan1]
+  # - [0xF52DB0, .data, io/vimodentsclan1]
   - [0xF766D0, .rodata, code_1D00]
   - [0xF766F0, .rodata, code_3250]
   - [0xF76700, .rodata, code_3A70]
@@ -423,33 +423,34 @@ segments:
   - [0xF77220, .rodata, rumblemanager]
   - [0xF77230, .rodata, overlaymanager]
   - [0xF772B0, .rodata, code_13990]
-  - [0xF772D0, bin, remain_core1_rodata]
-#   # - [0xF53A70, .rodata, code_18350]
-#   # - [0xF53B70, .rodata, code_1BE90]
-#   # - [0xF53BA0, .rodata, code_1D5D0]
-#   # - [0xF53C00, .rodata, audio/n_synthesizer]
-#   # - [0xF53C10, .rodata, audio/n_csplayer]
-#   # - [0xF53F80, .rodata, audio/n_reverb]
-#   # - [0xF53FB0, .rodata, audio/n_drvrNew]
-#   # - [0xF53FD0, .rodata, audio/n_env]
-#   # - [0xF54020, .rodata, audio/n_seqplayer]
-#   # - [0xF543D0, .rodata, audio/n_resample]
-#   # - [0xF543E0, .rodata, gu/sinf]
-#   # - [0xF54430, .rodata, audio/cents2ratio]
-#   # - [0xF54440, .rodata, gu/cosf]
-#   # - [0xF54490, .rodata, ultra/setintmask]
-#   # - [0xF54510, .rodata, gu/rotate]
-#   # - [0xF54520, .rodata, audio/cseq]
-#   # - [0xF54530, .rodata, audio/drvrNew]
-#   # - [0xF54550, .rodata, audio/reverb]
-#   # - [0xF54580, .rodata, audio/seq]
-#   # - [0xF54590, .rodata, ultra/exceptasm]
-#   # - [0xF545E0, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
-#   # - [0xF545E0, .rodata, ultra/libm_vals]
-#   # - [0xF545F0, .rodata, audio/synthesizer]
-#   # - [0xF54600, .rodata, io/devmgr]
-#   # - [0xF54620, .rodata, audio/env]
-#   # - [0xF54670, .rodata, audio/resample]
+  - [0xF772D0, .rodata, code_18350]
+  - [0xF773D0, .rodata, code_1BE90]
+  - [0xF77400, .rodata, code_1D5D0]
+  - [0xF77460, .rodata, audio/n_synthesizer]
+  - [0xF77470, .rodata, audio/n_csplayer]
+  - [0xF777E0, .rodata, audio/n_reverb]
+  - [0xF77810, .rodata, audio/n_drvrNew]
+  - [0xF77830, .rodata, audio/n_env]
+  - [0xF77880, .rodata, audio/n_seqplayer]
+  - [0xF77C30, .rodata, audio/n_resample]
+  - [0xF77C40, .rodata, gu/sinf]
+  - [0xF77C90, .rodata, audio/cents2ratio]
+  - [0xF77CA0, .rodata, gu/cosf]
+  - [0xF77CF0, .rodata, ultra/setintmask]
+  - [0xF77D70, .rodata, ll]
+  - [0xF77D80, .rodata, gu/rotate]
+  - [0xF77D90, .rodata, audio/cseq]
+  - [0xF77DA0, bin, remain_core1_rodata]
+  # - [0xF54530, .rodata, audio/drvrNew]
+  # - [0xF54550, .rodata, audio/reverb]
+  # - [0xF54580, .rodata, audio/seq]
+  # - [0xF54590, .rodata, ultra/exceptasm]
+  # - [0xF545E0, hasm, ultra/libm_vals] # Nothing in this file, just here so splat sees it's ASM
+  # - [0xF545E0, .rodata, ultra/libm_vals]
+  # - [0xF545F0, .rodata, audio/synthesizer]
+  # - [0xF54600, .rodata, io/devmgr]
+  # - [0xF54620, .rodata, audio/env]
+  # - [0xF54670, .rodata, audio/resample]
   - [0xF77F20, bin, n_aspMain_data]
   - [0xF781D0, bin, gSPF3DEX_fifo_data]
   - [0xF789D0, bin, gSPL3DEX_fifo_data]
@@ -475,28 +476,28 @@ segments:
   - [0xF791D0, .bss, overlaymanager]
   - [0xF791D0, .bss, code_13990]
   - [0xF791D0, .bss, code_15770]
-#   # - [0xF791D0, .bss, code_15B30]
-#   # - [0xF791D0, .bss, memory]
-#   # - [0xF791D0, .bss, code_18210]
-#   # - [0xF791D0, .bss, code_1D5D0]
-#   # - [0xF791D0, .bss, code_1E360]
-#   # - [0xF791D0, .bss, os/initialize]
-#   # - [0xF791D0, .bss, io/pimgr]
-#   # - [0xF791D0, .bss, io/sptask]
-#   # - [0xF791D0, .bss, os/seteventmesg]
-#   # - [0xF791D0, .bss, io/vimgr]
-#   # - [0xF791D0, .bss, gu/rotate]
-#   # - [0xF791D0, .bss, io/controller]
-#   # - [0xF791D0, .bss, io/motor]
-#   # - [0xF791D0, .bss, io/cartrominit]
-#   # - [0xF791D0, .bss, io/leodiskinit]
-#   # - [0xF791D0, .bss, io/piacs]
-#   # - [0xF791D0, .bss, os/timerintr]
-#   # - [0xF791D0, .bss, io/siacs]
-#   # - [0xF791D0, .bss, io/pfsisplug]
-#   # - [0xF791D0, .bss, io/conteepread]
-#   # - [0xF791D0, .bss, os/kdebugserver]
-#   # - [0xF791D0, .bss, io/leointerrupt]
+  - [0xF791D0, .bss, code_15B30]
+  - [0xF791D0, .bss, memory]
+  - [0xF791D0, .bss, code_18210]
+  - [0xF791D0, .bss, code_1D5D0]
+  - [0xF791D0, .bss, code_1E360]
+  - [0xF791D0, .bss, os/initialize]
+  - [0xF791D0, .bss, io/pimgr]
+  - [0xF791D0, .bss, io/sptask]
+  - [0xF791D0, .bss, os/seteventmesg]
+  - [0xF791D0, .bss, io/vimgr]
+  - [0xF791D0, .bss, gu/rotate]
+  - [0xF791D0, .bss, io/controller]
+  - [0xF791D0, .bss, io/motor]
+  # - [0xF791D0, .bss, io/cartrominit]
+  # - [0xF791D0, .bss, io/leodiskinit]
+  # - [0xF791D0, .bss, io/piacs]
+  # - [0xF791D0, .bss, os/timerintr]
+  # - [0xF791D0, .bss, io/siacs]
+  # - [0xF791D0, .bss, io/pfsisplug]
+  # - [0xF791D0, .bss, io/conteepread]
+  # - [0xF791D0, .bss, os/kdebugserver]
+  # - [0xF791D0, .bss, io/leointerrupt]
 - name: core2
   dir: core2
   type: code

@@ -15,18 +15,18 @@ __osProbeTLB                = 0x80003BD0;
 __osDisableInt              = 0x80003FC0;
 __osRestoreInt              = 0x80003FE0;
 bk_boot_BSS_START           = 0x80005270;
-___osGetSR                  = 0x8025AFE0;
-bzero                       = 0x80263B40;
-osWriteBackDCacheAll        = 0x80263BE0;
-osVirtualToPhysical         = 0x802646A0;
-osRecvMesg                  = 0x80264550;
-osPiStartDma                = 0x802647D0;
-osWritebackDCache           = 0x80264AF0;
-osInvalDCache               = 0x80264B70;
-osDestroyThread             = 0x80264DB0;
-osSetThreadPri              = 0x80265000;
-osSetIntMask                = 0x802654D0;
-osInvalICache               = 0x802684C0;
+func_80253010               = 0x80252c60;
+func_80253034               = 0x80252c84;
+___osGetSR                  = 0x8025AC30;
+func_8025C29C               = 0x8025beec;
+bzero                       = 0x80263790;
+osWriteBackDCacheAll        = 0x80263830;
+osWritebackDCache           = 0x80264740;
+osInvalDCache               = 0x802647C0;
+osSetIntMask                = 0x80265120;
+osInvalICache               = 0x80268060;
+
+
 __osSetSR                   = 0x8026A210;
 __osGetSR                   = 0x8026A220;
 __osSetFpcCsr               = 0x8026A230;
@@ -42,6 +42,13 @@ __osProbeTLB                = 0x8026B420;
 bcopy                       = 0x8026C110;
 __osSetCompare              = 0x8026CA70;
 osGetCount                  = 0x8026CE00;
+
+
+D_80276E70                  = 0x80276bc0;
+
+
+
+
 __osShutdown                = 0x8027712C;
 __OSGlobalIntMask           = 0x80277130;
 __osRunQueue                = 0x80277378;

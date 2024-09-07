@@ -102,7 +102,7 @@ void func_8023DBDC(void){
 
 void core1_init(void){
 #if VERSION == VERSION_PAL
-     D_80000300 = 0;
+     osTvType = 0;
 #endif
     func_80255C30();
     func_8023E00C(func_8023DBA4());

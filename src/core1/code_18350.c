@@ -1,10 +1,16 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "version.h"
 
 /* .data*/
+#if VERSION == VERSION_USA_1_0
 u32 D_80276CB0 = 0xD22FFFD8; //WHAT IS THIS?
 u32 D_80276CB4 = 0xDEFEF692; //WHAT IS THIS?
+#elif VERSION == VERSION_PAL
+u32 D_80276CB0 = 0x90FA97CB; //WHAT IS THIS?
+u32 D_80276CB4 = 0x8D96D002; //WHAT IS THIS?
+#endif
 u16 *D_80276CB8 = NULL; //! ml_acosPrecValTblPtr
 //! Might not be 90, but 91 or 92? Initial lowerIdx is OOB if 90
 f32 ml_acosValTbl[90] = { //D_80276CBC
