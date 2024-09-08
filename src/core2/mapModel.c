@@ -448,34 +448,40 @@ f32 func_80309B24(f32 arg0[3]){
     return func_80308FDC(arg0, 0xf800ff0f);
 }
 
-BKCollisionTri *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFilter) {
-    BKCollisionTri *sp2C;
-    BKCollisionTri *temp_v0;
+BKCollisionTri *func_80309B48(f32 startPoint[3], f32 endPoint[3], f32 arg2[3], s32 flagFilter) {
+    BKCollisionTri *opaqueTri;
+    BKCollisionTri *transparentTri;
 
     mapModel.unk20 = 0;
     if (mapModel.collision_xlu != NULL) {
         if ((flagFilter & 0x80001F00) == 0x80001F00) {
-            sp2C = NULL;
-        } else {
-            sp2C = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
+            opaqueTri = NULL;
         }
-        temp_v0 = func_802E76B0(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), arg0, arg1, arg2, flagFilter);
-        if (temp_v0 != NULL) {
+        else {
+            opaqueTri = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), startPoint, endPoint, arg2, flagFilter);
+        }
+
+        transparentTri = func_802E76B0(mapModel.collision_xlu, model_getVtxList(mapModel.model_bin_xlu), startPoint, endPoint, arg2, flagFilter);
+
+        if (transparentTri != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_xlu;
-            return temp_v0;
+            return transparentTri;
         }
-        if (sp2C != NULL) {
+
+        if (opaqueTri != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
-        return sp2C;
+
+        return opaqueTri;
     }
     else{
-        sp2C = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), arg0, arg1, arg2, flagFilter);
-        if (sp2C != NULL) {
+        opaqueTri = func_802E76B0(mapModel.collision_opa, model_getVtxList(mapModel.model_bin_opa), startPoint, endPoint, arg2, flagFilter);
+        if (opaqueTri != NULL) {
             mapModel.unk20 = (s32) mapModel.model_bin_opa;
         }
     }
-    return sp2C;
+
+    return opaqueTri;
 }
 
 BKCollisionTri *func_80309C74(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 flagFilter, BKModelBin **arg4) {
