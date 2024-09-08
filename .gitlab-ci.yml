@@ -70,3 +70,27 @@ build-test-us10:
     - echo "Calculated SHA1 - $FILE_SHA1"
     - echo "Expected SHA1   - $BASEROM_US10_SHA1"
     - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
+
+# Try to compile the code inside the image to make sure it works (run docker container)
+build-test-pal:
+  stage: test
+  image:
+    name: $CI_REGISTRY_IMAGE:latest
+    entrypoint: [""]
+  before_script:
+    - curl -L "$BASEROM_PAL_URL" -o baserom.pal.enc.z64
+    - openssl enc -d -aes-256-cbc -in baserom.pal.enc.z64 -out baserom.pal.z64 -k "$BASEROM_PAL_KEY"
+    - FILE_SHA1=$(sha1sum baserom.pal.z64 | awk '{ print $1 }')
+    - echo "Calculated SHA1 - $FILE_SHA1"
+    - echo "Expected SHA1   - $BASEROM_PAL_SHA1"
+    - if [ "${FILE_SHA1}" != "${BASEROM_PAL_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
+  script:
+    # Compile the code
+    - make VERSION=pal
+    # Check if the resulting decompressed ROM is the same as the expected one
+    # ToDo: compare compressed ROMs once tooling is in place
+    - DECOMP_SHA1=$(sha1sum decompressed.pal.z64 | awk '{ print $1 }')
+    - FILE_SHA1=$(sha1sum build/pal/banjo.pal.prelim.z64 | awk '{ print $1 }')
+    - echo "Calculated SHA1 - $FILE_SHA1"
+    - echo "Expected SHA1   - $DECOMP_SHA1"
+    - if [ "${FILE_SHA1}" != "${DECOMP_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
