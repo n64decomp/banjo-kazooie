@@ -291,7 +291,7 @@ s32 func_8033D564(struct5Cs *arg0){
     return arg0->unk0_15;
 }
 
-s32 func_8033D574(struct5Cs *arg0){
+enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0){
     return arg0->unk0_11;
 }
 

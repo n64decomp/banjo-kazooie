@@ -115,7 +115,7 @@ void func_8038794C(Actor *this){
         this->unk38_31 = 1;
         ml_vec3f_copy(this->velocity, this->position);
         
-        if(func_803203FC(1))
+        if(volatileFlag_get(VOLATILE_FLAG_1))
             return;
 
         if(!jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1) && jiggyscore_isSpawned(JIGGY_2A_FP_BOGGY_1)){

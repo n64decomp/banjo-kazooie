@@ -123,7 +123,7 @@ void chMumbo_func_802D18B4(Actor *this) {
     } else {
         player_is_within_range = chMumbo_withinHorzDistToPlayer(0, -107, 188);
     }
-    if(player_is_within_range || func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
+    if(player_is_within_range || volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
         subaddie_set_state_forward(this, 2);
         if( !fileProgressFlag_get(FILEPROG_11_HAS_MET_MUMBO)
             || (!fileProgressFlag_get(FILEPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE) && this->unk38_0)
@@ -221,8 +221,8 @@ void chMumbo_update(Actor *this) {
     f32 temp_f12;
 
     this->unk130 = func_803255FC;
-    if( !func_803203FC(1)
-        && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+    if( !volatileFlag_get(VOLATILE_FLAG_1)
+        && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         && map_get() != MAP_7A_GL_CRYPT) {
         item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, 0);
     }
@@ -278,8 +278,8 @@ void chMumbo_update(Actor *this) {
         actor_playAnimationOnce(this);
             if (actor_animationIsAt(this, 0.999f)) {
                 if( !fileProgressFlag_get(FILEPROG_11_HAS_MET_MUMBO) 
-                    && !func_803203FC(1) 
-                    && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+                    && !volatileFlag_get(VOLATILE_FLAG_1) 
+                    && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
                 ) {
                     subaddie_set_state(this, 3);
                     func_80311480(ASSET_D8F_DIALOG_MUMBO_MEET, 0xE, this->position, this->marker, __chMumbo_textCallback, NULL);
@@ -288,8 +288,8 @@ void chMumbo_update(Actor *this) {
                 }
 
                 if( !fileProgressFlag_get(FILEPROG_DC_HAS_HAD_ENOUGH_TOKENS_BEFORE) 
-                    && !func_803203FC(1)
-                    && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+                    && !volatileFlag_get(VOLATILE_FLAG_1)
+                    && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
                     && this->unk38_0
                 ){
                     subaddie_set_state(this, 3);
@@ -428,7 +428,7 @@ void chMumbo_update(Actor *this) {
 
         case 7: //L802D2704
             chMumbo_func_802D186C(this);
-            if (func_803203FC(FILEPROG_11_HAS_MET_MUMBO) == 0) {
+            if (volatileFlag_get(FILEPROG_11_HAS_MET_MUMBO) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -436,7 +436,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     func_80311480(ASSET_DA7_DIALOG_MUMBO_CCW_SUMMER, 7, NULL, NULL, NULL, NULL);
-                    func_803204E4(FILEPROG_11_HAS_MET_MUMBO, TRUE);
+                    volatileFlag_set(FILEPROG_11_HAS_MET_MUMBO, TRUE);
                 }
             }
             actor_loopAnimation(this);
@@ -444,7 +444,7 @@ void chMumbo_update(Actor *this) {
 
         case 8: //L802D2790
             chMumbo_func_802D186C(this);
-            if (func_803203FC(FILEPROG_12_HAS_TRANSFORMED_BEFORE) == 0) {
+            if (volatileFlag_get(FILEPROG_12_HAS_TRANSFORMED_BEFORE) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -452,7 +452,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     func_80311480(ASSET_DA8_DIALOG_MUMBO_CCW_AUTUMN, 7, NULL, NULL, NULL, NULL);
-                    func_803204E4(FILEPROG_12_HAS_TRANSFORMED_BEFORE, TRUE);
+                    volatileFlag_set(FILEPROG_12_HAS_TRANSFORMED_BEFORE, TRUE);
                 }
             }
             actor_loopAnimation(this);

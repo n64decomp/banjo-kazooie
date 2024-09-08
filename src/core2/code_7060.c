@@ -189,7 +189,7 @@ void func_8028E4B0(void) {
     sp20 = exit_get();
     D_8037BFB8 = 0;
     player_setPosition(D_803636C0);
-    if (func_803203FC(0xE) || func_802D686C() || (sp20 == 0x65)){
+    if (volatileFlag_get(0xE) || func_802D686C() || (sp20 == 0x65)){
         return;
     }
     if (sp20 == 0x63) {

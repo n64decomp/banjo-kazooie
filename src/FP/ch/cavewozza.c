@@ -20,7 +20,7 @@ extern ActorInfo D_80392700 = { MARKER_20F_WOZZA_IN_CAVE, ACTOR_33F_WOZZA_IN_CAV
 
 /* .code */
 void func_80390630(Actor *this){
-    if(func_803203FC(0xC4)){
+    if(volatileFlag_get(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE)){
         if(!this->unk16C_4){
             this->unk16C_4 = TRUE;
             this->marker->propPtr->unk8_3 = FALSE;

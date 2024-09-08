@@ -41,7 +41,7 @@ void func_803865F4(Actor *this, s32 next_state) {
     local = (ActorLocal_CCW_160 *)&this->local;
     local->unkC = 0.0f;
     if (next_state == 2) {
-        if (!func_80320454(0xB5, 1)) {
+        if (!volatileFlag_getAndSet(0xB5, 1)) {
             func_80311480(0xCE2, 4, NULL, this->marker, func_803865C4, NULL);
         } else {
             func_80311480(0xCE3, 4, NULL, NULL, NULL, NULL);
@@ -57,10 +57,10 @@ void func_803865F4(Actor *this, s32 next_state) {
     }
 
     if (next_state == 4) {
-        if (func_803203FC(2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2)) {
             item_set(ITEM_6_HOURGLASS, FALSE);
-            func_803204E4(3, 0);
-            func_803204E4(5, 1);
+            volatileFlag_set(3, 0);
+            volatileFlag_set(5, 1);
         } else {
             func_80311480(0xCE4, 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
@@ -133,7 +133,7 @@ void func_8038687C(Actor *this) {
         local->unk4 = 0;
         local->unk8 = 0;
         local->unkC = 0.0f;
-        if (func_803203FC(2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2)) {
             this->position_y -= 300.0f;
         }
         func_803865F4(this, 1);
@@ -141,7 +141,7 @@ void func_8038687C(Actor *this) {
     }
     if ((s32)local->unk0 == 1) {
         other = actorArray_findActorFromActorId(0x46);
-        if(func_803203FC(2)) {
+        if(volatileFlag_get(VOLATILE_FLAG_2)) {
             local->unk0 = NULL;
             if (other != NULL) {
                 actor_collisionOff(other);
@@ -198,7 +198,7 @@ void func_8038687C(Actor *this) {
         local->unkC = randf2(0.5 - ((local->unk8 / 10) * 0.4), 1.0 - ((local->unk8 / 10) * 0.8));
     }
     if (this->state == 1) {
-        if (func_803203FC(2) && func_803203FC(3)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2) && volatileFlag_get(VOLATILE_FLAG_3)) {
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 1800 - 1);
             func_803865F4(this, 3);
@@ -209,9 +209,9 @@ void func_8038687C(Actor *this) {
             }
         }
     }
-    if ((this->state == 3) && func_803203FC(2) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
+    if ((this->state == 3) && volatileFlag_get(VOLATILE_FLAG_2) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
         item_set(ITEM_6_HOURGLASS, 0);
-        func_803204E4(3, 0);
-        func_803204E4(5, 0);
+        volatileFlag_set(3, 0);
+        volatileFlag_set(5, 0);
     }
 }

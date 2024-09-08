@@ -61,7 +61,7 @@ void chTrucker_update(Actor *this){
         marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         mapSpecificFlags_set(0xC, FALSE);
-        if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2) && !func_803203FC(1)){
+        if(jiggyscore_isSpawned(JIGGY_45_GV_GOBI_2) && !volatileFlag_get(VOLATILE_FLAG_1)){
             __chTrucker_setState(this, 3);
         }
         else{//L803891CC

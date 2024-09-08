@@ -152,7 +152,7 @@ int func_803872EC(void){
 
     return text_id == ASSET_B37_TEXT_CONGA_SAFE_UP_HERE
         || text_id == ASSET_B38_TEXT_CONGA_DEFEAT
-        || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+        || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         || text_id == ASSET_B3B_TEXT_CONGA_ORANGE_PAD_JIGGY
         || text_id == ASSET_B45_TEXT_JIGGY_COLLECT_10
         || text_id == ASSET_B51_TEXT_BOTTLES_HOW_TO_EXIT_LEVEL;

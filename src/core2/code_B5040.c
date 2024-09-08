@@ -112,7 +112,7 @@ void savedata_init(void){ //savedata_init
     jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
     honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
     mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
-    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    fileProgressFlag_getSizeAndPtr(&progressflags_size, &progressflags_addr);
     notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
@@ -194,7 +194,7 @@ void func_8033C460(u8 *savedata){ //global_progress
     u8 *progressflags_addr;
     int i;
     
-    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    fileProgressFlag_getSizeAndPtr(&progressflags_size, &progressflags_addr);
     for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
         progressflags_addr[i - progressflagsOffset] = savedata[i];
     }
@@ -287,7 +287,7 @@ void __savedata_8033C8A0(u8 *savedata){ //global_progress
     u8 *progressflags_addr;
     int i;
     
-    progressflags_getSizeAndPtr(&progressflags_size, &progressflags_addr);
+    fileProgressFlag_getSizeAndPtr(&progressflags_size, &progressflags_addr);
     for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
         savedata[i] = progressflags_addr[i - progressflagsOffset];
     }
@@ -360,14 +360,14 @@ void saveData_load(SaveData *savedata){
     func_8033C4E4(savedata);
     __savedata_load_abilities(savedata);
     for(i = 0; D_80370A20[i].unk0 != -1; i++){
-        func_803204E4(D_80370A20[i].unk0, fileProgressFlag_get(D_80370A20[i].unk2));
+        volatileFlag_set(D_80370A20[i].unk0, fileProgressFlag_get(D_80370A20[i].unk2));
     }
 }
 
 void saveData_create(SaveData *savedata){
     int i;
     for(i = 0; D_80370A20[i].unk0 != -1; i++){
-        fileProgressFlag_set(D_80370A20[i].unk2, func_803203FC(D_80370A20[i].unk0));
+        fileProgressFlag_set(D_80370A20[i].unk2, volatileFlag_get(D_80370A20[i].unk0));
     }
     savedata_clear(savedata);
     __savedata_save_magic(savedata);

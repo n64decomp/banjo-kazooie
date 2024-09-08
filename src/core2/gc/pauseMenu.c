@@ -24,7 +24,7 @@ typedef struct struct_1A_s{
 
 extern void func_802C5994(void);
 extern void func_802E412C(s32, s32);
-void func_803204E4(s32, s32);
+void volatileFlag_set(s32, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void mlMtxApply(Mtx*);
 void func_80310D2C(void);
@@ -988,9 +988,9 @@ s32 gcPauseMenu_update(void){
                     D_80383010.unk3_7 = 1;
                     break;
                 case 1://L80313908 //return to lair
-                    func_803204E4(0x16, 1);
+                    volatileFlag_set(0x16, 1);
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
-                        func_803204E4(0,0);
+                        volatileFlag_set(0,0);
                         func_802E4078(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }else{
                         func_802E4078(D_8036C560[level-1].map, D_8036C560[level-1].exit, 1);
@@ -1003,7 +1003,7 @@ s32 gcPauseMenu_update(void){
                     break;
                 case 3://L8031399C
                     func_802C5994();
-                    func_803204E4(0,0);
+                    volatileFlag_set(0,0);
                     if(!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) || fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                         gcPauseMenu_setState(0x14);
                     }else{
@@ -1431,7 +1431,7 @@ void gcpausemenu_80314B24(void){
 void gcpausemenu_returnToLair(void){
     s32 level = level_get();
     if(0 < level && level < 0xC && D_8036C560[level-1].map != -1){
-        func_803204E4(0x16, TRUE);
+        volatileFlag_set(0x16, TRUE);
         func_802E4078(D_8036C560[level-1].map, D_8036C560[level-1].exit, 1);
     }
 }

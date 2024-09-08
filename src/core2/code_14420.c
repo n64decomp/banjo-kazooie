@@ -336,7 +336,7 @@ void func_8029B85C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_8029B890(void){
-    if(!fileProgressFlag_get(FILEPROG_A8_HAS_DIED) && !func_803203FC(2)){
+    if(!fileProgressFlag_get(FILEPROG_A8_HAS_DIED) && !volatileFlag_get(VOLATILE_FLAG_2)){
         func_803114D0();
         if(bs_getState() == 0x54){
             func_8029B62C();

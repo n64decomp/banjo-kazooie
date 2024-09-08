@@ -80,7 +80,7 @@ void func_8038AA8C(Actor *this) {
         this->unk16C_4 = TRUE;
         mapSpecificFlags_set(5, FALSE);
         if( (!fileProgressFlag_get(FILEPROG_E8_AUTMN_EYRIE_FED) || jiggyscore_isSpawned(JIGGY_49_CCW_EYRIE))
-            && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+            && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         ) {
             marker_despawn(this->marker);
         }

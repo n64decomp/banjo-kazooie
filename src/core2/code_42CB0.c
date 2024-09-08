@@ -104,8 +104,8 @@ void chHoneycomb_update(Actor *this){
             if(local->uid == 0)
                 local->uid = (!this->unk44_2)? D_8037DDC0 : func_802C9C40(this);
             if( honeycombscore_get(local->uid)
-                || func_803203FC(1)
-                || func_803203FC(2)
+                || volatileFlag_get(VOLATILE_FLAG_1)
+                || volatileFlag_get(VOLATILE_FLAG_2)
             ){
                 marker_despawn(this->marker);
                 return;

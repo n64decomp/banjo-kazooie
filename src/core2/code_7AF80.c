@@ -1265,7 +1265,7 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
 
 Actor *spawn_actor(enum actor_e arg0, s32 arg1[3], s32 arg2) {
   s32 i;
-  arg0 = (!func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);
+  arg0 = (!dummy_func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);
   for (i = 0; i < sSpawnableActorSize; i++) {
     if (arg0 == sSpawnableActorList[i].infoPtr->actorId) {
       return sSpawnableActorList[i].spawnFunc(arg1, arg2, ((0, sSpawnableActorList[i])).infoPtr, sSpawnableActorList[i].unk8);

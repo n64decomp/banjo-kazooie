@@ -152,9 +152,9 @@ void chcaterpillar_update(Actor *this){
 
         if(ml_distance_vec3f(this->position, sp74) < 50.0f){
             func_8028F030(ACTOR_2A2_CATERPILLAR);
-            if(!func_803203FC(0xb2)){
+            if(!volatileFlag_get(0xb2)){
                 func_80311480(0xcc7, 4, NULL, NULL, NULL, NULL);
-                func_803204E4(0xb2, TRUE);
+                volatileFlag_set(0xb2, TRUE);
             }
             FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 0x1f4, 0x9c4);
             marker_despawn(this->marker);

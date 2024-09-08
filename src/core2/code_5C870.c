@@ -214,7 +214,7 @@ void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
         if(arg1){
             sp20 = FALSE;
             if(next_mode == GAME_MODE_3_NORMAL){
-                if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
+                if(volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
                     sp20 = TRUE;
                     sp1C = 7;
                 }
@@ -265,8 +265,8 @@ void func_802E3E7C(enum game_mode_e mode){
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
     func_802E3BF8(GAME_MODE_2_UNKNOWN, 0);
-    if(!func_80320454(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
-        if(!func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE))
+    if(!volatileFlag_getAndSet(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
+        if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(map_get());
     }
     func_802E398C(1);
@@ -547,7 +547,7 @@ bool func_802E4424(void) {
                 && !func_8028F22C()
                 && func_8032056C()
                 && levelSpecificFlags_validateCRC1()
-                && func_80320248()
+                && dummy_func_80320248()
             ) {
                 func_802E3BF8(GAME_MODE_4_PAUSED, 0U);
             } else if ((func_8024E67C(0) == 1) && (D_8037E8E0.unk0 != 0)) {

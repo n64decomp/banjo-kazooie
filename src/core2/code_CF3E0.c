@@ -104,15 +104,15 @@ void func_8035646C(enum file_progress_e progress_flag) {
 s32 func_8035648C(s32 arg0, s32 arg1) {
     s32 index;
 
-    if (func_803203FC() != 0) {
+    if (volatileFlag_get(arg0) != 0) {
         return 0;
     } else {
         index = __findIndex(volatileProgressDialogMap, arg0);
         if (index != -1) {
             if (func_80311480(volatileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
-                func_803204E4(arg0, 1);
+                volatileFlag_set(arg0, 1);
             }
-            return func_803203FC(arg0);
+            return volatileFlag_get(arg0);
         }
         return 0;
     }

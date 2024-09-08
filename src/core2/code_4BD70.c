@@ -14,7 +14,7 @@ ActorInfo D_803675C0 = { MARKER_1E9_MUMBO_COST_SIGN, ACTOR_36C_25_MUMBO_TOKEN_SI
 void chMumboSign_update(Actor *this) {
     if (!this->unk16C_4) {
         if( fileProgressFlag_get(this->modelCacheIndex - ACTOR_368_5_MUMBO_TOKEN_SIGN + FILEPROG_90_PAID_TERMITE_COST) 
-            || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+            || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         ) {
             marker_despawn(this->marker);
         }

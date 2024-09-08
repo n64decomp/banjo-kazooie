@@ -20,6 +20,8 @@
 #include "bsint.h"
 #include "generic.h"
 
+#include "enums.h"
+
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
@@ -561,5 +563,8 @@ extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, 
 extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3);
 extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
+extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
+extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
+extern s32  volatileFlag_get(s32);  // get volatile flag
 
 #endif

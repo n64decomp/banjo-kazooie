@@ -57,7 +57,7 @@ void animCache_flushAll(void){
 
     for(i = 0; i<340; i++){
         if(D_80379E20[i].alive){
-            func_803203FC(0);
+            volatileFlag_get(VOLATILE_FLAG_0);
             D_80379E20[i].life = 0;
             boneTransformList_free(D_80379E20[i].bone_xform);
             D_80379E20[i].bone_xform = NULL;

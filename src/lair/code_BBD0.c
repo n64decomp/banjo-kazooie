@@ -48,7 +48,7 @@ Actor *func_80391FC0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_80392014(Actor *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4) {
-    if (mapSpecificFlags_get(0xA) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+    if (mapSpecificFlags_get(0xA) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
         arg4 = arg4 * 0.5;
     }
     if (mapSpecificFlags_get(5)) {
@@ -119,7 +119,7 @@ void func_8039217C(Actor *this) {
             break;
 
         case 5: //L803923C0
-            if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+            if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
                 subaddie_set_state(this, 8U);
                 break;
             }

@@ -26,7 +26,7 @@ void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     phi_v1 = this->unk10_12*2;
-    func_80320424(0x20 + this->unkF4_8*6 + phi_v1, 2);
+    volatileFlag_getN(0x20 + this->unkF4_8*6 + phi_v1, 2);
 }
 
 void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -68,18 +68,18 @@ void func_8038BC24(void) {
     s32 phi_s0;
     s32 phi_s1;
 
-    if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !func_803203FC(0x62)) {
+    if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !volatileFlag_get(0x62)) {
         rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
         for(phi_s1 = 0; phi_s1 < func_8031A45C(3); phi_s1++){
             phi_s0 = 0x26 + 2*phi_s1;
                 temp_v0 = randi2(0, 3);
                 if (phi_s0 >= 0x61) {
-                    func_80320524(0x26, temp_v0, 2);
+                    volatileFlag_setN(0x26, temp_v0, 2);
                 } else {
-                    func_80320524(phi_s0, temp_v0, 2);
+                    volatileFlag_setN(phi_s0, temp_v0, 2);
                 }
         }
-        func_803204E4(0x62, 1);
+        volatileFlag_set(0x62, 1);
     }
 }
 
@@ -161,7 +161,7 @@ void chBrentilda_update(Actor *this) {
             }
         }
         actor_setOpacity(this, sp74);
-        if (!func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+        if (!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
             if ((phi_f2 < 600.0) && !this->unk38_0) {
                 comusic_8025AB44(COMUSIC_7A_BRENTILDA, -1, 0x1F4);
                 func_8032BB88(this, 0, 0x1F4);

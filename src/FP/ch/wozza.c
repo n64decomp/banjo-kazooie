@@ -172,7 +172,7 @@ void FP_func_8038F758(ActorMarker *marker){
 void FP_func_8038F7AC(Actor *this){
     ActorLocal_Wozza * local = (ActorLocal_Wozza *)&this->local;
 
-    if(func_803203FC(0xC4)){
+    if(volatileFlag_get(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE)){
         if(!this->unk16C_4){
             this->unk16C_4 = TRUE;
             this->marker->propPtr->unk8_3 = FALSE;
@@ -228,7 +228,7 @@ void FP_func_8038F7AC(Actor *this){
                 break;
             }
 
-            if(func_80329530(this, 1000) && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
+            if(func_80329530(this, 1000) && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
                 func_8038F454(this);
                 break;
             }

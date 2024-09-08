@@ -14,7 +14,7 @@ extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
 extern void func_80319EA4(void);
 extern void fileProgressFlag_set(s32, bool);
-extern void func_803204E4(s32, bool);
+extern void volatileFlag_set(s32, bool);
 
 void func_802D3D54(Actor *this);
 void func_802D3DA4(Actor *this);
@@ -137,17 +137,20 @@ void func_802D2FB0(Actor *this, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5
     }
 }
 
-void func_802D3138(ActorMarker *marker, ActorMarker *other_marker){
-    if(marker->id == 0x224 || marker->id == 0x225){
+// collision function if player shoots egg at spider webs
+void func_802D3138(ActorMarker *marker, ActorMarker *other_marker) {
+    if(marker->id == MARKER_224_BREAKABLE_FLOOR_COBWEB || marker->id == MARKER_225_BREAKABLE_WALL_COBWEB) {
         func_8025A70C(COMUSIC_2B_DING_B);
     }
 }
 
-void func_802D317C(ActorMarker *marker, enum file_progress_e prog_flag_id){
+// called from collision die function below, set according file flag and despawns object
+void func_802D317C(ActorMarker *marker, enum file_progress_e prog_flag_id) {
     fileProgressFlag_set(prog_flag_id, TRUE);
     marker_despawn(marker);
 }
 
+// collision die function for several objects in Lair
 void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
     Actor *sp2C;
 
@@ -166,7 +169,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.6f, 32736);
             func_802D2FB0(sp2C, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
             sp2C->unk60 = 1.0f;
-            fileProgressFlag_set(0xA5, 1);
+            fileProgressFlag_set(FILEPROG_A5_LAIR_CRYPT_GATE_OPEN, 1);
             break;
 
         case MARKER_109_BREAKABLE_BRICK_WALL:
@@ -261,21 +264,21 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             func_8030E540(SFX_D9_WOODEN_CRATE_BREAKING_1);
             func_802EE2E8(sp2C, 7, 9, 0x78, 0.43f, 1.3f, 3.0f);
             func_802EE2E8(sp2C, 3, 6, 0x78, 0.43f, 1.3f, 3.0f);
-            func_802D317C(arg0, 0xC5);
+            func_802D317C(arg0, FILEPROG_C5_RAREWARE_BOX_BROKEN);
             break;
 
         case 0x11A:
             func_8030E540(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 0xD, 0x32, 0.8f, 0.9f);
             func_802EE278(sp2C, 0xE, 0xD, 0xAA, 0.8f, 0.9f);
-            func_802D317C(arg0, 0xC2);
+            func_802D317C(arg0, FILEPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN);
             break;
 
         case 0x118:
             func_8030E540(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 0xD, 0x50, 1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 0xD, 0xB4, 1.2f, 0.9f);
-            func_802D317C(arg0, 0xCD);
+            func_802D317C(arg0, FILEPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
             break;
 
         case 0x119:
@@ -283,7 +286,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             func_802EE278(sp2C, 0xE, 9, 0x50,  1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 9, 0xAA,  1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 9, 0x104, 1.2f, 0.9f);
-            func_802D317C(arg0, 0xCE);
+            func_802D317C(arg0, FILEPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
             break;
 
         case 0x22D:
@@ -315,7 +318,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             func_802EE278(sp2C, 4, 0x32, 0x50, 1.0f, 1.4f);
             func_802EE278(sp2C, 4, 0x32, 0xA0, 1.0f, 1.4f);
             func_802EE278(sp2C, 4, 0x1E, 0xF0, 0.8f, 1.1f);
-            func_802D317C(arg0, 0xC3);
+            func_802D317C(arg0, FILEPROG_C3_ICE_BALL_TO_CHEATO_BROKEN);
             break;
 
         case MARKER_121_GLASS_EYE:
@@ -572,7 +575,7 @@ void func_802D4680(Actor *this){
             if(func_80258640(this->position, sp1C) < 150.0f && func_8028F20C()){
                 if(func_8028ECAC() == 0 ||  func_8028ECAC() == BSGROUP_8_TROT){
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
-                        func_803204E4(0, 0);
+                        volatileFlag_set(0, 0);
                         func_802D4614(MAP_80_GL_FF_ENTRANCE);
                     }
                     else{
@@ -624,7 +627,7 @@ void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
     this->marker->propPtr->unk8_3 = TRUE;
     if( ( (((arg1 & 0xC00000) == 0) && mapSpecificFlags_get(arg1 - 0)) 
           || (((arg1 & 0xC00000) == 0x800000) && fileProgressFlag_get(arg1 - 0x800000)) 
-          || (((arg1 & 0xC00000) == 0x400000) && func_803203FC(arg1 - 0x400000))
+          || (((arg1 & 0xC00000) == 0x400000) && volatileFlag_get(arg1 - 0x400000))
         ) 
         && (arg2 != this->state)
     ) {
@@ -633,7 +636,7 @@ void func_802D4928(Actor *this, s32 arg1, s32 arg2, s32 arg3) {
     }
     if( ( (((arg1 & 0xC00000) == 0) && !mapSpecificFlags_get(arg1 - 0)) 
           || (((arg1 & 0xC00000) == 0x800000) && !fileProgressFlag_get(arg1 - 0x800000)) 
-          || (((arg1 & 0xC00000) == 0x400000) && !func_803203FC(arg1 - 0x400000))
+          || (((arg1 & 0xC00000) == 0x400000) && !volatileFlag_get(arg1 - 0x400000))
         ) 
         && (arg2 == this->state)
     ) {
@@ -652,10 +655,10 @@ void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
             fileProgressFlag_set(arg1 + 0xFF800000, 1);
         }
         if (arg1 & 0x400000) {
-            func_803204E4(arg1 + 0xFFC00000, 1);
+            volatileFlag_set(arg1 + 0xFFC00000, 1);
         }
     }
-    if( (((arg1 & 0x800000) && (fileProgressFlag_get(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (func_803203FC(arg1 + 0xFFC00000)))) 
+    if( (((arg1 & 0x800000) && (fileProgressFlag_get(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (volatileFlag_get(arg1 + 0xFFC00000)))) 
         && (fileProgressFlag_get(arg2)) && (this->animctrl == NULL)
     ) {
         subaddie_set_state_with_direction(this, 8, 0.0f, 1);
@@ -761,7 +764,7 @@ void func_802D5000(enum map_e map_id){
 }
 
 void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
-    func_803204E4(1, 1);
+    volatileFlag_set(1, 1);
     D_80367684 = map_id;
     D_80367688 = arg1;
     if (arg2) {
@@ -784,7 +787,7 @@ void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
 
 
 void func_802D5140(ActorMarker *caller, enum asset_e text_id, s32 arg2){
-    itemscore_noteScores_get(func_80320424(0x19, 4));
+    itemscore_noteScores_get(volatileFlag_getN(0x19, 4));
 }
 
 void func_802D5178(s32 arg0, enum file_progress_e arg1, s32 arg2, enum map_e arg3, s32 arg4, s32 arg5, enum actor_e arg6, s32 arg7){
@@ -798,7 +801,7 @@ void func_802D5178(s32 arg0, enum file_progress_e arg1, s32 arg2, enum map_e arg
 }
 
 void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    if(func_803203FC(1) && map_get() != MAP_8E_GL_FURNACE_FUN){
+    if(volatileFlag_get(VOLATILE_FLAG_1) && map_get() != MAP_8E_GL_FURNACE_FUN){
         func_80319214(gfx, mtx, vtx);
     }
 }
@@ -1020,16 +1023,16 @@ void func_802D5628(void){
         func_802D5178(0x24, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
         func_802D5178(0x20, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
         func_802D5178(0x3F, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
-        if(func_803203FC(0x18)){
+        if(volatileFlag_get(0x18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
                 func_80311174(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
                 fileProgressFlag_set(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT, TRUE);
-                func_803204E4(0x18, 0);
+                volatileFlag_set(0x18, 0);
             }
             else{//L802D5DD8
-                if(!func_803203FC(0x16)){
+                if(!volatileFlag_get(0x16)){
                     func_80311174(0xF77, 0x4, NULL, NULL, NULL, NULL, func_802D5140);
-                    func_803204E4(0x18, 0);
+                    volatileFlag_set(0x18, 0);
                 }
             }
         }//L802D5E18
@@ -1042,7 +1045,7 @@ void func_802D5628(void){
                     && !fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)
                 ){
                     D_8037DE04 += time_getDelta();
-                    if(D_80367680 < D_8037DE04 && !func_803203FC(0x16)){
+                    if(D_80367680 < D_8037DE04 && !volatileFlag_get(0x16)){
                         if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                             sp4C = 0xF9D;
                         }
@@ -1054,10 +1057,10 @@ void func_802D5628(void){
                             D_8037DE00 = randi2(0xF86, sp4C);
                         }//L802D5F1C
 
-                        if(func_803203FC(0x22)){
+                        if(volatileFlag_get(0x22)){
                             if(func_80311480(0xF82, 4, NULL, NULL, NULL, NULL)){
                                 fileProgressFlag_set(FILEPROG_C1_BADDIES_ESCAPE_TEXT, TRUE);
-                                func_803204E4(0x22, 0);
+                                volatileFlag_set(0x22, 0);
                                 D_8037DE04 = 0.0f;
                                 D_80367680 += 60.0;
                                 if(300.0 < D_80367680)
@@ -1109,7 +1112,7 @@ void func_802D6114(void){
         if(map_getLevel(sp24) != map_getLevel(map_get())){
             func_802E4A70();
         }//L802D6194
-        func_803204E4(0x21, 1);
+        volatileFlag_set(0x21, 1);
         if(sp24 != 0x1C || !func_8025ADBC(COMUSIC_23_MMM_INSIDE_CHURCH)){
             func_803228D8();
         }
@@ -1194,7 +1197,7 @@ void func_802D63D4(void){
         default: //L802D6460
             func_802BAFE4(D_80367688);
             timedFuncQueue_update();
-            func_803204E4(0xbf, 0);
+            volatileFlag_set(0xbf, 0);
             func_802D6750();
             break;
     }
@@ -1216,43 +1219,43 @@ void func_802D6494(void){
                 func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_212_CC_ENTRANCE_BARS:// L802D6550
-                if(map_get() == MAP_70_GL_CC_LOBBY && !func_803203FC(UNKFLAGS1_7F_SANDCASTLE_OPEN_CC)){
+                if(map_get() == MAP_70_GL_CC_LOBBY && !volatileFlag_get(VOLATILE_FLAG_7F_SANDCASTLE_OPEN_CC)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_212_CC_ENTRANCE_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_234_CCW_ENTRANCE_DOOR:// L802D65A0
-                if(map_get() == MAP_79_GL_CCW_LOBBY && !func_803203FC(UNKFLAGS1_93_SANDCASTLE_OPEN_CCW)){
+                if(map_get() == MAP_79_GL_CCW_LOBBY && !volatileFlag_get(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW)){
                     func_802D485C(actorArray_findActorFromActorId(ACTOR_234_CCW_ENTRANCE_DOOR), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_210_BGS_ENTRANCE_DOOR:// L802D65F8
-                if(!func_803203FC(0x84)){
+                if(!volatileFlag_get(0x84)){
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
-                if(map_get() == MAP_6F_GL_FP_LOBBY && !func_803203FC(UNKFLAGS1_8B_SANDCASTLE_OPEN_FP)){
+                if(map_get() == MAP_6F_GL_FP_LOBBY && !volatileFlag_get(VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_226_GV_ENTRANCE:// L802D6674
-                if(map_get() == MAP_6E_GL_GV_LOBBY && !func_803203FC(UNKFLAGS1_87_SANDCASTLE_OPEN_GV)){
+                if(map_get() == MAP_6E_GL_GV_LOBBY && !volatileFlag_get(VOLATILE_FLAG_87_SANDCASTLE_OPEN_GV)){
                     func_802D485C(actorArray_findActorFromActorId(ACTOR_226_GV_ENTRANCE), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_228_MMM_ENTRANCE_DOOR:// L802D66CC
-                if(!func_803203FC(UNKFLAGS1_8C_SANDCASTLE_OPEN_MMM)){
+                if(!volatileFlag_get(VOLATILE_FLAG_8C_SANDCASTLE_OPEN_MMM)){
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_20F_RBB_ENTRANCE_DOOR:// L802D66F8
-                if(map_get() == MAP_77_GL_RBB_LOBBY && !func_803203FC(UNKFLAGS1_90_SANDCASTLE_OPEN_RBB)){
+                if(map_get() == MAP_77_GL_RBB_LOBBY && !volatileFlag_get(VOLATILE_FLAG_90_SANDCASTLE_OPEN_RBB)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_20F_RBB_ENTRANCE_DOOR), SFX_9A_MECHANICAL_CLOSING, 0.5f);
                     func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
@@ -1311,14 +1314,14 @@ s32 func_802D683C(s32 arg0){
 }
 
 int func_802D686C(void){
-    if(func_803203FC(0x1E)){
+    if(volatileFlag_get(0x1E)){
         return FALSE;
     } 
     return map_get() == D_80367684;
 }
 
 int func_802D68B4(void){
-    return func_802D686C() || func_803203FC(0x21);
+    return func_802D686C() || volatileFlag_get(0x21);
 }
 
 //BREAK????

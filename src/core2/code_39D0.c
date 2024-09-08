@@ -133,7 +133,7 @@ int func_8028ADB4(void){
 }
 
 int func_8028ADF0(void){
-    return func_803203FC(0x9d);
+    return volatileFlag_get(0x9d);
 }
 
 bool func_8028AE10(void) {

@@ -69,7 +69,7 @@ void __matchingGame_spawnJIggy(void){
 void __matchingGame_setState(s32 next_state){
     if(next_state == 2){
         item_set(ITEM_6_HOURGLASS, 1);
-        if(func_803203FC(2))
+        if(volatileFlag_get(VOLATILE_FLAG_2))
             item_set(ITEM_0_HOURGLASS_TIMER, 4499);
         else
             item_set(ITEM_0_HOURGLASS_TIMER, 5999);
@@ -79,9 +79,9 @@ void __matchingGame_setState(s32 next_state){
     }
 
     if(next_state == 3){
-        if(func_803203FC(2)){
-            func_803204E4(3, 0);
-            func_803204E4(5, 0);
+        if(volatileFlag_get(VOLATILE_FLAG_2)){
+            volatileFlag_set(3, 0);
+            volatileFlag_set(5, 0);
         }
         else{
             func_8028F66C(BS_INTR_F);
@@ -89,9 +89,9 @@ void __matchingGame_setState(s32 next_state){
     }
     
     if(next_state == 4){
-        if(func_803203FC(2)){
-            func_803204E4(3, 0);
-            func_803204E4(5, 1);
+        if(volatileFlag_get(VOLATILE_FLAG_2)){
+            volatileFlag_set(3, 0);
+            volatileFlag_set(5, 1);
         }
         else{
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
@@ -120,7 +120,7 @@ void gv_matchingGame_init(void){
     matchingGame.state = 0;
     if(map_get() == MAP_13_GV_MEMORY_GAME){
         if( !jiggyscore_isSpawned(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
-            ||  func_803203FC(2)                      //in FF minigame
+            ||  volatileFlag_get(VOLATILE_FLAG_2)                      //in FF minigame
         ){
             matchingGame.match_count = 0;
             matchingGame.tile_a = NULL;
@@ -222,8 +222,8 @@ void gv_matchingGame_update(void){
     }//L803907F0
     
     if( matchingGame.state == 1
-        && func_803203FC(2)
-        && func_803203FC(3)
+        && volatileFlag_get(VOLATILE_FLAG_2)
+        && volatileFlag_get(VOLATILE_FLAG_3)
     ){
         __matchingGame_setState(2);
     }

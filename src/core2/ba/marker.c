@@ -205,10 +205,10 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
 
     if(arg1 & 0x400000){
         sp24 = arg1 + 0xFFC00000;
-        if(!func_803203FC(sp24)){
-            func_803204E4(sp24, 1);
+        if(!volatileFlag_get(sp24)){
+            volatileFlag_set(sp24, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
-            func_803204E4(0xBF, 1);
+            volatileFlag_set(0xBF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
         }
     }
@@ -216,7 +216,7 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
         if(!fileProgressFlag_get(arg1)){
             fileProgressFlag_set(arg1, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
-            func_803204E4(0xBF, 1);
+            volatileFlag_set(0xBF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
         }
     }
@@ -231,8 +231,8 @@ int __baMarker_8028BC60(void){
 } 
 
 void __baMarker_resolveCollision(Prop *other_prop){
-    s32 plyr_collision_type;
-    s32 obj_collision_type;
+    enum marker_collision_func_type_e plyr_collision_type;
+    enum marker_collision_func_type_e obj_collision_type;
     s32 plyr_hitbox_type;
     int i;
     ActorMarker *marker; //0xbc
@@ -253,8 +253,8 @@ void __baMarker_resolveCollision(Prop *other_prop){
     s32 tmp1;
 
     if(*((u32*)(((u32)other_prop) + 8)) & 1){
-        plyr_collision_type = 0;
-        obj_collision_type = 0;
+        plyr_collision_type = MARKER_COLLISION_FUNC_0;
+        obj_collision_type = MARKER_COLLISION_FUNC_0;
         marker = other_prop->actorProp.marker;
         actor = NULL;
         if(marker->unk3E_0){
@@ -273,12 +273,12 @@ void __baMarker_resolveCollision(Prop *other_prop){
         switch(marker->id){
             case 0x125: //L8028BE88
             case 0x126: //L8028BE88
-                obj_collision_type = 1;
+                obj_collision_type = MARKER_COLLISION_FUNC_1;
                 break;
 
-            case 0x97: //L8028BE94
-                plyr_collision_type = 1;
-                obj_collision_type = 1;
+            case MARKER_97_BOGGY_2: //L8028BE94
+                plyr_collision_type = MARKER_COLLISION_FUNC_1;
+                obj_collision_type = MARKER_COLLISION_FUNC_1;
                 break;
 
             case 0xBA: //L8028BEA8
@@ -289,7 +289,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     || marker->unk40_31 == 5
                     || marker->unk40_31 == 6
                 ){
-                    obj_collision_type = 1;
+                    obj_collision_type = MARKER_COLLISION_FUNC_1;
                 }
                 break;
 
@@ -314,7 +314,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case 0xA1: //L8028BF54
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     func_802A02B4(1);
-                    obj_collision_type = 2;
+                    obj_collision_type = MARKER_COLLISION_FUNC_2_DIE;
                 }
                 break;
 
@@ -327,7 +327,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
 
                 if(plyr_hitbox_type != HITBOX_6_WONDERWING){
-                    plyr_collision_type = 2;
+                    plyr_collision_type = MARKER_COLLISION_FUNC_2_DIE;
                 }
                 break;
 
@@ -389,7 +389,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     spAC[1] += 40.0f;
                     if(func_802458E0(spAC, actor, 0x87) == 0)
                         return;
-                    func_803204E4(0x1E, 1);
+                    volatileFlag_set(0x1E, 1);
                     if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
                         actor->unk10_12 = 2;
                     }
@@ -516,7 +516,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_F3_GV_KAZOOIE_TARGET: //L8028C64C
                 if(plyr_hitbox_type == HITBOX_3_BEAK_BOMB){
                     mapSpecificFlags_set(6,1);
-                    obj_collision_type = 1;
+                    obj_collision_type = MARKER_COLLISION_FUNC_1;
                 }
                 break;
 
@@ -583,7 +583,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     return;
                 
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
-                    && func_803203FC(0)
+                    && volatileFlag_get(VOLATILE_FLAG_0)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
                     func_80356540(FILEPROG_A6_FURNACE_FUN_COMPLETE);
@@ -695,7 +695,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(__baMarker_8028BC20(marker))
                     return;
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
-                    && func_803203FC(0)
+                    && volatileFlag_get(VOLATILE_FLAG_0)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
                     func_80356540(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
@@ -715,7 +715,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
                     miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
-                    if(!func_80320454(0xC, 1)){
+                    if(!volatileFlag_getAndSet(0xC, 1)){
                         func_80311480(0xA24, 4, 0, 0, 0, 0);
                     }
                 }
@@ -727,7 +727,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_9_FLIGHT)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
-                else if(! func_80320454(0xD, 1)){
+                else if(! volatileFlag_getAndSet(0xD, 1)){
                     func_80311480(0xA25, 4, 0, 0, 0, 0);
                 }
                 break;
@@ -775,33 +775,33 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 chtrainers_pickup(actor);
                 break;
 
-            case 0x1AE: //L8028CFEC
+            case MARKER_1AE_ZUBBA: //L8028CFEC
                 switch(plyr_hitbox_type){
                     case HITBOX_1_BEAK_BUSTER:
                     case HITBOX_2_BEAK_BARGE:
                     case HITBOX_5_PECK:
                     case HITBOX_6_WONDERWING:
-                        obj_collision_type = 2;
+                        obj_collision_type = MARKER_COLLISION_FUNC_2_DIE;
                         break;
                     default:
-                        plyr_collision_type = 2;
+                        plyr_collision_type = MARKER_COLLISION_FUNC_2_DIE;
                         break;
                 }
                 break;
 
             case MARKER_1B1_CCW_GOBI: //L8028D024
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
-                    obj_collision_type = 1;
+                    obj_collision_type = MARKER_COLLISION_FUNC_1;
                 break;
         }//L8028D034
         if(func_80297C6C() == 3){
-            plyr_collision_type = 0;
+            plyr_collision_type = MARKER_COLLISION_FUNC_0;
         }
         if(obj_collision_type){
             miscflag_set(8);
         }
-        func_8032FFF4(playerMarker, marker, plyr_collision_type);
-        func_8032FFF4(marker, playerMarker, obj_collision_type);
+        marker_callCollisionFunc(playerMarker, marker, plyr_collision_type);
+        marker_callCollisionFunc(marker, playerMarker, obj_collision_type);
         if(marker->unk3E_0){
             func_8032B258(actor, obj_collision_type);
         }

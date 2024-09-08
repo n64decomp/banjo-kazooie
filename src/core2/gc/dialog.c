@@ -228,7 +228,7 @@ void func_8030F338(void){
         }
     }
     if(g_Dialog.unk128_31 & 0x8){
-            if((!func_802E4A08() && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) || !g_Dialog.unk128_3){
+            if((!func_802E4A08() && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) || !g_Dialog.unk128_3){
                 func_8028F918(0);
             }
     }//L8030F3E8
@@ -710,13 +710,13 @@ void func_803106BC(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
         g_Dialog.active_zoombox = 1;
     }//L8031095C
     g_Dialog.unk128_6 = 1;
-    g_Dialog.unk12C_23 = ((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3) ? 1 : -1;
+    g_Dialog.unk12C_23 = ((func_802E4A08() || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3) ? 1 : -1;
     g_Dialog.caller = marker;
     g_Dialog.unk13C = callback;
     g_Dialog.unk140 = arg4;
     g_Dialog.unk144 = (void *)arg5;
     g_Dialog.unk138 = (marker != NULL )? ((marker->unk5C)? marker->unk5C : -1) : 0;
-    gcdialog_setState(((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3) ? 6 : 1);
+    gcdialog_setState(((func_802E4A08() || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3) ? 6 : 1);
     //L803109EC
 }
 
@@ -795,7 +795,7 @@ void func_80310D2C(void){
             
             g_Dialog.unk138 = sp24->unk14;
             func_8025A55C(8000, 300, 2);
-            if((sp24->unk2 & 0x8) && !((func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3)){//L80310E6C
+            if((sp24->unk2 & 0x8) && !((func_802E4A08() || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) && g_Dialog.unk128_3)){//L80310E6C
                     func_8028F918(0);
                     if( 0.0f == sp24->unk4_x
                         && 0.0f == sp24->unk4_y
@@ -871,13 +871,13 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     f32 pad;
     s32 temp_v1;
 
-    if(func_803203FC(1) || func_802D686C())
+    if(volatileFlag_get(VOLATILE_FLAG_1) || func_802D686C())
         return 0;
 
     if(!func_803114B0()){
         func_80310B1C(text_id, arg1, marker, (void *)callback, (void *)arg5, arg6);
         if(arg1 & 8){
-            if(!(func_802E4A08() || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) || !g_Dialog.unk128_3){//L80311214
+            if(!(func_802E4A08() || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) || !g_Dialog.unk128_3){//L80311214
                 if(pos != NULL){
                     func_8028F94C(((g_Dialog.string_cmd[1] < 0)? 1 : 3), pos);
                 }else{//L8031126C
@@ -922,7 +922,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
             g_Dialog.unk148[temp_v1].unk20 = arg6;
             g_Dialog.unk12C_15++;
             if(arg1 & 0x08){
-                if(!( func_802E4A08() ||  func_803203FC(0x1f, &g_Dialog)) || !g_Dialog.unk128_3){//L8031141C
+                if(!( func_802E4A08() ||  volatileFlag_get(0x1f)) || !g_Dialog.unk128_3){//L8031141C
                     if(!func_8028EC04()){
                         if(pos != NULL){
                             func_8028F94C(2, pos);

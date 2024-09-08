@@ -61,7 +61,6 @@ extern int quizQuestionAskedBitfield_get(u32); // ff_isAsked_flag_get
 
 extern void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
-extern s32  func_803203FC(s32);  // get volatile flag
 extern void ability_setAllLearned(s32);  // set unlocked moves bitfield
 extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
 
@@ -574,10 +573,10 @@ void lair_func_8038CD48(void)
     if (D_8037DCB8->UNK_18)
         lair_func_8038CC9C();
 
-    if (!func_803203FC(1) && !func_803203FC(2))
-        func_803204E4(0, FALSE);
+    if (!volatileFlag_get(VOLATILE_FLAG_1) && !volatileFlag_get(VOLATILE_FLAG_2))
+        volatileFlag_set(0, FALSE);
 
-    if (!func_803203FC(0))
+    if (!volatileFlag_get(VOLATILE_FLAG_0))
         func_8038CCEC();
 }
 
@@ -627,7 +626,7 @@ void lair_func_8038CF18(void)
     D_8037DCB8->unk0 = mapModel_getModel(0);
     D_8037DCB8->unk11 = 0;
 
-    if (func_803203FC(2) && !func_803203FC(4))
+    if (volatileFlag_get(VOLATILE_FLAG_2) && !volatileFlag_get(VOLATILE_FLAG_4))
     {
         quizQuestionAskedBitfield_free();
         quizQuestionAskedBitfield_init();
@@ -659,7 +658,7 @@ void lair_func_8038CF18(void)
 
     func_80347A14(0);
 
-    if (func_803203FC(1))
+    if (volatileFlag_get(VOLATILE_FLAG_1))
     {
         levelSpecificFlags_clear();
         func_8038CE00();
@@ -667,7 +666,7 @@ void lair_func_8038CF18(void)
     }
     else
     {
-        if (func_803203FC(2))
+        if (volatileFlag_get(VOLATILE_FLAG_2))
         {
             levelSpecificFlags_clear();
             func_8038D670(FFA_5_FORGET_MOVES_2);
@@ -824,7 +823,7 @@ void func_8038D48C(void)
 
 void func_8038D4BC(void)
 {
-    func_803204E4(2, TRUE);
+    volatileFlag_set(2, TRUE);
     func_802E4A70();
 
     // restore moves after a delay
@@ -967,7 +966,7 @@ void func_8038D670(enum FF_Action next_state) {
                     if (D_8037DCB8->unk4->unk8 == FFTT_5_GRUNTY) {
                         func_80356540(0xA2);
                     }
-                    if (func_803203FC(0xA0)) {
+                    if (volatileFlag_get(0xA0)) {
                         func_80356540(0xA1);
                     }
                     func_80356540(0xA0);
@@ -996,7 +995,7 @@ void func_8038D670(enum FF_Action next_state) {
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
-                if (func_803203FC(0xA3)) {
+                if (volatileFlag_get(0xA3)) {
                     func_80356540(0xA4);
                 }
                 func_80356540(0xA3);
@@ -1013,9 +1012,9 @@ void func_8038D670(enum FF_Action next_state) {
                 func_8025AB00();
                 func_8025A70C(JINGLE_DOOR_OF_GRUNTY_OPENED);
                 fileProgressFlag_set(FILEPROG_A6_FURNACE_FUN_COMPLETE, TRUE);
-                func_803204E4(0, FALSE);
-                func_803204E4(0xA6, TRUE);
-                func_803204E4(0xA7, TRUE);
+                volatileFlag_set(0, FALSE);
+                volatileFlag_set(0xA6, TRUE);
+                volatileFlag_set(0xA7, TRUE);
                 next_state = 9;
                 mapSpecificFlags_set(0xA, TRUE);
                 func_8028F918(2);
@@ -1284,24 +1283,24 @@ void lair_func_8038E0B0(void) {
                 break;
 
             case 4://L8038E64C
-                if (func_803203FC(1)) {
-                    func_803204E4(1, 0);
+                if (volatileFlag_get(VOLATILE_FLAG_1)) {
+                    volatileFlag_set(1, 0);
                     func_8038E070();
                     func_8025A55C(6000, 500, 0xA);
                 }
                 break;
 
             case 5://L8038E684
-                if (func_803203FC(2)) {
-                    if (func_803203FC(4)) {
+                if (volatileFlag_get(VOLATILE_FLAG_2)) {
+                    if (volatileFlag_get(VOLATILE_FLAG_4)) {
                         func_8038E070();
-                        D_8037DCB8->unkF = func_803203FC(5);
+                        D_8037DCB8->unkF = volatileFlag_get(VOLATILE_FLAG_5);
                         func_8038D670(6);
                     } else {
                         func_8038D670(1);
                     }
-                    func_803204E4(2, FALSE);
-                    func_803204E4(4, FALSE);
+                    volatileFlag_set(2, FALSE);
+                    volatileFlag_set(4, FALSE);
                 }
                 break;
 
@@ -1335,11 +1334,11 @@ void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
 
 void func_8038E7C4(void)
 {
-    if (func_803203FC(0))
+    if (volatileFlag_get(VOLATILE_FLAG_0))
         return;
 
     func_8038CE28();
-    func_803204E4(0, TRUE);
+    volatileFlag_set(0, TRUE);
 }
 
 /**

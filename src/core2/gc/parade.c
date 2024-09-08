@@ -7,7 +7,7 @@
 
 extern void func_8028F918(s32);
 extern void func_80311714(int);
-extern void func_803204E4(s32, s32);
+extern void volatileFlag_set(s32, s32);
 
 typedef struct struct_1C_s{
     u8 map;
@@ -166,9 +166,9 @@ void gcparade_8031ABF8(void) {
     func_80347A7C();
     func_8031FBF8();
     func_8031FBA0();
-    func_803204E4(0x1F, 1);
+    volatileFlag_set(0x1F, 1);
     if (D_803830F0.parade_id == PARADE_1_POST_GRUNTY_BATTLE) {
-        func_803204E4(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
+        volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
     }
     func_803228D8();
     func_802E4A70();
@@ -203,7 +203,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             gcparade_8031AC8C();
             break;
         case PARADE_STATE_2_INIT_FINAL_PARADE: //parade 1 init
-            func_803204E4(0xC1, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
             D_803830F0.parade_element = D_8036DAE4;
             D_803830F0.indx = 0;
             D_803830F0.parade_id = PARADE_1_POST_GRUNTY_BATTLE;
@@ -243,8 +243,8 @@ void gcparade_setState(enum parade_state_e next_state) {
             timedFunc_set_1(0.25f, (GenFunction_1)gcparade_setState, (D_803830F0.indx == D_803830F0.count) ? PARADE_STATE_8_END : PARADE_STATE_3_WARP);
             break;
         case PARADE_STATE_8_END:
-            func_803204E4(0x1F, 0);
-            func_803204E4(0xC1, FALSE);
+            volatileFlag_set(0x1F, 0);
+            volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, FALSE);
             func_802E412C(1, 8);
             func_802E40C4(0xA);
             if (D_803830F0.parade_id == 0) {
@@ -286,7 +286,7 @@ void gcparade_update(void) {
         gcparade_beginFinalParade();
         return;
     }
-    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) != 0) {
+    if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE) != 0) {
         snackerctl_update();
         switch (D_803830F0.state) {
             case PARADE_STATE_3_WARP:
@@ -333,9 +333,9 @@ void gcparade_update(void) {
 void gcparade_free(void){}
 
 void gcparade_start(void){
-    func_803204E4(UNKFLAGS1_20_BEGIN_CHARACTER_PARADE, FALSE);
-    func_803204E4(0x1F, TRUE);
-    if(func_80320454(UNKFLAGS1_C0_BEGIN_FINAL_CHARACTER_PARADE, FALSE))
+    volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, FALSE);
+    volatileFlag_set(0x1F, TRUE);
+    if(volatileFlag_getAndSet(VOLATILE_FLAG_C0_BEGIN_FINAL_CHARACTER_PARADE, FALSE))
         gcparade_setState(PARADE_STATE_2_INIT_FINAL_PARADE);
     else
         gcparade_setState(PARADE_STATE_1_INIT_FF_PARADE);
@@ -348,11 +348,11 @@ void gcparade_init(void) {
     s32 temp_v0;
     s32 var_s2;
 
-    if (func_803203FC(UNKFLAGS1_20_BEGIN_CHARACTER_PARADE)) {
+    if (volatileFlag_get(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE)) {
         gcparade_start();
         return;
     }
-    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+    if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
         func_80347A14(0);
         if ((D_803830F0.state == 3)){
             var_s2 = FALSE;
@@ -390,18 +390,18 @@ int gcparade_8031B4F4(void){
 }
 
 void gcparade_beginFFParade(void){
-    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) return;
+    if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) return;
 
-    func_803204E4(UNKFLAGS1_20_BEGIN_CHARACTER_PARADE, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, TRUE);
     gcparade_init();
 }
 
 void gcparade_beginFinalParade(void){
     
-    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) return;
+    if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) return;
 
-    func_803204E4(UNKFLAGS1_20_BEGIN_CHARACTER_PARADE, TRUE);
-    func_803204E4(UNKFLAGS1_C0_BEGIN_FINAL_CHARACTER_PARADE, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_C0_BEGIN_FINAL_CHARACTER_PARADE, TRUE);
     D_803830F0.jiggyscore = jiggyscore_total();
     gcparade_init();
 }

@@ -133,7 +133,7 @@ void func_802DEE1C(Actor *this) {
 
         case 3:
             if(animctrl_isStopped(this->animctrl)) {
-                func_803204E4(0xC3, 1);
+                volatileFlag_set(VOLATILE_FLAG_C3, 1);
                 this->state = 4;
             }
             break;

@@ -19,7 +19,6 @@ f32 func_80257204(f32, f32, f32, f32);
 extern Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw);
 f32 func_8033229C(ActorMarker *);
 f32 player_getYaw(void);
-extern void func_8032FFF4(ActorMarker *, ActorMarker *, s32);
 extern void func_802C9334(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
 extern void func_8032EE0C(GenFunction_2, s32);
@@ -529,7 +528,7 @@ void func_803268B4(void) {
     
 
     if (suBaddieActorArray != NULL) {
-        sp54 = func_803203FC(101);
+        sp54 = volatileFlag_get(101);
         for(temp_v1 = suBaddieActorArray->cnt - 1; temp_v1 >= 0; temp_v1--){
             actor = &suBaddieActorArray->data[temp_v1];
             actor_info = actor->actor_info;
@@ -538,7 +537,7 @@ void func_803268B4(void) {
             temp_s1 = actor->actor_info->unk18;
             if (marker->propPtr->unk8_4) {
                 if(sp54){
-                    if (  actor->actor_info->unk20 && func_803203FC( actor->actor_info->unk20)) {
+                    if (  actor->actor_info->unk20 && volatileFlag_get( actor->actor_info->unk20)) {
                         marker_despawn(marker);
                     }
                 }
@@ -724,7 +723,7 @@ Actor **actorArray_findJiggyActors(void) {
     return suBaddieJiggyArray;
 }
 
-bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorMarker * arg4){
+bool func_803270B8(f32 arg0[3], f32 arg1, enum marker_collision_func_type_e arg2, int (*arg3)(Actor *), ActorMarker * arg4){
     bool var_s4;
     Actor * start;
     Actor * i_ptr;
@@ -741,7 +740,7 @@ bool func_803270B8(f32 arg0[3], f32 arg1, s32 arg2, int (*arg3)(Actor *), ActorM
             ) {
                 var_s4 = TRUE;
                 if (!func_8033D410(arg4, i_ptr->marker)) {
-                    func_8032FFF4(i_ptr->marker, arg4, arg2);
+                    marker_callCollisionFunc(i_ptr->marker, arg4, arg2);
                 }
             }
         }
@@ -849,7 +848,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     func_8032FFD4(suLastBaddie->marker, suBaddieActorArray->cnt - 1);
     marker_setModelId(suLastBaddie->marker, actorInfo->modelId);
     marker_setActorUpdateFunc(suLastBaddie->marker, actorInfo->update_func);
-    marker_setActorUpdate2Func(suLastBaddie->marker, actorInfo->unk10);
+    marker_setActorUpdate2Func(suLastBaddie->marker, actorInfo->update2_func);
     ml_vec3f_clear(suLastBaddie->unk1C);
     ml_vec3f_clear(suLastBaddie->velocity);
     ml_vec3f_clear(suLastBaddie->spawn_position);
@@ -859,7 +858,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->stored_animctrl_forwards = 0;
     suLastBaddie->stored_animctrl_smoothTransistion = 0;
     suLastBaddie->stored_animctrl_duration = 0.0f;
-    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->stored_animctrl_timer = 0.0f;
     suLastBaddie->unk138_19 = 0;
     suLastBaddie->stored_animctrl_subrangeMin = 0.0f;
     suLastBaddie->stored_animctrl_subrangeMax = 1.0f;
@@ -868,7 +867,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk138_29 = 0;
     suLastBaddie->unk18 = actorInfo->animations;
     suLastBaddie->animctrl = NULL;
-    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->stored_animctrl_timer = 0.0f;
     suLastBaddie->unk130 = 0;
     suLastBaddie->unk124_5 = 0;
     suLastBaddie->unk124_3 = 0;
@@ -1518,7 +1517,7 @@ bool func_803294F0(Actor *this, s32 arg1, s32 arg2){
 
 bool func_80329530(Actor *this, s32 dist){
     if( func_8028F098() 
-        && !func_803203FC(0xBF) 
+        && !volatileFlag_get(0xBF) 
         && subaddie_playerIsWithinSphere(this, dist)
     ){
         return TRUE;
@@ -1684,7 +1683,7 @@ void func_80329B68(Actor *this){
     animctrl_setDirection(this->animctrl, this->stored_animctrl_forwards);
     animctrl_setSmoothTransition(this->animctrl, this->stored_animctrl_smoothTransistion);
     animctrl_setDuration(this->animctrl, this->stored_animctrl_duration);
-    animctrl_setStart(this->animctrl, this->unkEC);
+    animctrl_setStart(this->animctrl, this->stored_animctrl_timer);
     animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
     animctrl_start(this->animctrl, "subaddie.c", 0x8fd);
     animctrl_setTimer(this->animctrl, this->sound_timer);
@@ -1761,7 +1760,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                     s0->stored_animctrl_forwards = animctrl_isPlayedForwards(s0->animctrl);
                     s0->stored_animctrl_smoothTransistion = animctrl_isSmoothTransistion(s0->animctrl);
                     s0->stored_animctrl_duration = animctrl_getDuration(s0->animctrl);
-                    s0->unkEC = animctrl_getAnimTimer(s0->animctrl);
+                    s0->stored_animctrl_timer = animctrl_getAnimTimer(s0->animctrl);
                     animctrl_getSubRange(s0->animctrl, &s0->stored_animctrl_subrangeMin, &s0->stored_animctrl_subrangeMax);
                 }
                 s0->animctrl = NULL;
@@ -2231,7 +2230,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     s32 sp70;
     s32 sp6C;
     s32 sp68;
-    s32 sp64;
+    enum marker_collision_func_type_e sp64;
     s32 var_v0;
     f32 player_yaw;
     f32 sp50[3];
@@ -2311,7 +2310,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     }
                     func_8032EE20();
                 }
-                func_8032FFF4(arg0, arg1, sp64);
+                marker_callCollisionFunc(arg0, arg1, sp64);
             }
             if ((sp64 != 0) && (sp6C != 0)) {
                 FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 25984, this->position, (s32)((500.0f + func_8033229C(arg0)) * 0.5), (s32)((500.0f + func_8033229C(arg0)) * 5));

@@ -173,7 +173,7 @@ void mainLoop(void){
     }//L8023DE54
     if( !func_8032056C()
         || !levelSpecificFlags_validateCRC1()
-        || !func_80320240()
+        || !dummy_func_80320240()
     ){
         s32 offset;
         //render weird CRC failure image

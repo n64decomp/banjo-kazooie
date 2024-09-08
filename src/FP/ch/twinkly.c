@@ -242,7 +242,7 @@ void func_8038C8F0(ActorMarker *marker){
 
 void func_8038C94C(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
-    if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
+    if(!volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
         subaddie_set_state(this, 6);
         __spawnQueue_add_1((GenFunction_1)func_8038C8F0, reinterpret_cast(s32, this->marker));
     }
