@@ -195,6 +195,7 @@ void __baMarker_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
     func_8030E6D4(SFX_90_SWITCH_PRESS);
 }
 
+// arg1 - if bit 0x400000 is set, it's a volatile flag, else it's a file progress flag (for witch switches)
 void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
     u32 sp24;
     if(arg0 != 1)
@@ -203,8 +204,9 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
     if(func_8028ECAC() == 1)
         return;
 
+    // if bit 0x400000 of arg1 is set, it's a volatile flag, else it's a file progress flag (for witch switches)
     if(arg1 & 0x400000){
-        sp24 = arg1 + 0xFFC00000;
+        sp24 = arg1 + 0xFFC00000; // weird truncing 
         if(!volatileFlag_get(sp24)){
             volatileFlag_set(sp24, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -379,8 +381,8 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 break;
                 
-            case 0x231: //L8028C104
-            case 0x244: //L8028C104
+            case MARKER_231_WARP_CAULDRON: //L8028C104
+            case MARKER_244_DINGPOT: //L8028C104
                 {
 
                     if(func_8028ECAC() == 1)
@@ -463,38 +465,38 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 break;
 
             case MARKER_161_GV_WITCH_SWITCH: //L8028C384
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BE, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_BE_WITCH_SWITCH_PRESSED_GV, 0x6E, 0x7D, 0x19, 0x14, 0xA0);
                 break;
 
             case MARKER_162_BGS_WITCH_SWITCH: //L8028C3BC
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BD, 0x71, 0x7C, 0x18, 0x14, 0x9F);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_BD_WITCH_SWITCH_PRESSED_BGS, 0x71, 0x7C, 0x18, 0x14, 0x9F);
                 break;
             case MARKER_166_CC_WITCH_SWITCH: //L8028C3F4
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_BC_WITCH_SWITCH_PRESSED_CC, 0x6A, 0x7A, 0x17, 0x14, 0x9A);
                 break;
            
             case MARKER_22B_FP_WITCH_SWITCH: //L8028C42C
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BB, 0x6F, 0x3A, 0x13, 0x15, 0x47);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_BB_WITCH_SWITCH_PRESSED_FP, 0x6F, 0x3A, 0x13, 0x15, 0x47);
                 break;
 
             case MARKER_22A_CCW_WITCH_SWITCH: //L8028C464
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000BA, 0x79, 0x39, 0x12, 0x15, 0x46);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_BA_WITCH_SWITCH_PRESSED_CCW, 0x79, 0x39, 0x12, 0x15, 0x46);
                 break;
 
             case MARKER_103_MM_WITCH_SWITCH: //L8028C49C
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B6, 0x69, 0x26, 1, 4, 0x18);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_B6_WITCH_SWITCH_PRESSED_MM, 0x69, 0x26, 1, 4, 0x18);
                 break;
                 
             case MARKER_104_MMM_WITCH_SWITCH: //L8028C4D4
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B7, 0x6F, 0x27, 2, 0x14, 0x19);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_B7_WITCH_SWITCH_PRESSED_MMM, 0x6F, 0x27, 2, 0x14, 0x19);
                 break;
                 
             case MARKER_105_TTC_WITCH_SWITCH: //L8028C50C
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B8, 0x6D, 0x28, 3, 0x14, 0x1A);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_B8_WITCH_SWITCH_PRESSED_TTC, 0x6D, 0x28, 3, 0x14, 0x1A);
                 break;
                 
             case MARKER_106_RBB_WITCH_SWITCH: //L8028C544
-                __baMarker_8028BB1C(plyr_hitbox_type, 0x4000B9, 0x76, 0x29, 4, 0xe, 0x1C);
+                __baMarker_8028BB1C(plyr_hitbox_type, 0x400000 | VOLATILE_FLAG_B9_WITCH_SWITCH_PRESSED_RBB, 0x76, 0x29, 4, 0xe, 0x1C);
                 break;
                 
             case MARKER_11B_WATER_LEVEL_SWITCH_1: //L8028C57C
@@ -715,7 +717,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
                     miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
-                    if(!volatileFlag_getAndSet(VOLATILE_FLAG_C, 1)){
+                    if(!volatileFlag_getAndSet(VOLATILE_FLAG_C_HAS_SEEN_SPRING_PAD, 1)){
                         func_80311480(0xA24, 4, 0, 0, 0, 0);
                     }
                 }
@@ -727,7 +729,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_9_FLIGHT)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
-                else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D, 1)){
+                else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D_HAS_SEEN_FLIGHT_PAD, 1)){
                     func_80311480(0xA25, 4, 0, 0, 0, 0);
                 }
                 break;

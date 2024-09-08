@@ -45,8 +45,8 @@ void chwadingboots_update(Actor *this){
         subaddie_set_state(this, 0);
     }
 
-    if(!volatileFlag_get(VOLATILE_FLAG_10) && ability_isUnlocked(ABILITY_E_WADING_BOOTS)){
-        volatileFlag_set(VOLATILE_FLAG_10, TRUE);
+    if(!volatileFlag_get(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS) && ability_isUnlocked(ABILITY_E_WADING_BOOTS)){
+        volatileFlag_set(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS, TRUE);
     }
 
     switch(this->state){
@@ -65,12 +65,12 @@ void chwadingboots_update(Actor *this){
                 }
             }
 
-            if(volatileFlag_get(VOLATILE_FLAG_10))  break;
+            if(volatileFlag_get(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS))  break;
             if(!func_80329530(this, 250)) break;
             if(player_getTransformation() != TRANSFORM_1_BANJO) break;
             
             if(func_80311480(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
-                volatileFlag_set(VOLATILE_FLAG_10, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS, TRUE);
             }
 
             break;

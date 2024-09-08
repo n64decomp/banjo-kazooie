@@ -872,7 +872,7 @@ void func_803880BC(Actor *this)
 
         __spawnQueue_add_1((GenFunction_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
-        if (volatileFlag_get(VOLATILE_FLAG_BC) && !fileProgressFlag_get(FILEPROG_9A_CC_WITCH_SWITCH_PRESSED))
+        if (volatileFlag_get(VOLATILE_FLAG_BC_WITCH_SWITCH_PRESSED_CC) && !fileProgressFlag_get(FILEPROG_9A_CC_WITCH_SWITCH_PRESSED))
             FUNC_8030E624(SFX_3F6_UNKNOWN, 0.75f, 30000);
     }
 
@@ -892,7 +892,7 @@ void func_803880BC(Actor *this)
         }
     }
 
-    if (volatileFlag_get(VOLATILE_FLAG_BC) && !fileProgressFlag_get(FILEPROG_9B_LAIR_CC_WITCH_SWITCH_EYES_ACTIVE))
+    if (volatileFlag_get(VOLATILE_FLAG_BC_WITCH_SWITCH_PRESSED_CC) && !fileProgressFlag_get(FILEPROG_9B_LAIR_CC_WITCH_SWITCH_EYES_ACTIVE))
     {
         this->position_y += 1.7;
 
@@ -944,7 +944,7 @@ void func_803882B0(Actor *this)
         this->unk60 = 0;
     }
 
-    if (this->pitch == 90.f || !volatileFlag_get(VOLATILE_FLAG_BB))
+    if (this->pitch == 90.f || !volatileFlag_get(VOLATILE_FLAG_BB_WITCH_SWITCH_PRESSED_FP))
         return;
 
     if (this->pitch == 0)
@@ -1481,7 +1481,7 @@ void lair_func_803894B0(Actor *this)
             return;
         }
 
-        this->unk1C[0] = volatileFlag_get(VOLATILE_FLAG_BD) ? 22 : 0;
+        this->unk1C[0] = volatileFlag_get(VOLATILE_FLAG_BD_WITCH_SWITCH_PRESSED_BGS) ? 22 : 0;
     }
 
     if (!this->unk1C[0])
@@ -1612,7 +1612,7 @@ void func_80389934(Actor *this)
     {
         case 21:
         {
-            if (volatileFlag_get(VOLATILE_FLAG_BE))
+            if (volatileFlag_get(VOLATILE_FLAG_BE_WITCH_SWITCH_PRESSED_GV))
             {
                 this->unk1C[0] = 25;
 
