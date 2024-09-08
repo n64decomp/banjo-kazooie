@@ -574,7 +574,7 @@ void lair_func_8038CD48(void)
         lair_func_8038CC9C();
 
     if (!volatileFlag_get(VOLATILE_FLAG_1) && !volatileFlag_get(VOLATILE_FLAG_2))
-        volatileFlag_set(0, FALSE);
+        volatileFlag_set(VOLATILE_FLAG_0, FALSE);
 
     if (!volatileFlag_get(VOLATILE_FLAG_0))
         func_8038CCEC();
@@ -611,7 +611,7 @@ void func_8038CE28(void)
     D_8037DCB8->currFfMode = 1;
     D_8037DCB8->unk48     = malloc(0x90);
 
-    func_8038BC24();
+    gzquiz_initGruntyQuestions();
 }
 
 void lair_func_8038CF18(void)
@@ -823,7 +823,7 @@ void func_8038D48C(void)
 
 void func_8038D4BC(void)
 {
-    volatileFlag_set(2, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_2, TRUE);
     func_802E4A70();
 
     // restore moves after a delay
@@ -966,7 +966,7 @@ void func_8038D670(enum FF_Action next_state) {
                     if (D_8037DCB8->unk4->unk8 == FFTT_5_GRUNTY) {
                         func_80356540(0xA2);
                     }
-                    if (volatileFlag_get(0xA0)) {
+                    if (volatileFlag_get(VOLATILE_FLAG_A0)) {
                         func_80356540(0xA1);
                     }
                     func_80356540(0xA0);
@@ -995,7 +995,7 @@ void func_8038D670(enum FF_Action next_state) {
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
-                if (volatileFlag_get(0xA3)) {
+                if (volatileFlag_get(VOLATILE_FLAG_A3)) {
                     func_80356540(0xA4);
                 }
                 func_80356540(0xA3);
@@ -1012,9 +1012,9 @@ void func_8038D670(enum FF_Action next_state) {
                 func_8025AB00();
                 func_8025A70C(JINGLE_DOOR_OF_GRUNTY_OPENED);
                 fileProgressFlag_set(FILEPROG_A6_FURNACE_FUN_COMPLETE, TRUE);
-                volatileFlag_set(0, FALSE);
-                volatileFlag_set(0xA6, TRUE);
-                volatileFlag_set(0xA7, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_0, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_A6, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_A7, TRUE);
                 next_state = 9;
                 mapSpecificFlags_set(0xA, TRUE);
                 func_8028F918(2);
@@ -1284,7 +1284,7 @@ void lair_func_8038E0B0(void) {
 
             case 4://L8038E64C
                 if (volatileFlag_get(VOLATILE_FLAG_1)) {
-                    volatileFlag_set(1, 0);
+                    volatileFlag_set(VOLATILE_FLAG_1, 0);
                     func_8038E070();
                     func_8025A55C(6000, 500, 0xA);
                 }
@@ -1299,8 +1299,8 @@ void lair_func_8038E0B0(void) {
                     } else {
                         func_8038D670(1);
                     }
-                    volatileFlag_set(2, FALSE);
-                    volatileFlag_set(4, FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_2, FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_4, FALSE);
                 }
                 break;
 
@@ -1338,7 +1338,7 @@ void func_8038E7C4(void)
         return;
 
     func_8038CE28();
-    volatileFlag_set(0, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_0, TRUE);
 }
 
 /**

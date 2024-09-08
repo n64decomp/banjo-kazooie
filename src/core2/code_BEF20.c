@@ -7,9 +7,6 @@ f32 time_getDelta(void);
 void func_80346DB4(s32);
 
 s32  item_adjustByDiffWithHud(enum item_e item, s32 diff);
-void itemscore_noteScores_clear(void);
-s32 itemscore_noteScores_get(enum level_e lvl_id);
-void itemscore_timeScores_clear(void);
 
 /* .bss */
 s32 D_80385F30[0x2C];
@@ -308,7 +305,7 @@ void func_803465E4(void){
         }//L803469E4
     }//L803469E4
 
-    if(!volatileFlag_get(0xbf)){
+    if(!volatileFlag_get(VOLATILE_FLAG_BF)){
         for(i = 0; i < 6; i++){
             if(D_80385F30[ITEM_6_HOURGLASS + i]){
                 func_80345EB0(ITEM_0_HOURGLASS_TIMER + i);
@@ -406,9 +403,9 @@ void func_80346DB4(s32 note_count) {
             if (!levelSpecificFlags_get(0x34) && (func_80311480(0xF76, 0, NULL, NULL, NULL, NULL))) {
                 levelSpecificFlags_set(0x34, TRUE);
             }
-            if (volatileFlag_get(0x17) == 0) {
-                volatileFlag_set(0x17, 1);
-                volatileFlag_setN(0x19, level_id, 4);
+            if (volatileFlag_get(VOLATILE_FLAG_17) == 0) {
+                volatileFlag_set(VOLATILE_FLAG_17, 1);
+                volatileFlag_setN(VOLATILE_FLAG_19_CURRENT_LEVEL_ID, level_id, 4);
             }
         }
     }
@@ -537,7 +534,7 @@ void func_8034789C(void) {
     } else {
         D_80385F30[ITEM_15_HEALTH_TOTAL] =  5 + MIN(3, (sp1C / 6));
     }
-    if (volatileFlag_get(0x94)) {
+    if (volatileFlag_get(VOLATILE_FLAG_94_SANDCASTLE_INFINITE_HEALTH)) {
         temp_v0 = D_80385F30[ITEM_15_HEALTH_TOTAL];
         if (temp_v0 >= 9) {
             D_80385F30[ITEM_15_HEALTH_TOTAL] = temp_v0;
@@ -597,8 +594,8 @@ void func_80347A7C(void){
 
 void func_80347AA8(void) {
     volatileFlag_restoreAll();
-    volatileFlag_set(0x1F, FALSE);
-    volatileFlag_set(0x20, FALSE);
+    volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, FALSE);
+    volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, FALSE);
     volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, FALSE);
     volatileFlag_set(VOLATILE_FLAG_C0_BEGIN_FINAL_CHARACTER_PARADE, FALSE);
     item_set(ITEM_16_LIFE, D_80386068);

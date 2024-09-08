@@ -247,8 +247,8 @@ s32 volatileFlag_get(s32 index) {
     return bitfield_get_bit(gVolatileFlags.unk8, index);
 }
 
-void volatileFlag_getN(s32 index, s32 numBits) {
-    bitfield_get_n_bits(gVolatileFlags.unk8, index, numBits);
+s32 volatileFlag_getN(s32 index, s32 numBits) {
+    return bitfield_get_n_bits(gVolatileFlags.unk8, index, numBits);
 }
 
 s32 volatileFlag_getAndSet(s32 index, s32 arg1) {

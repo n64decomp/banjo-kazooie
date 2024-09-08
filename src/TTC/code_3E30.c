@@ -247,14 +247,14 @@ void func_8038ABA0(u32 arg0){
     if(arg0 & 0x400){
         func_80356560(0xC5);
     }
-    volatileFlag_set(0x78, 0);
+    volatileFlag_set(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS, 0);
     for(i = 4; i < 0xb; i++){
         if( arg0 & (1 << i)){
-            volatileFlag_set(0x93 + i, TRUE);
-            volatileFlag_set(0x78, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + i, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS, TRUE);
         }
         else{
-            volatileFlag_set(0x93 + i, FALSE);
+            volatileFlag_set(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + i, FALSE);
         }
     }
 }
@@ -284,7 +284,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                     phi_s1 |= (0x10 << i);
                 }
             };
-            if (volatileFlag_get(0x78)) {
+            if (volatileFlag_get(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS)) {
                 phi_s1 |= 0x800;
             }
         }
@@ -310,8 +310,8 @@ void func_8038AC48(LetterFloorTile *arg0) {
                         
                         if (temp_s5) {
                             item_set(ITEM_6_HOURGLASS, FALSE);
-                            volatileFlag_set(3, 0);
-                            volatileFlag_set(5, 1);
+                            volatileFlag_set(VOLATILE_FLAG_3, 0);
+                            volatileFlag_set(VOLATILE_FLAG_5, 1);
                             func_8038A258(2);
                         } else {
                             var_v0 = i_ptr->unk4;
@@ -467,8 +467,8 @@ void func_8038B2F0(void) {
         if ((D_8038D720.unk10 == 1) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
             func_8038A258(2);
             if (volatileFlag_get(VOLATILE_FLAG_2)) {
-                volatileFlag_set(3, FALSE);
-                volatileFlag_set(5, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_3, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_5, FALSE);
             } else {
                 func_8028F66C(BS_INTR_F);
             }
@@ -643,10 +643,10 @@ void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_d
 
 void func_8038B800(s32 secretCodeIndex) {
     struct_ttc_3E30_4_s *secretCode;
-    s32 sp38;
+    enum volatile_flags_e volaflag_cheat_id;
 
     secretCode = &secretCodesTable[secretCodeIndex];
-    sp38 = secretCode->id - 0x14;
+    volaflag_cheat_id = secretCode->id - 0x14;
     sns_set_item_and_update_payload(secretCode->id, 1, 1);
     func_8038B564(secretCodeIndex, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
     func_8038B564(secretCodeIndex, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
@@ -657,8 +657,8 @@ void func_8038B800(s32 secretCodeIndex) {
     func_8038B564(secretCodeIndex, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
     if (secretCode->id >= 0x14) {
         func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
-        volatileFlag_set(0x65, 1);
-        volatileFlag_set(sp38, 1);
+        volatileFlag_set(VOLATILE_FLAG_65_CHEAT_ENTERED, 1);
+        volatileFlag_set(volaflag_cheat_id, 1);
     }
     TTC_func_8038B6D4(0, secretCodeIndex, 0x6C, FILEPROG_60_CC_PUZZLE_PIECES_PLACED,   5, 3, FILEPROG_33_CC_OPEN);
     TTC_func_8038B6D4(0, secretCodeIndex, 0x6D, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED,  7, 3, FILEPROG_34_BGS_OPEN);
@@ -670,7 +670,7 @@ void func_8038B800(s32 secretCodeIndex) {
     func_8038B79C(0, secretCodeIndex, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
     func_8038B79C(0, secretCodeIndex, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
     func_8038B79C(0, secretCodeIndex, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
-    if (sp38 == 0x81) {
+    if (volaflag_cheat_id == VOLATILE_FLAG_81_SANDCASTLE_CCC_JIGGY_PODIUM) {
         fileProgressFlag_set(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED, 1);
         fileProgressFlag_set(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE, 1);
     }

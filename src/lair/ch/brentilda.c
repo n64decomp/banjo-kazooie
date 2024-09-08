@@ -26,7 +26,7 @@ void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     phi_v1 = this->unk10_12*2;
-    volatileFlag_getN(0x20 + this->unkF4_8*6 + phi_v1, 2);
+    volatileFlag_getN(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE + this->unkF4_8*6 + phi_v1, 2);
 }
 
 void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -63,23 +63,26 @@ void func_8038BBC0(Actor *this) {
     }
 }
 
-void func_8038BC24(void) {
-    s32 temp_v0;
-    s32 phi_s0;
-    s32 phi_s1;
+void gzquiz_initGruntyQuestions(void) {
+    s32 pattern;
+    enum volatile_flags_e question_id;
+    s32 i;
 
-    if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !volatileFlag_get(0x62)) {
+    if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !volatileFlag_get(VOLATILE_FLAG_62_FF_GRUNTY_QUESTIONS_INITIALIZED)) {
         rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
-        for(phi_s1 = 0; phi_s1 < func_8031A45C(3); phi_s1++){
-            phi_s0 = 0x26 + 2*phi_s1;
-                temp_v0 = randi2(0, 3);
-                if (phi_s0 >= 0x61) {
-                    volatileFlag_setN(0x26, temp_v0, 2);
-                } else {
-                    volatileFlag_setN(phi_s0, temp_v0, 2);
-                }
+
+        for(i = 0; i < func_8031A45C(FFQT_3_GRUNTY); i++){
+            question_id = VOLATILE_FLAG_26_FF_GRUNTY_QUESTIONS + 2 * i;
+            pattern = randi2(0, 3);
+
+            if (question_id >= 0x61) {
+                volatileFlag_setN(VOLATILE_FLAG_26_FF_GRUNTY_QUESTIONS, pattern, 2);
+            } else {
+                volatileFlag_setN(question_id, pattern, 2);
+            }
         }
-        volatileFlag_set(0x62, 1);
+
+        volatileFlag_set(VOLATILE_FLAG_62_FF_GRUNTY_QUESTIONS_INITIALIZED, 1);
     }
 }
 
@@ -104,7 +107,7 @@ void chBrentilda_update(Actor *this) {
             fileProgressFlag_setN(FILEPROG_D3_FF_PATTERN, randi2(0, 0x100), 8);
             fileProgressFlag_set(FILEPROG_5C_FF_PATTERN_SET, TRUE);
         }
-        func_8038BC24();
+        gzquiz_initGruntyQuestions();
         actor_setOpacity(this, 0x40);
         this->initialized = TRUE;
     }

@@ -565,6 +565,14 @@ extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc metho
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
 extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
-extern s32  volatileFlag_get(s32);  // get volatile flag
+extern s32  volatileFlag_get(s32);
+extern s32 volatileFlag_getN(s32 index, s32 numBits);
+extern s32 volatileFlag_getAndSet(s32 index, s32 arg1);
+extern void volatileFlag_set(s32 index, s32 set);
+extern void volatileFlag_setN(s32 startIndex, s32 set, s32 length);
+
+extern void itemscore_noteScores_clear(void);
+extern s32 itemscore_noteScores_get(enum level_e lvl_id);
+extern void itemscore_timeScores_clear(void);
 
 #endif

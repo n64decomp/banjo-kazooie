@@ -33,8 +33,8 @@ int func_803616F0(Actor *this){
 }
 
 void func_80361828(Actor *this){
-    if(volatileFlag_get(0x16) && level_get() == LEVEL_6_LAIR){
-        volatileFlag_set(0x16, 0);
+    if(volatileFlag_get(VOLATILE_FLAG_16) && level_get() == LEVEL_6_LAIR){
+        volatileFlag_set(VOLATILE_FLAG_16, 0);
     }
 }
 
@@ -54,19 +54,19 @@ void func_80361870(Actor *this){
             }
         }
         else if(func_803616F0(this)){
-            sp28 = (volatileFlag_get(0x16)?0xf6e:0xf68) + this->unkF4_8 - 1;
-            if(!volatileFlag_get(0x16) && level_get() == LEVEL_6_LAIR){
+            sp28 = (volatileFlag_get(VOLATILE_FLAG_16)?0xf6e:0xf68) + this->unkF4_8 - 1;
+            if(!volatileFlag_get(VOLATILE_FLAG_16) && level_get() == LEVEL_6_LAIR){
                 this->unk138_24 = TRUE;
             }
             else{ 
                 if(func_80311480(sp28, 0, 0, 0, 0, 0)){
                     this->unk138_24 = TRUE;
-                    volatileFlag_set(0x16, 0);
+                    volatileFlag_set(VOLATILE_FLAG_16, 0);
                 }
             }
         }
         else{//L80361A14
-            volatileFlag_set(0x16, 0);
+            volatileFlag_set(VOLATILE_FLAG_16, 0);
         }
     }//L80361A20
 }

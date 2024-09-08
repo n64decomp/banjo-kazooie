@@ -41,12 +41,12 @@ void chwadingboots_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         this->velocity[0] = this->yaw;
-        this->unk10_12 = !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE) && !volatileFlag_get(0x1);
+        this->unk10_12 = !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE) && !volatileFlag_get(VOLATILE_FLAG_1);
         subaddie_set_state(this, 0);
     }
 
-    if(!volatileFlag_get(0x10) && ability_isUnlocked(ABILITY_E_WADING_BOOTS)){
-        volatileFlag_set(0x10, TRUE);
+    if(!volatileFlag_get(VOLATILE_FLAG_10) && ability_isUnlocked(ABILITY_E_WADING_BOOTS)){
+        volatileFlag_set(VOLATILE_FLAG_10, TRUE);
     }
 
     switch(this->state){
@@ -65,12 +65,12 @@ void chwadingboots_update(Actor *this){
                 }
             }
 
-            if(volatileFlag_get(0x10))  break;
+            if(volatileFlag_get(VOLATILE_FLAG_10))  break;
             if(!func_80329530(this, 250)) break;
             if(player_getTransformation() != TRANSFORM_1_BANJO) break;
             
             if(func_80311480(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
-                volatileFlag_set(0x10, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_10, TRUE);
             }
 
             break;

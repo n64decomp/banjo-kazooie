@@ -2237,7 +2237,7 @@ void chfinalboss_update(Actor *this){
             chfinalboss_phase5_update(this->marker);
             break;
     }
-    volatileFlag_setN(0x23, local->phase, 3);
+    volatileFlag_setN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, local->phase, 3);
     player_getPosition(D_80392788);
     D_80392798[0] = this->position[0];
     D_80392798[1] = this->position[1];

@@ -182,9 +182,9 @@ void pfsManager_update(void) {
         temp_t6 = demo_readInput(&pfsManagerContPadData, &sp5C) == 0;
         if ((D_802812D0.button & s0) || temp_t6) {
             if (D_802812D0.button & s0) {
-                volatileFlag_set(0x64, 1);
+                volatileFlag_set(VOLATILE_FLAG_64, 1);
             } else {
-                volatileFlag_set(0x63, 1);
+                volatileFlag_set(VOLATILE_FLAG_63, 1);
             }
         }
         func_8033DD04(sp5C);

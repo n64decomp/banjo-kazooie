@@ -528,7 +528,7 @@ void func_803268B4(void) {
     
 
     if (suBaddieActorArray != NULL) {
-        sp54 = volatileFlag_get(101);
+        sp54 = volatileFlag_get(VOLATILE_FLAG_65_CHEAT_ENTERED);
         for(temp_v1 = suBaddieActorArray->cnt - 1; temp_v1 >= 0; temp_v1--){
             actor = &suBaddieActorArray->data[temp_v1];
             actor_info = actor->actor_info;
@@ -1517,7 +1517,7 @@ bool func_803294F0(Actor *this, s32 arg1, s32 arg2){
 
 bool func_80329530(Actor *this, s32 dist){
     if( func_8028F098() 
-        && !volatileFlag_get(0xBF) 
+        && !volatileFlag_get(VOLATILE_FLAG_BF) 
         && subaddie_playerIsWithinSphere(this, dist)
     ){
         return TRUE;

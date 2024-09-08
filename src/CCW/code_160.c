@@ -59,8 +59,8 @@ void func_803865F4(Actor *this, s32 next_state) {
     if (next_state == 4) {
         if (volatileFlag_get(VOLATILE_FLAG_2)) {
             item_set(ITEM_6_HOURGLASS, FALSE);
-            volatileFlag_set(3, 0);
-            volatileFlag_set(5, 1);
+            volatileFlag_set(VOLATILE_FLAG_3, 0);
+            volatileFlag_set(VOLATILE_FLAG_5, 1);
         } else {
             func_80311480(0xCE4, 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
@@ -211,7 +211,7 @@ void func_8038687C(Actor *this) {
     }
     if ((this->state == 3) && volatileFlag_get(VOLATILE_FLAG_2) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
         item_set(ITEM_6_HOURGLASS, 0);
-        volatileFlag_set(3, 0);
-        volatileFlag_set(5, 0);
+        volatileFlag_set(VOLATILE_FLAG_3, 0);
+        volatileFlag_set(VOLATILE_FLAG_5, 0);
     }
 }

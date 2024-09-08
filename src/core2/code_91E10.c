@@ -163,7 +163,7 @@ s32 func_80318F60(enum ff_question_type_e question_type, s32 q_indx, s32 arg2) {
         phi_v1 = arg2;
     } else {
         if (question_type == FFQT_3_GRUNTY) {
-            phi_a0 = volatileFlag_getN((q_indx * 2) + 0x26, 2);
+            phi_a0 = volatileFlag_getN((q_indx * 2) + VOLATILE_FLAG_26_FF_GRUNTY_QUESTIONS, 2);
         } else {
             phi_a0 = 0;
         }

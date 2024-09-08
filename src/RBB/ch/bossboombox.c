@@ -362,8 +362,8 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                 func_8025AABC(COMUSIC_62_RBB_BOOMBOX);
                 if(volatileFlag_get(VOLATILE_FLAG_2)){
                     item_set(ITEM_6_HOURGLASS, 0);
-                    volatileFlag_set(3, 0);
-                    volatileFlag_set(5, 1);
+                    volatileFlag_set(VOLATILE_FLAG_3, 0);
+                    volatileFlag_set(VOLATILE_FLAG_5, 1);
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
@@ -574,8 +574,8 @@ void func_8038D8BC(Actor *this){
     if(this->state == 3 || this->state == 4){
         if(volatileFlag_get(VOLATILE_FLAG_2)){
             if(item_empty(ITEM_0_HOURGLASS_TIMER)){
-                volatileFlag_set(3, 0);
-                volatileFlag_set(5, 0);
+                volatileFlag_set(VOLATILE_FLAG_3, 0);
+                volatileFlag_set(VOLATILE_FLAG_5, 0);
                 RBB_func_8038CC9C(this, 8);
             }
         }

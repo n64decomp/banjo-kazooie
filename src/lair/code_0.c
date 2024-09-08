@@ -362,7 +362,7 @@ void func_803867A8(Actor *this) {
         this->unk16C_4 = TRUE;
         this->unk158[0] = func_803866D8(0);
         this->unk158[1] = func_803866D8(1);
-        if (volatileFlag_get(0x86)) {
+        if (volatileFlag_get(VOLATILE_FLAG_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED)) {
             ability_unlock(ABILITY_D_SHOCK_JUMP);
             fileProgressFlag_set(FILEPROG_C6_LAIR_JUMP_PAD_SWITCH_PRESSED, TRUE);
             fileProgressFlag_set(FILEPROG_C7_LAIR_JUMP_PAD_ACTIVE, TRUE);
@@ -463,7 +463,7 @@ void func_80386D78(Actor *this) {
 
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        if (volatileFlag_get(0x8A)) {
+        if (volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)) {
             ability_unlock(ABILITY_9_FLIGHT);
             mapSpecificFlags_set(0, TRUE);
             this->unk60 = 0.0f;
@@ -472,7 +472,7 @@ void func_80386D78(Actor *this) {
         }
     }
     if ((this->unk1C[1] - 150.0f) <= this->position[1]) {
-        if (!volatileFlag_get(0x8A)) {
+        if (!volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)) {
             if (this->unk60 != 0.0f) {
                 this->unk60 -= 1.0f;
                 if (this->unk60 == 0.0f) {
@@ -872,7 +872,7 @@ void func_803880BC(Actor *this)
 
         __spawnQueue_add_1((GenFunction_1)func_80387E94, reinterpret_cast(s32, this->marker));
 
-        if (volatileFlag_get(0xBC) && !fileProgressFlag_get(FILEPROG_9A_CC_WITCH_SWITCH_PRESSED))
+        if (volatileFlag_get(VOLATILE_FLAG_BC) && !fileProgressFlag_get(FILEPROG_9A_CC_WITCH_SWITCH_PRESSED))
             FUNC_8030E624(SFX_3F6_UNKNOWN, 0.75f, 30000);
     }
 
@@ -892,7 +892,7 @@ void func_803880BC(Actor *this)
         }
     }
 
-    if (volatileFlag_get(0xBC) && !fileProgressFlag_get(FILEPROG_9B_LAIR_CC_WITCH_SWITCH_EYES_ACTIVE))
+    if (volatileFlag_get(VOLATILE_FLAG_BC) && !fileProgressFlag_get(FILEPROG_9B_LAIR_CC_WITCH_SWITCH_EYES_ACTIVE))
     {
         this->position_y += 1.7;
 
@@ -944,7 +944,7 @@ void func_803882B0(Actor *this)
         this->unk60 = 0;
     }
 
-    if (this->pitch == 90.f || !volatileFlag_get(0xBB))
+    if (this->pitch == 90.f || !volatileFlag_get(VOLATILE_FLAG_BB))
         return;
 
     if (this->pitch == 0)
@@ -1300,7 +1300,7 @@ void func_80388FC8(Actor *this)
 
         this->unk60 = 0;
 
-        if (volatileFlag_get(0x7D))
+        if (volatileFlag_get(VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC))
         {
             this->position_y = this->unk1C[1];
             this->unk60 = 1.f;
@@ -1377,7 +1377,7 @@ void lair_func_80389204(Actor *this)
         this->position_y -= 280.f;
         this->unk60 = 0;
 
-        if (volatileFlag_get(0x7E))
+        if (volatileFlag_get(VOLATILE_FLAG_7E_SANDCASTLE_RAISE_PIPE_TO_BRENTILDA))
         {
             this->position_y = this->unk1C[1];
             this->unk60 = 1.f;
@@ -1481,7 +1481,7 @@ void lair_func_803894B0(Actor *this)
             return;
         }
 
-        this->unk1C[0] = volatileFlag_get(0xBD) ? 22 : 0;
+        this->unk1C[0] = volatileFlag_get(VOLATILE_FLAG_BD) ? 22 : 0;
     }
 
     if (!this->unk1C[0])
@@ -1612,7 +1612,7 @@ void func_80389934(Actor *this)
     {
         case 21:
         {
-            if (volatileFlag_get(0xBE))
+            if (volatileFlag_get(VOLATILE_FLAG_BE))
             {
                 this->unk1C[0] = 25;
 

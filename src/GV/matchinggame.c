@@ -80,8 +80,8 @@ void __matchingGame_setState(s32 next_state){
 
     if(next_state == 3){
         if(volatileFlag_get(VOLATILE_FLAG_2)){
-            volatileFlag_set(3, 0);
-            volatileFlag_set(5, 0);
+            volatileFlag_set(VOLATILE_FLAG_3, 0);
+            volatileFlag_set(VOLATILE_FLAG_5, 0);
         }
         else{
             func_8028F66C(BS_INTR_F);
@@ -90,8 +90,8 @@ void __matchingGame_setState(s32 next_state){
     
     if(next_state == 4){
         if(volatileFlag_get(VOLATILE_FLAG_2)){
-            volatileFlag_set(3, 0);
-            volatileFlag_set(5, 1);
+            volatileFlag_set(VOLATILE_FLAG_3, 0);
+            volatileFlag_set(VOLATILE_FLAG_5, 1);
         }
         else{
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);

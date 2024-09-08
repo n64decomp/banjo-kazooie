@@ -7,7 +7,6 @@
 
 extern void func_8028F918(s32);
 extern void func_80311714(int);
-extern void volatileFlag_set(s32, s32);
 
 typedef struct struct_1C_s{
     u8 map;
@@ -166,7 +165,7 @@ void gcparade_8031ABF8(void) {
     func_80347A7C();
     func_8031FBF8();
     func_8031FBA0();
-    volatileFlag_set(0x1F, 1);
+    volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 1);
     if (D_803830F0.parade_id == PARADE_1_POST_GRUNTY_BATTLE) {
         volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
     }
@@ -243,7 +242,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             timedFunc_set_1(0.25f, (GenFunction_1)gcparade_setState, (D_803830F0.indx == D_803830F0.count) ? PARADE_STATE_8_END : PARADE_STATE_3_WARP);
             break;
         case PARADE_STATE_8_END:
-            volatileFlag_set(0x1F, 0);
+            volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 0);
             volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, FALSE);
             func_802E412C(1, 8);
             func_802E40C4(0xA);
@@ -334,7 +333,7 @@ void gcparade_free(void){}
 
 void gcparade_start(void){
     volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, FALSE);
-    volatileFlag_set(0x1F, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, TRUE);
     if(volatileFlag_getAndSet(VOLATILE_FLAG_C0_BEGIN_FINAL_CHARACTER_PARADE, FALSE))
         gcparade_setState(PARADE_STATE_2_INIT_FINAL_PARADE);
     else

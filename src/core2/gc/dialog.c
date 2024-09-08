@@ -922,7 +922,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
             g_Dialog.unk148[temp_v1].unk20 = arg6;
             g_Dialog.unk12C_15++;
             if(arg1 & 0x08){
-                if(!( func_802E4A08() ||  volatileFlag_get(0x1f)) || !g_Dialog.unk128_3){//L8031141C
+                if(!( func_802E4A08() ||  volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) || !g_Dialog.unk128_3){//L8031141C
                     if(!func_8028EC04()){
                         if(pos != NULL){
                             func_8028F94C(2, pos);

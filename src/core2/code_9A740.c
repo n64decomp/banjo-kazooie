@@ -42,7 +42,7 @@ void func_803216D0(enum map_e map){
             && D_80383300.level != LEVEL_D_CUTSCENE
             && map != MAP_91_FILE_SELECT
         ){
-            volatileFlag_set(0x18, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_18, TRUE);
         }
 
         if(D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
@@ -74,7 +74,7 @@ void func_80321854(void){
             && fileProgressFlag_get(FILEPROG_31_MM_OPEN)
             && !fileProgressFlag_get(FILEPROG_C1_BADDIES_ESCAPE_TEXT)
         ){
-            volatileFlag_set(0x22, 1);
+            volatileFlag_set(VOLATILE_FLAG_22, 1);
         }
         bsStoredState_8029A924(); //null
         func_803465BC(); //null

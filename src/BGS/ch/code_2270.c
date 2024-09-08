@@ -113,8 +113,8 @@ void func_80388848(ActorMarker *this){
 
     if(volatileFlag_get(VOLATILE_FLAG_2)){
         item_set(ITEM_6_HOURGLASS,0);
-        volatileFlag_set(3,0);
-        volatileFlag_set(5,1);
+        volatileFlag_set(VOLATILE_FLAG_3,0);
+        volatileFlag_set(VOLATILE_FLAG_5,1);
     }
     else{
         BGS_func_80388660(thisActor->marker);
@@ -328,8 +328,8 @@ void func_80389080(Actor *this){
             if(volatileFlag_get(VOLATILE_FLAG_2)){
                 if(item_empty(ITEM_0_HOURGLASS_TIMER)){
                     item_set(ITEM_6_HOURGLASS,1);
-                    volatileFlag_set(3,0);
-                    volatileFlag_set(5,0);
+                    volatileFlag_set(VOLATILE_FLAG_3,0);
+                    volatileFlag_set(VOLATILE_FLAG_5,0);
                 }
             } //L80389370
             else{

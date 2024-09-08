@@ -130,15 +130,15 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             break;
         case MINIGAME_STATE_2_IN_PROGESS:
             func_8028F918(0);
-            volatileFlag_set(3, 1);
+            volatileFlag_set(VOLATILE_FLAG_3, 1);
             break;
         case MINIGAME_STATE_3_RETURN_TO_FF:
-            volatileFlag_set(4, 1);
+            volatileFlag_set(VOLATILE_FLAG_4, 1);
             func_8028F918(2);
             func_8025AB00();
             func_8025A70C((volatileFlag_get(VOLATILE_FLAG_5)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
-            volatileFlag_set(0x21, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_21, TRUE);
             timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
@@ -146,7 +146,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
 }
 
 void __chMinigame_free(Actor *this){
-    volatileFlag_set(3, 0);
+    volatileFlag_set(VOLATILE_FLAG_3, 0);
 }
 
 void chMinigame_update(Actor *this){
@@ -169,8 +169,8 @@ void chMinigame_update(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        volatileFlag_set(5, 0);
-        volatileFlag_set(3, 0);
+        volatileFlag_set(VOLATILE_FLAG_5, 0);
+        volatileFlag_set(VOLATILE_FLAG_3, 0);
         __chMinigame_setState(this, MINIGAME_STATE_1_INTRODUCE_GAME);
         gcpausemenu_80314AC8(0);
     }

@@ -208,7 +208,7 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
         if(!volatileFlag_get(sp24)){
             volatileFlag_set(sp24, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
-            volatileFlag_set(0xBF, 1);
+            volatileFlag_set(VOLATILE_FLAG_BF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
         }
     }
@@ -216,7 +216,7 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
         if(!fileProgressFlag_get(arg1)){
             fileProgressFlag_set(arg1, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
-            volatileFlag_set(0xBF, 1);
+            volatileFlag_set(VOLATILE_FLAG_BF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
         }
     }
@@ -389,7 +389,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     spAC[1] += 40.0f;
                     if(func_802458E0(spAC, actor, 0x87) == 0)
                         return;
-                    volatileFlag_set(0x1E, 1);
+                    volatileFlag_set(VOLATILE_FLAG_1E, 1);
                     if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
                         actor->unk10_12 = 2;
                     }
