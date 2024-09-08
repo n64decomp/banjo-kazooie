@@ -136,7 +136,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             volatileFlag_set(VOLATILE_FLAG_4, 1);
             func_8028F918(2);
             func_8025AB00();
-            func_8025A70C((volatileFlag_get(VOLATILE_FLAG_5)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
+            func_8025A70C((volatileFlag_get(VOLATILE_FLAG_5_FF_MINIGAME_WON)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
             volatileFlag_set(VOLATILE_FLAG_21, TRUE);
             timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
@@ -154,7 +154,7 @@ void chMinigame_update(Actor *this){
         this->unk16C_4 = 1;
         this->unk10_12 = __chminigame_getCurrentMapId();
         actor_collisionOff(this);
-        if(!volatileFlag_get(VOLATILE_FLAG_2)){
+        if(!volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_8031A678(this);
             return;
         }
@@ -169,12 +169,12 @@ void chMinigame_update(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        volatileFlag_set(VOLATILE_FLAG_5, 0);
+        volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 0);
         volatileFlag_set(VOLATILE_FLAG_3, 0);
         __chMinigame_setState(this, MINIGAME_STATE_1_INTRODUCE_GAME);
         gcpausemenu_80314AC8(0);
     }
-    if(volatileFlag_get(VOLATILE_FLAG_2)){
+    if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
         switch(this->state){
             case MINIGAME_STATE_1_INTRODUCE_GAME://L8031AB2C
                 if(this->unk138_24)

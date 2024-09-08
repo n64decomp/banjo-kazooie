@@ -263,7 +263,7 @@ void func_8038E648(Actor *this){
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
                 mapSpecificFlags_set(5, FALSE);
                 func_80244C78(0);
-                func_80356520(0xAC);
+                volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED);
             }
             break;
     }//L8038E904:

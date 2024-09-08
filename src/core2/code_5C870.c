@@ -265,7 +265,7 @@ void func_802E3E7C(enum game_mode_e mode){
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
     func_802E3BF8(GAME_MODE_2_UNKNOWN, 0);
-    if(!volatileFlag_getAndSet(0x21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
+    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
         if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(map_get());
     }

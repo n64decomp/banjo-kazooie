@@ -583,10 +583,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     return;
                 
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
-                    && volatileFlag_get(VOLATILE_FLAG_0)
+                    && volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
-                    func_80356540(FILEPROG_A6_FURNACE_FUN_COMPLETE);
+                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A6_FF_FOUND_HONEYCOMB);
                     func_8030E6D4(SFX_126_AUDIENCE_BOOING);
                 }  
 
@@ -695,10 +695,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(__baMarker_8028BC20(marker))
                     return;
                 if( map_get() == MAP_8E_GL_FURNACE_FUN
-                    && volatileFlag_get(VOLATILE_FLAG_0)
+                    && volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
-                    func_80356540(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
+                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A7_FF_FOUND_EXTRALIFE);
                     func_8030E6D4(SFX_127_AUDIENCE_MIXED);
                 }
                 func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
@@ -715,7 +715,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
                     miscflag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
-                    if(!volatileFlag_getAndSet(0xC, 1)){
+                    if(!volatileFlag_getAndSet(VOLATILE_FLAG_C, 1)){
                         func_80311480(0xA24, 4, 0, 0, 0, 0);
                     }
                 }
@@ -727,7 +727,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(ability_isUnlocked(ABILITY_9_FLIGHT)){
                     miscflag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
-                else if(! volatileFlag_getAndSet(0xD, 1)){
+                else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D, 1)){
                     func_80311480(0xA25, 4, 0, 0, 0, 0);
                 }
                 break;

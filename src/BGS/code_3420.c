@@ -362,7 +362,7 @@ void func_8038A068(Actor *this, s32 next_state) {
             local->current_type = YUMBLIE;
             local->player_score = 0;
             local->vile_score = 0;
-            if (volatileFlag_get(VOLATILE_FLAG_2) != 0) {
+            if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) != 0) {
                 local->type_change_timer = 5.0f;
             } else {
                 local->type_change_timer = 10.0f;
@@ -640,7 +640,7 @@ void chvilegame_update(Actor *this) {
             local->unkC = 3;
             local->unkD = 3;
         }
-        if (volatileFlag_get(VOLATILE_FLAG_2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             local->unkC = 2;
             local->unkD = 3;
         }
@@ -651,7 +651,7 @@ void chvilegame_update(Actor *this) {
         local->vile_marker = actorArray_findClosestActorFromActorId(this->position, 0x13A, -1, &sp4C)->marker;
     }
     if (this->state == 1) {
-        if (volatileFlag_get(VOLATILE_FLAG_2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             if (volatileFlag_get(VOLATILE_FLAG_3)) {
                 func_8038A068(this, 5);
             }
@@ -670,7 +670,7 @@ void chvilegame_update(Actor *this) {
             if ((local->unkC == 3) || (local->unkC == 6)) {
                 if (ml_timer_update(&local->type_change_timer, sp50)) {
                     local->current_type = !local->current_type;
-                    if (volatileFlag_get(VOLATILE_FLAG_2)) {
+                    if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                         local->type_change_timer = 5.0f;
                     } else {
                         local->type_change_timer = 10.0f;
@@ -691,9 +691,9 @@ void chvilegame_update(Actor *this) {
                 itemPrint_reset();
             }
             if (item_empty(ITEM_6_HOURGLASS)) {
-                if (volatileFlag_get(VOLATILE_FLAG_2)) {
+                if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                     volatileFlag_set(VOLATILE_FLAG_3, 0);
-                    volatileFlag_set(VOLATILE_FLAG_5, ( local->vile_score < local->player_score) ? TRUE : FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, ( local->vile_score < local->player_score) ? TRUE : FALSE);
                     func_8038A068(this, 1);
                 } else if (local->vile_score < local->player_score) {
                     if (local->unkC == 3) {

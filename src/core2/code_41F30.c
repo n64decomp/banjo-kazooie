@@ -14,7 +14,7 @@ void chextralife_update(Actor *this){
     if(!this->initialized){
         func_8032AA58(this, 0.8f);
         this->initialized = TRUE;
-        if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_2)){
+        if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             marker_despawn(this->marker);
         }
     }

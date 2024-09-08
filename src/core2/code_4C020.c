@@ -574,7 +574,7 @@ void func_802D4680(Actor *this){
             if(func_80258640(this->position, sp1C) < 150.0f && func_8028F20C()){
                 if(func_8028ECAC() == 0 ||  func_8028ECAC() == BSGROUP_8_TROT){
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
-                        volatileFlag_set(VOLATILE_FLAG_0, 0);
+                        volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
                         func_802D4614(MAP_80_GL_FF_ENTRANCE);
                     }
                     else{

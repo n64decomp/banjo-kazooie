@@ -990,7 +990,7 @@ s32 gcPauseMenu_update(void){
                 case 1://L80313908 //return to lair
                     volatileFlag_set(VOLATILE_FLAG_16, 1);
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
-                        volatileFlag_set(VOLATILE_FLAG_0,0);
+                        volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ,0);
                         func_802E4078(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }else{
                         func_802E4078(D_8036C560[level-1].map, D_8036C560[level-1].exit, 1);
@@ -1003,7 +1003,7 @@ s32 gcPauseMenu_update(void){
                     break;
                 case 3://L8031399C
                     func_802C5994();
-                    volatileFlag_set(VOLATILE_FLAG_0,0);
+                    volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ,0);
                     if(!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) || fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                         gcPauseMenu_setState(0x14);
                     }else{

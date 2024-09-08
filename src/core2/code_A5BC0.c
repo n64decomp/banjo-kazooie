@@ -888,7 +888,7 @@ void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
     }
 
     if (file_getByte_ifExpected(file_ptr, 8, &sp47)) {
-        sp34 = volatileFlag_get(VOLATILE_FLAG_1) +  volatileFlag_get(VOLATILE_FLAG_2) + volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
+        sp34 = volatileFlag_get(VOLATILE_FLAG_1) +  volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) + volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         
         if ((sp34) && gcparade_8031B4CC()) {
             sp34 = 0;

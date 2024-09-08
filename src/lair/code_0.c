@@ -741,7 +741,7 @@ void func_80387730(Actor *this) {
                 }
             }
         } else if ((this->unkF4_8 >= 2) && (ml_distance_vec3f(spAC, this->position) < 290.0f)) {
-            func_80356520(0xB0);
+            volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_B0_NOT_ENOUGH_NOTES);
         }
     }
 }

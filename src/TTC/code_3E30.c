@@ -116,7 +116,7 @@ void func_8038A23C( s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2){
 
 void func_8038A258(s32 arg0) {
     if (arg0 == 1) {
-        if (volatileFlag_get(VOLATILE_FLAG_2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             item_set(ITEM_0_HOURGLASS_TIMER, 3000 - 1);
         } else {
             item_set(ITEM_0_HOURGLASS_TIMER, 6000 - 1);
@@ -243,9 +243,9 @@ u32 cheatoCodeUnlocked(s32 cheato_code_index){
 
 void func_8038ABA0(u32 arg0){
     int i;
-    func_80356520(0xC2);
+    volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_C2_NOBONUS_TEXT);
     if(arg0 & 0x400){
-        func_80356560(0xC5);
+        volatileFlag_setAndTriggerDialog_E(VOLATILE_FLAG_C5_WISHYWASHYBANJO_TEXT);
     }
     volatileFlag_set(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS, 0);
     for(i = 4; i < 0xb; i++){
@@ -269,7 +269,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
     s32 phi_s1;
     bool phi_s7;
 
-    temp_s5 = volatileFlag_get(VOLATILE_FLAG_2);
+    temp_s5 = volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME);
     phi_s7 = FALSE;
     sp3C = func_8038BD10(arg0);
     for(i_ptr = codesTable; i_ptr->code != 0; i_ptr++){
@@ -311,7 +311,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                         if (temp_s5) {
                             item_set(ITEM_6_HOURGLASS, FALSE);
                             volatileFlag_set(VOLATILE_FLAG_3, 0);
-                            volatileFlag_set(VOLATILE_FLAG_5, 1);
+                            volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
                             func_8038A258(2);
                         } else {
                             var_v0 = i_ptr->unk4;
@@ -366,7 +366,7 @@ void func_8038AFC8(void){
         iPtr->unk6 = 0;
     }
 
-    if(volatileFlag_get(VOLATILE_FLAG_2))
+    if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         strcpy(codesTable[0].code, "j4663n86pink"); //EIOOZAKOJNAB
     else
         strcpy(codesTable[0].code, "knip68n3664j"); //BANJOKAZOOIE
@@ -410,7 +410,7 @@ void func_8038B094(void){
             func_803228D8();
             timedFunc_set_3(2.0f, (GenFunction_3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
         }
-        else if(levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_2)){
+        else if(levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_8034E71C(sp2C, -500, 0.0f);
         }
         else{
@@ -437,7 +437,7 @@ void func_8038B094(void){
         func_8038AFC8();
 
         if( jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
-            && !volatileFlag_get(VOLATILE_FLAG_2)
+            && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
         ){
             BKModel_transformMesh(D_8038D720.model2, 0x3C, func_8038A23C, 0);
             D_8038D720.unk8 = 3;
@@ -461,14 +461,14 @@ void func_8038B2F0(void) {
     if (D_8038D720.model1 != 0) {
         func_8038AA2C();
         player_getPosition(sp2C);
-        if ((D_8038D720.unk10 == 0) && volatileFlag_get(VOLATILE_FLAG_2) && volatileFlag_get(VOLATILE_FLAG_3)) {
+        if ((D_8038D720.unk10 == 0) && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && volatileFlag_get(VOLATILE_FLAG_3)) {
             func_8038A258(1);
         }
         if ((D_8038D720.unk10 == 1) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
             func_8038A258(2);
-            if (volatileFlag_get(VOLATILE_FLAG_2)) {
+            if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                 volatileFlag_set(VOLATILE_FLAG_3, FALSE);
-                volatileFlag_set(VOLATILE_FLAG_5, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, FALSE);
             } else {
                 func_8028F66C(BS_INTR_F);
             }
@@ -483,7 +483,7 @@ void func_8038B2F0(void) {
                     temp_v0_3 = func_8038A2DC(mesh_id);
                     if ((temp_v0_3 != NULL) && ((temp_v0_3->unk3 == 2) || (D_8038D720.unk8 == 3))) {
                         func_8038AC48(temp_v0_3);
-                        if ((D_8038D720.unk8 == 0) && (D_8038D720.unk10 == 0) && (volatileFlag_get(VOLATILE_FLAG_2) == 0)) {
+                        if ((D_8038D720.unk8 == 0) && (D_8038D720.unk10 == 0) && (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) == 0)) {
                             func_8038A258(1);
                         }
                     }

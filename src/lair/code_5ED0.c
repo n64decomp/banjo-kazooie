@@ -573,10 +573,10 @@ void lair_func_8038CD48(void)
     if (D_8037DCB8->UNK_18)
         lair_func_8038CC9C();
 
-    if (!volatileFlag_get(VOLATILE_FLAG_1) && !volatileFlag_get(VOLATILE_FLAG_2))
-        volatileFlag_set(VOLATILE_FLAG_0, FALSE);
+    if (!volatileFlag_get(VOLATILE_FLAG_1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
+        volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, FALSE);
 
-    if (!volatileFlag_get(VOLATILE_FLAG_0))
+    if (!volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ))
         func_8038CCEC();
 }
 
@@ -626,7 +626,7 @@ void lair_func_8038CF18(void)
     D_8037DCB8->unk0 = mapModel_getModel(0);
     D_8037DCB8->unk11 = 0;
 
-    if (volatileFlag_get(VOLATILE_FLAG_2) && !volatileFlag_get(VOLATILE_FLAG_4))
+    if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && !volatileFlag_get(VOLATILE_FLAG_4))
     {
         quizQuestionAskedBitfield_free();
         quizQuestionAskedBitfield_init();
@@ -666,7 +666,7 @@ void lair_func_8038CF18(void)
     }
     else
     {
-        if (volatileFlag_get(VOLATILE_FLAG_2))
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         {
             levelSpecificFlags_clear();
             func_8038D670(FFA_5_FORGET_MOVES_2);
@@ -823,7 +823,7 @@ void func_8038D48C(void)
 
 void func_8038D4BC(void)
 {
-    volatileFlag_set(VOLATILE_FLAG_2, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_2_FF_IN_MINIGAME, TRUE);
     func_802E4A70();
 
     // restore moves after a delay
@@ -959,17 +959,17 @@ void func_8038D670(enum FF_Action next_state) {
                 if (((s32) D_8037DCB8->unk4->unk8 >= 7) && (quizQuestionAskedBitfield_get(func_8038D60C(D_8037DCB8->unk8)) == 0)) {
                     item_adjustByDiffWithHud(ITEM_27_JOKER_CARD, D_8037DCB8->unk4->unk8 - 6);
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
-                    func_80356540(0xA8);
+                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A8_FF_GOT_JOKER);
                 }
                 if (D_8037DCB8->unk8 != 0x1EF) {
                     func_8030E6A4(SFX_126_AUDIENCE_BOOING, 1.0f, 0x7FF8);
                     if (D_8037DCB8->unk4->unk8 == FFTT_5_GRUNTY) {
-                        func_80356540(0xA2);
+                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A2_FF_GRUNTY_ANSWER_RIGHT);
                     }
-                    if (volatileFlag_get(VOLATILE_FLAG_A0)) {
-                        func_80356540(0xA1);
+                    if (volatileFlag_get(VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT)) {
+                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A1_FF_NEXT_ANSWER_RIGHT);
                     }
-                    func_80356540(0xA0);
+                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT);
                 }
             } else {
                 if (D_8037DCB8->unk4->unk8 == FFTT_6_SKULL) {
@@ -995,10 +995,10 @@ void func_8038D670(enum FF_Action next_state) {
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
                     lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
-                if (volatileFlag_get(VOLATILE_FLAG_A3)) {
-                    func_80356540(0xA4);
+                if (volatileFlag_get(VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG)) {
+                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A4_FF_NEXT_ANSWER_WRONG);
                 }
-                func_80356540(0xA3);
+                volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG);
             }
             break;
 
@@ -1012,9 +1012,9 @@ void func_8038D670(enum FF_Action next_state) {
                 func_8025AB00();
                 func_8025A70C(JINGLE_DOOR_OF_GRUNTY_OPENED);
                 fileProgressFlag_set(FILEPROG_A6_FURNACE_FUN_COMPLETE, TRUE);
-                volatileFlag_set(VOLATILE_FLAG_0, FALSE);
-                volatileFlag_set(VOLATILE_FLAG_A6, TRUE);
-                volatileFlag_set(VOLATILE_FLAG_A7, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_A6_FF_FOUND_HONEYCOMB, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_A7_FF_FOUND_EXTRALIFE, TRUE);
                 next_state = 9;
                 mapSpecificFlags_set(0xA, TRUE);
                 func_8028F918(2);
@@ -1238,9 +1238,9 @@ void lair_func_8038E0B0(void) {
                         fileProgressFlag_set(sp28, TRUE);
                     }
                     if ((sp38 == FFTT_6_SKULL) && (item_getCount(ITEM_16_LIFE) == 1)) {
-                        func_80356540(0xAB);
+                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_AB_LAST_LIFE_ON_SKULL);
                     } else if (item_getCount(ITEM_14_HEALTH) == 1) {
-                        func_80356540(0xAA);
+                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_AA_FF_LOW_HEALTH);
                     }
                     if ((D_8037DCB8->unk4->unk9 == 2) && (func_8028ECAC() == 0)) {
                         if (func_8028EFEC() && (sp48[FACE_BUTTON(BUTTON_A)] == 1)) {
@@ -1256,7 +1256,7 @@ void lair_func_8038E0B0(void) {
                                 lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                                 item_dec(ITEM_27_JOKER_CARD);
                                 func_8030E6D4(SFX_3EA_UNKNOWN);
-                                func_80356540(0xA9);
+                                volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A9_FF_USED_JOKER);
                                 if (D_8037DCB8->unk8 == 0x1EF) {
                                     func_8038D670(8);
                                 }
@@ -1291,15 +1291,15 @@ void lair_func_8038E0B0(void) {
                 break;
 
             case 5://L8038E684
-                if (volatileFlag_get(VOLATILE_FLAG_2)) {
+                if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                     if (volatileFlag_get(VOLATILE_FLAG_4)) {
                         func_8038E070();
-                        D_8037DCB8->unkF = volatileFlag_get(VOLATILE_FLAG_5);
+                        D_8037DCB8->unkF = volatileFlag_get(VOLATILE_FLAG_5_FF_MINIGAME_WON);
                         func_8038D670(6);
                     } else {
                         func_8038D670(1);
                     }
-                    volatileFlag_set(VOLATILE_FLAG_2, FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_2_FF_IN_MINIGAME, FALSE);
                     volatileFlag_set(VOLATILE_FLAG_4, FALSE);
                 }
                 break;
@@ -1334,11 +1334,11 @@ void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
 
 void func_8038E7C4(void)
 {
-    if (volatileFlag_get(VOLATILE_FLAG_0))
+    if (volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ))
         return;
 
     func_8038CE28();
-    volatileFlag_set(VOLATILE_FLAG_0, TRUE);
+    volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, TRUE);
 }
 
 /**

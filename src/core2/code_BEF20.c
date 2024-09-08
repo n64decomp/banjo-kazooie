@@ -250,7 +250,7 @@ void func_803465E4(void){
     }//L8034667C
     
     if(D_80385FE0){
-        if(gctransition_done() || volatileFlag_get(VOLATILE_FLAG_0)){
+        if(gctransition_done() || volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)){
             if(D_80385FE4){
                 item_dec(ITEM_16_LIFE);
                 func_802FACA4(ITEM_14_HEALTH);

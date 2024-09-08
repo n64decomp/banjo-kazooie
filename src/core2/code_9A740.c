@@ -37,7 +37,7 @@ void func_803216D0(enum map_e map){
         levelSpecificFlags_clear();
         bsStoredState_clearTimers();
         func_803219A8();
-        if( volatileFlag_getAndSet(0x17, FALSE) 
+        if( volatileFlag_getAndSet(VOLATILE_FLAG_17, FALSE) 
             && getGameMode() != 0
             && D_80383300.level != LEVEL_D_CUTSCENE
             && map != MAP_91_FILE_SELECT

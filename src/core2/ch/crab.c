@@ -246,7 +246,7 @@ void chCrab_update(Actor *this) {
             if (!jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)) {
                 mapSpecificFlags_set(1, 0);
             }
-            if (volatileFlag_get(VOLATILE_FLAG_2)) {
+            if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                 marker_despawn(this->marker);
                 return;
             }
@@ -279,7 +279,7 @@ void chCrab_update(Actor *this) {
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
         if( !mapSpecificFlags_get(0)
             && levelSpecificFlags_get(2)
-            && !volatileFlag_get(VOLATILE_FLAG_2)
+            && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
             && !jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && func_80329530(this, 1600)
         ) {

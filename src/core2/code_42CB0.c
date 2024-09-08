@@ -105,7 +105,7 @@ void chHoneycomb_update(Actor *this){
                 local->uid = (!this->unk44_2)? D_8037DDC0 : func_802C9C40(this);
             if( honeycombscore_get(local->uid)
                 || volatileFlag_get(VOLATILE_FLAG_1)
-                || volatileFlag_get(VOLATILE_FLAG_2)
+                || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
             ){
                 marker_despawn(this->marker);
                 return;

@@ -77,7 +77,7 @@ void func_802D77D4(Actor *this) {
         ml_vec3f_diff_copy(sp4C, this->position, sp40);
         if (((sp4C[0] * sp4C[0]) + (sp4C[2] * sp4C[2])) < (sp3C * sp3C)) {
             if ((this->position[1] < sp40[1]) && (sp40[1] <= local->unk0[1])) {
-                if (volatileFlag_get(VOLATILE_FLAG_2) == 0) {
+                if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) == 0) {
                     func_8028F738(this->position, local->unk0, (f32)this->unkF4_8, local->unkC);
                 }
             }

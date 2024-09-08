@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "enums.h"
 
 extern void func_802BE720(void);
 extern f32 func_8033A244(f32);
@@ -71,7 +72,7 @@ void func_802C7B6C(u32 arg0){
     mapSpecificFlags_set(arg0, 0);
 }
 
-void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
+void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, enum volatile_flags_e arg6){
     if( !mapSpecificFlags_get(arg1)
         && mapSpecificFlags_get(arg2)
         && item_getCount(ITEM_0_HOURGLASS_TIMER) == 0
@@ -79,7 +80,7 @@ void func_802C7B8C(Actor *this, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
         func_8028FCC8(1);
         actor_collisionOff(this);
         func_802BAFE4(arg3);
-        func_80356520(arg6);
+        volatileFlag_setAndTriggerDialog_0(arg6);
         timedFunc_set_4(0.6f, (GenFunction_4)func_802C7AF8, (s32)this->position[0], (s32)this->position[1], (s32)this->position[2], arg4);
         timedFunc_set_2(0.6f, (GenFunction_2)func_802C7AB0, (s32)this->marker, arg5);
         timedFunc_set_0(1.0f, (GenFunction_0)func_802BE720);
@@ -174,10 +175,10 @@ void chjiggy_update(Actor *this){
             chjiggy_updateRotation(this);
             switch(chjiggy_getJiggyId(this)){
                 case JIGGY_20_BGS_ELEVATED_WALKWAY: //L802C7FE8
-                    func_802C7B8C(this, 4, 3, 0xD, 5, 2, 0xae);
+                    func_802C7B8C(this, 4, 3, 0xD, 5, 2, VOLATILE_FLAG_AE_BGS_WALKWAY_JIGGY_MISSED);
                     break;
                 case JIGGY_25_BGS_MAZE://L802C8018
-                    func_802C7B8C(this, 0xd, 0xc, 0x1e, 9, 0xb, 0xaf);
+                    func_802C7B8C(this, 0xd, 0xc, 0x1e, 9, 0xb, VOLATILE_FLAG_AF_BGS_MAZE_JIGGY_MISSED);
                     break;
                 case JIGGY_2F_FP_XMAS_TREE://L802C8048
                     if(levelSpecificFlags_get(0x29))
