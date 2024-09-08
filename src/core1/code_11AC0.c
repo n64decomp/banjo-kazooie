@@ -5,6 +5,8 @@
 #include "music.h"
 #include "n_libaudio.h"
 
+#include "version.h"
+
 extern void func_8025F570(ALCSPlayer *, u8);
 extern void func_8025F510(ALCSPlayer *, u8, u8);
 extern void func_8025F5C0(ALCSPlayer *, u8);
@@ -266,7 +268,11 @@ ALBank *music_get_sound_bank(void){
 void func_8024F764(s32 arg0){//music track load
     if(D_802820E0[arg0] == NULL){
         func_8033B788();
+#if VERSION == VERSION_USA_1_0
         D_802820E0[arg0] = assetcache_get(arg0 + 0x1516);
+#elif VERSION == VERSION_PAL
+        D_802820E0[arg0] = assetcache_get(arg0 + 0xd74);
+#endif
     } 
 }
 
@@ -532,8 +538,8 @@ void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
     mask = osSetIntMask(OS_IM_NONE);
     tmpf = (!func_80250074(arg0))? func_8025F4A0(sp28, chan) :127.0f;
 
-    if(arg3 < 0.0333333351f){
-        arg3 = 0.0333333351f;
+    if(arg3 < (2.0f/FRAMERATE)){
+        arg3 = (2.0f/FRAMERATE);
     }
 
     for(i = 0; i< 0x20; i++){
@@ -543,7 +549,7 @@ void func_80250200(s32 arg0, s16 chan, s16 arg2, f32 arg3){
             D_80282110[i].unk0 = arg0;
            D_80282110[i].chan = chan;
             D_80282110[i].unk8 = tmpf;
-            D_80282110[i].unkC = (arg2 - tmpf)/((arg3 * 60.0f)/2);
+            D_80282110[i].unkC = (arg2 - tmpf)/((arg3 * (float)FRAMERATE)/2);
             D_80282110[i].unk10 = arg2;
             osSetIntMask(mask);
             return;
@@ -561,8 +567,8 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
     sp24 = func_802500CC(arg0);
     sp1C = osSetIntMask(1);
     tempo = alCSPGetTempo(sp24);
-    if( arg2 < 0.0333333351f){
-        arg2 = 0.0333333351f;
+    if( arg2 < (2.0f/FRAMERATE)){
+        arg2 = (2.0f/FRAMERATE);
     }
     for(i = 0; i < 0x20; i++){
         if(D_80282110[i].unk8 == D_80282110[i].unk10 
@@ -571,7 +577,7 @@ void func_80250360(s32 arg0, s32 arg1, f32 arg2){
             D_80282110[i].unk0 = arg0;
            D_80282110[i].chan = -1;
             D_80282110[i].unk8 = tempo;
-            D_80282110[i].unkC = (arg1 - tempo)/((arg2 * 60.0f)/2);
+            D_80282110[i].unkC = (arg1 - tempo)/((arg2 * (float)FRAMERATE)/2);
             D_80282110[i].unk10 = arg1;
             osSetIntMask(sp1C);
             return;

@@ -1,13 +1,16 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "version.h"
 #include "gc/gctransition.h"
 
 
 void setBootMap(enum map_e);
 void func_8023DFF0(s32);
 
+#if VERSION == VERSION_PAL
+    extern s32 D_80000300;
+#endif
 
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
@@ -16,10 +19,9 @@ u32 D_8027561C[] = {
     0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0, 
     0x1, 0x6, 0xD,  -1
 };
-u32 D_80275650 = 0xAD019D3C; //SM_DATA_CRC_1
-u32 D_80275654 = 0xD381B72F; //SM_DATA_CRC_2
-char D_80275658[] = "HjunkDire:218755";
-
+u32 D_80275650 = VER_SELECT(0xAD019D3C, 0xA371A8F3, 0, 0); //SM_DATA_CRC_1
+u32 D_80275654 = VER_SELECT(0xD381B72F, 0xD0709154, 0, 0); //SM_DATA_CRC_2
+char D_80275658[] = VER_SELECT("HjunkDire:218755", "HjunkDire:300875", "HjunkDire:", "HjunkDire:");
 
 /* .bss */
 u32 D_8027A130;
@@ -99,6 +101,9 @@ void func_8023DBDC(void){
 }
 
 void core1_init(void){
+#if VERSION == VERSION_PAL
+     osTvType = 0;
+#endif
     func_80255C30();
     setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table

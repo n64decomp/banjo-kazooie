@@ -1,10 +1,16 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "version.h"
 
 static void _guMtxIdentF(float mf[4][4]);
 
-u8 D_80275900[] = {0xCF, 0xAD, 0xA2, 0x90, 0x93, 0x4A, 0x83, 0xF1};
+#if VERSION == VERSION_USA_1_0
+u8 D_80275900[8] = {0xCF, 0xAD, 0xA2, 0x90, 0x93, 0x4A, 0x83, 0xF1};
+#elif VERSION == VERSION_PAL
+u8 D_80275900[8] = {0xD3, 0x9E, 0xA6, 0x20, 0xC7, 0x7E, 0xD5, 0xC6};
+#endif
+
 f32 D_80275908 = BAD_DTOR;
 
 static s32 guFToFix32(f32 arg0){

@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "version.h"
 
 
 void func_8024BF94(s32 arg0);
@@ -52,6 +52,27 @@ OSViMode D_80275CD0 = {
     }
 };
 
+#if VERSION == VERSION_PAL
+OSViMode D_PAL_80275CD0 = {
+    OS_VI_PAL_LPN1,
+    {
+        VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_GAMMA_ON | VI_CTRL_DIVOT_ON | 0x3100,       /*ctrl*/
+        292,          /* width*/
+        0x404233A,    /* burst*/
+        0x271,        /* vSync*/
+        0x150C69,     /* hSync*/
+        0xC6F0C6E,    /* leap */
+        0x9802E1,     /* hstart */
+        0x200,        /* xScale */
+        0x0,          /* vCurrent */
+    },
+    {
+        {0x248, 0x350, 0x48024C, 0x9026B, 2},
+        {0x248, 0x350, 0x48024C, 0x9026B, 2},
+    }
+};
+#endif
+
 // 42200000 3FAD097B 41F00000 457A0000
 // C3A68832 DDC3A724 00000000 00000000
 
@@ -65,7 +86,7 @@ OSMesg D_80280788[10];
 OSMesgQueue D_802807B0;
 OSMesg D_802807C8[1];
 OSMesgQueue D_802807D0;
-OSMesg D_802807E8[60];
+OSMesg D_802807E8[FRAMERATE];
 volatile s32 D_802808D8;
 s32 D_802808DC;
 OSThread D_802808E0;
@@ -108,17 +129,20 @@ void func_8024BE30(void){
 
     func_8024C428();
     osCreateViManager(OS_PRIORITY_VIMGR);
+#if VERSION == VERSION_USA_1_0
     if(osTvType != OS_TV_NTSC)
         osViSetMode(&D_80275CD0); //PAL  
     else
         osViSetMode(&D_80275C80); //NTSC
-        
+#elif VERSION == VERSION_PAL
+        osViSetMode(&D_PAL_80275CD0); //PAL  
+#endif
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osViSwapBuffer(&D_803A5D00);
     osCreateMesgQueue(&D_80280770, D_80280788, 10);
     osCreateMesgQueue(&D_802807B0, D_802807C8, 1);
-    osCreateMesgQueue(&D_802807D0, D_802807E8, 60);
+    osCreateMesgQueue(&D_802807D0, D_802807E8, FRAMERATE);
     osViSetEvent(&D_80280770,NULL,1);
     gActiveFramebuffer = 0;
     D_80280724 = 1;
@@ -207,7 +231,9 @@ void func_8024C2F8(void *arg0){
         func_80247380();
         D_802808D8++;
         if(D_802808D8 == 420){
+#if VERSION == VERSION_USA_1_0
             func_802485BC();
+#endif
         }
         osSendMesg(&D_802807D0, NULL, OS_MESG_NOBLOCK);
 

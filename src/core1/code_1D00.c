@@ -1,8 +1,11 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "version.h"
 #include "2.0L/PR/sched.h"
 #include "n_libaudio.h"
+
+#define AUDIO_HEAP_SIZE VER_SELECT(0x21000, 0x23A00, 0x21000, 0x21000)
 
 extern void n_alInit(N_ALGlobals *, ALSynConfig *);
 
@@ -144,12 +147,12 @@ struct {
 } audioManager;
 u8 pad_8027C178[0xE78];
 ALHeap D_8027CFF0;
-u8 * D_8027D000;
+u8 * D_8027D000; 
 s32  D_8027D004;
 OSMesgQueue D_8027D008;
-OSMesg D_8027D020[50];
+OSMesg D_8027D020[3000/FRAMERATE];
 OSIoMesg D_8027D0E8;
-Struct_core1_1D00_4 D_8027D100[50];
+Struct_core1_1D00_4 D_8027D100[3000/FRAMERATE];
 struct {
     u8 unk0;
     Struct_1D00_3 *unk4;
@@ -282,11 +285,15 @@ void func_8023FA64(ALSeqpConfig *arg0) {
 }
 
 void audioManager_init(void){
-    D_8027D000 = (u8 *) malloc(0x21000);
-    bzero(D_8027D000, 0x21000);
-    alHeapInit(&D_8027CFF0, D_8027D000, 0x21000);
+    D_8027D000 = (u8 *) malloc(AUDIO_HEAP_SIZE);
+    bzero(D_8027D000, AUDIO_HEAP_SIZE);
+    alHeapInit(&D_8027CFF0, D_8027D000, AUDIO_HEAP_SIZE);
+#if VERSION == VERSION_USA_1_0
     if(osTvType != OS_TV_NTSC)
         osViClock = 0x2e6025c;
+#elif VERSION == VERSION_PAL
+    osViClock = 0x2f5b2d2;
+#endif
     audioManager_create();
     sfxInstruments_init();
     musicInstruments_init();
@@ -297,10 +304,10 @@ void audioManager_create(void) {
     int i;
     f32 var_f0;
 
-    osCreateMesgQueue(&D_8027D008, D_8027D020, 50);
+    osCreateMesgQueue(&D_8027D008, D_8027D020, 3000/FRAMERATE);
     osCreateMesgQueue(&audioManager.audioReplyMsgQ, audioManager.audioReplyMsgBuf, 8); //audioReplyMesgQueue
     osCreateMesgQueue(&audioManager.audioFrameMsgQ, audioManager.audioFrameMsgBuf, 8);
-    var_f0 = 733.333313f;
+    var_f0 = 44000.0f/FRAMERATE;
     D_8027DD74 = (s32)var_f0;
     if ((f32) D_8027DD74 < var_f0) {
         D_8027DD74++;
@@ -321,14 +328,14 @@ void audioManager_create(void) {
     D_8027D5C0[0].unk0.next = NULL;
     for(i = 0; i < 89; i++){
         alLink((ALLink *)&D_8027D5C0[i+1], (ALLink *)&D_8027D5C0[i]);
-        D_8027D5C0[i].unk10 = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x200);
+        D_8027D5C0[i].unk10 = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, VER_SELECT(0x200, 0x270, 0x200, 0x200));
     }
-    D_8027D5C0[i].unk10 = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x200);
-
+    D_8027D5C0[i].unk10 = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, VER_SELECT(0x200, 0x270, 0x200, 0x200));
     for(i = 0; i < 2; i++){
-        audioManager.ACMDList[i] = malloc(20000);
+        audioManager.ACMDList[i] = malloc(1200000/FRAMERATE);
     }
-    D_8027DD80 = 2500;
+
+    D_8027DD80 = 150000/FRAMERATE;
     for(i = 0; i < 3; i++){
         audioManager.audioInfo[i] = alHeapDBAlloc(0, 0, D_8027DD50.heap, 1, 0x10);
         audioManager.audioInfo[i]->unk8 = 0;
@@ -368,7 +375,11 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     s16 *outbuffer;
     Acmd *sp38;
     s32 sp34;
+#if VERSION == VERSION_USA_1_0
     s32 sp30 = 0;
+#else
+    s32 sp30;
+#endif
     f32 pad;
 
     outbuffer = (s16 *)osVirtualToPhysical(info->data);
@@ -377,13 +388,15 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     if(prev_info){
         sp30 = osAiSetNextBuffer(prev_info->data, prev_info->frameSamples*4);
     }//L8024003C
+
+#if VERSION == VERSION_USA_1_0
     if(sp30 == -1){
         func_80247F24(2, 0x7d2);
         func_80247F9C(prev_info->frameSamples);
         func_80247F9C(info->frameSamples);
         func_802483D8();
-
-    }
+    }    
+#endif
 
     if((D_80275770 >= 0x139)  & !D_80275778){
         info->frameSamples = D_8027DD78;
@@ -401,12 +414,14 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
 
     sp38 = n_alAudioFrame(audioManager.ACMDList[D_8027DCD0], &sp34, outbuffer, info->frameSamples);
 
+#if VERSION == VERSION_USA_1_0
     if(D_8027DD80 < sp34){
         func_80247F24(2, 2000);
         func_80247F9C(sp34);
         func_80247F9C(D_8027DD80);
         func_802483D8();
     }
+#endif
 
     if(sp34 == 0){
         return 0;
@@ -426,6 +441,7 @@ void audioManager_handleDoneMsg(AudioInfo *info)
 	}
 }
 
+#if VERSION == VERSION_USA_1_0
 s32 func_80240204(s32 addr, s32 len, void *state){
     void *sp44;
     s32 sp40;
@@ -479,6 +495,63 @@ s32 func_80240204(s32 addr, s32 len, void *state){
     osPiStartDma(&D_8027D100[D_8027DCCC++], 1, 0, addr, sp44, 0x200U, &D_8027D008);
     return osVirtualToPhysical(sp44) + sp40;
 }
+#elif VERSION == VERSION_PAL
+#ifndef NONMATCHING
+s32 func_80240204(s32 addr, s32 len, void *state);
+#pragma GLOBAL_ASM("asm/nonmatchings/core1/code_1D00/func_80240204.s")
+#else
+s32 func_80240204(s32 addr, s32 len, void *state){
+    void *sp44;
+    s32 sp40;
+    Struct_1D00_3 *phi_s0;
+    Struct_1D00_3 *phi_v0;
+    s32 new_var;
+    Struct_1D00_3 *sp30;
+
+    phi_v0 = D_8027D5B0.unk4;
+    sp30 = NULL;
+    for(phi_s0 = phi_v0; phi_s0 != NULL; phi_s0 = phi_s0->unk0.next) {
+        sp40 = (phi_s0->unk8 + 0x270);
+        if ((phi_s0->unk8 > addr)) break;
+        
+        sp30 = phi_s0;
+        if ((addr + len) <= sp40) {
+            phi_s0->unkC = (s32) D_8027DCC8;
+            return osVirtualToPhysical(phi_s0->unk10 + (addr - phi_s0->unk8));
+        }
+    }
+    phi_s0 = D_8027D5B0.unk8;
+    if (phi_s0 == NULL) {
+        return osVirtualToPhysical(phi_v0);
+    }
+    D_8027D5B0.unk8 = phi_s0->unk0.next;
+    alUnlink(phi_s0);
+    if (sp30 != NULL) {
+        alLink(phi_s0, sp30);
+    } else {
+        phi_v0 = D_8027D5B0.unk4;
+        if (phi_v0 != NULL) {
+            D_8027D5B0.unk4 = phi_s0;
+            phi_s0->unk0.next = (ALLink *)phi_v0;
+            phi_s0->unk0.prev = NULL;
+            phi_v0->unk0.prev = (ALLink *)phi_s0;
+        } else {
+            D_8027D5B0.unk4 = phi_s0;
+            phi_s0->unk0.next = NULL;
+            phi_s0->unk0.prev = NULL;
+        }
+    }
+    
+    new_var = addr & 1;
+    addr = addr - new_var;
+    phi_s0->unk8 = addr;
+    phi_s0->unkC = (s32) D_8027DCC8;
+    sp44 = phi_s0->unk10;
+    osPiStartDma(&D_8027D100[D_8027DCCC++], 1, 0, phi_s0->unk8, phi_s0->unk10, 0x270U, &D_8027D008);
+    return osVirtualToPhysical(sp44) + new_var;
+}
+#endif
+#endif
 
 void *func_802403B8(void *state) {
     if (D_8027D5B0.unk0 == 0) {
@@ -498,12 +571,17 @@ void func_802403F0(void) {
 
     sp40 = NULL;
     for(phi_s0 = 0; phi_s0 < D_8027DCCC; phi_s0++){
+
+#if VERSION == VERSION_USA_1_0
         if (osRecvMesg(&D_8027D008, &sp40, 0) == -1) {
             func_80247F24(2, 0x7D5);
             func_80247F9C(D_8027DCCC);
             func_80247F9C(phi_s0);
             func_802483D8();
         }
+#else
+        osRecvMesg(&D_8027D008, &sp40, 0);
+#endif
     }
     phi_s0_2 = D_8027D5B0.unk4;
     while(phi_s0_2 != NULL){
@@ -526,6 +604,12 @@ void func_802403F0(void) {
     D_8027DCCC = 0;
     D_8027DCC8 += 1;
 }
+
+#if VERSION == VERSION_PAL
+void *audioManager_getThread_PAL(void){
+    return &audioManager.thread;
+}
+#endif
 
 void audioManager_stopThread(void){
     if(D_80275774){

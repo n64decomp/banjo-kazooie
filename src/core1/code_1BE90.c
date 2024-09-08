@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
+#include "version.h"
 
 extern func_8024FDDC(u8, s32);
 
@@ -540,19 +540,20 @@ void func_8025AB00(void){
 }
 
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2){
-    func_8025AC20(comusic_id, arg1, arg2, 0.0f, "comusic.c", 0x39e);
+    func_8025AC20(comusic_id, arg1, arg2, 0.0f, "comusic.c", VER_SELECT(0x39e, 0x39f, 0, 0));
+
 }
 
 void comusic_8025AB78(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, arg3, "comusic.c", 0x3a3);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, arg3, "comusic.c", VER_SELECT(0x3a3, 0x3a4, 0, 0));
 }
 
 void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(__find_track(comusic_id)->unk1C[arg3]), "comusic.c", 0x3aa);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32)&(__find_track(comusic_id)->unk1C[arg3]), "comusic.c", VER_SELECT(0x3aa, 0x3ab,0,0));
 }
 
 void func_8025AC20(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, char* arg4, s32 char5){
-    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) __find_track(comusic_id)->unk1C, "comusic.c", 0x3b1);
+    func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) __find_track(comusic_id)->unk1C, "comusic.c", VER_SELECT(0x3b1, 0x3b2,0,0));
 }
 
 void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "version.h"
+
 extern s32 D_803727F4;
 
 extern struct {
@@ -30,8 +32,13 @@ typedef struct {
 extern s32 D_80276574;
 
 /* .data */
-s32 D_80275D30 = 0xC3A68832; //WHAT IS THIS?
-s32 D_80275D34 = 0xDDC3A724; //WHAT IS THIS?
+#if VERSION == VERSION_USA_1_0
+    s32 D_80275D30 = 0xC3A68832; //WHAT IS THIS?
+    s32 D_80275D34 = 0xDDC3A724; //WHAT IS THIS?
+#elif VERSION == VERSION_PAL
+    s32 D_80275D30 = 0xED7BCDB7; //WHAT IS THIS?
+    s32 D_80275D34 = 0xF82DC7AC; //WHAT IS THIS?
+#endif
 s32 D_80275D38 = 0;
 
 /* .bss */

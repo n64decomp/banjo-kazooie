@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "SnS.h"
-
+#include "version.h"
 /* 
  *  Every chunk of allocated memory is prefixed with a HeapHeader.
  * 
@@ -16,9 +16,12 @@
 extern void func_80253010(void *dest, void *src, s32 size);
 
 #define chunkSize(s) ((u32)(s)->next - (u32)(s) - sizeof(HeapHeader))
+#if VERSION == VERSION_USA_1_0
 #define HEAP_SIZE 0x210520
+#elif VERSION == VERSION_PAL
+#define HEAP_SIZE 0x211120
+#endif
 #define LAST_HEAP_BLOCK HEAP_SIZE/sizeof(EmptyHeapBlock) - 1
-
 typedef enum {
     HEAP_BLOCK_EMPTY = 0,
     HEAP_BLOCK_USED  = 1,

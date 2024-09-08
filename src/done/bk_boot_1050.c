@@ -9,8 +9,8 @@
 
 u64 gEntryStack[ENTRY_STACK_LEN_U64];
 
-extern u8 core1_us_v10_rzip_ROM_START[];
-extern u8 core1_us_v10_rzip_ROM_END[];
+extern u8 core1_rzip_ROM_START[];
+extern u8 core1_rzip_ROM_END[];
 extern u8 D_8002D500;
 extern u8 core1_VRAM;
 extern u32 D_803FFE00[4];
@@ -25,7 +25,7 @@ void func_80000450(s32 arg0){
     tmp = &D_8002D500;
     dst = &core1_VRAM;
     osInitialize();
-    osPiRawStartDma(OS_READ, core1_us_v10_rzip_ROM_START, tmp, core1_us_v10_rzip_ROM_END - core1_us_v10_rzip_ROM_START);
+    osPiRawStartDma(OS_READ, core1_rzip_ROM_START, tmp, core1_rzip_ROM_END - core1_rzip_ROM_START);
     while(osPiGetStatus() & PI_STATUS_DMA_BUSY);
     func_8000055C();
     func_80000594(&tmp, &dst);
