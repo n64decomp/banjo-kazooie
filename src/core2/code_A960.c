@@ -6,7 +6,7 @@
 void func_80291930(s32);
 
 int func_802918F0(void){
-    return miscflag_isTrue(0x15);
+    return miscFlag_isTrue(MISC_FLAG_15);
 }
 
 void func_80291910(void){
@@ -15,7 +15,7 @@ void func_80291910(void){
 
 void func_80291930(s32 arg0){
     if(!func_802918F0()){
-        miscflag_set(0x15);
+        miscFlag_set(MISC_FLAG_15);
         if(arg0){
             func_8029E3C0(5, 2.0f);
             func_8029C984();

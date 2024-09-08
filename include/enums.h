@@ -4753,22 +4753,36 @@ enum bswatergroup_e{
 };
 
 enum misc_flag_e{
-    MISC_FLAG_1_ON_FLIGHT_PAD = 0x1,
+    MISC_FLAG_0, // unused
+    MISC_FLAG_1_ON_FLIGHT_PAD,
     MISC_FLAG_2_ON_SPRING_PAD,
+    MISC_FLAG_3,
+    MISC_FLAG_4,
+    MISC_FLAG_5_HAS_PECKED,
+    MISC_FLAG_6,
+    MISC_FLAG_7,
+    MISC_FLAG_8,
+    MISC_FLAG_9,
+    MISC_FLAG_A,
+    MISC_FLAG_B,
+    MISC_FLAG_C,
+    MISC_FLAG_D, // unused
+    MISC_FLAG_E_TOUCHING_WADING_BOOTS,
+    MISC_FLAG_F, // related to A button ?
+    MISC_FLAG_10_TOUCHING_TURBO_TRAINERS,
+    MISC_FLAG_11, // unused
+    MISC_FLAG_12_HAS_FLAPPED, // has used flap
+    MISC_FLAG_13, // related to ground damage ?
+    MISC_FLAG_14_LOSE_BOGGY_RACE, // in difficult terrain (mud)
+    MISC_FLAG_15, // touching loadzone?
+    MISC_FLAG_16, // related to flying
+    MISC_FLAG_17_FIRST_PERSON_VIEW,
+    MISC_FLAG_18, // related to underwater state
+    MISC_FLAG_19, // related to transformations
+    MISC_FLAG_1A, // related to bee transformation
+    MISC_FLAG_1B_TRANSFORMING,
 
-    MISC_FLAG_5_HAS_PECKED = 0x5,
-
-    MISC_FLAG_E_TOUCHING_WADING_BOOTS = 0xE,
-
-    MISC_FLAG_10_TOUCHING_TURBO_TRAINERS = 0x10,
-
-    //0x12 has used flap
-    MISC_FLAG_12_HAS_FLAPPED = 0x12,
-    //0x13 in difficult terrain (mud)
-    MISC_FLAG_14_LOSE_BOGGY_RACE = 0x14,
-    //0x15 touching loadzone?
-    MISC_FLAG_17_FPV = 0x17,
-    MISC_FLAG_1B_TRANSFORMING = 0x1B
+    MISC_FLAG_NUM_FLAGS
 };
 
 enum nc_first_person_state{

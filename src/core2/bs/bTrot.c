@@ -106,15 +106,15 @@ void func_802A8A40(void){
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    miscflag_set(3);
+    miscFlag_set(MISC_FLAG_3);
     func_8029CF48(4,1,0.24f);
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
 }
 
 void func_802A8AD8(void){
     func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), stateTimer_get(STATE_TIMER_3_TURBO_TALON));
-    if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
-        miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
+    if(miscFlag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
+        miscFlag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
         func_803219F4(4);
     }
@@ -122,7 +122,7 @@ void func_802A8AD8(void){
     if(stateTimer_isDone(STATE_TIMER_3_TURBO_TALON)){
         if(func_8029DFE0()){
             func_8029E0DC(0);
-            if(miscflag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE))
+            if(miscFlag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE))
                 func_8030E484(0x3eb);
             func_803219F4(1);
         }
@@ -143,7 +143,7 @@ void func_802A8BB0(void){
     func_8029E064(0);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
-    miscflag_clear(3);
+    miscFlag_clear(MISC_FLAG_3);
     if(next_state != BS_5A_LOADZONE)
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
     func_802A8AD8();
@@ -177,10 +177,10 @@ enum asset_e func_802A8D00(enum asset_e arg0, enum asset_e arg1){
 }
 
 enum bs_e func_802A8D34(enum bs_e arg0){
-    if(miscflag_isTrue(0xf))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         return arg0;
     
-    if(miscflag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD)) 
+    if(miscFlag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD)) 
         return BS_23_FLY_ENTER;
 
     return BS_8_BTROT_JUMP; 
@@ -377,7 +377,7 @@ void bsbtrot_jump_update(void){
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
 
-    if(miscflag_isTrue(0xF))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
         func_802A89D4();
@@ -588,7 +588,7 @@ void bsbtrot_fall_update(void){
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
 
-    if(miscflag_isTrue(0xf))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
         func_802A89D4();

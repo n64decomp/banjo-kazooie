@@ -23,7 +23,7 @@ void func_8029CFF8(void){
 }
 
 void func_8029D01C(void){
-    miscflag_clear(0x13);
+    miscFlag_clear(MISC_FLAG_13);
     D_8037D210 = func_8030D90C();
     D_8037D212 = 0;
 }
@@ -226,7 +226,7 @@ bool func_8029D7B4(void){
                 && stateTimer_isDone(STATE_TIMER_2_LONGLEG)
                 && func_8028ECAC() != BSGROUP_3_WONDERWING
                 && func_8028ECAC() != BSGROUP_9_LONG_LEG
-                && miscflag_isFalse(MISC_FLAG_E_TOUCHING_WADING_BOOTS)
+                && miscFlag_isFalse(MISC_FLAG_E_TOUCHING_WADING_BOOTS)
                 && sp1C != BS_25_LONGLEG_ENTER
                 && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
                 && func_8028EC04() < 1U
@@ -317,9 +317,9 @@ void func_8029D968(void){
                     break;
             }
         }
-        miscflag_set(0x13);
+        miscFlag_set(MISC_FLAG_13);
     }
     else{
-        miscflag_clear(0x13);
+        miscFlag_clear(MISC_FLAG_13);
     }
 }

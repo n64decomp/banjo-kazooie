@@ -35,7 +35,7 @@ void bsjump_init(void){
     AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
     enum bs_e sp30;
 
-    D_8037D4C2 = miscflag_isTrue(2);
+    D_8037D4C2 = miscFlag_isTrue(MISC_FLAG_2_ON_SPRING_PAD);
     sp30 = bs_getPrevState();
     if(bsclimb_inSet(sp30)){
         climbRelease();
@@ -89,7 +89,7 @@ void bsjump_update(void){
     if(D_8037D4C2)
         func_8029C348();
     
-    if(miscflag_isTrue(0xf)){
+    if(miscFlag_isTrue(MISC_FLAG_F)){
         baphysics_reset_horizontal_velocity();
     }else{
         func_802B6FA8();
@@ -172,7 +172,7 @@ void bsjump_fall_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int sp20;
 
-    if(miscflag_isTrue(7) && 700.0f < baphysics_get_vertical_velocity())
+    if(miscFlag_isTrue(MISC_FLAG_7) && 700.0f < baphysics_get_vertical_velocity())
         baphysics_set_vertical_velocity(700.0f);
 
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;
@@ -191,7 +191,7 @@ void bsjump_fall_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 player_velocity[3];
 
-    if(miscflag_isTrue(0xf))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
         func_802B6FA8();
@@ -213,11 +213,11 @@ void bsjump_fall_update(void){
         case 1:
             break;
     }//L802B1824
-    if(miscflag_isFalse(0xf)){
+    if(miscFlag_isFalse(MISC_FLAG_F)){
         if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_feathery_flap() && miscflag_isFalse(MISC_FLAG_5_HAS_PECKED))
+        if(should_feathery_flap() && miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED))
             sp2C = BS_BFLAP;
 
         if(should_peck())
@@ -231,7 +231,7 @@ void bsjump_fall_update(void){
     }
     else if(player_inWater()){
         func_8029CCC4();
-        if(miscflag_isTrue(6) || miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)){
+        if(miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)){
             sp2C = BS_D_TIMEOUT;
         }
 

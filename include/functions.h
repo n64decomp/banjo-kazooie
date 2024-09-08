@@ -575,4 +575,11 @@ extern void itemscore_noteScores_clear(void);
 extern s32 itemscore_noteScores_get(enum level_e lvl_id);
 extern void itemscore_timeScores_clear(void);
 
+extern void miscFlag_clearAll(void);
+extern bool miscFlag_isTrue(enum misc_flag_e arg0);
+extern bool miscFlag_isFalse(enum misc_flag_e arg0);
+extern void miscFlag_set(enum misc_flag_e arg0);
+extern void miscFlag_clear(enum misc_flag_e arg0);
+extern void miscFlag_toggle(enum misc_flag_e arg0);
+
 #endif

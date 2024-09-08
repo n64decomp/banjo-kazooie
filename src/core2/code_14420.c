@@ -240,10 +240,10 @@ enum bs_e func_8029B458(void){
 enum bs_e func_8029B504(void){
     enum bs_e sp1C;
 
-    if(miscflag_isTrue(0xF))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         return 0;
 
-    miscflag_set(0xF);
+    miscFlag_set(MISC_FLAG_F);
     sp1C = func_8029B458();
     if(bs_getState() != sp1C)
         return sp1C;
@@ -448,7 +448,7 @@ enum bs_14420_e func_8029BAF0(void){
         if (stateTimer_get(STATE_TIMER_2_LONGLEG) != 0.0f) {
             return BS14420_9_LONGLEG;
         }
-        if (miscflag_isTrue(0x18)) {
+        if (miscFlag_isTrue(MISC_FLAG_18)) {
             return BS14420_5_UNDERWATER;
         }
         if (func_8028ECAC() == BSGROUP_3_WONDERWING) {
@@ -569,10 +569,10 @@ enum bs_e bs_getIdleState(void){
 
         case TRANSFORM_1_BANJO:
         default:
-            if (miscflag_isTrue(0x16)) {
+            if (miscFlag_isTrue(MISC_FLAG_16)) {
                 return BS_24_FLY;
             }
-            if (miscflag_isTrue(0x18)) {
+            if (miscFlag_isTrue(MISC_FLAG_18)) {
                 return BS_2B_DIVE_IDLE;
             }
             if (stateTimer_get(STATE_TIMER_3_TURBO_TALON) != 0.0f) {
@@ -723,7 +723,7 @@ void func_8029C674(void) {
     D_8037D1E8 = FALSE;
     if (func_80298850() == BSGROUP_4_LOOK) {
         D_8037D1E8 = TRUE;
-        miscflag_set(MISC_FLAG_17_FPV);
+        miscFlag_set(MISC_FLAG_17_FIRST_PERSON_VIEW);
         ncDynamicCamera_enterFirstPerson();
         func_8028E9C4(5, sp1C);
         ncFirstPersonCamera_setZoomedOutPosition(sp1C);
@@ -748,7 +748,7 @@ void func_8029C6D0(void) {
 
 void func_8029C748(void) {
     if (D_8037D1E8) {
-        miscflag_clear(MISC_FLAG_17_FPV);
+        miscFlag_clear(MISC_FLAG_17_FIRST_PERSON_VIEW);
         ncDynamicCamera_exitFirstPerson();
     }
 }
@@ -757,10 +757,10 @@ enum bs_e bs_getTypeOfJump(void){
     if(button_held(BUTTON_Z) && can_flap_flip())
         return BS_12_BFLIP;
 
-    if(miscflag_isTrue(MISC_FLAG_2_ON_SPRING_PAD))
+    if(miscFlag_isTrue(MISC_FLAG_2_ON_SPRING_PAD))
         return BS_5_JUMP;
 
-    if(miscflag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD))
+    if(miscFlag_isTrue(MISC_FLAG_1_ON_FLIGHT_PAD))
         return BS_23_FLY_ENTER;
 
     return BS_5_JUMP;
@@ -827,7 +827,7 @@ void func_8029C984(void){
 }
 
 s32 func_8029C9C0(s32 arg0){
-    if(miscflag_isTrue(0xF))
+    if(miscFlag_isTrue(MISC_FLAG_F))
         return arg0;
     
     if(button_pressed(BUTTON_A))
@@ -849,28 +849,28 @@ s32 func_8029C9C0(s32 arg0){
 }
 
 s32 func_8029CA94(s32 arg0){
-    if(miscflag_isTrue(0x19))
+    if(miscFlag_isTrue(MISC_FLAG_19))
         arg0 = badrone_transform();
     
-    if(miscflag_isTrue(0x1A))
+    if(miscFlag_isTrue(MISC_FLAG_1A))
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;
 
-    if(miscflag_isTrue(MISC_FLAG_E_TOUCHING_WADING_BOOTS))
+    if(miscFlag_isTrue(MISC_FLAG_E_TOUCHING_WADING_BOOTS))
         arg0 = BS_25_LONGLEG_ENTER;
 
-    if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS))
+    if(miscFlag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS))
         arg0 = BS_14_BTROT_ENTER;
 
-    if(miscflag_isTrue(0x6))
+    if(miscFlag_isTrue(MISC_FLAG_6))
         arg0 = BS_53_TIMEOUT;
 
-    if(miscflag_isTrue(0x7))
+    if(miscFlag_isTrue(MISC_FLAG_7))
         arg0 = BS_44_JIG_JIGGY;
 
-    if(miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE))
+    if(miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE))
         arg0 = (player_getTransformation() == TRANSFORM_4_WALRUS) ? BS_80_WALRUS_SLED_LOSE : BS_53_TIMEOUT;
     
-    miscflag_clear(0xF);
+    miscFlag_clear(MISC_FLAG_F);
 
     return arg0;
 }
@@ -907,14 +907,14 @@ void func_8029CBF4(void){
 }
 
 void func_8029CCC4(void){
-    if(miscflag_isFalse(7)) return;
-    if( miscflag_isTrue(0xF)
-        && miscflag_isFalse(6)
-        && miscflag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE)
+    if(miscFlag_isFalse(MISC_FLAG_7)) return;
+    if( miscFlag_isTrue(MISC_FLAG_F)
+        && miscFlag_isFalse(MISC_FLAG_6)
+        && miscFlag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE)
     ){
-        miscflag_clear(0xF);
+        miscFlag_clear(MISC_FLAG_F);
     }
-    miscflag_clear(7);
+    miscFlag_clear(MISC_FLAG_7);
     func_802B0CD8();
     item_inc(ITEM_E_JIGGY);
     if(jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){

@@ -185,13 +185,13 @@ void func_80294E60(void){
     }
 
     if(player_isStable() || bsclimb_inSet(bs_getState())){
-        miscflag_clear(MISC_FLAG_5_HAS_PECKED);
-        miscflag_clear(MISC_FLAG_12_HAS_FLAPPED);
+        miscFlag_clear(MISC_FLAG_5_HAS_PECKED);
+        miscFlag_clear(MISC_FLAG_12_HAS_FLAPPED);
     }
 
     if(player_inWater()){
-        miscflag_clear(MISC_FLAG_5_HAS_PECKED);
-        miscflag_clear(MISC_FLAG_12_HAS_FLAPPED);
+        miscFlag_clear(MISC_FLAG_5_HAS_PECKED);
+        miscFlag_clear(MISC_FLAG_12_HAS_FLAPPED);
     }
 
     func_80294BDC();

@@ -70,7 +70,7 @@ void func_802A5374(void){
     func_8029E0F4(1);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    miscflag_set(3);
+    miscFlag_set(MISC_FLAG_3);
 }
 
 void func_802A5404(void){
@@ -87,7 +87,7 @@ void func_802A5404(void){
     roll_setIdeal(0.0f);
     stateTimer_clear(STATE_TIMER_2_LONGLEG);
     func_803219F4(1);
-    miscflag_clear(3);
+    miscFlag_clear(MISC_FLAG_3);
     func_8029E180(4, 0.5f);
     func_802A531C();
 }
@@ -121,7 +121,7 @@ void bsblongleg_enter_init(void){
     D_8037D361 = func_8030D90C();
     sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
-    miscflag_clear(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
+    miscFlag_clear(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
     if(bsbtrot_inSet(bs_getPrevState()))
         __bsblongleg_enterFromTrot();
     else

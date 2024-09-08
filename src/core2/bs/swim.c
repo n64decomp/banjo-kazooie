@@ -179,7 +179,7 @@ void func_802B5950(void) {
     if (func_80294524() && button_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (miscflag_isTrue(6) || miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
+    if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);
@@ -256,7 +256,7 @@ void func_802B5C40(void) {
     if (func_80294524() && button_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (miscflag_isTrue(6) || miscflag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
+    if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);

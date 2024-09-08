@@ -83,7 +83,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
 
-    if(miscflag_isTrue(MISC_FLAG_17_FPV) && !func_8028F25C()){
+    if(miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW) && !func_8028F25C()){
         if(__snackerctl_player_within_distance(183.0f, -100.0f, 75.0f)){
             if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){

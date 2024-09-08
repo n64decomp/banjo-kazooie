@@ -275,7 +275,7 @@ void func_802A170C(void){
             break;
     }
     if(player_isStable()){
-        if(miscflag_isTrue(0x19)){
+        if(miscFlag_isTrue(MISC_FLAG_19)){
             sp2c = badrone_transform();
         }else{
             if(func_8029B300() > 0)
@@ -286,7 +286,7 @@ void func_802A170C(void){
         }
     }
     else{
-        if(miscflag_isFalse(0xf) && button_pressed(BUTTON_A))
+        if(miscFlag_isFalse(MISC_FLAG_F) && button_pressed(BUTTON_A))
             sp2c = BS_BEE_FLY;
     }//L802A189C
     if(player_inWater())
@@ -514,7 +514,7 @@ void func_802A2054(void){
 }
 
 void func_802A2098(void){
-    miscflag_clear(0x1A);
+    miscFlag_clear(MISC_FLAG_1A);
     baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);

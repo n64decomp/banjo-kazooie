@@ -76,9 +76,9 @@ void bsbarge_init(void){
     func_8029E070(1);
     D_8037D2A6 = 0;
     D_8037D2A5 = 0;
-    miscflag_clear(0xA);
-    miscflag_clear(0xB);
-    miscflag_clear(0xC);
+    miscFlag_clear(MISC_FLAG_A);
+    miscFlag_clear(MISC_FLAG_B);
+    miscFlag_clear(MISC_FLAG_C);
     func_8029E3C0(2, 0.01f);
 
 }
@@ -90,7 +90,7 @@ void bsbarge_update(void){
     sp24 = 0;
     plyrMvmnt = baanim_getAnimCtrlPtr();
     if(button_released(BUTTON_B))
-        miscflag_set(0xA);
+        miscFlag_set(MISC_FLAG_A);
     switch(D_8037D2A5){
         case 0:
             if(animctrl_isAt(plyrMvmnt, 0.1392f))
@@ -99,8 +99,8 @@ void bsbarge_update(void){
             if(!animctrl_isStopped(plyrMvmnt))
                 break;
 
-            if(miscflag_isFalse(0xA)){
-                miscflag_set(0xC);
+            if(miscFlag_isFalse(MISC_FLAG_A)){
+                miscFlag_set(MISC_FLAG_C);
                 D_8037D2A0 = 850.0f;
             }else{
                 D_8037D2A0 = 500.0f;
@@ -110,13 +110,13 @@ void bsbarge_update(void){
             break;
         case 1:
             func_8029E1A8(1);
-            if(miscflag_isFalse(0xB) && func_8029E2E0(1, 0.1f)){
-                if(miscflag_isTrue(0xC)){
+            if(miscFlag_isFalse(MISC_FLAG_B) && func_8029E2E0(1, 0.1f)){
+                if(miscFlag_isTrue(MISC_FLAG_C)){
                     func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 30000);
                 }else{
                     func_8030E560(SFX_43_KAZOOIE_RUH, 30000);
                 }
-                miscflag_set(0xB);
+                miscFlag_set(MISC_FLAG_B);
             }
             if(!func_8029E384(1))
                 break;
@@ -142,7 +142,7 @@ void bsbarge_update(void){
             break;
         case 3:
             func_8029E1A8(0);
-            if(miscflag_isFalse(0xC) || func_8029E384(0)){
+            if(miscFlag_isFalse(MISC_FLAG_C) || func_8029E384(0)){
                 D_8037D2A0 -= 80.0f;
             }
             baphysics_set_target_horizontal_velocity(D_8037D2A0);
