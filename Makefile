@@ -343,15 +343,15 @@ $(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
 
 # TOOLS
 # Tool for spliting BK asset sections into and from ROM Bin and transforming certain file types
-$(BK_ASSET_TOOL):
+$(BK_ASSET_TOOL): tools/bk_asset_tool/Cargo.toml tools/bk_asset_tool/Cargo.lock $(wildcard tools/bk_rom_compressor/src/*.rs)
 	@$(CD) tools/bk_asset_tool && cargo build --release 2> /dev/null
 
 # Tool to compress BK and correct checksums from elf and uncompressed rom
-$(BK_ROM_COMPRESS):
+$(BK_ROM_COMPRESS): tools/bk_rom_compressor/Cargo.toml tools/bk_rom_compressor/Cargo.lock $(wildcard tools/bk_rom_compressor/src/comp/*.rs)
 	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_compress 2> /dev/null
 
 # Tool to turn compressed BK into uncompressed ROM
-$(BK_ROM_DECOMPRESS):
+$(BK_ROM_DECOMPRESS): tools/bk_rom_compressor/Cargo.toml tools/bk_rom_compressor/Cargo.lock $(wildcard tools/bk_rom_compressor/src/decomp/*.rs)
 	@$(CD) tools/bk_rom_compressor && cargo build --release --bin bk_rom_decompress 2> /dev/null
 
 clean:
@@ -417,8 +417,7 @@ MAKEFLAGS += -r
 .SUFFIXES:
 
 # Phony targets
-.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS)) \
-	$(BK_ASSET_TOOL) $(BK_ROM_COMPRESS) $(BK_ROM_DECOMPRESS)
+.PHONY: all clean verify $(OVERLAYS) progress $(addprefix progress-,$(OVERLAYS))
 
 
 # Set up pipefail
