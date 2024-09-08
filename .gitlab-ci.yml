@@ -1,0 +1,72 @@
+# This CI will run:
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'    # ... on merge requests
+    - if: $CI_COMMIT_TAG                                  # ... on tags
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH         # ... on default (master/main) branch
+
+stages:
+  - build-image
+  - test
+
+
+variables:
+  # Fetch submodules
+  GIT_SUBMODULE_STRATEGY: recursive
+  # Only fetch the latest commit (shallow clone, faster)
+  GIT_SUBMODULE_DEPTH: 1
+  GIT_DEPTH: 1
+
+# Builds the image and pushes it to the registry
+# This image contains all the tooling necessary to run the compilation tools
+build-image:
+  stage: build-image
+  # Run image build only if packages changed
+  only:
+    changes:
+      - Dockerfile
+      - packages.txt
+      - requirements.txt
+      - .gitlab-ci.yml
+      - tools/*
+  # Set up the docker daemon for building the image
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY     # Login to the registry
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME || true        # Pull the image if it exists
+                                                                        # Build the image and tag it with the branch name and latest
+    - |
+      docker build \
+      --build-arg BUILDKIT_INLINE_CACHE=1 \
+      --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME \
+      -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME \
+      -t $CI_REGISTRY_IMAGE:latest \
+      .
+    - docker push --all-tags $CI_REGISTRY_IMAGE                         # Push the image to the registry
+
+# Try to compile the code inside the image to make sure it works (run docker container)
+build-test-us10:
+  stage: test
+  image:
+    name: $CI_REGISTRY_IMAGE:latest
+    entrypoint: [""]
+  before_script:
+    # Download the baserom from $BASEROM_<VER>_URL, decrypt with $BASEROM_<VER>_KEY and save as baserom.us.v10.z64, and check the sha1sum against $BASEROM_<VER>_SHA1
+    - curl -L "$BASEROM_US10_URL" -o baserom.us.v10.enc.z64
+    - openssl enc -d -aes-256-cbc -in baserom.us.v10.enc.z64 -out baserom.us.v10.z64 -k "$BASEROM_US10_KEY"
+    - FILE_SHA1=$(sha1sum baserom.us.v10.z64 | awk '{ print $1 }')
+    - echo "Calculated SHA1 - $FILE_SHA1"
+    - echo "Expected SHA1   - $BASEROM_US10_SHA1"
+    - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
+  script:
+    # Compile the code
+    - make
+    # Check if the resulting ROM is the same as the expected one
+    - FILE_SHA1=$(sha1sum build/us.v10/banjo.us.v10.z64 | awk '{ print $1 }')
+    - echo "Calculated SHA1 - $FILE_SHA1"
+    - echo "Expected SHA1   - $BASEROM_US10_SHA1"
+    - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
