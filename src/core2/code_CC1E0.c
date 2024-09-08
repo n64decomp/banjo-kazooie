@@ -68,7 +68,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
     prop = func_80320EB0(marker, 30.0f, 1);
     if(prop != NULL && prop->unk8_0){
         other_marker = prop->marker;
-        sp34 =other_marker->unk14_20;
+        sp34 =other_marker->id;
         if(!func_8033D410(marker, other_marker)){
             switch(sp34){
                 case MARKER_FC_CROCTUS: //L803532C4

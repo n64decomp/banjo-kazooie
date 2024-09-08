@@ -30,7 +30,7 @@ Actor *func_803892D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         position[2] = this->position_z;
         position[1] += 8.0f;
         modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-        modelRender_draw(gfx, mtx, position, rotation, this->unk1C[0], NULL, func_80330B1C(this_marker));
+        modelRender_draw(gfx, mtx, position, rotation, this->unk1C[0], NULL, marker_loadModelBin(this_marker));
     }
     return this;
 }

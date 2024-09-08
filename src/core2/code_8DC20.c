@@ -53,13 +53,13 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
         }
     }
     gSPDisplayList((*gfx)++, D_8036C690);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(D_803A5D00[func_8024BDA0()]));
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(D_803A5D00[getActiveFramebuffer()]));
 }
 
 void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_80335128(0);
     D_803830A0 = 2;
-    func_80314BB0(gfx, mtx, vtx, func_80253540(), D_803A5D00[func_8024BDA0()]);
+    func_80314BB0(gfx, mtx, vtx, zBuffer_get(), D_803A5D00[getActiveFramebuffer()]);
 }
 
 void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -72,7 +72,7 @@ void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     else{
         D_803830A0--;
     }
-    func_80314BB0(gfx, mtx, vtx, D_803A5D00[func_8024BDA0()], func_80253540());
+    func_80314BB0(gfx, mtx, vtx, D_803A5D00[getActiveFramebuffer()], zBuffer_get());
 }
 
 void func_803151D0(Gfx **gfx, Mtx **mtx, Vtx **vtx){

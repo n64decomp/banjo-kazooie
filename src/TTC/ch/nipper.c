@@ -30,7 +30,7 @@ ActorInfo D_8038C580 = {
 /* .code */
 void func_80387DC0(f32 *position, s32 count) {
     static s32 D_8038C5A4[3] = {180, 180, 180};
-    static struct31s D_8038C5B0 = {
+    static ParticleScaleAndLifetimeRanges D_8038C5B0 = {
         {0.1f, 0.5f},
         {1.4f, 2.8f},
         {0.0f, 0.01f},
@@ -53,7 +53,7 @@ void func_80387DC0(f32 *position, s32 count) {
         -40.0f, 10.0f, -40.0f,
          40.0f, 40.0f,  40.0f
     );
-    func_802EFB98(pCtrl, &D_8038C5B0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038C5B0);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -153,10 +153,10 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
 
 bool func_803882E4(ActorMarker * this_marker, ActorMarker * other_marker){
     if(this_marker->unk40_31 == 1){
-        this_marker->unk14_20 = 0x16C;
+        this_marker->id = 0x16C;
     }
     else{
-        this_marker->unk14_20 = MARKER_A5_NIPPER;
+        this_marker->id = MARKER_A5_NIPPER;
     }
     return TRUE;
 }
@@ -164,7 +164,7 @@ bool func_803882E4(ActorMarker * this_marker, ActorMarker * other_marker){
 void func_80388344(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this;
 
-    if(other_marker->unk14_20 == 1){
+    if(other_marker->id == 1){
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(7)
             && this->unk138_24

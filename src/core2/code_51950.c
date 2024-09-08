@@ -21,7 +21,7 @@ ActorInfo D_80367CB4 = {
     0, 0, 0.0f, 0
 };
 
-struct31s D_80367CD8 = {
+ParticleScaleAndLifetimeRanges D_80367CD8 = {
     {0.24f, 0.2f},
     {0.01f, 0.01f},
     {0.0f, 0.0f},
@@ -55,7 +55,7 @@ void func_802D88E0(Actor *this) {
         particleEmitter_setPosition(pCtrl, sp5C);
         particleEmitter_setSprite(pCtrl, (this->modelCacheIndex == 0x1FF) ? ASSET_715_SPRITE_SPARKLE_RED : ASSET_713_SPRITE_SPARKLE_YELLOW);
         particleEmitter_setStartingFrameRange(pCtrl, 0, 0);
-        func_802EFB98(pCtrl, &D_80367CD8);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80367CD8);
         func_802EFF50(pCtrl, 1.0f);
         particleEmitter_setSpawnInterval(pCtrl, 0.25f);
     }

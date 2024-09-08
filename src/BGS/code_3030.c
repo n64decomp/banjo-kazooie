@@ -61,7 +61,7 @@ void func_803895D0(ActorMarker *marker, ActorMarker *other_marker){
 }
 
 Actor *BGS_func_80389610(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    func_8033A45C(4, marker->unk14_20 - 0x19A);
+    func_8033A45C(4, marker->id - 0x19A);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

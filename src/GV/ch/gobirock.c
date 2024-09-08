@@ -71,7 +71,7 @@ Actor *chGobiRock_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx
     sp3C[2] = this->roll;
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32) this);
     func_8033A450(func_80329934());
-    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL,func_80330B1C(this_marker));
+    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL,marker_loadModelBin(this_marker));
     func_8034A174(func_80329934(), 5, local->unk0);
     return this;
     
@@ -99,7 +99,7 @@ void chGobiRock_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        sp34->unk30 = chGobiRock_free;
+        sp34->actorFreeFunc = chGobiRock_free;
         sp34->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, __chGobiRock_destroy);
         local->unkC = particleEmitter_new(20);

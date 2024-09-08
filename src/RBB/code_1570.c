@@ -27,7 +27,7 @@ f32 D_803902D4[3] = {4500.0f, 0.0f, 500.0f};
 f32 D_803902E0[3] = {4500.0f, 0.0f, 500.0f}; 
 f32 D_803902EC[3] = {4000.0f, -600.0f, 0.0f};
 f32 D_803902F8[3] = {4500.0f, 0.0f, 500.0f};
-struct31s D_80390304 = {
+ParticleScaleAndLifetimeRanges D_80390304 = {
     { 5.0f, 5.0f},
     { 5.0f, 5.0f},
     { 0.0f, 0.01f},
@@ -142,7 +142,7 @@ void func_80387D80(void){
     ParticleEmitter *actor = partEmitMgr_newEmitter(3);
     particleEmitter_setSprite(actor, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setStartingFrameRange(actor, 0, 7);
-    func_802EFB98(actor, &D_80390304);
+    particleEmitter_setScaleAndLifetimeRanges(actor, &D_80390304);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 100.0f, 0.0f, 0.0f, 200.0f ,0.0f);
     particleEmitter_emitInVolume(actor, &D_803902EC, &D_803902F8, 3);
 }

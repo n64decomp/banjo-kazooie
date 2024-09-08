@@ -13,6 +13,7 @@ ActorAnimationInfo D_80391340[] ={
     {0xF0, 1.6f},
 };
 
+// 0x121 - Big Jinxy Head, 0x3E6 - GV Jinxy Head 2
 ActorInfo D_80391358 = { 0xAE, 0x121, 0x3E6, 
     0x1, D_80391340, 
     func_8038E1A0, func_8038E1A8, actor_draw, 

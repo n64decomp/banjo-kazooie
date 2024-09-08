@@ -50,7 +50,7 @@ ActorInfo D_8038B080 ={
 
 /* .code */
 void func_8038A3B0(Actor *this){
-    s32 sp24 = this->marker->unk14_20 - 0xe1;
+    s32 sp24 = this->marker->id - 0xe1;
 
     if(this->marker->unk14_21)
         func_8034A174(this->marker->unk44, 0x1f, D_80365E04[sp24]);

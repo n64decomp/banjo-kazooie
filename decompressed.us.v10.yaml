@@ -2246,7 +2246,7 @@ segments:
   - [0x10AEBB0, c, chjinjonatorbase] #DONE
   - [0x10AF360, c, chspellbarrier] #DONE
   - [0x10AF770, c, chspellfireball] #DONE
-  - [0x10B0820, c, code_9850] #DONE
+  - [0x10B0820, c, chgreenblast] #DONE
   - [0x10B0D10, c, chjinjonator] #DONE
   - [0x10B1EA0, c, chbossshadow] #DONE
   - [0x10B1F60, .data, chfinalboss]
@@ -2256,7 +2256,7 @@ segments:
   - [0x10B2620, .data, chjinjonatorbase]
   - [0x10B26B0, .data, chspellbarrier]
   - [0x10B26E0, .data, chspellfireball]
-  - [0x10B29A0, .data, code_9850]
+  - [0x10B29A0, .data, chgreenblast]
   - [0x10B2B90, .data, chjinjonator]
   - [0x10B2C70, .data, chbossshadow]
   - [0x10B2CA0, .rodata, chfinalboss]
@@ -2266,7 +2266,7 @@ segments:
   - [0x10B3160, .rodata, chjinjonatorbase]
   - [0x10B3190, .rodata, chspellbarrier]
   - [0x10B31A0, .rodata, chspellfireball]
-  - [0x10B31F0, .rodata, code_9850]
+  - [0x10B31F0, .rodata, chgreenblast]
   - [0x10B3200, .rodata, chjinjonator]
   - [0x10B3310, .rodata, chbossshadow]
   - [0x10B3320, .bss, code_0]

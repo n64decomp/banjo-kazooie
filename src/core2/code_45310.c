@@ -304,7 +304,7 @@ void func_802CCC5C(Actor *this) {
     local = (ActorLocal_Core2_45310 * )&this->local;
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = func_802CCBC8;
+        this->marker->actorFreeFunc = func_802CCBC8;
         local->unk38 = 0;
         local->unk39 = 0;
         local->unk3A = 0;

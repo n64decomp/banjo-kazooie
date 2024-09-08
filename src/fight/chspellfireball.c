@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 #include "core2/particle.h"
 
 extern void func_80324CFC(f32, s32, s32);
@@ -19,14 +20,14 @@ typedef struct {
 void func_8038F620(Actor *this);
 
 /* .data */
-ActorInfo fight_D_80391B00 = {
+ActorInfo chSpellFireball = {
     MARKER_25C_GRUNTY_SPELL_FIREBALL, ACTOR_389_GRUNTY_SPELL_FIREBALL, ASSET_541_SPRITE_FIREBALL_SPELL_ATTACK,
     0x1, NULL,
     func_8038F620, func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 
-ActorInfo D_80391B24 = {
+ActorInfo chSpellGreen = {
     MARKER_280_GRUNTY_SPELL_GREEN_ATTACK, ACTOR_3AA_GRUNTY_SPELL_GREEN_ATTACK, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK,
     0x1, NULL,
     func_8038F620, func_80326224, func_80325CAC,
@@ -98,64 +99,64 @@ void func_8038EB90(ActorMarker *arg0, f32 *arg1) {
     temp_v0->position_y = temp_v0->position_y + 210.0f;
 }
 
-void func_8038EBE0(f32 arg0[3], u32 arg1, enum asset_e arg2, f32 arg3[6], f32 arg4[6], f32 arg5[6], f32 arg6[4], f32 arg7[4], f32 arg8[2]) {
-    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
+void chSpellFireball_emitSparkles(f32 position[3], u32 count, enum asset_e sprite, f32 position_range[6], f32 acceleration_range[6], f32 velocity_range[6], f32 scale_range[4], f32 lifetime_range[4], f32 fade[2]) {
+    ParticleEmitter *pe = partEmitMgr_newEmitter(count);
 
-    particleEmitter_setSprite(temp_v0, arg2);
-    particleEmitter_setStartingFrameRange(temp_v0, 1, 6);
-    particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, arg3[0], arg3[1], arg3[2], arg3[3], arg3[4], arg3[5]);
-    particleEmitter_setParticleAccelerationRange(temp_v0, arg4[0], arg4[1], arg4[2], arg4[3], arg4[4], arg4[5]);
-    particleEmitter_setParticleVelocityRange(temp_v0, arg5[0], arg5[1], arg5[2], arg5[3], arg5[4], arg5[5]);
-    particleEmitter_setAngularVelocityRange(temp_v0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB70(temp_v0, arg6[0], arg6[1]);
-    func_802EFB84(temp_v0, arg6[2], arg6[3]);
-    func_802EF9F8(temp_v0, 0.5f);
-    func_802EFA18(temp_v0, 3);
-    particleEmitter_setSpawnIntervalRange(temp_v0, arg7[0], arg7[1]);
-    particleEmitter_setParticleLifeTimeRange(temp_v0, arg7[2], arg7[3]);
-    particleEmitter_setFade(temp_v0, arg8[0], arg8[1]);
-    func_802EFA78(temp_v0, 1);
-    particleEmitter_setDrawMode(temp_v0, 4);
-    particleEmitter_emitN(temp_v0, arg1);
+    particleEmitter_setSprite(pe, sprite);
+    particleEmitter_setStartingFrameRange(pe, 1, 6);
+    particleEmitter_setPosition(pe, position);
+    particleEmitter_setParticleSpawnPositionRange(pe, position_range[0], position_range[1], position_range[2], position_range[3], position_range[4], position_range[5]);
+    particleEmitter_setParticleAccelerationRange(pe, acceleration_range[0], acceleration_range[1], acceleration_range[2], acceleration_range[3], acceleration_range[4], acceleration_range[5]);
+    particleEmitter_setParticleVelocityRange(pe, velocity_range[0], velocity_range[1], velocity_range[2], velocity_range[3], velocity_range[4], velocity_range[5]);
+    particleEmitter_setAngularVelocityRange(pe, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
+    func_802EFB70(pe, scale_range[0], scale_range[1]);
+    func_802EFB84(pe, scale_range[2], scale_range[3]);
+    func_802EF9F8(pe, 0.5f);
+    func_802EFA18(pe, 3);
+    particleEmitter_setSpawnIntervalRange(pe, lifetime_range[0], lifetime_range[1]);
+    particleEmitter_setParticleLifeTimeRange(pe, lifetime_range[2], lifetime_range[3]);
+    particleEmitter_setFade(pe, fade[0], fade[1]);
+    func_802EFA78(pe, 1);
+    particleEmitter_setDrawMode(pe, 4);
+    particleEmitter_emitN(pe, count);
 }
 
-void func_8038ED9C(f32 arg0[3], u32 arg1, s32 arg2, s32 arg3[2], f32 arg4[6], f32 arg5[4], f32 arg6[4], f32 arg7[2]) {
-    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg2);
+void chSpellFireball_emitExplosion(f32 position[3], enum asset_e sprite, s32 count, s32 staring_frame_range[2], f32 position_range[6], f32 scale_range[4], f32 lifetime_range[4], f32 fade[2]) {
+    ParticleEmitter *pe = partEmitMgr_newEmitter(count);
 
-    particleEmitter_setSprite(temp_v0, arg1);
-    particleEmitter_setStartingFrameRange(temp_v0, arg3[0], arg3[1]);
-    particleEmitter_setParticleFramerateRange(temp_v0, 8.0f, 8.0f);
-    particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, arg4[0], arg4[1], arg4[2], arg4[3], arg4[4], arg4[5]);
-    particleEmitter_setParticleVelocityRange(temp_v0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_802EFB70(temp_v0, arg5[0], arg5[1]);
-    func_802EFB84(temp_v0, arg5[2], arg5[3]);
-    particleEmitter_setSpawnIntervalRange(temp_v0, arg6[0], arg6[1]);
-    particleEmitter_setParticleLifeTimeRange(temp_v0, arg6[2], arg6[3]);
-    particleEmitter_setFade(temp_v0, arg7[0], arg7[1]);
-    particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_DEPTH);
-    func_802EFA78(temp_v0, 1);
-    particleEmitter_emitN(temp_v0, arg2);
+    particleEmitter_setSprite(pe, sprite);
+    particleEmitter_setStartingFrameRange(pe, staring_frame_range[0], staring_frame_range[1]);
+    particleEmitter_setParticleFramerateRange(pe, 8.0f, 8.0f);
+    particleEmitter_setPosition(pe, position);
+    particleEmitter_setParticleSpawnPositionRange(pe, position_range[0], position_range[1], position_range[2], position_range[3], position_range[4], position_range[5]);
+    particleEmitter_setParticleVelocityRange(pe, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    func_802EFB70(pe, scale_range[0], scale_range[1]);
+    func_802EFB84(pe, scale_range[2], scale_range[3]);
+    particleEmitter_setSpawnIntervalRange(pe, lifetime_range[0], lifetime_range[1]);
+    particleEmitter_setParticleLifeTimeRange(pe, lifetime_range[2], lifetime_range[3]);
+    particleEmitter_setFade(pe, fade[0], fade[1]);
+    particleEmitter_setDrawMode(pe, PART_EMIT_NO_DEPTH);
+    func_802EFA78(pe, 1);
+    particleEmitter_emitN(pe, count);
 }
 
-void func_8038EEFC(f32 arg0[3], u32 arg1, f32 *arg2) {
-    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
+void chSpellFireball_emitSmoke(f32 position[3], u32 count, f32 *lifetime_and_spawn_range) {
+    ParticleEmitter *pe = partEmitMgr_newEmitter(count);
 
-    particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    particleEmitter_setRGB(temp_v0, D_80391B48);
-    particleEmitter_setAlpha(temp_v0, 0xEB);
-    particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
-    particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setPositionAndVelocityRanges(temp_v0, &D_80391B54);
-    func_802EFB70(temp_v0, 0.1f, 0.2f);
-    func_802EFB84(temp_v0, 3.6f, 4.6f);
-    particleEmitter_setSpawnIntervalRange(temp_v0, arg2[0], arg2[1]);
-    particleEmitter_setParticleLifeTimeRange(temp_v0, arg2[2], arg2[3]);
-    particleEmitter_setFade(temp_v0, 0.05f, 0.1f);
-    particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_DEPTH);
-    func_802EFA78(temp_v0, 1);
-    particleEmitter_emitN(temp_v0, arg1);
+    particleEmitter_setSprite(pe, ASSET_70E_SPRITE_SMOKE_2);
+    particleEmitter_setRGB(pe, D_80391B48);
+    particleEmitter_setAlpha(pe, 0xEB);
+    particleEmitter_setStartingFrameRange(pe, 0, 7);
+    particleEmitter_setPosition(pe, position);
+    particleEmitter_setPositionAndVelocityRanges(pe, &D_80391B54);
+    func_802EFB70(pe, 0.1f, 0.2f);
+    func_802EFB84(pe, 3.6f, 4.6f);
+    particleEmitter_setSpawnIntervalRange(pe, lifetime_and_spawn_range[0], lifetime_and_spawn_range[1]);
+    particleEmitter_setParticleLifeTimeRange(pe, lifetime_and_spawn_range[2], lifetime_and_spawn_range[3]);
+    particleEmitter_setFade(pe, 0.05f, 0.1f);
+    particleEmitter_setDrawMode(pe, PART_EMIT_NO_DEPTH);
+    func_802EFA78(pe, 1);
+    particleEmitter_emitN(pe, count);
 }
 
 void func_8038F01C(void) {
@@ -183,32 +184,32 @@ void func_8038F084(ActorMarker *marker){
         timedFunc_set_0(0.3f, func_8038F050);
         actor->unk58_0 = 0;
         actor->scale *=  1.6;
-        if(actor->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
-            func_8038EBE0(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
+        if(actor->marker->id != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+            chSpellFireball_emitSparkles(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
                 D_80391C0C, D_80391C24, D_80391C3C,
                 D_80391C54, D_80391C64, D_80391C74
             );
-            func_8038EBE0(actor->position, 4, ASSET_715_SPRITE_SPARKLE_RED, 
+            chSpellFireball_emitSparkles(actor->position, 4, ASSET_715_SPRITE_SPARKLE_RED, 
                 D_80391C0C, D_80391C24, D_80391C3C,
                 D_80391C54, D_80391C64, D_80391C74
             );
-            func_8038EEFC(actor->position, 3, D_80391BFC);
-            func_8038ED9C(D_803928E8, ASSET_4A0_SPRITE_EXPLOSION, 1, D_80391BA4, D_80391BE4, 
+            chSpellFireball_emitSmoke(actor->position, 3, D_80391BFC);
+            chSpellFireball_emitExplosion(D_803928E8, ASSET_4A0_SPRITE_EXPLOSION, 1, D_80391BA4, D_80391BE4, 
                 D_80391BAC,  D_80391BBC, D_80391BDC
             
             );
             D_803928E8[1] -= 50.0f;
-            func_8038ED9C(D_803928E8, ASSET_6C1_SPRITE_SMOKE, 2, D_80391BA4, D_80391BE4, 
+            chSpellFireball_emitExplosion(D_803928E8, ASSET_6C1_SPRITE_SMOKE, 2, D_80391BA4, D_80391BE4, 
                 D_80391BAC,  D_80391BBC, D_80391BDC
             
             );
         }
         else{//L8038F304
-            func_8038EBE0(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
+            chSpellFireball_emitSparkles(actor->position, 4, ASSET_713_SPRITE_SPARKLE_YELLOW, 
                 D_80391C0C, D_80391C24, D_80391C3C,
                 D_80391C54, D_80391BCC, D_80391C74
             );
-            func_8038EEFC(actor->position, 3, D_80391BFC);
+            chSpellFireball_emitSmoke(actor->position, 3, D_80391BFC);
             func_8038CED8(actor->position, 0x558, 0.15f, 0.5f);
             actor->position_y += 260.0f;
             chbossjinjo_spawnParticles(actor, 0x712, ASSET_6C3_SPRITE_SMOKE_GREEN, 1.6f);
@@ -219,9 +220,9 @@ void func_8038F084(ActorMarker *marker){
 }
 
 void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
-    if( other->unk14_20 == 0x276
-        || other->unk14_20 == 0x27A
-        || other->unk14_20 == 0x27F
+    if( other->id == 0x276
+        || other->id == 0x27A
+        || other->id == 0x27F
     ) return;
 
     func_8038F084(marker);
@@ -282,7 +283,7 @@ void func_8038F620(Actor *this){
         actor_collisionOn(this);
         this->unk60 = 8.0f;
         this->scale = 0.1f;
-        if( this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+        if( this->marker->id == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             actor_collisionOff(this);
             marker_setFreeMethod(this->marker, func_8038F5F8);
             func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
@@ -302,7 +303,7 @@ void func_8038F620(Actor *this){
             );
         }
     }//L8038F79C
-    if(D_803928E5 && this->marker->unk14_20 == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
+    if(D_803928E5 && this->marker->id == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
         ncStaticCamera_rotateToTarget(this->position);
     }//L8038F7D4
 
@@ -311,15 +312,15 @@ void func_8038F620(Actor *this){
             D_80392914 = sp40*1.4;
             this->scale = (this->scale + D_80392914 < 1.0) ? this->scale + D_80392914 : 1.0f;
 
-            switch(this->marker->unk14_20){
+            switch(this->marker->id){
                 case MARKER_25C_GRUNTY_SPELL_FIREBALL://L8038F8AC
-                    func_8038ED9C(this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
+                    chSpellFireball_emitExplosion(this->position, ASSET_4A0_SPRITE_EXPLOSION, 1, 
                         D_80391CEC, D_80391D34, 
                         D_80391CF4, D_80391D04, D_80391D14
                     );
                     break;
                 case MARKER_280_GRUNTY_SPELL_GREEN_ATTACK://L8038F8C8
-                    func_8038ED9C(this->position, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK, 1, 
+                    chSpellFireball_emitExplosion(this->position, ASSET_6C9_SPRITE_GREEN_SPELL_ATTACK, 1, 
                         D_80391CEC, D_80391D34, 
                         D_80391CF4, D_80391D1C, D_80391D2C
                     );
@@ -358,7 +359,7 @@ void func_8038F620(Actor *this){
                 }
             }
             // L8038FABC
-            if( this->marker->unk14_20 != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK
+            if( this->marker->id != MARKER_280_GRUNTY_SPELL_GREEN_ATTACK
                 && func_8028F25C()
             ){
                 func_8038F084(this->marker);

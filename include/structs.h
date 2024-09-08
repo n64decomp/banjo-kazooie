@@ -374,14 +374,14 @@ typedef struct particle_emitter{
     struct particle *pList_capacity_12C; //capacity_end_ptr;
 } ParticleEmitter;
 
-typedef struct struct_31_s{
+typedef struct particle_scale_and_lifetime_ranges_s{
     f32 unk0[2]; //particle_starting_scale_range
     f32 unk8[2]; //particle_starting_scale_range
     f32 unk10[2]; //particle_spawn_interval_range
     f32 unk18[2]; //particle_lifetime_range
     f32 unk20; //particle_fade_in
     f32 unk24; //particle_fade_in
-} struct31s;
+} ParticleScaleAndLifetimeRanges;
 
 typedef struct struct_32_s{
     f32 unk0[3];
@@ -399,7 +399,7 @@ typedef struct struct_34_s{
 } struct34s;
 
 typedef struct struct_40_s{
-    struct31s unk0;
+    ParticleScaleAndLifetimeRanges unk0;
     f32 unk28;
     f32 unk2C;
 } struct40s;

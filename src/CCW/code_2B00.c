@@ -40,7 +40,7 @@ ActorInfo D_8038EE4C = { 0x12C, 0x168, 0x4F8, 0x5, D_8038ED20, func_80388FD4, fu
 
 /* .code */
 s32 func_80388EF0(Actor *this){
-    switch(this->marker->unk14_20){
+    switch(this->marker->id){
     case 0x133: //L80388F28
     case 0x132: //L80388F28
         return 0;

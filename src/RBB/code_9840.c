@@ -38,7 +38,7 @@ void func_8038FC48(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         actor_collisionOff(this);
-        local->unk4 = RBB_D_80390E30 + (this->marker->unk14_20 - 0x1d2);
+        local->unk4 = RBB_D_80390E30 + (this->marker->id - 0x1d2);
         local->unk8 = NULL;
         
         local->unk0 = func_802F9AA8(0x400);

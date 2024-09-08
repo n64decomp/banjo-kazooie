@@ -2,34 +2,34 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_802CA9D0(Actor *this);
-void func_802CAA44(Actor *this);
-void func_802CAB70(Actor *this);
+void chShockJump_update(Actor *this);
+void chFlightPad_update(Actor *this);
+void chFightFlightPad_update(Actor *this);
 
 /* .data */
-extern ActorInfo D_80366F20 = { 
+extern ActorInfo chShockJump = { 
     0x0D4, ACTOR_B_SHOCKSPRING_PAD, ASSET_489_MODEL_SHOCKSPRING_PAD, 
     0, NULL, 
-    func_802CA9D0, func_80326224, actor_draw,
+    chShockJump_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
-extern ActorInfo D_80366F44 = { 
+extern ActorInfo chFlightPad = { 
     MARKER_45_FLIGHT_PAD, ACTOR_E4_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    func_802CAA44, func_80326224, actor_draw,
+    chFlightPad_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
-extern ActorInfo D_80366F68 = { 
+extern ActorInfo chFightFlightPad = { 
     MARKER_261_FIGHT_FLIGHT_PAD, ACTOR_39F_FIGHT_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    func_802CAB70, func_80326224, actor_draw,
+    chFightFlightPad_update, func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 
-extern struct31s D_80366F8C = {
+extern ParticleScaleAndLifetimeRanges chFightFlightPad_D_80366F8C = {
     {0.4f, 0.4f}, 
     {0.0f, 0.0f}, 
     {0.0f, 0.01f}, 
@@ -38,14 +38,14 @@ extern struct31s D_80366F8C = {
 };
 
 
-extern struct43s D_80366FB4 = {
+extern struct43s chFightFlightPad_D_80366FB4 = {
     {{-360.0f, 360.0f, -360.0}, {360.0f, 660.0f, 360.0f}}, 
     {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
     {{0.0f, 0.0f, 0.0f}, {0.0f, 40.0f, 0.0f}}
 };
 
 /* .code */
-void func_802CA9D0(Actor *this){
+void chShockJump_update(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     if(func_803203FC(UNKFLAGS1_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED)){
         ability_unlock(ABILITY_D_SHOCK_JUMP);
@@ -59,7 +59,7 @@ void func_802CA9D0(Actor *this){
     }
 }
 
-void func_802CAA44(Actor *this){
+void chFlightPad_update(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     if(func_803203FC(UNKFLAGS1_8A_SANDCASTLE_FLIGHT_UNLOCKED)){
         ability_unlock(ABILITY_9_FLIGHT);
@@ -80,20 +80,20 @@ void func_802CAA44(Actor *this){
     }
 }
 
-void func_802CAAF0(f32 position[3]){
+void chFightFlightPad_emitSparklesAtPosition(f32 position[3]){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x18);
     particleEmitter_setSprite(pCtrl, ASSET_715_SPRITE_SPARKLE_RED);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80366FB4);
-    func_802EFB98(pCtrl, &D_80366F8C);
+    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &chFightFlightPad_D_80366FB4);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &chFightFlightPad_D_80366F8C);
     func_802EFA78(pCtrl, 1);
     particleEmitter_emitN(pCtrl, 0x18);
 }
 
-void func_802CAB70(Actor *this){
+void chFightFlightPad_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        func_802CAAF0(this->position);
+        chFightFlightPad_emitSparklesAtPosition(this->position);
         FUNC_8030E8B4(SFX_113_PAD_APPEARS, 1.0f, 32000, this->position, 5000, 12000);
     }
     this->marker->propPtr->unk8_3 = TRUE;

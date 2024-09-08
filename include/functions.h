@@ -238,7 +238,7 @@ void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void func_802EFB70(ParticleEmitter *, f32, f32);
 void func_802EFB84(ParticleEmitter *, f32, f32);
-void func_802EFB98(ParticleEmitter *, struct31s *);
+void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *, ParticleScaleAndLifetimeRanges *);
 void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
 void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
 void particleEmitter_setAngularVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
@@ -551,5 +551,15 @@ extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);
 extern void fxSparkle_chTreasure(s16[3]);
 extern void actor_collisionOn(Actor *);
 extern void subaddie_set_state_forward(Actor *, s32);
+
+extern BKModelBin *marker_loadModelBin(ActorMarker *this);
+extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
+extern void func_80326310(Actor *this);
+extern ActorMarker *marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4);
+extern s32 asset_getFlag(enum asset_e arg0);
+extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2);
+extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3);
+extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method);
+extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 
 #endif

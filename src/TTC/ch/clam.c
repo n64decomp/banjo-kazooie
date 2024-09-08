@@ -197,7 +197,7 @@ void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
 }
 
 void __chClam_emitEatencollectibleParticles(f32 position[3], enum asset_e sprite_id, s32 count){
-    static struct31s D_8038C484 = {
+    static ParticleScaleAndLifetimeRanges D_8038C484 = {
     {0.2f,  0.35f},
     {0.0f,  0.0f},
     {0.0f,  0.01f},
@@ -217,7 +217,7 @@ void __chClam_emitEatencollectibleParticles(f32 position[3], enum asset_e sprite
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C4AC);
-    func_802EFB98(pCtrl, &D_8038C484);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038C484);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -279,7 +279,7 @@ void chClam_update(Actor *this){
     if(this->state != 3){
         sp48 = func_80309724(this->position);
         if(sp4C != NULL){
-            sp44 = sp4C->marker->unk14_20;
+            sp44 = sp4C->marker->id;
         }
 
         if(sp44 == MARKER_60_BLUE_EGG_COLLECTIBLE || sp44 == MARKER_B5_RED_FEATHER_COLLECTIBLE){

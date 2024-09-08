@@ -69,7 +69,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     local->unk8 = 0.0f;
     if(new_state == 2){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
-        local->unkC = vtxList_clone(model_getVtxList(func_80330B1C(this->marker)));
+        local->unkC = vtxList_clone(model_getVtxList(marker_loadModelBin(this->marker)));
         
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
@@ -113,7 +113,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
     if( actor->state == 2 
         && local->unk0 != 0
     ){
-        temp_v0 = func_80330B1C(marker);
+        temp_v0 = marker_loadModelBin(marker);
         sp1C = (local->unk0 == 2) ? &D_80390938 : &D_8039092C;
         vtxList_tint(local->unkC, sp1C, 
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
@@ -132,7 +132,7 @@ void func_8038AEB8(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         this->marker->propPtr->unk8_3 = 1;
-        this->marker->unk30 = func_8038AD7C;
+        this->marker->actorFreeFunc = func_8038AD7C;
         marker_setCollisionScripts(this->marker, NULL, func_8038AD3C, NULL);
         local->unk4 = RBB_func_8038ABC0(this);
         mapSpecificFlags_set(local->unk4->unk10, FALSE);

@@ -142,7 +142,7 @@ void func_80388FA0(Actor *this, s32 arg1){
         case 4:
             other = subaddie_getLinkedActor(this);
             myOther = this->unk100;
-            if(myOther && other && myOther->unk14_20 == 0xB8)
+            if(myOther && other && myOther->id == 0xB8)
                 subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
             actor_playAnimationOnce(this);
             this->unk44_31 = func_8030D90C();
@@ -166,7 +166,7 @@ void func_80388FA0(Actor *this, s32 arg1){
         case 2:
              other = subaddie_getLinkedActor(this);
              myOther = this->unk100;
-            if(myOther && other && myOther->unk14_20 == 0xB8)
+            if(myOther && other && myOther->id == 0xB8)
                  subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
             animctrl_setSmoothTransition(this->animctrl, 1);
             actor_playAnimationOnce(this);

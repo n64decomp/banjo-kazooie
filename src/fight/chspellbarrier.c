@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "fight.h"
 
 extern ActorMarker *chfinalboss_findCollidingJinjo(Actor*, f32);
 void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
@@ -26,7 +26,7 @@ typedef struct {
 void chspellbarrier_update(Actor *this);
 
 /* .data */
-ActorInfo D_80391AD0 = {
+ActorInfo chSpellBarrier = {
     MARKER_284_GRUNTY_SPELL_BARRIER, ACTOR_3AB_GRUNTY_SPELL_BARRIER, ASSET_546_MODEL_GRUNTY_SPELL_BARRIER,
     0x1, NULL,
     chspellbarrier_update, func_80326224, actor_draw,
@@ -88,7 +88,7 @@ void chspellbarrier_update(Actor *this){
     }//L8038E97C
     jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);
     if(jinjo_marker){
-        if(jinjo_marker->unk14_20 == MARKER_285_JINJONATOR){
+        if(jinjo_marker->id == MARKER_285_JINJONATOR){
             marker_despawn(this->marker);
             chfinalboss_spellBarrierInactive();
             return;

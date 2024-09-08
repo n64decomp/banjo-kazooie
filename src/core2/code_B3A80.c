@@ -310,7 +310,7 @@ void func_8033B61C(void){
     func_8033B1BC();
 }
 
-s32 func_8033B64C(s32 arg0){
+s32 asset_getFlag(enum asset_e arg0){
     return assetSectionRomMetaList[arg0].unk6;
 }
 

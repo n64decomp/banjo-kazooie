@@ -56,7 +56,7 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
     func_8024C904(gdl, mptr);
     {sp40[0] = 0.0f; sp40[1] = 0.0f; sp40[2] = 0.0f;};
     {sp34[0] = 0.0f; sp34[1] = 400.0f; sp34[2] = 0.0f;};
-    modelRender_draw(gdl, mptr, sp40, 0, 1.0f, sp34, func_80330B1C(marker));
+    modelRender_draw(gdl, mptr, sp40, 0, 1.0f, sp34, marker_loadModelBin(marker));
     func_8024E2FC();
     func_8024C904(gdl, mptr);
     return actor;

@@ -245,7 +245,7 @@ void func_80246D78(void){
             osDpSetStatus(DPC_CLR_FREEZE);
 
             D_8027FC14 = D_8027FC18;
-            func_8025AFB8();
+            dummy_func_8025AFB8();
 
             if(D_8027FC14 & 1){
                 D_80275998 = 0x1E;

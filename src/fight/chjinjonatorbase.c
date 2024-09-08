@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 
 typedef struct {
     u8 unk0[4];
@@ -9,7 +10,7 @@ typedef struct {
 void chjinjonatorbase_update(Actor *);
 
 /* .data */
-ActorInfo fight_D_80391A40 = {
+ActorInfo chJinjonatorBase = {
     MARKER_27F_JINJONATOR_STATUE_BASE, ACTOR_3A9_JINJONATOR_STATUE_BASE, ASSET_544_MODEL_JINJONATOR_STATUE_BASE,
     0x1, NULL,
     chjinjonatorbase_update, func_80326224, actor_draw,
@@ -18,7 +19,7 @@ ActorInfo fight_D_80391A40 = {
 
 s32 D_80391A64[3] = {0xC8, 0xC8, 0xA0};
 
-struct31s fight_D_80391A70 = {
+ParticleScaleAndLifetimeRanges fight_D_80391A70 = {
     {1.0f, 1.0f},
     {1.7f, 2.7f},
     {0.0f, 0.05f},
@@ -53,7 +54,7 @@ void func_8038E03C(f32 arg0[3], u32 arg1) {
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, arg0);
     particleEmitter_setPositionAndVelocityRanges(temp_v0, &D_80391A98);
-    func_802EFB98(temp_v0, &fight_D_80391A70);
+    particleEmitter_setScaleAndLifetimeRanges(temp_v0, &fight_D_80391A70);
     particleEmitter_emitN(temp_v0, arg1);
 }
 
@@ -116,7 +117,7 @@ void chjinjonatorbase_update(Actor *this){
     f32 sp38[3];
     
 
-    func_80330B1C(this->marker);
+    marker_loadModelBin(this->marker);
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         marker_setCollisionScripts(this->marker, NULL, func_8038E120, NULL);

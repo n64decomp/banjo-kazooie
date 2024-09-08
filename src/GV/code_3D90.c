@@ -141,7 +141,7 @@ void func_8038A31C(Actor *this){
     }//L8038A6A4
     this->unk124_11 = 0x3;
     this->pitch = 0.0f;
-    if(this->unk100 && sp24 && this->unk100->unk14_20 == MARKER_AF_MAGIC_CARPET_SHADOW){
+    if(this->unk100 && sp24 && this->unk100->id == MARKER_AF_MAGIC_CARPET_SHADOW){
         sp24->position_x = this->position_x;
         sp24->position_y = func_80309724(this->position) + 60.0f;
         sp24->position_z = this->position_z;

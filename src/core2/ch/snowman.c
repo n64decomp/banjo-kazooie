@@ -104,7 +104,7 @@ void __chSnowman_spawnHat(ActorMarker *marker){
 }
 
 void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
-    static struct31s D_80368694 = {
+    static ParticleScaleAndLifetimeRanges D_80368694 = {
         {0.4f, 1.55f},
         {0.0f, 0.0f},
         {0.0f, 0.01f},
@@ -127,7 +127,7 @@ void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
     func_802EFA18(particleSpawner, 3);
     func_802EFA20(particleSpawner, 1.0f, 1.3f);
     particleEmitter_setSfx(particleSpawner, SFX_2F_ORANGE_SPLAT, 16000);
-    func_802EFB98(particleSpawner, &D_80368694);
+    particleEmitter_setScaleAndLifetimeRanges(particleSpawner, &D_80368694);
     particleEmitter_emitN(particleSpawner, count);
 }
 
@@ -172,10 +172,10 @@ int __chSnowman_isPlayerInAttackRange(Actor *this, s32 min_distance, s32 max_dis
 
 int __chSnowman_func_802E1F70(ActorMarker *marker, s32 arg1){
     if(marker->unk40_31 == 0xB){
-        marker->unk14_20 = 0x287;
+        marker->id = 0x287;
     }
     else{
-        marker->unk14_20 = MARKER_B1_SIR_SLUSH;
+        marker->id = MARKER_B1_SIR_SLUSH;
     }
     return TRUE;
 }

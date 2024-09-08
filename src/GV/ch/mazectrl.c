@@ -152,7 +152,7 @@ void chMazeCtrl_update(Actor *this){
     sp34 = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        this->marker->unk30 = __chMazeCtrl_8038F5E4;
+        this->marker->actorFreeFunc = __chMazeCtrl_8038F5E4;
         if(this->state == 2){
             comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 30000, 30000);
             item_set(ITEM_6_HOURGLASS, TRUE);

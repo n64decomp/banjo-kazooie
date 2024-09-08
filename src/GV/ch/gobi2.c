@@ -132,7 +132,7 @@ Actor *chGobi2_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp3C[2] = this->roll;
     modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(this->unk148));
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, func_80330B1C(this_marker));
+    modelRender_draw(gfx, mtx, this->position, sp3C, 1.0f, NULL, marker_loadModelBin(this_marker));
 
     if(this->state == 4){
         modelRender_setBoneTransformList(skeletalAnim_getBoneTransformList(local->unk4));
@@ -173,7 +173,7 @@ void chGobi2_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         marker_setCollisionScripts(this->marker, __chGobi2_ow, NULL, NULL);
-        sp34->unk30 = __chGobi2_80387EFC;
+        sp34->actorFreeFunc = __chGobi2_80387EFC;
         local->unk4 = skeletalAnim_new();
         local->unk8 = (BKModelBin*) assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         D_80391A50 = 0;

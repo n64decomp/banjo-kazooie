@@ -11,7 +11,7 @@ void func_802FEDE0(BKTextureList *texture_list, s32 indx, s32 x_offset, s32 y_of
     s32 x;
 
     sp24 = (u16*)func_802EA620(texture_list) + indx*32*32;
-    frame_buffer_ptr = D_803A5D00[func_8024BDA0()];
+    frame_buffer_ptr = D_803A5D00[getActiveFramebuffer()];
     for(y = 0; y < 32; y++){//L802FEE60
         for(x = 0; x < 32; x++){//L802FEE68
             sp24[32*(31 - y) + x] = frame_buffer_ptr[(y_offset + y)*framebuffer_width + (x_offset + x)] | 1; //framebuffer to texture???
@@ -25,7 +25,7 @@ void func_802FEF48(BKModelBin *model_bin){
     s32 x, y;
 
     texture_list = model_getTextureList(model_bin);
-    osInvalDCache((void *)D_803A5D00[func_8024BDA0()], framebuffer_width * framebuffer_height*2);
+    osInvalDCache((void *)D_803A5D00[getActiveFramebuffer()], framebuffer_width * framebuffer_height*2);
 
     for(y = 0; y < 8; y++){//L802FEFEC
         for(x = 0; x < 10; x++){

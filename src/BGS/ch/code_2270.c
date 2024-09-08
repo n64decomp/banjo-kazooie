@@ -282,7 +282,7 @@ void func_80389080(Actor *this){
     sp3C = time_getDelta();
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        this->marker->unk30 = func_80388FC0;
+        this->marker->actorFreeFunc = func_80388FC0;
         marker_setCollisionScripts(this->marker, func_80388E44, NULL, NULL);
         
         unqPtr->unk0 = 0;

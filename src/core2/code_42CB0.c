@@ -100,7 +100,7 @@ void chHoneycomb_update(Actor *this){
     if(!this->initialized){
         this->unk60 = (randf() < 0.5) ? 200.0 : -200.0;
         this->initialized = TRUE;
-        if( this->marker->unk14_20 == MARKER_53_EMPTY_HONEYCOMB){
+        if( this->marker->id == MARKER_53_EMPTY_HONEYCOMB){
             if(local->uid == 0)
                 local->uid = (!this->unk44_2)? D_8037DDC0 : func_802C9C40(this);
             if( honeycombscore_get(local->uid)
@@ -115,7 +115,7 @@ void chHoneycomb_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if( this->marker->unk14_20 == MARKER_55_HONEYCOMB
+        if( this->marker->id == MARKER_55_HONEYCOMB
             && !this->unk44_2
         ){
             marker_setFreeMethod(this->marker, __chHoneycomb_free);

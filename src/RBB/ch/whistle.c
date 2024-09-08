@@ -46,7 +46,7 @@ ActorInfo RBB_D_803909F8 = {
     0, 0, 0.0f, 0
 };
 
-struct31s D_80390A1C = {
+ParticleScaleAndLifetimeRanges D_80390A1C = {
     { 1.0f, 2.0f},
     { 3.0f, 5.0f},
     { 0.05f, 0.1f},
@@ -91,7 +91,7 @@ void RBB_func_8038B0B8(Actor *this, s32 arg1){
             -400.0f, 0.0f, -30.0f,
             -800.0f, 0.0f, 30.0f
         );
-        func_802EFB98(other, &D_80390A1C);
+        particleEmitter_setScaleAndLifetimeRanges(other, &D_80390A1C);
         particleEmitter_setSpawnInterval(other, 0.5f);
     }
 }
@@ -113,7 +113,7 @@ Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3){
     sp3C[2] = actor->roll;
     modelRender_preDraw(&actor_predrawMethod, actor);
     func_8033A450(func_80329934());
-    modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, func_80330B1C(marker));
+    modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, marker_loadModelBin(marker));
     func_8034A174(func_80329934(), 5, &local->unk4);
     local->unk4[0] -= 60.0f;
     return actor;

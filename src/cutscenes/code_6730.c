@@ -25,7 +25,7 @@ extern ActorInfo D_8038E718 = {
 
 extern s32 D_8038E73C[3] = {0xff, 0xff, 0xff};
 
-extern struct31s D_8038E748 = {
+extern ParticleScaleAndLifetimeRanges D_8038E748 = {
     {0.1f, 0.3f},
     {0.0f, 0.0f},
     {0.0f, 0.01f},
@@ -45,7 +45,7 @@ void cutscenes_func_8038CB20(ParticleEmitter *pCtrl){
     particleEmitter_setAlpha(pCtrl, 230);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038E770);
-    func_802EFB98(pCtrl, &D_8038E748);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038E748);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_manualFree(pCtrl);
 }

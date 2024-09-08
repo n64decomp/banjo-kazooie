@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern Actor *func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));
-extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
 
 Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3);
 Actor *func_8038C1F8(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -61,7 +60,7 @@ s32 D_803920B0[4] =  {0xFF, 0xFF, 0xFF, 0x00};
 
 /* .code */
 Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE(s32) arg3){
-    UNK_TYPE(s32) sp5C = func_8033A12C(func_80330B1C(marker));
+    UNK_TYPE(s32) sp5C = func_8033A12C(marker_loadModelBin(marker));
     Actor *this = marker_getActor(marker);
     f32 sp4C[3];
     f32 sp40[3];
@@ -253,7 +252,7 @@ void func_8038C9A0(Actor *this){
     Actor *other; //sp34
     void * sp30;
 
-    if(this->marker->unk14_20 == 0x200){
+    if(this->marker->id == 0x200){
         sp30 = func_8034C2C4(this->marker, 0x190);
     }
     other = marker_getActor(this->unk100);
@@ -279,7 +278,7 @@ void func_8038C9A0(Actor *this){
     }//L8038CA9C
 
     if(1.0f == other->unk1C[1]){
-        func_8038C398(this->position, this->marker->unk14_20);
+        func_8038C398(this->position, this->marker->id);
         FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1.0f, 32000, this->position, 0x6d6, 0xdac);\
         marker_despawn(this->marker);
         return;

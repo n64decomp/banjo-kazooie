@@ -33,7 +33,7 @@ void func_802C5A60(Actor *this){
     // Spawns a sparkle sprite when touching turbo trainers or wading boots
     ActorLocal_Core2_3EAD0 *local = (ActorLocal_Core2_3EAD0*)&this->local;
     if(!this->initialized){
-        switch(this->marker->unk14_20){
+        switch(this->marker->id){
             case 0x58:
                 func_8032AA58(this, 0.35f);
                 break;

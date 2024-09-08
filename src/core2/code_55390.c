@@ -48,7 +48,7 @@ Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp34[0] = 0.0f;
     sp34[1] = 137.5f;
     sp34[2] = 0.0f;
-    modelRender_draw(gfx, mtx, model_position, NULL, 1.0f, sp34, func_80330B1C(marker));
+    modelRender_draw(gfx, mtx, model_position, NULL, 1.0f, sp34, marker_loadModelBin(marker));
     func_8024E2FC();
     func_8024C904(gfx, mtx);
     return this;

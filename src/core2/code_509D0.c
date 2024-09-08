@@ -55,7 +55,7 @@ ActorInfo D_80367C10 = {
 
 /* .code */
 void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_e sprite_id) {
-    static struct31s D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
+    static ParticleScaleAndLifetimeRanges D_80367C34 = {{0.2f, 0.4f}, {0.1f, 0.1f}, {0.0f, 0.01f}, {3.0f, 3.5f}, 0.1f, 0.1f};
     ParticleEmitter *p_emitter;
 
     p_emitter = partEmitMgr_newEmitter(1);
@@ -64,7 +64,7 @@ void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_
     particleEmitter_setPosition(p_emitter, position);
     particleEmitter_setParticleSpawnPositionRange(p_emitter, -40.0f, 0.0f, -40.0f, 40.0f, 60.0f, 40.0f);
     particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
-    func_802EFB98(p_emitter, &D_80367C34);
+    particleEmitter_setScaleAndLifetimeRanges(p_emitter, &D_80367C34);
     particleEmitter_emitN(p_emitter, 1);
 }
 
@@ -105,7 +105,7 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
         sp18[0] = this->position[0];
         sp18[1] = this->position[1];
         sp18[2] = this->position[2];
-        switch (marker->unk14_20) {
+        switch (marker->id) {
             case MARKER_36_ORANGE_COLLECTIBLE:
                 if (mapSpecificFlags_get(1))
                     return;
@@ -160,7 +160,7 @@ void func_802D7DE8(ActorMarker *marker, f32 arg1[3]) {
     f32 var_f14;
     f32 var_f18;
 
-    sp4C = marker->unk14_20;
+    sp4C = marker->id;
     this = marker_getActor(marker);
     ml_vec3f_to_vec3w(sp50, arg1);
     if (sp4C == MARKER_37_GOLD_BULLION) {
@@ -195,7 +195,7 @@ void func_802D8030(Actor *this){
 
     local = (s32*)&this->local;
     *local = 1;
-    this->marker->unkC = __chLevelCollectible_collide;
+    this->marker->collisionFunc = __chLevelCollectible_collide;
     subaddie_set_state(this, 2);
 }
 
@@ -204,7 +204,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
     f32 sp20;
 
     local = (s32*)&this->local;
-    if( (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) 
+    if( (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) 
         || (this->unk78_13 == 0)
     ) {
         this->position[0] += this->velocity[0];
@@ -224,13 +224,13 @@ void __chLevelCollectible_returnObj(Actor *this) {
             }
         }
         this->position[1] = sp20;
-        if (this->marker->unk14_20 != MARKER_36_ORANGE_COLLECTIBLE) {
+        if (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) {
             FUNC_8030E8B4(SFX_21_EGG_BOUNCE_1, 0.76f, 25000, this->position, 1000, 2000);
         } else {
             FUNC_8030E8B4(SFX_B3_ORANGE_TALKING, 1.0f, 25000, this->position, 1000, 2000);
         }
         if (this->state == 4) {
-            switch (this->marker->unk14_20) {
+            switch (this->marker->id) {
             case MARKER_37_GOLD_BULLION:
                 break;
             case MARKER_36_ORANGE_COLLECTIBLE:
@@ -254,7 +254,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
         this->unk138_22 = this->unk138_21 = 0;
         subaddie_set_state(this, 2);
     }
-    switch (this->marker->unk14_20) {
+    switch (this->marker->id) {
         case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
             __chLevelCollectible_presentReturnEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
             break;
@@ -316,9 +316,9 @@ void chLevelCollectible_update(Actor *this){
 
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
-        if( this->marker->unk14_20 == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
-            || this->marker->unk14_20 == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
-            || this->marker->unk14_20 == MARKER_1FF_RED_PRESENT_COLLECTIBLE
+        if( this->marker->id == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
+            || this->marker->id == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
+            || this->marker->id == MARKER_1FF_RED_PRESENT_COLLECTIBLE
         ){
             if(jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
                 marker_despawn(this->marker);
@@ -355,9 +355,9 @@ void chLevelCollectible_update(Actor *this){
             break;
     }
 
-    marker_id = this->marker->unk14_20;
+    marker_id = this->marker->id;
 
-    switch(this->marker->unk14_20){
+    switch(this->marker->id){
 
         case MARKER_37_GOLD_BULLION: //L802D86CC
             func_802D83EC(this);

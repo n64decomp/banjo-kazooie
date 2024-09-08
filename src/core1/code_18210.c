@@ -18,7 +18,7 @@ void func_80255C30(void) {
     }
 }
 
-void func_80255CD8(void){}
+void dummy_func_80255CD8(void){}
 
 void func_80255CE0(void){
     osPiReadIo(0, NULL);

@@ -5,7 +5,6 @@
 extern void subaddie_set_state_with_direction(Actor *, s32, f32 , s32);
 extern f32 func_80309B24(f32*);
 extern void func_80329904(ActorMarker*, s32, f32*);
-extern void func_80326310(Actor *);
 extern void func_8032BB88(Actor *, s32, s32);
 
 void chJinjo_update(Actor *this);
@@ -47,11 +46,11 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
 
     if(actorPtr->state < 5){
         if(!fileProgressFlag_get(FILEPROG_E_JINJO_TEXT)){
-            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->unk14_20), 4, 0, 0, 0, 0);
+            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);
-        if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->unk14_20 + 6) ) == 0x1f)
+        if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->id + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
         this->collidable = 0;
@@ -109,7 +108,7 @@ void chJinjo_update(Actor * this){
         local->unk0 = 1;
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));
-        this->marker->unkC = __chJinjo_802CDBA8;
+        this->marker->collisionFunc = __chJinjo_802CDBA8;
         marker_setFreeMethod(this->marker, __chJinjo_802CDD3C);
         if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);

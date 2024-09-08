@@ -267,7 +267,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 draw_dist_f;
     f32 percentage;
     if(!this->unk3E_0){
-        this->unk8(this, gfx, mtx, vtx);
+        this->drawFunc(this, gfx, mtx, vtx);
         return;
     }
     actor =  marker_getActor(this);
@@ -288,7 +288,7 @@ void __marker_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
             percentage = 1.0f;
         }
         func_8033A280(percentage);
-        this->unk8(this, gfx, mtx, vtx);
+        this->drawFunc(this, gfx, mtx, vtx);
     }//L8032D300
     func_8033A244(30000.0f);
     func_8033A280(1.0f);
@@ -1135,12 +1135,12 @@ void func_8032F7EC(f32 position[3], ActorMarker *marker, f32 rotation[3]) {
     func_8032F64C(position, marker);
 }
 
-ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, int arg4){
+ActorMarker * marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4){
     ActorMarker * marker = func_80332A60();
     marker->propPtr = NULL;
     marker->cubePtr = NULL;
-    marker->unk8 = arg1;
-    marker->unk14_20 = arg3;
+    marker->drawFunc = draw_func;
+    marker->id = marker_id;
     marker->unk40_23 = arg4;
     func_8032F3D4(pos, marker, arg2);
     marker->actrArrayIdx = 0;
@@ -1159,16 +1159,16 @@ ActorMarker * func_8032F9DC(s32 *pos, MarkerDrawFunc arg1, int arg2, int arg3, i
     marker->unk40_22 = 0;
     marker->unk40_19 = 0;
     marker->unk40_21 = 0;
-    marker->unkC = NULL;
-    marker->unk10 = NULL;
-    marker->unk1C = NULL;
+    marker->collisionFunc = NULL;
+    marker->collision2Func = NULL;
+    marker->dieFunc = NULL;
     marker->unk54 = NULL;
     marker->unk58 = 0;
     marker->unk18 = 0;
-    marker->unk24 = 0;
-    marker->unk30 = NULL;
+    marker->actorUpdateFunc = NULL;
+    marker->actorFreeFunc = NULL;
     marker->unk28 = 0;
-    marker->unk34 = 0;
+    marker->actorUpdate2Func = NULL;
     marker->unk38[0] = 0;
     marker->unk38[1] = 0;
     marker->unk38[2] = 0;
@@ -1187,7 +1187,7 @@ ActorMarker * func_8032FB80(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_
     sp24[0] = pos[0];
     sp24[1] = pos[1];
     sp24[2] = pos[2];
-    func_8032F9DC(sp24, arg1, arg2, model_id, arg4);
+    marker_init(sp24, arg1, arg2, model_id, arg4);
 }
 
 ActorMarker * func_8032FBE4(f32 *pos, MarkerDrawFunc arg1, int arg2, enum asset_e model_id){
@@ -1207,7 +1207,7 @@ void func_8032FDDC(f32 rotation[3], ActorMarker *marker) {
 }
 
 int func_8032FFB4(ActorMarker *this, s32 arg1){
-    this->unk14_20 = arg1;
+    this->id = arg1;
 }
 
 //marker_setActorArrayIndex
@@ -1222,16 +1222,16 @@ void func_8032FFEC(ActorMarker *this, s32 arg1){
 void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
     switch(type){
         case 0: //ow
-            if(this->unkC)
-                this->unkC(this, other); 
+            if(this->collisionFunc)
+                this->collisionFunc(this, other); 
             break;
         case 1:
-            if(this->unk10)
-                this->unk10(this, other);
+            if(this->collision2Func)
+                this->collision2Func(this, other);
             break;
         case 2: //die
-            if(this->unk1C)
-                this->unk1C(this, other);
+            if(this->dieFunc)
+                this->dieFunc(this, other);
             break;
     }
 }
@@ -1244,9 +1244,9 @@ void func_80330078(ActorMarker *marker, ActorMarker *other_marker, s16 *arg2){
 
 //marker_setCollisionMethods
 void marker_setCollisionScripts(ActorMarker *this, MarkerCollisionFunc ow_func, MarkerCollisionFunc arg2, MarkerCollisionFunc die_func){
-    this->unkC = ow_func;
-    this->unk10 = arg2;
-    this->unk1C = die_func;
+    this->collisionFunc = ow_func;
+    this->collision2Func = arg2;
+    this->dieFunc = die_func;
 }
 
 void func_803300B8(ActorMarker *marker, MarkerCollisionFunc method){
@@ -1257,16 +1257,16 @@ void func_803300C0(ActorMarker *marker, bool (*method)(ActorMarker *, ActorMarke
     marker->unk58 = method;
 }
 
-void func_803300C8(ActorMarker *marker, ActorUpdateFunc method){
-    marker->unk24 = method;
+void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method){
+    marker->actorUpdateFunc = method;
 }
 
-void func_803300D0(ActorMarker *marker, s32 arg1){
-    marker->unk34 = arg1;
+void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method){
+    marker->actorUpdate2Func = method;
 }
 
 void marker_setFreeMethod(ActorMarker *marker, ActorFreeFunc method){
-    marker->unk30 = method;
+    marker->actorFreeFunc = method;
 }
 
 void func_803300E0(ActorMarker *marker, Struct6Cs *arg1){
@@ -1491,8 +1491,7 @@ Struct6Cs *func_80330B10(void){
     return &D_8036E7D0;
 }
 
-//marker_loadModelBin
-BKModelBin *func_80330B1C(ActorMarker *this){
+BKModelBin *marker_loadModelBin(ActorMarker *this){
     Actor* thisActor;
     BKModelBin * model;
     ModelCache *modelInfo;
@@ -1540,7 +1539,7 @@ BKVertexList *func_80330CFC(Actor *this, s32 arg1){
     ModelCache *model_cache_ptr;
     model_cache_ptr = &modelCache[this->modelCacheIndex];
     if(model_cache_ptr->modelPtr == NULL){
-        func_80330B1C(this->marker);
+        marker_loadModelBin(this->marker);
     }
     if(this->unkF4_30 && this->unk14C[this->unkF4_29 ^ arg1] != NULL)
         return this->unk14C[this->unkF4_29 ^ arg1];
@@ -1718,10 +1717,10 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
             if (!(var_s1->actorProp.marker->unk3E_0 && (marker_getActor(var_s1->actorProp.marker)->unk3C & 0x008000000))) {
                 var_a0 = func_80330DE4(var_s1->actorProp.marker);
             } else {
-                var_a0 = func_80330B1C(var_s1->actorProp.marker);
+                var_a0 = marker_loadModelBin(var_s1->actorProp.marker);
             }
 
-            if(var_a0 != NULL || (func_8028F280() && (var_a0 = func_80330B1C(var_s1->actorProp.marker), TRUE))){
+            if(var_a0 != NULL || (func_8028F280() && (var_a0 = marker_loadModelBin(var_s1->actorProp.marker), TRUE))){
                 temp_s0 = model_getCollisionList(var_a0);
                 if (temp_s0 != 0) {
                     temp_s2_2 = marker_getActor(var_s1->actorProp.marker);
@@ -1734,7 +1733,7 @@ s32 func_803311D4(Cube *arg0, f32 *arg1, f32 *arg2, f32 *arg3, u32 arg4) {
                     sp7C[2] = (f32) var_s1->actorProp.marker->roll;
                     temp_s0_2 = func_802E805C(temp_s0, temp_a1, &sp88, &sp7C, temp_s2_2->scale, arg1, arg2, arg3, arg4);
                     if ((temp_s0_2 != 0) && (func_8029453C())) {
-                        func_80330B1C(var_s1->actorProp.marker);
+                        marker_loadModelBin(var_s1->actorProp.marker);
                         if (var_s1->actorProp.marker->unk50 != 0) {
                             D_80383410[0] = arg2[0];
                             D_80383410[1] = arg2[1];
@@ -2007,7 +2006,7 @@ f32 func_80331F54(ActorMarker *marker) {
     f32 model_center[3];
     BKModelBin *model;
 
-    model = func_80330B1C(marker);
+    model = marker_loadModelBin(marker);
     if (model == NULL) {
         return 1.0f;
     }

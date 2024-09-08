@@ -101,7 +101,7 @@ void GV_func_8038A9C0(Actor *this){
         }
         this->unk1C[2] = this->unk1C[1];
         this->unk1C[1] = this->unk48;
-        if(this->unk100 != NULL && sp24 != NULL && this->unk100->unk14_20 == MARKER_AF_MAGIC_CARPET_SHADOW){
+        if(this->unk100 != NULL && sp24 != NULL && this->unk100->id == MARKER_AF_MAGIC_CARPET_SHADOW){
             sp24->unk1C[0] = func_8038A860(sp24, this);
         }
     }

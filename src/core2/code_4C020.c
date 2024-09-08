@@ -138,7 +138,7 @@ void func_802D2FB0(Actor *this, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5
 }
 
 void func_802D3138(ActorMarker *marker, ActorMarker *other_marker){
-    if(marker->unk14_20 == 0x224 || marker->unk14_20 == 0x225){
+    if(marker->id == 0x224 || marker->id == 0x225){
         func_8025A70C(COMUSIC_2B_DING_B);
     }
 }
@@ -153,7 +153,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
 
     sp2C = marker_getActor(arg0);
     arg0->collidable = FALSE;
-    switch (arg0->unk14_20) {
+    switch (arg0->id) {
         case 0x9F:
         case 0xA0:
         case 0xFF:
@@ -215,16 +215,16 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0xEA: 
         case 0x108:
         case 0x263:
-            if ((arg0->unk14_20 == 0x9D) || (arg0->unk14_20 == 0xE7)) {
+            if ((arg0->id == 0x9D) || (arg0->id == 0xE7)) {
                 levelSpecificFlags_set(0x2E, 1);
             }
-            if (arg0->unk14_20 == 0x263) {
+            if (arg0->id == 0x263) {
                 levelSpecificFlags_set(0x38, 1);
             }
             func_802D2FB0(sp2C, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
             func_8030E540(SFX_D_EGGSHELL_BREAKING);
             func_8030E540(SFX_11_WOOD_BREAKING_1);
-            switch (arg0->unk14_20) {
+            switch (arg0->id) {
                 case 0x9E:
                     func_802EE278(sp2C, 0xD, 9, 0x82, 0.34f, 1.0f);
                     break;
@@ -304,7 +304,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x239:
             func_8030E540(SFX_13A_GLASS_BREAKING_7);
             func_802EE278(sp2C, 4, 0x2D, 0x82, 1.0f, 1.0f);
-            if (arg0->unk14_20 == 0x1F3) {
+            if (arg0->id == 0x1F3) {
                 func_802EE278(sp2C, 4, 0x2D, 0x104, 1.0f, 1.0f);
             }
             marker_despawn(arg0);

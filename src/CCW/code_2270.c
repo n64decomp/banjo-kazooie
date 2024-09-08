@@ -136,7 +136,7 @@ void chGobiCCW_update(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        this->marker->unk30 = chGobiCCW_free;
+        this->marker->actorFreeFunc = chGobiCCW_free;
         this->unk138_24 = FALSE;
         local->unk4 = skeletalAnim_new();
         local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);

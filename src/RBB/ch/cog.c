@@ -48,7 +48,7 @@ void func_80388C20(Actor *this){
     if(!this->unk16C_4){
         actor_collisionOff(this);
         this->marker->propPtr->unk8_3 = 1;
-        this->marker->unk30 = func_80388BE8;
+        this->marker->actorFreeFunc = func_80388BE8;
         this->unk16C_4 = 1;
         if(this->modelCacheIndex == 0x17B){
             local->sfxsource_index = func_8030D90C();

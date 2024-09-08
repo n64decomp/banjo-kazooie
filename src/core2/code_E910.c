@@ -282,7 +282,7 @@ void func_80295C14(void){
     stateTimer_update();
     func_8029E100();
     pfsManager_update();//controller_update
-    func_8023E06C();
+    disableInput_set();
     func_80295448();
     func_8029B174();
     func_8029533C(); //dive_cooldown_update

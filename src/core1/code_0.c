@@ -5,7 +5,7 @@
 #include "gc/gctransition.h"
 
 
-void func_8023E00C(enum map_e);
+void setBootMap(enum map_e);
 void func_8023DFF0(s32);
 
 #if VERSION == VERSION_PAL
@@ -29,8 +29,8 @@ u8  pad_8027A138[0x400];
 u64 D_8027A538;
 u8  pad_8027A540[0x17F8];
 OSThread s_MainThread;
-s32      D_8027BEE8;
-s32      D_8027BEEC;
+s32      gBootMap;
+s32      gDisableInput;
 u64      D_8027BEF0;
 
 extern u8 core2_TEXT_START[];
@@ -62,12 +62,12 @@ void func_8023DA9C(s32 arg0){
     func_8023DA74();
     D_8027A130 = arg0;
     if (D_8027A130 == 3){
-        func_802E4214(D_8027BEE8);
+        func_802E4214(gBootMap);
     }
     if (D_8027A130 == 4){
-        func_802E35D0();
+        dummy_func_802E35D0();
     }
-    func_80255CD8();
+    dummy_func_80255CD8();
 }
 
 u32 globalTimer_getTimeMasked(u32 mask){
@@ -82,21 +82,21 @@ void globalTimer_reset(void){
     gGlobalTimer = 0;
 }
 
-s32 func_8023DB74(void){
+enum map_e getSpecialBootMap(void){
     return (DEBUG_use_special_bootmap())? MAP_80_GL_FF_ENTRANCE : MAP_91_FILE_SELECT;
 }
 
-s32 func_8023DBA4(void){
+enum map_e getDefaultBootMap(void){
     return MAP_1F_CS_START_RAREWARE;
 }
 
 void func_8023DBAC(void){
-    func_8023E00C(func_8023DBA4());
+    setBootMap(getDefaultBootMap());
     func_8023DFF0(3);
 }
 
 void func_8023DBDC(void){
-    func_8023E00C(func_8023DB74());
+    setBootMap(getSpecialBootMap());
     func_8023DFF0(3);
 }
 
@@ -105,20 +105,20 @@ void core1_init(void){
      osTvType = 0;
 #endif
     func_80255C30();
-    func_8023E00C(func_8023DBA4());
+    setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table
     func_8024BE30();
     overlayManagerloadCore2();
     D_8027BEF0 = D_8027A538;
     heap_init();
     func_80254028();
-    func_8025AFB0();
-    func_8033EF58();
+    dummy_func_8025AFB0();
+    allocUnusedBlock();
     assetCache_init();
     pfsManager_init();
     rumbleManager_init();
     audioManager_init();
-    func_8025425C();
+    graphicsCache_init();
     ml_init();
     gctransition_reset();
     D_8027A130 = 0;
@@ -148,9 +148,10 @@ void mainLoop(void){
     if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
         globalTimer_incTimer();
     
-    if(!D_8027BEEC)
+    if(!gDisableInput)
         pfsManager_update();
-    D_8027BEEC = 0;
+    gDisableInput = 0;
+
     rumbleManager_80250C08();
 
     if(!mapSpecificFlags_validateCRC1()){
@@ -166,7 +167,7 @@ void mainLoop(void){
             func_80255ACC();
             spawnQueue_func_802C3A18();
             if(func_802E4424())
-                func_802E3F8C(0);
+                game_draw(0);
             spawnQueue_flush();
             break;
     }//L8023DE34
@@ -216,8 +217,8 @@ s32 func_8023E000(void){
     return D_8027A130;
 }
 
-void func_8023E00C(enum map_e map_id){
-    D_8027BEE8 = map_id;
+void setBootMap(enum map_e map_id){
+    gBootMap = map_id;
 }
 
 void mainThread_create(void){
@@ -230,6 +231,6 @@ OSThread *mainThread_get(void){
     return &s_MainThread;
 }
 
-void func_8023E06C(void){
-    D_8027BEEC = 1;
+void disableInput_set(void){
+    gDisableInput = 1;
 }

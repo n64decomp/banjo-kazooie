@@ -29,7 +29,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     f32 sp40;
 
     if (D_803835E0 == 0) {
-        func_80254084(gdl, 0, 0, framebuffer_width, framebuffer_height, 0, 0, 0);
+        drawRectangle2D(gdl, 0, 0, framebuffer_width, framebuffer_height, 0, 0, 0);
         func_802BBD2C(&sp44, &sp40);
         viewport_set_near_far(sp44, sp40);
         func_8024C904(gdl, mptr);

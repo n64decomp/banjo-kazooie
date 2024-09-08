@@ -20,7 +20,7 @@ ActorInfo FP_D_80391AB0 = {
     0, 0x800, 0.0f, 0
 };
 
-struct31s D_80391AD4 = {
+ParticleScaleAndLifetimeRanges D_80391AD4 = {
     {0.4f, 0.6f}, 
     {1.8f, 3.6f}, 
     {0.0f, 0.01f}, 
@@ -59,7 +59,7 @@ void FP_func_80386BEC(Actor *this){
     particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setPosition(pCtrl, plyr_pos);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80391AFC);
-    func_802EFB98(pCtrl, &D_80391AD4);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80391AD4);
     particleEmitter_emitN(pCtrl, 12);
 }
 

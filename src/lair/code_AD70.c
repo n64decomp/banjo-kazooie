@@ -20,7 +20,7 @@ void func_80391B04(Actor *this);
 /* .data */
 ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, func_80326224, func_80325340, 0, 0, 0.0f, 0};
 s32 D_80394AD4[3] = {0xBA, 0xBA, 0xBA};
-struct31s D_80394AE0 = {
+ParticleScaleAndLifetimeRanges D_80394AE0 = {
     {0.1f, 0.2f},
     {3.6f, 4.6f},
     {1.0f, 1.0f},
@@ -28,7 +28,7 @@ struct31s D_80394AE0 = {
     0.05f, 0.1f
 };
 
-struct31s D_80394B08 = {
+ParticleScaleAndLifetimeRanges D_80394B08 = {
     {0.3f, 0.5f},
     {0.0f, 0.0f},
     {0.0f, 0.1f},
@@ -62,7 +62,7 @@ void func_80391160(f32 pos[3], u32 count)
     particleEmitter_setPosition(p, pos);
     particleEmitter_setParticleSpawnPositionRange(p, -55, -55, -55, 55, 55, 55);
     particleEmitter_setParticleVelocityRange(p, -70, -70, -70, 70, 70, 70);
-    func_802EFB98(p, &D_80394AE0);
+    particleEmitter_setScaleAndLifetimeRanges(p, &D_80394AE0);
     particleEmitter_emitN(p, count);
 }
 
@@ -91,7 +91,7 @@ void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
     func_802EFA18(p, 3);
     particleEmitter_setAngularVelocityRange(p, 0, 0, 600, 0, 0, 900);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p, &D_80394B30);
-    func_802EFB98(p, &D_80394B08);
+    particleEmitter_setScaleAndLifetimeRanges(p, &D_80394B08);
     particleEmitter_setDrawMode(p, 2);
     particleEmitter_emitN(p, count);
 }

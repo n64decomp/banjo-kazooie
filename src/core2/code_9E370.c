@@ -63,7 +63,7 @@ f32 D_8036E598[4] = {1000.f, 20.0f, 10.5f, 1.0f};
 
 
 /* .bss */
-Actor *D_80383390;
+Actor *suLastBaddie;
 s32 D_80383394;
 Actor *suBaddieJiggyArray[14]; //array of jiggy actor ptrs
 
@@ -80,7 +80,7 @@ Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     BKModelBin * model_bin =  func_80330DE4(marker);
     if(model_bin && func_8033A12C(model_bin)){
         if(marker->collidable)
-            func_80330B1C(marker);
+            marker_loadModelBin(marker);
     }
     return NULL;
 }
@@ -92,7 +92,7 @@ void actor_predrawMethod(Actor *this){
     BKVertexList *sp40;
     f32 sp34[3];
     
-    sp48 = func_80330B1C(this->marker);
+    sp48 = marker_loadModelBin(this->marker);
     func_80330534(this);
     if(this->animctrl != NULL){
         animctrl_drawSetup(this->animctrl, this->position, 1);
@@ -369,7 +369,7 @@ void func_80325FE8(Actor *this) {
     u8 temp_v0;
 
     marker = this->marker;
-    marker->unk14_20 = 0;
+    marker->id = 0;
     if (this->animctrl != NULL) {
         animctrl_free(this->animctrl);
     }
@@ -384,9 +384,9 @@ void func_80325FE8(Actor *this) {
         func_8032BB88(this, -1, 8000);
         this->unk138_7 = 0;
     }
-    if (marker->unk30 != NULL) {
-       marker->unk30(this);
-       marker->unk30 = NULL;
+    if (marker->actorFreeFunc != NULL) {
+       marker->actorFreeFunc(this);
+       marker->actorFreeFunc = NULL;
     }
     if ((s32)marker->unk44 < 0) {
         func_8033E7CC(marker);
@@ -544,13 +544,13 @@ void func_803268B4(void) {
                 }
                 if (!actor->despawn_flag) {
                     if (marker->unk2C_2) {
-                        ((void (*)(Actor *)) marker->unk34)(actor);
+                        marker->actorUpdate2Func(actor);
                         if (anim_ctrl != NULL) {
                                 actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                         }
                     } else if (!temp_s1 || (temp_s1 && func_803296D8(actor, temp_s1))) {
-                        if ( marker->unk24 != NULL) {
-                             marker->unk24(actor);
+                        if ( marker->actorUpdateFunc != NULL) {
+                             marker->actorUpdateFunc(actor);
                             if (anim_ctrl != NULL) {
                                     actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
                             }
@@ -631,7 +631,7 @@ Actor *actorArray_findActorFromMarkerId(enum marker_e marker_id) {
 
     actor_begin = suBaddieActorArray->data;
     for(i_actor = actor_begin; i_actor - actor_begin < suBaddieActorArray->cnt; i_actor++) {
-        if ((marker_id == i_actor->marker->unk14_20) && !i_actor->despawn_flag) {
+        if ((marker_id == i_actor->marker->id) && !i_actor->despawn_flag) {
             return i_actor;
         }
     }
@@ -768,267 +768,270 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         suBaddieActorArray->cnt = 0;
         suBaddieActorArray->max_cnt = 20;
     }
-    //i = suBaddieActorArray->cnt + 1;
+    
     if(suBaddieActorArray->cnt + 1 > suBaddieActorArray->max_cnt){
         suBaddieActorArray->max_cnt = suBaddieActorArray->cnt + 5;
         suBaddieActorArray = (ActorArray *)realloc(suBaddieActorArray, sizeof(ActorArray) + suBaddieActorArray->max_cnt*sizeof(Actor));
     }
+
     ++suBaddieActorArray->cnt;
-    D_80383390 = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
-    D_80383390->actor_info = actorInfo;
-    D_80383390->unk10_25 = 0;
-    D_80383390->unk10_18 = 0;
-    D_80383390->state = actorInfo->startAnimation;
-    D_80383390->position_x = (f32)position[0];
-    D_80383390->position_y = (f32)position[1];
-    D_80383390->position_z = (f32)position[2];
-    D_80383390->unkF4_8 = 0;
-    D_80383390->yaw = (f32) yaw;
-    D_80383390->yaw_ideal = (f32) yaw;
-    D_80383390->pitch = 0.0f;
-    D_80383390->roll = 0.0f;
-    D_80383390->unk6C = 0.0f;
-    D_80383390->unk28 = 0.0f;
-    D_80383390->unk10_12 = 0;
-    D_80383390->unk38_0 = 0;
-    D_80383390->unk38_31 = 0;
-    D_80383390->unk58_0 = 1;
-    D_80383390->unk40 = 0;
-    D_80383390->unk44_31 = 0;
-    D_80383390->despawn_flag = 0;
-    D_80383390->unk44_14 = -1;
-    D_80383390->unk48 = 0.0f;
-    D_80383390->unk4C = 100.0f;
-    D_80383390->unk10_1 = 1;
-    D_80383390->unkF4_30 = 0;
-    D_80383390->unkF4_29 = 0;
-    D_80383390->scale = 1.0f;
-    D_80383390->unk124_7 = 0;
-    D_80383390->unk124_6 = 1;
-    D_80383390->modelCacheIndex = actorInfo->actorId;
-    D_80383390->unk44_2 = func_80326C18();
-    D_80383390->marker = func_8032F9DC(position, actorInfo->draw_func, (func_8033B64C(actorInfo->modelId) == 1) ? 0 : 1,  actorInfo->markerId, (flags & 0x400) ? 1 : 0);
-    D_80383390->marker->unk3E_0 = 1;
-    D_80383390->unk138_28 = 1;
-    D_80383390->unk10_3 = -1;
-    D_80383390->unk10_4 = 0;
-    D_80383390->unk10_8 = 0;
-    D_80383390->unk10_7 = 0;
-    D_80383390->unk10_6 = 0;
-    D_80383390->unk54 = 0.0f;
-    D_80383390->unk58_31 = 0;
-    D_80383390->unk5C = 0.0f;
-    D_80383390->unkF4_31 = 0;
-    D_80383390->unk138_30 = 0;
-    D_80383390->unk138_3 = 0;
-    D_80383390->unk38_21 = 0;
-    D_80383390->unk38_13 = 0;
-    D_80383390->unk78_22 = 0;
-    D_80383390->unk78_31 = 0;
-    D_80383390->unk74 = 0.0f;
-    D_80383390->unk70 = 0.0f;
-    D_80383390->unkF4_24 = 0;
-    D_80383390->unk140 = 0.0f;
-    D_80383390->unk144 = 0.0f;
-    D_80383390->unk44_1 = 0;
-    D_80383390->unk44_0 = 0;
-    D_80383390->initialized = FALSE;
-    D_80383390->unk16C_4 = 0;
-    D_80383390->unk60 = 0.0f;
-    D_80383390->unk10_0 = 0;
-    D_80383390->unk104 = NULL;
-    D_80383390->unk100 = NULL;
-    D_80383390->unk158[0] = NULL;
-    D_80383390->unk158[1] = NULL;
-    D_80383390->unk78_13 = 0;
-    D_80383390->unk124_31 = 0;
-    D_80383390->unkF4_20 = 0;
-    D_80383390->sound_timer = 0.0f;
-    func_8032FFD4(D_80383390->marker, suBaddieActorArray->cnt - 1);
-    marker_setModelId(D_80383390->marker, actorInfo->modelId);
-    func_803300C8(D_80383390->marker, actorInfo->update_func);
-    func_803300D0(D_80383390->marker, actorInfo->unk10);
-    ml_vec3f_clear(D_80383390->unk1C);
-    ml_vec3f_clear(D_80383390->velocity);
-    ml_vec3f_clear(D_80383390->spawn_position);
-    D_80383390->stored_animctrl_index = 0;
-    D_80383390->unk58_2 = 1;
-    D_80383390->stored_animctrl_playbackType_ = 0;
-    D_80383390->stored_animctrl_forwards = 0;
-    D_80383390->stored_animctrl_smoothTransistion = 0;
-    D_80383390->stored_animctrl_duration = 0.0f;
-    D_80383390->unkEC = 0.0f;
-    D_80383390->unk138_19 = 0;
-    D_80383390->stored_animctrl_subrangeMin = 0.0f;
-    D_80383390->stored_animctrl_subrangeMax = 1.0f;
-    D_80383390->unkF4_22 = 0;
-    D_80383390->unk58_1 = 0;
-    D_80383390->unk138_29 = 0;
-    D_80383390->unk18 = actorInfo->animations;
-    D_80383390->animctrl = NULL;
-    D_80383390->unkEC = 0.0f;
-    D_80383390->unk130 = 0;
-    D_80383390->unk124_5 = 0;
-    D_80383390->unk124_3 = 0;
-    D_80383390->unk138_9 = 0;
-    D_80383390->unk138_8 = 0;
-    D_80383390->unk138_25 = 0;
-    D_80383390->unk16C_3 = 0;
-    D_80383390->unk16C_2 = 0;
-    D_80383390->unk16C_1 = 0;
-    D_80383390->unk16C_0 = 0;
-    D_80383390->unk17C_31 = 0;
-    D_80383390->unk14C[0] = NULL;
-    D_80383390->unk14C[1] = NULL;
-    D_80383390->unk138_27 = 0;
-    D_80383390->unk138_24 = 0;
-    D_80383390->unk138_23 = 0;
-    D_80383390->unk138_22 = 0;
-    D_80383390->unk138_21 = 0;
-    D_80383390->unk138_20 = 0;
-    D_80383390->unk174 = 0.0f;
-    D_80383390->unk178 = 0.0f;
+    suLastBaddie = &suBaddieActorArray->data[suBaddieActorArray->cnt - 1];
+
+    suLastBaddie->actor_info = actorInfo;
+    suLastBaddie->unk10_25 = 0;
+    suLastBaddie->unk10_18 = 0;
+    suLastBaddie->state = actorInfo->startAnimation;
+    suLastBaddie->position_x = (f32)position[0];
+    suLastBaddie->position_y = (f32)position[1];
+    suLastBaddie->position_z = (f32)position[2];
+    suLastBaddie->unkF4_8 = 0;
+    suLastBaddie->yaw = (f32) yaw;
+    suLastBaddie->yaw_ideal = (f32) yaw;
+    suLastBaddie->pitch = 0.0f;
+    suLastBaddie->roll = 0.0f;
+    suLastBaddie->unk6C = 0.0f;
+    suLastBaddie->unk28 = 0.0f;
+    suLastBaddie->unk10_12 = 0;
+    suLastBaddie->unk38_0 = 0;
+    suLastBaddie->unk38_31 = 0;
+    suLastBaddie->unk58_0 = 1;
+    suLastBaddie->unk40 = 0;
+    suLastBaddie->unk44_31 = 0;
+    suLastBaddie->despawn_flag = 0;
+    suLastBaddie->unk44_14 = -1;
+    suLastBaddie->unk48 = 0.0f;
+    suLastBaddie->unk4C = 100.0f;
+    suLastBaddie->unk10_1 = 1;
+    suLastBaddie->unkF4_30 = 0;
+    suLastBaddie->unkF4_29 = 0;
+    suLastBaddie->scale = 1.0f;
+    suLastBaddie->unk124_7 = 0;
+    suLastBaddie->unk124_6 = 1;
+    suLastBaddie->modelCacheIndex = actorInfo->actorId;
+    suLastBaddie->unk44_2 = func_80326C18();
+    suLastBaddie->marker = marker_init(position, actorInfo->draw_func, (asset_getFlag(actorInfo->modelId) == 1) ? 0 : 1, actorInfo->markerId, (flags & 0x400) ? 1 : 0);
+    suLastBaddie->marker->unk3E_0 = 1;
+    suLastBaddie->unk138_28 = 1;
+    suLastBaddie->unk10_3 = -1;
+    suLastBaddie->unk10_4 = 0;
+    suLastBaddie->unk10_8 = 0;
+    suLastBaddie->unk10_7 = 0;
+    suLastBaddie->unk10_6 = 0;
+    suLastBaddie->unk54 = 0.0f;
+    suLastBaddie->unk58_31 = 0;
+    suLastBaddie->unk5C = 0.0f;
+    suLastBaddie->unkF4_31 = 0;
+    suLastBaddie->unk138_30 = 0;
+    suLastBaddie->unk138_3 = 0;
+    suLastBaddie->unk38_21 = 0;
+    suLastBaddie->unk38_13 = 0;
+    suLastBaddie->unk78_22 = 0;
+    suLastBaddie->unk78_31 = 0;
+    suLastBaddie->unk74 = 0.0f;
+    suLastBaddie->unk70 = 0.0f;
+    suLastBaddie->unkF4_24 = 0;
+    suLastBaddie->unk140 = 0.0f;
+    suLastBaddie->unk144 = 0.0f;
+    suLastBaddie->unk44_1 = 0;
+    suLastBaddie->unk44_0 = 0;
+    suLastBaddie->initialized = FALSE;
+    suLastBaddie->unk16C_4 = 0;
+    suLastBaddie->unk60 = 0.0f;
+    suLastBaddie->unk10_0 = 0;
+    suLastBaddie->unk104 = NULL;
+    suLastBaddie->unk100 = NULL;
+    suLastBaddie->unk158[0] = NULL;
+    suLastBaddie->unk158[1] = NULL;
+    suLastBaddie->unk78_13 = 0;
+    suLastBaddie->unk124_31 = 0;
+    suLastBaddie->unkF4_20 = 0;
+    suLastBaddie->sound_timer = 0.0f;
+    func_8032FFD4(suLastBaddie->marker, suBaddieActorArray->cnt - 1);
+    marker_setModelId(suLastBaddie->marker, actorInfo->modelId);
+    marker_setActorUpdateFunc(suLastBaddie->marker, actorInfo->update_func);
+    marker_setActorUpdate2Func(suLastBaddie->marker, actorInfo->unk10);
+    ml_vec3f_clear(suLastBaddie->unk1C);
+    ml_vec3f_clear(suLastBaddie->velocity);
+    ml_vec3f_clear(suLastBaddie->spawn_position);
+    suLastBaddie->stored_animctrl_index = 0;
+    suLastBaddie->unk58_2 = 1;
+    suLastBaddie->stored_animctrl_playbackType_ = 0;
+    suLastBaddie->stored_animctrl_forwards = 0;
+    suLastBaddie->stored_animctrl_smoothTransistion = 0;
+    suLastBaddie->stored_animctrl_duration = 0.0f;
+    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->unk138_19 = 0;
+    suLastBaddie->stored_animctrl_subrangeMin = 0.0f;
+    suLastBaddie->stored_animctrl_subrangeMax = 1.0f;
+    suLastBaddie->unkF4_22 = 0;
+    suLastBaddie->unk58_1 = 0;
+    suLastBaddie->unk138_29 = 0;
+    suLastBaddie->unk18 = actorInfo->animations;
+    suLastBaddie->animctrl = NULL;
+    suLastBaddie->unkEC = 0.0f;
+    suLastBaddie->unk130 = 0;
+    suLastBaddie->unk124_5 = 0;
+    suLastBaddie->unk124_3 = 0;
+    suLastBaddie->unk138_9 = 0;
+    suLastBaddie->unk138_8 = 0;
+    suLastBaddie->unk138_25 = 0;
+    suLastBaddie->unk16C_3 = 0;
+    suLastBaddie->unk16C_2 = 0;
+    suLastBaddie->unk16C_1 = 0;
+    suLastBaddie->unk16C_0 = 0;
+    suLastBaddie->unk17C_31 = 0;
+    suLastBaddie->unk14C[0] = NULL;
+    suLastBaddie->unk14C[1] = NULL;
+    suLastBaddie->unk138_27 = 0;
+    suLastBaddie->unk138_24 = 0;
+    suLastBaddie->unk138_23 = 0;
+    suLastBaddie->unk138_22 = 0;
+    suLastBaddie->unk138_21 = 0;
+    suLastBaddie->unk138_20 = 0;
+    suLastBaddie->unk174 = 0.0f;
+    suLastBaddie->unk178 = 0.0f;
     if( actorInfo->animations){
-        sp54 = &D_80383390->unk18[D_80383390->state];
+        sp54 = &suLastBaddie->unk18[suLastBaddie->state];
         if(sp54->index != 0){
-            D_80383390->animctrl = animctrl_new(0);
-            animctrl_reset(D_80383390->animctrl);
-            animctrl_setIndex(D_80383390->animctrl, sp54->index);
-            animctrl_setDuration(D_80383390->animctrl, sp54->duration);
-            animctrl_start(D_80383390->animctrl, "subaddie.c", 0x4A5);
+            suLastBaddie->animctrl = animctrl_new(0);
+            animctrl_reset(suLastBaddie->animctrl);
+            animctrl_setIndex(suLastBaddie->animctrl, sp54->index);
+            animctrl_setDuration(suLastBaddie->animctrl, sp54->duration);
+            animctrl_start(suLastBaddie->animctrl, "subaddie.c", 0x4A5);
         }
     }//L80327BA8
-    D_80383390->unk124_11 = 0;
-    D_80383390->alpha_124_19 = 0xff;
-    D_80383390->depth_mode = MODEL_RENDER_DEPTH_FULL;
-    D_80383390->unk124_0 = D_80383390->unk138_31 = 1;
+    suLastBaddie->unk124_11 = 0;
+    suLastBaddie->alpha_124_19 = 0xff;
+    suLastBaddie->depth_mode = MODEL_RENDER_DEPTH_FULL;
+    suLastBaddie->unk124_0 = suLastBaddie->unk138_31 = 1;
     for(i = 0; i < 0x10; i++){
-        ((s32 *)D_80383390->unk7C)[i] = 0;
+        ((s32 *)suLastBaddie->unk7C)[i] = 0;
     }
     for(i = 0; i < 0x0C; i++){
-        ((s32 *)D_80383390->unkBC)[i] = 0;
+        ((s32 *)suLastBaddie->unkBC)[i] = 0;
     }
     if(flags & ACTOR_FLAG_UNKNOWN_0){
-        D_80383390->unk10_25 = func_80306DDC(position) + 1;
-        if(D_80383390->unk10_25 == 0){
-            D_80383390->unk10_25 = 0;
+        suLastBaddie->unk10_25 = func_80306DDC(position) + 1;
+        if(suLastBaddie->unk10_25 == 0){
+            suLastBaddie->unk10_25 = 0;
         }else{
             sp44[0] = (f32)position[0];
             sp44[1] = (f32)position[1];
             sp44[2] = (f32)position[2];
-            D_80383390->unk10_18 = func_80307258(&sp44, D_80383390->unk10_25 - 1, 0) + 1;
+            suLastBaddie->unk10_18 = func_80307258(&sp44, suLastBaddie->unk10_25 - 1, 0) + 1;
         }
     }//L80327D30
 
     if(flags & ACTOR_FLAG_UNKNOWN_2){
-        D_80383390->unk10_1 = 0;
+        suLastBaddie->unk10_1 = 0;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_3){
-        D_80383390->unkF4_30 = 1;
+        suLastBaddie->unkF4_30 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_1){
-        D_80383390->marker->unk44 = 1;
+        suLastBaddie->marker->unk44 = 1;
     }
     else if(flags & ACTOR_FLAG_UNKNOWN_6){
-        D_80383390->marker->unk44 = func_8034A2C8();
+        suLastBaddie->marker->unk44 = func_8034A2C8();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_12){
-        func_8033F738(D_80383390->marker);
-        func_8034BFF8(D_80383390->marker);
+        func_8033F738(suLastBaddie->marker);
+        func_8034BFF8(suLastBaddie->marker);
     }
 
-    D_80383390->unk148 = 0;
+    suLastBaddie->unk148 = 0;
     if(flags & ACTOR_FLAG_UNKNOWN_11){
-        D_80383390->unk148 = skeletalAnim_new();
+        suLastBaddie->unk148 = skeletalAnim_new();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_14){
-        D_80383390->marker->unk50 = func_803406B0();
+        suLastBaddie->marker->unk50 = func_803406B0();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_4){
-        D_80383390->unk124_31 = -1;
+        suLastBaddie->unk124_31 = -1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_7){
-        D_80383390->unkF4_22 = 1;
+        suLastBaddie->unkF4_22 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_19){
-        D_80383390->unk58_1 = 1;
+        suLastBaddie->unk58_1 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_8){
-        D_80383390->unk130 = func_803255FC;
+        suLastBaddie->unk130 = func_803255FC;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_9){
-        D_80383390->marker->unk40_21 = 1;
+        suLastBaddie->marker->unk40_21 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_15){
-        D_80383390->marker->unk40_20 = 1;
+        suLastBaddie->marker->unk40_20 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_17){
-        D_80383390->marker->unk40_22 = 1;
+        suLastBaddie->marker->unk40_22 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_22){
-        D_80383390->marker->unk40_19 = 1;
+        suLastBaddie->marker->unk40_19 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_16){
-        D_80383390->unk138_9 = 1;
+        suLastBaddie->unk138_9 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_18){
-        D_80383390->unk138_8 = 1;
+        suLastBaddie->unk138_8 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_21){
-        D_80383390->unk138_25 = 1;
+        suLastBaddie->unk138_25 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_23){
-        D_80383390->unk16C_3 = 1;
+        suLastBaddie->unk16C_3 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_24){
-        D_80383390->unk16C_2 = 1;
+        suLastBaddie->unk16C_2 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_25){
-        D_80383390->unk16C_1 = 1;
+        suLastBaddie->unk16C_1 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_26){
-        D_80383390->unk17C_31 = 1;
+        suLastBaddie->unk17C_31 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_13){
-        D_80383390->unk138_29 = 1;
+        suLastBaddie->unk138_29 = 1;
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_20){
-        D_80383390->unk58_2 = 0;
+        suLastBaddie->unk58_2 = 0;
     }
 
-    D_80383390->unk154 = 0x005e0000;
-    D_80383390->marker->unk54 = func_8032B5C0;
+    suLastBaddie->unk154 = 0x005e0000;
+    suLastBaddie->marker->unk54 = func_8032B5C0;
 
     
     for(i = 0; i < 3; ++i){
-        D_80383390->unk164[i] = 0x63;
+        suLastBaddie->unk164[i] = 0x63;
     }
 
-    D_80383390->unk170 = -10.0f;
-    D_80383390->unk138_7 = 0;
-    D_80383390->unk3C = flags;
-    return D_80383390;
+    suLastBaddie->unk170 = -10.0f;
+    suLastBaddie->unk138_7 = 0;
+    suLastBaddie->unk3C = flags;
+    
+    return suLastBaddie;
 }
 
 static void __actor_free(ActorMarker *arg0, Actor *arg1){
@@ -1370,7 +1373,7 @@ f32 func_80328DCC(Actor *this, f32 angle, f32 angle_ideal, s32 arg3) {
         var_f2 += 360.0f;
     }
 
-    if ((this->marker->unk14_20 != 0x12) && (this->marker->unk2C_2 == 1) && ((var_f2 >= 50.0f) || (var_f2 < -50.0f))) {
+    if ((this->marker->id != 0x12) && (this->marker->unk2C_2 == 1) && ((var_f2 >= 50.0f) || (var_f2 < -50.0f))) {
         return angle_ideal;
     }
     var_f2 = var_f2 / func_80328DAC(this);
@@ -1647,12 +1650,12 @@ void func_803299B4(Actor *arg0) {
     s32 position[3];
     s32 rotation[3];
 
-    arg0->marker->unkC = arg0->unk108;
-    arg0->marker->unk10 = arg0->unk10C;
-    arg0->marker->unk1C = arg0->unk134;
+    arg0->marker->collisionFunc = arg0->unk108;
+    arg0->marker->collision2Func = arg0->unk10C;
+    arg0->marker->dieFunc = arg0->unk134;
     arg0->marker->unk54 = arg0->unk160;
     arg0->marker->unk58 = arg0->unk168;
-    arg0->marker->unk30 = arg0->unk13C;
+    arg0->marker->actorFreeFunc = arg0->backupFreeFunc;
     arg0->marker->unk5C = arg0->unk16C_31;
     arg0->marker->propPtr->unk8_3 = arg0->unkF4_28;
     arg0->marker->propPtr->unk8_2 = arg0->unkF4_27;
@@ -1739,13 +1742,13 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk100 = NULL;
                 s0->unk158[0] = NULL;
                 s0->unk158[1] = NULL;
-                s0->unk138_19 = s1->marker->unk14_20;
-                s0->unk108 = s1->marker->unkC;
-                s0->unk10C = s1->marker->unk10;
-                s0->unk134 = s1->marker->unk1C;
+                s0->unk138_19 = s1->marker->id;
+                s0->unk108 = s1->marker->collisionFunc;
+                s0->unk10C = s1->marker->collision2Func;
+                s0->unk134 = s1->marker->dieFunc;
                 s0->unk160 = s1->marker->unk54;
                 s0->unk168 = s1->marker->unk58;
-                s0->unk13C = s1->marker->unk30;
+                s0->backupFreeFunc = s1->marker->actorFreeFunc;
                 s0->unk16C_31 = s1->marker->unk5C;
                 s0->unkF4_26 = s1->marker->unk2C_1;
                 s0->stored_marker_collidable = s1->marker->collidable;
@@ -1865,6 +1868,7 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
     spawnQueue_unlock();
 }
 
+// only used for GV Jinxy Head 2
 void func_8032A5F8(void) {
     Actor *var_s0;
 
@@ -1878,6 +1882,7 @@ void func_8032A5F8(void) {
     }
 }
 
+// only used by GV Jinxy Head 2
 void func_8032A6A8(Actor *arg0) {
     f32 var_f0;
     f32 var_f2;
@@ -1900,6 +1905,7 @@ void func_8032A6A8(Actor *arg0) {
     }
 }
 
+// only used by GV Jinxy Head 2
 Actor *func_8032A7AC(Actor *arg0) {
     Actor *var_a0;
 
@@ -1942,6 +1948,7 @@ void func_8032A88C(Actor *arg0) {
     }
 }
 
+// only called by blubber
 void func_8032A95C(Actor *arg0, s32 arg1, s32 arg2) {
     func_80343F00(arg1, arg0->position);
     arg0->unk44_14 = arg1;
@@ -2129,7 +2136,7 @@ void actorArray_defrag(void) {
                 i_actor->marker->unk50 = func_803406D4(i_actor->marker->unk50);
             }
 
-            if (i_actor->marker->unk14_20 == MARKER_217_BEE_SWARM) {
+            if (i_actor->marker->id == MARKER_217_BEE_SWARM) {
                 func_802CEB60(i_actor);
             }
         }
@@ -2152,7 +2159,7 @@ ActorMarker *func_8032B16C(enum jiggy_e jiggy_id) {
     if (suBaddieActorArray != NULL) {
         temp_s3 = &suBaddieActorArray->data[0];
         for(var_s0 = temp_s3; (var_s0 - temp_s3) < suBaddieActorArray->cnt; var_s0++){
-            if ((var_s0->marker->unk14_20 == MARKER_52_JIGGY) && (chjiggy_getJiggyId(&(var_s0->marker)) == jiggy_id)) {
+            if ((var_s0->marker->id == MARKER_52_JIGGY) && (chjiggy_getJiggyId(&(var_s0->marker)) == jiggy_id)) {
                 return var_s0->marker;
             }
         }
@@ -2196,7 +2203,7 @@ void func_8032B3A0(Actor *this, ActorMarker *arg1) {
         sp54[2] = this->position[2];
         func_802EE6CC(sp54, 0, D_8036E5B0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
         func_802F3CF8(sp54, !this->unk16C_0, 
-            (arg1->unk14_20 == 1) ? 1 
+            (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
             : 0
         );
@@ -2212,7 +2219,7 @@ void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
         func_8034A174(this->marker->unk44, arg2, &sp3C);
         func_802EE6CC(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
         func_802F3CF8(sp3C, !this->unk16C_0, 
-            (arg1->unk14_20 == 1) ? 1 
+            (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
             : 0
         );
@@ -2241,7 +2248,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     sp64 = func_8033D574(arg2);
     if (((func_80297C6C() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
         if (sp64 == 0) {
-            if ((sp68 != 0) || (arg1->unk14_20 == 0)) {
+            if ((sp68 != 0) || (arg1->id == 0)) {
                 if (sp68 <= 0) {
                     sp68 = 1;
                 }
@@ -2262,7 +2269,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
             if (this->unk138_25) {
                 func_802C9334(sp6C + 0x21, this);
             } else {
-                if ((this->marker->unk14_20 < 0x1A1) || (this->marker->unk14_20 >= 0x1A5)) {
+                if ((this->marker->id < 0x1A1) || (this->marker->id >= 0x1A5)) {
                     func_802C9334(sp6C + 0x18, this);
                 }
             }

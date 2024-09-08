@@ -1,24 +1,31 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "fight.h"
 
 typedef struct {
     u8 unk0;
-}ActorLocal_fight_6E90;
+}ActorLocal_BossJinjoBase;
 
-void func_8038D568(Actor *this);
+enum chBossJinjoBase_states {
+    CHBOSSJINJOBASE_STATE_1_RAISE = 1,
+    CHBOSSJINJOBASE_STATE_2_DEFAULT = 2,
+    CHBOSSJINJOBASE_STATE_3_SPAWNED_BOSS_JINJO = 3
+};
+
+void chBossJinjoBase_update(Actor *this);
 
 /* .data */
-ActorInfo D_80391990 = {
+ActorInfo chBossJinjoBase = {
     MARKER_27A_JINJO_STATUE_BASE, ACTOR_3A2_JINJO_STATUE_BASE, ASSET_543_MODEL_JINJO_STATUE_BASE,
     0x1, NULL,
-    func_8038D568, func_80326224, actor_draw,
+    chBossJinjoBase_update, func_80326224, actor_draw,
     0, 0x800, 0.0f, 0
 };
 
-s32 D_803919B4[3] = {0xC8, 0xC8, 0xA0};
+s32 chBossJinjoBase_smokeColor[3] = {0xC8, 0xC8, 0xA0};
 
-struct31s D_803919C0 = {
+ParticleScaleAndLifetimeRanges chBossJinjoBase_smokeSettings = {
     {1.0f, 1.0f},
     {1.7f, 2.7f},
     {0.0f, 0.05f},
@@ -36,17 +43,17 @@ void chbossjinjobase_spawnStoneJinjo(ActorMarker *arg0) {
     sp1C->unk100 = temp_v0->marker;
 }
 
-void func_8038D2EC(f32 arg0[3], s32 arg1) {
-    ParticleEmitter *temp_v0 = partEmitMgr_newEmitter(arg1);
+void chBossJinjoBase_emitSmoke(f32 position[3], s32 count) {
+    ParticleEmitter *p = partEmitMgr_newEmitter(count);
     
-    particleEmitter_setSprite(temp_v0, ASSET_70E_SPRITE_SMOKE_2);
-    particleEmitter_setRGB(temp_v0, D_803919B4);
-    particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
-    particleEmitter_setPosition(temp_v0, arg0);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, -90.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
-    particleEmitter_setParticleVelocityRange(temp_v0, -170.0f, 0.0f, -170.0f, 170.0f, 100.0f, 170.0f);
-    func_802EFB98(temp_v0, &D_803919C0);
-    particleEmitter_emitN(temp_v0, arg1);
+    particleEmitter_setSprite(p, ASSET_70E_SPRITE_SMOKE_2);
+    particleEmitter_setRGB(p, chBossJinjoBase_smokeColor);
+    particleEmitter_setStartingFrameRange(p, 0, 7);
+    particleEmitter_setPosition(p, position);
+    particleEmitter_setParticleSpawnPositionRange(p, -90.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
+    particleEmitter_setParticleVelocityRange(p, -170.0f, 0.0f, -170.0f, 170.0f, 100.0f, 170.0f);
+    particleEmitter_setScaleAndLifetimeRanges(p, &chBossJinjoBase_smokeSettings);
+    particleEmitter_emitN(p, count);
 }
 
 void func_8038D3DC(Actor* this, s32 arg1, f32 arg2, f32 arg3, f32 arg4){
@@ -57,25 +64,27 @@ void func_8038D3DC(Actor* this, s32 arg1, f32 arg2, f32 arg3, f32 arg4){
     }
 }
 
-void func_8038D428(ActorMarker *arg0, ActorMarker *arg1) {
-    Actor *temp_v0;
-    Actor *s0;
+void chBossJinjoBase_getHitByEgg(ActorMarker *this, ActorMarker *other) {
+    Actor *actor_base;
+    Actor *actor_other;
 
-    temp_v0 = marker_getActor(arg0);
-    if (temp_v0->state != 3) {
+    actor_base = marker_getActor(this);
+
+    if (actor_base->state != CHBOSSJINJOBASE_STATE_3_SPAWNED_BOSS_JINJO) {
         func_8025A70C(COMUSIC_2B_DING_B);
-        temp_v0->unk38_31++;
-        if (temp_v0->unk38_31 >= 3) {
-            subaddie_set_state(temp_v0, 3);
-            chstonejinjo_breakOpen(temp_v0->unk100);
-            func_8038D3DC(temp_v0, 0x19A, -100.0f, 0.0f, 1.2f);
-            func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 32000, temp_v0->position, 1000.0f, 2000.0f);
+        actor_base->unk38_31++; // hit count
+
+        if (actor_base->unk38_31 >= 3) { // spawn Jjnjonator
+            subaddie_set_state(actor_base, CHBOSSJINJOBASE_STATE_3_SPAWNED_BOSS_JINJO);
+            chstonejinjo_breakOpen(actor_base->unk100);
+            func_8038D3DC(actor_base, 0x19A, -100.0f, 0.0f, 1.2f);
+            func_80324D54(1.2f, SFX_90_SWITCH_PRESS, 1.0f, 32000, actor_base->position, 1000.0f, 2000.0f);
         }
     }
 }
 
 void fight_func_8038D510(Actor *arg0) {
-    ActorLocal_fight_6E90 *sp18 = (ActorLocal_fight_6E90 *)&arg0->local;
+    ActorLocal_BossJinjoBase *sp18 = (ActorLocal_BossJinjoBase *)&arg0->local;
 
     if ((u8)arg0->unk44_31 != 0) {
         func_8030DA44(arg0->unk44_31);
@@ -87,21 +96,21 @@ void fight_func_8038D510(Actor *arg0) {
     }
 }
 
-void func_8038D568(Actor *this){
-    ActorLocal_fight_6E90 *local = (ActorLocal_fight_6E90 *)&this->local;
+void chBossJinjoBase_update(Actor *this) {
+    ActorLocal_BossJinjoBase *local = (ActorLocal_BossJinjoBase *)&this->local;
 
-    f32 sp48 = time_getDelta();
-    u32 sp44 = globalTimer_getTime() & 0xF;
-    Actor *other; //sp40
-    f32 sp3C;
-    f32 sp30[3];
+    f32 delta_time = time_getDelta();
+    u32 shake_noise = globalTimer_getTime() & 0xF;
+    Actor *actor_stone_jinjo; //sp40
+    f32 y_delta;
+    f32 position_delta[3];
 
     this->unkF4_29 = 0;
-    func_80330B1C(this->marker);
+    marker_loadModelBin(this->marker);
 
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        marker_setCollisionScripts(this->marker, NULL, func_8038D428, NULL);
+        marker_setCollisionScripts(this->marker, NULL, chBossJinjoBase_getHitByEgg, NULL);
         marker_setFreeMethod(this->marker, fight_func_8038D510);
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOn(this);
@@ -128,44 +137,45 @@ void func_8038D568(Actor *this){
         
         func_802BB3DC(0, 8.0f, 0.92f);
         __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
-        func_8038D2EC(this->unk1C, 0x10);
+        chBossJinjoBase_emitSmoke(this->unk1C, 0x10);
         SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, this->marker);
     }
-    else{//L8038D774
-        if(this->state == 1){
-            other = marker_getActor(this->unk100);
-            sp3C = this->velocity_y * sp48;
-            if(this->position_y + sp3C < this->unk1C[1]){
-                if( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1){
+    else{
+        if(this->state == CHBOSSJINJOBASE_STATE_1_RAISE) {
+            actor_stone_jinjo = marker_getActor(this->unk100);
+            y_delta = this->velocity_y * delta_time;
+
+            if(this->position_y + y_delta < this->unk1C[1]) {
+                if( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1) {
                     func_8030E2C4(this->unk44_31);
                     func_8030E2C4(local->unk0);
                 }
-                sp30[0] = (sp44 & 1) ? 3.0f : -3.0f; 
-                sp30[1] = sp3C;
-                sp30[2] = (sp44 & 2) ? 3.0f : -3.0f; 
+                
+                position_delta[0] = (shake_noise & 1) ? 3.0f : -3.0f; 
+                position_delta[1] = y_delta;
+                position_delta[2] = (shake_noise & 2) ? 3.0f : -3.0f; 
 
                 this->position_x = this->unk1C[0];
                 this->position_z = this->unk1C[2];
-                this->position_x = sp30[0] + this->position_x;
-                this->position_y = sp30[1] + this->position_y;
-                this->position_z = sp30[2] + this->position_z;
+                this->position_x = position_delta[0] + this->position_x;
+                this->position_y = position_delta[1] + this->position_y;
+                this->position_z = position_delta[2] + this->position_z;
 
-                other->position_x = this->unk1C[0];
-                other->position_z = this->unk1C[2];
-                other->position_x = sp30[0] + other->position_x;
-                other->position_y = sp30[1] + other->position_y;
-                other->position_z = sp30[2] + other->position_z;
-
+                actor_stone_jinjo->position_x = this->unk1C[0];
+                actor_stone_jinjo->position_z = this->unk1C[2];
+                actor_stone_jinjo->position_x = position_delta[0] + actor_stone_jinjo->position_x;
+                actor_stone_jinjo->position_y = position_delta[1] + actor_stone_jinjo->position_y;
+                actor_stone_jinjo->position_z = position_delta[2] + actor_stone_jinjo->position_z;
             }
-            else{//L8038D8E0
-                subaddie_set_state(this, 2);
+            else {
+                subaddie_set_state(this, CHBOSSJINJOBASE_STATE_2_DEFAULT);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
                 func_8030DA44(local->unk0);
                 local->unk0 = 0;
                 TUPLE_COPY(this->position, this->unk1C);
-                TUPLE_COPY(other->position, this->unk1C);
-                other->position_y += 172.0f;
+                TUPLE_COPY(actor_stone_jinjo->position, this->unk1C);
+                actor_stone_jinjo->position_y += 172.0f;
             }
         }
     }//L8038D954

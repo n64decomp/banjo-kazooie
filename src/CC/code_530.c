@@ -101,7 +101,7 @@ void func_80386B28(Actor *this){
         local->unk14 = 0.0f;
         player_getPosition(&local->unk4);
         local->unk3 = 3;
-        marker->unk30 = func_80386AF8;
+        marker->actorFreeFunc = func_80386AF8;
         marker->propPtr->unk8_3 = 1;
         this->position_x = 5700.0f;
         this->position_y = -2620.0f;

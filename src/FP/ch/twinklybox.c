@@ -34,7 +34,7 @@ Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
-    static struct31s D_8039210C = {
+    static ParticleScaleAndLifetimeRanges D_8039210C = {
         { 0.4f,  0.8f },
         {-1.0f, -1.0f },
         { 0.0f,  0.02f},
@@ -57,14 +57,14 @@ void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
         100.0f, 100.0f, 100.0f,
         200.0f, 200.0f, 200.0f
     );
-    func_802EFB98(pCtrl, &D_8039210C);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8039210C);
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 3);
     particleEmitter_emitN(pCtrl, count);
 }
 
 void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
-    static struct31s D_8039217C = {
+    static ParticleScaleAndLifetimeRanges D_8039217C = {
         {0.8f, 1.2f },
         {1.4f, 2.0f },
         {0.0f, 0.01f},
@@ -86,12 +86,12 @@ void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803921B0);
-    func_802EFB98(pCtrl, &D_8039217C);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8039217C);
     particleEmitter_emitN(pCtrl, count);
 }
 
 void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
-    static struct31s D_803921F8 = {
+    static ParticleScaleAndLifetimeRanges D_803921F8 = {
         { 0.2f,  0.3f },
         {-1.0f, -1.0f },
         { 0.0f,  0.02f},
@@ -114,14 +114,14 @@ void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
         200.0f, 200.0f, 200.0f,
         300.0f, 300.0f, 300.0f
     );
-    func_802EFB98(pCtrl, &D_803921F8);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_803921F8);
     func_802EF9F8(pCtrl, 0.2f);
     func_802EFA18(pCtrl, 2);
     particleEmitter_emitN(pCtrl, count);
 }
 
 void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
-    static struct31s D_80392268 ={
+    static ParticleScaleAndLifetimeRanges D_80392268 ={
         { 0.4f,  0.6f },
         {-1.0f, -1.0f },
         { 0.0f,  0.02f},
@@ -140,14 +140,14 @@ void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392290);
-    func_802EFB98(pCtrl, &D_80392268);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80392268);
     func_802EF9F8(pCtrl, 0.2f);
     func_802EFA18(pCtrl, 2);
     particleEmitter_emitN(pCtrl, count);
 }
 
 void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
-    static struct31s D_803922D8 = {
+    static ParticleScaleAndLifetimeRanges D_803922D8 = {
         {0.5f, 0.7f },
         {1.4f, 1.7f },
         {0.0f, 0.01f},
@@ -167,7 +167,7 @@ void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039230C);
-    func_802EFB98(pCtrl, &D_803922D8);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_803922D8);
     particleEmitter_emitN(pCtrl, count);
 }
 

@@ -70,7 +70,7 @@ bool func_8035ED60(Actor *this) {
 
 void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
     static s32 D_80373014[3] = {0xAA, 0xAA, 0xAA};
-    static struct31s D_80373020 = {{0.4f, 0.8f}, {1.4f, 2.0f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01};
+    static ParticleScaleAndLifetimeRanges D_80373020 = {{0.4f, 0.8f}, {1.4f, 2.0f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01};
     static struct43s D_80373048 = {
         {{-200.0f, -200.0f, -200.0f}, { 200.0f,  200.0f,  200.0f}}, 
         {{   0.0f,  -10.0f,    0.0f}, {   0.0f,  -10.0f,    0.0f}}, 
@@ -83,7 +83,7 @@ void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
     particleEmitter_setSprite(p_ctrl, sprite);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_80373048);
-    func_802EFB98(p_ctrl, &D_80373020);
+    particleEmitter_setScaleAndLifetimeRanges(p_ctrl, &D_80373020);
     particleEmitter_setDrawMode(p_ctrl, PART_EMIT_NO_DEPTH);
     particleEmitter_emitN(p_ctrl, count);
 }

@@ -78,7 +78,7 @@ Actor *func_8038DF34(Actor *this){
 
     if(prop && prop->unk8_0){
         other = marker_getActor(prop->marker);
-        marker_id = other->marker->unk14_20;
+        marker_id = other->marker->id;
         if( marker_id == MARKER_200_TWINKLY_BLUE
             || marker_id == MARKER_201_TWINKLY_GREEN 
             || marker_id == MARKER_202_TWINKLY_ORANGE
@@ -168,7 +168,7 @@ void func_8038E094(Actor *this){
             sp38 = func_8038DF34(this);
             if(sp38){
                 func_8038DE40(this);
-                this->unk38_31 = sp38->marker->unk14_20;
+                this->unk38_31 = sp38->marker->id;
                 break;
             }
             
@@ -187,16 +187,16 @@ void func_8038E094(Actor *this){
             sp38 = func_8038DF34(this);
             if(sp38){
                 func_8038DE40(this);
-                this->unk38_31 = sp38->marker->unk14_20;
+                this->unk38_31 = sp38->marker->id;
             }
             break;
 
         case 4: //L8038E4F0
             this->marker->propPtr->unk8_3 = TRUE;
             sp38 = func_8038DF34(this);
-            if(sp38 && sp38->marker->unk14_20 == this->unk38_31){
+            if(sp38 && sp38->marker->id == this->unk38_31){
                 if(actor_animationIsAt(this, 0.23)){
-                    func_8038C398(sp38->position, sp38->marker->unk14_20);
+                    func_8038C398(sp38->position, sp38->marker->id);
                     FUNC_8030E8B4(SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250, 2500);
                     FUNC_8030E8B4(SFX_27_JINJO_HI, 1.6f, 32000, this->position, 1250, 2500);
                     func_80324D54(0.35f, SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250.0f, 2500.0f);
