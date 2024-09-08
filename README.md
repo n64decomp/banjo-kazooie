@@ -17,6 +17,11 @@ The following instructions should work on the following platforms:
     - Linux (x86_64, ARM)
     - macOS (x86_64, ARM)
 
+Building Instructions Table Of Contents:
+- [Local (Linux)](#local-linux)
+- [Local (Docker - Linux/macOS)](#local-docker---linuxmacos)
+- [Cloud (GitLab CI)](#cloud-gitlab-ci))
+
 ## Local (Linux)
 
 Works with Ubuntu 18.04 or higher.
