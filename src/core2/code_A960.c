@@ -3,19 +3,19 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-void func_80291930(s32);
+void codeA960_forceLoadzone(s32);
 
 int func_802918F0(void){
-    return miscFlag_isTrue(MISC_FLAG_15);
+    return miscFlag_isTrue(MISC_FLAG_15_LOADZONE);
 }
 
 void func_80291910(void){
-    func_80291930(0);
+    codeA960_forceLoadzone(0);
 }
 
-void func_80291930(s32 arg0){
+void codeA960_forceLoadzone(s32 arg0){
     if(!func_802918F0()){
-        miscFlag_set(MISC_FLAG_15);
+        miscFlag_set(MISC_FLAG_15_LOADZONE);
         if(arg0){
             func_8029E3C0(5, 2.0f);
             func_8029C984();
@@ -30,6 +30,6 @@ void func_80291930(s32 arg0){
 void func_802919A0(void){
     if(func_802918F0() && func_8029E1A8(5)){
         func_8029B890();
-        func_80291930(0);
+        codeA960_forceLoadzone(0);
     }
 }
