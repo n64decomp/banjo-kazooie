@@ -5,7 +5,7 @@
 
 void codeA960_forceLoadzone(s32);
 
-int func_802918F0(void){
+int isLoadzoneFlagSet(void){
     return miscFlag_isTrue(MISC_FLAG_15_LOADZONE);
 }
 
@@ -14,7 +14,7 @@ void func_80291910(void){
 }
 
 void codeA960_forceLoadzone(s32 arg0){
-    if(!func_802918F0()){
+    if(!isLoadzoneFlagSet()){
         miscFlag_set(MISC_FLAG_15_LOADZONE);
         if(arg0){
             func_8029E3C0(5, 2.0f);
@@ -28,7 +28,7 @@ void codeA960_forceLoadzone(s32 arg0){
 }
 
 void func_802919A0(void){
-    if(func_802918F0() && func_8029E1A8(5)){
+    if(isLoadzoneFlagSet() && func_8029E1A8(5)){
         func_8029B890();
         codeA960_forceLoadzone(0);
     }
