@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern bool func_8028F170(f32, f32);
-extern void viewport_getPosition_vec3f(f32[3]);
 
 typedef struct {
     f32 unk0;

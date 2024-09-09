@@ -5,7 +5,6 @@
 extern bool func_80245314(f32[3], f32[3], f32, f32, u32);
 extern int func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 extern int func_8024575C(f32[3], f32[3], f32, f32[3], s32, u32);
-extern void func_8024C510(f32);
 extern f32 func_80258708(f32[3], f32[3]);
 extern f32 func_80259198(f32, f32);
 extern f32 func_8028E82C(void);
@@ -962,7 +961,7 @@ void func_802BE794(void){
         sp20[1] = mlNormalizeAngle(sp20[1] + 180.0f);
         viewport_setPosition_vec3f(sp2C);
         viewport_setRotation_vec3f(sp20);
-        func_8024C510(300.0f);
+        viewport_moveAlongZAxis(300.0f);
         func_802BE720();
     }//L802BE828
 }

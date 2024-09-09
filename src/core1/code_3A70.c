@@ -4,7 +4,6 @@
 
 extern f32 ml_cos_deg(f32);
 extern f32 ml_sin_deg(f32);
-extern void viewport_getPosition_vec3w(s32[3]);
 
 Gfx D_80275880[] = {
     gsSPClearGeometryMode(G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING | 0x0060CD00),

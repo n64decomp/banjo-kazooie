@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void viewport_setNearAndFar(f32, f32);
-
 typedef struct {
     s16 model_id;
     // u8 pad2[0x2];

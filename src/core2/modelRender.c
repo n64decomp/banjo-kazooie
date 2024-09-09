@@ -10,13 +10,7 @@ extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
 extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotatePYR(f32, f32, f32);
-extern void viewport_getPosition_vec3f(f32[3]);
-extern void viewport_getRotation_vec3f(f32[3]);
-extern void viewport_setPosition_vec3f(f32[3]);
-extern void viewport_setRotation_vec3f(f32[3]);
-extern void viewport_update(void);
 extern void func_8033BD4C(BKModelBin *);
-extern s32 func_8024DB50(f32[3], f32);
 extern void mlMtx_push_translation(f32, f32, f32);
 extern void mlMtxScale(f32);
 extern void mlMtxApply(Mtx* mtx);
@@ -959,7 +953,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[1] = (f32)cmd->unk8[1] * modelRenderScale;
         sp34[2] = (f32)cmd->unk8[2] * modelRenderScale;
         sp30 = (f32)cmd->unkE*modelRenderScale;
-        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+        if(viewport_func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
     }
@@ -981,7 +975,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[0] += modelRenderCameraPosition[0];
         sp34[1] += modelRenderCameraPosition[1];
         sp34[2] += modelRenderCameraPosition[2];
-        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+        if(viewport_func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
 
@@ -1102,7 +1096,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         return 0;
     }
 
-    D_80370990 = (D_80383704) ? func_8024DB50(object_position, spD0*scale) : 1;
+    D_80370990 = (D_80383704) ? viewport_func_8024DB50(object_position, spD0*scale) : 1;
     if(D_80370990 == 0){
         modelRender_reset();
         return 0;

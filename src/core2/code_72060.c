@@ -7,15 +7,12 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern f32  viewport_getYaw();
-extern int  viewport_isPointPlane2_3f(f32, f32, f32);
 extern void func_80251B5C(f32, f32, f32);
 extern void mlMtx_rotate_pitch_deg(f32);
 extern void mlMtx_rotate_yaw_deg(f32);
 extern void func_80252A38(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
-extern bool func_8024DB50(f32[3], f32);
 
 struct4Cs *D_80369280 = NULL;
 
@@ -171,7 +168,7 @@ void func_802F919C(void) {
                 sp4C[1] += D_80381040[1];
                 sp4C[2] += D_80381040[2];
                 if (sp58 < 650.0) {
-                    for(sp44 = 0; sp44 < 5 && viewport_isPointPlane2_3f(sp4C[0], sp4C[1] - 10.0f, sp4C[2]) ; sp44++){
+                    for(sp44 = 0; sp44 < 5 && viewport_isPointPlane_3f(sp4C[0], sp4C[1] - 10.0f, sp4C[2]) ; sp44++){
                         sp4C[1] += 200.0f;
                     }
                 }
@@ -231,7 +228,7 @@ bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     if( ((-17000.0f < D_80381070[0]) &&(D_80381070[0] < 17000.0f)) 
         && (arg2[1] > -200.0f)
         && ((-17000.0f < D_80381070[2]) && (D_80381070[2] < 17000.0f))
-        && func_8024DB50(arg2, D_8038108C)
+        && viewport_func_8024DB50(arg2, D_8038108C)
     ) {
         func_80251B5C(D_80381070[0], D_80381070[1], D_80381070[2]);
         mlMtxApply(*mtx);

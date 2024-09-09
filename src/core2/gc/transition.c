@@ -7,7 +7,6 @@
 void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
-void viewport_setNearAndFar(f32, f32);
 
 typedef enum {
     TRANSITION_ID_1_BLACK_IN = 1,

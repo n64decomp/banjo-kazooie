@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern s32 viewport_isPointPlane2_3f(f32,f32, f32);
-
 /* .code */
 void func_802F7EB0(struct3s *this){
     f32 plyrPos[3]; //sp74
@@ -37,7 +35,7 @@ void func_802F7EB0(struct3s *this){
     sp4C[1] = plyrPos[1] + sp4C[1];
     sp4C[2] = plyrPos[2] + sp4C[2];
     if(tmpf < 550.0)
-        for(i = 0; (i < 0xa) && viewport_isPointPlane2_3f(sp4C[0],sp4C[1]- 10.0f, sp4C[2]); i++){
+        for(i = 0; (i < 0xa) && viewport_isPointPlane_3f(sp4C[0],sp4C[1]- 10.0f, sp4C[2]); i++){
             sp4C[1] += 100.0f;
         }
 

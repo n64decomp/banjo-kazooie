@@ -34,8 +34,6 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
 
-f32 viewport_getYaw(void);
-
 // .h
 void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
 void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
@@ -437,6 +435,7 @@ void func_80256D0C(f32 val1, f32 val2, f32 x, f32 y, f32 z, f32 *dstX, f32 *dstY
     *dstZ = tmp * cosf(val2) - sinf(val2) * x;
 }
 
+// rotates direction vector (x, y, z)
 void func_80256E24(f32 dst[3], f32 theta, f32 phi, f32 x, f32 y, f32 z)
 {
     f32 tmp;

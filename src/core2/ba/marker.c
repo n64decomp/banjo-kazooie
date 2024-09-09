@@ -7,7 +7,6 @@
 #include "SnS.h"
 
 extern void func_803012F8(void);
-extern f32 func_8024DDD8(f32[3], f32);
 extern f32 ml_distanceSquared_vec3f(f32 arg0[3], f32 arg1[3]);
 extern void __baMarker_8028BA00(s32);
 extern void func_802C418C(void);

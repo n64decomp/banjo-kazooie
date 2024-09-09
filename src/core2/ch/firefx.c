@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int  func_8024DB50(f32 arg0[3], f32 arg1);
-
 void chfirefx_update(Actor *this);
 
 /* .data */
@@ -75,7 +73,7 @@ void chfirefx_update(Actor *this){
         }
     }//L80359934
     if(subaddie_playerIsWithinSphere(this, 2000)){
-        if( func_8024DB50(this->position, 50.0f) && this->unk38_31 ){
+        if( viewport_func_8024DB50(this->position, 50.0f) && this->unk38_31 ){
             if(!(globalTimer_getTime() & 3) && randf() < 0.1){
                 __chfirefx_spawnSmoke(this->position, this->scale);
             } //L803599AC

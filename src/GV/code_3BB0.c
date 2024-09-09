@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int func_8024DB50(f32[3], f32);
-
 void GV_func_8038A084(Actor *this);
 
 /* .data */
@@ -54,7 +52,7 @@ void GV_func_8038A084(Actor *this){
     }
 
     if(this->unkF4_8 == 6
-        && func_8024DB50(this->position, 50.0f)
+        && viewport_func_8024DB50(this->position, 50.0f)
         && !this->unk38_31
         && randf() < 0.2
     ){

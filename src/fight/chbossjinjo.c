@@ -4,8 +4,6 @@
 #include "fight.h"
 #include "core2/particle.h"
 
-
-extern void viewport_getPosition_vec3f(f32 (*)[3]);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80324CFC(f32, enum comusic_e, s32);

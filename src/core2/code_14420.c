@@ -6,7 +6,6 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
-f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
 extern f32 ml_acosf(f32);
 extern f32 player_getYaw(void);

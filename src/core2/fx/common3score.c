@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8024DE1C(f32, f32, f32[3], f32[3]);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
@@ -192,7 +191,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         a1->value_string[0] = '\0';
         strIToA(a1->value_string, itemPrint_getValue(item_id));
         print_bold_spaced(a1->unk30 + a1->unk40, sp40 + a1->unk44, a1->value_string);
-        sp3C = func_8024DE1C(a1->unk30, sp40, sp5C, sp68);
+        sp3C = viewport_func_8024DE1C(a1->unk30, sp40, sp5C, sp68);
 
         sp44[0] = 0.0f;
         sp44[1] = a1->unk38;

@@ -4,10 +4,6 @@
 
 #include "gc/gctransition.h"
 
-extern void func_8024C510(f32);
-extern void viewport_setPosition_f3(f32, f32, f32);
-extern void viewport_setRotation_f3(f32, f32, f32);
-extern void viewport_setNearAndFar(f32, f32);
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
@@ -66,7 +62,7 @@ struct{
 void func_802E3800(void){
     viewport_setPosition_f3(0.0f, 0.0f, 0.0f);
     viewport_setRotation_f3(-30.0f, 30.0f, 0.0f);
-    func_8024C510(3000.0f);
+    viewport_moveAlongZAxis(3000.0f);
     viewport_update();
 }
 

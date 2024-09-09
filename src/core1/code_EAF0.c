@@ -2,9 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
 extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
-void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 
 #define VIEWPORT_FOVY_DEFAULT (40.0f)
 #define VIEWPORT_STACK_SIZE (8)
@@ -24,20 +22,14 @@ f32 sViewportMatrix[4][4];
 Mtx sViewportDefaultMatrix;
 s32 sViewportStackIndex;
 
-void viewport_setRenderPerspectiveMatrix(Gfx **, Mtx **, f32, f32);
-void viewport_debug4(int);
-void viewport_setPosition_f3(f32, f32, f32);
-void viewport_setRotation_f3(f32, f32, f32);
-void viewport_setNearAndFar(f32, f32);
-void viewport_pushVpScaleAndTranslation(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-void viewport_setFOVy(f32);
+void viewport_moveAlongZAxis(f32 offset) {
+    f32 delta_position[3];
 
-void func_8024C510(f32 arg0){
-    f32 sp24[3];
-    func_80256E24(sp24, sViewportRotation[0], sViewportRotation[1], 0.0f, 0.0f, arg0);
-    sViewportPosition[0] += sp24[0];
-    sViewportPosition[1] += sp24[1];
-    sViewportPosition[2] += sp24[2];
+    func_80256E24(delta_position, sViewportRotation[0], sViewportRotation[1], 0.0f, 0.0f, offset);
+
+    sViewportPosition[0] += delta_position[0];
+    sViewportPosition[1] += delta_position[1];
+    sViewportPosition[2] += delta_position[2];
 }
 
 f32 viewport_getDistance(f32 arg0[3]) {
@@ -53,15 +45,15 @@ void viewport_getPosition_vec3f(f32 arg0[3]) {
 }
 
 void viewport_getPosition_vec3w(s32 dst[3]) {
-    dst[0] = ((f32)(s32)(sViewportPosition[0]*500.0))/500.0;
-    dst[1] = ((f32)(s32)(sViewportPosition[1]*500.0))/500.0;
-    dst[2] = ((f32)(s32)(sViewportPosition[2]*500.0))/500.0;
+    dst[0] = ((f32)(s32)(sViewportPosition[0] * 500.0)) / 500.0;
+    dst[1] = ((f32)(s32)(sViewportPosition[1] * 500.0)) / 500.0;
+    dst[2] = ((f32)(s32)(sViewportPosition[2] * 500.0)) / 500.0;
 }
 
 void viewport_getPosition_vec3s(s16 dst[3]) {
-    dst[0] = ((f32)(s32)(sViewportPosition[0]*500.0))/500.0;
-    dst[1] = ((f32)(s32)(sViewportPosition[1]*500.0))/500.0;
-    dst[2] = ((f32)(s32)(sViewportPosition[2]*500.0))/500.0;
+    dst[0] = ((f32)(s32)(sViewportPosition[0] * 500.0)) / 500.0;
+    dst[1] = ((f32)(s32)(sViewportPosition[1] * 500.0)) / 500.0;
+    dst[2] = ((f32)(s32)(sViewportPosition[2] * 500.0)) / 500.0;
 }
 
 void viewport_getRotation_vec3f(f32 arg0[3]) {
@@ -94,18 +86,18 @@ void viewport_setRenderViewportAndPerspectiveMatrix(Gfx **gfx, Mtx **mtx) {
 }
 
 void viewport_setRenderPerspectiveMatrix(Gfx **gfx, Mtx **mtx, f32 near, f32 far) {
-    u16 sp5e;
+    u16 perspNorm;
 
     near = MAX(sViewportNear, near);
     far = MIN(sViewportFar, far);
 
-    if(*(u32*)OS_PHYSICAL_TO_K1(0x1D8) + 0x53D4FFF0){
+    if(*(u32*)OS_PHYSICAL_TO_K1(0x1D8) + 0x53D4FFF0) { // what's this?
         near = 750.0f; 
         far = 1250.0f;
     }
     
-    guPerspective(*mtx, &sp5e, sViewportFOVy, sViewportAspect, near, far, 0.5f);
-    gSPPerspNormalize((*gfx)++, sp5e);
+    guPerspective(*mtx, &perspNorm, sViewportFOVy, sViewportAspect, near, far, 0.5f);
+    gSPPerspNormalize((*gfx)++, perspNorm);
     gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
     guRotate(*mtx, -sViewportRotation[2], 0.0f, 0.0f, -1.0f);
@@ -128,8 +120,8 @@ void viewport_setRenderPerspectiveMatrixDefaultNearAndFar(Gfx **gfx, Mtx **mtx) 
 void viewport_debug(void) {}
 
 void viewport_debug2(f32 arg0) {
-    if(90.0f < arg0) arg0 = 90.0f;
-    if(arg0 < 5.0f) arg0 = 10.0f;
+    if (90.0f < arg0) arg0 = 90.0f;
+    if (arg0 < 5.0f) arg0 = 10.0f;
     sViewportUnused1 = arg0;
 }
 
@@ -359,18 +351,20 @@ bool cube_isInFrustum2(Cube *cube) {
     return viewport_isBoundingBoxInFrustum(min, max);
 }
 
-bool func_8024DB50(f32 arg0[3], f32 arg1) {
+bool viewport_func_8024DB50(f32 arg0[3], f32 arg1) {
     f32 delta[3];
     s32 i;
 
     delta[0] = arg0[0] - sViewportPosition[0];
     delta[1] = arg0[1] - sViewportPosition[1];
     delta[2] = arg0[2] - sViewportPosition[2];
-    for(i = 0; i < 4; i++){
+
+    for(i = 0; i < 4; i++) {
         if(arg1 <= ml_dotProduct_vec3f(delta, sViewportFrustumPlanes[i])){
             return FALSE;
         }
     }
+
     return TRUE;
 }
 
@@ -389,7 +383,7 @@ bool viewport_isPointOutsideFrustum_vec3f(f32 arg0[3]) {
 }
 
 // need to figure out, what plane 2 is (neg/pos x/y ?)
-bool viewport_isPointPlane2_3f(f32 arg0, f32 arg1, f32 arg2) {
+bool viewport_isPointPlane_3f(f32 arg0, f32 arg1, f32 arg2) {
     return ((sViewportFrustumPlanes[2][0]*arg0 + sViewportFrustumPlanes[2][1]*arg1 + sViewportFrustumPlanes[2][2]*arg2 + sViewportFrustumPlanes[2][3]) <= 0.0f);
 }
 
@@ -417,11 +411,11 @@ f32 viewport_getNear(void) {
     return sViewportNear;
 }
 
-f32 func_8024DDD8(s32 arg0, f32 arg1) {
+f32 viewport_func_8024DDD8(f32 arg0[3], f32 arg1) {
     return mlNormalizeAngle((sViewportRotation[1] + arg1) + 90.0);
 }
 
-f32 func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
+f32 viewport_func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
     f32 fovy_rad;
     static f32 D_8028101C;
     static f32 D_80281020;
@@ -456,7 +450,7 @@ f32 sViewportBackupFrustumPlanes[4][4];
 f32 sViewportBackupLookVector[3];
 f32 sViewportBackupMatrix[4][4];
 
-bool func_8024E030(f32 arg0[3], f32 *arg1)
+bool viewport_func_8024E030(f32 arg0[3], f32 *arg1)
 {
     f32 sp34[3];
     f32 temp_f2_2;
@@ -473,20 +467,23 @@ bool func_8024E030(f32 arg0[3], f32 *arg1)
     ml_vec3f_pitch_rotate_copy(sp34, sp34, -sViewportRotation[0]);
 
     if ((-sViewportNear) <= sp34[2]) {
-        return 0;
+        return FALSE;
     }
 
     temp_f2 = gu_sqrtf((sp34[1] * sp34[1]) + (sp34[2] * sp34[2])) * sinf(fovy_radians);
     temp_f2_2 = (((f32) framebuffer_width) / ((f32) framebuffer_height)) * temp_f2;
+
     arg1[0] = (f32) (((sp34[0] / temp_f2_2) + 1) * (((f32) framebuffer_width) / 2));
     arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * (((f32) framebuffer_height) / 2));
+
     if ((arg1[0] < (-((f32) framebuffer_width))) || ((((f32) framebuffer_width) * 2) < arg1[0])) {
-        return 0;
+        return FALSE;
     }
+
     if ((arg1[1] < (-((f32) framebuffer_height))) || ((((f32) framebuffer_height) * 2) < arg1[1])) {
-        return 0;
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 void viewport_backupState(void) {

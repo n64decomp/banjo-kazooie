@@ -7,7 +7,6 @@ extern void func_80252330(f32, f32, f32);
 extern void mlMtxRotatePYR(f32, f32, f32);
 extern void mlMtxApply(Mtx *);
 extern void func_80349AD0(void);
-extern void viewport_getLookVector(f32[3]);
 
 
 

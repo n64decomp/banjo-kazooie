@@ -19,7 +19,6 @@ u32 D_803835E0;
 /* public */
 void func_80335110(s32);
 void func_80335128(s32);
-void viewport_setNearAndFar(f32, f32);
 void func_80335140(enum map_e);
 void func_8033520C(s32);
 

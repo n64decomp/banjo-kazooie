@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int func_8024DB50(f32[3], f32 );
 extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF9C(ParticleEmitter *, f32);
@@ -487,17 +486,17 @@ void func_80362E94(Actor *this){
 
     switch(this->unkF4_8){
         case 0x3: //L80362ED8
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.2){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.2){
                 func_80362084(this->position);
             }
             break;
         case 0xa: //L80362F24
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.1){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.1){
                 func_8036247C(this->position);
             }
             break;
         case 0xc: //L80362F70
-            if(func_8024DB50(this->position, 50.0f)){
+            if(viewport_func_8024DB50(this->position, 50.0f)){
                 if(randf() < 0.4)
                     func_80362680(this->position);
                 if(randf() < 0.8)
@@ -505,27 +504,27 @@ void func_80362E94(Actor *this){
             }
             break;
         case 0x10://L80362FE8
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.1){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.1){
                 func_80362A48(this->position);
             }
             break;
         case 0x11://L80363034
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.06){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.06){
                 func_80362ADC(this->position);
             }
             break;
         case 0x12://L80363080
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.06){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.06){
                 func_80362C04(this->position);
             }
             break;
         case 0x13://L803630CC
-            if(func_8024DB50(this->position, 50.0f) && randf() < 0.4){
+            if(viewport_func_8024DB50(this->position, 50.0f) && randf() < 0.4){
                 func_80362B70(this->position);
             }
             break;
         case 0x14://L80363118
-            if(func_8024DB50(this->position, 300.0f)){
+            if(viewport_func_8024DB50(this->position, 300.0f)){
                 if(randf() < 0.01)
                     func_80362C98(this->position);
                 func_80362D2C(this->position);

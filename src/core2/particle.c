@@ -3,7 +3,6 @@
 #include "variables.h"
 #include "core2/particle.h"
 
-extern int func_8024DB50(f32 (*)[3], f32);
 extern s32 spriteGetFrameCount(BKSprite *);
 extern void func_80344720(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32[3], Gfx **, Mtx **);
 extern void func_80344424(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32, Gfx **, Mtx **);
@@ -645,7 +644,7 @@ void particleEmitter_update(ParticleEmitter *this){
                 }//L802F0254
 
                 if( 0.0f != this->unkFC 
-                    && !func_8024DB50(&particle->position, this->unkFC)
+                    && !viewport_func_8024DB50(&particle->position, this->unkFC)
                 ){
                     memcpy(particle, --this->pList_end_128, sizeof(Particle));
                 }

@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int viewport_isPointPlane2_3f(f32, f32, f32);
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
 #define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 
@@ -39,7 +38,7 @@ void func_802F87B0(struct6s *this){
     sp4C[1] += plyrPos[1];
     sp4C[2] += plyrPos[2];
     if(f20 < 600.0){
-        for(i = 0; i <10 && viewport_isPointPlane2_3f(sp4C[0], sp4C[1] - 10.0f, sp4C[2]); i++){
+        for(i = 0; i <10 && viewport_isPointPlane_3f(sp4C[0], sp4C[1] - 10.0f, sp4C[2]); i++){
             sp4C[1] += 100.0f;
         }
     }

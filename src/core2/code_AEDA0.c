@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-Mtx *viewport_getDefaultMatrix(void);
 void mlMtxSet(Mtx *);
 void func_80252330(f32, f32, f32);
 void mlMtxApply(Mtx *);
