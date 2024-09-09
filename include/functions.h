@@ -238,8 +238,8 @@ void particleEmitter_setDrawMode(ParticleEmitter *, s32);
 void particleEmitter_setStartingFrameRange(ParticleEmitter *this, s32 arg1, s32 arg2);
 void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
-void func_802EFB70(ParticleEmitter *, f32, f32);
-void func_802EFB84(ParticleEmitter *, f32, f32);
+void particleEmitter_setStartingScaleRange(ParticleEmitter *, f32, f32);
+void particleEmitter_setFinalScaleRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *, ParticleScaleAndLifetimeRanges *);
 void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
 void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
@@ -384,7 +384,7 @@ extern s32 func_802F9AA8(enum sfx_e);
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
 Actor * spawn_actor(enum actor_e id, s32 pos[3], s32 yaw);
-f32  func_80309724(f32[3]);
+f32  mapModel_getFloorY(f32[3]);
 BKModelBin *func_8030A428(s32);
 u8   func_8030D90C(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
@@ -429,7 +429,7 @@ void func_80326244(Actor *);
 
 void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 
-Actor *func_8032813C(enum actor_e actor_id, f32 position[3], s32 yaw);
+Actor *spawn_actor_f32(enum actor_e actor_id, f32 position[3], s32 yaw);
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
 void subaddie_set_state(Actor *, u32);

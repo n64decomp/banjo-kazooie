@@ -53,8 +53,8 @@ ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
     );
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setRGB(pCtrl, D_80368DD0);
-    func_802EFB70(pCtrl, 0.02f, 0.04f);
-    func_802EFB84(pCtrl, 0.01f, 0.01f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.02f, 0.04f);
+    particleEmitter_setFinalScaleRange(pCtrl, 0.01f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 2.0f, 2.0f);
     func_802EFF50(pCtrl, 10.0f);
     return pCtrl;

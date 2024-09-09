@@ -179,7 +179,7 @@ void func_8038BDD4(Actor *this) {
                      : local->unk24;
         skeletalAnim_setDuration(this->unk148, (200.0f / local->unk24) * 0.5);
         local->unk28[1] = sp50 * 200.0f;
-        temp_f0_3 = func_80309724(this->position);
+        temp_f0_3 = mapModel_getFloorY(this->position);
         if (temp_f0_3 > 125.0f) {
             this->position[1] = 125.0f;
         } else if (temp_f0_3 > 80.0f) {

@@ -79,7 +79,7 @@ void BGS_func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
 
 void func_8038FBF8(Actor *this){
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
         marker_setCollisionScripts(this->marker, NULL, NULL, BGS_func_8038FB84);
     }

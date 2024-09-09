@@ -140,7 +140,7 @@ void chScarfSled_update(Actor *this){
     }
 
     this->velocity_x = this->position_x;
-    this->velocity_y = func_80309724(this->position);
+    this->velocity_y = mapModel_getFloorY(this->position);
     this->velocity_z = this->position_z;
     if(this->state == 2){
         __chScarfSled_func_80386630(this);

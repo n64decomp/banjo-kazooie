@@ -460,8 +460,8 @@ void func_80358684(Actor *this) {
                 this->position[2] = this->position[2] + sp3C[2];
                 this->position[1] += local->unk36*sp88;
                 local->unk36 -= 3000.0f * sp88;
-                if (this->position[1] < func_80309724(this->position)) {
-                    this->position[1] = func_80309724(this->position);
+                if (this->position[1] < mapModel_getFloorY(this->position)) {
+                    this->position[1] = mapModel_getFloorY(this->position);
                     next_state = 7;
                     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
                     timed_playSfx(0.1f, SFX_66_BIRD_AUUGHH, 1.6f, 32000);

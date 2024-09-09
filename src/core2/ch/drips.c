@@ -41,8 +41,8 @@ void func_80359A40(f32 position[3], struct_core2_D2AB0 *arg1, s32 cnt){
     particleEmitter_setDrawMode(pCtrl, PART_EMIT_ROTATABLE);
     particleEmitter_setRGB(pCtrl, D_80372AE4);
     particleEmitter_setPosition(pCtrl, position);
-    func_802EFB70(pCtrl, 0.1f, 0.1f);
-    func_802EFB84(pCtrl, 1.0f, 1.4f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.1f);
+    particleEmitter_setFinalScaleRange(pCtrl, 1.0f, 1.4f);
     particleEmitter_setSpawnIntervalRange(pCtrl, arg1->unk0, arg1->unk4);
     particleEmitter_setParticleLifeTimeRange(pCtrl, arg1->unk8, arg1->unkC);
     particleEmitter_setFade(pCtrl, 0.0f, 0.5f);
@@ -72,9 +72,9 @@ void chdrips_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         actor_collisionOff(this);
-        this->unk60 = this->yaw/360.0;
+        this->lifetime_value = this->yaw/360.0;
     }
-    if(__chdrips_playerWithinDist(this, 5000) && randf() < this->unk60){
+    if(__chdrips_playerWithinDist(this, 5000) && randf() < this->lifetime_value){
         pCtrl = partEmitMgr_newEmitter(1);
         particleEmitter_setModel(pCtrl, ASSET_8A0_SPRITE_WATER_DROP);
         particleEmitter_setPosition(pCtrl, this->position);
@@ -83,8 +83,8 @@ void chdrips_update(Actor *this){
         particleEmitter_setParticleCallback(pCtrl, __chdrips_particleCallback);
         particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
         particleEmitter_setParticleLifeTimeRange(pCtrl, 7.0f, 7.0f);
-        func_802EFB70(pCtrl, 0.1f, 0.1f);
-        func_802EFB84(pCtrl, 0.1f, 0.1f);
+        particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.1f);
+        particleEmitter_setFinalScaleRange(pCtrl, 0.1f, 0.1f);
         particleEmitter_emitN(pCtrl, 1);
     }
 }  

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern f32 func_80309724(f32[3]);
+extern f32 mapModel_getFloorY(f32[3]);
 extern f32 func_80257204(f32, f32, f32, f32);
 
 #define SQ(x) ((x) * (x))
@@ -330,7 +330,7 @@ bool func_8036054C(Actor *this) {
     s32 phi_s1;
     s32 phi_s2;
 
-    if (this->unk60 == 0.0f) {
+    if (this->lifetime_value == 0.0f) {
         this->yaw_ideal = func_80257204(this->position[0], this->position[2], this->unk1C[0], this->unk1C[2]);
         func_8035FFAC(this, func_803603AC(this, -110, 2));
     }
@@ -338,13 +338,13 @@ bool func_8036054C(Actor *this) {
         func_80328FB0(this, 5.0f);
         func_80360044(this);
         if (func_80329480(this) != 0) {
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
         } else {
             return TRUE;
         }
     }
     for(phi_s2 = 0; !func_80360198(this) && phi_s2 < 1; phi_s2++){
-        this->unk60 = 45.0f;
+        this->lifetime_value = 45.0f;
         func_80328CEC(this, (s32) this->yaw, 90, 180);
         phi_s1 = 0;
         do{
@@ -368,7 +368,7 @@ bool func_8036054C(Actor *this) {
     } else {
         this->velocity[1] = (f32) randi2(0, 0);
     }
-    if (this->position[1] <= func_80309724(this->position)) {
+    if (this->position[1] <= mapModel_getFloorY(this->position)) {
         this->velocity[0] = 3.0f;
     }
     return TRUE;
@@ -482,7 +482,7 @@ void func_80360828(Actor *this){
             sp34 = time_getDelta();
             func_8032CA80(this, this->unk38_0 ? 0x13 : 0x4);
             if(func_8035FC98(this, this->velocity_x * sp34)){
-                this->position_y =  func_80309724(this->position);
+                this->position_y =  mapModel_getFloorY(this->position);
                 subaddie_set_state_with_direction(this, 8, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);

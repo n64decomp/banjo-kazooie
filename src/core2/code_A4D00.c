@@ -247,7 +247,7 @@ bool func_8032C4AC(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     f32 sp30;
 
     if (arg0->unk138_8) {
-        arg0->position[1] = func_80309724(arg0->position);
+        arg0->position[1] = mapModel_getFloorY(arg0->position);
     }
     else{
         sp30 = func_8033229C(arg0->marker) / 3.0;

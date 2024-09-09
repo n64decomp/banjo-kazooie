@@ -50,7 +50,7 @@ void chShrapnel_func_802D0AB8(Actor *this) {
 
 void chShrapnel_spawnExplodeActor(s32 arg0){
     Actor *this = reinterpret_cast(Actor *, arg0);
-    func_8032813C(0xF3, this->unk1C, 0);
+    spawn_actor_f32(0xF3, this->unk1C, 0);
 }
 
 void chShrapnel_emitExplosion(Actor *this) {
@@ -65,8 +65,8 @@ void chShrapnel_emitExplosion(Actor *this) {
     particleEmitter_setParticleFramerateRange(temp_v0, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
     particleEmitter_setPosition(temp_v0, this->position);
-    func_802EFB70(temp_v0, 3.0f, 3.0f);
-    func_802EFB84(temp_v0, 8.0f, 8.0f);
+    particleEmitter_setStartingScaleRange(temp_v0, 3.0f, 3.0f);
+    particleEmitter_setFinalScaleRange(temp_v0, 8.0f, 8.0f);
     particleEmitter_setParticleLifeTimeRange(temp_v0, 0.5f, 0.5f);
     particleEmitter_setParticleVelocityRange(temp_v0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_emitN(temp_v0, 1);
@@ -81,8 +81,8 @@ void chShrapnel_emitSmoke(Actor *this) {
     particleEmitter_setFade(temp_v0, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 7);
     particleEmitter_setPosition(temp_v0, this->position);
-    func_802EFB70(temp_v0, 1.0f, 1.5f);
-    func_802EFB84(temp_v0, 2.0f, 3.0f);
+    particleEmitter_setStartingScaleRange(temp_v0, 1.0f, 1.5f);
+    particleEmitter_setFinalScaleRange(temp_v0, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
     particleEmitter_setRGB(temp_v0, D_803673F8);
@@ -99,7 +99,7 @@ void chShrapnel_emitBodyParts(Actor *this, enum asset_e model_id, s32 n) {
     func_802EFA18(temp_v0, 1);
     particleEmitter_setModel(temp_v0, model_id);
     particleEmitter_setPosition(temp_v0, this->position);
-    func_802EFB70(temp_v0, 0.05f, 2.0f);
+    particleEmitter_setStartingScaleRange(temp_v0, 0.05f, 2.0f);
     particleEmitter_setAngularVelocityRange(temp_v0, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(temp_v0, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(temp_v0, 10.0f, 10.0f);
@@ -147,15 +147,15 @@ void chshrapnel_update(Actor *this) {
         this->unk4C = 0.0f;
     }
     chShrapnel_func_802D0FC8(this);
-    this->unk60 += tick;
-    if (M_PI <= this->unk60) {
-        this->unk60 -= M_PI;
+    this->lifetime_value += tick;
+    if (M_PI <= this->lifetime_value) {
+        this->lifetime_value -= M_PI;
     }
     this->unk1C[0] = this->position[0];
     this->unk1C[1] = this->position[1];
     this->unk1C[2] = this->position[2];
     this->unk1C[1] = func_80309B24(this->position) - 15.0f;
-    this->position[1] = this->unk1C[1] - (sinf(this->unk60 * 4.0f) * 10.0f);
+    this->position[1] = this->unk1C[1] - (sinf(this->lifetime_value * 4.0f) * 10.0f);
     _player_getPosition(player_position);
     switch (this->state) {
         case 1:

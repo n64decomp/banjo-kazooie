@@ -142,8 +142,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
     if(this->state == 2){
         skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
-        if(!this->unk138_24){
-            this->unk138_24 = 1;
+        if(!this->is_first_encounter){
+            this->is_first_encounter = TRUE;
             if(unqPtr->unkA == 0){
                 func_80311480(0xc72, 0xe, this->position, this->marker, func_80388784, 0);
             }else{

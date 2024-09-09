@@ -835,7 +835,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk44_0 = 0;
     suLastBaddie->initialized = FALSE;
     suLastBaddie->unk16C_4 = 0;
-    suLastBaddie->unk60 = 0.0f;
+    suLastBaddie->lifetime_value = 0.0f;
     suLastBaddie->unk10_0 = 0;
     suLastBaddie->unk104 = NULL;
     suLastBaddie->unk100 = NULL;
@@ -882,7 +882,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk14C[0] = NULL;
     suLastBaddie->unk14C[1] = NULL;
     suLastBaddie->unk138_27 = 0;
-    suLastBaddie->unk138_24 = 0;
+    suLastBaddie->is_first_encounter = FALSE;
     suLastBaddie->unk138_23 = 0;
     suLastBaddie->unk138_22 = 0;
     suLastBaddie->unk138_21 = 0;
@@ -1059,13 +1059,15 @@ Actor *func_8032811C(enum actor_e id, s32 (* pos)[3], s32 rot){
     return spawn_actor(id, pos, rot);
 }
 
-Actor *func_8032813C(enum actor_e id, f32 pos[3], s32 rot){
-    s32 sp24[3];
+Actor *spawn_actor_f32(enum actor_e id, f32 pos[3], s32 rot){
+    s32 pos_float[3];
     int i;
+
     for(i = 0; i< 3; i++){
-        sp24[i] = pos[i];
+        pos_float[i] = pos[i];
     }
-    spawn_actor(id, &sp24, rot);
+
+    spawn_actor(id, &pos_float, rot);
 }
 
 Actor * spawn_child_actor(enum actor_e id, Actor ** parent){

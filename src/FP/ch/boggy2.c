@@ -390,7 +390,7 @@ void func_803895E0(void){
         f20 = (f32)func_80304DA8(s0);
         f8 = (f32)func_80304DB8(s0);
         f22 = f8*0.01;
-        actor = func_8032813C(D_80391DB8[i].actor_id, sp64, (s32)f20);
+        actor = spawn_actor_f32(D_80391DB8[i].actor_id, sp64, (s32)f20);
         actor->scale = f22;
     }
 }

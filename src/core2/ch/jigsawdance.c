@@ -30,7 +30,7 @@ Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3
     Actor *thisActor = marker_getActor(this);
 
     if(!thisActor->initialized){
-        thisActor->initialized = 1;
+        thisActor->initialized = TRUE;
         return thisActor;
     }
     else{

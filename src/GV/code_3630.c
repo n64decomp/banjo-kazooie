@@ -30,7 +30,7 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 
 void func_80389A60(Actor *this){
     func_80311480(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
-    this->unk138_24 = TRUE;
+    this->is_first_encounter = TRUE;
     subaddie_set_state(this, 5);
 }
 
@@ -47,8 +47,8 @@ void func_80389ABC(Actor *this){
 
 void func_80389B1C(Actor *this){
     if(!this->unk16C_4){
-        this->unk60 = (f32) func_8038E184();
-        this->unk138_24 = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(0);
+        this->lifetime_value = (f32) func_8038E184();
+        this->is_first_encounter = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(0);
         this->unk138_23 = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(2);
         this->unk16C_4 = TRUE;
     }
@@ -62,16 +62,16 @@ void func_80389B1C(Actor *this){
     animctrl_setTransitionDuration(this->animctrl, 0.15f);
 
     if(this->state == 1 || this->state == 2){
-        if(! this->unk138_24 && func_80329530(this, 250) && !func_80329530(this, 0x50)){
+        if(! this->is_first_encounter && func_80329530(this, 250) && !func_80329530(this, 0x50)){
             func_80311480(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
-            this->unk138_24 = TRUE;
+            this->is_first_encounter = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }
     }
 
     switch(this->state){
         case 1://L80389CC4
-            if(this->unk60 <= (f32)func_8038E178()){
+            if(this->lifetime_value <= (f32)func_8038E178()){
                 func_80389ABC(this);
             }
             else if(actor_animationIsAt(this, 0.99f)){
@@ -92,7 +92,7 @@ void func_80389B1C(Actor *this){
             break;
 
         case 2: //L80389DB0
-            if(this->unk60 <= (f32)func_8038E178()){
+            if(this->lifetime_value <= (f32)func_8038E178()){
                 func_80389ABC(this);
             }
             else if(actor_animationIsAt(this, 0.99f)){

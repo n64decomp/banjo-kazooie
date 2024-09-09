@@ -46,8 +46,8 @@ ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
     );
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setRGB(pCtrl, D_80368850);
-    func_802EFB70(pCtrl, 0.05f, 0.09f);
-    func_802EFB84(pCtrl, 0.05f, 0.09f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.09f);
+    particleEmitter_setFinalScaleRange(pCtrl, 0.05f, 0.09f);
     func_802EFF50(pCtrl, 10.0f);
     func_802EFF5C(pCtrl, 0.25f, 0.25f, 0.0f);
     func_802EFF7C(pCtrl, 0.0f, 0.1f, 0.0f);

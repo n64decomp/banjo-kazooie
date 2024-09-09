@@ -131,8 +131,8 @@ void func_80387C5C(void){
     particleEmitter_setDrawMode(actor, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(actor, 0, 0);
     particleEmitter_setParticleFramerateRange(actor, 4.0f, 4.0f);
-    func_802EFB70(actor, 10.0f, 10.0f);
-    func_802EFB84(actor, 15.0f, 20.0f);
+    particleEmitter_setStartingScaleRange(actor, 10.0f, 10.0f);
+    particleEmitter_setFinalScaleRange(actor, 15.0f, 20.0f);
     particleEmitter_setParticleLifeTimeRange(actor, 4.0f, 4.0f);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_emitInVolume(actor, &D_803902D4, &D_803902E0, 1);
@@ -152,7 +152,7 @@ void func_80387E20(void){
     func_802EF9F8(actor, 0.6f);
     func_802EFA18(actor, 3);
     particleEmitter_setModel(actor, 0x427);
-    func_802EFB70(actor, 0.05f, 0.4f);
+    particleEmitter_setStartingScaleRange(actor, 0.05f, 0.4f);
     particleEmitter_setAngularVelocityRange(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(actor, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(actor, 10.0f, 10.0f);

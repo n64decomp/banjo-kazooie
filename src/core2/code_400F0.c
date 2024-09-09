@@ -70,10 +70,10 @@ void func_802C70DC(Actor *actor, Struct_Core2_400F0_0 * arg1, s32 arg2){
 
     tmp_f20 = time_getDelta();
     while(0.0f < tmp_f20){
-        actor->unk60 -= tmp_f20;
-        if(0.0f < actor->unk60)
+        actor->lifetime_value -= tmp_f20;
+        if(0.0f < actor->lifetime_value)
             break;
-        tmp_f20 = mlAbsF(actor->unk60);
+        tmp_f20 = mlAbsF(actor->lifetime_value);
         s0 = &arg1[actor->unk154];
         func_802C7080(actor, s0->unk4, s0->unk8, s0->unkC);
         s0++;
@@ -91,7 +91,7 @@ void func_802C70DC(Actor *actor, Struct_Core2_400F0_0 * arg1, s32 arg2){
             actor->unk154++; 
         }
         //L802C71B8
-        actor->unk60 = s0->unk0;
+        actor->lifetime_value = s0->unk0;
     }//L802C71CC
 }
 
@@ -124,7 +124,7 @@ void func_802C7318(Actor *actor){
          local->unk0[i] = 0.0f;
          local->unk8[i] = 0.0f;
     }
-    actor->unk60 = 0.0f;
+    actor->lifetime_value = 0.0f;
     actor->unk154 = 0;
     actor->unk124_5 = 0;
     reinterpret_cast(s32, actor->unkBC) = 1;
@@ -194,7 +194,7 @@ void func_802C7568(enum actor_e actor_id, s32 arg1, f32 arg2){
 void func_802C75A0(Actor *actor, s32 arg1){
     actor->unk124_5 = arg1;
     actor->unk154 = 0;
-    actor->unk60 = 0.0f;
+    actor->lifetime_value = 0.0f;
 }
 
 void func_802C75C8(enum actor_e actor_id, s32 arg1){

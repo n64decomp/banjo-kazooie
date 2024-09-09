@@ -37,7 +37,7 @@ void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
     particleEmitter_setSprite(arg0, arg1);
     particleEmitter_setParticleAccelerationRange(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
     particleEmitter_setFade(arg0, 0.4f, 0.8f);
-    func_802EFB84(arg0, 0.03f, 0.03f);
+    particleEmitter_setFinalScaleRange(arg0, 0.03f, 0.03f);
     particleEmitter_setAngularVelocityRange(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     particleEmitter_setParticleLifeTimeRange(arg0, 0.65f, 0.65f);
     func_802EFF50(arg0, 1.0f);
@@ -48,7 +48,7 @@ void func_802AF88C(ParticleEmitter * arg0, f32 arg1, f32 arg2){
         arg1*30.0f, 10.0f, arg2*30.0f, 
         arg1*30.0f, 10.0f, arg2*30.0f
     );
-    func_802EFB70(arg0, D_8037D470.unk14, D_8037D470.unk14);
+    particleEmitter_setStartingScaleRange(arg0, D_8037D470.unk14, D_8037D470.unk14);
 }
 
 void func_802AF900(void){
@@ -148,8 +148,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_setFade(s0, 0.7f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 12.0f, 12.0f);
     particleEmitter_setPosition(s0, arg0);
-    func_802EFB70(s0, 3.2f, 3.2f);
-    func_802EFB84(s0, 3.2f, 3.2f);
+    particleEmitter_setStartingScaleRange(s0, 3.2f, 3.2f);
+    particleEmitter_setFinalScaleRange(s0, 3.2f, 3.2f);
     particleEmitter_setParticleLifeTimeRange(s0, 0.8f, 0.8f);
     particleEmitter_emitN(s0, 1);
     
@@ -158,8 +158,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_setFade(s0, 0.1f, 0.8f);
     particleEmitter_setParticleFramerateRange(s0, 15.0f, 15.0f);
     particleEmitter_setPosition(s0, arg0);
-    func_802EFB70(s0, 3.0f, 3.0f);
-    func_802EFB84(s0, 3.0f, 3.0f);
+    particleEmitter_setStartingScaleRange(s0, 3.0f, 3.0f);
+    particleEmitter_setFinalScaleRange(s0, 3.0f, 3.0f);
     particleEmitter_setParticleLifeTimeRange(s0, 0.65f, 0.65f);
     particleEmitter_emitN(s0, 1);
 
@@ -167,8 +167,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_setSprite(s0, ASSET_713_SPRITE_SPARKLE_YELLOW); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364BB0);
     particleEmitter_setFade(s0, 0.0f, 0.6f);
-    func_802EFB70(s0, 0.28f, 0.32f);
-    func_802EFB84(s0, 0.03f, 0.03f);
+    particleEmitter_setStartingScaleRange(s0, 0.28f, 0.32f);
+    particleEmitter_setFinalScaleRange(s0, 0.03f, 0.03f);
     particleEmitter_setAngularVelocityRange(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     particleEmitter_setParticleLifeTimeRange(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);
@@ -187,8 +187,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_setSprite(s0, ASSET_716_SPRITE_SPARKLE_WHITE); //sparkle
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C40);
     particleEmitter_setFade(s0, 0.0f, 0.6f);
-    func_802EFB70(s0, 0.28f, 0.32f);
-    func_802EFB84(s0, 0.03f, 0.03f);
+    particleEmitter_setStartingScaleRange(s0, 0.28f, 0.32f);
+    particleEmitter_setFinalScaleRange(s0, 0.03f, 0.03f);
     particleEmitter_setAngularVelocityRange(s0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     particleEmitter_setParticleLifeTimeRange(s0, 2.0f, 2.0f);
     func_802EFF50(s0, 1.0f);

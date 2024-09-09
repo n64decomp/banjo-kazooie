@@ -78,7 +78,7 @@ void __chCrab_ow(ActorMarker *marker, ActorMarker *other) {
     Actor *this;
 
     this = marker_getActor(marker);
-    this->unk60 = 3.0f;
+    this->lifetime_value = 3.0f;
     subaddie_set_state(this, 6);
     actor_playAnimationOnce(this);
     if (marker->id == MARKER_13_SNIPPET) {
@@ -108,7 +108,7 @@ void __chCrab_emitClawPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset
     __chCrab_particleEmitterSetup(p_ctrl, position);
     particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
-    func_802EFB70(p_ctrl, 0.5f, 0.8f);
+    particleEmitter_setStartingScaleRange(p_ctrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -200.0f, 850.0f, -200.0f, 400.0f, 1000.0f, 400.0f);
     particleEmitter_emitN(p_ctrl, 2);
@@ -118,7 +118,7 @@ void __chCrab_emitLegPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset_
     __chCrab_particleEmitterSetup(p_ctrl, position);
     particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
-    func_802EFB70(p_ctrl, 0.5f, 0.8f);
+    particleEmitter_setStartingScaleRange(p_ctrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -200.0f, 850.0f, -200.0f, 400.0f, 1000.0f, 400.0f);
     particleEmitter_emitN(p_ctrl, 6);
@@ -128,7 +128,7 @@ void __chCrab_emitHeadPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset
     __chCrab_particleEmitterSetup(p_ctrl, position);
     particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
-    func_802EFB70(p_ctrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(p_ctrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(p_ctrl, 1);
@@ -180,7 +180,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 32750, this->position, 950, 1900);
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 28000, this->position, 950, 1900);
     __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
-    this->unk60 = 5.0f;
+    this->lifetime_value = 5.0f;
     marker->collidable = FALSE;
     this->unk138_27 = 1;
     marker_despawn(marker);
@@ -239,7 +239,7 @@ void chCrab_update(Actor *this) {
         marker_setCollisionScripts(this->marker, __chCrab_touch, __chCrab_ow, __chCrab_die);
         func_803300C0(this->marker, &__chCrab_802CB76C);
         this->unk124_0 = this->unk138_31 = FALSE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         this->unk16C_4 = TRUE;
         animctrl_setTransitionDuration(this->animctrl, 0.25f);
         if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -273,7 +273,7 @@ void chCrab_update(Actor *this) {
             func_80311480(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
             levelSpecificFlags_set(0xE, TRUE);
-            this->unk138_24 = TRUE;
+            this->is_first_encounter = TRUE;
         }
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -292,8 +292,8 @@ void chCrab_update(Actor *this) {
     }
     if (levelSpecificFlags_get(0xE)) {
         if ((this->state != 8) && (this->state != 9)) {
-            subaddie_set_state_with_direction(this, (this->unk138_24) ? 8 : 9, 0.0f, 1);
-            this->unk138_24 = FALSE;
+            subaddie_set_state_with_direction(this, (this->is_first_encounter) ? 8 : 9, 0.0f, 1);
+            this->is_first_encounter = FALSE;
         }
     }
 
@@ -353,8 +353,8 @@ void chCrab_update(Actor *this) {
             break;
 
         case 5: //L802CC0AC
-            this->unk60 = MAX(0.0, this->unk60 - sp30);
-            if (this->unk60 == 0.0f) {
+            this->lifetime_value = MAX(0.0, this->lifetime_value - sp30);
+            if (this->lifetime_value == 0.0f) {
                 subaddie_set_state(this, 7);
                 actor_playAnimationOnce(this);
                 if (this->marker->id == 0x16B) {
@@ -368,7 +368,7 @@ void chCrab_update(Actor *this) {
 
         case 6: //L802CC18C
             if (animctrl_isStopped(this->animctrl)) {
-                if (this->unk60 == 0.0f) {
+                if (this->lifetime_value == 0.0f) {
                     func_80326310(this);
                 } else {
                     subaddie_set_state(this, 5);

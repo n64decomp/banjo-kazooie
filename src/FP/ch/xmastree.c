@@ -124,18 +124,18 @@ void chXmasTree_update(Actor *this){
             if(!mapSpecificFlags_get(2)) break;
 
             subaddie_set_state(this, 3);
-            this->unk60 = 2.0f;
+            this->lifetime_value = 2.0f;
             func_8025A6EC(COMUSIC_61_XMAS_TREE_LIGHTS_UP, 28000);
             func_802BAFE4(0x1A);
             func_80311480(0xC14, 0, NULL, NULL, NULL, NULL);
             break;
 
         case 3: // L803872F0
-            if(0.0 <= this->unk60){
-                if( 1.8 < this->unk60){
+            if(0.0 <= this->lifetime_value){
+                if( 1.8 < this->lifetime_value){
                     __chXmasTree_80386EF4(this, 0);
                 }
-                else if(this->unk60 < 0.2){//L80387340
+                else if(this->lifetime_value < 0.2){//L80387340
                     __chXmasTree_80386EF4(this, 1);
                 }
                 else{
@@ -144,7 +144,7 @@ void chXmasTree_update(Actor *this){
                         __chXmasTree_8038709C(this);
                     }
                 }//L803873AC
-                this->unk60 -= sp2C;
+                this->lifetime_value -= sp2C;
             }
             else{//L803873BC
                 if(func_802BB270()){
@@ -174,12 +174,12 @@ void chXmasTree_update(Actor *this){
                 if(item_empty(ITEM_6_HOURGLASS)){
                     subaddie_set_state(this, 5);
                     mapSpecificFlags_set(2, FALSE);
-                    this->unk60 = 0.1f;
+                    this->lifetime_value = 0.1f;
                     if(!func_8038BFA0()){
                         if(!mapSpecificFlags_get(9) || mapSpecificFlags_get(1)){
                             func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
                             func_802BAFE4(0x1a);
-                            this->unk60 = 2.0f;
+                            this->lifetime_value = 2.0f;
                         }
                     }
                 }
@@ -187,11 +187,11 @@ void chXmasTree_update(Actor *this){
             break;
 
         case 5: // L803874EC
-            if(0.0 <= this->unk60){
-                if( 1.8 < this->unk60){
+            if(0.0 <= this->lifetime_value){
+                if( 1.8 < this->lifetime_value){
                     __chXmasTree_80386EF4(this, 1);
                 }
-                else if(this->unk60 < 0.2){
+                else if(this->lifetime_value < 0.2){
                     __chXmasTree_80386EF4(this, 0);
                 }
                 else{
@@ -200,7 +200,7 @@ void chXmasTree_update(Actor *this){
                         __chXmasTree_8038709C(this);
                     }
                 }
-                this->unk60 -= sp2C;
+                this->lifetime_value -= sp2C;
             }
             else{
                 __chXmasTree_80386F84(this);

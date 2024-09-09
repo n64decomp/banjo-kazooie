@@ -104,7 +104,7 @@ void chJinjo_update(Actor * this){
     
     local = &this->jinjo;
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         local->unk0 = 1;
         local->unk4 = 0;
         local->unk8 = (this->position_y < func_80309B24(this->position));

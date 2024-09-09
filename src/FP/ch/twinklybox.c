@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80324CD8(f32);
-extern Actor *func_8032813C(enum actor_e, f32[3], s32);
+extern Actor *spawn_actor_f32(enum actor_e, f32[3], s32);
 
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038D6C8(Actor *this);
@@ -209,9 +209,9 @@ void func_8038D41C(ActorMarker *marker){
     ActorMarker *_marker = reinterpret_cast(ActorMarker *, marker);
     Actor *actor;
     
-    actor = func_8032813C(ACTOR_337_TWINKLY_MUNCHER, D_80392354, 170);
+    actor = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392354, 170);
     actor->unk100 = _marker;
-    actor = func_8032813C(ACTOR_337_TWINKLY_MUNCHER, D_80392360, 170);
+    actor = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392360, 170);
     actor->unk100 = _marker;
     if(pad[0]);
 }
@@ -369,7 +369,7 @@ void func_8038D6C8(Actor *this){
         this->unk38_31 = 0xA;
         item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
         __spawnQueue_add_1((GenFunction_1)func_8038D41C, (s32)this->marker);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         func_80347A14(0);
         func_802FAD64(ITEM_14_HEALTH);
         break;
@@ -407,12 +407,12 @@ void func_8038D6C8(Actor *this){
 
 
         if(0.96 < animctrl_getAnimTimer(this->animctrl)){
-            if(this->unk60 <= 0.0){
+            if(this->lifetime_value <= 0.0){
                 __spawnQueue_add_1((GenFunction_1)func_8038D474, (s32)this->marker);
-                this->unk60 = 2.9f;
+                this->lifetime_value = 2.9f;
             }
             else{
-                this->unk60 -= sp24;
+                this->lifetime_value -= sp24;
             }
             item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
         }

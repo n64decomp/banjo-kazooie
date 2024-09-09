@@ -233,8 +233,8 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
                 break;
 
             case ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT: /* 2FFC 803893EC 920B0138 */
-                actor->unk138_24 = 0;
-                actor->unk60 = 0.0f;
+                actor->is_first_encounter = FALSE;
+                actor->lifetime_value = 0.0f;
                 break;
 
             case ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN: /* 3014 80389404 0C0A3E46 */
@@ -406,7 +406,7 @@ void chsmmole_Update(Actor * this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOff(this);
-        this->initialized = 1;
+        this->initialized = TRUE;
         marker_setFreeMethod(this->marker, func_80389984);
         if(this->unkF4_8 == 1 || this->unkF4_8 == 8){//L80389A30
             sp40 = func_80304C38(0x349, this);
@@ -557,7 +557,7 @@ void chsmmole_Update(Actor * this){
         }//L8038A1B8
         user_input = -1;
         if(this->unk38_0){
-            this->unk60 += time_getDelta();
+            this->lifetime_value += time_getDelta();
             if(func_803114C4() != 0xe1d){
                 if(sp50[FACE_BUTTON(BUTTON_A)] == 1) 
                     user_input = 1; //A button pressed
@@ -572,9 +572,9 @@ void chsmmole_Update(Actor * this){
                     chsmmole_skipIntroTutorial(); //give all SM moves
                 }
                 this->unk38_0 = 0;
-            }else if(!this->unk138_24 && 5.0 < this->unk60){
+            }else if(!this->is_first_encounter && 5.0 < this->lifetime_value){
                 func_80311480(0xe1d, 0x86, this->position, this->marker, func_803892C8, NULL);
-                this->unk138_24 = 1;
+                this->is_first_encounter = TRUE;
             }
         }
         break;

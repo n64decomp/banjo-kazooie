@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309724(f32[3]);
+extern f32 mapModel_getFloorY(f32[3]);
 void func_80329904(ActorMarker *, s32, void *);
 
 void func_8038A314(Actor *this);
@@ -143,7 +143,7 @@ void func_8038A31C(Actor *this){
     this->pitch = 0.0f;
     if(this->unk100 && sp24 && this->unk100->id == MARKER_AF_MAGIC_CARPET_SHADOW){
         sp24->position_x = this->position_x;
-        sp24->position_y = func_80309724(this->position) + 60.0f;
+        sp24->position_y = mapModel_getFloorY(this->position) + 60.0f;
         sp24->position_z = this->position_z;
         sp24->unk1C[0] = func_8038A264(sp24, this);
         sp24->yaw = this->yaw;

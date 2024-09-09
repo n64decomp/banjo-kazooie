@@ -5,7 +5,7 @@
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void actor_predrawMethod(Actor *);
 extern void actor_postdrawMethod(ActorMarker *);
-extern Actor *func_8032813C(enum actor_e id, f32[3], s32);
+extern Actor *spawn_actor_f32(enum actor_e id, f32[3], s32);
 
 
 Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -69,7 +69,7 @@ void chOverlayPressStart_func_802DCC78(ActorMarker *this){
 
 void chOverlayPressStart_update(Actor *this){
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
         subaddie_set_state_with_direction(this, 1, 0.0f, 1);
@@ -85,7 +85,7 @@ void chOverlayPressStart_update(Actor *this){
 
 void __chOverlayPressStart_spawn(void){
     if(D_8037DE80 == NULL){
-        D_8037DE80 = func_8032813C(ACTOR_1DE_PRESS_START_OVERLAY, D_80368118, 0)->marker;
+        D_8037DE80 = spawn_actor_f32(ACTOR_1DE_PRESS_START_OVERLAY, D_80368118, 0)->marker;
     }
 }
 

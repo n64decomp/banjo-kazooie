@@ -35,7 +35,7 @@ void _chchimpystump_80386CA0(Actor *this){
 void chchimpystump_update(Actor *this){
     if(!this->initialized){
         actor_collisionOff(this);
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->unk28 = this->position_y;
         this->position_y -= 134.0f;
         this->marker->propPtr->unk8_3 = 1;

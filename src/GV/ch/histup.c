@@ -119,15 +119,15 @@ void func_8038DBDC(Actor *this){
                 this->unk1C[0] = 0.0f;
             }//L8038DC90
             if(func_8038E178() != (s32)this->unk1C[0] || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
-                if(15.0f <= this->unk60){
+                if(15.0f <= this->lifetime_value){
                     subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
                     animctrl_setDuration(this->animctrl, 2.0f);
                     this->unk1C[0] = (f32)func_8038E178();
-                    this->unk60 = 0.0f;
+                    this->lifetime_value = 0.0f;
                 }
                 else{//L8038DD2C
-                    this->unk60 += 1.0f;
+                    this->lifetime_value += 1.0f;
                 }
             }
             break;

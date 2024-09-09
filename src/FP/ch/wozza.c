@@ -299,10 +299,10 @@ void FP_func_8038F7AC(Actor *this){
                 break;
             }
 
-            if(func_80329530(this, 500) && !this->unk138_24){
+            if(func_80329530(this, 500) && !this->is_first_encounter){
                 if(func_80311480(0xc1c, 0xAA, this->position, this->marker, func_8038F330, func_8038F3C4)){
                     timed_setStaticCameraToNode(0.0f, 0x2E);
-                    this->unk138_24 = TRUE;
+                    this->is_first_encounter = TRUE;
                 }
                 break;
             }//L8038FD40

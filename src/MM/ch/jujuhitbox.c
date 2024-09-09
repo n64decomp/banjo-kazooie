@@ -120,8 +120,8 @@ void func_80388E20(Actor *this){
 
     jujuCtlPtr = (ActorLocal_JujuHitbox *)&this->local;
     if(!this->initialized){
-        this->initialized = 1;
-        this->unk138_24 = 0;
+        this->initialized = TRUE;
+        this->is_first_encounter = FALSE;
         jujuCtlPtr->unk18 = 0.5f;
     }
     if(!this->unk16C_4){
@@ -133,9 +133,9 @@ void func_80388E20(Actor *this){
             && !func_80329530(this, 0x50)
             && !func_8028ECAC()
         ){
-            if( !this->unk138_24 ){
+            if( !this->is_first_encounter ){
                 if(func_80311480(ASSET_B44_TEXT_JUJU_MEET, 0, 0, 0, NULL, NULL)){
-                    this->unk138_24 = 1;
+                    this->is_first_encounter = TRUE;
                 }
             }
         }

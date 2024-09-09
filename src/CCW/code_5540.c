@@ -121,7 +121,7 @@ void chnabnut_update(Actor *this) {
         D_8038F350[1] = this->position[1];
         D_8038F350[2] = this->position[2];
         if (this->state == 0) {
-            this->unk138_24 = FALSE;
+            this->is_first_encounter = FALSE;
             local->returned_acorn_count = NULL;
         }
         chnabnut_setState(this, 1);
@@ -133,15 +133,15 @@ void chnabnut_update(Actor *this) {
 
     if (this->state == NABNUT_STATE_1_SAD) {
         player_getPosition(sp30);
-        if (!this->unk138_24 && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
-            this->unk138_24 = TRUE;
+        if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
+            this->is_first_encounter = TRUE;
             func_80311480(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
         if (item_getCount(ITEM_23_ACORNS) > 0) {
             func_80258A4C(this->position, this->yaw - 90.0f, sp30, &sp2C, &sp28, &sp24);
             this->yaw += sp24 * 10.0f;
         }
-        if (this->unk138_24 && !func_803114B0()) {
+        if (this->is_first_encounter && !func_803114B0()) {
             func_8028F364(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
             if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_distance_vec3f(this->position, sp30) < 300.0f) && func_8028FC34()) {
                 func_8028FA54(D_8038F350);

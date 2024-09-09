@@ -16,7 +16,7 @@ typedef struct{
 }ActorLocal_Flibbit;
 
 
-extern f32 func_80309724(f32 *);
+extern f32 mapModel_getFloorY(f32 *);
 extern void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 
 void chflibbit_update(Actor *this);
@@ -46,7 +46,7 @@ bool BGS_func_803863F0(Actor *this, f32 arg1[3], s32 arg2){
     local->unk8[1] = arg1[1];
     local->unk8[2] = arg1[2];
 
-    local->unk8[1] = func_80309724(arg1);
+    local->unk8[1] = mapModel_getFloorY(arg1);
     skeletalAnim_set(this->unk148, 0xdb, 0.2f,(arg2) ?  randf2(0.7f, 0.8f) :  randf2(0.75f, 0.85f));
     skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     func_80324D54(0.2f, 0x3f2, randf2(0.7f, 1.3f), randi2(0x61A8, 0x6978), this->position, 500.0f, 2500.0f);
@@ -211,7 +211,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9f));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
-        this->position[1] = func_80309724(this->position);
+        this->position[1] = mapModel_getFloorY(this->position);
         local->unk18 = 1.0f;
     }
 
@@ -219,7 +219,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
         FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        this->position[1] = func_80309724(this->position);
+        this->position[1] = mapModel_getFloorY(this->position);
         local->unk18 = 1.0f;
     }
 
@@ -333,7 +333,7 @@ void chflibbit_update(Actor *this){
         local->unkE[1] = (s16) this->position_y;
         local->unkE[2] = (s16) this->position_z;
         
-        local->unkE[1] = func_80309724(this->position);
+        local->unkE[1] = mapModel_getFloorY(this->position);
         func_80386AEC(this, 1);
     }
     player_getPosition(player_position);
@@ -439,8 +439,8 @@ void chflibbit_update(Actor *this){
 
         this->position_y += local->unk14*spA4;
         local->unk14 -= 3000.0f*spA4;
-        if(this->position_y  < func_80309724(this->position)){
-            this->position_y  = func_80309724(this->position);
+        if(this->position_y  < mapModel_getFloorY(this->position)){
+            this->position_y  = mapModel_getFloorY(this->position);
             func_80386AEC(this, 7);
         }
     }

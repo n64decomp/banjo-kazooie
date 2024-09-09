@@ -70,7 +70,7 @@ void func_803890A0(ActorMarker *marker, s32 arg1){
     position[1] = actorPtr->position_y;
     position[2] = actorPtr->position_z;
     for(i = 0; i < 4; i++){
-        jujuPtr = func_8032813C(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
+        jujuPtr = spawn_actor_f32(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
         jujuPtr->marker->collidable = 0;
         actorPtr = marker_getActor(marker);
         func_80388DE8(actorPtr, i, jujuPtr);

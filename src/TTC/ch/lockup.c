@@ -75,7 +75,7 @@ void func_80389600(Actor *this){
     s32 tmp_v1;
     int i;
 
-    if( !this->unk138_24 
+    if( !this->is_first_encounter
         && this->unkF4_8 == 0xA
         && !jiggyscore_isCollected(JIGGY_13_TTC_LOCKUP)
         && func_80329530(this, 320)
@@ -83,7 +83,7 @@ void func_80389600(Actor *this){
         && !func_8028ECAC()
         && func_80311480(0xA15, 0, NULL, NULL, NULL, NULL)
     ){
-        this->unk138_24 = 1;
+        this->is_first_encounter = TRUE;
     }//L803896AC
 
     if(!this->unk16C_4){

@@ -74,7 +74,7 @@ void func_802DC45C(Actor *this){
 void func_802DC4C4(void) {
     Actor *actor;
     if (D_8037DE40 == 0) {
-        actor = func_8032813C(ACTOR_1DB_GAME_OVER, D_80368040, 0);
+        actor = spawn_actor_f32(ACTOR_1DB_GAME_OVER, D_80368040, 0);
         D_8037DE40 = actor->marker;
         func_8025A58C(0, 5000);
         func_8025AB00();

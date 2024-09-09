@@ -34,7 +34,7 @@ void chOverlayCopyright_update(Actor *this){
 void __chOverlayCopyright_spawn(void) {
     Actor *actor;
     if (chOverlayCopyrightMarker == 0) {
-        actor = func_8032813C(ACTOR_1DD_COPYRIGHT_OVERLAY, D_803680D0, 0);
+        actor = spawn_actor_f32(ACTOR_1DD_COPYRIGHT_OVERLAY, D_803680D0, 0);
         chOverlayCopyrightMarker = actor->marker;
     }
 }

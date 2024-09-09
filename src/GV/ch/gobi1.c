@@ -176,13 +176,13 @@ void chGobi1_update(Actor *this){
     }
 
     if(this->state == 1 || this->state == 2){
-        if( !this->unk138_24
+        if( !this->is_first_encounter
             && func_80329530(this, 250)
             && !func_80329530(this, 80)
             && func_8028F2A0()
             && func_80311480(0xa73, 0, NULL, NULL, NULL, NULL)
         ){
-            this->unk138_24 = 1;
+            this->is_first_encounter = TRUE;
         }
     }//L803877A4
 

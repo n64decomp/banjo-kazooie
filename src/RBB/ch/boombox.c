@@ -78,8 +78,8 @@ void func_8038E998(Actor *this){
     particleEmitter_setFade(other, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, 0.25f, 0.75f);
-    func_802EFB84(other, 0.75f, 1.75f);
+    particleEmitter_setStartingScaleRange(other, 0.25f, 0.75f);
+    particleEmitter_setFinalScaleRange(other, 0.75f, 1.75f);
     particleEmitter_setParticleSpawnPositionRange(other, -50.0f, 25.0f, -50.0f, 50.0f, 25.0f, 50.0f);
     particleEmitter_setParticleVelocityRange(other, -50.0f, 100.0f, -50.0f, 50.0f, 200.0f, 50.0f);
     particleEmitter_setParticleLifeTimeRange(other, 0.5f, 1.0f);
@@ -97,8 +97,8 @@ void func_8038EAB4(Actor *this){
     particleEmitter_setParticleFramerateRange(other, 4.0f, 4.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, 3.0f, 3.0f);
-    func_802EFB84(other, 8.0f, 8.0f);
+    particleEmitter_setStartingScaleRange(other, 3.0f, 3.0f);
+    particleEmitter_setFinalScaleRange(other, 8.0f, 8.0f);
     particleEmitter_setParticleLifeTimeRange(other, 0.5f, 0.5f);
     particleEmitter_setParticleVelocityRange(other, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_emitN(other, 1);
@@ -111,8 +111,8 @@ void func_8038EC14(Actor *this){
     particleEmitter_setFade(other, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, 1.0f, 1.5f);
-    func_802EFB84(other, 2.0f, 3.0f);
+    particleEmitter_setStartingScaleRange(other, 1.0f, 1.5f);
+    particleEmitter_setFinalScaleRange(other, 2.0f, 3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(other, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
     particleEmitter_setRGB(other, &RBB_D_80390DD0);
@@ -127,7 +127,7 @@ void func_8038ED3C(Actor * actor, s32 arg1){
     func_802EFA18(other, 3);
     particleEmitter_setModel(other, arg1);
     particleEmitter_setPosition(other, actor->position);
-    func_802EFB70(other, 0.05f, 0.4f);
+    particleEmitter_setStartingScaleRange(other, 0.05f, 0.4f);
     particleEmitter_setAngularVelocityRange(other, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(other, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(other, 10.0f, 10.0f);
@@ -172,7 +172,7 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     local->unk20[1] = sp54[1] + this->position_y;
     local->unk20[2] = sp54[2] + this->position_z;
 
-    local->unk20[1] = func_80309724(&local->unk20);
+    local->unk20[1] = mapModel_getFloorY(&local->unk20);
 
     sp40[0] = local->unk20[0];
     sp40[1] = local->unk20[1] + this->scale*100.0f;
@@ -336,7 +336,7 @@ void func_8038F618(Actor *this){
         local->unk38 = 0;
         local->unk39 = 0;
         local->unk0 = &D_80390D80[(this->modelCacheIndex ==  0x30d)? 1 : 0];
-        local->unk2C = func_80309724(&this->position);
+        local->unk2C = mapModel_getFloorY(&this->position);
         local->unk34 = 0;
         local->unk4 = 0.5f;
         local->unk30 = 0.0f;

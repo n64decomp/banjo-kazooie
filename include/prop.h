@@ -192,7 +192,7 @@ typedef struct actor_s{
     u32 unk58_1: 1;
     u32 unk58_0: 1;
     f32 unk5C;
-    f32 unk60; // actor lifetime?
+    f32 lifetime_value; // actor lifetime?
     f32 yaw_ideal; //0x64
     f32 pitch;//0x68
     f32 unk6C;
@@ -260,7 +260,7 @@ typedef struct actor_s{
     u32 unk138_28:1;
     u32 unk138_27:2;
     u32 unk138_25:1;
-    u32 unk138_24:1;
+    u32 is_first_encounter:TRUE;
     u32 unk138_23:1;
     u32 unk138_22:1;
     u32 unk138_21:1;

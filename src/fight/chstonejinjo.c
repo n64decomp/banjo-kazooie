@@ -35,7 +35,7 @@ void chstonejinjo_spawnJinjo(ActorMarker *marker) {
         jinjo = spawn_child_actor((this->unkF4_8) + 0x3A4, &this);
     }
     jinjo->unkF4_8 = this->unkF4_8;
-    jinjo->unk60 = this->unk1C[0];
+    jinjo->lifetime_value = this->unk1C[0];
     jinjo->scale = this->scale;
 }
 

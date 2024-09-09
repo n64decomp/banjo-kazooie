@@ -196,7 +196,7 @@ f32 MMM_func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
                 break;
             }
             func_8030E878(SFX_82_METAL_BREAK, randf2(0.93f, 1.07f), 0x7FF8, this->position, 100.0f, 900.0f);
-            this->unk60 = 1.0f;
+            this->lifetime_value = 1.0f;
         }
     }
     arg3 += 4.5;
@@ -226,7 +226,7 @@ bool func_80388670(ActorMarker * this_marker, ActorMarker * other_marker){
 void func_803888B8(Actor *this){
     func_803300C0(this->marker, func_80388670);
     func_802D3CE8(this);
-    this->unk60 = 0.0f;
+    this->lifetime_value = 0.0f;
     switch(this->state){
         case 4:
             switch(this->marker->id){
@@ -255,7 +255,7 @@ Actor *func_80388994(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp6C[3];
 
     this = actor_drawFullDepth(marker, gfx, mtx, vtx);
-    if (marker->unk14_21 && (this->unk60 != 0.0f)) {
+    if (marker->unk14_21 && (this->lifetime_value != 0.0f)) {
         func_8034A174((struct5Bs *) marker->unk44, 5, &sp84);
         func_8034A174((struct5Bs *) marker->unk44, 6, &sp78);
         for(i = 0;  i < 8; i++){
@@ -290,13 +290,13 @@ void func_80388BDC(Actor *this) {
     mapSpecificFlags_set(1, ((this->yaw > 260.0f) && (this->yaw < 330.0f)) ? TRUE : FALSE);
     if (!this->unk16C_4) {
         if (this->yaw != 0.0f) {
-            this->unk60 = 0.5f;
+            this->lifetime_value = 0.5f;
             subaddie_set_state(this, 7);
             this->unk38_31 = 1;
             this->yaw = 270.0f;
         } else {
             this->unk38_31 = 0;
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
         }
         this->unk16C_4 = TRUE;
     }
@@ -327,13 +327,13 @@ void func_80388BDC(Actor *this) {
         break;
     case 7:
         if (this->unk38_31) {
-            this->unk60 -= time_getDelta();
-            if (this->unk60 < 0.0f) {
-                this->unk60 = 0.0f;
+            this->lifetime_value -= time_getDelta();
+            if (this->lifetime_value < 0.0f) {
+                this->lifetime_value = 0.0f;
             }
         }
         if( (!this->unk38_31 && item_empty(ITEM_0_HOURGLASS_TIMER))
-            || ((this->unk38_31) && (this->unk60 == 0.0f))
+            || ((this->unk38_31) && (this->lifetime_value == 0.0f))
         ) {
             if (!this->unk38_31) {
                 func_802BAFE4(0x22);
@@ -357,7 +357,7 @@ void func_80388BDC(Actor *this) {
                 func_8025AE0C(0x7D0, 2.5f);
             }
             this->unk38_31 = 0;
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
             volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_AD_MMM_CHURCH_DOOR_MISSED);
         }
         break;

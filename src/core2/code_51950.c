@@ -47,7 +47,7 @@ void func_802D88E0(Actor *this) {
     if (this->position_y > -16000.0f) {
         this->position_y += this->unk1C[1];
     }
-    if (this->unk60 > 0.5) {
+    if (this->lifetime_value > 0.5) {
         pCtrl = partEmitMgr_newEmitter(1U);
         for(i = 0; i < 3; i++){
             sp5C[i] = this->position[i] + (randf()*2)*25 - ((i == 1) ? 0 : 25);
@@ -59,13 +59,13 @@ void func_802D88E0(Actor *this) {
         func_802EFF50(pCtrl, 1.0f);
         particleEmitter_setSpawnInterval(pCtrl, 0.25f);
     }
-    this->unk60 -= time_getDelta();
-    if (this->unk60 < 0.0f) {
+    this->lifetime_value -= time_getDelta();
+    if (this->lifetime_value < 0.0f) {
         marker_despawn(this->marker);
         return;
     }
 
-    temp_f10 = (s32) ml_map_f(this->unk60, 0.0f, 0.3f, 0.0f, 255.0f);
+    temp_f10 = (s32) ml_map_f(this->lifetime_value, 0.0f, 0.3f, 0.0f, 255.0f);
     actor_setOpacity(this, temp_f10);
     if (temp_f10 == 0) {
         marker_despawn(this->marker);
@@ -81,11 +81,11 @@ void func_802D8B20(enum actor_e actor_id){
     player_getPosition(plyr_pos);
     temp2 = player_getYaw();
     temp_v0 = (randf() > 0.5) ? 0x1E : -0x1E;
-    feather = func_8032813C(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
+    feather = spawn_actor_f32(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
     func_8032AA58(feather, 0.45f);
     feather->unk28 = 22.0f;
     feather->unk1C[1] = 48.0f;
-    feather->unk60 = 1.2f;
+    feather->lifetime_value = 1.2f;
 }
 
 void func_802D8BE4(bool gold_feather){

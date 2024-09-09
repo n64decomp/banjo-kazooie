@@ -82,8 +82,8 @@ void fight_func_8038C2C0(f32 position[3], s32 count, enum asset_e id, f32 arg3){
     particleEmitter_setStartingFrameRange(temp_s0, 1, 6);
     particleEmitter_setPosition(temp_s0, position);
     particleEmitter_setAngularVelocityRange(temp_s0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB70(temp_s0, arg3*0.35, arg3*0.65);
-    func_802EFB84(temp_s0, 0.0f, 0.0f);
+    particleEmitter_setStartingScaleRange(temp_s0, arg3*0.35, arg3*0.65);
+    particleEmitter_setFinalScaleRange(temp_s0, 0.0f, 0.0f);
     func_802EF9F8(temp_s0, 0.5f);
     func_802EFA18(temp_s0, 3);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.01f);
@@ -104,8 +104,8 @@ void func_8038C424(f32 position[3], s32 count, enum asset_e id, f32 arg3){
     particleEmitter_setPosition(temp_s0, position);
     particleEmitter_setPositionAndVelocityRanges(temp_s0, &D_80391918);
     sp24 = arg3 * 5.0;
-    func_802EFB70(temp_s0, sp24, sp24);
-    func_802EFB84(temp_s0, sp24, sp24);
+    particleEmitter_setStartingScaleRange(temp_s0, sp24, sp24);
+    particleEmitter_setFinalScaleRange(temp_s0, sp24, sp24);
     particleEmitter_setSpawnIntervalRange(temp_s0, 0.0f, 0.0f);
     particleEmitter_setParticleLifeTimeRange(temp_s0, (arg3*0.5), (arg3*0.5)*1.5);
     particleEmitter_setFade(temp_s0, 0.7f, 0.8f);
@@ -199,7 +199,7 @@ void chBossJinjo_update(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
         func_80324CFC(0.0f, SFX_JINJO_STATUE_POWERUP, 32000);
-        func_80324D2C(this->unk60 + 2.26, SFX_JINJO_STATUE_POWERUP);
+        func_80324D2C(this->lifetime_value + 2.26, SFX_JINJO_STATUE_POWERUP);
     }//L8038C8A4
     func_8028E964(sp68);
     func_80257F18(this->position, sp68, &sp4C);
@@ -208,10 +208,10 @@ void chBossJinjo_update(Actor *this){
     switch(this->state){
         case 1: //8038C92C
             animctrl_setAnimTimer(this->animctrl, 0.0f);
-            if(this->unk60 < 0.0)
+            if(this->lifetime_value < 0.0)
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
             else//L8038C974
-                this->unk60 -= sp74;
+                this->lifetime_value -= sp74;
             
             break;
 

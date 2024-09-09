@@ -534,11 +534,11 @@ void func_80362E94(Actor *this){
         default: //L8036316C
             if(!this->unk16C_4){
                 this->unk16C_4 = 1;
-                this->unk60 = this->scale*10.0;
+                this->lifetime_value = this->scale*10.0;
             }
 
-            this->unk60 = MAX(0.0, this->unk60 - tick);
-            if(0.0f == this->unk60){
+            this->lifetime_value = MAX(0.0, this->lifetime_value - tick);
+            if(0.0f == this->lifetime_value){
                 switch(this->unkF4_8){
                     case 2: //L8036325C
                         func_80361FA0(this->position);

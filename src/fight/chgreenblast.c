@@ -105,7 +105,7 @@ void chGreenBlast_update(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, NULL, chGreenBlast_collisionDie);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);
-        this->unk60 = 10.0f;
+        this->lifetime_value = 10.0f;
         this->scale = (f64)this->scale + this->scale;
     }
 
@@ -134,8 +134,8 @@ void chGreenBlast_update(Actor *this){
         chGreenBlast_collisionDie(this->marker, 0);
     }
     else {
-        if(0.0 <= this->unk60) {
-            this->unk60 -= delta_time;
+        if(0.0 <= this->lifetime_value) {
+            this->lifetime_value -= delta_time;
         }
         else {
             chGreenBlast_collisionDie(this->marker, 0);

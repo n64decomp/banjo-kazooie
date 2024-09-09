@@ -323,8 +323,8 @@ ParticleEmitter * particleEmitter_new(u32 capacity){
     func_802EFA20(this, 1.0f, 1.0f);
     particleEmitter_setStartingFrameRange(this, 0, 0);
     particleEmitter_setParticleFramerateRange(this, 0.0f, 0.0f);
-    func_802EFB70(this, 1.0f, 1.0f);
-    func_802EFB84(this, 0.0f, 0.0f);
+    particleEmitter_setStartingScaleRange(this, 1.0f, 1.0f);
+    particleEmitter_setFinalScaleRange(this, 0.0f, 0.0f);
     particleEmitter_setAngularVelocityRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_setSpawnIntervalRange(this, 0.0f, 5.0f);
     particleEmitter_setParticleLifeTimeRange(this, 0.0f, 5.0f);
@@ -449,12 +449,12 @@ void particleEmitter_setPosition(ParticleEmitter * this, f32 position[3]){
     this->postion_28[2] = position[2];
 }
 
-void func_802EFB70(ParticleEmitter * this, f32 min, f32 max){
+void particleEmitter_setStartingScaleRange(ParticleEmitter * this, f32 min, f32 max){
     this->particleStartingScaleRange_AC_min = min;
     this->particleStartingScaleRange_AC_max = max;
 }
 
-void func_802EFB84(ParticleEmitter * this, f32 min, f32 max){
+void particleEmitter_setFinalScaleRange(ParticleEmitter * this, f32 min, f32 max){
     this->particleFinalScaleRange_B4_min = min;
     this->particleFinalScaleRange_B4_max = max;
 }
@@ -712,8 +712,8 @@ void func_802F053C(ParticleEmitter *this, f32 arg1[3]){
     particleEmitter_setStartingFrameRange(this, 0, 7);
     particleEmitter_setParticleSpawnPositionRange(this, -80.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
     particleEmitter_setPosition(this, arg1);
-    func_802EFB70(this, 1.0f, 1.0f);
-    func_802EFB84(this, 2.0f, 3.0f);
+    particleEmitter_setStartingScaleRange(this, 1.0f, 1.0f);
+    particleEmitter_setFinalScaleRange(this, 2.0f, 3.0f);
     particleEmitter_setSpawnIntervalRange(this, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(this, 3.0f, 4.0f);
     particleEmitter_setParticleVelocityRange(this, -200.0f, 0.0f, -200.0f, 200.0f, 100.0f, 200.0f);
@@ -729,7 +729,7 @@ void func_802F066C(ParticleEmitter *this, f32 position[3]){
         120.0f, 60.0f, 120.0f
     );
     particleEmitter_setPosition(this, position);
-    func_802EFB70(this, 0.2f, 0.3f);
+    particleEmitter_setStartingScaleRange(this, 0.2f, 0.3f);
     particleEmitter_setAngularVelocityRange(this, 
         -300.0f, -300.0f, -300.0f,
         300.0f, 300.0f, 300.0f

@@ -85,8 +85,8 @@ ParticleEmitter *__fxRipple_create(s32 arg0, f32 position[3], bool arg2){
     particleEmitter_setFade(p_emitter, 0.0f, var_s0->fade_out);
     particleEmitter_setPosition(p_emitter, spawn_position);
     particleEmitter_setRGB(p_emitter, rgb);
-    func_802EFB70(p_emitter, var_s0->unkC[0], var_s0->unkC[1]);
-    func_802EFB84(p_emitter, var_s0->unk14[0], var_s0->unk14[1]);
+    particleEmitter_setStartingScaleRange(p_emitter, var_s0->unkC[0], var_s0->unkC[1]);
+    particleEmitter_setFinalScaleRange(p_emitter, var_s0->unk14[0], var_s0->unk14[1]);
     particleEmitter_setParticleLifeTimeRange(p_emitter, var_s0->lifetime.min, var_s0->lifetime.max);
     func_802EFF50(p_emitter, 100.0f);
     return p_emitter;

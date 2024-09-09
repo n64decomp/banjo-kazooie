@@ -113,8 +113,8 @@ void func_8035D95C(ActorMarker *marker) {
         func_8034A174(marker->unk44, 5, sp34);
         pCtrl = func_802EDD8C(sp34, 20.0f, func_80309B24(sp34));
         particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, -50.0f, -50.0f, 50.0f, 50.0f, 50.0f);
-        func_802EFB70(pCtrl, 0.1f, 0.2f);
-        func_802EFB84(pCtrl, 0.1f, 0.2f);
+        particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.2f);
+        particleEmitter_setFinalScaleRange(pCtrl, 0.1f, 0.2f);
         particleEmitter_emitN(pCtrl, 3);
     }
 }

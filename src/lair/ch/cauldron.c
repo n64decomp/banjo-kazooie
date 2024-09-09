@@ -180,13 +180,13 @@ void func_8038AC7C(Actor *this) {
         && func_80329530(this, 1200)
         && !fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)
     ) {
-        this->unk60 += time_getDelta();
-        if (35.0 < this->unk60) {
+        this->lifetime_value += time_getDelta();
+        if (35.0 < this->lifetime_value) {
             sp2C = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFB7 : 0xFAE;
             sp28 = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFBC : 0xFB7;
             if (func_80311480(sp2C + this->unk38_31, 0, NULL, NULL, NULL, NULL)) {
                 this->unk38_31++;
-                this->unk60 = 0.0f;
+                this->lifetime_value = 0.0f;
                 if (sp2C + this->unk38_31 >= sp28) {
                     this->unk38_31 = 0;
                 }
@@ -231,7 +231,7 @@ void chWarpCauldron_update(Actor *this) {
             if (fileProgressFlag_get(FILEPROG_F3_MET_DINGPOT)) {
                 sp4C = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFB7 : 0xFAE;
                 phi_v0 = (fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) ? 0xFBC : 0xFB7;
-                this->unk60 = 35.0f;
+                this->lifetime_value = 35.0f;
                 this->unk38_31 = randi2(0, phi_v0 - sp4C);
             }
             this->scale = 1.8f;

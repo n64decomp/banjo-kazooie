@@ -76,8 +76,8 @@ void func_80386B04(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
     particleEmitter_setModel(p_ctrl, 0x42E);
     particleEmitter_setPosition(p_ctrl, arg1);
     particleEmitter_setDrawMode(p_ctrl, 2);
-    func_802EFB70(p_ctrl, arg3, arg3);
-    func_802EFB84(p_ctrl, arg3, arg3);
+    particleEmitter_setStartingScaleRange(p_ctrl, arg3, arg3);
+    particleEmitter_setFinalScaleRange(p_ctrl, arg3, arg3);
     particleEmitter_setAngularVelocityRange(p_ctrl, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.00f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 2.0f, 2.0f);
@@ -91,8 +91,8 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
     particleEmitter_setFade(p_ctrl, 0.00f, 0.01f);
     particleEmitter_setStartingFrameRange(p_ctrl, 0, 7);
     particleEmitter_setPosition(p_ctrl, arg1);
-    func_802EFB70(p_ctrl, (arg3 * 0.1), (arg3 * 0.5));
-    func_802EFB84(p_ctrl, (arg3 * 1.5), (arg3 * 3.0));
+    particleEmitter_setStartingScaleRange(p_ctrl, (arg3 * 0.1), (arg3 * 0.5));
+    particleEmitter_setFinalScaleRange(p_ctrl, (arg3 * 1.5), (arg3 * 3.0));
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 1.5f, 2.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_8038AB9C);

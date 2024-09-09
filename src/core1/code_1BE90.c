@@ -366,12 +366,12 @@ void func_8025A58C(s32 arg0, s32 arg1){
 }
 
 
-void func_8025A5AC(enum comusic_e comusic_id, s32 arg1, s32 arg2){
+void func_8025A5AC(enum comusic_e comusic_id, s32 volume, s32 arg2){
     CoMusic *tmp_a2;
     s32 sp20;
 
-    if(arg1 == -1){
-        arg1 = func_80250034(comusic_id);
+    if(volume == -1){
+        volume = func_80250034(comusic_id);
     }
 
     tmp_a2 = __find_track(comusic_id);
@@ -393,20 +393,20 @@ void func_8025A5AC(enum comusic_e comusic_id, s32 arg1, s32 arg2){
         tmp_a2->unk12 = 0;
         tmp_a2->unk15 = 0;
         tmp_a2->unk4 = 0.0f;
-        func_80259994(tmp_a2, arg1);
+        func_80259994(tmp_a2, volume);
         func_8024FC1C(sp20, comusic_id);
     }
-    func_8024FD28(sp20, (s16) arg1);
-    tmp_a2->unk8 = arg1;
+    func_8024FD28(sp20, (s16) volume);
+    tmp_a2->unk8 = volume;
 
 }
 
-void func_8025A6CC(enum comusic_e arg0, s32 arg1){
-    func_8025A5AC(arg0, arg1, 0);
+void func_8025A6CC(enum comusic_e track_id, s32 volume){
+    func_8025A5AC(track_id, volume, 0);
 }
 
-void func_8025A6EC(enum comusic_e track_id, s32 arg1){
-    func_8025A5AC(track_id, arg1, 1);
+void func_8025A6EC(enum comusic_e track_id, s32 volume){
+    func_8025A5AC(track_id, volume, 1);
 }
 
 //comusic_queueTrack

@@ -88,7 +88,7 @@ bool chCollectible_collectItem(Actor* actor, enum file_progress_e arg1, enum ass
     if(!actor || !actor->unk38_0)
         return TRUE;
             
-    actor->unk60 = arg5;
+    actor->lifetime_value = arg5;
     chCollectible_setState(actor, 1);
     return FALSE;
 }
@@ -160,8 +160,8 @@ void chCollectible_update(Actor *this) {
 
     switch (this->state) {
     case 1:
-        if (this->unk60 > 0.0) {
-            this->unk60 -= time_getDelta();
+        if (this->lifetime_value > 0.0) {
+            this->lifetime_value -= time_getDelta();
         } else {
             chCollectible_setState(this, 2);
         }

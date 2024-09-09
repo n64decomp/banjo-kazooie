@@ -287,7 +287,7 @@ void func_802C4BB4(ActorMarker *marker){
     sp20 = marker->id - 0xe4;
     this = marker_getActor(marker);
     sp18 = this->scale;
-    other = func_8032813C(sp20 + 0x198, this->position, (s32)this->yaw);
+    other = spawn_actor_f32(sp20 + 0x198, this->position, (s32)this->yaw);
     other->scale = sp18;
 }
 

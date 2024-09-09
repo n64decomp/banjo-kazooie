@@ -71,7 +71,7 @@ Actor *func_8038C0B0(ActorMarker *marker, UNK_TYPE(s32) arg1, f32 arg2, UNK_TYPE
     sp4C[2] = (f32)marker->propPtr->z;
 
     sp40[0] = (f32)marker->pitch;
-    sp40[1] = this->unk60;
+    sp40[1] = this->lifetime_value;
     sp40[2] = (f32)marker->roll;
     sp3C = this->scale;
     if(animMtxList_len(marker->unk20)){
@@ -100,7 +100,7 @@ void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
         400.0f, 400.0f, 400.0f,
         800.0f, 800.0f, 800.0f
     );
-    func_802EFB70(pCtrl, 0.1f, 0.2f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.2f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.5f, 1.5f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
@@ -167,7 +167,7 @@ void func_8038C428(Actor *arg0, f32 arg1[3], f32 arg2)
     sp5C[0] = arg0->position[0] + var_f22;
     sp5C[1] = arg0->position[1];
     sp5C[2] = arg0->position[2] + var_f24;
-    temp_f14 = func_80309724(sp5C);
+    temp_f14 = mapModel_getFloorY(sp5C);
     if (sp7F) {
         do {
             sp78 += 1;
@@ -206,7 +206,7 @@ bool func_8038C718(Actor *this, f32 arg1){
     animctrl_setAnimTimer(this->animctrl, tmp);
 
     if(arg1 == 0.0f)
-        arg1 = func_80309724(this->position);
+        arg1 = mapModel_getFloorY(this->position);
 
     if(this->position_y <= arg1){
         this->position_y = arg1;
@@ -233,7 +233,7 @@ void func_8038C8F0(ActorMarker *marker){
 
     this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     other = marker_getActor(this->unk100);
-    muncher = func_8032813C(ACTOR_337_TWINKLY_MUNCHER, D_80392070, 170);
+    muncher = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392070, 170);
     muncher->unk100 = other->marker;
     muncher->unkF4_8 = 1;
 
@@ -289,7 +289,7 @@ void func_8038C9A0(Actor *this){
             if(!func_8038C718(this, 0)){
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 func_8038C428(this, D_80392088, randf2(20.0f, 24.0f));
-                this->unk60 = this->yaw;
+                this->lifetime_value = this->yaw;
             }
             break;
 

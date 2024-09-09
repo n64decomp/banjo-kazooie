@@ -91,11 +91,11 @@ void func_803902B8(Actor *this) {
     sp54 = this->marker->id - 0x16D;
     if (!this->initialized) {
         marker_setFreeMethod(this->marker, func_80390298);
-        this->unk138_24 = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
+        this->is_first_encounter = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         this->initialized = TRUE;
     }
     _player_getPosition(sp5C);
-    sp58 = func_80259384(this->position, sp5C, 1750.0f) && !this->unk138_24;
+    sp58 = func_80259384(this->position, sp5C, 1750.0f) && !this->is_first_encounter;
     if (sp58 && !this->unk38_0) {
         func_8032BB88(this, 0, 0x1F4);
         func_8025A6EC(COMUSIC_79_CHEATO, 0);

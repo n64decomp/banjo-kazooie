@@ -130,9 +130,9 @@ void func_8039217C(Actor *this) {
             }
             if ((randf() < 0.1) || mapSpecificFlags_get(5)) {
                 this->unk38_0 = mapSpecificFlags_get(5);
-                this->unk60 = randf2(2.0f, 4.0f);
+                this->lifetime_value = randf2(2.0f, 4.0f);
                 subaddie_set_state(this, 6U);
-                func_803920E0(this, SFX_134_FREEZING_SHIVER, 1.1f, 1.2f, 15000, this->unk60);
+                func_803920E0(this, SFX_134_FREEZING_SHIVER, 1.1f, 1.2f, 15000, this->lifetime_value);
                 break;
             }
             if (randf() < 0.1) {
@@ -141,8 +141,8 @@ void func_8039217C(Actor *this) {
             break;
 
         case 6: //L803924EC
-            if (this->unk60 > 0.0f) {
-                this->unk60 -= time_getDelta();
+            if (this->lifetime_value > 0.0f) {
+                this->lifetime_value -= time_getDelta();
                 break;
             }
             if (actor_animationIsAt(this, 0.999f) || (mapSpecificFlags_get(5) != this->unk38_0)) {

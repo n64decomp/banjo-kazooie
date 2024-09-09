@@ -28,8 +28,8 @@ ParticleEmitter *func_802F1EC8(f32 *position) {
     particleEmitter_setParticleVelocityRange(p_emitter, -10.0f, 10.0f, -10.0f, 10.0f, 240.0f, 10.0f);
     particleEmitter_setRGB(p_emitter, D_80368AA0);
     particleEmitter_setFade(p_emitter, 0.2f, 0.3f);
-    func_802EFB70(p_emitter, 0.2f, 0.4f);
-    func_802EFB84(p_emitter, 0.85f, 0.9f);
+    particleEmitter_setStartingScaleRange(p_emitter, 0.2f, 0.4f);
+    particleEmitter_setFinalScaleRange(p_emitter, 0.85f, 0.9f);
     particleEmitter_setParticleLifeTimeRange(p_emitter, 0.3f, 0.35f);
     return p_emitter;
 }

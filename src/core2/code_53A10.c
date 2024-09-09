@@ -58,16 +58,16 @@ void func_802DAA14(Actor *this){
     }
 
     if(!this->initialized){
-        this->unk60 = 0.5f;
-        this->initialized = 1;
+        this->lifetime_value = 0.5f;
+        this->initialized = TRUE;
     }
 
-    if(0.0f < this->unk60){
-        this->unk60 -= time_getDelta();
+    if(0.0f < this->lifetime_value){
+        this->lifetime_value -= time_getDelta();
         return;
     }
 
-    if(!this->unk138_24){
+    if(!this->is_first_encounter){
         if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
             text_id = 0xadc;
         }
@@ -79,6 +79,6 @@ void func_802DAA14(Actor *this){
             text_id = tmp;
         }
         func_80311480(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
     }
 }

@@ -197,7 +197,7 @@ void func_8038EFD8(Actor *this) {
     f32 sp30[3];
     f32 sp24[3];
 
-    this->unk138_24 = FALSE;
+    this->is_first_encounter = FALSE;
     player_getPosition(sp30);
     sp24[0] = this->position[0];
     sp24[1] = this->position[1];
@@ -312,7 +312,7 @@ void func_8038F350(Actor *this, s32 next_state){
         case 8: //L8038F4AC
             if (local->unk4 > 0) {
                 func_8025A70C(SFX_REMOVE_JIGGY);
-                this->unk60 = 1.0f;
+                this->lifetime_value = 1.0f;
                 temp_s1 = func_8038F0EC(this);
                 func_8038F1EC(this, temp_s1, 0);
                 local->unk4--;
@@ -325,7 +325,7 @@ void func_8038F350(Actor *this, s32 next_state){
         case 5: //L8038F550
             if (local->unk4 < func_8038EB24(this)) {
                 func_8025A70C(COMUSIC_67_INSERTING_JIGGY);
-                this->unk60 = 1.0f;
+                this->lifetime_value = 1.0f;
                 local->unk4++;
                 temp_s1 = func_8038F0EC(this);
                 func_8038F1EC(this, temp_s1, 1);
@@ -345,7 +345,7 @@ void func_8038F350(Actor *this, s32 next_state){
                     sp4C = item_getCount(ITEM_26_JIGGY_TOTAL);
                 }
                 func_8025A70C(COMUSIC_67_INSERTING_JIGGY);
-                this->unk60 = 1.0f;
+                this->lifetime_value = 1.0f;
                 for(phi_s0 = 0; phi_s0 < sp4C; phi_s0++){
                     local->unk4++;
                     temp_s1 = func_8038F0EC(this);
@@ -366,7 +366,7 @@ void func_8038F350(Actor *this, s32 next_state){
             func_80324DBC(1.0f, 0xFAC, 4, NULL, this->marker, func_8038F0C0, NULL);
         }
         timedFunc_set_1(2.0f, (GenFunction_1) func_8038EBEC, (s32) this->marker);
-        this->unk60 = 3.0f;
+        this->lifetime_value = 3.0f;
             break;
     }
     subaddie_set_state(this, next_state);
@@ -421,7 +421,7 @@ void lair_func_8038F924(Actor *this) {
         local->unk0 = 0;
         local->unk4 = 0;
         local->unk8 = (func_8038ECA8(this->marker)) ? 0xff : 1;
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
         for(phi_v1 = 0; phi_v1 < sp64; phi_v1 ++){
             local->unk4++;
             local->unk0 |= (1 << func_8038F0EC(this));
@@ -473,8 +473,8 @@ void lair_func_8038F924(Actor *this) {
     func_8038EDBC(this);
     switch(this->state){
         case 1://L8038FCD0
-            if (!this->unk138_24 && (!func_8028F20C() || !func_8028FB48(0x08000000))) {
-                this->unk138_24 = TRUE;
+            if (!this->is_first_encounter && (!func_8028F20C() || !func_8028FB48(0x08000000))) {
+                this->is_first_encounter = TRUE;
             }
             if (func_80329530(this, 300)) {
                 if ((this->unkF4_8 == 0xA) && !fileProgressFlag_get(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM)) {
@@ -486,7 +486,7 @@ void lair_func_8038F924(Actor *this) {
                     func_8035644C(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
                 }
             }
-            if (func_8038ECA8(this->marker) && this->unk138_24 && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
+            if (func_8038ECA8(this->marker) && this->is_first_encounter && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
                 func_8038F350(this, 2);
             }
             break;
@@ -513,16 +513,16 @@ void lair_func_8038F924(Actor *this) {
         case 5: //L8038FF00
         case 6: //L8038FF00
         case 8: //L8038FF00
-            if (this->unk60 > 0.0f) {
-                this->unk60 -= sp68;
+            if (this->lifetime_value > 0.0f) {
+                this->lifetime_value -= sp68;
             } else {
                 func_8038F350(this, func_8038EB58(this) ? 7 :4);
             }
             break;
 
         case 7: //L8038FF50
-            if (this->unk60 > 0.0f) {
-                this->unk60 -= sp68;
+            if (this->lifetime_value > 0.0f) {
+                this->lifetime_value -= sp68;
             } else {
                 func_8038F350(this, 1);
             }

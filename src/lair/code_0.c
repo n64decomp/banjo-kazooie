@@ -353,7 +353,7 @@ void func_803867A8(Actor *this) {
         this->initialized = TRUE;
         this->alpha_124_19 = 0;
 
-        this->unk60 = this->yaw;
+        this->lifetime_value = this->yaw;
         this->yaw = 0.0f;
         this->velocity[0] = 0.0f;
         return;
@@ -394,20 +394,20 @@ void func_803867A8(Actor *this) {
 
             }
         }
-        this->unk60 += 2.5;
-        while(this->unk60 >= 360.0f){ this->unk60 -= 360.0f;}
+        this->lifetime_value += 2.5;
+        while(this->lifetime_value >= 360.0f){ this->lifetime_value -= 360.0f;}
 
         this->position_y = this->unk1C[1];
         sp5C[1] = sp5C[2] =0.0f;
         sp5C[0] = this->unkF4_8*2;
-        ml_vec3f_yaw_rotate_copy(sp5C, sp5C, this->unk60);
+        ml_vec3f_yaw_rotate_copy(sp5C, sp5C, this->lifetime_value);
         this->position[0] = this->unk1C[0] + sp5C[0];
         this->position[2] = this->unk1C[2] + sp5C[2];
         if (this->marker->unk14_21) {
             sp44 = this->unk158[globalTimer_getTime() & 1];
             if (sp44 != NULL) {
                 particleEmitter_setAlpha(sp44, this->alpha_124_19);
-                phi_f0 = this->unk60 - 10.0f;
+                phi_f0 = this->lifetime_value - 10.0f;
                 while(phi_f0 < 0.0f) {phi_f0 += 360.0f;}
 
                 sp50[1] = this->unk1C[1];
@@ -466,16 +466,16 @@ void func_80386D78(Actor *this) {
         if (volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)) {
             ability_unlock(ABILITY_9_FLIGHT);
             mapSpecificFlags_set(0, TRUE);
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
             this->position[1] = this->unk1C[1];
             this->scale = 1.0f;
         }
     }
     if ((this->unk1C[1] - 150.0f) <= this->position[1]) {
         if (!volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)) {
-            if (this->unk60 != 0.0f) {
-                this->unk60 -= 1.0f;
-                if (this->unk60 == 0.0f) {
+            if (this->lifetime_value != 0.0f) {
+                this->lifetime_value -= 1.0f;
+                if (this->lifetime_value == 0.0f) {
                     FUNC_8030E624(SFX_25_METAL_SLIDING_OVER_SMTH, 0.8f, 32000);
                 }
             } else {
@@ -505,7 +505,7 @@ void func_80386D78(Actor *this) {
         }
     } else if (mapSpecificFlags_get(0)) {
         this->scale = 0.0001f;
-        this->unk60 = 26.0f;
+        this->lifetime_value = 26.0f;
         this->position[1] = this->unk1C[1];
         func_802BAFE4(0x80);
         timedFunc_set_0(3.0f, func_80386D40);
@@ -537,13 +537,13 @@ void func_803870DC(Actor *this) {
     }
     if ((this->alpha_124_19 == 0) && (phi_v1)) {
         this->alpha_124_19 = 1;
-        this->unk60 = 23.0f;
+        this->lifetime_value = 23.0f;
     }
 
     phi_a0 = this->alpha_124_19;
     if (phi_a0 == 1) {
-        this->unk60 -= 1.0f;
-        if (this->unk60 == 0.0f) {
+        this->lifetime_value -= 1.0f;
+        if (this->lifetime_value == 0.0f) {
             this->alpha_124_19 = 2;
             func_80324CFC(0, COMUSIC_43_ENTER_LEVEL_GLITTER, 32700);
             func_80324D2C(1.3f, COMUSIC_43_ENTER_LEVEL_GLITTER);
@@ -563,8 +563,8 @@ void func_803870DC(Actor *this) {
                 func_8034A174(func_80329934(), 5, sp90);
                 func_8034A174(func_80329934(), 6, sp84);
                 particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
-                func_802EFB70(temp_s5, 0.13f, 0.18f);
-                func_802EFB84(temp_s5, 0.08f, 0.13f);
+                particleEmitter_setStartingScaleRange(temp_s5, 0.13f, 0.18f);
+                particleEmitter_setFinalScaleRange(temp_s5, 0.08f, 0.13f);
                 particleEmitter_setParticleAccelerationRange(temp_s5, -500.0f, -1800.0f, -500.0f, 500.0f, 1800.0f, 500.0f);
                 particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
                 particleEmitter_setParticleLifeTimeRange(temp_s5, 0.9f, 0.9f);
@@ -721,8 +721,8 @@ void func_80387730(Actor *this) {
                     temp_s5 = partEmitMgr_newEmitter((s32)((f32) this->alpha_124_19 / 11.0));
                     sp6C[2] = 0;
                     particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
-                    func_802EFB70(temp_s5, 0.13f, 0.18f);
-                    func_802EFB84(temp_s5, 0.08f, 0.13f);
+                    particleEmitter_setStartingScaleRange(temp_s5, 0.13f, 0.18f);
+                    particleEmitter_setFinalScaleRange(temp_s5, 0.08f, 0.13f);
                     particleEmitter_setParticleAccelerationRange(temp_s5, -10.0f, 0.0f, -10.0f, 10.0f, 1600.0f, 10.0f);
                     particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
                     particleEmitter_setParticleLifeTimeRange(temp_s5, 1.4f, 1.4f);
@@ -799,7 +799,7 @@ void func_80387E94(s32 arg0)
 
     marker = reinterpret_cast(ActorMarker *, arg0);
     actor1   = marker_getActor(marker);
-    actorNew = func_8032813C(0x25A, actor1->position, actor1->yaw);
+    actorNew = spawn_actor_f32(0x25A, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure :^)
     actor2 = marker_getActor(marker);
@@ -941,7 +941,7 @@ void func_803882B0(Actor *this)
         if (fileProgressFlag_get(FILEPROG_48_FP_WITCH_SWITCH_ADVENT_DOOR_OPEN))
             this->pitch = 90.f;
 
-        this->unk60 = 0;
+        this->lifetime_value = 0;
     }
 
     if (this->pitch == 90.f || !volatileFlag_get(VOLATILE_FLAG_BB_WITCH_SWITCH_PRESSED_FP))
@@ -952,9 +952,9 @@ void func_803882B0(Actor *this)
 
     this->pitch += 1.1;
 
-    if (this->unk60 == 0 && this->pitch > 42.f)
+    if (this->lifetime_value == 0 && this->pitch > 42.f)
     {
-        this->unk60 = 1.f;
+        this->lifetime_value = 1.f;
         func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
     }
 
@@ -1298,16 +1298,16 @@ void func_80388FC8(Actor *this)
         this->unk1C[1] = this->position_y;
         this->position_y -= 500.f;
 
-        this->unk60 = 0;
+        this->lifetime_value = 0;
 
         if (volatileFlag_get(VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC))
         {
             this->position_y = this->unk1C[1];
-            this->unk60 = 1.f;
+            this->lifetime_value = 1.f;
         }
     }
 
-    if (this->unk60)
+    if (this->lifetime_value)
         return;
 
     if (!this->unk16C_4)
@@ -1360,7 +1360,7 @@ void func_80388FC8(Actor *this)
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
             }
 
-            this->unk60 = 1.f;
+            this->lifetime_value = 1.f;
         }
     }
 }
@@ -1375,16 +1375,16 @@ void lair_func_80389204(Actor *this)
 
         this->unk1C[1] = this->position_y;
         this->position_y -= 280.f;
-        this->unk60 = 0;
+        this->lifetime_value = 0;
 
         if (volatileFlag_get(VOLATILE_FLAG_7E_SANDCASTLE_RAISE_PIPE_TO_BRENTILDA))
         {
             this->position_y = this->unk1C[1];
-            this->unk60 = 1.f;
+            this->lifetime_value = 1.f;
         }
     }
 
-    if (this->unk60)
+    if (this->lifetime_value)
         return;
 
     if (!this->unk16C_4)
@@ -1425,7 +1425,7 @@ void lair_func_80389204(Actor *this)
             func_802D48B8(this);
             func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
 
-            this->unk60 = 1.f;
+            this->lifetime_value = 1.f;
         }
     }
 }
@@ -1544,7 +1544,7 @@ void func_803897D4(s32 arg0)
     marker1 = reinterpret_cast(ActorMarker *, arg0);
     actor1 = marker_getActor(marker1);
 
-    actor1 = func_8032813C(0x258, actor1->position, actor1->yaw);
+    actor1 = spawn_actor_f32(0x258, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure
     actor2 = marker_getActor(marker1);
@@ -1710,7 +1710,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
         func_8030E878(SFX_82_METAL_BREAK, randf2(0.93f, 1.07f), 32760, this->position, 100, 1350.0f);
 
-        this->unk60 = 1;
+        this->lifetime_value = 1;
     }
 
     a1 -= 4.5; // f64
@@ -1728,7 +1728,7 @@ void func_80389D08(Actor *this)
         func_802D3CE8(this);
 
         this->unk16C_4 = TRUE;
-        this->unk60 = 0;
+        this->lifetime_value = 0;
 
         if (fileProgressFlag_get(0xA5))
         {
@@ -1741,12 +1741,12 @@ void func_80389D08(Actor *this)
     {
         case 1:
         {
-            if (this->unk60)
+            if (this->lifetime_value)
             {
                 subaddie_set_state_forward(this, 4);
 
                 this->unk38_31 = 0;
-                this->unk60 = 0;
+                this->lifetime_value = 0;
             }
 
             break;
@@ -1779,7 +1779,7 @@ Actor *func_80389E10(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 
     this = actor_drawFullDepth(marker, gfx, mtx, vtx);
-    if (marker->unk14_21 && (this->unk60 != 0.0f)) {
+    if (marker->unk14_21 && (this->lifetime_value != 0.0f)) {
         func_8034A174((struct5Bs *) marker->unk44, 5, sp84);
         func_8034A174((struct5Bs *) marker->unk44, 6, sp78);
         

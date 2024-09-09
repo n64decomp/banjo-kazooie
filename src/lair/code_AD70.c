@@ -76,8 +76,8 @@ void lair_func_80391254(f32 pos[3], u32 count, enum asset_e sprite)
     particleEmitter_setParticleSpawnPositionRange(p, -80, 0, -80, 80, 0, 80);
     particleEmitter_setPosition(p, pos);
     particleEmitter_setFade(p, 0.6f, 0.7f);
-    func_802EFB70(p, 3, 3);
-    func_802EFB84(p, 4, 4);
+    particleEmitter_setStartingScaleRange(p, 3, 3);
+    particleEmitter_setFinalScaleRange(p, 4, 4);
     particleEmitter_setParticleLifeTimeRange(p, 1, 1);
     particleEmitter_emitN(p, count);
 }
@@ -106,8 +106,8 @@ void func_8039144C(f32 pos[3], u32 count)
     particleEmitter_setAngularVelocityRange(p, 0, 0, 200, 0, 0, 300);
     particleEmitter_setFade(p, 0.1f, 0.2f);
     particleEmitter_setParticleLifeTimeRange(p, 0.75f, 0.75f);
-    func_802EFB70(p, 0.5f, 0.5f);
-    func_802EFB84(p, 0.2f, 0.2f);
+    particleEmitter_setStartingScaleRange(p, 0.5f, 0.5f);
+    particleEmitter_setFinalScaleRange(p, 0.2f, 0.2f);
     particleEmitter_setParticleAccelerationRange(p, 0, -50, 0, 0, -100, 0);
     particleEmitter_emitN(p, count);
 }
@@ -121,8 +121,8 @@ void func_803915A4(f32 pos[3], s32 count, f32 scale)
     particleEmitter_setStartingFrameRange(p, 2, 8);
     particleEmitter_setParticleFramerateRange(p, 8, 8);
     particleEmitter_setPosition(p, pos);
-    func_802EFB70(p, scale * 2.0, scale * 2.0);
-    func_802EFB84(p, scale * 0.4, scale * 0.4);
+    particleEmitter_setStartingScaleRange(p, scale * 2.0, scale * 2.0);
+    particleEmitter_setFinalScaleRange(p, scale * 0.4, scale * 0.4);
     particleEmitter_setParticleLifeTimeRange(p, 0.5f, 0.5f);
     particleEmitter_emitN(p, count);
 }
@@ -136,8 +136,8 @@ void func_803916BC(f32 position[3], s32 cnt){
     particleEmitter_setStartingFrameRange(pCtrl, 0, 6);
     particleEmitter_setParticleFramerateRange(pCtrl, 5.0f, 8.0f);
     particleEmitter_setPosition(pCtrl, position);
-    func_802EFB70(pCtrl, 2.0f, 2.0f);
-    func_802EFB84(pCtrl, 4.0f, 4.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 2.0f, 2.0f);
+    particleEmitter_setFinalScaleRange(pCtrl, 4.0f, 4.0f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.0f, 1.5f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80394B78);
     particleEmitter_emitN(pCtrl, cnt);
@@ -173,7 +173,7 @@ void func_80391810(Actor *this, s32 next_state) {
         this->velocity[0] /= local->unk0;
         this->velocity[2] /= local->unk0;
         local->unk4 *= local->unk0;
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         local->unk8 = this->position[1] * 0.5;
         sp38[0] = this->position[0];
         sp38[1] = this->position[1];
@@ -190,7 +190,7 @@ void func_80391810(Actor *this, s32 next_state) {
         func_8039137C(this->position, 4, 0x712);
         func_803917B0(this);
         timedFunc_set_0(4.0f, func_803917DC);
-        this->unk60 = 4.0f;
+        this->lifetime_value = 4.0f;
         break;
     case 3:
         FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 0.8f, 25000, this->position, 1500, 3000);
@@ -258,14 +258,14 @@ void func_80391B04(Actor *this) {
             func_8039144C(sp34, 1);
         }
         if (local->unk4 > 0.0) {
-            this->unk60 += sp44;
-            if (local->unk4 < this->unk60) {
+            this->lifetime_value += sp44;
+            if (local->unk4 < this->lifetime_value) {
                 func_80391810(this, 2);
             }
         }
-        if ((local->unk8 < this->position[1]) && !this->unk138_24) {
+        if ((local->unk8 < this->position[1]) && !this->is_first_encounter) {
             FUNC_8030E8B4(SFX_14E_SOFT_EXPLOSION, 1.0f, 20000, this->position, 1500, 3000);
-            this->unk138_24 = TRUE;
+            this->is_first_encounter = TRUE;
         }
         break;
     case 3:
@@ -273,9 +273,9 @@ void func_80391B04(Actor *this) {
         marker_despawn(this->marker);
         break;
     case 2:
-        this->unk60 -= sp44;
-        if (this->unk60 > 0.0f) {
-            temp_f0_2 = (f32) ((f64) this->unk60 * 0.25);
+        this->lifetime_value -= sp44;
+        if (this->lifetime_value > 0.0f) {
+            temp_f0_2 = (f32) ((f64) this->lifetime_value * 0.25);
             D_80394BD4[0] = (s32) ((f32) D_80394BD4[0] * temp_f0_2);
             D_80394BD4[1] = (s32) ((f32) D_80394BD4[1] * temp_f0_2);
             D_80394BD4[2] = (s32) ((f32) D_80394BD4[2] * temp_f0_2);

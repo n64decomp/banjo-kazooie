@@ -44,8 +44,8 @@ void func_802DBCE0(ParticleEmitter *pCtrl, f32 arg1[3]){
         particleEmitter_setSprite(other, ASSET_70C_SPRITE_RIPPLE);
         particleEmitter_setDrawMode(other, 1);
         particleEmitter_setPosition(other, arg1);
-        func_802EFB70(other, 0.1f, 0.1f);
-        func_802EFB84(other, 1.0f, 1.4f);
+        particleEmitter_setStartingScaleRange(other, 0.1f, 0.1f);
+        particleEmitter_setFinalScaleRange(other, 1.0f, 1.4f);
         particleEmitter_setParticleLifeTimeRange(other, 1.0f, 1.4f);
         particleEmitter_setFade(other, 0.0f, 0.5f);
         particleEmitter_emitN(other, 1);
@@ -97,8 +97,8 @@ void func_802DC018(Actor *this){
     }
     if(func_802DBF94(this, 600) && randf() < 0.2){
         tmp_f0 = randf2(0.01f, 0.06f);
-        func_802EFB70(local->unk0, tmp_f0, tmp_f0);
-        func_802EFB84(local->unk0, tmp_f0, tmp_f0);
+        particleEmitter_setStartingScaleRange(local->unk0, tmp_f0, tmp_f0);
+        particleEmitter_setFinalScaleRange(local->unk0, tmp_f0, tmp_f0);
         particleEmitter_emitN(local->unk0, 1);
     }//L802DC0F4
 }

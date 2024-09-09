@@ -89,7 +89,7 @@ void __chgrublinhood_die(ActorMarker* marker, s32 arg1) {
     __chgrublinhood_emitHat(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
     __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);
-    actor->unk138_24 = 1;
+    actor->is_first_encounter = TRUE;
 }
 
 Actor *chgrublinhood_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -109,7 +109,7 @@ Actor *chgrublinhood_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(11,  (local->season < AUTUMN) ? 0 : (local->season == AUTUMN) ? 1 : 2);
     func_8033A45C(12, (local->season == WINTER) ? 2 : 1);
     func_8033A45C(13, (local->season == WINTER) ? 1 : 0);
-    func_8033A45C(14,      (this->unk138_24)? 0 : 1);
+    func_8033A45C(14,      (this->is_first_encounter)? FALSE : TRUE);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

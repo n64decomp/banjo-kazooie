@@ -77,8 +77,8 @@ void func_802EE6CC(f32 position[3], f32 velocity[3], s32 color[4], s32 arg3, f32
     }
     particleEmitter_setDrawMode(p_ctrl, sp3C);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, arg4, arg4);
-    func_802EFB70(p_ctrl, arg6 / 175.0, arg6 / 175.0);
-    func_802EFB84(p_ctrl, (arg6 + arg7) / 175.0, (arg6 + arg7) / 175.0);
+    particleEmitter_setStartingScaleRange(p_ctrl, arg6 / 175.0, arg6 / 175.0);
+    particleEmitter_setFinalScaleRange(p_ctrl, (arg6 + arg7) / 175.0, (arg6 + arg7) / 175.0);
     if (arg8 == 0) {
         particleEmitter_setParticleFramerateRange(p_ctrl, (15.0 / arg4), (15.0 / arg4));
     } else {

@@ -16,7 +16,7 @@
 #endif
 
 /* extern functions */
-f32 func_80309724(f32*);
+f32 mapModel_getFloorY(f32*);
 
 /* public functions */
 void    MM_func_80387FF4(Actor *this);
@@ -59,7 +59,7 @@ void MM_func_80387FF4(Actor * this){
             this->position_y += velocity_y;
             this->position_z += this->velocity_z;
 
-            ground_position_y = func_80309724(this->position);
+            ground_position_y = mapModel_getFloorY(this->position);
 
             if(this->position_y < ground_position_y){
                 this->position_y = ground_position_y;
@@ -67,16 +67,16 @@ void MM_func_80387FF4(Actor * this){
                 func_8030E6D4(SFX_2F_ORANGE_SPLAT);
 
                 this->unk28 = 1.0f;
-                this->unk60 = 340.0f;
+                this->lifetime_value = 340.0f;
                 this->state = 2;
             }
             break;
         case ORANGE_LANDED_STATE:
-            if(this->unk60 < 324.0){
+            if(this->lifetime_value < 324.0){
                 this->marker->collidable = 0;
             }
-            this->unk60 -= 4.0;
-            if(this->unk60 < 4.0){
+            this->lifetime_value -= 4.0;
+            if(this->lifetime_value < 4.0){
                 marker_despawn(this->marker);
             }
             break;
@@ -93,7 +93,7 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
         position[0] = actorPtr->position_x;
         position[1] = actorPtr->unk1C_y + 3.0f;
         position[2] = actorPtr->position_z;
-        modelRender_setAlpha( (s32) MIN(255.0f, actorPtr->unk60) );
+        modelRender_setAlpha( (s32) MIN(255.0f, actorPtr->lifetime_value) );
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         modelRender_draw(dl, mptr, position, rotation, actorPtr->unk28, sp60, func_8030A428(0x18));
         actorPtr->position_y -= 1.9;

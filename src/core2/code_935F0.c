@@ -104,7 +104,7 @@ void func_8031A678(Actor *this){
 
 void __chMinigame_textCallback1(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(marker);
-    this->unk138_24 = TRUE;
+    this->is_first_encounter = TRUE;
 }
 
 void __chMinigame_transformToCroc(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -164,7 +164,7 @@ void chMinigame_update(Actor *this){
         func_8028FAB0(this->position);
         this->unk1C[0] = 0.0f; this->unk1C[1] = this->yaw; this->unk1C[2] = 0.0f;
         func_8028FAEC(this->unk1C);
-        this->unk138_24 = 0;
+        this->is_first_encounter = FALSE;
         if(this->unk10_12 >= 7){
             marker_despawn(this->marker);
             return;
@@ -177,7 +177,7 @@ void chMinigame_update(Actor *this){
     if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
         switch(this->state){
             case MINIGAME_STATE_1_INTRODUCE_GAME://L8031AB2C
-                if(this->unk138_24)
+                if(this->is_first_encounter)
                     __chMinigame_setState(this, MINIGAME_STATE_2_IN_PROGESS);
                 break;
             case MINIGAME_STATE_2_IN_PROGESS://L8031AB50

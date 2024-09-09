@@ -222,12 +222,12 @@ void func_803876D0(Actor *this){
     if(!this->initialized){
         ((ActorLocal_Conga *)&this->local)->unkC = 1;
         this->unk16C_0 = 1;
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->velocity_x = 0.0f;
         this->unk28 = 0.0f;
         node_prop = func_80304C38(0x150, this);
         ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(node_prop);
-        func_80304D4C(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
+        nodeprop_getPosition_s32(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
         this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
@@ -259,9 +259,9 @@ void func_803876D0(Actor *this){
         mapSpecificFlags_set(0xA, 1);
     }//L803878F8
 
-    if( sp3C && !this->unk138_24){
+    if( sp3C && !this->is_first_encounter){
         if(func_80311480((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
-            this->unk138_24 = 1;
+            this->is_first_encounter = TRUE;
         }
     } //L80387968
 

@@ -48,7 +48,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
     nextActPtr = spawn_child_actor(0x6A, &this);
     nextActPtr->state = 2;
     nextActPtr->unkF4_8 = 0x8C;
-    nextActPtr->unk60 = 3.0f;
+    nextActPtr->lifetime_value = 3.0f;
     nextActPtr->unk38_31 = arg1;
     if(arg0);
 }
@@ -134,7 +134,7 @@ void func_80387FD4(Actor *this){
             this->marker->propPtr->unk8_3 = TRUE;
         }//L80388144
         func_803289EC(this, 0.0f, 1);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         return;
     }//L80388160
 
@@ -170,11 +170,11 @@ void func_80387FD4(Actor *this){
 
     switch(this->state){
     case 1:// L80388370
-        this->unk60 += time_getDelta();
-        if(0.7 <= this->unk60){
+        this->lifetime_value += time_getDelta();
+        if(0.7 <= this->lifetime_value){
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
             func_80387C90(this);
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
             func_80324D54(0.1f, SFX_D0_GRIMLET_SQUEAK, 1.0f, 0x7530, this->position, 0.0f, 1800.0f);
         }
         break;
@@ -186,11 +186,11 @@ void func_80387FD4(Actor *this){
         break;
 
     case 3:// L80388434
-        this->unk60 += time_getDelta();
-        if( this->unk60 >= 0.13 + 0.7/4 * (5 - this->unkF4_8)){
+        this->lifetime_value += time_getDelta();
+        if( this->lifetime_value >= 0.13 + 0.7/4 * (5 - this->unkF4_8)){
             subaddie_set_state_with_direction(this, 4, 0.62f, 1);
             func_80387C90(this);
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
             func_80324D54(0.3f, 0x406, 1.0f, 0x55f0, this->position, 0.0f, 1800.0f);
         }
         break;

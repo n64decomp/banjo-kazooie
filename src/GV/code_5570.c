@@ -130,8 +130,8 @@ void func_8038BC7C(f32 position[3], s32 cnt){
         -250.0f, 10.0f, -250.0f,
          250.0f, 110.0f, 250.0f
     );
-    func_802EFB70(pCtrl, 0.1f, 0.5f);
-    func_802EFB84(pCtrl, 2.0f, 2.6f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.5f);
+    particleEmitter_setFinalScaleRange(pCtrl, 2.0f, 2.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
@@ -148,8 +148,8 @@ void func_8038BD8C(f32 position[3], s32 cnt){
         -100.0f, 20.0f, -100.0f,
          100.0f, 60.0f, 100.0f
     );
-    func_802EFB70(pCtrl, 0.1f, 0.5f);
-    func_802EFB84(pCtrl, 1.2, 1.6f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.5f);
+    particleEmitter_setFinalScaleRange(pCtrl, 1.2, 1.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
@@ -244,9 +244,9 @@ void GV_func_8038BEA0(Actor *this){
                     }
                 }
                 else{
-                    if(!this->unk138_24){
+                    if(!this->is_first_encounter){
                         if(func_80311480(ASSET_A78_TEXT_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
-                            this->unk138_24 = TRUE;
+                            this->is_first_encounter = TRUE;
                         }
                     }
                 }

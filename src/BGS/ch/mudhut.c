@@ -61,8 +61,8 @@ void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    thisActor = func_8032813C(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
-    thisActor = func_8032813C(ACTOR_4D_STEAM_2, thisActor->position, NULL);
+    thisActor = spawn_actor_f32(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
+    thisActor = spawn_actor_f32(ACTOR_4D_STEAM_2, thisActor->position, NULL);
     if(this);
 }
 
@@ -75,7 +75,7 @@ void chmudhut_update(Actor *this){
     if(func_80334904() == 2){
         if(!this->initialized){
             this->marker->collidable = 0;
-            this->initialized = 1;
+            this->initialized = TRUE;
         }
 
         switch(this->state){

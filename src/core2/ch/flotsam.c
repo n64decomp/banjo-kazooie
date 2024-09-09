@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309724(f32[3]);
+extern f32 mapModel_getFloorY(f32[3]);
 
 typedef struct {
     f32 unk0;
@@ -261,7 +261,7 @@ void func_8035C8F4(Actor *this){
         this->marker->unk14_21 = FALSE;
         this->marker->actorFreeFunc = func_8035C8C8;
         marker_setCollisionScripts(this->marker, func_8035C6C4, func_8035C6C4, func_8035C6F0);
-        local->unk4 = func_80309724(this->position);
+        local->unk4 = mapModel_getFloorY(this->position);
         local->pCtrl_8 = NULL;
         local->unk34[0] = this->yaw;
         local->unk34[2] = local->unk34[1] = local->unk34[0];

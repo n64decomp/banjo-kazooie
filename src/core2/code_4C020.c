@@ -167,7 +167,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.7f, 32736);
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.6f, 32736);
             func_802D2FB0(sp2C, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
-            sp2C->unk60 = 1.0f;
+            sp2C->lifetime_value = 1.0f;
             fileProgressFlag_set(FILEPROG_A5_LAIR_CRYPT_GATE_OPEN, 1);
             break;
 

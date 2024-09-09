@@ -58,8 +58,8 @@ void func_803869EC(ActorMarker *this){
     f32 *pos;
 
     actorPtr = marker_getActor(this);
-    actorPtr = func_8032813C(0x4B, actorPtr->position, 0);
-    func_8032813C(ACTOR_4D_STEAM_2, actorPtr->position, 0);
+    actorPtr = spawn_actor_f32(0x4B, actorPtr->position, 0);
+    spawn_actor_f32(ACTOR_4D_STEAM_2, actorPtr->position, 0);
     
     if(this);
 }
@@ -74,7 +74,7 @@ void    chhut_update(Actor *this){
 
     if(!this->initialized){
         this->marker->collidable = 0;
-        this->initialized = 1;
+        this->initialized = TRUE;
     }
     switch(this->state){
         case HUT_STATE_INTACT:

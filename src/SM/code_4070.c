@@ -74,7 +74,7 @@ void SM_func_8038A5D8(Actor *this){
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;
         }//L8038A644
-        this->initialized = 1;
+        this->initialized = TRUE;
     }//L8038A650
 
     func_8024E55C(0, sp44);

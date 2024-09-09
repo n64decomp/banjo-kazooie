@@ -75,15 +75,15 @@ void func_8038CCA8(Actor *this){
     if(!this->unk16C_4){
         this->unk16C_4 = TRUE;
         animctrl_setSmoothTransition(this->animctrl, 0);
-        this->unk60 = this->yaw/4;
+        this->lifetime_value = this->yaw/4;
         local->unk0 = partEmitMgr_newEmitter(0xA0);
         cutscenes_func_8038CB20(local->unk0);
     }
 
     switch(this->state){
         case 1:
-            this->unk60 = MAX(0.0, this->unk60 - sp24);
-            if(0.0f == this->unk60){
+            this->lifetime_value = MAX(0.0, this->lifetime_value - sp24);
+            if(0.0f == this->lifetime_value){
                 subaddie_set_state_forward(this, 2);
                 actor_playAnimationOnce(this);
             }

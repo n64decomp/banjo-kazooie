@@ -117,7 +117,7 @@ void func_80387774(Actor **this_ptr){
         && func_8028FC34()
     ){
         func_8028FA34(!mapSpecificFlags_get(0)? 0x149 : 0x14a, *this_ptr);
-        (*this_ptr)->unk138_24 = TRUE;
+        (*this_ptr)->is_first_encounter = TRUE;
     }
 
 }
@@ -146,11 +146,11 @@ void func_803878CC(Actor * this){
     }//L80387970
 
     if(func_80329530(this, 250) && !func_80329530(this, 80)
-        && !this->unk138_24
+        && !this->is_first_encounter
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
         func_80311480(0xa0b, 0xe, this->position, this->marker, func_80387520, NULL);
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
         subaddie_set_state_forward(this, 3);
     }
 
@@ -161,7 +161,7 @@ void func_803878CC(Actor * this){
             func_80311480(0xa0c, 4, NULL, NULL, NULL, NULL);
         
         this->unk138_23 = TRUE;
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
 
     }//L80387A54
 

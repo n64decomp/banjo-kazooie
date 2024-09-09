@@ -54,8 +54,8 @@ void func_8038B900(Actor *this){
             ){//L8038BB24
                 func_8034A174(this->marker->unk44, 5, sp48);
                 other = func_802EDD8C(&sp48, 0.0f, -1300.0f);
-                func_802EFB70(other, 0.04f, 0.04f);
-                func_802EFB84(other, 0.18f, 0.18f);
+                particleEmitter_setStartingScaleRange(other, 0.04f, 0.04f);
+                particleEmitter_setFinalScaleRange(other, 0.18f, 0.18f);
                 particleEmitter_setParticleSpawnPositionRange(other, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
                 particleEmitter_setParticleVelocityRange(other, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
                 particleEmitter_emitN(other, 1);
@@ -85,12 +85,12 @@ void func_8038B900(Actor *this){
         }
 
         if(this->state == 1){
-            if( !this->unk138_24
+            if( !this->is_first_encounter
                 && func_80329530(this, 0x258)
                 && !func_8028ECAC()
             ){
                 func_80311480(0xb9b, 4, 0, 0, 0, 0);
-                this->unk138_24 = 1;
+                this->is_first_encounter = TRUE;
             }
         }
 

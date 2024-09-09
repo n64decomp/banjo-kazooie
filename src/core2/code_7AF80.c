@@ -1036,16 +1036,12 @@ s32 nodeprop_getRadius(NodeProp *arg0) {
     return arg0->unk6.radius;
 }
 
-void func_80304D4C(NodeProp *arg0, s32 dst[3]) {
-    dst[0] = arg0->x;
-    dst[1] = arg0->y;
-    dst[2] = arg0->z;
+void nodeprop_getPosition_s32(NodeProp *nodeProp, s32 dst[3]) {
+    TUPLE_ASSIGN(dst, nodeProp->x, nodeProp->y, nodeProp->z)
 }
 
-void nodeprop_getPosition(NodeProp *arg0, f32 arg1[3]) {
-    arg1[0] = arg0->x;
-    arg1[1] = arg0->y;
-    arg1[2] = arg0->z;
+void nodeprop_getPosition(NodeProp *nodeProp, f32 dst[3]) {
+    TUPLE_ASSIGN(dst, nodeProp->x, nodeProp->y, nodeProp->z)
 }
 
 u32 func_80304DA8(NodeProp *arg0) {
@@ -1249,7 +1245,7 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
     if(actor){
         tmp = func_80305510(arg3);
         if(tmp != NULL){
-            func_80304D4C(tmp, sp34);
+            nodeprop_getPosition_s32(tmp, sp34);
             actor->unk44_14 = func_80341D5C(arg1, sp34);
         }
         else{
@@ -1266,12 +1262,13 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
     return actor;
 }
 
-Actor *spawn_actor(enum actor_e arg0, s32 arg1[3], s32 arg2) {
+Actor *spawn_actor(enum actor_e arg0, s32 pos[3], s32 rot) {
   s32 i;
+
   arg0 = (!dummy_func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);
   for (i = 0; i < sSpawnableActorSize; i++) {
     if (arg0 == sSpawnableActorList[i].infoPtr->actorId) {
-      return sSpawnableActorList[i].spawnFunc(arg1, arg2, ((0, sSpawnableActorList[i])).infoPtr, sSpawnableActorList[i].unk8);
+      return sSpawnableActorList[i].spawnFunc(pos, rot, ((0, sSpawnableActorList[i])).infoPtr, sSpawnableActorList[i].unk8);
     }
   }
 
