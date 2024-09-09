@@ -71,7 +71,7 @@ void chBossJinjoBase_getHitByEgg(ActorMarker *this, ActorMarker *other) {
     actor_base = marker_getActor(this);
 
     if (actor_base->state != CHBOSSJINJOBASE_STATE_3_SPAWNED_BOSS_JINJO) {
-        func_8025A70C(COMUSIC_2B_DING_B);
+        comusic_playTrack(COMUSIC_2B_DING_B);
         actor_base->unk38_31++; // hit count
 
         if (actor_base->unk38_31 >= 3) { // spawn Jjnjonator

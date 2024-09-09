@@ -144,7 +144,7 @@ void chBrentilda_update(Actor *this) {
             if (sp74 < 0xFF) {
                 sp74 = (sp74 + 0xC < 0xFF) ? sp74 + 0xC : 0xFF;
                 if (!this->unk138_24) {
-                    func_8025A70C(COMUSIC_81_ACTIVATING_BRENTILDA);
+                    comusic_playTrack(COMUSIC_81_ACTIVATING_BRENTILDA);
                     func_80324D2C(1.0f, COMUSIC_81_ACTIVATING_BRENTILDA);
                     this->unk138_24 = TRUE;
                     this->unk138_23 = FALSE;
@@ -156,7 +156,7 @@ void chBrentilda_update(Actor *this) {
             if (sp74 >= 0x41) {
                 sp74 = (sp74 - 0xC >= 0x41) ? sp74 - 0xC : 0x40;
                 if (!this->unk138_23) {
-                    func_8025A70C(COMUSIC_8B_DEACTIVATE_BRENTILDA);
+                    comusic_playTrack(COMUSIC_8B_DEACTIVATE_BRENTILDA);
                     func_80324D2C(1.0f, COMUSIC_8B_DEACTIVATE_BRENTILDA);
                     this->unk138_23 = TRUE;
                     this->unk138_24 = FALSE;

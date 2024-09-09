@@ -1010,7 +1010,7 @@ void func_8038D670(enum FF_Action next_state) {
             if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE) == 0) {
                 func_8025A55C(0, 0x1388, 0xB);
                 func_8025AB00();
-                func_8025A70C(JINGLE_DOOR_OF_GRUNTY_OPENED);
+                comusic_playTrack(JINGLE_DOOR_OF_GRUNTY_OPENED);
                 fileProgressFlag_set(FILEPROG_A6_FURNACE_FUN_COMPLETE, TRUE);
                 volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, FALSE);
                 volatileFlag_set(VOLATILE_FLAG_A6_FF_FOUND_HONEYCOMB, TRUE);
@@ -1178,23 +1178,23 @@ void lair_func_8038E0B0(void) {
             if (D_8037DCB8->unk11) {
                 switch(sp38){
                     case FFTT_6_SKULL://L8038E26C
-                        func_8025A70C(COMUSIC_7B_STEP_ON_SKULL_TILE);
+                        comusic_playTrack(COMUSIC_7B_STEP_ON_SKULL_TILE);
                         break;
 
                     case FFTT_5_GRUNTY://L8038E280
-                        func_8025A70C(COMUSIC_7C_STEP_ON_GRUNTY_TILE);
+                        comusic_playTrack(COMUSIC_7C_STEP_ON_GRUNTY_TILE);
                         break;
 
                     case FFTT_1_BANJO://L8038E294
-                        func_8025A70C(COMUSIC_7D_STEP_ON_BK_TILE);
+                        comusic_playTrack(COMUSIC_7D_STEP_ON_BK_TILE);
                         break;
 
                     case FFTT_7_JOKER://L8038E2A8
-                        func_8025A70C(COMUSIC_7E_STEP_ON_MINIGAME_TILE);
+                        comusic_playTrack(COMUSIC_7E_STEP_ON_MINIGAME_TILE);
                         break;
 
                     case FFTT_3_MUSIC://L8038E2BC
-                        func_8025A70C(COMUSIC_7F_STEP_ON_JOKER_TILE);
+                        comusic_playTrack(COMUSIC_7F_STEP_ON_JOKER_TILE);
                         break;
 
                     case FFTT_2_PICTURE://L8038E2D0
@@ -1261,7 +1261,7 @@ void lair_func_8038E0B0(void) {
                                     func_8038D670(8);
                                 }
                             } else {
-                                func_8025A70C(COMUSIC_2C_BUZZER);
+                                comusic_playTrack(COMUSIC_2C_BUZZER);
                             }
                         }
                     }

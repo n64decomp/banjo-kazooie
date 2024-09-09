@@ -41,7 +41,7 @@ void chLeaky_update(Actor *this) {
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
             levelSpecificFlags_set(5, FALSE);
-            timedFunc_set_1(0.5f, (GenFunction_1)func_8025A70C, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
+            timedFunc_set_1(0.5f, (GenFunction_1)comusic_playTrack, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
         if (levelSpecificFlags_get(2) != 0) {
             temp_v0_2 = func_8034C5AC(300);
@@ -104,7 +104,7 @@ bool chLeaky_eggCollision(ActorMarker *marker){
     if(levelSpecificFlags_get(2)) 
         return TRUE;
 
-    func_8025A70C(COMUSIC_2B_DING_B);
+    comusic_playTrack(COMUSIC_2B_DING_B);
     this->unk38_31++;
     if(this->unk38_31 < 2)
         return TRUE;

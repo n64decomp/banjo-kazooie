@@ -622,7 +622,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         sns_set_item_and_update_payload(SNS_ITEM_EGG_PINK, 0, 1);
                         break;
                     }
-                    func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
+                    comusic_playTrack(COMUSIC_88_BIG_SNS_FANFARE);
                     FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0.8f, 15000);
                     tmp_v0_2 = 3*(actor->unkF4_8 - 1);
                     
@@ -666,7 +666,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 break;
             case MARKER_168_ICE_KEY: //L8028CC7C
                 sns_set_item_and_update_payload(SNS_ITEM_ICE_KEY, 0, 1);
-                func_8025A70C(COMUSIC_88_BIG_SNS_FANFARE);
+                comusic_playTrack(COMUSIC_88_BIG_SNS_FANFARE);
                 func_80324DBC(2.5f, 0xDB5, 0x20, 0, 0, 0, 0);
                 marker_despawn(marker);
                 break;

@@ -822,7 +822,7 @@ void func_8029C848(AnimCtrl *arg0) {
 void func_8029C984(void){
     func_8025AB00();
     func_8025A2FC(0, 4000);
-    func_8025A70C(COMUSIC_1A_DEATH);
+    comusic_playTrack(COMUSIC_1A_DEATH);
     func_8024BD08(0);
 }
 

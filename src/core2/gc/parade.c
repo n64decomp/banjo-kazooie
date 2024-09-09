@@ -197,7 +197,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             D_803830F0.indx = 0;
             D_803830F0.parade_id = PARADE_0_POST_FURNACE_FUN;
             D_803830F0.count = 0x1B;
-            func_8025A70C(COMUSIC_8E_CREDITS);
+            comusic_playTrack(COMUSIC_8E_CREDITS);
             next_state = PARADE_STATE_3_WARP;
             gcparade_8031AC8C();
             break;
@@ -209,7 +209,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             D_803830F0.count = 0x3A;
             func_8025A55C(0, 0x1388, 0xB);
             func_8025AB00();
-            func_8025A70C(COMUSIC_8E_CREDITS);
+            comusic_playTrack(COMUSIC_8E_CREDITS);
             next_state = PARADE_STATE_3_WARP;
             gcparade_8031AC8C();
             break;

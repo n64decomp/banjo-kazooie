@@ -311,7 +311,7 @@ void func_8038F350(Actor *this, s32 next_state){
 
         case 8: //L8038F4AC
             if (local->unk4 > 0) {
-                func_8025A70C(SFX_REMOVE_JIGGY);
+                comusic_playTrack(SFX_REMOVE_JIGGY);
                 this->unk60 = 1.0f;
                 temp_s1 = func_8038F0EC(this);
                 func_8038F1EC(this, temp_s1, 0);
@@ -324,7 +324,7 @@ void func_8038F350(Actor *this, s32 next_state){
 
         case 5: //L8038F550
             if (local->unk4 < func_8038EB24(this)) {
-                func_8025A70C(COMUSIC_67_INSERTING_JIGGY);
+                comusic_playTrack(COMUSIC_67_INSERTING_JIGGY);
                 this->unk60 = 1.0f;
                 local->unk4++;
                 temp_s1 = func_8038F0EC(this);
@@ -344,7 +344,7 @@ void func_8038F350(Actor *this, s32 next_state){
                 else{
                     sp4C = item_getCount(ITEM_26_JIGGY_TOTAL);
                 }
-                func_8025A70C(COMUSIC_67_INSERTING_JIGGY);
+                comusic_playTrack(COMUSIC_67_INSERTING_JIGGY);
                 this->unk60 = 1.0f;
                 for(phi_s0 = 0; phi_s0 < sp4C; phi_s0++){
                     local->unk4++;
@@ -359,7 +359,7 @@ void func_8038F350(Actor *this, s32 next_state){
             break;
 
         case 7: //L8038F724
-        func_8025A70C(COMUSIC_65_WORLD_OPENING_B);
+        comusic_playTrack(COMUSIC_65_WORLD_OPENING_B);
         if (this->unkF4_8 == 1) {
             func_80324DBC(1.0f, 0xF7E, 4, NULL, this->marker, func_8038F0C0, NULL);
         } else if (this->unkF4_8 == 0xA) {
@@ -390,7 +390,7 @@ void lair_func_8038F894(Actor *this, s32 arg1) {
         func_8038F350(this, arg1);
         return;
     }
-    func_8025A70C(COMUSIC_2C_BUZZER);
+    comusic_playTrack(COMUSIC_2C_BUZZER);
     if (fileProgressFlag_get(FILEPROG_DE_USED_ALL_YOUR_PUZZLE_PIECES) != 0) {
         func_8038F350(this, 1);
         return;
@@ -503,7 +503,7 @@ void lair_func_8038F924(Actor *this) {
                     if (local->unk4) {
                         func_8038F350(this, 8);
                     } else {
-                        func_8025A70C(COMUSIC_2C_BUZZER);
+                        comusic_playTrack(COMUSIC_2C_BUZZER);
                         func_8038F350(this, 1);
                     }
                 }

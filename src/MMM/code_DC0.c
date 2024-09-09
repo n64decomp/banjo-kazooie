@@ -82,11 +82,11 @@ bool MMM_func_80387340(ActorMarker *marker){
         if(sp1C == 0){
             ml_vec3f_copy(sp20, actor->position);
             sp20[1] += 80.0f;
-            func_8025A70C(COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
+            comusic_playTrack(COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
             jiggy_spawn(JIGGY_63_MMM_FLOWER_POTS, sp20);
         }
         else{
-            func_8025A70C(COMUSIC_2B_DING_B);
+            comusic_playTrack(COMUSIC_2B_DING_B);
         }
     }
     func_803871D4(sp1C);

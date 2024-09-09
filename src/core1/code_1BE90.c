@@ -410,7 +410,7 @@ void func_8025A6EC(enum comusic_e track_id, s32 arg1){
 }
 
 //comusic_queueTrack
-void func_8025A70C(enum comusic_e track_id){
+void comusic_playTrack(enum comusic_e track_id){
     CoMusic *trackPtr;
     s32 indx;
 
@@ -430,7 +430,7 @@ void func_8025A70C(enum comusic_e track_id){
 }
 
 void func_8025A788(enum comusic_e comusic_id, f32 delay1, f32 delay2){
-    timedFunc_set_1(delay1, (GenFunction_1) func_8025A70C, comusic_id);
+    timedFunc_set_1(delay1, (GenFunction_1) comusic_playTrack, comusic_id);
     timedFunc_set_1(delay1 + delay2, (GenFunction_1) func_8025A7DC, comusic_id);
 }
 

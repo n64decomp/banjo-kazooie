@@ -431,9 +431,9 @@ void func_803197AC(s32 arg0){
 
         case 8: //80319CFC
             if (D_803830E0->unk0 != -1) {
-                func_8025A70C((D_803830E0->unk11 == 1)? COMUSIC_2B_DING_B : COMUSIC_2C_BUZZER);
+                comusic_playTrack((D_803830E0->unk11 == 1)? COMUSIC_2B_DING_B : COMUSIC_2C_BUZZER);
             } else {
-                func_8025A70C(COMUSIC_2B_DING_B);
+                comusic_playTrack(COMUSIC_2B_DING_B);
             }
             timedFunc_set_1(1.0f, func_803197AC, 9);
             break;
