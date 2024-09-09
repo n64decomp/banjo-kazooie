@@ -162,7 +162,7 @@ void func_8038687C(Actor *this) {
     
     if (local->unk0 != NULL) {
         other = marker_getActor(local->unk0);
-        viewport_get_position_vec3f(sp78);
+        viewport_getPosition_vec3f(sp78);
         sp6C[0] = this->position[0] - sp78[0];
         sp6C[1] = this->position[1] - sp78[1];
         sp6C[2] = this->position[2] - sp78[2];
@@ -188,7 +188,7 @@ void func_8038687C(Actor *this) {
                 if(tmp < (f32) phi_v0)
                     continue;
 
-                if(func_8024DC04(sp4C[0], 0.0f, sp4C[2]))
+                if(viewport_isPointOutsideFrustum_3f(sp4C[0], 0.0f, sp4C[2]))
                     break;
 
             }

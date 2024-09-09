@@ -47,18 +47,18 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
 
     modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)actor);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
-    func_8024E258();
+    viewport_backupState();
     {sp58[0] = 0.0f; sp58[1] = 0.0f; sp58[2] = 1312.5f;};
     {sp4C[0] = 0.0f; sp4C[1] = 0.0f; sp4C[2] = 0.0f;};
-    viewport_set_position_vec3f(sp58);
-    viewport_set_rotation_vec3f(sp4C);
+    viewport_setPosition_vec3f(sp58);
+    viewport_setRotation_vec3f(sp4C);
     viewport_update();
-    func_8024C904(gdl, mptr);
+    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
     {sp40[0] = 0.0f; sp40[1] = 0.0f; sp40[2] = 0.0f;};
     {sp34[0] = 0.0f; sp34[1] = 400.0f; sp34[2] = 0.0f;};
     modelRender_draw(gdl, mptr, sp40, 0, 1.0f, sp34, marker_loadModelBin(marker));
-    func_8024E2FC();
-    func_8024C904(gdl, mptr);
+    viewport_restoreState();
+    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
     return actor;
 }  
 

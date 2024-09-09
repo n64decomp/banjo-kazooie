@@ -34,7 +34,7 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
 
-f32 viewport_get_yaw(void);
+f32 viewport_getYaw(void);
 
 // .h
 void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
@@ -1485,7 +1485,7 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
 s32 func_8025975C(f32 a0)
 {
-    f32 val = (s32)(viewport_get_yaw() - a0);
+    f32 val = (s32)(viewport_getYaw() - a0);
 
     while (val < 0)
         val += 360;

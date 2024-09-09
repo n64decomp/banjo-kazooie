@@ -282,7 +282,7 @@ static void __bsdronexform_setState(int next_state){
         case 5:// 802B02F4
             _player_getPosition(sp24);
             sp24[1] += 30.0f;
-            func_8024E3A8(sp24, 80.0f);
+            viewport_adjustPointDistance(sp24, 80.0f);
             func_802AFBB8(sp24);
             func_8029E3C0(0, 0.1f);
             break;

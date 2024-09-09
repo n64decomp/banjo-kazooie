@@ -5,9 +5,9 @@
 #include "gc/gctransition.h"
 
 extern void func_8024C510(f32);
-extern void viewport_set_position_f3(f32, f32, f32);
-extern void viewport_set_rotation_f3(f32, f32, f32);
-extern void viewport_set_near_far(f32, f32);
+extern void viewport_setPosition_f3(f32, f32, f32);
+extern void viewport_setRotation_f3(f32, f32, f32);
+extern void viewport_setNearAndFar(f32, f32);
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
@@ -64,8 +64,8 @@ struct{
 } D_8037E8E0;
 
 void func_802E3800(void){
-    viewport_set_position_f3(0.0f, 0.0f, 0.0f);
-    viewport_set_rotation_f3(-30.0f, 30.0f, 0.0f);
+    viewport_setPosition_f3(0.0f, 0.0f, 0.0f);
+    viewport_setRotation_f3(-30.0f, 30.0f, 0.0f);
     func_8024C510(3000.0f);
     viewport_update();
 }
@@ -401,7 +401,7 @@ void func_802E4214(enum map_e map_id){
     func_80253428(1);
     animCache_init();
     viewport_reset();
-    viewport_set_near_far(1.0f, 10000.0f);
+    viewport_setNearAndFar(1.0f, 10000.0f);
     rand_reset();
     scissorBox_setDefault();
     func_80253FE8();

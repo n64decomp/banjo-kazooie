@@ -140,7 +140,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg4[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while(var_s1 < arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
@@ -150,7 +150,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg5[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while( var_s1 >= arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
@@ -166,7 +166,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg4[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while(var_s1 < arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
@@ -176,7 +176,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg5[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while(var_s1 >= arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
@@ -200,7 +200,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg4[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while( var_s1 < arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
@@ -210,7 +210,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg5[2];
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while( var_s1 >= arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
@@ -226,7 +226,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg4[2];            
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while(var_s1 < arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
@@ -236,7 +236,7 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_s1 = arg5[2];            
             var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
             while(var_s1 >= arg3[2]) {
-                if ((var_s0->prop2Cnt != 0) && func_8024D9B0(var_s0) != 0) {
+                if ((var_s0->prop2Cnt != 0) && cube_isInFrustum2(var_s0) != 0) {
                     func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
@@ -267,7 +267,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
@@ -275,7 +275,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
 
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
@@ -288,7 +288,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
@@ -296,7 +296,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
 
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
@@ -315,7 +315,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
@@ -323,7 +323,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
 
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
@@ -336,7 +336,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
@@ -344,7 +344,7 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
 
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
-                if ((var_fp->prop2Cnt != 0) && func_8024D9B0(var_fp) != 0) {
+                if ((var_fp->prop2Cnt != 0) && cube_isInFrustum2(var_fp) != 0) {
                     func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
@@ -369,8 +369,8 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         return;
 
     func_8032D3A8();
-    viewport_get_position_vec3f(vp_position);
-    viewport_get_rotation_vec3f(vp_rotation);
+    viewport_getPosition_vec3f(vp_position);
+    viewport_getRotation_vec3f(vp_rotation);
     func_80256664(vp_rotation);
     cube_positionToIndices(vp_cube_indices, vp_position);
     vp_cube_indices[0] -= D_80381FA0.min[0];\
@@ -2404,8 +2404,8 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         do {
             if (!func_80308F54(D_80382150[phi_s4])) {
                 temp_s3 = &D_80381FA0.cube_list[D_80382150[phi_s4]];
-                if (func_8024D8F4(temp_s3)) {
-                    veiwport_get_position_vec3w(vp_pos);
+                if (cube_isInFrustum(temp_s3)) {
+                    viewport_getPosition_vec3w(vp_pos);
                     vp_cube_index = cube_atPosition_s32(vp_pos) - D_80381FA0.cube_list;
                     for(phi_s0 = 0; (phi_s0 < D_80382150[phi_s4 + 1]) && (vp_cube_index != D_80382150[phi_s0 + 2]); phi_s0++) {
                     }

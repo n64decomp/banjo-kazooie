@@ -145,7 +145,7 @@ void fxjinjoscore_draw(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx
     s32 j; // v0_2 (spF8)
 
     gSPDisplayList((*gfx)++, D_8036A228);
-    func_8024C7B8(gfx, mtx);
+    viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
     pos_x = 44.0f;
     // Draw all jinjo heads
     for(jinjo_id = 0; jinjo_id < 5; jinjo_id++){
@@ -200,7 +200,7 @@ void fxjinjoscore_draw(s32 arg0, struct8s *arg1, Gfx **gfx, Mtx **mtx, Vtx **vtx
     gDPPipeSync((*gfx)++);
     gDPSetTextureLUT((*gfx)++, G_TT_NONE);
     gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 bool func_802FFA10(f32 arg0, s32 arg1, s32 arg2){

@@ -34,9 +34,9 @@ int func_802A3350(void){
 }
 
 void func_802A339C(f32 arg0[3], f32 arg1[3], f32 arg2){
-    func_8024C5A8(arg0);
+    viewport_getLookVector(arg0);
     ml_vec3f_scale(arg0, arg2);
-    viewport_get_rotation_vec3f(arg1);
+    viewport_getRotation_vec3f(arg1);
 }
 
 void func_802A33D8(void){

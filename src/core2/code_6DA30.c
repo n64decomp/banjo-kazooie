@@ -633,7 +633,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx *
                 //toggle letter gradient
                 D_80380AF4 ^= 1;
                 if(D_80380AF4){
-                    func_8024C7B8(gfx, mtx);
+                    viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
                     gDPPipeSync((*gfx)++);
                     gDPSetTexturePersp((*gfx)++, G_TP_PERSP);
                     gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0xFF);
@@ -883,7 +883,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     gDPPipeSync((*gfx)++);
     gDPSetTexturePersp((*gfx)++, G_TP_PERSP);
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }//*/
 
 //adds a new string to the print buffer and updates string buffer end ptr

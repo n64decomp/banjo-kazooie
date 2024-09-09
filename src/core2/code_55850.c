@@ -30,17 +30,17 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     modelRender_preDraw( (GenFunction_1)actor_predrawMethod, (s32)this);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
-    func_8024E258();
+    viewport_backupState();
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;
     sp58[2] = 860.0f;
     sp4C[0] = 0.0f;
     sp4C[1] = 0.0f;
     sp4C[2] = 0.0f;
-    viewport_set_position_vec3f(sp58);
-    viewport_set_rotation_vec3f(sp4C);
+    viewport_setPosition_vec3f(sp58);
+    viewport_setRotation_vec3f(sp4C);
     viewport_update();
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     sp40[0] = 0.0f;
     sp40[1] = 0.0f;
     sp40[2] = 0.0f;
@@ -48,8 +48,8 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp34[1] = -87.0f;
     sp34[2] = 0.0f;
     modelRender_draw(gfx, mtx, sp40, NULL, 1.0f, sp34, marker_loadModelBin(marker));
-    func_8024E2FC();
-    func_8024C904(gfx, mtx);
+    viewport_restoreState();
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     return this;
 }
 

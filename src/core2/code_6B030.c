@@ -67,11 +67,11 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 width;
     s32 height;
 
-    viewport_get_position_vec3f(spDC);
+    viewport_getPosition_vec3f(spDC);
     spD0[0] = self->unk0[0] - spDC[0];
     spD0[1] = self->unk0[1] - spDC[1];
     spD0[2] = self->unk0[2] - spDC[2];
-    mlMtxSet(func_8024DD90());
+    mlMtxSet(viewport_getMatrix());
     func_80252330(spD0[0], spD0[1], spD0[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -326,7 +326,7 @@ void func_802F2ED0(Struct64s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp38[3];
 
     if (arg0 != NULL && arg0->unk4) {
-        viewport_get_rotation_vec3f(sp38);
+        viewport_getRotation_vec3f(sp38);
         mlMtxIdent();
         mlMtxRotPitch(-sp38[0]);
         mlMtxRotYaw(-sp38[1]);

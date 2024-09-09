@@ -250,8 +250,8 @@ void particleEmitter_setParticleVelocityRange(ParticleEmitter *, f32, f32, f32, 
 void func_802EFF50(ParticleEmitter *, f32);
 void particleEmitter_setRGB(ParticleEmitter *this, s32 arg1[3]);
 void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
-int  func_8024DC04(f32, f32, f32);
-void func_8024E3A8(f32 [3], f32);
+int  viewport_isPointOutsideFrustum_3f(f32, f32, f32);
+void viewport_adjustPointDistance(f32 [3], f32);
 OSContPad *func_8024F3F4(void);
 OSMesgQueue *pfsManager_getFrameReplyQ(void);
 

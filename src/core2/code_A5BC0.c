@@ -101,7 +101,7 @@ void func_8032CB50(Cube *cube, bool global) {
 
     if (cube->prop2Cnt >= 2) {
         if (global == 0) {
-            veiwport_get_position_vec3w(ref_position); //distance from viewport
+            viewport_getPosition_vec3w(ref_position); //distance from viewport
         } else {
             ref_position[0] = 0;
             ref_position[1] = 0;

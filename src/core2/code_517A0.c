@@ -38,7 +38,7 @@ void func_802D8730(Actor *this) {
     if(sp38 < this->position_y)
         return;
 
-    func_8024E3A8(this->position, 40.0f);
+    viewport_adjustPointDistance(this->position, 40.0f);
     this->position_y = sp38;
     this->velocity_y -= sp3C;
     if (this->velocity_y < 0.0f) {

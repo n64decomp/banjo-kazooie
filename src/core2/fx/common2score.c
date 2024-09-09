@@ -143,7 +143,7 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(arg0->unk20 == ITEM_C_NOTE){
         gDPSetCombineMode((*gfx)++, G_CC_MODULATEIA, G_CC_MODULATEIA);
     }
-    func_8024C7B8(gfx, mtx);
+    viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
     gSPVertex((*gfx)++, *vtx, 4, 0);
     if(arg0->unk20 == ITEM_0_HOURGLASS_TIMER){
         tmp_s2 = 0xC;
@@ -184,7 +184,7 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     gDPPipeSync((*gfx)++);
     gDPSetTextureLUT((*gfx)++, G_TT_NONE);
     gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 struct8s *fxcommon2score_new(enum item_e item_id) {

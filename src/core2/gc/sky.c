@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void viewport_set_near_far(f32, f32);
+extern void viewport_setNearAndFar(f32, f32);
 
 typedef struct {
     s16 model_id;
@@ -74,11 +74,11 @@ void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 rotation[3];
     BKModelBin *iAsset;
 
-    viewport_set_near_far(5.0f, 15000.0f);
+    viewport_setNearAndFar(5.0f, 15000.0f);
     if(gcSky.model_bins[0]){
         drawRectangle2D(gfx, 0, 0, (s32)(f32) framebuffer_width, (s32)(f32)framebuffer_height,0, 0, 0); //fill screen with black
-        func_8024C904(gfx, mtx);
-        viewport_get_position_vec3f(position);
+        viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
+        viewport_getPosition_vec3f(position);
         for(i = 0; i < 3; i++){
             iAsset = gcSky.model_bins[i];
             if(iAsset){

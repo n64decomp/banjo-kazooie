@@ -50,7 +50,7 @@ typedef struct{
 
 extern void item_set(enum item_e, s32);
 extern void actor_postdrawMethod(ActorMarker *);
-extern void viewport_set_near_far(f32, f32);
+extern void viewport_setNearAndFar(f32, f32);
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chBottlesBonus_update(Actor *this);
@@ -122,8 +122,8 @@ void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
     f32 vp_position[3];
     f32 vp_rotation[3];
 
-    func_8024E258();
-    viewport_set_near_far(50.0f, 2000.0f);
+    viewport_backupState();
+    viewport_setNearAndFar(50.0f, 2000.0f);
     if (getGameMode() == GAME_MODE_A_SNS_PICTURE) {
         vp_rotation[0] = 0.0f;
         vp_rotation[1] = 0.0f;
@@ -139,15 +139,15 @@ void chBottlesBonus_func_802DD080(Gfx **gfx, Mtx **mtx) {
         vp_rotation[1] = 270.0f;
         vp_rotation[2] = 0.0f;
     }
-    viewport_set_position_vec3f(vp_position);
-    viewport_set_rotation_vec3f(vp_rotation);
+    viewport_setPosition_vec3f(vp_position);
+    viewport_setRotation_vec3f(vp_rotation);
     viewport_update();
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 void chBottlesBonus_func_802DD158(Gfx **gfx, Mtx** mtx){
-    func_8024E2FC();
-    func_8024C904(gfx, mtx);
+    viewport_restoreState();
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {

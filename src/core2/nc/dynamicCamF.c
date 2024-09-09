@@ -7,8 +7,8 @@ void ncDynamicCamF_init(void){
     f32 sp24[3];
     f32 sp12[3];
 
-    viewport_get_position_vec3f(sp24);
-    viewport_get_rotation_vec3f(sp12);
+    viewport_getPosition_vec3f(sp24);
+    viewport_getRotation_vec3f(sp12);
     ncDynamicCamera_setPosition(sp24);
     ncDynamicCamera_setRotation(sp12);
     player_getPosition(__playerStartPosition);

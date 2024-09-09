@@ -849,7 +849,7 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s3
     func_803382FC(this->unk168 * arg6);
     func_803382E4(5);
     func_80335D30(gfx);
-    func_8024C7B8(gfx, mtx);
+    viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
     mlMtxIdent();
     if (this->unk1A4_24) {
         mlMtxRotYaw(180.0f);
@@ -867,7 +867,7 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s3
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     func_80344090(arg5, this->unk186, gfx);
     func_8033687C(gfx);
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 void func_80316764(GcZoombox *this, s32 arg1) {

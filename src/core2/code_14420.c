@@ -203,7 +203,7 @@ f32 func_8029B41C(void){
     f32 sp1C;
 
     player_getPosition(sp2C);
-    viewport_get_position_vec3f(sp20);
+    viewport_getPosition_vec3f(sp20);
     func_80257F18(sp2C, sp20, &sp1C);
     return sp1C;
 }
@@ -363,7 +363,7 @@ void func_8029B984(f32 dst[3]){
     f32 sp18[3];
 
     _player_getPosition(plyr_pos);
-    viewport_get_position_vec3f(sp18);
+    viewport_getPosition_vec3f(sp18);
     ml_vec3f_diff_copy(dst, sp18, plyr_pos);
 }
 

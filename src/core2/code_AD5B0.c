@@ -19,7 +19,7 @@ u32 D_803835E0;
 /* public */
 void func_80335110(s32);
 void func_80335128(s32);
-void viewport_set_near_far(f32, f32);
+void viewport_setNearAndFar(f32, f32);
 void func_80335140(enum map_e);
 void func_8033520C(s32);
 
@@ -31,8 +31,8 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     if (D_803835E0 == 0) {
         drawRectangle2D(gdl, 0, 0, framebuffer_width, framebuffer_height, 0, 0, 0);
         func_802BBD2C(&sp44, &sp40);
-        viewport_set_near_far(sp44, sp40);
-        func_8024C904(gdl, mptr);
+        viewport_setNearAndFar(sp44, sp40);
+        viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
         return;
     }
     if (func_80320708() == 0) {
@@ -41,8 +41,8 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     spawnQueue_unlock();
     sky_draw(gdl, mptr, vptr);
     func_802BBD2C(&sp44, &sp40);
-    viewport_set_near_far(sp44, sp40);
-    func_8024C904(gdl, mptr);
+    viewport_setNearAndFar(sp44, sp40);
+    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
     if (mapModel_has_xlu_bin() != 0) {
         mapModel_opa_draw(gdl, mptr, vptr);
         if (game_is_frozen() == 0) {

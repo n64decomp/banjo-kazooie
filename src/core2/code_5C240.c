@@ -55,12 +55,12 @@ void func_802E329C(s32 arg0, Gfx **gfx_begin, Gfx **gfx_end) {
         drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
     }
     if ((D_8037E8C0.unk14 == 0) || (D_8037E8C0.unk14 == 3)) {
-        func_8024C904(&gfx, &mtx);
+        viewport_setRenderViewportAndPerspectiveMatrix(&gfx, &mtx);
         gcbound_draw(&gfx);
     }
     if (D_8037E8C0.unk14 == 1) {
         drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
-        func_8024C904(&gfx, &mtx);
+        viewport_setRenderViewportAndPerspectiveMatrix(&gfx, &mtx);
         func_802F1858(D_8037E8C0.unk10, &gfx, &mtx, &vtx);
     }
     finishFrame(&gfx);

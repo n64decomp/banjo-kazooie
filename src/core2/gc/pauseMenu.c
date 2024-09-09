@@ -1208,7 +1208,7 @@ void __gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx** vptr, BKSprite* sprit
     func_80338338(0xFF, 0xFF, 0xFF);
     func_803382FC(a);
     func_8033837C(0);
-    viewport_get_position_vec3f(sp50);
+    viewport_getPosition_vec3f(sp50);
     
     sp34 = func_8024DE1C(x, y, sp5C, sp44);
     mlMtxIdent(); //matrix_stack_identity
@@ -1319,7 +1319,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 if (D_80383010.unk3E[i] < 0.0) {
                     D_80383010.unk3E[i] += 360.0;
                 }
-                func_8024E258();
+                viewport_backupState();
                 sp98[0] = ((i-1)*0.4)*360 + -360.0f;
                 sp98[1] = 0.0f;
                 sp98[2] = 1000.0f;
@@ -1327,10 +1327,10 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 sp8C[0] = 0.0f;
                 sp8C[1] = 0.0f;
                 sp8C[2] = 0.0f;
-                viewport_set_position_vec3f(sp98);
-                viewport_set_rotation_vec3f(sp8C);
+                viewport_setPosition_vec3f(sp98);
+                viewport_setRotation_vec3f(sp8C);
                 viewport_update();
-                func_8024C904(gfx, mtx);
+                viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
                 sp98[0] = 0.0f;
                 sp98[1] = 0.0f;
                 sp98[2] = 0.0f;
@@ -1350,8 +1350,8 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
                 modelRender_setAlpha(D_80383010.sns_alpha);
                 modelRender_draw(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.sns_egg_model);
-                func_8024E2FC();
-                func_8024C904(gfx, mtx);
+                viewport_restoreState();
+                viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
             }
         }
         if (sns_get_item_state(7, 0)) {
@@ -1362,7 +1362,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             if (D_80383010.unk3E[0] < 0.0) {
                 D_80383010.unk3E[0] += 360.0;
             }
-            func_8024E258();
+            viewport_backupState();
 
             sp98[0] = 0.0f;
             sp98[1] = 0.0f;
@@ -1372,10 +1372,10 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp8C[1] = 0.0f;
             sp8C[2] = 0.0f;
 
-            viewport_set_position_vec3f(sp98);
-            viewport_set_rotation_vec3f(sp8C);
+            viewport_setPosition_vec3f(sp98);
+            viewport_setRotation_vec3f(sp8C);
             viewport_update();
-            func_8024C904(gfx, mtx);
+            viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 
             sp98[0] = 0.0f;
             sp98[1] = 0.0f;
@@ -1391,8 +1391,8 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
             modelRender_setAlpha(D_80383010.sns_alpha);
             modelRender_draw(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.ice_key_model);
-            func_8024E2FC();
-            func_8024C904(gfx, mtx);
+            viewport_restoreState();
+            viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
         }
     }
 

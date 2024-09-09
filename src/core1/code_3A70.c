@@ -4,7 +4,7 @@
 
 extern f32 ml_cos_deg(f32);
 extern f32 ml_sin_deg(f32);
-extern void veiwport_get_position_vec3w(s32[3]);
+extern void viewport_getPosition_vec3w(s32[3]);
 
 Gfx D_80275880[] = {
     gsSPClearGeometryMode(G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING | 0x0060CD00),
@@ -26,7 +26,7 @@ void func_80241490(Gfx **gfx, Vtx **vtx, s32 arg2[3], s32 arg3[3], s32 arg4[3], 
     s32 sp78[3][4];
     s32 i;
 
-    veiwport_get_position_vec3w(spB4);
+    viewport_getPosition_vec3w(spB4);
     gSPDisplayList((*gfx)++, D_80275880);
     if (arg6 != 0) {
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER | G_CULL_BACK);
@@ -95,7 +95,7 @@ void func_80241928(Gfx** gfx, Vtx** vtx, s32 arg2[3], s32 arg3, s32 arg4[3]) {
     s32 var_fp;
     s32 var_s0;
 
-    veiwport_get_position_vec3w(spB4);
+    viewport_getPosition_vec3w(spB4);
     for(var_fp = 0; var_fp < 4; var_fp++){
         gSPDisplayList((*gfx)++, D_80275880);
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
@@ -162,7 +162,7 @@ void func_802424D4(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 arg3[3], f32 arg4[3], f3
         sp68[1] *= arg5;
         sp68[2] *= arg5;
 
-        viewport_get_position_vec3f(sp5C);
+        viewport_getPosition_vec3f(sp5C);
         gSPDisplayList((*gfx)++, D_80275880);
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
         gSPVertex((*gfx)++, *vtx, 8, 0);
@@ -209,7 +209,7 @@ void func_80242BE8(Gfx **gfx, Vtx **arg1, f32 arg2[2][2][2][3], s32 arg3[3], s32
     s32 i;
     s32 j;
     s32 k;
-    viewport_get_position_vec3f(sp84);
+    viewport_getPosition_vec3f(sp84);
     gSPDisplayList((*gfx)++, D_80275880);
     if (arg5){
         gSPSetGeometryMode((*gfx)++, G_CULL_BACK);
