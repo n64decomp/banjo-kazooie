@@ -91,7 +91,7 @@ void func_803902B8(Actor *this) {
     sp54 = this->marker->id - 0x16D;
     if (!this->initialized) {
         marker_setFreeMethod(this->marker, func_80390298);
-        this->unk138_24 = func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
+        this->unk138_24 = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         this->initialized = TRUE;
     }
     _player_getPosition(sp5C);

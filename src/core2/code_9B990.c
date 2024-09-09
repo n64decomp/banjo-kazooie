@@ -286,8 +286,8 @@ void __overlay_bgs_release(void){ return; }
 
 void func_80322D38(void){
     if( map_get() == MAP_10_BGS_MR_VILE
-        && func_803203FC(2)
-        && func_803203FC(7)
+        && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
+        && volatileFlag_get(VOLATILE_FLAG_7_HAS_SEEN_VILE_FF_MINIGAME)
     ){
         player_setTransformation(TRANSFORM_5_CROC);
     }

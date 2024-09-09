@@ -338,10 +338,10 @@ void func_802BC2CC(s32 arg0) {
     f32 *sp20 = D_8037D918;
     s32 sp1C;
     
-    if (func_803203FC(0xE) != 0) {
+    if (volatileFlag_get(VOLATILE_FLAG_E) != 0) {
         func_80347A14(0);
     }
-    if (func_80320454(0xE, 0) || func_802D686C() || (arg0 == 0x63) || !func_802BB720(arg0, D_8037D908, D_8037D918, &sp1C)) {
+    if (volatileFlag_getAndSet(VOLATILE_FLAG_E, 0) || func_802D686C() || (arg0 == 0x63) || !func_802BB720(arg0, D_8037D908, D_8037D918, &sp1C)) {
         if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
             func_802BE794();
         }

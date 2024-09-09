@@ -111,10 +111,10 @@ void func_80388848(ActorMarker *this){
     if(sp1C != ++unqPtr->unk0)
         return;
 
-    if(func_803203FC(2)){
+    if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
         item_set(ITEM_6_HOURGLASS,0);
-        func_803204E4(3,0);
-        func_803204E4(5,1);
+        volatileFlag_set(VOLATILE_FLAG_3,0);
+        volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON,1);
     }
     else{
         BGS_func_80388660(thisActor->marker);
@@ -173,12 +173,12 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         }//L80388B7C
         
         timed_exitStaticCamera(tmpf += 2.5);
-        if(!unqPtr->unkA && !func_803203FC(2)){
+        if(!unqPtr->unkA && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_80324DBC(tmpf + 0.5, 0xc73, 0xe, this->position, this->marker, func_80388784, 0);
             unqPtr->unkA = 1;
         }
         func_80324E38(sp54 = tmpf + 0.6, 0);
-        if(func_803203FC(2)){
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             timedFunc_set_1(sp54, (GenFunction_1)func_803886F4, reinterpret_cast(s32, this->marker));
         }else{
             this->state = 0x05;
@@ -243,7 +243,7 @@ void func_80388E94(ActorMarker *this, s32 arg1){
         else{
             func_8028F55C(1, thisActor->marker);
             timedFunc_set_0(0.5f, BGS_func_80388760);
-           if(!mapSpecificFlags_get(1) && !func_803203FC(2) && func_80311480(0xc75, 0, NULL, NULL, NULL, NULL))
+           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && func_80311480(0xc75, 0, NULL, NULL, NULL, NULL))
                mapSpecificFlags_set(1,TRUE);
         }
     }
@@ -292,12 +292,12 @@ void func_80389080(Actor *this){
         unqPtr->unkA = fileProgressFlag_getN(0,2);
         unqPtr->unkB = 0;
         unqPtr->unkC = 0.0f;
-        if(func_803203FC(2)){
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             unqPtr->unkA = 3;
             this->position_y = this->position_y - 300.0f;
         }
         BGS_func_803888E4(this, 1);
-        if(jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1))
+        if(jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && !volatileFlag_get(VOLATILE_FLAG_1))
             marker_despawn(this->marker);
     }
     else{
@@ -312,8 +312,8 @@ void func_80389080(Actor *this){
         func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp38, &sp34, &sp30);
         this->yaw = this->yaw + 5.0f*sp30;
         if(this->state == 1){
-            if(func_803203FC(2)){
-                if(func_803203FC(3)){
+            if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
+                if(volatileFlag_get(VOLATILE_FLAG_3)){
                     func_80324E38(0.0f,0);
                     BGS_func_803888E4(this, 3);
                 }
@@ -325,11 +325,11 @@ void func_80389080(Actor *this){
             }
         }
         if(this->state == 5){
-            if(func_803203FC(2)){
+            if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
                 if(item_empty(ITEM_0_HOURGLASS_TIMER)){
                     item_set(ITEM_6_HOURGLASS,1);
-                    func_803204E4(3,0);
-                    func_803204E4(5,0);
+                    volatileFlag_set(VOLATILE_FLAG_3,0);
+                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON,0);
                 }
             } //L80389370
             else{

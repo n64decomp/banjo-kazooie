@@ -112,7 +112,7 @@ void chGobiRock_update(Actor *this){
             this->position_z = sp28->position_z;
         }
         __chGobiRock_setState(this, 1);
-        if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && !func_803203FC(1)){
+        if(jiggyscore_isSpawned(JIGGY_44_GV_GOBI_1) && !volatileFlag_get(VOLATILE_FLAG_1)){
             marker_despawn(this->marker);
         }
     }

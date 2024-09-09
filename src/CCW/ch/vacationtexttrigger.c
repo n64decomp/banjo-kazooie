@@ -30,7 +30,7 @@ static bool __playerIsWithinTrigger(s32 x, s32 z, s32 distance) {
 
 void chVacationTextTrigger_update(Actor* this) {
     // Despawn if already triggered
-    if (func_803203FC(UNKFLAGS1_13_HAS_TRIGGERED_MUMBO_VACATION_TEXT)) {
+    if (volatileFlag_get(VOLATILE_FLAG_13_HAS_TRIGGERED_MUMBO_VACATION_TEXT)) {
         marker_despawn(this->marker);
         return;
     }
@@ -38,6 +38,6 @@ void chVacationTextTrigger_update(Actor* this) {
     // Start dialog if player is within trigger
     if (__playerIsWithinTrigger(0, -107, 188) != 0) {
         func_80311480(0xDA9, 4, NULL, NULL, NULL, NULL);
-        func_803204E4(UNKFLAGS1_13_HAS_TRIGGERED_MUMBO_VACATION_TEXT, 1);
+        volatileFlag_set(VOLATILE_FLAG_13_HAS_TRIGGERED_MUMBO_VACATION_TEXT, 1);
     }
 }

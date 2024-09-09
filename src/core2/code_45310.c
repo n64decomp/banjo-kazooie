@@ -372,7 +372,7 @@ void func_802CCC5C(Actor *this) {
                 }
                 if (local->unk4 >= 1.0f) {
                     local->unk4 = 1.0f;
-                    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)) {
+                    if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) {
                         local->unk3A = 0;
                     } else {
                         if (this->state == 2) {

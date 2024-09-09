@@ -358,7 +358,7 @@ void func_80388BDC(Actor *this) {
             }
             this->unk38_31 = 0;
             this->unk60 = 0.0f;
-            func_80356520(0xAD);
+            volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_AD_MMM_CHURCH_DOOR_MISSED);
         }
         break;
     }

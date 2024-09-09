@@ -207,7 +207,7 @@ void func_8034B8C0(enum map_e map_id, s32 demo_id) {
     demo_load(map_id,demo_id);
     D_80386118 = D_8038611C = 0;
     if (D_80386114->unk1 == 6) {
-        func_803204E4(0x1F, 1);
+        volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 1);
         func_802E4A70();
     }
     if ((demo_id == 0x5B) || (demo_id == 0x5F)) {
@@ -297,16 +297,16 @@ void func_8034BB90(void) {
         D_80386118 = 1;
     }
     func_8034B580(D_80386114->unk1);
-    if (func_803203FC(0xC3)) {
-        func_803204E4(0xC3, 0);
+    if (volatileFlag_get(VOLATILE_FLAG_C3)) {
+        volatileFlag_set(VOLATILE_FLAG_C3, 0);
         func_8034B9E4();
     }
     if( !sp1C 
         && sp18 
         && !D_8038611C 
         && (getGameMode() != GAME_MODE_8_BOTTLES_BONUS) 
-        && ((func_803203FC(0x64) && (getGameMode() != GAME_MODE_A_SNS_PICTURE)) 
-        || func_803203FC(0x63))
+        && ((volatileFlag_get(VOLATILE_FLAG_64) && (getGameMode() != GAME_MODE_A_SNS_PICTURE)) 
+        || volatileFlag_get(VOLATILE_FLAG_63))
     ) {
         func_8034B7F0(D_80386114->unk1);
         if (getGameMode() == GAME_MODE_9_BANJO_AND_KAZOOIE) {
@@ -317,7 +317,7 @@ void func_8034BB90(void) {
             } else {
                 func_802DF0C8();
             }
-        } else if (func_803203FC(0x64)) {
+        } else if (volatileFlag_get(VOLATILE_FLAG_64)) {
             func_802E412C(1, D_80386114->unk5);
             func_8034B994();
         } else {
@@ -329,8 +329,8 @@ void func_8034BB90(void) {
             func_8025A58C(0, 800);
             func_8025AB00();
         }
-        func_803204E4(0x64, 0);
-        func_803204E4(0x63, 0);
+        volatileFlag_set(VOLATILE_FLAG_64, 0);
+        volatileFlag_set(VOLATILE_FLAG_63, 0);
         D_8038611C = 1;
     }
 }
@@ -338,7 +338,7 @@ void func_8034BB90(void) {
 s32 func_8034BDA4(enum map_e map_id, s32 exit_id) {
     s32 phi_v0;
 
-    if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+    if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
         return D_80371F70.unk3;
     }
 

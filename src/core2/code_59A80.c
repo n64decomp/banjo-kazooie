@@ -69,9 +69,9 @@ void func_802E0B10(Actor *this){
             }
         }
         if( mumboscore_get(local->uid)
-            || func_803203FC(1)
-            || func_803203FC(2)
-            || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)
+            || volatileFlag_get(VOLATILE_FLAG_1)
+            || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
+            || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         ){
             marker_despawn(this->marker);
             return;

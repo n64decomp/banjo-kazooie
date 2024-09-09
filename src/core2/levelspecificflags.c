@@ -84,13 +84,13 @@ void levelSpecificFlags_clear(void){
 }
 
 void levelSpecificFlags_set(s32 index, s32 val){
-    setBitToArray(&D_80383320.unk8, index, val);
+    bitfield_set_bit(&D_80383320.unk8, index, val);
     _levelSpecificFlags_updateCRC1();
     _levelSpecificFlags_updateCRC2();
 }
 
 void levelSpecificFlags_setN(s32 index, s32 val, s32 n){
-    func_803201C8(&D_80383320.unk8, index, val, n);
+    bitfield_set_n_bits(&D_80383320.unk8, index, val, n);
     _levelSpecificFlags_updateCRC1();
     _levelSpecificFlags_updateCRC2();
 }

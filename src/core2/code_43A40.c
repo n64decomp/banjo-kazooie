@@ -47,7 +47,7 @@ extern struct43s chFightFlightPad_D_80366FB4 = {
 /* .code */
 void chShockJump_update(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
-    if(func_803203FC(UNKFLAGS1_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED)){
+    if(volatileFlag_get(VOLATILE_FLAG_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED)){
         ability_unlock(ABILITY_D_SHOCK_JUMP);
     }
 
@@ -61,7 +61,7 @@ void chShockJump_update(Actor *this){
 
 void chFlightPad_update(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
-    if(func_803203FC(UNKFLAGS1_8A_SANDCASTLE_FLIGHT_UNLOCKED)){
+    if(volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)){
         ability_unlock(ABILITY_9_FLIGHT);
     }
 

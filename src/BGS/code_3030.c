@@ -80,7 +80,7 @@ void func_80389668(Actor *this) {
         local->tiptup_marker = NULL;
         local->unk8 = 1.0f;
         func_80389488(this, 1);
-        if (jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !func_803203FC(2) && !func_803203FC(1)) {
+        if (jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && !volatileFlag_get(VOLATILE_FLAG_1)) {
             marker_despawn(this->marker);
         }
         return;

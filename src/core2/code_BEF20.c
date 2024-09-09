@@ -7,9 +7,6 @@ f32 time_getDelta(void);
 void func_80346DB4(s32);
 
 s32  item_adjustByDiffWithHud(enum item_e item, s32 diff);
-void itemscore_noteScores_clear(void);
-s32 itemscore_noteScores_get(enum level_e lvl_id);
-void itemscore_timeScores_clear(void);
 
 /* .bss */
 s32 D_80385F30[0x2C];
@@ -66,11 +63,11 @@ s32 item_adjustByDiff(enum item_e item, s32 diff, s32 no_hud){
         diff = 0;
 
     if(diff < 0){
-        if( (item == ITEM_D_EGGS && func_803203FC(UNKFLAGS1_74_SANDCASTLE_INFINITE_EGGS))
-            || (item == ITEM_16_LIFE && func_803203FC(UNKFLAGS1_73_SANDCASTLE_INFINITE_LIVES))
-            || (item == ITEM_F_RED_FEATHER && func_803203FC(UNKFLAGS1_75_SANDCASTLE_INFINITE_RED_FEATHERS))
-            || (item == ITEM_10_GOLD_FEATHER && func_803203FC(UNKFLAGS1_76_SANDCASTLE_INFINITE_GOLD_FEATHERS))
-            || (item == ITEM_17_AIR && func_803203FC(UNKFLAGS1_96_SANDCASTLE_INFINITE_AIR))
+        if( (item == ITEM_D_EGGS && volatileFlag_get(VOLATILE_FLAG_74_SANDCASTLE_INFINITE_EGGS))
+            || (item == ITEM_16_LIFE && volatileFlag_get(VOLATILE_FLAG_73_SANDCASTLE_INFINITE_LIVES))
+            || (item == ITEM_F_RED_FEATHER && volatileFlag_get(VOLATILE_FLAG_75_SANDCASTLE_INFINITE_RED_FEATHERS))
+            || (item == ITEM_10_GOLD_FEATHER && volatileFlag_get(VOLATILE_FLAG_76_SANDCASTLE_INFINITE_GOLD_FEATHERS))
+            || (item == ITEM_17_AIR && volatileFlag_get(VOLATILE_FLAG_96_SANDCASTLE_INFINITE_AIR))
         ){
             diff = 0;
         }
@@ -253,7 +250,7 @@ void func_803465E4(void){
     }//L8034667C
     
     if(D_80385FE0){
-        if(gctransition_done() || func_803203FC(0)){
+        if(gctransition_done() || volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)){
             if(D_80385FE4){
                 item_dec(ITEM_16_LIFE);
                 func_802FACA4(ITEM_14_HEALTH);
@@ -308,7 +305,7 @@ void func_803465E4(void){
         }//L803469E4
     }//L803469E4
 
-    if(!func_803203FC(0xbf)){
+    if(!volatileFlag_get(VOLATILE_FLAG_BF)){
         for(i = 0; i < 6; i++){
             if(D_80385F30[ITEM_6_HOURGLASS + i]){
                 func_80345EB0(ITEM_0_HOURGLASS_TIMER + i);
@@ -327,7 +324,7 @@ void func_803465E4(void){
     }//L80346B6C
 
     if((globalTimer_getTime() & 7) == 6){
-        if(!func_80320708() || !func_80320248()){
+        if(!func_80320708() || !dummy_func_80320248()){
             D_80385F30[randi2(0, 0x2C)] = 1;
             D_80385FF0[randi2(0, 0xE)] = 1;
             D_80386000[randi2(0, 0xE)] = 1.0f;
@@ -406,9 +403,9 @@ void func_80346DB4(s32 note_count) {
             if (!levelSpecificFlags_get(0x34) && (func_80311480(0xF76, 0, NULL, NULL, NULL, NULL))) {
                 levelSpecificFlags_set(0x34, TRUE);
             }
-            if (func_803203FC(0x17) == 0) {
-                func_803204E4(0x17, 1);
-                func_80320524(0x19, level_id, 4);
+            if (volatileFlag_get(VOLATILE_FLAG_17) == 0) {
+                volatileFlag_set(VOLATILE_FLAG_17, 1);
+                volatileFlag_setN(VOLATILE_FLAG_19_CURRENT_LEVEL_ID, level_id, 4);
             }
         }
     }
@@ -537,7 +534,7 @@ void func_8034789C(void) {
     } else {
         D_80385F30[ITEM_15_HEALTH_TOTAL] =  5 + MIN(3, (sp1C / 6));
     }
-    if (func_803203FC(0x94)) {
+    if (volatileFlag_get(VOLATILE_FLAG_94_SANDCASTLE_INFINITE_HEALTH)) {
         temp_v0 = D_80385F30[ITEM_15_HEALTH_TOTAL];
         if (temp_v0 >= 9) {
             D_80385F30[ITEM_15_HEALTH_TOTAL] = temp_v0;
@@ -591,16 +588,16 @@ void func_80347A70(void){
 s32 D_80386068;
 
 void func_80347A7C(void){
-    func_80320748();
+    volatileFlag_backupAll();
     D_80386068 = item_getCount(ITEM_16_LIFE);
 }
 
 void func_80347AA8(void) {
-    func_80320798();
-    func_803204E4(0x1F, FALSE);
-    func_803204E4(0x20, FALSE);
-    func_803204E4(0xC1, FALSE);
-    func_803204E4(0xC0, FALSE);
+    volatileFlag_restoreAll();
+    volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, FALSE);
+    volatileFlag_set(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE, FALSE);
+    volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, FALSE);
+    volatileFlag_set(VOLATILE_FLAG_C0_BEGIN_FINAL_CHARACTER_PARADE, FALSE);
     item_set(ITEM_16_LIFE, D_80386068);
     itemPrint_reset();
 }

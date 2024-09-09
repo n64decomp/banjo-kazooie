@@ -85,8 +85,8 @@ bool __chClam_updateTarget(Actor *this, f32 arg1) {
 
     this->unk28 = phi_f2 / arg1;
     this->yaw_ideal = func_80257204(this->position[0], this->position[2], target_position[0], target_position[2]);
-    if ((func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->unk28) {
-        this->unk28 = (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
+    if ((volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->unk28) {
+        this->unk28 = (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
     } else if (sp38 == 0) {
         __chClam_func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
     }
@@ -108,13 +108,13 @@ bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
         if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
-                this->unk28 = (f32) randi2(0, 0.5*(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11));
+                this->unk28 = (f32) randi2(0, 0.5*(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11));
                 this->yaw_ideal += (f32) randi2(-arg1, arg1);
             } else if ((f64) randf() < 0.4) {
                 this->unk28 = 0.0f;
                 this->yaw_ideal += (f32) randi2(-arg1, arg1);
             } else {
-                this->unk28 = (f32) randi2(0.33 * (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11), func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11);
+                this->unk28 = (f32) randi2(0.33 * (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11), volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11);
                 this->yaw_ideal = this->yaw;
             }
             this->unk1C[0] = 0.0f;

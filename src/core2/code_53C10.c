@@ -247,7 +247,7 @@ void func_802DB5A0(Actor *this) {
         this->unk124_0 = this->unk138_31 = FALSE;
         local->unk38 = 0;
         this->unk16C_4 = TRUE;
-        if (func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) {
+        if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
             subaddie_set_state(this, 2U);
             return;
         }

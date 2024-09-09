@@ -57,7 +57,7 @@ enum bs_e badrone_vanish(void){
 }
 
 enum bs_e badrone_transform(void){
-    miscflag_clear(0x19);
+    miscFlag_clear(MISC_FLAG_19);
     badrone_set_type(BA_DRONE_TRANSFORM);
     return func_8029BD90();
 }

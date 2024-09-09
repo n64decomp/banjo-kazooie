@@ -36,28 +36,28 @@ MapProgressFlagToDialogID fileProgressDialogMap[] = {
 
 /* This progress IDs are not saved in the save file, like when Banjo goes near a Note door which requires more notes than the Banjo has. */
 /* Triggers a dialog every time after the game restarts. */
-MapProgressFlagToDialogID volatileProgressDialogMap[] = {
-    {0x9E, 0xBA3}, 
-    {0x9F, 0xCE8},
-    {0xA0, 0x1032}, 
-    {0xA1, 0x1033},
-    {0xA2, 0x1034}, 
-    {0xA3, 0x1035},
-    {0xA4, 0x1036}, 
-    {0xA5, 0x1037},
-    {0xA6, 0x1038}, 
-    {0xA7, 0x1039},
-    {0xA8, 0x103A}, 
-    {0xA9, 0x103B},
-    {0xAA, 0x103C}, 
-    {0xAB, 0x103D},
-    {0xAC, 0xA88}, 
-    {0xAD, 0xAE2},
-    {0xAE, 0xC8B}, 
-    {0xAF, 0xC8C},
-    {0xB0, 0xFBD}, 
-    {0xC2, 0xE36},
-    {0xC5, 0xDB6}, 
+MapProgressFlagToDialogID gVolatileFlagDialogMap[] = {
+    {VOLATILE_FLAG_9E_BETA_OILY_SCUM,            0xBA3}, // Oily scum (unused)
+    {VOLATILE_FLAG_9F_BETA_DIVE_IN_ICY_WATER,    0xCE8}, // Dive in icy water (unused)
+    {VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT,    0x1032},
+    {VOLATILE_FLAG_A1_FF_NEXT_ANSWER_RIGHT,     0x1033},
+    {VOLATILE_FLAG_A2_FF_GRUNTY_ANSWER_RIGHT,   0x1034},
+    {VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG,    0x1035},
+    {VOLATILE_FLAG_A4_FF_NEXT_ANSWER_WRONG,     0x1036},
+    {VOLATILE_FLAG_A5_FF_UNUSED,                0x1037}, // FF "the choice is yours"
+    {VOLATILE_FLAG_A6_FF_FOUND_HONEYCOMB,       0x1038},
+    {VOLATILE_FLAG_A7_FF_FOUND_EXTRALIFE,       0x1039},
+    {VOLATILE_FLAG_A8_FF_GOT_JOKER,             0x103A},
+    {VOLATILE_FLAG_A9_FF_USED_JOKER,            0x103B},
+    {VOLATILE_FLAG_AA_FF_LOW_HEALTH,            0x103C},
+    {VOLATILE_FLAG_AB_LAST_LIFE_ON_SKULL,       0x103D},
+    {VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED,        0xA88},
+    {VOLATILE_FLAG_AD_MMM_CHURCH_DOOR_MISSED,    0xAE2},
+    {VOLATILE_FLAG_AE_BGS_WALKWAY_JIGGY_MISSED,  0xC8B},
+    {VOLATILE_FLAG_AF_BGS_MAZE_JIGGY_MISSED,     0xC8C},
+    {VOLATILE_FLAG_B0_NOT_ENOUGH_NOTES,          0xFBD},
+    {VOLATILE_FLAG_C2_NOBONUS_TEXT,              0xE36},
+    {VOLATILE_FLAG_C5_WISHYWASHYBANJO_TEXT,      0xDB6},
     { -1, -1}
 };
 
@@ -101,31 +101,34 @@ void func_8035646C(enum file_progress_e progress_flag) {
 }
 
 /* Checks for a specific "volatile" progress flag and triggers a dialog only if the progress flag was not set and sets the progress flag */
-s32 func_8035648C(s32 arg0, s32 arg1) {
+s32 volatileFlag_setAndTriggerDialog(enum volatile_flags_e id, s32 arg1) {
     s32 index;
 
-    if (func_803203FC() != 0) {
+    if (volatileFlag_get(id) != 0) {
         return 0;
     } else {
-        index = __findIndex(volatileProgressDialogMap, arg0);
+        index = __findIndex(gVolatileFlagDialogMap, id);
         if (index != -1) {
-            if (func_80311480(volatileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
-                func_803204E4(arg0, 1);
+            if (func_80311480(gVolatileFlagDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
+                volatileFlag_set(id, 1);
             }
-            return func_803203FC(arg0);
+            return volatileFlag_get(id);
         }
         return 0;
     }
 }
 
-void func_80356520(s32 arg0) {
-    func_8035648C(arg0, 0);
+// called for dialogs when banjo is not fast enough to reach a door or jiggy and for NOBONUS text
+void volatileFlag_setAndTriggerDialog_0(s32 arg0) {
+    volatileFlag_setAndTriggerDialog(arg0, 0);
 }
 
-void func_80356540(s32 arg0) {
-    func_8035648C(arg0, 4);
+// called for FFQ dialogs
+void volatileFlag_setAndTriggerDialog_4(s32 arg0) {
+    volatileFlag_setAndTriggerDialog(arg0, 4);
 }
 
-void func_80356560(s32 arg0) {
-    func_8035648C(arg0, 0xE);
+// called for WISHYWASHYBANJO dialog
+void volatileFlag_setAndTriggerDialog_E(s32 arg0) {
+    volatileFlag_setAndTriggerDialog(arg0, 0xE);
 }

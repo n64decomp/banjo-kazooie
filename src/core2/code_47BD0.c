@@ -378,7 +378,7 @@ void chBeeSwarm_update(Actor *this) {
         subaddie_set_state(this, (this->unk100 != NULL) ? 1 : 2);
         this->unk60 = 0.0f;
         chBeeSwarm_802CF040(this);
-        this->unk38_0 = func_803203FC(1) | func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
+        this->unk38_0 = volatileFlag_get(VOLATILE_FLAG_1) | volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
     }
 
     if (!subaddie_playerIsWithinSphere(this, 0xFA0)) 

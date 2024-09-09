@@ -21,7 +21,7 @@ void __chAnchorSwitch_setState(Actor *this, s32 arg1){
         this->position_y -= 35.0f;
         if(this->state == 1){
             levelSpecificFlags_set(0x30, TRUE);
-            func_803204E4(0xe, 1);
+            volatileFlag_set(VOLATILE_FLAG_E, 1);
             timedFunc_set_0(1.0f, func_803228D8);
             timedFunc_set_3(1.0f, (GenFunction_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }

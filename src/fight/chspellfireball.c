@@ -226,7 +226,7 @@ void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
     ) return;
 
     func_8038F084(marker);
-    switch(func_80320424(0x23, 3)){
+    switch(volatileFlag_getN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, 3)){
         case 1: //8038F41C
             if(!fight_D_803928E0 && func_80311480(randi2(0, 5) + 0x10f2, 0, 0, 0, 0, 0))
                 fight_D_803928E0 = 1;

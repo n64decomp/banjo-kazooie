@@ -120,9 +120,9 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             if (this->unk10_12 == MINIGAME_1_VILE) {
                 func_80347A14(0);
             }
-            if (func_803203FC(this->unk10_12 + 6) == 0) {
+            if (volatileFlag_get(this->unk10_12 + 6) == 0) {
                 func_80324DBC(2.0f, this->unk10_12 + 0x1026, 0xA2, NULL, this->marker, __chMinigame_textCallback1, __chMinigame_transformToCroc);
-                func_803204E4(this->unk10_12 + 6, 1);
+                volatileFlag_set(this->unk10_12 + 6, 1);
                 this->unk138_23 = TRUE;
             } else {
                 func_80324DBC(2.0f, 0xD38, 0x20, NULL, this->marker, __chMinigame_textCallback1, NULL);
@@ -130,15 +130,15 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             break;
         case MINIGAME_STATE_2_IN_PROGESS:
             func_8028F918(0);
-            func_803204E4(3, 1);
+            volatileFlag_set(VOLATILE_FLAG_3, 1);
             break;
         case MINIGAME_STATE_3_RETURN_TO_FF:
-            func_803204E4(4, 1);
+            volatileFlag_set(VOLATILE_FLAG_4, 1);
             func_8028F918(2);
             func_8025AB00();
-            func_8025A70C((func_803203FC(5)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
+            func_8025A70C((volatileFlag_get(VOLATILE_FLAG_5_FF_MINIGAME_WON)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
-            func_803204E4(0x21, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_21, TRUE);
             timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
@@ -146,7 +146,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
 }
 
 void __chMinigame_free(Actor *this){
-    func_803204E4(3, 0);
+    volatileFlag_set(VOLATILE_FLAG_3, 0);
 }
 
 void chMinigame_update(Actor *this){
@@ -154,7 +154,7 @@ void chMinigame_update(Actor *this){
         this->unk16C_4 = 1;
         this->unk10_12 = __chminigame_getCurrentMapId();
         actor_collisionOff(this);
-        if(!func_803203FC(2)){
+        if(!volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_8031A678(this);
             return;
         }
@@ -169,12 +169,12 @@ void chMinigame_update(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        func_803204E4(5, 0);
-        func_803204E4(3, 0);
+        volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 0);
+        volatileFlag_set(VOLATILE_FLAG_3, 0);
         __chMinigame_setState(this, MINIGAME_STATE_1_INTRODUCE_GAME);
         gcpausemenu_80314AC8(0);
     }
-    if(func_803203FC(2)){
+    if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
         switch(this->state){
             case MINIGAME_STATE_1_INTRODUCE_GAME://L8031AB2C
                 if(this->unk138_24)
@@ -184,7 +184,7 @@ void chMinigame_update(Actor *this){
                 func_8028FA14(MAP_8E_GL_FURNACE_FUN, 2);
                 if(item_getCount(ITEM_14_HEALTH) == 0)
                     item_set(ITEM_6_HOURGLASS, 0);
-                if(!func_803203FC(3)){
+                if(!volatileFlag_get(VOLATILE_FLAG_3)){
                     __chMinigame_setState(this, MINIGAME_STATE_3_RETURN_TO_FF);
                 }
                 break;

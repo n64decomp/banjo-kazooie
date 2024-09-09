@@ -83,11 +83,11 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
  
 
     sp28 = func_802E4B38();
-    if (func_803203FC(UNKFLAGS1_78_SANDCASTLE_NO_BONUS) == 0) {
+    if (volatileFlag_get(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS) == 0) {
         D_8037BF4C = 0;
     } else {
         for(phi_s0 = 0; phi_s0 < 7; phi_s0++){
-            if (func_803203FC(phi_s0 + UNKFLAGS1_97_SANDCASTLE_BOTTLES_BONUS_1)) {
+            if (volatileFlag_get(phi_s0 + VOLATILE_FLAG_97_SANDCASTLE_BOTTLES_BONUS_1)) {
                 D_8037BF4C = D_803635EC[phi_s0];
             }
         }

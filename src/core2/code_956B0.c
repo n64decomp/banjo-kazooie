@@ -9,8 +9,6 @@ extern s32  fileProgressFlag_get(s32);
 extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
 extern void fileProgressFlag_set(s32 index, s32 set);
-extern void func_8032048C(void);
-extern void func_803204E4(s32 arg0, s32 arg1);
 extern void ml_vec3h_to_vec3f(f32 *, s32);
 extern NodeProp *func_80304ED0(void*, f32 *);
 extern void func_8031CD44(s32, s32, f32, f32, s32);
@@ -299,7 +297,7 @@ void warp_gvEnterMatchingPyramid(s32 arg0, s32 arg1) {
 
 void warp_gvEnterWaterPyramidUpper(s32 arg0, s32 arg1) {
     func_80244C78(0);
-    func_803204E4(0xAC, 1);
+    volatileFlag_set(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED, 1);
     func_8031CC8C(arg0, 0x1502);
 }
 
@@ -536,7 +534,7 @@ void func_8031DAA8(s32 arg0, s32 arg1) {
 
 void func_8031DAE0(s32 arg0, s32 arg1) {
     if (mapSpecificFlags_get(2) == 0) {
-        func_803204E4(0xAD, 1);
+        volatileFlag_set(VOLATILE_FLAG_AD_MMM_CHURCH_DOOR_MISSED, 1);
         func_80244C78(0);
         mapSpecificFlags_set(2, 1);
         func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 0x6D60);
@@ -1498,7 +1496,7 @@ void func_8031FBA0(void) {
     jiggyscore_clearAll();
     honeycombscore_clear();
     mumboscore_clear();
-    func_8032048C();
+    volatileFlag_clear();
     func_802D6344();
 }
 

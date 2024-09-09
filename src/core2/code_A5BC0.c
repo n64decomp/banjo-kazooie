@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "enums.h"
 
 #define AssetCacheSize 0x3D5
 
@@ -887,7 +888,7 @@ void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
     }
 
     if (file_getByte_ifExpected(file_ptr, 8, &sp47)) {
-        sp34 = func_803203FC(1) +  func_803203FC(2) + func_803203FC(0x1F);
+        sp34 = volatileFlag_get(VOLATILE_FLAG_1) +  volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) + volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         
         if ((sp34) && gcparade_8031B4CC()) {
             sp34 = 0;
@@ -1219,17 +1220,17 @@ void func_8032FFEC(ActorMarker *this, s32 arg1){
     this->unk28 = arg1;
 }
 
-void func_8032FFF4(ActorMarker *this, ActorMarker *other, s32 type){
+void marker_callCollisionFunc(ActorMarker *this, ActorMarker *other, enum marker_collision_func_type_e type){
     switch(type){
-        case 0: //ow
+        case MARKER_COLLISION_FUNC_0: //ow
             if(this->collisionFunc)
                 this->collisionFunc(this, other); 
             break;
-        case 1:
+        case MARKER_COLLISION_FUNC_1:
             if(this->collision2Func)
                 this->collision2Func(this, other);
             break;
-        case 2: //die
+        case MARKER_COLLISION_FUNC_2_DIE: //die
             if(this->dieFunc)
                 this->dieFunc(this, other);
             break;

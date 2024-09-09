@@ -1,41 +1,40 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
-void miscflag_clear(enum misc_flag_e arg0);
+#include "enums.h"
 
 /*.bss */
-u8 D_8037C1D0[0x1C];
+u8 gMiscFlags[0x1C];
 
 /* code */
-void miscflag_clearAll(void){
+void miscFlag_clearAll(void){
     int i;
     for(i = 1; i < 0x1C; i++){
-        miscflag_clear(i);
+        miscFlag_clear(i);
     }
 }
 
-bool miscflag_isTrue(enum misc_flag_e arg0){
-    return D_8037C1D0[arg0];
+bool miscFlag_isTrue(enum misc_flag_e arg0){
+    return gMiscFlags[arg0];
 }
 
-bool miscflag_isFalse(enum misc_flag_e arg0){
-    return !D_8037C1D0[arg0];
+bool miscFlag_isFalse(enum misc_flag_e arg0){
+    return !gMiscFlags[arg0];
 }
 
-void miscflag_set(enum misc_flag_e arg0){
-    D_8037C1D0[arg0] = TRUE;
+void miscFlag_set(enum misc_flag_e arg0){
+    gMiscFlags[arg0] = TRUE;
 }
 
-void miscflag_clear(enum misc_flag_e arg0){
-    D_8037C1D0[arg0] = FALSE;
+void miscFlag_clear(enum misc_flag_e arg0){
+    gMiscFlags[arg0] = FALSE;
 }
 
-void miscflag_toggle(enum misc_flag_e arg0){
-    if(D_8037C1D0[arg0]){
-        D_8037C1D0[arg0] = FALSE;
+void miscFlag_toggle(enum misc_flag_e arg0){
+    if(gMiscFlags[arg0]){
+        gMiscFlags[arg0] = FALSE;
     }
     else {
-        D_8037C1D0[arg0] = TRUE;
+        gMiscFlags[arg0] = TRUE;
     }
 }

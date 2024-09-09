@@ -180,7 +180,7 @@ void bsbfly_enter_end(void){
 void bsbfly_init(void){
     baanim_playForDuration_loopSmooth(ASSET_38_ANIM_BSBFLY, 0.62f);
     func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
-    if(miscflag_isTrue(9)){
+    if(miscFlag_isTrue(MISC_FLAG_9)){
         baphysics_set_target_horizontal_velocity(0.0f);
     }else{
         baphysics_set_target_horizontal_velocity(600.0f);
@@ -261,7 +261,7 @@ void bsbfly_update(void){
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 0x2710, 0x2ee0);
     }
     baphysics_set_gravity(-300.0f);
-    if(miscflag_isTrue(9)){
+    if(miscFlag_isTrue(MISC_FLAG_9)){
         baphysics_set_terminal_velocity(0.0f);
         baphysics_set_velocity(0);
         sp38 = 0.0f;
@@ -409,7 +409,7 @@ void func_802A411C(void) {
             ml_vec3f_copy(sp28, D_8037D338);
             ml_vec3f_normalize(sp28);
             sp24 = mlAbsF(sp34[0] * sp28[0] + sp34[1] * sp28[1] + sp34[2] * sp28[2]);
-            if (miscflag_isTrue(8) || ((sp44 & 0x80) != 0)) {
+            if (miscFlag_isTrue(MISC_FLAG_8) || ((sp44 & 0x80) != 0)) {
                 func_802A4078();
                 next_state = BS_18_FLY_KNOCKBACK;
             } else if (0.4 < sp24) {
@@ -782,7 +782,7 @@ void func_802A503C(void){
 void func_802A505C(void){
     if(bs_getInterruptType() == BS_INTR_9){
         func_8029A86C(2);
-        miscflag_set(7);
+        miscFlag_set(MISC_FLAG_7);
         func_8029CCC4();
     }else{
         func_80296608();

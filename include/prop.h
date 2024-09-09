@@ -217,7 +217,7 @@ typedef struct actor_s{
         
     };
     //u8  padAC[0x44];
-    f32 unkEC; //animCtrl???
+    f32 stored_animctrl_timer; // animCtrlTimer
     f32 stored_animctrl_duration; //animCtrlDuration
     u32 unkF4_31:1;
     u32 unkF4_30:1; // has something to do with vertices
@@ -303,7 +303,7 @@ typedef struct actor_info_s{
     s16     startAnimation;
     ActorAnimationInfo*   animations;
     void    (* update_func)(Actor *);
-    void    (* unk10)(Actor *);
+    void    (* update2_func)(Actor *);
     Actor*  (* draw_func)(ActorMarker *, Gfx **, Mtx **, Vtx **);
     u16     unk18;
     u16     draw_distance;

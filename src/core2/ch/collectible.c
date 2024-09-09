@@ -154,8 +154,8 @@ void chCollectible_update(Actor *this) {
     if(!this->unk38_0)
         return;
 
-    if (func_80320424(0x23, 3) != this->unk10_12) {
-        func_802D8C98(this, func_80320424(0x23, 3));
+    if (volatileFlag_getN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, 3) != this->unk10_12) {
+        func_802D8C98(this, volatileFlag_getN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, 3));
     }
 
     switch (this->state) {

@@ -44,7 +44,7 @@ void chBeehive_update(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->unk44_31 = func_8030D90C();
         this->unk16C_4 = 1;
-        this->unk38_0 = func_803203FC(1)| func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE);
+        this->unk38_0 = volatileFlag_get(VOLATILE_FLAG_1)| volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
     }//L802CE960
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
         if(func_8038BFA0()){

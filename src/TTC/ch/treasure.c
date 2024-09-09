@@ -48,7 +48,7 @@ void chtreasure_update(Actor *this){
 
     if(!this->initialized){
         this->initialized = TRUE;
-        if(this->unkF4_8 == 1 && !func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
+        if(this->unkF4_8 == 1 && !volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);
             return;
         }

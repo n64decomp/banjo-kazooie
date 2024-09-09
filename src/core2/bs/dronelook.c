@@ -30,7 +30,7 @@ void bsDroneLook_init(void) {
     eye_rotation[1] += 180.0f;
     eye_rotation[2] = 0.0f;
     ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
-    miscflag_set(MISC_FLAG_17_FPV);
+    miscFlag_set(MISC_FLAG_17_FIRST_PERSON_VIEW);
 }
 
 void bsDroneLook_update(void) {
@@ -79,5 +79,5 @@ void bsDroneLook_end(void) {
         func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
     ncDynamicCamera_exitFirstPerson();
-    miscflag_clear(MISC_FLAG_17_FPV);
+    miscFlag_clear(MISC_FLAG_17_FIRST_PERSON_VIEW);
 }

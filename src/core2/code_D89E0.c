@@ -43,7 +43,7 @@ void func_8035F970(Actor *this){
 }
 
 void func_8035F99C(Actor *this){
-    if(!func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){
+    if(!volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
         subaddie_set_state_with_direction(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->unk28 = 5.0f;

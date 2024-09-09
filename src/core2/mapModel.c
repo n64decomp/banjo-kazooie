@@ -237,7 +237,7 @@ f32 func_80308FDC(f32 arg0[3], u32 arg1) {
 void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
-    if (func_80320708() && levelSpecificFlags_validateCRC2() && func_80320248()) {
+    if (func_80320708() && levelSpecificFlags_validateCRC2() && dummy_func_80320248()) {
         if (mapModel_getOpaModelId() == ASSET_14CF_MODEL_SM_SPIRAL_MOUNTAIN_OPA) {
             func_8033A45C(1, 0);
             func_8033A45C(2, 1);
@@ -332,7 +332,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         case MAP_93_GL_DINGPOT:
             func_8033A45C(4, 1);
             func_8033A45C(5, 1);
-            func_8033A45C(6, (func_8038EAE0(0xA) || fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) || func_803203FC(0xC1)));
+            func_8033A45C(6, (func_8038EAE0(0xA) || fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)));
             break;
         }
         func_8033A450(mapModel.unk24);

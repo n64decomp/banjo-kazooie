@@ -44,7 +44,7 @@ void func_802C5E80(Actor *this){
 }
 
 void func_802C5EB8(Actor *this){
-    if(func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE))
+    if(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
         return;
 
     if(this->unk38_31){

@@ -66,23 +66,23 @@ void chtrainers_update(Actor *this){
         ml_vec3f_copy(this->unk1C, this->position);
         this->velocity[0] = this->yaw;
         this->velocity[1] = 0.0f;
-        this->unk10_12 = !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE) && !func_803203FC(0x1);
+        this->unk10_12 = !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE) && !volatileFlag_get(VOLATILE_FLAG_1);
         subaddie_set_state(this, 0);
     }
 
-    if(!func_803203FC(0xF) && ability_isUnlocked(ABILITY_11_TURBO_TALON)){
-        func_803204E4(0xF, TRUE);
+    if(!volatileFlag_get(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES) && ability_isUnlocked(ABILITY_11_TURBO_TALON)){
+        volatileFlag_set(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES, TRUE);
     }
 
     switch(this->state){
         case 0://L802CA5A8
             if(func_803296D8(this, 2000) || sp2C){
                 if( func_80329530(this, 0xfa)
-                    && !func_803203FC(0xf)
+                    && !volatileFlag_get(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES)
                     && player_getTransformation() == TRANSFORM_1_BANJO
                 ){
                     if(func_80311480(0xda4, 0, NULL, NULL, NULL, NULL)){
-                        func_803204E4(0xf, TRUE);
+                        volatileFlag_set(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES, TRUE);
                     }
                 }//L802CA620
                 _chtrainers_802CA378(this, sp2C);

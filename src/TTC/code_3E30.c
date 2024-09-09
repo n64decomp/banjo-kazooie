@@ -116,7 +116,7 @@ void func_8038A23C( s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2){
 
 void func_8038A258(s32 arg0) {
     if (arg0 == 1) {
-        if (func_803203FC(2)) {
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             item_set(ITEM_0_HOURGLASS_TIMER, 3000 - 1);
         } else {
             item_set(ITEM_0_HOURGLASS_TIMER, 6000 - 1);
@@ -243,18 +243,18 @@ u32 cheatoCodeUnlocked(s32 cheato_code_index){
 
 void func_8038ABA0(u32 arg0){
     int i;
-    func_80356520(0xC2);
+    volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_C2_NOBONUS_TEXT);
     if(arg0 & 0x400){
-        func_80356560(0xC5);
+        volatileFlag_setAndTriggerDialog_E(VOLATILE_FLAG_C5_WISHYWASHYBANJO_TEXT);
     }
-    func_803204E4(0x78, 0);
+    volatileFlag_set(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS, 0);
     for(i = 4; i < 0xb; i++){
         if( arg0 & (1 << i)){
-            func_803204E4(0x93 + i, TRUE);
-            func_803204E4(0x78, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + i, TRUE);
+            volatileFlag_set(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS, TRUE);
         }
         else{
-            func_803204E4(0x93 + i, FALSE);
+            volatileFlag_set(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + i, FALSE);
         }
     }
 }
@@ -269,7 +269,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
     s32 phi_s1;
     bool phi_s7;
 
-    temp_s5 = func_803203FC(2);
+    temp_s5 = volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME);
     phi_s7 = FALSE;
     sp3C = func_8038BD10(arg0);
     for(i_ptr = codesTable; i_ptr->code != 0; i_ptr++){
@@ -284,7 +284,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                     phi_s1 |= (0x10 << i);
                 }
             };
-            if (func_803203FC(0x78)) {
+            if (volatileFlag_get(VOLATILE_FLAG_78_SANDCASTLE_NO_BONUS)) {
                 phi_s1 |= 0x800;
             }
         }
@@ -310,8 +310,8 @@ void func_8038AC48(LetterFloorTile *arg0) {
                         
                         if (temp_s5) {
                             item_set(ITEM_6_HOURGLASS, FALSE);
-                            func_803204E4(3, 0);
-                            func_803204E4(5, 1);
+                            volatileFlag_set(VOLATILE_FLAG_3, 0);
+                            volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
                             func_8038A258(2);
                         } else {
                             var_v0 = i_ptr->unk4;
@@ -366,7 +366,7 @@ void func_8038AFC8(void){
         iPtr->unk6 = 0;
     }
 
-    if(func_803203FC(2))
+    if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         strcpy(codesTable[0].code, "j4663n86pink"); //EIOOZAKOJNAB
     else
         strcpy(codesTable[0].code, "knip68n3664j"); //BANJOKAZOOIE
@@ -410,7 +410,7 @@ void func_8038B094(void){
             func_803228D8();
             timedFunc_set_3(2.0f, (GenFunction_3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
         }
-        else if(levelSpecificFlags_get(2) || func_803203FC(2)){
+        else if(levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_8034E71C(sp2C, -500, 0.0f);
         }
         else{
@@ -437,7 +437,7 @@ void func_8038B094(void){
         func_8038AFC8();
 
         if( jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
-            && !func_803203FC(2)
+            && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
         ){
             BKModel_transformMesh(D_8038D720.model2, 0x3C, func_8038A23C, 0);
             D_8038D720.unk8 = 3;
@@ -461,20 +461,20 @@ void func_8038B2F0(void) {
     if (D_8038D720.model1 != 0) {
         func_8038AA2C();
         player_getPosition(sp2C);
-        if ((D_8038D720.unk10 == 0) && func_803203FC(2) && func_803203FC(3)) {
+        if ((D_8038D720.unk10 == 0) && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && volatileFlag_get(VOLATILE_FLAG_3)) {
             func_8038A258(1);
         }
         if ((D_8038D720.unk10 == 1) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
             func_8038A258(2);
-            if (func_803203FC(2)) {
-                func_803204E4(3, FALSE);
-                func_803204E4(5, FALSE);
+            if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
+                volatileFlag_set(VOLATILE_FLAG_3, FALSE);
+                volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, FALSE);
             } else {
                 func_8028F66C(BS_INTR_F);
             }
         }
         if ((D_8038D720.unk8 == 0) || (D_8038D720.unk8 == 3)) {
-            if( (levelSpecificFlags_get(2) || func_803203FC(3)) 
+            if( (levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_3)) 
                 && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) 
                 && func_8028F20C()
             ) {
@@ -483,7 +483,7 @@ void func_8038B2F0(void) {
                     temp_v0_3 = func_8038A2DC(mesh_id);
                     if ((temp_v0_3 != NULL) && ((temp_v0_3->unk3 == 2) || (D_8038D720.unk8 == 3))) {
                         func_8038AC48(temp_v0_3);
-                        if ((D_8038D720.unk8 == 0) && (D_8038D720.unk10 == 0) && (func_803203FC(2) == 0)) {
+                        if ((D_8038D720.unk8 == 0) && (D_8038D720.unk10 == 0) && (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) == 0)) {
                             func_8038A258(1);
                         }
                     }
@@ -613,7 +613,7 @@ u32 func_8038B600(void) {
 }
 
 void TTC_func_8038B6D4(s32 arg0, s32 secretCodeIndex, s32 arg2, enum file_progress_e prog_id, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
-    if( ((arg2 + 20 == secretCodesTable[secretCodeIndex].id) && func_803203FC(arg2))
+    if( ((arg2 + 20 == secretCodesTable[secretCodeIndex].id) && volatileFlag_get(arg2))
         || arg0 == 3
     ){
         fileProgressFlag_setN(prog_id, prog_val, prog_bit_size);
@@ -643,10 +643,10 @@ void func_8038B79C(s32 arg0, s32 arg1, s32 arg2, enum item_e item_id, s32 item_d
 
 void func_8038B800(s32 secretCodeIndex) {
     struct_ttc_3E30_4_s *secretCode;
-    s32 sp38;
+    enum volatile_flags_e volaflag_cheat_id;
 
     secretCode = &secretCodesTable[secretCodeIndex];
-    sp38 = secretCode->id - 0x14;
+    volaflag_cheat_id = secretCode->id - 0x14;
     sns_set_item_and_update_payload(secretCode->id, 1, 1);
     func_8038B564(secretCodeIndex, 1, MAP_61_CCW_WINTER_NABNUTS_HOUSE, 0x83, 0x1B);
     func_8038B564(secretCodeIndex, 2, MAP_3F_RBB_CAPTAINS_CABIN, 0x84, 0x1C);
@@ -657,8 +657,8 @@ void func_8038B800(s32 secretCodeIndex) {
     func_8038B564(secretCodeIndex, 7, MAP_7F_FP_WOZZAS_CAVE, 0x89, 0x21);
     if (secretCode->id >= 0x14) {
         func_8030E58C(SFX_2B_BULL_MOO_1, 1.5f);
-        func_803204E4(0x65, 1);
-        func_803204E4(sp38, 1);
+        volatileFlag_set(VOLATILE_FLAG_65_CHEAT_ENTERED, 1);
+        volatileFlag_set(volaflag_cheat_id, 1);
     }
     TTC_func_8038B6D4(0, secretCodeIndex, 0x6C, FILEPROG_60_CC_PUZZLE_PIECES_PLACED,   5, 3, FILEPROG_33_CC_OPEN);
     TTC_func_8038B6D4(0, secretCodeIndex, 0x6D, FILEPROG_63_BGS_PUZZLE_PIECES_PLACED,  7, 3, FILEPROG_34_BGS_OPEN);
@@ -670,7 +670,7 @@ void func_8038B800(s32 secretCodeIndex) {
     func_8038B79C(0, secretCodeIndex, 0x94, ITEM_15_HEALTH_TOTAL, 0, 8);
     func_8038B79C(0, secretCodeIndex, 0x77, ITEM_14_HEALTH, 0, item_getCount(ITEM_15_HEALTH_TOTAL));
     func_8038B79C(0, secretCodeIndex, 0x95, ITEM_1C_MUMBO_TOKEN, 0, 99);
-    if (sp38 == 0x81) {
+    if (volaflag_cheat_id == VOLATILE_FLAG_81_SANDCASTLE_CCC_JIGGY_PODIUM) {
         fileProgressFlag_set(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED, 1);
         fileProgressFlag_set(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE, 1);
     }
@@ -694,7 +694,7 @@ void TTC_func_8038BBA0(s32 secretCodeIndex) {
     s32 i;
 
     if ((s32) secretCodesTable[secretCodeIndex].id >= 0x14) {
-        if (func_803203FC(secretCodesTable[secretCodeIndex].id - 0x14)) {
+        if (volatileFlag_get(secretCodesTable[secretCodeIndex].id - 0x14)) {
             func_8038B5B4();
             return;
         }

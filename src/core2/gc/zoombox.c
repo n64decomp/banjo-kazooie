@@ -990,7 +990,7 @@ void gczoombox_draw(GcZoombox *this, Gfx **gdl, Mtx ** mptr, void *vptr){
                || ( getGameMode() != GAME_MODE_3_NORMAL
                     && getGameMode() != GAME_MODE_8_BOTTLES_BONUS
                     && getGameMode() != GAME_MODE_A_SNS_PICTURE
-                    && !func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE))
+                    && !volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
           ){//L80316C64
                func_80316764(this, 0);
           }

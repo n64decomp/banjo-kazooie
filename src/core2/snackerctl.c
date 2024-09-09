@@ -37,7 +37,7 @@ static SnackerCtlState __snackerctl_update_ttc(void){
     f32 player_position[3];
 
     _player_getPosition(player_position);
-    if(func_8028B470() || func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
+    if(func_8028B470() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
         if(player_position[1] < 600.0f
             && !__snackerctl_player_within_distance(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
             && !__snackerctl_player_within_distance(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
@@ -83,7 +83,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
 
-    if(miscflag_isTrue(MISC_FLAG_17_FPV) && !func_8028F25C()){
+    if(miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW) && !func_8028F25C()){
         if(__snackerctl_player_within_distance(183.0f, -100.0f, 75.0f)){
             if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){

@@ -143,9 +143,9 @@ void func_80388B18(Actor *this, u8 arg1){
             }
         }
         else{//L80388BB8
-            if(!func_803203FC(0xb3)){
+            if(!volatileFlag_get(VOLATILE_FLAG_B3)){
                 if(func_80311480(0xc01, 0xe, this->position, this->marker, func_80388D70, NULL)){
-                    func_803204E4(0xb3, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_B3, TRUE);
                     func_80388A50(this);
                 }
             }
@@ -153,9 +153,9 @@ void func_80388B18(Actor *this, u8 arg1){
     }
     else{//L80388C08
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
-            if(!func_803203FC(0xb4)){
+            if(!volatileFlag_get(VOLATILE_FLAG_B4)){
                 if(func_80311480(0xc08, 0xe, this->position, this->marker, func_80388D70, NULL)){
-                    func_803204E4(0xb4, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_B4, TRUE);
                     func_80388A50(this);
                 }
             }
@@ -476,13 +476,13 @@ void func_803896FC(Actor *this){
             ){
                 if( local->unk19 == 1 
                     && player_getTransformation() != TRANSFORM_4_WALRUS
-                    && func_803203FC(0xb3)
+                    && volatileFlag_get(VOLATILE_FLAG_B3)
                 ){
                     func_80311480(0xC01, 0xf, this->position, this->marker, func_80388D70, NULL);
                 }
                 else if( local->unk19 == 2){
                     if( player_getTransformation() == TRANSFORM_4_WALRUS
-                        && func_803203FC(0xb4)
+                        && volatileFlag_get(VOLATILE_FLAG_B4)
                     ){
                         func_80311480(0xC08, 0xf, this->position, this->marker, func_80388D70, NULL);
                     }

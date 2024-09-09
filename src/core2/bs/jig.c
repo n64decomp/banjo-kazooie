@@ -42,8 +42,8 @@ void bsjig_jiggy_init(void){
     func_8029151C(0xC);
     func_8029E070(1);
     func_8030E6D4(SFX_33_BANJO_AHOO);
-    miscflag_clear(7);
-    miscflag_clear(0xf);
+    miscFlag_clear(MISC_FLAG_7);
+    miscFlag_clear(MISC_FLAG_F);
     baMarker_collisionOff();
     chJigsawDance_setState(marker_getActor(bsjig_gJiggyMarker), 1);
     D_8037D4B0 = 0;
@@ -164,7 +164,7 @@ void bsjig_notedoor_end(void){
 void bsjig_notedoor_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     D_8037D4B2 = (bs_getPrevState() == BS_44_JIG_JIGGY);
-    miscflag_clear(0x1A);
+    miscFlag_clear(MISC_FLAG_1A);
     animctrl_reset(aCtrl);
     animctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
     animctrl_setDuration(aCtrl, 3.6f);

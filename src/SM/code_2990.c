@@ -420,7 +420,7 @@ void chsmmole_Update(Actor * this){
                 this->unk28 = nodeprop_getRadius(sp40);
             }//L80389A8C
             if(this->unkF4_8 == 1){
-                if(func_803203FC(1) || func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
+                if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
                     func_80388FA0(this, 3);
                 }
             }

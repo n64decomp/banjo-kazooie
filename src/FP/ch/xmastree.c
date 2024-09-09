@@ -42,7 +42,7 @@ void __chXmasTree_80386EF4(Actor *this, int arg1){
 void __chXmasTree_80386F3C(void){
     levelSpecificFlags_set(0x29, TRUE);
     func_803228D8();
-    func_803204E4(0xe, 1);
+    volatileFlag_set(VOLATILE_FLAG_E, 1);
     func_802E4078(MAP_53_FP_CHRISTMAS_TREE, 1, 0);
 }
 

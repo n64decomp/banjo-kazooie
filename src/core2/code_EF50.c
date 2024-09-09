@@ -61,7 +61,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         func_8029CDA0();
     }
     else{ 
-        miscflag_set(7);
+        miscFlag_set(MISC_FLAG_7);
         if(sp2C){
             func_8029CCC4();
         }
@@ -304,7 +304,7 @@ void func_80296608(void){
                 next_state = badrone_transform();
             }
             else{
-                miscflag_set(0x19);
+                miscFlag_set(MISC_FLAG_19);
                 next_state = func_8029B504();
             }
             break;
@@ -424,7 +424,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_35: //L80296984
-            miscflag_set(0x1a);
+            miscFlag_set(MISC_FLAG_1A);
             next_state = func_8029B504();
             sp2C = 2;
             break;
@@ -442,7 +442,7 @@ void func_80296608(void){
             if( 
                 !func_80298850() 
                 && !sp1C 
-                && !miscflag_isTrue(0xf)
+                && !miscFlag_isTrue(MISC_FLAG_F)
                 && !player_isStable()
             ){
                 next_state = BS_4F_CLIMB_IDLE;
@@ -498,13 +498,13 @@ void func_80296608(void){
             next_state = func_8029BED4();
             break;
         case BS_INTR_F:  //L80296B68
-            miscflag_set(6);
+            miscFlag_set(MISC_FLAG_6);
             next_state = func_8029B504();
             sp2C = 2;
             break;
         case BS_INTR_30: //L80296B88
             item_set(ITEM_14_HEALTH, 0);
-            miscflag_set(6);
+            miscFlag_set(MISC_FLAG_6);
             next_state = func_8029B504();
             sp2C = 2;
             break;
@@ -515,7 +515,7 @@ void func_80296608(void){
         case BS_INTR_2A: //L80296BCC
             sp2C = 2;
             next_state = func_8029B504();
-            miscflag_set(MISC_FLAG_14_LOSE_BOGGY_RACE);
+            miscFlag_set(MISC_FLAG_14_LOSE_BOGGY_RACE);
             break;
         case BS_INTR_27_WALRUS_SLED: //L80296BEC
             if(player_getTransformation() == TRANSFORM_4_WALRUS){

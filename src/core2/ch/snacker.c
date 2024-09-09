@@ -332,7 +332,7 @@ void chSnacker_spawn(void) {
 
 
     _player_getPosition(spawn_position);
-    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
+    if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
         nodeprop_getPosition(func_80304CAC(0x3CB, spawn_position), spawn_position);
     }
     else{
@@ -372,7 +372,7 @@ void chSnacker_spawn(void) {
         marker_despawn(s_chSnacker_marker);
         return;
     }
-    if (func_803203FC(UNKFLAGS1_C1_IN_FINAL_CHARACTER_PARADE) == 0) {
+    if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) == 0) {
         func_8032BB88(snacker, 5000, 750);
         func_8024BD08(0);
         func_8025A6EC(COMUSIC_34_SNACKER_DANGER, 0);

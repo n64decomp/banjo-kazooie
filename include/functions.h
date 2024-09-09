@@ -20,6 +20,8 @@
 #include "bsint.h"
 #include "generic.h"
 
+#include "enums.h"
+
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
@@ -561,5 +563,23 @@ extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, 
 extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2, enum map_e arg3);
 extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
+extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
+extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
+extern s32  volatileFlag_get(s32);
+extern s32 volatileFlag_getN(s32 index, s32 numBits);
+extern s32 volatileFlag_getAndSet(s32 index, s32 arg1);
+extern void volatileFlag_set(s32 index, s32 set);
+extern void volatileFlag_setN(s32 startIndex, s32 set, s32 length);
+
+extern void itemscore_noteScores_clear(void);
+extern s32 itemscore_noteScores_get(enum level_e lvl_id);
+extern void itemscore_timeScores_clear(void);
+
+extern void miscFlag_clearAll(void);
+extern bool miscFlag_isTrue(enum misc_flag_e arg0);
+extern bool miscFlag_isFalse(enum misc_flag_e arg0);
+extern void miscFlag_set(enum misc_flag_e arg0);
+extern void miscFlag_clear(enum misc_flag_e arg0);
+extern void miscFlag_toggle(enum misc_flag_e arg0);
 
 #endif

@@ -181,8 +181,8 @@ void func_8024AF00(s32 arg0, s32 arg1){
 void func_8024AF48(void){
     
     if(!D_802806F4)         return;
-    if(func_803203FC(1))    return;
-    if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)) return;
+    if(volatileFlag_get(VOLATILE_FLAG_1))    return;
+    if(volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) return;
     if(func_802D686C())     return;
     if(func_8028F22C())     return;
     if(gctransition_8030BDC0()) return;

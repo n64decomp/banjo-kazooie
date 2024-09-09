@@ -313,7 +313,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
         timed_playSfx(1.25f, SFX_6C_LOCKUP_CLOSING, 1.05f, 0x7d00);
         timed_playSfx(1.35f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
         timed_playSfx(1.8f, SFX_6C_LOCKUP_CLOSING, 1.0f, 0x7d00);
-        if(func_803203FC(2)){
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 0x1067);
             timed_exitStaticCamera(2.4f);
@@ -360,10 +360,10 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                 func_8025A58C(-1, 0x190);
                 comusic_8025AB44(COMUSIC_62_RBB_BOOMBOX, 0, 0x190);
                 func_8025AABC(COMUSIC_62_RBB_BOOMBOX);
-                if(func_803203FC(2)){
+                if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
                     item_set(ITEM_6_HOURGLASS, 0);
-                    func_803204E4(3, 0);
-                    func_803204E4(5, 1);
+                    volatileFlag_set(VOLATILE_FLAG_3, 0);
+                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
@@ -523,13 +523,13 @@ void func_8038D8BC(Actor *this){
             RBB_func_8038CC9C(this, 7);
         }
 
-        if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !func_803203FC(2))
+        if(jiggyscore_isSpawned(JIGGY_56_RBB_BOSS_BOOM_BOX) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
             marker_despawn(this->marker);
         
-        if(func_803203FC(2))
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
             chbossboombox_hideJiggy();
 
-        if(func_803203FC(UNKFLAGS1_1F_IN_CHARACTER_PARADE)){
+        if(volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
             chbossboombox_hideJiggy();
             skeletalAnim_set(this->unk148, ASSET_146_ANIM_BOSS_BOOMBOX_APPEAR, 0.0f, 2.4f);
             skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
@@ -540,8 +540,8 @@ void func_8038D8BC(Actor *this){
 
     player_getPosition(player_position);
     if(this->state == 1){
-        if(func_803203FC(2)){
-            if(func_803203FC(3)){
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
+            if(volatileFlag_get(VOLATILE_FLAG_3)){
                 RBB_func_8038CC9C(this, 2);
             }
         }
@@ -572,10 +572,10 @@ void func_8038D8BC(Actor *this){
     }//L8038DC48
 
     if(this->state == 3 || this->state == 4){
-        if(func_803203FC(2)){
+        if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             if(item_empty(ITEM_0_HOURGLASS_TIMER)){
-                func_803204E4(3, 0);
-                func_803204E4(5, 0);
+                volatileFlag_set(VOLATILE_FLAG_3, 0);
+                volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 0);
                 RBB_func_8038CC9C(this, 8);
             }
         }

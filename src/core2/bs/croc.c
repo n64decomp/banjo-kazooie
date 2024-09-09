@@ -49,8 +49,8 @@ void __bscroc_jumpSfx(void){
 void func_802ABE70(void){
     f32 sp1C = stateTimer_get(STATE_TIMER_3_TURBO_TALON);
     func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), sp1C);
-    if(miscflag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) && bs_getState() != BS_17_BTROT_EXIT){
-        miscflag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
+    if(miscFlag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) && bs_getState() != BS_17_BTROT_EXIT){
+        miscFlag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
         func_8025A6EC(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
         func_8029E0DC(1);
@@ -81,8 +81,8 @@ void func_802ABFBC(void){
         func_8029B0C0();
         func_8029E070(0);
         func_8029E064(0);
-        miscflag_clear(3);
-        miscflag_clear(4);
+        miscFlag_clear(MISC_FLAG_3);
+        miscFlag_clear(MISC_FLAG_4);
         func_80293D74();
     }
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
@@ -109,8 +109,8 @@ void bscroc_idle_init(void){
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     func_80293D48(50.0f, 25.0f);
-    miscflag_set(3);
-    miscflag_set(4);
+    miscFlag_set(MISC_FLAG_3);
+    miscFlag_set(MISC_FLAG_4);
     func_802900B4();
 }
 
@@ -312,7 +312,7 @@ void bscroc_fall_update(void){
 
     if(player_isStable()){
         if(func_8029B300() > 0 || (D_8037D3EC == 2 && animctrl_isStopped(aCtrl))){
-            if(miscflag_isTrue(0x19)){
+            if(miscFlag_isTrue(MISC_FLAG_19)){
                 next_state = badrone_transform();
             }else{
                 next_state = BS_5E_CROC_IDLE;

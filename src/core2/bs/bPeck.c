@@ -66,7 +66,7 @@ void func_802A664C(void){
             sp1C = 1.32f;
             break;
     }
-    miscflag_set(MISC_FLAG_5_HAS_PECKED);
+    miscFlag_set(MISC_FLAG_5_HAS_PECKED);
     func_8030E58C(SFX_42_KAZOOIE_RAH, sp1C);
     baphysics_set_vertical_velocity(D_80364A64);
     D_8037D375++;

@@ -26,7 +26,7 @@ void quizQuestionAskedBitfield_init(void){
 }
 
 void quizQuestionAskedBitfield_set(s32 index, bool value){
-    setBitToArray(quizQuestionAskedBitfield, index, value);
+    bitfield_set_bit(quizQuestionAskedBitfield, index, value);
 }
 
 void quizQuestionAskedBitfield_defrag(void){

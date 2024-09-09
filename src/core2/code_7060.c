@@ -13,7 +13,6 @@
 
 extern bool player_isInHorizontalRadius(f32[3], f32);
 extern bool player_isInVerticalRange(f32[3], f32);
-extern void miscflag_clear(s32);
 extern void func_80295A8C(void);
 extern void climbSet(f32[3], f32[3], f32, u32);
 extern void func_80296C90(f32);
@@ -72,8 +71,8 @@ bool func_8028E060(s32 arg0, s32 *arg1){
 void func_8028E0B0(ActorMarker *arg0){
     bs_setState(bs_getIdleState());
     bsStoredState_setTrot(FALSE);
-    miscflag_clear(0x16);
-    miscflag_clear(0x18);
+    miscFlag_clear(MISC_FLAG_16);
+    miscFlag_clear(MISC_FLAG_18);
 }
 
 void func_8028E0F0(s32 arg0, s32 arg1[3]) {
@@ -119,17 +118,17 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     switch (map_get()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
-                miscflag_set(0x16);
+                miscFlag_set(MISC_FLAG_16);
             }
             break;
         case MAP_77_GL_RBB_LOBBY:
             if ((arg0 == 2) && func_802D6088()) {
-                miscflag_set(0x18);
+                miscFlag_set(MISC_FLAG_18);
             }
             break;
         case MAP_76_GL_640_NOTE_DOOR:
             if ((arg0 == 1) && func_802D60C4()) {
-                miscflag_set(0x18);
+                miscFlag_set(MISC_FLAG_18);
             }
             break;
     }
@@ -155,8 +154,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     func_8028F85C(&sp7C);
     func_80295A8C();
     bsStoredState_setTrot(FALSE);
-    miscflag_clear(0x16);
-    miscflag_clear(0x18);
+    miscFlag_clear(MISC_FLAG_16);
+    miscFlag_clear(MISC_FLAG_18);
     func_8028E060(arg0, &sp6C);
     yaw_setIdeal((f32) sp6C);
     yaw_applyIdeal();
@@ -189,7 +188,7 @@ void func_8028E4B0(void) {
     sp20 = exit_get();
     D_8037BFB8 = 0;
     player_setPosition(D_803636C0);
-    if (func_803203FC(0xE) || func_802D686C() || (sp20 == 0x65)){
+    if (volatileFlag_get(VOLATILE_FLAG_E) || func_802D686C() || (sp20 == 0x65)){
         return;
     }
     if (sp20 == 0x63) {
@@ -199,7 +198,7 @@ void func_8028E4B0(void) {
         D_8037BFB8 = 1;
         func_80295A8C();
         bsStoredState_setTrot(FALSE);
-        miscflag_clear(0x16);
+        miscFlag_clear(MISC_FLAG_16);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
     } else if (func_8028DFF0(sp20, sp24)) {
@@ -441,10 +440,10 @@ enum bsgroup_e func_8028ECAC(void) {
     s32 temp_a1;
 
     state_id = bs_getState();
-    if (miscflag_isTrue(MISC_FLAG_1B_TRANSFORMING)) {
+    if (miscFlag_isTrue(MISC_FLAG_1B_TRANSFORMING)) {
         return BSGROUP_D_TRANSFORMING;
     }
-    if (miscflag_isTrue(MISC_FLAG_17_FPV)) {
+    if (miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW)) {
         return BSGROUP_4_LOOK;
     }
     if (bsbfly_inSet(state_id)) {
@@ -459,7 +458,7 @@ enum bsgroup_e func_8028ECAC(void) {
     if (bswalrus_inSledSet(state_id)) {
         return BSGROUP_C_WALRUS_SLED;
     }
-    if (miscflag_isTrue(9) != 0) {
+    if (miscFlag_isTrue(MISC_FLAG_9) != 0) {
         return 1;
     }
     switch(state_id){
@@ -609,7 +608,7 @@ bool func_8028F150(void){
 }
 
 bool func_8028F170(void){
-    return miscflag_isTrue(MISC_FLAG_17_FPV);
+    return miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW);
 }
 
 int ability_isUnlocked(enum ability_e uid){
