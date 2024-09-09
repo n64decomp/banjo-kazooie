@@ -154,7 +154,7 @@ void __overlay_mmm_update(void){
 }
 
 void func_803229C0(s32 arg0, s32 arg1){
-    func_80389DF4(arg0, arg1);
+    code3420_handleOrganGame(arg0, arg1);
 }
 
 void __overlay_cc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ 
