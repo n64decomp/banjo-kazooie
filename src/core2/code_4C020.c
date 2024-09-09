@@ -715,7 +715,7 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
     f32 sp40[3];
 
     if (nodeProp_findPositionFromActorId(arg1, sp5C)) {
-        func_803331D8(arg0, sp5C);
+        codeABC00_spawnJiggyAtLocation(arg0, sp5C);
         func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
         if (arg0 == 0x36) {
             

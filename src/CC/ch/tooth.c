@@ -93,7 +93,7 @@ extern void chTooth_update(Actor * this){
 
                 sp24[1] = 1470.0f;
                 func_80333388(local->unk0->jiggy_id);
-                func_803331D8(local->unk0->jiggy_id, sp24);
+                codeABC00_spawnJiggyAtLocation(local->unk0->jiggy_id, sp24);
             }
         }
     }
