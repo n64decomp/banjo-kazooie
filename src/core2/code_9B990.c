@@ -7,67 +7,67 @@
 
 void __overlay_mmm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_mmm_release(void); 
-void func_80322960(void);
+void overlay_mmm_init(void);
 void __overlay_mmm_update(void);
 void func_803229C0(s32, s32);
 
 void __overlay_cc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_cc_release(void); 
-void func_80322A28(void);
+void overlay_whale_init(void);
 void __overlay_cc_update(void);
 void func_80322A78(s32, s32);
 
 void __overlay_gv_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_gv_release(void); 
-void func_80322ACC(void);
+void overlay_gv_init(void);
 void __overlay_gv_update(void);
 void func_80322B3C(s32, s32);
 
 void __overlay_ttc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_ttc_release(void); 
-void func_80322B78(void);
+void overlay_ttc_init(void);
 void __overlay_ttc_update(void);
 void func_80322BB8(s32, s32);
 
 void __overlay_mm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_mm_release(void); 
-void func_80322CD0(void);
+void overlay_mm_init(void);
 void __overlay_mm_update(void);
 void func_80322CE0(s32, s32);
 
 void __overlay_bgs_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_bgs_release(void); 
-void func_80322D38(void);
+void overlay_bgs_init(void);
 void __overlay_bgs_update(void);
 void func_80322D94(s32, s32);
 
 void __overlay_sm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_sm_release(void); 
-void func_80322BDC(void);
+void overlay_sm_init(void);
 void __overlay_sm_update(void); 
 void func_80322BEC(s32, s32);
 
 void __overlay_lair_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_lair_release(void); 
-void func_80322C38(void);
+void overlay_lair_init(void);
 void __overlay_lair_update(void);
 void func_80322C78(s32, s32);
 
 void __overlay_fight_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_fight_release(void); 
-void func_80322C9C(void);
+void overlay_fight_init(void);
 void __overlay_fight_update(void);
 void func_80322CAC(s32, s32);
 
 void __overlay_intro_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_intro_release(void); 
-void func_80322D04(void);
+void overlay_intro_init(void);
 void __overlay_intro_update(void);
 void func_80322D14(s32, s32);
 
 void __overlay_fp_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void __overlay_fp_release(void); 
-void func_80322DE8(void);
+void overlay_fp_init(void);
 void __overlay_fp_update(void);
 void func_80322E58(s32, s32);
 
@@ -77,7 +77,7 @@ typedef struct{
 }level_overlay_map_elem;
 
 typedef struct{
-    s16 unk0;
+    s16 overlay_id;
     u8  unk2;
     u8  unk3;
     void (*init)(void);
@@ -106,17 +106,17 @@ level_overlay_map_elem D_8036E2C0[] = {
 };
 
 level_overlay_update_struct D_8036E2F8[] = {
-    { OVERLAY_2_WHALE,    1, 0, func_80322A28, __overlay_cc_update,    __overlay_cc_release,    __overlay_cc_draw,    func_80322A78},
-    { OVERLAY_3_HAUNTED,  1, 0, func_80322960, __overlay_mmm_update,   __overlay_mmm_release,   __overlay_mmm_draw,   func_803229C0},
-    { OVERLAY_4_DESERT,   1, 0, func_80322ACC, __overlay_gv_update,    __overlay_gv_release,    __overlay_gv_draw,    func_80322B3C},
-    { OVERLAY_5_BEACH,    1, 0, func_80322B78, __overlay_ttc_update,   __overlay_ttc_release,   __overlay_ttc_draw,   func_80322BB8},
-    { OVERLAY_6_JUNGLE,   1, 0, func_80322CD0, __overlay_mm_update,    __overlay_mm_release,    __overlay_mm_draw,    func_80322CE0},
-    { OVERLAY_7_SWAMP,    1, 0, func_80322D38, __overlay_bgs_update,   __overlay_bgs_release,   __overlay_bgs_draw,   func_80322D94},
-    { OVERLAY_B_TRAINING, 1, 0, func_80322BDC, __overlay_sm_update,    __overlay_sm_release,    __overlay_sm_draw,    func_80322BEC},
-    { OVERLAY_C_INTRO,    1, 0, func_80322D04, __overlay_intro_update, __overlay_intro_release, __overlay_intro_draw, func_80322D14},
-    { OVERLAY_D_WITCH,    1, 0, func_80322C38, __overlay_lair_update,  __overlay_lair_release,  __overlay_lair_draw,  func_80322C78},
-    { OVERLAY_E_BATTLE,   1, 0, func_80322C9C, __overlay_fight_update, __overlay_fight_release, __overlay_fight_draw, func_80322CAC},
-    { OVERLAY_9_SNOW,     0, 1, func_80322DE8, __overlay_fp_update,    __overlay_fp_release,    __overlay_fp_draw,    func_80322E58},
+    { OVERLAY_2_WHALE,    1, 0, overlay_whale_init, __overlay_cc_update,    __overlay_cc_release,    __overlay_cc_draw,    func_80322A78},
+    { OVERLAY_3_HAUNTED,  1, 0, overlay_mmm_init, __overlay_mmm_update,   __overlay_mmm_release,   __overlay_mmm_draw,   func_803229C0},
+    { OVERLAY_4_DESERT,   1, 0, overlay_gv_init, __overlay_gv_update,    __overlay_gv_release,    __overlay_gv_draw,    func_80322B3C},
+    { OVERLAY_5_BEACH,    1, 0, overlay_ttc_init, __overlay_ttc_update,   __overlay_ttc_release,   __overlay_ttc_draw,   func_80322BB8},
+    { OVERLAY_6_JUNGLE,   1, 0, overlay_mm_init, __overlay_mm_update,    __overlay_mm_release,    __overlay_mm_draw,    func_80322CE0},
+    { OVERLAY_7_SWAMP,    1, 0, overlay_bgs_init, __overlay_bgs_update,   __overlay_bgs_release,   __overlay_bgs_draw,   func_80322D94},
+    { OVERLAY_B_TRAINING, 1, 0, overlay_sm_init, __overlay_sm_update,    __overlay_sm_release,    __overlay_sm_draw,    func_80322BEC},
+    { OVERLAY_C_INTRO,    1, 0, overlay_intro_init, __overlay_intro_update, __overlay_intro_release, __overlay_intro_draw, func_80322D14},
+    { OVERLAY_D_WITCH,    1, 0, overlay_lair_init, __overlay_lair_update,  __overlay_lair_release,  __overlay_lair_draw,  func_80322C78},
+    { OVERLAY_E_BATTLE,   1, 0, overlay_fight_init, __overlay_fight_update, __overlay_fight_release, __overlay_fight_draw, func_80322CAC},
+    { OVERLAY_9_SNOW,     0, 1, overlay_fp_init, __overlay_fp_update,    __overlay_fp_release,    __overlay_fp_draw,    func_80322E58},
     {0}
 };
 
@@ -141,7 +141,7 @@ void __overlay_mmm_release(void){
     func_8038A994();
 }
 
-void func_80322960(void){
+void overlay_mmm_init(void){
     func_80389544();
     func_80389CE0();
     func_8038A9B4();
@@ -166,7 +166,7 @@ void __overlay_cc_release(void){
     func_803880D4();
 }
 
-void func_80322A28(void){
+void overlay_whale_init(void){
     func_80388D54();
     func_80388104();
 }
@@ -189,7 +189,7 @@ void __overlay_gv_release(void){
     gv_waterCtrl_end();
 }
 
-void func_80322ACC(void){
+void overlay_gv_init(void){
     func_8038FF68();
     func_80390100();
     gv_matchingGame_init(); //gv_matchingGame_init
@@ -211,7 +211,7 @@ void __overlay_ttc_release(void){
     func_8038B04C();
 }
 
-void func_80322B78(void){
+void overlay_ttc_init(void){
     func_8038B094();
 }
 
@@ -225,7 +225,7 @@ void __overlay_sm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_sm_release(void){ return; }
 
-void func_80322BDC(void){ return; }
+void overlay_sm_init(void){ return; }
 
 void __overlay_sm_update(void){ return; }
 
@@ -239,7 +239,7 @@ void __overlay_lair_release(void){
     lair_func_8038CD48();
 }
 
-void func_80322C38(void){
+void overlay_lair_init(void){
     lair_func_8038CF18();
 }
 
@@ -254,7 +254,7 @@ void __overlay_fight_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_fight_release(void){ return; }
 
-void func_80322C9C(void){ return; }
+void overlay_fight_init(void){ return; }
 
 void __overlay_fight_update(void){ return; }
 
@@ -264,7 +264,7 @@ void __overlay_mm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_mm_release(void){ return; }
 
-void func_80322CD0(void){ return; }
+void overlay_mm_init(void){ return; }
 
 void __overlay_mm_update(void){ return; }
 
@@ -274,7 +274,7 @@ void __overlay_intro_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_intro_release(void){ return; }
 
-void func_80322D04(void){ return; }
+void overlay_intro_init(void){ return; }
 
 void __overlay_intro_update(void){ return; }
 
@@ -284,7 +284,7 @@ void __overlay_bgs_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_bgs_release(void){ return; }
 
-void func_80322D38(void){
+void overlay_bgs_init(void){
     if( map_get() == MAP_10_BGS_MR_VILE
         && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
         && volatileFlag_get(VOLATILE_FLAG_7_HAS_SEEN_VILE_FF_MINIGAME)
@@ -306,7 +306,7 @@ void __overlay_fp_release(void){
     func_8039195C();
 }
 
-void func_80322DE8(void){
+void overlay_fp_init(void){
     fp_sirslushgame_init();
     fp_snowmanButtonGame_init();
     func_8038B7A4();
@@ -374,8 +374,8 @@ void func_80322FE4(void){
     D_80383350.init = D_80383350.update = D_80383350.release = NULL;
     D_80383350.draw = NULL;
     D_80383350.unk14 = NULL;
-    for(i = 0; D_8036E2F8[i].unk0 != 0; i++){
-        if(overlay_id == D_8036E2F8[i].unk0){
+    for(i = 0; D_8036E2F8[i].overlay_id != 0; i++){
+        if(overlay_id == D_8036E2F8[i].overlay_id){
             D_80383350.unk0 = D_8036E2F8[i].unk2;
             D_80383350.unk1 = D_8036E2F8[i].unk3;
             D_80383350.init = D_8036E2F8[i].init;
