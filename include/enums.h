@@ -4774,7 +4774,7 @@ enum misc_flag_e{
     MISC_FLAG_12_HAS_FLAPPED, // has used flap
     MISC_FLAG_13, // related to ground damage ?
     MISC_FLAG_14_LOSE_BOGGY_RACE, // in difficult terrain (mud)
-    MISC_FLAG_15, // touching loadzone?
+    MISC_FLAG_15_LOADZONE, // touching loadzone?
     MISC_FLAG_16, // related to flying
     MISC_FLAG_17_FIRST_PERSON_VIEW,
     MISC_FLAG_18, // related to underwater state
