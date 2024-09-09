@@ -49,29 +49,32 @@ int func_80388B30(Actor *this, float arg1){
     return 0;
 }
 
-void func_80388BEC(NodeProp *arg0, ActorMarker *arg1){
-    f32 sp34;
-    Actor *sp30;
+void func_80388BEC(NodeProp *node, ActorMarker *marker){
+    f32 distance_to_closest_actor;
+    Actor *closest_actor;
     Actor *temp_v0;
-    f32 sp20[3];
+    f32 position[3];
     
 
-    sp20[0] = (f32)arg0->x;
-    sp20[1] = (f32)arg0->y;
-    sp20[2] = (f32)arg0->z;
-    sp30 = actorArray_findClosestActorFromActorId(sp20, 0x11, -1, &sp34);
-    if( sp30 != NULL
-        && !( sp34 > 500.0f )
-        && (sp30->state ==3)
+    position[0] = (f32)node->x;
+    position[1] = (f32)node->y;
+    position[2] = (f32)node->z;
+
+    closest_actor = actorArray_findClosestActorFromActorId(position, 0x11, -1, &distance_to_closest_actor);
+
+    if( closest_actor != NULL
+        && !( distance_to_closest_actor > 500.0f )
+        && (closest_actor->state ==3)
     ){
-        temp_v0 = marker_getActor(((ActorLocal_JujuHitbox *)&sp30->local)->unk8[((ActorLocal_JujuHitbox *)&sp30->local)->unk4]);
+        temp_v0 = marker_getActor(((ActorLocal_JujuHitbox *)&closest_actor->local)->unk8[((ActorLocal_JujuHitbox *)&closest_actor->local)->unk4]);
+
         if(temp_v0 != NULL){
             if(func_80388B30(temp_v0, 90.0f)){
-                sp30->state = 1;
-                ((ActorLocal_JujuHitbox *)&sp30->local)->unk4++;
-                func_803892A8(((ActorLocal_JujuHitbox *)&sp30->local)->unk8);
-                func_80353580(arg1);
-                __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x58, *(s32 *)&sp20[0], *(s32 *)&sp20[1], *(s32 *)&sp20[2]);
+                closest_actor->state = 1;
+                ((ActorLocal_JujuHitbox *)&closest_actor->local)->unk4++;
+                func_803892A8(((ActorLocal_JujuHitbox *)&closest_actor->local)->unk8);
+                func_80353580(marker);
+                __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x58, *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2]);
             }
         }
     }

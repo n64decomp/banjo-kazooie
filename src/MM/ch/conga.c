@@ -56,25 +56,31 @@ ActorInfo chcongaInfo = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
 
 
 /* code */
-int func_80386ED0(Actor * this){
-    f32 plyrPos[3];
-    f32 tmpz;
+bool __chConga_isPlayerNearCongaTree(Actor * this){
+    f32 plyr_pos[3];
+    f32 unused_tmpz;
 
-    if(map_get() != MAP_2_MM_MUMBOS_MOUNTAIN)
-        return 0;
+    if (map_get() != MAP_2_MM_MUMBOS_MOUNTAIN) {
+        return FALSE;
+    }
 
-    if(!this->unk10_12)
-        return 0;
+    if (!this->unk10_12) {
+        return FALSE;
+    }
 
-    player_getPosition(plyrPos);
-    if(plyrPos[1] < 300.0f || 600.0f < plyrPos[1])
-        return 0;
+    player_getPosition(plyr_pos);
 
-    tmpz = plyrPos[2]- 5029.0f;
-    if(52900.0f < (plyrPos[0]- -5011.0f)*(plyrPos[0]- -5011.0f) + (plyrPos[2]- 5029.0f)*(plyrPos[2]- 5029.0f))
-        return 0;
+    if (plyr_pos[1] < 300.0f || 600.0f < plyr_pos[1]) {
+        return FALSE;
+    }
+
+    unused_tmpz = plyr_pos[2] - 5029.0f;
+
+    if (52900.0f < (plyr_pos[0] - - 5011.0f)*(plyr_pos[0] - - 5011.0f) + (plyr_pos[2]- 5029.0f)*(plyr_pos[2] - 5029.0f)) {
+        return FALSE;
+    }
     
-    return 1;
+    return TRUE;
 }
 
 void func_80386FB0(Actor *this){
@@ -82,7 +88,7 @@ void func_80386FB0(Actor *this){
     func_80328FB0(this, 3.0f);
 }
 
-void func_80386FE8(void){
+void __chConga_playRandomNoise(void){
     if( (globalTimer_getTime() & 0xF) == 0xB 
         && 0.85 < randf ()
         && !func_803114B0()
@@ -103,15 +109,14 @@ void func_803870D0(Actor *this, ActorMarker *arg1){
 void func_80387100(ActorMarker *this){
     ActorMarker *m = *(ActorMarker **)&this;
     Actor* actorPtr;
-    f32 sp1C[3];
+    f32 position[3];
 
     actorPtr = marker_getActor(m);
-    sp1C[0] = actorPtr->position_x;
-    sp1C[1] = actorPtr->position_y + 60.0f;
-    sp1C[2] = actorPtr->position_z;
+    position[0] = actorPtr->position_x;
+    position[1] = actorPtr->position_y + 60.0f;
+    position[2] = actorPtr->position_z;
     func_802C8F70(0.0f);
-    func_80333270(JIGGY_A_MM_CONGA, sp1C, func_803870D0, m);
-
+    func_80333270(JIGGY_A_MM_CONGA, position, func_803870D0, m);
 }
 
 void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
@@ -144,7 +149,6 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             }
         }
     }
-
 }
 
 int func_803872EC(void){
@@ -165,19 +169,19 @@ void func_80387370(ActorMarker *this, enum asset_e text_id, s32 arg2){
     func_80324E38(3.2f, 0);
 }
 
-void func_803873C8(ActorMarker *congaMarker){
+void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
     ActorMarker *m = *(ActorMarker **)&congaMarker; //sp84
     Actor * congaPtr = marker_getActor(m); //sp80
     ActorLocal_Conga *conga_localPtr = (ActorLocal_Conga *)&congaPtr->local; //sp7C
     s32 conga_state = congaPtr->state;
     Actor * orangePtr;
-    f32 pad0;
+    f32 unused;
     TUPLE(f32, pos) plyr;
     f32 temp_f22;
     f32 temp_f20;
-    f32 temp_f18;
-    f32 iHeight;
-    f32 iVelY;
+    f32 simulation_count;
+    f32 simulated_position_y;
+    f32 simulated_velocity_y;
 
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
     MM_func_80387F44();
@@ -189,6 +193,7 @@ void func_803873C8(ActorMarker *congaMarker){
         orangePtr->velocity_x = plyr.pos_x - orangePtr->position_x;
         orangePtr->velocity_y = (60.0)*((conga_state == 7) ? 0.5: 1.0);
         orangePtr->velocity_z = plyr.pos_z - orangePtr->position_z;
+
         if(SQUARE(plyr.pos_z - m->propPtr->z) + SQUARE(plyr.pos_x - m->propPtr->x) < 40000.0f ){
             temp_f20 = randf2(2.4f, 4.4f); temp_f22 = randf2(2.4f, 4.4f); //f22
             orangePtr->velocity[0] *= (randf() < 0.5)? temp_f20 : -temp_f20;
@@ -196,19 +201,21 @@ void func_803873C8(ActorMarker *congaMarker){
             orangePtr->velocity[2] *= (randf() < 0.5)? temp_f22 : -temp_f22;
         }
 
-        iHeight = orangePtr->position_y;
-        iVelY = orangePtr->velocity_y;
-        for(temp_f18 = 0.0f; !(iHeight < plyr.pos_y &&  iVelY < 0.0f); temp_f18++){
-            iHeight += (iVelY -= 5.0);
+        simulated_position_y = orangePtr->position_y;
+        simulated_velocity_y = orangePtr->velocity_y;
+
+        for(simulation_count = 0.0f; !(simulated_position_y < plyr.pos_y && simulated_velocity_y < 0.0f); simulation_count++){
+            simulated_position_y += (simulated_velocity_y -= 5.0);
         }
-        orangePtr->velocity_x /= temp_f18;
-        orangePtr->velocity_z /= temp_f18;
+
+        orangePtr->velocity_x /= simulation_count;
+        orangePtr->velocity_z /= simulation_count;
     }
 }
 
 void func_803876D0(Actor *this){
-    f32 tmp_f4;
-    NodeProp *sp40;
+    f32 unused;
+    NodeProp *node_prop;
     s32 sp3C;
 
     this->marker->propPtr->unk8_3 = (timedFuncQueue_is_empty(this))?1:0;
@@ -218,9 +225,9 @@ void func_803876D0(Actor *this){
         this->initialized = 1;
         this->velocity_x = 0.0f;
         this->unk28 = 0.0f;
-        sp40 = func_80304C38(0x150, this);
-        ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(sp40);
-        func_80304D4C(sp40, &((ActorLocal_Conga *)&this->local)->unk10);
+        node_prop = func_80304C38(0x150, this);
+        ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(node_prop);
+        func_80304D4C(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
     }
     if(0.0f == this->unk28){
         this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
@@ -262,7 +269,7 @@ void func_803876D0(Actor *this){
         case 1://80387990
             actor_loopAnimation(this);
             func_80386FB0(this);
-            func_80386FE8();
+            __chConga_playRandomNoise();
             if(actor_animationIsAt(this, 0.0f) || actor_animationIsAt(this, 0.45f)){
                 if(randf() < 0.2){
                     animctrl_setDirection(this->animctrl, animctrl_isPlayedForwards(this->animctrl)?0:1);
@@ -273,7 +280,7 @@ void func_803876D0(Actor *this){
             }
             if( sp3C
                 && func_8028ECAC() != 1
-                && !func_80386ED0(this)
+                && !__chConga_isPlayerNearCongaTree(this)
                 && timedFuncQueue_is_empty()
                 && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
                 && !func_803872EC()
@@ -281,7 +288,7 @@ void func_803876D0(Actor *this){
                 subaddie_set_state_with_direction(this, 4, 0.0f, 1);
             }//L80387AC0
             if( func_8028ECAC() != 1
-                && func_80386ED0(this)
+                && __chConga_isPlayerNearCongaTree(this)
                 && this->unk38_31 != 0
                 && !func_803872EC()
             ){
@@ -292,7 +299,7 @@ void func_803876D0(Actor *this){
         case 6: //L80387B24
             ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_playAnimationOnce(this);
-            func_80386FE8();
+            __chConga_playRandomNoise();
             if( animctrl_isPlayedForwards(this->animctrl) == TRUE
                 && actor_animationIsAt(this, 0.0f)
             ){
@@ -308,7 +315,7 @@ void func_803876D0(Actor *this){
         case 5: //L80387BC0
             ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_loopAnimation(this);
-            func_80386FE8();
+            __chConga_playRandomNoise();
             if( actor_animationIsAt(this, 0.99f)){
                 subaddie_maybe_set_state_position_direction(this, 6, 0.999f, 0, sp3C ? 1.0 : 0.4);
             }//L80387C30
@@ -326,7 +333,7 @@ void func_803876D0(Actor *this){
             func_80386FB0(this);
             if( !sp3C
                 || player_is_in_jiggy_jig()
-                || func_80386ED0(this)
+                || __chConga_isPlayerNearCongaTree(this)
                 || !timedFuncQueue_is_empty()
                 || func_803872EC()
             ){
@@ -369,6 +376,6 @@ void func_803876D0(Actor *this){
         || (this->state == 7 && actor_animationIsAt(this, 0.468f))
     ){
         func_8034A1B4(this->marker->unk44, 5, &this->local);
-        __spawnQueue_add_1((GenFunction_1)func_803873C8, (s32)this->marker); //spawn orange
+        __spawnQueue_add_1((GenFunction_1)__chConga_sendOrangeProjectile, (s32)this->marker); //spawn orange
     }
 }

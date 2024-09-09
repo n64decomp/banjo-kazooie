@@ -5,7 +5,17 @@
 
 #include "prop.h"
 
+#ifndef HUT_STATE_INTACT
+#define HUT_STATE_INTACT 0
+#endif
 
+#ifndef HUT_STATE_DAMAGED
+#define HUT_STATE_DAMAGED 1
+#endif
+
+#ifndef HUT_STATE_DESTROYED
+#define HUT_STATE_DESTROYED 2
+#endif
 
 /* extern function declarations */
 
@@ -28,19 +38,19 @@ ActorAnimationInfo chhutAnimations[3] = {
 };
 
 /* .code */
-Actor *chhut_draw(ActorMarker *this, Gfx **arg1, Mtx **arg2, Vtx **arg3){
+Actor *chhut_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *actorPtr;
-    s32 temp_a1;
-    s32 temp_a2;
+    s32 is_not_destroyed;
+    s32 is_intact_or_destroyed;
 
     actorPtr = marker_getActor(this);
 
-    temp_a1 = actorPtr->state != 2;
-    temp_a2 = actorPtr->state == 0 || actorPtr->state == 2;
-    this->propPtr->unk8_3 = temp_a2;
-    func_8033A45C(1, temp_a1);
+    is_not_destroyed = actorPtr->state != HUT_STATE_DESTROYED;
+    is_intact_or_destroyed = actorPtr->state == HUT_STATE_INTACT || actorPtr->state == HUT_STATE_DESTROYED;
+    this->propPtr->unk8_3 = is_intact_or_destroyed;
+    func_8033A45C(1, is_not_destroyed);
 
-    return actor_draw(this, arg1, arg2, arg3);
+    return actor_draw(this, gfx, mtx, vtx);
 }
 
 void func_803869EC(ActorMarker *this){
@@ -56,8 +66,8 @@ void func_803869EC(ActorMarker *this){
 
 void    chhut_update(Actor *this){
     static s32 D_803898D8[6] = { 0, 1, 2, 3, 6, 4};
-    f32 sp3C[3];
-    f32 sp30[3];
+    f32 diff_pos[3];
+    f32 plyr_pos[3];
 
     if(func_80334904() != 2)
         return;
@@ -67,42 +77,42 @@ void    chhut_update(Actor *this){
         this->initialized = 1;
     }
     switch(this->state){
-        case 0: //L80386AA4
-            player_getPosition(sp30);
-            sp3C[0] = sp30[0] - this->position_x;
-            sp3C[1] = sp30[1] - this->position_y;
-            sp3C[2] = sp30[2] - this->position_z;
-            if(150.0f < sp3C[1] 
+        case HUT_STATE_INTACT:
+            player_getPosition(plyr_pos);
+            diff_pos[0] = plyr_pos[0] - this->position_x;
+            diff_pos[1] = plyr_pos[1] - this->position_y;
+            diff_pos[2] = plyr_pos[2] - this->position_z;
+            if(150.0f < diff_pos[1]
                 && player_getActiveHitbox(this->marker) == HITBOX_1_BEAK_BUSTER 
                 && func_8028F20C()
-                && gu_sqrtf(sp3C[0]*sp3C[0] + sp3C[1]*sp3C[1] + sp3C[2]*sp3C[2]) < 350.0f
+                && gu_sqrtf(diff_pos[0]*diff_pos[0] + diff_pos[1]*diff_pos[1] + diff_pos[2]*diff_pos[2]) < 350.0f
             ){
-                sp3C[0] = this->position_x;
-                sp3C[1] = this->position_y;
-                sp3C[2] = this->position_z;
-                sp3C[1] += 125.0;
+                diff_pos[0] = this->position_x;
+                diff_pos[1] = this->position_y;
+                diff_pos[2] = this->position_z;
+                diff_pos[1] += 125.0;
                 func_8030E484(SFX_5B_HEAVY_STUFF_FALLING);
-                subaddie_set_state(this, 1);
+                subaddie_set_state(this, HUT_STATE_DAMAGED);
                 actor_playAnimationOnce(this);
                 __spawnQueue_add_1((GenFunction_1)func_803869EC, (s32)this->marker);
                 func_802C8F70(this->yaw);
                 if(D_8037DCB0 < 5){
-                    __spawnQueue_add_4((GenFunction_4)func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&sp3C[0]),*(s32*)(&sp3C[1]),*(s32*)(&sp3C[2]));
+                    __spawnQueue_add_4((GenFunction_4)func_802C4218, D_803898D8[D_8037DCB0], *(s32*)(&diff_pos[0]),*(s32*)(&diff_pos[1]),*(s32*)(&diff_pos[2]));
                 }
                 else{
-                    jiggy_spawn(JIGGY_5_MM_HUTS, sp3C);
+                    jiggy_spawn(JIGGY_5_MM_HUTS, diff_pos);
                 }
                 D_8037DCB0 = ( D_8037DCB0 + 1 ) % 6;
             }
             break;
-        case 1: //L80386C2C
+        case HUT_STATE_DAMAGED:
             if(animctrl_getAnimTimer(this->animctrl) > 0.99){
                 animctrl_setTransitionDuration(this->animctrl, 0.0f);
-                subaddie_set_state(this, 2);
+                subaddie_set_state(this, HUT_STATE_DESTROYED);
                 this->position_y -= 160.0f;
             }
             break;
-        case 2: //L80386C80
+        case HUT_STATE_DESTROYED:
             break;
     }
 

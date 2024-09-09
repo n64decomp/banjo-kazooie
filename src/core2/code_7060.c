@@ -315,16 +315,16 @@ f32 func_8028E904(void){
     return func_802915D8();
 }
 
-f32 func_8028E924(f32 arg0[3], s32 arg1){
+f32 func_8028E924(f32 pos[3], s32 arg1){
     s32 *sp1C;
     
-    baModel_80292284(arg0, arg1);
+    baModel_80292284(pos, arg1);
     baMarker_8028D6F0(&sp1C);
     return (f32) sp1C[arg1];
 }
 
-void func_8028E964(f32 arg0[3]){
-    func_8028E924(arg0, 0);
+void func_8028E964(f32 pos[3]){
+    func_8028E924(pos, 0);
 }
 
 f32 func_8028E984(void){
