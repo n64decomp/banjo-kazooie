@@ -366,7 +366,7 @@ void func_80322FBC(void){
 
 void func_80322FDC(void){ return; }
 
-void func_80322FE4(void){
+void overlay_init(void){
     int i;
     s32 overlay_id;
     func_80356714();
