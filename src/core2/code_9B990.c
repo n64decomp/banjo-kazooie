@@ -130,7 +130,7 @@ struct {
     void (*release)(void);
     void (*draw)(Gfx **, Mtx **, Vtx **);
     void (*unk14)(s32, s32);
-} D_80383350;
+} sOverlay;
 
 /* .code */
 void __overlay_mmm_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
@@ -323,8 +323,8 @@ void __overlay_fp_update(void){
 void func_80322E58(s32 arg0, s32 arg1){ return; }
 
 void func_80322E64(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    if(D_80383350.draw)
-        D_80383350.draw(gfx, mtx, vtx);
+    if(sOverlay.draw)
+        sOverlay.draw(gfx, mtx, vtx);
 }
 
 enum overlay_e level_to_overlay(enum level_e lvl){
@@ -337,14 +337,14 @@ enum overlay_e level_to_overlay(enum level_e lvl){
 }
 
 void func_80322EDC(int arg0){
-    if(arg0 == D_80383350.unk1 && D_80383350.release){
-        D_80383350.release();
+    if(arg0 == sOverlay.unk1 && sOverlay.release){
+        sOverlay.release();
     }
 }
 
 void func_80322F1C(int arg0){
-    if(arg0 == D_80383350.unk0 && D_80383350.init){
-        D_80383350.init();
+    if(arg0 == sOverlay.unk0 && sOverlay.init){
+        sOverlay.init();
     }
 }
 
@@ -371,29 +371,29 @@ void func_80322FE4(void){
     s32 overlay_id;
     func_80356714();
     overlay_id = overlayManagergetLoadedId();
-    D_80383350.init = D_80383350.update = D_80383350.release = NULL;
-    D_80383350.draw = NULL;
-    D_80383350.unk14 = NULL;
+    sOverlay.init = sOverlay.update = sOverlay.release = NULL;
+    sOverlay.draw = NULL;
+    sOverlay.unk14 = NULL;
     for(i = 0; D_8036E2F8[i].overlay_id != 0; i++){
         if(overlay_id == D_8036E2F8[i].overlay_id){
-            D_80383350.unk0 = D_8036E2F8[i].unk2;
-            D_80383350.unk1 = D_8036E2F8[i].unk3;
-            D_80383350.init = D_8036E2F8[i].init;
-            D_80383350.update = D_8036E2F8[i].update;
-            D_80383350.release = D_8036E2F8[i].release;
-            D_80383350.draw = D_8036E2F8[i].draw;
-            D_80383350.unk14 = D_8036E2F8[i].unk14;
+            sOverlay.unk0 = D_8036E2F8[i].unk2;
+            sOverlay.unk1 = D_8036E2F8[i].unk3;
+            sOverlay.init = D_8036E2F8[i].init;
+            sOverlay.update = D_8036E2F8[i].update;
+            sOverlay.release = D_8036E2F8[i].release;
+            sOverlay.draw = D_8036E2F8[i].draw;
+            sOverlay.unk14 = D_8036E2F8[i].unk14;
             break;
         }
     }
 }
 
 void func_80323098(s32 arg0, s32 arg1){
-    if(D_80383350.unk14)
-        D_80383350.unk14(arg0, arg1);
+    if(sOverlay.unk14)
+        sOverlay.unk14(arg0, arg1);
 }
 
 void overlay_update(void){
-    if(D_80383350.update)
-        D_80383350.update();
+    if(sOverlay.update)
+        sOverlay.update();
 }
