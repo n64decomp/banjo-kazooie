@@ -2,260 +2,274 @@
 #include "functions.h"
 #include "variables.h"
 
-#define CORE2_C3B20_DEFAULT_SIZE 0x20
+#define FILE_DEFAULT_SIZE 0x20
 
 
 
-void __file_read(Struct61s *file, void *arg1, s32 arg2);
+void file_read(File *file, void *arg1, s32 arg2);
 
-/* .code */
-void file_close(Struct61s * file){
-    if(file->unk14 == 2){
-        assetcache_release(file->unk0);
+void file_close(File *file) {
+    if (file->mode == FILE_MODE_2_FROM_ASSET){
+        assetcache_release(file->asset_base_ptr);
     }
+    
     free(file);
 }
 
-Struct61s *func_8034AAF4(enum asset_e asset_id) {
-    Struct61s * this;
+File *file_open(enum asset_e asset_id) {
+    File * this;
 
-    this = (Struct61s *) malloc(sizeof(Struct61s));
+    this = (File *) malloc(sizeof(File));
+
     if (this == NULL) {
         return NULL;
     }
-    this->unk14 = 2;
-    this->unk7C = -1;
+
+    this->mode = FILE_MODE_2_FROM_ASSET;
+    this->last_expected = -1;
     this->unk80 = -1;
-    this->unk0 = assetcache_get(asset_id);
-    this->unk4 = this->unk0;
-    if (this->unk4 != NULL) {
+    this->asset_base_ptr = assetcache_get(asset_id);
+    this->asset_current_ptr = this->asset_base_ptr;
+
+    if (this->asset_current_ptr != NULL) {
         return this;
     }
+
     free(this);
     return NULL;
 }
 
-//open map file stream
-Struct61s *func_8034AB6C(enum map_e map_id){
-    return func_8034AAF4(map_id + 0x71C);
+File *file_openMap(enum map_e map_id) {
+    return file_open(map_id + 0x71C);
 }
 
-Struct61s *func_8034AB8C(s32 indx, enum asset_e base_indx){
+File *file_openWithBaseIndex(s32 indx, enum asset_e base_indx) {
     indx += base_indx;
-    return func_8034AAF4(indx);
+    return file_open(indx);
 }
 
-Struct61s *func_8034ABAC(void *ptr, s32 size){
-    Struct61s * this;
-    this = (Struct61s *) malloc(sizeof(Struct61s));
-    this->unk14 = 3;
-    this->unk7C = -1;
+File *file_openFromMem(void *ptr, s32 size) {
+    File * this;
+
+    this = (File *) malloc(sizeof(File));
+    this->mode = FILE_MODE_3_FROM_MEMORY;
+    this->last_expected = -1;
     this->unk80 = -1;
-    this->unk8 = ptr;
-    this->unkC = this->unk8;
-    this->unk10 = (u32)this->unk8 + size;
+    this->base_ptr = ptr;
+    this->current_ptr = this->base_ptr;
+    this->end_ptr = (u8 *) this->base_ptr + size;
+
     return this;
 }
 
+File *file_allocNew() {
+    File *this;
 
-Struct61s *func_8034AC04(void){
-    Struct61s *this;
-    this = (Struct61s *) malloc(sizeof(Struct61s));
-    this->unk14 = 4;
-    this->unk7C = -1;
+    this = (File *) malloc(sizeof(File));
+    this->mode = FILE_MODE_4_ALLOCATED;
+    this->last_expected = -1;
     this->unk80 = -1;
-    this->unk8 = malloc(CORE2_C3B20_DEFAULT_SIZE);
-    this->unkC = this->unk8;
-    this->unk10 = (u32)this->unk8 + CORE2_C3B20_DEFAULT_SIZE;
+    this->base_ptr = malloc(FILE_DEFAULT_SIZE);
+    this->current_ptr = this->base_ptr;
+    this->end_ptr = (u8 *) this->base_ptr + FILE_DEFAULT_SIZE;
+
     return this;
 }
 
-void file_realloc(Struct61s *file, void **arg1, s32 *size){
-    *size = ((u32)file->unkC - (u32)file->unk8);
-    *arg1 = realloc(file->unk8, *size);
-    file->unk8 = NULL;
+void file_realloc(File *file, void **arg1, s32 *size) {
+    *size = ((u32)file->current_ptr - (u32)file->base_ptr);
+    *arg1 = realloc(file->base_ptr, *size);
+    file->base_ptr = NULL;
     file_close(file);
 }
 
-void file_getByte(Struct61s *file, u8 *arg1){
-    __file_read(file, arg1, 1);
+void file_getByte(File *file, u8 *dst) {
+    file_read(file, dst, sizeof(u8));
 }
 
-void file_getNBytes(Struct61s *file, u8 *arg1, s32 cnt){
-    while(cnt > 0){
-        file_getByte(file, arg1);
+void file_getNBytes(File *file, u8 *dst, s32 cnt) {
+    while (cnt > 0) {
+        file_getByte(file, dst);
         cnt--;
-        arg1++;
+        dst++;
     }
 }
 
-void file_getFloat(Struct61s *file, f32 *arg1){
-    __file_read(file, arg1, 4);
+void file_getFloat(File *file, f32 *dst) {
+    file_read(file, dst, sizeof(f32));
 }
 
-void file_getNFloat(Struct61s *file, f32 *arg1, s32 cnt){
-    while(cnt > 0){
-        file_getFloat(file, arg1);
+void file_getNFloat(File *file, f32 *dst, s32 cnt) {
+    while (cnt > 0) {
+        file_getFloat(file, dst);
         cnt--;
-        arg1++;
+        dst++;
     }
 }
 
-void file_getWord(Struct61s *file, s32 *arg1){
-    __file_read(file, arg1, 4);
+void file_getWord(File *file, s32 *dst) {
+    file_read(file, dst, sizeof(s32));
 }
 
-void file_getNWords(Struct61s *file, s32 *arg1, s32 cnt){
-    while(cnt > 0){
-        file_getWord(file, arg1);
+void file_getNWords(File *file, s32 *dst, s32 cnt) {
+    while (cnt > 0) {
+        file_getWord(file, dst);
         cnt--;
-        arg1++;
+        dst++;
     }
 }
 
-void __file_read(Struct61s *file, void *dst, s32 len) {
+void file_read(File *file, void *dst, s32 len) {
     u32 curr_offset;
     u32 capacity;
-    u32 end_ptr;
-    u32 var_v0;
+    void *new_base_ptr;
 
-    if (file->unk14 == 2) { //read asset
-        memcpy(dst, file->unk4, len);
-        file->unk4 = (void *) ((u32)file->unk4 + len);
+    if (file->mode == FILE_MODE_2_FROM_ASSET) {
+        memcpy(dst, file->asset_current_ptr, len);
+        file->asset_current_ptr = (void *) ((u32)file->asset_current_ptr + len);
     }
-    else if (file->unk14 == 3) { //read bin???
-        memcpy(dst, file->unkC, len);
-        file->unkC = (void *) ((u32)file->unkC + len);
+    else if (file->mode == FILE_MODE_3_FROM_MEMORY) {
+        memcpy(dst, file->current_ptr, len);
+        file->current_ptr = (void *) ((u32)file->current_ptr + len);
     }
-    else if (file->unk14 == 4) { // write bin???
-        if ((u8*)file->unk10 < (u8*)file->unkC + len) {
-            curr_offset = (u8*)file->unkC - (u8*)file->unk8;
-            capacity = ((u8*)file->unk10 - (u8*)file->unk8)*2;
-            while (((u8*)file->unk8 + capacity) < (u8*)file->unkC + len) {
+    else if (file->mode == FILE_MODE_4_ALLOCATED) { // why does it write in read function?
+        if ((u8 *) file->end_ptr < (u8 *) file->current_ptr + len) {
+            curr_offset = (u8 *) file->current_ptr - (u8 *) file->base_ptr;
+            capacity = ((u8 *) file->end_ptr - (u8 *) file->base_ptr) * 2;
+
+            while (((u8 *) file->base_ptr + capacity) < ((u8*) file->current_ptr + len)) {
                 capacity *= 2;
             }
-            var_v0 = realloc(file->unk8, capacity);
-            file->unk8 = var_v0;
-            file->unkC = var_v0 + curr_offset;
-            file->unk10 = var_v0 + capacity;
+
+            new_base_ptr = realloc(file->base_ptr, capacity);
+            file->base_ptr = new_base_ptr;
+            file->current_ptr = (u8 *) new_base_ptr + curr_offset;
+            file->end_ptr = (u8 *) new_base_ptr + capacity;
         }
-        memcpy(file->unkC, dst, len);
-        file->unkC = (u32)file->unkC + len;
+
+        memcpy(file->current_ptr, dst, len);
+        file->current_ptr = (u8 *) file->current_ptr + len;
     }
 }
 
-void file_getShort(Struct61s *file, s16 *arg1){
-    __file_read(file, arg1, sizeof(s16));
+void file_getShort(File *file, s16 *dst) {
+    file_read(file, dst, sizeof(s16));
 }
 
-void file_getNShorts(Struct61s *file, s16 *arg1, s32 cnt){
-    while(cnt > 0){
-        file_getShort(file, arg1);
+void file_getNShorts(File *file, s16 *dst, s32 cnt) {
+    while (cnt > 0) {
+        file_getShort(file, dst);
         cnt--;
-        arg1++;
+        dst++;
     }
 }
 
-bool file_isNextByteExpected(Struct61s *file, s32 arg1) {
-    u8 sp1F;
+bool file_isNextByteExpected(File *file, s32 expected) {
+    u8 saved_expected;
 
-    sp1F = arg1;
-    if ((file->unk14 == 1) || (file->unk14 == 4)) {
-        file_getByte(file, &sp1F);
-        return 1;
+    saved_expected = expected;
+
+    if ((file->mode == FILE_MODE_1_UNKNOWN) || (file->mode == FILE_MODE_4_ALLOCATED)) {
+        file_getByte(file, &saved_expected);
+        return TRUE;
     }
-    if (file->unk7C == -1) {
-        file_getByte(file, &sp1F);
-        if (arg1 == sp1F) {
-            return 1;
+
+    if (file->last_expected == -1) {
+        file_getByte(file, &saved_expected);
+
+        if (expected == saved_expected) {
+            return TRUE;
         }
-        file->unk7C = sp1F;
-        return 0;
+
+        file->last_expected = saved_expected;
+        return FALSE;
     }
-    if (arg1 == file->unk7C) {
-        file->unk7C = -1;
-        return 1;
+
+    if (expected == file->last_expected) {
+        file->last_expected = -1;
+        return TRUE;
     }
-    return 0;
+
+    return FALSE;
 }
 
-bool file_getByte_ifExpected(Struct61s * file, s32 arg1, u8 *arg2){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getByte_ifExpected(File *file, s32 expected, u8 *dst) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getByte(file, arg2);
+    } else {
+        file_getByte(file, dst);
         return TRUE;
     }
 }
 
-bool file_getNBytes_ifExpected(Struct61s * file, s32 arg1, u8 *arg2, s32 n){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getNBytes_ifExpected(File *file, s32 expected, u8 *dst, s32 cnt) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getNBytes(file, arg2, n);
+    } else {
+        file_getNBytes(file, dst, cnt);
         return TRUE;
     }
 }
 
-bool file_getFloat_ifExpected(Struct61s * file, s32 arg1, f32 *arg2){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getFloat_ifExpected(File *file, s32 expected, f32 *dst) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getFloat(file, arg2);
+    } else {
+        file_getFloat(file, dst);
         return TRUE;
     }
 }
 
-bool file_getNFloats_ifExpected(Struct61s * file, s32 arg1, f32 *arg2, s32 n){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getNFloats_ifExpected(File *file, s32 expected, f32 *dst, s32 cnt) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getNFloat(file, arg2, n);
+    } else {
+        file_getNFloat(file, dst, cnt);
         return TRUE;
     }
 }
 
-bool file_getWord_ifExpected(Struct61s * file, s32 arg1, s32 *arg2){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getWord_ifExpected(File *file, s32 expected, s32 *dst) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getWord(file, arg2);
+    } else {
+        file_getWord(file, dst);
         return TRUE;
     }
 }
 
-bool file_getNWords_ifExpected(Struct61s * file, s32 arg1, s32 *arg2, s32 n){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_getNWords_ifExpected(File *file, s32 expected, s32 *dst, s32 cnt) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getNWords(file, arg2, n);
+    } else {
+        file_getNWords(file, dst, cnt);
         return TRUE;
     }
 }
 
-bool file_get_ifExpected(Struct61s * file, s32 arg1, void *dst, s32 size){
-    if(!file_isNextByteExpected(file, arg1)){
+bool file_get_ifExpected(File *file, s32 expected, void *dst, s32 len) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
     } else{
-        __file_read(file, dst, size);
+        file_read(file, dst, len);
         return TRUE;
     }
 }
 
-bool file_getShort_ifExpected(Struct61s * file, s32 expected, s16 *dst){
-    if(!file_isNextByteExpected(file, expected)){
+bool file_getShort_ifExpected(File *file, s32 expected, s16 *dst) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
+    } else {
         file_getShort(file, dst);
         return TRUE;
     }
 }
 
-bool file_getNShorts_ifExpected(Struct61s * file, s32 expected, s16 *dst, s32 n){
-    if(!file_isNextByteExpected(file, expected)){
+bool file_getNShorts_ifExpected(File *file, s32 expected, s16 *dst, s32 cnt) {
+    if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
-    } else{
-        file_getNShorts(file, dst, n);
+    } else {
+        file_getNShorts(file, dst, cnt);
         return TRUE;
     }
 }

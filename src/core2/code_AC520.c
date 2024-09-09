@@ -184,7 +184,7 @@ void func_80333B28(s32 index , s32 *arg1){
     v0->unk28[2] = arg1[2];
 }
 
-void func_80333B78(Struct61s *file_ptr){
+void func_80333B78(File *file_ptr){
     f32 sp4C[3];
     f32 sp44[2];
     s32 sp38[3];

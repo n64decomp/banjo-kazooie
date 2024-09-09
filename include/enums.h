@@ -4798,4 +4798,12 @@ enum marker_collision_func_type_e {
     MARKER_COLLISION_FUNC_2_DIE
 };
 
+enum file_mode_e {
+    FILE_MODE_0_UNKNOWN,
+    FILE_MODE_1_UNKNOWN,
+    FILE_MODE_2_FROM_ASSET,
+    FILE_MODE_3_FROM_MEMORY,
+    FILE_MODE_4_ALLOCATED
+};
+
 #endif

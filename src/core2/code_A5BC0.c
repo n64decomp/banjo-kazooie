@@ -856,7 +856,7 @@ void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
     }
 }
 
-void cube_fromFile(Struct61s *file_ptr, Cube *cube) {
+void cube_fromFile(File *file_ptr, Cube *cube) {
     u8 sp47;
     u8 sp46;
     NodeProp *temp_v0;

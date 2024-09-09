@@ -43,7 +43,7 @@ void ncCameraNodeType2_setRotation(CameraNodeType2 *this, f32 src[3]){
     ml_vec3f_copy(this->rotation, src);
 }
 
-void ncCameraNodeType2_fromFile(Struct61s *file_ptr, CameraNodeType2 *arg1){
+void ncCameraNodeType2_fromFile(File *file_ptr, CameraNodeType2 *arg1){
     while(!file_isNextByteExpected(file_ptr, 0)){
         if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->position, 3)){
             file_getNFloats_ifExpected(file_ptr, 2, arg1->rotation, 3);

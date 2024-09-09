@@ -382,10 +382,10 @@ s32 func_80335134(){
 }
 
 void func_80335140(enum map_e map_id) {
-    Struct61s *fp;
+    File *fp;
 
     func_80254008();
-    fp = func_8034AB6C(map_id); //LevelSetupFile_Open
+    fp = file_openMap(map_id); //LevelSetupFile_Open
     while (file_isNextByteExpected(fp, 0) == 0) {
         if (file_isNextByteExpected(fp, 2)) {
             
