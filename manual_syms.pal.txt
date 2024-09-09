@@ -32,17 +32,26 @@ boot_gOverlayTable = gOverlayTable;
 boot_func_8023DA20 = func_8023DA20;
 
 /* Temporary*/
-/* Temporary Correct*/
 
-core2_VRAM                  = 0x80286db0;
-core2_TEXT_START            = 0x80286db0;
-animCache_flushStale        = 0x80287f40;
-animBinCache_flushStale     = 0x8028855c;
+
+/* Temporary Correct*/
+player_getTransformation    = 0x8028e5ec;
 player_getPosition          = 0x8028e7c4;
 player_getPosition_s32      = 0x8028e95c;
 player_getWaterState        = 0x8028eca4;
 player_is_present           = 0x8028eff4;
 func_8028F22C               = 0x8028f04c;
+func_8028FB88               = 0x8028f9a8;
+
+baphysics_get_velocity      = 0x802978c8;
+baphysics_get_vertical_velocity = 0x802978ec;
+_player_getPosition         = 0x80298314;
+
+func_802BB360               = 0x802bb1d0;
+func_802BB378               = 0x802bb1e8;
+func_802BB3AC               = 0x802bb21c;
+func_802BB3C4               = 0x802bb234;
+func_802BB3DC               = 0x802bb24c;
 spawnQueue_func_802C3A18    = 0x802C3898;
 spawnQueue_flush            = 0x802c38b8;
 func_802C5A30               = 0x802c5b20;
@@ -64,7 +73,15 @@ game_defrag                 = 0x802e4ac8;
 func_802E49E0               = 0x802e4bd0;
 getGameMode                 = 0x802e4bec;
 func_802E4A08               = 0x802e4bf8;
+func_802E4B38               = 0x802e4d28;
 func_802E6820               = 0x802e6a04;
+animMtxList_setBoned        = 0x802ea388;
+vector_clear                = 0x802ed800;
+vector_getBegin             = 0x802ed80c;
+vector_getEnd               = 0x802ed8b4;
+vector_pushBackNew          = 0x802ed8bc;
+vector_new                  = 0x802edaa4;
+vector_free                 = 0x802eda84;
 freelist_clear              = 0x802edc20;
 freelist_at                 = 0x802edc5c;
 freelist_size               = 0x802edc74;
@@ -88,6 +105,7 @@ gctransition_8030BDC0       = 0x8030bf60;
 gctransition_reset          = 0x8030c07c;
 func_8030C704               = 0x8030c8a4;
 scissorBox_setSmall         = 0x8030c8b0;
+func_8030C77C               = 0x8030c91c;
 func_8030D90C               = 0x8030daac;
 func_8030DA44               = 0x8030dbe4;
 sfxsource_setSfxId          = 0x8030dc20;
@@ -97,6 +115,7 @@ func_8030E2C4               = 0x8030e464;
 func_8030E6A4               = 0x8030e844;
 func_8030ED70               = 0x8030ef10;
 func_8030E394               = 0x8030e534;
+func_8031B908               = 0x8031bce8;
 func_8031C44C               = 0x8031c82c;
 func_8031C5AC               = 0x8031c98c;
 func_8031C5D4               = 0x8031c9b4;
@@ -124,6 +143,15 @@ func_803306C8               = 0x80330b18;
 map_get                     = 0x80334d10;
 func_80335134               = 0x80335584;
 sfxInstruments_init         = 0x80335670;
+modelRender_setBoneTransformList    = 0x8033A688;
+boneTransformList_free      = 0x8033ab40;
+boneTransformList_new       = 0x8033ab60;
+boneTransformList_interpolate       = 0x8033ABA0;
+boneTransformList_defrag    = 0x8033ae34;
+animationFile_getBoneTransformList  = 0x8033AEA0;
+boneTransformList_reset     = 0X8033A960;
+boneTransformList_setBoneScale = 0x8033ad78;
+func_8033A968               = 0x8033adb8;
 assetcache_release          = 0x8033b828;
 assetcache_update_ptr       = 0x8033b9c4;
 func_8033B61C               = 0x8033ba6c;

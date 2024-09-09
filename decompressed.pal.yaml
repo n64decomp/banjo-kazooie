@@ -503,1132 +503,1130 @@ segments:
   vram:  0x80286DB0 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
   follows_vram: core1
   subsegments:
-  - [0xF791D0, linker_offset, TEXT_START] #text Section
-  - [0xF791D0, bin, core2_untouched]
-  - [0x1055E20, linker_offset, TEXT_END] #text Section
-  - [0x1055E20, linker_offset, DATA_START] #text Section
-  - [0x1055E20, bin, untouched_data]
-#   # - [0xF791D0, c, animctrl] #DONE
-#   # - [0xF56430, c, anim/sprite] #DONE
-#   # - [0xF56A40, c, animcache] #DONE
-#   # - [0xF56EB0, c, code_1550] #DONE
-#   # - [0xF57290, c, code_1930] #DONE
-#   # - [0xF57BA0, c, code_2240] #DONE
-#   # - [0xF581F0, c, ba/anim] #DONE
-#   # - [0xF58DE0, c, snackerctl] #DONE
-#   # - [0xF59330, c, code_39D0] #DONE
-#   # - [0xF5A120, c, ba/marker] #DONE
-#   # - [0xF5C490, c, code_6B30] #DONE
-#   # - [0xF5C9C0, c, code_7060] #DONE
-#   # - [0xF5E700, c, code_8DA0] #DONE
-#   # - [0xF5EA40, c, code_90E0] #DONE 
-#   # - [0xF5EBF0, c, code_9290] #DONE
-#   # - [0xF5EDB0, c, code_9450] #DONE
-#   # - [0xF5F260, c, code_9900] #DONE
-#   # - [0xF5F530, c, code_9BD0] #DONE
-#   # - [0xF5FF60, c, code_A600] #DONE
-#   # - [0xF60040, c, statetimer] #DONE
-#   # - [0xF602C0, c, code_A960] #DONE
-#   # - [0xF603C0, c, ba/model] #DONE
-#   # - [0xF60FB0, c, ba/drone] #DONE
-#   # - [0xF611B0, c, code_B850] #DONE
-#   # - [0xF614B0, c, eggshatter] #DONE
-#   # - [0xF61680, c, code_BD20] #DONE
-#   # - [0xF61A40, c, ba/falldamage] #DONE
-#   # - [0xF61D50, c, code_C3F0] #DONE
-#   # - [0xF61E10, c, code_C4B0]
-#   # - [0xF63160, c, ba/carry] #DONE
-#   # - [0xF63310, c, code_D9B0] #DONE
-#   # - [0xF638D0, c, code_DF70] #DONE
-#   # - [0xF63D70, c, code_E410] #DONE
-#   # - [0xF63FE0, c, abilityprogress] #DONE
-#   # - [0xF64270, c, code_E910] #DONE
-#   # - [0xF647A0, c, code_EE40] #DONE
-#   # - [0xF648B0, c, code_EF50] #DONE
-#   # - [0xF656C0, c, ba/physics] #DONE
-#   # - [0xF66630, c, code_10CD0] #DONE
-#   # - [0xF66700, c, pitch]      #DONE
-#   # - [0xF669A0, c, code_11040] #DONE
-#   # - [0xF66BB0, c, climb] #DONE
-#   # - [0xF66DC0, c, code_11460] #DONE
-#   # - [0xF66FC0, c, code_11660] #DONE
-#   # - [0xF67130, c, code_117D0] #DONE
-#   # - [0xF671D0, c, code_11870] #DONE
-#   # - [0xF674A0, c, roll]       #DONE
-#   # - [0xF67740, c, yaw]        #DONE
-#   # - [0xF67CC0, c, code_12360] #DONE
-#   # - [0xF68020, c, code_126C0] #DONE
-#   # - [0xF68890, c, code_12F30]
-#   # - [0xF68FD0, c, bsList]     #DONE
-#   # - [0xF690E0, c, code_13780] #DONE
-#   # - [0xF69260, c, bsStoredState] #DONE
-#   # - [0xF69360, c, code_13A00] #DONE
-#   # - [0xF69920, c, code_13FC0] #DONE
-#   # - [0xF69D80, c, code_14420] #DONE
-#   # - [0xF6B880, c, code_15F20]  #DONE
-#   # - [0xF6B970, c, code_16010]  #DONE
-#   # - [0xF6C5C0, c, code_16C60]  #DONE
-#   # - [0xF6CB50, c, code_171F0]  #DONE
-#   # - [0xF6CDB0, c, bs/ant]      #DONE
-#   # - [0xF6DEB0, c, bs/bBarge]   #DONE
-#   # - [0xF6E4F0, c, bs/bbuster]  #DONE
-#   # - [0xF6EC90, c, bs/bee]      #DONE
-#   # - [0xF6EEC0, c, bs/beeFly]   #DONE
-#   # - [0xF6F960, c, bs/beeMain]  #DONE
-#   # - [0xF70B40, c, bs/bEggAss]  #DONE
-#   # - [0xF70DB0, c, bs/bEggHead] #DONE
-#   # - [0xF71060, c, bs/bFlap]    #DONE
-#   # - [0xF71730, c, bs/bFlip]    #DONE
-#   # - [0xF71D20, c, bs/bFly]     #DONE
-#   # - [0xF73BA0, c, bs/bLongLeg] #DONE
-#   # - [0xF74EE0, c, bs/bPeck]    #DONE
-#   # - [0xF75380, c, bs/bShock]   #DONE
-#   # - [0xF75B10, c, bs/bSwim]    #DONE
-#   # - [0xF77190, c, bs/bTrot]    #DONE
-#   # - [0xF78DD0, c, bs/bWhirl]   #DONE
-#   # - [0xF79850, c, bs/carry]    #DONE
-#   # - [0xF79C50, c, bs/claw]     #DONE
-#   # - [0xF79F90, c, bs/climb]    #DONE
-#   # - [0xF7A790, c, bs/croc]     #DONE
-#   # - [0xF7C0A0, c, bs/crouch]   #DONE
-#   # - [0xF7C7D0, c, bs/die]      #DONE
-#   # - [0xF7CD40, c, bs/drone]    #DONE
-#   # - [0xF7CEB0, c, bs/droneenter]  #DONE
-#   # - [0xF7D530, c, bs/dronegoto] #DONE
-#   # - [0xF7D8A0, c, bs/dronelook]  #DONE
-#   # - [0xF7DB80, c, bs/dronevanish]  #DONE
-#   # - [0xF7E170, c, bs/dronexform] #DONE
-#   # - [0xF7F430, c, bs/jig]        #DONE
-#   # - [0xF7FAD0, c, bs/jump]     #DONE
-#   # - [0xF809A0, c, bs/ow]       #DONE
-#   # - [0xF80BA0, c, bs/pumpkin]  #DONE
-#   # - [0xF81FA0, c, bs/rebound]  #DONE
-#   # - [0xF82420, c, bs/rest]     #DONE
-#   # - [0xF828F0, c, bs/sled]     #DONE
-#   # - [0xF82AA0, c, bs/slide]    #DONE
-#   # - [0xF82F40, c, bs/splat]    #DONE
-#   # - [0xF83240, c, bs/stand]    #DONE
-#   # - [0xF83E50, c, bs/swim]     #DONE
-#   # - [0xF849A0, c, bs/surf]     #DONE
-#   # - [0xF84B00, c, bs/talk] #DONE
-#   # - [0xF84C40, c, bs/timeout]  #DONE
-#   # - [0xF84F10, c, bs/throw]    #DONE
-#   # - [0xF85130, c, bs/turn]     #DONE
-#   # - [0xF85410, c, bs/twirl]    #DONE
-#   # - [0xF856D0, c, bs/walk]     #DONE
-#   # - [0xF867D0, c, bs/walrus]   #DONE
-#   # - [0xF88350, c, bs/washy]   #DONE
-#   # - [0xF88710, c, nc/cameranodelist] #DONE
-#   # - [0xF88BB0, c, code_33250] #DONE
-#   # - [0xF88BB0, c, code_33310] #DONE
-#   # - [0xF89050, c, code_336F0] #DONE
-#   # - [0xF89410, c, code_33AB0] #DONE
-#   # - [0xF89590, c, code_33C30] #DONE
-#   # - [0xF896A0, c, nc/staticCamera] #DONE
-#   # - [0xF898F0, c, code_33F90] #DONE
-#   # - [0xF89C70, c, code_34310] #DONE
-#   # - [0xF8A0F0, c, code_34790] #DONE
-#   # - [0xF8AE80, c, code_35520] #DONE
-#   # - [0xF8B010, c, nc/dynamicCamera] #DONE
-#   # - [0xF8D310, c, code_379B0] #DONE
-#   # - [0xF8D630, c, nc/randomCamera] #DONE
-#   # - [0xF8D7B0, c, code_37E50] #DONE
-#   # - [0xF8DAB0, c, nc/dynamicCam10] #DONE
-#   # - [0xF8DC40, c, nc/dynamicCamD] #DONE
-#   # - [0xF8DDC0, c, nc/dynamicCam5] #DONE
-#   # - [0xF8DF90, c, nc/dynamicCam11] #DONE
-#   # - [0xF8E240, c, nc/dynamicCam8] #DONE
-#   # - [0xF8E430, c, nc/dynamicCam4] #DONE
-#   # - [0xF8E8A0, c, nc/dynamicCamC] #DONE
-#   # - [0xF8EAF0, c, code_F8EAF0] #DONE
-#   # - [0xF8ED40, c, nc/dynamicCamB] #DONE
-#   # - [0xF8F010, c, nc/dynamicCam13] #DONE
-#   # - [0xF8F370, c, nc/dynamicCam9] #DONE
-#   # - [0xF8F850, c, nc/dynamicCam12] #DONE
-#   # - [0xF90280, c, nc/dynamicCam1] #DONE
-#   # - [0xF904A0, c, nc/dynamicCam3] #DONE
-#   # - [0xF90770, c, nc/dynamicCamA] #DONE
-#   # - [0xF90C20, c, code_3B2C0] #DONE
-#   # - [0xF90E30, c, nc/dynamicCamF] #DONE
-#   # - [0xF90F20, c, nc/firstpersoncamera] #DONE
-#   # - [0xF914E0, c, spawnqueue] #DONE
-#   # - [0xF92D30, c, ch/gameSelect] #DONE
-#   # - [0xF94430, c, code_3EAD0] #DONE
-#   # - [0xF94590, c, code_3EC30] #DONE
-#   # - [0xF94640, c, ch/bubble] #DONE
-#   # - [0xF94850, c, ch/bigbutt] #DONE
-#   # - [0xF95A50, c, code_400F0] #DONE
-#   # - [0xF96400, c, ch/jiggy]   #DONE
-#   # - [0xF96A90, c, ch/jigsawdance] #DONE
-#   # - [0xF96DC0, c, code_41460]    #DONE
-#   # - [0xF97890, c, code_41F30]    #DONE
-#   # - [0xF97910, c, code_41FB0]    #DONE
-#   # - [0xF98600, c, ch/musicnote]  #DONE
-#   # - [0xF98610, c, code_42CB0]    #DONE
-#   # - [0xF98BB0, c, code_43250]    #DONE
-#   # - [0xF98CF0, c, ch/trainers]   #DONE
-#   # - [0xF99160, c, code_43800]    #DONE
-#   # - [0xF993A0, c, code_43A40]    #DONE
-#   # - [0xF99630, c, mapspecificflags] #DONE
-#   # - [0xF99A10, c, ch/crab]    #DONE
-#   # - [0xF9AC70, c, code_45310]    #DONE
-#   # - [0xF9C240, c, ch/code_468E0] #DONE
-#   # - [0xF9C520, c, ch/jinjo]   #DONE
-#   # - [0xF9D1B0, c, ch/beehive] #DONE
-#   # - [0xF9D530, c, code_47BD0] #DONE
-#   # - [0xF9EED0, c, ch/soundsource] #DONE
-#   # - [0xF9F3D0, c, ch/shrapnel] #DONE
-#   # - [0xF9FD80, c, ch/gloop] #DONE
-#   # - [0xFA0050, c, code_4A6F0] #DONE
-#   # - [0xFA16D0, c, code_4BD70] #DONE
-#   # - [0xFA1770, c, code_4BE10] #DONE
-#   # - [0xFA1980, c, code_4C020] #DONE
-#   # - [0xFA54E0, c, ch/wadingboots] #DONE
-#   # - [0xFA5870, c, ch/badShad] #DONE
-#   # - [0xFA5DF0, c, code_50490] #DONE
-#   # - [0xFA60B0, c, ch/climbBase] #DONE
-#   # - [0xFA6330, c, code_509D0] #DONE
-#   # - [0xFA7100, c, code_517A0] #DONE
-#   # - [0xFA72B0, c, code_51950] #DONE
-#   # - [0xFA75F0, c, ch/collectible] #DONE
-#   # - [0xFA7BF0, c, ch/mole]     #DONE
-#   # - [0xFA8F30, c, ch/molehill] #DONE
-#   # - [0xFA9370, c, code_53A10]  #DONE
-#   # - [0xFA9570, c, code_53C10] #DONE
-#   # - [0xFAA6B0, c, code_54D50] #DONE
-#   # - [0xFAAAE0, c, code_55180] #DONE
-#   # - [0xFAACF0, c, code_55390] #DONE
-#   # - [0xFAB020, c, code_556C0] #DONE
-#   # - [0xFAB1B0, c, code_55850] #DONE
-#   # - [0xFAB3F0, c, ch/overlaycopyright] #DONE
-#   # - [0xFAB520, c, ch/overlaypressstart] #DONE
-#   # - [0xFAB780, c, ch/overlaynocontroller] #DONE
-#   # - [0xFABA50, c, ch/bottlesbonus] #DONE
-#   # - [0xFAD5D0, c, code_57C70] #DONE
-#   # - [0xFADB30, c, code_581D0] #DONE
-#   # - [0xFADE30, c, ch/bottlesbonuscursor] #DONE
-#   # - [0xFAF0E0, c, code_59780] #DONE
-#   # - [0xFAF340, c, code_599E0] #DONE
-#   # - [0xFAF3E0, c, code_59A80] #DONE
-#   # - [0xFAF6A0, c, ch/snacker] #DONE
-#   # - [0xFB0490, c, ch/snowman] #DONE
-#   # - [0xFB1000, c, ch/snowball] #DONE
-#   # - [0xFB16F0, c, ch/snowmanhat] #DONE
-#   # - [0xFB1810, c, code_5BEB0]
-#   # - [0xFB1BA0, c, code_5C240] #DONE
-#   # - [0xFB21D0, c, code_5C870] #DONE
-#   # - [0xFB3520, c, code_5DBC0] #DONE
-#   # - [0xFB5460, c, code_5FB00] #DONE
-#   # - [0xFB56E0, c, code_5FD80] #DONE
-#   # - [0xFB56F0, c, code_5FD90] #DONE
-#   # - [0xFB8930, c, code_62FD0] #DONE
-#   # - [0xFB8A30, c, code_630D0] #DONE
-#   # - [0xFB8D70, c, code_63410] #DONE
-#   # - [0xFB8FF0, c, code_63690] #DONE
-#   # - [0xFB9130, c, code_637D0] #DONE
-#   # - [0xFBAE20, c, code_654C0] #DONE
-#   # - [0xFBBDF0, c, code_66490] #DONE
-#   # - [0xFBBFF0, c, vla]        #DONE
-#   # - [0xFBC410, c, fla]        #DONE
-#   # - [0xFBC6F0, c, code_66D90] #DONE
-#   # - [0xFBC910, c, code_66FB0] #DONE
-#   # - [0xFBCDF0, c, gc/bound]   #DONE
-#   # - [0xFBCFB0, c, code_67650] #DONE
-#   # - [0xFBD300, c, particle] #DONE
-#   # - [0xFBF8C0, c, code_69F60] #DONE
-#   # - [0xFBFE10, c, code_6A4B0]
-#   # - [0xFC0850, c, code_6AEF0] #DONE
-#   # - [0xFC0990, c, code_6B030] #DONE
-#   # - [0xFC1D40, c, fx/ripple] #DONE
-#   # - [0xFC2040, c, fx/sparkle] #DONE
-#   # - [0xFC2680, c, code_6CD20] #DONE
-#   # - [0xFC2820, c, code_6CEC0] #DONE
-#   # - [0xFC2990, c, code_6D030] #DONE
-#   # - [0xFC2BD0, c, code_6D270] #DONE
-#   # - [0xFC2DF0, c, code_6D490] #DONE
-#   # - [0xFC3390, c, code_6DA30]
-#   # - [0xFC6590, c, code_70C30] #DONE
-#   # - [0xFC6880, c, code_70F20] #DONE
-#   # - [0xFC7180, c, code_71820] #DONE
-#   # - [0xFC79C0, c, code_72060] #DONE
-#   # - [0xFC8470, c, code_72B10] #DONE
-#   # - [0xFC8FA0, c, code_73640] #DONE
-#   # - [0xFC99F0, c, code_74090] #DONE
-#   # - [0xFC9BF0, c, code_74290] #DONE
-#   # - [0xFC9D80, c, code_74420] #DONE
-#   # - [0xFCA270, c, code_74910] #DONE
-#   # - [0xFCA830, c, code_74ED0] #DONE
-#   # - [0xFCADE0, c, code_75480] #DONE
-#   # - [0xFCB290, c, code_75930] #DONE
-#   # - [0xFCB7F0, c, code_75E90] #DONE
-#   # - [0xFCBCF0, c, fx/common1score] #DONE
-#   # - [0xFCBD30, c, fx/common2score] #DONE
-#   # - [0xFCC6F0, c, fx/honeycarrierscore] #DONE
-#   # - [0xFCD7B0, c, code_77E50] #DONE
-#   # - [0xFCDA60, c, fx/jinjoscore] #DONE
-#   # - [0xFCE7B0, c, fx/lifescore] #DONE
-#   # - [0xFCF190, c, fx/common3score] #DONE
-#   # - [0xFCF5E0, c, fx/healthscore] #DONE
-#   # - [0xFD00C0, c, fx/airscore] #DONE
-#   # - [0xFD08E0, c, code_7AF80]
-#   # - [0xFD7960, c, mapModel] #DONE
-#   # - [0xFD8CA0, c, code_83340] #DONE
-#   # - [0xFD96D0, c, gc/section] #DONE
-#   # - [0xFD9A30, c, gc/sky] #DONE
-#   # - [0xFD9DD0, c, gc/transition] #DONE
-#   # - [0xFDAB30, c, code_851D0] #DONE
-#   # - [0xFDB110, c, code_857B0] #DONE
-#   # - [0xFDB160, c, code_85800] #DONE
-#   # - [0xFDD790, c, gc/dialog]
-#   # - [0xFE0110, c, gc/pauseMenu] #DONE
-#   # - [0xFE3580, c, code_8DC20] #DONE
-#   # - [0xFE3BD0, c, gc/zoombox] #DONE
-#   # - [0xFE7770, c, code_91E10] #DONE
-#   # - [0xFE8F50, c, code_935F0] #DONE #chminigmae
-#   # - [0xFE9570, c, gc/parade] #DONE
-#   # - [0xFE9F80, c, code_94620] #DONE
-#   # - [0xFEA0E0, c, code_94780] #DONE
-#   # - [0xFEA380, c, code_94A20] #DONE
-#   # - [0xFEB010, c, code_956B0] #DONE
-#   # - [0xFEE610, c, code_98CB0]
-#   # - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
-#   # - [0xFEF300, c, code_999A0] #DONE
-#   # - [0xFEF8E0, c, jiggyscore] #DONE
-#   # - [0xFEFC80, c, honeycombscore] #DONE
-#   # - [0xFEFEE0, c, mumboscore] #DONE
-#   # - [0xFF00A0, c, code_9A740] #DONE
-#   # - [0xFF0330, c, code_9A9D0] #DONE
-#   # - [0xFF0660, c, levelspecificflags] #DONE
-#   # - [0xFF0AE0, c, code_9B180] #DONE
-#   # - [0xFF0FB0, c, code_9B650] #DONE
-#   # - [0xFF12F0, c, code_9B990] #DONE
-#   # - [0xFF1AD0, c, code_9C170] #DONE
-#   # - [0xFF2FA0, c, code_9D640] #DONE
-#   # - [0xFF30C0, c, code_9D760] #DONE
-#   # - [0xFF31C0, c, timedfuncqueue] #DONE
-#   # - [0xFF3CD0, c, code_9E370]
-#   # - [0xFFA660, c, code_A4D00] #DONE
-#   # - [0xFFB520, c, code_A5BC0]
-#   # - [0x1001560, c, code_ABC00] #DONE
-#   # - [0x1001E80, c, code_AC520] #DONE
-#   # - [0x1002A70, c, code_AD110] #DONE
-#   # - [0x1002F10, c, code_AD5B0] #DONE
-#   # - [0x1003BF0, c, code_AE290] #DONE
-#   # - [0x1003F30, c, skeletalanim] #DONE
-#   # - [0x1004700, c, code_AEDA0]
-#   # - [0x1006D60, c, modelRender]
-#   # - [0x1008EE0, c, code_B3580] #DONE
-#   # - [0x10093E0, c, code_B3A80] #DONE
-#   # - [0x100A9A0, c, code_B5040] #DONE
-#   # - [0x100B760, c, code_B5E00] #DONE
-#   # - [0x100BC10, c, code_B62B0] #DONE
-#   # - [0x100BFA0, c, code_B6640] #DONE
-#   # - [0x100C030, c, string]     #DONE
-#   # - [0x100C5C0, c, code_B6C60] #DONE
-#   # - [0x100C640, c, code_B6CE0] #DONE
-#   # - [0x100C800, c, code_B6EA0] #DONE
-#   # - [0x100D480, c, code_B7B20] #DONE
-#   # - [0x100D8A0, c, code_B7F40] #DONE
-#   # - [0x100D980, c, code_B8020] #DONE
-#   # - [0x100D9D0, c, code_B8070] #DONE
-#   # - [0x100D9E0, c, code_B8080] #DONE
-#   # - [0x100E1C0, c, code_B8860] #DONE
-#   # - [0x100E9F0, c, code_B9090] #DONE
-#   # - [0x100F0D0, c, code_B9770]
-#   # - [0x1012A60, c, code_BD100] #DONE
-#   # - [0x1013620, c, code_BDCC0] #DONE
-#   # - [0x1013C20, c, code_BE2C0] #DONE
-#   # - [0x1014880, c, code_BEF20]
-#   # - [0x10164E0, c, code_C0B80] #DONE
-#   # - [0x1016650, c, code_C0CF0] #DONE
-#   # - [0x10167C0, c, code_C0E60] #DONE
-#   # - [0x1018580, c, animtexturecache] #DONE
-#   # - [0x1018890, c, code_C2F30] #DONE
-#   # - [0x1018B00, c, code_C31A0] #DONE
-#   # - [0x1018D60, c, rand]       #DONE
-#   # - [0x10193A0, c, code_C3A40] #DONE
-#   # - [0x1019480, c, code_C3B20] #DONE
-#   # - [0x1019C80, c, code_C4320] #DONE
-#   # - [0x101A8A0, c, code_C4F40] #DONE
-#   # - [0x101ADA0, c, code_C5440] #DONE
-#   # - [0x101B450, c, code_C5AF0] #DONE
-#   # - [0x101B620, c, code_C5CC0] #DONE
-#   # - [0x101B860, c, code_C5F00] #DONE
-#   # - [0x101BB20, c, code_C61C0] #DONE
-#   # - [0x101BC10, c, code_C62B0] #DONE
-#   # - [0x101D030, c, code_C76D0] #DONE
-#   # - [0x101D620, c, code_C7CC0] #DONE
-#   # - [0x101DB90, c, code_C8230] #DONE
-#   # - [0x101DCC0, c, code_C8360] #DONE
-#   # - [0x101DDF0, c, code_C8490] #DONE
-#   # - [0x101E0C0, c, code_C8760] #DONE
-#   # - [0x101E320, c, code_C89C0] #DONE
-#   # - [0x101F150, c, code_C97F0] #DONE
-#   # - [0x101F7D0, c, code_C9E70] #DONE
-#   # - [0x101F860, c, code_C9F00] #DONE
-#   # - [0x10209B0, c, code_CB050] #DONE
-#   # - [0x1020F70, c, code_CB610] #DONE
-#   # - [0x1021200, c, code_CB8A0] #DONE
-#   # - [0x1021550, c, code_CBBF0] #DONE
-#   # - [0x1021670, c, code_CBD10] #DONE
-#   # - [0x1021B40, c, code_CC1E0] #DONE
-#   # - [0x1022A00, c, code_CD0A0] #DONE
-#   # - [0x1022D50, c, code_CD3F0] #DONE
-#   # - [0x1023040, c, code_CD6E0] #DONE
-#   # - [0x1024630, c, code_CECD0] #DONE
-#   # - [0x10249F0, c, code_CF090] #DONE
-#   # - [0x1024D40, c, code_CF3E0] #DONE
-#   # - [0x1024F50, c, code_CF5F0] #DONE
-#   # - [0x1025140, c, ch/clankerwhipcrack] #DONE
-#   # - [0x10253C0, c, ch/code_CFA60] #DONE
-#   # - [0x1025B20, c, ch/clucker] #DONE
-#   # - [0x1026600, c, code_D0CA0] #DONE
-#   # - [0x1027AE0, c, code_D2180] #DONE
-#   # - [0x1027E60, c, ch/firefx]  #DONE
-#   # - [0x1028410, c, ch/drips]   #DONE
-#   # - [0x1028770, c, ch/icecube] #DONE
-#   # - [0x10299B0, c, ch/ghost]   #DONE
-#   # - [0x102AA50, c, ch/flotsam] #DONE
-#   # - [0x102B670, c, code_D5D10] #DONE
-#   # - [0x102B930, c, code_D5FD0] #DONE
-#   # - [0x102BAE0, c, code_D6180] #DONE
-#   # - [0x102BF60, c, code_D6600] #DONE
-#   # - [0x102C9A0, c, ch/termite] #DONE
-#   # - [0x102D670, c, ch/gravestone] #DONE
-#   # - [0x102E340, c, code_D89E0]
-#   # - [0x102F700, c, ch/whipcrack] #DONE
-#   # - [0x102FD00, c, code_DA3A0] #DONE
-#   # - [0x10300C0, c, code_DA760] #DONE
-#   # - [0x1030400, c, code_DAAA0] #DONE
-#   # - [0x1030970, c, code_DB010] #DONE
-#   # - [0x1031E10, c, code_DC4B0] #DONE
-#   # - [0x1031F60, bin, data_DC600] #unreferenced
-#   # - [0x1031F90, .data, code_1550]
-#   # - [0x1031FB0, .data, ba/anim]
-#   # - [0x1031FE0, .data, snackerctl]
-#   # - [0x1032000, .data, ba/marker]
-#   # - [0x1032060, .data, code_7060]
-#   # - [0x10320A0, .data, code_90E0]
-#   # - [0x1032150, .data, ba/model]
-#   # - [0x1032150, .data, code_B850]
-#   # - [0x1032170, .data, eggshatter]
-#   # - [0x10321C0, .data, ba/falldamage]
-#   # - [0x10321F0, .data, code_E910]
-#   # - [0x1032E10, .data, ba/physics]
-#   # - [0x1032E20, .data, code_117D0]
-#   # - [0x1032F30, .data, code_126C0]
-#   # - [0x1032F50, .data, code_12F30]
-#   # - [0x1032FF0, .data, code_14420]
-#   # - [0x1033330, .data, bs/ant]
-#   # - [0x1033360, .data, bs/bbuster]
-#   # - [0x1033380, .data, bs/beeFly]
-#   # - [0x10333B0, .data, bs/beeMain]
-#   # - [0x10333E0, .data, bs/bFlap]
-#   # - [0x10333F0, .data, bs/bFlip]
-#   # - [0x1033410, .data, bs/bLongLeg]
-#   # - [0x1033430, .data, bs/bPeck]
-#   # - [0x1033440, .data, bs/bShock]
-#   # - [0x1033450, bin, data_DDAF0] #unreferenced
-#   # - [0x1033460, .data, bs/bTrot]
-#   # - [0x10334A0, .data, bs/bWhirl]
-#   # - [0x10334C0, .data, bs/carry]
-#   # - [0x10334D0, .data, bs/croc]
-#   # - [0x1033500, .data, bs/drone]
-#   # - [0x1033580, .data, bs/dronexform]
-#   # - [0x10336A0, .data, bs/jump]
-#   # - [0x10336C0, .data, bs/pumpkin]
-#   # - [0x10336F0, .data, bs/stand]
-#   # - [0x1033710, .data, bs/swim]
-#   # - [0x1033740, .data, bs/walk]
-#   # - [0x1033790, .data, bs/walrus]
-#   # - [0x10337D0, .data, code_33F90]
-#   # - [0x1034160, .data, code_34310]
-#   # - [0x10341B0, .data, code_34790]
-#   # - [0x1034200, .data, code_35520]
-#   # - [0x10346A0, .data, nc/dynamicCamera]
-#   # - [0x1034730, .data, code_37E50]
-#   # - [0x1034760, .data, nc/dynamicCamD]
-#   # - [0x1034770, .data, nc/dynamicCamA]
-#   # - [0x1034790, .data, spawnqueue]
-#   # - [0x10347A0, .data, ch/gameSelect]
-#   # - [0x1034900, .data, code_3EAD0]
-#   # - [0x1034980, .data, code_3EC30]
-#   # - [0x10349B0, .data, ch/bubble]
-#   # - [0x10349E0, .data, ch/bigbutt]
-#   # - [0x1034AC0, .data, code_400F0]
-#   # - [0x1034C60, .data, ch/jiggy]
-#   # - [0x1034CA0, .data, ch/jigsawdance]
-#   # - [0x1034D00, .data, code_41460]
-#   # - [0x1034E00, .data, code_41F30]
-#   # - [0x1034E30, .data, code_41FB0]
-#   # - [0x1035620, .data, ch/musicnote]
-#   # - [0x1035650, .data, code_42CB0]
-#   # - [0x10356A0, .data, code_43250]
-#   # - [0x1035870, .data, ch/trainers]
-#   # - [0x10358C0, .data, code_43800]
-#   # - [0x10358F0, .data, code_43A40]
-#   # - [0x10359D0, .data, mapspecificflags]
-#   # - [0x10359E0, .data, ch/crab]
-#   # - [0x1035B00, .data, code_45310]
-#   # - [0x1035B30, .data, ch/code_468E0]
-#   # - [0x1035B80, .data, ch/jinjo]
-#   # - [0x1035C90, .data, ch/beehive]
-#   # - [0x1035CE0, .data, code_47BD0]
-#   # - [0x1035D10, .data, ch/soundsource]
-#   # - [0x1035D90, .data, ch/shrapnel]
-#   # - [0x1035E00, .data, ch/gloop]
-#   # - [0x1035E60, .data, code_4A6F0]
-#   # - [0x1035F00, .data, code_4BD70]
-#   # - [0x1035FC0, .data, code_4BE10]
-#   # - [0x1036050, .data, code_4C020]
-#   # - [0x10363D0, .data, ch/wadingboots]
-#   # - [0x1036420, .data, ch/badShad]
-#   # - [0x1036450, .data, code_50490]
-#   # - [0x10364F0, .data, ch/climbBase]
-#   # - [0x1036520, .data, code_509D0]
-#   # - [0x1036630, .data, code_517A0]
-#   # - [0x1036660, .data, code_51950]
-#   # - [0x10366D0, .data, ch/collectible]
-#   # - [0x1036740, .data, ch/mole]
-#   # - [0x10367D0, .data, ch/molehill]
-#   # - [0x1036840, .data, code_53A10]
-#   # - [0x1036870, .data, code_53C10]
-#   # - [0x1036900, .data, code_54D50]
-#   # - [0x10369B0, .data, code_55180]
-#   # - [0x1036A10, .data, code_55390]
-#   # - [0x1036A40, .data, code_556C0]
-#   # - [0x1036A70, .data, code_55850]
-#   # - [0x1036AA0, .data, ch/overlaycopyright]
-#   # - [0x1036AD0, .data, ch/overlaypressstart]
-#   # - [0x1036B20, .data, ch/overlaynocontroller]
-#   # - [0x1036B70, .data, ch/bottlesbonus]
-#   # - [0x1036CD0, .data, code_57C70]
-#   # - [0x1036D30, .data, code_581D0]
-#   # - [0x1036D80, .data, ch/bottlesbonuscursor]
-#   # - [0x1036E10, .data, code_59780]
-#   # - [0x1036F70, .data, code_59A80]
-#   # - [0x1036FA0, .data, ch/snacker]
-#   # - [0x1037020, .data, ch/snowman]
-#   # - [0x10370E0, .data, ch/snowball]
-#   # - [0x1037190, .data, ch/snowmanhat]
-#   # - [0x10371C0, .data, code_5C870]
-#   # - [0x1037200, .data, code_5DBC0]
-#   # - [0x1037220, .data, code_66D90]
-#   # - [0x1037230, .data, code_66FB0]
-#   # - [0x10372B0, .data, gc/bound]
-#   # - [0x1037300, .data, code_67650]
-#   # - [0x1037310, .data, particle]
-#   # - [0x10373A0, .data, code_6A4B0]
-#   # - [0x1037470, .data, code_6AEF0]
-#   # - [0x1037480, .data, code_6B030]
-#   # - [0x1037500, .data, fx/ripple]
-#   # - [0x10375A0, .data, fx/sparkle]
-#   # - [0x1037750, .data, code_6CD20]
-#   # - [0x10377A0, .data, code_6D030]
-#   # - [0x10377B0, .data, code_6D270]
-#   # - [0x10377C0, .data, code_6D490]
-#   # - [0x10379D0, .data, code_6DA30]
-#   # - [0x1037C50, .data, code_72060]
-#   # - [0x1037CB0, .data, code_73640]
-#   # - [0x10380F0, .data, code_74090]
-#   # - [0x10381A0, .data, code_74290]
-#   # - [0x10381D0, .data, code_74420]
-#   # - [0x1038200, .data, code_74910]
-#   # - [0x1038230, .data, code_74ED0]
-#   # - [0x1038260, .data, code_75480]
-#   # - [0x1038290, .data, code_75930]
-#   # - [0x10382C0, .data, code_75E90]
-#   # - [0x10382F0, .data, fx/common2score]
-#   # - [0x10389E0, .data, fx/honeycarrierscore]
-#   # - [0x1038A40, .data, fx/jinjoscore]
-#   # - [0x1038C30, .data, fx/lifescore]
-#   # - [0x1038C80, .data, fx/common3score]
-#   # - [0x10392E0, .data, fx/healthscore]
-#   # - [0x1039330, .data, fx/airscore]
-#   # - [0x1039380, .data, code_7AF80]
-#   # - [0x10395B0, .data, mapModel]
-#   # - [0x103A1D0, .data, code_83340]
-#   # - [0x103A1E0, .data, gc/section]
-#   # - [0x103A710, .data, gc/sky]
-#   # - [0x103AB20, .data, gc/transition]
-#   # - [0x103AE20, .data, code_851D0]
-#   # - [0x103AEA0, .data, gc/dialog]
-#   # - [0x103AEB0, .data, gc/pauseMenu]
-#   # - [0x103B000, .data, code_8DC20]
-#   # - [0x103B090, .data, gc/zoombox]
-#   # - [0x103C310, .data, code_91E10]
-#   # - [0x103C340, .data, code_935F0]
-#   # - [0x103C370, .data, gc/parade]
-#   # - [0x103C790, .data, code_94A20]
-#   # - [0x103C7A0, .data, code_956B0]
-#   # - [0x103C7C0, .data, code_98CB0]
-#   # - [0x103C7D0, .data, code_9B180]
-#   # - [0x103C850, .data, code_9B650]
-#   # - [0x103CC90, .data, code_9B990]
-#   # - [0x103CDF0, .data, code_9D640]
-#   # - [0x103CF30, .data, code_9E370]
-#   # - [0x103CFA0, .data, code_A4D00]
-#   # - [0x103D180, .data, code_A5BC0] #(file needs to be broken?)
-#   # - [0x103D1D0, .data, code_A5BC0]
-#   # - [0x103D200, .data, code_ABC00]
-#   # - [0x103E340, .data, code_AC520]
-#   # - [0x103E350, .data, code_AD110]
-#   # - [0x103EC20, .data, code_AD5B0]
-#   # - [0x103EC30, .data, code_AEDA0]
-#   # - [0x103ED10, .data, modelRender]
-#   # - [0x103F3B0, .data, code_B3A80]
-#   # - [0x103F3F0, .data, code_B5040]
-#   # - [0x103F490, .data, code_B62B0]
-#   # - [0x10407F0, .data, code_B6CE0]
-#   # - [0x1040800, .data, code_B6EA0]
-#   # - [0x1040830, .data, code_B7F40]
-#   # - [0x1040840, .data, code_B9770]
-#   # - [0x1040890, .data, code_BD100]
-#   # - [0x10408A0, .data, code_BE2C0]
-#   # - [0x10408B0, bin, data_EAF40] #unreferenced
-#   # - [0x10408C0, .data, code_C2F30]
-#   # - [0x10408D0, .data, code_C4320]
-#   # - [0x1040990, .data, code_C4F40]
-#   # - [0x1040A00, .data, code_C5440]
-#   # - [0x1040A70, .data, code_C8760]
-#   # - [0x1040A80, .data, code_C97F0]
-#   # - [0x1040F90, .data, code_C9F00]
-#   # - [0x1041040, .data, code_CBD10]
-#   # - [0x1041070, .data, code_CC1E0]
-#   # - [0x1041090, .data, code_CD6E0]
-#   # - [0x10410C0, .data, code_CECD0]
-#   # - [0x10410D0, .data, code_CF090]
-#   # - [0x1041100, .data, code_CF3E0]
-#   # - [0x10411C0, .data, code_CF5F0]
-#   # - [0x10411E0, .data, ch/clankerwhipcrack]
-#   # - [0x1041210, .data, ch/code_CFA60]
-#   # - [0x1041240, .data, ch/clucker]
-#   # - [0x1041270, .data, code_D0CA0]
-#   # - [0x1041310, .data, code_D2180]
-#   # - [0x1041460, .data, ch/firefx]
-#   # - [0x1041490, .data, ch/drips]
-#   # - [0x1041520, .data, ch/icecube]
-#   # - [0x10415B0, .data, ch/ghost]
-#   # - [0x1041650, .data, ch/flotsam]
-#   # - [0x10416F0, .data, code_D5D10]
-#   # - [0x1041770, .data, code_D5FD0]
-#   # - [0x10417F0, .data, code_D6180]
-#   # - [0x1041870, .data, code_D6600]
-#   # - [0x10418E0, .data, ch/termite]
-#   # - [0x1041950, .data, ch/gravestone]
-#   # - [0x1041A60, .data, code_D89E0]
-#   # - [0x1041AD0, .data, ch/whipcrack]
-#   # - [0x1041B00, .data, code_DA3A0]
-#   # - [0x1041B80, .data, code_DA760]
-#   # - [0x1041BB0, .data, code_DAAA0]
-#   # - [0x1041CB0, .data, code_DB010]
-#   # - [0x1042790, .data, code_DC4B0]
-#   # - [0x10427C0, ".rodata", animctrl]
-#   # - [0x10427F0, .rodata, anim/sprite]
-#   # - [0x1042800, .rodata, code_1930]
-#   # - [0x1042880, .rodata, ba/anim]
-#   # - [0x1042890, .rodata, snackerctl]
-#   # - [0x10428A0, .rodata, code_39D0]
-#   # - [0x1042940, .rodata, ba/marker]
-#   # - [0x1042D70, .rodata, code_6B30]
-#   # - [0x1042E60, .rodata, code_7060]
-#   # - [0x1042F90, .rodata, code_9450]
-#   # - [0x1042FC0, .rodata, code_9900]
-#   # - [0x1042FD0, .rodata, code_9BD0]
-#   # - [0x1043010, .rodata, ba/model]
-#   # - [0x10430C0, .rodata, ba/drone]
-#   # - [0x10430D0, .rodata, code_B850]
-#   # - [0x10430F0, .rodata, code_BD20]
-#   # - [0x1043110, .rodata, ba/falldamage]
-#   # - [0x1043130, .rodata, code_C4B0]
-#   # - [0x1043170, .rodata, code_D9B0]
-#   # - [0x1043180, .rodata, abilityprogress]
-#   # - [0x10431B0, .rodata, code_EF50]
-#   # - [0x1043350, .rodata, ba/physics]
-#   # - [0x10433B0, .rodata, code_10CD0]
-#   # - [0x10433C0, .rodata, pitch]
-#   # - [0x10433F0, .rodata, code_11040]
-#   # - [0x1043400, .rodata, climb]
-#   # - [0x1043410, .rodata, code_11660]
-#   # - [0x10435D0, .rodata, code_11870]
-#   # - [0x10435E0, .rodata, roll]
-#   # - [0x1043600, .rodata, yaw]
-#   # - [0x1043660, .rodata, code_12360]
-#   # - [0x1043690, .rodata, code_126C0]
-#   # - [0x10436C0, .rodata, code_12F30]
-#   # - [0x10436E0, .rodata, code_13FC0]
-#   # - [0x10436F0, .rodata, code_14420]
-#   # - [0x1043770, .rodata, code_16010]
-#   # - [0x1043BD0, .rodata, code_16C60]
-#   # - [0x1043C70, .rodata, bs/ant]
-#   # - [0x1043CA0, .rodata, bs/bBarge]
-#   # - [0x1043CE0, .rodata, bs/bbuster]
-#   # - [0x1043D20, .rodata, bs/beeFly]
-#   # - [0x1043D50, .rodata, bs/beeMain]
-#   # - [0x1043DC0, .rodata, bs/bEggAss]
-#   # - [0x1043DE0, .rodata, bs/bEggHead]
-#   # - [0x1043E00, .rodata, bs/bFlap]
-#   # - [0x1043E70, .rodata, bs/bFlip]
-#   # - [0x1043EC0, .rodata, bs/bFly]
-#   # - [0x1043F20, .rodata, bs/bLongLeg]
-#   # - [0x1043FB0, .rodata, bs/bPeck]
-#   # - [0x1043FE0, .rodata, bs/bShock]
-#   # - [0x1044000, .rodata, bs/bSwim]
-#   # - [0x1044070, .rodata, bs/bTrot]
-#   # - [0x10440E0, .rodata, bs/bWhirl]
-#   # - [0x1044110, .rodata, bs/carry]
-#   # - [0x1044130, .rodata, bs/claw]
-#   # - [0x1044170, .rodata, bs/climb]
-#   # - [0x1044180, .rodata, bs/croc]
-#   # - [0x10441E0, .rodata, bs/crouch]
-#   # - [0x1044210, .rodata, bs/die]
-#   # - [0x1044220, .rodata, bs/droneenter]
-#   # - [0x1044230, .rodata, bs/dronegoto]
-#   # - [0x1044240, .rodata, bs/dronelook]
-#   # - [0x1044250, .rodata, bs/dronevanish]
-#   # - [0x1044260, .rodata, bs/dronexform]
-#   # - [0x1044310, .rodata, bs/jig]
-#   # - [0x1044330, .rodata, bs/jump]
-#   # - [0x1044380, .rodata, bs/ow]
-#   # - [0x1044390, .rodata, bs/pumpkin]
-#   # - [0x1044410, .rodata, bs/rebound]
-#   # - [0x1044420, .rodata, bs/rest]
-#   # - [0x1044430, .rodata, bs/slide]
-#   # - [0x1044440, .rodata, bs/stand]
-#   # - [0x1044470, .rodata, bs/swim]
-#   # - [0x10444C0, .rodata, bs/surf]
-#   # - [0x10444D0, .rodata, bs/talk]
-#   # - [0x10444E0, .rodata, bs/timeout]
-#   # - [0x10444F0, .rodata, bs/throw]
-#   # - [0x1044500, .rodata, bs/turn]
-#   # - [0x1044520, .rodata, bs/twirl]
-#   # - [0x1044540, .rodata, bs/walk]
-#   # - [0x10445D0, .rodata, bs/walrus]
-#   # - [0x1044630, .rodata, bs/washy]
-#   # - [0x1044690, .rodata, nc/cameranodelist]
-#   # - [0x10446E0, .rodata, code_33F90]
-#   # - [0x1044700, .rodata, code_34310]
-#   # - [0x1044710, .rodata, code_34790]
-#   # - [0x1044740, .rodata, nc/dynamicCamera]
-#   # - [0x1044890, .rodata, code_37E50]
-#   # - [0x10448B0, .rodata, nc/dynamicCam10]
-#   # - [0x10448C0, .rodata, nc/dynamicCamD]
-#   # - [0x10448D0, .rodata, nc/dynamicCam5]
-#   # - [0x10448E0, .rodata, nc/dynamicCam4]
-#   # - [0x10448F0, .rodata, nc/dynamicCamC]
-#   # - [0x1044900, .rodata, code_F8EAF0]
-#   # - [0x1044910, .rodata, nc/dynamicCamB]
-#   # - [0x1044920, .rodata, nc/dynamicCam13]
-#   # - [0x1044930, .rodata, nc/dynamicCam9]
-#   # - [0x1044950, .rodata, nc/dynamicCam12]
-#   # - [0x1044980, .rodata, nc/dynamicCam3]
-#   # - [0x1044990, .rodata, nc/dynamicCamA]
-#   # - [0x10449A0, .rodata, spawnqueue]
-#   # - [0x10449F0, .rodata, ch/gameSelect]
-#   # - [0x1044B70, .rodata, ch/bubble]
-#   # - [0x1044B80, .rodata, ch/bigbutt]
-#   # - [0x1044C60, .rodata, code_400F0]
-#   # - [0x1044CC0, .rodata, ch/jiggy]
-#   # - [0x1044D40, .rodata, ch/jigsawdance]
-#   # - [0x1044DB0, .rodata, code_41460]
-#   # - [0x1044DE0, .rodata, code_41FB0]
-#   # - [0x1044E20, .rodata, ch/musicnote]
-#   # - [0x1044E30, .rodata, code_42CB0]
-#   # - [0x1044E40, .rodata, ch/trainers]
-#   # - [0x1044E50, .rodata, code_43800]
-#   # - [0x1044E60, .rodata, ch/crab]
-#   # - [0x1044EB0, .rodata, code_45310]
-#   # - [0x1044F30, .rodata, ch/jinjo]
-#   # - [0x1044FA0, .rodata, ch/beehive]
-#   # - [0x1044FB0, .rodata, code_47BD0]
-#   # - [0x1045010, .rodata, ch/shrapnel]
-#   # - [0x1045030, .rodata, ch/gloop]
-#   # - [0x1045040, .rodata, code_4A6F0]
-#   # - [0x10450F0, .rodata, code_4C020]
-#   # - [0x1045710, .rodata, ch/badShad]
-#   # - [0x1045720, .rodata, code_50490]
-#   # - [0x1045730, .rodata, code_509D0]
-#   # - [0x1045770, .rodata, code_517A0]
-#   # - [0x1045780, .rodata, code_51950]
-#   # - [0x1045790, .rodata, ch/mole]
-#   # - [0x1045830, .rodata, code_53C10]
-#   # - [0x10458A0, .rodata, code_54D50]
-#   # - [0x10458C0, .rodata, code_55180]
-#   # - [0x10458D0, .rodata, code_55390]
-#   # - [0x10458E0, .rodata, ch/overlaypressstart]
-#   # - [0x10458F0, .rodata, ch/overlaynocontroller]
-#   # - [0x1045900, .rodata, ch/bottlesbonus]
-#   # - [0x1045970, .rodata, code_57C70]
-#   # - [0x1045990, .rodata, code_581D0]
-#   # - [0x10459A0, .rodata, ch/bottlesbonuscursor]
-#   # - [0x1045A00, .rodata, code_599E0]
-#   # - [0x1045A10, .rodata, code_59A80]
-#   # - [0x1045A20, .rodata, ch/snacker]
-#   # - [0x1045A70, .rodata, ch/snowman]
-#   # - [0x1045AA0, .rodata, ch/snowball]
-#   # - [0x1045AD0, .rodata, code_5C240]
-#   # - [0x1045AE0, .rodata, code_5C870]
-#   # - [0x1045B50, .rodata, code_5FD90]
-#   # - [0x1045B60, .rodata, code_66FB0]
-#   # - [0x1045B70, .rodata, code_67650]
-#   # - [0x1045B80, .rodata, particle]
-#   # - [0x1045BA0, .rodata, code_6A4B0]
-#   # - [0x1045BB0, .rodata, code_6B030]
-#   # - [0x1045BC0, .rodata, fx/ripple]
-#   # - [0x1045BD0, .rodata, fx/sparkle]
-#   # - [0x1045BE0, .rodata, code_6CEC0]
-#   # - [0x1045BF0, .rodata, code_6D030]
-#   # - [0x1045C00, .rodata, code_6D270]
-#   # - [0x1045C10, .rodata, code_6DA30]
-#   # - [0x1045C90, .rodata, code_70F20]
-#   # - [0x1045CF0, .rodata, code_71820]
-#   # - [0x1045D10, .rodata, code_72060]
-#   # - [0x1045D30, .rodata, code_73640]
-#   # - [0x1045D60, .rodata, code_74420]
-#   # - [0x1045D70, .rodata, fx/common2score]
-#   # - [0x1045D80, .rodata, fx/honeycarrierscore]
-#   # - [0x1045DD0, .rodata, fx/jinjoscore]
-#   # - [0x1045E00, .rodata, fx/jinjoscore]
-#   # - [0x1045E30, .rodata, fx/common3score]
-#   # - [0x1045E50, .rodata, fx/healthscore]
-#   # - [0x1045E60, .rodata, fx/airscore]
-#   # - [0x1045E80, .rodata, code_7AF80]
-#   # - [0x1045F40, .rodata, mapModel]
-#   # - [0x1046100, .rodata, code_83340]
-#   # - [0x1046110, .rodata, gc/section]
-#   # - [0x1046E10, .rodata, gc/sky]
-#   # - [0x1046E20, .rodata, gc/transition]
-#   # - [0x1046E80, .rodata, code_85800]
-#   # - [0x1046EA0, .rodata, gc/dialog]
-#   # - [0x1046F10, .rodata, gc/pauseMenu]
-#   # - [0x1047250, .rodata, gc/zoombox] 
-#   # - [0x1047320, .rodata, code_91E10]
-#   # - [0x1047360, .rodata, code_935F0]
-#   # - [0x1047380, .rodata, gc/parade]
-#   # - [0x1047700, .rodata, code_94A20]
-#   # - [0x1047710, .rodata, code_956B0]
-#   # - [0x1047720, .rodata, code_9A9D0]
-#   # - [0x1047750, .rodata, code_9B180]
-#   # - [0x1047770, .rodata, code_9C170]
-#   # - [0x10477C0, .rodata, code_9E370] 
-#   # - [0x1047840, .rodata, code_A4D00]
-#   # - [0x1047870, .rodata, code_A5BC0]
-#   # - [0x1047890, .rodata, code_AD110]
-#   # - [0x10478B0, .rodata, skeletalanim]
-#   # - [0x10478C0, .rodata, code_AEDA0]
-#   # - [0x1047910, .rodata, modelRender]
-#   # - [0x1047920, .rodata, code_B3A80]
-#   # - [0x1047930, .rodata, string]
-#   # - [0x1047950, .rodata, code_B6C60]
-#   # - [0x1047960, .rodata, code_B6CE0]
-#   # - [0x1047990, .rodata, code_B9090]
-#   # - [0x10479C0, .rodata, code_B9770]
-#   # - [0x1047A50, .rodata, code_BD100]
-#   # - [0x1047A70, .rodata, code_BDCC0]
-#   # - [0x1047A90, .rodata, code_BE2C0]
-#   # - [0x1047AD0, .rodata, code_BEF20]
-#   # - [0x1047B10, .rodata, code_C0E60]
-#   # - [0x1047B20, .rodata, rand]
-#   # - [0x1047B40, .rodata, code_C3A40]
-#   # - [0x1047B50, .rodata, code_C4320]
-#   # - [0x1047B70, .rodata, code_C5AF0]
-#   # - [0x1047B90, .rodata, code_C5CC0]
-#   # - [0x1047BA0, .rodata, code_C5F00]
-#   # - [0x1047BD0, .rodata, code_C62B0]
-#   # - [0x1047C00, .rodata, code_C76D0]
-#   # - [0x1047C40, .rodata, code_C7CC0]
-#   # - [0x1047C80, .rodata, code_C8230]
-#   # - [0x1047C90, .rodata, code_C8360]
-#   # - [0x1047CA0, .rodata, code_C8490]
-#   # - [0x1047CC0, .rodata, code_C8760]
-#   # - [0x1047CD0, .rodata, code_C89C0]
-#   # - [0x1047D10, .rodata, code_C97F0]
-#   # - [0x1047D20, .rodata, code_C9F00]
-#   # - [0x1047D50, .rodata, code_CB050]
-#   # - [0x1047DC0, .rodata, code_CB610]
-#   # - [0x1047DE0, .rodata, code_CBD10]
-#   # - [0x1047E00, .rodata, code_CC1E0]
-#   # - [0x1047E20, .rodata, code_CD0A0]
-#   # - [0x1047E40, .rodata, code_CD3F0]
-#   # - [0x1047E50, .rodata, code_CD6E0]
-#   # - [0x1047E90, .rodata, code_CECD0]
-#   # - [0x1047EB0, .rodata, code_CF090]
-#   # - [0x1047EC0, .rodata, ch/clankerwhipcrack]
-#   # - [0x1047EE0, .rodata, ch/code_CFA60]
-#   # - [0x1047F30, .rodata, ch/clucker]
-#   # - [0x1047FD0, .rodata, code_D0CA0]
-#   # - [0x1048050, .rodata, code_D2180]
-#   # - [0x1048060, .rodata, ch/firefx]
-#   # - [0x10480A0, .rodata, ch/drips]
-#   # - [0x10480C0, .rodata, ch/icecube]
-#   # - [0x1048170, .rodata, ch/ghost]
-#   # - [0x10481E0, .rodata, ch/flotsam]
-#   # - [0x1048220, .rodata, code_D5D10]
-#   # - [0x1048230, .rodata, code_D6180]
-#   # - [0x1048240, .rodata, code_D6600]
-#   # - [0x1048280, .rodata, ch/termite]
-#   # - [0x10482F0, .rodata, ch/gravestone]
-#   # - [0x1048390, .rodata, code_D89E0]
-#   # - [0x10483C0, .rodata, code_D89E0]
-#   # - [0x1048430, .rodata, ch/whipcrack]
-#   # - [0x1048450, .rodata, code_DA3A0]
-#   # - [0x1048460, .rodata, code_DA760]
-#   # - [0x1048480, .rodata, code_DB010]
-#   # - [0x1048560, .bss, anim/sprite]
-#   # - [0x1048560, .bss, animcache]
-#   # - [0x1048560, .bss, code_1550]
-#   # - [0x1048560, .bss, code_1930]
-#   # - [0x1048560, .bss, ba/anim]
-#   # - [0x1048560, .bss, snackerctl]
-#   # - [0x1048560, .bss, code_39D0]
-#   # - [0x1048560, .bss, ba/marker]
-#   # - [0x1048560, .bss, code_6B30]
-#   # - [0x1048560, .bss, code_7060]
-#   # - [0x1048560, .bss, code_8DA0]
-#   # - [0x1048560, .bss, code_90E0]
-#   # - [0x1048560, .bss, code_9290]
-#   # - [0x1048560, .bss, code_9450]
-#   # - [0x1048560, .bss, code_9900]
-#   # - [0x1048560, .bss, code_9BD0]
-#   # - [0x1048560, .bss, code_A600]
-#   # - [0x1048560, .bss, statetimer]
-#   # - [0x1048560, .bss, ba/model]
-#   # - [0x1048560, .bss, ba/drone]
-#   # - [0x1048560, .bss, eggshatter]
-#   # - [0x1048560, .bss, code_BD20]
-#   # - [0x1048560, .bss, ba/falldamage]
-#   # - [0x1048560, .bss, code_C3F0]
-#   # - [0x1048560, .bss, code_C4B0]
-#   # - [0x1048560, .bss, ba/carry]
-#   # - [0x1048560, .bss, code_D9B0]
-#   # - [0x1048560, .bss, code_DF70]
-#   # - [0x1048560, .bss, code_E410]
-#   # - [0x1048560, .bss, abilityprogress]
-#   # - [0x1048560, .bss, code_E910]
-#   # - [0x1048560, .bss, code_EE40]
-#   # - [0x1048560, .bss, code_EF50]
-#   # - [0x1048560, .bss, ba/physics]
-#   # - [0x1048560, .bss, code_10CD0]
-#   # - [0x1048560, .bss, pitch]
-#   # - [0x1048560, .bss, code_11040]
-#   # - [0x1048560, .bss, climb]
-#   # - [0x1048560, .bss, code_11460]
-#   # - [0x1048560, .bss, code_11660]
-#   # - [0x1048560, .bss, code_117D0]
-#   # - [0x1048560, .bss, code_11870]
-#   # - [0x1048560, .bss, roll]
-#   # - [0x1048560, .bss, yaw]
-#   # - [0x1048560, .bss, code_12360]
-#   # - [0x1048560, .bss, code_126C0]
-#   # - [0x1048560, .bss, code_12F30]
-#   # - [0x1048560, .bss, bsList]
-#   # - [0x1048560, .bss, code_13780]
-#   # - [0x1048560, .bss, bsStoredState]
-#   # - [0x1048560, .bss, code_13A00]
-#   # - [0x1048560, .bss, code_13FC0]
-#   # - [0x1048560, .bss, code_14420]
-#   # - [0x1048560, .bss, code_15F20]
-#   # - [0x1048560, .bss, code_16010]
-#   # - [0x1048560, .bss, code_16C60]
-#   # - [0x1048560, .bss, code_171F0]
-#   # - [0x1048560, .bss, bs/ant]
-#   # - [0x1048560, .bss, bs/bBarge]
-#   # - [0x1048560, .bss, bs/bbuster]
-#   # - [0x1048560, .bss, bs/beeFly]
-#   # - [0x1048560, .bss, bs/beeMain]
-#   # - [0x1048560, .bss, bs/bEggAss]
-#   # - [0x1048560, .bss, bs/bEggHead]
-#   # - [0x1048560, .bss, bs/bFlap]
-#   # - [0x1048560, .bss, bs/bFlip]
-#   # - [0x1048560, .bss, bs/bFly]
-#   # - [0x1048560, .bss, bs/bLongLeg]
-#   # - [0x1048560, .bss, bs/bPeck]
-#   # - [0x1048560, .bss, bs/bShock]
-#   # - [0x1048560, .bss, bs/bSwim]
-#   # - [0x1048560, .bss, bs/bTrot]
-#   # - [0x1048560, .bss, bs/bWhirl]
-#   # - [0x1048560, .bss, bs/claw]
-#   # - [0x1048560, .bss, bs/climb]
-#   # - [0x1048560, .bss, bs/croc]
-#   # - [0x1048560, .bss, bs/crouch]
-#   # - [0x1048560, .bss, bs/die]
-#   # - [0x1048560, .bss, bs/droneenter]
-#   # - [0x1048560, .bss, bs/dronegoto]
-#   # - [0x1048560, .bss, bs/dronevanish]
-#   # - [0x1048560, .bss, bs/dronexform]
-#   # - [0x1048560, .bss, bs/jig]
-#   # - [0x1048560, .bss, bs/jump]
-#   # - [0x1048560, .bss, bs/ow]
-#   # - [0x1048560, .bss, bs/pumpkin]
-#   # - [0x1048560, .bss, bs/rebound]
-#   # - [0x1048560, .bss, bs/sled]
-#   # - [0x1048560, .bss, bs/slide]
-#   # - [0x1048560, .bss, bs/splat]
-#   # - [0x1048560, .bss, bs/stand]
-#   # - [0x1048560, .bss, bs/swim]
-#   # - [0x1048560, .bss, bs/surf]
-#   # - [0x1048560, .bss, bs/talk]
-#   # - [0x1048560, .bss, bs/throw]
-#   # - [0x1048560, .bss, bs/turn]
-#   # - [0x1048560, .bss, bs/twirl]
-#   # - [0x1048560, .bss, bs/walk]
-#   # - [0x1048560, .bss, bs/walrus]
-#   # - [0x1048560, .bss, bs/washy]
-#   # - [0x1048560, .bss, nc/cameranodelist]
-#   # - [0x1048560, .bss, code_33C30]
-#   # - [0x1048560, .bss, nc/staticCamera]
-#   # - [0x1048560, .bss, code_34310]
-#   # - [0x1048560, .bss, code_34790]
-#   # - [0x1048560, .bss, code_35520]
-#   # - [0x1048560, .bss, nc/dynamicCamera]
-#   # - [0x1048560, .bss, code_379B0]
-#   # - [0x1048560, .bss, nc/randomCamera]
-#   # - [0x1048560, .bss, code_37E50]
-#   # - [0x1048560, .bss, nc/dynamicCam10]
-#   # - [0x1048560, .bss, nc/dynamicCam5]
-#   # - [0x1048560, .bss, nc/dynamicCam11]
-#   # - [0x1048560, .bss, nc/dynamicCam8]
-#   # - [0x1048560, .bss, nc/dynamicCam4]
-#   # - [0x1048560, .bss, nc/dynamicCamC]
-#   # - [0x1048560, .bss, code_F8EAF0]
-#   # - [0x1048560, .bss, nc/dynamicCamB]
-#   # - [0x1048560, .bss, nc/dynamicCam13]
-#   # - [0x1048560, .bss, nc/dynamicCam9]
-#   # - [0x1048560, .bss, nc/dynamicCam12]
-#   # - [0x1048560, .bss, nc/dynamicCam3]
-#   # - [0x1048560, .bss, code_3B2C0]
-#   # - [0x1048560, .bss, nc/dynamicCamF]
-#   # - [0x1048560, .bss, nc/firstpersoncamera]
-#   # - [0x1048560, .bss, ch/gameSelect]
-#   # - [0x1048560, .bss, code_41460]
-#   # - [0x1048560, .bss, code_41FB0]
-#   # - [0x1048560, .bss, code_42CB0]
-#   # - [0x1048560, .bss, mapspecificflags]
-#   # - [0x1048560, .bss, code_47BD0]
-#   # - [0x1048560, .bss, code_4A6F0]
-#   # - [0x1048560, .bss, code_4C020]
-#   # - [0x1048560, .bss, ch/badShad]
-#   # - [0x1048560, .bss, ch/climbBase]
-#   # - [0x1048560, .bss, code_55390]
-#   # - [0x1048560, .bss, code_556C0]
-#   # - [0x1048560, .bss, code_55850]
-#   # - [0x1048560, .bss, ch/overlaycopyright]
-#   # - [0x1048560, .bss, ch/overlaypressstart]
-#   # - [0x1048560, .bss, ch/overlaynocontroller]
-#   # - [0x1048560, .bss, ch/bottlesbonus]
-#   # - [0x1048560, .bss, code_57C70]
-#   # - [0x1048560, .bss, code_581D0]
-#   # - [0x1048560, .bss, ch/bottlesbonuscursor]
-#   # - [0x1048560, .bss, code_59A80]
-#   # - [0x1048560, .bss, ch/snacker]
-#   # - [0x1048560, .bss, ch/snowball]
-#   # - [0x1048560, .bss, code_5BEB0]
-#   # - [0x1048560, .bss, code_5C240]
-#   # - [0x1048560, .bss, code_5C870]
-#   # - [0x1048560, .bss, code_5DBC0]
-#   # - [0x1048560, .bss, code_5FD90]
-#   # - [0x1048560, .bss, code_637D0]
-#   # - [0x1048560, .bss, code_654C0]
-#   # - [0x1048560, .bss, code_66D90]
-#   # - [0x1048560, .bss, gc/bound]
-#   # - [0x1048560, .bss, code_67650]
-#   # - [0x1048560, .bss, particle]
-#   # - [0x1048560, .bss, code_69F60]
-#   # - [0x1048560, .bss, code_6AEF0]
-#   # - [0x1048560, .bss, code_6B030]
-#   # - [0x1048560, .bss, fx/ripple]
-#   # - [0x1048560, .bss, code_6CD20]
-#   # - [0x1048560, .bss, code_6CEC0]
-#   # - [0x1048560, .bss, code_6D030]
-#   # - [0x1048560, .bss, code_6D270]
-#   # - [0x1048560, .bss, code_6DA30]
-#   # - [0x1048560, .bss, code_6DA30]
-#   # - [0x1048560, .bss, code_70C30]
-#   # - [0x1048560, .bss, code_72060]
-#   # - [0x1048560, .bss, code_72B10]
-#   # - [0x1048560, .bss, code_73640]
-#   # - [0x1048560, .bss, code_74420]
-#   # - [0x1048560, .bss, code_74910]
-#   # - [0x1048560, .bss, code_74ED0]
-#   # - [0x1048560, .bss, code_75480]
-#   # - [0x1048560, .bss, code_75930]
-#   # - [0x1048560, .bss, code_75E90]
-#   # - [0x1048560, .bss, fx/common1score]
-#   # - [0x1048560, .bss, fx/honeycarrierscore]
-#   # - [0x1048560, .bss, fx/jinjoscore]
-#   # - [0x1048560, .bss, fx/lifescore]
-#   # - [0x1048560, .bss, fx/healthscore]
-#   # - [0x1048560, .bss, fx/airscore]
-#   # - [0x1048560, .bss, code_7AF80]
-#   # - [0x1048560, .bss, mapModel]
-#   # - [0x1048560, .bss, code_83340]
-#   # - [0x1048560, .bss, gc/section]
-#   # - [0x1048560, .bss, gc/sky]
-#   # - [0x1048560, .bss, gc/transition]
-#   # - [0x1048560, .bss, code_851D0]
-#   # - [0x1048560, .bss, code_857B0]
-#   # - [0x1048560, .bss, code_85800]
-#   # - [0x1048560, .bss, gc/dialog]
-#   # - [0x1048560, .bss, gc/pauseMenu]
-#   # - [0x1048560, .bss, code_8DC20]
-#   # - [0x1048560, .bss, gc/zoombox]
-#   # - [0x1048560, .bss, code_91E10]
-#   # - [0x1048560, .bss, gc/parade]
-#   # - [0x1048560, .bss, code_94620]
-#   # - [0x1048560, .bss, code_94780]
-#   # - [0x1048560, .bss, code_956B0]
-#   # - [0x1048560, .bss, code_98CB0]
-#   # - [0x1048560, .bss, quizquestionaskedbitfield]
-#   # - [0x1048560, .bss, code_999A0]
-#   # - [0x1048560, .bss, jiggyscore]
-#   # - [0x1048560, .bss, honeycombscore]
-#   # - [0x1048560, .bss, mumboscore]
-#   # - [0x1048560, .bss, code_9A740]
-#   # - [0x1048560, .bss, code_9A9D0]
-#   # - [0x1048560, .bss, levelspecificflags]
-#   # - [0x1048560, .bss, code_9B180]
-#   # - [0x1048560, .bss, code_9B650]
-#   # - [0x1048560, .bss, code_9B990]
-#   # - [0x1048560, .bss, code_9C170]
-#   # - [0x1048560, .bss, timedfuncqueue]
-#   # - [0x1048560, .bss, code_9E370]
-#   # - [0x1048560, .bss, code_A4D00]
-#   # - [0x1048560, .bss, code_A5BC0]
-#   # - [0x1048560, .bss, code_ABC00]
-#   # - [0x1048560, .bss, code_AC520]
-#   # - [0x1048560, .bss, code_AD110]
-#   # - [0x1048560, .bss, code_AD5B0]
-#   # - [0x1048560, .bss, code_AE290]
-#   # - [0x1048560, .bss, code_AEDA0]
-#   # - [0x1048560, .bss, modelRender]
-#   # - [0x1048560, .bss, code_B3A80]
-#   # - [0x1048560, .bss, code_B5040]
-#   # - [0x1048560, .bss, code_B5E00]
-#   # - [0x1048560, .bss, code_B62B0]
-#   # - [0x1048560, .bss, code_B6C60]
-#   # - [0x1048560, .bss, code_B6CE0]
-#   # - [0x1048560, .bss, code_B6EA0]
-#   # - [0x1048560, .bss, code_B8020]
-#   # - [0x1048560, .bss, code_B8860]
-#   # - [0x1048560, .bss, code_B9770]
-#   # - [0x1048560, .bss, code_BD100]
-#   # - [0x1048560, .bss, code_BDCC0]
-#   # - [0x1048560, .bss, code_BEF20]
-#   # - [0x1048560, .bss, code_C0E60]
-#   # - [0x1048560, .bss, animtexturecache]
-#   # - [0x1048560, .bss, code_C2F30]
-#   # - [0x1048560, .bss, rand]
-#   # - [0x1048560, .bss, code_C4320]
-#   # - [0x1048560, .bss, code_C4F40]
-#   # - [0x1048560, .bss, code_C5440]
-#   # - [0x1048560, .bss, code_C89C0]
-#   # - [0x1048560, .bss, code_C97F0]
-#   # - [0x1048560, .bss, code_C9E70]
-#   # - [0x1048560, .bss, code_C9F00]
-#   # - [0x1048560, .bss, code_CB8A0]
-#   # - [0x1048560, .bss, code_CBBF0]
-#   # - [0x1048560, .bss, code_CD0A0]
-#   # - [0x1048560, .bss, code_CD6E0]
+  - [0xF791D0, c, animctrl]
+  - [0xF79CA0, c, anim/sprite]
+  - [0xF7A2B0, c, animcache]
+  - [0xF7A720, c, code_1550]
+  - [0xF7AB00, c, code_1930]
+  - [0xF7B410, c, code_2240]
+  - [0xF7BA60, c, ba/anim]
+  - [0xF7C650, bin, core2_untouched_text]
+  # - [0xF58DE0, c, snackerctl] #DONE
+  # - [0xF59330, c, code_39D0] #DONE
+  # - [0xF5A120, c, ba/marker] #DONE
+  # - [0xF5C490, c, code_6B30] #DONE
+  # - [0xF5C9C0, c, code_7060] #DONE
+  # - [0xF5E700, c, code_8DA0] #DONE
+  # - [0xF5EA40, c, code_90E0] #DONE 
+  # - [0xF5EBF0, c, code_9290] #DONE
+  # - [0xF5EDB0, c, code_9450] #DONE
+  # - [0xF5F260, c, code_9900] #DONE
+  # - [0xF5F530, c, code_9BD0] #DONE
+  # - [0xF5FF60, c, code_A600] #DONE
+  # - [0xF60040, c, statetimer] #DONE
+  # - [0xF602C0, c, code_A960] #DONE
+  # - [0xF603C0, c, ba/model] #DONE
+  # - [0xF60FB0, c, ba/drone] #DONE
+  # - [0xF611B0, c, code_B850] #DONE
+  # - [0xF614B0, c, eggshatter] #DONE
+  # - [0xF61680, c, code_BD20] #DONE
+  # - [0xF61A40, c, ba/falldamage] #DONE
+  # - [0xF61D50, c, code_C3F0] #DONE
+  # - [0xF61E10, c, code_C4B0]
+  # - [0xF63160, c, ba/carry] #DONE
+  # - [0xF63310, c, code_D9B0] #DONE
+  # - [0xF638D0, c, code_DF70] #DONE
+  # - [0xF63D70, c, code_E410] #DONE
+  # - [0xF63FE0, c, abilityprogress] #DONE
+  # - [0xF64270, c, code_E910] #DONE
+  # - [0xF647A0, c, code_EE40] #DONE
+  # - [0xF648B0, c, code_EF50] #DONE
+  # - [0xF656C0, c, ba/physics] #DONE
+  # - [0xF66630, c, code_10CD0] #DONE
+  # - [0xF66700, c, pitch]      #DONE
+  # - [0xF669A0, c, code_11040] #DONE
+  # - [0xF66BB0, c, climb] #DONE
+  # - [0xF66DC0, c, code_11460] #DONE
+  # - [0xF66FC0, c, code_11660] #DONE
+  # - [0xF67130, c, code_117D0] #DONE
+  # - [0xF671D0, c, code_11870] #DONE
+  # - [0xF674A0, c, roll]       #DONE
+  # - [0xF67740, c, yaw]        #DONE
+  # - [0xF67CC0, c, code_12360] #DONE
+  # - [0xF68020, c, code_126C0] #DONE
+  # - [0xF68890, c, code_12F30]
+  # - [0xF68FD0, c, bsList]     #DONE
+  # - [0xF690E0, c, code_13780] #DONE
+  # - [0xF69260, c, bsStoredState] #DONE
+  # - [0xF69360, c, code_13A00] #DONE
+  # - [0xF69920, c, code_13FC0] #DONE
+  # - [0xF69D80, c, code_14420] #DONE
+  # - [0xF6B880, c, code_15F20]  #DONE
+  # - [0xF6B970, c, code_16010]  #DONE
+  # - [0xF6C5C0, c, code_16C60]  #DONE
+  # - [0xF6CB50, c, code_171F0]  #DONE
+  # - [0xF6CDB0, c, bs/ant]      #DONE
+  # - [0xF6DEB0, c, bs/bBarge]   #DONE
+  # - [0xF6E4F0, c, bs/bbuster]  #DONE
+  # - [0xF6EC90, c, bs/bee]      #DONE
+  # - [0xF6EEC0, c, bs/beeFly]   #DONE
+  # - [0xF6F960, c, bs/beeMain]  #DONE
+  # - [0xF70B40, c, bs/bEggAss]  #DONE
+  # - [0xF70DB0, c, bs/bEggHead] #DONE
+  # - [0xF71060, c, bs/bFlap]    #DONE
+  # - [0xF71730, c, bs/bFlip]    #DONE
+  # - [0xF71D20, c, bs/bFly]     #DONE
+  # - [0xF73BA0, c, bs/bLongLeg] #DONE
+  # - [0xF74EE0, c, bs/bPeck]    #DONE
+  # - [0xF75380, c, bs/bShock]   #DONE
+  # - [0xF75B10, c, bs/bSwim]    #DONE
+  # - [0xF77190, c, bs/bTrot]    #DONE
+  # - [0xF78DD0, c, bs/bWhirl]   #DONE
+  # - [0xF79850, c, bs/carry]    #DONE
+  # - [0xF79C50, c, bs/claw]     #DONE
+  # - [0xF79F90, c, bs/climb]    #DONE
+  # - [0xF7A790, c, bs/croc]     #DONE
+  # - [0xF7C0A0, c, bs/crouch]   #DONE
+  # - [0xF7C7D0, c, bs/die]      #DONE
+  # - [0xF7CD40, c, bs/drone]    #DONE
+  # - [0xF7CEB0, c, bs/droneenter]  #DONE
+  # - [0xF7D530, c, bs/dronegoto] #DONE
+  # - [0xF7D8A0, c, bs/dronelook]  #DONE
+  # - [0xF7DB80, c, bs/dronevanish]  #DONE
+  # - [0xF7E170, c, bs/dronexform] #DONE
+  # - [0xF7F430, c, bs/jig]        #DONE
+  # - [0xF7FAD0, c, bs/jump]     #DONE
+  # - [0xF809A0, c, bs/ow]       #DONE
+  # - [0xF80BA0, c, bs/pumpkin]  #DONE
+  # - [0xF81FA0, c, bs/rebound]  #DONE
+  # - [0xF82420, c, bs/rest]     #DONE
+  # - [0xF828F0, c, bs/sled]     #DONE
+  # - [0xF82AA0, c, bs/slide]    #DONE
+  # - [0xF82F40, c, bs/splat]    #DONE
+  # - [0xF83240, c, bs/stand]    #DONE
+  # - [0xF83E50, c, bs/swim]     #DONE
+  # - [0xF849A0, c, bs/surf]     #DONE
+  # - [0xF84B00, c, bs/talk] #DONE
+  # - [0xF84C40, c, bs/timeout]  #DONE
+  # - [0xF84F10, c, bs/throw]    #DONE
+  # - [0xF85130, c, bs/turn]     #DONE
+  # - [0xF85410, c, bs/twirl]    #DONE
+  # - [0xF856D0, c, bs/walk]     #DONE
+  # - [0xF867D0, c, bs/walrus]   #DONE
+  # - [0xF88350, c, bs/washy]   #DONE
+  # - [0xF88710, c, nc/cameranodelist] #DONE
+  # - [0xF88BB0, c, code_33250] #DONE
+  # - [0xF88BB0, c, code_33310] #DONE
+  # - [0xF89050, c, code_336F0] #DONE
+  # - [0xF89410, c, code_33AB0] #DONE
+  # - [0xF89590, c, code_33C30] #DONE
+  # - [0xF896A0, c, nc/staticCamera] #DONE
+  # - [0xF898F0, c, code_33F90] #DONE
+  # - [0xF89C70, c, code_34310] #DONE
+  # - [0xF8A0F0, c, code_34790] #DONE
+  # - [0xF8AE80, c, code_35520] #DONE
+  # - [0xF8B010, c, nc/dynamicCamera] #DONE
+  # - [0xF8D310, c, code_379B0] #DONE
+  # - [0xF8D630, c, nc/randomCamera] #DONE
+  # - [0xF8D7B0, c, code_37E50] #DONE
+  # - [0xF8DAB0, c, nc/dynamicCam10] #DONE
+  # - [0xF8DC40, c, nc/dynamicCamD] #DONE
+  # - [0xF8DDC0, c, nc/dynamicCam5] #DONE
+  # - [0xF8DF90, c, nc/dynamicCam11] #DONE
+  # - [0xF8E240, c, nc/dynamicCam8] #DONE
+  # - [0xF8E430, c, nc/dynamicCam4] #DONE
+  # - [0xF8E8A0, c, nc/dynamicCamC] #DONE
+  # - [0xF8EAF0, c, code_F8EAF0] #DONE
+  # - [0xF8ED40, c, nc/dynamicCamB] #DONE
+  # - [0xF8F010, c, nc/dynamicCam13] #DONE
+  # - [0xF8F370, c, nc/dynamicCam9] #DONE
+  # - [0xF8F850, c, nc/dynamicCam12] #DONE
+  # - [0xF90280, c, nc/dynamicCam1] #DONE
+  # - [0xF904A0, c, nc/dynamicCam3] #DONE
+  # - [0xF90770, c, nc/dynamicCamA] #DONE
+  # - [0xF90C20, c, code_3B2C0] #DONE
+  # - [0xF90E30, c, nc/dynamicCamF] #DONE
+  # - [0xF90F20, c, nc/firstpersoncamera] #DONE
+  # - [0xF914E0, c, spawnqueue] #DONE
+  # - [0xF92D30, c, ch/gameSelect] #DONE
+  # - [0xF94430, c, code_3EAD0] #DONE
+  # - [0xF94590, c, code_3EC30] #DONE
+  # - [0xF94640, c, ch/bubble] #DONE
+  # - [0xF94850, c, ch/bigbutt] #DONE
+  # - [0xF95A50, c, code_400F0] #DONE
+  # - [0xF96400, c, ch/jiggy]   #DONE
+  # - [0xF96A90, c, ch/jigsawdance] #DONE
+  # - [0xF96DC0, c, code_41460]    #DONE
+  # - [0xF97890, c, code_41F30]    #DONE
+  # - [0xF97910, c, code_41FB0]    #DONE
+  # - [0xF98600, c, ch/musicnote]  #DONE
+  # - [0xF98610, c, code_42CB0]    #DONE
+  # - [0xF98BB0, c, code_43250]    #DONE
+  # - [0xF98CF0, c, ch/trainers]   #DONE
+  # - [0xF99160, c, code_43800]    #DONE
+  # - [0xF993A0, c, code_43A40]    #DONE
+  # - [0xF99630, c, mapspecificflags] #DONE
+  # - [0xF99A10, c, ch/crab]    #DONE
+  # - [0xF9AC70, c, code_45310]    #DONE
+  # - [0xF9C240, c, ch/code_468E0] #DONE
+  # - [0xF9C520, c, ch/jinjo]   #DONE
+  # - [0xF9D1B0, c, ch/beehive] #DONE
+  # - [0xF9D530, c, code_47BD0] #DONE
+  # - [0xF9EED0, c, ch/soundsource] #DONE
+  # - [0xF9F3D0, c, ch/shrapnel] #DONE
+  # - [0xF9FD80, c, ch/gloop] #DONE
+  # - [0xFA0050, c, code_4A6F0] #DONE
+  # - [0xFA16D0, c, code_4BD70] #DONE
+  # - [0xFA1770, c, code_4BE10] #DONE
+  # - [0xFA1980, c, code_4C020] #DONE
+  # - [0xFA54E0, c, ch/wadingboots] #DONE
+  # - [0xFA5870, c, ch/badShad] #DONE
+  # - [0xFA5DF0, c, code_50490] #DONE
+  # - [0xFA60B0, c, ch/climbBase] #DONE
+  # - [0xFA6330, c, code_509D0] #DONE
+  # - [0xFA7100, c, code_517A0] #DONE
+  # - [0xFA72B0, c, code_51950] #DONE
+  # - [0xFA75F0, c, ch/collectible] #DONE
+  # - [0xFA7BF0, c, ch/mole]     #DONE
+  # - [0xFA8F30, c, ch/molehill] #DONE
+  # - [0xFA9370, c, code_53A10]  #DONE
+  # - [0xFA9570, c, code_53C10] #DONE
+  # - [0xFAA6B0, c, code_54D50] #DONE
+  # - [0xFAAAE0, c, code_55180] #DONE
+  # - [0xFAACF0, c, code_55390] #DONE
+  # - [0xFAB020, c, code_556C0] #DONE
+  # - [0xFAB1B0, c, code_55850] #DONE
+  # - [0xFAB3F0, c, ch/overlaycopyright] #DONE
+  # - [0xFAB520, c, ch/overlaypressstart] #DONE
+  # - [0xFAB780, c, ch/overlaynocontroller] #DONE
+  # - [0xFABA50, c, ch/bottlesbonus] #DONE
+  # - [0xFAD5D0, c, code_57C70] #DONE
+  # - [0xFADB30, c, code_581D0] #DONE
+  # - [0xFADE30, c, ch/bottlesbonuscursor] #DONE
+  # - [0xFAF0E0, c, code_59780] #DONE
+  # - [0xFAF340, c, code_599E0] #DONE
+  # - [0xFAF3E0, c, code_59A80] #DONE
+  # - [0xFAF6A0, c, ch/snacker] #DONE
+  # - [0xFB0490, c, ch/snowman] #DONE
+  # - [0xFB1000, c, ch/snowball] #DONE
+  # - [0xFB16F0, c, ch/snowmanhat] #DONE
+  # - [0xFB1810, c, code_5BEB0]
+  # - [0xFB1BA0, c, code_5C240] #DONE
+  # - [0xFB21D0, c, code_5C870] #DONE
+  # - [0xFB3520, c, code_5DBC0] #DONE
+  # - [0xFB5460, c, code_5FB00] #DONE
+  # - [0xFB56E0, c, code_5FD80] #DONE
+  # - [0xFB56F0, c, code_5FD90] #DONE
+  # - [0xFB8930, c, code_62FD0] #DONE
+  # - [0xFB8A30, c, code_630D0] #DONE
+  # - [0xFB8D70, c, code_63410] #DONE
+  # - [0xFB8FF0, c, code_63690] #DONE
+  # - [0xFB9130, c, code_637D0] #DONE
+  # - [0xFBAE20, c, code_654C0] #DONE
+  # - [0xFBBDF0, c, code_66490] #DONE
+  # - [0xFBBFF0, c, vla]        #DONE
+  # - [0xFBC410, c, fla]        #DONE
+  # - [0xFBC6F0, c, code_66D90] #DONE
+  # - [0xFBC910, c, code_66FB0] #DONE
+  # - [0xFBCDF0, c, gc/bound]   #DONE
+  # - [0xFBCFB0, c, code_67650] #DONE
+  # - [0xFBD300, c, particle] #DONE
+  # - [0xFBF8C0, c, code_69F60] #DONE
+  # - [0xFBFE10, c, code_6A4B0]
+  # - [0xFC0850, c, code_6AEF0] #DONE
+  # - [0xFC0990, c, code_6B030] #DONE
+  # - [0xFC1D40, c, fx/ripple] #DONE
+  # - [0xFC2040, c, fx/sparkle] #DONE
+  # - [0xFC2680, c, code_6CD20] #DONE
+  # - [0xFC2820, c, code_6CEC0] #DONE
+  # - [0xFC2990, c, code_6D030] #DONE
+  # - [0xFC2BD0, c, code_6D270] #DONE
+  # - [0xFC2DF0, c, code_6D490] #DONE
+  # - [0xFC3390, c, code_6DA30]
+  # - [0xFC6590, c, code_70C30] #DONE
+  # - [0xFC6880, c, code_70F20] #DONE
+  # - [0xFC7180, c, code_71820] #DONE
+  # - [0xFC79C0, c, code_72060] #DONE
+  # - [0xFC8470, c, code_72B10] #DONE
+  # - [0xFC8FA0, c, code_73640] #DONE
+  # - [0xFC99F0, c, code_74090] #DONE
+  # - [0xFC9BF0, c, code_74290] #DONE
+  # - [0xFC9D80, c, code_74420] #DONE
+  # - [0xFCA270, c, code_74910] #DONE
+  # - [0xFCA830, c, code_74ED0] #DONE
+  # - [0xFCADE0, c, code_75480] #DONE
+  # - [0xFCB290, c, code_75930] #DONE
+  # - [0xFCB7F0, c, code_75E90] #DONE
+  # - [0xFCBCF0, c, fx/common1score] #DONE
+  # - [0xFCBD30, c, fx/common2score] #DONE
+  # - [0xFCC6F0, c, fx/honeycarrierscore] #DONE
+  # - [0xFCD7B0, c, code_77E50] #DONE
+  # - [0xFCDA60, c, fx/jinjoscore] #DONE
+  # - [0xFCE7B0, c, fx/lifescore] #DONE
+  # - [0xFCF190, c, fx/common3score] #DONE
+  # - [0xFCF5E0, c, fx/healthscore] #DONE
+  # - [0xFD00C0, c, fx/airscore] #DONE
+  # - [0xFD08E0, c, code_7AF80]
+  # - [0xFD7960, c, mapModel] #DONE
+  # - [0xFD8CA0, c, code_83340] #DONE
+  # - [0xFD96D0, c, gc/section] #DONE
+  # - [0xFD9A30, c, gc/sky] #DONE
+  # - [0xFD9DD0, c, gc/transition] #DONE
+  # - [0xFDAB30, c, code_851D0] #DONE
+  # - [0xFDB110, c, code_857B0] #DONE
+  # - [0xFDB160, c, code_85800] #DONE
+  # - [0xFDD790, c, gc/dialog]
+  # - [0xFE0110, c, gc/pauseMenu] #DONE
+  # - [0xFE3580, c, code_8DC20] #DONE
+  # - [0xFE3BD0, c, gc/zoombox] #DONE
+  # - [0xFE7770, c, code_91E10] #DONE
+  # - [0xFE8F50, c, code_935F0] #DONE #chminigmae
+  # - [0xFE9570, c, gc/parade] #DONE
+  # - [0xFE9F80, c, code_94620] #DONE
+  # - [0xFEA0E0, c, code_94780] #DONE
+  # - [0xFEA380, c, code_94A20] #DONE
+  # - [0xFEB010, c, code_956B0] #DONE
+  # - [0xFEE610, c, code_98CB0]
+  # - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
+  # - [0xFEF300, c, code_999A0] #DONE
+  # - [0xFEF8E0, c, jiggyscore] #DONE
+  # - [0xFEFC80, c, honeycombscore] #DONE
+  # - [0xFEFEE0, c, mumboscore] #DONE
+  # - [0xFF00A0, c, code_9A740] #DONE
+  # - [0xFF0330, c, code_9A9D0] #DONE
+  # - [0xFF0660, c, levelspecificflags] #DONE
+  # - [0xFF0AE0, c, code_9B180] #DONE
+  # - [0xFF0FB0, c, code_9B650] #DONE
+  # - [0xFF12F0, c, code_9B990] #DONE
+  # - [0xFF1AD0, c, code_9C170] #DONE
+  # - [0xFF2FA0, c, code_9D640] #DONE
+  # - [0xFF30C0, c, code_9D760] #DONE
+  # - [0xFF31C0, c, timedfuncqueue] #DONE
+  # - [0xFF3CD0, c, code_9E370]
+  # - [0xFFA660, c, code_A4D00] #DONE
+  # - [0xFFB520, c, code_A5BC0]
+  # - [0x1001560, c, code_ABC00] #DONE
+  # - [0x1001E80, c, code_AC520] #DONE
+  # - [0x1002A70, c, code_AD110] #DONE
+  # - [0x1002F10, c, code_AD5B0] #DONE
+  # - [0x1003BF0, c, code_AE290] #DONE
+  # - [0x1003F30, c, skeletalanim] #DONE
+  # - [0x1004700, c, code_AEDA0]
+  # - [0x1006D60, c, modelRender]
+  # - [0x1008EE0, c, code_B3580] #DONE
+  # - [0x10093E0, c, code_B3A80] #DONE
+  # - [0x100A9A0, c, code_B5040] #DONE
+  # - [0x100B760, c, code_B5E00] #DONE
+  # - [0x100BC10, c, code_B62B0] #DONE
+  # - [0x100BFA0, c, code_B6640] #DONE
+  # - [0x100C030, c, string]     #DONE
+  # - [0x100C5C0, c, code_B6C60] #DONE
+  # - [0x100C640, c, code_B6CE0] #DONE
+  # - [0x100C800, c, code_B6EA0] #DONE
+  # - [0x100D480, c, code_B7B20] #DONE
+  # - [0x100D8A0, c, code_B7F40] #DONE
+  # - [0x100D980, c, code_B8020] #DONE
+  # - [0x100D9D0, c, code_B8070] #DONE
+  # - [0x100D9E0, c, code_B8080] #DONE
+  # - [0x100E1C0, c, code_B8860] #DONE
+  # - [0x100E9F0, c, code_B9090] #DONE
+  # - [0x100F0D0, c, code_B9770]
+  # - [0x1012A60, c, code_BD100] #DONE
+  # - [0x1013620, c, code_BDCC0] #DONE
+  # - [0x1013C20, c, code_BE2C0] #DONE
+  # - [0x1014880, c, code_BEF20]
+  # - [0x10164E0, c, code_C0B80] #DONE
+  # - [0x1016650, c, code_C0CF0] #DONE
+  # - [0x10167C0, c, code_C0E60] #DONE
+  # - [0x1018580, c, animtexturecache] #DONE
+  # - [0x1018890, c, code_C2F30] #DONE
+  # - [0x1018B00, c, code_C31A0] #DONE
+  # - [0x1018D60, c, rand]       #DONE
+  # - [0x10193A0, c, code_C3A40] #DONE
+  # - [0x1019480, c, code_C3B20] #DONE
+  # - [0x1019C80, c, code_C4320] #DONE
+  # - [0x101A8A0, c, code_C4F40] #DONE
+  # - [0x101ADA0, c, code_C5440] #DONE
+  # - [0x101B450, c, code_C5AF0] #DONE
+  # - [0x101B620, c, code_C5CC0] #DONE
+  # - [0x101B860, c, code_C5F00] #DONE
+  # - [0x101BB20, c, code_C61C0] #DONE
+  # - [0x101BC10, c, code_C62B0] #DONE
+  # - [0x101D030, c, code_C76D0] #DONE
+  # - [0x101D620, c, code_C7CC0] #DONE
+  # - [0x101DB90, c, code_C8230] #DONE
+  # - [0x101DCC0, c, code_C8360] #DONE
+  # - [0x101DDF0, c, code_C8490] #DONE
+  # - [0x101E0C0, c, code_C8760] #DONE
+  # - [0x101E320, c, code_C89C0] #DONE
+  # - [0x101F150, c, code_C97F0] #DONE
+  # - [0x101F7D0, c, code_C9E70] #DONE
+  # - [0x101F860, c, code_C9F00] #DONE
+  # - [0x10209B0, c, code_CB050] #DONE
+  # - [0x1020F70, c, code_CB610] #DONE
+  # - [0x1021200, c, code_CB8A0] #DONE
+  # - [0x1021550, c, code_CBBF0] #DONE
+  # - [0x1021670, c, code_CBD10] #DONE
+  # - [0x1021B40, c, code_CC1E0] #DONE
+  # - [0x1022A00, c, code_CD0A0] #DONE
+  # - [0x1022D50, c, code_CD3F0] #DONE
+  # - [0x1023040, c, code_CD6E0] #DONE
+  # - [0x1024630, c, code_CECD0] #DONE
+  # - [0x10249F0, c, code_CF090] #DONE
+  # - [0x1024D40, c, code_CF3E0] #DONE
+  # - [0x1024F50, c, code_CF5F0] #DONE
+  # - [0x1025140, c, ch/clankerwhipcrack] #DONE
+  # - [0x10253C0, c, ch/code_CFA60] #DONE
+  # - [0x1025B20, c, ch/clucker] #DONE
+  # - [0x1026600, c, code_D0CA0] #DONE
+  # - [0x1027AE0, c, code_D2180] #DONE
+  # - [0x1027E60, c, ch/firefx]  #DONE
+  # - [0x1028410, c, ch/drips]   #DONE
+  # - [0x1028770, c, ch/icecube] #DONE
+  # - [0x10299B0, c, ch/ghost]   #DONE
+  # - [0x102AA50, c, ch/flotsam] #DONE
+  # - [0x102B670, c, code_D5D10] #DONE
+  # - [0x102B930, c, code_D5FD0] #DONE
+  # - [0x102BAE0, c, code_D6180] #DONE
+  # - [0x102BF60, c, code_D6600] #DONE
+  # - [0x102C9A0, c, ch/termite] #DONE
+  # - [0x102D670, c, ch/gravestone] #DONE
+  # - [0x102E340, c, code_D89E0]
+  # - [0x102F700, c, ch/whipcrack] #DONE
+  # - [0x102FD00, c, code_DA3A0] #DONE
+  # - [0x10300C0, c, code_DA760] #DONE
+  # - [0x1030400, c, code_DAAA0] #DONE
+  # - [0x1030970, c, code_DB010] #DONE
+  # - [0x1031E10, c, code_DC4B0] #DONE
+  - [0x1055E20, bin, data_DC600] #unreferenced
+  - [0x1055E50, .data, code_1550]
+  - [0x1055E70, .data, ba/anim]
+  - [0x1055EA0, bin, core2_untouched_data]
+  # - [0x1031FE0, .data, snackerctl]
+  # - [0x1032000, .data, ba/marker]
+  # - [0x1032060, .data, code_7060]
+  # - [0x10320A0, .data, code_90E0]
+  # - [0x1032150, .data, ba/model]
+  # - [0x1032150, .data, code_B850]
+  # - [0x1032170, .data, eggshatter]
+  # - [0x10321C0, .data, ba/falldamage]
+  # - [0x10321F0, .data, code_E910]
+  # - [0x1032E10, .data, ba/physics]
+  # - [0x1032E20, .data, code_117D0]
+  # - [0x1032F30, .data, code_126C0]
+  # - [0x1032F50, .data, code_12F30]
+  # - [0x1032FF0, .data, code_14420]
+  # - [0x1033330, .data, bs/ant]
+  # - [0x1033360, .data, bs/bbuster]
+  # - [0x1033380, .data, bs/beeFly]
+  # - [0x10333B0, .data, bs/beeMain]
+  # - [0x10333E0, .data, bs/bFlap]
+  # - [0x10333F0, .data, bs/bFlip]
+  # - [0x1033410, .data, bs/bLongLeg]
+  # - [0x1033430, .data, bs/bPeck]
+  # - [0x1033440, .data, bs/bShock]
+  # - [0x1033450, bin, data_DDAF0] #unreferenced
+  # - [0x1033460, .data, bs/bTrot]
+  # - [0x10334A0, .data, bs/bWhirl]
+  # - [0x10334C0, .data, bs/carry]
+  # - [0x10334D0, .data, bs/croc]
+  # - [0x1033500, .data, bs/drone]
+  # - [0x1033580, .data, bs/dronexform]
+  # - [0x10336A0, .data, bs/jump]
+  # - [0x10336C0, .data, bs/pumpkin]
+  # - [0x10336F0, .data, bs/stand]
+  # - [0x1033710, .data, bs/swim]
+  # - [0x1033740, .data, bs/walk]
+  # - [0x1033790, .data, bs/walrus]
+  # - [0x10337D0, .data, code_33F90]
+  # - [0x1034160, .data, code_34310]
+  # - [0x10341B0, .data, code_34790]
+  # - [0x1034200, .data, code_35520]
+  # - [0x10346A0, .data, nc/dynamicCamera]
+  # - [0x1034730, .data, code_37E50]
+  # - [0x1034760, .data, nc/dynamicCamD]
+  # - [0x1034770, .data, nc/dynamicCamA]
+  # - [0x1034790, .data, spawnqueue]
+  # - [0x10347A0, .data, ch/gameSelect]
+  # - [0x1034900, .data, code_3EAD0]
+  # - [0x1034980, .data, code_3EC30]
+  # - [0x10349B0, .data, ch/bubble]
+  # - [0x10349E0, .data, ch/bigbutt]
+  # - [0x1034AC0, .data, code_400F0]
+  # - [0x1034C60, .data, ch/jiggy]
+  # - [0x1034CA0, .data, ch/jigsawdance]
+  # - [0x1034D00, .data, code_41460]
+  # - [0x1034E00, .data, code_41F30]
+  # - [0x1034E30, .data, code_41FB0]
+  # - [0x1035620, .data, ch/musicnote]
+  # - [0x1035650, .data, code_42CB0]
+  # - [0x10356A0, .data, code_43250]
+  # - [0x1035870, .data, ch/trainers]
+  # - [0x10358C0, .data, code_43800]
+  # - [0x10358F0, .data, code_43A40]
+  # - [0x10359D0, .data, mapspecificflags]
+  # - [0x10359E0, .data, ch/crab]
+  # - [0x1035B00, .data, code_45310]
+  # - [0x1035B30, .data, ch/code_468E0]
+  # - [0x1035B80, .data, ch/jinjo]
+  # - [0x1035C90, .data, ch/beehive]
+  # - [0x1035CE0, .data, code_47BD0]
+  # - [0x1035D10, .data, ch/soundsource]
+  # - [0x1035D90, .data, ch/shrapnel]
+  # - [0x1035E00, .data, ch/gloop]
+  # - [0x1035E60, .data, code_4A6F0]
+  # - [0x1035F00, .data, code_4BD70]
+  # - [0x1035FC0, .data, code_4BE10]
+  # - [0x1036050, .data, code_4C020]
+  # - [0x10363D0, .data, ch/wadingboots]
+  # - [0x1036420, .data, ch/badShad]
+  # - [0x1036450, .data, code_50490]
+  # - [0x10364F0, .data, ch/climbBase]
+  # - [0x1036520, .data, code_509D0]
+  # - [0x1036630, .data, code_517A0]
+  # - [0x1036660, .data, code_51950]
+  # - [0x10366D0, .data, ch/collectible]
+  # - [0x1036740, .data, ch/mole]
+  # - [0x10367D0, .data, ch/molehill]
+  # - [0x1036840, .data, code_53A10]
+  # - [0x1036870, .data, code_53C10]
+  # - [0x1036900, .data, code_54D50]
+  # - [0x10369B0, .data, code_55180]
+  # - [0x1036A10, .data, code_55390]
+  # - [0x1036A40, .data, code_556C0]
+  # - [0x1036A70, .data, code_55850]
+  # - [0x1036AA0, .data, ch/overlaycopyright]
+  # - [0x1036AD0, .data, ch/overlaypressstart]
+  # - [0x1036B20, .data, ch/overlaynocontroller]
+  # - [0x1036B70, .data, ch/bottlesbonus]
+  # - [0x1036CD0, .data, code_57C70]
+  # - [0x1036D30, .data, code_581D0]
+  # - [0x1036D80, .data, ch/bottlesbonuscursor]
+  # - [0x1036E10, .data, code_59780]
+  # - [0x1036F70, .data, code_59A80]
+  # - [0x1036FA0, .data, ch/snacker]
+  # - [0x1037020, .data, ch/snowman]
+  # - [0x10370E0, .data, ch/snowball]
+  # - [0x1037190, .data, ch/snowmanhat]
+  # - [0x10371C0, .data, code_5C870]
+  # - [0x1037200, .data, code_5DBC0]
+  # - [0x1037220, .data, code_66D90]
+  # - [0x1037230, .data, code_66FB0]
+  # - [0x10372B0, .data, gc/bound]
+  # - [0x1037300, .data, code_67650]
+  # - [0x1037310, .data, particle]
+  # - [0x10373A0, .data, code_6A4B0]
+  # - [0x1037470, .data, code_6AEF0]
+  # - [0x1037480, .data, code_6B030]
+  # - [0x1037500, .data, fx/ripple]
+  # - [0x10375A0, .data, fx/sparkle]
+  # - [0x1037750, .data, code_6CD20]
+  # - [0x10377A0, .data, code_6D030]
+  # - [0x10377B0, .data, code_6D270]
+  # - [0x10377C0, .data, code_6D490]
+  # - [0x10379D0, .data, code_6DA30]
+  # - [0x1037C50, .data, code_72060]
+  # - [0x1037CB0, .data, code_73640]
+  # - [0x10380F0, .data, code_74090]
+  # - [0x10381A0, .data, code_74290]
+  # - [0x10381D0, .data, code_74420]
+  # - [0x1038200, .data, code_74910]
+  # - [0x1038230, .data, code_74ED0]
+  # - [0x1038260, .data, code_75480]
+  # - [0x1038290, .data, code_75930]
+  # - [0x10382C0, .data, code_75E90]
+  # - [0x10382F0, .data, fx/common2score]
+  # - [0x10389E0, .data, fx/honeycarrierscore]
+  # - [0x1038A40, .data, fx/jinjoscore]
+  # - [0x1038C30, .data, fx/lifescore]
+  # - [0x1038C80, .data, fx/common3score]
+  # - [0x10392E0, .data, fx/healthscore]
+  # - [0x1039330, .data, fx/airscore]
+  # - [0x1039380, .data, code_7AF80]
+  # - [0x10395B0, .data, mapModel]
+  # - [0x103A1D0, .data, code_83340]
+  # - [0x103A1E0, .data, gc/section]
+  # - [0x103A710, .data, gc/sky]
+  # - [0x103AB20, .data, gc/transition]
+  # - [0x103AE20, .data, code_851D0]
+  # - [0x103AEA0, .data, gc/dialog]
+  # - [0x103AEB0, .data, gc/pauseMenu]
+  # - [0x103B000, .data, code_8DC20]
+  # - [0x103B090, .data, gc/zoombox]
+  # - [0x103C310, .data, code_91E10]
+  # - [0x103C340, .data, code_935F0]
+  # - [0x103C370, .data, gc/parade]
+  # - [0x103C790, .data, code_94A20]
+  # - [0x103C7A0, .data, code_956B0]
+  # - [0x103C7C0, .data, code_98CB0]
+  # - [0x103C7D0, .data, code_9B180]
+  # - [0x103C850, .data, code_9B650]
+  # - [0x103CC90, .data, code_9B990]
+  # - [0x103CDF0, .data, code_9D640]
+  # - [0x103CF30, .data, code_9E370]
+  # - [0x103CFA0, .data, code_A4D00]
+  # - [0x103D180, .data, code_A5BC0] #(file needs to be broken?)
+  # - [0x103D1D0, .data, code_A5BC0]
+  # - [0x103D200, .data, code_ABC00]
+  # - [0x103E340, .data, code_AC520]
+  # - [0x103E350, .data, code_AD110]
+  # - [0x103EC20, .data, code_AD5B0]
+  # - [0x103EC30, .data, code_AEDA0]
+  # - [0x103ED10, .data, modelRender]
+  # - [0x103F3B0, .data, code_B3A80]
+  # - [0x103F3F0, .data, code_B5040]
+  # - [0x103F490, .data, code_B62B0]
+  # - [0x10407F0, .data, code_B6CE0]
+  # - [0x1040800, .data, code_B6EA0]
+  # - [0x1040830, .data, code_B7F40]
+  # - [0x1040840, .data, code_B9770]
+  # - [0x1040890, .data, code_BD100]
+  # - [0x10408A0, .data, code_BE2C0]
+  # - [0x10408B0, bin, data_EAF40] #unreferenced
+  # - [0x10408C0, .data, code_C2F30]
+  # - [0x10408D0, .data, code_C4320]
+  # - [0x1040990, .data, code_C4F40]
+  # - [0x1040A00, .data, code_C5440]
+  # - [0x1040A70, .data, code_C8760]
+  # - [0x1040A80, .data, code_C97F0]
+  # - [0x1040F90, .data, code_C9F00]
+  # - [0x1041040, .data, code_CBD10]
+  # - [0x1041070, .data, code_CC1E0]
+  # - [0x1041090, .data, code_CD6E0]
+  # - [0x10410C0, .data, code_CECD0]
+  # - [0x10410D0, .data, code_CF090]
+  # - [0x1041100, .data, code_CF3E0]
+  # - [0x10411C0, .data, code_CF5F0]
+  # - [0x10411E0, .data, ch/clankerwhipcrack]
+  # - [0x1041210, .data, ch/code_CFA60]
+  # - [0x1041240, .data, ch/clucker]
+  # - [0x1041270, .data, code_D0CA0]
+  # - [0x1041310, .data, code_D2180]
+  # - [0x1041460, .data, ch/firefx]
+  # - [0x1041490, .data, ch/drips]
+  # - [0x1041520, .data, ch/icecube]
+  # - [0x10415B0, .data, ch/ghost]
+  # - [0x1041650, .data, ch/flotsam]
+  # - [0x10416F0, .data, code_D5D10]
+  # - [0x1041770, .data, code_D5FD0]
+  # - [0x10417F0, .data, code_D6180]
+  # - [0x1041870, .data, code_D6600]
+  # - [0x10418E0, .data, ch/termite]
+  # - [0x1041950, .data, ch/gravestone]
+  # - [0x1041A60, .data, code_D89E0]
+  # - [0x1041AD0, .data, ch/whipcrack]
+  # - [0x1041B00, .data, code_DA3A0]
+  # - [0x1041B80, .data, code_DA760]
+  # - [0x1041BB0, .data, code_DAAA0]
+  # - [0x1041CB0, .data, code_DB010]
+  # - [0x1042790, .data, code_DC4B0]
+  - [0x1066790, .rodata, animctrl]
+  - [0x10667C0, .rodata, anim/sprite]
+  - [0x10667D0, .rodata, code_1930]
+  - [0x10667F0, .rodata, ba/anim]
+  - [0x1066860, bin, core2_untouched_rodata]
+  # - [0x1042890, .rodata, snackerctl]
+  # - [0x10428A0, .rodata, code_39D0]
+  # - [0x1042940, .rodata, ba/marker]
+  # - [0x1042D70, .rodata, code_6B30]
+  # - [0x1042E60, .rodata, code_7060]
+  # - [0x1042F90, .rodata, code_9450]
+  # - [0x1042FC0, .rodata, code_9900]
+  # - [0x1042FD0, .rodata, code_9BD0]
+  # - [0x1043010, .rodata, ba/model]
+  # - [0x10430C0, .rodata, ba/drone]
+  # - [0x10430D0, .rodata, code_B850]
+  # - [0x10430F0, .rodata, code_BD20]
+  # - [0x1043110, .rodata, ba/falldamage]
+  # - [0x1043130, .rodata, code_C4B0]
+  # - [0x1043170, .rodata, code_D9B0]
+  # - [0x1043180, .rodata, abilityprogress]
+  # - [0x10431B0, .rodata, code_EF50]
+  # - [0x1043350, .rodata, ba/physics]
+  # - [0x10433B0, .rodata, code_10CD0]
+  # - [0x10433C0, .rodata, pitch]
+  # - [0x10433F0, .rodata, code_11040]
+  # - [0x1043400, .rodata, climb]
+  # - [0x1043410, .rodata, code_11660]
+  # - [0x10435D0, .rodata, code_11870]
+  # - [0x10435E0, .rodata, roll]
+  # - [0x1043600, .rodata, yaw]
+  # - [0x1043660, .rodata, code_12360]
+  # - [0x1043690, .rodata, code_126C0]
+  # - [0x10436C0, .rodata, code_12F30]
+  # - [0x10436E0, .rodata, code_13FC0]
+  # - [0x10436F0, .rodata, code_14420]
+  # - [0x1043770, .rodata, code_16010]
+  # - [0x1043BD0, .rodata, code_16C60]
+  # - [0x1043C70, .rodata, bs/ant]
+  # - [0x1043CA0, .rodata, bs/bBarge]
+  # - [0x1043CE0, .rodata, bs/bbuster]
+  # - [0x1043D20, .rodata, bs/beeFly]
+  # - [0x1043D50, .rodata, bs/beeMain]
+  # - [0x1043DC0, .rodata, bs/bEggAss]
+  # - [0x1043DE0, .rodata, bs/bEggHead]
+  # - [0x1043E00, .rodata, bs/bFlap]
+  # - [0x1043E70, .rodata, bs/bFlip]
+  # - [0x1043EC0, .rodata, bs/bFly]
+  # - [0x1043F20, .rodata, bs/bLongLeg]
+  # - [0x1043FB0, .rodata, bs/bPeck]
+  # - [0x1043FE0, .rodata, bs/bShock]
+  # - [0x1044000, .rodata, bs/bSwim]
+  # - [0x1044070, .rodata, bs/bTrot]
+  # - [0x10440E0, .rodata, bs/bWhirl]
+  # - [0x1044110, .rodata, bs/carry]
+  # - [0x1044130, .rodata, bs/claw]
+  # - [0x1044170, .rodata, bs/climb]
+  # - [0x1044180, .rodata, bs/croc]
+  # - [0x10441E0, .rodata, bs/crouch]
+  # - [0x1044210, .rodata, bs/die]
+  # - [0x1044220, .rodata, bs/droneenter]
+  # - [0x1044230, .rodata, bs/dronegoto]
+  # - [0x1044240, .rodata, bs/dronelook]
+  # - [0x1044250, .rodata, bs/dronevanish]
+  # - [0x1044260, .rodata, bs/dronexform]
+  # - [0x1044310, .rodata, bs/jig]
+  # - [0x1044330, .rodata, bs/jump]
+  # - [0x1044380, .rodata, bs/ow]
+  # - [0x1044390, .rodata, bs/pumpkin]
+  # - [0x1044410, .rodata, bs/rebound]
+  # - [0x1044420, .rodata, bs/rest]
+  # - [0x1044430, .rodata, bs/slide]
+  # - [0x1044440, .rodata, bs/stand]
+  # - [0x1044470, .rodata, bs/swim]
+  # - [0x10444C0, .rodata, bs/surf]
+  # - [0x10444D0, .rodata, bs/talk]
+  # - [0x10444E0, .rodata, bs/timeout]
+  # - [0x10444F0, .rodata, bs/throw]
+  # - [0x1044500, .rodata, bs/turn]
+  # - [0x1044520, .rodata, bs/twirl]
+  # - [0x1044540, .rodata, bs/walk]
+  # - [0x10445D0, .rodata, bs/walrus]
+  # - [0x1044630, .rodata, bs/washy]
+  # - [0x1044690, .rodata, nc/cameranodelist]
+  # - [0x10446E0, .rodata, code_33F90]
+  # - [0x1044700, .rodata, code_34310]
+  # - [0x1044710, .rodata, code_34790]
+  # - [0x1044740, .rodata, nc/dynamicCamera]
+  # - [0x1044890, .rodata, code_37E50]
+  # - [0x10448B0, .rodata, nc/dynamicCam10]
+  # - [0x10448C0, .rodata, nc/dynamicCamD]
+  # - [0x10448D0, .rodata, nc/dynamicCam5]
+  # - [0x10448E0, .rodata, nc/dynamicCam4]
+  # - [0x10448F0, .rodata, nc/dynamicCamC]
+  # - [0x1044900, .rodata, code_F8EAF0]
+  # - [0x1044910, .rodata, nc/dynamicCamB]
+  # - [0x1044920, .rodata, nc/dynamicCam13]
+  # - [0x1044930, .rodata, nc/dynamicCam9]
+  # - [0x1044950, .rodata, nc/dynamicCam12]
+  # - [0x1044980, .rodata, nc/dynamicCam3]
+  # - [0x1044990, .rodata, nc/dynamicCamA]
+  # - [0x10449A0, .rodata, spawnqueue]
+  # - [0x10449F0, .rodata, ch/gameSelect]
+  # - [0x1044B70, .rodata, ch/bubble]
+  # - [0x1044B80, .rodata, ch/bigbutt]
+  # - [0x1044C60, .rodata, code_400F0]
+  # - [0x1044CC0, .rodata, ch/jiggy]
+  # - [0x1044D40, .rodata, ch/jigsawdance]
+  # - [0x1044DB0, .rodata, code_41460]
+  # - [0x1044DE0, .rodata, code_41FB0]
+  # - [0x1044E20, .rodata, ch/musicnote]
+  # - [0x1044E30, .rodata, code_42CB0]
+  # - [0x1044E40, .rodata, ch/trainers]
+  # - [0x1044E50, .rodata, code_43800]
+  # - [0x1044E60, .rodata, ch/crab]
+  # - [0x1044EB0, .rodata, code_45310]
+  # - [0x1044F30, .rodata, ch/jinjo]
+  # - [0x1044FA0, .rodata, ch/beehive]
+  # - [0x1044FB0, .rodata, code_47BD0]
+  # - [0x1045010, .rodata, ch/shrapnel]
+  # - [0x1045030, .rodata, ch/gloop]
+  # - [0x1045040, .rodata, code_4A6F0]
+  # - [0x10450F0, .rodata, code_4C020]
+  # - [0x1045710, .rodata, ch/badShad]
+  # - [0x1045720, .rodata, code_50490]
+  # - [0x1045730, .rodata, code_509D0]
+  # - [0x1045770, .rodata, code_517A0]
+  # - [0x1045780, .rodata, code_51950]
+  # - [0x1045790, .rodata, ch/mole]
+  # - [0x1045830, .rodata, code_53C10]
+  # - [0x10458A0, .rodata, code_54D50]
+  # - [0x10458C0, .rodata, code_55180]
+  # - [0x10458D0, .rodata, code_55390]
+  # - [0x10458E0, .rodata, ch/overlaypressstart]
+  # - [0x10458F0, .rodata, ch/overlaynocontroller]
+  # - [0x1045900, .rodata, ch/bottlesbonus]
+  # - [0x1045970, .rodata, code_57C70]
+  # - [0x1045990, .rodata, code_581D0]
+  # - [0x10459A0, .rodata, ch/bottlesbonuscursor]
+  # - [0x1045A00, .rodata, code_599E0]
+  # - [0x1045A10, .rodata, code_59A80]
+  # - [0x1045A20, .rodata, ch/snacker]
+  # - [0x1045A70, .rodata, ch/snowman]
+  # - [0x1045AA0, .rodata, ch/snowball]
+  # - [0x1045AD0, .rodata, code_5C240]
+  # - [0x1045AE0, .rodata, code_5C870]
+  # - [0x1045B50, .rodata, code_5FD90]
+  # - [0x1045B60, .rodata, code_66FB0]
+  # - [0x1045B70, .rodata, code_67650]
+  # - [0x1045B80, .rodata, particle]
+  # - [0x1045BA0, .rodata, code_6A4B0]
+  # - [0x1045BB0, .rodata, code_6B030]
+  # - [0x1045BC0, .rodata, fx/ripple]
+  # - [0x1045BD0, .rodata, fx/sparkle]
+  # - [0x1045BE0, .rodata, code_6CEC0]
+  # - [0x1045BF0, .rodata, code_6D030]
+  # - [0x1045C00, .rodata, code_6D270]
+  # - [0x1045C10, .rodata, code_6DA30]
+  # - [0x1045C90, .rodata, code_70F20]
+  # - [0x1045CF0, .rodata, code_71820]
+  # - [0x1045D10, .rodata, code_72060]
+  # - [0x1045D30, .rodata, code_73640]
+  # - [0x1045D60, .rodata, code_74420]
+  # - [0x1045D70, .rodata, fx/common2score]
+  # - [0x1045D80, .rodata, fx/honeycarrierscore]
+  # - [0x1045DD0, .rodata, fx/jinjoscore]
+  # - [0x1045E00, .rodata, fx/jinjoscore]
+  # - [0x1045E30, .rodata, fx/common3score]
+  # - [0x1045E50, .rodata, fx/healthscore]
+  # - [0x1045E60, .rodata, fx/airscore]
+  # - [0x1045E80, .rodata, code_7AF80]
+  # - [0x1045F40, .rodata, mapModel]
+  # - [0x1046100, .rodata, code_83340]
+  # - [0x1046110, .rodata, gc/section]
+  # - [0x1046E10, .rodata, gc/sky]
+  # - [0x1046E20, .rodata, gc/transition]
+  # - [0x1046E80, .rodata, code_85800]
+  # - [0x1046EA0, .rodata, gc/dialog]
+  # - [0x1046F10, .rodata, gc/pauseMenu]
+  # - [0x1047250, .rodata, gc/zoombox] 
+  # - [0x1047320, .rodata, code_91E10]
+  # - [0x1047360, .rodata, code_935F0]
+  # - [0x1047380, .rodata, gc/parade]
+  # - [0x1047700, .rodata, code_94A20]
+  # - [0x1047710, .rodata, code_956B0]
+  # - [0x1047720, .rodata, code_9A9D0]
+  # - [0x1047750, .rodata, code_9B180]
+  # - [0x1047770, .rodata, code_9C170]
+  # - [0x10477C0, .rodata, code_9E370] 
+  # - [0x1047840, .rodata, code_A4D00]
+  # - [0x1047870, .rodata, code_A5BC0]
+  # - [0x1047890, .rodata, code_AD110]
+  # - [0x10478B0, .rodata, skeletalanim]
+  # - [0x10478C0, .rodata, code_AEDA0]
+  # - [0x1047910, .rodata, modelRender]
+  # - [0x1047920, .rodata, code_B3A80]
+  # - [0x1047930, .rodata, string]
+  # - [0x1047950, .rodata, code_B6C60]
+  # - [0x1047960, .rodata, code_B6CE0]
+  # - [0x1047990, .rodata, code_B9090]
+  # - [0x10479C0, .rodata, code_B9770]
+  # - [0x1047A50, .rodata, code_BD100]
+  # - [0x1047A70, .rodata, code_BDCC0]
+  # - [0x1047A90, .rodata, code_BE2C0]
+  # - [0x1047AD0, .rodata, code_BEF20]
+  # - [0x1047B10, .rodata, code_C0E60]
+  # - [0x1047B20, .rodata, rand]
+  # - [0x1047B40, .rodata, code_C3A40]
+  # - [0x1047B50, .rodata, code_C4320]
+  # - [0x1047B70, .rodata, code_C5AF0]
+  # - [0x1047B90, .rodata, code_C5CC0]
+  # - [0x1047BA0, .rodata, code_C5F00]
+  # - [0x1047BD0, .rodata, code_C62B0]
+  # - [0x1047C00, .rodata, code_C76D0]
+  # - [0x1047C40, .rodata, code_C7CC0]
+  # - [0x1047C80, .rodata, code_C8230]
+  # - [0x1047C90, .rodata, code_C8360]
+  # - [0x1047CA0, .rodata, code_C8490]
+  # - [0x1047CC0, .rodata, code_C8760]
+  # - [0x1047CD0, .rodata, code_C89C0]
+  # - [0x1047D10, .rodata, code_C97F0]
+  # - [0x1047D20, .rodata, code_C9F00]
+  # - [0x1047D50, .rodata, code_CB050]
+  # - [0x1047DC0, .rodata, code_CB610]
+  # - [0x1047DE0, .rodata, code_CBD10]
+  # - [0x1047E00, .rodata, code_CC1E0]
+  # - [0x1047E20, .rodata, code_CD0A0]
+  # - [0x1047E40, .rodata, code_CD3F0]
+  # - [0x1047E50, .rodata, code_CD6E0]
+  # - [0x1047E90, .rodata, code_CECD0]
+  # - [0x1047EB0, .rodata, code_CF090]
+  # - [0x1047EC0, .rodata, ch/clankerwhipcrack]
+  # - [0x1047EE0, .rodata, ch/code_CFA60]
+  # - [0x1047F30, .rodata, ch/clucker]
+  # - [0x1047FD0, .rodata, code_D0CA0]
+  # - [0x1048050, .rodata, code_D2180]
+  # - [0x1048060, .rodata, ch/firefx]
+  # - [0x10480A0, .rodata, ch/drips]
+  # - [0x10480C0, .rodata, ch/icecube]
+  # - [0x1048170, .rodata, ch/ghost]
+  # - [0x10481E0, .rodata, ch/flotsam]
+  # - [0x1048220, .rodata, code_D5D10]
+  # - [0x1048230, .rodata, code_D6180]
+  # - [0x1048240, .rodata, code_D6600]
+  # - [0x1048280, .rodata, ch/termite]
+  # - [0x10482F0, .rodata, ch/gravestone]
+  # - [0x1048390, .rodata, code_D89E0]
+  # - [0x10483C0, .rodata, code_D89E0]
+  # - [0x1048430, .rodata, ch/whipcrack]
+  # - [0x1048450, .rodata, code_DA3A0]
+  # - [0x1048460, .rodata, code_DA760]
+  # - [0x1048480, .rodata, code_DB010]
+  - [0x0106C980, .bss, anim/sprite]
+  - [0x0106C980, .bss, animcache]
+  - [0x0106C980, .bss, code_1550]
+  - [0x0106C980, .bss, code_1930]
+  - [0x0106C980, .bss, ba/anim]
+  # - [0x0106C980, .bss, snackerctl]
+  # - [0x0106C980, .bss, code_39D0]
+  # - [0x0106C980, .bss, ba/marker]
+  # - [0x0106C980, .bss, code_6B30]
+  # - [0x0106C980, .bss, code_7060]
+  # - [0x0106C980, .bss, code_8DA0]
+  # - [0x0106C980, .bss, code_90E0]
+  # - [0x0106C980, .bss, code_9290]
+  # - [0x0106C980, .bss, code_9450]
+  # - [0x0106C980, .bss, code_9900]
+  # - [0x0106C980, .bss, code_9BD0]
+  # - [0x0106C980, .bss, code_A600]
+  # - [0x0106C980, .bss, statetimer]
+  # - [0x0106C980, .bss, ba/model]
+  # - [0x0106C980, .bss, ba/drone]
+  # - [0x0106C980, .bss, eggshatter]
+  # - [0x0106C980, .bss, code_BD20]
+  # - [0x0106C980, .bss, ba/falldamage]
+  # - [0x0106C980, .bss, code_C3F0]
+  # - [0x0106C980, .bss, code_C4B0]
+  # - [0x0106C980, .bss, ba/carry]
+  # - [0x0106C980, .bss, code_D9B0]
+  # - [0x0106C980, .bss, code_DF70]
+  # - [0x0106C980, .bss, code_E410]
+  # - [0x0106C980, .bss, abilityprogress]
+  # - [0x0106C980, .bss, code_E910]
+  # - [0x0106C980, .bss, code_EE40]
+  # - [0x0106C980, .bss, code_EF50]
+  # - [0x0106C980, .bss, ba/physics]
+  # - [0x0106C980, .bss, code_10CD0]
+  # - [0x0106C980, .bss, pitch]
+  # - [0x0106C980, .bss, code_11040]
+  # - [0x0106C980, .bss, climb]
+  # - [0x0106C980, .bss, code_11460]
+  # - [0x0106C980, .bss, code_11660]
+  # - [0x0106C980, .bss, code_117D0]
+  # - [0x0106C980, .bss, code_11870]
+  # - [0x0106C980, .bss, roll]
+  # - [0x0106C980, .bss, yaw]
+  # - [0x0106C980, .bss, code_12360]
+  # - [0x0106C980, .bss, code_126C0]
+  # - [0x0106C980, .bss, code_12F30]
+  # - [0x0106C980, .bss, bsList]
+  # - [0x0106C980, .bss, code_13780]
+  # - [0x0106C980, .bss, bsStoredState]
+  # - [0x0106C980, .bss, code_13A00]
+  # - [0x0106C980, .bss, code_13FC0]
+  # - [0x0106C980, .bss, code_14420]
+  # - [0x0106C980, .bss, code_15F20]
+  # - [0x0106C980, .bss, code_16010]
+  # - [0x0106C980, .bss, code_16C60]
+  # - [0x0106C980, .bss, code_171F0]
+  # - [0x0106C980, .bss, bs/ant]
+  # - [0x0106C980, .bss, bs/bBarge]
+  # - [0x0106C980, .bss, bs/bbuster]
+  # - [0x0106C980, .bss, bs/beeFly]
+  # - [0x0106C980, .bss, bs/beeMain]
+  # - [0x0106C980, .bss, bs/bEggAss]
+  # - [0x0106C980, .bss, bs/bEggHead]
+  # - [0x0106C980, .bss, bs/bFlap]
+  # - [0x0106C980, .bss, bs/bFlip]
+  # - [0x0106C980, .bss, bs/bFly]
+  # - [0x0106C980, .bss, bs/bLongLeg]
+  # - [0x0106C980, .bss, bs/bPeck]
+  # - [0x0106C980, .bss, bs/bShock]
+  # - [0x0106C980, .bss, bs/bSwim]
+  # - [0x0106C980, .bss, bs/bTrot]
+  # - [0x0106C980, .bss, bs/bWhirl]
+  # - [0x0106C980, .bss, bs/claw]
+  # - [0x0106C980, .bss, bs/climb]
+  # - [0x0106C980, .bss, bs/croc]
+  # - [0x0106C980, .bss, bs/crouch]
+  # - [0x0106C980, .bss, bs/die]
+  # - [0x0106C980, .bss, bs/droneenter]
+  # - [0x0106C980, .bss, bs/dronegoto]
+  # - [0x0106C980, .bss, bs/dronevanish]
+  # - [0x0106C980, .bss, bs/dronexform]
+  # - [0x0106C980, .bss, bs/jig]
+  # - [0x0106C980, .bss, bs/jump]
+  # - [0x0106C980, .bss, bs/ow]
+  # - [0x0106C980, .bss, bs/pumpkin]
+  # - [0x0106C980, .bss, bs/rebound]
+  # - [0x0106C980, .bss, bs/sled]
+  # - [0x0106C980, .bss, bs/slide]
+  # - [0x0106C980, .bss, bs/splat]
+  # - [0x0106C980, .bss, bs/stand]
+  # - [0x0106C980, .bss, bs/swim]
+  # - [0x0106C980, .bss, bs/surf]
+  # - [0x0106C980, .bss, bs/talk]
+  # - [0x0106C980, .bss, bs/throw]
+  # - [0x0106C980, .bss, bs/turn]
+  # - [0x0106C980, .bss, bs/twirl]
+  # - [0x0106C980, .bss, bs/walk]
+  # - [0x0106C980, .bss, bs/walrus]
+  # - [0x0106C980, .bss, bs/washy]
+  # - [0x0106C980, .bss, nc/cameranodelist]
+  # - [0x0106C980, .bss, code_33C30]
+  # - [0x0106C980, .bss, nc/staticCamera]
+  # - [0x0106C980, .bss, code_34310]
+  # - [0x0106C980, .bss, code_34790]
+  # - [0x0106C980, .bss, code_35520]
+  # - [0x0106C980, .bss, nc/dynamicCamera]
+  # - [0x0106C980, .bss, code_379B0]
+  # - [0x0106C980, .bss, nc/randomCamera]
+  # - [0x0106C980, .bss, code_37E50]
+  # - [0x0106C980, .bss, nc/dynamicCam10]
+  # - [0x0106C980, .bss, nc/dynamicCam5]
+  # - [0x0106C980, .bss, nc/dynamicCam11]
+  # - [0x0106C980, .bss, nc/dynamicCam8]
+  # - [0x0106C980, .bss, nc/dynamicCam4]
+  # - [0x0106C980, .bss, nc/dynamicCamC]
+  # - [0x0106C980, .bss, code_F8EAF0]
+  # - [0x0106C980, .bss, nc/dynamicCamB]
+  # - [0x0106C980, .bss, nc/dynamicCam13]
+  # - [0x0106C980, .bss, nc/dynamicCam9]
+  # - [0x0106C980, .bss, nc/dynamicCam12]
+  # - [0x0106C980, .bss, nc/dynamicCam3]
+  # - [0x0106C980, .bss, code_3B2C0]
+  # - [0x0106C980, .bss, nc/dynamicCamF]
+  # - [0x0106C980, .bss, nc/firstpersoncamera]
+  # - [0x0106C980, .bss, ch/gameSelect]
+  # - [0x0106C980, .bss, code_41460]
+  # - [0x0106C980, .bss, code_41FB0]
+  # - [0x0106C980, .bss, code_42CB0]
+  # - [0x0106C980, .bss, mapspecificflags]
+  # - [0x0106C980, .bss, code_47BD0]
+  # - [0x0106C980, .bss, code_4A6F0]
+  # - [0x0106C980, .bss, code_4C020]
+  # - [0x0106C980, .bss, ch/badShad]
+  # - [0x0106C980, .bss, ch/climbBase]
+  # - [0x0106C980, .bss, code_55390]
+  # - [0x0106C980, .bss, code_556C0]
+  # - [0x0106C980, .bss, code_55850]
+  # - [0x0106C980, .bss, ch/overlaycopyright]
+  # - [0x0106C980, .bss, ch/overlaypressstart]
+  # - [0x0106C980, .bss, ch/overlaynocontroller]
+  # - [0x0106C980, .bss, ch/bottlesbonus]
+  # - [0x0106C980, .bss, code_57C70]
+  # - [0x0106C980, .bss, code_581D0]
+  # - [0x0106C980, .bss, ch/bottlesbonuscursor]
+  # - [0x0106C980, .bss, code_59A80]
+  # - [0x0106C980, .bss, ch/snacker]
+  # - [0x0106C980, .bss, ch/snowball]
+  # - [0x0106C980, .bss, code_5BEB0]
+  # - [0x0106C980, .bss, code_5C240]
+  # - [0x0106C980, .bss, code_5C870]
+  # - [0x0106C980, .bss, code_5DBC0]
+  # - [0x0106C980, .bss, code_5FD90]
+  # - [0x0106C980, .bss, code_637D0]
+  # - [0x0106C980, .bss, code_654C0]
+  # - [0x0106C980, .bss, code_66D90]
+  # - [0x0106C980, .bss, gc/bound]
+  # - [0x0106C980, .bss, code_67650]
+  # - [0x0106C980, .bss, particle]
+  # - [0x0106C980, .bss, code_69F60]
+  # - [0x0106C980, .bss, code_6AEF0]
+  # - [0x0106C980, .bss, code_6B030]
+  # - [0x0106C980, .bss, fx/ripple]
+  # - [0x0106C980, .bss, code_6CD20]
+  # - [0x0106C980, .bss, code_6CEC0]
+  # - [0x0106C980, .bss, code_6D030]
+  # - [0x0106C980, .bss, code_6D270]
+  # - [0x0106C980, .bss, code_6DA30]
+  # - [0x0106C980, .bss, code_6DA30]
+  # - [0x0106C980, .bss, code_70C30]
+  # - [0x0106C980, .bss, code_72060]
+  # - [0x0106C980, .bss, code_72B10]
+  # - [0x0106C980, .bss, code_73640]
+  # - [0x0106C980, .bss, code_74420]
+  # - [0x0106C980, .bss, code_74910]
+  # - [0x0106C980, .bss, code_74ED0]
+  # - [0x0106C980, .bss, code_75480]
+  # - [0x0106C980, .bss, code_75930]
+  # - [0x0106C980, .bss, code_75E90]
+  # - [0x0106C980, .bss, fx/common1score]
+  # - [0x0106C980, .bss, fx/honeycarrierscore]
+  # - [0x0106C980, .bss, fx/jinjoscore]
+  # - [0x0106C980, .bss, fx/lifescore]
+  # - [0x0106C980, .bss, fx/healthscore]
+  # - [0x0106C980, .bss, fx/airscore]
+  # - [0x0106C980, .bss, code_7AF80]
+  # - [0x0106C980, .bss, mapModel]
+  # - [0x0106C980, .bss, code_83340]
+  # - [0x0106C980, .bss, gc/section]
+  # - [0x0106C980, .bss, gc/sky]
+  # - [0x0106C980, .bss, gc/transition]
+  # - [0x0106C980, .bss, code_851D0]
+  # - [0x0106C980, .bss, code_857B0]
+  # - [0x0106C980, .bss, code_85800]
+  # - [0x0106C980, .bss, gc/dialog]
+  # - [0x0106C980, .bss, gc/pauseMenu]
+  # - [0x0106C980, .bss, code_8DC20]
+  # - [0x0106C980, .bss, gc/zoombox]
+  # - [0x0106C980, .bss, code_91E10]
+  # - [0x0106C980, .bss, gc/parade]
+  # - [0x0106C980, .bss, code_94620]
+  # - [0x0106C980, .bss, code_94780]
+  # - [0x0106C980, .bss, code_956B0]
+  # - [0x0106C980, .bss, code_98CB0]
+  # - [0x0106C980, .bss, quizquestionaskedbitfield]
+  # - [0x0106C980, .bss, code_999A0]
+  # - [0x0106C980, .bss, jiggyscore]
+  # - [0x0106C980, .bss, honeycombscore]
+  # - [0x0106C980, .bss, mumboscore]
+  # - [0x0106C980, .bss, code_9A740]
+  # - [0x0106C980, .bss, code_9A9D0]
+  # - [0x0106C980, .bss, levelspecificflags]
+  # - [0x0106C980, .bss, code_9B180]
+  # - [0x0106C980, .bss, code_9B650]
+  # - [0x0106C980, .bss, code_9B990]
+  # - [0x0106C980, .bss, code_9C170]
+  # - [0x0106C980, .bss, timedfuncqueue]
+  # - [0x0106C980, .bss, code_9E370]
+  # - [0x0106C980, .bss, code_A4D00]
+  # - [0x0106C980, .bss, code_A5BC0]
+  # - [0x0106C980, .bss, code_ABC00]
+  # - [0x0106C980, .bss, code_AC520]
+  # - [0x0106C980, .bss, code_AD110]
+  # - [0x0106C980, .bss, code_AD5B0]
+  # - [0x0106C980, .bss, code_AE290]
+  # - [0x0106C980, .bss, code_AEDA0]
+  # - [0x0106C980, .bss, modelRender]
+  # - [0x0106C980, .bss, code_B3A80]
+  # - [0x0106C980, .bss, code_B5040]
+  # - [0x0106C980, .bss, code_B5E00]
+  # - [0x0106C980, .bss, code_B62B0]
+  # - [0x0106C980, .bss, code_B6C60]
+  # - [0x0106C980, .bss, code_B6CE0]
+  # - [0x0106C980, .bss, code_B6EA0]
+  # - [0x0106C980, .bss, code_B8020]
+  # - [0x0106C980, .bss, code_B8860]
+  # - [0x0106C980, .bss, code_B9770]
+  # - [0x0106C980, .bss, code_BD100]
+  # - [0x0106C980, .bss, code_BDCC0]
+  # - [0x0106C980, .bss, code_BEF20]
+  # - [0x0106C980, .bss, code_C0E60]
+  # - [0x0106C980, .bss, animtexturecache]
+  # - [0x0106C980, .bss, code_C2F30]
+  # - [0x0106C980, .bss, rand]
+  # - [0x0106C980, .bss, code_C4320]
+  # - [0x0106C980, .bss, code_C4F40]
+  # - [0x0106C980, .bss, code_C5440]
+  # - [0x0106C980, .bss, code_C89C0]
+  # - [0x0106C980, .bss, code_C97F0]
+  # - [0x0106C980, .bss, code_C9E70]
+  # - [0x0106C980, .bss, code_C9F00]
+  # - [0x0106C980, .bss, code_CB8A0]
+  # - [0x0106C980, .bss, code_CBBF0]
+  # - [0x0106C980, .bss, code_CD0A0]
+  # - [0x0106C980, .bss, code_CD6E0]
 - name: CC
   dir: CC
   type: bin
@@ -1637,7 +1635,7 @@ segments:
 #   # follows_vram: core2
 #   # exclusive_ram_id: overlay
 #   # subsegments:
-#   # - [0x1048560, c, code_0]
+#   # - [0x0106C980, c, code_0]
 #   # - [0x1048A90, c, code_530] #Done
 #   # - [0x1049150, c, code_BF0] #Done
 #   # - [0x1049680, c, ch/tooth] #Done
