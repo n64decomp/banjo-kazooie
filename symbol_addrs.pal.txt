@@ -25,37 +25,24 @@ osWritebackDCache           = 0x80264740;
 osInvalDCache               = 0x802647C0;
 osSetIntMask                = 0x80265120;
 osInvalICache               = 0x80268060;
-
-
-__osSetSR                   = 0x8026A210;
-__osGetSR                   = 0x8026A220;
-__osSetFpcCsr               = 0x8026A230;
-__osEnqueueAndYield         = 0x8026A90C;
-__osEnqueueThread           = 0x8026AA0C;
-__osPopThread               = 0x8026AA54;
-__osDispatchThread          = 0x8026AA64;
-__osCleanupThread           = 0x8026ABE0;
-osMapTLBRdb                 = 0x8026ABF0;
-__osDisableInt              = 0x8026ACB0;
-__osRestoreInt              = 0x8026ACD0;
-__osProbeTLB                = 0x8026B420;
-bcopy                       = 0x8026C110;
-__osSetCompare              = 0x8026CA70;
-osGetCount                  = 0x8026CE00;
-
+__osSetSR                   = 0x80269db0;
+__osGetSR                   = 0x80269dc0;
+__osSetFpcCsr               = 0x80269dd0;
+func_8026A2E0               = 0x80269e80;
+__osEnqueueAndYield         = 0x8026a4ac;
+__osEnqueueThread           = 0x8026a5ac;
+__osPopThread               = 0x8026a5f4;
+__osDispatchThread          = 0x8026a604;
+__osCleanupThread           = 0x8026A780;
+osMapTLBRdb                 = 0x8026a790;
+__osDisableInt              = 0x8026ab10;
+__osRestoreInt              = 0x8026ab30;
+__osProbeTLB                = 0x8026b280;
+bcopy                       = 0x8026bf70;
+__osSetCompare              = 0x8026c8d0;
+osGetCount                  = 0x8026cc60;
 
 D_80276E70                  = 0x80276bc0;
-
-
-
-
-__osShutdown                = 0x8027712C;
-__OSGlobalIntMask           = 0x80277130;
-__osRunQueue                = 0x80277378;
-__osRunningThread           = 0x80277380;
-__osFaultedThread           = 0x80277384;
-__osRcpImTable              = 0x80278C60;
-__libm_qnan_f               = 0x80278DB0;
 
 func_80240204               = 0x80240D80;
 alUnlink                    = 0x80264080;
