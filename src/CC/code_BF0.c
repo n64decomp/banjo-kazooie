@@ -74,8 +74,8 @@ void func_803870F8(Actor *this){
     f32 sp3C[3];
     
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker->propPtr->unk8_3 = 1;
         this->pitch = 0.0f;
         this->yaw = 0.0f;

@@ -159,8 +159,8 @@ void chjinjonator_update(Actor *this){
     sp58 = time_getDelta();
     sp54 = animctrl_getDuration(this->animctrl);
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         local->unk18 = 0.40000000000000013 / (this->unk60 +  3.3);
         local->unk14 = 0.7f;
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_B, 20000);

@@ -63,8 +63,8 @@ void func_8038B900(Actor *this){
         }
     }////L8038BBFC
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->position_x = -5100.0f;
         this->position_y = -2600.0f;
         this->position_z = 1460.0f;

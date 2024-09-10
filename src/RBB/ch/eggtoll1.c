@@ -145,8 +145,8 @@ void func_8038685C(ActorMarker *marker){
 void func_803868F0(Actor *this){
     ActorLocal_RBB_0 *local = (ActorLocal_RBB_0 *) &this->local;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(this->state == 0){
             local->unk0 = 0;
             local->unk4 = 0;

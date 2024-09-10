@@ -51,8 +51,8 @@ void __chAnchorCtrl_setState(Actor *this, s32 new_state){
 }
 
 void chAnchorCtrl_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(levelSpecificFlags_getSet(0x30, FALSE))
             __chAnchorCtrl_setState(this, 2);
         else

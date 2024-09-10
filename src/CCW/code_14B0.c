@@ -69,8 +69,8 @@ void CCW_func_80387A40(Actor *this) {
 
     local = (ActorLocal_CCW_14B0 *)&this->local;
     sp68 = time_getDelta();
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = CCW_func_80387A20;
         local->unk4 = &D_8038EC00[0];
         while((local->unk4->unk0 != 0) && (map_get() != local->unk4->unk0)) {

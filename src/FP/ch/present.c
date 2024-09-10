@@ -39,8 +39,8 @@ Actor *func_8038F0F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_8038F144(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(!jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
             this->unk38_31 = TRUE;
             this->marker->collidable = FALSE;

@@ -29,8 +29,8 @@ void func_803567EC(Actor *this){
     f32 sp44;
     f32 sp40;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->roll = this->yaw;
         this->yaw = 0.0f;
         func_80356770(this, 1);

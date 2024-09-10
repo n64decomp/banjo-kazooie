@@ -29,8 +29,8 @@ void func_80392B6C(Actor *this) {
     NodeProp* phi_a0;
     s32 sp28;
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
             marker_despawn(this->marker);
             return;

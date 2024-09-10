@@ -157,9 +157,9 @@ void func_8038CC98(Actor *this){
     f32 sp54;
     f32 sp48[3];
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         sp7C = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_8038C880;
         local->unk8 = &D_803911F0[this->modelCacheIndex - 0x285];
         local->unk10 = 0;

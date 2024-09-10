@@ -64,8 +64,8 @@ void func_8038AEBC(Actor *this) {
     f32 sp30;
     f32 sp2C;
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         func_8038AD50(this, 1);
         return;
     }

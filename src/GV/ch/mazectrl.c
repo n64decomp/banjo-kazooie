@@ -150,8 +150,8 @@ void chMazeCtrl_update(Actor *this){
     ActorLocal_GVMazeCtrl *local  = (ActorLocal_GVMazeCtrl *)&this->local;
 
     sp34 = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = __chMazeCtrl_8038F5E4;
         if(this->state == 2){
             comusic_8025AB44(COMUSIC_26_GV_SANDYBUTT_DANGER, 30000, 30000);

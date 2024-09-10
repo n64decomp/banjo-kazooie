@@ -14,10 +14,10 @@ ActorInfo D_8038ABF0 = {
 
 /* .code */
 void SM_func_80386FE0(Actor *this){
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->unk10_12 = 0;
         this->unk38_31 = this->unk10_12;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
     }
 

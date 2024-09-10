@@ -331,8 +331,8 @@ void chmole_update(Actor *this){
     if(this->unkF4_8 < 8 || this->unkF4_8 >= 0x13)
         return;
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setFreeMethod(this->marker, func_802D9C90);
         if(this->initialized){
             other = actorArray_findClosestActorFromActorId(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);

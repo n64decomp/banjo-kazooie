@@ -90,9 +90,9 @@ Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx) {
 void func_8038C41C(Actor *this) {
     f32 sp2C[3];
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->unk138_24 = FALSE;
         return;
     }

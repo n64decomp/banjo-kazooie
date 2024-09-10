@@ -68,8 +68,8 @@ void chPropellor_update(Actor *this){
     f32 tmp;
     f32 sp34 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
         this->pitch = randf2(0.0f, 300.0f);
         func_803300C0(this->marker, func_80389B44);

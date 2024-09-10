@@ -187,8 +187,8 @@ void func_8035F138(Actor *this) {
     }
     switch(this->state){
         case 1: //L8035F20C
-            if (!this->unk16C_4) {
-                this->unk16C_4 = TRUE;
+            if (!this->volatile_initialized) {
+                this->volatile_initialized = TRUE;
                 marker_setCollisionScripts(this->marker, func_8035F0E8, func_8035F048, func_8035EF9C);
                 local->unk0 = 1;
                 this->unk1C[0] = this->position[0];

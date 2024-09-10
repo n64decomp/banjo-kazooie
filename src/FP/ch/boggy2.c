@@ -64,7 +64,7 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(1, 1);
     func_8033A45C(3, 1);
     this = actor_draw(marker, gfx, mtx, vtx);
-    if(this->unk16C_4 && marker->unk14_21){
+    if(this->volatile_initialized && marker->unk14_21){
         if( this->state == 4
             || this->state == 5
             || this->state == 6
@@ -405,8 +405,8 @@ void func_803896FC(Actor *this){
     sp54 = time_getDelta();
     func_8024E55C(0, sp3C);
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->unk40_23 = FALSE;
         this->marker->propPtr->unk8_3 = FALSE;
         this->marker->unk2C_1 = TRUE;

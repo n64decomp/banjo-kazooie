@@ -115,8 +115,8 @@ void chnabnut_update(Actor *this) {
     f32 sp24;
 
     local = (ActorLocal_CCW_5540 *)&this->local;
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         D_8038F350[0] = this->position[0];
         D_8038F350[1] = this->position[1];
         D_8038F350[2] = this->position[2];

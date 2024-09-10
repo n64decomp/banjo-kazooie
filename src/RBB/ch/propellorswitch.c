@@ -94,10 +94,10 @@ void chPropellorSwitch_free(Actor *actor){
 
 void chPropellorSwitch_update(Actor *this){
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&this->local;
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
         this->marker->actorFreeFunc = chPropellorSwitch_free;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         local->unk0 = &D_80390720[((this->unk78_13 == 2) ? 0:1)];
         if(local->unk0->unk6 == 0)
             local->unk4 = NULL;

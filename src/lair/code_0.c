@@ -358,8 +358,8 @@ void func_803867A8(Actor *this) {
         this->velocity[0] = 0.0f;
         return;
     }
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->unk158[0] = func_803866D8(0);
         this->unk158[1] = func_803866D8(1);
         if (volatileFlag_get(VOLATILE_FLAG_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED)) {
@@ -461,8 +461,8 @@ void func_80386D78(Actor *this) {
         return;
     }
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         if (volatileFlag_get(VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED)) {
             ability_unlock(ABILITY_9_FLIGHT);
             mapSpecificFlags_set(0, TRUE);
@@ -527,8 +527,8 @@ void func_803870DC(Actor *this) {
     phi_v1 = fileProgressFlag_get(D_80393454[this->unkF4_8 - 1]) 
              || (D_80393468[this->unkF4_8 - 1] != 0 && volatileFlag_get(D_80393468[this->unkF4_8 - 1]));
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         if (phi_v1) {
             this->alpha_124_19 = 0xFF;
         } else {
@@ -602,7 +602,7 @@ void func_803875F0(Actor * this)
 {
     func_802D3D74(this);
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         if (fileProgressFlag_get(FILEPROG_1E_LAIR_GRATE_TO_BGS_PUZZLE_OPEN))
         {
@@ -615,7 +615,7 @@ void func_803875F0(Actor * this)
             this->unk1C_y = this->position_y;
             func_802BAFE4(0x2A);
             fileProgressFlag_set(FILEPROG_1E_LAIR_GRATE_TO_BGS_PUZZLE_OPEN, TRUE);
-            this->unk16C_4 = TRUE;
+            this->volatile_initialized = TRUE;
             this->unk38_31 = 0x0C;
         }
     }
@@ -657,8 +657,8 @@ void func_80387730(Actor *this) {
     f32 sp60[3];
 
     func_802D3D74(this);
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->alpha_124_19 = 0xFF;
         this->unk1C[1] = 0.0f;
         this->unk1C[2] = 3.5f;
@@ -860,11 +860,11 @@ void func_80387F78(Actor *this, u32 flag)
 void func_803880BC(Actor *this)
 {
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         func_802D3CE8(this);
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
 
         this->unk1C[1] = this->position_y;
         this->position_y -= 51.f;
@@ -932,11 +932,11 @@ void lair_func_80388278(Actor *this)
 
 void func_803882B0(Actor *this)
 {
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         func_802D3D74(this);
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
 
         if (fileProgressFlag_get(FILEPROG_48_FP_WITCH_SWITCH_ADVENT_DOOR_OPEN))
             this->pitch = 90.f;
@@ -1077,8 +1077,8 @@ void func_80388524(Actor *this) {
         }
         this->initialized = TRUE;
     }
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         switch(this->modelCacheIndex){
             case ACTOR_2E5_DOOR_OF_GRUNTY: //L80388880
                 if (fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) && (this->state == 0x19)) {
@@ -1310,7 +1310,7 @@ void func_80388FC8(Actor *this)
     if (this->unk60)
         return;
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         if (fileProgressFlag_get(this->modelCacheIndex == 0x215 ? FILEPROG_1F_CC_LOBBY_PIPE_1_RAISED : FILEPROG_20_CC_LOBBY_PIPE_2_RAISED))
         {
@@ -1328,7 +1328,7 @@ void func_80388FC8(Actor *this)
 
             fileProgressFlag_set(this->modelCacheIndex == 0x215 ? FILEPROG_1F_CC_LOBBY_PIPE_1_RAISED : FILEPROG_20_CC_LOBBY_PIPE_2_RAISED, TRUE);
 
-            this->unk16C_4 = 1;
+            this->volatile_initialized = TRUE;
             this->unk38_31 = 12;
         }
     }
@@ -1387,7 +1387,7 @@ void lair_func_80389204(Actor *this)
     if (this->unk60)
         return;
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         if (fileProgressFlag_get(FILEPROG_21_CC_LOBBY_PIPE_3_RAISED))
         {
@@ -1400,7 +1400,7 @@ void lair_func_80389204(Actor *this)
             func_802BAFE4(0x2C);
             fileProgressFlag_set(FILEPROG_21_CC_LOBBY_PIPE_3_RAISED, TRUE);
 
-            this->unk16C_4 = 1;
+            this->volatile_initialized = TRUE;
             this->unk38_31 = 12;
         }
     }
@@ -1434,9 +1434,9 @@ void func_803893B8(Actor *this)
 {
     func_802D3D74(this);
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
 
         if (jiggyscore_isCollected(JIGGY_37_LAIR_BGS_WITCH_SWITCH))
         {
@@ -1470,9 +1470,9 @@ void lair_func_803894B0(Actor *this)
     void func_802EE2E8(Actor *, s32, s32, s32, f32, f32, f32);
     func_802D3D74(this);
 
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->unk1C[0] = 0;
 
         if (fileProgressFlag_get(FILEPROG_A1_STATUE_HAT_OPEN))
@@ -1597,12 +1597,12 @@ void func_80389898(Actor *this)
 
 void func_80389934(Actor *this)
 {
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         func_802D3CE8(this);
         actor_collisionOff(this);
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
 
         if (fileProgressFlag_get(FILEPROG_A2_GV_LOBBY_COFFIN_OPEN))
             subaddie_set_state_with_direction(this, 0x18, 0.999f, 1);
@@ -1723,11 +1723,11 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
 void func_80389D08(Actor *this)
 {
-    if (!this->unk16C_4)
+    if (!this->volatile_initialized)
     {
         func_802D3CE8(this);
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->unk60 = 0;
 
         if (fileProgressFlag_get(0xA5))

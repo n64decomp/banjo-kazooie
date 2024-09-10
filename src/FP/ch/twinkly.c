@@ -257,8 +257,8 @@ void func_8038C9A0(Actor *this){
     }
     other = marker_getActor(this->unk100);
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->unk18 = &FP_D_80392018;
         this->unk38_31 = 0;
         if(0.0f != other->velocity[0]){

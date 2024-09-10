@@ -13,8 +13,8 @@ ActorInfo D_803926C0 = { 0x20E, 0x33E, 0x49C,
 
 /* .code */
 void func_803905B0(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
     }
     this->marker->propPtr->unk8_3 = func_8038DD14(this) ? TRUE : FALSE;

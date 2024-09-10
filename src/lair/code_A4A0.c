@@ -83,7 +83,7 @@ void func_80390AE8(Actor *this) {
     ActorLocal_lair_A4A0 *local;
 
     local = (ActorLocal_lair_A4A0 *)&this->local;
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         local->unkC_27 = (this->modelCacheIndex == 0x367) ? 2
                        : (this->modelCacheIndex == 0x3bf) ? 1 
                        : 0;

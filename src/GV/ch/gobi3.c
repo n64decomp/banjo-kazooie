@@ -115,8 +115,8 @@ void chGobi3_ow(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void chGobi3_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, chGobi3_ow, NULL, NULL);
         this->unk1C[0] = 0.0f;
         this->unk1C[1] = 0.0f;

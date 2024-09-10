@@ -44,8 +44,8 @@ int func_80390334(void){
 
 void func_80390388(Actor *this){
     actor_collisionOff(this);
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(jiggyscore_isSpawned(JIGGY_2E_FP_PRESENTS) || jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
             levelSpecificFlags_set(0x11, TRUE);
             levelSpecificFlags_set(0x12, TRUE);

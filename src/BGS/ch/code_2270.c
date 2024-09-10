@@ -280,8 +280,8 @@ void func_80389080(Actor *this){
 
     unqPtr = (ActorLocal_BGS_2270 *)&this->local;
     sp3C = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_80388FC0;
         marker_setCollisionScripts(this->marker, func_80388E44, NULL, NULL);
         

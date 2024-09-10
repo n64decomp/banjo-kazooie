@@ -11,9 +11,9 @@ ActorInfo D_80390B40 = {
 };
 
 void func_8038C300(Actor *this){
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         skeletalAnim_set(this->unk148, 0x140, 0.0f, 1.0f);
     }
 }

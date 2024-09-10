@@ -155,8 +155,8 @@ void func_8038B124(Actor *this){
         this->velocity_z = this->position_z;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(this->state == 0xa)
             marker_despawn(this->marker);
 

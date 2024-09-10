@@ -290,8 +290,8 @@ void func_80358684(Actor *this) {
     local = (ActorLocal_core2_D0CA0 *)&this->local;
     next_state = 0;
     sp88 = time_getDelta();
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_80358490;
         local->unk38 = 0;
         local->unk39 = 0;

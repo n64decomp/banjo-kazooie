@@ -52,8 +52,8 @@ void func_802DC208(Actor *this) {
     f32 sp2C[3];
     enum asset_e phi_a1;
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
         this->marker->propPtr->unk8_3 = TRUE;
     }

@@ -84,7 +84,7 @@ void func_80388FD4(Actor *this) {
         this->unk10_12 = func_80388EF0(this);
         this->initialized = TRUE;
     }
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
             actor_playAnimationOnce(this);
             subaddie_set_state_with_direction(this, 4, 0.999f, 1);
@@ -93,7 +93,7 @@ void func_80388FD4(Actor *this) {
             marker_setCollisionScripts(this->marker, 0, &func_80388F50, 0);
         }
         this->unk38_0 = FALSE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
     if( (this->state == 4)
         && this->unk38_0 
@@ -135,13 +135,13 @@ void func_80389268(Actor *this) {
         actor_collisionOff(this);
         this->initialized = TRUE;
     }
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         this->unk1C[0] = this->position[0];
         this->unk1C[1] = this->position[1];
         this->unk1C[2] = this->position[2];
         this->unk1C[1] += 250.0f;
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         if (fileProgressFlag_get(this->unk10_12 + FILEPROG_8B_CCW_SPRING_OPEN)) {
             subaddie_set_state(this, 3);
         }

@@ -41,9 +41,9 @@ void func_80361828(Actor *this){
 void func_80361870(Actor *this){
     s32 text_id;
     s32 sp28;
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         marker_setFreeMethod(this->marker, func_80361828);
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }
 
     if(!this->unk138_24 && func_80329530(this, 400) && !func_80329530(this, 50)){

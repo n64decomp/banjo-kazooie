@@ -104,8 +104,8 @@ void func_8038811C(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void func_803881AC(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)){
             marker_despawn(this->marker);
             return;

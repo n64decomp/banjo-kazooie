@@ -169,8 +169,8 @@ void GV_func_8038BEA0(Actor *this){
         func_80333270(JIGGY_3E_GV_GRABBA, this->position, func_8038BB6C, this->marker);
     }//L8038BF24
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(this->unk44_31 == 0){
             this->unk44_31 = func_8030D90C();
             sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);

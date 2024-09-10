@@ -415,7 +415,7 @@ void lair_func_8038F924(Actor *this) {
         this->initialized = TRUE;
     }
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         // temp_v0 = &D_803947F8[this->unkF4_8 - 1];
         sp64 = fileProgressFlag_getN(D_803947F8[this->unkF4_8 - 1].progress_flag, D_803947F8[this->unkF4_8 - 1].size_bits);
         local->unk0 = 0;
@@ -429,7 +429,7 @@ void lair_func_8038F924(Actor *this) {
         lair_func_8038F800(this);
         marker_setCollisionScripts(this->marker, func_8038EC94, NULL, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         if (this->unkF4_8 == 9) {
             this->unk1C[0] = 8.0f;
             if (!fileProgressFlag_get(FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED)) {

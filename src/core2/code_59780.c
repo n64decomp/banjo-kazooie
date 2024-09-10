@@ -115,8 +115,8 @@ void func_802E07E0(Actor *this) {
             break;
     }
 
-    if(!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         if (sp24) {
             func_802C7318(this);
         }

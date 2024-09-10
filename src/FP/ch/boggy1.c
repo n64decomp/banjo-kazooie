@@ -108,8 +108,8 @@ void func_8038787C(ActorMarker *marker){
 void func_8038794C(Actor *this){
     int i;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_80387754, NULL);
         this->unk38_31 = 1;

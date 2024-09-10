@@ -532,8 +532,8 @@ void func_80362E94(Actor *this){
             }
             break;
         default: //L8036316C
-            if(!this->unk16C_4){
-                this->unk16C_4 = 1;
+            if(!this->volatile_initialized){
+                this->volatile_initialized = TRUE;
                 this->unk60 = this->scale*10.0;
             }
 

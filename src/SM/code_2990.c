@@ -437,9 +437,9 @@ void chsmmole_Update(Actor * this){
         }
     }//L80389B20
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         __spawnQueue_add_1((GenFunction_1)chsmmole_spawnMolehill, reinterpret_cast(s32, this->marker));
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }//L80389B4C
 
     if(this->unk138_23){

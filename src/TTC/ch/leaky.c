@@ -36,8 +36,8 @@ void chLeaky_update(Actor *this) {
     void *temp_v0_2;
 
     func_8028E668(this->position, 100.0f, -20.0f, 100.0f);
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         if (levelSpecificFlags_get(5) != 0) {
             levelSpecificFlags_set(5, FALSE);

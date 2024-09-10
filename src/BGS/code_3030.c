@@ -71,8 +71,8 @@ void func_80389668(Actor *this) {
     Actor *tiptup;
 
     local = (ActorLocal_BGS_3030 *)&this->local;
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_803895D0, NULL);
         local->unk0 = 1;

@@ -134,8 +134,8 @@ void func_8035765C(Actor *this){
     f32 sp40;
 
     sp50 = time_getDelta();
-    if( !this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if( !this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->unk16C_0 = TRUE;
         if(this->state != 6){
             marker_setCollisionScripts(this->marker, NULL, func_80357564, func_8035758C);

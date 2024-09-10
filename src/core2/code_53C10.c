@@ -240,13 +240,13 @@ void func_802DB5A0(Actor *this) {
     f32 phi_f14;
 
     local = (ActorLocal_core2_53C10 *)&this->local;
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         marker_setCollisionScripts(this->marker, &func_802DB440, local->unk30, local->unk34);
         this->marker->propPtr->unk8_3 = FALSE;
         this->unk60 = 0.0f;
         this->unk124_0 = this->unk138_31 = FALSE;
         local->unk38 = 0;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         if (volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) {
             subaddie_set_state(this, 2U);
             return;

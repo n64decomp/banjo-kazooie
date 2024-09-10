@@ -288,7 +288,7 @@ void func_80388BDC(Actor *this) {
 
     func_802D3D74(this);
     mapSpecificFlags_set(1, ((this->yaw > 260.0f) && (this->yaw < 330.0f)) ? TRUE : FALSE);
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         if (this->yaw != 0.0f) {
             this->unk60 = 0.5f;
             subaddie_set_state(this, 7);
@@ -298,7 +298,7 @@ void func_80388BDC(Actor *this) {
             this->unk38_31 = 0;
             this->unk60 = 0.0f;
         }
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 
     switch (this->state) {
@@ -370,8 +370,8 @@ void func_80388FE4(Actor *this) {
 
 void func_80389004(Actor *this){
     func_802D3CE8(this);
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(levelSpecificFlags_get(0x2e))
             marker_despawn(this->marker);
     }

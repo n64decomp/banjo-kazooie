@@ -323,8 +323,8 @@ void chflibbit_update(Actor *this){
     f32 sp58;
     f32 sp4C[3];
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, BGS_func_80386E30, func_80386E70, func_80386EB0);
         local->unk1C[0] = randf2(-2.0f, -1.0f);
         local->unk1C[1] = randf2(-2.0f, -1.0f);

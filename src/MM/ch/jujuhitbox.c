@@ -124,8 +124,8 @@ void func_80388E20(Actor *this){
         this->unk138_24 = 0;
         jujuCtlPtr->unk18 = 0.5f;
     }
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         __spawnQueue_add_2((GenFunction_2)func_80388DFC,this->marker, jujuCtlPtr->unk4);
         func_80388D14(this);
     }else{

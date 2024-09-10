@@ -135,9 +135,9 @@ void func_80388D04(s32 arg0){
 
 void func_80388D34(Actor *this){
     TTC_func_80388C78(this);
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         __spawnQueue_add_1((GenFunction_1)func_80388D04, (s32)this->marker);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 }
 
@@ -152,8 +152,8 @@ void func_80388D8C(Actor *this){
         this->yaw = 199.0f;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(sns_get_item_state(SNS_ITEM_EGG_PINK, TRUE)){
             this->position_y = 700.0f;
         }

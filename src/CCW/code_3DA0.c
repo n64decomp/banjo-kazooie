@@ -88,8 +88,8 @@ void chcaterpillar_update(Actor *this){
     sp8C = func_8028E86C() == this->marker;
     sp84 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         local->unk0[0] = this->position[0];
         local->unk0[1] = this->position[1];
         local->unk0[2] = this->position[2];

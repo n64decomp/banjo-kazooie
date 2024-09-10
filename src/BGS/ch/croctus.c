@@ -109,12 +109,12 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 void func_80387FD4(Actor *this){
     int j;
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         if(jiggyscore_isCollected(JIGGY_22_CROCTUS)){
             marker_despawn(this->marker);
             return;
         }
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         if(bgs_D_803907B8[this->unkF4_8 - 1] == 0){
             bgs_D_803907B8[this->unkF4_8 - 1] = this->marker;
             for(j = this->unkF4_8; j < 6; j++){

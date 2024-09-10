@@ -271,8 +271,8 @@ void chClam_update(Actor *this){
         animctrl_setDuration(this->animctrl, 2.0f);
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 =  TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, __chClam_attackOther, __chClam_takeDamage);
     }
 

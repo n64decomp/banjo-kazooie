@@ -107,7 +107,7 @@ static void _chskeleton_init(Actor *this) {
 }
 
 void chskeleton_update(Actor *this){
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         _chskeleton_init(this);
     }
     func_802DB5A0(this);

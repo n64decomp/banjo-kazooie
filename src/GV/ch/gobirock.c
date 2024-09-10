@@ -97,8 +97,8 @@ void chGobiRock_update(Actor *this){
     Actor *sp28;
     f32 sp24 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         sp34->actorFreeFunc = chGobiRock_free;
         sp34->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, __chGobiRock_destroy);

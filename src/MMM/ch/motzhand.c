@@ -126,8 +126,8 @@ void chmotzhand_update(Actor *this){
 
     sp48 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(jiggyscore_isSpawned(JIGGY_60_MMM_MOTZHAND)){
             marker_despawn(this->marker);
             return;

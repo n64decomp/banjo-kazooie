@@ -50,9 +50,9 @@ void func_8038D368(Actor *this) {
     f32 plyr_pos[3];
 
     local = (ActorLocal_CCW_6EC0 *)&this->local;
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->unk138_24 = FALSE;
         local->unk0 = D_8038F600;
         while (local->unk0->map != 0 && map_get() != local->unk0->map) {

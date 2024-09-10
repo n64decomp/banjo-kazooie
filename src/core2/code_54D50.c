@@ -89,11 +89,11 @@ void func_802DC018(Actor *this){
     ActorLocal_Core2_53C10 *local = (ActorLocal_Core2_53C10 *) &this->local;
     f32 tmp_f0;
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         actor_collisionOff(this);
         local->unk0 = partEmitMgr_newEmitter(16);
         func_802DBE9C(this, local->unk0);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
     if(func_802DBF94(this, 600) && randf() < 0.2){
         tmp_f0 = randf2(0.01f, 0.06f);

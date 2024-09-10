@@ -79,9 +79,9 @@ void func_8038CFB4(Actor *this) {
     f32 sp6C;
     f32 sp60[3];
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->unk138_24 = FALSE;
         func_8038CEB0(this, 1);
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {

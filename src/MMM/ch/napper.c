@@ -107,8 +107,8 @@ void chnapper_update(Actor *this){
 
     sp68 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->scale = 0.5f;
         marker_setCollisionScripts(this->marker, func_80386ACC, NULL, NULL);
         local->unk10 = TRUE;

@@ -110,8 +110,8 @@ void chwasp_update(Actor *this) {
 
     sp68 = time_getDelta();
     local = (ActorLocal_CCW_950 *)&this->local;
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_8038717C;
         local->unk0 = func_8030D90C();
         local->unk4 = 0;

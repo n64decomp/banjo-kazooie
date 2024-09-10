@@ -59,8 +59,8 @@ void func_8038B19C(Actor *this) {
     local = (ActorLocal_CCW_4D00 *)&this->local;
     tick = time_getDelta();
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->unk138_24 = FALSE;
         func_8038B0F0(this, 1);
     }

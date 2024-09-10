@@ -239,7 +239,7 @@ void chMumbo_update(Actor *this) {
         }
     }
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->unk38_31 = 0;
         if( player_getTransformation() == TRANSFORM_1_BANJO 
             && !fileProgressFlag_get(__bkProgId_from_transformationId(D_8037DDF0)) 
@@ -250,7 +250,7 @@ void chMumbo_update(Actor *this) {
         this->unk38_0 = (item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unk38_31);
         this->unk10_12 = 0;
         this->unk138_24 = 0;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 
     func_80256E24(sp4C, 0.0f, this->yaw, 0.0f, 0.0f, 10.0f);

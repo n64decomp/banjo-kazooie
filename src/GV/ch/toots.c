@@ -38,8 +38,8 @@ void func_80386464(Actor *this){
 }
 
 void chtoots_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         D_80391A30 = 0;
         D_80391A34 = 0;
     }

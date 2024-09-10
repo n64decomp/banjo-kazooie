@@ -100,8 +100,8 @@ void chGreenBlast_update(Actor *this){
     f32 delta_time = time_getDelta();
     f32 target_position[3];
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = 1;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, chGreenBlast_collisionDie);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);

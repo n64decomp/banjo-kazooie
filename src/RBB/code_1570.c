@@ -221,8 +221,8 @@ void func_803882B4(ActorMarker *marker, s32 arg1){
 }
 
 void RBB_func_803882F4(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(levelSpecificFlags_get(0x2d)){
             func_80387AC0();
             RBB_func_80387960(0.0f);

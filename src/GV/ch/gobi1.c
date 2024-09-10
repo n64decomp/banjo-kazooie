@@ -113,8 +113,8 @@ void chGobi1_update(Actor *this){
     f32 sp48[3];
 
     tick = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, func_803873B0, NULL, NULL);
         marker->actorFreeFunc = func_8038736C;
         marker->propPtr->unk8_3 = TRUE;

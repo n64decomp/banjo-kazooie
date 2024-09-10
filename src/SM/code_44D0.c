@@ -27,7 +27,7 @@ void func_8038A8F8(Actor *this){
     f32 sp2C;
     NodeProp *other;
     
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         other = func_80304C38(0x3be, this);
         if(!other){
             this->unk1C_x = this->position_x;
@@ -37,7 +37,7 @@ void func_8038A8F8(Actor *this){
             nodeprop_getPosition(other, this->unk1C);
         }
         actor_collisionOff(this);
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }//L8038A968
     player_getPosition(this->velocity);
     sp2C = ml_distance_vec3f(this->velocity, this->position);

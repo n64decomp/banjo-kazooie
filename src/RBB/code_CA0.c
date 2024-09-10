@@ -198,8 +198,8 @@ void func_80387890(Actor *this){
 }
 
 void func_803878B0(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_80387890;
         marker_setCollisionScripts(this->marker, 0, func_80387850, 0);
         func_8032AA58(this, 1.1f);

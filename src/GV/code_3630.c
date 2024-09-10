@@ -46,11 +46,11 @@ void func_80389ABC(Actor *this){
 }
 
 void func_80389B1C(Actor *this){
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->unk60 = (f32) func_8038E184();
         this->unk138_24 = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(0);
         this->unk138_23 = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(2);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 
     if(!this->initialized){

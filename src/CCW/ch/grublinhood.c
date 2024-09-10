@@ -176,7 +176,7 @@ void chgrublinhood_update(Actor *this) {
     
     local = (ActorLocal_CCW_8050 *)&this->local;
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         __chgrublinhood_initialize(this);
         local->season = __get_current_season(this);
     }

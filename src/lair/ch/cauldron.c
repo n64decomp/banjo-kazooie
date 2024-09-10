@@ -221,9 +221,9 @@ void chWarpCauldron_update(Actor *this) {
     f32 sp34;
     
     lair_func_8038A864(this);
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         sp50 = FALSE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[1] = 0.0f;
         this->velocity[0] = this->yaw;

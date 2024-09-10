@@ -111,8 +111,8 @@ void chAncientOne_update(Actor *this){
     f32 sp34;
 
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(jiggyscore_isSpawned(JIGGY_46_GV_ANCIENT_ONES)){
             marker_despawn(this->marker);
             return;

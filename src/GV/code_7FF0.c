@@ -189,8 +189,8 @@ void func_8038E4DC(Actor *this){
         this->initialized = TRUE;
         this->unk1C[0] = this->unk48;
     }
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(exit_get() == 3){
             if(0.65 < this->unk48 && this->unk48 < 0.95){
                 func_80343E20(0x6a, 0x7ff8, 0.32842f, 0x34);
@@ -289,8 +289,8 @@ void func_8038E97C(Actor *this){
         this->position_y += -300.0f;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(exit_get() == 7){
             this->position_z += 117.0;
             this->position_y += 130.0;

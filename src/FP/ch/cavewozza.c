@@ -21,8 +21,8 @@ extern ActorInfo D_80392700 = { MARKER_20F_WOZZA_IN_CAVE, ACTOR_33F_WOZZA_IN_CAV
 /* .code */
 void func_80390630(Actor *this){
     if(volatileFlag_get(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE)){
-        if(!this->unk16C_4){
-            this->unk16C_4 = TRUE;
+        if(!this->volatile_initialized){
+            this->volatile_initialized = TRUE;
             this->marker->propPtr->unk8_3 = FALSE;
             actor_collisionOff(this);
             this->unk58_0 = FALSE;
@@ -30,8 +30,8 @@ void func_80390630(Actor *this){
         return;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         this->unk38_31 = jiggyscore_isCollected(JIGGY_32_FP_WOZZA) || levelSpecificFlags_get(0x26) ? 0 : 1;

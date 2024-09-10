@@ -49,8 +49,8 @@ void func_803895F4(Actor *this) {
     f32 sp2C;
     f32 sp28;
 
-    if(!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, &func_8038950C);
         func_80389440(this, 1);

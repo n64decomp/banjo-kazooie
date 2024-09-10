@@ -276,8 +276,8 @@ void func_8038F620(Actor *this){
     ActorLocal_fight_87A0 * local = (ActorLocal_fight_87A0 *)&this->local;
     f32 sp40 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, func_8038F3B4);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);

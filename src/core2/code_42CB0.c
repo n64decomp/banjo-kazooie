@@ -113,8 +113,8 @@ void chHoneycomb_update(Actor *this){
         }
     }//L802C9F9C
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if( this->marker->id == MARKER_55_HONEYCOMB
             && !this->unk44_2
         ){

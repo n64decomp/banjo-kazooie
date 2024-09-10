@@ -327,9 +327,9 @@ void func_8038F618(Actor *this){
     f32 pad0;
     
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 0;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         local->unk8[0] = this->position_x;
         local->unk8[1] = this->position_y;
         local->unk8[2] = this->position_z;

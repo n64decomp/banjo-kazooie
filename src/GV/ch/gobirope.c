@@ -37,8 +37,8 @@ void chGobiRope_setState(Actor *this, s32 next_state){
 void chGobiRope_update(Actor *this){
     Actor *sp2C;
     f32 sp28;
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         sp2C = actorArray_findClosestActorFromActorId(this->position, ACTOR_12E_GOBI_1, -1, &sp28);

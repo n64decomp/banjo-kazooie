@@ -71,8 +71,8 @@ void func_80389900(Actor * this){
     ActorLocal_CC_3400 *local = (ActorLocal_CC_3400 *) &this->local;
     f32 sp20 = time_getDelta();
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
         local->unk0 = &D_80389E40[this->modelCacheIndex - 0x28C];
         local->unk8 = 0;

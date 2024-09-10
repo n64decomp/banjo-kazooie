@@ -314,8 +314,8 @@ void chLevelCollectible_update(Actor *this){
     s32 marker_id;
     if(this->despawn_flag) return;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if( this->marker->id == MARKER_1FD_BLUE_PRESENT_COLLECTIBLE
             || this->marker->id == MARKER_1FE_GREEN_PRESENT_COLLECTIBLE
             || this->marker->id == MARKER_1FF_RED_PRESENT_COLLECTIBLE

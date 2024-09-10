@@ -61,9 +61,9 @@ void func_8038D47C(Actor *this){
         this->initialized = TRUE;
     }//L8038D590
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         mapSpecificFlags_set(0x10, 0);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         if(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -3){
             timedFunc_set_1(1.5f, (GenFunction_1)func_8038D450, reinterpret_cast(s32, this->marker));
         }
