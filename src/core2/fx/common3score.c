@@ -191,7 +191,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         a1->value_string[0] = '\0';
         strIToA(a1->value_string, itemPrint_getValue(item_id));
         print_bold_spaced(a1->unk30 + a1->unk40, sp40 + a1->unk44, a1->value_string);
-        sp3C = viewport_func_8024DE1C(a1->unk30, sp40, sp5C, sp68);
+        sp3C = viewport_transformCoordinate(a1->unk30, sp40, sp5C, sp68);
 
         sp44[0] = 0.0f;
         sp44[1] = a1->unk38;

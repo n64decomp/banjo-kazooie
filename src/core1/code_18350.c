@@ -1044,6 +1044,7 @@ f32 ml_cos_deg(f32 angle_deg)
     return cosf(angle_deg * BAD_DTOR);
 }
 
+// brings angle in range between 0 and 360 degrees
 f32 mlNormalizeAngle(f32 angle)
 {
     if (angle < 0.0) // f64

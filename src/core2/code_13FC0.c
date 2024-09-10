@@ -140,7 +140,7 @@ f32 func_8029B33C(void){
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    return viewport_func_8024DDD8(sp1C, func_8029B2F4());
+    return viewport_adjustAngleToRight(sp1C, func_8029B2F4());
 }
 
 s32 func_8029B370(void){

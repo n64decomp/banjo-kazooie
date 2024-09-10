@@ -1209,7 +1209,7 @@ void __gcpausemenu_drawSprite(Gfx** gdl, Mtx** mptr, Vtx** vptr, BKSprite* sprit
     func_8033837C(0);
     viewport_getPosition_vec3f(sp50);
     
-    sp34 = viewport_func_8024DE1C(x, y, sp5C, sp44);
+    sp34 = viewport_transformCoordinate(x, y, sp5C, sp44);
     mlMtxIdent(); //matrix_stack_identity
     sp38[0] = sp5C[0] - sp50[0];
     sp38[1] = sp5C[1] - sp50[1];

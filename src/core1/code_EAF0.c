@@ -351,16 +351,17 @@ bool cube_isInFrustum2(Cube *cube) {
     return viewport_isBoundingBoxInFrustum(min, max);
 }
 
-bool viewport_func_8024DB50(f32 arg0[3], f32 arg1) {
+// viewport_distanceFromPlane ?
+bool viewport_func_8024DB50(f32 pos[3], f32 distance) {
     f32 delta[3];
     s32 i;
 
-    delta[0] = arg0[0] - sViewportPosition[0];
-    delta[1] = arg0[1] - sViewportPosition[1];
-    delta[2] = arg0[2] - sViewportPosition[2];
+    delta[0] = pos[0] - sViewportPosition[0];
+    delta[1] = pos[1] - sViewportPosition[1];
+    delta[2] = pos[2] - sViewportPosition[2];
 
     for(i = 0; i < 4; i++) {
-        if(arg1 <= ml_dotProduct_vec3f(delta, sViewportFrustumPlanes[i])){
+        if(distance <= ml_dotProduct_vec3f(delta, sViewportFrustumPlanes[i])) {
             return FALSE;
         }
     }
@@ -411,37 +412,42 @@ f32 viewport_getNear(void) {
     return sViewportNear;
 }
 
-f32 viewport_func_8024DDD8(f32 arg0[3], f32 arg1) {
-    return mlNormalizeAngle((sViewportRotation[1] + arg1) + 90.0);
+f32 viewport_adjustAngleToRight(f32 pos[3], f32 angle) {
+    return mlNormalizeAngle((sViewportRotation[1] + angle) + 90.0);
 }
 
-f32 viewport_func_8024DE1C(f32 arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
+f32 viewport_transformCoordinate(f32 x, f32 y, f32 viewport_translation[3], f32 viewport_rotation[3]) {
     f32 fovy_rad;
-    static f32 D_8028101C;
-    static f32 D_80281020;
-    static f32 D_80281024;
+    static f32 fovy;
+    static f32 near;
+    static f32 scale;
 
-    if ((sViewportFOVy != D_8028101C) || (sViewportNear != D_80281020)) {
+    if ((sViewportFOVy != fovy) || (sViewportNear != near)) {
         fovy_rad = (sViewportFOVy * M_PI) / 360.0;
-        D_80281024 = (500.0 + sViewportNear) / (((framebuffer_height / (f32)2) / sinf(fovy_rad)) * cosf(fovy_rad));
-        D_8028101C = sViewportFOVy;
-        D_80281020 = sViewportNear;
+        scale = (500.0 + sViewportNear) / (((framebuffer_height / (f32)2) / sinf(fovy_rad)) * cosf(fovy_rad));
+        fovy = sViewportFOVy;
+        near = sViewportNear;
     }
-    arg0 = arg0 - (framebuffer_width / (f32)2);
-    arg1 = (framebuffer_height / (f32)2) - arg1;
-    arg3[0] = sViewportRotation[0];
-    arg3[1] = sViewportRotation[1];
-    arg3[2] = sViewportRotation[2];
-    arg2[0] = arg0 * D_80281024;
-    arg2[1] = arg1 * D_80281024;
-    arg2[2] = (-500.0 - sViewportNear);
-    ml_vec3f_pitch_rotate_copy(arg2, arg2, arg3[0]);
-    ml_vec3f_yaw_rotate_copy(arg2, arg2, arg3[1]);
+
+    x = x - (framebuffer_width / (f32)2);
+    y = (framebuffer_height / (f32)2) - y;
+
+    viewport_rotation[0] = sViewportRotation[0];
+    viewport_rotation[1] = sViewportRotation[1];
+    viewport_rotation[2] = sViewportRotation[2];
+
+    viewport_translation[0] = x * scale;
+    viewport_translation[1] = y * scale;
+    viewport_translation[2] = (-500.0 - sViewportNear);
+
+    ml_vec3f_pitch_rotate_copy(viewport_translation, viewport_translation, viewport_rotation[0]);
+    ml_vec3f_yaw_rotate_copy(viewport_translation, viewport_translation, viewport_rotation[1]);
     
-    arg2[0] += sViewportPosition[0];
-    arg2[1] += sViewportPosition[1];
-    arg2[2] += sViewportPosition[2];
-    return D_80281024;
+    viewport_translation[0] += sViewportPosition[0];
+    viewport_translation[1] += sViewportPosition[1];
+    viewport_translation[2] += sViewportPosition[2];
+
+    return scale;
 }
 
 f32 sViewportBackupPosition[3];
@@ -450,31 +456,32 @@ f32 sViewportBackupFrustumPlanes[4][4];
 f32 sViewportBackupLookVector[3];
 f32 sViewportBackupMatrix[4][4];
 
-bool viewport_func_8024E030(f32 arg0[3], f32 *arg1)
+// ??
+bool viewport_func_8024E030(f32 pos[3], f32 *arg1)
 {
-    f32 sp34[3];
+    f32 delta[3];
     f32 temp_f2_2;
     f32 temp_f2;
     f32 fovy_radians;
 
     fovy_radians = (sViewportFOVy * M_PI) / 360.0;
 
-    sp34[0] = arg0[0] - sViewportPosition[0];
-    sp34[1] = arg0[1] - sViewportPosition[1];
-    sp34[2] = arg0[2] - sViewportPosition[2];
+    delta[0] = pos[0] - sViewportPosition[0];
+    delta[1] = pos[1] - sViewportPosition[1];
+    delta[2] = pos[2] - sViewportPosition[2];
 
-    ml_vec3f_yaw_rotate_copy(sp34, sp34, -sViewportRotation[1]);
-    ml_vec3f_pitch_rotate_copy(sp34, sp34, -sViewportRotation[0]);
+    ml_vec3f_yaw_rotate_copy(delta, delta, -sViewportRotation[1]);
+    ml_vec3f_pitch_rotate_copy(delta, delta, -sViewportRotation[0]);
 
-    if ((-sViewportNear) <= sp34[2]) {
+    if ((-sViewportNear) <= delta[2]) {
         return FALSE;
     }
 
-    temp_f2 = gu_sqrtf((sp34[1] * sp34[1]) + (sp34[2] * sp34[2])) * sinf(fovy_radians);
+    temp_f2 = gu_sqrtf((delta[1] * delta[1]) + (delta[2] * delta[2])) * sinf(fovy_radians);
     temp_f2_2 = (((f32) framebuffer_width) / ((f32) framebuffer_height)) * temp_f2;
 
-    arg1[0] = (f32) (((sp34[0] / temp_f2_2) + 1) * (((f32) framebuffer_width) / 2));
-    arg1[1] = (f32) ((1 - (sp34[1] / temp_f2)) * (((f32) framebuffer_height) / 2));
+    arg1[0] = (f32) (((delta[0] / temp_f2_2) + 1) * (((f32) framebuffer_width) / 2));
+    arg1[1] = (f32) ((1 - (delta[1] / temp_f2)) * (((f32) framebuffer_height) / 2));
 
     if ((arg1[0] < (-((f32) framebuffer_width))) || ((((f32) framebuffer_width) * 2) < arg1[0])) {
         return FALSE;
@@ -483,6 +490,7 @@ bool viewport_func_8024E030(f32 arg0[3], f32 *arg1)
     if ((arg1[1] < (-((f32) framebuffer_height))) || ((((f32) framebuffer_height) * 2) < arg1[1])) {
         return FALSE;
     }
+
     return TRUE;
 }
 

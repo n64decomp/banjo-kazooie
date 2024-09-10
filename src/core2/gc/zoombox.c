@@ -822,7 +822,7 @@ void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx) {
     f32 sp38[3];
     f32 sp34;
 
-    sp34 = viewport_func_8024DE1C(this->unk170, this->unk172, sp50, sp5C);
+    sp34 = viewport_transformCoordinate(this->unk170, this->unk172, sp50, sp5C);
     if (this->unk1A4_24) {
         sp5C[1] += 180.0f;
         sp5C[0] -= 2*sp5C[0];
