@@ -20,5 +20,5 @@ void func_8038FCB0(Actor *this){
         return;
     this->marker->propPtr->unk8_3 = 1;
     actor_collisionOff(this);
-    this->initialized = 1;
+    this->initialized = TRUE;
 }

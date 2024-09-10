@@ -120,7 +120,7 @@ void func_80388E20(Actor *this){
 
     jujuCtlPtr = (ActorLocal_JujuHitbox *)&this->local;
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->unk138_24 = 0;
         jujuCtlPtr->unk18 = 0.5f;
     }

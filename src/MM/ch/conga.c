@@ -222,7 +222,7 @@ void func_803876D0(Actor *this){
     if(!this->initialized){
         ((ActorLocal_Conga *)&this->local)->unkC = 1;
         this->unk16C_0 = 1;
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->velocity_x = 0.0f;
         this->unk28 = 0.0f;
         node_prop = func_80304C38(0x150, this);

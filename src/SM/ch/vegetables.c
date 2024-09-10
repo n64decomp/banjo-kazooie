@@ -323,7 +323,7 @@ void func_80388080(Actor *this){
         this->unk138_24 = 1;
         this->unk138_23 = 0;
         this->unk38_0 = 0;
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->scale = 0.5;
     }//L80388278
     switch (this->state)

@@ -104,7 +104,7 @@ void func_80386768(Actor * this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOff(this);
-        this->initialized = 1;
+        this->initialized = TRUE;
     }//L803867B0
 
     if(!this->unk16C_4){

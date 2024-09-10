@@ -938,11 +938,11 @@ ActorMarker *baMarker_get(void){ //baMarker_get
 }
 
 void baMarker_collisionOff(void){ //player_collisionOff
-    playerMarker->collidable = 0;
+    playerMarker->collidable = FALSE;
 }
 
 void baMarker_collisionOn(void){ //player_collisionOn
-    playerMarker->collidable = 1;
+    playerMarker->collidable = TRUE;
 }
 
 bool baMarker_isCollidable(void){ //player_isCollidable

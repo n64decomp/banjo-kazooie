@@ -59,7 +59,7 @@ void func_802DAA14(Actor *this){
 
     if(!this->initialized){
         this->unk60 = 0.5f;
-        this->initialized = 1;
+        this->initialized = TRUE;
     }
 
     if(0.0f < this->unk60){

@@ -124,7 +124,7 @@ void chAttackTutorial_update(Actor *this){
             this->unk1C_z = this->position_z;}
         }
         this->unk10_12 = (ability_isUnlocked(ABILITY_C_ROLL))? 2 : (ability_isUnlocked(ABILITY_4_CLAW_SWIPE)? 1:0);
-        this->initialized = 1;
+        this->initialized = TRUE;
     }
 
     switch(this->state){

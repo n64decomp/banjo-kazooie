@@ -1155,7 +1155,7 @@ ActorMarker * marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int mark
     marker->roll = 0;
     marker->unk2C_2 = 0;
     marker->unk2C_1 = 0;
-    marker->collidable = 1;
+    marker->collidable = TRUE;
     marker->unk3E_0 = 0; 
     marker->unk40_22 = 0;
     marker->unk40_19 = 0;

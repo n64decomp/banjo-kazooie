@@ -406,7 +406,7 @@ void chsmmole_Update(Actor * this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOff(this);
-        this->initialized = 1;
+        this->initialized = TRUE;
         marker_setFreeMethod(this->marker, func_80389984);
         if(this->unkF4_8 == 1 || this->unkF4_8 == 8){//L80389A30
             sp40 = func_80304C38(0x349, this);

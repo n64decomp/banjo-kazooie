@@ -69,7 +69,7 @@ void chOverlayPressStart_func_802DCC78(ActorMarker *this){
 
 void chOverlayPressStart_update(Actor *this){
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
         subaddie_set_state_with_direction(this, 1, 0.0f, 1);

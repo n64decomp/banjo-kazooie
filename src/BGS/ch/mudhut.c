@@ -74,8 +74,8 @@ void chmudhut_update(Actor *this){
 
     if(func_80334904() == 2){
         if(!this->initialized){
-            this->marker->collidable = 0;
-            this->initialized = 1;
+            this->marker->collidable = FALSE;
+            this->initialized = TRUE;
         }
 
         switch(this->state){

@@ -112,7 +112,7 @@ void func_8038F6A4(Actor *this)
       nodeprop_getPosition(temp_v0, local->unk18);
     }
     this->unk138_24 = 0;
-    this->initialized = 1;
+    this->initialized = TRUE;
   }
   if (!this->unk16C_4)
   {
