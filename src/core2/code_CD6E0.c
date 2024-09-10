@@ -22,18 +22,19 @@ void func_80354670(u8 arg0, s32 arg1) {
 }
 
 void func_803546E8(void) {
-    u8 sp4F;
+    u8 projectile_indx;
     AnimSprite* sp48;
     u8 sp47;
     ParticleStruct1s* temp_s0;
-    f32 sp34[3];
+    f32 plyr_pos[3];
     f32 sp28[3];
 
-    sp4F = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp48 = func_8033E8F4();
     sp47 = func_8033E93C();
     temp_s0 = func_8033E960();
-    player_getPosition(sp34);
+    player_getPosition(plyr_pos);
+
     temp_s0->unk0[0] = randf2(-10.0f, 10.0f);
     temp_s0->unk0[1] = (randf() * 35.0f) + 50.0f;
     temp_s0->unk0[2] = randf2(-10.0f, 10.0f);
@@ -42,9 +43,9 @@ void func_803546E8(void) {
     temp_s0->unk0[0] += sp28[0];
     temp_s0->unk0[1] += sp28[1];
     temp_s0->unk0[2] += sp28[2];
-    projectile_setSprite(sp4F, ASSET_713_SPRITE_SPARKLE_YELLOW);
-    projectile_setPosition(sp4F, sp34);
-    func_8033FCD8(sp4F, 0xC);
+    projectile_setSprite(projectile_indx, ASSET_713_SPRITE_SPARKLE_YELLOW);
+    projectile_setPosition(projectile_indx, plyr_pos);
+    func_8033FCD8(projectile_indx, 0xC);
     animsprite_default(sp48);
     animsprite_set_state(sp48, ANIM_SPRITE_STATE_STOPPED);
     func_80344E18(sp47, 5);
@@ -53,26 +54,26 @@ void func_803546E8(void) {
     sp28[1] = 250.0f;
     D_803726EC = mlNormalizeAngle(D_803726EC + 45.0);
     func_80344E3C(sp47, sp28);
-    func_80344D94(sp47, sp34);
+    func_80344D94(sp47, plyr_pos);
     temp_s0->unk20 = 0x14;
-    func_80354670(sp4F, 0x14);
+    func_80354670(projectile_indx, 0x14);
 }
 
 void func_8035489C(void) {
     ParticleStruct1s* temp_s0;
-    u8 temp_v0;
+    u8 projectile_indx;
     f32 playerVelocity[3];
     f32 playerPosition[3];
 
     temp_s0 = func_8033E960();
-    temp_v0 = func_8033E8D0();
-    func_8033FE2C(temp_v0, 7.0f);
+    projectile_indx = func_8033E8D0();
+    projectile_addRoll(projectile_indx, 7.0f);
     temp_s0->unk20--;
     if (temp_s0->unk20 < 0) {
         func_8033E984();
         return;
     }
-    func_80354670(temp_v0, temp_s0->unk20);
+    func_80354670(projectile_indx, temp_s0->unk20);
     if (temp_s0->unk20 >= 0x10) {
         player_getPosition(playerPosition);
         player_getVelocity(playerVelocity);
@@ -82,7 +83,7 @@ void func_8035489C(void) {
         playerPosition[0] += temp_s0->unk0[0];
         playerPosition[1] += temp_s0->unk0[1];
         playerPosition[2] += temp_s0->unk0[2];
-        projectile_setPosition(temp_v0, playerPosition);
+        projectile_setPosition(projectile_indx, playerPosition);
     }
 }
 
@@ -173,28 +174,28 @@ void func_80354C18(void) {
     s32 sp40;
     f32 sp34[3];
     f32 sp28[3];
-    u8 temp_s1;
+    u8 projectile_indx;
 
     temp_s0 = func_8033E960();
-    temp_s1 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp4C = func_8033E864();
     sp4B = func_8033E93C();
     sp44 = func_8033E888();
     sp40 = func_8033E8AC();
-    func_8033FE2C(temp_s1, 7.0f);
+    projectile_addRoll(projectile_indx, 7.0f);
     temp_s0->unk20--;
     if (temp_s0->unk20 < 0) {
         func_8033E984();
     } else {
-        func_80354670(temp_s1, temp_s0->unk20);
+        func_80354670(projectile_indx, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x10) {
             if (sp44(sp4C, sp40, sp34) != 0) {
-                func_8033FC98(temp_s1, 0);
+                func_8033FC98(projectile_indx, 0);
             } else {
-                func_8033FC98(temp_s1, 1);
+                func_8033FC98(projectile_indx, 1);
             }
         } else {
-            projectile_getPosition(temp_s1, sp34);
+            projectile_getPosition(projectile_indx, sp34);
         }
         func_80344E7C(sp4B, sp28);
         sp28[0] += temp_s0->unkC[0];
@@ -207,10 +208,10 @@ void func_80354C18(void) {
         sp34[0] += temp_s0->unk0[0];
         sp34[1] += temp_s0->unk0[1];
         sp34[2] += temp_s0->unk0[2];
-        projectile_setPosition(temp_s1, sp34);
+        projectile_setPosition(projectile_indx, sp34);
     }
-    func_8033FC34(temp_s1, 0xB4);
-    func_8033FCD8(temp_s1, 0xC);
+    func_8033FC34(projectile_indx, 0xB4);
+    func_8033FCD8(projectile_indx, 0xC);
 }
 
 void func_80354DC8(void){}
@@ -220,11 +221,11 @@ void func_80354DD0(void) {
     AnimSprite* sp40;
     u8 sp3F;
     u8 pad3C[3];
-    u8 temp_s1;
+    u8 projectile_indx;
     f32 sp2C[3];
     f32 sp20[3];
 
-    temp_s1 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp40 = func_8033E8F4();
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
@@ -232,9 +233,9 @@ void func_80354DD0(void) {
     temp_s0->unk0[0] = randf2(-50.0f, 50.0f);
     temp_s0->unk0[1] = randf2(-65.0f, -65.0f);
     temp_s0->unk0[2] = randf2(-50.0f, 50.0f);
-    projectile_setSprite(temp_s1, ASSET_710_SPRITE_SPARKLE_PURPLE);
-    func_8033FC60(temp_s1, 0xE1, 0xFF, 0);
-    projectile_setPosition(temp_s1, sp2C);
+    projectile_setSprite(projectile_indx, ASSET_710_SPRITE_SPARKLE_PURPLE);
+    projectile_setColor(projectile_indx, 0xE1, 0xFF, 0);
+    projectile_setPosition(projectile_indx, sp2C);
     animsprite_default(sp40);
     animsprite_set_state(sp40, ANIM_SPRITE_STATE_STOPPED);
     func_80344E18(sp3F, 3);
@@ -244,7 +245,7 @@ void func_80354DD0(void) {
     func_80344E3C(sp3F, sp20);
     func_80344D94(sp3F, sp2C);
     temp_s0->unk20 = 0x14;
-    func_80354670(temp_s1, 0x14);
+    func_80354670(projectile_indx, 0x14);
 }
 
 void func_80354EEC(void) {
@@ -285,14 +286,14 @@ void func_80354EEC(void) {
 void func_80355004(void){}
 
 void func_8035500C(void) {
-    u8 sp47;
+    u8 projectile_indx;
     AnimSprite* sp40;
     u8 sp3F;
     ParticleStruct1s* temp_s0;
     f32 sp2C[3];
     f32 sp20[3];
 
-    sp47 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp40 = func_8033E8F4();
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
@@ -300,9 +301,9 @@ void func_8035500C(void) {
     temp_s0->unk0[0] = randf2(-40.0f, 40.0f);
     temp_s0->unk0[1] = randf2(-40.0f, 40.0f);
     temp_s0->unk0[2] = randf2(-40.0f, 40.0f);
-    projectile_setSprite(sp47, 0x70F);
-    func_8033FC60(sp47, 0xFF, 0xE6, 0xF5);
-    projectile_setPosition(sp47, sp2C);
+    projectile_setSprite(projectile_indx, 0x70F);
+    projectile_setColor(projectile_indx, 0xFF, 0xE6, 0xF5);
+    projectile_setPosition(projectile_indx, sp2C);
     animsprite_default(sp40);
     animsprite_set_state(sp40, ANIM_SPRITE_STATE_STOPPED);
     animsprite_set_frame(sp40, 0); //set frame
@@ -313,7 +314,7 @@ void func_8035500C(void) {
     func_80344E3C(sp3F, sp20);
     func_80344D94(sp3F, sp2C);
     temp_s0->unk20 = 0x14;
-    func_80354670(sp47, 0x14);
+    func_80354670(projectile_indx, 0x14);
 }
 
 void func_80355134(void) {
@@ -356,14 +357,14 @@ void func_80355134(void) {
 void func_80355294(void){}
 
 void func_8035529C(void) {
-    u8 sp4F;
+    u8 projectile_indx;
     AnimSprite* sp48;
     u8 sp47;
     ParticleStruct1s* sp40;
     f32 sp34[3];
     f32 sp28[3];
 
-    sp4F = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp48 = func_8033E8F4();
     sp47 = func_8033E93C();
     sp40 = func_8033E960();
@@ -371,9 +372,9 @@ void func_8035529C(void) {
     sp40->unk0[0] = randf2(-40.0f, 40.0f);
     sp40->unk0[1] = 0.0f;
     sp40->unk0[2] = randf2(-40.0f, 40.0f);
-    projectile_setSprite(sp4F, 0x70F);
-    func_8033FC60(sp4F, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
-    projectile_setPosition(sp4F, sp34);
+    projectile_setSprite(projectile_indx, 0x70F);
+    projectile_setColor(projectile_indx, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
+    projectile_setPosition(projectile_indx, sp34);
     animsprite_default(sp48);
     animsprite_set_state(sp48, ANIM_SPRITE_STATE_STOPPED);
     animsprite_set_frame(sp48, 0);
@@ -384,7 +385,7 @@ void func_8035529C(void) {
     func_80344E3C(sp47, sp28);
     func_80344D94(sp47, sp34);
     sp40->unk20 = 0xE;
-    func_80354670(sp4F, 0xE);
+    func_80354670(projectile_indx, 0xE);
 }
 
 void func_803553E8(void) {
@@ -428,14 +429,14 @@ void func_80355548(void){}
 
 void func_80355550(void) {
     static s32 D_803863E0;
-    u8 sp3F;
+    u8 projectile_indx;
     AnimSprite *sp38;
     u8 sp37;
     ParticleStruct1s *sp30;
     f32 sp24[3];
     f32 sp18[3];
 
-    sp3F = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp38 = func_8033E8F4();
     sp37 = func_8033E93C();
     sp30 = func_8033E960();
@@ -444,14 +445,14 @@ void func_80355550(void) {
     sp30->unk0[1] = randf2(-30.0f, 30.0f);
     sp30->unk0[2] = randf2(-30.0f, 30.0f);
     if ((f64) randf() < 0.25) {
-        projectile_setSprite(sp3F, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
+        projectile_setSprite(projectile_indx, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
     } else if ((f64) randf() < 0.5) {
-        projectile_setSprite(sp3F, ASSET_716_SPRITE_SPARKLE_WHITE);
+        projectile_setSprite(projectile_indx, ASSET_716_SPRITE_SPARKLE_WHITE);
     } else {
-        projectile_setSprite(sp3F, ASSET_710_SPRITE_SPARKLE_PURPLE);
+        projectile_setSprite(projectile_indx, ASSET_710_SPRITE_SPARKLE_PURPLE);
     }
-    func_8033FC60(sp3F, 0xFF, 0xFF, 0xFF);
-    projectile_setPosition(sp3F, sp24);
+    projectile_setColor(projectile_indx, 0xFF, 0xFF, 0xFF);
+    projectile_setPosition(projectile_indx, sp24);
     animsprite_default(sp38);
     animsprite_set_state(sp38, ANIM_SPRITE_STATE_STOPPED);
     animsprite_set_frame(sp38, 0);
@@ -465,7 +466,7 @@ void func_80355550(void) {
     func_80344E3C(sp37, sp18);
     func_80344D94(sp37, sp24);
     sp30->unk20 = 0x14;
-    func_80354670(sp3F, 0x14);
+    func_80354670(projectile_indx, 0x14);
 }
 
 void func_8035570C(void) {
@@ -555,18 +556,18 @@ void func_80355864(void) {
 
 void func_80355B00(void) {
     ParticleStruct1s *sp44;
-    u8 sp43;
+    u8 projectile_indx;
     ActorMarker *pad40;
     Actor *sp38;
     f32 *sp34;
     f32 sp28[3];
 
     sp44 = func_8033E960();
-    sp43 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     pad40 = func_8033E864();
     sp38 = marker_getActor(pad40);
     sp34 = func_802C9C0C(sp38);
-    func_8033FE2C(sp43, 7.0f);
+    projectile_addRoll(projectile_indx, 7.0f);
     sp28[0] = sp38->position[0];
     sp28[1] = sp38->position[1];
     sp28[2] = sp38->position[2];
@@ -581,7 +582,7 @@ void func_80355B00(void) {
         func_8033E984();
         return;
     }
-    func_80354670(sp43, sp44->unk20);
+    func_80354670(projectile_indx, sp44->unk20);
     if (sp44->unk20 >= 0x10) {
         sp28[0] += sp34[0] * time_getDelta();
         sp28[2] += sp34[2] * time_getDelta();
@@ -589,7 +590,7 @@ void func_80355B00(void) {
         sp28[0] += sp44->unk0[0];
         sp28[1] += sp44->unk0[1];
         sp28[2] += sp44->unk0[2];
-        projectile_setPosition(sp43, sp28);
+        projectile_setPosition(projectile_indx, sp28);
     }
 }
 

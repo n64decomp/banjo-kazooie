@@ -40,19 +40,19 @@ void func_80355D50(void){}
 
 void func_80355D58(void){
     ParticleStruct0s * sp3C;
-    u8 sp3B;
+    u8 projectile_indx;
     AnimSprite *sp34;
     u8 temp_s0;
     f32 sp24[3];
 
     sp3C = func_8033E960();
-    sp3B = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp34 = func_8033E8F4();
     temp_s0 = func_8033E93C();
     sp3C->unk20 = D_803726F0.unk4;
-    projectile_setSprite(sp3B, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
-    func_8033FFE4(sp3B, D_803726F0.unk4, D_803726F0.unk4);
-    func_8033FCD8(sp3B, 0xC);
+    projectile_setSprite(projectile_indx, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
+    func_8033FFE4(projectile_indx, D_803726F0.unk4, D_803726F0.unk4);
+    func_8033FCD8(projectile_indx, 0xC);
     animsprite_default(sp34);
     animsprite_set_state(sp34, ANIM_SPRITE_STATE_STOPPED);
 
@@ -68,28 +68,28 @@ void func_80355D58(void){
 
 void func_80355E80(void){
     ParticleStruct0s *sp44;
-    u8 sp43;
+    u8 projectile_indx;
     f32 f22;
     f32 f20;
     s32 temp_a1;
     f32 sp30;
 
     sp44 = func_8033E960();
-    sp43 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     f20 = sp44->unk0;\
     f22 = sp44->unk4;\
     sp30 = (f32)sp44->unk20;
-    func_8033FE2C(sp43, 8.0f); 
+    projectile_addRoll(projectile_indx, 8.0f);
     temp_a1 = (s32) ml_map_f(f20, 0.0f, f22, sp30, 20.0f);
-    func_8033FFE4(sp43, temp_a1, temp_a1);
+    func_8033FFE4(projectile_indx, temp_a1, temp_a1);
 
     if(f22 < 0.3){
-        func_8033FC34(sp43, (s32)ml_map_f(f20, 0.0f, f22, 255.0f, 20.0f));
+        func_8033FC34(projectile_indx, (s32)ml_map_f(f20, 0.0f, f22, 255.0f, 20.0f));
     }
     else if(f20 < 0.1){
-        func_8033FC34(sp43, (s32)ml_map_f(f20, 0.0f, 0.1f, 20.0f, 255.0f));
+        func_8033FC34(projectile_indx, (s32)ml_map_f(f20, 0.0f, 0.1f, 20.0f, 255.0f));
     }else{
-        func_8033FC34(sp43, (s32)ml_map_f(f20, 0.1f, f22, 255.0f, 20.0f));
+        func_8033FC34(projectile_indx, (s32)ml_map_f(f20, 0.1f, f22, 255.0f, 20.0f));
     }
 
     f20 += time_getDelta();
