@@ -1,10 +1,10 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "ml/mtx.h"
 
 extern void mlMtxRotatePYR(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
-extern void mlMtxApply(Mtx *);
 
 typedef struct {
     BKSprite *sprite_0;

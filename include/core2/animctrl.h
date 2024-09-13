@@ -3,6 +3,7 @@
 
 #include <ultra64.h>
 #include "generic.h"
+#include "ml/mtx.h"
 
 #ifndef NONMATCHING
 #define animctrl_start(this, file, line) _animctrl_start(this, file, line)
@@ -18,10 +19,10 @@ enum animctrl_playback_e{
 };
 
 typedef struct{
-    Mtx mtx_0;
+    MtxF mtx_0;
     s32 size_40;
     s32 capacity_44;
-    Mtx data[];
+    MtxF data[];
 }AnimMtxList;
 
 typedef struct animation_s{

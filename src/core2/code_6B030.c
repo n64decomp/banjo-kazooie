@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "ml/mtx.h"
+
 extern s16 D_803A5D00[2][0xF660];
 
 
@@ -49,7 +51,7 @@ Struct_core2_6B030_1 D_80368B28[] = {
 
 /* .bss */
 f32 *D_80380A10;
-Mtx D_80380A18;
+MtxF D_80380A18;
 s32 D_80380A58;
 
 /* .code */
@@ -377,7 +379,7 @@ void func_802F2FCC(Struct64s *arg0, f32 arg1[3], s16 arg2, f32 arg3, ActorMarker
     }
 }
 
-void func_802F32C4(Struct64s *arg0, f32 arg1[3], f32 arg2, ActorMarker *arg3, void(*arg4)(f32[3], f32, ActorMarker *)){
+void func_802F32C4(Struct64s *arg0, f32 arg1[3], f32 arg2, ActorMarker *arg3, s32(*arg4)(f32[3], f32, ActorMarker *)){
     func_802F2FCC(arg0, arg1, 8, arg2, arg3, arg4);
 }
 

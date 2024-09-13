@@ -2,11 +2,14 @@
 #include "functions.h"
 #include "variables.h"
 #include "animation.h"
+#include "ml/mtx.h"
+
+void *defrag(void *);
 
 void animMtxList_setBoneless(AnimMtxList **this_ptr, BKAnimationList *anim_list){
     AnimMtxList * this;
-    Mtx *end_ptr;
-    Mtx *i_ptr;
+    MtxF *end_ptr;
+    MtxF *i_ptr;
     
     this = *this_ptr;
     if(this->capacity_44 < anim_list->cnt_4){
@@ -16,14 +19,14 @@ void animMtxList_setBoneless(AnimMtxList **this_ptr, BKAnimationList *anim_list)
     }
 
     this->size_40 = anim_list->cnt_4;
-    end_ptr = (Mtx *)(this->size_40*sizeof(Mtx) + (s32)this +sizeof(AnimMtxList));
+    end_ptr = (MtxF *)(this->size_40*sizeof(MtxF) + (s32)this +sizeof(AnimMtxList));
     mlMtxIdent();
     for(i_ptr = this->data; i_ptr < end_ptr; i_ptr++){
         mlMtxGet(i_ptr);
     }
 }
 
-Mtx *animMtxList_get(AnimMtxList *this, s32 arg1){
+MtxF *animMtxList_get(AnimMtxList *this, s32 arg1){
     if (arg1 == -1){
         return &this->mtx_0;
     }
@@ -40,7 +43,7 @@ AnimMtxList *animMtxList_new(void){
     this->size_40 = 0;
     this->capacity_44 = 0;
     mlMtxIdent();
-    mlMtxGet(this);
+    mlMtxGet(&this->mtx_0);
     return this;
 }
 
@@ -50,14 +53,13 @@ s32 animMtxList_len(AnimMtxList* this){
     return 1;
 }
 
-void mlMtxSet(Mtx*);
-void func_8033A5B8(s32, s32, f32[4],f32[3], f32[3]);
+void func_8033A5B8(BoneTransformList *this, s32 bone_id, f32 arg2[4], f32 scale[3], f32 arg4[3]);
 
 void animMtxList_setBoned(AnimMtxList **this_ptr, BKAnimationList *anim_list, BoneTransformList *arg2){
     AnimMtxList * this;
-    Mtx *start_ptr;
-    Mtx *end_ptr;
-    Mtx *i_ptr;
+    MtxF *start_ptr;
+    MtxF *end_ptr;
+    MtxF *i_ptr;
     BKAnimation *s0;
     f32 tmp_f0;
     s32 pad94[1];

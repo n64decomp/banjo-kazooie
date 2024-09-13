@@ -7,7 +7,7 @@ typedef struct {
 }ActorLocal_Core2_3ECE0;
 
 void chBubble_update(Actor *this);
-extern void func_802F32C4(s32, f32[3], f32, ActorMarker *, void(*)(f32[3], f32, ActorMarker *));
+extern void func_802F32C4(s32, f32[3], f32, ActorMarker *, s32(*)(f32[3], f32, ActorMarker *));
 
 /* .data */
 ActorInfo chBubble = { 
@@ -17,7 +17,7 @@ ActorInfo chBubble = {
 };
 
 /* .code */
-int __chBubble_func_802C5C70(f32 arg0[3], f32 arg1, ActorMarker *marker){
+s32 __chBubble_func_802C5C70(f32 arg0[3], f32 arg1, ActorMarker *marker){
     s32 pad2C;
     Actor *this = marker_getActor(marker);
     ActorLocal_Core2_3ECE0 *local = (ActorLocal_Core2_3ECE0 *) &this->local;

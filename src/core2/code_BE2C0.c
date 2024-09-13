@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "ml/mtx.h"
+
 extern f32 func_80255D70(f32);
 
 #define LENGTH_SQ_VEC4F(v) (v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3])
@@ -160,7 +162,7 @@ void func_803458E4(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3) {
 
 }
 
-void func_80345A44(f32 arg0[4], f32 arg1[4][4]) {
+void func_80345A44(f32 arg0[4], MtxF* arg1) {
     f32 temp_f0;
     f32 temp_f2;
     s32 temp_a0;
@@ -168,32 +170,32 @@ void func_80345A44(f32 arg0[4], f32 arg1[4][4]) {
     s32 var_a0;
 
 
-    temp_f0 = arg1[0][0] + arg1[1][1] + arg1[2][2];
+    temp_f0 = arg1->m[0][0] + arg1->m[1][1] + arg1->m[2][2];
     if (temp_f0 > 0.0) {
         temp_f2 = gu_sqrtf(temp_f0 + 1.0);
         arg0[3] = temp_f2 * 0.5;
         temp_f2 = (0.5 / temp_f2);
-        arg0[0] = (arg1[1][2] - arg1[2][1]) * temp_f2;
-        arg0[1] = (arg1[2][0] - arg1[0][2]) * temp_f2;
-        arg0[2] = (arg1[0][1] - arg1[1][0]) * temp_f2;
+        arg0[0] = (arg1->m[1][2] - arg1->m[2][1]) * temp_f2;
+        arg0[1] = (arg1->m[2][0] - arg1->m[0][2]) * temp_f2;
+        arg0[2] = (arg1->m[0][1] - arg1->m[1][0]) * temp_f2;
     }
     else{
         var_a0 = 0;
-        if (arg1[var_a0][var_a0] < arg1[1][1]) {
+        if (arg1->m[var_a0][var_a0] < arg1->m[1][1]) {
             var_a0 = 1;
         }
-        if (arg1[var_a0][var_a0] < arg1[2][2]) {
+        if (arg1->m[var_a0][var_a0] < arg1->m[2][2]) {
             var_a0 = 2;
         }
         temp_a0 = D_80371ED0[var_a0];
         temp_a2 = D_80371ED0[temp_a0];
 
-        temp_f2 = gu_sqrtf((arg1[var_a0][var_a0] - (arg1[temp_a0][temp_a0] + arg1[temp_a2][temp_a2])) + 1.0);
+        temp_f2 = gu_sqrtf((arg1->m[var_a0][var_a0] - (arg1->m[temp_a0][temp_a0] + arg1->m[temp_a2][temp_a2])) + 1.0);
         arg0[var_a0] = temp_f2 * 0.5;
         temp_f2 = (0.5 / temp_f2);
-        arg0[3] = (arg1[temp_a0][temp_a2] - arg1[temp_a2][temp_a0]) * temp_f2;
-        arg0[temp_a0] = (arg1[var_a0][temp_a0] + arg1[temp_a0][var_a0]) * temp_f2;
-        arg0[temp_a2] = (arg1[var_a0][temp_a2] + arg1[temp_a2][var_a0]) * temp_f2;
+        arg0[3] = (arg1->m[temp_a0][temp_a2] - arg1->m[temp_a2][temp_a0]) * temp_f2;
+        arg0[temp_a0] = (arg1->m[var_a0][temp_a0] + arg1->m[temp_a0][var_a0]) * temp_f2;
+        arg0[temp_a2] = (arg1->m[var_a0][temp_a2] + arg1->m[temp_a2][var_a0]) * temp_f2;
     }
 }
 

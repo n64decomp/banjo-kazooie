@@ -209,7 +209,7 @@ typedef struct {
 void gczoombox_free(GcZoombox *this);
 void func_803160A8(GcZoombox *this);
 void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx);
-void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6);
+void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BKSpriteDisplayData *arg5, f32 arg6);
 void func_80316764(GcZoombox *this, s32 arg1);
 void gczoombox_draw(GcZoombox *this, Gfx **gdl, Mtx ** mptr, void *vptr);
 void func_80316E08(GcZoombox *this);

@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "zoombox.h"
+#include "ml/mtx.h"
 
 extern f32 func_8024DE1C(f32, f32, f32[3], f32[3]);
 void func_80252330(f32, f32, f32);
@@ -9,6 +10,8 @@ extern f32 func_8033DDB8(void);
 extern void func_8024E60C(s32, void *);
 extern void func_8024E640(s32, void *);
 extern void func_8024E5A8(s32, void *);
+extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
+BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
 
 typedef struct struct_18_s{
     s16 sfx_id; /* enum sfx_e */
@@ -838,7 +841,7 @@ void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx) {
     modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, sp38, this->model);
 }
 
-void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, s32 arg5, f32 arg6) {
+void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BKSpriteDisplayData *arg5, f32 arg6) {
     f32 sp2C[3];
     f32 temp_f12;
 
@@ -1190,7 +1193,7 @@ void gczoombox_update(GcZoombox *this){
                     }//L803176C8
                     if(this->unk1A4_25 == 0){
                          if(this->unk166 - ((this->unk1A4_19)? 0xf : 0xc) >= this->unk16C){
-                              func_803153A8(this->unk30, this->unk0, 0, 0x30);
+                              func_803153A8(this->unk30, this->unk0, 0, sizeof(this->unk0));
                               _gczoombox_memClear(this->unk30, 0x30);
                               this->unk16C = this->unk166;
                               this->unk16E = ((this->unk1A4_19) ? 0xf : 0xc) + this->unk16C;
@@ -1459,9 +1462,9 @@ GcZoombox *gczoombox_new(s32 arg0, GcZoomboxSprite portrait_id, s32 arg2, s32 ar
     func_80318760(this, 18000);
     _gczoombox_memClear( this->unk0, 0x30);
     _gczoombox_memClear( this->unk30, 0x30);
-    _gczoombox_memClear( &this->unk60, 0x30);
-    _gczoombox_memClear( &this->unk90, 0x20);
-    _gczoombox_memClear( &this->unkB0, 0x40);
+    _gczoombox_memClear( this->unk60, 0x30);
+    _gczoombox_memClear( this->unk90, 0x20);
+    _gczoombox_memClear( this->unkB0, 0x40);
     return this;
 }
 
@@ -1768,10 +1771,10 @@ void func_80318C48(GcZoombox *this, s32 arg1) {
                 if (this->unk0[0] == 0xFD) {
                     this->unk0[1] = 0x68;
                 } else {
-                    func_803153A8(&this->unk0[0], &D_803830B0, 0, 0x30);
+                    func_803153A8(&this->unk0[0], D_803830B0, 0, sizeof(D_803830B0));
                     this->unk0[0] = 0xFD;
                     this->unk0[1] = 0x68;
-                    func_803153A8(&D_803830B0, &this->unk0[2], 0, 0x2E);
+                    func_803153A8(D_803830B0, &this->unk0[2], 0, sizeof(this->unk0) - 2);
                 }
             }
             else if (this->unk0[0] == 0xFD) {
@@ -1785,10 +1788,10 @@ void func_80318C48(GcZoombox *this, s32 arg1) {
                     return;
                 }
                 else{
-                    func_803153A8(&this->unk30[0], &D_803830B0, 0, 0x30);
+                    func_803153A8(&this->unk30[0], D_803830B0, 0, sizeof(D_803830B0));
                     this->unk30[0] = 0xFD;
                     this->unk30[1] = 0x68;
-                    func_803153A8(&D_803830B0, &this->unk30[2], 0, 0x2E);
+                    func_803153A8(D_803830B0, &this->unk30[2], 0, sizeof(this->unk30) - 2);
                 }
             }
             else if (this->unk30[0] == 0xFD) {

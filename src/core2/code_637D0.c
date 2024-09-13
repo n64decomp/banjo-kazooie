@@ -1,13 +1,15 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "ml/mtx.h"
 
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
-extern void func_80252CC4(f32[3], f32[3], f32, s32);
+extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern void mlMtx_apply_f3(f32[3], f32, f32, f32);
-extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3]);
+extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], AnimMtxList* arg5, f32 arg6[3], f32 arg7, f32 arg8[3]);
+extern MtxF *animMtxList_get(AnimMtxList *this, s32 arg1);
 /* .bss */
-Mtx D_80380880;
+MtxF D_80380880;
 
 /* .code */
 bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 rotation[3], f32 scale, f32 arg5[3], f32 arg6[3], f32 *arg7) {
@@ -18,7 +20,7 @@ bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 rotation[3
         return FALSE;
     }
     start = sizeof(BKModelUnk14List) + arg0->cnt0*sizeof(BKModelUnk14_0) + (s32)arg0;
-    temp_v0 = arg0->cnt2*sizeof(BKModelUnk14_1) + start + arg1 *sizeof(BKModelUnk14_2);
+    temp_v0 = (BKModelUnk14_2*)(arg0->cnt2*sizeof(BKModelUnk14_1) + start + arg1 *sizeof(BKModelUnk14_2));
 
     arg6[0] = (f32) temp_v0->unk2[0];
     arg6[1] = (f32) temp_v0->unk2[1];
@@ -67,7 +69,7 @@ s32 func_802EA864(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         mlMtxIdent();
         func_80252EC8(spB0, sp8C);
         func_80252CC4(position, rotation, scale, arg4);
-        func_8025235C(&sp78, arg5);
+        func_8025235C(sp78, arg5);
         for(j = 0; j < 3; j++){
             if (((sp78[j] + arg6 / scale) <= spA4[j]) || (sp98[j] <= (sp78[j] - arg6 / scale))) 
                 break;
@@ -93,7 +95,7 @@ s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 
     // tmp = ;
     tmp = (BKModelUnk14_0 *)(arg0 + 1);
-    iPtr = tmp + arg0->cnt0;
+    iPtr = (BKModelUnk14_1*)(tmp + arg0->cnt0);
     end_ptr = iPtr + arg0->cnt2;
     for(iPtr = iPtr; iPtr < end_ptr; iPtr++){
         spA0[0] = (f32) iPtr->unk4[0];
@@ -108,7 +110,7 @@ s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         mlMtxIdent();
         func_80252DDC(spA0, sp94);
         func_80252CC4(position, rotation, scale, arg4);
-        func_8025235C(&sp78, arg5);
+        func_8025235C(sp78, arg5);
         if (!(temp_f20 / 2 <= (sp78[2] - arg6 / scale)) && !((sp78[2] + arg6 / scale) <= -(temp_f20 / 2))) {
             if (!(((arg6 / scale + temp_f24) *  (arg6 / scale + temp_f24)) <= ((sp78[0] * sp78[0]) + (sp78[1] * sp78[1])))) {
                 return iPtr->unkD;
@@ -119,7 +121,7 @@ s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, f32 arg5[3], f32 arg6) {
+s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], f32 arg6) {
     BKModelUnk14_0 *t0_ptr;
     BKModelUnk14_1 *t1_ptr;
     f32 sp5C[3];
@@ -153,7 +155,7 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, AnimMtxList *arg5, f32 arg6[3], f32 arg7) {
+s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], AnimMtxList *arg5, f32 arg6[3], f32 arg7) {
     f32 spF4[3];
     f32 spE8[3];
     f32 spDC[3];
@@ -242,7 +244,7 @@ s32 func_802EAED4(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7)
+s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], AnimMtxList* arg5, f32 arg6[3], f32 arg7)
 {
     BKModelUnk14_0 *ptr_t0;
     f32 spB8[3];
@@ -313,7 +315,7 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
     return 0;
 }
 
-s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scale, s32 arg4, s32 arg5, f32 *arg6, f32 arg7) {
+s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scale, f32 arg4[3], AnimMtxList* arg5, f32 *arg6, f32 arg7) {
     BKModelUnk14_0 *t0_ptr;
     BKModelUnk14_1 *t1_ptr;
     f32 sp74[3];
@@ -326,7 +328,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
 
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg4);
-    func_8025235C(&sp74, arg6);
+    func_8025235C(sp74, arg6);
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
     i_ptr = (BKModelUnk14_2 *)(t1_ptr  + arg0->cnt2);
@@ -353,11 +355,11 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
     return 0;
 }
 
-bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, s32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3]){
+bool func_802EBA98(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], f32 arg6, f32 arg7[3]){
     return func_802EBAE0(arg0, arg1, rotation, scale, arg4, NULL, arg5, arg6, arg7);
 }
 
-s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, s32 arg4, s32 arg5, f32 arg6[3], f32 arg7, f32 arg8[3])
+s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], AnimMtxList* arg5, f32 arg6[3], f32 arg7, f32 arg8[3])
 {
   f32 sp3C[3];
   f32 temp_f0;
@@ -467,7 +469,7 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
     return 0;
 }
 
-s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, s32 arg4, f32 arg5[3], s32 arg6){
+s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6){
     BKModelUnk14_1 *i_ptr;
     f32 sp90[3];
     f32 sp84[3];
@@ -492,9 +494,9 @@ s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
             temp_f20 = (f32) i_ptr->unk0;
             temp_f22 = (f32) i_ptr->unk2;
             mlMtxIdent();
-            func_80252DDC(&sp90, &sp84);
+            func_80252DDC(sp90, sp84);
             func_80252CC4(arg1, rotation, scale, arg4);
-            func_8025235C(&sp68, arg5);
+            func_8025235C(sp68, arg5);
             temp_f0 = (f32) (temp_f22 / 2.0);
             if (!(temp_f0 <= sp68[2]) && !(sp68[2] <= -temp_f0) && !((temp_f20 * temp_f20) <= (sp68[0] * sp68[0] + sp68[1]*sp68[1]))) {
                 return i_ptr->unkD;
@@ -506,7 +508,7 @@ s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
     return 0;
 }
 
-s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], s32 arg5, s32 arg6){
+s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scale, f32 arg4[3], f32 arg5[3], s32 arg6){
     BKModelUnk14_0 *t0_ptr;
     BKModelUnk14_1 *t1_ptr;
     f32 sp54[3];

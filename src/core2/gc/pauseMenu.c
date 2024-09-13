@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "ml/mtx.h"
 
 #include "zoombox.h"
 
@@ -26,7 +27,6 @@ extern void func_802C5994(void);
 extern void func_802E412C(s32, s32);
 void volatileFlag_set(s32, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
-void mlMtxApply(Mtx*);
 void func_80310D2C(void);
 
 s32 level_get(void);
