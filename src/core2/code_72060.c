@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "ml/mtx.h"
 
 typedef struct {
     u8 pad0[0xC];
@@ -10,10 +11,7 @@ typedef struct {
 extern f32  viewport_get_yaw();
 extern int  func_8024DD34(f32, f32, f32);
 extern void func_80251B5C(f32, f32, f32);
-extern void mlMtx_rotate_pitch_deg(f32);
-extern void mlMtx_rotate_yaw_deg(f32);
 extern void func_80252A38(f32, f32, f32);
-extern void mlMtxApply(Mtx *);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern bool func_8024DB50(f32[3], f32);
 
@@ -202,17 +200,17 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if ((D_80369280 != NULL) && (D_80369284 != 0)) {
         viewport_get_position_vec3f(D_80381050);
         viewport_get_rotation_vec3f(D_80381060);
-        D_80381090 = (s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList);
+        D_80381090 = (Gfx*)((s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList));
         temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
         D_8038108C = vtxList_getGlobalNorm(temp_s3);
         func_80349AD0();
         gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_s3 + 1));
-        gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader)));
+        gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((void*)((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader))));
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
         gSPDisplayList((*gfx)++, D_80369290);
         gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(&D_803692B0));
 
-        D_80381094 = (BKGeoList *)((s32)D_80369288 + D_80369288->geo_list_offset_4);
+        D_80381094 = (Struct_core2_72060_0 *)((s32)D_80369288 + D_80369288->geo_list_offset_4);
         
         for(phi_s0 = D_80369280->unk1C; phi_s0 < D_80369280->unk1C + D_80369284; phi_s0++) {
             if ((func_802F989C(gfx, mtx, phi_s0) == 0) && (phi_s0->unk0[1] < D_8038104C)) {

@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/modelRender.h"
 #include "animation.h"
+#include "ml/mtx.h"
 
 #define ARRAYLEN(x) (sizeof(x) / sizeof((x)[0]))
 
@@ -17,11 +18,9 @@ extern void viewport_set_rotation_vec3f(f32[3]);
 extern void viewport_update(void);
 extern void func_8033BD4C(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);
-extern void mlMtx_push_translation(f32, f32, f32);
-extern void mlMtxScale(f32);
-extern void mlMtxApply(Mtx* mtx);
 extern AnimMtxList *animMtxList_new();
 extern AnimMtxList *animMtxList_defrag(AnimMtxList *);
+extern MtxF *animMtxList_get(AnimMtxList *this, s32 arg1);
 
 
 typedef struct{
@@ -662,7 +661,7 @@ struct {
     LookAt *lookat_buffer_end;
     f32 eye_pos[3];
 } D_803837E0;
-Mtx D_80383BF8;
+MtxF D_80383BF8;
 f32 modelRenderCameraPosition[3];
 f32 modelRenderCameraRotation[3];
 BKModelBin *modelRenderModelBin;
@@ -909,9 +908,9 @@ void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
     if (0 < indx) {
         if (indx <= cmd->unk8) {
             s0 = cmd->unkC;
-            sub_cmd = cmd;
+            sub_cmd = (s32)cmd;
             sub_cmd += *(s32*)(s0 + (indx - 1));
-            func_80339124(gfx, mtx, sub_cmd);
+            func_80339124(gfx, mtx, (BKGeoList*)sub_cmd);
         }
     } else {
         s1 = indx * (-1);
@@ -919,9 +918,9 @@ void func_80338CD0(Gfx **gfx, Mtx **mtx, void *arg2){
         for (s2 = 0; s2 < cmd->unk8; s2++) {
             if (s1 & 1)
             {
-                sub_cmd = cmd;
+                sub_cmd = (s32)cmd;
                 sub_cmd += s0[0];
-                func_80339124(gfx, mtx, sub_cmd);
+                func_80339124(gfx, mtx, (BKGeoList*)sub_cmd);
             }
             s1 >>= 1;
             s0++;

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "ml/mtx.h"
+
 extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
 extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
@@ -21,8 +23,8 @@ f32 D_80280ECC;
 f32 D_80280ED0[4][4];
 Vp s_viewport_stack[8];
 int D_80280F90;
-f32 D_80280F98[4][4];
-Mtx D_80280FD8;
+MtxF D_80280F98;
+MtxF D_80280FD8;
 s32 s_viewport_stack_index; //viewport indx
 
 
@@ -386,11 +388,11 @@ bool func_8024DD34(f32 arg0, f32 arg1, f32 arg2) {
     return ((D_80280ED0[2][0]*arg0 + D_80280ED0[2][1]*arg1 + D_80280ED0[2][2]*arg2 + D_80280ED0[2][3]) <= 0.0f);
 }
 
-Mtx *func_8024DD90(void){
+MtxF *func_8024DD90(void){
     return &D_80280F98;
 }
 
-Mtx *func_8024DD9C(void){
+MtxF *func_8024DD9C(void){
     return &D_80280FD8;
 }
 
@@ -450,7 +452,7 @@ f32 D_80281058[3];
 f32 D_80281068[3];
 f32 D_80281078[3];
 f32 D_80281088[3];
-f32 D_80281098[4][4];
+MtxF D_80281098;
 
 bool func_8024E030(f32 arg0[3], f32 *arg1)
 {
@@ -488,7 +490,7 @@ void func_8024E258(void){
     func_8024C5A8(D_80281088);
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
-            D_80281098[i][j] = D_80280F98[i][j];
+            D_80281098.m[i][j] = D_80280F98.m[i][j];
         }
     }
 }
@@ -501,7 +503,7 @@ void func_8024E2FC(void){
     ml_vec3f_copy(D_80280EA0, D_80281088);
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
-            D_80280F98[i][j] = D_80281098[i][j];
+            D_80280F98.m[i][j] = D_80281098.m[i][j];
         }
     }
 }

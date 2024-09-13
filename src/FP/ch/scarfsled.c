@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "ml/mtx.h"
 
 void chScarfSled_update(Actor *this);
 
@@ -75,7 +76,7 @@ void __chScarfSled_func_80386630(Actor *this){
     f32 sp7C[3];
     f32 sp70[3];
     f32 sp64[3];
-    f32 sp24[4][4];
+    MtxF sp24;
 
     func_80343DEC(this);
     mapSpecificFlags_set(9, 1);
@@ -89,7 +90,7 @@ void __chScarfSled_func_80386630(Actor *this){
         mlMtxIdent();
         mlMtxRotYaw(sp64[1]);
         mlMtxRotPitch(sp64[0]);
-        mlMtxGet(sp24);
+        mlMtxGet(&sp24);
         
         sp70[0] = 0.0f;
         sp70[1] = 18.0f;
