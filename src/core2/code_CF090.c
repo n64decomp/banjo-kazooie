@@ -56,32 +56,32 @@ void func_80356074(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3){
 }
 
 void func_8035611C(void){
-    u8 temp_s0;
+    u8 projectile_indx;
     AnimSprite *sp58;
     u8 sp57;
     ParticleStruct0s *sp54;
-    f32 sp44[3];
+    f32 plyr_pos[3];
     f32 sp38[3];
     f32 sp2C[3];
 
-    temp_s0 = (u8)func_8033E8D0();
+    projectile_indx = (u8)func_8033E8D0();
     sp58 = func_8033E8F4();
     sp57 = func_8033E93C();
     sp54 = func_8033E960();
-    player_getPosition(sp44);
+    player_getPosition(plyr_pos);
     sp54->unk0 = 10.0f;
     sp54->unk4 = 8.0f;
     sp54->unk8 = 255.0f;
     sp54->unkC = -6.0f;
-    projectile_setSprite(temp_s0, ASSET_70D_SPRITE_SMOKE_1);
-    func_8033FCD8(temp_s0, 5);
+    projectile_setSprite(projectile_indx, ASSET_70D_SPRITE_SMOKE_1);
+    func_8033FCD8(projectile_indx, 5);
 
-    func_8033FC60(temp_s0, (s32)(randf()*30.0f + 60.0f) ,(s32)(randf()*20.0f + 210.0f), (s32)(randf()*30.0f + 140.0f));
-    projectile_setPosition(temp_s0, sp44);
+    projectile_setColor(projectile_indx, (s32)(randf()*30.0f + 60.0f) ,(s32)(randf()*20.0f + 210.0f), (s32)(randf()*30.0f + 140.0f));
+    projectile_setPosition(projectile_indx, plyr_pos);
     sp2C[0] = 0.0f;
     sp2C[1] = 0.0f;
     sp2C[2] = randf()*359.0f;
-    func_8033FD98(temp_s0, sp2C);
+    projectile_setRotation(projectile_indx, sp2C);
     animsprite_default(sp58);
     animsprite_set_state(sp58, ANIM_SPRITE_STATE_ONCE);
     animsprite_set_steps(sp58, D_80372700, sizeof(D_80372700));
@@ -92,8 +92,8 @@ void func_8035611C(void){
     sp38[2] = 0.0f;
     func_80344E18(sp57, 2);
     func_80344E3C(sp57, sp38);
-    func_80344D94(sp57, sp44);
-    func_80356020(temp_s0, sp54);
+    func_80344D94(sp57, plyr_pos);
+    func_80356020(projectile_indx, sp54);
 }
 
 void func_803562E8(void){

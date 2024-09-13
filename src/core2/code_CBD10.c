@@ -69,7 +69,7 @@ s32 func_80352D9C(void) {
 }
 
 void func_80352DE4(void) {
-    u8 temp_s0;
+    u8 projectile_indx;
     AnimSprite *sp58;
     u8 sp57;
     ParticleStruct0s *temp_s1;
@@ -77,7 +77,7 @@ void func_80352DE4(void) {
     f32 sp38[3];
     f32 sp2C[3];
 
-    temp_s0 = func_8033E8D0();
+    projectile_indx = func_8033E8D0();
     sp58 = func_8033E8F4();
     sp57 = func_8033E93C();
     temp_s1 = func_8033E960();
@@ -86,14 +86,14 @@ void func_80352DE4(void) {
     temp_s1->unk4 = 8.0f;
     temp_s1->unk8 = 255.0f;
     temp_s1->unkC = -11.0f;
-    projectile_setSprite(temp_s0, ASSET_70D_SPRITE_SMOKE_1);
-    func_8033FCD8(temp_s0, 0xC);
-    func_8033FC60(temp_s0, func_80352D9C(), func_80352D9C(), func_80352D9C());
-    projectile_setPosition(temp_s0, sp44);
+    projectile_setSprite(projectile_indx, ASSET_70D_SPRITE_SMOKE_1);
+    func_8033FCD8(projectile_indx, 0xC);
+    projectile_setColor(projectile_indx, func_80352D9C(), func_80352D9C(), func_80352D9C());
+    projectile_setPosition(projectile_indx, sp44);
     sp2C[0] = 0.0f;
     sp2C[1] = 0.0f;
     sp2C[2] = randf() * 359.0f;
-    func_8033FD98(temp_s0, sp2C);
+    projectile_setRotation(projectile_indx, sp2C);
     animsprite_default(sp58);
     animsprite_set_state(sp58, ANIM_SPRITE_STATE_ONCE);
     animsprite_set_steps(sp58, D_80372670, sizeof(D_80372670));
@@ -104,7 +104,7 @@ void func_80352DE4(void) {
     func_80344E18(sp57, 2);
     func_80344E3C(sp57, sp38);
     func_80344D94(sp57, sp44);
-    func_80352CA0(temp_s0, temp_s1);
+    func_80352CA0(projectile_indx, temp_s1);
 }
 
 void func_80352F58(void){
