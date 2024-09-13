@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309724(f32[3]);
+extern f32 mapModel_getFloorY(f32[3]);
 void func_80329904(ActorMarker *, s32, void *);
 
 
@@ -57,7 +57,7 @@ void func_8038A8CC(ActorMarker *this_marker){
     s32 pad;
 
     this->unk100 = shadow->marker;
-    shadow->position_y = func_80309724(this->position);
+    shadow->position_y = mapModel_getFloorY(this->position);
     shadow->unk1C[0] = func_8038A860(shadow, this);
     shadow->yaw = this->yaw;
     func_8032AA58(shadow, this->scale);

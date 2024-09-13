@@ -45,8 +45,8 @@ void func_8038CA10(ActorMarker *marker) {
     if (this->marker->unk14_21) {
         if (0.65 < (f64) randf()) {
             pCtrl = func_802EDD8C(local->unk4, 0.0f, this->position[1] + 500.0f);
-            func_802EFB70(pCtrl, 0.04f, 0.05f);
-            func_802EFB84(pCtrl, 0.18f, 0.2f);
+            particleEmitter_setStartingScaleRange(pCtrl, 0.04f, 0.05f);
+            particleEmitter_setFinalScaleRange(pCtrl, 0.18f, 0.2f);
             particleEmitter_setParticleSpawnPositionRange(pCtrl, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
             particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
             particleEmitter_emitN(pCtrl, 1);
@@ -91,7 +91,7 @@ void func_8038CC4C(Actor *this) {
     if (!this->unk16C_4) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk16C_4 = TRUE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         local->unk0 = &D_8038F490[0];
         while(local->unk0->map_id != 0 && map_get() != local->unk0->map_id){
             local->unk0++;
@@ -113,12 +113,12 @@ void func_8038CC4C(Actor *this) {
             this->yaw += 30.0f * sp44;
         }
     }
-    if (!this->unk138_24) {
+    if (!this->is_first_encounter) {
         player_getPosition(sp38);
         if (ml_distance_vec3f(this->position, sp38) < 900.0f) {
             if (local->unk0->map_id != MAP_46_CCW_WINTER || func_8028F2FC()) {
                 func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
-                this->unk138_24 = TRUE;
+                this->is_first_encounter = TRUE;
             }
         }
     }

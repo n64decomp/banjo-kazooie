@@ -25,8 +25,8 @@ void __chfirefx_spawnSmoke(f32 position[3], f32 scale){
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 0.0f, 110.0f*scale, 0.0f, 0.0f, 110.0f*scale, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 40.0f*scale, 0.0f, 0.0f, 90.0f*scale, 0.0f);
-    func_802EFB70(pCtrl, 2.6*scale, 3.2*scale);
-    func_802EFB84(pCtrl, 5.0*scale, 6.0*scale);
+    particleEmitter_setStartingScaleRange(pCtrl, 2.6*scale, 3.2*scale);
+    particleEmitter_setFinalScaleRange(pCtrl, 5.0*scale, 6.0*scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 7.0f);
     particleEmitter_setFade(pCtrl, 0.3f, 0.7f);
@@ -44,8 +44,8 @@ void __chfirefx_spawnSpark(f32 position[3], f32 scale){
     particleEmitter_setParticleSpawnPositionRange(pCtrl, 0.0f, 20.0f*scale, 0.0f, 0.0f, 20.0f*scale, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f*scale, 120.0f*scale, -30.0f*scale, 60.0f*scale, 360.0f*scale, 60.0f*scale);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -50.0f, 0.0f, 0.0f, -90.0f, 0.0f);
-    func_802EFB70(pCtrl, 0.1*scale, 0.2*scale);
-    func_802EFB84(pCtrl, 0.2*scale, 0.4*scale);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1*scale, 0.2*scale);
+    particleEmitter_setFinalScaleRange(pCtrl, 0.2*scale, 0.4*scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 0.9f, 1.3f);
     particleEmitter_setFade(pCtrl, 0.3f, 0.7f);

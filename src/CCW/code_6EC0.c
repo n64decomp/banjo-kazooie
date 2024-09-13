@@ -53,7 +53,7 @@ void func_8038D368(Actor *this) {
     if (!this->unk16C_4) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk16C_4 = TRUE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         local->unk0 = D_8038F600;
         while (local->unk0->map != 0 && map_get() != local->unk0->map) {
             local->unk0++;
@@ -66,7 +66,7 @@ void func_8038D368(Actor *this) {
         return;
     } 
     
-    if(!this->unk138_24){
+    if(!this->is_first_encounter){
         player_getPosition(plyr_pos);
         if (ml_distance_vec3f(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
@@ -76,7 +76,7 @@ void func_8038D368(Actor *this) {
                     func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 }
             }
-            this->unk138_24 = TRUE;
+            this->is_first_encounter = TRUE;
         }
     }
     

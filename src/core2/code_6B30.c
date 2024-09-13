@@ -4,7 +4,7 @@
 #include "core2/ba/carry.h"
 #include "core2/ba/physics.h"
 
-extern Actor *func_8032813C(enum actor_e, f32[3], s32);
+extern Actor *spawn_actor_f32(enum actor_e, f32[3], s32);
 
 /* .bss */
 u8 D_8037BFA0;
@@ -116,7 +116,7 @@ void func_8028DE0C(enum actor_e actor_id){
     f32 sp20[3];
 
     baModel_getPosition(sp20);
-    actor = func_8032813C(actor_id, sp20, (s32) yaw_get());
+    actor = spawn_actor_f32(actor_id, sp20, (s32) yaw_get());
     actor->unk138_22 = TRUE;
     bacarry_set_marker(actor->marker);
     bs_setState(BS_3A_CARRY_IDLE);

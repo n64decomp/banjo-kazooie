@@ -44,7 +44,7 @@ void func_802D8730(Actor *this) {
     if (this->velocity_y < 0.0f) {
         this->velocity_y = 0.07f;
         pCtrl = func_802F4094(this->position, 40.0f);
-        func_802EFB70(pCtrl, 0.05f, 0.06f);
+        particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.06f);
         particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -3400.0f, 0.0f, 0.0f, -3400.0f, 0.0f);
         particleEmitter_setRGB(pCtrl, D_80367C84);
         particleEmitter_setParticleVelocityRange(pCtrl, -180.0f, 200.0f, -180.0f, 180.0f, 400.0f, 180.0f);

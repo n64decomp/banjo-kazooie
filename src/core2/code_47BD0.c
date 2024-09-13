@@ -288,7 +288,7 @@ void chBeeSwarm_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) 
     particleEmitter_setFade(p_ctrl, 0.0f, 0.65f);
     particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl,this->marker->modelId);
-    func_802EFB70(p_ctrl, 0.25f, 0.25f);
+    particleEmitter_setStartingScaleRange(p_ctrl, 0.25f, 0.25f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(p_ctrl, -300.0f, 750.0f, -300.0f, 300.0f, 900.0f, 300.0f);
     particleEmitter_emitN(p_ctrl, 1);
@@ -376,7 +376,7 @@ void chBeeSwarm_update(Actor *this) {
             fileProgressFlag_set(FILEPROG_D_BEEHIVE_TEXT, TRUE);
         }
         subaddie_set_state(this, (this->unk100 != NULL) ? 1 : 2);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         chBeeSwarm_802CF040(this);
         this->unk38_0 = volatileFlag_get(VOLATILE_FLAG_1) | volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
     }
@@ -479,18 +479,18 @@ void chBeeSwarm_update(Actor *this) {
         break;
     case 4:
         spB4[1] += 50.0f;
-        this->unk60 += dt;
-        if ((this->unk60 - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
+        this->lifetime_value += dt;
+        if ((this->lifetime_value - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
             func_8028F504(0xD);
-            this->unk60 -= 0.5;
+            this->lifetime_value -= 0.5;
         }
-        if ((this->unk60 > 0.2) && (func_8028ECAC() == 3)) {
+        if ((this->lifetime_value > 0.2) && (func_8028ECAC() == 3)) {
             if (local->unk0-- > 0) {
                 sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
                 sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];
                 sp68[2] = local->unk8[local->unk0].unk0[2] + this->position[2];
                 chBeeSwarm_802CF610(this, partEmitMgr_newEmitter(1), sp68);
-                this->unk60 -= 0.2;
+                this->lifetime_value -= 0.2;
             }
         }
         if (local->unk0 == 0) {

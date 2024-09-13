@@ -82,7 +82,7 @@ void func_8038CFB4(Actor *this) {
     if (!this->unk16C_4) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk16C_4 = TRUE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         func_8038CEB0(this, 1);
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {
             levelSpecificFlags_set(0x25, 1);
@@ -114,11 +114,11 @@ void func_8038CFB4(Actor *this) {
     }
 
     if (this->state == 1) {
-        if (!this->unk138_24) {
+        if (!this->is_first_encounter) {
             player_getPosition(sp60);
             if (ml_distance_vec3f(this->position, sp60) < 900.0f) {
                 func_80311480(0xCCF, 4, NULL, NULL, NULL, NULL);
-                this->unk138_24 = TRUE;
+                this->is_first_encounter = TRUE;
             }
         }
         if (levelSpecificFlags_get(0x25) != 0) {

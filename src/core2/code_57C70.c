@@ -156,7 +156,7 @@ void func_802DEE1C(Actor *this) {
 void func_802DF04C(void){
     Actor *this;
     if(D_8037DFE0 == NULL){
-        this = func_8032813C(0x19B, D_80368330, 0);
+        this = spawn_actor_f32(0x19B, D_80368330, 0);
         D_8037DFE0 = this->marker;
     }
 }

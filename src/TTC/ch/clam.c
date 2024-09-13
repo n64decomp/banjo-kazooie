@@ -160,7 +160,7 @@ void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
     particleEmitter_setModel(pCtrl, ASSET_37C_MODEL_CLAM_LARGE_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C3F4);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -176,7 +176,7 @@ void __chClam_emitEyeParticles(f32 position[3], s32 count){
     particleEmitter_setModel(pCtrl, ASSET_37D_MODEL_CLAM_EYE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C424);
     particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -192,7 +192,7 @@ void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
     particleEmitter_setModel(pCtrl, ASSET_37E_MODEL_CLAM_SMALL_SHELL_PIECE);
     particleEmitter_setVelocityAndAccelerationRanges(pCtrl, &D_8038C454);
     particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
-    func_802EFB70(pCtrl, 0.5f, 0.8f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.5f, 0.8f);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -277,7 +277,7 @@ void chClam_update(Actor *this){
     }
 
     if(this->state != 3){
-        sp48 = func_80309724(this->position);
+        sp48 = mapModel_getFloorY(this->position);
         if(sp4C != NULL){
             sp44 = sp4C->marker->id;
         }

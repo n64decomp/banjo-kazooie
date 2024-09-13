@@ -69,7 +69,7 @@ void func_80390388(Actor *this){
         || jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
         || func_80390334()
     ){
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
     }
 
     if( func_80329530(this, 0xFA) 
@@ -77,14 +77,14 @@ void func_80390388(Actor *this){
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
             if(func_80311480(0xc1f, 0xb, this->position, NULL, NULL, NULL)){
-                this->unk138_24 = TRUE;
+                this->is_first_encounter = TRUE;
                 this->unk1C[0] = 1.0f;
             }
         }
         else{
-            if( !this->unk138_24 ){
+            if( !this->is_first_encounter ){
                 if(func_80311480(0xc1e, 0x2b, this->position, NULL, NULL, NULL)){
-                    this->unk138_24 = TRUE;
+                    this->is_first_encounter = TRUE;
                 }
             }
         }

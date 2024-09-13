@@ -81,7 +81,7 @@ void func_8038E940(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, func_8038E7CC, NULL);
         subaddie_set_state_with_direction(this, 1, 0.05f, 1);
         this->unk38_31 = 0;
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
     }//L8038EA3C
 
     this->unk58_0 = (this->state == 1) ? FALSE : TRUE;
@@ -102,16 +102,16 @@ void func_8038E940(Actor *this){
             actor_playAnimationOnce(this);
             FUNC_8030E624(SFX_416, 0.8f, 32000);
             this->marker->collidable = FALSE;
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
             break;
         case 3: //L8038EB44
-            if(this->unk60 == 0.0f && actor_animationIsAt(this, 0.95f)){
-                this->unk60 = 1.0f;
+            if(this->lifetime_value == 0.0f && actor_animationIsAt(this, 0.95f)){
+                this->lifetime_value = 1.0f;
                 mapSpecificFlags_set(2, TRUE);
                 break;
             }
 
-            if(this->unk60 != 0.0f && !mapSpecificFlags_get(2)){
+            if(this->lifetime_value != 0.0f && !mapSpecificFlags_get(2)){
                 func_8038E774(this);
             }
             break;

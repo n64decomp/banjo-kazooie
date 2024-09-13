@@ -93,7 +93,7 @@ void func_8038C41C(Actor *this) {
     if (!this->unk16C_4) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk16C_4 = TRUE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         return;
     }
 
@@ -114,8 +114,8 @@ void func_8038C41C(Actor *this) {
 
     if ((this->marker->id == 0x1CB) && (this->state == 2)) {
         player_getPosition(sp2C);
-        if (!this->unk138_24 && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
-            this->unk138_24 = TRUE;
+        if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
+            this->is_first_encounter = TRUE;
             func_80311480(0xCCD, 0, NULL, NULL, NULL, NULL);
         }
     }

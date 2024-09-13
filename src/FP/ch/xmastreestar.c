@@ -38,9 +38,9 @@ void func_8038EC34(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 void func_8038EC5C(Actor *this){
-    if(0.0f == this->unk60){
+    if(0.0f == this->lifetime_value){
         this->unk38_31++;
-        this->unk60 = 0.33f;
+        this->lifetime_value = 0.33f;
         if(this->unk38_31 < 4){
             func_8025A6EC(COMUSIC_2B_DING_B, 28000);
         }
@@ -91,11 +91,11 @@ void func_8038ECD8(Actor *this){
         local->unk1A = TRUE;
     }//L8038EE98
 
-    if(0.0f != this->unk60){
-        if(time_getDelta() < this->unk60){
-            this->unk60 -= time_getDelta();
+    if(0.0f != this->lifetime_value){
+        if(time_getDelta() < this->lifetime_value){
+            this->lifetime_value -= time_getDelta();
         }else{
-            this->unk60 = 0.0f;
+            this->lifetime_value = 0.0f;
         }
     }//L8038EEF0
     switch(this->state){

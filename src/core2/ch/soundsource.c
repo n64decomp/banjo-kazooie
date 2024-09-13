@@ -110,7 +110,7 @@ void func_802D096C(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     sp1C[0] = reinterpret_cast(f32, arg0);
     sp1C[1] = reinterpret_cast(f32, arg1);
     sp1C[2] = reinterpret_cast(f32, arg2);
-    func_8032813C(0x28B, sp1C, arg3);
+    spawn_actor_f32(0x28B, sp1C, arg3);
 
 }
 

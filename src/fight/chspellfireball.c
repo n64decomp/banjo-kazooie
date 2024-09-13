@@ -109,8 +109,8 @@ void chSpellFireball_emitSparkles(f32 position[3], u32 count, enum asset_e sprit
     particleEmitter_setParticleAccelerationRange(pe, acceleration_range[0], acceleration_range[1], acceleration_range[2], acceleration_range[3], acceleration_range[4], acceleration_range[5]);
     particleEmitter_setParticleVelocityRange(pe, velocity_range[0], velocity_range[1], velocity_range[2], velocity_range[3], velocity_range[4], velocity_range[5]);
     particleEmitter_setAngularVelocityRange(pe, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
-    func_802EFB70(pe, scale_range[0], scale_range[1]);
-    func_802EFB84(pe, scale_range[2], scale_range[3]);
+    particleEmitter_setStartingScaleRange(pe, scale_range[0], scale_range[1]);
+    particleEmitter_setFinalScaleRange(pe, scale_range[2], scale_range[3]);
     func_802EF9F8(pe, 0.5f);
     func_802EFA18(pe, 3);
     particleEmitter_setSpawnIntervalRange(pe, lifetime_range[0], lifetime_range[1]);
@@ -130,8 +130,8 @@ void chSpellFireball_emitExplosion(f32 position[3], enum asset_e sprite, s32 cou
     particleEmitter_setPosition(pe, position);
     particleEmitter_setParticleSpawnPositionRange(pe, position_range[0], position_range[1], position_range[2], position_range[3], position_range[4], position_range[5]);
     particleEmitter_setParticleVelocityRange(pe, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    func_802EFB70(pe, scale_range[0], scale_range[1]);
-    func_802EFB84(pe, scale_range[2], scale_range[3]);
+    particleEmitter_setStartingScaleRange(pe, scale_range[0], scale_range[1]);
+    particleEmitter_setFinalScaleRange(pe, scale_range[2], scale_range[3]);
     particleEmitter_setSpawnIntervalRange(pe, lifetime_range[0], lifetime_range[1]);
     particleEmitter_setParticleLifeTimeRange(pe, lifetime_range[2], lifetime_range[3]);
     particleEmitter_setFade(pe, fade[0], fade[1]);
@@ -149,8 +149,8 @@ void chSpellFireball_emitSmoke(f32 position[3], u32 count, f32 *lifetime_and_spa
     particleEmitter_setStartingFrameRange(pe, 0, 7);
     particleEmitter_setPosition(pe, position);
     particleEmitter_setPositionAndVelocityRanges(pe, &D_80391B54);
-    func_802EFB70(pe, 0.1f, 0.2f);
-    func_802EFB84(pe, 3.6f, 4.6f);
+    particleEmitter_setStartingScaleRange(pe, 0.1f, 0.2f);
+    particleEmitter_setFinalScaleRange(pe, 3.6f, 4.6f);
     particleEmitter_setSpawnIntervalRange(pe, lifetime_and_spawn_range[0], lifetime_and_spawn_range[1]);
     particleEmitter_setParticleLifeTimeRange(pe, lifetime_and_spawn_range[2], lifetime_and_spawn_range[3]);
     particleEmitter_setFade(pe, 0.05f, 0.1f);
@@ -281,7 +281,7 @@ void func_8038F620(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, NULL, func_8038F3B4);
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);
-        this->unk60 = 8.0f;
+        this->lifetime_value = 8.0f;
         this->scale = 0.1f;
         if( this->marker->id == MARKER_280_GRUNTY_SPELL_GREEN_ATTACK){
             actor_collisionOff(this);
@@ -365,8 +365,8 @@ void func_8038F620(Actor *this){
                 func_8038F084(this->marker);
             }
             else {
-                if(0.0 <= this->unk60){
-                    this->unk60 -= sp40;
+                if(0.0 <= this->lifetime_value){
+                    this->lifetime_value -= sp40;
                 }else{
                     func_8038F084(this->marker);
                 }

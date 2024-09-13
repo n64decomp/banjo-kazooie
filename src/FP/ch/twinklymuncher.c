@@ -107,7 +107,7 @@ void func_8038E094(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, func_8038DEB8, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         animctrl_setAnimTimer(this->animctrl, 0.99999f);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         if(this->unkF4_8 == 1){
             func_8038DDC8(this);
         }
@@ -148,18 +148,18 @@ void func_8038E094(Actor *this){
         case 1: //L8038E2DC
             this->marker->propPtr->unk8_3 = FALSE;
             animctrl_setAnimTimer(this->animctrl, 0.99f);
-            if(this->unk60 < 5.0){
-                this->unk60 += sp34;
+            if(this->lifetime_value < 5.0){
+                this->lifetime_value += sp34;
             }
             else{
-                if(10.0 <= this->unk60 || randf() < this->unk60/10.0){
+                if(10.0 <= this->lifetime_value || randf() < this->lifetime_value/10.0){
                     if(!func_8038DF34(this)){
-                        this->unk60 = 0.0f;
+                        this->lifetime_value = 0.0f;
                         func_8038DDC8(this);
                         break;
                     }
                 }
-                this->unk60 += sp34;
+                this->lifetime_value += sp34;
             }
             break;
 
@@ -216,7 +216,7 @@ void func_8038E094(Actor *this){
             if(actor_animationIsAt(this, 0.97f)){
                 subaddie_set_state_with_direction(this, 1, 0.97f, 0);
                 actor_playAnimationOnce(this);
-                this->unk60 = 0.0f;
+                this->lifetime_value = 0.0f;
             }
             break;
 

@@ -101,7 +101,7 @@ void chpinkegg_update(Actor *this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
         marker_setCollisionScripts(this->marker, NULL, NULL, chpinkegg_collision);
-        this->initialized = 1;
+        this->initialized = TRUE;
     }
 
     switch(this->state){

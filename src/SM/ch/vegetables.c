@@ -5,7 +5,7 @@
 
 
 //external
-f32 func_80309724(f32*);
+f32 mapModel_getFloorY(f32*);
 void func_802C4218(s32, f32, f32, f32);
 void func_803252D0(f32, s32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
@@ -223,7 +223,7 @@ void func_80387DCC(ActorMarker *marker, ActorMarker *other_marker){
 Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
 
-    if(actor->unk138_24)
+    if(actor->is_first_encounter)
         func_8033A470(3, 7);
     else
         func_8033A45C(3, 0);
@@ -320,10 +320,10 @@ void func_80388080(Actor *this){
         this->velocity_x = temp_velX;
         this->velocity_y = (local->unkC == 3) ? 90.0f : 70.0f;
         this->velocity_z = temp_velZ;
-        this->unk138_24 = 1;
+        this->is_first_encounter = TRUE;
         this->unk138_23 = 0;
         this->unk38_0 = 0;
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->scale = 0.5;
     }//L80388278
     switch (this->state)
@@ -347,7 +347,7 @@ void func_80388080(Actor *this){
         this->velocity_y -= 5.0f;
         this->scale = MIN(this->scale + 0.05, 1.0);
         if(this->velocity_y < 0.0f && this->position_y < this->unk1C_y){
-            this->position_y = func_80309724(this->position);
+            this->position_y = mapModel_getFloorY(this->position);
             if(local->unkC == 3)
                 func_80387F00(this);
 
@@ -483,7 +483,7 @@ void func_80388080(Actor *this){
             sp54[2] = this->position_z;
             if(local->unkC == 1)
                 sp54[1] += 150.0f;
-            this->unk138_24 = 0;
+            this->is_first_encounter = FALSE;
             func_80387A80(partEmitMgr_newEmitter(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         

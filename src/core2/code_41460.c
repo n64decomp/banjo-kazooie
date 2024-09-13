@@ -166,7 +166,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         sp68[2] = (f32)position[2];
 
         sp68[0] += s0->unk30[0]*3.0f;
-        s0->unk50 = func_80309724(&sp68);
+        s0->unk50 = mapModel_getFloorY(&sp68);
 
         s0->unk14[2] = 0.0f;
         s0->unk14[1] = 0.0f;

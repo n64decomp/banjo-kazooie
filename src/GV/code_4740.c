@@ -61,8 +61,8 @@ void func_8038ABD8(f32 position[3], s32 cnt){
         -100.0f, 10.0f, -100.0f,
         100.0f, 60.0f, 100.0f
     );
-    func_802EFB70(pCtrl, 0.1f, 0.5f);
-    func_802EFB84(pCtrl, 1.2f, 2.6f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.5f);
+    particleEmitter_setFinalScaleRange(pCtrl, 1.2f, 2.6f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 1.4f);
     particleEmitter_emitN(pCtrl, cnt);
@@ -79,8 +79,8 @@ void func_8038ACEC(f32 pos[3], s32 cnt){
         -200.0f, 20.0f, -200.0f,
         300.0f, 120.0f, 200.0f
     );
-    func_802EFB70(pCtrl, 1.0f, 2.6f);
-    func_802EFB84(pCtrl, 3.0f, 5.5f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 2.6f);
+    particleEmitter_setFinalScaleRange(pCtrl, 3.0f, 5.5f);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.2f, 3.2f);
     particleEmitter_emitN(pCtrl, cnt);
@@ -94,7 +94,7 @@ void func_8038ADFC(f32 pos[3], s32 cnt){
     particleEmitter_setAngularVelocityRange(pCtrl, -500.0f, -500.0f, -500.0f, 500.0f, 500.0f, 500.0f);
     func_802EF9F8(pCtrl, 0.6f);
     func_802EFA18(pCtrl, 2);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 6.0f);
@@ -271,19 +271,19 @@ void func_8038B124(Actor *this){
             if(0.98 < animctrl_getAnimTimer(this->animctrl)){
                 subaddie_set_state_with_direction(this, 6, 0.99f, 0);
                 actor_playAnimationOnce(this);
-                this->unk60 = 0.0f;
+                this->lifetime_value = 0.0f;
                 this->unk1C[0] = 1.0f;
             }
             break;
 
         case 6: //L8038B78C
-            if(75.0f <= this->unk60){
+            if(75.0f <= this->lifetime_value){
                 subaddie_set_state_with_direction(this, 7, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk1C[0] = 1.0f;
             }
             else{
-                this->unk60 += 1.0f;
+                this->lifetime_value += 1.0f;
             }
             break;
 

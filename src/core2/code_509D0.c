@@ -77,8 +77,8 @@ void __chLevelCollectible_presentCollectEmitSparkles(f32 position[3], enum asset
     particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -250.0f, 0.0f, 0.0f, -250.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(p_emitter, -100.0f, 200.0f, -100.0f, 100.0f, 350.0f, 100.0f);
     particleEmitter_setAngularVelocityRange(p_emitter, 0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 240.0f);
-    func_802EFB70(p_emitter, 0.47f, 0.47f);
-    func_802EFB84(p_emitter, 0.03f, 0.03f);
+    particleEmitter_setStartingScaleRange(p_emitter, 0.47f, 0.47f);
+    particleEmitter_setFinalScaleRange(p_emitter, 0.03f, 0.03f);
     particleEmitter_setFade(p_emitter, 0.4f, 0.8f);
     particleEmitter_setParticleLifeTimeRange(p_emitter, 0.9f, 0.9f);
     particleEmitter_emitN(p_emitter, 8);

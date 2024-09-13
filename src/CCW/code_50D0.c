@@ -87,11 +87,11 @@ void func_8038B814(Actor *this, s32 next_state) {
 void func_8038B87C(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         func_8038B814(this, 1);
     }
-    if (!this->unk138_24 && func_803292E0(this)) {
-        this->unk138_24 = TRUE;
+    if (!this->is_first_encounter && func_803292E0(this)) {
+        this->is_first_encounter = TRUE;
         func_80311480(0xCC9, 0, NULL, NULL, NULL, NULL);
     }
     func_8028E668(this->position, 300.0f, -50.0f, 120.0f);

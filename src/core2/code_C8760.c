@@ -44,7 +44,7 @@ void func_8034F774(void){
         particleEmitter_setParticleFramerateRange(D_803720A0.unk0, 15.0f, 30.0f);
         particleEmitter_setSpawnIntervalRange(D_803720A0.unk0, 0.0f, 1.0f);
         particleEmitter_setParticleLifeTimeRange(D_803720A0.unk0, 216000.0f, 216000.0f);
-        func_802EFB70(D_803720A0.unk0, 1.8f, 2.2f);
+        particleEmitter_setStartingScaleRange(D_803720A0.unk0, 1.8f, 2.2f);
         particleEmitter_emitUniformLine(D_803720A0.unk0, &sp38, &sp2C, 10);
         particleEmitter_setSpawnInterval(D_803720A0.unk0, 0.0f);
         D_803720A0.unk5 = func_8030D90C();

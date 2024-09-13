@@ -32,7 +32,7 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
          120.0f, 300.0f,  120.0f
     );
     particleEmitter_setPosition(pCtrl, this->position);
-    func_802EFB70(pCtrl, 0.5f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.5f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl,
         -500.0f, -500.0f, -500.0f,
          500.0f,  500.0f,  500.0f
@@ -52,8 +52,8 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
     particleEmitter_setFade(pCtrl, 0.05f, 0.1f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, this->position);
-    func_802EFB70(pCtrl, 3.0f, 3.5f);
-    func_802EFB84(pCtrl, 4.5f, 5.5f);
+    particleEmitter_setStartingScaleRange(pCtrl, 3.0f, 3.5f);
+    particleEmitter_setFinalScaleRange(pCtrl, 4.5f, 5.5f);
     particleEmitter_setParticleSpawnPositionRange(pCtrl,
         -50.0f,  50.0f, -50.0f, 
          50.0f, 200.0f, 50.0f

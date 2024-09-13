@@ -74,8 +74,8 @@ void __bsDroneEnter_initParticleTypes(ParticleEmitter *p_ctrl, enum asset_e spri
     particleEmitter_manualFree(p_ctrl);
     particleEmitter_setSprite(p_ctrl, sprite_id);
     particleEmitter_setFade(p_ctrl, 0.3f, 0.8f);
-    func_802EFB70(p_ctrl, 0.15f, 0.22f);
-    func_802EFB84(p_ctrl, 0.03f, 0.05f);
+    particleEmitter_setStartingScaleRange(p_ctrl, 0.15f, 0.22f);
+    particleEmitter_setFinalScaleRange(p_ctrl, 0.03f, 0.05f);
     particleEmitter_setAngularVelocityRange(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 0.55f, 0.55f);
 }

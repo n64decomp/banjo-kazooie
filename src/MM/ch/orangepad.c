@@ -65,8 +65,8 @@ void func_80386444(ActorMarker *marker){
         p_ctrl = partEmitMgr_newEmitter(30);
         particleEmitter_setPosition(p_ctrl, closest_orange_pad->position);
         particleEmitter_setModel(p_ctrl, 0x89f);
-        func_802EFB70(p_ctrl, 0.09f, 0.19f);
-        func_802EFB84(p_ctrl, 0.0f, 0.0f);
+        particleEmitter_setStartingScaleRange(p_ctrl, 0.09f, 0.19f);
+        particleEmitter_setFinalScaleRange(p_ctrl, 0.0f, 0.0f);
 
         particleEmitter_setParticleVelocityRange(p_ctrl,
             -200.0f, 500.0f, -200.0f,
@@ -104,7 +104,7 @@ void func_80386768(Actor * this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOff(this);
-        this->initialized = 1;
+        this->initialized = TRUE;
     }//L803867B0
 
     if(!this->unk16C_4){
@@ -127,17 +127,17 @@ void func_80386768(Actor * this){
     }
 
     if(this->state == 1){
-        if(this->unk60 < 72.0f){
+        if(this->lifetime_value < 72.0f){
             func_8033E73C(this->marker, 5, func_80329904);
             func_8033E3F0(9, this->marker->unk14_21);
         }
-        this->unk60 = MIN(255.0, this->unk60 + 7.0);
+        this->lifetime_value = MIN(255.0, this->lifetime_value + 7.0);
 
-        if(255.0 == this->unk60){
+        if(255.0 == this->lifetime_value){
             marker_despawn(this->marker);
         }
     }else{
     }//L80386928
 
-    actor_setOpacity(this, 0xFF - (s32)this->unk60);
+    actor_setOpacity(this, 0xFF - (s32)this->lifetime_value);
 }//*/

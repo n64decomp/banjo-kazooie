@@ -98,7 +98,7 @@ void chspellbarrier_update(Actor *this){
             local->unk4 = 1;
             actor_setOpacity(this, 0);
             this->unk58_0 = 0;
-            this->unk60 =  2.0f;
+            this->lifetime_value =  2.0f;
         }
     } //L8038E9F4
     if(this->state == 1){
@@ -107,9 +107,9 @@ void chspellbarrier_update(Actor *this){
             this->scale = MIN(1.0, this->scale + ((f64)sp38 + (f64)sp38));
         }//L8038EA68
 
-        if(0.0 < this->unk60){
+        if(0.0 < this->lifetime_value){
             this->unk58_0 = 0;
-            this->unk60 -=  sp38;
+            this->lifetime_value -=  sp38;
         }
         else{ //L8038EAA4
             this->unk58_0 = 1;
@@ -125,7 +125,7 @@ void chspellbarrier_update(Actor *this){
                 if(local->unk0 <= 0){
                     local->unk0 = 0;
                     local->unk4 = 1;
-                    this->unk60 = 0.25f;
+                    this->lifetime_value = 0.25f;
                 }
             }//L8038EB74
             actor_setOpacity(this, local->unk0);

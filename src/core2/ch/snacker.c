@@ -79,12 +79,12 @@ static void __chsnacker_start_dialog(Actor *this) {
         this->unk28 = 0.0f;
         if (level_get() == LEVEL_2_TREASURE_TROVE_COVE) {
             text_index = mapSpecificFlags_getN(8, 3);
-            if( !this->unk138_24 ) {
+            if( !this->is_first_encounter ) {
                 if(text_index < 4) {
                     if(func_80311480(0xA1B + text_index, 0, NULL, NULL, NULL, NULL)){
                         text_index++;
                         mapSpecificFlags_setN(8, text_index, 3);
-                        this->unk138_24 = TRUE;
+                        this->is_first_encounter = TRUE;
                     }
                 }
             }
@@ -99,7 +99,7 @@ bool func_802E0DC0(f32 snacker_position[3]){
 
     player_getPosition(player_position);
     return (4000000.0f < ml_distanceSquared_vec3f(player_position, snacker_position))
-        || ( (snacker_position[1] - func_80309724(snacker_position) < 70.0f) && (func_80309B24(snacker_position) - snacker_position[1] < 70.0f));
+        || ( (snacker_position[1] - mapModel_getFloorY(snacker_position) < 70.0f) && (func_80309B24(snacker_position) - snacker_position[1] < 70.0f));
 }
 
 void func_802E0E88(Actor *this){
@@ -359,7 +359,7 @@ void chSnacker_spawn(void) {
         }
     }
 
-    snacker = func_8032813C(ACTOR_68_SNACKER, spawn_position, 0);
+    snacker = spawn_actor_f32(ACTOR_68_SNACKER, spawn_position, 0);
     s_chSnacker_marker = snacker->marker;
 
     local = (ChSnackerLocal *)&snacker->local;

@@ -42,8 +42,8 @@ void func_802F3CF8(f32 arg0[3], s32 arg1, s32 arg2){
         );
         func_802EFF50(pCtrl, 1.0f);
         particleEmitter_setFade(pCtrl, 0.1f, 0.5f);
-        func_802EFB70(pCtrl, 0.1f, 0.2f);
-        func_802EFB84(pCtrl, 0.4f, 0.5f);
+        particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.2f);
+        particleEmitter_setFinalScaleRange(pCtrl, 0.4f, 0.5f);
         particleEmitter_setParticleLifeTimeRange(pCtrl, 0.75f, 0.75f);
         particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80368D88);
         if(arg1 == 0){

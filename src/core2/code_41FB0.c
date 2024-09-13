@@ -153,7 +153,7 @@ Actor *func_802C8FE4(s32 arg0, f32 position[3], Actor *arg2){
         D_8037DDB4 += 360.0/sp74->count;
         while(360.0 <= D_8037DDB4){ D_8037DDB4 -= 360.0;}
         //L802C9114
-        actor =(i == 0 && arg2) ? arg2 : func_8032813C(sp74->actor_id, position, 0);
+        actor =(i == 0 && arg2) ? arg2 : spawn_actor_f32(sp74->actor_id, position, 0);
         actor->unk10_0 = 1;
         s0 = (struct41FB0s_1 *) &actor->unkBC;
         s0->unk0 = arg0; 

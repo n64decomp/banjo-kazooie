@@ -200,11 +200,11 @@ void chGobi2_update(Actor *this){
     }//L80388114
 
     if(this->state == 2){
-        if(!this->unk138_24){
+        if(!this->is_first_encounter){
             if(func_80329530(this, 0xFA) && !func_80329530(this, 0x50)){
                 if(func_8028F2A0()){
                     if(func_80311480(ASSET_A75_TEXT_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
-                        this->unk138_24 = TRUE;
+                        this->is_first_encounter = TRUE;
                 }
             }
         }

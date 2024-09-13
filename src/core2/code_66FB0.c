@@ -45,7 +45,7 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
     f32 tmp_f0;
     if(arg1 < 0x3e7){
         particleEmitter_setModel(pCtrl, D_80368860[arg1]);
-        func_802EFB70(pCtrl, arg3 * 0.6, arg3 * 1.1);
+        particleEmitter_setStartingScaleRange(pCtrl, arg3 * 0.6, arg3 * 1.1);
         particleEmitter_setAngularVelocityRange(pCtrl, 400.0f, 400.0f, 400.0f, 800.0f, 800.0f, 800.0f);
     }
     else{//L802EE008
@@ -56,8 +56,8 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
         else{
             particleEmitter_setStartingFrameRange(pCtrl, 0, 0);
         }
-        func_802EFB70(pCtrl, arg3, arg3);
-        func_802EFB84(pCtrl, arg3, arg3);
+        particleEmitter_setStartingScaleRange(pCtrl, arg3, arg3);
+        particleEmitter_setFinalScaleRange(pCtrl, arg3, arg3);
         particleEmitter_setAngularVelocityRange(pCtrl, 0, 0, 0, 0, 0, 0);
         func_802EFF9C(pCtrl, 0);
     }//L802EE0B4

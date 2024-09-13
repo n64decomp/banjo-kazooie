@@ -436,7 +436,7 @@ void chBottlesBonus_startTimer(s32 arg0, s32 arg1, s32 arg2) {
 
     actor = marker_getActor(chBottlesBonusMarker);
     actor->state = 4;
-    actor->unk60 = 0.0f;
+    actor->lifetime_value = 0.0f;
     timedFunc_set_2(0.25f, item_set, ITEM_6_HOURGLASS, TRUE);
     timedFunc_set_2(0.25f, item_set, ITEM_0_HOURGLASS_TIMER, D_803681A0[chBottleBonusPuzzleIndex + 1].time_seconds * 60 - 1);
 }
@@ -456,7 +456,7 @@ void chBottlesBonus_update(Actor *this) {
     if (!this->unk16C_4) {
         this->unk16C_4 = TRUE;
         actor_collisionOff(this);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         D_8037DEB4 = D_8037DEB0 = 0;
         marker_setFreeMethod(this->marker, chBottlesBonus_free);
         if (chBottleBonusBookselfModelBin == 0) {
@@ -502,11 +502,11 @@ void chBottlesBonus_update(Actor *this) {
             }
         }
     }
-    this->unk60 += sp50;
+    this->lifetime_value += sp50;
     switch(this->state){
         case 1:
-            if ((this->unk60 > 2.0) && gctransition_done()) {
-                this->unk60 = 0.0f;
+            if ((this->lifetime_value > 2.0) && gctransition_done()) {
+                this->lifetime_value = 0.0f;
                 func_8025A6EC(COMUSIC_98_BBONUS_PIECES_SHUFFLE, -1);
                 comusic_8025AB44(COMUSIC_95_BBONUS_A, 0, 2000);
                 func_8025AABC(COMUSIC_95_BBONUS_A);
@@ -532,7 +532,7 @@ void chBottlesBonus_update(Actor *this) {
         case 3:
             break;
         case 4:
-            if (this->unk60 > 2.0) {
+            if (this->lifetime_value > 2.0) {
                 func_8025AEA0(COMUSIC_94_BBONUS, ((item_getCount(ITEM_0_HOURGLASS_TIMER) * 0x201D2) / (s32) ((D_803681A0[chBottleBonusPuzzleIndex + 1].time_seconds * 60) - 1)) + 330000);
                 if ((item_getCount(ITEM_6_HOURGLASS) == 0) && (chBottlesBonusCursor_isPuzzleCompleted() == 0)) {
                     chBottlesBonus_lose(&D_8037DCC9, 0xE26);
@@ -547,7 +547,7 @@ void chBottlesBonus_update(Actor *this) {
 void __chBottlesBonus_spawn(void){
     Actor *actor;
     if(chBottlesBonusMarker == NULL){
-        actor = func_8032813C(0x1E0, D_803682C4, 0);
+        actor = spawn_actor_f32(0x1E0, D_803682C4, 0);
         chBottlesBonusMarker = actor->marker;
         chBottlesBonusCursor_spawn();
         func_802DF270();

@@ -37,7 +37,7 @@ void func_802DC67C(Actor *this){
 void func_802DC6E4(void) {
     Actor *actor;
     if (D_8037DE50 == 0) {
-        actor = func_8032813C(0x19C, D_80368070, 0);
+        actor = spawn_actor_f32(0x19C, D_80368070, 0);
         D_8037DE50 = actor->marker;
         func_8025A58C(0, 5000);
         func_8025AB00();

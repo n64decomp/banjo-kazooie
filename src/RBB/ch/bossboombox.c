@@ -104,8 +104,8 @@ void func_8038C39C(Actor *this){
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setDrawMode(other, 4);
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
-    func_802EFB84(other, 3.0f*local->unk0->unk4, local->unk0->unk4*7.0f);
+    particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
+    particleEmitter_setFinalScaleRange(other, 3.0f*local->unk0->unk4, local->unk0->unk4*7.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 
         local->unk0->unk4*-200.0f, local->unk0->unk4*100.0f, local->unk0->unk4*-200.0f,
         local->unk0->unk4*200.0f, local->unk0->unk4*100.0f, local->unk0->unk4*200.0f
@@ -126,8 +126,8 @@ void RBB_func_8038C538(Actor *this){
     particleEmitter_setDrawMode(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*6.0f);
-    func_802EFB84(other, 0.5*local->unk0->unk4, local->unk0->unk4*3.0f);
+    particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*6.0f);
+    particleEmitter_setFinalScaleRange(other, 0.5*local->unk0->unk4, local->unk0->unk4*3.0f);
     particleEmitter_setParticleSpawnPositionRange(other, 
         local->unk0->unk4*-300.0f, local->unk0->unk4*100.0f, local->unk0->unk4*-300.0f,
         local->unk0->unk4*300.0f, local->unk0->unk4*300.0f, local->unk0->unk4*300.0f
@@ -155,7 +155,7 @@ void RBB_func_8038C70C(Actor *this){
         local->unk0->unk4 * 300.0f, local->unk0->unk4 * 200.0f, local->unk0->unk4 * 300.0f
     );
     particleEmitter_setPosition(other, this->position);
-    func_802EFB70(other, local->unk0->unk4*0.3, local->unk0->unk4*0.8);
+    particleEmitter_setStartingScaleRange(other, local->unk0->unk4*0.3, local->unk0->unk4*0.8);
     particleEmitter_setAngularVelocityRange(other, 
         -600.0f, -600.0f, -600.0f, 
         600.0f, 600.0f, 600.0f
@@ -181,8 +181,8 @@ void func_8038C8A8(Actor * this){
     particleEmitter_setDrawMode(other, 4);
     particleEmitter_setStartingFrameRange(other, 0, 7);
     particleEmitter_setPosition(other, sp24);
-    func_802EFB70(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
-    func_802EFB84(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
+    particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
+    particleEmitter_setFinalScaleRange(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
     particleEmitter_setPositionVelocityAndAccelerationRanges(other, &D_80390CA8);
     particleEmitter_setParticleLifeTimeRange(other, 1.0f, 2.0f);
     particleEmitter_setRGB(other, &D_80390C9C);

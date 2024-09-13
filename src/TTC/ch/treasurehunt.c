@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309724(f32[3]);
+extern f32 mapModel_getFloorY(f32[3]);
 extern void func_8028F45C(s32, f32[3]);
 
 typedef struct {
@@ -92,11 +92,11 @@ void func_80389A1C(void) {
     Actor *actor;
     ActorLocal_TreasureHunt *local;
 
-    actor = func_8032813C(0x55, D_8038C820[D_8037DCB4], 0);
+    actor = spawn_actor_f32(0x55, D_8038C820[D_8037DCB4], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
     actor->yaw = D_8038C868[D_8037DCB4];
     local->unk0 = D_8037DCB4;
-    actor->unk60 = 0.0f;
+    actor->lifetime_value = 0.0f;
     actor->state = 0;
 }
 
@@ -105,11 +105,11 @@ void func_80389A9C(void) {
     ActorLocal_TreasureHunt *local;
     s32 actor_id;
 
-    actor = func_8032813C((D_8038C898 - 1)[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
+    actor = spawn_actor_f32((D_8038C898 - 1)[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
     actor->yaw = D_8038C880[D_8037DCB4 - 1];
     local->unk0 = D_8037DCB4;
-    actor->unk60 = 0.0f;
+    actor->lifetime_value = 0.0f;
     actor->state = 0;
 }
 
@@ -156,7 +156,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         D_8038D708[0] = (f32)arg0[0];
         D_8038D708[1] = (f32)arg0[1];
         D_8038D708[2] = (f32)arg0[2];
-        D_8038D708[1] =  func_80309724(D_8038D708);
+        D_8038D708[1] =  mapModel_getFloorY(D_8038D708);
         __spawnQueue_add_4((GenFunction_4)func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
         D_8038D700 = partEmitMgr_newEmitter(3);
         particleEmitter_setRGB(D_8038D700, D_8038C91C);
@@ -192,8 +192,8 @@ void TTC_func_80389E90(Actor *this){
 
     switch(this->state){
         case 0://L80389F20
-            this->unk60 = MIN(255.0, this->unk60 + tick*150.0);
-            if(255.0 == this->unk60){
+            this->lifetime_value = MIN(255.0, this->lifetime_value + tick*150.0);
+            if(255.0 == this->lifetime_value){
                 this->state = 1;
             }
             break;
@@ -203,12 +203,12 @@ void TTC_func_80389E90(Actor *this){
             }
             break;
         case 2://L80389FC4
-            this->unk60 = MAX(0.0, this->unk60 - tick*((this->marker->modelId == ASSET_3EA_MODEL_RED_X)? 200.0 : 150.0));
-            if(0.0 == this->unk60)
+            this->lifetime_value = MAX(0.0, this->lifetime_value - tick*((this->marker->modelId == ASSET_3EA_MODEL_RED_X)? 200.0 : 150.0));
+            if(0.0 == this->lifetime_value)
                 marker_despawn(this->marker);
             break;
     }//L8038A094
-    actor_setOpacity(this, (s32)this->unk60);
+    actor_setOpacity(this, (s32)this->lifetime_value);
     this->depth_mode = 2;
 }
 

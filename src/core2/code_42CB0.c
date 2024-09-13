@@ -98,7 +98,7 @@ void chHoneycomb_update(Actor *this){
     int i;
 
     if(!this->initialized){
-        this->unk60 = (randf() < 0.5) ? 200.0 : -200.0;
+        this->lifetime_value = (randf() < 0.5) ? 200.0 : -200.0;
         this->initialized = TRUE;
         if( this->marker->id == MARKER_53_EMPTY_HONEYCOMB){
             if(local->uid == 0)
@@ -146,7 +146,7 @@ void chHoneycomb_update(Actor *this){
         }
     }
 
-    this->yaw += time_getDelta()*this->unk60;
+    this->yaw += time_getDelta()*this->lifetime_value;
     if(360.0f <= this->yaw) this->yaw -= 360.0f;
     if(this->yaw < 0.0f)    this->yaw += 360.0f;
 

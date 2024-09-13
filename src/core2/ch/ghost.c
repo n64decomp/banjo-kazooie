@@ -60,8 +60,8 @@ void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 a
         -100.0f*scale, -20.0f*scale, -100.0f*scale,
         100.0f*scale, 100.0f*scale, 100.0f*scale
     );
-    func_802EFB70(pCtrl, scale*0.4, scale*0.6);
-    func_802EFB84(pCtrl, scale*1.0, scale*1.4);
+    particleEmitter_setStartingScaleRange(pCtrl, scale*0.4, scale*0.6);
+    particleEmitter_setFinalScaleRange(pCtrl, scale*1.0, scale*1.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.0f, 1.4f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
@@ -96,7 +96,7 @@ void func_8035B2C4(ActorMarker *this_marker, ActorMarker *other_marker){
 
 void func_8035B3B4(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
-    this->unk60 = 1.0f;
+    this->lifetime_value = 1.0f;
 }
 
 int func_8035B3E4(Actor *this){
@@ -208,7 +208,7 @@ void func_8035B900(Actor *this){
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         this->velocity_z = 0.0f;
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         this->unk1C[0] = this->position_y + this->scale*100.0f;
         this->velocity_y = this->scale*2.0;
         this->velocity_x = this->unk1C[0];
@@ -216,8 +216,8 @@ void func_8035B900(Actor *this){
         animctrl_setTransitionDuration(this->animctrl, 0.8f);
     }//L8035B9D4
     
-    if(0.0 < this->unk60 - sp2C){
-        this->unk60 -= sp2C;
+    if(0.0 < this->lifetime_value - sp2C){
+        this->lifetime_value -= sp2C;
     }
     else{//L8035BA08
         switch(this->state){

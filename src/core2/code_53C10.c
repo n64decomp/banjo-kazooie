@@ -39,7 +39,7 @@ void func_802DABA0(ParticleEmitter *pCtrl, f32 position[3], f32 scale, enum asse
     func_802EFA18(pCtrl, 5);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 6000);
-    func_802EFB70(pCtrl, scale, scale);
+    particleEmitter_setStartingScaleRange(pCtrl, scale, scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 3.5f, 3.5f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.65f);
@@ -222,7 +222,7 @@ void func_802DB4E0(ActorMarker *marker, s32 arg1){
     subaddie_set_state_with_direction(actor, 9, 0.0f, 1);
     actor_playAnimationOnce(actor);
     actor_collisionOff(actor);
-    actor->unk60 = randf2(3.0f, 6.0f);
+    actor->lifetime_value = randf2(3.0f, 6.0f);
 }
 
 void func_802DB548(ActorMarker *marker, ActorMarker *other_marker) {
@@ -243,7 +243,7 @@ void func_802DB5A0(Actor *this) {
     if (!this->unk16C_4) {
         marker_setCollisionScripts(this->marker, &func_802DB440, local->unk30, local->unk34);
         this->marker->propPtr->unk8_3 = FALSE;
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         this->unk124_0 = this->unk138_31 = FALSE;
         local->unk38 = 0;
         this->unk16C_4 = TRUE;
@@ -370,8 +370,8 @@ void func_802DB5A0(Actor *this) {
             if (animctrl_getAnimTimer(this->animctrl) != 0.0f) {
                 func_802DB2F8(this);
             }
-            if (this->unk60 > 0.0f) {
-                this->unk60 -= time_getDelta();
+            if (this->lifetime_value > 0.0f) {
+                this->lifetime_value -= time_getDelta();
                 break;
             }
             subaddie_set_state_with_direction(this, 0xA, 0.0f, 1);

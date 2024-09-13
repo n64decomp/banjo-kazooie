@@ -130,8 +130,8 @@ void chBossJinjoBase_update(Actor *this) {
         func_8038D3DC(this, 0x19a, 0.0f, -200.0f, 0.0f);
         TUPLE_COPY(this->unk1C, this->position);
         this->position_y = -400.0f;
-        if(0.0f != this->unk60)
-            this->velocity_y = 400.0f/this->unk60;
+        if(0.0f != this->lifetime_value)
+            this->velocity_y = 400.0f/this->lifetime_value;
         else
             this->velocity_y = 100.0f;
         

@@ -26,7 +26,7 @@ void chSnowmanHat_update(Actor *this){
             if( 360.0f <= this->pitch)
                 this->pitch -= 360.0f;
 
-            if(this->position_y <= func_80309724(this->position)){
+            if(this->position_y <= mapModel_getFloorY(this->position)){
                 subaddie_set_state(this, 2);
                 FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 32750, this->position, 2250, 4500);
             }

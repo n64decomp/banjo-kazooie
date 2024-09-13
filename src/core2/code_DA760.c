@@ -46,21 +46,21 @@ void func_80361870(Actor *this){
         this->unk16C_4 = 1;
     }
 
-    if(!this->unk138_24 && func_80329530(this, 400) && !func_80329530(this, 50)){
+    if(!this->is_first_encounter && func_80329530(this, 400) && !func_80329530(this, 50)){
         if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_31_MM_OPEN) && level_get() == LEVEL_6_LAIR){
             text_id = fileProgressFlag_get(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT)? 0xF80 : 0xF7F;
             if(func_80311480(text_id, 0, 0, 0, 0, 0)){
-                this->unk138_24 = TRUE;
+                this->is_first_encounter = TRUE;
             }
         }
         else if(func_803616F0(this)){
             sp28 = (volatileFlag_get(VOLATILE_FLAG_16)?0xf6e:0xf68) + this->unkF4_8 - 1;
             if(!volatileFlag_get(VOLATILE_FLAG_16) && level_get() == LEVEL_6_LAIR){
-                this->unk138_24 = TRUE;
+                this->is_first_encounter = TRUE;
             }
             else{ 
                 if(func_80311480(sp28, 0, 0, 0, 0, 0)){
-                    this->unk138_24 = TRUE;
+                    this->is_first_encounter = TRUE;
                     volatileFlag_set(VOLATILE_FLAG_16, 0);
                 }
             }

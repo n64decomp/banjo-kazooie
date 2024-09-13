@@ -34,12 +34,12 @@ void __chtreasure_updatePosition(Actor *this){
     this->position[1] = this->unk1C[1];\
     this->position[2] = this->unk1C[2];
 
-    this->position[0] += this->unk5C*cosf(this->unk60);
-    this->position[2] += this->unk5C*sinf(this->unk60);
-    this->unk60 += 2.0*time_getDelta()*this->unk5C/300.0;
-    if(2*M_PI <= this->unk60)
-        this->unk60 -= 2*M_PI;
-    this->yaw = this->unk60*180.0/M_PI;
+    this->position[0] += this->unk5C*cosf(this->lifetime_value);
+    this->position[2] += this->unk5C*sinf(this->lifetime_value);
+    this->lifetime_value += 2.0*time_getDelta()*this->unk5C/300.0;
+    if(2*M_PI <= this->lifetime_value)
+        this->lifetime_value -= 2*M_PI;
+    this->yaw = this->lifetime_value*180.0/M_PI;
 }
 
 void chtreasure_update(Actor *this){
@@ -54,7 +54,7 @@ void chtreasure_update(Actor *this){
         }
         actor_collisionOff(this);
         this->scale = 0.5f;
-        this->unk60 = M_PI/2;
+        this->lifetime_value = M_PI/2;
         this->unk5C = 0.0f;
         this->unk1C[0] = this->position[0];
         this->unk1C[1] = this->position[1];

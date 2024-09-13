@@ -313,7 +313,7 @@ void func_802CCC5C(Actor *this) {
         local->unk30[0] = (s16) this->position[0];
         local->unk30[1] = (s16) this->position[1];
         local->unk30[2] = (s16) this->position[2];
-        local->unk30[1] = (s16) func_80309724(this->position);
+        local->unk30[1] = (s16) mapModel_getFloorY(this->position);
         temp_f0 = func_80309B24(this->position);
         if (local->unk30[1] < temp_f0) {
             local->unk30[1] = (s16) (s32) temp_f0;
@@ -500,8 +500,8 @@ void func_802CCC5C(Actor *this) {
                     this->position[2] = this->position[2] + sp40[2];
                     this->position[1] += local->unk36 * spB8;
                     local->unk36 -= 3000.0f * spB8;
-                    if (this->position[1] < func_80309724(this->position)) {
-                        this->position[1] = func_80309724(this->position);
+                    if (this->position[1] < mapModel_getFloorY(this->position)) {
+                        this->position[1] = mapModel_getFloorY(this->position);
                         skeletalAnim_set(this->unk148, 0x111, 0.1f, 1.0f);
                         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
                         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);

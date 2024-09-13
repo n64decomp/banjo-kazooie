@@ -28,7 +28,7 @@ f32 func_8038A190(Actor *this, f32 *arg1) {
     f32 temp_f0;
     f32 temp_f2;
 
-    temp_f0 = func_80309724(arg1);
+    temp_f0 = mapModel_getFloorY(arg1);
     temp_f2 = this->position[1];
     if (((temp_f2 + 50.0f) < temp_f0) || (temp_f0 < (temp_f2 - 50.0f))) {
         return temp_f2;

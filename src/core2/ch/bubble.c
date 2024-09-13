@@ -29,8 +29,8 @@ s32 __chBubble_func_802C5C70(f32 arg0[3], f32 arg1, ActorMarker *marker){
     this->position_y = arg0[1] - arg1/2;
     this->position_z = arg0[2];
     func_8032AA58(this, arg1/200.0);
-    this->unk60 -= time_getDelta();
-    if(this->unk60 < 0.0f){
+    this->lifetime_value -= time_getDelta();
+    if(this->lifetime_value < 0.0f){
         sp1C = 1;
     }
     if(sp1C)
@@ -56,6 +56,6 @@ void chBubble_update(Actor *this){
         marker_setCollisionScripts(this->marker, __chBubble_collisionCallback, NULL, NULL);
         marker_setFreeMethod(this->marker, __chBubble_freeCallback);
         func_802F32C4(func_8032994C(), this->position, 200.0f, this->marker, __chBubble_func_802C5C70);
-        this->unk60 = 10.0f;
+        this->lifetime_value = 10.0f;
     }
 }

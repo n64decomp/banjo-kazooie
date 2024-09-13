@@ -159,7 +159,7 @@ void __baMarker_8028B9A8(s32 arg0){
     s32 ideal_yaw[3];
 
     tmp_v0 = cubeList_findNodePropByActorId(0x1F6, 0);
-    func_80304D4C(tmp_v0, &ideal_yaw);
+    nodeprop_getPosition_s32(tmp_v0, &ideal_yaw);
     func_802CA1CC(arg0);
     func_8032811C(ACTOR_47_EMPTY_HONEYCOMB, &ideal_yaw, 0);
     func_8025A6EC(COMUSIC_2B_DING_B, 28000);

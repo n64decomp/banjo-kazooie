@@ -24,7 +24,7 @@ f32 D_8037DE20[3];
 void chBadShad_update(Actor *this){
     s32 iVar1;
     if(!this->initialized){
-        this->initialized = 1;
+        this->initialized = TRUE;
         this->marker->collidable = 0;
     }
     if(!this->despawn_flag && this->unk1C_x < (f32)(globalTimer_getTime() - 1) ){

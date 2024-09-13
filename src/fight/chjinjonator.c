@@ -76,8 +76,8 @@ void chjinjonator_80390130(f32 position[3], int count, enum asset_e sprite_id){
     particleEmitter_setPosition(s0, position);
     particleEmitter_setParticleAccelerationRange(s0, 0.0f, -200.0f, 0.0f, 0.0f, -200.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(s0, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
-    func_802EFB70(s0, 0.5f, 0.65f);
-    func_802EFB84(s0, 0.0f, 0.0f);
+    particleEmitter_setStartingScaleRange(s0, 0.5f, 0.65f);
+    particleEmitter_setFinalScaleRange(s0, 0.0f, 0.0f);
     particleEmitter_setSpawnIntervalRange(s0, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(s0, 0.65f, 0.85f);
     particleEmitter_setFade(s0, 0.0f, 0.35f);
@@ -161,7 +161,7 @@ void chjinjonator_update(Actor *this){
     
     if(!this->unk16C_4){
         this->unk16C_4 = 1;
-        local->unk18 = 0.40000000000000013 / (this->unk60 +  3.3);
+        local->unk18 = 0.40000000000000013 / (this->lifetime_value +  3.3);
         local->unk14 = 0.7f;
         func_8025A6EC(JINGLE_MENACING_GRUNTILDA_B, 20000);
         func_8025A58C(0, 0x7fff);
@@ -182,8 +182,8 @@ void chjinjonator_update(Actor *this){
         case 1: //803905D4
             chjinjonator_8039040C(this);
             animctrl_setAnimTimer(this->animctrl, 0.0f);
-            this->unk60 -= sp58;
-            if(this->unk60 < 0.0){
+            this->lifetime_value -= sp58;
+            if(this->lifetime_value < 0.0){
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
                 actor_playAnimationOnce(this);
             }

@@ -30,8 +30,8 @@ void CCW_func_8038D510(Actor *this) {
     particleEmitter_setFade(pCtrl, 0.01f, 0.5f);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, this->position);
-    func_802EFB70(pCtrl, 1.0f, 2.0f);
-    func_802EFB84(pCtrl, 3.0f, 4.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 2.0f);
+    particleEmitter_setFinalScaleRange(pCtrl, 3.0f, 4.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038F670);
     particleEmitter_setRGB(pCtrl, D_8038F664);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 3.0f, 4.0f);
@@ -52,7 +52,7 @@ void func_8038D5DC(Actor *this) {
     func_802EFA18(pCtrl, 3);
     particleEmitter_setModel(pCtrl, 0x896);
     particleEmitter_setPosition(pCtrl, this->position);
-    func_802EFB70(pCtrl, 0.05f, 0.3f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.3f);
     particleEmitter_setAngularVelocityRange(pCtrl,
         -600.0f, -600.0f, -600.0f,
          600.0f,  600.0f,  600.0f

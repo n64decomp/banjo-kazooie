@@ -81,7 +81,7 @@ void __chTermite_emitLegs(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_393_MODEL_TERMITE_LEG);
-    func_802EFB70(pCtrl, 0.5f, 0.8f);
+    particleEmitter_setStartingScaleRange(pCtrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -200.0f, 850.0f, -200.0f, 400.0f, 1000.0f, 400.0f);
     particleEmitter_emitN(pCtrl, 6);
@@ -91,7 +91,7 @@ void __chTermite_emitHead(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_394_MODEL_TERMITE_HEAD);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 1);
@@ -101,7 +101,7 @@ void __chTermite_emitBody(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_395_MODEL_TERMITE_BODY);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 1);
@@ -111,7 +111,7 @@ void __chTermite_emitEyes(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_396_MODEL_TERMITE_EYES);
-    func_802EFB70(pCtrl, 1.0f, 1.0f);
+    particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -80.0f, 400.0f, -80.0f, 160.0f, 860.0f, 160.0f);
     particleEmitter_emitN(pCtrl, 2);
@@ -141,7 +141,7 @@ void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg
     Actor *this;
 
     this = marker_getActor(caller);
-    this->unk138_24 = FALSE;
+    this->is_first_encounter = FALSE;
     levelSpecificFlags_set(0xd, FALSE);
 }
 
@@ -154,7 +154,7 @@ void chTermite_update(Actor *this) {
     if (!this->unk16C_4) {
         marker_setCollisionScripts(this->marker, NULL, __chTermite_ow, __chTermite_die);
         this->unk124_0 = this->unk138_31 = FALSE;
-        this->unk138_24 = FALSE;
+        this->is_first_encounter = FALSE;
         this->unk16C_0 = TRUE;
         this->unk16C_4 = TRUE;
     }
@@ -168,7 +168,7 @@ void chTermite_update(Actor *this) {
         func_80311480(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
         levelSpecificFlags_set(0xD, TRUE);
-        this->unk138_24 = TRUE;
+        this->is_first_encounter = TRUE;
     }
 
     if( func_80329530(this, 300)

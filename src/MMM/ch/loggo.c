@@ -22,11 +22,11 @@ ActorInfo chLoggo = {
 
 /* .code */
 void __chLoggo_flush(ActorMarker* marker) {
-    Actor* sp1C = marker_getActor(marker);
+    Actor* actor = marker_getActor(marker);
     func_8028F918(2);
-    subaddie_set_state_with_direction(sp1C, 2, 0.01, 1);
-    actor_playAnimationOnce(sp1C);
-    sp1C->unk60 = 3.2f;
+    subaddie_set_state_with_direction(actor, 2, 0.01, 1);
+    actor_playAnimationOnce(actor);
+    actor->lifetime_value = 3.2f;
 }
 
 void __chLoggo_textCallback(ActorMarker* caller, enum asset_e text_id, s32 arg3) {
@@ -69,7 +69,7 @@ void chLoggo_update(Actor *this){
         marker_setCollisionScripts(this->marker, __chLoggo_collide, NULL, NULL);
         subaddie_set_state_with_direction(this, 1, 0.01f, 1);
         actor_loopAnimation(this);
-        this->unk60 = 0.0f;
+        this->lifetime_value = 0.0f;
         if(!fileProgressFlag_get(FILEPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(0x33)){
             if(func_80311480(ASSET_AE0_TEXT_EXIT_LOGGO, 4, NULL, NULL, NULL, NULL)){
                 fileProgressFlag_set(FILEPROG_8A_EXITED_LOGGO, TRUE);
@@ -112,8 +112,8 @@ void chLoggo_update(Actor *this){
                 func_8028F6E4(BS_INTR_2F_LOGGO, sp38);
             }
 
-            if(0.0 < this->unk60){
-                this->unk60 -= sp44;
+            if(0.0 < this->lifetime_value){
+                this->lifetime_value -= sp44;
             }
             else{
                 warp_mmmEnterLoggo(0, 0);

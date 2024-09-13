@@ -373,7 +373,7 @@ s32 func_80309714(void){
     return mapModel.collision_opa->unk12;
 }
 
-f32 func_80309724(f32 arg0[3]){
+f32 mapModel_getFloorY(f32 arg0[3]){
     return func_80308FDC(arg0, 0x1e0000);
 }
 

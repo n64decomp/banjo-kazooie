@@ -539,7 +539,7 @@ Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z){
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    return func_8032813C(reinterpret_cast(enum actor_e, actor_id), position, 0);
+    return spawn_actor_f32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
 

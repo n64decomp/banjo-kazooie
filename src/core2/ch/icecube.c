@@ -114,7 +114,7 @@ void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -400.0f*scale, 450.0f*scale, -400.0f*scale, 400.0f*scale, 600.0f*scale, 400.0f*scale);
     particleEmitter_setAngularVelocityRange(pCtrl, 100.0f*scale, 100.0f*scale, 100.0f*scale, 250.0f*scale, 250.0f*scale, 250.0f*scale);
-    func_802EFB70(pCtrl, scale*0.2, scale*0.4);
+    particleEmitter_setStartingScaleRange(pCtrl, scale*0.2, scale*0.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 2.2f, 2.2f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
@@ -130,8 +130,8 @@ void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -280.0f*scale, 0.0f, -280.0f*scale, 280.0f*scale, 280.0f*scale, 280.0f*scale);
-    func_802EFB70(pCtrl, scale*0.6, scale*0.8);
-    func_802EFB84(pCtrl, scale*1.0, scale*1.4);
+    particleEmitter_setStartingScaleRange(pCtrl, scale*0.6, scale*0.8);
+    particleEmitter_setFinalScaleRange(pCtrl, scale*1.0, scale*1.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.2f, 1.8f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
@@ -146,8 +146,8 @@ void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -60.0f*scale, 0.0f, -60.0f*scale, 60.0f*scale, 60.0f*scale, 60.0f*scale);
-    func_802EFB70(pCtrl, scale*0.4, scale*0.6);
-    func_802EFB84(pCtrl, scale*0.8, scale*1.2);
+    particleEmitter_setStartingScaleRange(pCtrl, scale*0.4, scale*0.6);
+    particleEmitter_setFinalScaleRange(pCtrl, scale*0.8, scale*1.2);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 0.5f, 0.7f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
@@ -276,11 +276,11 @@ void chicecube_update(Actor *this){
         this->alpha_124_19 = 0x50;
         actor_setOpacity(this, this->alpha_124_19);
         this->unk38_31 = 0;
-        this->unk60 = 1.0f;
+        this->lifetime_value = 1.0f;
     }//L8035ABC0
-    if(this->unk60 <= 0.0){
-        if(-99999.0 != this->unk60){
-            this->unk60 = -99999.0f;
+    if(this->lifetime_value <= 0.0){
+        if(-99999.0 != this->lifetime_value){
+            this->lifetime_value = -99999.0f;
             actor_collisionOn(this);
             this->unk1C[0] =this->position[0];
             this->unk1C[1] =this->position[1];
@@ -289,7 +289,7 @@ void chicecube_update(Actor *this){
         }
     }
     else{//L8035AC3C
-        this->unk60 -= sp3C;
+        this->lifetime_value -= sp3C;
     }
 
     if(0.0 >= this->velocity[1]){

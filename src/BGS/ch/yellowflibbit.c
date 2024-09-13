@@ -40,8 +40,8 @@ void func_8038D1E0(Actor *this) {
     particleEmitter_setStartingFrameRange(temp_s0, 0, 7);
     particleEmitter_setPosition(temp_s0, this->position);
     particleEmitter_setRGB(temp_s0, D_80390B04);
-    func_802EFB70(temp_s0, 1.0f, 1.5f);
-    func_802EFB84(temp_s0, 2.5f, 3.0f);
+    particleEmitter_setStartingScaleRange(temp_s0, 1.0f, 1.5f);
+    particleEmitter_setFinalScaleRange(temp_s0, 2.5f, 3.0f);
     particleEmitter_setParticleVelocityRange(temp_s0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
     particleEmitter_setParticleLifeTimeRange(temp_s0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_s0, 4);
@@ -60,7 +60,7 @@ s32 func_8038D2F4(Actor *this, f32 *arg1, bool arg2) {
     local->unkA[0] = (s16) arg1[0];
     local->unkA[1] = (s16) arg1[1];
     local->unkA[2] = (s16) arg1[2];
-    local->unkA[1] = (s16) (s32) func_80309724(arg1);
+    local->unkA[1] = (s16) (s32) mapModel_getFloorY(arg1);
     skeletalAnim_set(this->unk148, ASSET_DB_ANIM_FLIBBIT_HOP, 0.2f, (arg2) ? randf2(0.7f, 0.8f) : randf2(0.7f, 0.8f));
     skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     func_80324D54(0.2f, SFX_3F2_UNKNOWN, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
@@ -235,14 +235,14 @@ void func_8038D9D0(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
-        this->position[1] = func_80309724(this->position);
+        this->position[1] = mapModel_getFloorY(this->position);
         local->unk1C = 1.0f;
     }
     if (next_state == 8) {
         FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        this->position[1] = func_80309724(this->position);
+        this->position[1] = mapModel_getFloorY(this->position);
         local->unk1C = 1.0f;
     }
     if (next_state == 9) {
@@ -482,8 +482,8 @@ void BGS_func_8038E034(Actor *this) {
 
         this->position_y += local->unk18*sp9C;
         local->unk18 -= 3000.0f*sp9C;
-        if(this->position_y  < func_80309724(this->position)){
-            this->position_y  = func_80309724(this->position);
+        if(this->position_y  < mapModel_getFloorY(this->position)){
+            this->position_y  = mapModel_getFloorY(this->position);
             func_8038D9D0(this, 10);
         }
     }

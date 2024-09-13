@@ -122,7 +122,7 @@ void chSnowball_update(Actor *this) {
         this->velocity[1] = (sp58[1] - this->position[1])/32 - -32.0f;
         this->velocity[2] = (sp58[2] - this->position[2])/32;
         local->unk4 = 0;
-        this->unk60 = 6.0f;
+        this->lifetime_value = 6.0f;
     }
     switch (this->state) {
     case 1:
@@ -150,8 +150,8 @@ void chSnowball_update(Actor *this) {
             }
         }
         local->unk4++;
-        if (this->unk60 > 0.0) {
-            this->unk60 -= time_getDelta();
+        if (this->lifetime_value > 0.0) {
+            this->lifetime_value -= time_getDelta();
         } else {
             marker_despawn(this->marker);
         }

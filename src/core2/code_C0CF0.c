@@ -8,7 +8,7 @@ extern void func_80329904(ActorMarker *, s32, f32 *);
 /* .code */
 void func_80347C80(Struct81s *arg0){
     Actor *actor;
-    actor = func_8032813C(ACTOR_46_JIGGY, arg0->position, 0);
+    actor = spawn_actor_f32(ACTOR_46_JIGGY, arg0->position, 0);
     actor->unk54 = 3.0f;
     func_803333DC(arg0, actor);
 }

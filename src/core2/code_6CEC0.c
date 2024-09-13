@@ -25,8 +25,8 @@ ParticleEmitter *func_802F3E98(f32 pos[3], enum asset_e sprite_id){
     );
     particleEmitter_setFade(this, 0.4f, 0.8f);
     particleEmitter_setPosition(this, pos);
-    func_802EFB70(this, 0.22f, 0.22f);
-    func_802EFB84(this, 0.03f, 0.03f);
+    particleEmitter_setStartingScaleRange(this, 0.22f, 0.22f);
+    particleEmitter_setFinalScaleRange(this, 0.03f, 0.03f);
     particleEmitter_setAngularVelocityRange(this, 
         0.0f, 0.0f, 200.0f, 
         0.0f, 0.0f, 240.0f

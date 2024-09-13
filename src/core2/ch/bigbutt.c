@@ -121,7 +121,7 @@ void func_802C6240(Actor *this){
         this->marker->dieFunc = func_802C61C0;
         this->marker->collisionFunc = func_802C60AC;
         this->marker->collision2Func = func_802C6150;
-        this->unk138_24 = 0;
+        this->is_first_encounter = FALSE;
         this->unk16C_0 = 1;
         this->initialized = TRUE;
         return;
@@ -291,14 +291,14 @@ void func_802C6240(Actor *this){
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
                 subaddie_set_state_with_direction(this, 0xe, 0.99f, 1);
-                this->unk60 = 4.0f;
+                this->lifetime_value = 4.0f;
             }
             break;
 
         case 0xe: //L802C6C7C
             actor_playAnimationOnce(this);
-            this->unk60 -= time_getDelta();
-            if(this->unk60 <= 0.0f){
+            this->lifetime_value -= time_getDelta();
+            if(this->lifetime_value <= 0.0f){
                 this->unk166 = 0x63;
                 subaddie_set_state_forward(this, 0xF);
             }

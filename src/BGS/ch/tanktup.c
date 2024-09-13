@@ -46,7 +46,7 @@ void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
     sp18[2] = thisActor->position_z;
     sp18[1] += 50.0f;
 
-    leg = func_8032813C(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
+    leg = spawn_actor_f32(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
     subaddie_set_state_with_direction(leg, arg1 + 1, 0, -1);
     leg->unk10_12 = leg_id;
 }
@@ -111,8 +111,8 @@ void func_8038F6A4(Actor *this)
     {
       nodeprop_getPosition(temp_v0, local->unk18);
     }
-    this->unk138_24 = 0;
-    this->initialized = 1;
+    this->is_first_encounter = FALSE;
+    this->initialized = TRUE;
   }
   if (!this->unk16C_4)
   {
@@ -138,12 +138,12 @@ void func_8038F6A4(Actor *this)
     case 1:
       func_8038F610(this);
       player_getPosition(sp48);
-      if (!this->unk138_24)
+      if (!this->is_first_encounter)
     {
       if ((((ml_distance_vec3f(local->unk18, sp48) < 250.0f) && (ml_distance_vec3f(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
         func_80311480(0xC7E, 0, 0, 0, 0, 0);
-        this->unk138_24 = 1;
+        this->is_first_encounter = TRUE;
       }
     }
       if (local->unk10)

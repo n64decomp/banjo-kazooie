@@ -61,9 +61,9 @@ void __chnapper_setState(Actor *this, s32 next_state){
 void func_80386ACC(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
 
-    if(!this->unk138_24){
+    if(!this->is_first_encounter){
         if(func_80311480(0xad8, 0, NULL, NULL, NULL, NULL)){
-            this->unk138_24 = TRUE;
+            this->is_first_encounter = TRUE;
         }
     }
 }

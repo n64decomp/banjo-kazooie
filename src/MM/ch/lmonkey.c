@@ -37,7 +37,7 @@ void func_80388300(Actor **arg0){
         && func_8028FC34()
     ){
         func_8028FA34(0xc6, *arg0);
-        (*arg0)->unk138_24 = 1;
+        (*arg0)->is_first_encounter = TRUE;
         timed_setStaticCameraToNode(1.2f, 0xF);
         func_80324E38(1.2f, 3);
     }
@@ -101,10 +101,10 @@ void chLMonkey_update(Actor *this){
                     if( func_80329530(this, 345)
                         && !func_80329530(this, 150)
                         && !item_getCount(ITEM_19_ORANGE)
-                        && !this->unk138_24
+                        && !this->is_first_encounter
                     ){
                         func_80311480(ASSET_B3F_DIALOG_CHIMPY_MEET, 0xe, this->position, NULL, NULL, NULL);
-                        this->unk138_24 = 1;
+                        this->is_first_encounter = TRUE;
                     }//L80388774
                     actor_loopAnimation(this);
                     subaddie_maybe_set_state_position_direction(this, 2, 0.0f, -1, 0.02f);
