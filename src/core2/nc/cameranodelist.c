@@ -120,7 +120,7 @@ void func_802B9EBC(s32 camera_node_index, s32 arg1){
 
 }
 
-void __ncCameraNodeList_nodeFromFile(Struct61s *file_ptr, s32 arg1){
+void __ncCameraNodeList_nodeFromFile(File *file_ptr, s32 arg1){
     u8 sp27;
     __ncCameraNodeList_addNode(arg1);
     file_getByte_ifExpected(file_ptr, 2, &sp27);
@@ -143,7 +143,7 @@ void __ncCameraNodeList_nodeFromFile(Struct61s *file_ptr, s32 arg1){
     }
 }
 
-void ncCameraNodeList_fromFile(Struct61s *file_ptr){
+void ncCameraNodeList_fromFile(File *file_ptr){
     s16 sp26;
     ncCameraNodeList_free();
     ncCameraNodeList_init();

@@ -873,7 +873,7 @@ void func_803045CC(s32 arg0, s32 arg1){}
 
 void func_803045D8(void){}
 
-void func_803045E0(Cube *cube, Struct61s* file_ptr) {
+void func_803045E0(Cube *cube, File* file_ptr) {
     s32 sp2C[3];
 
     while(!file_isNextByteExpected(file_ptr, 1)) {
@@ -886,7 +886,7 @@ void func_803045E0(Cube *cube, Struct61s* file_ptr) {
     }
 }
 
-void cubeList_fromFile(Struct61s *file_ptr) {
+void cubeList_fromFile(File *file_ptr) {
     s32 sp5C[3];
     s32 sp50[3];
     s32 sp44[3];

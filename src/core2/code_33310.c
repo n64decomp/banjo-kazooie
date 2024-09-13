@@ -129,7 +129,7 @@ void func_802BA530(Struct_core2_33310 *arg0, bool arg1){
     func_802BA2A0(arg0, arg1, 1);
 }
 
-void func_802BA550(Struct61s *file_ptr, Struct_core2_33310 *arg1){
+void func_802BA550(File *file_ptr, Struct_core2_33310 *arg1){
     while(!file_isNextByteExpected(file_ptr, 0)){
         if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
             if(file_isNextByteExpected(file_ptr, 2)){

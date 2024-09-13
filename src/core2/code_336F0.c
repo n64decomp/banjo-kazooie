@@ -114,7 +114,7 @@ void func_802BA91C(Struct_core2_336F0 *arg0, s32 arg1){
     func_802BA680(arg0, arg1, 2);
 }
 
-void func_802BA93C(Struct61s *file_ptr, Struct_core2_336F0 *arg1){
+void func_802BA93C(File *file_ptr, Struct_core2_336F0 *arg1){
     while(!file_isNextByteExpected(file_ptr, 0)){
         if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
             if(file_isNextByteExpected(file_ptr, 2)){

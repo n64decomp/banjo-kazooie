@@ -843,7 +843,7 @@ segments:
   # - [0x1018B00, c, code_C31A0] #DONE
   # - [0x1018D60, c, rand]       #DONE
   # - [0x10193A0, c, code_C3A40] #DONE
-  # - [0x1019480, c, code_C3B20] #DONE
+  # - [0x1019480, c, file] #DONE
   # - [0x1019C80, c, code_C4320] #DONE
   # - [0x101A8A0, c, code_C4F40] #DONE
   # - [0x101ADA0, c, code_C5440] #DONE
