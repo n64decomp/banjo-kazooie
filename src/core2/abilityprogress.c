@@ -64,7 +64,7 @@ void ability_use(s32 arg0){
             break;
     }//L80295744
     if(sp28)
-        func_8025A70C(COMUSIC_2B_DING_B);
+        comusic_playTrack(COMUSIC_2B_DING_B);
     
     if(sp2C)
         func_80311480(sp2C, 4, NULL, NULL, NULL, 0);

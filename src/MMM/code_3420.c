@@ -11,7 +11,7 @@ typedef struct {
 } Struct_MMM_3420_0;
 
 typedef struct {
-    u8 unk0;
+    u8 unk0; // black key flag? black key == 2 || 4
     u8 unk1;
 } Struct_MMM_3420_1;
 
@@ -300,7 +300,8 @@ void func_80389D9C(s32 key_id){
     D_8038C4F0.unk0++;
 }
 
-void func_80389DF4(s32 arg0, s32 arg1) {
+// organ game/higgy in church?
+void code3420_handleOrganGame(s32 arg0, s32 arg1) {
     Struct_MMM_3420_1 *iPtr;
     f32 key_position[3];
     bool is_black_key;

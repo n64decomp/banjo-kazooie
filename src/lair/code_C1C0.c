@@ -65,7 +65,7 @@ void func_80392700(Actor *this) {
         mapSpecificFlags_set(4, 0);
     }
     if (mapSpecificFlags_get(6)) {
-        func_8025A70C(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY);
+        comusic_playTrack(COMUSIC_A8_KLUNGO_BY_FALLEN_GRUNTY);
         func_802BC280();
         ncStaticCamera_setToNode(9);
         mapSpecificFlags_set(9, 1);

@@ -16,7 +16,7 @@ void func_802B6270(void){
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncDynamicCamD_func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
+    comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     func_8029E070(1);
     baMarker_collisionOff();
@@ -57,7 +57,7 @@ void func_802B63F8(void){
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncDynamicCamD_func_802BF2C0(80.0f);
     func_8025A58C(0,0xfa0);
-    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
+    comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);

@@ -26,7 +26,7 @@ typedef struct {
     Struct81s unk10;
 }Struct_core2_ABC00_0;
 
-void func_803331D8(enum jiggy_e, f32[3]);
+void codeABC00_spawnJiggyAtLocation(enum jiggy_e, f32[3]);
 void jiggy_free(Actor *);
 
 /* .data */
@@ -191,7 +191,7 @@ void func_80332D98(enum map_e map_id, enum jiggy_e jiggy_id, enum file_progress_
         && !jiggyscore_isSpawned(jiggy_id)
         && nodeProp_findPositionFromActorId(arg3, sp1C)
     ) {
-        func_803331D8(jiggy_id, sp1C);
+        codeABC00_spawnJiggyAtLocation(jiggy_id, sp1C);
     }
 }
 
@@ -253,12 +253,12 @@ void jiggy_spawn(enum jiggy_e jiggy_id, f32 pos[3]) {
     }
 }
 
-void func_803331D8(enum jiggy_e jiggy_id, f32 arg1[3]) {
+void codeABC00_spawnJiggyAtLocation(enum jiggy_e jiggy_id, f32 location[3]) {
     jiggy_id = ((jiggy_id <= 0) || (jiggy_id >= (s_jiggyList_level_jiggy_count * 10))) ? JIGGY_A_MM_CONGA : jiggy_id;
 
-    jiggylist_list[jiggy_id - 1].unk10.position[0] = arg1[0];
-    jiggylist_list[jiggy_id - 1].unk10.position[1] = arg1[1];
-    jiggylist_list[jiggy_id - 1].unk10.position[2] = arg1[2];
+    jiggylist_list[jiggy_id - 1].unk10.position[0] = location[0];
+    jiggylist_list[jiggy_id - 1].unk10.position[1] = location[1];
+    jiggylist_list[jiggy_id - 1].unk10.position[2] = location[2];
     jiggylist_list[jiggy_id - 1].init(&jiggylist_list[jiggy_id - 1].unk10);
     jiggyscore_setSpawned(jiggy_id, TRUE);
 }

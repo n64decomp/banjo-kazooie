@@ -710,7 +710,7 @@ void func_80315C90(GcZoombox *this, s32 arg1) {
 
         if (this->unk110[0] == -1.0f) {
             if (func_8025AD7C(this->unk108[0]) == 0) {
-                func_8025A70C(this->unk108[0]);
+                comusic_playTrack(this->unk108[0]);
             }
         } else {
             

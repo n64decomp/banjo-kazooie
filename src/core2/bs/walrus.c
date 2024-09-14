@@ -468,7 +468,7 @@ void bswalrus_die_init(void){
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8025AB00();
     func_8025A2FC(0, 0xfa0);
-    func_8025A70C(0x1A);
+    comusic_playTrack(0x1A);
     baMarker_collisionOff();
     func_80292E48();
     func_8029E3C0(0, 1.5f);
@@ -731,7 +731,7 @@ void bswalrus_timeout_init(void) {
     func_802914CC(0xD);
     ncDynamicCamD_func_802BF2C0(60.0f);
     func_8025A58C(0, 4000);
-    func_8025A70C(COMUSIC_3C_MINIGAME_LOSS);
+    comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     func_8024BD08(0);
     baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);

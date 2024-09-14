@@ -46,7 +46,7 @@ void func_80392B6C(Actor *this) {
     }
     if (mapSpecificFlags_get(7) != 0) {
         sp28 = ml_distance_vec3f(this->position, this->unk1C) / 350.0;
-        func_8025A70C(COMUSIC_A9_TOOTY);
+        comusic_playTrack(COMUSIC_A9_TOOTY);
         mapSpecificFlags_set(7, 0);
         mapSpecificFlags_set(9, 1);
         ncStaticCamera_setToNode(0x10);

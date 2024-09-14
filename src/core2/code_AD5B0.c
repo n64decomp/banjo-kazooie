@@ -193,7 +193,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     D_803835D0.unk0 = 3;
     D_803835D0.map_4 = arg0;
     D_803835D0.unk8 = arg1;
-    func_80322FE4();
+    overlay_init();
     func_80335110(1);
     func_80335128(1);
     func_802D2CB8();

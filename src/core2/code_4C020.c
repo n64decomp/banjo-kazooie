@@ -139,7 +139,7 @@ void func_802D2FB0(Actor *this, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5
 // collision function if player shoots egg at spider webs
 void func_802D3138(ActorMarker *marker, ActorMarker *other_marker) {
     if(marker->id == MARKER_224_BREAKABLE_FLOOR_COBWEB || marker->id == MARKER_225_BREAKABLE_WALL_COBWEB) {
-        func_8025A70C(COMUSIC_2B_DING_B);
+        comusic_playTrack(COMUSIC_2B_DING_B);
     }
 }
 
@@ -185,7 +185,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             break;
 
         case MARKER_224_BREAKABLE_FLOOR_COBWEB:
-            func_8025A70C(COMUSIC_2B_DING_B);
+            comusic_playTrack(COMUSIC_2B_DING_B);
             func_8030E6A4(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
             subaddie_set_state_looped(sp2C, 0xC);
             func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
@@ -193,7 +193,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             break;
 
         case MARKER_225_BREAKABLE_WALL_COBWEB:
-            func_8025A70C(COMUSIC_2B_DING_B);
+            comusic_playTrack(COMUSIC_2B_DING_B);
             func_8030E540(SFX_129_SWOOSH);
             subaddie_set_state_looped(sp2C, 0xF);
             func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
@@ -715,7 +715,7 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
     f32 sp40[3];
 
     if (nodeProp_findPositionFromActorId(arg1, sp5C)) {
-        func_803331D8(arg0, sp5C);
+        codeABC00_spawnJiggyAtLocation(arg0, sp5C);
         func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
         if (arg0 == 0x36) {
             

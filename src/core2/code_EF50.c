@@ -334,7 +334,7 @@ void func_80296608(void){
             break;
         case BS_INTR_2C: //L80296738
             item_set(ITEM_14_HEALTH, 0);
-            func_80291930(1);
+            codeA960_forceLoadzone(1);
             sp2C = 2;
             break;
         case BS_INTR_13: //L80296760

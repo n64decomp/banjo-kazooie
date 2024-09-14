@@ -199,7 +199,7 @@ static void __chsmmole_additionalAbilityLearnActions(ActorMarker *marker, enum a
             timed_setStaticCameraToNode(0.0f, 0x12);
             break;
         case 6:
-            func_8025A70C(COMUSIC_2B_DING_B);
+            comusic_playTrack(COMUSIC_2B_DING_B);
             break;
         case 0xff:
             chsmmole_setSpiralMountainStaticCamera(actor);

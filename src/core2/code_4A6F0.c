@@ -380,7 +380,7 @@ void chMumbo_update(Actor *this) {
                 func_8030E6D4(1);
             }
             if (actor_animationIsAt(this, 0.01f)) {
-                func_8025A70C(COMUSIC_1D_MUMBO_TRANSFORMATION);
+                comusic_playTrack(COMUSIC_1D_MUMBO_TRANSFORMATION);
                 func_8025A58C(0, 1000);
             }
             if (actor_animationIsAt(this, 0.01f)) {

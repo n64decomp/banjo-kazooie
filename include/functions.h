@@ -271,7 +271,7 @@ void func_802589E4(f32 dst[3], f32 yaw, f32 length);
 f32  mlDiffDegF(f32, f32);
 
 void func_8025A6EC(enum comusic_e, s32);
-void func_8025A70C(enum comusic_e);
+void comusic_playTrack(enum comusic_e);
 void comusic_8025AB44(enum comusic_e comusic_id, s32 arg1, s32 arg2);
 
 f32  cosf(f32);

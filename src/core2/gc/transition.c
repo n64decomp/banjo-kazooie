@@ -209,7 +209,7 @@ void _gctranstion_changeState(s32 state, TransitionInfo *desc){
 
     if(state == TRANSITION_STATE_4_FADE_IN){
         if(func_802D4608()==0){
-            func_8025A70C(COMUSIC_4E_IN_TRANSITION);
+            comusic_playTrack(COMUSIC_4E_IN_TRANSITION);
             func_8025AC20(COMUSIC_4E_IN_TRANSITION, 0, 1000, 0.4f, "gctransition.c", 0x12d);
             func_8025AABC(COMUSIC_4E_IN_TRANSITION);
         }
@@ -220,7 +220,7 @@ void _gctranstion_changeState(s32 state, TransitionInfo *desc){
         }
         else{
             if(func_802D4608() == 0){
-                func_8025A70C(COMUSIC_4F_OUT_TRANSITION);
+                comusic_playTrack(COMUSIC_4F_OUT_TRANSITION);
                 func_8025AC20(COMUSIC_4F_OUT_TRANSITION, 0, 1000, 0.2f, "gctransition.c", 0x13a);
                 func_8025AABC(COMUSIC_4F_OUT_TRANSITION);
             }
