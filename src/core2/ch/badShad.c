@@ -27,7 +27,7 @@ void chBadShad_update(Actor *this){
     s32 iVar1;
     if(!this->initialized){
         this->initialized = TRUE;
-        this->marker->collidable = 0;
+        this->marker->collidable = FALSE;
     }
     if(!this->despawn_flag && this->unk1C_x < (f32)(globalTimer_getTime() - 1) ){
         //unlink

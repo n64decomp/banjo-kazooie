@@ -1974,11 +1974,11 @@ void func_8032AA58(Actor *this, f32 arg1){
 }
 
 void actor_collisionOff(Actor* this){
-    this->marker->collidable = 0;
+    this->marker->collidable = FALSE;
 }
 
 void actor_collisionOn(Actor* this){
-    this->marker->collidable = 1;
+    this->marker->collidable = TRUE;
 }
 
 void func_8032AA9C(void){

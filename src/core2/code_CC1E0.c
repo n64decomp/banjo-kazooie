@@ -168,7 +168,7 @@ void fxegg_head_spawn(void){
     f32 tmp_f8 = 20.0f;
 
     marker->unk2C_1 = 1;
-    marker->collidable = 1;
+    marker->collidable = TRUE;
     func_803300B8(marker, fxegg_collide);
     func_8033EA40(0, 20.0f);
     func_8033EA40(1, 0.0f);

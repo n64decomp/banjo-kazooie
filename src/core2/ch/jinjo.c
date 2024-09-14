@@ -53,7 +53,7 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
         if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->id + 6) ) == 0x1f)
             localPtr->unk4 = 1;
         actor_loopAnimation(actorPtr);
-        this->collidable = 0;
+        this->collidable = FALSE;
     }
 }
 

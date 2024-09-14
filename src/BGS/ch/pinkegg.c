@@ -63,7 +63,7 @@ void chpinkegg_spawn_next(ActorMarker * arg0, u32 arg1){
 
     ((ActorLocal_PinkEgg *) &unkActor->local)->unk0 = arg1 + 1;
     ((ActorLocal_PinkEgg *) &unkActor->local)->unk4 = 5;
-    unkActor->marker->collidable = 0;
+    unkActor->marker->collidable = FALSE;
     
 }
 
@@ -87,7 +87,7 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     sfxsource_play(SFX_AA_BGS_EGG_BREAKING_1, 28000);
     subaddie_set_state(thisActor, 3);
     actor_playAnimationOnce(thisActor);
-    this->collidable = 0;
+    this->collidable = FALSE;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0] != 0){
         __spawnQueue_add_2(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
@@ -107,7 +107,7 @@ void chpinkegg_update(Actor *this){
     switch(this->state){
         case 1:
             if(!((ActorLocal_PinkEgg *) &this->local)->unk4){
-                this->marker->collidable = 1;
+                this->marker->collidable = TRUE;
                 subaddie_set_state(this,2);
                 
             }else{

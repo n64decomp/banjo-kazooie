@@ -35,7 +35,7 @@ void func_802CD8C0(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         this->marker->unk2C_1 = 1;
-        this->marker->collidable = 0;
+        this->marker->collidable = FALSE;
         *(s32*)this->unkBC = 0; //TODO Make struct
         if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
             marker_despawn(this->marker);

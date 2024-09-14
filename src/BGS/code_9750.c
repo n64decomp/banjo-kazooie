@@ -74,7 +74,7 @@ void BGS_func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
     FUNC_8030E8B4( SFX_87_TANKTUP_OOOHW, 1.0f, 32750, thisActor->position, 1000, 3000);
     timedFunc_set_2(0.65f, (GenFunction_2) func_8038FB40, (s32) this, (s32) other_marker);
     func_8038F51C(thisActor);
-    this->collidable = 0;
+    this->collidable = FALSE;
 }
 
 void func_8038FBF8(Actor *this){

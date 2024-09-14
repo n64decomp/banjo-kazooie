@@ -73,7 +73,7 @@ void MM_func_80387FF4(Actor * this){
             break;
         case ORANGE_LANDED_STATE:
             if(this->lifetime_value < 324.0){
-                this->marker->collidable = 0;
+                this->marker->collidable = FALSE;
             }
             this->lifetime_value -= 4.0;
             if(this->lifetime_value < 4.0){

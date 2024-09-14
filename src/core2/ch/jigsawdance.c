@@ -41,7 +41,7 @@ Actor *__chJigsawDance_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3
 void __chJigsawDance_update(Actor * this){
     AnimCtrl *plyrMvmt;
 
-    this->marker->collidable = 0;
+    this->marker->collidable = FALSE;
     switch(this->state){
         case 1:
             break;

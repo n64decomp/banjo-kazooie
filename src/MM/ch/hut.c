@@ -73,7 +73,7 @@ void    chhut_update(Actor *this){
         return;
 
     if(!this->initialized){
-        this->marker->collidable = 0;
+        this->marker->collidable = FALSE;
         this->initialized = TRUE;
     }
     switch(this->state){
