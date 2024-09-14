@@ -3,8 +3,13 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "version.h"
 
 #include "ch/snacker.h"
+
+// ToDo: move to assets_e
+#define SNACKER_BB_DIALOG_0 VER_SELECT(0xe26, 0xa68, 0, 0)
+#define SNACKER_BB_DIALOG_1 VER_SELECT(0xe33, 0xa75, 0, 0)
 
 s32 func_80259254(f32 *, f32, f32, f32);
 void ncFirstPersonCamera_getZoomedInRotation(f32 *);
@@ -78,7 +83,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
         return 0;
 
     if(func_8034BB48() && chBottlesBonus_getPuzzleIndex() != 7){
-        func_80311480(0xe26 + (chBottlesBonus_getPuzzleIndex() << 1), 6, D_80363610, NULL, NULL, NULL);
+        func_80311480(SNACKER_BB_DIALOG_0 + (chBottlesBonus_getPuzzleIndex() << 1), 6, D_80363610, NULL, NULL, NULL);
     }
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
@@ -88,12 +93,12 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
             if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){
                     func_8028F94C(4, &D_80363610);
-                    func_80311480(0xe33, 0x6, D_80363610, NULL, func_8028A584, NULL);
+                    func_80311480(SNACKER_BB_DIALOG_1, 0x6, D_80363610, NULL, func_8028A584, NULL);
                 }
             }//L8028A70C
             else if(chBottlesBonus_getPuzzleIndex() == 7){
                 func_8028F94C(4, &D_80363610);
-                func_80311480(0xe35, 0x6, D_80363610, NULL, func_8028A558, NULL);
+                func_80311480(ASSET_E35_DIALOG_BOTTLES_BONUS_REMINDER, 0x6, D_80363610, NULL, func_8028A558, NULL);
                 D_8037DCCC = 1;
             }//L8028A764
             else if(jiggyscore_isCollected(0x10)){
@@ -103,7 +108,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
                 ){
                     if(!D_8037DCCA){
                         func_8028F94C(4, &D_80363610);
-                        func_80311480(0xe21, 6, D_80363610, 0, func_8028A584, NULL);
+                        func_80311480(ASSET_E21_DIALOG_BOTTLES_BONUS_DISCOVERED, 6, D_80363610, 0, func_8028A584, NULL);
                         D_8037DCCA = 1;
                     }else{
                         func_8028A584(0,0,0);
@@ -113,7 +118,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
             else{
                 if(!D_8037DCCB){
                     func_8028F94C(4, &D_80363610);
-                    func_80311480(0xe20, 6, D_80363610, 0, func_8028A558, NULL);
+                    func_80311480(ASSET_E20_DIALOG_BOTTLES_BONUS_NOT_READY, 6, D_80363610, 0, func_8028A558, NULL);
                     D_8037DCCB = 1;
                 }
             }

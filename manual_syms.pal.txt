@@ -35,13 +35,20 @@ boot_func_8023DA20 = func_8023DA20;
 
 
 /* Temporary Correct*/
+func_8028B470               = 0x8028b290;
 player_getTransformation    = 0x8028e5ec;
+func_8028E964               = 0x8028e784;
 player_getPosition          = 0x8028e7c4;
 player_getPosition_s32      = 0x8028e95c;
 player_getWaterState        = 0x8028eca4;
 player_is_present           = 0x8028eff4;
 func_8028F22C               = 0x8028f04c;
+func_8028F25C               = 0x8028f07c;
+func_8028F918               = 0x8028f738;
+func_8028F94C               = 0x8028f76c;
 func_8028FB88               = 0x8028f9a8;
+
+miscFlag_isTrue             = 0x802931e0;
 
 baphysics_get_velocity      = 0x802978c8;
 baphysics_get_vertical_velocity = 0x802978ec;
@@ -52,6 +59,7 @@ func_802BB378               = 0x802bb1e8;
 func_802BB3AC               = 0x802bb21c;
 func_802BB3C4               = 0x802bb234;
 func_802BB3DC               = 0x802bb24c;
+ncFirstPersonCamera_getZoomedInRotation = 0x802c295c;
 spawnQueue_func_802C3A18    = 0x802C3898;
 spawnQueue_flush            = 0x802c38b8;
 func_802C5A30               = 0x802c5b20;
@@ -61,6 +69,8 @@ func_802D686C               = 0x802d6a4c;
 chmole_learnedAllSpiralMountainAbilities = 0x802da678;
 chOverlayNoController_spawn = 0x802dd1e8;
 chOverlayNoController_func_802DD040 = 0x802dd220;
+chBottlesBonus_getPuzzleIndex   = 0x802de5fc;
+chsnacker_setControlState   = 0x802e1bf4;
 func_802E3580               = 0x802E3770;
 dummy_func_802E35D0         = 0x802E37C0;
 func_802E35D8               = 0x802E37c8;
@@ -115,6 +125,8 @@ func_8030E2C4               = 0x8030e464;
 func_8030E6A4               = 0x8030e844;
 func_8030ED70               = 0x8030ef10;
 func_8030E394               = 0x8030e534;
+func_80311480               = 0x803116cc;
+
 func_8031B908               = 0x8031bce8;
 func_8031C44C               = 0x8031c82c;
 func_8031C5AC               = 0x8031c98c;
@@ -129,6 +141,8 @@ func_80320B98               = 0x80320f88;
 func_80320C94               = 0x80321084;
 func_80320DB0               = 0x803211a0;
 jiggyscore_isCollected      = 0x803213d0;
+func_80321960               = 0x80321d50;
+func_803219F4               = 0x80321de4;
 levelSpecificFlags_get      = 0x803222d4;
 levelSpecificFlags_validateCRC1 = 0x8032243c;
 func_8032274C               = 0x80322b4c;
@@ -170,13 +184,20 @@ func_8033EFB0               = 0x8033f400;
 func_8033F000               = 0x8033f450;
 demo_readInput              = 0x8034a334;
 randf                       = 0x8034a7e0;
+func_8034B9BC               = 0x8034be20;
+func_8034BB48               = 0x8034bfac;
 func_8034C630               = 0x8034ca90;
 func_8034E698               = 0x8034eaf8;
+core2_TEXT_END              = 0x80363a00;
+
+core2_DATA_START            = 0x80363a00;
 D_803727F4                  = 0x80372d74;
 D_80379B90                  = 0x8037A560;
+D_8037DCCA                  = 0x8037e69a;
+D_8037DCCB                  = 0x8037e69b;
+D_8037DCCC                  = 0x8037e69c;
 
-core2_TEXT_END              = 0x80363a00;
-core2_DATA_START            = 0x80363a00;
+
 core2_RODATA_END            = 0x8037A560;
 core2_BSS_START             = 0x8037A560;
 core2_BSS_END               = 0x80386dd0;
