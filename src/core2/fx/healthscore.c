@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
 extern f32 func_802FB0E4(struct8s*);
 
 extern s32 framebuffer_width;
@@ -82,7 +84,7 @@ void fxhealthscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mt
 
     gSPDisplayList((*gfx)++, D_8036A918);
     func_80347FC0(gfx, D_8036A910, 0, 0, 0, 0, 0, 2, 2, &spEC, &spE8);
-    func_8024C7B8(gfx, mtx);
+    viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
     //loop over each honeycomb piece
     for(i = D_80381F00-1; i >= 0; i--){//L80300E40
         if(i != 0 && (i + 1 != D_80381F00 || D_80381F00 & 1)
@@ -124,7 +126,7 @@ void fxhealthscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mt
     gDPPipeSync((*gfx)++);
     gDPSetTextureLUT((*gfx)++, G_TT_NONE);
     gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
 bool func_803012B8(f32 arg0, s32 arg1, s32 arg2){

@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "prop.h"
 #include "actor.h"
+#include <core1/viewport.h>
+
 
 extern ActorInfo D_80390D20;
 extern ActorInfo D_80390050;
@@ -133,22 +135,22 @@ s32 func_80386A30(f32 (*arg0)[3]){
 }
 
 void func_80386A7C(Actor *this){
-    f32 sp2C[3];
+    f32 viewport[3];
     s32 sp28;
     s32 temp_v0;
 
     func_802D3D74(this);
     this->depth_mode = 1;
-    viewport_get_position_vec3f(&sp2C);
+    viewport_getPosition_vec3f(&viewport);
     sp28 = func_80386A30(&this->position);
-    temp_v0 = func_80386A30(&sp2C);
+    temp_v0 = func_80386A30(&viewport);
     this->unk38_0 = 0;
-    if(sp2C[0] + 8000.0f < this->position_x || this->position_x < sp2C[0] - 8000.0f)
+    if(viewport[0] + 8000.0f < this->position_x || this->position_x < viewport[0] - 8000.0f)
         return;
         
     if( !(  (sp28 ^ temp_v0) & 2
-            && (-5000.0f < sp2C[0] && sp2C[0] < 6000.0f)
-            && (sp2C[2] < -600.0f || 600.0f < sp2C[2])
+            && (-5000.0f < viewport[0] && viewport[0] < 6000.0f)
+            && (viewport[2] < -600.0f || 600.0f < viewport[2])
         )
         && ( sp28 ^ temp_v0) != 3
     ){

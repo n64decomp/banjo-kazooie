@@ -1,5 +1,5 @@
-#ifndef LOCAL_FILE_H
-#define LOCAL_FILE_H
+#ifndef BANJO_KAZOOIE_FILE_H
+#define BANJO_KAZOOIE_FILE_H
 
 #include <ultra64.h>
 #include <bool.h> // for bool

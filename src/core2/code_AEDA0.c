@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "ml/mtx.h"
+#include <core1/viewport.h>
 
 void func_80252330(f32, f32, f32);
 void func_803382D8(s32 arg0);
@@ -442,11 +443,11 @@ void func_803380F8(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     f32 sp2C[3];
     f32 sp20[3];
 
-    viewport_get_position_vec3f(sp2C);
+    viewport_getPosition_vec3f(sp2C);
     sp20[0] = arg2[0] - sp2C[0];
     sp20[1] = arg2[1] - sp2C[1];
     sp20[2] = arg2[2] - sp2C[2];
-    mlMtxSet(func_8024DD90());
+    mlMtxSet(viewport_getMatrix());
     func_80252330(sp20[0], sp20[1], sp20[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -456,11 +457,11 @@ void func_803381B4(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     f32 sp2C[3];
     f32 sp20[3];
 
-    viewport_get_position_vec3f(sp2C);
+    viewport_getPosition_vec3f(sp2C);
     sp20[0] = arg2[0] - sp2C[0];
     sp20[1] = arg2[1] - sp2C[1];
     sp20[2] = arg2[2] - sp2C[2];
-    mlMtxSet(func_8024DD9C());
+    mlMtxSet(viewport_getDefaultMatrix());
     func_80252330(sp20[0], sp20[1], sp20[2]);
     mlMtxApply(*mtx);
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);

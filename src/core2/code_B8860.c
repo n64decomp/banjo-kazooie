@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 #include "ml/mtx.h"
+#include <core1/viewport.h>
+
 
 extern void mlMtxRotatePYR(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
@@ -40,10 +42,10 @@ void func_8033F7F0(u8 indx, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(sp54->unk28_23 != 1){
         ml_vec3f_copy(sp48,  sp54->position);
         sp48[1] += (sp54->unk1C*sp54->unk20[1])/100.0;
-        viewport_get_position_vec3f(sp3C);
+        viewport_getPosition_vec3f(sp3C);
         ml_vec3f_diff_copy(sp30, sp48, sp3C);
         if(sp54->unk28_12){
-            mlMtxSet(func_8024DD90());
+            mlMtxSet(viewport_getMatrix());
         }
         else{
             mlMtxIdent();

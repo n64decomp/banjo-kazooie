@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/nc/camera.h"
+#include <core1/viewport.h>
 
 extern Actor *func_80328230(enum actor_e, f32[3], f32[3]);
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
@@ -120,9 +121,9 @@ void func_802BBA84(void) {
     f32 max[3];
 
     mapModel_getBounds(min, max);
-    viewport_get_position_vec3f(vp_position);
-    viewport_get_rotation_vec3f(vp_rotation);
-    func_8024C5A8(sp48);
+    viewport_getPosition_vec3f(vp_position);
+    viewport_getRotation_vec3f(vp_rotation);
+    viewport_getLookVector(sp48);
     D_8037D8CC = (f32) func_8033EAF8(min, max, vp_position, sp48);
     D_8037D8CC += 100.0f;
     if (D_8037D8CC < 1000.0f) {
@@ -295,11 +296,11 @@ void ncCamera_update(void){
             break;
     }
 
-    viewport_get_position_vec3f(sp2C);
-    viewport_get_rotation_vec3f(sp20);
+    viewport_getPosition_vec3f(sp2C);
+    viewport_getRotation_vec3f(sp20);
     func_802BB4D8(sp2C, sp20);
-    viewport_set_position_vec3f(sp2C);
-    viewport_set_rotation_vec3f(sp20);
+    viewport_setPosition_vec3f(sp2C);
+    viewport_setRotation_vec3f(sp20);
     viewport_update();
     func_802BEFB0();
     func_802BBA84();
@@ -352,8 +353,8 @@ void func_802BC2CC(s32 arg0) {
     if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
         func_802BE894(D_8037D918, D_8037D908);
     }
-    viewport_set_position_vec3f(D_8037D908);
-    viewport_set_rotation_vec3f(D_8037D918);
+    viewport_setPosition_vec3f(D_8037D908);
+    viewport_setRotation_vec3f(D_8037D918);
     viewport_update();
     __spawnQueue_add_2((GenFunction_2)func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
     if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 typedef struct{
     ActorMarker *jiggy_marker;
@@ -99,7 +100,7 @@ void chnapper_update(Actor *this){
     ActorLocal_Napper *local = (ActorLocal_Napper *)&this->local;
     f32 sp68;
     Actor *jiggy;
-    f32 sp58[3];
+    f32 viewport[3];
     f32 sp4C[3];
     s32 pad;
     f32 player_position[3];
@@ -153,10 +154,10 @@ void chnapper_update(Actor *this){
     }//L80386DF4
 
     if(this->state != 4){
-        viewport_get_position_vec3f(sp58);
-        sp4C[0] = this->position_x - sp58[0];
-        sp4C[1] = this->position_y - sp58[1];
-        sp4C[2] = this->position_z - sp58[2];
+        viewport_getPosition_vec3f(viewport);
+        sp4C[0] = this->position_x - viewport[0];
+        sp4C[1] = this->position_y - viewport[1];
+        sp4C[2] = this->position_z - viewport[2];
         ml_vec3f_set_length(sp4C, 5.0f);
         jiggy = marker_getActor(local->jiggy_marker);
         jiggy->position_x = sp4C[0] + this->position_x;

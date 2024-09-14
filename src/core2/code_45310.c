@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);
@@ -434,8 +435,8 @@ void func_802CCC5C(Actor *this) {
             }
             if (this->state == 1) {
                 player_getPosition(sp8C);
-                viewport_get_position_vec3f(sp80);
-                func_8024C5A8(sp74);
+                viewport_getPosition_vec3f(sp80);
+                viewport_getLookVector(sp74);
                 sp5C[0] = this->position[0] - sp80[0];
                 sp5C[1] = this->position[1] - sp80[1];
                 sp5C[2] = this->position[2] - sp80[2];

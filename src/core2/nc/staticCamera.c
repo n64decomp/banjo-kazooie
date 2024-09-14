@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 #include "core2/nc/camera.h"
 
 
@@ -33,8 +34,8 @@ void ncStaticCamera_setPosition(f32 arg0[3]){
 }
 
 void ncStaticCamera_update(void){
-    viewport_set_position_vec3f(ncStaticCameraPosition);
-    viewport_set_rotation_vec3f(ncStaticCameraRotation);
+    viewport_setPosition_vec3f(ncStaticCameraPosition);
+    viewport_setRotation_vec3f(ncStaticCameraRotation);
 }
 
 void __ncStaticCamera_setToNode(s32 camera_node_index){

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
 #define _76D90_MAX(s,t) ((s < t)? t : s)
 #define _76D90_MIN(s,t) ((s > t)? t : s)
 
@@ -115,7 +117,7 @@ void fxhoneycarrierscore_draw(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, 
     sp118 = D_803815C0 == 2;
     if (D_8036A010 != 0) {
         func_80347FC0(arg2, (sp118 ) ? (D_8036A014 != 0) ? D_8036A014 : D_8036A010 : D_8036A010, 0, 0, 0, 0, 0, 2, 2, &sp13C, &sp138);
-        func_8024C7B8(arg2, arg3);
+        viewport_setRenderViewportAndOrthoMatrix(arg2, arg3);
         gSPDisplayList((*arg2)++, D_8036A030);
         for(sp134 = 0; sp134 < ((sp118)? ((D_8036A014 != 0) ? 2 : 1) : 6); sp134++){
             sp110 = D_8036A018[sp134] * -0x3C;
@@ -169,7 +171,7 @@ void fxhoneycarrierscore_draw(s32 arg0, struct8s *arg1, Gfx **arg2, Mtx **arg3, 
         gDPPipeSync((*arg2)++);
         gDPSetTextureLUT((*arg2)++, G_TT_NONE);
         gDPPipelineMode((*arg2)++, G_PM_NPRIMITIVE);
-        func_8024C904(arg2, arg3);
+        viewport_setRenderViewportAndPerspectiveMatrix(arg2, arg3);
     }
 }
 

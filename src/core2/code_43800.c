@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
+
 
 extern f32 func_8028E82C(void);
 
@@ -63,7 +65,7 @@ void func_802CA92C(Actor *this){
     f32 sp28[3];
     this->marker->collidable = FALSE;
     player_getPosition(this->position);
-    viewport_get_position_vec3f(sp34);
+    viewport_getPosition_vec3f(sp34);
     ml_vec3f_diff_copy(sp28, sp34, this->position);
     ml_vec3f_set_length_copy(sp28, sp28, 180.0f);
     this->position_x += sp28[0];

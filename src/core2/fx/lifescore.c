@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
+
 extern f32 func_802FB0E4(struct8s*);
 
 /* .code */
@@ -84,7 +87,7 @@ void fxlifescore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx,
     if(1); //fake
     if (D_80381EB0[D_80381EC4] != NULL) {
         gSPDisplayList((*gfx)++, D_8036A278);
-        func_8024C7B8(gfx, mtx);
+        viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
         if(gfx);
         gDPPipeSync((*gfx)++);
         gDPSetCombineLERP((*gfx)++, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0);
@@ -116,7 +119,7 @@ void fxlifescore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx,
         gDPPipeSync((*gfx)++);
         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
         gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-        func_8024C904(gfx, mtx);
+        viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     }
 }
 

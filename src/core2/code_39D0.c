@@ -5,9 +5,9 @@
 #include "prop.h"
 #include "core2/statetimer.h"
 #include "core2/ba/physics.h"
+#include <core1/viewport.h>
 
 
-extern f32 func_8024DDD8(f32[3], f32);
 extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
 extern f32 player_getYaw(void);
 
@@ -144,8 +144,8 @@ bool func_8028AE10(void) {
 
     _player_getPosition(sp1C);
     ideal_yaw = yaw_getIdeal();
-    sp2C = func_8024DDD8(sp1C, 90.0f);
-    sp28 = func_8024DDD8(sp1C, 270.0f);
+    sp2C = viewport_adjustAngleToRight(sp1C, 90.0f);
+    sp28 = viewport_adjustAngleToRight(sp1C, 270.0f);
     if (sp28 < sp2C) {
         return (sp2C < ideal_yaw) || (ideal_yaw < sp28);
     }

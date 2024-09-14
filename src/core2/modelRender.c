@@ -1,7 +1,10 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include <core1/viewport.h>
 #include "core2/modelRender.h"
+
 #include "animation.h"
 #include "ml/mtx.h"
 
@@ -11,11 +14,6 @@ extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
 extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
 extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotatePYR(f32, f32, f32);
-extern void viewport_get_position_vec3f(f32[3]);
-extern void viewport_get_rotation_vec3f(f32[3]);
-extern void viewport_set_position_vec3f(f32[3]);
-extern void viewport_set_rotation_vec3f(f32[3]);
-extern void viewport_update(void);
 extern void func_8033BD4C(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);
 extern AnimMtxList *animMtxList_new();
@@ -695,8 +693,8 @@ void modelRender_reset(void){
     func_8033A45C(1,1);
     func_8033A45C(2,0);
     if(D_80383758.unk18){
-        viewport_set_position_vec3f(D_80383758.unk1C);
-        viewport_set_rotation_vec3f(D_80383758.unk28);
+        viewport_setPosition_vec3f(D_80383758.unk1C);
+        viewport_setRotation_vec3f(D_80383758.unk28);
         viewport_update();
     }
 }
@@ -941,7 +939,7 @@ void func_80338DCC(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp20[0] = (f32)cmd->unkE[0] * modelRenderScale;
         sp20[1] = (f32)cmd->unkE[1] * modelRenderScale;
         sp20[2] = (f32)cmd->unkE[2] * modelRenderScale;
-        if(func_8024D374(sp2C, sp20)){
+        if(viewport_isBoundingBoxInFrustum(sp2C, sp20)){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk14));
         }
     }
@@ -958,7 +956,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[1] = (f32)cmd->unk8[1] * modelRenderScale;
         sp34[2] = (f32)cmd->unk8[2] * modelRenderScale;
         sp30 = (f32)cmd->unkE*modelRenderScale;
-        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+        if(viewport_func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
     }
@@ -980,7 +978,7 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp34[0] += modelRenderCameraPosition[0];
         sp34[1] += modelRenderCameraPosition[1];
         sp34[2] += modelRenderCameraPosition[2];
-        if(func_8024DB50(sp34, sp30) && cmd->unk10){
+        if(viewport_func_8024DB50(sp34, sp30) && cmd->unk10){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->unk10));
         }
 
@@ -1033,8 +1031,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
     }
 
     D_80370990 = 0;
-    viewport_get_position_vec3f(modelRenderCameraPosition);
-    viewport_get_rotation_vec3f(modelRenderCameraRotation);
+    viewport_getPosition_vec3f(modelRenderCameraPosition);
+    viewport_getRotation_vec3f(modelRenderCameraRotation);
     if(D_80383758.unk18){
         D_80383758.unk1C[0] = modelRenderCameraPosition[0];
         D_80383758.unk1C[1] = modelRenderCameraPosition[1];
@@ -1074,8 +1072,8 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         modelRenderCameraRotation[0] = D_80383758.unkC[0],
         modelRenderCameraRotation[1] = D_80383758.unkC[1],
         modelRenderCameraRotation[2] = D_80383758.unkC[2];
-        viewport_set_position_vec3f(modelRenderCameraPosition);
-        viewport_set_rotation_vec3f(modelRenderCameraRotation);
+        viewport_setPosition_vec3f(modelRenderCameraPosition);
+        viewport_setRotation_vec3f(modelRenderCameraRotation);
         viewport_update();
         camera_focus[0] = object_position[0] - modelRenderCameraPosition[0];
         camera_focus[1] = object_position[1] - modelRenderCameraPosition[1];
@@ -1101,7 +1099,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         return 0;
     }
 
-    D_80370990 = (D_80383704) ? func_8024DB50(object_position, spD0*scale) : 1;
+    D_80370990 = (D_80383704) ? viewport_func_8024DB50(object_position, spD0*scale) : 1;
     if(D_80370990 == 0){
         modelRender_reset();
         return 0;
@@ -1419,8 +1417,8 @@ void func_8033A28C(bool arg0){
 void func_8033A298(bool arg0){
     D_80383758.unk18 = arg0;
     if(arg0){
-        viewport_get_position_vec3f(D_80383758.unk0);
-        viewport_get_rotation_vec3f(D_80383758.unkC);
+        viewport_getPosition_vec3f(D_80383758.unk0);
+        viewport_getRotation_vec3f(D_80383758.unkC);
     }
 }
 

@@ -2,10 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 #include "fight.h"
+#include <core1/viewport.h>
 #include "core2/particle.h"
 
-
-extern void viewport_get_position_vec3f(f32 (*)[3]);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
 extern void func_80324CFC(f32, enum comusic_e, s32);
@@ -322,14 +321,14 @@ void chBossJinjo_update(Actor *this){
 
 void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
     ParticleEmitter *s0 = partEmitMgr_newEmitter(1);
-    f32 sp40[3];
+    f32 viewport[3];
     f32 sp34[3];
 
-    viewport_get_position_vec3f(&sp40);
+    viewport_getPosition_vec3f(&viewport);
 
-    sp34[0] = sp40[0] - arg0[0];
-    sp34[1] = sp40[1] - arg0[1];
-    sp34[2] = sp40[2] - arg0[2];
+    sp34[0] = viewport[0] - arg0[0];
+    sp34[1] = viewport[1] - arg0[1];
+    sp34[2] = viewport[2] - arg0[2];
     ml_vec3f_set_length(sp34, 20.0f);
     
     particleEmitter_setModel(s0, model_id);

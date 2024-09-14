@@ -1,11 +1,12 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
+
 
 extern bool func_80245314(f32[3], f32[3], f32, f32, u32);
 extern int func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 extern int func_8024575C(f32[3], f32[3], f32, f32[3], s32, u32);
-extern void func_8024C510(f32);
 extern f32 func_80258708(f32[3], f32[3]);
 extern f32 func_80259198(f32, f32);
 extern f32 func_8028E82C(void);
@@ -211,8 +212,8 @@ void func_802BCBD4(void) {
     func_802C0120();
     func_802C2258();
     func_802C0F4C();
-    viewport_get_rotation_vec3f(cameraRotation);
-    viewport_get_position_vec3f(cameraPosition);
+    viewport_getRotation_vec3f(cameraRotation);
+    viewport_getPosition_vec3f(cameraPosition);
     ml_vec3f_copy(D_8037D948, cameraPosition);
     ml_vec3f_clear(D_8037D9C8);
     ml_vec3f_clear(D_8037D9E0);
@@ -365,8 +366,8 @@ void ncDynamicCamera_update(void){
     if(dynamicCameraInFirstPerson){
         ncFirstPersonCamera_getPositionAndRotation(sp24, sp18);
     }
-    viewport_set_position_vec3f(sp24);
-    viewport_set_rotation_vec3f(sp18);
+    viewport_setPosition_vec3f(sp24);
+    viewport_setRotation_vec3f(sp18);
 }
 
 int ncDynamicCamera_getState(void){
@@ -939,8 +940,8 @@ void func_802BE720(void){
     f32 sp28[3];
     f32 sp1C[3];
 
-    viewport_get_position_vec3f(sp28);
-    viewport_get_rotation_vec3f(sp1C);
+    viewport_getPosition_vec3f(sp28);
+    viewport_getRotation_vec3f(sp1C);
     ncDynamicCamera_setPosition(sp28);
     ncDynamicCamera_setRotation(sp1C);
 
@@ -960,9 +961,9 @@ void func_802BE794(void){
         sp2C[1] += 100.0f;
         player_getRotation(sp20);
         sp20[1] = mlNormalizeAngle(sp20[1] + 180.0f);
-        viewport_set_position_vec3f(sp2C);
-        viewport_set_rotation_vec3f(sp20);
-        func_8024C510(300.0f);
+        viewport_setPosition_vec3f(sp2C);
+        viewport_setRotation_vec3f(sp20);
+        viewport_moveAlongZAxis(300.0f);
         func_802BE720();
     }//L802BE828
 }

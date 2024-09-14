@@ -1,8 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
-f32 func_8024DDD8(f32[3], f32);
 extern void func_8024E71C(s32, f32*);
 extern f32 ml_acosf(f32);
 extern f32 player_getYaw(void);
@@ -141,7 +141,7 @@ f32 func_8029B33C(void){
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    return func_8024DDD8(sp1C, func_8029B2F4());
+    return viewport_adjustAngleToRight(sp1C, func_8029B2F4());
 }
 
 s32 func_8029B370(void){

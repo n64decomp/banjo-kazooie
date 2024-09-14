@@ -2,12 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
 #include "gc/gctransition.h"
 
 void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 f32 func_80257618(void);
-void viewport_set_near_far(f32, f32);
 
 typedef enum {
     TRANSITION_ID_1_BLACK_IN = 1,
@@ -251,7 +251,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     if(s_current_transition.state == 0)
         return;
 
-    func_8024E258();
+    viewport_backupState();
     if(s_current_transition.animctrl != NULL){
         vp_position[0] = 0.0f;
         vp_position[1] = 0.0f;
@@ -265,11 +265,11 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     vp_rotation[0] = 0.0f;
     vp_rotation[1] = 0.0f;
     vp_rotation[2] = 0.0f;
-    viewport_set_near_far(D_8036C440, D_8036C444);
-    viewport_set_position_vec3f(vp_position); //viewport_get_position_vec3f
-    viewport_set_rotation_vec3f(vp_rotation); //viewport_get_rotation_vec3f
+    viewport_setNearAndFar(D_8036C440, D_8036C444);
+    viewport_setPosition_vec3f(vp_position); //viewport_getPosition_vec3f
+    viewport_setRotation_vec3f(vp_rotation); //viewport_getRotation_vec3f
     viewport_update(); //camera_updateNormal
-    func_8024C904(gdl, mptr);
+    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
 
 
     sp58[0] = 0.0f;
@@ -367,8 +367,8 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     if(s_current_transition.animctrl != NULL){
         gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
     }
-    func_8024E2FC();
-    func_8024C904(gdl, mptr);
+    viewport_restoreState();
+    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
     
 }
 

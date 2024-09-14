@@ -1,6 +1,8 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
+
 
 extern void __spawnQueue_add_2(void (*)(s32, s32), s32, s32);
 
@@ -88,7 +90,7 @@ f32 func_802D7038(Actor *this) {
 void func_802D7124(Actor *actor, f32 arg1) {
     f32 vp[3];
 
-    viewport_get_position_vec3f(&vp);
+    viewport_getPosition_vec3f(&vp);
     if ((actor->position[0] - vp[0]) * (actor->position[0] - vp[0]) + (actor->position[2] - vp[2]) * (actor->position[2] - vp[2]) < 12250000.0f) {
         func_802D729C(actor, arg1);
     }

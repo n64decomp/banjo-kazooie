@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
 
 void func_802CD898(Actor *);
 void func_802CD8C0(Actor *);
@@ -88,11 +89,11 @@ void func_802CDAC4(Actor *this){
     f32 sp1C[3];
 
     camera_setType(1);
-    viewport_set_position_vec3f(this->position);
+    viewport_setPosition_vec3f(this->position);
     sp1C[0] = this->pitch;
     sp1C[1] = this->yaw;
     sp1C[2] = 0.0f;
-    viewport_set_rotation_vec3f(sp1C);
+    viewport_setRotation_vec3f(sp1C);
 }
 
 void func_802CDB18(Actor *this){

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
@@ -33,8 +34,8 @@ void func_802BAC58(void) {
     f32 vp_rotation[3];
     f32 sp1C[3];
 
-    viewport_get_position_vec3f(vp_position);
-    viewport_get_rotation_vec3f(vp_rotation);
+    viewport_getPosition_vec3f(vp_position);
+    viewport_getRotation_vec3f(vp_rotation);
     func_802BEA4C(vp_rotation, vp_position, 150.0f, sp1C);
     if (D_8037D810 == NULL) {
         D_8037D810 = func_8032FBE4(sp1C, func_802BABC0, 1, 0x15D);

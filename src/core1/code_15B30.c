@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
 typedef struct {
     s32 unk0;
     s32 unk4;
@@ -239,7 +241,7 @@ void scissorBox_set(s32 left, s32 top, s32 right, s32 bottom) {
     gScissorBoxBottom = bottom;
     framebuffer_width = top - left;
     framebuffer_height = bottom - right;
-    func_8024CC5C();
+    viewport_pushFramebufferExtendsToVpStack();
 }
 
 

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 extern void sfxsource_setSampleRate(u8, s32);
 extern f32 func_80258640(f32[3], f32[3]);
@@ -128,7 +129,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
             func_8028F66C(BS_INTR_D_SURF);
         }
         if (sp3C && ((sp40[0] != 0.0f) || (sp40[1] != 0.0f))) {
-            viewport_get_rotation_vec3f(sp70);
+            viewport_getRotation_vec3f(sp70);
             sp64[0] = sp40[0];
             sp64[1] = 0.0f;
             sp64[2] = -sp40[1];
@@ -147,7 +148,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
         func_80351B28(arg1, sp54);
         func_8035179C(arg1, sp54);
         if (arg0->unk0 != NULL) {
-            viewport_get_position_vec3f(sp7C);
+            viewport_getPosition_vec3f(sp7C);
             sp64[0] = sp54[0] - sp7C[0];
             sp64[2] = sp54[2] - sp7C[2];
             sp64[1] = 0.0f;

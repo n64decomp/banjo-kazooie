@@ -2,11 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 #include "ml/mtx.h"
+#include <core1/viewport.h>
+
 
 extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);
 extern void func_80252330(f32, f32, f32);\
 extern void func_80349AD0(void);
-extern void func_8024C5A8(f32[3]);
 
 
 
@@ -50,8 +51,8 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     f32 sp38;
     f32 sp34;
 
-    viewport_get_position_vec3f(sp6C);
-    func_8024C5A8(sp60);
+    viewport_getPosition_vec3f(sp6C);
+    viewport_getLookVector(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
     sp50[2] = position[2] - sp6C[2];
@@ -80,7 +81,7 @@ void func_80344138(BKSpriteDisplayData *self, s32 frame, s32 mirrored, f32 posit
     if (D_80371EC0.unk0 != NULL) {
         D_80371EC0.unk0(D_80371EC0.unk4);
     }
-    mlMtxSet(func_8024DD90());
+    mlMtxSet(viewport_getMatrix());
     func_80252330(sp50[0], sp50[1], sp50[2]);
     if ((scale != NULL) || mirrored) {
         mlMtxScale_xyz((mirrored) ? -scale[0] : scale[0], sp38, sp34);
@@ -108,8 +109,8 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 sp38;
     f32 sp34;
 
-    viewport_get_position_vec3f(sp6C);
-    func_8024C5A8(sp60);
+    viewport_getPosition_vec3f(sp6C);
+    viewport_getLookVector(sp60);
     sp50[0] = position[0] - sp6C[0];
     sp50[1] = position[1] - sp6C[1];
     sp50[2] = position[2] - sp6C[2];
@@ -139,7 +140,7 @@ void func_80344424(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     if (D_80371EC0.unk0 != NULL) {
         D_80371EC0.unk0(D_80371EC0.unk4);
     }
-    mlMtxSet(func_8024DD90());
+    mlMtxSet(viewport_getMatrix());
     mlMtxRotatePYR(0.0f, 0.0f, rotation);
     func_80252330(sp50[0], sp50[1], sp50[2]);
     if ((scale != NULL) || mirrored) {
@@ -166,8 +167,8 @@ void func_80344720(BKSpriteDisplayData *arg0, s32 frame, bool mirrored, f32 posi
     f32 var_f14;
     BKSpriteFrameDisplayData *temp_a3;
 
-    viewport_get_position_vec3f(sp5C);
-    func_8024C5A8(sp50);
+    viewport_getPosition_vec3f(sp5C);
+    viewport_getLookVector(sp50);
     sp40[0] = position[0] - sp5C[0];
     sp40[1] = position[1] - sp5C[1];
     sp40[2] = position[2] - sp5C[2];

@@ -2,9 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/particle.h"
-
-
-extern bool func_8024DB50(f32[3], f32);
+#include <core1/viewport.h>
 
 void func_802DC208(Actor *this);
 
@@ -57,7 +55,7 @@ void func_802DC208(Actor *this) {
         actor_collisionOff(this);
         this->marker->propPtr->unk8_3 = TRUE;
     }
-    if( func_8024DB50(this->position, 50.0f) 
+    if( viewport_func_8024DB50(this->position, 50.0f) 
         && func_802DC188() 
         && !(globalTimer_getTime() & 0x1F) 
         && randf() < 0.1

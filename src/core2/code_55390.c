@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 
 extern void actor_postdrawMethod(ActorMarker *);
@@ -31,17 +32,17 @@ Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     modelRender_preDraw( (GenFunction_1)actor_predrawMethod, (s32)this);
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
-    func_8024E258();
+    viewport_backupState();
     vp_position[0] = 0.0f;
     vp_position[1] = 0.0f;
     vp_position[2] = 937.5f;
     vp_rotation[0] = 0.0f;
     vp_rotation[1] = 0.0f;
     vp_rotation[2] = 0.0f;
-    viewport_set_position_vec3f(vp_position);
-    viewport_set_rotation_vec3f(vp_rotation);
+    viewport_setPosition_vec3f(vp_position);
+    viewport_setRotation_vec3f(vp_rotation);
     viewport_update();
-    func_8024C904(gfx, mtx);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     model_position[0] = 0.0f;
     model_position[1] = 0.0f;
     model_position[2] = 0.0f;
@@ -49,8 +50,8 @@ Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp34[1] = 137.5f;
     sp34[2] = 0.0f;
     modelRender_draw(gfx, mtx, model_position, NULL, 1.0f, sp34, marker_loadModelBin(marker));
-    func_8024E2FC();
-    func_8024C904(gfx, mtx);
+    viewport_restoreState();
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     return this;
 }
 

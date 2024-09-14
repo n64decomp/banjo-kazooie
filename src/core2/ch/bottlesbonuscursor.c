@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
 #ifndef ABS
 #define	ABS(d)		((d) >= 0) ? (d) : -(d)
 #endif
@@ -86,7 +88,7 @@ void chBottlesBonusCursor_func_802DF460(s32 indx, ActorMarker *caller, f32 arg2[
     sp1C[0] = arg2[0] * 100.0f;
     sp1C[1] = arg2[1] * 100.0f;
     sp1C[2] = arg2[2] * 100.0f;
-    if (func_8024E030(sp1C, D_8037E068[indx]) == 0) {
+    if (viewport_func_8024E030(sp1C, D_8037E068[indx]) == 0) {
         D_8037E068[indx][0] = D_8037E068[indx][1] = 0.0f;
     }
 }
@@ -149,7 +151,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusCursorMarker);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
-    func_8024E030(this->position, D_8037E5C0.unk18);
+    viewport_func_8024E030(this->position, D_8037E5C0.unk18);
     sp3C = (this->scale * 650.0f);
     func_80253208(gfx, 
         (s32)(D_8037E5C0.unk18[0]  - sp3C/2), (s32)(D_8037E5C0.unk18[1] - sp3C/2),
@@ -157,7 +159,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         D_803A5D00[getActiveFramebuffer()]
     );
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, marker_loadModelBin(chBottlesBonusCursorMarker));
-    func_8024E030(this->position, D_8037E5C0.unk10);
+    viewport_func_8024E030(this->position, D_8037E5C0.unk10);
     if (this->state == 1) {
         D_8037E5C0.unk10[0] -= 24.0f;
         D_8037E5C0.unk10[1] -= 8.0f;

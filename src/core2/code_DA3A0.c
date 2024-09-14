@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 typedef struct {
     u8 *unk0;
@@ -97,7 +98,7 @@ void func_8036158C(Actor *this){
         player_getPosition(sp24);
         actor_collisionOff(this);
         if( ml_distance_vec3f(this->position, sp24) < 1000.0f 
-            && func_8024DC04(this->position_x, this->position_y, this->position_z)
+            && viewport_isPointOutsideFrustum_3f(this->position_x, this->position_y, this->position_z)
             && ml_timer_update(&local->unk4, sp30)
         ){
             func_80361330(this, 2);

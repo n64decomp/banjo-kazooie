@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 /* .bss */
 struct {
@@ -15,8 +16,8 @@ void ncRandomCamera_init(void) {
     s32 sp24[3];
     s32 sp18[3];
 
-    viewport_get_position_vec3f(D_8037DA50.storedPosition);
-    viewport_get_rotation_vec3f(D_8037DA50.storedRotation);
+    viewport_getPosition_vec3f(D_8037DA50.storedPosition);
+    viewport_getRotation_vec3f(D_8037DA50.storedRotation);
     mapModel_getBounds(sp24, sp18);
 
     D_8037DA50.minPosition[0] = (f32) sp24[0];
@@ -30,8 +31,8 @@ void ncRandomCamera_init(void) {
 
 
 void ncRandomCamera_end(void){
-    viewport_set_position_vec3f(D_8037DA50.storedPosition);
-    viewport_set_rotation_vec3f(D_8037DA50.storedRotation);
+    viewport_setPosition_vec3f(D_8037DA50.storedPosition);
+    viewport_setRotation_vec3f(D_8037DA50.storedRotation);
 }
 
 void ncRandomCamera_update(void) {
@@ -45,6 +46,6 @@ void ncRandomCamera_update(void) {
     sp18[0] = randf2(-90.0f, 90.0f);\
     sp18[1] = randf2(0.0f, 360.0f);\
     sp18[2] = 0.0f;
-    viewport_set_position_vec3f(sp24);
-    viewport_set_rotation_vec3f(sp18);
+    viewport_setPosition_vec3f(sp24);
+    viewport_setRotation_vec3f(sp18);
 }

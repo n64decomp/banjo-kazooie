@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 extern void func_80252CC4(f32[3], f32 [3], f32, f32[3]);
 extern f32 func_8034A9D0(f32[4], f32);
@@ -215,8 +216,8 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 rotati
     f32 temp_f0;
     s32 pad40;
 
-    viewport_get_position_vec3f(sp74);
-    func_8024C5A8(sp68);
+    viewport_getPosition_vec3f(sp74);
+    viewport_getLookVector(sp68);
     mlMtxIdent();
     func_80252CC4(arg2, rotation, 1.0f, NULL);
     func_8025235C(sp74, sp74);

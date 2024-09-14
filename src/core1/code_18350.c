@@ -3,6 +3,9 @@
 #include "variables.h"
 #include "version.h"
 
+#include <core1/viewport.h>
+
+
 /* .data*/
 #if VERSION == VERSION_USA_1_0
 u32 D_80276CB0 = 0xD22FFFD8; //WHAT IS THIS?
@@ -33,8 +36,6 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.1736480000, 0.1564340000, 0.1391730010, 0.1218689980, 0.1045280020, 
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
-
-f32 viewport_get_yaw(void);
 
 // .h
 void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
@@ -437,6 +438,7 @@ void func_80256D0C(f32 val1, f32 val2, f32 x, f32 y, f32 z, f32 *dstX, f32 *dstY
     *dstZ = tmp * cosf(val2) - sinf(val2) * x;
 }
 
+// rotates direction vector (x, y, z)
 void func_80256E24(f32 dst[3], f32 theta, f32 phi, f32 x, f32 y, f32 z)
 {
     f32 tmp;
@@ -1045,6 +1047,7 @@ f32 ml_cos_deg(f32 angle_deg)
     return cosf(angle_deg * BAD_DTOR);
 }
 
+// brings angle in range between 0 and 360 degrees
 f32 mlNormalizeAngle(f32 angle)
 {
     if (angle < 0.0) // f64
@@ -1485,7 +1488,7 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
 s32 func_8025975C(f32 a0)
 {
-    f32 val = (s32)(viewport_get_yaw() - a0);
+    f32 val = (s32)(viewport_getYaw() - a0);
 
     while (val < 0)
         val += 360;

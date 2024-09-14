@@ -2,6 +2,9 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core1/viewport.h>
+
+
 #define AIRSCORE_COUNT (6)
 #define FXAIRSCORE_SCALE (0.68f)
 
@@ -68,7 +71,7 @@ void fxairscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, 
     if (s_sprite != 0) {
         gSPDisplayList((*gfx)++, s_fxairscore_context);
         func_80347FC0(gfx, s_sprite, 0, 0, 0, 0, 0, 2, 2, &texture_width, &texture_height);
-        func_8024C7B8(gfx, mtx);
+        viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
         //render all 6 air pieces
         for(i_part = 0; i_part < AIRSCORE_COUNT; i_part++){
             if ((i_part != 0) && (i_part != 5)) {
@@ -104,7 +107,7 @@ void fxairscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx, 
         gDPPipeSync((*gfx)++);
         gDPSetTextureLUT((*gfx)++, G_TT_NONE);
         gDPPipelineMode((*gfx)++, G_PM_NPRIMITIVE);
-        func_8024C904(gfx, mtx);
+        viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
     }
 }
 

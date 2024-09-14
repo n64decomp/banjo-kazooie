@@ -1,8 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
-extern s32 func_8024DB50(f32[3], f32);
+#include <core1/viewport.h>
 
 void func_80390EB0(Actor *this);
 
@@ -72,7 +71,7 @@ void func_80390EB0(Actor *this){
         marker_setCollisionScripts(this->marker, func_80390E78, NULL, NULL);
     }
 
-    if(func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))
+    if(viewport_func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))
     {
         if( !(globalTimer_getTime() & 3) && randf() < 0.2){
             func_80390C70(this->position);

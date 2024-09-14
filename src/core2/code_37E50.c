@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include <core1/viewport.h>
 
 typedef struct{
     u8 map_id;
@@ -94,7 +95,7 @@ void func_802BEFB0(void) {
         return;
     }
     D_8037DA80.unk10 += time_getDelta();
-    viewport_get_position_vec3f(sp30);
+    viewport_getPosition_vec3f(sp30);
     sp24[0] = sp30[0];
     sp24[1] = sp30[1] + 10000.0f;
     sp24[2] = sp30[2];
