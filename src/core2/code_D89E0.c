@@ -1,13 +1,10 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include <math.h>
 
 extern f32 mapModel_getFloorY(f32[3]);
 extern f32 func_80257204(f32, f32, f32, f32);
-
-#define SQ(x) ((x) * (x))
-
 
 typedef struct {
     f32 unk0;

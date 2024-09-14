@@ -4,9 +4,8 @@
 
 #include <core1/viewport.h>
 #include <core2/file.h>
+#include <math.h>
 #include "prop.h"
-
-#define SQ(x) ((x) * (x))
 
 extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern f32 func_802586B0(f32[3], f32[3]);
