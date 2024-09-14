@@ -33,13 +33,13 @@ boot_func_8023DA20 = func_8023DA20;
 
 /* Temporary*/
 
-
 /* Temporary Correct*/
-func_8028B470               = 0x8028b290;
 player_getTransformation    = 0x8028e5ec;
 func_8028E964               = 0x8028e784;
 player_getPosition          = 0x8028e7c4;
 player_getPosition_s32      = 0x8028e95c;
+player_getYaw               = 0x8028e9c4;
+func_8028ECAC               = 0x8028eacc;
 player_getWaterState        = 0x8028eca4;
 player_is_present           = 0x8028eff4;
 func_8028F22C               = 0x8028f04c;
@@ -48,18 +48,40 @@ func_8028F918               = 0x8028f738;
 func_8028F94C               = 0x8028f76c;
 func_8028FB88               = 0x8028f9a8;
 
+stateTimer_isActive         = 0x802914b8;
+bafalldamage_get_damage     = 0x80292ffc;
 miscFlag_isTrue             = 0x802931e0;
+miscFlag_isFalse            = 0x802931f0;
+
+func_80294438               = 0x80294258;
+func_80294500               = 0x80294320;
+func_80294548               = 0x80294368;
+func_80294554               = 0x80294374;
+func_80294610               = 0x80294430;
+get_slope_timer             = 0x802947f4;
+ability_hasLearned          = 0x80295618;
 
 baphysics_get_velocity      = 0x802978c8;
 baphysics_get_vertical_velocity = 0x802978ec;
 _player_getPosition         = 0x80298314;
+player_getYPosition         = 0x80298338;
 
+yaw_get                     = 0x8029905c;
+yaw_getIdeal                = 0x80299068;
+bs_getState                 = 0x8029a608;
+func_8029C0D0               = 0x8029bf10;
+func_8029CF20               = 0x8029cd60;
+func_8029D66C               = 0x8029d4ac;
+bsant_inSet                 = 0x8029e3d8;
+
+bspumpkin_inSet             = 0x802b2154;
 func_802BB360               = 0x802bb1d0;
 func_802BB378               = 0x802bb1e8;
 func_802BB3AC               = 0x802bb21c;
 func_802BB3C4               = 0x802bb234;
 func_802BB3DC               = 0x802bb24c;
 ncFirstPersonCamera_getZoomedInRotation = 0x802c295c;
+ncFirstPersonCamera_getState            = 0x802c2980;
 spawnQueue_func_802C3A18    = 0x802C3898;
 spawnQueue_flush            = 0x802c38b8;
 func_802C5A30               = 0x802c5b20;
@@ -122,6 +144,7 @@ sfxsource_setSfxId          = 0x8030dc20;
 sfxsource_setSampleRate     = 0x8030dc5c;
 func_8030DBB4               = 0x8030dd54;
 func_8030E2C4               = 0x8030e464;
+func_8030E58C               = 0x8030e72c;
 func_8030E6A4               = 0x8030e844;
 func_8030ED70               = 0x8030ef10;
 func_8030E394               = 0x8030e534;
@@ -141,6 +164,8 @@ func_80320B98               = 0x80320f88;
 func_80320C94               = 0x80321084;
 func_80320DB0               = 0x803211a0;
 jiggyscore_isCollected      = 0x803213d0;
+level_get                   = 0x80321cf0;
+func_8032190C               = 0x80321cfc;
 func_80321960               = 0x80321d50;
 func_803219F4               = 0x80321de4;
 levelSpecificFlags_get      = 0x803222d4;

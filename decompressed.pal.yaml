@@ -511,8 +511,8 @@ segments:
   - [0xF7B410, c, code_2240]
   - [0xF7BA60, c, ba/anim]
   - [0xF7C650, c, snackerctl]
-  - [0xF7CBA0, bin, core2_untouched_text]
-  # - [0xF59330, c, code_39D0] #DONE
+  - [0xF7CBA0, c, code_39D0]
+  - [0xF7D990, bin, core2_untouched_text]
   # - [0xF5A120, c, ba/marker] #DONE
   # - [0xF5C490, c, code_6B30] #DONE
   # - [0xF5C9C0, c, code_7060] #DONE
@@ -1125,8 +1125,8 @@ segments:
   - [0x10667D0, .rodata, code_1930]
   - [0x10667F0, .rodata, ba/anim]
   - [0x1066860, .rodata, snackerctl]
-  - [0x1066870, bin, core2_untouched_rodata]
-  # - [0x10428A0, .rodata, code_39D0]
+  - [0x1066870, .rodata, code_39D0]
+  - [0x1066910, bin, core2_untouched_rodata]
   # - [0x1042940, .rodata, ba/marker]
   # - [0x1042D70, .rodata, code_6B30]
   # - [0x1042E60, .rodata, code_7060]
@@ -1378,7 +1378,7 @@ segments:
   - [0x0106C980, .bss, code_1930]
   - [0x0106C980, .bss, ba/anim]
   - [0x0106C980, .bss, snackerctl]
-  # - [0x0106C980, .bss, code_39D0]
+  - [0x0106C980, .bss, code_39D0]
   # - [0x0106C980, .bss, ba/marker]
   # - [0x0106C980, .bss, code_6B30]
   # - [0x0106C980, .bss, code_7060]
