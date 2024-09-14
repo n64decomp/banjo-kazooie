@@ -5,14 +5,12 @@
 #include "model.h"
 #include "core2/vla.h"
 #include "enums.h"
+#include "bool.h"
 
 #define MERGE(a, b) a ## b
 
 #define UNK_TYPE(t) t
 
-typedef int bool;
-#define NOT(boolean) ((boolean) ^ 1)
-#define BOOL(boolean) ((boolean) ? TRUE : FALSE)
 
 typedef struct{
     f32 x;
@@ -551,17 +549,6 @@ typedef struct {
 
 //Struct60s moved to top
 
-typedef struct file_s {
-    void *asset_base_ptr;
-    void *asset_current_ptr;
-    void *base_ptr;
-    void *current_ptr;
-    void *end_ptr;
-    enum file_mode_e mode;
-    u8 pad18[0x64];
-    s32 last_expected; // used in file_isNextByteExpected
-    s32 unk80; // always set to -1 and never used
-} File;
 
 typedef struct {
     s16 unk0;

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-
+#include <core2/file.h>
 
 void func_802BA23C(s32 *arg0, s32 arg1);
 

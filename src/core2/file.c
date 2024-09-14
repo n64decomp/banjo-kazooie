@@ -1,10 +1,9 @@
-#include <ultra64.h>
+#include <core2/file.h>
+
 #include "functions.h"
 #include "variables.h"
 
 #define FILE_DEFAULT_SIZE 0x20
-
-
 
 void file_read(File *file, void *arg1, s32 arg2);
 
@@ -62,7 +61,7 @@ File *file_openFromMem(void *ptr, s32 size) {
     return this;
 }
 
-File *file_allocNew() {
+File *file_allocNew(void) {
     File *this;
 
     this = (File *) malloc(sizeof(File));

@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "enums.h"
 
+#include <core2/file.h>
+
 #define AssetCacheSize 0x3D5
 
 extern int func_802E74A0(f32[3], f32, s32, s32);

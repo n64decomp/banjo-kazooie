@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/file.h>
 
 extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);

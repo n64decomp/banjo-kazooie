@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/file.h>
 
 typedef struct {
     f32 position[3];

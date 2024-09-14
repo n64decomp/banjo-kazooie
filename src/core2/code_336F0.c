@@ -1,4 +1,7 @@
 #include <ultra64.h>
+
+#include <core2/file.h>
+
 #include "functions.h"
 #include "variables.h"
 

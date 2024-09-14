@@ -581,31 +581,4 @@ extern void miscFlag_set(enum misc_flag_e arg0);
 extern void miscFlag_clear(enum misc_flag_e arg0);
 extern void miscFlag_toggle(enum misc_flag_e arg0);
 
-extern void file_close(File* file);
-extern File *file_open(enum asset_e asset_id);
-extern File *file_openMap(enum map_e map_id);
-extern File *file_openWithBaseIndex(s32 indx, enum asset_e base_indx);
-extern File *file_openFromMem(void *ptr, s32 size);
-extern File *file_allocNew();
-extern void file_realloc(File *file, void **arg1, s32 *size);
-extern void file_getByte(File *file, u8 *dst);
-extern void file_getNBytes(File *file, u8 *dst, s32 cnt);
-extern void file_getFloat(File *file, f32 *dst);
-extern void file_getNFloat(File *file, f32 *dst, s32 cnt);
-extern void file_getWord(File *file, s32 *dst);
-extern void file_getNWords(File *file, s32 *dst, s32 cnt);
-extern void file_read(File *file, void *dst, s32 len);
-extern void file_getShort(File *file, s16 *dst);
-extern void file_getNShorts(File *file, s16 *dst, s32 cnt);
-extern bool file_isNextByteExpected(File *file, s32 expected);
-extern bool file_getByte_ifExpected(File *file, s32 expected, u8 *dst);
-extern bool file_getNBytes_ifExpected(File *file, s32 expected, u8 *dst, s32 cnt);
-extern bool file_getFloat_ifExpected(File *file, s32 expected, f32 *dst);
-extern bool file_getNFloats_ifExpected(File *file, s32 expected, f32 *dst, s32 cnt);
-extern bool file_getWord_ifExpected(File *file, s32 expected, s32 *dst);
-extern bool file_getNWords_ifExpected(File *file, s32 expected, s32 *dst, s32 cnt);
-extern bool file_get_ifExpected(File *file, s32 expected, void *dst, s32 len);
-extern bool file_getShort_ifExpected(File *file, s32 expected, s16 *dst);
-extern bool file_getNShorts_ifExpected(File *file, s32 expected, s16 *dst, s32 cnt);
-
 #endif

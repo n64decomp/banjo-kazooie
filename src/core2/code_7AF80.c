@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/file.h>
 #include "prop.h"
 
 #define SQ(x) ((x) * (x))

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/file.h>
+
 #define NC_CAMERA_NODE_LIST_CAPACITY 0x46
 
 typedef struct {

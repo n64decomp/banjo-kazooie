@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/file.h>
+
 typedef struct{
     f32 unk0[3];
     f32 unkC;
