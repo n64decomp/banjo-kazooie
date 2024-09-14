@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
-
+#include "version.h"
 #include "prop.h"
 #include "SnS.h"
 
@@ -113,10 +113,10 @@ void __baMarker_8028B7F4(void){
 void __baMarker_8028B848(void){
     s32 s0 = 0;
     if(map_get() == MAP_69_GL_MM_LOBBY){
-        s0 = 0xf57;
+        s0 = ASSET_E57_DIALOG_FIRST_JIGGY;
     }
     else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
-        s0 = 0xb45;
+        s0 = ASSET_B45_TEXT_JIGGY_COLLECT_10;
     }
 
     if(s0){
@@ -657,7 +657,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     tmp1 = sns_get_item_state(SNS_ITEM_EGG_YELLOW, 0) + sns_get_item_state(SNS_ITEM_EGG_RED, 0) + sns_get_item_state(SNS_ITEM_EGG_GREEN, 0)
                         + sns_get_item_state(SNS_ITEM_EGG_BLUE, 0) + sns_get_item_state(SNS_ITEM_EGG_PINK, 0) + sns_get_item_state(SNS_ITEM_EGG_CYAN, 0);
                     if(tmp1 < 3){
-                        func_80324DBC(2.5f, 0xDB2 + tmp1, 0x20, 0, 0, 0, 0);
+                        func_80324DBC(2.5f, ASSET_DB3_DIALOG_SNS_EGG_1_TEXT + tmp1 - 1, 0x20, 0, 0, 0, 0);
                     }
                     
                     marker_despawn(marker);
@@ -666,7 +666,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_168_ICE_KEY: //L8028CC7C
                 sns_set_item_and_update_payload(SNS_ITEM_ICE_KEY, 0, 1);
                 comusic_playTrack(COMUSIC_88_BIG_SNS_FANFARE);
-                func_80324DBC(2.5f, 0xDB5, 0x20, 0, 0, 0, 0);
+                func_80324DBC(2.5f, ASSET_DB5_DIALOG_ICE_KEY_TEXT, 0x20, 0, 0, 0, 0);
                 marker_despawn(marker);
                 break;
             
@@ -717,7 +717,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     miscFlag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
                     if(!volatileFlag_getAndSet(VOLATILE_FLAG_C_HAS_SEEN_SPRING_PAD, 1)){
-                        func_80311480(0xA24, 4, 0, 0, 0, 0);
+                        func_80311480(ASSET_A24_DIALOG_JUMP_PAD_DISCOVERED, 4, 0, 0, 0, 0);
                     }
                 }
                 break;
@@ -729,7 +729,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     miscFlag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D_HAS_SEEN_FLIGHT_PAD, 1)){
-                    func_80311480(0xA25, 4, 0, 0, 0, 0);
+                    func_80311480(ASSET_A25_DIALOG_FLY_DISC_DISCOVERED, 4, 0, 0, 0, 0);
                 }
                 break;
 
