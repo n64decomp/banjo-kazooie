@@ -59,8 +59,8 @@ void __chfirefx_hiss(ActorMarker *marker,ActorMarker *other_marker){
 }
 
 void chfirefx_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         marker_setCollisionScripts(this->marker, __chfirefx_hiss, NULL, NULL);

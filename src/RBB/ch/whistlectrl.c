@@ -75,8 +75,8 @@ s32 chWhistleCtrl_newEvent(Actor *this, s32 whistle_id, Actor *other){
 void chWhistleCtrl_update(Actor *this){
     ActorLocal_RBB_5060 *local = (ActorLocal_RBB_5060 *)&this->local;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         local->unk2 = 1;
         local->unk4 = "312111";
         if(jiggyscore_isSpawned(JIGGY_54_RBB_WHISTLE))

@@ -63,8 +63,8 @@ void func_8038ECD8(Actor *this){
         return;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038EC34, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         player_getPosition(D_803935D0);

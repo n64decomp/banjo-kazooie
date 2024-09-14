@@ -111,7 +111,7 @@ void func_8035D2FC(Actor *this) {
 }
 
 void func_8035D3D8(Actor *this) {
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         func_8035D2FC(this);
     }
     func_802DB5A0(this);

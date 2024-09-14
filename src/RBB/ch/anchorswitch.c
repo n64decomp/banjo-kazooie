@@ -35,8 +35,8 @@ void __chAnchorSwitch_press(ActorMarker *marker, s32 arg1){
 }
 
 void chAnchorSwitch_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
         marker_setCollisionScripts(this->marker, NULL, __chAnchorSwitch_press, NULL);
         if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))

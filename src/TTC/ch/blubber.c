@@ -138,11 +138,11 @@ void func_803878CC(Actor * this){
     if(!mapSpecificFlags_get(1) && !func_80329530(this, 2500))
         return;
     
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         if(this->state == 3){
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         }
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }//L80387970
 
     if(func_80329530(this, 250) && !func_80329530(this, 80)

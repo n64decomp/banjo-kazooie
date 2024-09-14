@@ -42,9 +42,9 @@ void func_8038DF6C(Actor* this){
     Actor* other;
     int i;
     
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         local->unk0 = randf2(80.0f, 100.0f);
         local->unk4 = NULL;
         local->unk20 = 0;

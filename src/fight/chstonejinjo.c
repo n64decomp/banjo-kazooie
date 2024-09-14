@@ -40,8 +40,8 @@ void chstonejinjo_spawnJinjo(ActorMarker *marker) {
 }
 
 void chstonejinjo_update(Actor *this) {
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         if (this->unkF4_8 == BOSSJINJO_JINJONATOR) {

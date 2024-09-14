@@ -150,8 +150,8 @@ void __chMinigame_free(Actor *this){
 }
 
 void chMinigame_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->unk10_12 = __chminigame_getCurrentMapId();
         actor_collisionOff(this);
         if(!volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){

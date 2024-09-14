@@ -835,7 +835,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk44_1 = 0;
     suLastBaddie->unk44_0 = 0;
     suLastBaddie->initialized = FALSE;
-    suLastBaddie->unk16C_4 = 0;
+    suLastBaddie->volatile_initialized = FALSE;
     suLastBaddie->lifetime_value = 0.0f;
     suLastBaddie->unk10_0 = 0;
     suLastBaddie->unk104 = NULL;
@@ -1738,7 +1738,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unk14C[0] =s0->unk14C[1] = NULL;
                 // s0->unk14C = NULL;
                 s0->unk148 = NULL;
-                s0->unk16C_4 = 0;
+                s0->volatile_initialized = FALSE;
                 s0->unk44_31 = 0;
                 s0->unk104 = NULL;
                 s0->unk100 = NULL;
@@ -2331,10 +2331,10 @@ void func_8032BB88(Actor *this, s32 arg1, s32 arg2){
 }
 
 bool func_8032BBE8(Actor *this){
-    if(this->unk16C_4){
+    if(this->volatile_initialized){
         return TRUE;
     }
-    this->unk16C_4 = TRUE;
+    this->volatile_initialized = TRUE;
     return FALSE;
 }
 

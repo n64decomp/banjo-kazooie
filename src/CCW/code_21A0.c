@@ -22,8 +22,8 @@ void func_80388590(Actor *this, s32 next_state){
 }
 
 void func_803885F8(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN)){
             func_80388590(this, 1);
         }

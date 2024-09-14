@@ -32,8 +32,8 @@ void func_802CD898(Actor *this){
 }
 
 void func_802CD8C0(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->unk2C_1 = 1;
         this->marker->collidable = 0;
         *(s32*)this->unkBC = 0; //TODO Make struct

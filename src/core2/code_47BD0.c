@@ -54,7 +54,7 @@ void func_802CEB60(Actor *this){
     ActorLocal_core2_47BD0 *local;
 
     local = (ActorLocal_core2_47BD0 *)&this->local;
-    if(this->unk16C_4){
+    if(this->volatile_initialized){
         if(local->unk8 != NULL){
             local->unk8 = (Struct_core2_47BD0_0 *)defrag(local->unk8);
         }
@@ -354,8 +354,8 @@ void chBeeSwarm_update(Actor *this) {
             local->unk18 = next_position[1];
         }
     }
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         marker_setFreeMethod(this->marker, chBeeSwarm_802CEBA8);
         actor_collisionOff(this);
         local->unk20 = assetcache_get(ASSET_3BF_MODEL_PLAYER_SHADOW);

@@ -104,8 +104,8 @@ void func_803591E8(Actor *this, s32 next_state){
 
 void func_8035933C(Actor *this){
     ActorLocal_core2_D2180 * local = (ActorLocal_core2_D2180 *) &this->local;
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         local->unk0 = D_80372940 + (this->modelCacheIndex - 0x2AE);
         func_803591E8(this, 1);
     }

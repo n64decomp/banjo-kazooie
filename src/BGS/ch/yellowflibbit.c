@@ -348,8 +348,8 @@ void BGS_func_8038E034(Actor *this) {
     f32 sp48[3];
 
     sp9C = time_getDelta();
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, &func_8038DD9C, &func_8038DDDC, &func_8038DE1C);
         local->unk2 = 0U;
         local->unk20[0] = randf2(-2.0f, -1.0f);

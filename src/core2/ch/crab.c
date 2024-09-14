@@ -235,12 +235,12 @@ void chCrab_update(Actor *this) {
     sp34 = globalTimer_getTime();
     sp30 = time_getDelta();
     is_mutant_snippet = this->modelCacheIndex == ACTOR_F5_MUTIE_SNIPPET;
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         marker_setCollisionScripts(this->marker, __chCrab_touch, __chCrab_ow, __chCrab_die);
         func_803300C0(this->marker, &__chCrab_802CB76C);
         this->unk124_0 = this->unk138_31 = FALSE;
         this->is_first_encounter = FALSE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         animctrl_setTransitionDuration(this->animctrl, 0.25f);
         if (map_get() == MAP_A_TTC_SANDCASTLE) {
             if (!jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)) {

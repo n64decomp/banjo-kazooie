@@ -61,8 +61,8 @@ void func_8038C7A8(Actor *this) {
 
     local = (ActorLocal_CCW_61E0 *)&this->local;
     sp44 = time_getDelta();
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         return;
     }
 

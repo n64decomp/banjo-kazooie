@@ -211,8 +211,8 @@ void CCW_func_80389BFC(Actor *this) {
 
     local = (ActorLocal_CCW_3310 *)&this->local;
 
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->is_first_encounter = FALSE;
         this->position[0] = -4900.0f;

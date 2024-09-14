@@ -80,8 +80,8 @@ void GV_func_8038A9C0(Actor *this){
         this->velocity_y = 0.0f;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         __spawnQueue_add_1((GenFunction_1)func_8038A8CC, (s32)this->marker);

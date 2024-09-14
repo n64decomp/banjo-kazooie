@@ -62,8 +62,8 @@ Actor *func_80389350(ActorMarker* marker, Gfx** graphics, Mtx** matrix, Vtx** ve
 }
 
 void func_803893A4(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         this->unk38_31 = 2;

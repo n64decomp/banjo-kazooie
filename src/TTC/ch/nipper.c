@@ -194,8 +194,8 @@ void func_80388434(Actor *this){
 
     player_getPosition(sp38);
     sp44 = func_80309D58(sp38, 1);
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->velocity_x = sp44;
         func_8032BC18(this);
     }

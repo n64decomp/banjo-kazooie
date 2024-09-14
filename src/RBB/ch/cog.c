@@ -45,11 +45,11 @@ void func_80388BE8(Actor *actor){
 void func_80388C20(Actor *this){
     ActorLocal_RBB_27E0 *local = (ActorLocal_RBB_27E0 *)&this->local;
     f32 sp28 = time_getDelta();
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         actor_collisionOff(this);
         this->marker->propPtr->unk8_3 = 1;
         this->marker->actorFreeFunc = func_80388BE8;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         if(this->modelCacheIndex == 0x17B){
             local->sfxsource_index = func_8030D90C();
             sfxsource_set_fade_distances(local->sfxsource_index, 1000.0f, 2000.0f);

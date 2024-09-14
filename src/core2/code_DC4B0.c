@@ -29,7 +29,7 @@ void func_803634BC(void){
 }
 
 void func_80363500(Actor *this){
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         if(!chmole_learnedAllSpiralMountainAbilities()){
             func_803634BC();
         }
@@ -37,7 +37,7 @@ void func_80363500(Actor *this){
             func_80363440();
             marker_despawn(this->marker);
         }
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }//L8036355C
 
     if(chmole_learnedAllSpiralMountainAbilities()){

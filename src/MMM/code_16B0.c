@@ -180,8 +180,8 @@ void func_80388028(Actor *this){
     f32 sp44;
     f32 sp40;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->unk16C_0 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, MMM_func_80387CF4, func_80387D1C);
         __spawnQueue_add_1((GenFunction_1)func_80387D48, reinterpret_cast(s32, this->marker));

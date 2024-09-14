@@ -128,9 +128,9 @@ void func_8038944C(Actor *this){
 
     tick = time_getDelta();
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         local->unkC = func_80389280(this);
         if(this->state == 0){
             ml_vec3f_copy(&this->position, &local->unkC->unk4);

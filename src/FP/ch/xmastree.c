@@ -87,8 +87,8 @@ void chXmasTree_update(Actor *this){
     f32 sp2C = time_getDelta();
     u8 tmp_a0;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         marker_setFreeMethod(this->marker, __chXmasTree_free);

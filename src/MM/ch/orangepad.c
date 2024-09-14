@@ -107,9 +107,9 @@ void func_80386768(Actor * this){
         this->initialized = TRUE;
     }//L803867B0
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->unk100 = actorArray_findClosestActorFromActorId(this->position, 8,-1, &min_distance)->marker;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }//L803867E0
 
     if(this->unk100){

@@ -129,8 +129,8 @@ void func_8038687C(Actor *this) {
 
     sp88 = time_getDelta();
     local = (ActorLocal_CCW_160 *)&this->local;
-    if(!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         local->unk0 = 1;
         local->unk4 = 0;

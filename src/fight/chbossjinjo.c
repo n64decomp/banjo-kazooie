@@ -195,8 +195,8 @@ void chBossJinjo_update(Actor *this){
     s16 sp42;
     s16 sp40;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         func_80324CFC(0.0f, SFX_JINJO_STATUE_POWERUP, 32000);
         func_80324D2C(this->lifetime_value + 2.26, SFX_JINJO_STATUE_POWERUP);
     }//L8038C8A4
@@ -349,8 +349,8 @@ void func_8038CED8(f32 arg0[3], enum asset_e model_id, f32 arg2, f32 arg3){
 void chBossJinjo_func_8038D014(Actor *this){
     s32 temp_a1;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOff(this);
         this->alpha_124_19 = 0x7d;

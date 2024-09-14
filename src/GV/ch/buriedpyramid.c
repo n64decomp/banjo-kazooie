@@ -56,8 +56,8 @@ void chBuriedPyramid_update(Actor *this){
     f32 max;
     f32 min;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         local->raised_state = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
         this->position_x = 67.0f;

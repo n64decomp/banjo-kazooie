@@ -112,9 +112,9 @@ void chBrentilda_update(Actor *this) {
         this->initialized = TRUE;
     }
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         local->unk0 = this->unkF4_8*3 + 0x1080;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 
     func_8028E668(this->position, 280.0f, -40.0f, 160.0f);

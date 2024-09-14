@@ -373,9 +373,9 @@ void func_802D3DA4(Actor *this) {
         return;
     }
 
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
 
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk38_31 = 0;
     }

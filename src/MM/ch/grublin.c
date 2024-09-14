@@ -76,7 +76,7 @@ void func_80388A04(Actor *this){
 }
 
 void func_80388A80(Actor *this) {
-    if (!this->unk16C_4){
+    if (!this->volatile_initialized){
         func_80388A04(this);
     }
     func_802DB5A0(this);

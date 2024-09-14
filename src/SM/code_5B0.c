@@ -51,7 +51,7 @@ void func_803869A0(Actor *this, f32 arg1, f32 arg2) {
 }
 
 void SM_func_80386A00(Actor *this) {
-    if (this->unk16C_4 <= 0) {
+    if (this->volatile_initialized <= 0) {
         if (fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY) == 0) {
             marker_despawn(this->marker);
             return;
@@ -59,7 +59,7 @@ void SM_func_80386A00(Actor *this) {
         actor_collisionOff(this);
         if(0);
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }
     func_803869A0(this, 0.20f, 1.00f);
     func_803869A0(this, 0.27f, 1.05f);
@@ -129,12 +129,12 @@ void func_80386EB4(ActorMarker *marker, ActorMarker *other_marker) {
 void SM_func_80386EF4(Actor *this) {
     u32 temp_t3;
     Actor *other;
-    if ((this->unk16C_4) <= 0) {
+    if ((this->volatile_initialized) <= 0) {
         this->marker->propPtr->unk8_3 = 1;
         marker_setCollisionScripts(this->marker, 0, 0, func_80386EB4);
         this->unk38_31 = 0;
         this->unk138_31 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
     }
     if ((this->state) == 1) {
         temp_t3 = this->unk38_31++ ^ 2;

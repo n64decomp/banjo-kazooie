@@ -102,9 +102,9 @@ void func_8038D85C(Actor *this) {
     f32 tick;
 
     tick = time_getDelta();
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, 0, &func_8038D81C, 0);
         func_8038D6D8(this, 1);
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {

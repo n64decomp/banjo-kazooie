@@ -68,8 +68,8 @@ void chspellbarrier_update(Actor *this){
     f32 sp38 = time_getDelta();
     ActorMarker *jinjo_marker;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038E780, NULL);
         marker_setFreeMethod(this->marker, func_8038E7EC);
         this->marker->propPtr->unk8_3 = 0;

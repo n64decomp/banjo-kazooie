@@ -624,8 +624,8 @@ void chvilegame_update(Actor *this) {
 
     sp50 = time_getDelta();
     local = (ActorLocal_BGS_3420 *)&this->local;
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = &chvilegame_free;
         local->game_pieces = vector_new(sizeof(struct vilegame_piece), 0x20);
         local->grumblie_model_bin = assetcache_get(0x3F7);

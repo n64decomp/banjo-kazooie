@@ -37,9 +37,9 @@ void __chEngineFanSwitch_pressCallback(ActorMarker *marker, s32 arg1){
 }
 
 void chEngineFanSwitch_update(Actor *this){
-    if(!this->unk16C_4){ //initialize
+    if(!this->volatile_initialized){ //initialize
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         mapSpecificFlags_set(0, 0);
         marker_setCollisionScripts(this->marker, NULL, __chEngineFanSwitch_pressCallback, NULL);
         if(this->state == 0){

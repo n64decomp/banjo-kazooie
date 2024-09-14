@@ -62,8 +62,8 @@ void chLoggo_update(Actor *this){
     s32 sp34;
 
     sp44 = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOn(this);
         marker_setCollisionScripts(this->marker, __chLoggo_collide, NULL, NULL);

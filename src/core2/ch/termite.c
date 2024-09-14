@@ -154,12 +154,12 @@ void chTermite_update(Actor *this) {
     static s32 D_80372F4C = 0;
 
     sp34 = globalTimer_getTime();
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         marker_setCollisionScripts(this->marker, NULL, __chTermite_ow, __chTermite_die);
         this->unk124_0 = this->unk138_31 = FALSE;
         this->is_first_encounter = FALSE;
         this->unk16C_0 = TRUE;
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
     if( map_get() == MAP_C_MM_TICKERS_TOWER 
         && !mapSpecificFlags_get(0) 

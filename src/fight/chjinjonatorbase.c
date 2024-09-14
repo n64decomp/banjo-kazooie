@@ -118,8 +118,8 @@ void chjinjonatorbase_update(Actor *this){
     
 
     marker_loadModelBin(this->marker);
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038E120, NULL);
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOn(this);

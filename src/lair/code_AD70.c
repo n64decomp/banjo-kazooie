@@ -227,14 +227,14 @@ void func_80391B04(Actor *this) {
 
     local = (ActorLocal_lair_AD70 *)&this->local;
     sp44 = time_getDelta();
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         local->unk10 = func_8038E800();
         func_8038EA68(local->unk10, D_80394BC8);
         func_8038EA10(local->unk10, D_80394BC0);
         this->unk58_2 = FALSE;
         func_80391810(this, 1);
         marker_setFreeMethod(this->marker, func_80391AE4);
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
     }
 
     func_8038E9A4(local->unk10, this->position);

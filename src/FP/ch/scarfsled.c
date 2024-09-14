@@ -132,8 +132,8 @@ void chScarfSled_update(Actor *this){
         __chScarfSled_setState(this, 1);
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
             marker_despawn(this->marker);
             return;

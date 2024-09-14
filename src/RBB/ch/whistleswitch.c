@@ -129,8 +129,8 @@ void func_8038AEB8(Actor *this){
     f32 sp20 = time_getDelta();
     s32 tmp;
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
         this->marker->actorFreeFunc = func_8038AD7C;
         marker_setCollisionScripts(this->marker, NULL, func_8038AD3C, NULL);

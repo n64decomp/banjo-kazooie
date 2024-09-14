@@ -173,8 +173,8 @@ void FP_func_8038F7AC(Actor *this){
     ActorLocal_Wozza * local = (ActorLocal_Wozza *)&this->local;
 
     if(volatileFlag_get(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE)){
-        if(!this->unk16C_4){
-            this->unk16C_4 = TRUE;
+        if(!this->volatile_initialized){
+            this->volatile_initialized = TRUE;
             this->marker->propPtr->unk8_3 = FALSE;
             actor_collisionOff(this);
             this->unk58_0 = FALSE;
@@ -183,8 +183,8 @@ void FP_func_8038F7AC(Actor *this){
         return;
     }
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         if(jiggyscore_isCollected(JIGGY_32_FP_WOZZA)){
             func_8038F274();

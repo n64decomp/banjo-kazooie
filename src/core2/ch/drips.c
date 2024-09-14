@@ -69,8 +69,8 @@ int __chdrips_playerWithinDist(Actor *this, s32 arg1){
 void chdrips_update(Actor *this){
     ParticleEmitter *pCtrl;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
         this->lifetime_value = this->yaw/360.0;
     }

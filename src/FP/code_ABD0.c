@@ -79,8 +79,8 @@ void func_80391040(Actor *this){
       f32 sp34[3];
       s32 a1;
       s32 sp2C;
-      if(!this->unk16C_4){
-            this->unk16C_4 = TRUE;
+      if(!this->volatile_initialized){
+            this->volatile_initialized = TRUE;
             actor_collisionOff(this);
             this->marker->propPtr->unk8_3 = TRUE;
       }
@@ -119,8 +119,8 @@ void func_80391040(Actor *this){
 }
 
 void func_80391180(Actor *this){
-      if(!this->unk16C_4){
-            this->unk16C_4 = TRUE;
+      if(!this->volatile_initialized){
+            this->volatile_initialized = TRUE;
             this->marker->propPtr->unk8_3 = TRUE;
             actor_collisionOff(this);
       }
@@ -133,8 +133,8 @@ void func_80391180(Actor *this){
 
 void FP_func_80391254(Actor *this){
       func_802D3D74(this);
-      if(!this->unk16C_4){
-            this->unk16C_4 = TRUE;
+      if(!this->volatile_initialized){
+            this->volatile_initialized = TRUE;
             if(this->marker->id ==  0x221 || this->marker->id == 0x223){
                   this->pitch = 3.0f;
             }

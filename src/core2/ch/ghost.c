@@ -202,8 +202,8 @@ void func_8035B900(Actor *this){
     ActorLocal_Core2_D4050 *local = (ActorLocal_Core2_D4050 *)&this->local;
     s32 sp30 = globalTimer_getTime();
     f32 sp2C = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B1CC);
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
@@ -300,8 +300,8 @@ int func_8035BC5C(Actor *this, s32 target, s32 delta){
 }
 
 void func_8035BD48(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B2C4);

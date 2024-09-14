@@ -86,8 +86,8 @@ void func_80389600(Actor *this){
         this->is_first_encounter = TRUE;
     }//L803896AC
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
     }
 
     switch(this->state){

@@ -81,8 +81,8 @@ void FP_func_80386CF8(Actor *this){
         this->pitch += (f32)(this->unkF4_8 - 1);
     }
     
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         if(this->state == 3){
             fp_snowmanButtonGame_decRemaining();
         }

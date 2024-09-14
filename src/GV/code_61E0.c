@@ -47,8 +47,8 @@ void GV_func_8038C658(Actor *this){
         this->position_y += 4.0f;
     }
 
-    if(!this->unk16C_4 && this->initialized){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized && this->initialized){
+        this->volatile_initialized = TRUE;
         subaddie_set_state_with_direction(this, this->state, 0.01f, 1);
     }
     sp24 = GV_func_8038C5BC();

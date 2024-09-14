@@ -56,8 +56,8 @@ Actor *chTrucker_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 void chTrucker_update(Actor *this){
     ActorMarker *marker = this->marker;
     s32 sp28 = 0;
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         mapSpecificFlags_set(0xC, FALSE);

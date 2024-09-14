@@ -114,9 +114,9 @@ void func_8038F6A4(Actor *this)
     this->is_first_encounter = FALSE;
     this->initialized = TRUE;
   }
-  if (!this->unk16C_4)
+  if (!this->volatile_initialized)
   {
-    this->unk16C_4 = 1;
+    this->volatile_initialized = TRUE;
     this->marker->propPtr->unk8_3 = 1;
     actor_collisionOff(this);
     this->scale = 1.0f;

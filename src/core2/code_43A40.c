@@ -91,8 +91,8 @@ void chFightFlightPad_emitSparklesAtPosition(f32 position[3]){
 }
 
 void chFightFlightPad_update(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         chFightFlightPad_emitSparklesAtPosition(this->position);
         FUNC_8030E8B4(SFX_113_PAD_APPEARS, 1.0f, 32000, this->position, 5000, 12000);
     }

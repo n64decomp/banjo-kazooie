@@ -85,8 +85,8 @@ void func_8038B814(Actor *this, s32 next_state) {
 }
 
 void func_8038B87C(Actor *this) {
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         this->is_first_encounter = FALSE;
         func_8038B814(this, 1);
     }

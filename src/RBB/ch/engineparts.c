@@ -110,9 +110,9 @@ void func_8038A724(Actor *this){
     f32 sp1C = time_getDelta();
     
 
-    if(!this->unk16C_4){
+    if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
-        this->unk16C_4 = 1;
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
         local->unk0 = 0;
         local->unk0 = (this->modelCacheIndex == 0x17E) ? 1: local->unk0;

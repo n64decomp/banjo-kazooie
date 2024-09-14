@@ -292,8 +292,8 @@ void func_8038D6C8(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOn(this);
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setFreeMethod(this->marker, func_8038D3B0);
         marker_setCollisionScripts(this->marker, NULL, func_8038D5C8, NULL);
         this->unk38_31 = 0;

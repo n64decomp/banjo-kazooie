@@ -85,8 +85,8 @@ void func_8038A384(Actor *this){
     enum asset_e sp38;
     s32 sp34;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         switch(this->marker->id){
             case MARKER_1FA_POLAR_BEAR_CUB_BLUE://L8038A404

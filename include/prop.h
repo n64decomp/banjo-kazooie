@@ -284,7 +284,7 @@ typedef struct actor_s{
     s8  pad167[0x1];
     s32 unk168; //saved marker->unk58
     u32  unk16C_31:27; //saved s1->marker->unk5C
-    u32  unk16C_4:1; // initialization related?
+    u32  volatile_initialized:1; // the difference between this flag and initialized is that it is reset in actors_appendToSavestate
     u32  unk16C_3:1;
     u32  unk16C_2:1;
     u32  unk16C_1:1;

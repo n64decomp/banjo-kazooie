@@ -141,8 +141,8 @@ void func_80388478(Actor *this) {
     ActorLocal_CCW_1B20 *local;
 
     local = (ActorLocal_CCW_1B20 *)&this->local;
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         func_803300C0(this->marker, func_80388260);
         marker_setCollisionScripts(this->marker, NULL, CCW_func_80388278, func_803882A4);
         actor_collisionOn(this);

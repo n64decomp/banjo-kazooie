@@ -2172,8 +2172,8 @@ void chfinalboss_update(Actor *this){
     f32 sp40[3];
     f32 sp34[3];
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         func_803300C0(this->marker, func_8038B834);
         marker_setCollisionScripts(this->marker, func_8038BB8C, func_8038B9AC, NULL);
         this->marker->propPtr->unk8_3 = 0;

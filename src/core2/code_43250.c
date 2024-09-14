@@ -153,8 +153,8 @@ void func_802CA1E0(Actor *this){
     f32 tmp_f4;
     s32 phi_a2;
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         tmp_v1 = (s32)this->yaw;
         this->unk154 = D_80366E64[tmp_v1].unk0;
         reinterpret_cast(s32, this->unkBC[4]) = D_80366E64[tmp_v1].unk4;

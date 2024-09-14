@@ -121,11 +121,11 @@ void func_80390E28(Actor *this) {
         }
         this->initialized = TRUE;
     }
-    if (!this->unk16C_4) {
+    if (!this->volatile_initialized) {
         if (sp38 != 0) {
             mapSpecificFlags_setN(0, 0, 2);
         }
-        this->unk16C_4 = TRUE;
+        this->volatile_initialized = TRUE;
         return;
     }
 

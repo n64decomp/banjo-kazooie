@@ -25,8 +25,8 @@ void func_80386468(ActorMarker* marker, ActorMarker *arg1) {
 }
 
 void func_803864B8(Actor *this){
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, NULL, func_80386468);
         CCW_func_803863F0(this, 1);

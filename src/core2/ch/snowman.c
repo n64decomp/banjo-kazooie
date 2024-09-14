@@ -210,8 +210,8 @@ void chSnowman_update(Actor *this){
 
 
     dt = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 0;
         actor_collisionOn(this);
         marker_setCollisionScripts(this->marker, NULL, NULL, __chSnowman_deathCallback);

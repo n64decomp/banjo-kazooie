@@ -454,8 +454,8 @@ void chBottlesBonus_update(Actor *this) {
 
     local = (ActorLocal_core2_560F0 *) &this->local;
     sp50 = func_8033DDB8();
-    if (!this->unk16C_4) {
-        this->unk16C_4 = TRUE;
+    if (!this->volatile_initialized) {
+        this->volatile_initialized = TRUE;
         actor_collisionOff(this);
         this->lifetime_value = 0.0f;
         D_8037DEB4 = D_8037DEB0 = 0;

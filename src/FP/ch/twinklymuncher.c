@@ -102,8 +102,8 @@ void func_8038E094(Actor *this){
     Actor *sp38;
     f32 sp34 = time_getDelta();
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038DEB8, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         animctrl_setAnimTimer(this->animctrl, 0.99999f);

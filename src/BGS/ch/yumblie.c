@@ -148,8 +148,8 @@ void chyumblie_update(Actor *this){
 
     s0 = (ActorLocal_Yumblie *)&this->local;
     sp4C = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = 1;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         s0->unk0 = 0.0f;
         s0->unk4 = 0;
         s0->game_marker = NULL;

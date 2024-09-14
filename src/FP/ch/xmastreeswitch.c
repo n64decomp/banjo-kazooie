@@ -74,8 +74,8 @@ void func_8038E940(Actor *this){
         return;
     }//L8038E9B8
 
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         marker_setCollisionScripts(this->marker, NULL, func_8038E7CC, NULL);

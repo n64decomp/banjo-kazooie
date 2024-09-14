@@ -170,8 +170,8 @@ void chGobi2_update(Actor *this){
 
     sp34 = this->marker;
     sp2C = time_getDelta();
-    if(!this->unk16C_4){
-        this->unk16C_4 = TRUE;
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, __chGobi2_ow, NULL, NULL);
         sp34->actorFreeFunc = __chGobi2_80387EFC;
         local->unk4 = skeletalAnim_new();
