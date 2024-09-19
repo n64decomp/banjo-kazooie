@@ -112,11 +112,11 @@ bool func_80388088(Actor *this){
         return FALSE;
     }
 
-    return (-35.0f < sp2C && sp2C < 35.0f) ? TRUE : FALSE;
+    return BOOL(-35.0f < sp2C && sp2C < 35.0f);
 }
 
 bool func_8038812C(Actor *this){
-    return (func_80329530(this, 1300) && func_80388088(this)) ? TRUE : FALSE;
+    return BOOL(func_80329530(this, 1300) && func_80388088(this));
 }
 
 void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {

@@ -726,7 +726,7 @@ s32 gcpausemenu_80312D78(struct1As *arg0, s32 arg1) {
     for(var_s2 = 0; var_s2 < arg1; var_s2++){
         if (arg0[var_s2].delay <= D_80383010.unkC) {
             if (!arg0[var_s2].unkF) {
-                var_v0 = func_803183A4(D_80383010.zoombox[var_s2], arg0[var_s2].str) ? TRUE : FALSE;
+                var_v0 = BOOL(func_803183A4(D_80383010.zoombox[var_s2], arg0[var_s2].str));
                 arg0[var_s2].unkF = var_v0;
                 if (arg0[var_s2].unkF) {
                     gczoombox_open(D_80383010.zoombox[var_s2]);
@@ -835,7 +835,7 @@ void gcpausemenu_updateBButtonAndJoystickSprites(void) {
         }
         D_80383010.unk20 -= var_f0;
     }
-    D_80383010.left_joystick_visible = (D_80383010.selection != 0) ? TRUE : FALSE;
+    D_80383010.left_joystick_visible = BOOL(D_80383010.selection != 0);
     D_80383010.right_joystick_visible = (gcpausemenu_getMaxPage() == D_80383010.selection) ? FALSE : TRUE;
     D_80383010.unk28 += time_getDelta();
 

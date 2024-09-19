@@ -693,7 +693,7 @@ void chvilegame_update(Actor *this) {
             if (item_empty(ITEM_6_HOURGLASS)) {
                 if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                     volatileFlag_set(VOLATILE_FLAG_3, 0);
-                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, ( local->vile_score < local->player_score) ? TRUE : FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, BOOL(local->vile_score < local->player_score));
                     func_8038A068(this, 1);
                 } else if (local->vile_score < local->player_score) {
                     if (local->unkC == 3) {

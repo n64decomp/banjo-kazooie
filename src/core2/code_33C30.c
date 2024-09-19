@@ -26,7 +26,7 @@ void func_802BAC10(void){
 }
 
 bool func_802BAC1C(void) {
-    return (func_80320EB0(D_8037D810, 100.0f, 1) != NULL) ? TRUE : FALSE;
+    return BOOL(func_80320EB0(D_8037D810, 100.0f, 1) != NULL);
 }
 
 void func_802BAC58(void) {

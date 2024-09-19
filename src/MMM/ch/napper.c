@@ -80,7 +80,7 @@ Actor *chnapper_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
     else {
         func_8033A45C(1, FALSE);
-        func_8033A45C(2, (local->unk10) ? TRUE : FALSE);
+        func_8033A45C(2, BOOL(local->unk10));
         func_8033A45C(3, (local->unk10) ? FALSE : TRUE);
     }
 

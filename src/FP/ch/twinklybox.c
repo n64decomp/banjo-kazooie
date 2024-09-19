@@ -279,7 +279,7 @@ void func_8038D6C8(Actor *this){
     bool sp20;
     
     sp24 = time_getDelta();
-    mapSpecificFlags_set(0xd, (this->state != 1 && this->state != 2) ? TRUE : FALSE);
+    mapSpecificFlags_set(0xd, BOOL(this->state != 1 && this->state != 2));
     
     if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
         this->marker->propPtr->unk8_3 = FALSE;

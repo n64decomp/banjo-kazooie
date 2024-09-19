@@ -384,7 +384,7 @@ void func_802A7F4C(void){
 }
 
 void func_802A7F6C(void) {
-    D_8037D394 = (bs_getPrevState() == BS_41_DIE) ? TRUE : FALSE;
+    D_8037D394 = BOOL(bs_getPrevState() == BS_41_DIE);
 
     if (D_8037D394 || level_get() == LEVEL_9_RUSTY_BUCKET_BAY || map_get() == MAP_46_CCW_WINTER) {
         D_8037D395 = 0;

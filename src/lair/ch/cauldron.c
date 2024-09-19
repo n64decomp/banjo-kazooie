@@ -323,7 +323,7 @@ void chWarpCauldron_update(Actor *this) {
             for(sp3C = 0; D_803936E4[sp3C] < temp_f0; sp3C++)
                 ;
             
-            this->unk38_0 = (sp3C & 1) ? TRUE : FALSE;
+            this->unk38_0 = BOOL(sp3C & 1);
             if (actor_animationIsAt(this, 0.95f)) {
                 func_8038A704(this);
                 fileProgressFlag_set(chWarpCauldron_getFileProgressFlagIndex(this), 1);
@@ -435,7 +435,7 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 
     this = marker_getActor(marker);
     if(this->modelCacheIndex == ACTOR_23B_WARP_CAULDRON) {
-        func_8033A45C(3, this->unk38_0 ? TRUE : FALSE);
+        func_8033A45C(3, BOOL(this->unk38_0));
         func_8033A45C(4, this->unk38_0 ? FALSE : TRUE);
     }
     this = actor_draw(marker, gfx, mtx, vtx);

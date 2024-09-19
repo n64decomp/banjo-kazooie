@@ -41,13 +41,16 @@ bool func_8038B160(Actor *this){
 
     local = (ActorLocal_Yumblie *)&this->local;
     temp_v0 = func_8038A9E0(local->game_marker);
-    if ((temp_v0 == 1) || (temp_v0 == 4))
-        return FALSE;
-    
-    if ((temp_v0 == 2) || (temp_v0 == 5)) 
-        return (0.7 <= randf ()) ? TRUE : FALSE;
 
-    return (randf () >= 0.5)? TRUE : FALSE;
+    if ((temp_v0 == 1) || (temp_v0 == 4)) {
+        return FALSE;
+    }
+
+    if ((temp_v0 == 2) || (temp_v0 == 5)) {
+        return BOOL(0.7 <= randf());
+    }
+
+    return BOOL(randf() >= 0.5);
 }
 
 void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){

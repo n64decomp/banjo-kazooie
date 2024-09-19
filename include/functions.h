@@ -25,8 +25,6 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
-#define AS_BOOL(expr) ((expr) ? TRUE : FALSE)
-
 #define TUPLE_ASSIGN(out, a, b, c) {\
     out[0] = a;\
     out[1] = b;\

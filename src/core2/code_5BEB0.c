@@ -100,7 +100,7 @@ void mapSavestate_apply(enum map_e map_id) {
     func_803083B0(-1);
 
     while (
-        bit_value = AS_BOOL((((u32*)D_8037E650[map_id])[iBit >> 5] & (1 << (iBit & 0x1f)))), 
+        bit_value = BOOL(((u32*)D_8037E650[map_id])[iBit >> 5] & (1 << (iBit & 0x1f))),
         func_803083B0(bit_value) != -1
     ) {
         iBit++;
