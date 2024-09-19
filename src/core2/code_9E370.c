@@ -1318,15 +1318,15 @@ void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32
         func_803289EC(this, arg2, direction);
 }
 
-int subaddie_maybe_set_state_position_direction(Actor * this, s32 myAnimId, f32 start_position, s32 direction, f32 probability){
-    if(randf() < probability){
-        if(__subaddie_set_state(this, myAnimId) && this->animctrl){
+bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {
+    if (randf() < probability) {
+        if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
             func_803285E8(this, start_position, direction);
             animctrl_start(this->animctrl, "subaddie.c", 0x705);
         }
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void subaddie_set_ideal_yaw(Actor * this, int arg1){

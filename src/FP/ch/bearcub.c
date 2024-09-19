@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-extern s32 func_8028F31C(f32[3], f32, s32, Actor **);
+extern s32 player_setCarryObjectPoseInHorizontalRadius(f32[3], f32, s32, Actor **);
 
 typedef struct {
     s32 unk0;
@@ -48,11 +48,19 @@ Struct_FP_3E00 D_80391E80[] ={
 
 /* .code */
 void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum actor_e actor_id, enum actor_e arg3){
-    func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
+    player_setCarryObjectPoseInHorizontalRadius((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
-    if(!func_80329530(*this_ptr, 400)) return;
-    if(bacarry_get_markerId() != carried_obj_marker_id)        return;
-    if(!func_8028FC34())               return;
+    if (!func_80329530(*this_ptr, 400)) {
+        return;
+    }
+
+    if (bacarry_get_markerId() != carried_obj_marker_id) {
+        return;
+    }
+
+    if (!player_throwCarriedObject()) {
+        return;
+    }
 
     func_8028FA34(arg3, *this_ptr);
 }
