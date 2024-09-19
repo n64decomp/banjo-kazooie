@@ -302,7 +302,7 @@ s32 func_80334ECC(void) {
     func_80356734();
     func_802D5628();
     itemPrint_update();
-    if (getGameMode() != 4) {
+    if (getGameMode() != GAME_MODE_4_PAUSED) {
         func_802F7E54();
     }
     if (D_803835DC == 0) {

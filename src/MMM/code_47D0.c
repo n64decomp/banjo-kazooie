@@ -16,7 +16,7 @@ typedef struct {
 
 /* .code */
 void MMM_func_8038ABC0(s32 arg0) {
-    if (getGameMode() != 7) {
+    if (getGameMode() != GAME_MODE_7_ATTRACT_DEMO) {
         ability_setAllLearned(ability_getAllLearned() & ~arg0);
     }
 }

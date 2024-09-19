@@ -16,7 +16,7 @@ void func_80387EC0(void) {
     u32 temp_a0;
 
     temp_v0 = (u32* )chmumbo_func_802D1724;
-    if (getGameMode() != 7) {
+    if (getGameMode() != GAME_MODE_7_ATTRACT_DEMO) {
         temp_a0 = (temp_v0[2] & 0x03FFFFFF)*4; //get offset
         temp_a0 += (u32)&temp_v0[3] & 0xF0000000; //get region
         ((u32 *)temp_a0)[0] = 0x03E00008; //jr $ra

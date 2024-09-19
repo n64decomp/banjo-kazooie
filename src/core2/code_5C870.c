@@ -174,7 +174,7 @@ void func_802E3BF0(void){
 }
 
 //_set_game_mode
-void func_802E3BF8(enum game_mode_e next_mode, s32 arg1){
+void game_setMode(enum game_mode_e next_mode, s32 arg1){
     s32 prev_mode = D_8037E8E0.game_mode;
     s32 sp20;
     s32 sp1C;
@@ -261,7 +261,7 @@ void func_802E3E7C(enum game_mode_e mode){
     map = D_8037E8E0.map;
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
-    func_802E3BF8(GAME_MODE_2_UNKNOWN, 0);
+    game_setMode(GAME_MODE_2_UNKNOWN, 0);
     if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
         if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(map_get());
@@ -270,7 +270,7 @@ void func_802E3E7C(enum game_mode_e mode){
     func_802E38E8(map, sp28, sp34);
     mapSavestate_apply(map);
     D_8037E8E0.unk0 = prev_mode;
-    func_802E3BF8(mode, sp30);
+    game_setMode(mode, sp30);
     jiggylist_map_actors();
     func_80346CA8();
 }
@@ -357,7 +357,7 @@ void func_802E412C(s32 arg0, s32 arg1){
 }
 
 void func_802E4170(void){
-    func_802E3BF8(GAME_MODE_2_UNKNOWN,0);
+    game_setMode(GAME_MODE_2_UNKNOWN,0);
     defragManager_free();
     func_802E5F68();
     if(!func_802E4A08())
@@ -405,7 +405,7 @@ void func_802E4214(enum map_e map_id){
     func_8033DC70();
     func_8033DC04();
     func_8031FBA0();
-    D_8037E8E0.game_mode = 2;
+    D_8037E8E0.game_mode = GAME_MODE_2_UNKNOWN;
     D_8037E8E0.unk8 = 0.0f;
     func_8033DC9C(0.0f);
     func_8033DD04(0);
@@ -414,7 +414,7 @@ void func_802E4214(enum map_e map_id){
     func_802E3854();
     func_802E38E8(map_id, 0, 0);
     D_8037E8E0.unk0 = 0;
-    func_802E3BF8(GAME_MODE_3_NORMAL,1);
+    game_setMode(GAME_MODE_3_NORMAL,1);
 }
 
 void func_802E4384(void){
@@ -512,7 +512,7 @@ bool func_802E4424(void) {
         }
     }
     if (D_8037E8E0.unk1A != 0) {
-        func_802E3BF8(D_8037E8E0.unk1A - 1, D_8037E8E0.unk1B);
+        game_setMode(D_8037E8E0.unk1A - 1, D_8037E8E0.unk1B);
         D_8037E8E0.unk1A = 0;
     }
     sp1C = func_80334ECC();
@@ -528,7 +528,7 @@ bool func_802E4424(void) {
         case GAME_MODE_9_BANJO_AND_KAZOOIE:
             func_8034BB90();
             if ((func_8024E67C(0) == 1) && (D_8037E8E0.unk0 != 0)) {
-                func_802E3BF8(GAME_MODE_1_UNKNOWN, 0U);
+                game_setMode(GAME_MODE_1_UNKNOWN, 0U);
             }
             break;
         case GAME_MODE_3_NORMAL:                                     /* switch 2 */
@@ -546,11 +546,11 @@ bool func_802E4424(void) {
                 && levelSpecificFlags_validateCRC1()
                 && dummy_func_80320248()
             ) {
-                func_802E3BF8(GAME_MODE_4_PAUSED, 0U);
+                game_setMode(GAME_MODE_4_PAUSED, 0U);
             } else if ((func_8024E67C(0) == 1) && (D_8037E8E0.unk0 != 0)) {
-                func_802E3BF8(GAME_MODE_1_UNKNOWN, 0U);
+                game_setMode(GAME_MODE_1_UNKNOWN, 0U);
             } else if (sp1C == 0) {
-                func_802E3BF8(GAME_MODE_3_NORMAL, 1U);
+                game_setMode(GAME_MODE_3_NORMAL, 1U);
             }
             break;
 
@@ -561,7 +561,7 @@ bool func_802E4424(void) {
                 func_8025A430(-1, 2000, 3);
                 func_8025A2B0();
                 func_80335128(1);
-                func_802E3BF8(GAME_MODE_3_NORMAL, 0U);
+                game_setMode(GAME_MODE_3_NORMAL, 0U);
             }
             break;
     }
@@ -577,7 +577,7 @@ bool func_802E4424(void) {
 }
 
 void func_802E48B8(enum game_mode_e mode, s32 arg1){
-    func_802E3BF8(mode, arg1);
+    game_setMode(mode, arg1);
 }
 
 s32 game_defrag(void){

@@ -201,7 +201,7 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
     NodeProp *phi_s0;
     f32 phi_f2;
 
-    if ((D_80383190 == 0) && (getGameMode() != 8) && (getGameMode() != 7)) {
+    if ((D_80383190 == 0) && (getGameMode() != GAME_MODE_8_BOTTLES_BONUS) && (getGameMode() != GAME_MODE_7_ATTRACT_DEMO)) {
         if (arg0 != 0) {
             phi_s0 = func_80304ED0(&D_8036DDD0[1], arg0);
         } else {
