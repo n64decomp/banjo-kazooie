@@ -69,7 +69,7 @@ void __chLMonkey_spawnJiggy(s32 x, s32 y, s32 z){
 
 void __chLMonkey_complete(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor * actor = marker_getActor(marker);
-    mapSpecificFlags_set(4,1);
+    mapSpecificFlags_set(MM_SPECIFIC_FLAG_4_SHAKE, TRUE);
     subaddie_set_state(actor, 3);
     timed_setStaticCameraToNode(2.3f, 0x12);
     timedFunc_set_3(2.9f,__chLMonkey_spawnJiggy, actor->position_x, actor->position_y + 150.0f, actor->position_z);
@@ -89,7 +89,7 @@ void chLMonkey_update(Actor *this){
         }//L8038865C
         switch(this->state){
             case 1://L80388690
-                if(mapSpecificFlags_get(2)){
+                if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_2_UNKNOWN)) {
                     subaddie_set_state(this, 4);
                     if(!jiggyscore_isCollected(JIGGY_9_MM_CHIMPY)){
                         func_80311480(ASSET_B40_DIALOG_CHIMPY_COMPLETE, 0xE, this->position, this->marker, __chLMonkey_complete, NULL);
@@ -124,10 +124,10 @@ void chLMonkey_update(Actor *this){
                 func_80343DEC(this);
                 actor_loopAnimation(this);
                 if(0.19 <= this->unk48){
-                    mapSpecificFlags_set(0, 1);
+                    mapSpecificFlags_set(MM_SPECIFIC_FLAG_0_UNKNOWN, TRUE);
                 }
                 if(0.24 <= this->unk48){
-                    mapSpecificFlags_set(3, 1);
+                    mapSpecificFlags_set(MM_SPECIFIC_FLAG_3_UNKNOWN, TRUE);
                 }
                 if(0.99 <= this->unk48){
                     marker_despawn(this->marker);

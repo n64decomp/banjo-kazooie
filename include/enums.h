@@ -2290,9 +2290,18 @@ enum bs_e
     BS_A5_WONDERWING_UNKA5
 };
 
-enum map_flags_e
-{
-    mapflag_mm_main_hit_with_orange = 8
+enum mm_specific_flags {
+    MM_SPECIFIC_FLAG_0_UNKNOWN,
+
+    MM_SPECIFIC_FLAG_2_UNKNOWN = 0x2,
+    MM_SPECIFIC_FLAG_3_UNKNOWN,
+    MM_SPECIFIC_FLAG_4_SHAKE,
+
+    MM_SPECIFIC_FLAG_6_UNKNOWN = 0x6,
+
+    MM_SPECIFIC_FLAG_8_HIT_WITH_ORANGE = 0x8,
+    MM_SPECIFIC_FLAG_9_UNKNOWN,
+    MM_SPECIFIC_FLAG_A_UNKNOWN
 };
 
 enum item_e

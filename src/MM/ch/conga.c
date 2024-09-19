@@ -122,7 +122,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
     if(((ActorLocal_Conga *)&actorPtr->local)->unkC == 1){
         if(actorPtr->unk10_12 == 0){
             ((ActorLocal_Conga *)&actorPtr->local)->unkC = 0;
-            if(mapSpecificFlags_get(0xA))
+            if(mapSpecificFlags_get(MM_SPECIFIC_FLAG_A_UNKNOWN))
                 actorPtr->unk38_31++;
 
             actorPtr->unk10_12 = MIN(actorPtr->unk38_31, 0xA);
@@ -252,7 +252,7 @@ void func_803876D0(Actor *this){
         && func_80311480(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
     ){
         this->unk138_23 = 1;
-        mapSpecificFlags_set(0xA, 1);
+        mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
     if( sp3C && !this->is_first_encounter){

@@ -118,11 +118,11 @@ void func_80386768(Actor * this){
 
     if( func_80329530(this, 0x28)
         && !func_8028ECAC()
-        && !mapSpecificFlags_get(6)
+        && !mapSpecificFlags_get(MM_SPECIFIC_FLAG_6_UNKNOWN)
         && closest_actor->state != 3
     ){
-        if(func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL)) {
-            mapSpecificFlags_set(6,1);
+        if (func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL)) {
+            mapSpecificFlags_set(MM_SPECIFIC_FLAG_6_UNKNOWN, TRUE);
         }
     }
 

@@ -155,10 +155,10 @@ void func_80388E20(Actor *this){
         else{
             func_80389514(jujuCtlPtr->unk8);
         }
-        
-        if(mapSpecificFlags_get(0x9)){
+
+        if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_9_UNKNOWN)) {
             func_80388D14(this);
-            mapSpecificFlags_set(0x9, 0);
+            mapSpecificFlags_set(MM_SPECIFIC_FLAG_9_UNKNOWN, FALSE);
         }
     }
 }

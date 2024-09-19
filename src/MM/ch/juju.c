@@ -191,7 +191,7 @@ void    func_80389598(Actor *this){
             }//L803896B4
             if(jujuPtr->unk18){ 
                 if(sp38 || (sp34 < 180.0f && 180.0f <= this->yaw)){
-                    mapSpecificFlags_set(9,1);
+                    mapSpecificFlags_set(MM_SPECIFIC_FLAG_9_UNKNOWN, TRUE);
                 }
             }
             break;
