@@ -52,7 +52,7 @@ void chchimpystump_update(Actor *this) {
 
     switch (this->state) {
         case CHIMPY_STUMP_STATE_1_LOWERED:
-            if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_0_UNKNOWN)) {
+            if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_0_CHIMPY_STUMP_RAISED)) {
                 subaddie_set_state(this, CHIMPY_STUMP_STATE_2_RAISING);
             }
 
