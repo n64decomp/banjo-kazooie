@@ -72,7 +72,7 @@ void chGobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 5){
         skeletalAnim_set(this->unk148, 0xd9, 0.5f, 4.0f);
-        func_80311480(ASSET_A77_TEXT_GOBI3_DONE, 0xe, this->position, this->marker, __chGobi3_runaway, NULL);
+        gcdialog_showText(ASSET_A77_TEXT_GOBI3_DONE, 0xe, this->position, this->marker, __chGobi3_runaway, NULL);
     }
 
     if(next_state == 4){

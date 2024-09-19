@@ -123,7 +123,7 @@ void __baMarker_8028B848(void){
         if(player_getTransformation() ==  TRANSFORM_1_BANJO){
             __baMarker_8028B7F4();
         }
-        func_80311480(s0, 0x2A, NULL, NULL, NULL, 0);
+        gcdialog_showText(s0, 0x2A, NULL, NULL, NULL, 0);
     }
 }
 
@@ -717,7 +717,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     miscFlag_set(MISC_FLAG_2_ON_SPRING_PAD);
                 }else{
                     if(!volatileFlag_getAndSet(VOLATILE_FLAG_C_HAS_SEEN_SPRING_PAD, 1)){
-                        func_80311480(ASSET_A24_DIALOG_JUMP_PAD_DISCOVERED, 4, 0, 0, 0, 0);
+                        gcdialog_showText(ASSET_A24_DIALOG_JUMP_PAD_DISCOVERED, 4, 0, 0, 0, 0);
                     }
                 }
                 break;
@@ -729,7 +729,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     miscFlag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D_HAS_SEEN_FLIGHT_PAD, 1)){
-                    func_80311480(ASSET_A25_DIALOG_FLY_DISC_DISCOVERED, 4, 0, 0, 0, 0);
+                    gcdialog_showText(ASSET_A25_DIALOG_FLY_DISC_DISCOVERED, 4, 0, 0, 0, 0);
                 }
                 break;
 

@@ -117,7 +117,7 @@ void func_8038CC4C(Actor *this) {
         player_getPosition(sp38);
         if (ml_distance_vec3f(this->position, sp38) < 900.0f) {
             if (local->unk0->map_id != MAP_46_CCW_WINTER || func_8028F2FC()) {
-                func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 this->is_first_encounter = TRUE;
             }
         }

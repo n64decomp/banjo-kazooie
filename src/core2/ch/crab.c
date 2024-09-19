@@ -270,7 +270,7 @@ void chCrab_update(Actor *this) {
         && !func_8028ECAC()
     ) {
         if ((this->state != 6) && (this->state != 5)) {
-            func_80311480(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
+            gcdialog_showText(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
             levelSpecificFlags_set(0xE, TRUE);
             this->is_first_encounter = TRUE;
@@ -283,10 +283,10 @@ void chCrab_update(Actor *this) {
             && !jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && func_80329530(this, 1600)
         ) {
-            func_80311480(0xA12, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showText(0xA12, 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(0, TRUE);
         } else if (mapSpecificFlags_get(1)) {
-            func_80311480(0xA13, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showText(0xA13, 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(1, FALSE);
         }
     }

@@ -104,7 +104,7 @@ void func_8038AF0C(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 }
 
 void func_8038AF3C(Struct_MMM_47D0_0 *arg0, s32 arg1) {
-    func_80311480(0xADB, 4, NULL, arg0->unk0, func_8038AF0C, NULL);
+    gcdialog_showText(0xADB, 4, NULL, arg0->unk0, func_8038AF0C, NULL);
     arg0->unk4 = 1;
 }
 
@@ -178,7 +178,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
     player_getPosition(sp48);
     func_8035179C(arg1, sp54);
     if (!mapSpecificFlags_get(0) && (arg0->unk4 == 0) && (func_80258640(sp54, sp48) < 250.0f)){
-        if(func_80311480(0xADA, 0, NULL, NULL, NULL, NULL)) {
+        if(gcdialog_showText(0xADA, 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(0, TRUE);
         }
     }

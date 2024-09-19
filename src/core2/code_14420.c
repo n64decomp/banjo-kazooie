@@ -342,7 +342,7 @@ void func_8029B890(void){
             func_8029B62C();
             return;
         }
-        func_80311480(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
+        gcdialog_showText(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
         fileProgressFlag_set(FILEPROG_A8_HAS_DIED, TRUE);
     }
     else{

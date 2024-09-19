@@ -140,7 +140,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){
-                    func_80311480(ASSET_B39_TEXT_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
+                    gcdialog_showText(ASSET_B39_TEXT_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
                 }
             }
         }
@@ -249,14 +249,14 @@ void func_803876D0(Actor *this){
     sp3C = func_80329530(this, 1000);
     if( func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C) 
         && !this->unk138_23
-        && func_80311480(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
+        && gcdialog_showText(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
     ){
         this->unk138_23 = 1;
         mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
     if( sp3C && !this->is_first_encounter){
-        if(func_80311480((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
+        if(gcdialog_showText((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
             this->is_first_encounter = TRUE;
         }
     } //L80387968
@@ -348,7 +348,7 @@ void func_803876D0(Actor *this){
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.99f)){
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
-                func_80311480(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
+                gcdialog_showText(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
             }
             break;
 

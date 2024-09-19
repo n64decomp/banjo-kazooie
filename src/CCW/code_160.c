@@ -45,9 +45,9 @@ void func_803865F4(Actor *this, s32 next_state) {
     local->unkC = 0.0f;
     if (next_state == 2) {
         if (!volatileFlag_getAndSet(VOLATILE_FLAG_B5, 1)) {
-            func_80311480(0xCE2, 4, NULL, this->marker, func_803865C4, NULL);
+            gcdialog_showText(0xCE2, 4, NULL, this->marker, func_803865C4, NULL);
         } else {
-            func_80311480(0xCE3, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xCE3, 4, NULL, NULL, NULL, NULL);
             func_803865F4(this, 3);
             return;
         }
@@ -65,7 +65,7 @@ void func_803865F4(Actor *this, s32 next_state) {
             volatileFlag_set(VOLATILE_FLAG_3, 0);
             volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
         } else {
-            func_80311480(0xCE4, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xCE4, 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
             comusic_8025AB44(COMUSIC_4B_CCW_ZUBBA_FIGHT, 0, 400);
             func_8025AABC(COMUSIC_4B_CCW_ZUBBA_FIGHT);

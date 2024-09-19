@@ -96,7 +96,7 @@ void chLMonkey_update(Actor *this){
                 if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_2_UNKNOWN)) {
                     subaddie_set_state(this, 4);
                     if (!jiggyscore_isCollected(JIGGY_9_MM_CHIMPY)) {
-                        func_80311480(ASSET_B40_DIALOG_CHIMPY_COMPLETE, 0xE, this->position, this->marker, __chLMonkey_complete, NULL);
+                        gcdialog_showText(ASSET_B40_DIALOG_CHIMPY_COMPLETE, 0xE, this->position, this->marker, __chLMonkey_complete, NULL);
                     }
                     else {//L803886E8
                         __chLMonkey_complete(this->marker, ASSET_B40_DIALOG_CHIMPY_COMPLETE, -1);
@@ -109,7 +109,7 @@ void chLMonkey_update(Actor *this){
                         && !item_getCount(ITEM_19_ORANGE)
                         && !this->is_first_encounter
                         ) {
-                        func_80311480(ASSET_B3F_DIALOG_CHIMPY_MEET, 0xe, this->position, NULL, NULL, NULL);
+                        gcdialog_showText(ASSET_B3F_DIALOG_CHIMPY_MEET, 0xe, this->position, NULL, NULL, NULL);
                         this->is_first_encounter = TRUE;
                     }//L80388774
                     actor_loopAnimation(this);

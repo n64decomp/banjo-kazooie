@@ -127,10 +127,10 @@ void func_80324AA4(timefuncqueue_Struct2 *arg0){
 
 void func_80324AEC(DelayedTextCallback *arg0) {
     if ((arg0->position[0] == 0.0f) && (arg0->position[1] == 0.0f) && (arg0->position[2] == 0.0f)) {
-        func_80311480(arg0->text_id, arg0->unk4, NULL, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+        gcdialog_showText(arg0->text_id, arg0->unk4, NULL, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
     }
     else{
-        func_80311480(arg0->text_id, arg0->unk4, arg0->position, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+        gcdialog_showText(arg0->text_id, arg0->unk4, arg0->position, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
     }
 }
 

@@ -170,7 +170,7 @@ void chTermite_update(Actor *this) {
         && func_8028ECAC() == 0
         && player_getTransformation() == TRANSFORM_1_BANJO
     ) {
-        func_80311480(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
+        gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
         levelSpecificFlags_set(0xD, TRUE);
         this->is_first_encounter = TRUE;
@@ -182,11 +182,11 @@ void chTermite_update(Actor *this) {
         && player_getTransformation() == TRANSFORM_2_TERMITE
     ) {
         if (!levelSpecificFlags_get(0xB)) {
-            if (func_80311480(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
+            if (gcdialog_showText(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
                 levelSpecificFlags_set(0xB, TRUE);
                 this->unk138_23 = TRUE;
             }
-        } else if (!levelSpecificFlags_get(0xC) && !this->unk138_23 && (func_80311480(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
+        } else if (!levelSpecificFlags_get(0xC) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
             levelSpecificFlags_set(0xC, TRUE);
         }
     }

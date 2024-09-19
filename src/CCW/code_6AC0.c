@@ -61,7 +61,7 @@ void func_8038CEB0(Actor *this, s32 next_state) {
         this->marker->propPtr->unk8_3 = FALSE;
         skeletalAnim_set(this->unk148, 0x1A7, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        func_80311480(0xCD0, 0x24, NULL, NULL, NULL, NULL);
+        gcdialog_showText(0xCD0, 0x24, NULL, NULL, NULL, NULL);
     }
     if (next_state == 3) {
         skeletalAnim_set(this->unk148, 0x1A8, 0.2f, 0.5f);
@@ -117,7 +117,7 @@ void func_8038CFB4(Actor *this) {
         if (!this->is_first_encounter) {
             player_getPosition(sp60);
             if (ml_distance_vec3f(this->position, sp60) < 900.0f) {
-                func_80311480(0xCCF, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(0xCCF, 4, NULL, NULL, NULL, NULL);
                 this->is_first_encounter = TRUE;
             }
         }

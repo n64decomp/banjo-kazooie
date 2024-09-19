@@ -30,7 +30,7 @@ f32 D_80389A00[3] = {0.0f, 0.0f, 0.0f};
 void __chorange_collisionCallback(ActorMarker *marker, ActorMarker *other_marker) {
     if (!player_isDead() &&
         !mapSpecificFlags_get(MM_SPECIFIC_FLAG_8_HIT_WITH_ORANGE) &&
-        func_80311480(ASSET_B3A_TEXT_CONGA_HITS_PLAYER, 0, 0, 0, NULL, NULL)) {
+        gcdialog_showText(ASSET_B3A_TEXT_CONGA_HITS_PLAYER, 0, 0, 0, NULL, NULL)) {
 
         mapSpecificFlags_set(MM_SPECIFIC_FLAG_8_HIT_WITH_ORANGE, TRUE);
     }

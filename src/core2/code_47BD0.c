@@ -448,7 +448,7 @@ void chBeeSwarm_update(Actor *this) {
         if (!fileProgressFlag_get(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE) && subaddie_playerIsWithinCylinder(this, 250, 300) 
             && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
             && (player_getTransformation() == TRANSFORM_1_BANJO) 
-            && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
+            && (gcdialog_showText(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
         ) {
             fileProgressFlag_set(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE, TRUE);
         }

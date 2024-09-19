@@ -49,7 +49,7 @@ void func_80361870(Actor *this){
     if(!this->is_first_encounter && func_80329530(this, 400) && !func_80329530(this, 50)){
         if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_31_MM_OPEN) && level_get() == LEVEL_6_LAIR){
             text_id = fileProgressFlag_get(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT)? 0xF80 : 0xF7F;
-            if(func_80311480(text_id, 0, 0, 0, 0, 0)){
+            if(gcdialog_showText(text_id, 0, 0, 0, 0, 0)){
                 this->is_first_encounter = TRUE;
             }
         }
@@ -59,7 +59,7 @@ void func_80361870(Actor *this){
                 this->is_first_encounter = TRUE;
             }
             else{ 
-                if(func_80311480(sp28, 0, 0, 0, 0, 0)){
+                if(gcdialog_showText(sp28, 0, 0, 0, 0, 0)){
                     this->is_first_encounter = TRUE;
                     volatileFlag_set(VOLATILE_FLAG_16, 0);
                 }

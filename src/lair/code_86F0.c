@@ -262,7 +262,7 @@ void func_8038F250(Actor *this){
         && !func_8038EB58(this) 
         && !fileProgressFlag_get(FILEPROG_DF_CAN_REMOVE_ALL_PUZZLE_PIECES)
     ) {
-        if (func_80311480(0xF7C, 2, NULL, NULL, NULL, NULL)) {
+        if (gcdialog_showText(0xF7C, 2, NULL, NULL, NULL, NULL)) {
             fileProgressFlag_set(FILEPROG_DF_CAN_REMOVE_ALL_PUZZLE_PIECES, TRUE);
         }
     } else if ((this->unkF4_8 >= 3) 
@@ -270,7 +270,7 @@ void func_8038F250(Actor *this){
         && !func_8038EB58(this)
         && !fileProgressFlag_get(FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES)
     ){
-        if(func_80311480(0xF7D, 2, NULL, NULL, NULL, NULL)) {
+        if(gcdialog_showText(0xF7D, 2, NULL, NULL, NULL, NULL)) {
             fileProgressFlag_set(FILEPROG_E0_CAN_PLACE_ALL_PUZZLE_PIECES, TRUE);
         }
     }
@@ -300,10 +300,10 @@ void func_8038F350(Actor *this, s32 next_state){
             func_803115C4(0xF80);
             func_803115C4(0xF7F);
             if (item_getCount(ITEM_26_JIGGY_TOTAL) > 0) {
-                func_80311480(fileProgressFlag_get(FILEPROG_16_STOOD_ON_JIGSAW_PODIUM) ? 0xF5A : 0xF59, 6, sp50, this->marker, func_8038F078, NULL);
+                gcdialog_showText(fileProgressFlag_get(FILEPROG_16_STOOD_ON_JIGSAW_PODIUM) ? 0xF5A : 0xF59, 6, sp50, this->marker, func_8038F078, NULL);
                 fileProgressFlag_set(FILEPROG_17_HAS_HAD_ENOUGH_JIGSAW_PIECES, 1);
             } else {
-                func_80311480(0xF58, 6, sp50, this->marker, func_8038F078, NULL);
+                gcdialog_showText(0xF58, 6, sp50, this->marker, func_8038F078, NULL);
             }
             fileProgressFlag_set(FILEPROG_16_STOOD_ON_JIGSAW_PODIUM, 1);
             fileProgressFlag_set(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT, 1);
@@ -395,7 +395,7 @@ void lair_func_8038F894(Actor *this, s32 arg1) {
         func_8038F350(this, 1);
         return;
     }
-    func_80311480(0xFBC, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showText(0xFBC, 4, NULL, NULL, NULL, NULL);
     fileProgressFlag_set(FILEPROG_DE_USED_ALL_YOUR_PUZZLE_PIECES, 1);
 }
 
@@ -479,7 +479,7 @@ void lair_func_8038F924(Actor *this) {
             if (func_80329530(this, 300)) {
                 if ((this->unkF4_8 == 0xA) && !fileProgressFlag_get(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM)) {
                     phi_a0 = (item_getCount(ITEM_26_JIGGY_TOTAL) < D_803947F8[this->unkF4_8 - 1].cost) ? 0xFAB : 0xFC0;
-                    if (func_80311480(phi_a0, 0, NULL, NULL, NULL, NULL)) {
+                    if (gcdialog_showText(phi_a0, 0, NULL, NULL, NULL, NULL)) {
                         fileProgressFlag_set(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM, TRUE);
                     }
                 } else if (this->unkF4_8 == 1) {

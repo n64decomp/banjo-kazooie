@@ -63,7 +63,7 @@ void func_80386ACC(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
 
     if(!this->is_first_encounter){
-        if(func_80311480(0xad8, 0, NULL, NULL, NULL, NULL)){
+        if(gcdialog_showText(0xad8, 0, NULL, NULL, NULL, NULL)){
             this->is_first_encounter = TRUE;
         }
     }

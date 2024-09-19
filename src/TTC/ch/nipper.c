@@ -147,7 +147,7 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
 
     TTC_func_80387FF4(this);
     this->lifetime_value = 80.0f;
-    func_80311480(0xA10, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showText(0xA10, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -168,7 +168,7 @@ void func_80388344(ActorMarker * this_marker, ActorMarker *other_marker){
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(7)
             && this->is_first_encounter
-            && func_80311480(0xa0f, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showText(0xa0f, 0, NULL, NULL, NULL, NULL)
         ){
             mapSpecificFlags_set(7, TRUE);
         }
@@ -179,7 +179,7 @@ void func_803883C8(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
         && this->is_first_encounter
-        && func_80311480(0xa11, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showText(0xa11, 0, NULL, NULL, NULL, NULL)
     ){
         this->unk138_23 = TRUE;
     }
@@ -234,7 +234,7 @@ void func_80388434(Actor *this){
                     && temp_v0 != 10
                 ){
                     subaddie_set_state_with_direction(this, 5, 0.01f, 1);
-                    if(func_80311480(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
+                    if(gcdialog_showText(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
                         this->is_first_encounter = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);

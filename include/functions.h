@@ -541,7 +541,7 @@ void __spawnQueue_add_1(GenFunction_1, s32);
 
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);
-bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
+bool gcdialog_showText(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void ability_unlock(enum ability_e);
 
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);

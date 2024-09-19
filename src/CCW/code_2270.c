@@ -48,7 +48,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     }
     if (next_state == 2) {
         if (local->unk0->unk4 != 0) {
-            func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
         }
         skeletalAnim_set(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
@@ -73,7 +73,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     }
     if (next_state == 5) {
         if (local->unk0->unk6 != 0) {
-            func_80311480((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
         }
         skeletalAnim_set(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
         timed_setStaticCameraToNode(0.0f, 3);
@@ -163,7 +163,7 @@ void chGobiCCW_update(Actor *this) {
             player_getPosition(sp48);
             if (ml_distance_vec3f(this->position, sp48) < 600.0f) {
                 if (local->unk0->unk2 != 0) {
-                    func_80311480((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
                 }
                 this->is_first_encounter = TRUE;
             }

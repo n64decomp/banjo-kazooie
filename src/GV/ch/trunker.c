@@ -74,7 +74,7 @@ void chTrucker_update(Actor *this){
         && !func_80329530(this, 80)
         && func_8028F2A0()
     ){
-        func_80311480(ASSET_A71_TEXT_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
+        gcdialog_showText(ASSET_A71_TEXT_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
         this->is_first_encounter = TRUE;
     }//L80389254
 

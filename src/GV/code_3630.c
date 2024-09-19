@@ -29,7 +29,7 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80389A60(Actor *this){
-    func_80311480(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
+    gcdialog_showText(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
     this->is_first_encounter = TRUE;
     subaddie_set_state(this, 5);
 }
@@ -63,7 +63,7 @@ void func_80389B1C(Actor *this){
 
     if(this->state == 1 || this->state == 2){
         if(! this->is_first_encounter && func_80329530(this, 250) && !func_80329530(this, 0x50)){
-            func_80311480(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
+            gcdialog_showText(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
             this->is_first_encounter = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }

@@ -214,7 +214,7 @@ func_8030ED70               = 0x8030ef10;
 func_8030E394               = 0x8030e534;
 func_803012F8               = 0x803014d8;
 fxairscore_count_to_time    = 0x80301f5c;
-func_80311480               = 0x803116cc;
+gcdialog_showText           = 0x803116cc;
 gcpausemenu_80314AC8        = 0x80314e1c;
 
 func_8031B908               = 0x8031bce8;

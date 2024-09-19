@@ -73,10 +73,10 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
     case 5:
         if(this->unk10_12 == 0){
             ability_unlock(ABILITY_4_CLAW_SWIPE);
-            func_80311480(0xDFF, 0xE, this->unk1C, this->marker, func_80387288, func_80387258);
+            gcdialog_showText(ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, func_80387288, func_80387258);
         }
         else{
-            func_80311480((this->unk10_12 == 1) ? 0xe15 : 0xe17, 0xE, this->unk1C, this->marker, func_80387288, NULL);
+            gcdialog_showText((this->unk10_12 == 1) ? ASSET_E15_TEXT_UNKNOWN : ASSET_E17_TEXT_UNKNOWN, 0xE, this->unk1C, this->marker, func_80387288, NULL);
         }
         break;
     case 2://L803873E0
@@ -185,35 +185,36 @@ void func_80387764(ActorMarker * marker){
         sp2C = 0xE;
     }
 
-    switch (actor->unk10_12)
-    {
-    case 0x1: //L803877D8
-        sp34 = temp_a2 ? 0xe15 : 0xe14; //dialog enums
-        break;
+    switch (actor->unk10_12) {
+        case 0x1: //L803877D8
+            sp34 = temp_a2 ? ASSET_E15_TEXT_UNKNOWN : ASSET_E14_TEXT_UNKNOWN; //dialog enums
+            break;
 
-    case 0x2: //L803877F4
-        sp34 = temp_a2 ? 0xe17 : 0xe16; //dialog enums
-        break;
+        case 0x2: //L803877F4
+            sp34 = temp_a2 ? ASSET_E17_TEXT_UNKNOWN : ASSET_E16_TEXT_UNKNOWN; //dialog enums
+            break;
 
-    case 3: //L80387810
-        sp34 = temp_a2 ? 0xe19 : 0xe18; //dialog enums
-        break;
-    default:
-        //sp34 = actor->unk38_31;
-        break;
+        case 3: //L80387810
+            sp34 = temp_a2 ? ASSET_E19_TEXT_UNKNOWN : ASSET_E18_TEXT_UNKNOWN; //dialog enums
+            break;
+        default:
+            //sp34 = actor->unk38_31;
+            break;
     }//L8038782C
-    if(sp34 == 0xe19){ 
+
+    if (sp34 == ASSET_E19_TEXT_UNKNOWN) {
         func_8028F94C(2, actor->unk1C);
     }
     //L80387848
-    if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2){
+    if (!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2) {
         mapSpecificFlags_set(3, 1);
-        sp34 = 0xE12;
+        sp34 = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
     }//L80387898
-    if(temp_a2){
+
+    if (temp_a2) {
         timed_setStaticCameraToNode(0.0f, 6);
     }//L803878B0
 
-    func_80311480(sp34, sp2C, actor->unk1C, actor->marker, func_80387690, NULL);
+    gcdialog_showText(sp34, sp2C, actor->unk1C, actor->marker, func_80387690, NULL);
     actor->unk38_31++;
 }

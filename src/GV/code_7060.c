@@ -73,7 +73,7 @@ void func_8038D47C(Actor *this){
         player_getPosition(sp3C);
         if(func_8028ECAC() == 0){
             if( ml_distance_vec3f(sp3C, this->unk1C) < 100.0f || ml_distance_vec3f(sp3C, this->velocity) < 100.0f){
-                if(func_80311480(ASSET_A7B_TEXT_JINXY_MEET, 0, NULL, NULL, NULL, NULL)){
+                if(gcdialog_showText(ASSET_A7B_TEXT_JINXY_MEET, 0, NULL, NULL, NULL, NULL)){
                     mapSpecificFlags_set(0x14, 1);
                 }
             }
@@ -102,7 +102,7 @@ void func_8038D47C(Actor *this){
             }
             if( actor_animationIsAt(this, 0.99f) ){
                 if(--this->unk38_31 == 0){
-                    func_80311480(ASSET_A7C_TEXT_JINXY_ONE_EGG, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_A7C_TEXT_JINXY_ONE_EGG, 4, NULL, NULL, NULL, NULL);
                     mapSpecificFlags_set(0x14, TRUE);
                     subaddie_set_state_forward(this, 1);
                 }

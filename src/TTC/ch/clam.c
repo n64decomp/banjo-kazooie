@@ -249,7 +249,7 @@ void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_marker){
     
     if(func_80297C6C() == 3) return;
 
-    if( !mapSpecificFlags_get(5) && func_80311480(0xA14, 0, NULL, NULL, NULL, NULL)){
+    if( !mapSpecificFlags_get(5) && gcdialog_showText(ASSET_A14_TEXT_UNKNOWN, 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(5, TRUE);
     }
 

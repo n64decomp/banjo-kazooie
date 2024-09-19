@@ -55,7 +55,7 @@ void func_80386444(ActorMarker *marker) {
             func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 
             if (!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)) {
-                func_80311480(0xB3B, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(0xB3B, 4, NULL, NULL, NULL, NULL);
             }
         }// L803865D8
 
@@ -106,7 +106,7 @@ void chorangepad_update(Actor *this) {
         !mapSpecificFlags_get(MM_SPECIFIC_FLAG_6_UNKNOWN) &&
         closest_actor->state != 3) {
 
-        if (func_80311480(0xb3d, 0, NULL, NULL, NULL, NULL)) {
+        if (gcdialog_showText(0xb3d, 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(MM_SPECIFIC_FLAG_6_UNKNOWN, TRUE);
         }
     }

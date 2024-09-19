@@ -213,7 +213,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     actor = marker_getActor(marker);
     if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities()){
         mapSpecificFlags_set(3, 1);
-        func_80311480(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, func_803892C8, NULL);
+        gcdialog_showText(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, func_803892C8, NULL);
     }//L8038933C
     else{ 
         if(!(text_id == ASSET_DF3_TEXT_BOTTLES_INTRODUCTION
@@ -225,7 +225,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
             case ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED:
                 break;
             case ASSET_DF3_TEXT_BOTTLES_INTRODUCTION: /* 2FB8 803893A8 3C188039 */
-                func_80311480(ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER, 0x8e, actor->position, actor->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
+                gcdialog_showText(ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER, 0x8e, actor->position, actor->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
                 break;
 
             case ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER: /* 2FEC 803893DC 9209003B */
@@ -249,7 +249,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
             default:
                 if(actor->state != 5)
-                    func_80311480(ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED, 4, NULL, NULL, NULL, NULL);
                 
                 func_80388FA0(actor, actor->state == 5 ? 1:4);
                 break;
@@ -363,7 +363,7 @@ void chsmmole_80389610(Actor * this){
             break;
     }//L80389904
     if(sp2C){
-        func_80311480(sp2C, sp28, this->position, this->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
+        gcdialog_showText(sp2C, sp28, this->position, this->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
     }
 }
 
@@ -567,13 +567,13 @@ void chsmmole_Update(Actor * this){
 
             if( user_input != -1){ //button was pressed
                 fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, (user_input)?0:1);
-                func_80311480((user_input)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
+                gcdialog_showText((user_input)? 0xe07 : 0xe09, 0xe, this->position, this->marker, func_803892C8, __chsmmole_additionalAbilityLearnActions);
                 if(!user_input){
                     chsmmole_skipIntroTutorial(); //give all SM moves
                 }
                 this->unk38_0 = 0;
             }else if(!this->is_first_encounter && 5.0 < this->lifetime_value){
-                func_80311480(0xe1d, 0x86, this->position, this->marker, func_803892C8, NULL);
+                gcdialog_showText(0xe1d, 0x86, this->position, this->marker, func_803892C8, NULL);
                 this->is_first_encounter = TRUE;
             }
         }

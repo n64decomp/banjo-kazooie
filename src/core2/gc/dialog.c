@@ -942,7 +942,7 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     return 0;
 }
 
-bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32)){
+bool gcdialog_showText(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32)){
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }
 

@@ -92,7 +92,7 @@ void func_8038B87C(Actor *this) {
     }
     if (!this->is_first_encounter && func_803292E0(this)) {
         this->is_first_encounter = TRUE;
-        func_80311480(0xCC9, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showText(0xCC9, 0, NULL, NULL, NULL, NULL);
     }
     func_8028E668(this->position, 300.0f, -50.0f, 120.0f);
 }

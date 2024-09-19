@@ -177,7 +177,7 @@ void func_8038D294(ActorMarker *marker){
     func_8038D01C(this->position, 12, ASSET_700_SPRITE_DUST);
     this->velocity[1] = 0.0f;
     FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, 1000, 3500);
-    func_80311480(0xc13, 0, NULL, NULL, NULL, NULL);
+    gcdialog_showText(0xc13, 0, NULL, NULL, NULL, NULL);
 }
 
 void func_8038D324(Actor *this){

@@ -70,10 +70,10 @@ void func_8038D368(Actor *this) {
         player_getPosition(plyr_pos);
         if (ml_distance_vec3f(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-                func_80311480(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
             } else {
                 if (local->unk0->unk4) {
-                    func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 }
             }
             this->is_first_encounter = TRUE;

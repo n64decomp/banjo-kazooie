@@ -69,14 +69,14 @@ void func_80390630(Actor *this){
         if(func_80329530(this, 350)){
             if(player_getTransformation() == TRANSFORM_4_WALRUS){
                 if(!levelSpecificFlags_get(0x31)){
-                    if(func_80311480(0xc27, 0x23, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showText(ASSET_C27_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
                         levelSpecificFlags_set(0x31, TRUE);
                     }
                 }
             }
             else{
                  if(!levelSpecificFlags_get(0x32)){
-                    if(func_80311480(0xc26, 0x23, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showText(ASSET_C26_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
                         levelSpecificFlags_set(0x32, TRUE);
                     }
                 }

@@ -1057,7 +1057,7 @@ void func_802D5628(void){
                         }//L802D5F1C
 
                         if(volatileFlag_get(VOLATILE_FLAG_22)){
-                            if(func_80311480(0xF82, 4, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showText(0xF82, 4, NULL, NULL, NULL, NULL)){
                                 fileProgressFlag_set(FILEPROG_C1_BADDIES_ESCAPE_TEXT, TRUE);
                                 volatileFlag_set(VOLATILE_FLAG_22, 0);
                                 D_8037DE04 = 0.0f;
@@ -1067,7 +1067,7 @@ void func_802D5628(void){
                             }
                         }
                         else{//L802D5FCC
-                            if(func_80311480(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showText(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
                                 D_8037DE00++;
                                 if(!(D_8037DE00 < sp4C)){
                                     D_8037DE00 = 0xF86;

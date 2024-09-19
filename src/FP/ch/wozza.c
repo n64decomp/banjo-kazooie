@@ -273,7 +273,7 @@ void FP_func_8038F7AC(Actor *this){
             func_8038F560(this);
 
             if(!local->unk30){
-                if(func_80311480(0xc1d, 0x20, NULL, NULL, NULL, NULL)){
+                if(gcdialog_showText(0xc1d, 0x20, NULL, NULL, NULL, NULL)){
                     local->unk30 =  TRUE;
                 }
             }
@@ -300,7 +300,7 @@ void FP_func_8038F7AC(Actor *this){
             }
 
             if(func_80329530(this, 500) && !this->is_first_encounter){
-                if(func_80311480(0xc1c, 0xAA, this->position, this->marker, func_8038F330, func_8038F3C4)){
+                if(gcdialog_showText(0xc1c, 0xAA, this->position, this->marker, func_8038F330, func_8038F3C4)){
                     timed_setStaticCameraToNode(0.0f, 0x2E);
                     this->is_first_encounter = TRUE;
                 }

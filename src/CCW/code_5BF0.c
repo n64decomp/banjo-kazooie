@@ -116,7 +116,7 @@ void func_8038C41C(Actor *this) {
         player_getPosition(sp2C);
         if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
             this->is_first_encounter = TRUE;
-            func_80311480(0xCCD, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xCCD, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

@@ -127,7 +127,7 @@ void func_8038E094(Actor *this){
             if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 if(this->state != 6 && this->state != 7 && 0.0f == this->velocity[0]){
                     timed_setStaticCameraToNode(0.5f, 0xd);
-                    func_80311480(ASSET_C15_TEXT_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
+                    gcdialog_showText(ASSET_C15_TEXT_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
                     this->velocity[0] = 1.0f;
                     subaddie_set_state_with_direction(this, 6, 0.03f, 1);
                     actor_loopAnimation(this);
@@ -201,7 +201,7 @@ void func_8038E094(Actor *this){
                     FUNC_8030E8B4(SFX_27_JINJO_HI, 1.6f, 32000, this->position, 1250, 2500);
                     func_80324D54(0.35f, SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250.0f, 2500.0f);
                     marker_despawn(sp38->marker);
-                    if( !mapSpecificFlags_get(0xa) && func_80311480(0xc16, 0, NULL, NULL, NULL, NULL)){
+                    if( !mapSpecificFlags_get(0xa) && gcdialog_showText(0xc16, 0, NULL, NULL, NULL, NULL)){
                         mapSpecificFlags_set(0xa, TRUE);
                     }
                 }

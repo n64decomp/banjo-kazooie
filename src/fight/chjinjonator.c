@@ -337,7 +337,7 @@ void chjinjonator_update(Actor *this){
                 actor_playAnimationOnce(this);
                 func_802BB41C(0);
                 text_id = 0x115e + randi2(0,5);
-                func_80311480(text_id, 0x20, 0, 0, 0, 0);
+                gcdialog_showText(text_id, 0x20, 0, 0, 0, 0);
             }
             break;
         case 11: //80390EF8

@@ -180,7 +180,7 @@ void chGobi1_update(Actor *this){
             && func_80329530(this, 250)
             && !func_80329530(this, 80)
             && func_8028F2A0()
-            && func_80311480(0xa73, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showText(0xa73, 0, NULL, NULL, NULL, NULL)
         ){
             this->is_first_encounter = TRUE;
         }

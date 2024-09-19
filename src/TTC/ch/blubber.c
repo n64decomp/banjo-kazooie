@@ -82,8 +82,8 @@ void func_803875D4(ActorMarker *marker){
     this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(2)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? 0xa2a : 0xa0d;
-        func_80311480( text_id, 0xf, this->position, this->marker, func_80387520, func_80387574);
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_TEXT_UNKNOWN : ASSET_A0D_TEXT_UNKNOWN;
+        gcdialog_showText(text_id, 0xf, this->position, this->marker, func_80387520, func_80387574);
         mapSpecificFlags_set(2, TRUE);
     }
 }
@@ -149,7 +149,7 @@ void func_803878CC(Actor * this){
         && !this->is_first_encounter
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        func_80311480(0xa0b, 0xe, this->position, this->marker, func_80387520, NULL);
+        gcdialog_showText(ASSET_A0B_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80387520, NULL);
         this->is_first_encounter = TRUE;
         subaddie_set_state_forward(this, 3);
     }
@@ -157,8 +157,9 @@ void func_803878CC(Actor * this){
     if( mapSpecificFlags_get(0) 
         && !this->unk138_23
     ){
-        if(item_getCount(ITEM_18_GOLD_BULLIONS) == 0)
-            func_80311480(0xa0c, 4, NULL, NULL, NULL, NULL);
+        if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
+            gcdialog_showText(ASSET_A0C_TEXT_UNKNOWN, 4, NULL, NULL, NULL, NULL);
+        }
         
         this->unk138_23 = TRUE;
         this->is_first_encounter = TRUE;

@@ -78,7 +78,7 @@ void func_802DAA14(Actor *this){
                 tmp = 0xf67;
             text_id = tmp;
         }
-        func_80311480(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
+        gcdialog_showText(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
         this->is_first_encounter = TRUE;
     }
 }

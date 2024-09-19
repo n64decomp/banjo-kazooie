@@ -134,7 +134,7 @@ void func_80388E20(Actor *this){
             && !func_8028ECAC()
         ){
             if( !this->is_first_encounter ){
-                if(func_80311480(ASSET_B44_TEXT_JUJU_MEET, 0, 0, 0, NULL, NULL)){
+                if(gcdialog_showText(ASSET_B44_TEXT_JUJU_MEET, 0, 0, 0, NULL, NULL)){
                     this->is_first_encounter = TRUE;
                 }
             }

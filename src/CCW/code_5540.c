@@ -49,7 +49,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0xB);
-        func_80311480(0xCCC, 0x20, this->position, NULL, NULL, NULL);
+        gcdialog_showText(0xCCC, 0x20, this->position, NULL, NULL, NULL);
     }
 
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
@@ -135,7 +135,7 @@ void chnabnut_update(Actor *this) {
         player_getPosition(sp30);
         if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
             this->is_first_encounter = TRUE;
-            func_80311480(0xCCA, 0xE, this->position, NULL, NULL, NULL);
+            gcdialog_showText(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
         if (item_getCount(ITEM_23_ACORNS) > 0) {
             func_80258A4C(this->position, this->yaw - 90.0f, sp30, &sp2C, &sp28, &sp24);
@@ -149,7 +149,7 @@ void chnabnut_update(Actor *this) {
                 if (local->returned_acorn_count == 6) {
                     chnabnut_setState(this, NABNUT_STATE_2_WAIT);
                 } else if (item_getCount(ITEM_23_ACORNS) == 1) {
-                    func_80311480(0xCCB, 0x20, this->position, NULL, NULL, NULL);
+                    gcdialog_showText(0xCCB, 0x20, this->position, NULL, NULL, NULL);
                 }
             }
         }

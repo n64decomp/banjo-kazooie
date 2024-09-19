@@ -203,7 +203,7 @@ void chGobi2_update(Actor *this){
         if(!this->is_first_encounter){
             if(func_80329530(this, 0xFA) && !func_80329530(this, 0x50)){
                 if(func_8028F2A0()){
-                    if(func_80311480(ASSET_A75_TEXT_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
+                    if(gcdialog_showText(ASSET_A75_TEXT_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
                         this->is_first_encounter = TRUE;
                 }
             }

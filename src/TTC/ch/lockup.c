@@ -81,7 +81,7 @@ void func_80389600(Actor *this){
         && func_80329530(this, 320)
         && !func_80329530(this, 160)
         && !func_8028ECAC()
-        && func_80311480(0xA15, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showText(0xA15, 0, NULL, NULL, NULL, NULL)
     ){
         this->is_first_encounter = TRUE;
     }//L803896AC

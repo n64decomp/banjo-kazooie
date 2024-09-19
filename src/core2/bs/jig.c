@@ -134,7 +134,7 @@ void bsjig_jiggy_end(void){
             }
         }//L802B0E88
         if(sp2C != 0){
-            func_80311480(sp2C, sp28, 0, 0, 0, 0);
+            gcdialog_showText(sp2C, sp28, 0, 0, 0, 0);
         }
     }//L802B0EA4
     func_80298A64();

@@ -157,10 +157,10 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     if( arg1 == moleTable[actor->unkF4_8-9].learn_text 
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+        gcdialog_showText(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
     else if(arg1 == moleTable[actor->unkF4_8-9].learn_text || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
-        func_80311480(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
+        gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
         if(actor->is_first_encounter){
@@ -242,7 +242,7 @@ int chmole_learnAbility(Actor *this){
                 break;
         }
     }//L802D9A9C
-    func_80311480(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+    gcdialog_showText(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     return TRUE;
 }
 
