@@ -79,7 +79,7 @@ ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, fun
 
 
 /* .bss */
-s32 D_8037DCB0;
+s32 mm_hut_smash_count;
 u32 D_8037DCB4;
 struct FF_StorageStruct* D_8037DCB8;
 s32 D_8037DCBC;
