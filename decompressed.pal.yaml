@@ -823,7 +823,7 @@ segments:
   # - [0x100C5C0, c, code_B6C60] #DONE
   # - [0x100C640, c, code_B6CE0] #DONE
   # - [0x100C800, c, code_B6EA0] #DONE
-  # - [0x100D480, c, code_B7B20] #DONE
+  # - [0x100D480, c, coords] #DONE
   # - [0x100D8A0, c, code_B7F40] #DONE
   # - [0x100D980, c, code_B8020] #DONE
   # - [0x100D9D0, c, code_B8070] #DONE

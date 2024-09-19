@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/nc/camera.h"
 #include <core1/viewport.h>
+#include "core2/coords.h"
 
 extern Actor *func_80328230(enum actor_e, f32[3], f32[3]);
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
@@ -124,7 +125,7 @@ void func_802BBA84(void) {
     viewport_getPosition_vec3f(vp_position);
     viewport_getRotation_vec3f(vp_rotation);
     viewport_getLookVector(sp48);
-    D_8037D8CC = (f32) func_8033EAF8(min, max, vp_position, sp48);
+    D_8037D8CC = (f32) coords_func_8033EAF8(min, max, vp_position, sp48);
     D_8037D8CC += 100.0f;
     if (D_8037D8CC < 1000.0f) {
         D_8037D8CC = 1000.0f;
