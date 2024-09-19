@@ -156,7 +156,7 @@ static void __chsnacker_ow(ActorMarker *marker, ActorMarker *other){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(level_get() == LEVEL_2_TREASURE_TROVE_COVE && !func_8028F22C()){
+    if(level_get() == LEVEL_2_TREASURE_TROVE_COVE && !player_isDead()){
         func_80311480(0xA29, 0, NULL, NULL, NULL, NULL);
     }//L802E10A4
 

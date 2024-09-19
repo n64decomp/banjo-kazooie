@@ -184,7 +184,7 @@ void func_8024AF48(void){
     if(volatileFlag_get(VOLATILE_FLAG_1))    return;
     if(volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)) return;
     if(func_802D686C())     return;
-    if(func_8028F22C())     return;
+    if(player_isDead())     return;
     if(gctransition_8030BDC0()) return;
     if(getGameMode() == GAME_MODE_A_SNS_PICTURE) return;
 

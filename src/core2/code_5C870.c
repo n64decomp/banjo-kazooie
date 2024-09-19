@@ -541,7 +541,7 @@ bool func_802E4424(void) {
                 && (level_get() != 0)
                 && (0.6 < D_8037E8E0.unk10)
                 && gcpausemenu_80314B00()
-                && !func_8028F22C()
+                && !player_isDead()
                 && func_8032056C()
                 && levelSpecificFlags_validateCRC1()
                 && dummy_func_80320248()

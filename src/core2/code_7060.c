@@ -631,7 +631,7 @@ bool func_8028F20C(void){
     return player_isStable();
 }
 
-bool func_8028F22C(void){
+bool player_isDead(void){
     if(bs_getState() == BS_41_DIE){
         return TRUE;
     }
