@@ -9,7 +9,6 @@
 void func_80353064(f32 *, f32);
 void func_802BB3DC(s32, f32, f32);
 void func_80244BB0(s32, s32, s32, f32);
-s32 mapSpecificFlags_get(s32);
 
 /* public function declarations */
 void chchimpystump_update(Actor *this);
