@@ -26,7 +26,7 @@ ActorAnimationInfo chShrapnelAnimations[] = {
 
 /* .code */
 void chShrapnel_func_802D0A00(Actor *this) {
-    this->unk28 = randf2(1.5f, 2.3f);
+    this->actor_specific_1_f = randf2(1.5f, 2.3f);
 }
 
 void chShrapnel_func_802D0A38(Actor *this){
@@ -35,7 +35,7 @@ void chShrapnel_func_802D0A38(Actor *this){
     }
     else{
         if(func_80329530(this, 600) && func_803292E0(this)){
-            this->unk28 = 0.0f;
+            this->actor_specific_1_f = 0.0f;
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         }
     }
@@ -123,7 +123,7 @@ void chShrapnel_explode(ActorMarker *marker, ActorMarker *other_marker) {
 
 void chShrapnel_func_802D0FC8(Actor *this) {
     this->unk4C += time_getDelta();
-    if (MAX(0.25, (12.0 - this->unk28) / 12.0) < this->unk4C) {
+    if (MAX(0.25, (12.0 - this->actor_specific_1_f) / 12.0) < this->unk4C) {
         *(s32 *)(&this->local) = NOT(*(s32 *)(&this->local));
         this->unk4C = 0.0f;
         if (*(s32 *)(&this->local)) {
@@ -170,15 +170,15 @@ void chshrapnel_update(Actor *this) {
                     subaddie_set_state(this, 3);
                     actor_loopAnimation(this);
                     FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 32750, this->position, 1250, 2500);
-                    this->unk28 = 4.0f;
+                    this->actor_specific_1_f = 4.0f;
                 }
             }
             break;
 
         case 3:
             this->yaw_ideal = (f32) func_80329784(this);
-            func_80328FB0(this, this->unk28 / 2);
-            this->unk28 = MIN( 50.0, (this->unk28 + tick));
+            func_80328FB0(this, this->actor_specific_1_f / 2);
+            this->actor_specific_1_f = MIN(50.0, (this->actor_specific_1_f + tick));
             if ((250.0 <= ABS(player_position[1] - this->unk1C[1])) || !func_80329054(this, 0)) {
                 chShrapnel_func_802D0AB8(this);
             }

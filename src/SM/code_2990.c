@@ -414,10 +414,10 @@ void chsmmole_Update(Actor * this){
                 this->unk1C_x = this->position_x;
                 this->unk1C_y = this->position_y;
                 this->unk1C_z = this->position_z;
-                this->unk28 = 300.0f;
+                this->actor_specific_1_f = 300.0f;
             } else{ //L80389A68
                 nodeprop_getPosition(sp40, this->unk1C);
-                this->unk28 = nodeprop_getRadius(sp40);
+                this->actor_specific_1_f = nodeprop_getRadius(sp40);
             }//L80389A8C
             if(this->unkF4_8 == 1){
                 if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
@@ -458,7 +458,7 @@ void chsmmole_Update(Actor * this){
             || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
         ){//L80389C50
             
-            if( ((ml_distance_vec3f(sp44, this->unk1C) < this->unk28) && func_8028F20C())
+            if( ((ml_distance_vec3f(sp44, this->unk1C) < this->actor_specific_1_f) && func_8028F20C())
                 || mapSpecificFlags_get(0x10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))

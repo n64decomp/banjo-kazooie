@@ -52,7 +52,7 @@ Actor *chBadShad_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(other)
         modelRender_setAlpha(other->alpha_124_19);
-    sp40 = ml_map_f(this->unk28, 0.0f , 800.0f, 0.53f, 0.18f)*this->unk1C[1];
+    sp40 = ml_map_f(this->actor_specific_1_f, 0.0f , 800.0f, 0.53f, 0.18f)*this->unk1C[1];
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
     modelRender_draw(gfx, mtx, this->position, sp44, sp40, NULL, marker_loadModelBin(marker));
     return this;
@@ -120,7 +120,7 @@ void func_802D71A0(s32 this, s32 arg1){
             sp3C->unk104 = marker;
             sp3C->unk1C[0] = globalTimer_getTime();
             sp3C->unk1C[1] = sp40;
-            sp3C->unk28 = sp28;
+            sp3C->actor_specific_1_f = sp28;
         }
     }
 }
@@ -148,7 +148,7 @@ void func_802D729C(Actor *actor, f32 arg1){
         return;
 
     if(!((globalTimer_getTime() ^ actor->marker->actrArrayIdx) & 0x7)){
-        sp1C->unk28 = func_802D7038(actor);
+        sp1C->actor_specific_1_f = func_802D7038(actor);
         sp1C->position_x = D_8037DE10[0];
         sp1C->position_y = D_8037DE10[1] + 6.0f;
         sp1C->position_z = D_8037DE10[2];

@@ -72,7 +72,7 @@ bool __chConga_isPlayerNearCongaTree(Actor * this){
 
     unused_tmpz = plyr_pos[2] - 5029.0f;
 
-    if (52900.0f < (plyr_pos[0] - - 5011.0f)*(plyr_pos[0] - - 5011.0f) + (plyr_pos[2]- 5029.0f)*(plyr_pos[2] - 5029.0f)) {
+    if (52900.0f < (plyr_pos[0] - -5011.0f) * (plyr_pos[0] - -5011.0f) + (plyr_pos[2] - 5029.0f) * (plyr_pos[2] - 5029.0f)) {
         return FALSE;
     }
     
@@ -181,7 +181,7 @@ void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
 
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
     MM_func_80387F44();
-    congaPtr->unk28 = 2.0f;
+    congaPtr->actor_specific_1_f = 2.0f;
     orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
@@ -220,13 +220,13 @@ void func_803876D0(Actor *this){
         this->unk16C_0 = 1;
         this->initialized = TRUE;
         this->velocity_x = 0.0f;
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         node_prop = func_80304C38(0x150, this);
         ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(node_prop);
         nodeprop_getPosition_s32(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
     }
-    if(0.0f == this->unk28){
-        this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
+    if(0.0f == this->actor_specific_1_f){
+        this->actor_specific_1_f = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
     }
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 

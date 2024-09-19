@@ -25,12 +25,14 @@ void __chTermite_updateRandomSpeed(Actor *this) {
 }
 
 void __chTermite_updateAnimationSpeed(Actor *this) {
-    if ((this->velocity[0] - 0.1 <= this->unk28) && (this->unk28 <= this->velocity[0] + 0.1)) {
-        this->unk28 = this->velocity[0];
-    } else {
-        this->unk28 += (this->velocity[0] < this->unk28)? -0.2 : 0.2;
+    if ((this->velocity[0] - 0.1 <= this->actor_specific_1_f) && (this->actor_specific_1_f <= this->velocity[0] + 0.1)) {
+        this->actor_specific_1_f = this->velocity[0];
     }
-    animctrl_setDuration(this->animctrl, ml_map_f(this->unk28, 5.0f, 12.0f, 0.54f, 0.36f));
+    else {
+        this->actor_specific_1_f += (this->velocity[0] < this->actor_specific_1_f) ? -0.2 : 0.2;
+    }
+
+    animctrl_setDuration(this->animctrl, ml_map_f(this->actor_specific_1_f, 5.0f, 12.0f, 0.54f, 0.36f));
 }
 
 void __chTermite_updateRandomRotationSpeed(Actor *this) {
@@ -193,7 +195,7 @@ void chTermite_update(Actor *this) {
         if (subaddie_maybe_set_state_position_direction(this, 2, 0.0f, 1, 0.06f)) {
             __chTermite_updateRandomRotationSpeed(this);
             __chTermite_updateRandomSpeed(this);
-            this->unk28 = 0.0f;
+            this->actor_specific_1_f = 0.0f;
             return;
         }
         return;
@@ -216,7 +218,7 @@ void chTermite_update(Actor *this) {
             if (func_8034A6FC(0.73f, 0.76f) && func_80329078(this, (s32) this->yaw, 750) ) {
                 this->yaw_ideal = this->yaw;
                 this->velocity[0] = 35.0f;
-                this->unk28 = 19.4444447f;
+                this->actor_specific_1_f = 19.4444447f;
                 this->unk38_31 = 0x3A;
             }
             if ((sp34 & 0x1F) == 3 && 0.58 < (f64) randf()) {

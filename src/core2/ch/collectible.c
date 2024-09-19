@@ -38,7 +38,7 @@ void chCollectible_setState(Actor *arg0, s32 next_state){
         default:
             break;
         case 1:
-            arg0->unk28 = 0.0f; 
+            arg0->actor_specific_1_f = 0.0f;
             //fall-through
         case 3:
             actor_collisionOff(arg0);
@@ -122,13 +122,13 @@ void chCollectible_collectGoldFeather(ActorProp *arg0){
 Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *thisActor = marker_getActor(this);
 
-    if(thisActor->unk28 != 0.0f){
+    if (thisActor->actor_specific_1_f != 0.0f) {
         if(thisActor->unk38_0){
             func_80344C2C(1);
-            if(thisActor->unk28 == 255.0f){
+            if (thisActor->actor_specific_1_f == 255.0f) {
                 func_803262B8(thisActor);
             } else{
-                actor_setOpacity(thisActor, thisActor->unk28);
+                actor_setOpacity(thisActor, thisActor->actor_specific_1_f);
             }
         }
         return func_80325934(this, gdl, mptr, arg3);
@@ -148,7 +148,7 @@ void chCollectible_update(Actor *this) {
         }
         this->unk10_12 = -1;
         this->unk38_0 = (map_get() == MAP_90_GL_BATTLEMENTS);
-        this->unk28 = this->unk38_0 ? 0.0f: 255.0f;
+        this->actor_specific_1_f = this->unk38_0 ? 0.0f : 255.0f;
         this->initialized = TRUE;
     }
     if(!this->unk38_0)
@@ -167,13 +167,13 @@ void chCollectible_update(Actor *this) {
         }
         /* fallthrough */
     case 3:
-        if (this->unk28 > 0) {
-            this->unk28 = MAX(this->unk28 - 8, 0);
+        if (this->actor_specific_1_f > 0) {
+            this->actor_specific_1_f = MAX(this->actor_specific_1_f - 8, 0);
         }
         break;
     case 2:
-        if (this->unk28 < 255) {
-            this->unk28 = MIN(this->unk28 + 8, 255);
+        if (this->actor_specific_1_f < 255) {
+            this->actor_specific_1_f = MIN(this->actor_specific_1_f + 8, 255);
         }
         break;
     }

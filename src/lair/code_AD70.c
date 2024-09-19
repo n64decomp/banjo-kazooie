@@ -164,8 +164,8 @@ void func_80391810(Actor *this, s32 next_state) {
     local = (ActorLocal_lair_AD70 *)&this->local;
     switch (next_state) {
     case 1:
-        sp34 = (this->position[1] + this->unk28) - this->unk1C[1];
-        this->velocity[1] = gu_sqrtf(this->unk28 * 2000.0);
+        sp34 = (this->position[1] + this->actor_specific_1_f) - this->unk1C[1];
+        this->velocity[1] = gu_sqrtf(this->actor_specific_1_f * 2000.0);
         local->unk0 = -this->velocity[1] / -1000.0f;
         local->unk0 += gu_sqrtf((sp34 * -2.0) / -1000.0);
         this->velocity[0] = this->unk1C[0] - this->position[0];
@@ -296,7 +296,7 @@ void func_80391EA8(ActorMarker *marker, ActorMarker *a1, f32 a2[3], f32 f1, f32 
     actor->unk1C[1] = a2[1];
     actor->unk1C[2] = a2[2];
 
-    actor->unk28 = f1;
+    actor->actor_specific_1_f = f1;
 
     actor->yaw_ideal = randf2( 240,  480);
     actor->unk6C      = randf2(-240, -480);

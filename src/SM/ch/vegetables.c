@@ -371,7 +371,7 @@ void func_80388080(Actor *this){
             }
         }else{//L80388520
             if(local->unkC == 1){
-                this->unk28 = 3.0f;
+                this->actor_specific_1_f = 3.0f;
                 if(mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){//L80388554
                     if(!func_80329030(this, 0) && func_80329480(this)){
                         func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);
@@ -391,7 +391,7 @@ void func_80388080(Actor *this){
                 }
             }
             else if(local->unkC == 2){//L80388634
-                this->unk28 = 4.0f;
+                this->actor_specific_1_f = 4.0f;
                 if(!func_80329030(this, 0) && func_80329480(this)){
                     func_80328CEC(this, (s32)this->yaw, 0x78, 0xB4);
                     this->unk38_0 = 1;
@@ -426,9 +426,9 @@ void func_80388080(Actor *this){
                 if(ml_distance_vec3f(this->position, this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
-                this->unk28 = 5.0f;
+                this->actor_specific_1_f = 5.0f;
                 if(mapSpecificFlags_get(0xC) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))){ //L8038892C
-                    if(!func_80387FA8(this, local, (s32)this->yaw, (s32)this->unk28)){
+                    if(!func_80387FA8(this, local, (s32)this->yaw, (s32)this->actor_specific_1_f)){
                         if(func_80329480(this)){
                             func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);
                             this->unk38_0 = 1;
@@ -441,7 +441,7 @@ void func_80388080(Actor *this){
                         this->unk1C_x -= local->unk0_x;
                         this->unk1C_y -= local->unk0_y;
                         this->unk1C_z -= local->unk0_z;
-                        TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
+                        TUPLE_ASSIGN(sp60, this->actor_specific_1_f, 0.0f, 0.0f);
                         ml_vec3f_yaw_rotate_copy(sp60, sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;

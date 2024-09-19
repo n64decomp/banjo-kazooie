@@ -33,7 +33,7 @@ ActorAnimationInfo chCrabMutantAnimations[] = {
 
 /* .code */
 void __chCrab_802CB040(Actor *this) {
-    this->unk28 = randf2(1.5f, 2.3f);
+    this->actor_specific_1_f = randf2(1.5f, 2.3f);
 }
 
 void __chCrab_802CB078(Actor *this) {
@@ -49,7 +49,7 @@ void __chCrab_802CB078(Actor *this) {
             if( func_80329530(this, 1500) 
                 && ( (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) || func_803292E0(this))
             ) {
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 subaddie_set_state(this, 3U);
             }
         }
@@ -327,7 +327,7 @@ void chCrab_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 4);
-                this->unk28 = 12.0f;
+                this->actor_specific_1_f = 12.0f;
             }
             break;
 
@@ -336,7 +336,7 @@ void chCrab_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 9);
-                this->unk28 = 12.0f;
+                this->actor_specific_1_f = 12.0f;
             } else if (!levelSpecificFlags_get(0xE)) {
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }

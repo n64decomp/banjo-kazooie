@@ -176,7 +176,7 @@ void func_8035A694(Actor *this){
     f32 sp28[3];
 
     sp3C = this->yaw;
-    sp38 = this->unk28*1.5 + 1.0;
+    sp38 = this->actor_specific_1_f * 1.5 + 1.0;
     tmp_v0 = globalTimer_getTime();
     this->yaw += sp38;
     if(360.0f < this->yaw)
@@ -215,7 +215,7 @@ void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0.9f, 22000, actor->position, 1500, 3000);
     actor->velocity[1] = 0.8f;
-    actor->unk28 = 0.0f;
+    actor->actor_specific_1_f = 0.0f;
 }
 
 //__chicecube_die
@@ -241,7 +241,7 @@ void func_8035A9E0(Actor *this){
     subaddie_set_state_with_direction(this, 3, animctrl_getAnimTimer(this->animctrl), 1);
     actor_loopAnimation(this);
     this->unk38_31 = 1;
-    this->unk28 = 0.0f;
+    this->actor_specific_1_f = 0.0f;
 }
 
 void func_8035AA40(Actor *this){
@@ -322,11 +322,11 @@ void chicecube_update(Actor *this){
             break;
         case 3: // L8035AD88
             animctrl_setAnimTimer(this->animctrl, 0.999f);
-            if(this->unk28 + 0.28 < 18.0){
-                this->unk28 = this->unk28 + 0.28;
+            if (this->actor_specific_1_f + 0.28 < 18.0) {
+                this->actor_specific_1_f = this->actor_specific_1_f + 0.28;
             }
-            else{
-                this->unk28 = 18.0f;
+            else {
+                this->actor_specific_1_f = 18.0f;
             }
             func_8035A694(this);
             if(!func_80359DF4(this, 1300)){
@@ -343,10 +343,14 @@ void chicecube_update(Actor *this){
             break;
         case 4: // L8035AE64
             animctrl_setAnimTimer(this->animctrl, 0.999f);
-            if(this->unk28 - 0.28 > 8.0)
-                this->unk28 = this->unk28 - 0.28;
-            else
-                this->unk28 = 8.0f;
+
+            if (this->actor_specific_1_f - 0.28 > 8.0) {
+                this->actor_specific_1_f = this->actor_specific_1_f - 0.28;
+            }
+            else {
+                this->actor_specific_1_f = 8.0f;
+            }
+
             func_8035A694(this);
             if(func_80359DF4(this, 900)){
                 func_8035A9E0(this);

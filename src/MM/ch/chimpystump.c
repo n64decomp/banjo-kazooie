@@ -46,7 +46,7 @@ void chchimpystump_update(Actor *this) {
     if (!this->initialized) {
         actor_collisionOff(this);
         this->initialized = TRUE;
-        this->unk28 = this->position_y;
+        this->actor_specific_1_f = this->position_y;
         this->position_y -= 134.0f;
         this->marker->propPtr->unk8_3 = 1;
     }
@@ -64,8 +64,8 @@ void chchimpystump_update(Actor *this) {
             __chchimpystump_updateShaking(this);
             this->position_y += 2.5;
 
-            if (this->unk28 <= this->position_y) {
-                this->position_y = this->unk28;
+            if (this->actor_specific_1_f <= this->position_y) {
+                this->position_y = this->actor_specific_1_f;
                 subaddie_set_state(this, CHIMPY_STUMP_STATE_3_RAISED);
                 func_802BB41C(1);
                 func_80244C78(0);

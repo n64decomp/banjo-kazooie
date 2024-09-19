@@ -66,7 +66,7 @@ void MM_func_80387FF4(Actor * this){
                 this->unk1C_y = ground_position_y;
                 func_8030E6D4(SFX_2F_ORANGE_SPLAT);
 
-                this->unk28 = 1.0f;
+                this->actor_specific_1_f = 1.0f;
                 this->lifetime_value = 340.0f;
                 this->state = 2;
             }
@@ -95,10 +95,10 @@ Actor *func_80388188(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx){
         position[2] = actorPtr->position_z;
         modelRender_setAlpha( (s32) MIN(255.0f, actorPtr->lifetime_value) );
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        modelRender_draw(dl, mptr, position, rotation, actorPtr->unk28, sp60, func_8030A428(0x18));
+        modelRender_draw(dl, mptr, position, rotation, actorPtr->actor_specific_1_f, sp60, func_8030A428(0x18));
         actorPtr->position_y -= 1.9;
-        if(actorPtr->unk28 < 2.428){
-            actorPtr->unk28 += 0.1;
+        if(actorPtr->actor_specific_1_f < 2.428){
+            actorPtr->actor_specific_1_f += 0.1;
         }
     }
     return actorPtr;

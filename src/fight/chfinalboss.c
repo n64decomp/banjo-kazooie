@@ -756,9 +756,9 @@ void func_80387BFC(Actor *this, f32 arg1) {
     sp44[1] = 2.0 * local->unk20 * sp50;
     sp44[2] = this->velocity[2] * sp58;
     ml_vec3f_normalize(sp44);
-    sp44[0] *= this->unk28;
-    sp44[1] *= this->unk28;
-    sp44[2] *= this->unk28;
+    sp44[0] *= this->actor_specific_1_f;
+    sp44[1] *= this->actor_specific_1_f;
+    sp44[2] *= this->actor_specific_1_f;
 }
 
 void fight_func_80387D4C(Actor *actor) {
@@ -776,9 +776,9 @@ void fight_func_80387D4C(Actor *actor) {
     sp20[2] = actor->velocity[2] * local->unk14;
 
     ml_vec3f_normalize(sp20, actor);
-    sp20[0] = sp20[0] * actor->unk28;
-    sp20[1] = sp20[1] * actor->unk28;
-    sp20[2] = sp20[2] * actor->unk28;
+    sp20[0] = sp20[0] * actor->actor_specific_1_f;
+    sp20[1] = sp20[1] * actor->actor_specific_1_f;
+    sp20[2] = sp20[2] * actor->actor_specific_1_f;
 }
 
 void func_80387E1C(Actor *this, f32 arg1[3]) {
@@ -875,14 +875,14 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
         } else {
             func_8030E878(SFX_14B_GRUNTY_LAUGH_4, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
         }
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         this->lifetime_value = 0.0f;
         break;
     case 6:
         local = local;
         func_80386600(this->marker, 1);
         func_80324D54(0.4f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         func_80387B00(this);
         local->unkA = 0;
         break;
@@ -890,13 +890,13 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
         local->unk14 = (local->unk14 > 2000.0f) ? local->unk14 : 2000.0f;
         local->unk14 = (local->unk14 < 2700.0f) ? local->unk14 : 2700.0f;
         local->unk18 = 400.0f;
-        local->unk28 = (-this->unk28 * this->unk28) / (2.0 * local->unk14);
+        local->unk28 = (-this->actor_specific_1_f * this->actor_specific_1_f) / (2.0 * local->unk14);
         func_80386600(this->marker, 1);
         animctrl_setAnimTimer(this->animctrl, sp3C);
         break;
     case 8:
         temp_f12 = 1150.0f;
-        local->unk28 = (-this->unk28 * this->unk28) / (2.0 * temp_f12);
+        local->unk28 = (-this->actor_specific_1_f * this->actor_specific_1_f) / (2.0 * temp_f12);
         local->unk2C = (100.0f - local->unk1C) / temp_f12;
         break;
     case 9:
@@ -1013,11 +1013,11 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         func_80387B00(this);
         this->lifetime_value += sp54;
         if (this->lifetime_value < 0.3333333333333333) {
-            this->unk28 += 3300.0 * sp54;
+            this->actor_specific_1_f += 3300.0 * sp54;
         } else if (0.7333333333333334 < this->lifetime_value) {
-            this->unk28 -= 3300.0 * sp54;
+            this->actor_specific_1_f -= 3300.0 * sp54;
         }
-        local->unk20 += this->unk28 * sp54;
+        local->unk20 += this->actor_specific_1_f * sp54;
         func_80387BFC(this, 45.0f * sp54);
         func_80328FB0(this, 30.0f * sp54);
         if (this->lifetime_value > 1.0) {
@@ -1027,11 +1027,11 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 6:
         func_803869BC(this);
         if (local->unk4 >= (local->hits + 1)) {
-            this->unk28 += (D_80391738[local->hits] * sp54) * 0.66;
+            this->actor_specific_1_f += (D_80391738[local->hits] * sp54) * 0.66;
         } else {
-            this->unk28 +=  D_80391738[local->hits] * sp54;
+            this->actor_specific_1_f +=  D_80391738[local->hits] * sp54;
         }
-        local->unk20 -= this->unk28 * sp54;
+        local->unk20 -= this->actor_specific_1_f * sp54;
         func_80387BFC(this, 180.0f * sp54);
         func_80328FB0(this, 30.0f * sp54);
         if ((local->unkA == 0) && (local->unk20 < (local->unk14 * 0.65))) {
@@ -1065,11 +1065,11 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         break;
     case 7:
         func_803869BC(this);
-        this->unk28 = this->unk28 + local->unk28 * sp54;
-        local->unk20 =  local->unk20 - this->unk28 * sp54;
+        this->actor_specific_1_f = this->actor_specific_1_f + local->unk28 * sp54;
+        local->unk20 =  local->unk20 - this->actor_specific_1_f * sp54;
         func_80387BFC(this, 180.0f * sp54);
         func_80328FB0(this, 30.0f * sp54);
-        if (this->unk28 < 0) {
+        if (this->actor_specific_1_f < 0) {
             chfinalboss_phase1_setState(this, 4);
             func_80386654(1.5f, fight_D_80391390, fight_D_80391380);
         }
@@ -1077,12 +1077,12 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 8:
         func_803885DC(this);
         func_803869BC(this);
-        this->unk28 = this->unk28 + local->unk28 * sp54;
-        local->unk20 = local->unk20 - this->unk28 * sp54;
+        this->actor_specific_1_f = this->actor_specific_1_f + local->unk28 * sp54;
+        local->unk20 = local->unk20 - this->actor_specific_1_f * sp54;
         func_80387ACC(this, 60.0f * sp54);
         fight_func_80387D4C(this);
         func_80328FB0(this, 30.0f * sp54);
-        if (this->unk28 < 0) {
+        if (this->actor_specific_1_f < 0) {
             chfinalboss_phase1_setState(this, 9);
             func_80386654(2.0f, fight_D_80391390, fight_D_80391380);
             this->lifetime_value = 4.0f;

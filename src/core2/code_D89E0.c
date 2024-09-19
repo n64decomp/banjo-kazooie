@@ -43,7 +43,7 @@ void func_8035F99C(Actor *this){
     if(!volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
         subaddie_set_state_with_direction(this, 2, 0.01f, 1);
         actor_playAnimationOnce(this);
-        this->unk28 = 5.0f;
+        this->actor_specific_1_f = 5.0f;
         FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
     }
 }
@@ -51,7 +51,7 @@ void func_8035F99C(Actor *this){
 void func_8035FA0C(Actor *this){
     subaddie_set_state(this, 3);
     actor_loopAnimation(this);
-    this->unk28 = 5.0f;
+    this->actor_specific_1_f = 5.0f;
 }
 
 void func_8035FA48(Actor *this){
@@ -75,7 +75,7 @@ void func_8035FAE0(Actor *this){
     subaddie_set_state_with_direction(this, 7, 0.01f, 1);
     actor_loopAnimation(this);
     this->yaw += 180.0f;
-    this->unk28 = 20.0f;
+    this->actor_specific_1_f = 20.0f;
     this->velocity_x = 300.0f;
 
 }
@@ -181,7 +181,7 @@ bool func_8035FEDC(Actor *this){
         }
         
         if(func_80329480(this)){
-            this->unk28 = 0.0f;
+            this->actor_specific_1_f = 0.0f;
             return FALSE;
         }
     }
@@ -190,7 +190,7 @@ bool func_8035FEDC(Actor *this){
 
 bool func_8035FF5C(Actor *this){
     if(func_8032CA80(this, 5) && func_80329480(this)){
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         return FALSE;
     }
     return TRUE;
@@ -241,12 +241,12 @@ bool func_80360198(Actor *this) {
 
     func_80328FB0(this, 5.0f);
     func_80360044(this);
-    this->unk28 += (this->velocity[1] * 0.45) - (0.001 * this->unk28);
-    if (this->unk28 > 13.0) {
-        this->unk28 = 13.0f;
+    this->actor_specific_1_f += (this->velocity[1] * 0.45) - (0.001 * this->actor_specific_1_f);
+    if (this->actor_specific_1_f > 13.0) {
+        this->actor_specific_1_f = 13.0f;
     }
-    if (this->unk28 < -13.0) {
-        this->unk28 = -13.0f;
+    if (this->actor_specific_1_f < -13.0) {
+        this->actor_specific_1_f = -13.0f;
     }
 
     this->velocity[0] += ((this->velocity[1] * 0.9) - 0.6);
@@ -302,7 +302,7 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
         return 0.0f;
     
         
-    phi_f2 = -(this->unk28*(dy))/(D1 + D2);
+    phi_f2 = -(this->actor_specific_1_f*(dy))/(D1 + D2);
     if (phi_f2 >= 4.0f) {
         phi_f2 = 4.0f;
     } else  if (phi_f2 <= -4.0f) {
@@ -395,7 +395,7 @@ void func_80360828(Actor *this){
         this->initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_803607FC, func_80360790);
         this->unk38_0 = FALSE;
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         this->velocity_x = 0.0f;
         this->unk1C_x = this->position_x;
         this->unk1C_y = this->position_y;

@@ -65,7 +65,7 @@ s32 D_8037E630;
 
 /* .code */
 void func_802E0CD0(Actor *this){
-    this->unk28 = 4.0f;
+    this->actor_specific_1_f = 4.0f;
 }
 
 static void __chsnacker_start_dialog(Actor *this) {
@@ -76,7 +76,7 @@ static void __chsnacker_start_dialog(Actor *this) {
         this->unk38_31--;
     }
     else{
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         if (level_get() == LEVEL_2_TREASURE_TROVE_COVE) {
             text_index = mapSpecificFlags_getN(8, 3);
             if( !this->is_first_encounter ) {
@@ -103,7 +103,7 @@ bool func_802E0DC0(f32 snacker_position[3]){
 }
 
 void func_802E0E88(Actor *this){
-    this->unk28 = 2.0f;
+    this->actor_specific_1_f = 2.0f;
     subaddie_set_state_with_direction(this, 5, 0.0f, -1);
     actor_playAnimationOnce(this);
 }
@@ -235,7 +235,7 @@ void chsnacker_update(Actor *this) {
             func_80328FF0(this, 3.0f);
             if (func_80329480(this)) {
                 subaddie_set_state_with_direction(this, 4, 0.0f, 1);
-                this->unk28 = 9.0f;
+                this->actor_specific_1_f = 9.0f;
             }
             break;
 
@@ -243,9 +243,9 @@ void chsnacker_update(Actor *this) {
             func_803297FC(this, &sp44, &sp40);
             this->yaw_ideal = sp40;
             this->unk6C = func_802E10F0(sp44);
-            func_80328FB0(this, this->unk28 / 2);
-            func_80328FF0(this, this->unk28 / 2);
-            this->unk28 = MIN(50.0, this->unk28 + dt);
+            func_80328FB0(this, this->actor_specific_1_f / 2);
+            func_80328FF0(this, this->actor_specific_1_f / 2);
+            this->actor_specific_1_f = MIN(50.0, this->actor_specific_1_f + dt);
             func_8032CA80(this, (s_chSnacker_inRbb) ? 15 : 9);
             break;
 

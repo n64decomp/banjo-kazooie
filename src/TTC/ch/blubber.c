@@ -79,7 +79,7 @@ void func_803875D4(ActorMarker *marker){
 
     subaddie_set_state(this, 4);
     actor_loopAnimation(this);
-    this->unk28 = 0.0f;
+    this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(2)) {
         text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? 0xa2a : 0xa0d;
@@ -187,7 +187,7 @@ void func_803878CC(Actor * this){
             if( actor_animationIsAt(this, 0.99f) 
                 && subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.78f)
             ){
-                this->unk28 = 4.0f;
+                this->actor_specific_1_f = 4.0f;
                 break;
             }
 
@@ -215,7 +215,7 @@ void func_803878CC(Actor * this){
                 local =  (ActorLocal_Blubber*)&this->local;
                 if(actor_animationIsAt(this, 0.99f) && !local->unk24){
                     subaddie_set_state(this, 5);
-                    this->unk28 = 8.0f;
+                    this->actor_specific_1_f = 8.0f;
                 }
             }
             

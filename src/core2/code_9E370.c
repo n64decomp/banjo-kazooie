@@ -790,7 +790,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->pitch = 0.0f;
     suLastBaddie->roll = 0.0f;
     suLastBaddie->unk6C = 0.0f;
-    suLastBaddie->unk28 = 0.0f;
+    suLastBaddie->actor_specific_1_f = 0.0f;
     suLastBaddie->unk10_12 = 0;
     suLastBaddie->unk38_0 = 0;
     suLastBaddie->unk38_31 = 0;
@@ -1604,9 +1604,10 @@ void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
 }
 
 void func_80329878(Actor *arg0, f32 arg1){
-    arg0->unk28 -= arg1;
-    if(arg0->unk28 < 0.0f){
-        arg0->unk28 = 0.0f;
+    arg0->actor_specific_1_f -= arg1;
+
+    if (arg0->actor_specific_1_f < 0.0f) {
+        arg0->actor_specific_1_f = 0.0f;
     }
 }
 

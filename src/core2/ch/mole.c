@@ -368,11 +368,11 @@ void chmole_update(Actor *this){
                 this->velocity[0] = this->position[0];
                 this->velocity[1] = this->position[1];
                 this->velocity[2] = this->position[2];
-                this->unk28 = 500.0f;
+                this->actor_specific_1_f = 500.0f;
             }
             else{ //L802D9F08
                 nodeprop_getPosition(node_prop, this->velocity);
-                this->unk28 = 2*nodeprop_getRadius(node_prop);
+                this->actor_specific_1_f = 2 * nodeprop_getRadius(node_prop);
             }
         }
     }//L802D9F34
@@ -387,7 +387,7 @@ void chmole_update(Actor *this){
                     && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
-                    if(ml_distance_vec3f(sp34, this->velocity) < this->unk28){
+                    if (ml_distance_vec3f(sp34, this->velocity) < this->actor_specific_1_f) {
                         chmole_startingDialog(this);
                     }
                 }

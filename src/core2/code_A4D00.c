@@ -214,7 +214,7 @@ bool func_8032C2F0(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     f32 sp60[3];
     f32 sp20[4][4];
 
-    sp6C[0] = arg0->unk28;
+    sp6C[0] = arg0->actor_specific_1_f;
     sp6C[1] = 0.0f;
     sp6C[2] = 0.0f;
     guRotateRPYF(sp20[0], arg0->roll, 90.0f - arg0->yaw, arg0->pitch);
@@ -230,7 +230,7 @@ bool func_8032C2F0(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
 bool func_8032C404(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     f32 sp1C[3];
 
-    sp1C[0] = arg0->unk28;
+    sp1C[0] = arg0->actor_specific_1_f;
     sp1C[1] = 0.0f;
     sp1C[2] = 0.0f;
     ml_vec3f_yaw_rotate_copy(sp1C, sp1C, arg0->yaw - 90.0);
