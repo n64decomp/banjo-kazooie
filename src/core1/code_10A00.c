@@ -128,7 +128,7 @@ f32 func_8024E668(s32 controller_index){
     return D_80281308[controller_index];
 }
 
-s32 func_8024E67C(s32 controller_index){
+s32 controller_getStartButton(s32 controller_index){
     return D_80281138[controller_index].start_button;
 }
 

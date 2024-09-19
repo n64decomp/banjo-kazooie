@@ -38,7 +38,7 @@ s32 getGameMode(void);
 
 void func_802DC5B8(void);
 void func_802DC560(s32, s32);
-s32 func_8024E67C(s32 controller_index);
+s32 controller_getStartButton(s32 controller_index);
 bool fileProgressFlag_get(enum file_progress_e);
 enum map_e map_get(void);
 bool func_802FD2D4(void);
@@ -939,7 +939,7 @@ s32 gcPauseMenu_update(void) {
                 }
             }
 
-            if (func_8024E67C(0) == 1) {
+            if (controller_getStartButton(0) == 1) {
                 gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
             }
             break;
@@ -955,7 +955,7 @@ s32 gcPauseMenu_update(void) {
                 D_80383010.unk70_30 = 0;
             }
 
-            if (func_8024E67C(0) == 1) {
+            if (controller_getStartButton(0) == 1) {
                 gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
             }
             else if (face_button[FACE_BUTTON(BUTTON_A)] == 1) {
@@ -1081,7 +1081,7 @@ s32 gcPauseMenu_update(void) {
                 }
             }//L80313AF4
 
-            if (func_8024E67C(0) == 1) {
+            if (controller_getStartButton(0) == 1) {
                 gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
             }
             else if (face_button[FACE_BUTTON(BUTTON_B)] == 1) {
@@ -1124,7 +1124,7 @@ s32 gcPauseMenu_update(void) {
             gcpausemenu_80312FD0(1);
             gcpausemenu_updateBButtonAndJoystickSprites();
 
-            if (func_8024E67C(0) == 1) {
+            if (controller_getStartButton(0) == 1) {
                 D_80383010.unk1 = 3;
                 gcPauseMenu_setState(PAUSE_STATE_A_LEVEL_TOTALS_CLOSING);
             }
@@ -1214,7 +1214,7 @@ s32 gcPauseMenu_update(void) {
         case PAUSE_STATE_10_UNKNOWN:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_updateBButtonAndJoystickSprites();
-            if (func_8024E67C(0) == 1) {
+            if (controller_getStartButton(0) == 1) {
                 D_80383010.unk1 = 3;
                 gcPauseMenu_setState(PAUSE_STATE_11_UNKNOWN);
             }//L80313EFC
