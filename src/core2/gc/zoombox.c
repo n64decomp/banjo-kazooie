@@ -1043,12 +1043,12 @@ void func_80316E60(GcZoombox *this){
     func_80318488(this);
 }
 
-void func_80316E84(GcZoombox *this, s32 arg1){
-    if(this->unk134 != arg1){
-        if(this->unk130 != NULL){
-            this->unk130(this->portrait_id, arg1);
+void func_80316E84(GcZoombox *this, s32 state){
+    if(this->unk134 != state){
+        if (this->callback != NULL) {
+            this->callback(this->portrait_id, state);
         }
-        this->unk134 = arg1;
+        this->unk134 = state;
     }
 }
 
@@ -1378,13 +1378,13 @@ void __gczoombox_load_sfx(GcZoombox *this, GcZoomboxSprite portrait_id){
      }
 }
 
-GcZoombox *gczoombox_new(s32 arg0, GcZoomboxSprite portrait_id, s32 arg2, s32 arg3, void (*arg4)(s32, s32)){
+GcZoombox *gczoombox_new(s32 y, GcZoomboxSprite portrait_id, s32 arg2, s32 arg3, void (*callback)(s32 portrait_id, s32 state)){
     GcZoombox *this;
     s32 i;
     s32 temp_v1;
 
     this = (GcZoombox *)malloc(sizeof(GcZoombox));
-    this->unk130 = arg4;
+    this->callback = callback;
     this->state = 0xB;
     this->portrait_id = portrait_id;
     this->unk134  = this->str_cnt = this->current_str_index = 0;
@@ -1399,7 +1399,7 @@ GcZoombox *gczoombox_new(s32 arg0, GcZoomboxSprite portrait_id, s32 arg2, s32 ar
     this->unk15C = 0;
     this->unk160 = 0;
     this->unk166 = this->unk1A4_19;
-    this->unk164 = arg0;
+    this->unk164 = y;
     this->unk168 = 0xFF;
     this->unk1A4_24 = arg3;
     if(this->unk1A4_24){

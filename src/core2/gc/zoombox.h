@@ -132,7 +132,7 @@ typedef struct {
     f32  unk110[5]; //sfx_???
     s16 unk124[5];  //sfx_???
     s16 unk12E;
-    void (*unk130)(s32, s32);
+    void (*callback)(s32 portrait_id, s32 state);
     u8  unk134;
     u8  state;
     u8  portrait_id; //0x136
