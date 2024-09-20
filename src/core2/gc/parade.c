@@ -30,7 +30,7 @@ enum parade_state_e {
     PARADE_STATE_5_WAIT_ON_NAME,
     PARADE_STATE_6_NAME_DISAPPEAR,
     PARADE_STATE_7_GOTO_NEXT,
-    PARADE_STATE_8_END,
+    PARADE_STATE_8_END
 };
 
 /* .data */

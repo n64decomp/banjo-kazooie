@@ -40,6 +40,7 @@ extern void func_803382E4(s32);
 extern void func_8033687C(Gfx **);
 extern void func_80335D30(Gfx **);
 extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
+extern BKVertexList *vtxList_clone(BKVertexList *vtxList);
 
 typedef struct {
     f32 unk0[3];

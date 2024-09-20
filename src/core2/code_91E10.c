@@ -245,8 +245,8 @@ void func_80319214(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
-    #define NEXT(iter) (*(((char *)(iter))++))
-    #define SKIP(iter,n) (((char *)(iter)) += (n))
+    //#define NEXT(iter) (*(((char *)(iter))++))
+    //#define SKIP(iter,n) (((char *)(iter)) += (n))
     char *char_iter;
     s32 temp_s0;
     s32 temp_s2;
@@ -272,9 +272,9 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
         D_803830E0->unkC = (QuizQuestionBin *) assetcache_get(temp_s0);
     }
     char_iter = D_803830E0->unkC;
-    sp58 = NEXT(char_iter);
-    sp54 = NEXT(char_iter);
-    sp50 = NEXT(char_iter);
+    sp58 = *(char_iter++); // NEXT
+    sp54 = *(char_iter++); // NEXT
+    sp50 = *(char_iter++); // NEXT
     sp4C = ((sp54 >= 2) ? func_80318F60(q_type, q_indx, arg2) : 0) + 1;
     if (((sp50 == 0) || (func_80318FB4(q_type) != 0)) != 0) {
         do {
@@ -290,11 +290,11 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
         } while (sp44 == sp48);
     }
         
-    SKIP(char_iter, 2*func_8031B5B0());
-    phi_v1 = NEXT(char_iter);
-    phi_v1 += (NEXT(char_iter) << 8);
+    char_iter += 2*func_8031B5B0(); // SKIP
+    phi_v1 = *(char_iter++); // NEXT
+    phi_v1 += (*(char_iter++) << 8);
     char_iter = (s32)D_803830E0->unkC + phi_v1;
-    str_cnt = NEXT(char_iter);
+    str_cnt = *(char_iter++); // NEXT
     
     for(phi_a1 = 0; phi_a1 < 4; phi_a1++){
         D_803830E0->unk18[phi_a1] = 0;
@@ -302,8 +302,8 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
 
     
     for(phi_a1 = 0; phi_a1 < str_cnt; phi_a1++){
-        temp_v0_3 = NEXT(char_iter);
-        str_size = NEXT(char_iter);
+        temp_v0_3 = *(char_iter++); // NEXT
+        str_size = *(char_iter++); // NEXT
         temp_v0_3 -= 0x80;
         
 
@@ -322,10 +322,10 @@ bool func_803192A4(enum ff_question_type_e q_type, s32 q_indx, s32 arg2) {
         
             D_803830E0->unk34.unk0[sp60][D_803830E0->unk18[sp60]++] = char_iter;
         }
-        SKIP(char_iter, str_size);
+        char_iter += str_size; // SKIP
     }
-    #undef NEXT
-    #undef SKIP
+    //#undef NEXT
+    //#undef SKIP
     return TRUE;
 }
 

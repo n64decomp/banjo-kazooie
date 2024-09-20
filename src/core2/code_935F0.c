@@ -19,7 +19,7 @@ enum minigame_e {
 enum chminigame_state_e {
     MINIGAME_STATE_1_INTRODUCE_GAME = 1,
     MINIGAME_STATE_2_IN_PROGESS,
-    MINIGAME_STATE_3_RETURN_TO_FF,
+    MINIGAME_STATE_3_RETURN_TO_FF
 };
 
 /* .data */

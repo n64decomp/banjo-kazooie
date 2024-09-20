@@ -45,7 +45,7 @@ u32 func_800005C0(u8* in, u8* out, struct huft *arg2){
 u32 func_80000618(u8 **inPtr, u8 **outPtr, struct huft *arg2){
     u32 size = func_800005C0(*inPtr, *outPtr, arg2);
     *outPtr += wp;
-    *outPtr = ((u32)(*outPtr) & 0xF) ? ((u32)(*outPtr) & ~0xF) + 0x10 : *outPtr;
+    *outPtr = ((u32)(*outPtr) & 0xF) ? (u8 *) ((u32)(*outPtr) & ~0xF) + 0x10 : *outPtr;
     *inPtr += inptr + 6;
     return size;
 }
