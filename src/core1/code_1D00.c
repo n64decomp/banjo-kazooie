@@ -6,6 +6,7 @@
 #include "n_libaudio.h"
 
 #define AUDIO_HEAP_SIZE VER_SELECT(0x21000, 0x23A00, 0x21000, 0x21000)
+#define AUDIOMANAGER_THREAD_STACK_SIZE 0xE78
 
 extern void n_alInit(N_ALGlobals *, ALSynConfig *);
 
@@ -55,7 +56,7 @@ typedef struct struct_core1_1D00_5_s{
 }OscState;
 
 void audioManager_create(void);
-void audioManager_handle(void *);
+void audioManagerThread_entry(void *arg);
 // void func_802403B8(void);
 void audioManager_handleDoneMsg(AudioInfo *info);
 void *func_802403B8(void *state);
@@ -145,7 +146,7 @@ struct {
     OSMesgQueue audioReplyMsgQ;
     OSMesg audioReplyMsgBuf[8];
 } audioManager;
-u8 pad_8027C178[0xE78];
+u8 sAudioManagerThreadStack[AUDIOMANAGER_THREAD_STACK_SIZE];
 ALHeap D_8027CFF0;
 u8 * D_8027D000; 
 s32  D_8027D004;
@@ -342,10 +343,11 @@ void audioManager_create(void) {
         audioManager.audioInfo[i]->unkC = audioManager.audioInfo[i];
         audioManager.audioInfo[i]->data = malloc(D_8027DD7C * 4);
     }
-    osCreateThread(&audioManager.thread, 4, &audioManager_handle, 0, &D_8027CFF0, 0x32);
+
+    osCreateThread(&audioManager.thread, 4, &audioManagerThread_entry, 0, sAudioManagerThreadStack + AUDIOMANAGER_THREAD_STACK_SIZE, 50);
 }
 
-void audioManager_handle(void *arg0) {
+void audioManagerThread_entry(void *arg) {
     s32 phi_s1;
 
     phi_s1 = 1;

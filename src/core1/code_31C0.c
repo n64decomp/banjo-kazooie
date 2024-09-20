@@ -2,25 +2,25 @@
 #include "functions.h"
 #include "variables.h"
 
+#define INIT_THREAD_STACK_SIZE 0x200
 
-u8 D_8027EB10[0x200]; // Size based on the previous symbol's address
-OSThread D_8027ED10;
+u8 sInitThreadStack[INIT_THREAD_STACK_SIZE]; // Size based on the previous symbol's address
+OSThread sInitThread;
 
+void initThread_entry(void *arg);
 
-void func_80240C30(void*);
-
-void func_80240BE0(void){
-    osCreateThread(&D_8027ED10, 1, func_80240C30, NULL, &D_8027EB10[0x200], 0);
-    osStartThread(&D_8027ED10);
+void initThread_create(void) {
+    osCreateThread(&sInitThread, 1, initThread_entry, NULL, sInitThreadStack + INIT_THREAD_STACK_SIZE, OS_PRIORITY_IDLE);
+    osStartThread(&sInitThread);
 }
 
-void piMgr_create(void);
+void piMgr_init(void);
 void mainThread_create(void);
 OSThread *mainThread_get(void);
 
-void func_80240C30(void *arg)
+void initThread_entry(void *arg)
 {
-    piMgr_create();
+    piMgr_init();
     mainThread_create();
     osStartThread(mainThread_get());
     while (1);

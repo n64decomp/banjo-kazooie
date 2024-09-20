@@ -398,7 +398,7 @@ void *assetcache_get(enum asset_e assetId) {
         uncompressed_file = malloc(comp_size);
         compressed_file = uncompressed_file;
     }
-    func_802405F0(compressed_file, assetSectionRomMetaList[assetId].offset + D_80383CCC, sp3C);
+    piMgr_read(compressed_file, assetSectionRomMetaList[assetId].offset + D_80383CCC, sp3C);
     if(assetSectionRomMetaList[assetId].compFlag & 0x0001){//decompress
         rarezip_inflate(compressed_file, uncompressed_file);
         realloc(uncompressed_file, assetCacheCurrentSize);
@@ -417,7 +417,7 @@ void *assetcache_get(enum asset_e assetId) {
 }
 
 void func_8033BAB0(enum asset_e asset_id, s32 offset, s32 size, void *dst_ptr) {
-    func_802405F0(dst_ptr, assetSectionRomMetaList[asset_id].offset + D_80383CCC + offset, size);
+    piMgr_read(dst_ptr, assetSectionRomMetaList[asset_id].offset + D_80383CCC + offset, size);
 }
 
 void assetCache_resizeAsset(void *assetPtr, s32 size){
@@ -438,9 +438,9 @@ void assetCache_init(void){
     assetCacheLength = 0;
     assetSectionRomHeader = (AssetROMHead *)malloc(sizeof(AssetROMHead));
     D_80383CC8 = (u32)assets_ROM_START;
-    func_802405F0(assetSectionRomHeader, D_80383CC8, sizeof(AssetROMHead));
+    piMgr_read(assetSectionRomHeader, D_80383CC8, sizeof(AssetROMHead));
     assetSectionRomMetaList = (AssetFileMeta *)malloc(assetSectionRomHeader->count*sizeof(AssetFileMeta));
-    func_802405F0(assetSectionRomMetaList, D_80383CC8 + sizeof(AssetROMHead),assetSectionRomHeader->count*sizeof(AssetFileMeta));
+    piMgr_read(assetSectionRomMetaList, D_80383CC8 + sizeof(AssetROMHead),assetSectionRomHeader->count*sizeof(AssetFileMeta));
     D_80383CCC = D_80383CC8 + sizeof(AssetROMHead) + assetSectionRomHeader->count*sizeof(AssetFileMeta);
 }
 
@@ -531,7 +531,7 @@ s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
         }
     }
     comp_size = assetSectionRomMetaList[id].offset + D_80383CCC;
-    func_802405F0(comp_ptr, comp_size, sp34);
+    piMgr_read(comp_ptr, comp_size, sp34);
     if (assetSectionRomMetaList[id].compFlag & 1) {
         rarezip_inflate(comp_ptr, dst);
         osWritebackDCache(dst, assetCacheCurrentSize);

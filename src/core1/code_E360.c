@@ -152,7 +152,7 @@ void func_8024BE30(void){
     }
     D_802808D8 = 0;
     func_8024BF94(2);
-    osCreateThread(&D_802808E0,0,func_8024C2F8,NULL,&thread0_stack[THREAD0_STACK_SIZE],80);
+    osCreateThread(&D_802808E0,0,func_8024C2F8,NULL, thread0_stack + THREAD0_STACK_SIZE, 80);
     osStartThread(&D_802808E0);
 }
 
