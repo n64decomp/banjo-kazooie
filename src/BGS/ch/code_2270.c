@@ -143,8 +143,8 @@ void BGS_func_803888E4(Actor *this, s32 arg1){
         skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
 
-        if (!this->is_first_encounter) {
-            this->is_first_encounter = TRUE;
+        if (!this->has_met_before) {
+            this->has_met_before = TRUE;
 
             if (unqPtr->unkA == 0) {
                 gcdialog_showText(ASSET_C72_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388784, 0);

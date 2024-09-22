@@ -79,12 +79,12 @@ static void __chsnacker_start_dialog(Actor *this) {
         this->actor_specific_1_f = 0.0f;
         if (level_get() == LEVEL_2_TREASURE_TROVE_COVE) {
             text_index = mapSpecificFlags_getN(8, 3);
-            if( !this->is_first_encounter ) {
+            if( !this->has_met_before ) {
                 if(text_index < 4) {
                     if(gcdialog_showText(0xA1B + text_index, 0, NULL, NULL, NULL, NULL)){
                         text_index++;
                         mapSpecificFlags_setN(8, text_index, 3);
-                        this->is_first_encounter = TRUE;
+                        this->has_met_before = TRUE;
                     }
                 }
             }

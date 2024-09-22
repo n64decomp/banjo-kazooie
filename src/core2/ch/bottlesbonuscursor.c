@@ -320,7 +320,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                             held_piece = &D_8037E248[D_8037E5C0.unk0];
                             held_piece->state = 2;
                             chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
-                            func_8030E484(SFX_112_TINKER_ATTENTION);
+                            sfxsource_playHighPriority(SFX_112_TINKER_ATTENTION);
                             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                         }
                     }

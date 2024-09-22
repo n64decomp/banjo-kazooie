@@ -263,9 +263,9 @@ void func_80391B04(Actor *this) {
                 func_80391810(this, 2);
             }
         }
-        if ((local->unk8 < this->position[1]) && !this->is_first_encounter) {
+        if ((local->unk8 < this->position[1]) && !this->has_met_before) {
             FUNC_8030E8B4(SFX_14E_SOFT_EXPLOSION, 1.0f, 20000, this->position, 1500, 3000);
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
         }
         break;
     case 3:

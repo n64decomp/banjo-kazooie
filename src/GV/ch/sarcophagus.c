@@ -74,7 +74,7 @@ void chSarcophagus_update(Actor *this){
             if(func_80329530(this, 500) && func_8038957C(this)){
                 subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                 FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
-                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_3F6_RUBBING, 1.0f, 32000, this->position, 1250, 2500);
 
             }
             break;
@@ -96,7 +96,7 @@ void chSarcophagus_update(Actor *this){
             if(!func_80329530(this, 700)){
                 subaddie_set_state_with_direction(this, 4, 0.5f, 1);
                 FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
-                FUNC_8030E8B4(SFX_3F6_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
+                FUNC_8030E8B4(SFX_3F6_RUBBING, 1.0f, 32000, this->position, 1250, 2500);
             }
             break;
         case 4: //L803897E4
@@ -134,7 +134,7 @@ void chSarcophagus_updateSNS(Actor *this){
                 if(this->unk1C[0] == 0.0f){
                     subaddie_set_state_with_direction(this, 5, 0.01f, 1);
                     FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 0.5f, 32000, this->position, 1250, 2500);
-                    FUNC_8030E8B4(SFX_3F6_UNKNOWN, 0.5f, 32000, this->position, 1250, 2500);
+                    FUNC_8030E8B4(SFX_3F6_RUBBING, 0.5f, 32000, this->position, 1250, 2500);
                 }
             }
             else{//L803899C0

@@ -321,7 +321,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case 0x28: //L8028BF74
                 if( plyr_hitbox_type == HITBOX_6_WONDERWING){
-                    func_8030E484(SFX_20_METAL_CLANK_1);
+                    sfxsource_playHighPriority(SFX_20_METAL_CLANK_1);
                 }
                 else{
                     func_8030E6D4(SFX_65_METALLIC_SCRATCH);

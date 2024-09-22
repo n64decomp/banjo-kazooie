@@ -104,8 +104,8 @@ void func_80392918(Actor *this) {
         return;
     }
     func_80326224(this);
-    if ((this->unk48 > 0.5) && !this->is_first_encounter) {
-        this->is_first_encounter = TRUE;
+    if ((this->unk48 > 0.5) && !this->has_met_before) {
+        this->has_met_before = TRUE;
         ncStaticCamera_setToNode(0x1E);
     }
     if ((0.999 < this->unk48) && !this->unk38_0) {

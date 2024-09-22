@@ -255,9 +255,9 @@ void func_803876D0(Actor *this){
         mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
-    if( sp3C && !this->is_first_encounter){
+    if( sp3C && !this->has_met_before){
         if(gcdialog_showText((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
         }
     } //L80387968
 

@@ -69,7 +69,7 @@ void func_80390388(Actor *this){
         || jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
         || func_80390334()
     ){
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
     }
 
     if( func_80329530(this, 0xFA) 
@@ -77,14 +77,14 @@ void func_80390388(Actor *this){
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
             if(gcdialog_showText(ASSET_C1F_TEXT_UNKNOWN, 0xb, this->position, NULL, NULL, NULL)){
-                this->is_first_encounter = TRUE;
+                this->has_met_before = TRUE;
                 this->unk1C[0] = 1.0f;
             }
         }
         else{
-            if( !this->is_first_encounter ){
+            if( !this->has_met_before ){
                 if(gcdialog_showText(ASSET_C1E_TEXT_UNKNOWN, 0x2b, this->position, NULL, NULL, NULL)){
-                    this->is_first_encounter = TRUE;
+                    this->has_met_before = TRUE;
                 }
             }
         }

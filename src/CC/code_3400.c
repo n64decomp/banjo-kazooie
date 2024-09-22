@@ -43,7 +43,7 @@ void func_803897F0(Actor *this, s32 next_state){
 
     if(next_state == 2){
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, -1);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.9f, 29000);
         local->unk4 = 0.0f;
     }
 

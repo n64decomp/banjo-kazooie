@@ -121,7 +121,7 @@ void func_802C6240(Actor *this){
         this->marker->dieFunc = func_802C61C0;
         this->marker->collisionFunc = func_802C60AC;
         this->marker->collision2Func = func_802C6150;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->unk16C_0 = 1;
         this->initialized = TRUE;
         return;
@@ -265,7 +265,7 @@ void func_802C6240(Actor *this){
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                     func_8030DA44(this->unk44_31);
                     this->unk44_31 = 0;
-                    func_8030E484(SFX_19_BANJO_LANDING_08);
+                    sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
                 }
             }//L802C6B1C
             break;

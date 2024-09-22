@@ -123,7 +123,7 @@ void func_802A8AD8(void){
         if(func_8029DFE0()){
             func_8029E0DC(0);
             if(miscFlag_isFalse(MISC_FLAG_14_LOSE_BOGGY_RACE))
-                func_8030E484(0x3eb);
+                sfxsource_playHighPriority(0x3eb);
             func_803219F4(1);
         }
     }else{
@@ -365,7 +365,7 @@ void bsbtrot_jump_init(void){
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     baphysics_set_vertical_velocity(D_80364ABC);
     baphysics_set_gravity(D_80364AC0);
-    func_8030E484(SFX_48_KAZOOIE_RUUH);
+    sfxsource_playHighPriority(SFX_48_KAZOOIE_RUUH);
     D_8037D3A4 = 0;
 }
 

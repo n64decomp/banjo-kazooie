@@ -197,7 +197,7 @@ void func_8038EFD8(Actor *this) {
     f32 sp30[3];
     f32 sp24[3];
 
-    this->is_first_encounter = FALSE;
+    this->has_met_before = FALSE;
     player_getPosition(sp30);
     sp24[0] = this->position[0];
     sp24[1] = this->position[1];
@@ -421,7 +421,7 @@ void lair_func_8038F924(Actor *this) {
         local->unk0 = 0;
         local->unk4 = 0;
         local->unk8 = (func_8038ECA8(this->marker)) ? 0xff : 1;
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         for(phi_v1 = 0; phi_v1 < sp64; phi_v1 ++){
             local->unk4++;
             local->unk0 |= (1 << func_8038F0EC(this));
@@ -473,8 +473,8 @@ void lair_func_8038F924(Actor *this) {
     func_8038EDBC(this);
     switch(this->state){
         case 1://L8038FCD0
-            if (!this->is_first_encounter && (!func_8028F20C() || !func_8028FB48(0x08000000))) {
-                this->is_first_encounter = TRUE;
+            if (!this->has_met_before && (!func_8028F20C() || !func_8028FB48(0x08000000))) {
+                this->has_met_before = TRUE;
             }
             if (func_80329530(this, 300)) {
                 if ((this->unkF4_8 == 0xA) && !fileProgressFlag_get(FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM)) {
@@ -486,7 +486,7 @@ void lair_func_8038F924(Actor *this) {
                     func_8035644C(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
                 }
             }
-            if (func_8038ECA8(this->marker) && this->is_first_encounter && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
+            if (func_8038ECA8(this->marker) && this->has_met_before && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
                 func_8038F350(this, 2);
             }
             break;

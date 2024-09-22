@@ -137,7 +137,7 @@ void chGobiCCW_update(Actor *this) {
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->actorFreeFunc = chGobiCCW_free;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         local->unk4 = skeletalAnim_new();
         local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
         marker_setCollisionScripts(this->marker, 0, func_8038894C, 0);
@@ -159,13 +159,13 @@ void chGobiCCW_update(Actor *this) {
         return;
     }
     if(this->state == 1){
-        if (!this->is_first_encounter) {
+        if (!this->has_met_before) {
             player_getPosition(sp48);
             if (ml_distance_vec3f(this->position, sp48) < 600.0f) {
                 if (local->unk0->unk2 != 0) {
                     gcdialog_showText((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
                 }
-                this->is_first_encounter = TRUE;
+                this->has_met_before = TRUE;
             }
         }
     }

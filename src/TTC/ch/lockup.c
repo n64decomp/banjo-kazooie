@@ -75,7 +75,7 @@ void func_80389600(Actor *this){
     s32 tmp_v1;
     int i;
 
-    if( !this->is_first_encounter
+    if( !this->has_met_before
         && this->unkF4_8 == 0xA
         && !jiggyscore_isCollected(JIGGY_13_TTC_LOCKUP)
         && func_80329530(this, 320)
@@ -83,7 +83,7 @@ void func_80389600(Actor *this){
         && !func_8028ECAC()
         && gcdialog_showText(0xA15, 0, NULL, NULL, NULL, NULL)
     ){
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
     }//L803896AC
 
     if(!this->volatile_initialized){

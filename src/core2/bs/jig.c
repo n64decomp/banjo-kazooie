@@ -71,7 +71,7 @@ void bsjig_jiggy_update(void){
     }
 
     if(animctrl_isAt(aCtrl, 0.94f))
-        func_8030E484(0x3ea);
+        sfxsource_playHighPriority(0x3ea);
 
     if(animctrl_isStopped(aCtrl)){
         if(D_8037D4B1)

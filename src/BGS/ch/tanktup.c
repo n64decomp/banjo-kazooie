@@ -111,7 +111,7 @@ void func_8038F6A4(Actor *this)
     {
       nodeprop_getPosition(temp_v0, local->unk18);
     }
-    this->is_first_encounter = FALSE;
+    this->has_met_before = FALSE;
     this->initialized = TRUE;
   }
   if (!this->volatile_initialized)
@@ -138,12 +138,12 @@ void func_8038F6A4(Actor *this)
     case 1:
       func_8038F610(this);
       player_getPosition(sp48);
-      if (!this->is_first_encounter)
+      if (!this->has_met_before)
     {
       if ((((ml_distance_vec3f(local->unk18, sp48) < 250.0f) && (ml_distance_vec3f(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
         gcdialog_showText(0xC7E, 0, 0, 0, 0, 0);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
       }
     }
       if (local->unk10)

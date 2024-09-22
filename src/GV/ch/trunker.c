@@ -69,13 +69,13 @@ void chTrucker_update(Actor *this){
         }
     }//L803891D8
     if( this->state == 1
-        && !this->is_first_encounter
+        && !this->has_met_before
         && func_80329530(this, 250)
         && !func_80329530(this, 80)
         && func_8028F2A0()
     ){
         gcdialog_showText(ASSET_A71_TEXT_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
     }//L80389254
 
     if(this->state == 1 && mapSpecificFlags_get(0xC)){

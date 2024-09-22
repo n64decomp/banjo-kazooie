@@ -214,7 +214,7 @@ void CCW_func_80389BFC(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->position[0] = -4900.0f;
         this->position[1] = 4619.0f;
         this->position[2] = 0.0f;
@@ -253,12 +253,12 @@ void CCW_func_80389BFC(Actor *this) {
     }
     if (this->state == 1) {
         player_getPosition(sp4C);
-        if( !this->is_first_encounter
+        if( !this->has_met_before
             && (local->unkC[2] >= 6500) 
             && (sp4C[2] < 6500.0f) 
             && (local->unk0->unk28 != 0)
         ){
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(0.0f, local->unk0->unk24);
             func_80324DBC(0.0f, local->unk0->unk28, 6, NULL, this->marker, func_80389700, NULL);

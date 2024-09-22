@@ -163,9 +163,9 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
         gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
-        if(actor->is_first_encounter){
+        if(actor->has_met_before){
             func_80347A14(1);
-            actor->is_first_encounter = FALSE;
+            actor->has_met_before = FALSE;
         }
         timed_exitStaticCamera(0.0f);
         if(actor->state == 5){
@@ -229,7 +229,7 @@ int chmole_learnAbility(Actor *this){
     // New Ability: Learn Dialog & Misc Actions
     else{
         func_80347A14(0);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         sp2C = moleTable[this->unkF4_8-9].learn_text; 
         ability_unlock(moleTable[this->unkF4_8-9].ability);
         switch(moleTable[this->unkF4_8-9].ability){

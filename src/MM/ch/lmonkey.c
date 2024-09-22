@@ -48,7 +48,7 @@ void __chlmonkey_updateBringOrange(Actor **this_ptr) {
         player_throwCarriedObject()) {
 
         func_8028FA34(0xc6, *this_ptr);
-        (*this_ptr)->is_first_encounter = TRUE;
+        (*this_ptr)->has_met_before = TRUE;
         timed_setStaticCameraToNode(1.2f, 0xF);
         func_80324E38(1.2f, 3);
     }
@@ -120,10 +120,10 @@ void chlmonkey_update(Actor *this) {
                     if (func_80329530(this, 345) &&
                         !func_80329530(this, 150) &&
                         !item_getCount(ITEM_19_ORANGE) &&
-                        !this->is_first_encounter) {
+                        !this->has_met_before) {
 
                         gcdialog_showText(ASSET_B3F_DIALOG_CHIMPY_MEET, 0xe, this->position, NULL, NULL, NULL);
-                        this->is_first_encounter = TRUE;
+                        this->has_met_before = TRUE;
                     }//L80388774
 
                     actor_loopAnimation(this);

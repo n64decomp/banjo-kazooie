@@ -137,7 +137,7 @@ void func_8038794C(Actor *this){
     switch(this->state){
         case 1://L80387AB0
             if(mapSpecificFlags_get(0xb))
-                this->is_first_encounter = TRUE;
+                this->has_met_before = TRUE;
 
             if(mapSpecificFlags_get(0x1)){
                 func_8028F94C(1, this->position);
@@ -147,13 +147,13 @@ void func_8038794C(Actor *this){
                 break;
             }//L80387B38
 
-            if(!this->is_first_encounter && func_80329530(this, 0x1f4)){
+            if(!this->has_met_before && func_80329530(this, 0x1f4)){
                 if(!func_8028ECAC() || func_8028ECAC() == BSGROUP_8_TROT){
                     if (gcdialog_showText(ASSET_BFF_TEXT_UNKNOWN, 0x2a, this->position, NULL, NULL, NULL)) {
                         for (i = 0; i < 5; i++) {
                             timedFunc_set_1(D_80391BEC[i], (GenFunction_1) func_8038787C, (s32) this->marker);
                         }
-                        this->is_first_encounter = TRUE;
+                        this->has_met_before = TRUE;
                     }
                 }
             }

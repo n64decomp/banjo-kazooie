@@ -44,9 +44,9 @@ ActorInfo D_8039123C = { 0xBB, 0x287, 0x3E6,
 void func_8038C760(Actor *this, s32 arg1){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
     chBuriedPyramid_setRaisedAmount(local->unk14, arg1);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 28000);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 0.9f, 29000);
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);
+    FUNC_8030E624(SFX_3F6_RUBBING, 0.7f, 28000);
+    FUNC_8030E624(SFX_3F6_RUBBING, 0.9f, 29000);
+    FUNC_8030E624(SFX_3F6_RUBBING, 1.0f, 30000);
     timed_setStaticCameraToNode(0.0f, 8);
     if(arg1 < 3){
         timed_setStaticCameraToNode(3.5f, arg1 + 0x15);
@@ -95,7 +95,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[2] = this->position_z;
         if(this->state == 1){
             rumbleManager_80250E94(0.0f, 0.6f, 1.0f, 0, 1.3f, 0.0f);
-            timed_playSfx(1.0f, SFX_3F6_UNKNOWN, 0.8f, 30000);
+            timed_playSfx(1.0f, SFX_3F6_RUBBING, 0.8f, 30000);
         }
     }//L8038CA6C
 
@@ -126,7 +126,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         local->unk18[1] = this->position_y;
         local->unk18[2] = this->position_z;
         rumbleManager_80250D94(0.7f, 0.5f, 1.3f);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.8f, 30000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.8f, 30000);
     }
 
     if(next_state == 8){

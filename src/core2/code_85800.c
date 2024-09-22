@@ -838,7 +838,7 @@ int func_8030E3FC(u8 indx){
     }
 }
 
-void func_8030E484(enum sfx_e uid){
+void sfxsource_playHighPriority(enum sfx_e uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 2);
 }
 

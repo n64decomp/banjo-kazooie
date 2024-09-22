@@ -233,7 +233,7 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
                 break;
 
             case ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT: /* 2FFC 803893EC 920B0138 */
-                actor->is_first_encounter = FALSE;
+                actor->has_met_before = FALSE;
                 actor->lifetime_value = 0.0f;
                 break;
 
@@ -572,9 +572,9 @@ void chsmmole_Update(Actor * this){
                     chsmmole_skipIntroTutorial(); //give all SM moves
                 }
                 this->unk38_0 = 0;
-            }else if(!this->is_first_encounter && 5.0 < this->lifetime_value){
+            }else if(!this->has_met_before && 5.0 < this->lifetime_value){
                 gcdialog_showText(0xe1d, 0x86, this->position, this->marker, func_803892C8, NULL);
-                this->is_first_encounter = TRUE;
+                this->has_met_before = TRUE;
             }
         }
         break;

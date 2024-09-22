@@ -239,7 +239,7 @@ void chCrab_update(Actor *this) {
         marker_setCollisionScripts(this->marker, __chCrab_touch, __chCrab_ow, __chCrab_die);
         func_803300C0(this->marker, &__chCrab_802CB76C);
         this->unk124_0 = this->unk138_31 = FALSE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->volatile_initialized = TRUE;
         animctrl_setTransitionDuration(this->animctrl, 0.25f);
         if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -273,7 +273,7 @@ void chCrab_update(Actor *this) {
             gcdialog_showText(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
             levelSpecificFlags_set(0xE, TRUE);
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
         }
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -292,8 +292,8 @@ void chCrab_update(Actor *this) {
     }
     if (levelSpecificFlags_get(0xE)) {
         if ((this->state != 8) && (this->state != 9)) {
-            subaddie_set_state_with_direction(this, (this->is_first_encounter) ? 8 : 9, 0.0f, 1);
-            this->is_first_encounter = FALSE;
+            subaddie_set_state_with_direction(this, (this->has_met_before) ? 8 : 9, 0.0f, 1);
+            this->has_met_before = FALSE;
         }
     }
 

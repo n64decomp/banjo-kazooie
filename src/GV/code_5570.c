@@ -244,9 +244,9 @@ void GV_func_8038BEA0(Actor *this){
                     }
                 }
                 else{
-                    if(!this->is_first_encounter){
+                    if(!this->has_met_before){
                         if(gcdialog_showText(ASSET_A78_TEXT_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
-                            this->is_first_encounter = TRUE;
+                            this->has_met_before = TRUE;
                         }
                     }
                 }

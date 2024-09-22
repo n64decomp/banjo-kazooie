@@ -143,10 +143,10 @@ void chBrentilda_update(Actor *this) {
         if (phi_f2 < 500.0) {
             if (sp74 < 0xFF) {
                 sp74 = (sp74 + 0xC < 0xFF) ? sp74 + 0xC : 0xFF;
-                if (!this->is_first_encounter) {
+                if (!this->has_met_before) {
                     comusic_playTrack(COMUSIC_81_ACTIVATING_BRENTILDA);
                     func_80324D2C(1.0f, COMUSIC_81_ACTIVATING_BRENTILDA);
-                    this->is_first_encounter = TRUE;
+                    this->has_met_before = TRUE;
                     this->unk138_23 = FALSE;
                 }
             }
@@ -159,7 +159,7 @@ void chBrentilda_update(Actor *this) {
                     comusic_playTrack(COMUSIC_8B_DEACTIVATE_BRENTILDA);
                     func_80324D2C(1.0f, COMUSIC_8B_DEACTIVATE_BRENTILDA);
                     this->unk138_23 = TRUE;
-                    this->is_first_encounter = FALSE;
+                    this->has_met_before = FALSE;
                 }
             }
         }

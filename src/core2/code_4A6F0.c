@@ -160,7 +160,7 @@ static void __chMumbo_textCallback(ActorMarker *caller, enum asset_e text_id, s3
             break;
 
         case ASSET_DAF_DIALOG_MUMBO_TREX_MISTAKE: //L802D1A98
-            this->is_first_encounter = FALSE;
+            this->has_met_before = FALSE;
             if(this->unk38_31 != 0){
                 func_8025A6EC(COMUSIC_2B_DING_B, 28000);
                 item_adjustByDiffWithHud(ITEM_1C_MUMBO_TOKEN, -this->unk38_31);
@@ -249,7 +249,7 @@ void chMumbo_update(Actor *this) {
         }
         this->unk38_0 = (item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unk38_31);
         this->unk10_12 = 0;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->volatile_initialized = TRUE;
     }
 
@@ -273,7 +273,7 @@ void chMumbo_update(Actor *this) {
 
         case 2: //L802D1F90
             if (actor_animationIsAt(this, 0.25f) != 0) {
-            func_8030E484(0x41);
+            sfxsource_playHighPriority(0x41);
         }
         actor_playAnimationOnce(this);
             if (actor_animationIsAt(this, 0.999f)) {
@@ -333,7 +333,7 @@ void chMumbo_update(Actor *this) {
                         ) {
                             gcdialog_showText(ASSET_DAE_DIALOG_MUMBO_TREX_START, 6, NULL, this->marker, __chMumbo_textCallback, NULL);
                             fileProgressFlag_set(FILEPROG_BA_HAS_SEEN_TREX_TEXT, 1);
-                            this->is_first_encounter = TRUE;
+                            this->has_met_before = TRUE;
                             subaddie_set_state(this, 3);
                         } else if (
                             sp44 
@@ -385,7 +385,7 @@ void chMumbo_update(Actor *this) {
             }
             if (actor_animationIsAt(this, 0.01f)) {
                 
-                if ( this->is_first_encounter
+                if ( this->has_met_before
                      || (this->unk10_12 == 0 
                         && (player_getTransformation() != TRANSFORM_1_BANJO) 
                         && (player_getTransformation() != TRANSFORM_7_WISHWASHY))
@@ -407,7 +407,7 @@ void chMumbo_update(Actor *this) {
                 func_8025A58C(-1, 1000);
             }
             if (actor_animationIsAt(this, 0.999f)) {
-                if (!this->is_first_encounter) {
+                if (!this->has_met_before) {
                     func_8028F918(0);
                 }
                 func_8025A7DC(COMUSIC_1D_MUMBO_TRANSFORMATION);
@@ -416,7 +416,7 @@ void chMumbo_update(Actor *this) {
                     chMumbo_func_802D1B8C(this, D_8037DDF0);
                     break;
                 }
-                if (this->is_first_encounter) {
+                if (this->has_met_before) {
                     subaddie_set_state(this, 3);
                     gcdialog_showText(ASSET_DAF_DIALOG_MUMBO_TREX_MISTAKE, 6, NULL, this->marker, __chMumbo_textCallback, NULL);
                     break;

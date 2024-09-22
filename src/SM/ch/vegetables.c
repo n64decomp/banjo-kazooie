@@ -223,7 +223,7 @@ void func_80387DCC(ActorMarker *marker, ActorMarker *other_marker){
 Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
 
-    if(actor->is_first_encounter)
+    if(actor->has_met_before)
         func_8033A470(3, 7);
     else
         func_8033A45C(3, 0);
@@ -320,7 +320,7 @@ void func_80388080(Actor *this){
         this->velocity_x = temp_velX;
         this->velocity_y = (local->unkC == 3) ? 90.0f : 70.0f;
         this->velocity_z = temp_velZ;
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         this->unk138_23 = 0;
         this->unk38_0 = 0;
         this->initialized = TRUE;
@@ -483,7 +483,7 @@ void func_80388080(Actor *this){
             sp54[2] = this->position_z;
             if(local->unkC == 1)
                 sp54[1] += 150.0f;
-            this->is_first_encounter = FALSE;
+            this->has_met_before = FALSE;
             func_80387A80(partEmitMgr_newEmitter(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         

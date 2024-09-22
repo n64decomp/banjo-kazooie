@@ -85,12 +85,12 @@ void func_8038B900(Actor *this){
         }
 
         if(this->state == 1){
-            if( !this->is_first_encounter
+            if( !this->has_met_before
                 && func_80329530(this, 0x258)
                 && !func_8028ECAC()
             ){
                 gcdialog_showText(0xb9b, 4, 0, 0, 0, 0);
-                this->is_first_encounter = TRUE;
+                this->has_met_before = TRUE;
             }
         }
 

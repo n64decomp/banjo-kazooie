@@ -117,7 +117,7 @@ void func_80387774(Actor **this_ptr){
         && player_throwCarriedObject()
     ){
         func_8028FA34(!mapSpecificFlags_get(0)? 0x149 : 0x14a, *this_ptr);
-        (*this_ptr)->is_first_encounter = TRUE;
+        (*this_ptr)->has_met_before = TRUE;
     }
 
 }
@@ -146,11 +146,11 @@ void func_803878CC(Actor * this){
     }//L80387970
 
     if(func_80329530(this, 250) && !func_80329530(this, 80)
-        && !this->is_first_encounter
+        && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
         gcdialog_showText(ASSET_A0B_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80387520, NULL);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         subaddie_set_state_forward(this, 3);
     }
 
@@ -162,7 +162,7 @@ void func_803878CC(Actor * this){
         }
         
         this->unk138_23 = TRUE;
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
 
     }//L80387A54
 

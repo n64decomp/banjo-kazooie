@@ -69,9 +69,9 @@ void __chMazeCtrl_setState(Actor *this, s32 next_state){
         item_set(ITEM_0_HOURGLASS_TIMER, 0xdd3);
         item_set(ITEM_6_HOURGLASS, TRUE);
         func_8038F520(1.0f);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.8f, 25000);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 25000);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.5f, 25000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.8f, 25000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.7f, 25000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.5f, 25000);
         if(1500.0f < plyr_pos[0]){
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(0.0f, 8);
@@ -104,10 +104,10 @@ void __chMazeCtrl_setState(Actor *this, s32 next_state){
     }//L8038F850
 
     if(next_state == 4){
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.8f, 29000);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.7f, 28000);
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.5f, 31000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 1.0f, 30000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.8f, 29000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.7f, 28000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.5f, 31000);
         func_8030E6D4(SFX_52_BANJO_YAH_OH);
         tmp_v0 = func_8034C528(400);
         if(tmp_v0){

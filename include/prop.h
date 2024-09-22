@@ -260,7 +260,7 @@ typedef struct actor_s{
     u32 unk138_28:1;
     u32 unk138_27:2;
     u32 unk138_25:1;
-    u32 is_first_encounter:TRUE;
+    u32 has_met_before:1;
     u32 unk138_23:1;
     u32 unk138_22:1;
     u32 unk138_21:1;

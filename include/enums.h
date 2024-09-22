@@ -1364,7 +1364,7 @@ enum sfx_e
     SFX_3F2_UNKNOWN, //gold_chest_ttc
 
     SFX_3F5_UNKNOWN = 0x3F5, //RBB/code_5F80
-    SFX_3F6_UNKNOWN, //lair/code_0 func_803880BC
+    SFX_3F6_RUBBING, //lair/code_0 func_803880BC
     SFX_3F7_UNKNOWN, //gv/histup
     SFX_3F8_UNKNOWN, //gv/histup
     SFX_3F9_UNKNOWN, //chmole
@@ -2299,7 +2299,7 @@ enum mm_specific_flags {
     MM_SPECIFIC_FLAG_6_UNKNOWN = 0x6,
 
     MM_SPECIFIC_FLAG_8_HIT_WITH_ORANGE = 0x8,
-    MM_SPECIFIC_FLAG_9_UNKNOWN,
+    MM_SPECIFIC_FLAG_9_JUJU_HAS_HALF_TURNED,
     MM_SPECIFIC_FLAG_A_UNKNOWN
 };
 

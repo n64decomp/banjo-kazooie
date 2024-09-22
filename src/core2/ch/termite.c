@@ -146,7 +146,7 @@ void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg
     Actor *this;
 
     this = marker_getActor(caller);
-    this->is_first_encounter = FALSE;
+    this->has_met_before = FALSE;
     levelSpecificFlags_set(0xd, FALSE);
 }
 
@@ -159,7 +159,7 @@ void chTermite_update(Actor *this) {
     if (!this->volatile_initialized) {
         marker_setCollisionScripts(this->marker, NULL, __chTermite_ow, __chTermite_die);
         this->unk124_0 = this->unk138_31 = FALSE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->unk16C_0 = TRUE;
         this->volatile_initialized = TRUE;
     }
@@ -173,7 +173,7 @@ void chTermite_update(Actor *this) {
         gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
         levelSpecificFlags_set(0xD, TRUE);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
     }
 
     if( func_80329530(this, 300)

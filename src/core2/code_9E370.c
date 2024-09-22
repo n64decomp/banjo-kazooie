@@ -883,7 +883,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk14C[0] = NULL;
     suLastBaddie->unk14C[1] = NULL;
     suLastBaddie->unk138_27 = 0;
-    suLastBaddie->is_first_encounter = FALSE;
+    suLastBaddie->has_met_before = FALSE;
     suLastBaddie->unk138_23 = 0;
     suLastBaddie->unk138_22 = 0;
     suLastBaddie->unk138_21 = 0;
