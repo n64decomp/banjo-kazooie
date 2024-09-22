@@ -757,7 +757,7 @@ void func_803422AC(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 
 s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
     s32 sp84;
-    u8 sp83;
+    u8 sfxsourceIdx;
     f32 sp7C;
     s32 sp78;
     s32 sp74;
@@ -792,18 +792,18 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
                 sp74 = arg1->t0.unk4.common.bit15 * 8;
                 sp70 = arg1->t0.unk10.common.bit7;
                 if (func_8030ED70(func_80255D44(sp78))){
-                    sp83 = func_8030D90C();
-                    if (sp83 == 0){
+                    sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+                    if (sfxsourceIdx == 0){
                         return sp84;
                     }
-                    sfxsource_setSfxId(sp83, func_80255D44(sp78));
-                    func_8030DBB4(sp83, sp7C);
-                    sfxsource_setSampleRate(sp83, sp74);
-                    func_8030E2C4(sp83);
+                    sfxsource_setSfxId(sfxsourceIdx, func_80255D44(sp78));
+                    sfxsource_playSfxAtVolume(sfxsourceIdx, sp7C);
+                    sfxsource_setSampleRate(sfxsourceIdx, sp74);
+                    func_8030E2C4(sfxsourceIdx);
                     if (D_803858A0[sp70] != 0){
                         func_8030DA44(D_803858A0[sp70]);
                     }
-                    D_803858A0[sp70] = sp83;
+                    D_803858A0[sp70] = sfxsourceIdx;
                 } else {
                     func_8030E6A4(func_80255D44(sp78), sp7C, sp74);
                 }
@@ -1267,10 +1267,10 @@ void func_80343E20(s32 arg0, s32 arg1, f32 arg2, s32 arg3) {
     u8 temp_v0;
 
     if (func_8030ED70(func_80255D44(arg0)) != 0) {
-        temp_v0 = func_8030D90C();
+        temp_v0 = sfxsource_createSfxsourceAndReturnIndex();
         if (temp_v0 != 0) {
             sfxsource_setSfxId(temp_v0, func_80255D44(arg0));
-            func_8030DBB4(temp_v0, arg2);
+            sfxsource_playSfxAtVolume(temp_v0, arg2);
             sfxsource_setSampleRate(temp_v0, arg1);
             func_8030E2C4(temp_v0);
             if (D_803858A0[arg3] != 0) {

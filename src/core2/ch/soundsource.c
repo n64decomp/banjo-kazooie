@@ -9,12 +9,12 @@ typedef struct{
     s16 unk4;
     s16 unk6;
     s32 unk8;
-    f32 unkC;
+    f32 unkC; // volume for sfxsource
     f32 unk10;
 }struct49570s;
 
 typedef struct{
-    u8 unk0;
+    u8 sfxsourceIdx;
 }ActorLocal_Core2_49570;
 
 /* .data */
@@ -36,9 +36,9 @@ void func_802D0500(Actor *this){
     ActorLocal_Core2_49570 *local = (ActorLocal_Core2_49570 *)this->local;
     if(D_80367340[(s32)this->yaw].unk8 != -1){
         if(this->unk1C[0] == this->unk1C[1])
-            sfxsource_setSampleRate(local->unk0, D_80367340[(s32)this->yaw].unk8);
+            sfxsource_setSampleRate(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unk8);
         else{
-            sfxsource_setSampleRate(local->unk0, (s32)((D_80367340[(s32)this->yaw].unk8/this->unk1C[1])*this->unk1C[0]));
+            sfxsource_setSampleRate(local->sfxsourceIdx, (s32)((D_80367340[(s32)this->yaw].unk8/this->unk1C[1])*this->unk1C[0]));
 
         }
     }
@@ -46,9 +46,9 @@ void func_802D0500(Actor *this){
 
 void func_802D05A0(Actor *this, s32 next_state){
     ActorLocal_Core2_49570 *local = (ActorLocal_Core2_49570 *)this->local;
-    if(this->state == 2 && local->unk0){
-        func_8030DA44(local->unk0);
-        local->unk0 = 0;
+    if(this->state == 2 && local->sfxsourceIdx){
+        func_8030DA44(local->sfxsourceIdx);
+        local->sfxsourceIdx = 0;
     }
     if(next_state == 2){
         this->unk1C[0] = 0.0f;
@@ -56,17 +56,17 @@ void func_802D05A0(Actor *this, s32 next_state){
         if(-1.0f != D_80367340[(s32)this->yaw].unk10){
             this->unk1C[1] = D_80367340[(s32)this->yaw].unk10;
         }
-        local->unk0 = func_8030D90C();
-        sfxsource_setSfxId(local->unk0, D_80367340[(s32)this->yaw].unk0);
-        func_8030DD14(local->unk0, 3);
-        func_8030DFF0(local->unk0, 1);
-        sfxsource_set_position(local->unk0, this->position);
-        sfxsource_set_fade_distances(local->unk0, D_80367340[(s32)this->yaw].unk4*this->scale, D_80367340[(s32)this->yaw].unk6*this->scale);
-        func_8030DFB4(local->unk0, 1);
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+        sfxsource_setSfxId(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unk0);
+        func_8030DD14(local->sfxsourceIdx, 3);
+        func_8030DFF0(local->sfxsourceIdx, 1);
+        sfxsource_set_position(local->sfxsourceIdx, this->position);
+        sfxsource_set_fade_distances(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unk4*this->scale, D_80367340[(s32)this->yaw].unk6*this->scale);
+        func_8030DFB4(local->sfxsourceIdx, 1);
         func_802D0500(this);
         if(-1.0f != D_80367340[(s32)this->yaw].unkC)
-            func_8030DBB4(local->unk0, D_80367340[(s32)this->yaw].unkC);
-        func_8030E2C4(local->unk0);
+            sfxsource_playSfxAtVolume(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unkC);
+        func_8030E2C4(local->sfxsourceIdx);
     }//L802D0780
     this->state = next_state;
 }

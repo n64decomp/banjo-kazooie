@@ -142,7 +142,7 @@ void chjinjonator_8039040C(Actor *this){
     f32 tick = time_getDelta();
     
     local->unk14 = MIN(1.99, local->unk14 + local->unk18*tick);
-    func_8030DBB4(this->unk44_31, local->unk14);
+    sfxsource_playSfxAtVolume(this->unk44_31, local->unk14);
     if(func_8030E3FC(this->unk44_31) == 0)
         func_8030E2C4(this->unk44_31);
 }
@@ -167,7 +167,7 @@ void chjinjonator_update(Actor *this){
         func_8025A58C(0, 0x7fff);
         this->unk44_31 = func_8030ED2C(SFX_17A_SHIPHORN, 3);
         sfxsource_setSampleRate(this->unk44_31, 25000);
-        func_8030DBB4(this->unk44_31, local->unk14);
+        sfxsource_playSfxAtVolume(this->unk44_31, local->unk14);
         func_8030E2C4(this->unk44_31);
         local->unk28 = 0xC;
     }//L80390574
@@ -240,7 +240,7 @@ void chjinjonator_update(Actor *this){
                     local->unk14 = 0.4f;
                     this->unk44_31 = func_8030ED2C(0x416, 3);
                     sfxsource_setSampleRate(this->unk44_31, 26000);
-                    func_8030DBB4(this->unk44_31, local->unk14);
+                    sfxsource_playSfxAtVolume(this->unk44_31, local->unk14);
                     func_8030E2C4(this->unk44_31);
                 }//L803908AC
                 local->unk1C = 0.5f;

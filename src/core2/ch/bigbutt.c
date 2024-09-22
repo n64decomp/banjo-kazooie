@@ -236,12 +236,12 @@ void func_802C6240(Actor *this){
                     this->unk28  += 5.7;
                     tmp_a0 = this->unk44_31;
                     if(this->unk44_31 == 0){
-                        this->unk44_31 = func_8030D90C();
+                        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
                         tmp_a0 = this->unk44_31;
                     }
                     sfxsource_setSfxId(tmp_a0, SFX_18_BIGBUTT_SLIDE);
                     func_8030DD14(this->unk44_31, 2);
-                    func_8030DBB4(this->unk44_31, (randf()*0.1 - 0.05) + 1.0);
+                    sfxsource_playSfxAtVolume(this->unk44_31, (randf()*0.1 - 0.05) + 1.0);
                     func_8030E2C4(this->unk44_31);
                 }
                 else{//L802C69FC

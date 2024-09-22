@@ -34,7 +34,7 @@ f32 D_80389C24[3] = {4000.0f, 3500.0f, 0.0f};
 /* .bss */
 struct {
     s32 unk0;
-    u8 unk4;
+    u8 sfxsourceIdx;
     //u8 pad5[0x3];
     f32 unk8;
     f32 unkC[3];
@@ -80,7 +80,7 @@ void func_803884A8(s32 arg0, f32 arg1, s32 arg2, s32 arg3){
 void func_80388518(s32 arg0){
     s32 sp24;
     if(D_80389FA0.unk21 == 2){
-        func_8030E394(D_80389FA0.unk4);
+        func_8030E394(D_80389FA0.sfxsourceIdx);
         func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.6f, 20000);
         func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 20000);
         func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 0.9f, 20000);
@@ -93,12 +93,12 @@ void func_80388518(s32 arg0){
         skeletalAnim_set(D_80389FA0.unk0, ASSET_C3_ANIM_CLANKER_IDLE, 0.0f, 10.0f);
     }
     if(D_80389FA0.unk21 == 2){
-        func_8030DD90(D_80389FA0.unk4, 0);
-        func_8030DBB4(D_80389FA0.unk4, 1.0f);
-        sfxsource_setSfxId(D_80389FA0.unk4, SFX_7D_ANCHOR_LIFTING);
-        func_8030DD14(D_80389FA0.unk4, 3);
-        sfxsource_setSampleRate(D_80389FA0.unk4, 27000);
-        func_8030E2C4(D_80389FA0.unk4);
+        func_8030DD90(D_80389FA0.sfxsourceIdx, 0);
+        sfxsource_playSfxAtVolume(D_80389FA0.sfxsourceIdx, 1.0f);
+        sfxsource_setSfxId(D_80389FA0.sfxsourceIdx, SFX_7D_ANCHOR_LIFTING);
+        func_8030DD14(D_80389FA0.sfxsourceIdx, 3);
+        sfxsource_setSampleRate(D_80389FA0.sfxsourceIdx, 27000);
+        func_8030E2C4(D_80389FA0.sfxsourceIdx);
     }
 
     if(D_80389FA0.unk21 == 3){
@@ -249,7 +249,7 @@ int CC_func_80388CA0(void){
 void func_80388CB4(void){
     if(D_80389FA0.unk21){
         skeletalAnim_free(D_80389FA0.unk0);
-        func_8030DA44(D_80389FA0.unk4);
+        func_8030DA44(D_80389FA0.sfxsourceIdx);
         func_80340690(D_80389FA0.unk18);
         func_8034A2A8(D_80389FA0.unk34);
         if(model_getVtxList(D_80389FA0.unk24) != D_80389FA0.unk40)
@@ -267,7 +267,7 @@ void func_80388D54(void){
     D_80389FA0.unk21 = 0;
     if(map_get() == MAP_B_CC_CLANKERS_CAVERN){
         D_80389FA0.unk0 = skeletalAnim_new();
-        D_80389FA0.unk4 = func_8030D90C();
+        D_80389FA0.sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         D_80389FA0.unk8 = 1.0f;
         D_80389FA0.unk18 = func_803406B0();
         D_80389FA0.unk21 = 0;

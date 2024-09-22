@@ -211,7 +211,7 @@ void func_8035F138(Actor *this) {
             if (this->unk1C[1] < 1.9) {
                 this->unk1C[1] += 0.1;
             }
-            func_8030DBB4(this->unk44_31, this->unk1C[1]);
+            sfxsource_playSfxAtVolume(this->unk44_31, this->unk1C[1]);
             if (actor_animationIsAt(this, 0.66f)) {
                 FUNC_8030E8B4(SFX_F9_GRUNTLING_NOISE_1, 0.8f, 32000, this->position, 1750, 3500);
 
@@ -272,7 +272,7 @@ void func_8035F138(Actor *this) {
                 if (this->unk1C[1] > 1.0) {
                     this->unk1C[1] -= 0.1;
                 }
-                func_8030DBB4(this->unk44_31, this->unk1C[1]);
+                sfxsource_playSfxAtVolume(this->unk44_31, this->unk1C[1]);
             }
             if (animctrl_getAnimTimer(this->animctrl) <= 0.02) {
                 subaddie_set_state_with_direction(this, 1, 0.02f, 1);

@@ -145,10 +145,10 @@ void func_80388FA0(Actor *this, s32 arg1){
             if(myOther && other && myOther->id == 0xB8)
                 subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
             actor_playAnimationOnce(this);
-            this->unk44_31 = func_8030D90C();
+            this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
-            func_8030DBB4(this->unk44_31, 1.4f);
+            sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
             sfxsource_setSampleRate(this->unk44_31, 0x6590);
             func_8028F918(0);
             break;
@@ -170,10 +170,10 @@ void func_80388FA0(Actor *this, s32 arg1){
                  subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
             animctrl_setSmoothTransition(this->animctrl, 1);
             actor_playAnimationOnce(this);
-            this->unk44_31 = func_8030D90C();
+            this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, 0x3f9);
             func_8030DD14(this->unk44_31, 2);
-            func_8030DBB4(this->unk44_31, 1.4f);
+            sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
             sfxsource_setSampleRate(this->unk44_31, 0x6590);
             chsmmole_setSpiralMountainStaticCamera(this);
             func_8028F94C(2, this->position);

@@ -31,7 +31,7 @@ u8 D_8037C6C4;
 u32 D_8037C6C8;
 f32 D_8037C6CC;
 struct{
-    u8 unk0;
+    u8 sfxsourceIdx;
     f32 unk4;
     f32 unk8;
     f32 unkC;
@@ -74,11 +74,11 @@ void func_80299650(f32 arg1, f32 arg2){
 void func_802997E8(void){
     f32 f12;
     f32 f2;
-    if(D_8037C6D0.unk0){
+    if(D_8037C6D0.sfxsourceIdx){
         D_8037C6D0.unk4 += time_getDelta();
         if(D_8037C6D0.unk8 <= D_8037C6D0.unk4){
-            func_8030DA44(D_8037C6D0.unk0);
-            D_8037C6D0.unk0 = 0;
+            func_8030DA44(D_8037C6D0.sfxsourceIdx);
+            D_8037C6D0.sfxsourceIdx = 0;
         }
         else{
             f12 = D_8037C6D0.unk4/D_8037C6D0.unk8;
@@ -91,7 +91,7 @@ void func_802997E8(void){
             else{
                 f2 = ml_map_f(f12, D_8037C6D0.unk10, 1.0f, D_8037C6D0.unk18, D_8037C6D0.unk1C);
             }
-            func_8030DBB4(D_8037C6D0.unk0, f2);
+            sfxsource_playSfxAtVolume(D_8037C6D0.sfxsourceIdx, f2);
         }
     }
 }
@@ -102,28 +102,28 @@ void func_802998D0(u8 indx){
 
 void func_80299900(void){
     D_8037C6C8 = 0;
-    D_8037C6C0 = func_8030D90C();
+    D_8037C6C0 = sfxsource_createSfxsourceAndReturnIndex();
     func_8030DD14(D_8037C6C0, 3);
     func_8030DD90(D_8037C6C0, 0);
     D_8037C6CC = 1.0f;
     
-    D_8037C6C1 = func_8030D90C();
+    D_8037C6C1 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(D_8037C6C1, SFX_18_BIGBUTT_SLIDE);
     func_8030DD54(D_8037C6C1, func_802998D0);
     sfxsource_setSampleRate(D_8037C6C1, 28000);
     func_8030DD14(D_8037C6C1, 2);
     func_8030DD90(D_8037C6C1, 0);
 
-    D_8037C6C2 = func_8030D90C();
+    D_8037C6C2 = sfxsource_createSfxsourceAndReturnIndex();
     func_8030DD90(D_8037C6C2, 0);
     
-    D_8037C6C3 = func_8030D90C();
+    D_8037C6C3 = sfxsource_createSfxsourceAndReturnIndex();
     func_8030DD90(D_8037C6C3, 0);
 
-    D_8037C6C4 = func_8030D90C();
+    D_8037C6C4 = sfxsource_createSfxsourceAndReturnIndex();
     func_8030DD90(D_8037C6C4, 0);
     func_8030DD14(D_8037C6C4, 3);
-    D_8037C6D0.unk0 = 0;
+    D_8037C6D0.sfxsourceIdx = 0;
 }
 
 void func_80299A20(void){
@@ -132,8 +132,8 @@ void func_80299A20(void){
     func_8030DA44(D_8037C6C3);
     func_8030DA44(D_8037C6C2);
     func_8030DA44(D_8037C6C4);
-    if(D_8037C6D0.unk0){
-        func_8030DA44(D_8037C6D0.unk0);
+    if(D_8037C6D0.sfxsourceIdx){
+        func_8030DA44(D_8037C6D0.sfxsourceIdx);
     }
 }
 
@@ -145,7 +145,7 @@ void func_80299AAC(void){
     D_8037C6CC += randf()*0.1 - 0.05;
     D_8037C6CC = ml_max_f(D_8037C6CC, 0.9f);
     D_8037C6CC = ml_min_f(D_8037C6CC, 1.5f);
-    func_8030DBB4(D_8037C6C1, D_8037C6CC);
+    sfxsource_playSfxAtVolume(D_8037C6C1, D_8037C6CC);
     func_8030E2C4(D_8037C6C1);
 }
 
@@ -162,7 +162,7 @@ void func_80299BD4(void){
 
 void func_80299BFC(f32 arg0){
     sfxsource_setSfxId(D_8037C6C0, D_80364564[D_8037C6C8]);
-    func_8030DBB4(D_8037C6C0, arg0);
+    sfxsource_playSfxAtVolume(D_8037C6C0, arg0);
     func_8030E2C4(D_8037C6C0);
     ++D_8037C6C8;
     if(D_8037C6C8 >= 8)
@@ -171,7 +171,7 @@ void func_80299BFC(f32 arg0){
 
 void func_80299C78(u8 indx, enum sfx_e sfx_id, f32 arg2, s32 arg3){
     sfxsource_setSfxId(indx, sfx_id);
-    func_8030DBB4(indx, arg2);
+    sfxsource_playSfxAtVolume(indx, arg2);
     sfxsource_setSampleRate(indx, arg3);
     func_8030E2C4(indx);
 }

@@ -243,13 +243,13 @@ void func_8034E174(Struct6Ds *arg0){
 
 void func_8034E1A4(Struct6Ds *arg0, enum sfx_e sfx_id, f32 arg2, f32 arg3){
     if(arg0->unk0 == 0){
-        arg0->unk0 = func_8030D90C();
+        arg0->unk0 = sfxsource_createSfxsourceAndReturnIndex();
     }
     arg0->unk20 = arg2;
     arg0->unk24 = arg3;
     sfxsource_setSfxId(arg0->unk0, sfx_id);
     func_8030DD14(arg0->unk0, 3);
-    func_8030DBB4(arg0->unk0, (arg2 +arg3)/2);
+    sfxsource_playSfxAtVolume(arg0->unk0, (arg2 +arg3)/2);
     sfxsource_setSampleRate(arg0->unk0, 32000);
     func_8030E2C4(arg0->unk0);
 }
@@ -335,7 +335,7 @@ void func_8034E26C(Struct6Ds *arg0, BKModel *model, s32 mesh_id) {
             if (0.85 <= sp28) {
                 sp20 = (1.0 - ((sp28 - 0.85) / 0.15000000000000002)) * sp20;
             }
-        func_8030DBB4(arg0->unk0, sp24);
+        sfxsource_playSfxAtVolume(arg0->unk0, sp24);
         sfxsource_setSampleRate(arg0->unk0, sp20);
     }
     switch (arg0->unk29) {

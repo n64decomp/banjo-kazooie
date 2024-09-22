@@ -384,9 +384,9 @@ Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4)
 Actor * spawn_actor(enum actor_e id, s32 pos[3], s32 yaw);
 f32  mapModel_getFloorY(f32[3]);
 BKModelBin *func_8030A428(s32);
-u8   func_8030D90C(void);
+u8   sfxsource_createSfxsourceAndReturnIndex(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
-void func_8030DBB4(u8, f32);
+void sfxsource_playSfxAtVolume(u8, f32);
 void func_8030DD14(u8, int);
 void sfxsource_set_position(u8, f32[3]);
 void func_8030DFF0(u8, s32);

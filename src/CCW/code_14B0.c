@@ -13,7 +13,7 @@ typedef struct{
 }Struct_CCW_14B0_0;
 
 typedef struct {
-    u8 unk0;
+    u8 sfxsourceIdx;
     // u8 pad1[3];
     Struct_CCW_14B0_0 *unk4;
     f32 unk8;
@@ -55,7 +55,7 @@ void func_803878A0(Actor *this, s32 next_state) {
 
 void CCW_func_80387A20(Actor *this){
     ActorLocal_CCW_14B0 *local = (ActorLocal_CCW_14B0 *)&this->local;
-    func_8030DA44(local->unk0);
+    func_8030DA44(local->sfxsourceIdx);
 }
 
 void CCW_func_80387A40(Actor *this) {
@@ -76,12 +76,12 @@ void CCW_func_80387A40(Actor *this) {
         while((local->unk4->unk0 != 0) && (map_get() != local->unk4->unk0)) {
             local->unk4++;
         }
-        local->unk0 = func_8030D90C();
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         local->unk18[0] = local->unk18[1] = local->unk18[2] = 0.0f;
-        sfxsource_setSfxId(local->unk0, 0x3FA);
-        func_8030DD14(local->unk0, 2);
-        func_8030DBB4(local->unk0, 0.9f);
-        sfxsource_setSampleRate(local->unk0, 0);
+        sfxsource_setSfxId(local->sfxsourceIdx, 0x3FA);
+        func_8030DD14(local->sfxsourceIdx, 2);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.9f);
+        sfxsource_setSampleRate(local->sfxsourceIdx, 0);
         func_803878A0(this, 1);
         return;
     }
@@ -113,11 +113,11 @@ void CCW_func_80387A40(Actor *this) {
 
     if(this->position[0]);
 
-    func_8030DBFC(local->unk0, 0.8f, 0.9f, 0.05f);
-    sfxsource_set_fade_distances(local->unk0, 500.0f, 1500.0f);
-    sfxsource_set_position(local->unk0, this->position);
-    func_8030E2C4(local->unk0);
-    sfxsource_setSampleRate(local->unk0, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
+    func_8030DBFC(local->sfxsourceIdx, 0.8f, 0.9f, 0.05f);
+    sfxsource_set_fade_distances(local->sfxsourceIdx, 500.0f, 1500.0f);
+    sfxsource_set_position(local->sfxsourceIdx, this->position);
+    func_8030E2C4(local->sfxsourceIdx);
+    sfxsource_setSampleRate(local->sfxsourceIdx, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
     if (!mapSpecificFlags_get(local->unk4->unk2)) {
         player_getPosition(sp44);
         if (sp44[2] > -600.0f) {

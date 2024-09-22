@@ -44,7 +44,7 @@ typedef struct {
     u8 unk43_1:2;
 }SfxSource;
 
-u8   func_8030D90C(void);
+u8   sfxsource_createSfxsourceAndReturnIndex(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
 void sfxsource_setSampleRate(u8, s32);
 void func_8030DD90(u8, s32);
@@ -193,20 +193,20 @@ void func_8030CC90(SfxSource *arg0){
     }
 }
 
-s32 func_8030CCF0(SfxSource *arg0, s32 arg1){
-    f32 plyr_pos[3];
+s32 func_8030CCF0(SfxSource *arg0, s32 sample_rate){
+    f32 player_position[3];
     f32 diff[3];
     f32 dist_sqr;
     s32 retVal;
-    __sfx_getPlayerPositionIfPresent(plyr_pos);
-    diff[0] = arg0->position[0] - plyr_pos[0];
-    diff[1] = arg0->position[1] - plyr_pos[1];
-    diff[2] = arg0->position[2] - plyr_pos[2];
+    __sfx_getPlayerPositionIfPresent(player_position);
+    diff[0] = arg0->position[0] - player_position[0];
+    diff[1] = arg0->position[1] - player_position[1];
+    diff[2] = arg0->position[2] - player_position[2];
     dist_sqr = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
     if( dist_sqr < arg0->fade_inner_radius_sqr)
-        retVal = arg1;
+        retVal = sample_rate;
     else if( dist_sqr < arg0->fade_outer_radius_sqr) 
-        retVal = arg0->unk14 + (((arg0->fade_outer_radius_sqr-dist_sqr))/(arg0->fade_outer_radius_sqr - arg0->fade_inner_radius_sqr))*(arg1 - arg0->unk14);
+        retVal = arg0->unk14 + (((arg0->fade_outer_radius_sqr-dist_sqr))/(arg0->fade_outer_radius_sqr - arg0->fade_inner_radius_sqr))*(sample_rate - arg0->unk14);
     else
         retVal = arg0->unk14;
     return retVal;
@@ -421,11 +421,11 @@ void func_8030D644(void){
 }
 
 void func_8030D6C4(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    u8 indx = func_8030D90C();
+    u8 indx = sfxsource_createSfxsourceAndReturnIndex();
     if(indx){
         sfxsource_setSfxId(indx, uid);
         sfxsource_setSampleRate(indx, arg2);
-        func_8030DBB4(indx, arg1);
+        sfxsource_playSfxAtVolume(indx, arg1);
         func_8030DCCC(indx, arg3);
         func_8030DD14(indx, 1);
         func_8030DD90(indx, arg4);
@@ -477,7 +477,7 @@ void func_8030D8DC(void){
     func_8030D8B4();
 }
 
-u8 func_8030D90C(void){
+u8 sfxsource_createSfxsourceAndReturnIndex(void){
     u8 s1 = sfxsource_getNewIndex();
     SfxSource *s0;
 
@@ -550,7 +550,7 @@ void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 min_dist, f32 max_dist){
     sfxsource_setSampleRate(indx, (s32)arg1*temp_f2);
 }
 
-void func_8030DBB4(u8 indx, f32 arg1){
+void sfxsource_playSfxAtVolume(u8 indx, f32 arg1){
     SfxSource *temp_v0;
     if(indx){
         temp_v0 = sfxsource_at(indx);
@@ -577,7 +577,7 @@ void func_8030DBFC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
             temp_f2 = temp_f0;
         }
     }
-    func_8030DBB4(indx, temp_f2);
+    sfxsource_playSfxAtVolume(indx, temp_f2);
 
 }
 
@@ -700,7 +700,7 @@ void func_8030E04C(u8 indx, f32 arg1, f32 arg2, f32 arg3){
         ptr->unk43_1 = 1;
         ptr->unk1C = arg3;
         ptr->unk20 = arg2;
-        func_8030DBB4(indx, arg1);
+        sfxsource_playSfxAtVolume(indx, arg1);
     }
 }
 
@@ -722,7 +722,7 @@ void func_8030E0FC(u8 indx, f32 arg1, f32 arg2, f32 arg3){
         ptr->unk24 = arg3;
         ptr->unk20 = arg1;
         ptr->unk1C = arg2;
-        func_8030DBB4(indx, (arg1 + arg2)/2);
+        sfxsource_playSfxAtVolume(indx, (arg1 + arg2)/2);
     }
 }
 
@@ -901,19 +901,19 @@ void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2){
 
 void sfx_play(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance, s32 arg6){
     u8 sfxsource;
-    f32 plyr_pos[3];
+    f32 player_position[3];
     
-    __sfx_getPlayerPositionIfPresent(plyr_pos);
-    if( !(maxFadeDistance <= ml_distance_vec3f(plyr_pos, position))
+    __sfx_getPlayerPositionIfPresent(player_position);
+    if( !(maxFadeDistance <= ml_distance_vec3f(player_position, position))
         && levelSpecificFlags_validateCRC2()
         && dummy_func_80320240()
     ){
-        sfxsource = func_8030D90C();
+        sfxsource = sfxsource_createSfxsourceAndReturnIndex();
         if(sfxsource){
             func_8030DD90(sfxsource, arg6); // priority ?
             sfxsource_setSfxId(sfxsource, uid);
             sfxsource_setSampleRate(sfxsource, sampleRate);
-            func_8030DBB4(sfxsource, arg1); // volume ?
+            sfxsource_playSfxAtVolume(sfxsource, arg1); // volume ?
             sfxsource_set_fade_distances(sfxsource, minFadeDistance, maxFadeDistance);
             sfxsource_set_position(sfxsource, position);
             func_8030DD14(sfxsource, 1);
@@ -980,11 +980,11 @@ void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4){
 }
 
 void func_8030EC74(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4, f32 arg5[3]){
-    u8 indx = func_8030D90C();
+    u8 indx = sfxsource_createSfxsourceAndReturnIndex();
     if(indx){
         sfxsource_setSfxId(indx, uid);
         sfxsource_setSampleRate(indx, sfx_randi2(arg3, arg4));
-        func_8030DBB4(indx, sfx_randf2(arg1, arg2));
+        sfxsource_playSfxAtVolume(indx, sfx_randf2(arg1, arg2));
         sfxsource_set_position(indx, arg5);
         func_8030DD14(indx, 1);
         func_8030E2C4(indx);
@@ -996,7 +996,7 @@ void func_8030ED0C(void){
 }
 
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1){
-    u8 indx = func_8030D90C();
+    u8 indx = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(indx, uid);
     func_8030DD14(indx, arg1);
     return indx;

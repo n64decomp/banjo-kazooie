@@ -78,7 +78,7 @@ void MMM_func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
     sp3F = func_80351758(arg1);
     sfxsource_setSfxId(sp3F, SFX_3EC_CCW_DOOR_OPENING);
     func_8030DD14(sp3F, 3);
-    func_8030DBB4(sp3F, 0.6f);
+    sfxsource_playSfxAtVolume(sp3F, 0.6f);
     sfxsource_setSampleRate(sp3F, 0);
     func_8030E2C4(sp3F);
     func_8035179C(arg1, sp28);

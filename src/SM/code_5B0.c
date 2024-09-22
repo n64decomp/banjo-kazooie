@@ -102,11 +102,11 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
 void SM_func_80386D68(Actor *this){
     FUNC_8030E8B4(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
 
-    this->unk44_31 = func_8030D90C();
+    this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, 0x3F9);
     func_8030DD14(this->unk44_31, 3);
     sfxsource_setSampleRate(this->unk44_31, 32000);
-    func_8030DBB4(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
+    sfxsource_playSfxAtVolume(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
     func_8030E2C4(this->unk44_31);
     func_80386B04(partEmitMgr_newEmitter(0xA), this->position, 0xA, this->scale);
     func_80386C2C(partEmitMgr_newEmitter(0x10), this->position, 0x10, this->scale);

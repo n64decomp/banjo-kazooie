@@ -446,7 +446,7 @@ typedef struct struct_4D_s{
 }struct4Ds;
 
 typedef struct{
-    u8 unk0;
+    u8 unk0; // sfxsource index
     u8 pad1[0x3];
     f32 unk4;
     f32 unk8;
@@ -587,7 +587,7 @@ typedef struct struct_65_s{
 typedef void  (*Struct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
 
 typedef struct struct_68_s{
-    u8 unk0;
+    u8 unk0; // sfxsource index
     // u8 pad1[0x3];
     struct actorMarker_s *unk4;
     Struct68DrawMethod unk8;
@@ -619,7 +619,7 @@ typedef struct{
 } Struct6Cs;
 
 typedef struct struct_6D_s{
-    u8 unk0;
+    u8 unk0; //sfxsource index
     // u8 pad1[3];
     f32 unk4;
     f32 unk8;

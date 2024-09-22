@@ -24,7 +24,7 @@ void func_8029CFF8(void){
 
 void func_8029D01C(void){
     miscFlag_clear(MISC_FLAG_13);
-    D_8037D210 = func_8030D90C();
+    D_8037D210 = sfxsource_createSfxsourceAndReturnIndex();
     D_8037D212 = 0;
 }
 
@@ -33,7 +33,7 @@ void func_8029D050(void){
     func_8030E394(D_8037D210);
     sfxsource_setSfxId(D_8037D210, SFX_14D_BANJO_FREEZING);
     sfxsource_setSampleRate(D_8037D210, 30000);
-    func_8030DBB4(D_8037D210, 1.2f);
+    sfxsource_playSfxAtVolume(D_8037D210, 1.2f);
     func_8030DD14(D_8037D210, 3);
     func_8030E2C4(D_8037D210);
 
@@ -45,7 +45,7 @@ void func_8029D0D8(void) {
     func_8030E394(D_8037D210);
     sfxsource_setSfxId(D_8037D210, SFX_B0_SIZZLING_NOISE);
     sfxsource_setSampleRate(D_8037D210, 32000);
-    func_8030DBB4(D_8037D210, randf2(0.7f, 0.8f));
+    sfxsource_playSfxAtVolume(D_8037D210, randf2(0.7f, 0.8f));
     func_8030DD14(D_8037D210, 3);
     func_8030E2C4(D_8037D210);
 }
@@ -111,7 +111,7 @@ void func_8029D2F8(void) {
                 func_8030E394(D_8037D210);
                 sfxsource_setSfxId(D_8037D210, SFX_134_FREEZING_SHIVER);
                 sfxsource_setSampleRate(D_8037D210, 20000);
-                func_8030DBB4(D_8037D210, 1.2f);
+                sfxsource_playSfxAtVolume(D_8037D210, 1.2f);
                 func_8030DD14(D_8037D210, 3);
                 func_8030E2C4(D_8037D210);
                 D_8037D211 = 2;
@@ -143,7 +143,7 @@ void func_8029D4D8(void) {
         if (!(D_8037D224 > 0.0f)) {
             D_8037D212 += -1;
             D_8037D224 = randf2(0.12f, 0.22f);
-            func_8030DBB4(D_8037D210, randf2(0.95f, 1.05f));
+            sfxsource_playSfxAtVolume(D_8037D210, randf2(0.95f, 1.05f));
             func_8030E2C4(D_8037D210);
         }
     }

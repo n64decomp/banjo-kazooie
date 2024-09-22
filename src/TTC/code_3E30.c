@@ -96,7 +96,7 @@ struct{
     BKModel *model1;
     BKModel *model2;
     u8  unk8;
-    u8  unk9;
+    u8  sfxsourceIdx;
     u8  unkA;
     u8  padB[1];
     f32 unkC;
@@ -320,7 +320,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                                 D_8038D720.unkC = 0.0f;
                                 mapSpecificFlags_set(1, TRUE);
                                 fileProgressFlag_set(0xFA, TRUE);
-                                func_8030E2C4(D_8038D720.unk9);
+                                func_8030E2C4(D_8038D720.sfxsourceIdx);
                                 func_8038A258(2);
                             } else if (var_v0 & 0xE) {
                                 func_8035644C((i_ptr - codesTable) - 1 + FILEPROG_BE_CHEATO_BLUEEGGS);
@@ -377,7 +377,7 @@ void func_8038AFC8(void){
 void func_8038B04C(void){
     if(D_8038D720.model1){
         func_8038A258(0);
-        func_8030DA44(D_8038D720.unk9);
+        func_8030DA44(D_8038D720.sfxsourceIdx);
         func_8030DA44(D_8038D720.unkA);
     }
 }
@@ -423,13 +423,13 @@ void func_8038B094(void){
         D_8038D720.unk10 = 0;
         D_8038D720.unkC = 0.0f;
 
-        D_8038D720.unk9 = func_8030D90C();
-        func_8030DBB4(D_8038D720.unk9, 0.1f);
-        sfxsource_setSfxId(D_8038D720.unk9, SFX_3EC_CCW_DOOR_OPENING);
-        func_8030DD14(D_8038D720.unk9, 3);
-        sfxsource_setSampleRate(D_8038D720.unk9, 28000);
+        D_8038D720.sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+        sfxsource_playSfxAtVolume(D_8038D720.sfxsourceIdx, 0.1f);
+        sfxsource_setSfxId(D_8038D720.sfxsourceIdx, SFX_3EC_CCW_DOOR_OPENING);
+        func_8030DD14(D_8038D720.sfxsourceIdx, 3);
+        sfxsource_setSampleRate(D_8038D720.sfxsourceIdx, 28000);
 
-        D_8038D720.unkA = func_8030D90C();
+        D_8038D720.unkA = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(D_8038D720.unkA, SFX_3_DULL_CANNON_SHOT);
         func_8030DD14(D_8038D720.unkA, 3);
         sfxsource_setSampleRate(D_8038D720.unkA, 0x7fff);
@@ -495,7 +495,7 @@ void func_8038B2F0(void) {
             if (D_8038D720.unkC > 4.0f) {
                 D_8038D720.unk8 = 3;
                 func_8030E2C4(D_8038D720.unkA);
-                func_8030E394(D_8038D720.unk9);
+                func_8030E394(D_8038D720.sfxsourceIdx);
             }
         }
     }

@@ -127,10 +127,10 @@ void chjinjonatorbase_update(Actor *this){
             local->unk0[i] = 5;
             func_8038E0D4(this, 0x19a + i, 0.0f, -300.0f, 0.0f);
         }
-        this->unk44_31 = func_8030D90C();
+        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(this->unk44_31, 0x3f9);
         func_8030DD14(this->unk44_31, 3);
-        func_8030DBB4(this->unk44_31, 1.0f);
+        sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
         sfxsource_setSampleRate(this->unk44_31, 26000);
         func_8030E2C4(this->unk44_31);
         temp_s0 = func_802F9AA8(0x3EC);

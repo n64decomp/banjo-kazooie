@@ -68,7 +68,7 @@ void __chXmasTree_spawnStar(void *marker){
 void __chXmasTree_80387038(Actor *this){
     if(func_8030E3FC(this->unk44_31))
         func_8030E394(this->unk44_31);
-    func_8030DBB4(this->unk44_31, randf2(0.9f, 1.1f));
+    sfxsource_playSfxAtVolume(this->unk44_31, randf2(0.9f, 1.1f));
     func_8030E2C4(this->unk44_31);
 }
 
@@ -93,7 +93,7 @@ void chXmasTree_update(Actor *this){
         this->marker->collidable = FALSE;
         marker_setFreeMethod(this->marker, __chXmasTree_free);
         if(this->unk44_31 == 0){
-            this->unk44_31 = func_8030D90C();
+            this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, SFX_415_UNKNOWN);
             func_8030DD14(this->unk44_31, 3);
             sfxsource_setSampleRate(this->unk44_31, 28000);

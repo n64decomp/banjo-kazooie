@@ -747,7 +747,7 @@ void func_80315C90(GcZoombox *this, s32 arg1) {
                 if ( -2.0f > phi_f14) {
                     phi_f12 -= (phi_f14 - -2.0f);
                 }
-                func_8030DBB4(this->unk108[current_sfx], alCents2Ratio(phi_f12 *100.0f));
+                sfxsource_playSfxAtVolume(this->unk108[current_sfx], alCents2Ratio(phi_f12 *100.0f));
             } else {
                 phi_f12 = (phi_f14 - phi_f2 < 0.1) ? 0.1 : phi_f14 - phi_f2;
                 phi_f12 = (phi_f12 >= 2.0)?  1.99 : phi_f12;
@@ -755,7 +755,7 @@ void func_80315C90(GcZoombox *this, s32 arg1) {
                 phi_f14 = (phi_f14 - phi_f18 < 2.0) ? phi_f14 - phi_f18 : 2.0;
                 phi_f14 = (0.1 < phi_f14) ? phi_f14 : 0.1;
 
-                func_8030DBB4(this->unk108[current_sfx], randf2(phi_f12, phi_f14));
+                sfxsource_playSfxAtVolume(this->unk108[current_sfx], randf2(phi_f12, phi_f14));
             }
 
             phi_a0 = (this->unk124[current_sfx] - phi_s1_3 < 0)? 0 : this->unk124[current_sfx] - phi_s1_3;

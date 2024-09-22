@@ -281,7 +281,7 @@ bool func_80351724(void * arg0){
 
 s32 func_80351758(Struct68s *arg0){
     if(arg0->unk0 == 0){
-        arg0->unk0 = func_8030D90C();
+        arg0->unk0 = sfxsource_createSfxsourceAndReturnIndex();
     }
     return arg0->unk0;
 }

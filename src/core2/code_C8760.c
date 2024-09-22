@@ -7,7 +7,7 @@ void func_8030DE44(u8, s32, f32);
 struct {
     ParticleEmitter *unk0;
     u8 unk4;
-    u8 unk5;
+    u8 sfxsourceIdx;
     u8 pad6[2];
 }D_803720A0 = {NULL, 0, 0};
 
@@ -21,7 +21,7 @@ void func_8034F6F0(Gfx **gdl, Mtx **mptr, s32 vptr){
 
 void func_8034F734(void){
     if(D_803720A0.unk0){
-        func_8030DA44(D_803720A0.unk5);
+        func_8030DA44(D_803720A0.sfxsourceIdx);
         particleEmitter_free(D_803720A0.unk0);
     }
 }
@@ -47,18 +47,18 @@ void func_8034F774(void){
         particleEmitter_setStartingScaleRange(D_803720A0.unk0, 1.8f, 2.2f);
         particleEmitter_emitUniformLine(D_803720A0.unk0, &sp38, &sp2C, 10);
         particleEmitter_setSpawnInterval(D_803720A0.unk0, 0.0f);
-        D_803720A0.unk5 = func_8030D90C();
+        D_803720A0.sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
 
         sp44[0] = (sp38[0] + sp2C[0])/2;
         sp44[1] = (sp38[1] + sp2C[1])/2;
         sp44[2] = (sp38[2] + sp2C[2])/2;
-        sfxsource_setSfxId(D_803720A0.unk5, 0x3EC);
-        func_8030DD14(D_803720A0.unk5, 3);
-        func_8030DFF0(D_803720A0.unk5, 1);
-        sfxsource_set_position(D_803720A0.unk5, &sp44);
-        sfxsource_set_fade_distances(D_803720A0.unk5, 400.0f, 3200.0f);
-        func_8030DE44(D_803720A0.unk5, 2, 0.5f);
-        func_8030E2C4(D_803720A0.unk5);
+        sfxsource_setSfxId(D_803720A0.sfxsourceIdx, 0x3EC);
+        func_8030DD14(D_803720A0.sfxsourceIdx, 3);
+        func_8030DFF0(D_803720A0.sfxsourceIdx, 1);
+        sfxsource_set_position(D_803720A0.sfxsourceIdx, &sp44);
+        sfxsource_set_fade_distances(D_803720A0.sfxsourceIdx, 400.0f, 3200.0f);
+        func_8030DE44(D_803720A0.sfxsourceIdx, 2, 0.5f);
+        func_8030E2C4(D_803720A0.sfxsourceIdx);
     }
 }
 

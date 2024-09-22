@@ -42,7 +42,7 @@ void chBeehive_update(Actor *this){
     if(!this->volatile_initialized){
         marker_setCollisionScripts(this->marker, NULL, NULL, chBeehive_die);
         this->marker->propPtr->unk8_3 = 1;
-        this->unk44_31 = func_8030D90C();
+        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         this->volatile_initialized = TRUE;
         this->unk38_0 = volatileFlag_get(VOLATILE_FLAG_1)| volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
     }//L802CE960
@@ -77,7 +77,7 @@ void chBeehive_update(Actor *this){
                     func_8030E394(this->unk44_31);
                     sfxsource_setSfxId(this->unk44_31, SFX_67_BEEHIVE_CLONK);
                     sfxsource_setSampleRate(this->unk44_31, 12000);
-                    func_8030DBB4(this->unk44_31, (animctrl_getAnimTimer(this->animctrl) + 0.9) - 0.4);
+                    sfxsource_playSfxAtVolume(this->unk44_31, (animctrl_getAnimTimer(this->animctrl) + 0.9) - 0.4);
                     sfxsource_set_position(this->unk44_31, this->position);
                     sfxsource_set_fade_distances(this->unk44_31, 300.0f, 1500.0f);
                     func_8030DD14(this->unk44_31, 3);

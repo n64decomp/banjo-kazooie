@@ -5,7 +5,7 @@
 
 typedef struct {
     s32 unk0;
-    u8 unk4;
+    u8 sfxsourceIdx;
     //u8 pad5[3];
     u8 *unk8;
     f32 unkC;
@@ -74,15 +74,15 @@ void func_8038C8A0(Actor *this, s32 next_state){
     this->marker->propPtr->unk8_3 = (next_state == 1) ? FALSE : TRUE;
     this->marker->collidable = (next_state == 1) ? FALSE : TRUE;
     if(this->state == 4 || this->state == 5)
-        func_8030DA44(local->unk4);
+        func_8030DA44(local->sfxsourceIdx);
     
     if(next_state == 4 || next_state == 5){
-        local->unk4 = func_8030D90C();
-        sfxsource_setSfxId(local->unk4, SFX_3EC_CCW_DOOR_OPENING);
-        func_8030DD14(local->unk4, 3);
-        func_8030DBB4(local->unk4, 0.8f);
-        sfxsource_setSampleRate(local->unk4, 0);
-        func_8030E2C4(local->unk4);
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+        sfxsource_setSfxId(local->sfxsourceIdx, SFX_3EC_CCW_DOOR_OPENING);
+        func_8030DD14(local->sfxsourceIdx, 3);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.8f);
+        sfxsource_setSampleRate(local->sfxsourceIdx, 0);
+        func_8030E2C4(local->sfxsourceIdx);
     }//L8038C9B8
 
     if(next_state == 2){
@@ -243,7 +243,7 @@ void func_8038CC98(Actor *this){
         else{
             f12 = 1.0f;
         }
-        func_8030DB04(local->unk4, f12*24000.0f, this->position, 200.0f, 1500.0f);
+        func_8030DB04(local->sfxsourceIdx, f12*24000.0f, this->position, 200.0f, 1500.0f);
         if(!func_8038D388()){
             func_8038C8A0(this, 3);
         }

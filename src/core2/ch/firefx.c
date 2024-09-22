@@ -68,7 +68,7 @@ void chfirefx_update(Actor *this){
         if(this->unkF4_8 != 0x32){
             this->unk1C[0] = 1.0f;
             this->unk44_31 = func_8030ED2C(SFX_128_FIRE_CRACKING, 2);
-            func_8030DBB4(this->unk44_31, 1.1f);
+            sfxsource_playSfxAtVolume(this->unk44_31, 1.1f);
         }
         else{
             this->unk1C[0] = 0.0f;

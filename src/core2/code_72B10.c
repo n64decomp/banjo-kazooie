@@ -31,7 +31,7 @@ s32 func_802F9AA8(enum sfx_e arg0){
     if(iPtr == endPtr)
         iPtr = vector_pushBackNew(&D_803810A0);
 
-    iPtr->unk0 = func_8030D90C();
+    iPtr->unk0 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(iPtr->unk0, arg0);
     func_8030DD14(iPtr->unk0, 3);
     sfxsource_setSampleRate(iPtr->unk0, 0x64);
@@ -105,7 +105,7 @@ void func_802F9DB8(s32 arg0, f32 arg1, f32 arg2, f32 arg3){
     ptr->unk20 = arg1;
     ptr->unk1C = arg2;
     if(ptr->unk0){
-        func_8030DBB4(ptr->unk0, (arg1 + arg2)/2);
+        sfxsource_playSfxAtVolume(ptr->unk0, (arg1 + arg2)/2);
     }
 }
 
@@ -118,7 +118,7 @@ void func_802F9E44(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4){
     ptr->unk2C = arg3;
     ptr->unk30 = arg4;
     if(ptr->unk0){
-        func_8030DBB4(ptr->unk0, arg3);
+        sfxsource_playSfxAtVolume(ptr->unk0, arg3);
     }
 }
 
@@ -204,7 +204,7 @@ void func_802FA0F8(void){
                 else if(iPtr->unk3E == 2){//L802FA238
                     f20 = ml_map_f(iPtr->unk4, iPtr->unk24, iPtr->unk28, iPtr->unk2C, iPtr->unk30);
                 }
-                func_8030DBB4(iPtr->unk0, f20);
+                sfxsource_playSfxAtVolume(iPtr->unk0, f20);
                 
                 if(iPtr->unk3C){
                     if(0.0f == iPtr->unk10){
