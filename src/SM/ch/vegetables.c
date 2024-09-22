@@ -408,7 +408,7 @@ void func_80388080(Actor *this){
                 sp6C[0] = this->unk1C_x - this->position_x;
                 sp6C[1] = this->unk1C_y - this->position_y;
                 sp6C[2] = this->unk1C_z - this->position_z;
-                if( gu_sqrtf(sp6C[0]*sp6C[0] + sp6C[1]*sp6C[1] + sp6C[2]*sp6C[2] ) < 40.0f){
+                if( LENGTH_VEC3F(sp6C) < 40.0f){
                     ml_vec3f_set_length(sp6C, 400.0f);
                 }
                 else{

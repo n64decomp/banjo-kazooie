@@ -3,8 +3,6 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-#define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
-
 extern f32 ml_sin_deg(f32);
 extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 extern void func_80256D0C(f32, f32, f32, f32, f32, f32 *, f32 *, f32 *);
@@ -118,7 +116,8 @@ void __baphysics_update_no_gravity(void){
     //update velocity
     ml_vec3f_diff_copy(sp24, baphysics_target_velocity, s_player_velocity);
     ml_vec3f_scale(sp24, time_getDelta()*baphysics_acceleration);
-    if(_SQ3v1(sp24) < 0.02){
+
+    if (LENGTH_SQ_VEC3F(sp24) < 0.02) {
         ml_vec3f_copy(s_player_velocity, baphysics_target_velocity);
     }
     else{

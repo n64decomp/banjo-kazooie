@@ -11,7 +11,7 @@
 #define SNACKER_BB_DIALOG_0 VER_SELECT(0xe26, 0xa68, 0, 0)
 #define SNACKER_BB_DIALOG_1 VER_SELECT(0xe33, 0xa75, 0, 0)
 
-s32 func_80259254(f32 *, f32, f32, f32);
+s32 ml_vec3f_point_within_horizontal_distance(f32 *, f32, f32, f32);
 void ncFirstPersonCamera_getZoomedInRotation(f32 *);
 
 extern u8  D_8037DCCA;
@@ -34,7 +34,7 @@ static s32 __snackerctl_player_within_distance(f32 x, f32 z, f32 dist){
     f32 player_position[3];
 
     _player_getPosition(player_position);
-    return func_80259254(player_position, x, z, dist);
+    return ml_vec3f_point_within_horizontal_distance(player_position, x, z, dist);
 }
 
 static SnackerCtlState __snackerctl_update_ttc(void){

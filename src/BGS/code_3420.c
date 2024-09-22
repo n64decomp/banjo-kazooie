@@ -132,14 +132,11 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
     local = (ActorLocal_BGS_3420 *)&this->local;
     vile = marker_getActor(local->vile_marker);
     if (arg1 != 0) {
-        if (gu_sqrtf(this->position[0]*this->position[0] + this->position[1]*this->position[1] + this->position[2]*this->position[2]) < 800.0f) {
-            sp7C[0] = 0.0f;
-            sp7C[1] = 150.0f;
-            sp7C[2] = 300.0f;
+        if (LENGTH_VEC3F(this->position) < 800.0f) {
+            TUPLE_ASSIGN(sp7C, 0.0f, 150.0f, 300.0f)
             ml_vec3f_yaw_rotate_copy(sp7C, sp7C, vile->yaw);
-            sp94[0] = vile->position[0] + sp7C[0];
-            sp94[1] = vile->position[1] + sp7C[1];
-            sp94[2] = vile->position[2] + sp7C[2];
+            TUPLE_ADD_COPY(sp94, vile->position, sp7C)
+
             func_802C8F70(vile->yaw);
             jiggy_spawn(JIGGY_28_BGS_MR_VILE, sp94);
         } else {

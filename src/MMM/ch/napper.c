@@ -186,9 +186,8 @@ void chnapper_update(Actor *this){
         sp30[0] = player_position[0] - this->position_x;
         sp30[1] = player_position[1] - this->position_y;
         sp30[2] = player_position[2] - this->position_z;
-        if( 0.0f < sp30[2] 
-            && gu_sqrtf(sp30[0]*sp30[0] + sp30[1]*sp30[1] + sp30[2]*sp30[2]) < 600.0f
-        ){
+
+        if (0.0f < sp30[2] && LENGTH_VEC3F(sp30) < 600.0f) {
             __chnapper_setState(this, 5);
         }
         else{//L8038703C

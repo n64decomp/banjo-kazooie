@@ -140,7 +140,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
             arg0->unkC[0] *= 0.7;
             arg0->unkC[2] *= 0.7;
         }
-        if (gu_sqrtf(arg0->unkC[0]*arg0->unkC[0] + arg0->unkC[1]*arg0->unkC[1] + arg0->unkC[2]*arg0->unkC[2]) > 400.0f) {
+        if (LENGTH_VEC3F(arg0->unkC) > 400.0f) {
             ml_vec3f_set_length(arg0->unkC, 400.0f);
         }
         sp54[0] += arg0->unkC[0] * arg2;
@@ -173,7 +173,7 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
         sfxsource_setSampleRate(sp38, 0);
     } else {
         sp38 = func_80351758(arg1);
-        sfxsource_setSampleRate(sp38, (s32) ((gu_sqrtf(arg0->unkC[0]*arg0->unkC[0] + arg0->unkC[1]*arg0->unkC[1] + arg0->unkC[2]*arg0->unkC[2]) / 400.0) * 15000.0));
+        sfxsource_setSampleRate(sp38, (s32) ((LENGTH_VEC3F(arg0->unkC) / 400.0) * 15000.0));
     }
     player_getPosition(sp48);
     func_8035179C(arg1, sp54);

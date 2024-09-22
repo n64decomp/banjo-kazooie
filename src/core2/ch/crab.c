@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool func_80259254(f32[3], f32, f32, f32);
+extern bool ml_vec3f_point_within_horizontal_distance(f32[3], f32, f32, f32);
 
 /* .data */
 ActorAnimationInfo chCrabAnimations[] ={
@@ -185,7 +185,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
     this->unk138_27 = 1;
     marker_despawn(marker);
     if( map_get() == MAP_B_CC_CLANKERS_CAVERN
-        && func_80259254(this->position, 13778.0f, 0.0f, 3000.0f)
+        && ml_vec3f_point_within_horizontal_distance(this->position, 13778.0f, 0.0f, 3000.0f)
     ) {
         this->depth_mode =  MODEL_RENDER_DEPTH_COMPARE;
         if( !jiggyscore_isCollected(JIGGY_16_CC_SNIPPETS)

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80258780(f32[3], f32[3]);
+extern f32 ml_vec3f_length_sq(f32[3], f32[3]);
 
 typedef struct{
     f32 unk0;
@@ -67,7 +67,7 @@ void func_80352114(Struct_core2_CB050_0 *arg0, s32 arg1, f32 arg2) {
     player_getPosition(player_position);
     if( (func_80294660() == 0x100) 
         && func_8028F20C()
-        && (func_80258780(player_position, arg0->unk4C) < 50000.0f)
+        && (ml_vec3f_length_sq(player_position, arg0->unk4C) < 50000.0f)
     ) {
         sp58 = arg0->unk4C[0] - player_position[0];
         sp54 = arg0->unk4C[2] - player_position[2];
