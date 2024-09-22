@@ -58,23 +58,37 @@ enum gcpausemenu_state_e {
     PAUSE_STATE_3_RETURNING_TO_GAME,
     PAUSE_STATE_4_SELECTION_PROCESSING,
     PAUSE_STATE_5_SELECTION_CONFIRMATION,
-    PAUSE_STATE_6_UNKNOWN,
-    PAUSE_STATE_7_LEVEL_TOTALS_INIT,
-    PAUSE_STATE_8_LEVEL_TOTALS_OPENING,
-    PAUSE_STATE_9_LEVEL_TOTALS,
-    PAUSE_STATE_A_LEVEL_TOTALS_CLOSING,
-    PAUSE_STATE_B_LEVEL_TOTALS_DISPOSE,
-    PAUSE_STATE_C_UNKNOWN,
-    PAUSE_STATE_D_UNKNOWN,
-    PAUSE_STATE_E_UNKNOWN,
-    PAUSE_STATE_F_UNKNOWN,
-    PAUSE_STATE_10_UNKNOWN,
-    PAUSE_STATE_11_UNKNOWN,
-    PAUSE_STATE_12_UNKNOWN,
-    PAUSE_STATE_13_UNKNOWN,
-    PAUSE_STATE_14_UNKNOWN
+    PAUSE_STATE_6_MENU_CLOSING,
+    PAUSE_STATE_7_TOTALS_INIT,
+    PAUSE_STATE_8_TOTALS_OPENING,
+    PAUSE_STATE_9_TOTALS,
+    PAUSE_STATE_A_TOTALS_CLOSING,
+    PAUSE_STATE_B_TOTALS_DISPOSE,
+    PAUSE_STATE_C_PAGE_CLOSING,
+    PAUSE_STATE_D_PAGE_OPENING,
+    PAUSE_STATE_E_SNS_INIT,
+    PAUSE_STATE_F_SNS_OPENING,
+    PAUSE_STATE_10_SNS,
+    PAUSE_STATE_11_SNS_CLOSING,
+    PAUSE_STATE_12_SNS_DISPOSE,
+    PAUSE_STATE_13_EXIT_PAUSE,
+    PAUSE_STATE_14_EXIT_GAME
 };
 
+enum gcpausemenu_selection_e {
+    PAUSE_SELECTION_0_RETURN_TO_GAME,
+    PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR,
+    PAUSE_SELECTION_2_VIEW_TOTALS,
+    PAUSE_SELECTION_3_SAVE_AND_EXIT
+};
+
+enum gcpausemenu_menu_e {
+    PAUSE_MENU_0_MAIN,
+    PAUSE_MENU_1_TOTALS,
+    PAUSE_MENU_2_PAGE,
+    PAUSE_MENU_3_EXIT,
+    PAUSE_MENU_4_SNS
+};
 
 /* .data */
 struct1As D_8036C4E0[4] = {
@@ -143,7 +157,7 @@ u8 D_8036C60C[0xC] = {
 /* .bss */
 struct {
     u8          state;
-    u8          unk1;
+    u8          menu;
     u8          selection; //menu page
     u8          exit_pause: 1;
     u8          unk3_6: 1; //busy?
@@ -153,12 +167,12 @@ struct {
     u8          right_joystick_visible: 1;
     u8          b_button_visible: 1;
     u8          unk3_0: 1;
-    s8          zoombox_processed_count;
-    s8          unk5;
+    s8          zoombox_opening_count;
+    s8          zoombox_closing_count;
     u8          unk6;
     u8          unk7;
     s8          unk8; //header position
-    s8          unk9;
+    s8          page;
     s8          joystick_frame;
     u8          joystick_frame_count;
     f32         unkC;
@@ -173,7 +187,7 @@ struct {
     s16         left_joystick_alpha;      //left joystick alpha
     s16         right_joystick_alpha;      //right joystick alpha
     u8          page_cnt;
-    u8          unk39;
+    u8          sns_items;
     u8          sns_visible;
     // u8  pad3B[1];
     s16         sns_alpha; //sns opacity
@@ -182,7 +196,7 @@ struct {
     // u8 pad5A[0x3];
     BKModelBin *sns_egg_model; //SnS Egg Model
     BKModelBin *ice_key_model; //Ice key model
-    u8          pad64[0xC];
+    u8          pad64[12];
     u32         unk70_31: 1;
     u32         unk70_30: 1;
     u32         return_to_lair_disabled: 1;
@@ -393,14 +407,14 @@ void gcpausemenu_printTotals(void) {
     strcat(D_8036C520[3].str, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
 }
 
-s32 gcpausemenu_levelToMenuPage(enum level_e arg0) {
-    switch (arg0) {
+s32 gcpausemenu_levelToMenuPage(enum level_e level) {
+    switch (level) {
         case LEVEL_1_MUMBOS_MOUNTAIN:
         case LEVEL_2_TREASURE_TROVE_COVE:
         case LEVEL_3_CLANKERS_CAVERN:
         case LEVEL_4_BUBBLEGLOOP_SWAMP:
         case LEVEL_5_FREEZEEZY_PEAK:
-            return arg0 + 2;
+            return level + 2;
 
         case LEVEL_6_LAIR:
         case LEVEL_C_BOSS:
@@ -440,8 +454,8 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
     switch (next_state) {
         case PAUSE_STATE_0_MENU_INIT:
             gcpausemenu_80311A84();
-            D_80383010.unk1 = 0;
-            D_80383010.left_joystick_visible = D_80383010.right_joystick_visible = D_80383010.exit_pause = D_80383010.selection = D_80383010.zoombox_processed_count = 0;
+            D_80383010.menu = PAUSE_MENU_0_MAIN;
+            D_80383010.left_joystick_visible = D_80383010.right_joystick_visible = D_80383010.exit_pause = D_80383010.selection = D_80383010.zoombox_opening_count = 0;
             break;
 
         case PAUSE_STATE_1_MENU_OPENING:
@@ -464,32 +478,32 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
         case PAUSE_STATE_3_RETURNING_TO_GAME:
             gcpausemenu_80311B44();
             D_80383010.unkC = D_80383010.unk3_6 = 0;
-            D_80383010.unk5 = 3;
+            D_80383010.zoombox_closing_count = 3;
             gcpausemenu_8031209C(D_8036C4E0, 4);
             break;
 
         case PAUSE_STATE_5_SELECTION_CONFIRMATION:/* 8B334 803122C4 3C128038 */
             D_80383010.unkC = 3;
-            D_80383010.unk5 = D_80383010.unk3_6 = 0;
+            D_80383010.zoombox_closing_count = D_80383010.unk3_6 = 0;
             gcpausemenu_8031209C(D_8036C4E0, 4);
 
             for (i = 0; i < 4; i++) {
-                D_80383010.unk5 += func_803188B4(D_80383010.zoombox[i]);
+                D_80383010.zoombox_closing_count += func_803188B4(D_80383010.zoombox[i]);
             }
             break;
 
-        case PAUSE_STATE_6_UNKNOWN:/* 8B3A8 80312338 0C0C46D1 */
+        case PAUSE_STATE_6_MENU_CLOSING:/* 8B3A8 80312338 0C0C46D1 */
             gcpausemenu_80311B44();
             D_80383010.unkC = 0.0f;
-            D_80383010.zoombox_processed_count = D_80383010.selection = 0;
+            D_80383010.zoombox_opening_count = D_80383010.selection = 0;
             // 0;
             for (i = 0; i < 4; i++) {
                 func_80318964(D_80383010.zoombox[i]);
             }
             break;
 
-        case PAUSE_STATE_7_LEVEL_TOTALS_INIT:/* 8B3F4 80312384 44803000 */
-            D_80383010.unk1 = 1;
+        case PAUSE_STATE_7_TOTALS_INIT:/* 8B3F4 80312384 44803000 */
+            D_80383010.menu = PAUSE_MENU_1_TOTALS;
             D_80383010.b_button_visible = TRUE;
             D_80383010.unk20 = D_80383010.unk28 = 0.0f;
             gcpausemenu_zoomboxes_free();
@@ -519,8 +533,8 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             }
             break;
 
-        case PAUSE_STATE_8_LEVEL_TOTALS_OPENING: /* 8B54C 803124DC 44809000 */
-            D_80383010.zoombox_processed_count = 0;
+        case PAUSE_STATE_8_TOTALS_OPENING: /* 8B54C 803124DC 44809000 */
+            D_80383010.zoombox_opening_count = 0;
             D_80383010.unkC = 0.0f;
             gcpausemenu_8031209C(D_8036C520, 4);
             D_80383010.unk8 = -0x10;
@@ -528,19 +542,19 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             D_80383010.unk3_5 = 1;
             break;
 
-        case PAUSE_STATE_A_LEVEL_TOTALS_CLOSING:
+        case PAUSE_STATE_A_TOTALS_CLOSING:
             D_80383010.unk3_5 = 1;
             D_80383010.unkC = 0.0f;
-            D_80383010.unk5 = 4;
+            D_80383010.zoombox_closing_count = 4;
 
-            if (D_80383010.unk9 != 0xC) {
+            if (D_80383010.page != 12) {
                 D_80383010.b_button_visible = FALSE;
             }
 
             gcpausemenu_8031209C(D_8036C520, 4);
             break;
 
-        case PAUSE_STATE_B_LEVEL_TOTALS_DISPOSE:
+        case PAUSE_STATE_B_TOTALS_DISPOSE:
             if (D_80383010.selection && D_80383010.selection == gcpausemenu_levelToMenuPage(level_get())) {
                 func_802F5188();
             }
@@ -549,32 +563,39 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             gcpausemenu_zoomboxes_initMainMenu();
             break;
 
-        case PAUSE_STATE_C_UNKNOWN:
-            D_80383010.unk1 = 2;
+        case PAUSE_STATE_C_PAGE_CLOSING:
+            D_80383010.menu = PAUSE_MENU_2_PAGE;
             D_80383010.unk6++;
             D_80383010.unk3_5 = 1;
-            D_80383010.unk5 = 0;
+            D_80383010.zoombox_closing_count = 0;
+
             for (i = 0; i < 4; i++) {
-                D_80383010.unk5 += func_803188B4(D_80383010.zoombox[i]);
+                D_80383010.zoombox_closing_count += func_803188B4(D_80383010.zoombox[i]);
             }
+
             break;
 
-        case PAUSE_STATE_D_UNKNOWN:/* 8B694 80312624 3C128038 */
+        case PAUSE_STATE_D_PAGE_OPENING:/* 8B694 80312624 3C128038 */
             D_80383010.unk6 = 0xFF;
             D_80383010.unk3_5 = 1;
+
             if (D_80383010.selection && D_80383010.selection == gcpausemenu_levelToMenuPage(level_get())) {
                 func_802F5188();
             }
-            D_80383010.selection = D_80383010.unk9;
+
+            D_80383010.selection = D_80383010.page;
+
             if (D_80383010.selection && D_80383010.selection == gcpausemenu_levelToMenuPage(level_get())) {
                 func_802F5060(0x6e7);
             }
+
             if (D_80383010.selection) {
                 gcpausemenu_printLevelTotals(D_8036C58C[D_80383010.selection].level_id);
             }
             else {
                 gcpausemenu_printTotals();
             }
+
             for (i = 0; i < 4; i++) {//L803126D8
                 //L80312764
                 if (D_8036C58C[D_80383010.selection].level_id == 6) {
@@ -595,10 +616,10 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             }
             break;
 
-        case PAUSE_STATE_E_UNKNOWN:/* 8B824 803127B4 3C128038 */
-            D_80383010.unk1 = 4;
-            D_80383010.selection = D_80383010.unk9;
-            D_80383010.unk9 = -1;
+        case PAUSE_STATE_E_SNS_INIT:/* 8B824 803127B4 3C128038 */
+            D_80383010.menu = PAUSE_MENU_4_SNS;
+            D_80383010.selection = D_80383010.page;
+            D_80383010.page = -1;
             D_80383010.sns_egg_model = assetcache_get(0x50D);
             D_80383010.ice_key_model = assetcache_get(0x50C);
             for (i = 0; i < 7; i++) {
@@ -607,34 +628,34 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             }
             break;
 
-        case PAUSE_STATE_F_UNKNOWN: /* 8B8FC 8031288C 3C128038 */
+        case PAUSE_STATE_F_SNS_OPENING: /* 8B8FC 8031288C 3C128038 */
             D_80383010.unk8 = -0x10;
             D_80383010.unk6 = 0xff;
             D_80383010.unk3_5 = D_80383010.sns_visible = TRUE;
             break;
 
-        case PAUSE_STATE_10_UNKNOWN:
+        case PAUSE_STATE_10_SNS:
             break;
 
-        case PAUSE_STATE_11_UNKNOWN: /* 8B944 803128D4 3C128038 */
+        case PAUSE_STATE_11_SNS_CLOSING: /* 8B944 803128D4 3C128038 */
             D_80383010.unk3_5 = 1;
             D_80383010.sns_visible = 0;
-            if (D_80383010.unk9 == -1) {
+            if (D_80383010.page == -1) {
                 D_80383010.b_button_visible = FALSE;
             }
             break;
 
-        case PAUSE_STATE_12_UNKNOWN: /* 8B978 80312908 3C128038 */
-            D_80383010.selection = D_80383010.unk9;
+        case PAUSE_STATE_12_SNS_DISPOSE: /* 8B978 80312908 3C128038 */
+            D_80383010.selection = D_80383010.page;
             func_8033BD20(&D_80383010.sns_egg_model); //free
             func_8033BD20(&D_80383010.ice_key_model); //free
             break;
 
-        case PAUSE_STATE_13_UNKNOWN: /* 8B9A8 80312938 3C128038 */
+        case PAUSE_STATE_13_EXIT_PAUSE: /* 8B9A8 80312938 3C128038 */
             D_80383010.exit_pause = FALSE;
             break;
 
-        case PAUSE_STATE_14_UNKNOWN: /* 8B9C0 80312950 3C128038 */
+        case PAUSE_STATE_14_EXIT_GAME: /* 8B9C0 80312950 3C128038 */
             D_80383010.exit_pause = D_80383010.unk3_6 = FALSE;
             D_80383010.unkC = 0.0f;
             func_8025A430(-1, 0x7D0, 3);
@@ -654,66 +675,67 @@ void gcpausemenu_zoombox_callback(s32 portrait_id, s32 zoombox_state) {
 
     switch (D_80383010.state) {
         case PAUSE_STATE_3_RETURNING_TO_GAME:
-        case PAUSE_STATE_A_LEVEL_TOTALS_CLOSING:
+        case PAUSE_STATE_A_TOTALS_CLOSING:
             if (zoombox_state == 6) {
-                D_80383010.zoombox_processed_count++;
+                D_80383010.zoombox_opening_count++;
             }
             else if (zoombox_state == 4) {
-                D_80383010.unk5 = (s8)(D_80383010.unk5 - 1);
+                D_80383010.zoombox_closing_count--;
             }
             break;
 
         case PAUSE_STATE_5_SELECTION_CONFIRMATION:
             if (zoombox_state == 4) {
-                D_80383010.unk5 = (s8)(D_80383010.unk5 - 1);
+                D_80383010.zoombox_closing_count--;
             }
             break;
 
         case PAUSE_STATE_1_MENU_OPENING:
-        case PAUSE_STATE_8_LEVEL_TOTALS_OPENING:
+        case PAUSE_STATE_8_TOTALS_OPENING:
             if (zoombox_state == 1) {
-                D_80383010.zoombox_processed_count++;
+                D_80383010.zoombox_opening_count++;
             }
             break;
 
-        case PAUSE_STATE_C_UNKNOWN:
+        case PAUSE_STATE_C_PAGE_CLOSING:
             if (zoombox_state == 4) {
-                D_80383010.unk5 = (s8)(D_80383010.unk5 - 1);
+                D_80383010.zoombox_closing_count--;
             }
             break;
 
-        case PAUSE_STATE_6_UNKNOWN:
+        case PAUSE_STATE_6_MENU_CLOSING:
             if (zoombox_state == 6) {
-                D_80383010.zoombox_processed_count++;
+                D_80383010.zoombox_opening_count++;
             }
             break;
     }
 
     if ((zoombox_state == 2) &&
-        (D_80383010.unk1 == 0) &&
+        (D_80383010.menu == PAUSE_MENU_0_MAIN) &&
         (portrait_id - 4 != D_80383010.selection)) {
         gczoombox_highlight(D_80383010.zoombox[portrait_id - 4], 0);
     }
 }
 
 s32 gcpausemenu_initLargestPageIndex(void) {
-    s16 *var_s1;
-    s32 var_s0;
-    s32 var_s3;
+    s16 *unused;
+    s32 i;
+    s32 largest_page_index = 0;
 
-    var_s3 = 0;
-    if (D_80383010.unk39 != 0) {
-        return 0xC; //if any SnS items collected return last page
+    if (D_80383010.sns_items != 0) {
+        return 12; //if any SnS items collected return last page
     }
-    for (var_s0 = 1; var_s0 < 0xC; var_s0++) {
-        if (itemscore_timeScores_get(D_8036C58C[var_s0].level_id) != 0) {
-            var_s3 = var_s0;
+
+    for (i = 1; i < 12; i++) {
+        if (itemscore_timeScores_get(D_8036C58C[i].level_id) != 0) {
+            largest_page_index = i;
         }
     }
-    return var_s3;
+
+    return largest_page_index;
 }
 
-bool gcpausemenu_isReturnToLairDisabled(void) {
+bool gcpausemenu_initReturnToLair(void) {
     return TRUE;
 }
 
@@ -737,8 +759,8 @@ void gcpausemenu_init(void) {
     sp30 = sns_get_item_state(3, 0);
     sp34 = sns_get_item_state(2, 0);
     sp38 = sns_get_item_state(1, 0);
-    D_80383010.unk39 = sp38 + sp34 + sp30 + sp2C + sp28 + sp24 + sns_get_item_state(7, 0);
-    D_80383010.return_to_lair_disabled = gcpausemenu_isReturnToLairDisabled();
+    D_80383010.sns_items = sp38 + sp34 + sp30 + sp2C + sp28 + sp24 + sns_get_item_state(7, 0);
+    D_80383010.return_to_lair_disabled = gcpausemenu_initReturnToLair();
     func_80311604();
     gcpausemenu_zoomboxes_initMainMenu();
     D_80383010.joystick_sprite = assetcache_get(0x7EB);
@@ -788,12 +810,12 @@ void gcpausemenu_80312E80(struct1As *arg0, s32 arg1) {
     s32 var_s1;
 
     for (var_s1 = 0; var_s1 < arg1; var_s1++) {
-        var_f0 = ((var_s1 == D_80383010.selection) && (D_80383010.unk1 == 0)) ? 0.2 : arg0[var_s1].unk4;
+        var_f0 = ((var_s1 == D_80383010.selection) && (D_80383010.menu == PAUSE_MENU_0_MAIN)) ? 0.2 : arg0[var_s1].unk4;
         if (var_f0 <= D_80383010.unkC) {
             if (arg0[var_s1].unkF == 0) {
                 func_80318498(D_80383010.zoombox[var_s1]);
                 if (func_803188B4(D_80383010.zoombox[var_s1]) == 0) {
-                    D_80383010.unk5--;
+                    D_80383010.zoombox_closing_count--;
                 }
                 arg0[var_s1].unkF = 1U;
             }
@@ -832,16 +854,16 @@ s32 gcpausemenu_getMaxPage(void) {
     return D_80383010.page_cnt;
 }
 
-void gcpausemenu_getNextPage(s32 arg0) {
-    D_80383010.unk9 = D_80383010.selection;
+void gcpausemenu_setNextPage(s32 increment) {
+    D_80383010.page = D_80383010.selection;
     do {
-        D_80383010.unk9 += arg0;
-        if ((D_80383010.unk39 != 0) && (D_80383010.unk9 == 0xC)) {
+        D_80383010.page += increment;
+        if ((D_80383010.sns_items != 0) && (D_80383010.page == 12)) {
             break;
         }
-    } while ((D_80383010.unk9 != 0) && itemscore_timeScores_get(D_8036C58C[D_80383010.unk9].level_id) == 0);
+    } while ((D_80383010.page != 0) && itemscore_timeScores_get(D_8036C58C[D_80383010.page].level_id) == 0);
 
-    gcPauseMenu_setState((D_80383010.unk9 == 0xC) ? PAUSE_STATE_A_LEVEL_TOTALS_CLOSING : PAUSE_STATE_C_UNKNOWN);
+    gcPauseMenu_setState(D_80383010.page == 12 ? PAUSE_STATE_A_TOTALS_CLOSING : PAUSE_STATE_C_PAGE_CLOSING);
     D_80383010.unk7 = 6;
 }
 
@@ -933,14 +955,14 @@ s32 gcPauseMenu_update(void) {
 
         case PAUSE_STATE_1_MENU_OPENING: //opening
             if (gcpausemenu_80312D78(D_8036C4E0, 4) == 4) {
-                if (((D_80383010.return_to_lair_disabled) ? 3 : 4) == D_80383010.zoombox_processed_count) {
-                    D_80383010.zoombox_processed_count = 0;
+                if (((D_80383010.return_to_lair_disabled) ? 3 : 4) == D_80383010.zoombox_opening_count) {
+                    D_80383010.zoombox_opening_count = 0;
                     gcPauseMenu_setState(PAUSE_STATE_2_MENU);
                 }
             }
 
             if (controller_getStartButton(0) == 1) {
-                gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_6_MENU_CLOSING);
             }
             break;
 
@@ -956,16 +978,16 @@ s32 gcPauseMenu_update(void) {
             }
 
             if (controller_getStartButton(0) == 1) {
-                gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_6_MENU_CLOSING);
             }
             else if (face_button[FACE_BUTTON(BUTTON_A)] == 1) {
                 switch (D_80383010.selection) {
-                    case 1://L80313594
+                    case PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR://L80313594
                         if (level > 0 && level < LEVEL_C_BOSS && D_8036C560[level - 1].map != -1) {
                             gcPauseMenu_setState(PAUSE_STATE_5_SELECTION_CONFIRMATION);
                         }
                         break;
-                    case 3://L803135D0
+                    case PAUSE_SELECTION_3_SAVE_AND_EXIT://L803135D0
                         gcPauseMenu_setState(PAUSE_STATE_5_SELECTION_CONFIRMATION);
                         break;
                     default://L803135E4
@@ -975,7 +997,7 @@ s32 gcPauseMenu_update(void) {
             }
             else if (face_button[FACE_BUTTON(BUTTON_B)] == 1) {//L803135F8
                 gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], 0);
-                D_80383010.selection = 0;
+                D_80383010.selection = PAUSE_SELECTION_0_RETURN_TO_GAME;
                 gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], 1);
                 gcPauseMenu_setState(PAUSE_STATE_3_RETURNING_TO_GAME);
             }
@@ -983,16 +1005,18 @@ s32 gcPauseMenu_update(void) {
                 D_80383010.unk7--;
             }//L80313664
             else {
-                if (D_80383010.selection == 2 && !D_80383010.unk3_6) {
+                if (D_80383010.selection == PAUSE_SELECTION_2_VIEW_TOTALS && !D_80383010.unk3_6) {
                     func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                     D_80383010.unk3_6 = 1;
                 }
+
                 if (0.75 < joystick[JOYSTICK_Y]) {
                     if ((s32) D_80383010.selection > 0) {
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], FALSE);
                         D_80383010.selection--;
-                        if (D_80383010.return_to_lair_disabled && D_80383010.selection == 1)
+                        if (D_80383010.return_to_lair_disabled && D_80383010.selection == PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR) {
                             D_80383010.selection--;
+                        }
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], TRUE);
                         func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                         D_80383010.unk3_6 = 0;
@@ -1003,8 +1027,9 @@ s32 gcPauseMenu_update(void) {
                     if ((s32) D_80383010.selection < 3) {
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], 0);
                         D_80383010.selection++;
-                        if (D_80383010.return_to_lair_disabled && D_80383010.selection == 1)
+                        if (D_80383010.return_to_lair_disabled && D_80383010.selection == PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR) {
                             D_80383010.selection++;
+                        }
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], 1);
                         func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                         D_80383010.unk3_6 = 0;
@@ -1021,25 +1046,27 @@ s32 gcPauseMenu_update(void) {
 
         case PAUSE_STATE_3_RETURNING_TO_GAME: //returning to game
             gcpausemenu_80312E80(D_8036C4E0, 4);
-            if (D_80383010.unk5 <= 0) {
+            if (D_80383010.zoombox_closing_count <= 0) {
                 for (i = 0; i < 4; i++) {
                     gczoombox_close(D_80383010.zoombox[i]);
                 }
-                D_80383010.unk5 = 0x7F;
+                D_80383010.zoombox_closing_count = 0x7F;
             }
-            if (D_80383010.zoombox_processed_count == 4) {
-                D_80383010.zoombox_processed_count = 0;
+            if (D_80383010.zoombox_opening_count == 4) {
+                D_80383010.zoombox_opening_count = 0;
                 gcPauseMenu_setState(PAUSE_STATE_4_SELECTION_PROCESSING);
             }
             break;
 
         case PAUSE_STATE_4_SELECTION_PROCESSING:
             switch (D_80383010.selection) {
-                case 0://L803138FC
+                case PAUSE_SELECTION_0_RETURN_TO_GAME://L803138FC
                     D_80383010.exit_pause = TRUE;
                     break;
-                case 1://L80313908 //return to lair
+
+                case PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR://L80313908 //return to lair
                     volatileFlag_set(VOLATILE_FLAG_16, 1);
+
                     if (map_get() == MAP_8E_GL_FURNACE_FUN) {
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
                         func_802E4078(MAP_80_GL_FF_ENTRANCE, 2, 1);
@@ -1047,23 +1074,27 @@ s32 gcPauseMenu_update(void) {
                     else {
                         func_802E4078(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);
                     }
-                    gcPauseMenu_setState(PAUSE_STATE_13_UNKNOWN);
+
+                    gcPauseMenu_setState(PAUSE_STATE_13_EXIT_PAUSE);
                     break;
-                case 2://L80313978
+
+                case PAUSE_SELECTION_2_VIEW_TOTALS://L80313978
                     D_80383010.selection = gcpausemenu_levelToMenuPage(level_get());
-                    gcPauseMenu_setState(PAUSE_STATE_7_LEVEL_TOTALS_INIT);
+                    gcPauseMenu_setState(PAUSE_STATE_7_TOTALS_INIT);
                     break;
-                case 3://L8031399C
+
+                case PAUSE_SELECTION_3_SAVE_AND_EXIT://L8031399C
                     func_802C5994();
                     volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
+
                     if (!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) ||
                         fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
-                        gcPauseMenu_setState(PAUSE_STATE_14_UNKNOWN);
+                        gcPauseMenu_setState(PAUSE_STATE_14_EXIT_GAME);
                     }
                     else {
                         func_802E412C(1, 0);
                         func_802E4078(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
-                        gcPauseMenu_setState(PAUSE_STATE_13_UNKNOWN);
+                        gcPauseMenu_setState(PAUSE_STATE_13_EXIT_PAUSE);
                     }
                     break;
             }
@@ -1082,10 +1113,10 @@ s32 gcPauseMenu_update(void) {
             }//L80313AF4
 
             if (controller_getStartButton(0) == 1) {
-                gcPauseMenu_setState(PAUSE_STATE_6_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_6_MENU_CLOSING);
             }
             else if (face_button[FACE_BUTTON(BUTTON_B)] == 1) {
-                D_80383010.zoombox_processed_count = (D_80383010.return_to_lair_disabled) ? 3 : 4;
+                D_80383010.zoombox_opening_count = (D_80383010.return_to_lair_disabled) ? 3 : 4;
                 func_803188B4(D_80383010.zoombox[D_80383010.selection]);
                 gcPauseMenu_setState(PAUSE_STATE_1_MENU_OPENING);
             }
@@ -1094,98 +1125,98 @@ s32 gcPauseMenu_update(void) {
             }
             break;
 
-        case PAUSE_STATE_6_UNKNOWN://80313B80
-            if (D_80383010.zoombox_processed_count == 4) {
+        case PAUSE_STATE_6_MENU_CLOSING://80313B80
+            if (D_80383010.zoombox_opening_count == 4) {
                 if (0.2 < D_80383010.unkC) {
-                    D_80383010.zoombox_processed_count = 0;
+                    D_80383010.zoombox_opening_count = 0;
                     gcPauseMenu_setState(PAUSE_STATE_4_SELECTION_PROCESSING);
                 }
             }
             break;
 
-        case PAUSE_STATE_7_LEVEL_TOTALS_INIT:
-            gcPauseMenu_setState(PAUSE_STATE_8_LEVEL_TOTALS_OPENING);
+        case PAUSE_STATE_7_TOTALS_INIT:
+            gcPauseMenu_setState(PAUSE_STATE_8_TOTALS_OPENING);
             break;
 
-        case PAUSE_STATE_8_LEVEL_TOTALS_OPENING:
+        case PAUSE_STATE_8_TOTALS_OPENING:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(1);
             gcpausemenu_80312D78(D_8036C520, 4);
             gcpausemenu_updateBButtonAndJoystickSprites();
 
-            if (D_80383010.zoombox_processed_count == 4) {
-                D_80383010.zoombox_processed_count = 0;
-                gcPauseMenu_setState(PAUSE_STATE_9_LEVEL_TOTALS);
+            if (D_80383010.zoombox_opening_count == 4) {
+                D_80383010.zoombox_opening_count = 0;
+                gcPauseMenu_setState(PAUSE_STATE_9_TOTALS);
             }
             break;
 
-        case PAUSE_STATE_9_LEVEL_TOTALS:
+        case PAUSE_STATE_9_TOTALS:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(1);
             gcpausemenu_updateBButtonAndJoystickSprites();
 
             if (controller_getStartButton(0) == 1) {
-                D_80383010.unk1 = 3;
-                gcPauseMenu_setState(PAUSE_STATE_A_LEVEL_TOTALS_CLOSING);
+                D_80383010.menu = PAUSE_MENU_3_EXIT;
+                gcPauseMenu_setState(PAUSE_STATE_A_TOTALS_CLOSING);
             }
             else if (face_button[FACE_BUTTON(BUTTON_B)] == 1) {
-                gcPauseMenu_setState(PAUSE_STATE_A_LEVEL_TOTALS_CLOSING);
+                gcPauseMenu_setState(PAUSE_STATE_A_TOTALS_CLOSING);
             }
             else if (0.75 < joystick[JOYSTICK_X]) {
                 if ((s32) D_80383010.selection < gcpausemenu_getMaxPage()) {
-                    gcpausemenu_getNextPage(1);
+                    gcpausemenu_setNextPage(1);
                 }
             }
             else if (joystick[JOYSTICK_X] < -0.75) {//L80313CCC
                 if ((s32) D_80383010.selection > 0) {
-                    gcpausemenu_getNextPage(-1);
+                    gcpausemenu_setNextPage(-1);
                 }
             }
             break;
 
-        case PAUSE_STATE_A_LEVEL_TOTALS_CLOSING://80313D00
+        case PAUSE_STATE_A_TOTALS_CLOSING://80313D00
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(-1);
             gcpausemenu_80312E80(D_8036C520, 4);
             gcpausemenu_updateBButtonAndJoystickSprites();
 
-            if (D_80383010.unk9 != 0xC) {
+            if (D_80383010.page != 12) {
                 D_80383010.left_joystick_visible = FALSE;
                 D_80383010.right_joystick_visible = FALSE;
             }//L80313D50
 
-            if (!D_80383010.unk5) {
+            if (!D_80383010.zoombox_closing_count) {
                 for (i = 0; i < 4; i++) {
                     gczoombox_close(D_80383010.zoombox[i]);
                 }
-                D_80383010.unk5 = 1;
+                D_80383010.zoombox_closing_count = 1;
             }//L80313D8C
 
-            if (D_80383010.zoombox_processed_count == 4) {
-                D_80383010.zoombox_processed_count = 0;
-                gcPauseMenu_setState(PAUSE_STATE_B_LEVEL_TOTALS_DISPOSE);
+            if (D_80383010.zoombox_opening_count == 4) {
+                D_80383010.zoombox_opening_count = 0;
+                gcPauseMenu_setState(PAUSE_STATE_B_TOTALS_DISPOSE);
             }
             break;
 
-        case PAUSE_STATE_B_LEVEL_TOTALS_DISPOSE:
-            if (D_80383010.unk1 == 3) {
+        case PAUSE_STATE_B_TOTALS_DISPOSE:
+            if (D_80383010.menu == PAUSE_MENU_3_EXIT) {
                 D_80383010.exit_pause = TRUE;
             }
             else {
-                gcPauseMenu_setState((D_80383010.unk9 == 0xC) ? PAUSE_STATE_E_UNKNOWN : PAUSE_STATE_0_MENU_INIT);
+                gcPauseMenu_setState(D_80383010.page == 12 ? PAUSE_STATE_E_SNS_INIT : PAUSE_STATE_0_MENU_INIT);
             }
             break;
 
-        case PAUSE_STATE_C_UNKNOWN: //Flip to Sns Total page
+        case PAUSE_STATE_C_PAGE_CLOSING: //Flip to Sns Total page
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(-1);
             gcpausemenu_updateBButtonAndJoystickSprites();
-            if (D_80383010.unk5 == 0 && !D_80383010.unk3_5) {
-                gcPauseMenu_setState(PAUSE_STATE_D_UNKNOWN);
+            if (D_80383010.zoombox_closing_count == 0 && !D_80383010.unk3_5) {
+                gcPauseMenu_setState(PAUSE_STATE_D_PAGE_OPENING);
             }
             break;
 
-        case PAUSE_STATE_D_UNKNOWN: //Open SnS Total Page
+        case PAUSE_STATE_D_PAGE_OPENING: //Open SnS Total Page
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(1);
             gcpausemenu_updateBButtonAndJoystickSprites();
@@ -1193,63 +1224,63 @@ s32 gcPauseMenu_update(void) {
                 D_80383010.unk7--;
             }
             else {
-                gcPauseMenu_setState(PAUSE_STATE_9_LEVEL_TOTALS);
+                gcPauseMenu_setState(PAUSE_STATE_9_TOTALS);
             }
 
             break;
 
-        case PAUSE_STATE_E_UNKNOWN:
-            gcPauseMenu_setState(PAUSE_STATE_F_UNKNOWN);
+        case PAUSE_STATE_E_SNS_INIT:
+            gcPauseMenu_setState(PAUSE_STATE_F_SNS_OPENING);
             break;
 
-        case PAUSE_STATE_F_UNKNOWN:
+        case PAUSE_STATE_F_SNS_OPENING:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(1);
             gcpausemenu_updateBButtonAndJoystickSprites();
             if (!D_80383010.unk3_5) {
-                gcPauseMenu_setState(PAUSE_STATE_10_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_10_SNS);
             }
             break;
 
-        case PAUSE_STATE_10_UNKNOWN:
+        case PAUSE_STATE_10_SNS:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_updateBButtonAndJoystickSprites();
             if (controller_getStartButton(0) == 1) {
-                D_80383010.unk1 = 3;
-                gcPauseMenu_setState(PAUSE_STATE_11_UNKNOWN);
+                D_80383010.menu = PAUSE_MENU_3_EXIT;
+                gcPauseMenu_setState(PAUSE_STATE_11_SNS_CLOSING);
             }//L80313EFC
             else if (face_button[FACE_BUTTON(BUTTON_B)] == 1) {
-                gcPauseMenu_setState(PAUSE_STATE_11_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_11_SNS_CLOSING);
             }
             else if (joystick[JOYSTICK_X] < -0.75) {
-                gcpausemenu_getNextPage(-1);
-                gcPauseMenu_setState(PAUSE_STATE_11_UNKNOWN);
+                gcpausemenu_setNextPage(-1);
+                gcPauseMenu_setState(PAUSE_STATE_11_SNS_CLOSING);
             }
             break;
 
-        case PAUSE_STATE_11_UNKNOWN:
+        case PAUSE_STATE_11_SNS_CLOSING:
             gcpausemenu_printTotalsHeader(D_80383010.selection);
             gcpausemenu_80312FD0(-1);
             gcpausemenu_updateBButtonAndJoystickSprites();
-            if (D_80383010.unk9 == -1) {
+            if (D_80383010.page == -1) {
                 D_80383010.left_joystick_visible = FALSE;
                 D_80383010.right_joystick_visible = FALSE;
             }
             if (D_80383010.sns_alpha == 0) {
-                gcPauseMenu_setState(PAUSE_STATE_12_UNKNOWN);
+                gcPauseMenu_setState(PAUSE_STATE_12_SNS_DISPOSE);
             }
             break;
 
-        case PAUSE_STATE_12_UNKNOWN:
-            if (D_80383010.unk1 == 3) {
+        case PAUSE_STATE_12_SNS_DISPOSE:
+            if (D_80383010.menu == PAUSE_MENU_3_EXIT) {
                 D_80383010.exit_pause = TRUE;
             }
             else {
-                gcPauseMenu_setState((D_80383010.unk9 != -1) ? PAUSE_STATE_7_LEVEL_TOTALS_INIT : PAUSE_STATE_0_MENU_INIT);
+                gcPauseMenu_setState((D_80383010.page != -1) ? PAUSE_STATE_7_TOTALS_INIT : PAUSE_STATE_0_MENU_INIT);
             }
             break;
 
-        case PAUSE_STATE_14_UNKNOWN:
+        case PAUSE_STATE_14_EXIT_GAME:
             func_802DC5B8();
             if (5.0 < D_80383010.unkC) {
                 if (!D_80383010.unk3_6) {
@@ -1483,7 +1514,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         }
     }
 
-    if (D_80383010.state == PAUSE_STATE_14_UNKNOWN) {
+    if (D_80383010.state == PAUSE_STATE_14_EXIT_GAME) {
         func_802DC604(gfx, mtx, vtx);
     }
 }
