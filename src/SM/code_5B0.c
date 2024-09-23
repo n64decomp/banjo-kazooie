@@ -5,7 +5,7 @@
 #include "prop.h"
 
 void func_803869A0(Actor*, f32, f32);
-void func_802C4218(s32, f32, f32, f32);
+void spawnQueue_bundle_f32(s32, f32, f32, f32);
 void SM_func_80386EF4(Actor *this);
 void SM_func_80386A00(Actor *this);
 
@@ -113,7 +113,7 @@ void SM_func_80386D68(Actor *this){
 
     if(this->unk100 && func_803870E8(this->unk100)){
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
-        __spawnQueue_add_4((GenFunction_4)func_802C4218, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+        __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, 0x1F, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }
     marker_despawn(this->marker);
 }

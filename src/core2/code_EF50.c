@@ -67,7 +67,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         }
         else{
             ml_vec3f_to_vec3h(sp20, D_8037C3E0.unk8);
-            sp1C = func_803282AC(ACTOR_5A_JIGSAW_DANCE, sp20, 0);
+            sp1C = actor_spawnWithYaw_s16(ACTOR_5A_JIGSAW_DANCE, sp20, 0);
             chJigsawDance_setState(sp1C, 3);
             bsjig_setJiggyMarkerPtr(sp1C->marker);
             sp1C->unk38_31 = D_8037C3E0.unk18;

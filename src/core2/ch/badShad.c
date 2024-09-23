@@ -114,7 +114,7 @@ void func_802D71A0(s32 this, s32 arg1){
         sp2C[0] = (s32) D_8037DE10[0];
         sp2C[1] = (s32) D_8037DE10[1];
         sp2C[2] = (s32) D_8037DE10[2];
-        sp3C = spawn_actor(0x108, sp2C, (s32)sp38->yaw);
+        sp3C = __actor_spawnWithYaw_s32(0x108, sp2C, (s32)sp38->yaw);
         if(sp3C){
             marker_getActor(marker)->unk104 = sp3C->marker;
             sp3C->unk104 = marker;

@@ -90,8 +90,8 @@ void func_8038AC90(s32 indx, s32 arg1){
     Actor *a1;
     Actor *a2;
     
-    m1 = spawn_actor_f32(0x161, D_80392F70[indx].position, 0)->marker;
-    m2 = spawn_actor_f32(0x162, D_80393280[indx].position, 0)->marker;
+    m1 = actor_spawnWithYaw_f32(0x161, D_80392F70[indx].position, 0)->marker;
+    m2 = actor_spawnWithYaw_f32(0x162, D_80393280[indx].position, 0)->marker;
     a1 = marker_getActor(m1);
     a2 = marker_getActor(m2);
     
@@ -143,23 +143,23 @@ void func_8038AEE0(s32 indx){
     Actor *sp1C;
     switch(indx){
         case 0:// L8038AF0C
-            sp1C = spawn_actor_f32(0x22d, D_80391ED0, D_80391EDC);
+            sp1C = actor_spawnWithYaw_f32(0x22d, D_80391ED0, D_80391EDC);
             break;
 
         case 1:// L8038AF38
-            sp1C = spawn_actor_f32(0x22e, D_80391EE0, D_80391EEC);
+            sp1C = actor_spawnWithYaw_f32(0x22e, D_80391EE0, D_80391EEC);
             break;
 
         case 2:// L8038AF64
-            sp1C = spawn_actor_f32(0x22d, D_80391EF0, FP_D_80391EFC);
+            sp1C = actor_spawnWithYaw_f32(0x22d, D_80391EF0, FP_D_80391EFC);
             break;
 
         case 3:// L8038AF90
-            sp1C = spawn_actor_f32(0x22d, D_80391F00, D_80391F0C);
+            sp1C = actor_spawnWithYaw_f32(0x22d, D_80391F00, D_80391F0C);
             break;
 
         case 4:// L8038AFBC
-            sp1C = spawn_actor_f32(0x22d, D_80391F10, D_80391F1C);
+            sp1C = actor_spawnWithYaw_f32(0x22d, D_80391F10, D_80391F1C);
             break;
     }
     D_80393590[indx] = sp1C->marker;
@@ -191,7 +191,7 @@ void FP_func_8038B0B8(void){
 }
 
 void func_8038B0F8(void){
-    Actor *trainers = spawn_actor_f32(ACTOR_2C_TURBO_TALON_TRAINERS, D_80391F20, 100);
+    Actor *trainers = actor_spawnWithYaw_f32(ACTOR_2C_TURBO_TALON_TRAINERS, D_80391F20, 100);
     trainers->unk10_1 = FALSE;
 }
 

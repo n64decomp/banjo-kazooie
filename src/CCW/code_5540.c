@@ -55,7 +55,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
         skeletalAnim_set(this->unk148, ASSET_22E_ANIM_NABNUT_STAND, 0.2f, 3.53f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
-        func_802C8F70(this->yaw - 40.0f);
+        bundle_setYaw(this->yaw - 40.0f);
         jiggy_spawn(JIGGY_4A_CCW_NABNUT, this->position);
     }
 

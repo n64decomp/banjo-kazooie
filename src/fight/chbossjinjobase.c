@@ -136,7 +136,7 @@ void chBossJinjoBase_update(Actor *this) {
             this->velocity_y = 100.0f;
         
         func_802BB3DC(0, 8.0f, 0.92f);
-        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
+        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x3ad, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
         chBossJinjoBase_emitSmoke(this->unk1C, 0x10);
         SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, this->marker);
     }

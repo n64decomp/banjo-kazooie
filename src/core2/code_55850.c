@@ -70,7 +70,7 @@ void func_802DC900(Actor *this){
 void func_802DC960(void) {
     Actor *actor;
     if (D_8037DE60 == 0) {
-        actor = spawn_actor_f32(0x1DC, D_803680A0, 0);
+        actor = actor_spawnWithYaw_f32(0x1DC, D_803680A0, 0);
         D_8037DE60 = actor->marker;
     }
 }

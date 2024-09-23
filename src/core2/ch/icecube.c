@@ -5,7 +5,7 @@
 #define _HorzDist3v(v1, v2) ((v1[0]-v2[0])*(v1[0]-v2[0]) + (v1[2]-v2[2])*(v1[2]-v2[2]))
 extern void func_802D729C(Actor *, f32);
 extern f32 func_80257204(f32, f32, f32, f32);
-extern Actor *func_802C937C(enum actor_e, f32[3]);
+extern Actor *bundle_spawn_f32(enum actor_e, f32[3]);
 
 void chicecube_update(Actor *this);
 Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -201,8 +201,8 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
     sp54[2] = actor->position[2];
     sp54[1] += 100.0f;
     for(i = 0; i < 2; i++){//L8035A7FC
-        func_802C8F70((i & 1)? actor->yaw : actor->yaw + 180.0f);
-        other = func_802C937C(0x21, sp54);
+        bundle_setYaw((i & 1)? actor->yaw : actor->yaw + 180.0f);
+        other = bundle_spawn_f32(0x21, sp54);
         other->unkF4_8 = 1; //don't spawn more
         other->scale = randf2(0.5f, 0.6f)*actor->scale;
         actor->yaw = randi2(0, 359);

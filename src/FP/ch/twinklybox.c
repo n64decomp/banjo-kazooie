@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80324CD8(f32);
-extern Actor *spawn_actor_f32(enum actor_e, f32[3], s32);
+extern Actor *actor_spawnWithYaw_f32(enum actor_e, f32[3], s32);
 
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8038D6C8(Actor *this);
@@ -209,9 +209,9 @@ void func_8038D41C(ActorMarker *marker){
     ActorMarker *_marker = reinterpret_cast(ActorMarker *, marker);
     Actor *actor;
     
-    actor = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392354, 170);
+    actor = actor_spawnWithYaw_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392354, 170);
     actor->unk100 = _marker;
-    actor = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392360, 170);
+    actor = actor_spawnWithYaw_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392360, 170);
     actor->unk100 = _marker;
     if(pad[0]);
 }

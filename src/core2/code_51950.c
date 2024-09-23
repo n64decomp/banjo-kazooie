@@ -81,7 +81,7 @@ void func_802D8B20(enum actor_e actor_id){
     player_getPosition(plyr_pos);
     temp2 = player_getYaw();
     temp_v0 = (randf() > 0.5) ? 0x1E : -0x1E;
-    feather = spawn_actor_f32(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
+    feather = actor_spawnWithYaw_f32(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
     func_8032AA58(feather, 0.45f);
     feather->unk28 = 22.0f;
     feather->unk1C[1] = 48.0f;

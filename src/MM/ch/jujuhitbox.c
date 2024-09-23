@@ -74,7 +74,7 @@ void func_80388BEC(NodeProp *node, ActorMarker *marker){
                 ((ActorLocal_JujuHitbox *)&closest_actor->local)->unk4++;
                 func_803892A8(((ActorLocal_JujuHitbox *)&closest_actor->local)->unk8);
                 func_80353580(marker);
-                __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x58, *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2]);
+                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x58, *(s32 *)&position[0], *(s32 *)&position[1], *(s32 *)&position[2]);
             }
         }
     }

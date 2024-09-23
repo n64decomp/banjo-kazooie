@@ -534,66 +534,65 @@ void __spawnQueue_add_5(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 a
     }
 }
 
-Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z){
+Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    return spawn_actor_f32(reinterpret_cast(enum actor_e, actor_id), position, 0);
+    return actor_spawnWithYaw_f32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-
-Actor *func_802C418C(enum actor_e actor_id, s32 x, s32 y, s32 z){
+Actor *spawnQueue_actor_s16(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     s16 position[3];
     position[0] = reinterpret_cast(s16, x);
     position[1] = reinterpret_cast(s16, y);
     position[2] = reinterpret_cast(s16, z);
-    return func_803282AC(reinterpret_cast(enum actor_e, actor_id), position, 0);
+    return actor_spawnWithYaw_s16(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *func_802C41D8(enum actor_e actor_id, s32 x, s32 y, s32 z){
+Actor *spawnQueue_actor_s32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     s32 position[3];
     position[0] = reinterpret_cast(s32, x);
     position[1] = reinterpret_cast(s32, y);
     position[2] = reinterpret_cast(s32, z);
-    return func_8032811C(reinterpret_cast(enum actor_e, actor_id), position, 0);
+    return actor_spawnWithYaw_s32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *func_802C4218(enum actor_e actor_id, s32 x, s32 y, s32 z){
+Actor *spawnQueue_bundle_f32(s32 index, s32 x, s32 y, s32 z) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    return func_802C937C(reinterpret_cast(enum actor_e, actor_id), position);
+    return bundle_spawn_f32(reinterpret_cast(s32, index), position);
 }
 
-Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw){
+Actor *spawnQueue_bundleWithYaw_f32(s32 index, s32 x, s32 y, s32 z, s32 yaw) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    func_802C8F70(reinterpret_cast(f32, yaw));
-    return func_802C937C(reinterpret_cast(enum actor_e, actor_id), position);
-
+    bundle_setYaw(reinterpret_cast(f32, yaw));
+    return bundle_spawn_f32(reinterpret_cast(s32, index), position);
 }
 
-Actor *func_802C42B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    s32 sp1C[3];
-    sp1C[0] = reinterpret_cast(s32, arg1);
-    sp1C[1] = reinterpret_cast(s32, arg2);
-    sp1C[2] = reinterpret_cast(s32, arg3);
-    return func_802C8F88(reinterpret_cast(s32, arg0), sp1C);
+Actor *spawnQueue_bundle_s32(s32 index, s32 x, s32 y, s32 z) {
+    s32 position[3];
+    position[0] = reinterpret_cast(s32, x);
+    position[1] = reinterpret_cast(s32, y);
+    position[2] = reinterpret_cast(s32, z);
+    return bundle_spawn_s32(reinterpret_cast(s32, index), position);
 }
 
-Actor * func_802C42F0(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    s32 sp1C[3];
-    sp1C[0] = arg1;
-    sp1C[1] = arg2;
-    sp1C[2] = arg3;
-    return func_802C8F88(arg0, sp1C);
+Actor *spawnQueue_bundle_s32_2(s32 index, s32 x, s32 y, s32 z) {
+    s32 position[3];
+    position[0] = x;
+    position[1] = y;
+    position[2] = z;
+    return bundle_spawn_s32(index, position);
 }
 
-void spawnQueue_defrag(FunctionQueue *arg0){
-    if((arg0 = spawnQueue) != NULL)
-        spawnQueue = (FunctionQueue *)defrag();
+void spawnQueue_defrag(FunctionQueue *arg0) {
+    if ((arg0 = spawnQueue) != NULL) {
+        spawnQueue = (FunctionQueue *) defrag();
+    }
 }

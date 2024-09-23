@@ -5,7 +5,7 @@
 #include <core1/viewport.h>
 
 
-extern Actor *spawn_actor_f32(enum actor_e, f32[3], s32);
+extern Actor *actor_spawnWithYaw_f32(enum actor_e, f32[3], s32);
 extern void actor_postdrawMethod(ActorMarker *marker);
 
 Actor *chOverlayNoController_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -76,7 +76,7 @@ void chOverlayNoController_update(Actor *this) {
 
 void __chOverlayNoController_spawn(void){
     if(chOverlayNoController_marker == NULL){
-        chOverlayNoController_marker = spawn_actor_f32(ACTOR_1DF_NO_CONTROLLER_OVERLAY, D_80368168, 0)->marker;
+        chOverlayNoController_marker = actor_spawnWithYaw_f32(ACTOR_1DF_NO_CONTROLLER_OVERLAY, D_80368168, 0)->marker;
     }
 }
 

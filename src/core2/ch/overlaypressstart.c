@@ -8,7 +8,7 @@
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void actor_predrawMethod(Actor *);
 extern void actor_postdrawMethod(ActorMarker *);
-extern Actor *spawn_actor_f32(enum actor_e id, f32[3], s32);
+extern Actor *actor_spawnWithYaw_f32(enum actor_e id, f32[3], s32);
 
 
 Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -88,7 +88,7 @@ void chOverlayPressStart_update(Actor *this){
 
 void __chOverlayPressStart_spawn(void){
     if(D_8037DE80 == NULL){
-        D_8037DE80 = spawn_actor_f32(ACTOR_1DE_PRESS_START_OVERLAY, D_80368118, 0)->marker;
+        D_8037DE80 = actor_spawnWithYaw_f32(ACTOR_1DE_PRESS_START_OVERLAY, D_80368118, 0)->marker;
     }
 }
 

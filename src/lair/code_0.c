@@ -799,7 +799,7 @@ void func_80387E94(s32 arg0)
 
     marker = reinterpret_cast(ActorMarker *, arg0);
     actor1   = marker_getActor(marker);
-    actorNew = spawn_actor_f32(0x25A, actor1->position, actor1->yaw);
+    actorNew = actor_spawnWithYaw_f32(0x25A, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure :^)
     actor2 = marker_getActor(marker);
@@ -821,7 +821,7 @@ void func_80387F1C(void)
     {
         jiggy_spawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
         // FIXME: macro?
-        __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
+        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
     }
 }
 
@@ -1544,7 +1544,7 @@ void func_803897D4(s32 arg0)
     marker1 = reinterpret_cast(ActorMarker *, arg0);
     actor1 = marker_getActor(marker1);
 
-    actor1 = spawn_actor_f32(0x258, actor1->position, actor1->yaw);
+    actor1 = actor_spawnWithYaw_f32(0x258, actor1->position, actor1->yaw);
 
     // Grab the same pointer again for good measure
     actor2 = marker_getActor(marker1);

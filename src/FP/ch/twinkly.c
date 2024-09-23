@@ -233,7 +233,7 @@ void func_8038C8F0(ActorMarker *marker){
 
     this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     other = marker_getActor(this->unk100);
-    muncher = spawn_actor_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392070, 170);
+    muncher = actor_spawnWithYaw_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392070, 170);
     muncher->unk100 = other->marker;
     muncher->unkF4_8 = 1;
 

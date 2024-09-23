@@ -5,7 +5,7 @@
 
 
 extern void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
-extern void func_802C8F70(f32);
+extern void bundle_setYaw(f32);
 extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
 extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
 

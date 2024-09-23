@@ -54,7 +54,7 @@ void func_80390890(ActorMarker *marker, ActorMarker *other_marker) {
     subaddie_set_state_with_direction(this, 5, 0.0f, 1);
     actor_playAnimationOnce(this);
     func_8030E878(SFX_C2_GRUBLIN_EGH, local->unkC_27*0.1 + 0.8, 32000, this->position, 1250.0f, 2500.0f);
-    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     actor_collisionOff(this);
     this->is_first_encounter = TRUE;
 }

@@ -50,7 +50,7 @@ void chShrapnel_func_802D0AB8(Actor *this) {
 
 void chShrapnel_spawnExplodeActor(s32 arg0){
     Actor *this = reinterpret_cast(Actor *, arg0);
-    spawn_actor_f32(0xF3, this->unk1C, 0);
+    actor_spawnWithYaw_f32(0xF3, this->unk1C, 0);
 }
 
 void chShrapnel_emitExplosion(Actor *this) {

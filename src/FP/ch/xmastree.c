@@ -53,7 +53,7 @@ void __chXmasTree_80386F84(Actor * this){
 
 void __chXmasTree_spawnSwitch(void){
     static s32 chXmasTree_switch_spawn_position[3] = {-0x1220, 0x6A, 0x1945};
-    func_8032811C(ACTOR_338_XMAS_TREE_SWITCH, chXmasTree_switch_spawn_position, 350);
+    actor_spawnWithYaw_s32(ACTOR_338_XMAS_TREE_SWITCH, chXmasTree_switch_spawn_position, 350);
 }
 
 void __chXmasTree_spawnStar(void *marker){

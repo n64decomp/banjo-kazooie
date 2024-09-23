@@ -359,7 +359,7 @@ void chSnacker_spawn(void) {
         }
     }
 
-    snacker = spawn_actor_f32(ACTOR_68_SNACKER, spawn_position, 0);
+    snacker = actor_spawnWithYaw_f32(ACTOR_68_SNACKER, spawn_position, 0);
     s_chSnacker_marker = snacker->marker;
 
     local = (ChSnackerLocal *)&snacker->local;

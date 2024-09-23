@@ -14,9 +14,9 @@
 void func_80328FB0(Actor *, f32);
 
 void subaddie_set_state_with_direction(Actor*, s32, f32, s32);
-void func_802C8F70(f32);
+void bundle_setYaw(f32);
 void timed_exitStaticCamera(f32);
-Actor *func_8032811C(s32 actor_id, s32 position[3], s32 yaw);
+Actor *actor_spawnWithYaw_s32(s32 actor_id, s32 position[3], s32 yaw);
 void MM_func_80387F44(void);
 
 void func_803876D0(Actor *);
@@ -111,7 +111,7 @@ void func_80387100(ActorMarker *this){
     position[0] = actorPtr->position_x;
     position[1] = actorPtr->position_y + 60.0f;
     position[2] = actorPtr->position_z;
-    func_802C8F70(0.0f);
+    bundle_setYaw(0.0f);
     func_80333270(JIGGY_A_MM_CONGA, position, func_803870D0, m);
 }
 
@@ -182,7 +182,7 @@ void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
     MM_func_80387F44();
     congaPtr->unk28 = 2.0f;
-    orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
+    orangePtr = actor_spawnWithYaw_s32(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
         player_getPosition(plyr.pos);
