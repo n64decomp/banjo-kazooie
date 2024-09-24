@@ -5,7 +5,7 @@
 extern f32  func_80256AB4(f32, f32, f32, f32);
 extern f32  func_8025715C(f32, f32);
 extern f32 *chVile_getPostion(ActorMarker *);
-extern void func_802C8F7C(f32);
+extern void bundle_setRandomVelocity(f32);
 extern void func_802FDCB8(s32);
 
 enum chvilegame_piece_type_e {
@@ -303,7 +303,7 @@ void func_80389F08(ActorMarker *marker) {
     for(i = 0; i < 3; i++){
         if (var_s2 < 3) {
             bundle_setYaw(vile->yaw + (f32) (i * 30));
-            func_802C8F7C(2.0f);
+            bundle_setRandomVelocity(2.0f);
             bundle_spawn_f32(6, vile->position);
             var_s2 += 1;
         } else {

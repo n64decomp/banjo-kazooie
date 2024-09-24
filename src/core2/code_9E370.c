@@ -588,9 +588,9 @@ void func_803268B4(void) {
                     if ((actor_info->shadow_scale != 0.0f) && actor->unk124_6 && marker->unk14_21) {
                         func_802D7124(actor, actor_info->shadow_scale);
                     }
-                    if (actor->unk10_0) {
+                    if (actor->is_bundle) {
                         actor = &suBaddieActorArray->data[temp_v1];
-                        func_802C96E4(actor);
+                        bundle_update(actor);
                     }
                 }
             }
@@ -837,7 +837,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->initialized = FALSE;
     suLastBaddie->volatile_initialized = FALSE;
     suLastBaddie->lifetime_value = 0.0f;
-    suLastBaddie->unk10_0 = 0;
+    suLastBaddie->is_bundle = FALSE;
     suLastBaddie->unk104 = NULL;
     suLastBaddie->unk100 = NULL;
     suLastBaddie->unk158[0] = NULL;

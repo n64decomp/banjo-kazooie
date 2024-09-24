@@ -263,7 +263,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             if(actor->despawn_flag)
                 return;
 
-            if(actor->unk10_0 && func_802C9C14(actor))
+            if(actor->is_bundle && func_802C9C14(actor))
                 return;
             
         }//L8028BD1C

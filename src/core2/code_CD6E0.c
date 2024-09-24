@@ -566,7 +566,7 @@ void func_80355B00(void) {
     projectile_indx = func_8033E8D0();
     pad40 = func_8033E864();
     sp38 = marker_getActor(pad40);
-    sp34 = func_802C9C0C(sp38);
+    sp34 = bundle_getVelocity(sp38);
     projectile_addRoll(projectile_indx, 7.0f);
     sp28[0] = sp38->position[0];
     sp28[1] = sp38->position[1];
