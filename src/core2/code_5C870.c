@@ -527,7 +527,7 @@ bool func_802E4424(void) {
         case GAME_MODE_7_ATTRACT_DEMO:
         case GAME_MODE_9_BANJO_AND_KAZOOIE:
             func_8034BB90();
-            if ((func_8024E67C(0) == 1) && (D_8037E8E0.unk0 != 0)) {
+            if ((controller_getStartButton(0) == 1) && (D_8037E8E0.unk0 != 0)) {
                 func_802E3BF8(GAME_MODE_1_UNKNOWN, 0U);
             }
             break;
@@ -547,7 +547,7 @@ bool func_802E4424(void) {
                 && dummy_func_80320248()
             ) {
                 func_802E3BF8(GAME_MODE_4_PAUSED, 0U);
-            } else if ((func_8024E67C(0) == 1) && (D_8037E8E0.unk0 != 0)) {
+            } else if ((controller_getStartButton(0) == 1) && (D_8037E8E0.unk0 != 0)) {
                 func_802E3BF8(GAME_MODE_1_UNKNOWN, 0U);
             } else if (sp1C == 0) {
                 func_802E3BF8(GAME_MODE_3_NORMAL, 1U);

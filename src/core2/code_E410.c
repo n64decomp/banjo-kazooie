@@ -24,7 +24,7 @@ void func_802953A0(void){
 void func_80295448(void){
     s32 i;
 
-    D_8037C310.unk0[0] = func_8024E67C(BUTTON_START);
+    D_8037C310.unk0[0] = controller_getStartButton(0);
     func_8024E60C(0, &D_8037C310.unk0[1]);
     func_8024E6E0(0, &D_8037C310.unk0[4]);
     func_8024E55C(0, &D_8037C310.unk0[8]);

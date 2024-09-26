@@ -147,7 +147,7 @@ void func_802E35D8(void ) {
         if (D_8037E8C0.unk18 > 15.0f) {
             sp38++;
         }
-        if (func_8024E67C(0) == 1) {
+        if (controller_getStartButton(0) == 1) {
             sp38++;
         }
         if (sp38 != 0) {
