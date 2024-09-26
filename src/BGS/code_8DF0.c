@@ -22,13 +22,13 @@ extern ActorInfo BGS_D_80390AE0;
 extern ActorInfo D_80390960;
 extern ActorInfo D_80390A40;
 extern ActorInfo D_80390A70;
-extern ActorInfo D_80390830;
-extern ActorInfo D_80390880;
-extern ActorInfo D_803908A4;
-extern ActorInfo D_803908C8;
-extern ActorInfo D_803908EC;
-extern ActorInfo D_80390910;
-extern ActorInfo D_80390934;
+extern ActorInfo chTiptup;
+extern ActorInfo chChoirTurtleYellow;
+extern ActorInfo chChoirTurtleCyan;
+extern ActorInfo chChoirTurtleBlue;
+extern ActorInfo chChoirTurtleRed;
+extern ActorInfo chChoirTurtlePink;
+extern ActorInfo chChoirTurtlePurple;
 extern ActorInfo D_80390DA8;
 extern ActorInfo D_80390D70;
 extern ActorInfo D_80390BD8;
@@ -53,13 +53,13 @@ void BGS_func_8038F1E0(void){//bgs_updateSpawnableActors
     spawnableActorList_add(&D_80390960, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_80390A40, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_7); //yumblie
     spawnableActorList_add(&D_80390A70, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_1); //mr. vile
-    spawnableActorList_add(&D_80390830, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup
-    spawnableActorList_add(&D_80390880, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
-    spawnableActorList_add(&D_803908A4, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
-    spawnableActorList_add(&D_803908C8, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
-    spawnableActorList_add(&D_803908EC, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
-    spawnableActorList_add(&D_80390910, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
-    spawnableActorList_add(&D_80390934, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chTiptup, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup
+    spawnableActorList_add(&chChoirTurtleYellow, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chChoirTurtleCyan, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chChoirTurtleBlue, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chChoirTurtleRed, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chChoirTurtlePink, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
+    spawnableActorList_add(&chChoirTurtlePurple, actor_new, ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_3 ); //tiptup_chiorMember
     spawnableActorList_add(&D_80390DA8, actor_new, ACTOR_FLAG_UNKNOWN_14); //leafboat
     spawnableActorList_add(&D_80390D70, actor_new, ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_7); //bigAlligator
     spawnableActorList_add(&D_80390BD8, actor_new, ACTOR_FLAG_UNKNOWN_3); //green_jiggy_switch
