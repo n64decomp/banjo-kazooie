@@ -4,6 +4,8 @@
 
 #include "version.h"
 
+#define PFSMANAGER_THREAD_STACK_SIZE 0x200
+
 extern s32 D_803727F4;
 
 extern struct {
@@ -57,8 +59,8 @@ f32 D_80281308[4];
 OSContStatus pfsManagerContStatus;
 u8 pad_D_80281320[0x8];
 volatile s32 pfsManagerBusy;
-OSThread pfsManagerThread;
-u8 D_802814E0[0x200];
+OSThread sPfsManagerThread;
+u8 sPfsManagerThreadStack[PFSMANAGER_THREAD_STACK_SIZE];
 f32 D_802816E0;
 OSMesgQueue D_802816E8;
 OSMesg D_80281700[4];
@@ -290,8 +292,8 @@ void pfsManager_readData(){
 }
 
 
-void pfsManager_handle(void *arg0){
-    do{
+void pfsManager_entry(void *arg) {
+    do {
         osRecvMesg(&pfsManagerContPollingMsqQ, 0, 1);
         if(pfsManagerBusy == TRUE){
             pfsManager_readData();
@@ -299,19 +301,19 @@ void pfsManager_handle(void *arg0){
         else{
             osSendMesg(&pfsManagerContReplyMsgQ, 0, 0);
         }
-    }while(1);
+    } while (1);
 }
 
 void pfsManager_init(void){
     osCreateMesgQueue(&pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf, 1);
     osCreateMesgQueue(&pfsManagerContReplyMsgQ, &pfsManagerContReplyMsgBuf, 1);
-    osCreateThread(&pfsManagerThread, 7, pfsManager_handle, NULL, D_802814E0 + 0x200, 0x28);
+    osCreateThread(&sPfsManagerThread, 7, pfsManager_entry, NULL, sPfsManagerThreadStack + PFSMANAGER_THREAD_STACK_SIZE, 40);
     osSetEventMesg(OS_EVENT_SI, &pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf);
     osContInit(&pfsManagerContPollingMsqQ, &pfsManagerBitPattern, &pfsManagerContStatus);
     osContSetCh(1);
     func_8024F224();
     func_802476DC();
-    osStartThread(&pfsManagerThread);
+    osStartThread(&sPfsManagerThread);
 }
 
 bool pfsManager_contErr(void){

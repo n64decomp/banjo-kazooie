@@ -4,6 +4,8 @@
 
 #include "version.h"
 
+#define RUMBLE_THREAD_STACK_SIZE 0x200
+
 void func_8024F35C(s32);
  
 OSMesgQueue  D_80282390;
@@ -16,8 +18,8 @@ f32          D_80282420;
 f32          D_80282424;
 f32          D_80282428;
 f32          D_8028242C;
-OSThread     rumbleThread;
-u8           rumbleStack[0x200];
+OSThread     sRumbleThread;
+u8           sRumbleThreadStack[RUMBLE_THREAD_STACK_SIZE];
 
 /* .code */
 void rumbleManager_80250D94(f32, f32, f32);
@@ -55,7 +57,7 @@ void func_80250930(void){
     }
 }
 
-void __rumbleUpdate(void *arg0) {
+void rumbleThread_entry(void *arg) {
     static s32 D_802827E0;
     static s32 rumble_state;
     f32 temp_f2;
@@ -107,7 +109,7 @@ void rumbleManager_80250C08(void) {
     }
 }
 
-void rumbleManager_init(void){
+void rumbleManager_init(void) {
     s32 pfs_status;
     
     func_8024F35C(4);
@@ -121,8 +123,8 @@ void rumbleManager_init(void){
     D_802823B0 = D_802823AC;
     if(D_802823AC){
         osCreateMesgQueue(&D_80282390, &D_802823A8, 1);
-        osCreateThread(&rumbleThread, 8, __rumbleUpdate, NULL, &rumbleStack[0x200], 0x19);
-        osStartThread(&rumbleThread);
+        osCreateThread(&sRumbleThread, 8, rumbleThread_entry, NULL, sRumbleThreadStack + RUMBLE_THREAD_STACK_SIZE, 25);
+        osStartThread(&sRumbleThread);
         func_8024BDAC(&D_80282390, 0);
     }
 }

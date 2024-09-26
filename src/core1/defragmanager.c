@@ -2,26 +2,28 @@
 #include "functions.h"
 #include "variables.h"
 
-void __defrag_thread(s32 arg0);
+#define DEFRAG_THREAD_STACK_SIZE 0x800
+
+void defragThread_entry(void *arg);
 
 OSMesgQueue D_8027E120;
 OSMesg      D_8027E138;
 OSMesgQueue D_8027E140;
 OSMesg      D_8027E158;
-OSThread    defragThread;
-u8          defragStack[0x800];
+OSThread    sDefragThread;
+u8          sDefragThreadStack[0x800];
 
 /* .code */
 void defragManager_init(void){
     osCreateMesgQueue(&D_8027E120, &D_8027E138, 1);
     osCreateMesgQueue(&D_8027E140, &D_8027E158, 1);
-    osCreateThread(&defragThread, 2, __defrag_thread, NULL,  &defragStack[0x800], 10);
-    osStartThread(&defragThread);
+    osCreateThread(&sDefragThread, 2, defragThread_entry, NULL, sDefragThreadStack + DEFRAG_THREAD_STACK_SIZE, 10);
+    osStartThread(&sDefragThread);
 }
 
 void defragManager_free(void){
-    osStopThread(&defragThread);
-    osDestroyThread(&defragThread);
+    osStopThread(&sDefragThread);
+    osDestroyThread(&sDefragThread);
 }
 
 void defragManager_80240874(void){
@@ -38,11 +40,11 @@ void defragManager_802408B0(void){
 
 void defragManager_setPriority(OSPri pri){
     if(func_8023E000() == 3){
-        osSetThreadPri(&defragThread, pri);
+        osSetThreadPri(&sDefragThread, pri);
     }
 }
 
-void __defrag_thread(s32 arg0){
+void defragThread_entry(void *arg) {
     int tmp_v0;
     do{
         osRecvMesg(&D_8027E120, NULL, OS_MESG_BLOCK);

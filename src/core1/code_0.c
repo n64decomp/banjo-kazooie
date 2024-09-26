@@ -4,6 +4,8 @@
 #include "version.h"
 #include "gc/gctransition.h"
 
+#define MAIN_THREAD_STACK_SIZE 0x17F0
+
 
 void setBootMap(enum map_e);
 void func_8023DFF0(s32);
@@ -15,23 +17,24 @@ void func_8023DFF0(s32);
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
 u32 gGlobalTimer = 0;
-u32 D_8027561C[] = {
+u32 sDebugVar_8027561C[] = { // never used
     0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0, 
     0x1, 0x6, 0xD,  -1
 };
 u32 D_80275650 = VER_SELECT(0xAD019D3C, 0xA371A8F3, 0, 0); //SM_DATA_CRC_1
 u32 D_80275654 = VER_SELECT(0xD381B72F, 0xD0709154, 0, 0); //SM_DATA_CRC_2
-char D_80275658[] = VER_SELECT("HjunkDire:218755", "HjunkDire:300875", "HjunkDire:", "HjunkDire:");
+char sDebugVar_80275658[] = VER_SELECT("HjunkDire:218755", "HjunkDire:300875", "HjunkDire:", "HjunkDire:");
 
 /* .bss */
 u32 D_8027A130;
-u8  pad_8027A138[0x400];
-u64 D_8027A538;
-u8  pad_8027A540[0x17F8];
-OSThread s_MainThread;
-s32      gBootMap;
-s32      gDisableInput;
-u64      D_8027BEF0;
+u8 pad_8027A138[0x400];
+u64 sDebugVar_8027A538; // never used
+u64 sDebugVar_8027A540; // never used
+u8 sMainThreadStack[MAIN_THREAD_STACK_SIZE]; // The real size of the stack is unclear yet, maybe there are some out-optimized debug variables below the stack
+OSThread sMainThread;
+s32 gBootMap;
+s32 gDisableInput;
+u64 sDebugVar_8027BEF0; // never used
 
 extern u8 core2_TEXT_START[];
 
@@ -42,7 +45,7 @@ void func_8023DA20(s32 arg0){
     osWriteBackDCacheAll();
     sns_find_and_parse_payload();
     osInitialize();
-    func_80240BE0();
+    initThread_create();
 }
 
 void func_8023DA74(void){
@@ -100,7 +103,7 @@ void func_8023DBDC(void){
     func_8023DFF0(3);
 }
 
-void core1_init(void){
+void core1_init(void) {
 #if VERSION == VERSION_PAL
      osTvType = 0;
 #endif
@@ -109,7 +112,7 @@ void core1_init(void){
     rarezip_init(); //initialize decompressor's huft table
     func_8024BE30();
     overlayManagerloadCore2();
-    D_8027BEF0 = D_8027A538;
+    sDebugVar_8027BEF0 = sDebugVar_8027A538;
     heap_init();
     func_80254028();
     dummy_func_8025AFB0();
@@ -201,10 +204,11 @@ void mainLoop(void){
     }//L8023DF70
 }
 
-void __mainMethod(void *arg0){ 
+void mainThread_entry(void *arg) { 
     core1_init();
     sns_write_payload_over_heap();
-    while(1){ //main loop
+
+    while (1) {
         mainLoop();
     }
 }
@@ -221,14 +225,12 @@ void setBootMap(enum map_e map_id){
     gBootMap = map_id;
 }
 
-void mainThread_create(void){
-    // 5th argument should be a pointer to the end of an array, but the start is unknown
-    // D_8027A538 is not the right symbol, but the end of the array is the important port and this is the closest symbol currently
-    osCreateThread(&s_MainThread, 6, __mainMethod, NULL, ((u8*)&D_8027A538) + 0x1800, 0x14);
+void mainThread_create(void) {
+    osCreateThread(&sMainThread, 6, mainThread_entry, NULL, sMainThreadStack + MAIN_THREAD_STACK_SIZE, 20);
 }
 
-OSThread *mainThread_get(void){
-    return &s_MainThread;
+OSThread *mainThread_get(void) {
+    return &sMainThread;
 }
 
 void disableInput_set(void){

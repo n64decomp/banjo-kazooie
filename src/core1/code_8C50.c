@@ -484,7 +484,11 @@ void func_80247560(void){
     D_80280684 = 0;
     D_80280680 = 0;
     tmp_v0 = D_8027EF40;
-    while((u32)tmp_v0 % 0x10){((u32)tmp_v0)++;}
+
+    while ((u32) tmp_v0 % 0x10) {
+        tmp_v0 = (u64 *) ((u32) tmp_v0 + 1);
+    }
+
     D_80275950.t.yield_data_ptr = tmp_v0;
     osCreateThread(&D_80280428, 5, func_802473B4, NULL, &D_8027FC28[2048], 60);
     osStartThread(&D_80280428);

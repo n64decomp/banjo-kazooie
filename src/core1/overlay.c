@@ -42,7 +42,7 @@ void overlay_load(
     else{
         sp34 = &D_8002D500;
     }
-    func_802405F0(sp34, rom_start, rom_end - rom_start);
+    piMgr_read(sp34, rom_start, rom_end - rom_start);
     rarezip_uncompress(&sp34, &ram_start);
     sp2C = D_8027BF2C;
     sp30 = D_8027BF30;

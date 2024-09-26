@@ -579,4 +579,6 @@ extern void miscFlag_set(enum misc_flag_e arg0);
 extern void miscFlag_clear(enum misc_flag_e arg0);
 extern void miscFlag_toggle(enum misc_flag_e arg0);
 
+extern void piMgr_read(void *vaddr, s32 devaddr, s32 size);
+
 #endif
