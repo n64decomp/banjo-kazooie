@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/modelRender.h"
+#include "core2/coords.h"
 
 extern UNK_TYPE(s32) func_802E8E88(BKCollisionList *, BKVertexList *, f32[3], f32[3], f32, f32[3], s32, s32);
 extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f32, f32[3], s32);
@@ -400,7 +401,7 @@ struct5Bs *func_803097A0(void){
 
 void mapModel_getCubeBounds(s32 min[3], s32 max[3]) {
     vtxList_getBounds_s32(model_getVtxList(mapModel.model_bin_opa), min, max);
-    func_8033ECD8(min, max, 1000);
+    coords_scale(min, max, 1000);
     min[0] = min[0] + mapModel.description->unk6[0];
     min[1] = min[1] + mapModel.description->unk6[1];
     min[2] = min[2] + mapModel.description->unk6[2];
