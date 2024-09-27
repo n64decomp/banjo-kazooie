@@ -5,7 +5,7 @@
 extern func_802EBA98(s32, f32[3], s32, f32, s32, f32[3], f32, f32[3]);
 
 typedef struct {
-    u8 unk0[2];
+    u8 unk0[2]; // array of sfxsource indexes
     //u8 pad2[2];
     f32 unk4;
     f32 unk8;
@@ -121,8 +121,8 @@ void chGobi1_update(Actor *this){
         marker->collidable = TRUE;
         GV_D_80391A40.unk0 = 0;
         GV_D_80391A40.unk1 = 0;
-        local->unk0[0] = func_8030D90C();
-        local->unk0[1] = func_8030D90C();
+        local->unk0[0] = sfxsource_createSfxsourceAndReturnIndex();
+        local->unk0[1] = sfxsource_createSfxsourceAndReturnIndex();
         local->unk8 = 0.0f;
         local->unkC = 0.0f;
         local->unk10 = 0.0f;

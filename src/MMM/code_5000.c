@@ -76,7 +76,7 @@ void func_8038B630(Struct5Fs *arg0, Struct68s *arg1){
     sp20 = alCents2Ratio(func_80389BBC()*100);
     phi_s0 = func_80351758(arg1);
     func_8030E394(phi_s0);
-    func_8030DBB4(phi_s0, sp20);
+    sfxsource_playSfxAtVolume(phi_s0, sp20);
     sfxsource_setSfxId(phi_s0, 0x3f3);
     func_8030DD14(phi_s0, 3);
     sfxsource_setSampleRate(phi_s0, 0x7fff);

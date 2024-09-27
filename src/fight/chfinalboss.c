@@ -657,10 +657,10 @@ void chfinalboss_setPhase(ActorMarker *this, u32 phase_id)
             local->unk10 = 0;
             if (actor->unk44_31 == 0)
             {
-                actor->unk44_31 = (u8)func_8030D90C();
+                actor->unk44_31 = (u8)sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(actor->unk44_31, SFX_152_MOTOR_BREAKDOWN_01);
                 func_8030DD14(actor->unk44_31, 3);
-                func_8030DBB4(actor->unk44_31, 1.0f);
+                sfxsource_playSfxAtVolume(actor->unk44_31, 1.0f);
                 sfxsource_setSampleRate(actor->unk44_31, 32000);
             }
             return;
@@ -1559,11 +1559,11 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         func_80311480(randi2(0, 5) + 0x1145, 0x20, NULL, NULL, NULL, NULL);
         func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
         func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
-        this->unk44_31 = func_8030D90C();
+        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         D_803927C0 = 1.0f;
         sfxsource_setSfxId(this->unk44_31, SFX_2C_PULLING_NOISE);
         func_8030DD14(this->unk44_31, 2);
-        func_8030DBB4(this->unk44_31, D_803927C0);
+        sfxsource_playSfxAtVolume(this->unk44_31, D_803927C0);
         sfxsource_setSampleRate(this->unk44_31, 26000);
         for(iter.i = 0; iter.i < 4; iter.i+=1){
             if(__chFinalBossJinjoStatueMarker[iter.i] != NULL){
@@ -1726,7 +1726,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
                 func_8030E6A4(SFX_12A_GRUNTY_AH, randf2(0.95f, 1.05f), 32000);
             }
             if ((sp58 >= 0.4) && (sp58 <= 0.65)) {
-                func_8030DBB4(this->unk44_31, ((D_803927C0 += 0.005) > 1.99) ? 1.99 : (D_803927C0 += 0.005));
+                sfxsource_playSfxAtVolume(this->unk44_31, ((D_803927C0 += 0.005) > 1.99) ? 1.99 : (D_803927C0 += 0.005));
                 func_8030E2C4(this->unk44_31);
             }
             if (actor_animationIsAt(this, 0.56f)) {
@@ -1785,10 +1785,10 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
         case 40:
             func_802BB41C(0);
             if (this->unk44_31 == 0) {
-                this->unk44_31 = func_8030D90C();
+                this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
                 func_8030DD14(this->unk44_31, 2);
-                func_8030DBB4(this->unk44_31, 1.0f);
+                sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
                 sfxsource_setSampleRate(this->unk44_31, 0x4268);
             }
             break;
@@ -1796,10 +1796,10 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
         case 41:
             this->unk7C[2] = 0;
             if (this->unk44_31 == 0) {
-                this->unk44_31 = func_8030D90C();
+                this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
                 func_8030DD14(this->unk44_31, 3);
-                func_8030DBB4(this->unk44_31, 1.0f);
+                sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
                 sfxsource_setSampleRate(this->unk44_31, 0x4268);
                 func_8030E2C4(this->unk44_31);
             }

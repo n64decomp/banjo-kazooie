@@ -32,7 +32,7 @@ void bsbflap_init(void) {
     func_8029E070(1);
     miscFlag_set(MISC_FLAG_12_HAS_FLAPPED);
     func_8029E3C0(0, 2.5f);
-    D_8037D30C = func_8030D90C();
+    D_8037D30C = sfxsource_createSfxsourceAndReturnIndex();
     func_80299BD4();
     D_8037D301 = 0;
     D_8037D308 = 0.0f;
@@ -42,7 +42,7 @@ void bsbflap_init(void) {
 void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
     func_8030E394(D_8037D30C);
     sfxsource_setSfxId(D_8037D30C, arg0);
-    func_8030DBB4(D_8037D30C, arg1);
+    sfxsource_playSfxAtVolume(D_8037D30C, arg1);
     sfxsource_setSampleRate(D_8037D30C, arg2);
     func_8030DD90(D_8037D30C, 0);
     func_8030DD14(D_8037D30C, 3);

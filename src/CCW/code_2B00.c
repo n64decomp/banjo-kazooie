@@ -111,7 +111,7 @@ void func_803891B0(void* marker) {
     actor->unk44_31 = func_8030ED2C(SFX_3EC_CCW_DOOR_OPENING, 3);
     func_8030DD90(actor->unk44_31, 0);
     sfxsource_setSampleRate(actor->unk44_31, 0x2AF8);
-    func_8030DBB4(actor->unk44_31, 0.3f);
+    sfxsource_playSfxAtVolume(actor->unk44_31, 0.3f);
     func_8030E2C4(actor->unk44_31);
 }
 

@@ -118,7 +118,7 @@ void __bsblongleg_enter(void){
 }
 
 void bsblongleg_enter_init(void){
-    D_8037D361 = func_8030D90C();
+    D_8037D361 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 0.8f, 1.9f, 1.2f);
     miscFlag_clear(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
@@ -275,7 +275,7 @@ void bsblongleg_exit_init(void){
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
     baphysics_set_target_horizontal_velocity(0.0f);
-    D_8037D361 = func_8030D90C();
+    D_8037D361 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(D_8037D361, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D361, 1.4f, 0.4f, -1.2f);
 }

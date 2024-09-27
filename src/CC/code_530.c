@@ -8,7 +8,7 @@ void func_80388EA4(void);
 
 
 typedef struct {
-    u8 unk0;
+    u8 sfxsourceIdx;
     u8 unk1;
     u8 unk2;
     u8 unk3;
@@ -37,16 +37,16 @@ void CC_func_80386920(Actor *this, s32 next_state){
 
     local->unk14 = 0.0f;
     if(this->state == 2 || this->state == 3 || this->state == 4){
-        func_8030E394(local->unk0);
+        func_8030E394(local->sfxsourceIdx);
     }
 
     if(next_state == 2 || next_state == 3 || next_state == 4){
-        func_8030DD90(local->unk0, 1);
-        func_8030DBB4(local->unk0, 0.3f);
-        sfxsource_setSfxId(local->unk0, 0x3ec);
-        func_8030DD14(local->unk0, 3);
-        sfxsource_setSampleRate(local->unk0, 28000);
-        func_8030E2C4(local->unk0);
+        func_8030DD90(local->sfxsourceIdx, 1);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.3f);
+        sfxsource_setSfxId(local->sfxsourceIdx, 0x3ec);
+        func_8030DD14(local->sfxsourceIdx, 3);
+        sfxsource_setSampleRate(local->sfxsourceIdx, 28000);
+        func_8030E2C4(local->sfxsourceIdx);
     }
     
     if(next_state == 2 || next_state == 4){
@@ -77,7 +77,7 @@ void func_80386AD0(ActorMarker *arg0, s32 arg1) {
 void func_80386AF8(Actor *arg0) {
     ActorLocal_CC_530 *local = (ActorLocal_CC_530 *)&arg0->local;
     CC_func_80386920(arg0, 0);
-    func_8030DA44(local->unk0);
+    func_8030DA44(local->sfxsourceIdx);
 }
 
 void func_80386B28(Actor *this){
@@ -94,7 +94,7 @@ void func_80386B28(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_80386AD0, NULL);
-        local->unk0 = func_8030D90C();
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         local->unk1 = 0;
         local->unk2 = 0;
         local->unk10 = this->pitch;

@@ -172,10 +172,10 @@ void GV_func_8038BEA0(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         if(this->unk44_31 == 0){
-            this->unk44_31 = func_8030D90C();
+            this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
             func_8030DD14(this->unk44_31, 2);
-            func_8030DBB4(this->unk44_31, 0.1f);
+            sfxsource_playSfxAtVolume(this->unk44_31, 0.1f);
             sfxsource_setSampleRate(this->unk44_31, 32000);
         }
         if(this->unk100 == NULL){

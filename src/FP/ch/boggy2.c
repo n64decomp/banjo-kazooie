@@ -261,7 +261,7 @@ void func_80388F90(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
 
     func_8030DB04(this->unk44_31, 32000, this->position, 1000.0f, 4000.0f);
-    func_8030DBB4(this->unk44_31, local->unk8);
+    sfxsource_playSfxAtVolume(this->unk44_31, local->unk8);
     func_8030E2C4(this->unk44_31);
 }
 

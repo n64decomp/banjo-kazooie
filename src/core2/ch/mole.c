@@ -128,10 +128,10 @@ void func_802D9530(Actor *this){
     }
     subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
     actor_playAnimationOnce(this);
-    this->unk44_31 = func_8030D90C();
+    this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
     func_8030DD14(this->unk44_31, 2);
-    func_8030DBB4(this->unk44_31, 1.4f);
+    sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
     sfxsource_setSampleRate(this->unk44_31, 26000);
     func_8028F918(0);
 }
@@ -255,10 +255,10 @@ void func_802D9ADC(Actor *this){
     animctrl_setSmoothTransition(this->animctrl, TRUE);
     subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
-    this->unk44_31 = func_8030D90C();
+    this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
     func_8030DD14(this->unk44_31, 2);
-    func_8030DBB4(this->unk44_31, 1.4f);
+    sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
     sfxsource_setSampleRate(this->unk44_31, 26000);
     chmole_setStaticCamera(this);
     func_8028F94C(2, this->position);

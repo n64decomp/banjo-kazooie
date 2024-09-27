@@ -6,7 +6,7 @@
 extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);
 extern f32 func_80309B24(f32[3]);
-extern void func_8030DBB4(u8, f32);
+extern void sfxsource_playSfxAtVolume(u8, f32);
 extern void func_802CC340(Actor *, f32[3]);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 
@@ -270,8 +270,8 @@ void func_802CCBF4(Actor *this) {
     ActorLocal_Core2_45310 * local;
 
     local = (ActorLocal_Core2_45310 * )&this->local;
-    local->unk0 = func_8030D90C();
-    func_8030DBB4(local->unk0, 0.9f);
+    local->unk0 = sfxsource_createSfxsourceAndReturnIndex();
+    sfxsource_playSfxAtVolume(local->unk0, 0.9f);
     sfxsource_setSfxId(local->unk0, 0x3FA);
     func_8030DD14(local->unk0, 2);
     sfxsource_setSampleRate(local->unk0, 0);
@@ -350,7 +350,7 @@ void func_802CCC5C(Actor *this) {
                     spB0 += randf2(-0.05, 0.05);
                     spB0 = (spB0 < spAC) ? spAC : MIN(spA8 , spB0);
                 }
-                func_8030DBB4(local->unk0, spB0);
+                sfxsource_playSfxAtVolume(local->unk0, spB0);
                 phi_f12 = 1.0f - ml_distance_vec3f(spC4, this->position) / 2000.0f;
                 if(0.0f > phi_f12){
                     phi_f12 = 0.0f;
@@ -429,7 +429,7 @@ void func_802CCC5C(Actor *this) {
                         } else {
                             phi_f2 = 1.0 - ((local->unk4 - 0.2) / 0.6);
                         }
-                        func_8030DBB4(local->unk0, phi_f2 * 0.3999999999999999 + 1.0);
+                        sfxsource_playSfxAtVolume(local->unk0, phi_f2 * 0.3999999999999999 + 1.0);
                     }
                 }
             }

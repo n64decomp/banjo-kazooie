@@ -222,7 +222,7 @@ void func_8038DBDC(Actor *this){
                     if(1.0 < this->unk1C[1]){
                         this->unk1C[1] -= 0.1;
                     }
-                    func_8030DBB4(this->unk44_31, this->unk1C[1]);
+                    sfxsource_playSfxAtVolume(this->unk44_31, this->unk1C[1]);
                 }
             }
             break;

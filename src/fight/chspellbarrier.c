@@ -20,7 +20,7 @@ typedef struct {
     u8 unkD;
     u8 unkE;
     u8 unkF;
-    u8 unk10;
+    u8 sfxsourceIdx;
 } ActorLocal_fight_8390;
 
 void chspellbarrier_update(Actor *this);
@@ -42,8 +42,8 @@ void func_8038E780(ActorMarker *arg0, ActorMarker *arg1) {
     sp18 = (ActorLocal_fight_8390 *) &sp1C->local;
     sp18->unk0 = 0xFF;
     sp18->unk4 = 0;
-    if (func_8030E3FC(sp18->unk10) == 0) {
-        func_8030E2C4(sp18->unk10);
+    if (func_8030E3FC(sp18->sfxsourceIdx) == 0) {
+        func_8030E2C4(sp18->sfxsourceIdx);
     }
     if (func_8030E3FC(sp1C->unk44_31) == 0) {
         func_8030E2C4(sp1C->unk44_31);
@@ -57,9 +57,9 @@ void func_8038E7EC(Actor *arg0) {
         func_8030DA44(arg0->unk44_31);
         arg0->unk44_31 = 0;
     }
-    if (local->unk10 != 0) {
-        func_8030DA44(local->unk10);
-        local->unk10 = (u8)0;
+    if (local->sfxsourceIdx != 0) {
+        func_8030DA44(local->sfxsourceIdx);
+        local->sfxsourceIdx = (u8)0;
     }
 }
 
@@ -80,10 +80,10 @@ void chspellbarrier_update(Actor *this){
         this->scale = 0.0f;
         this->unk44_31 = func_8030ED2C(SFX_142_GRUNTY_LAUGH_3, 3);
         func_8030DB04(this->unk44_31, 32000, this->position, 4000.0f, 12000.0f);
-        func_8030DBB4(this->unk44_31, 1.0f);
-        local->unk10 = func_8030ED2C(0x415, 3);
-        func_8030DB04(local->unk10, 32000, this->position, 4000.0f, 12000.0f);
-        func_8030DBB4(local->unk10, 1.0f);
+        sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
+        local->sfxsourceIdx = func_8030ED2C(0x415, 3);
+        func_8030DB04(local->sfxsourceIdx, 32000, this->position, 4000.0f, 12000.0f);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 1.0f);
         FUNC_8030E8B4(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
     }//L8038E97C
     jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);

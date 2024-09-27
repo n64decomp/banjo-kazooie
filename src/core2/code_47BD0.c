@@ -296,7 +296,7 @@ void chBeeSwarm_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) 
 
 void chBeeSwarm_802CF7CC(Actor *this) {
     if (D_8037DCBC == 0) {
-        this->unk44_31 = func_8030D90C();
+        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(this->unk44_31, SFX_3FA_HONEYCOMB_TALKING);
         func_8030DD14(this->unk44_31, 2);
         func_8030DD90(this->unk44_31, 2);

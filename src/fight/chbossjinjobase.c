@@ -4,7 +4,7 @@
 #include "fight.h"
 
 typedef struct {
-    u8 unk0;
+    u8 sfxsourceIdx;
 }ActorLocal_BossJinjoBase;
 
 enum chBossJinjoBase_states {
@@ -90,9 +90,9 @@ void fight_func_8038D510(Actor *arg0) {
         func_8030DA44(arg0->unk44_31);
         arg0->unk44_31 = 0;
     }
-    if (sp18->unk0 != 0) {
-        func_8030DA44(sp18->unk0);
-        sp18->unk0 = 0;
+    if (sp18->sfxsourceIdx != 0) {
+        func_8030DA44(sp18->sfxsourceIdx);
+        sp18->sfxsourceIdx = 0;
     }
 }
 
@@ -115,17 +115,17 @@ void chBossJinjoBase_update(Actor *this) {
         this->marker->propPtr->unk8_3 = 1;
         actor_collisionOn(this);
         this->unk38_31 = 0;
-        this->unk44_31 = func_8030D90C();
+        this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
         func_8030DD14(this->unk44_31, 2);
-        func_8030DBB4(this->unk44_31, 1.4f);
+        sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
         sfxsource_setSampleRate(this->unk44_31, 32000);
         
-        local->unk0 = func_8030D90C();
-        sfxsource_setSfxId(local->unk0, SFX_405_UNKNOWN);
-        func_8030DD14(local->unk0, 2);
-        func_8030DBB4(local->unk0, 0.7f);
-        sfxsource_setSampleRate(local->unk0, 12000);
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+        sfxsource_setSfxId(local->sfxsourceIdx, SFX_405_UNKNOWN);
+        func_8030DD14(local->sfxsourceIdx, 2);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.7f);
+        sfxsource_setSampleRate(local->sfxsourceIdx, 12000);
         FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 20000);
         func_8038D3DC(this, 0x19a, 0.0f, -200.0f, 0.0f);
         TUPLE_COPY(this->unk1C, this->position);
@@ -148,7 +148,7 @@ void chBossJinjoBase_update(Actor *this) {
             if(this->position_y + y_delta < this->unk1C[1]) {
                 if( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) || this->unkF4_8 == 1) {
                     func_8030E2C4(this->unk44_31);
-                    func_8030E2C4(local->unk0);
+                    func_8030E2C4(local->sfxsourceIdx);
                 }
                 
                 position_delta[0] = (shake_noise & 1) ? 3.0f : -3.0f; 
@@ -171,8 +171,8 @@ void chBossJinjoBase_update(Actor *this) {
                 subaddie_set_state(this, CHBOSSJINJOBASE_STATE_2_DEFAULT);
                 func_8030DA44(this->unk44_31);
                 this->unk44_31 = 0;
-                func_8030DA44(local->unk0);
-                local->unk0 = 0;
+                func_8030DA44(local->sfxsourceIdx);
+                local->sfxsourceIdx = 0;
                 TUPLE_COPY(this->position, this->unk1C);
                 TUPLE_COPY(actor_stone_jinjo->position, this->unk1C);
                 actor_stone_jinjo->position_y += 172.0f;

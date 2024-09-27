@@ -5,7 +5,7 @@
 extern void func_8030DBFC(u8, f32, f32, f32);
 
 typedef struct{
-    u8 unk0;
+    u8 sfxsourceIdx;
     //u8 pad1[3];
     ActorMarker *unk4;
     f32 unk8[3];
@@ -91,7 +91,7 @@ void func_8038717C(Actor *this){
     ActorLocal_CCW_950 *local;
 
     local = (ActorLocal_CCW_950 *)&this->local;
-    func_8030DA44(local->unk0);
+    func_8030DA44(local->sfxsourceIdx);
 }
 
 void chwasp_update(Actor *this) {
@@ -113,13 +113,13 @@ void chwasp_update(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_8038717C;
-        local->unk0 = func_8030D90C();
+        local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         local->unk4 = 0;
         local->unk14 = 1000.0f;
-        sfxsource_setSfxId(local->unk0, 0x3FA);
-        func_8030DD14(local->unk0, 2);
-        func_8030DBB4(local->unk0, 0.9f);
-        sfxsource_setSampleRate(local->unk0, 0);
+        sfxsource_setSfxId(local->sfxsourceIdx, 0x3FA);
+        func_8030DD14(local->sfxsourceIdx, 2);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.9f);
+        sfxsource_setSampleRate(local->sfxsourceIdx, 0);
         marker_setCollisionScripts(this->marker, func_80387124, NULL, CCW_func_80387150);
         chwasp_setState(this, 1);
         return;
@@ -204,12 +204,12 @@ void chwasp_update(Actor *this) {
 
     if(this->state);
     if (this->state == 2) {
-        func_8030DBFC(local->unk0, 1.0f, 1.1f, 0.05f);
+        func_8030DBFC(local->sfxsourceIdx, 1.0f, 1.1f, 0.05f);
     } else {
-        func_8030DBFC(local->unk0, 0.8f, 0.9f, 0.05f);
+        func_8030DBFC(local->sfxsourceIdx, 0.8f, 0.9f, 0.05f);
     }
-    sfxsource_set_fade_distances(local->unk0, 500.0f, 1500.0f);
-    sfxsource_set_position(local->unk0, this->position);
-    func_8030E2C4(local->unk0);
-    sfxsource_setSampleRate(local->unk0, (s32) ((local->unk18 / local->unk14) * 10000.0f));
+    sfxsource_set_fade_distances(local->sfxsourceIdx, 500.0f, 1500.0f);
+    sfxsource_set_position(local->sfxsourceIdx, this->position);
+    func_8030E2C4(local->sfxsourceIdx);
+    sfxsource_setSampleRate(local->sfxsourceIdx, (s32) ((local->unk18 / local->unk14) * 10000.0f));
 }

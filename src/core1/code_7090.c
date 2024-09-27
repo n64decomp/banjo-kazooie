@@ -46,11 +46,11 @@ void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
     s32 i;
     u8 indx;
     if(func_8030ED70(func_80255D44(arg1))){
-        i = func_8030D90C();
+        i = sfxsource_createSfxsourceAndReturnIndex();
         indx = i;
         if(i){
             sfxsource_setSfxId(indx, func_80255D44(arg1));
-            func_8030DBB4(indx, arg3);
+            sfxsource_playSfxAtVolume(indx, arg3);
             sfxsource_setSampleRate(indx, arg2);
             func_8030E2C4(indx);
             func_80244C78(arg0);

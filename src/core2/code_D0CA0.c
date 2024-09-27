@@ -12,7 +12,7 @@ Actor *func_80358344(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_80358684(Actor *this);
 
 typedef struct {
-    u8 unk0;
+    u8 sfxsourceIdx;
     f32 unk4;
     f32 unk8[3];
     f32 unk14;
@@ -220,8 +220,8 @@ void func_80358490(Actor *this) {
     ActorLocal_core2_D0CA0 *local;
 
     local = (ActorLocal_core2_D0CA0 *)&this->local;
-    if(local->unk0 != 0){
-        func_8030DA44(local->unk0);
+    if(local->sfxsourceIdx != 0){
+        func_8030DA44(local->sfxsourceIdx);
     }
 }
 
@@ -229,11 +229,11 @@ void func_803584BC(Actor *this) {
     ActorLocal_core2_D0CA0 *local;
 
     local = (ActorLocal_core2_D0CA0 *)&this->local;
-    local->unk0 = func_8030D90C();
-    func_8030DBB4(local->unk0, 0.9f);
-    sfxsource_setSfxId(local->unk0, 0x3FA);
-    func_8030DD14(local->unk0, 2);
-    sfxsource_setSampleRate(local->unk0, 0);
+    local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
+    sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.9f);
+    sfxsource_setSfxId(local->sfxsourceIdx, 0x3FA);
+    func_8030DD14(local->sfxsourceIdx, 2);
+    sfxsource_setSampleRate(local->sfxsourceIdx, 0);
 }
 
 
@@ -301,24 +301,24 @@ void func_80358684(Actor *this) {
         local->unk30[2] = (s16) (s32) this->position[2];
         local->unk30[1] += 0xC8;
         marker_setCollisionScripts(this->marker, func_803582C4, NULL, func_80358304);
-        local->unk0 = 0;
+        local->sfxsourceIdx = 0;
         func_80357F0C(this, 1);
     }
 
     if (!subaddie_playerIsWithinSphere(this, 4000)) {
-        if (local->unk0 != 0) {
-            func_8030DA44(local->unk0);
-            local->unk0 = 0U;
+        if (local->sfxsourceIdx != 0) {
+            func_8030DA44(local->sfxsourceIdx);
+            local->sfxsourceIdx = 0U;
         }
         return;
     }
 
-    if (local->unk0 == 0) {
+    if (local->sfxsourceIdx == 0) {
         func_803584BC(this);
     }
     player_getPosition(sp94);
     if ((this->state > 0) && (this->state < 6)) {
-        sp84 = func_8030E200(local->unk0);
+        sp84 = func_8030E200(local->sfxsourceIdx);
         if (local->unk39 == 1) {
             sp80 = 0.9f;
             sp7C = 1.0f;
@@ -336,12 +336,12 @@ void func_80358684(Actor *this) {
                  : (sp7C < sp84) ? sp7C 
                  : sp84;
         }
-        func_8030DBB4(local->unk0, sp84);
+        sfxsource_playSfxAtVolume(local->sfxsourceIdx, sp84);
         sp78 = 1.0f - ml_distance_vec3f(sp94, this->position) / 2000.0f;
         sp78 = (0.0f > sp78) ? 0 : sp78;
         if (sp78 > 0.0f) {
-            sfxsource_setSampleRate(local->unk0, (s32) (sp78 * 10000.0f));
-            func_8030E2C4(local->unk0);
+            sfxsource_setSampleRate(local->sfxsourceIdx, (s32) (sp78 * 10000.0f));
+            func_8030E2C4(local->sfxsourceIdx);
         }
     }
     if (this->unk10_25) {
@@ -406,7 +406,7 @@ void func_80358684(Actor *this) {
             if (this->state == 3) {
                 if (0.0f <= local->unk4 - 0.2) {
                     sp84 = (0.8 < local->unk4) ? 0.0f : (f32) (1.0 - ((local->unk4 - 0.2) / 0.6));
-                    func_8030DBB4(local->unk0,  1.0 + (sp84 * 0.3999999999999999));
+                    sfxsource_playSfxAtVolume(local->sfxsourceIdx,  1.0 + (sp84 * 0.3999999999999999));
                 }
             }
         }

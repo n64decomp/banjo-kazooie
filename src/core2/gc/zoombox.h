@@ -127,7 +127,7 @@ typedef struct {
     BKSpriteDisplayData *unkFC;
     BKSprite *unk100;
     BKSpriteDisplayData *unk104;
-    u8  unk108[5];  //sfx_ids
+    u8  unk108[5];  //sfx_indexes
     u8  pad10D[3];
     f32  unk110[5]; //sfx_???
     s16 unk124[5];  //sfx_???
