@@ -83,10 +83,10 @@ bool __chClam_updateTarget(Actor *this, f32 arg1) {
         return FALSE;
     }
 
-    this->unk28 = phi_f2 / arg1;
+    this->actor_specific_1_f = phi_f2 / arg1;
     this->yaw_ideal = func_80257204(this->position[0], this->position[2], target_position[0], target_position[2]);
-    if ((volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->unk28) {
-        this->unk28 = (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
+    if ((volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11) < this->actor_specific_1_f) {
+        this->actor_specific_1_f = (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) ? 0.0f : 17.0f;
     } else if (sp38 == 0) {
         __chClam_func_803863F0(SFX_AE_YUMYUM_TALKING, randf2(0.9f, 1.0f), 22000, this->position, 500.0f, 2000.0f);
     }
@@ -108,13 +108,13 @@ bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
         if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
-                this->unk28 = (f32) randi2(0, 0.5*(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11));
+                this->actor_specific_1_f = (f32) randi2(0, 0.5*(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11));
                 this->yaw_ideal += (f32) randi2(-arg1, arg1);
             } else if ((f64) randf() < 0.4) {
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 this->yaw_ideal += (f32) randi2(-arg1, arg1);
             } else {
-                this->unk28 = (f32) randi2(0.33 * (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11), volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11);
+                this->actor_specific_1_f = (f32) randi2(0.33 * (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11), volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11);
                 this->yaw_ideal = this->yaw;
             }
             this->unk1C[0] = 0.0f;
@@ -124,13 +124,13 @@ bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
             return FALSE;
         }
     }
-    temp_f0_2 = this->unk28 * sp2C;
+    temp_f0_2 = this->actor_specific_1_f * sp2C;
     this->velocity[1] = ((f32)(0.3*temp_f0_2) / sp2C) - (f32) ((s32) (sp2C * -5) / 2);
     if (func_80329078(this, this->yaw_ideal, temp_f0_2)) {
         return TRUE;
     }
     this->unk1C[0] = 1.0f;
-    this->unk28 = 0.0f;
+    this->actor_specific_1_f = 0.0f;
     this->yaw_ideal = this->yaw;
     return FALSE;
 }
@@ -249,7 +249,7 @@ void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_marker){
     
     if(func_80297C6C() == 3) return;
 
-    if( !mapSpecificFlags_get(5) && func_80311480(0xA14, 0, NULL, NULL, NULL, NULL)){
+    if( !mapSpecificFlags_get(5) && gcdialog_showText(ASSET_A14_TEXT_UNKNOWN, 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(5, TRUE);
     }
 

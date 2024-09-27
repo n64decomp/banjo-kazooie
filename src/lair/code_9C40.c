@@ -64,7 +64,7 @@ void func_80390174(ActorMarker *marker, s32 arg1) {
     sp28 = this->marker->id - 0x16D;
     func_8028F94C(2, this->position);
     if (fileProgressFlag_get(sp28 + 0xAD)) {
-        func_80311480(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC);
+        gcdialog_showText(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC);
         return;
     }
     func_80311174(func_80390084() + 0xFA5, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC, func_80390158);
@@ -91,11 +91,11 @@ void func_803902B8(Actor *this) {
     sp54 = this->marker->id - 0x16D;
     if (!this->initialized) {
         marker_setFreeMethod(this->marker, func_80390298);
-        this->is_first_encounter = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
+        this->has_met_before = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         this->initialized = TRUE;
     }
     _player_getPosition(sp5C);
-    sp58 = func_80259384(this->position, sp5C, 1750.0f) && !this->is_first_encounter;
+    sp58 = func_80259384(this->position, sp5C, 1750.0f) && !this->has_met_before;
     if (sp58 && !this->unk38_0) {
         func_8032BB88(this, 0, 0x1F4);
         func_8025A6EC(COMUSIC_79_CHEATO, 0);

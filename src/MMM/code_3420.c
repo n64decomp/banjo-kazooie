@@ -175,7 +175,7 @@ void func_803898EC() {
 }
 
 void func_80389910() {
-    func_80311480(0xAD5, 0xE, NULL, NULL, MMM_func_80389810, NULL);
+    gcdialog_showText(0xAD5, 0xE, NULL, NULL, MMM_func_80389810, NULL);
     timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
@@ -195,10 +195,10 @@ void organMinigame_setState(s32 next_state){
     if(next_state == 2){
         if(D_8038C4F0.pattern == 0){
             D_8038C4F0.pattern = 1;
-            func_80311480(0xad3, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showText(0xad3, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
         else{//L80389A84
-            func_80311480(0xad6, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showText(0xad6, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
     }//L80389A9C
 
@@ -215,13 +215,13 @@ void organMinigame_setState(s32 next_state){
     }//L80389AF4
 
     if(next_state == 4){
-        func_80311480(0xadd, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(0xadd, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 
     if(next_state == 5){
         D_8038C4F0.pattern++;
-        func_80311480(0xad4, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(0xad4, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 

@@ -169,14 +169,14 @@ void func_8035B674(Actor *this){
 void func_8035B6CC(Actor *this){
     subaddie_set_state_with_direction(this, 2, 0.01f, 1);
     actor_playAnimationOnce(this);
-    this->unk28 = 1.0f;
+    this->actor_specific_1_f = 1.0f;
     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
 }
 
 void func_8035B75C(Actor *this){
     subaddie_set_state_with_direction(this, 3, 0.01f, 1);
     actor_loopAnimation(this);
-    this->unk28 = volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0.0 : 12.0;
+    this->actor_specific_1_f = volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0.0 : 12.0;
     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
 }
 
@@ -186,10 +186,8 @@ void func_8035B824(Actor *this){
     subaddie_set_state_with_direction(this, 4, 0.01f, 1);
     actor_loopAnimation(this);
     func_80328CEC(this, (s32)this->yaw_ideal, 0xA, 0x1E);
-    this->unk28 = 4.0f;
+    this->actor_specific_1_f = 4.0f;
     local->unk4 = randf2(2.0f, 4.5f);
-    
-
 }
 
 void func_8035B8A8(Actor *this){

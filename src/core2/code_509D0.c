@@ -6,7 +6,7 @@ extern void func_8028F7D4(f32, f32);
 void chLevelCollectible_update(Actor *this);
 extern void func_80329904(ActorMarker *, s32, f32*);
 extern ActorMarker *func_8028E86C(void);
-extern void func_803252D0(f32, s32);
+extern void timed_mapSpecificFlags_setTrue(f32, s32);
 extern void func_8035646C(s32);
 
 ActorAnimationInfo D_80367B50[] = {
@@ -107,8 +107,10 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
         sp18[2] = this->position[2];
         switch (marker->id) {
             case MARKER_36_ORANGE_COLLECTIBLE:
-                if (mapSpecificFlags_get(1))
+                if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_1_ORANGE_HAS_BEEN_COLLECTED)) {
                     return;
+                }
+
                 func_8035646C(FILEPROG_8_ORANGE_TEXT);
                 func_8030E6D4(SFX_B3_ORANGE_TALKING);
                 dialog_id = 0;
@@ -234,7 +236,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
             case MARKER_37_GOLD_BULLION:
                 break;
             case MARKER_36_ORANGE_COLLECTIBLE:
-                func_803252D0(1.7f, 2);
+                timed_mapSpecificFlags_setTrue(1.7f, MM_SPECIFIC_FLAG_2_ORANGE_HAS_BEEN_RETURNED);
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
                 break;
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
@@ -363,7 +365,7 @@ void chLevelCollectible_update(Actor *this){
             func_802D83EC(this);
             break;
         case MARKER_36_ORANGE_COLLECTIBLE: //L802D86DC
-            if(mapSpecificFlags_get(3) && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
+            if (mapSpecificFlags_get(MM_SPECIFIC_FLAG_3_CHIMPY_HAS_LEAVED) && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN) {
                 marker_despawn(this->marker);
             }
             break;

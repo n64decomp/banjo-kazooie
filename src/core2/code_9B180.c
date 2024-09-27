@@ -175,7 +175,6 @@ void func_803224FC(void) {
     }
 }
 
-
-void func_803225B0(s32 arg0, s32 arg1){
-    D_80383330 =(arg1 == 2) ? TRUE : FALSE;
+void func_803225B0(s32 arg0, s32 arg1) {
+    D_80383330 = BOOL(arg1 == 2);
 }

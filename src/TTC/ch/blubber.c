@@ -79,11 +79,11 @@ void func_803875D4(ActorMarker *marker){
 
     subaddie_set_state(this, 4);
     actor_loopAnimation(this);
-    this->unk28 = 0.0f;
+    this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(2)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? 0xa2a : 0xa0d;
-        func_80311480( text_id, 0xf, this->position, this->marker, func_80387520, func_80387574);
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_TEXT_UNKNOWN : ASSET_A0D_TEXT_UNKNOWN;
+        gcdialog_showText(text_id, 0xf, this->position, this->marker, func_80387520, func_80387574);
         mapSpecificFlags_set(2, TRUE);
     }
 }
@@ -114,10 +114,10 @@ void func_80387774(Actor **this_ptr){
     func_8028F364(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
     if( func_80329530(*this_ptr, 200)
         && bacarry_get_markerId() == MARKER_37_GOLD_BULLION
-        && func_8028FC34()
+        && player_throwCarriedObject()
     ){
         func_8028FA34(!mapSpecificFlags_get(0)? 0x149 : 0x14a, *this_ptr);
-        (*this_ptr)->is_first_encounter = TRUE;
+        (*this_ptr)->has_met_before = TRUE;
     }
 
 }
@@ -146,22 +146,23 @@ void func_803878CC(Actor * this){
     }//L80387970
 
     if(func_80329530(this, 250) && !func_80329530(this, 80)
-        && !this->is_first_encounter
+        && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        func_80311480(0xa0b, 0xe, this->position, this->marker, func_80387520, NULL);
-        this->is_first_encounter = TRUE;
+        gcdialog_showText(ASSET_A0B_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80387520, NULL);
+        this->has_met_before = TRUE;
         subaddie_set_state_forward(this, 3);
     }
 
     if( mapSpecificFlags_get(0) 
         && !this->unk138_23
     ){
-        if(item_getCount(ITEM_18_GOLD_BULLIONS) == 0)
-            func_80311480(0xa0c, 4, NULL, NULL, NULL, NULL);
+        if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
+            gcdialog_showText(ASSET_A0C_TEXT_UNKNOWN, 4, NULL, NULL, NULL, NULL);
+        }
         
         this->unk138_23 = TRUE;
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
 
     }//L80387A54
 
@@ -187,7 +188,7 @@ void func_803878CC(Actor * this){
             if( actor_animationIsAt(this, 0.99f) 
                 && subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.78f)
             ){
-                this->unk28 = 4.0f;
+                this->actor_specific_1_f = 4.0f;
                 break;
             }
 
@@ -215,7 +216,7 @@ void func_803878CC(Actor * this){
                 local =  (ActorLocal_Blubber*)&this->local;
                 if(actor_animationIsAt(this, 0.99f) && !local->unk24){
                     subaddie_set_state(this, 5);
-                    this->unk28 = 8.0f;
+                    this->actor_specific_1_f = 8.0f;
                 }
             }
             

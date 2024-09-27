@@ -40,7 +40,7 @@ ActorInfo D_803660B4 = {0x9, ACTOR_E_BULL_INTRO, ASSET_354_MODEL_BULL_INTRO,
 
 /* .code */
 void func_802C5E80(Actor *this){
-    this->unk28 = randf2(3.5f, 4.9f);
+    this->actor_specific_1_f = randf2(3.5f, 4.9f);
 }
 
 void func_802C5EB8(Actor *this){
@@ -83,7 +83,7 @@ void func_802C5FF8(Actor *this){
 void func_802C60AC(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
     if( actor->state == 4 
-        && 5.0 <= actor->unk28 
+        && 5.0 <= actor->actor_specific_1_f
         && func_803294F0(actor, 80, func_80329784(actor))
     ){
         animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
@@ -121,7 +121,7 @@ void func_802C6240(Actor *this){
         this->marker->dieFunc = func_802C61C0;
         this->marker->collisionFunc = func_802C60AC;
         this->marker->collision2Func = func_802C6150;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->unk16C_0 = 1;
         this->initialized = TRUE;
         return;
@@ -171,7 +171,7 @@ void func_802C6240(Actor *this){
                 && func_80329078(this, (s32)this->yaw_ideal, 150)
                 && subaddie_maybe_set_state(this, 3, 0.13f)
             ){
-                this->unk28 = randf2(7.1f, 8.4f);
+                this->actor_specific_1_f = randf2(7.1f, 8.4f);
             }
             func_802C5EB8(this);
             break;
@@ -212,7 +212,7 @@ void func_802C6240(Actor *this){
 
             if(this->unk10_12 == 0 || (this->unk10_12 < 3 && func_80329530(this, 300))){
                 subaddie_set_state(this, 9);
-                this->unk28 = 13.0f;
+                this->actor_specific_1_f = 13.0f;
             }
             break;
 
@@ -220,9 +220,10 @@ void func_802C6240(Actor *this){
             if(actor_animationIsAt(this, 0.35f))
                 func_8030E58C(SFX_2E_BIGBUTT_RUNNING, 1.0f);
             
-            this->unk28 += 0.15;
-            if(30.0f < this->unk28)
-                this->unk28 = 30.0f;
+            this->actor_specific_1_f += 0.15;
+            if (30.0f < this->actor_specific_1_f) {
+                this->actor_specific_1_f = 30.0f;
+            }
 
             this->yaw_ideal = (f32)func_80329784(this);
             func_80328FB0(this, 9.0f);
@@ -233,7 +234,7 @@ void func_802C6240(Actor *this){
                 if(func_80329078(this, (s32)this->yaw_ideal,200)){
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
                     subaddie_set_state(this, 4);
-                    this->unk28  += 5.7;
+                    this->actor_specific_1_f += 5.7;
                     tmp_a0 = this->unk44_31;
                     if(this->unk44_31 == 0){
                         this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
@@ -259,12 +260,12 @@ void func_802C6240(Actor *this){
             func_8030E2C4(this->unk44_31);
             if(0.99 <= animctrl_getAnimTimer(this->animctrl)){
                 func_80329878(this, func_80329530(this, 250)? 0.8: 1.2);
-                if(0.0f == this->unk28){
+                if (0.0f == this->actor_specific_1_f) {
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                     func_8030DA44(this->unk44_31);
                     this->unk44_31 = 0;
-                    func_8030E484(SFX_19_BANJO_LANDING_08);
+                    sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
                 }
             }//L802C6B1C
             break;

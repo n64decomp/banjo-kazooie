@@ -127,25 +127,28 @@ void func_80324AA4(timefuncqueue_Struct2 *arg0){
 
 void func_80324AEC(DelayedTextCallback *arg0) {
     if ((arg0->position[0] == 0.0f) && (arg0->position[1] == 0.0f) && (arg0->position[2] == 0.0f)) {
-        func_80311480(arg0->text_id, arg0->unk4, NULL, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+        gcdialog_showText(arg0->text_id, arg0->unk4, NULL, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
     }
     else{
-        func_80311480(arg0->text_id, arg0->unk4, arg0->position, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
+        gcdialog_showText(arg0->text_id, arg0->unk4, arg0->position, arg0->caller, arg0->callback_method_1, arg0->callback_method_2);
     }
 }
 
 void func_80324BA0(s32 arg0){
-    if(arg0 == 1)
+    if (arg0 == 1) {
         func_8028F918(1);
-    else if(arg0 == 2)
+    }
+    else if (arg0 == 2) {
         func_8028F918(3);
-    else if(arg0 == 3)
+    }
+    else if (arg0 == 3) {
         func_8028F918(2);
-    else{ 
-        if(arg0 == 0)
-            func_8028F918(0);
-        else if (arg0 == 4)
-            func_802D6114();
+    }
+    else if (arg0 == 0) {
+        func_8028F918(0);
+    }
+    else if (arg0 == 4) {
+        func_802D6114();
     }
 }
 
@@ -319,10 +322,10 @@ void timedFuncQueue_defrag(void){
     D_80383380.ptr = vector_defrag(D_80383380.ptr);
 }
 
-void func_803252B0(s32 arg0){
-    mapSpecificFlags_set(arg0, 1);
+void mapSpecificFlags_setTrue(s32 flag){
+    mapSpecificFlags_set(flag, TRUE);
 }
 
-void func_803252D0(f32 time, s32 arg0){
-    timedFunc_set_1(time, func_803252B0, arg0);
+void timed_mapSpecificFlags_setTrue(f32 time, s32 flag){
+    timedFunc_set_1(time, mapSpecificFlags_setTrue, flag);
 }

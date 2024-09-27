@@ -112,11 +112,11 @@ bool func_80388088(Actor *this){
         return FALSE;
     }
 
-    return (-35.0f < sp2C && sp2C < 35.0f) ? TRUE : FALSE;
+    return BOOL(-35.0f < sp2C && sp2C < 35.0f);
 }
 
 bool func_8038812C(Actor *this){
-    return (func_80329530(this, 1300) && func_80388088(this)) ? TRUE : FALSE;
+    return BOOL(func_80329530(this, 1300) && func_80388088(this));
 }
 
 void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
@@ -147,7 +147,7 @@ void func_80388178(ActorMarker *this_marker, ActorMarker *other_marker) {
 
     TTC_func_80387FF4(this);
     this->lifetime_value = 80.0f;
-    func_80311480(0xA10, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showText(0xA10, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -167,8 +167,8 @@ void func_80388344(ActorMarker * this_marker, ActorMarker *other_marker){
     if(other_marker->id == 1){
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(7)
-            && this->is_first_encounter
-            && func_80311480(0xa0f, 0, NULL, NULL, NULL, NULL)
+            && this->has_met_before
+            && gcdialog_showText(0xa0f, 0, NULL, NULL, NULL, NULL)
         ){
             mapSpecificFlags_set(7, TRUE);
         }
@@ -178,8 +178,8 @@ void func_80388344(ActorMarker * this_marker, ActorMarker *other_marker){
 void func_803883C8(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
-        && this->is_first_encounter
-        && func_80311480(0xa11, 0, NULL, NULL, NULL, NULL)
+        && this->has_met_before
+        && gcdialog_showText(0xa11, 0, NULL, NULL, NULL, NULL)
     ){
         this->unk138_23 = TRUE;
     }
@@ -229,13 +229,13 @@ void func_80388434(Actor *this){
             }//L8038860C
             if(func_8038812C(this)){
                 temp_v0 = func_8028ECAC();
-                if( !this->is_first_encounter
+                if( !this->has_met_before
                     && temp_v0 != 1
                     && temp_v0 != 10
                 ){
                     subaddie_set_state_with_direction(this, 5, 0.01f, 1);
-                    if(func_80311480(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
-                        this->is_first_encounter = TRUE;
+                    if(gcdialog_showText(0xa0e, 0xf, this->position, this->marker, TTC_func_80387FB0, NULL)){
+                        this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);
                     ncStaticCamera_setToNode(11);

@@ -153,7 +153,7 @@ void func_802CEF54(Actor *this, f32 arg1[3], f32 arg2){
 
     phi_v1 = (this->state == 5) ? 200 : 50;
     phi_v0 = (this->state == 5) ? 200 : 100;
-    func_802CEDE4(sp34, this->unk1C, arg2, &this->unk28, (f32) phi_v1, (f32) phi_v0);
+    func_802CEDE4(sp34, this->unk1C, arg2, &this->actor_specific_1_f, (f32) phi_v1, (f32) phi_v0);
     this->unk1C[0] = this->unk1C[0] + arg1[0];
     this->unk1C[1] = this->unk1C[1] + arg1[1];
     this->unk1C[2] = this->unk1C[2] + arg1[2];
@@ -418,7 +418,7 @@ void chBeeSwarm_update(Actor *this) {
                 subaddie_set_state(this, 6);
             }
         }
-        chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->unk28, 100.0f, 0, &spA0);
+        chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->actor_specific_1_f, 100.0f, 0, &spA0);
     }
     if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
         if (this->unk38_31++ == 0x1E) {
@@ -448,7 +448,7 @@ void chBeeSwarm_update(Actor *this) {
         if (!fileProgressFlag_get(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE) && subaddie_playerIsWithinCylinder(this, 250, 300) 
             && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
             && (player_getTransformation() == TRANSFORM_1_BANJO) 
-            && (func_80311480(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
+            && (gcdialog_showText(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
         ) {
             fileProgressFlag_set(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE, TRUE);
         }
@@ -470,7 +470,7 @@ void chBeeSwarm_update(Actor *this) {
         this->unk1C[1] = spB4[1];
         this->unk1C[2] = spB4[2];
         this->unk1C[1] += 50.0f;
-        this->unk28 = 400.0f;
+        this->actor_specific_1_f = 400.0f;
         if (ml_distance_vec3f(this->position, this->unk1C) < 100.0f) {
             func_802CEF54(this, spB4, 50.0f);
             subaddie_set_state(this, 4);
@@ -547,7 +547,7 @@ void chBeeSwarm_update(Actor *this) {
             sfxsource_set_fade_distances(this->unk44_31, 500.0f, 1500.0f);
             sfxsource_set_position(this->unk44_31, this->position);
             func_8030E2C4(this->unk44_31);
-            sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0]*this->velocity[0] + this->velocity[1]*this->velocity[1] + this->velocity[2]*this->velocity[2])/ this->unk28) * 8000.0f) + 2000.0f));
+            sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0] * this->velocity[0] + this->velocity[1] * this->velocity[1] + this->velocity[2] * this->velocity[2]) / this->actor_specific_1_f) * 8000.0f) + 2000.0f));
         }
     }
 }

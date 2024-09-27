@@ -402,9 +402,11 @@ void func_803197AC(s32 arg0){
             item_set(ITEM_6_HOURGLASS, TRUE);
             D_803830E0->unk15 = 0;
             D_803830E0->unk13 = 1U;
-            for(i = 1; i < 4; i++){
-                func_80319758(i, (i == D_803830E0->unk13) ? TRUE : FALSE);
+
+            for (i = 1; i < 4; i++) {
+                func_80319758(i, BOOL(i == D_803830E0->unk13));
             }
+
             break;
 
         case 7: //80319C0C

@@ -58,7 +58,7 @@ int bslongleg_inSet(s32 move_indx){
 void func_802A531C(void){
     func_80299650(stateTimer_getPrevious(STATE_TIMER_2_LONGLEG), stateTimer_get(STATE_TIMER_2_LONGLEG));
     if(stateTimer_isAt(STATE_TIMER_2_LONGLEG, 0.01f))
-        func_8030E484(SFX_3EB_UNKNOWN);
+        sfxsource_playHighPriority(SFX_3EB_UNKNOWN);
 }
 
 void func_802A5374(void){

@@ -157,15 +157,15 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     if( arg1 == moleTable[actor->unkF4_8-9].learn_text 
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        func_80311480(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+        gcdialog_showText(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
     else if(arg1 == moleTable[actor->unkF4_8-9].learn_text || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
-        func_80311480(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
+        gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
-        if(actor->is_first_encounter){
+        if(actor->has_met_before){
             func_80347A14(1);
-            actor->is_first_encounter = FALSE;
+            actor->has_met_before = FALSE;
         }
         timed_exitStaticCamera(0.0f);
         if(actor->state == 5){
@@ -229,7 +229,7 @@ int chmole_learnAbility(Actor *this){
     // New Ability: Learn Dialog & Misc Actions
     else{
         func_80347A14(0);
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         sp2C = moleTable[this->unkF4_8-9].learn_text; 
         ability_unlock(moleTable[this->unkF4_8-9].ability);
         switch(moleTable[this->unkF4_8-9].ability){
@@ -242,7 +242,7 @@ int chmole_learnAbility(Actor *this){
                 break;
         }
     }//L802D9A9C
-    func_80311480(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+    gcdialog_showText(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     return TRUE;
 }
 
@@ -368,11 +368,11 @@ void chmole_update(Actor *this){
                 this->velocity[0] = this->position[0];
                 this->velocity[1] = this->position[1];
                 this->velocity[2] = this->position[2];
-                this->unk28 = 500.0f;
+                this->actor_specific_1_f = 500.0f;
             }
             else{ //L802D9F08
                 nodeprop_getPosition(node_prop, this->velocity);
-                this->unk28 = 2*nodeprop_getRadius(node_prop);
+                this->actor_specific_1_f = 2 * nodeprop_getRadius(node_prop);
             }
         }
     }//L802D9F34
@@ -387,7 +387,7 @@ void chmole_update(Actor *this){
                     && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
-                    if(ml_distance_vec3f(sp34, this->velocity) < this->unk28){
+                    if (ml_distance_vec3f(sp34, this->velocity) < this->actor_specific_1_f) {
                         chmole_startingDialog(this);
                     }
                 }

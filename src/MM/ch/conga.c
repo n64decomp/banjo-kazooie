@@ -72,7 +72,7 @@ bool __chConga_isPlayerNearCongaTree(Actor * this){
 
     unused_tmpz = plyr_pos[2] - 5029.0f;
 
-    if (52900.0f < (plyr_pos[0] - - 5011.0f)*(plyr_pos[0] - - 5011.0f) + (plyr_pos[2]- 5029.0f)*(plyr_pos[2] - 5029.0f)) {
+    if (52900.0f < (plyr_pos[0] - -5011.0f) * (plyr_pos[0] - -5011.0f) + (plyr_pos[2] - 5029.0f) * (plyr_pos[2] - 5029.0f)) {
         return FALSE;
     }
     
@@ -122,7 +122,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
     if(((ActorLocal_Conga *)&actorPtr->local)->unkC == 1){
         if(actorPtr->unk10_12 == 0){
             ((ActorLocal_Conga *)&actorPtr->local)->unkC = 0;
-            if(mapSpecificFlags_get(0xA))
+            if(mapSpecificFlags_get(MM_SPECIFIC_FLAG_A_UNKNOWN))
                 actorPtr->unk38_31++;
 
             actorPtr->unk10_12 = MIN(actorPtr->unk38_31, 0xA);
@@ -140,7 +140,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){
-                    func_80311480(ASSET_B39_TEXT_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
+                    gcdialog_showText(ASSET_B39_TEXT_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
                 }
             }
         }
@@ -181,7 +181,7 @@ void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
 
     congaPtr->unk10_12 -= (congaPtr->unk10_12 && ( conga_state == 7));
     MM_func_80387F44();
-    congaPtr->unk28 = 2.0f;
+    congaPtr->actor_specific_1_f = 2.0f;
     orangePtr = func_8032811C(ACTOR_14_ORANGE_PROJECTILE, conga_localPtr->orangeSpawnPosition, congaPtr->yaw);
 
     if(orangePtr != NULL){
@@ -220,13 +220,13 @@ void func_803876D0(Actor *this){
         this->unk16C_0 = 1;
         this->initialized = TRUE;
         this->velocity_x = 0.0f;
-        this->unk28 = 0.0f;
+        this->actor_specific_1_f = 0.0f;
         node_prop = func_80304C38(0x150, this);
         ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(node_prop);
         nodeprop_getPosition_s32(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
     }
-    if(0.0f == this->unk28){
-        this->unk28 = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
+    if(0.0f == this->actor_specific_1_f){
+        this->actor_specific_1_f = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
     }
     if(0.0f != this->velocity_x){
         this->velocity_x -= 1.0f; 
@@ -249,15 +249,15 @@ void func_803876D0(Actor *this){
     sp3C = func_80329530(this, 1000);
     if( func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C) 
         && !this->unk138_23
-        && func_80311480(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
+        && gcdialog_showText(ASSET_B37_TEXT_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
     ){
         this->unk138_23 = 1;
-        mapSpecificFlags_set(0xA, 1);
+        mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
-    if( sp3C && !this->is_first_encounter){
-        if(func_80311480((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
-            this->is_first_encounter = TRUE;
+    if( sp3C && !this->has_met_before){
+        if(gcdialog_showText((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_TEXT_CONGA_MEET_AS_TERMITE : ASSET_B3C_TEXT_CONGA_MEET, 0, this->position, 0,0,0)){
+            this->has_met_before = TRUE;
         }
     } //L80387968
 
@@ -348,7 +348,7 @@ void func_803876D0(Actor *this){
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.99f)){
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
-                func_80311480(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
+                gcdialog_showText(ASSET_B38_TEXT_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
             }
             break;
 

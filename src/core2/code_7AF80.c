@@ -1384,8 +1384,8 @@ void func_80305CD8(s32 arg0, s32 arg1){
     }
 }
 
-bool func_80305D14(void){
-    return (D_8036ABA4 != NULL) ? TRUE : FALSE;
+bool func_80305D14(void) {
+    return BOOL(D_8036ABA4 != NULL);
 }
 
 void func_80305D38(void){
@@ -2435,5 +2435,5 @@ void func_80308F0C(Cube *cube) {
 }
 
 bool func_80308F54(s32 cube_index) {
-    return D_803821E0[cube_index >> 5] & (1 << (cube_index & 0x1F))? TRUE: FALSE;
+    return BOOL(D_803821E0[cube_index >> 5] & (1 << (cube_index & 0x1F)));
 }

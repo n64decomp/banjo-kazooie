@@ -81,7 +81,7 @@ void chtrainers_update(Actor *this){
                     && !volatileFlag_get(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES)
                     && player_getTransformation() == TRANSFORM_1_BANJO
                 ){
-                    if(func_80311480(0xda4, 0, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showText(0xda4, 0, NULL, NULL, NULL, NULL)){
                         volatileFlag_set(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES, TRUE);
                     }
                 }//L802CA620

@@ -525,25 +525,25 @@ void func_8038BC0C(s32 arg0){
                         break;
                 FP_D_803935A8.unk1A = TRUE;
                 FP_func_8038AB60(0);
-                if(!func_8028F22C()){
+                if(!player_isDead()){
                     func_8028F918(2);
-                    func_80311480(0xc10, 0x20, NULL, NULL, func_8038B2C8, NULL);
+                    gcdialog_showText(0xc10, 0x20, NULL, NULL, func_8038B2C8, NULL);
                 }//L8038BD40
                 FP_D_803935A8.unk0 = 4;
                 break;
 
             case 3:
-                if(!FP_D_803935A8.unk19 && !func_8028F22C()){
+                if(!FP_D_803935A8.unk19 && !player_isDead()){
                     FP_D_803935A8.unk19 = 1;
-                    func_80311480(0xc0f, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(0xc0f, 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BD94
                 func_8025AEA0(0x3a, 0x411aa);
                 break;
             
             case 2:
-                if(!FP_D_803935A8.unk18 && !func_8028F22C()){
+                if(!FP_D_803935A8.unk18 && !player_isDead()){
                     FP_D_803935A8.unk18 = 1;
-                    func_80311480(0xc0e, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(0xc0e, 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BDF0
                 func_8025AEA0(0x3a, 0x493e0);
                 break;

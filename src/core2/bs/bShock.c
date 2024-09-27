@@ -145,7 +145,7 @@ void bsbshock_init(void){
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     baphysics_set_vertical_velocity(D_80364A70);
     baphysics_set_gravity(D_80364A74);
-    func_8030E484(SFX_E_SHOCKSPRING_BOING);
+    sfxsource_playHighPriority(SFX_E_SHOCKSPRING_BOING);
     func_8029E064(1);
     func_8029E070(1);
     ability_use(9);
@@ -162,7 +162,7 @@ void bsbshock_update(void){
     func_802B6FA8();
     baphysics_get_velocity(sp20);
     if(animctrl_isAt(aCtrl, 0.7f))
-        func_8030E484(SFX_53_BANJO_HUIII);
+        sfxsource_playHighPriority(SFX_53_BANJO_HUIII);
 
     if(button_released(BUTTON_A) && 0.0f < sp20[1])
         baphysics_reset_gravity();

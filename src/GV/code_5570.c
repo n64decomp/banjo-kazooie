@@ -63,7 +63,7 @@ void func_8038BA08(Actor *this){
     if(func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS)
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
 
-    func_80311480(ASSET_A79_TEXT_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
+    gcdialog_showText(ASSET_A79_TEXT_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
     comusic_8025AB44(COMUSIC_57_TURBO_TRAINERS, 7000, 700);
 }
 
@@ -244,9 +244,9 @@ void GV_func_8038BEA0(Actor *this){
                     }
                 }
                 else{
-                    if(!this->is_first_encounter){
-                        if(func_80311480(ASSET_A78_TEXT_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
-                            this->is_first_encounter = TRUE;
+                    if(!this->has_met_before){
+                        if(gcdialog_showText(ASSET_A78_TEXT_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
+                            this->has_met_before = TRUE;
                         }
                     }
                 }
@@ -276,7 +276,7 @@ void GV_func_8038BEA0(Actor *this){
                         }
 
                         if(!this->unk138_23){
-                            if(func_80311480(ASSET_A7A_TEXT_GRABBA_TOO_FAST, 0, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showText(ASSET_A7A_TEXT_GRABBA_TOO_FAST, 0, NULL, NULL, NULL, NULL)){
                                 this->unk138_23 = TRUE;
                             }
                         }

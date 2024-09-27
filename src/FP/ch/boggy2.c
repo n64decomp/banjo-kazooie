@@ -124,10 +124,10 @@ void func_80388A50(Actor *this){
 void func_80388A94(Actor *this){
     func_80388A50(this);
     if(mapSpecificFlags_get(6)){
-        func_80311480(0xc0a, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showText(ASSET_C0A_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
     else{
-        func_80311480(0xc09, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showText(ASSET_C09_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
 }
 
@@ -136,15 +136,15 @@ void func_80388B18(Actor *this, u8 arg1){
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             func_80388A50(this);
             if(mapSpecificFlags_get(5)){
-                func_80311480(0xc05, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showText(ASSET_C05_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
             else{
-                func_80311480(0xc02, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showText(ASSET_C02_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
         }
         else{//L80388BB8
             if(!volatileFlag_get(VOLATILE_FLAG_B3)){
-                if(func_80311480(0xc01, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showText(ASSET_C01_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B3, TRUE);
                     func_80388A50(this);
                 }
@@ -154,7 +154,7 @@ void func_80388B18(Actor *this, u8 arg1){
     else{//L80388C08
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             if(!volatileFlag_get(VOLATILE_FLAG_B4)){
-                if(func_80311480(0xc08, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showText(ASSET_C08_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B4, TRUE);
                     func_80388A50(this);
                 }
@@ -478,13 +478,13 @@ void func_803896FC(Actor *this){
                     && player_getTransformation() != TRANSFORM_4_WALRUS
                     && volatileFlag_get(VOLATILE_FLAG_B3)
                 ){
-                    func_80311480(0xC01, 0xf, this->position, this->marker, func_80388D70, NULL);
+                    gcdialog_showText(ASSET_C01_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                 }
                 else if( local->unk19 == 2){
                     if( player_getTransformation() == TRANSFORM_4_WALRUS
                         && volatileFlag_get(VOLATILE_FLAG_B4)
                     ){
-                        func_80311480(0xC08, 0xf, this->position, this->marker, func_80388D70, NULL);
+                        gcdialog_showText(ASSET_C08_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                     }
                     else if( player_getTransformation() != TRANSFORM_4_WALRUS){
                         func_80388A94(this);

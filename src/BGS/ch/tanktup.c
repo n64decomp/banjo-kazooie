@@ -111,7 +111,7 @@ void func_8038F6A4(Actor *this)
     {
       nodeprop_getPosition(temp_v0, local->unk18);
     }
-    this->is_first_encounter = FALSE;
+    this->has_met_before = FALSE;
     this->initialized = TRUE;
   }
   if (!this->volatile_initialized)
@@ -138,12 +138,12 @@ void func_8038F6A4(Actor *this)
     case 1:
       func_8038F610(this);
       player_getPosition(sp48);
-      if (!this->is_first_encounter)
+      if (!this->has_met_before)
     {
       if ((((ml_distance_vec3f(local->unk18, sp48) < 250.0f) && (ml_distance_vec3f(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
-        func_80311480(0xC7E, 0, 0, 0, 0, 0);
-        this->is_first_encounter = TRUE;
+        gcdialog_showText(0xC7E, 0, 0, 0, 0, 0);
+        this->has_met_before = TRUE;
       }
     }
       if (local->unk10)
@@ -163,7 +163,7 @@ void func_8038F6A4(Actor *this)
 
       if ((!this->unk138_23) && (!local->unk14))
       {
-        if (func_80311480(0xC80, 0, 0, 0, 0, 0))
+        if (gcdialog_showText(0xC80, 0, 0, 0, 0, 0))
         {
           this->unk138_23 = 1;
         }
@@ -214,7 +214,7 @@ void func_8038F6A4(Actor *this)
       func_8028F918(0);
       if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0)
       {
-        func_80311480(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, 0);
+        gcdialog_showText(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, 0);
       }
       else
       {

@@ -60,7 +60,7 @@ void chgloop_update(Actor *this){
             
             if( !mapSpecificFlags_get(2) 
                 && func_80329530(this, 350)
-                && func_80311480(ASSET_D34_TEXT_GLOOP_MEET, 0, NULL, NULL, NULL, NULL)
+                && gcdialog_showText(ASSET_D34_TEXT_GLOOP_MEET, 0, NULL, NULL, NULL, NULL)
             ){
                 mapSpecificFlags_set(2, TRUE);
             }

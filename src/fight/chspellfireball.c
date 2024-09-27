@@ -228,28 +228,28 @@ void func_8038F3B4(ActorMarker *marker, ActorMarker *other){
     func_8038F084(marker);
     switch(volatileFlag_getN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, 3)){
         case 1: //8038F41C
-            if(!fight_D_803928E0 && func_80311480(randi2(0, 5) + 0x10f2, 0, 0, 0, 0, 0))
+            if(!fight_D_803928E0 && gcdialog_showText(randi2(0, 5) + 0x10f2, 0, 0, 0, 0, 0))
                 fight_D_803928E0 = 1;
             break;
         case 2: //8038F468
-            if(!D_803928E1 && func_80311480(randi2(0, 5) + 0x110b, 0, 0, 0, 0, 0))
+            if(!D_803928E1 && gcdialog_showText(randi2(0, 5) + 0x110b, 0, 0, 0, 0, 0))
                 D_803928E1 = 1;
             break;
         case 3: //8038F4B4
-            if(!D_803928E2 && func_80311480(randi2(0, 5) + 0x1122, 0, 0, 0, 0, 0))
+            if(!D_803928E2 && gcdialog_showText(randi2(0, 5) + 0x1122, 0, 0, 0, 0, 0))
                 D_803928E2 = 1;
             break;
         case 4: //8038F500
             if( !D_803928E3 
                 && func_8038C2A4()
-                && func_80311480(randi2(0, 5) + 0x113b, 0, 0, 0, 0, 0)
+                && gcdialog_showText(randi2(0, 5) + 0x113b, 0, 0, 0, 0, 0)
             )
                 D_803928E3 = 1;
             break; 
         case 5:
             if( !D_803928E4 
                 && func_8038C2B0()
-                && func_80311480(randi2(0, 5) + 0x1154, 0, 0, 0, 0, 0)
+                && gcdialog_showText(randi2(0, 5) + 0x1154, 0, 0, 0, 0, 0)
             )
                 D_803928E4 = 1;
             break; 

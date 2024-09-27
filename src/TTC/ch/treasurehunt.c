@@ -116,10 +116,10 @@ void func_80389A9C(void) {
 void func_80389B38(s32 arg0){
     if(D_8037DCB4 == arg0 && TTC_func_803899C0()){
         if(arg0 == 0 && !jiggyscore_isCollected(JIGGY_11_TTC_RED_X)){
-            func_80311480(0xA18, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xA18, 4, NULL, NULL, NULL, NULL);
         }
         else if(arg0 == 4){
-            func_80311480(0xA19, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xA19, 4, NULL, NULL, NULL, NULL);
         }
 
         D_8037DCB4++;
@@ -170,7 +170,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         gcpausemenu_80314AC8(0);
         timedFunc_set_2(0.1f, (GenFunction_2) func_8028F45C, 9, (s32)&D_8038D708);
         timedFunc_set_1(0.1f, (GenFunction_1) gcpausemenu_80314AC8, 1);
-        func_80311480(ASSET_A17_TEXT_BURIED_TREASURE_SPAWNED, 4, NULL, NULL, NULL, NULL);
+        gcdialog_showText(ASSET_A17_TEXT_BURIED_TREASURE_SPAWNED, 4, NULL, NULL, NULL, NULL);
         D_8037DCB4++;
     }//L80389E70
 }

@@ -127,7 +127,7 @@ void chXmasTree_update(Actor *this){
             this->lifetime_value = 2.0f;
             func_8025A6EC(COMUSIC_61_XMAS_TREE_LIGHTS_UP, 28000);
             func_802BAFE4(0x1A);
-            func_80311480(0xC14, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showText(0xC14, 0, NULL, NULL, NULL, NULL);
             break;
 
         case 3: // L803872F0

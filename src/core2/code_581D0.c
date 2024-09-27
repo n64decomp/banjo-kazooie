@@ -70,7 +70,7 @@ void func_802DF2C4(Actor *this) {
     for( i = 0; i < 20; i++){
         prev_val = D_8037E008[i];
         temp_v0 = func_8034C2C4(this->marker, i + 0x190);
-        D_8037E008[i] = (i == temp_fp) ? TRUE : FALSE;
+        D_8037E008[i] = BOOL(i == temp_fp);
         if (prev_val != D_8037E008[i] ) {
             val = D_8037E008[i];
             switch(val){

@@ -631,7 +631,7 @@ bool func_8028F20C(void){
     return player_isStable();
 }
 
-bool func_8028F22C(void){
+bool player_isDead(void){
     if(bs_getState() == BS_41_DIE){
         return TRUE;
     }
@@ -660,9 +660,9 @@ bool func_8028F2FC(void){
 }
 
 //sets carry actor if player is within a horizantal radius around a point
-bool func_8028F31C(f32 position[3], f32 radius, enum actor_e actor_id, Actor **arg3){
-    if(player_isInHorizontalRadius(position, radius)){
-        return func_8028DD60(actor_id, arg3);
+bool player_setCarryObjectPoseInHorizontalRadius(f32 position[3], f32 radius, enum actor_e actor_id, Actor **arg3){
+    if (player_isInHorizontalRadius(position, radius)) {
+        return player_setCarryObjectPose(actor_id, arg3);
     }
     return FALSE;
 }
@@ -670,7 +670,7 @@ bool func_8028F31C(f32 position[3], f32 radius, enum actor_e actor_id, Actor **a
 //sets carry actor if player is within a cylinder around a point
 bool func_8028F364(f32 position[3], f32 radius, f32 vert_range, enum actor_e actor_id, Actor **arg4) {
     if (player_isInVerticalRange(position, vert_range)) {
-        return func_8028F31C(position, radius, actor_id, arg4);
+        return player_setCarryObjectPoseInHorizontalRadius(position, radius, actor_id, arg4);
     }
     return FALSE;
 }
@@ -933,9 +933,11 @@ bool func_8028FBD4(f32 arg0[3]) {
     return bs_checkInterrupt(BS_INTR_8) == 2;
 }
 
-bool func_8028FC34(void){
-    if (func_8028E86C() && bscarry_inSet(bs_getState()))
+bool player_throwCarriedObject(void){
+    if (func_8028E86C() && bscarry_inSet(bs_getState())) {
         return bs_checkInterrupt(BS_INTR_16_THROW_CARRIED_OBJ) == 2;
+    }
+
     return FALSE;
 }
 

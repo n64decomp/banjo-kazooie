@@ -67,7 +67,7 @@ void func_802DAA14(Actor *this){
         return;
     }
 
-    if(!this->is_first_encounter){
+    if(!this->has_met_before){
         if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
             text_id = 0xadc;
         }
@@ -78,7 +78,7 @@ void func_802DAA14(Actor *this){
                 tmp = 0xf67;
             text_id = tmp;
         }
-        func_80311480(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
-        this->is_first_encounter = TRUE;
+        gcdialog_showText(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
+        this->has_met_before = TRUE;
     }
 }

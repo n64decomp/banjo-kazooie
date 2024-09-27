@@ -7,7 +7,7 @@
 //external
 f32 mapModel_getFloorY(f32*);
 void func_802C4218(s32, f32, f32, f32);
-void func_803252D0(f32, s32);
+void timed_mapSpecificFlags_setTrue(f32, s32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
 //typedefs
@@ -205,7 +205,7 @@ void func_80387C28(Actor * this){
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
         __spawnQueue_add_4((GenFunction_4)func_802C4218, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
-    func_803252D0(1.5f, 7);
+    timed_mapSpecificFlags_setTrue(1.5f, 7);
     actor_collisionOff(this);
     if(local->unkC != 3){
         subaddie_set_state_with_direction(this, 3, 0.0f, 1);
@@ -223,7 +223,7 @@ void func_80387DCC(ActorMarker *marker, ActorMarker *other_marker){
 Actor *func_80387DF4(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
 
-    if(actor->is_first_encounter)
+    if(actor->has_met_before)
         func_8033A470(3, 7);
     else
         func_8033A45C(3, 0);
@@ -320,7 +320,7 @@ void func_80388080(Actor *this){
         this->velocity_x = temp_velX;
         this->velocity_y = (local->unkC == 3) ? 90.0f : 70.0f;
         this->velocity_z = temp_velZ;
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
         this->unk138_23 = 0;
         this->unk38_0 = 0;
         this->initialized = TRUE;
@@ -371,7 +371,7 @@ void func_80388080(Actor *this){
             }
         }else{//L80388520
             if(local->unkC == 1){
-                this->unk28 = 3.0f;
+                this->actor_specific_1_f = 3.0f;
                 if(mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){//L80388554
                     if(!func_80329030(this, 0) && func_80329480(this)){
                         func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);
@@ -391,7 +391,7 @@ void func_80388080(Actor *this){
                 }
             }
             else if(local->unkC == 2){//L80388634
-                this->unk28 = 4.0f;
+                this->actor_specific_1_f = 4.0f;
                 if(!func_80329030(this, 0) && func_80329480(this)){
                     func_80328CEC(this, (s32)this->yaw, 0x78, 0xB4);
                     this->unk38_0 = 1;
@@ -426,9 +426,9 @@ void func_80388080(Actor *this){
                 if(ml_distance_vec3f(this->position, this->unk1C) < 20.0f){
                     func_80387E64(this);
                 }
-                this->unk28 = 5.0f;
+                this->actor_specific_1_f = 5.0f;
                 if(mapSpecificFlags_get(0xC) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))){ //L8038892C
-                    if(!func_80387FA8(this, local, (s32)this->yaw, (s32)this->unk28)){
+                    if(!func_80387FA8(this, local, (s32)this->yaw, (s32)this->actor_specific_1_f)){
                         if(func_80329480(this)){
                             func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);
                             this->unk38_0 = 1;
@@ -441,7 +441,7 @@ void func_80388080(Actor *this){
                         this->unk1C_x -= local->unk0_x;
                         this->unk1C_y -= local->unk0_y;
                         this->unk1C_z -= local->unk0_z;
-                        TUPLE_ASSIGN(sp60, this->unk28, 0.0f, 0.0f);
+                        TUPLE_ASSIGN(sp60, this->actor_specific_1_f, 0.0f, 0.0f);
                         ml_vec3f_yaw_rotate_copy(sp60, sp60, this->yaw - 90.0);
                         local->unk0_x = sp60[0] + local->unk0_x;
                         local->unk0_y = sp60[1] + local->unk0_y;
@@ -483,7 +483,7 @@ void func_80388080(Actor *this){
             sp54[2] = this->position_z;
             if(local->unkC == 1)
                 sp54[1] += 150.0f;
-            this->is_first_encounter = FALSE;
+            this->has_met_before = FALSE;
             func_80387A80(partEmitMgr_newEmitter(3), sp54, 3, (local->unkC == 1)? 0x4f0: 0x4f1);
         }//L80388CC4
         

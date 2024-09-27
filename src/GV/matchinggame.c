@@ -53,7 +53,7 @@ Struct_GV_9DB0_1 * func_803901A0(s32 arg0){
 }
 
 void func_803901F0(void *arg0){
-    FUNC_8030E624(SFX_3F6_UNKNOWN, 1.0f, 30000);
+    FUNC_8030E624(SFX_3F6_RUBBING, 1.0f, 30000);
 }
 
 void func_80390218(void *arg0){

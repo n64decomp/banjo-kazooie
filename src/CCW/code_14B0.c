@@ -122,7 +122,7 @@ void CCW_func_80387A40(Actor *this) {
         player_getPosition(sp44);
         if (sp44[2] > -600.0f) {
             if (!local->unk4->unk3 || !jiggyscore_isCollected(local->unk4->unk3) ) {
-                func_80311480(local->unk4->unk4, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(local->unk4->unk4, 4, NULL, NULL, NULL, NULL);
                 mapSpecificFlags_set(local->unk4->unk2, TRUE);
             }
         }

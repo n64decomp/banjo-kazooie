@@ -89,7 +89,7 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
 }
 
 // break ?? //
-bool func_8028DD60(enum actor_e actor_id, Actor **arg1){
+bool player_setCarryObjectPose(enum actor_e actor_id, Actor **arg1){
     ActorMarker *m1;
     ActorMarker *m2;
     Actor *actor;

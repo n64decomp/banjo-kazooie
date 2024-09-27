@@ -177,7 +177,7 @@ void func_8038D294(ActorMarker *marker){
     func_8038D01C(this->position, 12, ASSET_700_SPRITE_DUST);
     this->velocity[1] = 0.0f;
     FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, 1000, 3500);
-    func_80311480(0xc13, 0, NULL, NULL, NULL, NULL);
+    gcdialog_showText(0xc13, 0, NULL, NULL, NULL, NULL);
 }
 
 void func_8038D324(Actor *this){
@@ -279,7 +279,7 @@ void func_8038D6C8(Actor *this){
     bool sp20;
     
     sp24 = time_getDelta();
-    mapSpecificFlags_set(0xd, (this->state != 1 && this->state != 2) ? TRUE : FALSE);
+    mapSpecificFlags_set(0xd, BOOL(this->state != 1 && this->state != 2));
     
     if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
         this->marker->propPtr->unk8_3 = FALSE;

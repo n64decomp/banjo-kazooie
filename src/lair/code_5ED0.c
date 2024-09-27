@@ -1234,7 +1234,7 @@ void lair_func_8038E0B0(void) {
                 func_802FACA4(0x16);
                 if (sp38 != FFTT_0_NIL) {
                     sp28 = sp38 - 1 + FILEPROG_55_FF_BK_SQUARE_INSTRUCTIONS;
-                    if (!fileProgressFlag_get(sp28) && func_80311480(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
+                    if (!fileProgressFlag_get(sp28) && gcdialog_showText(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
                         fileProgressFlag_set(sp28, TRUE);
                     }
                     if ((sp38 == FFTT_6_SKULL) && (item_getCount(ITEM_16_LIFE) == 1)) {

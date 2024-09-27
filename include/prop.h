@@ -166,7 +166,7 @@ typedef struct actor_s{
     AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
     TUPLE(f32, unk1C);
-    f32 unk28; //used in cheggs
+    f32 actor_specific_1_f; //used in cheggs
     TUPLE(f32, velocity);
     u32  unk38_31:10;
     u32  unk38_21:9;
@@ -260,7 +260,7 @@ typedef struct actor_s{
     u32 unk138_28:1;
     u32 unk138_27:2;
     u32 unk138_25:1;
-    u32 is_first_encounter:TRUE;
+    u32 has_met_before:1;
     u32 unk138_23:1;
     u32 unk138_22:1;
     u32 unk138_21:1;

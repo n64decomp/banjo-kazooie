@@ -53,7 +53,7 @@ void func_8038D368(Actor *this) {
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         local->unk0 = D_8038F600;
         while (local->unk0->map != 0 && map_get() != local->unk0->map) {
             local->unk0++;
@@ -66,17 +66,17 @@ void func_8038D368(Actor *this) {
         return;
     } 
     
-    if(!this->is_first_encounter){
+    if(!this->has_met_before){
         player_getPosition(plyr_pos);
         if (ml_distance_vec3f(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-                func_80311480(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showText(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
             } else {
                 if (local->unk0->unk4) {
-                    func_80311480(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 }
             }
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
         }
     }
     

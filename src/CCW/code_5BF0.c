@@ -93,7 +93,7 @@ void func_8038C41C(Actor *this) {
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         return;
     }
 
@@ -114,9 +114,9 @@ void func_8038C41C(Actor *this) {
 
     if ((this->marker->id == 0x1CB) && (this->state == 2)) {
         player_getPosition(sp2C);
-        if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
-            this->is_first_encounter = TRUE;
-            func_80311480(0xCCD, 0, NULL, NULL, NULL, NULL);
+        if (!this->has_met_before && (ml_distance_vec3f(this->position, sp2C) < 400.0f)) {
+            this->has_met_before = TRUE;
+            gcdialog_showText(0xCCD, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

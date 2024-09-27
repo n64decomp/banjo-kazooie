@@ -581,7 +581,7 @@ void bscroc_eat_bad_update(void){
     }
 
     if(animctrl_isAt(aCtrl, 0.6671f)){
-        func_8030E484(SFX_C6_SHAKING_MOUTH);
+        sfxsource_playHighPriority(SFX_C6_SHAKING_MOUTH);
     }
 
     if(animctrl_isStopped(aCtrl)){

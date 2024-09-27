@@ -83,7 +83,7 @@ s32 func_803563B8(enum file_progress_e progress_flag, s32 arg1) {
     } else {
         index = __findIndex(fileProgressDialogMap, progress_flag);
         if (index != -1) {
-            if (func_80311480(fileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
+            if (gcdialog_showText(fileProgressDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
                 fileProgressFlag_set(progress_flag, 1);
             }
             return fileProgressFlag_get(progress_flag);
@@ -109,7 +109,7 @@ s32 volatileFlag_setAndTriggerDialog(enum volatile_flags_e id, s32 arg1) {
     } else {
         index = __findIndex(gVolatileFlagDialogMap, id);
         if (index != -1) {
-            if (func_80311480(gVolatileFlagDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
+            if (gcdialog_showText(gVolatileFlagDialogMap[index].value, arg1, 0, 0, 0, 0) != 0) {
                 volatileFlag_set(id, 1);
             }
             return volatileFlag_get(id);

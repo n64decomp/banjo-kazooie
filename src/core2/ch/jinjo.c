@@ -46,7 +46,7 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
 
     if(actorPtr->state < 5){
         if(!fileProgressFlag_get(FILEPROG_E_JINJO_TEXT)){
-            func_80311480(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
+            gcdialog_showText(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);

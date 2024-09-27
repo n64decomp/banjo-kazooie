@@ -316,8 +316,8 @@ void pfsManager_init(void){
     osStartThread(&sPfsManagerThread);
 }
 
-bool pfsManager_contErr(void){
-    return pfsManagerContStatus.errno ? TRUE : FALSE;
+bool pfsManager_contErr(void) {
+    return BOOL(pfsManagerContStatus.errno);
 }
 
 void func_8024F150(void){

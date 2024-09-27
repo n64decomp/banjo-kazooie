@@ -29,8 +29,8 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80389A60(Actor *this){
-    func_80311480(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
-    this->is_first_encounter = TRUE;
+    gcdialog_showText(ASSET_A70_TEXT_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
+    this->has_met_before = TRUE;
     subaddie_set_state(this, 5);
 }
 
@@ -48,7 +48,7 @@ void func_80389ABC(Actor *this){
 void func_80389B1C(Actor *this){
     if(!this->volatile_initialized){
         this->lifetime_value = (f32) func_8038E184();
-        this->is_first_encounter = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(0);
+        this->has_met_before = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(0);
         this->unk138_23 = jiggyscore_isCollected(JIGGY_43_GV_HISTUP) || mapSpecificFlags_get(2);
         this->volatile_initialized = TRUE;
     }
@@ -62,9 +62,9 @@ void func_80389B1C(Actor *this){
     animctrl_setTransitionDuration(this->animctrl, 0.15f);
 
     if(this->state == 1 || this->state == 2){
-        if(! this->is_first_encounter && func_80329530(this, 250) && !func_80329530(this, 0x50)){
-            func_80311480(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
-            this->is_first_encounter = TRUE;
+        if(! this->has_met_before && func_80329530(this, 250) && !func_80329530(this, 0x50)){
+            gcdialog_showText(ASSET_A6F_TEXT_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
+            this->has_met_before = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }
     }

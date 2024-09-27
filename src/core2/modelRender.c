@@ -1403,7 +1403,7 @@ f32 func_8033A244(f32 arg0){
 }
 
 void func_8033A25C(bool arg0){
-    D_80383704 = arg0 ? TRUE : FALSE;
+    D_80383704 = BOOL(arg0);
 }  
 
 void func_8033A280(f32 arg0){

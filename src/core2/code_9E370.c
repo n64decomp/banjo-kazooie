@@ -791,7 +791,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->pitch = 0.0f;
     suLastBaddie->roll = 0.0f;
     suLastBaddie->unk6C = 0.0f;
-    suLastBaddie->unk28 = 0.0f;
+    suLastBaddie->actor_specific_1_f = 0.0f;
     suLastBaddie->unk10_12 = 0;
     suLastBaddie->unk38_0 = 0;
     suLastBaddie->unk38_31 = 0;
@@ -884,7 +884,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk14C[0] = NULL;
     suLastBaddie->unk14C[1] = NULL;
     suLastBaddie->unk138_27 = 0;
-    suLastBaddie->is_first_encounter = FALSE;
+    suLastBaddie->has_met_before = FALSE;
     suLastBaddie->unk138_23 = 0;
     suLastBaddie->unk138_22 = 0;
     suLastBaddie->unk138_21 = 0;
@@ -1319,15 +1319,15 @@ void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32
         func_803289EC(this, arg2, direction);
 }
 
-int subaddie_maybe_set_state_position_direction(Actor * this, s32 myAnimId, f32 start_position, s32 direction, f32 probability){
-    if(randf() < probability){
-        if(__subaddie_set_state(this, myAnimId) && this->animctrl){
+bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {
+    if (randf() < probability) {
+        if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
             func_803285E8(this, start_position, direction);
             animctrl_start(this->animctrl, "subaddie.c", 0x705);
         }
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void subaddie_set_ideal_yaw(Actor * this, int arg1){
@@ -1605,9 +1605,10 @@ void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
 }
 
 void func_80329878(Actor *arg0, f32 arg1){
-    arg0->unk28 -= arg1;
-    if(arg0->unk28 < 0.0f){
-        arg0->unk28 = 0.0f;
+    arg0->actor_specific_1_f -= arg1;
+
+    if (arg0->actor_specific_1_f < 0.0f) {
+        arg0->actor_specific_1_f = 0.0f;
     }
 }
 

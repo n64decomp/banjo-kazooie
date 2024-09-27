@@ -226,7 +226,7 @@ void func_80389C58(ActorMarker *marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
     BGS_func_80389850(this, 0);
-    func_80311480(D_80390984[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389BF8, NULL);
+    gcdialog_showText(D_80390984[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389BF8, NULL);
 }
 
 void BGS_func_80389CD8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -246,9 +246,9 @@ void func_80389D20(ActorMarker *marker) {
     local = (ActorLocal_BGS_3420 *)&this->local;
     BGS_func_80389850(this, 0);
     if (local->unkC == local->unkD) {
-        func_80311480(D_803909A4[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
+        gcdialog_showText(D_803909A4[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     } else {
-        func_80311480(D_803909C0[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
+        gcdialog_showText(D_803909C0[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     }
     func_80347A14(0);
 }
@@ -270,7 +270,7 @@ void func_80389E40(ActorMarker *marker) {
     local = (ActorLocal_BGS_3420 *)&this->local;
 
     BGS_func_80389850(this, 1);
-    func_80311480(0xC6B, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389DF8, NULL);
+    gcdialog_showText(0xC6B, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389DF8, NULL);
 }
 
 void func_80389EAC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -310,7 +310,7 @@ void func_80389F08(ActorMarker *marker) {
             item_inc(ITEM_16_LIFE);
         }
     }
-    func_80311480(0xC98, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389EAC, NULL);
+    gcdialog_showText(0xC98, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389EAC, NULL);
 }
 
 
@@ -332,22 +332,22 @@ void func_8038A068(Actor *this, s32 next_state) {
         func_8038C3B0(local->vile_marker);
         if (local->unkC == 3) {
             if (local->unkD >= 4) {
-                func_80311480(0xC91, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+                gcdialog_showText(0xC91, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
             } else {
-                func_80311480((local->unkC == local->unkD) ? 0xC8D : 0xC90, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+                gcdialog_showText((local->unkC == local->unkD) ? 0xC8D : 0xC90, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
             }
         } else {
-            func_80311480((local->unkC == local->unkD) ? 0xC63 : 0xC6C, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+            gcdialog_showText((local->unkC == local->unkD) ? 0xC63 : 0xC6C, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
         }
     }
     if (next_state == 3) {
-        func_80311480(D_803909DC[local->unkC], 4, chVile_getPostion(local->vile_marker), this->marker, func_80389B98, NULL);
+        gcdialog_showText(D_803909DC[local->unkC], 4, chVile_getPostion(local->vile_marker), this->marker, func_80389B98, NULL);
     }
     if (next_state == 4) {
         if (local->unkC == local->unkD) {
-            func_80311480(BGS_D_803909F8[local->unkC], 0xE | ((BGS_D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
+            gcdialog_showText(BGS_D_803909F8[local->unkC], 0xE | ((BGS_D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
         } else {
-            func_80311480(D_80390A18[local->unkC], 0xF , chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
+            gcdialog_showText(D_80390A18[local->unkC], 0xF , chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
         }
         func_80347A14(0);
     }
@@ -693,7 +693,7 @@ void chvilegame_update(Actor *this) {
             if (item_empty(ITEM_6_HOURGLASS)) {
                 if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
                     volatileFlag_set(VOLATILE_FLAG_3, 0);
-                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, ( local->vile_score < local->player_score) ? TRUE : FALSE);
+                    volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, BOOL(local->vile_score < local->player_score));
                     func_8038A068(this, 1);
                 } else if (local->vile_score < local->player_score) {
                     if (local->unkC == 3) {

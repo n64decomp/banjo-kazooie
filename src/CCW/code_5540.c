@@ -49,7 +49,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0xB);
-        func_80311480(0xCCC, 0x20, this->position, NULL, NULL, NULL);
+        gcdialog_showText(0xCCC, 0x20, this->position, NULL, NULL, NULL);
     }
 
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
@@ -121,7 +121,7 @@ void chnabnut_update(Actor *this) {
         D_8038F350[1] = this->position[1];
         D_8038F350[2] = this->position[2];
         if (this->state == 0) {
-            this->is_first_encounter = FALSE;
+            this->has_met_before = FALSE;
             local->returned_acorn_count = NULL;
         }
         chnabnut_setState(this, 1);
@@ -133,23 +133,23 @@ void chnabnut_update(Actor *this) {
 
     if (this->state == NABNUT_STATE_1_SAD) {
         player_getPosition(sp30);
-        if (!this->is_first_encounter && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
-            this->is_first_encounter = TRUE;
-            func_80311480(0xCCA, 0xE, this->position, NULL, NULL, NULL);
+        if (!this->has_met_before && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
+            this->has_met_before = TRUE;
+            gcdialog_showText(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
         if (item_getCount(ITEM_23_ACORNS) > 0) {
             func_80258A4C(this->position, this->yaw - 90.0f, sp30, &sp2C, &sp28, &sp24);
             this->yaw += sp24 * 10.0f;
         }
-        if (this->is_first_encounter && !func_803114B0()) {
+        if (this->has_met_before && !func_803114B0()) {
             func_8028F364(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
-            if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_distance_vec3f(this->position, sp30) < 300.0f) && func_8028FC34()) {
+            if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_distance_vec3f(this->position, sp30) < 300.0f) && player_throwCarriedObject()) {
                 func_8028FA54(D_8038F350);
                 local->returned_acorn_count++;
                 if (local->returned_acorn_count == 6) {
                     chnabnut_setState(this, NABNUT_STATE_2_WAIT);
                 } else if (item_getCount(ITEM_23_ACORNS) == 1) {
-                    func_80311480(0xCCB, 0x20, this->position, NULL, NULL, NULL);
+                    gcdialog_showText(0xCCB, 0x20, this->position, NULL, NULL, NULL);
                 }
             }
         }

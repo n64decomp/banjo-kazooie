@@ -17,5 +17,5 @@ void func_803905B0(Actor *this){
         this->volatile_initialized = TRUE;
         actor_collisionOff(this);
     }
-    this->marker->propPtr->unk8_3 = func_8038DD14(this) ? TRUE : FALSE;
+    this->marker->propPtr->unk8_3 = BOOL(func_8038DD14(this));
 }

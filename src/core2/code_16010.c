@@ -232,7 +232,7 @@ bool func_8029D7B4(void){
                 && func_8028EC04() < 1U
                 && func_80297C6C() != 3
                 && bs_getState() != BS_3D_FALL_TUMBLING
-                && func_8028F22C() < 1U
+                && player_isDead() < 1U
                 ;
     }
     return 0;

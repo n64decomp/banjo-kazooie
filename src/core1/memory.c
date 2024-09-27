@@ -251,7 +251,7 @@ u32 heap_get_occupied_size(void){
 
 bool func_8025498C(s32 size){
     s32 v0 = func_802549BC(size);
-    return v0 ? TRUE : FALSE;
+    return BOOL(v0);
 }
 
 EmptyHeapBlock *func_802549BC(s32 size){

@@ -866,7 +866,7 @@ void partEmitMgr_defrag(void){
 }
 
 void func_802F0E80(void* arg0, s32 arg1){
-    partEmitMgrEnable = (arg1 == 2) ? TRUE : FALSE;
+    partEmitMgrEnable = BOOL(arg1 == 2);
 }
 
 void func_802F0EAC(ParticleEmitter *this, f32 arg1){

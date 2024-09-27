@@ -83,8 +83,6 @@ void mapSavestate_save(enum map_e map)
   D_8037E650[map] = actors_appendToSavestate(D_8037E650[map], ((u32 *) D_8037E650[map]) + (4 * ((iBit + 0x7F) >> 7)));
 }
 
-#define AS_BOOL(expr) ((expr)? TRUE : FALSE)
-
 void mapSavestate_apply(enum map_e map_id) {
     s32 iBit = 0;
     u32* flag_ptr;
@@ -102,7 +100,7 @@ void mapSavestate_apply(enum map_e map_id) {
     func_803083B0(-1);
 
     while (
-        bit_value = AS_BOOL((((u32*)D_8037E650[map_id])[iBit >> 5] & (1 << (iBit & 0x1f)))), 
+        bit_value = BOOL(((u32*)D_8037E650[map_id])[iBit >> 5] & (1 << (iBit & 0x1f))),
         func_803083B0(bit_value) != -1
     ) {
         iBit++;

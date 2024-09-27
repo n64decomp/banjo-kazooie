@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8028E668(f32[3], f32, f32, f32);
-extern s32 func_8028F31C(f32[3], f32, s32, Actor **);
+extern s32 player_setCarryObjectPoseInHorizontalRadius(f32[3], f32, s32, Actor **);
 
 typedef struct {
     s32 unk0;
@@ -48,11 +48,19 @@ Struct_FP_3E00 D_80391E80[] ={
 
 /* .code */
 void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum actor_e actor_id, enum actor_e arg3){
-    func_8028F31C((*this_ptr)->position, 600.0f, actor_id, this_ptr);
+    player_setCarryObjectPoseInHorizontalRadius((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
-    if(!func_80329530(*this_ptr, 400)) return;
-    if(bacarry_get_markerId() != carried_obj_marker_id)        return;
-    if(!func_8028FC34())               return;
+    if (!func_80329530(*this_ptr, 400)) {
+        return;
+    }
+
+    if (bacarry_get_markerId() != carried_obj_marker_id) {
+        return;
+    }
+
+    if (!player_throwCarriedObject()) {
+        return;
+    }
 
     func_8028FA34(arg3, *this_ptr);
 }
@@ -116,9 +124,9 @@ void func_8038A384(Actor *this){
     }//L8038A4E4
 
     sp34 = levelSpecificFlags_get(0x11) + levelSpecificFlags_get(0x12) + levelSpecificFlags_get(0x13);
-    sp38 = (sp34 == 1) ? 0xC17
-         : (sp34 == 2) ? 0xC18
-         : 0xC19;
+    sp38 = (sp34 == 1) ? ASSET_C17_TEXT_UNKNOWN
+         : (sp34 == 2) ? ASSET_C18_TEXT_UNKNOWN
+         : ASSET_C19_TEXT_UNKNOWN;
 
     this->yaw_ideal = (f32)func_80329784(this);
     func_80328FB0(this, 2.0f);
@@ -132,8 +140,9 @@ void func_8038A384(Actor *this){
                         && !jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)
                         && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)
                     ){
-                        if(func_80311480(0xc1a, 0x2a, NULL, NULL, NULL, NULL))
+                        if (gcdialog_showText(ASSET_C1A_TEXT_UNKNOWN, 0x2a, NULL, NULL, NULL, NULL)) {
                             levelSpecificFlags_set(0x19, TRUE);
+                        }
                     }
                 }
 
@@ -154,11 +163,11 @@ void func_8038A384(Actor *this){
             }
             if(levelSpecificFlags_get(D_80391E80[sp3C].unk0)){
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
-                if(sp38 == 0xc19){
-                    func_80311480(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
+                if (sp38 == ASSET_C19_TEXT_UNKNOWN) {
+                    gcdialog_showText(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
                 }
-                else{
-                    func_80311480(sp38, 0x3, this->position, this->marker, func_8038A318, NULL);
+                else {
+                    gcdialog_showText(sp38, 0x3, this->position, this->marker, func_8038A318, NULL);
                 }
             }
             else{//L8038A73C

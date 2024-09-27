@@ -84,7 +84,7 @@ void func_802DAE10(Actor *this){
     ActorLocal_core2_53C10 *local;
 
     local = (ActorLocal_core2_53C10 *)&this->local;
-    this->unk28 = randf2(local->unk0, local->unk4);
+    this->actor_specific_1_f = randf2(local->unk0, local->unk4);
 }
 
 void func_802DAE40(Actor *this) {
@@ -132,7 +132,7 @@ bool func_802DAFBC(Actor *this) {
         func_8032C9E0(sp38);
         sp34 = func_80257248(sp38, this->position);
         if (((globalTimer_getTime() - local->unk38) == 0x1E) && ((sp34 - this->yaw_ideal < 15.0f) && (sp34 - this->yaw_ideal > -15.0f))) {
-            func_802DAF2C(this->position, this->yaw, this->unk28);
+            func_802DAF2C(this->position, this->yaw, this->actor_specific_1_f);
         } else {
             func_80328CEC(this, (s32) sp34, 0, 0xF);
         }
@@ -208,7 +208,7 @@ void func_802DB440(ActorMarker *marker, ActorMarker *other_marker) {
 
     this = marker_getActor(marker);
     if( this->state == 7 
-        && this->unk28 >= 3.0
+        && this->actor_specific_1_f >= 3.0
         && func_803294F0(this, 0x50, func_80329784(this))
     ) {
         FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 20000, this->position, 1250, 2500);
@@ -294,7 +294,7 @@ void func_802DB5A0(Actor *this) {
                    && func_80329078(this, (s32) this->yaw_ideal, 0x96)
                 ) {
                     if (subaddie_maybe_set_state(this, 3, 0.13f) != 0) {
-                        this->unk28 = randf2((f32)local->unk8, (f32)local->unk9);
+                        this->actor_specific_1_f = randf2((f32)local->unk8, (f32)local->unk9);
                     }
                 }
                 func_802DB220(this);
@@ -341,7 +341,7 @@ void func_802DB5A0(Actor *this) {
                 || (this->unk10_12 < local->unkC_31 && func_80329530(this, 0xFA))
             ) {
                 subaddie_set_state(this, 7);
-                this->unk28 = (f32)local->unkA;
+                this->actor_specific_1_f = (f32) local->unkA;
                 this->unk38_31 = 0;
             }
             if(!func_80329078(this, (s32) this->yaw, 0x14)) {

@@ -25,8 +25,6 @@
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
-
-
 #define TUPLE_ASSIGN(out, a, b, c) {\
     out[0] = a;\
     out[1] = b;\
@@ -395,7 +393,7 @@ void func_8030E0FC(u8, f32, f32, f32);
 f32  func_8030E200(u8);
 void func_8030E2C4(u8);
 void func_8030E394(u8 indx);
-void func_8030E484(enum sfx_e uid);
+void sfxsource_playHighPriority(enum sfx_e uid);
 void func_8030E4E4(enum sfx_e uid);
 void sfxsource_play(enum sfx_e uid, s32 sample_rate);
 void func_8030E540(enum sfx_e uid);
@@ -434,7 +432,7 @@ void subaddie_set_state(Actor *, u32);
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id);
 int  subaddie_maybe_set_state(Actor *, s32, f32);
 void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
-int  subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
+bool subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
 void func_80328FB0(Actor *, f32);
 int  func_80329030(Actor *, s32);
@@ -543,7 +541,7 @@ void __spawnQueue_add_1(GenFunction_1, s32);
 
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);
-bool func_80311480(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
+bool gcdialog_showText(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32));
 void ability_unlock(enum ability_e);
 
 extern void func_802EE278(Actor *, s32, s32, s32, f32, f32);

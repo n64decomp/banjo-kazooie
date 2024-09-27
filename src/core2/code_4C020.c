@@ -505,7 +505,7 @@ bool func_802D42F8(Actor *this) {
 
 void func_802D4388(Actor *this){
     func_802D3CE8(this);
-    this->unk38_0 = ( map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unkF4_8 || func_802D42F8(this)) ? TRUE : FALSE;
+    this->unk38_0 = BOOL(map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unkF4_8 || func_802D42F8(this));
     mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || func_8028ECAC() == BSGROUP_D_TRANSFORMING);
     switch(this->state){
         case 0x12: //L802D4468
@@ -1057,7 +1057,7 @@ void func_802D5628(void){
                         }//L802D5F1C
 
                         if(volatileFlag_get(VOLATILE_FLAG_22)){
-                            if(func_80311480(0xF82, 4, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showText(0xF82, 4, NULL, NULL, NULL, NULL)){
                                 fileProgressFlag_set(FILEPROG_C1_BADDIES_ESCAPE_TEXT, TRUE);
                                 volatileFlag_set(VOLATILE_FLAG_22, 0);
                                 D_8037DE04 = 0.0f;
@@ -1067,7 +1067,7 @@ void func_802D5628(void){
                             }
                         }
                         else{//L802D5FCC
-                            if(func_80311480(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showText(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
                                 D_8037DE00++;
                                 if(!(D_8037DE00 < sp4C)){
                                     D_8037DE00 = 0xF86;

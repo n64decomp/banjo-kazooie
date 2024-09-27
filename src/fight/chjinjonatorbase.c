@@ -145,7 +145,7 @@ void chjinjonatorbase_update(Actor *this){
         this->unk1C[1] = this->position_y;
         this->unk1C[2] = this->position_z;
         this->position_y = -600.0f;
-        FUNC_8030E624(SFX_3F6_UNKNOWN, 0.6f, 25000);
+        FUNC_8030E624(SFX_3F6_RUBBING, 0.6f, 25000);
         if(0.0f != this->lifetime_value){
             this->velocity_y = 600.0f/this->lifetime_value;
         }else{

@@ -28,7 +28,7 @@ Struct_CCW_4960_0 D_8038F254[] = {
 /* .code */
 void func_8038AD50(Actor *this, s32 next_state) {
     if (next_state == 2) {
-        func_80311480(0xCDD, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showText(0xCDD, 0, NULL, NULL, NULL, NULL);
         if (this->state == 1) {
             mapSpecificFlags_set(6, 0);
             timed_setStaticCameraToNode(0.0f, 1);

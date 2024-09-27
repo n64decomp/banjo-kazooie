@@ -142,17 +142,19 @@ void chTiptup_setState(Actor *this, s32 arg1){
     if(this->state == 2){
         skeletalAnim_set(this->unk148, ASSET_12B_ANIM_TIPTUP_IDLE, 1.0f, 9.0f);
         unqPtr->unkC = randf2(5.0f, 15.0f);
-        if(!this->is_first_encounter){
-            this->is_first_encounter = TRUE;
-            if(unqPtr->unkA == 0){
-                func_80311480(0xc72, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
-            }else{
-                func_80311480(0xc74, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
 
+        if (!this->has_met_before) {
+            this->has_met_before = TRUE;
+
+            if (unqPtr->unkA == 0) {
+                gcdialog_showText(ASSET_C72_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388784, 0);
+            }
+            else {
+                gcdialog_showText(ASSET_C74_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388784, 0);
             }
         }
-        else{
-            func_80311480(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, chTiptup_textEvent, 0);
+        else {
+            gcdialog_showText(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, func_80388784, 0);
         }
     }
     if(this->state == 3){
@@ -233,7 +235,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     unqPtr = (ActorLocal_Tiptup *)&thisActor->local;
     if((s32)unqPtr->unk0 >= (s32) vector_size(unqPtr->unk4)){
-        if(!mapSpecificFlags_get(0) && func_80311480(0xc76, 0, 0, 0, 0, 0))
+        if(!mapSpecificFlags_get(0) && gcdialog_showText(ASSET_C76_TEXT_UNKNOWN, 0, 0, 0, 0, 0))
             mapSpecificFlags_set(0,1);
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
@@ -243,7 +245,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
         else{
             func_8028F55C(1, thisActor->marker);
             timedFunc_set_0(0.5f, chTiptup_sfxIncorrectHit);
-           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && func_80311480(0xc75, 0, NULL, NULL, NULL, NULL))
+           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && gcdialog_showText(0xc75, 0, NULL, NULL, NULL, NULL))
                mapSpecificFlags_set(1,TRUE);
         }
     }
@@ -340,7 +342,7 @@ void chTiptup_update(Actor *this){
         if(this->state == 6){
             if(ml_distance_vec3f(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
-                func_80311480(0xc7d, 4, 0, 0, 0, 0);
+                gcdialog_showText(0xc7d, 4, 0, 0, 0, 0);
             }
         }
     }

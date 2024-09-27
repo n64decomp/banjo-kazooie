@@ -99,14 +99,14 @@ void func_8035EE48(Actor *this){
 void func_8035EE80(Actor *this){
     subaddie_set_state(this, 3);
     actor_loopAnimation(this);
-    this->unk28 = 10.5f;
+    this->actor_specific_1_f = 10.5f;
     func_8035EE48(this);
 }
 
 void func_8035EEC0(Actor *this){
     subaddie_set_state(this, 4);
     actor_loopAnimation(this);
-    this->unk28 = 9.0f;
+    this->actor_specific_1_f = 9.0f;
     func_8035EE48(this);
 }
 
@@ -192,7 +192,7 @@ void func_8035F138(Actor *this) {
                 marker_setCollisionScripts(this->marker, func_8035F0E8, func_8035F048, func_8035EF9C);
                 local->unk0 = 1;
                 this->unk1C[0] = this->position[0];
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 this->velocity[1] = 0.0f;
                 this->unk1C[2] = this->position[2];
                 this->velocity[0] = this->yaw;
@@ -237,8 +237,8 @@ void func_8035F138(Actor *this) {
                 break;
             }
 
-            if (((this->unk28 + 0.28) <= 18.0) && ( 0.36 <= animctrl_getDuration(this->animctrl) - 0.0056000000000000008)) {
-                this->unk28 += 0.28;
+            if (((this->actor_specific_1_f + 0.28) <= 18.0) && ( 0.36 <= animctrl_getDuration(this->animctrl) - 0.0056000000000000008)) {
+                this->actor_specific_1_f += 0.28;
                 animctrl_setDuration(this->animctrl, animctrl_getDuration(this->animctrl) - 0.0056000000000000008);
             }
             break;
@@ -253,7 +253,7 @@ void func_8035F138(Actor *this) {
             if (func_8035ED60(this)) {
                 subaddie_set_state_with_direction(this, 5, 0.99f, 0);
                 actor_playAnimationOnce(this);
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 this->unk1C[1] = 1.9f;
                 this->unk44_31 = func_8030ED2C(SFX_2C_PULLING_NOISE, 3);
                 break;
@@ -277,7 +277,7 @@ void func_8035F138(Actor *this) {
             if (animctrl_getAnimTimer(this->animctrl) <= 0.02) {
                 subaddie_set_state_with_direction(this, 1, 0.02f, 1);
                 actor_playAnimationOnce(this);
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 func_8035EE48(this);
                 break;
             }

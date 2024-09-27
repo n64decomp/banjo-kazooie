@@ -233,7 +233,7 @@ void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
                         timedFunc_set_2(0.25f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
                         item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
                         timedFunc_set_1(1.25f, (GenFunction_1)item_inc, ITEM_15_HEALTH_TOTAL);
-                        timedFunc_set_1(1.25f, (GenFunction_1)func_8030E484, SFX_3EA_UNKNOWN);
+                        timedFunc_set_1(1.25f, (GenFunction_1)sfxsource_playHighPriority, SFX_3EA_UNKNOWN);
                         timedFunc_set_2(1.25f, (GenFunction_2)item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
                         timedFunc_set_1(1.5f, (GenFunction_1)gcpausemenu_80314AC8, 1);
                     }

@@ -134,45 +134,46 @@ void func_802C8F7C(f32 arg0){
 Actor *func_802C8F88(s32 arg0, s32 arg1[3]){
     f32 sp1C[3];
 
-    sp1C[0] = arg1[0];
-    sp1C[1] = arg1[1];
-    sp1C[2] = arg1[2];
+    TUPLE_COPY(sp1C, arg1)
     return func_802C937C(arg0, sp1C);
 }
 
-Actor *func_802C8FE4(s32 arg0, f32 position[3], Actor *arg2){
+Actor *func_802C8FE4(s32 index, f32 position[3], Actor *arg2) {
     static f32 D_80366C4C = 400.0f;
-    struct41FB0s * sp74; //s2
-    Actor *actor; //s3
+    struct41FB0s *sp74 = D_80366460 + index;
+    Actor *actor = NULL; //s3
+
     s32 i;
     struct41FB0s_1 *s0;
 
-    sp74 = D_80366460 + arg0;
-    actor = NULL;
-    for(i = 0; i < sp74->count; i++){//L802C90B0
-        D_8037DDB4 += 360.0/sp74->count;
-        while(360.0 <= D_8037DDB4){ D_8037DDB4 -= 360.0;}
+    for (i = 0; i < sp74->count; i++) {//L802C90B0
+        D_8037DDB4 += 360.0 / sp74->count;
+        while (360.0 <= D_8037DDB4) { D_8037DDB4 -= 360.0; }
         //L802C9114
-        actor =(i == 0 && arg2) ? arg2 : spawn_actor_f32(sp74->actor_id, position, 0);
+
+        actor = (i == 0 && arg2) ? arg2 : spawn_actor_f32(sp74->actor_id, position, 0);
         actor->unk10_0 = 1;
+
         s0 = (struct41FB0s_1 *) &actor->unkBC;
-        s0->unk0 = arg0; 
+        s0->unk0 = index;
         s0->unk2F = 1;
         s0->unk6 = 1;
+
         ml_vec3f_copy(s0->unk8, actor->position);
         ml_vec3f_copy(actor->position, s0->unk8);
-        if(D_8037DDB8 != 1.0f){
-            s0->unk14[0] = sp74->unk14*D_8037DDB8;
+
+        if (D_8037DDB8 != 1.0f) {
+            s0->unk14[0] = sp74->unk14 * D_8037DDB8;
             s0->unk14[1] = sp74->unk1C + randf2(0.0f, sp74->unk20);
-            s0->unk14[2] = sp74->unk24*D_8037DDB8;
+            s0->unk14[2] = sp74->unk24 * D_8037DDB8;
             D_8037DDB8 = 1.0f;
         }
-        else{//L802C91CC
+        else {//L802C91CC
             s0->unk14[0] = sp74->unk14 + randf2(0.0f, sp74->unk18);
             s0->unk14[1] = sp74->unk1C + randf2(0.0f, sp74->unk20);
             s0->unk14[2] = sp74->unk24 + randf2(0.0f, sp74->unk28);
-
         }//L802C9210
+
         ml_vec3f_yaw_rotate_copy(s0->unk14, s0->unk14, D_8037DDB4);
         s0->unk24 = D_80366C4C *= -1;
         actor->yaw = s0->unk20 = (sp74->unk0 & 0x20) ? sp74->unk30 : randf2(0.0f, 360.0f);
@@ -180,11 +181,13 @@ Actor *func_802C8FE4(s32 arg0, f32 position[3], Actor *arg2){
         s0->unk2C = 0;
         s0->unk2D = 1;
         s0->unk4 = sp74->unk0;
-        s0->unk2E = (sp74->unk0 & 0x1) ? (0.5 < randf()) : 0 ;
-        if(sp74->unk0 & 0x200){
+        s0->unk2E = (sp74->unk0 & 0x1) ? (0.5 < randf()) : 0;
+
+        if (sp74->unk0 & 0x200) {
             actor->unk5C = s0->unk8[1];
         }
     }//L802C92E8
+
     return actor;
 }
 
@@ -194,7 +197,7 @@ Actor *func_802C9334(s32 arg0, Actor * arg1){
 }
 
 Actor *func_802C937C(s32 arg0, f32 position[3]){
-    return func_802C8FE4(arg0, position, 0);
+    return func_802C8FE4(arg0, position, NULL);
 }
 
 bool func_802C939C(Actor *actor, f32 arg1[3], f32 arg2[3], f32 arg3[3], bool arg4) {

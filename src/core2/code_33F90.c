@@ -481,8 +481,8 @@ void func_802BB22C(void){
     }
 }
 
-bool func_802BB270(void){
-    return (!D_80364E00) ? TRUE : FALSE;
+bool func_802BB270(void) {
+    return BOOL(!D_80364E00);
 }
 
 s32 func_802BB294(void){

@@ -513,7 +513,7 @@ void func_802A4664(void){
     func_80299E90();
     next_state = bs_getNextState();
     if(next_state == BS_20_LANDING || next_state == BS_24_FLY || next_state == BS_2D_SWIM_IDLE){
-        func_8030E484(SFX_3EA_UNKNOWN);
+        sfxsource_playHighPriority(SFX_3EA_UNKNOWN);
     }
     func_802A34C8();
     func_8029E070(0);

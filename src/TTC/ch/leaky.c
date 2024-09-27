@@ -54,12 +54,12 @@ void chLeaky_update(Actor *this) {
         }
     }
     if( this->state == 1 
-        && !this->is_first_encounter
+        && !this->has_met_before
         && func_80329530(this, 250) && !func_80329530(this, 160)
         && !func_8028ECAC() 
-        && func_80311480(0xA1A, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showText(0xA1A, 0, NULL, NULL, NULL, NULL)
     ){
-        this->is_first_encounter = TRUE;
+        this->has_met_before = TRUE;
     }
     if (func_803114B0() == 0) {
         if (actor_animationIsAt(this, 0.83f)) {
@@ -111,6 +111,6 @@ bool chLeaky_eggCollision(ActorMarker *marker){
 
     levelSpecificFlags_set(2, TRUE);
     levelSpecificFlags_set(5, TRUE);
-    func_80311480(ASSET_A28_TEXT_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_startCutscene, NULL);
+    gcdialog_showText(ASSET_A28_TEXT_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_startCutscene, NULL);
     return TRUE;
 }

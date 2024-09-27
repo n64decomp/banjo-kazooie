@@ -681,7 +681,7 @@ void __sandcastleCodes_eraseGameDialogCallback(ActorMarker *caller, enum asset_e
     if (confirmed == 1) {
         __sandcastleCodes_setNumberEntered(3);
         func_8038B800(D_8038CAD4);
-        func_80311480(0xFBF, 0xC, NULL, NULL, NULL, NULL);
+        gcdialog_showText(ASSET_FBF_TEXT_UNKNOWN, 0xC, NULL, NULL, NULL, NULL);
         gameFile_clear(func_802C5A30());
         gameFile_8033CFD4(func_802C5A30());
         func_802C5A3C(-1);
@@ -710,11 +710,11 @@ void TTC_func_8038BBA0(s32 secretCodeIndex) {
                         __sandcastleCodes_setNumberEntered(2);
                         func_8038B800(secretCodeIndex);
                         func_8038B5B4();
-                        func_80311480(0xFBE, 0xC, NULL, NULL, NULL, NULL);
+                        gcdialog_showText(ASSET_FBE_TEXT_UNKNOWN, 0xC, NULL, NULL, NULL, NULL);
                         return;
                     case 2:
                         D_8038CAD4 = secretCodeIndex;
-                        func_80311480(0xE38, 0xC, NULL, NULL, __sandcastleCodes_eraseGameDialogCallback, NULL);
+                        gcdialog_showText(ASSET_E38_TEXT_UNKNOWN, 0xC, NULL, NULL, __sandcastleCodes_eraseGameDialogCallback, NULL);
                         return;
                 }
                 return;

@@ -1567,8 +1567,8 @@ void func_803184C8(GcZoombox *this, f32 arg1, s32 arg2, s32 arg3, f32 arg4, bool
         if (this->anim_ctrl != NULL) {
             animctrl_setDuration(this->anim_ctrl, arg4);
         }
-        this->unk1A4_12 = arg5 ? TRUE : FALSE;
-        this->unk1A4_10 = arg6 ? TRUE : FALSE;
+        this->unk1A4_12 = BOOL(arg5);
+        this->unk1A4_10 = BOOL(arg6);
     }
 }
 
@@ -1617,7 +1617,7 @@ void func_80318640(GcZoombox *this, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
         }
         this->unk198 = arg2;
         this->unk194 = arg3;
-        this->unk1A4_15 = (arg4) ? TRUE : FALSE;
+        this->unk1A4_15 = BOOL(arg4);
     }
 }
 

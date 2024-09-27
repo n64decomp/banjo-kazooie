@@ -33,7 +33,7 @@ ActorAnimationInfo chCrabMutantAnimations[] = {
 
 /* .code */
 void __chCrab_802CB040(Actor *this) {
-    this->unk28 = randf2(1.5f, 2.3f);
+    this->actor_specific_1_f = randf2(1.5f, 2.3f);
 }
 
 void __chCrab_802CB078(Actor *this) {
@@ -49,7 +49,7 @@ void __chCrab_802CB078(Actor *this) {
             if( func_80329530(this, 1500) 
                 && ( (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) || func_803292E0(this))
             ) {
-                this->unk28 = 0.0f;
+                this->actor_specific_1_f = 0.0f;
                 subaddie_set_state(this, 3U);
             }
         }
@@ -239,7 +239,7 @@ void chCrab_update(Actor *this) {
         marker_setCollisionScripts(this->marker, __chCrab_touch, __chCrab_ow, __chCrab_die);
         func_803300C0(this->marker, &__chCrab_802CB76C);
         this->unk124_0 = this->unk138_31 = FALSE;
-        this->is_first_encounter = FALSE;
+        this->has_met_before = FALSE;
         this->volatile_initialized = TRUE;
         animctrl_setTransitionDuration(this->animctrl, 0.25f);
         if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -270,10 +270,10 @@ void chCrab_update(Actor *this) {
         && !func_8028ECAC()
     ) {
         if ((this->state != 6) && (this->state != 5)) {
-            func_80311480(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
+            gcdialog_showText(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
             levelSpecificFlags_set(0xE, TRUE);
-            this->is_first_encounter = TRUE;
+            this->has_met_before = TRUE;
         }
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
@@ -283,17 +283,17 @@ void chCrab_update(Actor *this) {
             && !jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && func_80329530(this, 1600)
         ) {
-            func_80311480(0xA12, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showText(0xA12, 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(0, TRUE);
         } else if (mapSpecificFlags_get(1)) {
-            func_80311480(0xA13, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showText(0xA13, 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(1, FALSE);
         }
     }
     if (levelSpecificFlags_get(0xE)) {
         if ((this->state != 8) && (this->state != 9)) {
-            subaddie_set_state_with_direction(this, (this->is_first_encounter) ? 8 : 9, 0.0f, 1);
-            this->is_first_encounter = FALSE;
+            subaddie_set_state_with_direction(this, (this->has_met_before) ? 8 : 9, 0.0f, 1);
+            this->has_met_before = FALSE;
         }
     }
 
@@ -327,7 +327,7 @@ void chCrab_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 4);
-                this->unk28 = 12.0f;
+                this->actor_specific_1_f = 12.0f;
             }
             break;
 
@@ -336,7 +336,7 @@ void chCrab_update(Actor *this) {
             func_80328FB0(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 9);
-                this->unk28 = 12.0f;
+                this->actor_specific_1_f = 12.0f;
             } else if (!levelSpecificFlags_get(0xE)) {
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }

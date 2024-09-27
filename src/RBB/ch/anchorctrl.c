@@ -42,7 +42,7 @@ void __chAnchorCtrl_setState(Actor *this, s32 new_state){
         func_80324E38(0.0f, 3);
         timedFunc_set_0(1.0f, func_8038C000);
         timedFunc_set_2(1.0f, (GenFunction_2)mapSpecificFlags_set, 8, TRUE);
-        timed_playSfx(2.1f, SFX_3F6_UNKNOWN, 0.6f, 32700);
+        timed_playSfx(2.1f, SFX_3F6_RUBBING, 0.6f, 32700);
         timedFunc_set_2(2.7f, (GenFunction_2)mapSpecificFlags_set, 4, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
         func_80324DBC(3.0f, 0xb9C, 7, NULL, this->marker, __chAnchorCtrl_spawnJiggy, NULL);
