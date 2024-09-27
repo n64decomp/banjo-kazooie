@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-void levelSpecificFlags_set(arg0, arg1);
+void levelSpecificFlags_set(s32 index, s32 val);
 
 //levelSpecificFlags
 /* .bss */

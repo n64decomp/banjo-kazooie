@@ -33,7 +33,7 @@ extern void func_8034F248(void *arg0);
 extern void func_8034F568(void *arg0);
 
 enum mesh_xform_e{
-    MESH_XFORM_3_WATER = 3,
+    MESH_XFORM_3_WATER = 3
 };
 
 typedef struct struct_1D_s{

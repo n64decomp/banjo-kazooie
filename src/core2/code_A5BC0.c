@@ -32,6 +32,7 @@ extern void func_8030A2D0(Gfx **, Mtx **, Vtx **, f32[3], f32[3], f32, s32, Cube
 s32 func_8032D9C0(Cube*, Prop*);
 void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3);
 void func_80332B2C(ActorMarker * arg0);
+BKSprite *func_8030A55C(s32 arg0);
 
 typedef union{
     struct{

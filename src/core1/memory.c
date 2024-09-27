@@ -139,8 +139,8 @@ void memcpy(void * dst, void *src, int size){
     while(size > 0){
         *(u8*)dst = *(u8*)src;
         size--;
-        ((u8*)dst)++;
-        ((u8*)src)++;
+        dst = (u8 *) dst + 1;
+        src = (u8 *) src + 1;
     }
 }
 
@@ -148,8 +148,8 @@ void wmemcpy(void * dst, void *src, int size){
     while(size > 0){
         *(u32*)dst = *(u32*)src;
         size -= 4;
-        ((u32*)dst)++;
-        ((u32*)src)++;
+        dst = (u32 *) dst + 1;
+        src = (u32 *) src + 1;
     }
 }
 
