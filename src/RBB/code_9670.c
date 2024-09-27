@@ -19,8 +19,8 @@ u8 D_803912B0;
 /* .code */
 void RBB_func_8038FA60(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
-    func_802C8F70(actor->yaw);
-    func_802C937C(6, &actor->position);
+    bundle_setYaw(actor->yaw);
+    bundle_spawn_f32(6, &actor->position);
 }
 
 void func_8038FA9C(Actor *this, s32 arg1){

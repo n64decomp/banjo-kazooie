@@ -195,7 +195,7 @@ void func_8038687C(Actor *this) {
                     break;
 
             }
-            __spawnQueue_add_4((GenFunction_4)func_802C4140, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
+            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
             local->unk4++;
         }
         local->unkC = randf2(0.5 - ((local->unk8 / 10) * 0.4), 1.0 - ((local->unk8 / 10) * 0.8));

@@ -746,7 +746,7 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
             func_8030E6D4(SFX_1B_EXPLOSION_1);
         }
         else{
-            __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, 
+            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM,
                 reinterpret_cast(s32, sp5C[0]),
                 reinterpret_cast(s32, sp5C[1]),
                 reinterpret_cast(s32, sp5C[2])

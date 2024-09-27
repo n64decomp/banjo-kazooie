@@ -53,7 +53,7 @@ void func_8029D0D8(void) {
 void func_8029D154(void){
     f32 plyr_pos[3];
     player_getPosition(plyr_pos);
-    spawn_actor_f32(0x188, plyr_pos, (s32)yaw_get());
+    actor_spawnWithYaw_f32(0x188, plyr_pos, (s32)yaw_get());
 }
 
 void func_8029D194(void) {

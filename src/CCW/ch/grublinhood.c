@@ -87,7 +87,7 @@ void __chgrublinhood_die(ActorMarker* marker, s32 arg1) {
     FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     pCtrl = partEmitMgr_newEmitter(1);
     __chgrublinhood_emitHat(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
-    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
     actor_collisionOff(actor);
     actor->has_met_before = TRUE;
 }

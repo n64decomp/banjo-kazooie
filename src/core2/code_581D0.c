@@ -41,7 +41,7 @@ Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_802DF270(void){
     Actor *this;
     if(D_8037E000 == NULL){
-        this = spawn_actor_f32(0x2B5, D_80368360, 0);
+        this = actor_spawnWithYaw_f32(0x2B5, D_80368360, 0);
         D_8037E000 = this->marker;
     }
 }

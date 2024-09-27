@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802C4218(s32, s32, s32, s32);
+extern void spawnQueue_bundle_f32(s32, s32, s32, s32);
 extern f32 func_80257204(f32, f32, f32, f32);
 extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 
@@ -240,8 +240,8 @@ void __chClam_playerDropsItem(s32 index, enum item_e item_id){
     f32 position[3];
 
     player_getPosition(position);
-    func_802C8F70(randf2(0.0f, 359.0f));
-    __spawnQueue_add_4((GenFunction_4)func_802C4218, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
+    bundle_setYaw(randf2(0.0f, 359.0f));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
     item_dec(item_id);
 }
 

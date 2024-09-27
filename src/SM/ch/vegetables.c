@@ -6,7 +6,7 @@
 
 //external
 f32 mapModel_getFloorY(f32*);
-void func_802C4218(s32, f32, f32, f32);
+void spawnQueue_bundle_f32(s32, f32, f32, f32);
 void timed_mapSpecificFlags_setTrue(f32, s32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
@@ -203,7 +203,7 @@ void func_80387C28(Actor * this){
     if(this->unk38_31){
         this->position_y += 100.0f;
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
-        __spawnQueue_add_4((GenFunction_4)func_802C4218, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
+        __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
     timed_mapSpecificFlags_setTrue(1.5f, 7);
     actor_collisionOff(this);

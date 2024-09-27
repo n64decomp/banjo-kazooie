@@ -13,7 +13,7 @@ typedef struct chjiggy_s{
     u32 index;
 } ActorLocal_Jiggy;
 
-Actor *func_802C41D8(f32, f32, f32);
+Actor *spawnQueue_actor_s32(f32, f32, f32);
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3);
 Actor *chjiggy_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_802C7D98(Actor * arg0);
@@ -63,8 +63,8 @@ void func_802C7AB0(ActorMarker * arg0, u32 arg1){
 }
 
 void func_802C7AF8(u32 x, u32 y, u32 z, u32 arg3){
-    __spawnQueue_add_4((GenFunction_4)func_802C41D8, ACTOR_4C_STEAM, x, y, z);
-    __spawnQueue_add_4((GenFunction_4)func_802C41D8, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s32, ACTOR_4C_STEAM, x, y, z);
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s32, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
     mapSpecificFlags_set(arg3, 1);
 }
 

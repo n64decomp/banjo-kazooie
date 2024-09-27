@@ -1238,7 +1238,7 @@ NodeProp *func_80305510(s32 arg0) {
 }
 
 Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
-    Actor *actor = spawn_actor(arg0, arg1, arg2);
+    Actor *actor = __actor_spawnWithYaw_s32(arg0, arg1, arg2);
     NodeProp *tmp;
     s32 sp34[3];
     f32 sp28[3];
@@ -1263,7 +1263,7 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
     return actor;
 }
 
-Actor *spawn_actor(enum actor_e arg0, s32 pos[3], s32 rot) {
+Actor *__actor_spawnWithYaw_s32(enum actor_e arg0, s32 pos[3], s32 rot) {
   s32 i;
 
   arg0 = (!dummy_func_80320248()) ? (ACTOR_4_BIGBUTT) : (arg0);

@@ -142,7 +142,7 @@ void func_80334910(void) {
     spawnQueue_free();
     func_802F53D0();
     func_802FAC3C();
-    func_802C8F68();
+    bundle_free();
     func_8033E184();
     func_8033FA24();
     func_80344C80();
@@ -254,7 +254,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_80322F9C();
     func_80323120();
     func_803223AC();
-    func_802C8F40();
+    bundle_reset();
     func_8034F774();
     func_80350174();
     gcparade_init();

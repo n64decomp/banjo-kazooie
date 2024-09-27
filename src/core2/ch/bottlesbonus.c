@@ -548,7 +548,7 @@ void chBottlesBonus_update(Actor *this) {
 void __chBottlesBonus_spawn(void){
     Actor *actor;
     if(chBottlesBonusMarker == NULL){
-        actor = spawn_actor_f32(0x1E0, D_803682C4, 0);
+        actor = actor_spawnWithYaw_f32(0x1E0, D_803682C4, 0);
         chBottlesBonusMarker = actor->marker;
         chBottlesBonusCursor_spawn();
         func_802DF270();

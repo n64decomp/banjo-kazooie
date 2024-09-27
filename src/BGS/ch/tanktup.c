@@ -46,7 +46,7 @@ void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
     sp18[2] = thisActor->position_z;
     sp18[1] += 50.0f;
 
-    leg = spawn_actor_f32(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
+    leg = actor_spawnWithYaw_f32(leg_id + ACTOR_E9_TANKTUP_LEG_FL, sp18, (s32)thisActor->yaw);
     subaddie_set_state_with_direction(leg, arg1 + 1, 0, -1);
     leg->unk10_12 = leg_id;
 }
@@ -205,7 +205,7 @@ void func_8038F6A4(Actor *this)
     {
       f32 sp34[3];
       func_8034A174(this->marker->unk44, 6, sp34);
-      func_802C8F70(this->yaw);
+      bundle_setYaw(this->yaw);
       sp34[1] -= 125.0f;
       jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);
     }

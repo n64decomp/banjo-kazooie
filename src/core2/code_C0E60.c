@@ -73,7 +73,7 @@ s32 spriteRender1PrimMode;
 /* .code */
 void func_80347DF0(Struct81s *arg0){
     Actor *actor;
-    actor = func_802C937C(arg0->actor_id, arg0->position);
+    actor = bundle_spawn_f32(arg0->actor_id, arg0->position);
     actor->unk54 = 3.0f;
     func_803333DC(arg0, actor);
 }

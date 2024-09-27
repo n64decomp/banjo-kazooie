@@ -11,7 +11,7 @@ extern void func_80320ED8(ActorMarker *, f32, s32);
 void func_80387110(ActorMarker *, f32[3], f32, s32);
 void func_8038856C(Actor *actor, f32 *arg1);
 void chfinalboss_update(Actor *this);
-void func_802C8F70(f32);
+void bundle_setYaw(f32);
 s32 func_803297C8(Actor*, f32*);
 Actor *func_8032813C();
 void fight_func_803900DC(ActorMarker *, f32 *, f32, f32);
@@ -434,8 +434,8 @@ void __chfinalboss_dropHealth(ActorMarker *arg0) {
     Actor *actor;
 
     actor = marker_getActor(arg0);
-    func_802C8F70(func_803297C8(actor, D_803916F4));
-    func_802C937C(0x14, actor->position);
+    bundle_setYaw(func_803297C8(actor, D_803916F4));
+    bundle_spawn_f32(0x14, actor->position);
 }
 
 void chfinalboss_despawnFlightPad(void) {
@@ -447,7 +447,7 @@ void chfinalboss_spawnFlightPad(s32 arg0) {
     s16 *temp_v1;
     Actor *flight_pad;
 
-    flight_pad = spawn_actor_f32(ACTOR_39F_FIGHT_FLIGHT_PAD, D_80391700, D_8039170C);
+    flight_pad = actor_spawnWithYaw_f32(ACTOR_39F_FIGHT_FLIGHT_PAD, D_80391700, D_8039170C);
     flight_pad->alpha_124_19 = 0;
     flight_pad->unk38_31 = 6;
     __chFinalBossFlightPadMarker = flight_pad->marker;
@@ -456,7 +456,7 @@ void chfinalboss_spawnFlightPad(s32 arg0) {
 void func_80386EC0(s32 arg0) {
     ActorMarker *marker;
 
-    marker = spawn_actor_f32(0x38A, D_80392758, 0)->marker;
+    marker = actor_spawnWithYaw_f32(0x38A, D_80392758, 0)->marker;
     func_8030E878(SFX_147_GRUNTY_SPELL_ATTACK_2, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
     fight_func_803900DC(marker, D_80392758, D_80392768[1], D_80392768[2]);
 }
@@ -474,7 +474,7 @@ void func_80386F5C(ActorMarker * arg0, f32 arg1[3], f32 arg2, f32 arg3) {
 void func_80386FD8(s32 arg0) {
     ActorMarker *marker;
 
-    marker = spawn_actor_f32(0x389, D_80392758, 0)->marker;
+    marker = actor_spawnWithYaw_f32(0x389, D_80392758, 0)->marker;
     func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
     fight_func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
@@ -482,7 +482,7 @@ void func_80386FD8(s32 arg0) {
 void func_80387074(s32 arg0) {
     ActorMarker *marker;
 
-    marker = spawn_actor_f32(0x3AA, D_80392758, 0)->marker;
+    marker = actor_spawnWithYaw_f32(0x3AA, D_80392758, 0)->marker;
     func_8030E878(SFX_146_GRUNTY_SPELL_ATTACK_1, randf2(0.95f, 1.05f), 32000, D_80392758, 5000.0f, 12000.0f);
     fight_func_8038FB84(marker, D_80392758, D_80392768, D_80392778);
 }
@@ -1270,28 +1270,28 @@ void __chfinalboss_spawnStatue(enum bossjinjo_e statue_id) {
 
     switch (statue_id) {
     case BOSSJINJO_ORANGE:
-        sp1C = spawn_actor_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391768, 135);
+        sp1C = actor_spawnWithYaw_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391768, 135);
         __chFinalBossJinjoStatueMarker[0] = sp1C->marker;
         break;
 
     case BOSSJINJO_GREEN:
-        sp1C = spawn_actor_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391774, 45);
+        sp1C = actor_spawnWithYaw_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391774, 45);
         __chFinalBossJinjoStatueMarker[1] = sp1C->marker;
         break;
 
     case BOSSJINJO_PINK:
-        sp1C = spawn_actor_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391780, 315);
+        sp1C = actor_spawnWithYaw_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_80391780, 315);
         __chFinalBossJinjoStatueMarker[2] = sp1C->marker;
         break;
 
     case BOSSJINJO_YELLOW:
-        sp1C = spawn_actor_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_8039178C, 225);
+        sp1C = actor_spawnWithYaw_f32(ACTOR_3A2_JINJO_STATUE_BASE, D_8039178C, 225);
         __chFinalBossJinjoStatueMarker[3] = sp1C->marker;
         break;
 
     case BOSSJINJO_JINJONATOR:
         *D_80392750_ptr = ((local->mirror_phase5) ? 0.0f : 180.0f);
-        sp1C = spawn_actor_f32(ACTOR_3A9_JINJONATOR_STATUE_BASE, D_80391798, (s32)*D_80392750_ptr);
+        sp1C = actor_spawnWithYaw_f32(ACTOR_3A9_JINJONATOR_STATUE_BASE, D_80391798, (s32)*D_80392750_ptr);
         break;
     }
     sp1C->lifetime_value = (statue_id == BOSSJINJO_JINJONATOR) ? 5.25f : 1.54f;
@@ -1524,7 +1524,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
 
     case 32:
         func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
-        func_802C9334(0x24, this);
+        __bundle_spawnFromFirstActor(0x24, this);
         return;
     case 33:
         FUNC_8030E624(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000);

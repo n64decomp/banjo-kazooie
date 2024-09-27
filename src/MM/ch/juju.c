@@ -81,9 +81,8 @@ void __chjuju_initialize_all(ActorMarker *marker, s32 count) {
     position[0] = actorPtr->position_x;
     position[1] = actorPtr->position_y;
     position[2] = actorPtr->position_z;
-
-    for (i = 0; i < 4; i++) {
-        jujuPtr = spawn_actor_f32(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
+    for(i = 0; i < 4; i++){
+        jujuPtr = actor_spawnWithYaw_f32(ACTOR_59_JUJU, actorPtr->position, actorPtr->yaw);
         jujuPtr->marker->collidable = FALSE;
 
         actorPtr = marker_getActor(marker);

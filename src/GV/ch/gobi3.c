@@ -22,9 +22,9 @@ void __chGobi3_spawnHoneyComb(Actor *this){
     s32 pad24;
     f32 sp18[3];
     TUPLE_ASSIGN(sp18, -6885.0f, 2383.0f, 1335.0f);
-    func_802C8F70(this->yaw);
+    bundle_setYaw(this->yaw);
     func_802CA1CC(HONEYCOMB_C_GV_GOBI_3);
-    func_802C937C(0xd, sp18);
+    bundle_spawn_f32(0xd, sp18);
 }
 
 void __chGobi3_runaway(ActorMarker *caller, enum asset_e text_id, s32 arg2){

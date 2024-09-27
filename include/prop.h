@@ -162,7 +162,7 @@ typedef struct actor_s{
     u32 unk10_4:1;
     u32 unk10_3:2;
     u32 unk10_1:1;
-    u32 unk10_0:1;
+    u32 is_bundle:1;
     AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
     TUPLE(f32, unk1C);

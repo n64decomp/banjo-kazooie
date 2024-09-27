@@ -17,10 +17,10 @@ extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_8033A244(f32);
 
 f32 func_80257204(f32, f32, f32, f32);
-extern Actor *func_802C4260(enum actor_e actor_id, s32 x, s32 y, s32 z, s32 yaw);
+extern Actor *spawnQueue_bundleWithYaw_f32(s32 actor_id, s32 x, s32 y, s32 z, s32 yaw);
 f32 func_8033229C(ActorMarker *);
 f32 player_getYaw(void);
-extern void func_802C9334(s32, Actor *);
+extern void __bundle_spawnFromFirstActor(s32, Actor *);
 extern void func_8032B3A0(Actor *, ActorMarker *);
 extern void func_8032EE0C(GenFunction_2, s32);
 extern void func_8032EE20(void);
@@ -589,9 +589,9 @@ void func_803268B4(void) {
                     if ((actor_info->shadow_scale != 0.0f) && actor->unk124_6 && marker->unk14_21) {
                         func_802D7124(actor, actor_info->shadow_scale);
                     }
-                    if (actor->unk10_0) {
+                    if (actor->is_bundle) {
                         actor = &suBaddieActorArray->data[temp_v1];
-                        func_802C96E4(actor);
+                        bundle_update(actor);
                     }
                 }
             }
@@ -838,7 +838,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->initialized = FALSE;
     suLastBaddie->volatile_initialized = FALSE;
     suLastBaddie->lifetime_value = 0.0f;
-    suLastBaddie->unk10_0 = 0;
+    suLastBaddie->is_bundle = FALSE;
     suLastBaddie->unk104 = NULL;
     suLastBaddie->unk100 = NULL;
     suLastBaddie->unk158[0] = NULL;
@@ -1057,11 +1057,11 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
     marker_free(arg0);
 }
 
-Actor *func_8032811C(enum actor_e id, s32 (* pos)[3], s32 rot){
-    return spawn_actor(id, pos, rot);
+Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 (* pos)[3], s32 rot){
+    return __actor_spawnWithYaw_s32(id, pos, rot);
 }
 
-Actor *spawn_actor_f32(enum actor_e id, f32 pos[3], s32 rot){
+Actor *actor_spawnWithYaw_f32(enum actor_e id, f32 pos[3], s32 rot){
     s32 pos_float[3];
     int i;
 
@@ -1069,7 +1069,7 @@ Actor *spawn_actor_f32(enum actor_e id, f32 pos[3], s32 rot){
         pos_float[i] = pos[i];
     }
 
-    spawn_actor(id, &pos_float, rot);
+    __actor_spawnWithYaw_s32(id, &pos_float, rot);
 }
 
 Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
@@ -1079,7 +1079,7 @@ Actor * spawn_child_actor(enum actor_e id, Actor ** parent){
     sp1C[0] = (*parent)->position_x;
     sp1C[1] = (*parent)->position_y;
     sp1C[2] = (*parent)->position_z;
-    child = spawn_actor(id, sp1C, (*parent)->yaw);
+    child = __actor_spawnWithYaw_s32(id, sp1C, (*parent)->yaw);
     *parent = marker_getActor(sp28);
     return child;
 }
@@ -1097,13 +1097,15 @@ Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]){
     return actor;
 }
 
-Actor *func_803282AC(enum actor_e id, s16 (* pos)[3], s32 yaw){
+Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 (* pos)[3], s32 yaw){
     s32 sp24[3];
     int i;
+
     for(i = 0; i< 3; i++){
         sp24[i] = (*pos)[i];
     }
-    return spawn_actor(id, &sp24, yaw);
+
+    return __actor_spawnWithYaw_s32(id, &sp24, yaw);
 }
 
 void marker_despawn(ActorMarker *marker){
@@ -1858,7 +1860,7 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
                 sp50[1] = (s32) var_s0->position[1];
                 sp50[2] = (s32) var_s0->position[2];
                 pad = var_s0->yaw;
-                temp_v0_6 = func_8032811C(var_s0->modelCacheIndex, (sp50), pad);
+                temp_v0_6 = actor_spawnWithYaw_s32(var_s0->modelCacheIndex, (sp50), pad);
                 actor_copy(var_s0, temp_v0_6);
                 func_80329B68(temp_v0_6);
                 func_803299B4(temp_v0_6);
@@ -2182,12 +2184,12 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
             func_8034A174( this->marker->unk44, 0x20, sp38);
         }
         if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
-            __spawnQueue_add_5((GenFunction_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
             return;
         }
         else{
             sp34 = this->position[1] + 50.0f;
-            __spawnQueue_add_5((GenFunction_5)func_802C4260, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
         }
     }
 }
@@ -2268,13 +2270,13 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
             }
         }
         if (sp6C != 0) {
-            func_802C8F70(func_80257204(arg0->propPtr->x, arg0->propPtr->z, arg1->propPtr->x, arg1->propPtr->z) + 90.0f);
+            bundle_setYaw(func_80257204(arg0->propPtr->x, arg0->propPtr->z, arg1->propPtr->x, arg1->propPtr->z) + 90.0f);
             D_8036E564 = sp6C;
             if (this->unk138_25) {
-                func_802C9334(sp6C + 0x21, this);
+                __bundle_spawnFromFirstActor(sp6C + 0x21, this);
             } else {
                 if ((this->marker->id < 0x1A1) || (this->marker->id >= 0x1A5)) {
-                    func_802C9334(sp6C + 0x18, this);
+                    __bundle_spawnFromFirstActor(sp6C + 0x18, this);
                 }
             }
         }
@@ -2303,15 +2305,15 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     }
                     func_8032EE0C(func_8032B38C, this);
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
-                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
                         sp50[0] = (f32) sp48->x;
                         sp50[1] = (f32) sp48->y;
                         sp50[2] = (f32) sp48->z;
-                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else {
                         sp38 = this->position[1] + func_8033229C(arg0);
-                        __spawnQueue_add_5((GenFunction_5)func_802C4260, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, player_yaw));
                     }
                     func_8032EE20();
                 }

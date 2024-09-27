@@ -92,7 +92,7 @@ void func_80389A1C(void) {
     Actor *actor;
     ActorLocal_TreasureHunt *local;
 
-    actor = spawn_actor_f32(0x55, D_8038C820[D_8037DCB4], 0);
+    actor = actor_spawnWithYaw_f32(0x55, D_8038C820[D_8037DCB4], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
     actor->yaw = D_8038C868[D_8037DCB4];
     local->unk0 = D_8037DCB4;
@@ -105,7 +105,7 @@ void func_80389A9C(void) {
     ActorLocal_TreasureHunt *local;
     s32 actor_id;
 
-    actor = spawn_actor_f32((D_8038C898 - 1)[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
+    actor = actor_spawnWithYaw_f32((D_8038C898 - 1)[D_8037DCB4], D_8038C820[D_8037DCB4 - 1], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
     actor->yaw = D_8038C880[D_8037DCB4 - 1];
     local->unk0 = D_8037DCB4;
@@ -157,7 +157,7 @@ void func_80389CC4(s16 arg0[3], s32 arg1){
         D_8038D708[1] = (f32)arg0[1];
         D_8038D708[2] = (f32)arg0[2];
         D_8038D708[1] =  mapModel_getFloorY(D_8038D708);
-        __spawnQueue_add_4((GenFunction_4)func_802C4140, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
+        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0xF4, reinterpret_cast(s32, D_8038D708[0]), reinterpret_cast(s32, D_8038D708[1]), reinterpret_cast(s32, D_8038D708[2]));
         D_8038D700 = partEmitMgr_newEmitter(3);
         particleEmitter_setRGB(D_8038D700, D_8038C91C);
         particleEmitter_setSprite(D_8038D700, ASSET_700_SPRITE_DUST);

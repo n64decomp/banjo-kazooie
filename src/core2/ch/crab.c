@@ -179,7 +179,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
     is_black_snippet = this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET;
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 32750, this->position, 950, 1900);
     FUNC_8030E8B4(SFX_79_TICKER_DEATH, 1.0f, 28000, this->position, 950, 1900);
-    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     this->lifetime_value = 5.0f;
     marker->collidable = FALSE;
     this->unk138_27 = 1;

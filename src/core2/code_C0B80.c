@@ -6,7 +6,7 @@ extern void func_80329904(ActorMarker *, s32, f32 *);
 
 void func_80347B10(Struct81s *arg0){
     Actor *actor;
-    actor = func_802C937C(0x10, arg0->position);
+    actor = bundle_spawn_f32(0x10, arg0->position);
     actor->unk54 = 3.0f;
     func_803333DC(arg0, actor);
 }

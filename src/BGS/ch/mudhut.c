@@ -8,7 +8,7 @@ extern void player_stateTimer_set(enum state_timer_e, f32);
 extern f32 player_stateTimer_get(enum state_timer_e);
 
 
-void func_802C4218(u32,f32,f32,f32);
+void spawnQueue_bundle_f32(u32,f32,f32,f32);
 void subaddie_set_state(Actor *, u32);
 
 /* local declarations */
@@ -61,8 +61,8 @@ void func_8038EB4C(ActorMarker *this){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    thisActor = spawn_actor_f32(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
-    thisActor = spawn_actor_f32(ACTOR_4D_STEAM_2, thisActor->position, NULL);
+    thisActor = actor_spawnWithYaw_f32(ACTOR_D_WOOD_DEMOLISHED, thisActor->position, NULL);
+    thisActor = actor_spawnWithYaw_f32(ACTOR_4D_STEAM_2, thisActor->position, NULL);
     if(this);
 }
 
@@ -105,7 +105,7 @@ void chmudhut_update(Actor *this){
                     }
                     __spawnQueue_add_1((GenFunction_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
                     if(tmp < 5){
-                        __spawnQueue_add_4((GenFunction_4)func_802C4218, D_80390B50[tmp], 
+                        __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, D_80390B50[tmp],
                             reinterpret_cast(s32, diffPos[0]), 
                             reinterpret_cast(s32, diffPos[1]), 
                             reinterpret_cast(s32, diffPos[2])

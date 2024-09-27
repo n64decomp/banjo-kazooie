@@ -71,7 +71,7 @@ void func_8035D1F0(ActorMarker *arg0, s32 arg1) {
     func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
     func_8035D110(partEmitMgr_newEmitter(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
     FUNC_8030E8B4(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
-    __spawnQueue_add_4((GenFunction_4) func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    __spawnQueue_add_4((GenFunction_4) spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(arg0);
 }
 
@@ -133,7 +133,7 @@ void func_8035D490(ActorMarker *marker){
     if (map_get() == MAP_13_GV_MEMORY_GAME) {
         sp1C = marker_getActor(marker);
         if (func_80329530(sp1C, 250) != 0) {
-            func_802C9334(0x1C, sp1C);
+            __bundle_spawnFromFirstActor(0x1C, sp1C);
             func_8035D2C0(marker, 0);
         }
     }
@@ -146,7 +146,7 @@ void func_8035D4F0(ActorMarker *marker, s32 arg1){
         actor = marker_getActor(marker);
         if(actor->state != 9){
             if(func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1){
-                func_802C9334(0x1C, actor);
+                __bundle_spawnFromFirstActor(0x1C, actor);
                 func_8035D2C0(marker, 0);
             }
         }

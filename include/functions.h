@@ -222,7 +222,7 @@ void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitMgr_newEmitter(u32);
 void func_802BB3DC(s32, f32, f32);
 void __spawnQueue_add_4(GenFunction_4, s32, s32, s32, s32);
-Actor *func_802C4140(enum actor_e actor_id, s32 x, s32 y, s32 z);
+Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void func_8030DA44(u8);
 
 
@@ -379,7 +379,7 @@ extern s32 func_802F9AA8(enum sfx_e);
 
 
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
-Actor * spawn_actor(enum actor_e id, s32 pos[3], s32 yaw);
+Actor * __actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 yaw);
 f32  mapModel_getFloorY(f32[3]);
 BKModelBin *func_8030A428(s32);
 u8   sfxsource_createSfxsourceAndReturnIndex(void);
@@ -425,7 +425,7 @@ void func_80326244(Actor *);
 
 void func_8032728C(f32[3], f32, s32, int(*)(Actor *));
 
-Actor *spawn_actor_f32(enum actor_e actor_id, f32 position[3], s32 yaw);
+Actor *actor_spawnWithYaw_f32(enum actor_e actor_id, f32 position[3], s32 yaw);
 int  func_8032863C(AnimCtrl *, f32, f32);
 int  func_80328A2C(Actor *, f32, s32, f32);
 void subaddie_set_state(Actor *, u32);
@@ -497,7 +497,7 @@ int actor_animationIsAt(Actor*, f32);
 void rumbleManager_80250E94(f32, f32, f32, f32, f32, f32);
 
 
-void func_802C8F70(f32);
+void bundle_setYaw(f32);
 void func_802F9DB8(s32, f32, f32, f32);
 void func_802F9F80(s32, f32, f32, f32);
 void func_802FA060(s32, s32, s32, f32);

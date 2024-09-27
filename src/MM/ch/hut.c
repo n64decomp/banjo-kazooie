@@ -6,8 +6,9 @@
 #include "prop.h"
 
 /* extern function declarations */
-void func_802C8F70(f32);
-void func_802C4218(s32, s32, s32, s32);
+
+void bundle_setYaw(f32);
+void spawnQueue_bundle_f32(s32, s32, s32, s32);
 
 /* public function declarations */
 Actor *chhut_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
@@ -42,8 +43,8 @@ Actor *chhut_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 void __chhut_spawnExplosion(ActorMarker *this) {
     Actor *actorPtr = marker_getActor(this);
-    actorPtr = spawn_actor_f32(ACTOR_4B_WOOD_EXPLOSION_2, actorPtr->position, 0);
-    spawn_actor_f32(ACTOR_4D_STEAM_2, actorPtr->position, 0);
+    actorPtr = actor_spawnWithYaw_f32(ACTOR_4B_WOOD_EXPLOSION_2, actorPtr->position, 0);
+    actor_spawnWithYaw_f32(ACTOR_4D_STEAM_2, actorPtr->position, 0);
 
     if (this);
 }
@@ -83,10 +84,10 @@ void chhut_update(Actor *this) {
                 subaddie_set_state(this, HUT_STATE_1_DAMAGED);
                 actor_playAnimationOnce(this);
                 __spawnQueue_add_1((GenFunction_1) __chhut_spawnExplosion, (s32) this->marker);
-                func_802C8F70(this->yaw);
+                bundle_setYaw(this->yaw);
 
                 if (mm_hut_smash_count < 5) {
-                    __spawnQueue_add_4((GenFunction_4) func_802C4218, D_803898D8[mm_hut_smash_count], *(s32 * )(&diff_pos[0]), *(s32 * )(&diff_pos[1]),*(s32 * )(&diff_pos[2]));
+                    __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, D_803898D8[mm_hut_smash_count], *(s32*)(&diff_pos[0]),*(s32*)(&diff_pos[1]),*(s32*)(&diff_pos[2]));
                 }
                 else {
                     jiggy_spawn(JIGGY_5_MM_HUTS, diff_pos);

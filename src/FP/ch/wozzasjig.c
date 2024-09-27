@@ -74,7 +74,7 @@ void func_8038FF54(Actor *this){
             sp40[0] = (f32)(s32)sp40[0];
             sp40[1] = (f32)(s32)sp40[1];
             sp40[2] = (f32)(s32)sp40[2];
-            func_802C8F70(this->yaw + 90.0f);
+            bundle_setYaw(this->yaw + 90.0f);
             jiggy_spawn(JIGGY_32_FP_WOZZA, sp40);
             levelSpecificFlags_set(0x26, TRUE);
             marker_despawn(this->marker);

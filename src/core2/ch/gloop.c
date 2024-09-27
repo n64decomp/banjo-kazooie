@@ -38,7 +38,7 @@ void chgloop_spawnBubble(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
     sp1C[0] = reinterpret_cast(f32, arg0);
     sp1C[1] = reinterpret_cast(f32, arg1);
     sp1C[2] = reinterpret_cast(f32, arg2);
-    spawn_actor_f32(ACTOR_E7_GLOOP_BUBBLE, sp1C, (s32)reinterpret_cast(f32, arg3));
+    actor_spawnWithYaw_f32(ACTOR_E7_GLOOP_BUBBLE, sp1C, (s32)reinterpret_cast(f32, arg3));
 }
 
 void chgloop_update(Actor *this){

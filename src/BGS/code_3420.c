@@ -5,7 +5,7 @@
 extern f32  func_80256AB4(f32, f32, f32, f32);
 extern f32  func_8025715C(f32, f32);
 extern f32 *chVile_getPostion(ActorMarker *);
-extern void func_802C8F7C(f32);
+extern void bundle_setRandomVelocity(f32);
 extern void func_802FDCB8(s32);
 
 enum chvilegame_piece_type_e {
@@ -140,7 +140,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
             sp94[0] = vile->position[0] + sp7C[0];
             sp94[1] = vile->position[1] + sp7C[1];
             sp94[2] = vile->position[2] + sp7C[2];
-            func_802C8F70(vile->yaw);
+            bundle_setYaw(vile->yaw);
             jiggy_spawn(JIGGY_28_BGS_MR_VILE, sp94);
         } else {
             sp7C[0] = 0.0f - vile->position[0];
@@ -151,7 +151,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
             sp94[0] = vile->position[0] + sp7C[0];
             sp94[1] = vile->position[1] + sp7C[1];
             sp94[2] = vile->position[2] + sp7C[2];
-            func_802C8F70(func_8025715C(sp7C[0], sp7C[2]));
+            bundle_setYaw(func_8025715C(sp7C[0], sp7C[2]));
             jiggy_spawn(JIGGY_28_BGS_MR_VILE, sp94);
         }
     }
@@ -302,9 +302,9 @@ void func_80389F08(ActorMarker *marker) {
     }
     for(i = 0; i < 3; i++){
         if (var_s2 < 3) {
-            func_802C8F70(vile->yaw + (f32) (i * 30));
-            func_802C8F7C(2.0f);
-            func_802C937C(6, vile->position);
+            bundle_setYaw(vile->yaw + (f32) (i * 30));
+            bundle_setRandomVelocity(2.0f);
+            bundle_spawn_f32(6, vile->position);
             var_s2 += 1;
         } else {
             item_inc(ITEM_16_LIFE);

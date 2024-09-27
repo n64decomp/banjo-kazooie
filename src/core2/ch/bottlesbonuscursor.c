@@ -170,7 +170,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 ActorMarker *chBottlesBonusCursor_spawn(void){
-    Actor *this = spawn_actor_f32(0x2B4, D_80368400, 0);
+    Actor *this = actor_spawnWithYaw_f32(0x2B4, D_80368400, 0);
     chBottlesBonusCursorMarker = this->marker;
     return chBottlesBonusCursorMarker;
 }

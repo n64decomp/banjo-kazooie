@@ -31,8 +31,8 @@ void chBeehive_die(ActorMarker *this, ActorMarker *other){
     actor_playAnimationOnce(actor);
     this->collidable = FALSE;
     actor->unk138_27 = 3;
-    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
-    __spawnQueue_add_4((GenFunction_4)func_802C4140, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
+    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     actor->marker->propPtr->unk8_3 = 0;
     func_803115C4(ASSET_D96_DIALOG_BEEHIVE_MEET);
     func_803115C4(ASSET_DA6_TEXT_BEEHIVE_WITH_BEES);
