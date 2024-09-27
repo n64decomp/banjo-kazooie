@@ -324,7 +324,7 @@ void func_802B5350(void){
     else if(sp1C == 0x12){//L802B53D0
         func_8029A86C(1);
         if( bsStoredState_getTransformation() == TRANSFORM_1_BANJO && !miscFlag_isTrue(MISC_FLAG_F) && stateTimer_isDone(STATE_TIMER_0_UNKNOWN)){
-            func_8028DE6C(baMarker_getCarriedObjectActorId());
+            bacarriedobj_spawn(baMarker_getCarriedObjectActorId());
             func_8029A86C(2);
         }
     }

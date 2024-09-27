@@ -20,7 +20,7 @@ u8 D_8037D376;
 u8 D_8037D377;
 
 /* .code */
-s32 func_802A6510(void){
+s32 bsbpeck_hitboxActive(void){
     return D_8037D376;
 }
 

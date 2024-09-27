@@ -1,7 +1,6 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "core2/ba/carry.h"
 #include "core2/ba/physics.h"
 
 extern Actor *actor_spawnWithYaw_f32(enum actor_e, f32[3], s32);
@@ -57,7 +56,7 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
         case BS_11_BPECK://8028DC50
             if(arg0 && !func_8028AED4(marker_getActor(arg0)->position, 60.0f))
                 return HITBOX_0_NONE;
-            return __maybe(func_802A6510(),HITBOX_5_PECK);
+            return __maybe(bsbpeck_hitboxActive(),HITBOX_5_PECK);
             break;
         case BS_1A_WONDERWING_ENTER:
         case BS_1B_WONDERWING_IDLE:
@@ -86,84 +85,4 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
             return HITBOX_0_NONE;
             break;
     }
-}
-
-// break ?? //
-bool player_setCarryObjectPose(enum actor_e actor_id, Actor **arg1){
-    ActorMarker *m1;
-    ActorMarker *m2;
-    Actor *actor;
-    
-    m1 = (*arg1)->marker;
-    m2 = bacarry_get_marker();
-    if(m2){
-        actor = marker_getActor(m2);
-    }
-
-    if(m2 && actor->modelCacheIndex != actor_id)
-        return 0;
-
-    baMarker_setCarriedObject(actor_id);
-    if(!item_empty(carriedobj_actorId2ItemId(actor_id))){
-        func_8028F66C(BS_INTR_12);
-    }
-    *arg1 = marker_getActor(m1);
-    return 1;
-}
-
-void func_8028DE0C(enum actor_e actor_id){
-    Actor *actor;
-    f32 sp20[3];
-
-    baModel_getPosition(sp20);
-    actor = actor_spawnWithYaw_f32(actor_id, sp20, (s32) yaw_get());
-    actor->unk138_22 = TRUE;
-    bacarry_set_marker(actor->marker);
-    bs_setState(BS_3A_CARRY_IDLE);
-}
-
-void func_8028DE6C(enum actor_e actor_id){
-    ActorMarker *marker;
-    Actor *actor;
-    
-    marker = bacarry_get_marker();
-    if(marker){
-        actor = marker_getActor(marker);
-    }
-
-    if(marker && actor->modelCacheIndex == actor_id){
-        bacarry_set_marker(marker);
-    }
-    else{
-        __spawnQueue_add_1((GenFunction_1)func_8028DE0C, baMarker_getCarriedObjectActorId());
-    }
-}
-
-void func_8028DEEC(enum actor_e actor_id, Actor *actor){
-    f32 sp1C[3];
-
-    nodeprop_getPosition(func_80304C38(actor_id, actor), sp1C);
-    set_throw_target_position(sp1C);
-}
-
-void func_8028DF20(enum actor_e actor_id){
-    item_inc(carriedobj_actorId2ItemId(actor_id));
-}
-
-void func_8028DF48(enum actor_e actor_id){
-    ActorMarker *marker;
-    Actor* actor;
-
-    marker = bacarry_get_marker();
-    if(marker)
-        actor = marker_getActor(marker);
-
-    if(marker && actor->modelCacheIndex == actor_id){
-        bacarry_reset_marker();
-    }
-    item_dec(carriedobj_actorId2ItemId(actor_id));
-}
-
-void func_8028DFB8(enum actor_e actor_id){
-    item_adjustByDiffWithHud(carriedobj_actorId2ItemId(actor_id), 0);
 }

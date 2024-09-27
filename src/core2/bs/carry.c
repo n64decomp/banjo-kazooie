@@ -101,7 +101,7 @@ void bscarry_interrupt(void){
             bs_setState(BS_3C_TALK);
             break;
         case 0x12:
-            func_8028DE6C(baMarker_getCarriedObjectActorId());
+            bacarriedobj_spawn(baMarker_getCarriedObjectActorId());
             break;
         case BS_INTR_16_THROW_CARRIED_OBJ:
             if(stateTimer_isDone(STATE_TIMER_1_THROW)){

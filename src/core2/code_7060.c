@@ -559,15 +559,15 @@ bool func_8028EFEC(void){
 }
 
 void func_8028F010(enum actor_e actor_id){
-    func_8028DF48(actor_id);
+    bacarriedobj_dec(actor_id);
 }
 
 void func_8028F030(enum actor_e actor_id){
-    func_8028DF20(actor_id);
+    bacarriedobj_inc(actor_id);
 }
 
 void func_8028F050(enum actor_e actor_id){
-    func_8028DFB8(actor_id);
+    bacarriedobj_displayOnHud(actor_id);
 }
 
 bool func_8028F070(void){
