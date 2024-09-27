@@ -147,14 +147,14 @@ void chTiptup_setState(Actor *this, s32 arg1){
             this->has_met_before = TRUE;
 
             if (unqPtr->unkA == 0) {
-                gcdialog_showText(ASSET_C72_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388784, 0);
+                gcdialog_showText(ASSET_C72_TEXT_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
             }
             else {
-                gcdialog_showText(ASSET_C74_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388784, 0);
+                gcdialog_showText(ASSET_C74_TEXT_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
             }
         }
         else {
-            gcdialog_showText(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, func_80388784, 0);
+            gcdialog_showText(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, chTiptup_textEvent, 0);
         }
     }
     if(this->state == 3){

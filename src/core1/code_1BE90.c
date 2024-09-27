@@ -12,7 +12,7 @@ bool func_80250074(u8);
 void func_8024FD28(u8, s32);
 void func_8024FC1C(u8, s32);
 void func_8025AC20(enum comusic_e, s32, s32, f32, char*, s32);
-void func_8025AC7C(enum comusic_e, s32, s32, f32, s32, char*, s32);
+void func_8025AC7C(enum comusic_e, s32, s32, f32, s32 *, char*, s32);
 void comusicPlayer_free(void);
 void func_8025A55C(s32, s32, s32);
 void func_8025A7DC(enum comusic_e);
@@ -92,7 +92,7 @@ void comusicPlayer_init(void){
         iPtr->unk14 = 0;
         iPtr->unk15 = 0;
         iPtr->unk0 = 0.0f;
-        iPtr->unk18 = freelist_new(sizeof(struct12s),4);
+        iPtr->unk18 = (FREE_LIST(struct12s) *)freelist_new(sizeof(struct12s),4);
         for(i = 0; i < 0xE; i++){
             iPtr->unk1C[i] = 0;
         }
@@ -556,7 +556,7 @@ void func_8025AC20(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, char
     func_8025AC7C(comusic_id, arg1, arg2, 0.0f, (s32) __find_track(comusic_id)->unk1C, "comusic.c", VER_SELECT(0x3b1, 0x3b2,0,0));
 }
 
-void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 arg4, char* arg5, s32 arg6){
+void func_8025AC7C(enum comusic_e comusic_id, s32 arg1, s32 arg2, f32 arg3, s32 *arg4, char* arg5, s32 arg6){
     CoMusic *trackPtr;
     u32 slot_index;
 
@@ -632,7 +632,7 @@ void comusic_defrag(void){
     if(!D_80276E30) return;
 
     for(iPtr = &D_80276E30[0]; iPtr < &D_80276E30[6]; iPtr++){
-        iPtr->unk18 = freelist_defrag(iPtr->unk18);
+        iPtr->unk18 = (FREE_LIST(struct12s) *)freelist_defrag(iPtr->unk18);
     }
     D_80276E30 = (CoMusic *)defrag(D_80276E30);
 }
