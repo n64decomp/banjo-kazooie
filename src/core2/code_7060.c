@@ -22,7 +22,7 @@ extern void func_8029B73C(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 bool func_8028F4B8(f32 arg0[3], f32 arg1, f32 arg2);
 bool func_8028F620(f32 arg0[3], f32 arg1, f32 arg2);
 void func_8028F85C(f32 arg0[3]);
-void func_8028F8A4(f32 rotation[3]);
+void player_setRotation(f32 rotation[3]);
 void func_8028F918(s32 arg0);
 
 
@@ -46,15 +46,15 @@ f32 D_8037BFCC;
 f32 D_8037BFD0;
 
 /* .code */
-bool func_8028DFF0(s32 arg0, s32 arg1[3]) {
+bool func_8028DFF0(s32 arg0, s32 position[3]) {
     if (arg0 >= 0x80) {
-        arg1[0] = func_802E4A98(arg0);
-        arg1[1] = func_802E4AAC(arg0);
-        arg1[2] = func_802E4AC0(arg0);
+        position[0] = func_802E4A98(arg0);
+        position[1] = func_802E4AAC(arg0);
+        position[2] = func_802E4AC0(arg0);
         return TRUE;
     }
     else{
-        return _nodeProp_findPositionFromActorId(func_803084F0(arg0), arg1);
+        return _nodeProp_findPositionFromActorId(func_803084F0(arg0), position);
     }
 }
 
@@ -151,7 +151,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         bs_setState(badrone_goto(sp7C, 1.0f, func_8028E0B0, NULL));
         return;
     }
-    func_8028F85C(&sp7C);
+    func_8028F85C(sp7C);
     func_80295A8C();
     bsStoredState_setTrot(FALSE);
     miscFlag_clear(MISC_FLAG_16);
@@ -192,7 +192,7 @@ void func_8028E4B0(void) {
         return;
     }
     if (sp20 == 0x63) {
-        func_8028F85C(&D_8037BFC0);
+        func_8028F85C(D_8037BFC0);
         yaw_set(D_8037BFCC);
         D_8037BFBC = (s32) D_8037BFD0;
         D_8037BFB8 = 1;
@@ -213,12 +213,12 @@ void func_8028E4B0(void) {
         D_80363694--;
         if (D_80363694 == 0) {
             func_8028F85C(D_80363698);
-            func_8028F8A4(D_803636A4);
+            player_setRotation(D_803636A4);
         }
     }
     if (D_803636B0) {
         D_803636B0 = FALSE;
-        func_8028F85C(&D_803636B4);
+        func_8028F85C(D_803636B4);
     }
 }
 
@@ -668,7 +668,7 @@ bool player_setCarryObjectPoseInHorizontalRadius(f32 position[3], f32 radius, en
 }
 
 //sets carry actor if player is within a cylinder around a point
-bool func_8028F364(f32 position[3], f32 radius, f32 vert_range, enum actor_e actor_id, Actor **arg4) {
+bool player_setCarryObjectPoseInCylinder(f32 position[3], f32 radius, f32 vert_range, enum actor_e actor_id, Actor **arg4) {
     if (player_isInVerticalRange(position, vert_range)) {
         return player_setCarryObjectPoseInHorizontalRadius(position, radius, actor_id, arg4);
     }
@@ -774,7 +774,7 @@ void player_stateTimer_set(enum state_timer_e timer_id, f32 value){
     stateTimer_set(timer_id, value);
 }
 
-void func_8028F738(f32 bottom[3], f32 top[3], f32 radius, u32 arg3){
+void player_setClimbParams(f32 bottom[3], f32 top[3], f32 radius, u32 arg3){
     climbSet(bottom, top, radius, arg3);
 }
 
@@ -824,7 +824,7 @@ void func_8028F85C(f32 arg0[3]){
     cameraMode_update();
 }
 
-void func_8028F8A4(f32 rotation[3]){
+void player_setRotation(f32 rotation[3]){
     pitch_setIdeal(rotation[0]);
     yaw_setIdeal(rotation[1]);
     roll_setIdeal(rotation[2]);
@@ -875,8 +875,8 @@ void func_8028FA34(enum actor_e arg0, Actor *arg1){
     func_8028DEEC(arg0, arg1);
 }
 
-void func_8028FA54(f32 arg0[3]){
-    set_throw_target_position(arg0);
+void player_setThrowTargetPosition(f32 position[3]){
+    set_throw_target_position(position);
 }
 
 void func_8028FA74(f32 dst[3]){
@@ -897,7 +897,7 @@ void func_8028FAB0(f32 arg0[3]){
     func_80298564(diff);
 }
 
-void func_8028FAEC(f32 rotation[3]){
+void player_setIdealRotation(f32 rotation[3]){
     pitch_setIdeal(rotation[0]);
     yaw_setIdeal(rotation[1]);
     roll_setIdeal(rotation[2]);

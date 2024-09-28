@@ -515,8 +515,8 @@ segments:
   - [0xF7D990, c, ba/marker]
   - [0xF7FD00, c, code_6B30]
   - [0xF7FFA0, c, ba/carriedobj]
-  - [0xF80230, bin, core2_untouched_text]
-  # - [0xF5C9C0, c, code_7060] #DONE
+  - [0xF80230, c, code_7060]
+  - [0xF81F70, bin, core2_untouched_text]
   # - [0xF5E700, c, code_8DA0] #DONE
   # - [0xF5EA40, c, code_90E0] #DONE 
   # - [0xF5EBF0, c, code_9290] #DONE
@@ -904,8 +904,8 @@ segments:
   - [0x1055E70, .data, ba/anim]
   - [0x1055EA0, .data, snackerctl]
   - [0x1055EC0, .data, ba/marker]
-  - [0x1055F20, bin, core2_untouched_data]
-  # - [0x1032060, .data, code_7060]
+  - [0x1055F20, .data, code_7060]
+  - [0x1055F60, bin, core2_untouched_data]
   # - [0x10320A0, .data, code_90E0]
   # - [0x1032150, .data, ba/model]
   # - [0x1032150, .data, code_B850]
@@ -1129,8 +1129,8 @@ segments:
   - [0x1066870, .rodata, code_39D0]
   - [0x1066910, .rodata, ba/marker]
   - [0x1066D40, .rodata, code_6B30]
-  - [0x1066E30, bin, core2_untouched_rodata]
-  # - [0x1042E60, .rodata, code_7060]
+  - [0x1066E30, .rodata, code_7060]
+  - [0x1066F60, bin, core2_untouched_rodata]
   # - [0x1042F90, .rodata, code_9450]
   # - [0x1042FC0, .rodata, code_9900]
   # - [0x1042FD0, .rodata, code_9BD0]
@@ -1382,7 +1382,7 @@ segments:
   - [0x0106C980, .bss, code_39D0]
   - [0x0106C980, .bss, ba/marker]
   - [0x0106C980, .bss, code_6B30]
-  # - [0x0106C980, .bss, code_7060]
+  - [0x0106C980, .bss, code_7060]
   # - [0x0106C980, .bss, code_8DA0]
   # - [0x0106C980, .bss, code_90E0]
   # - [0x0106C980, .bss, code_9290]

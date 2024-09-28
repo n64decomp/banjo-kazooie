@@ -1142,7 +1142,7 @@ void func_8038DFBC(void)
 void func_8038E070(void)
 {
     func_8028F85C(&D_8037DCB8->playerPosition);
-    func_8028F8A4(&D_8037DCB8->playerRotation);
+    player_setRotation(&D_8037DCB8->playerRotation);
     func_8028F918(2);
 }
 

@@ -284,8 +284,8 @@ void baanim_playForDuration_onceSmooth(enum asset_e, f32);
 void baanim_setEndAndDuration(f32, f32);
 int  func_8028AED4(f32*, f32);
 void func_8028E668(f32[3], f32, f32, f32);
-bool func_8028F364(f32[3], f32, f32, enum actor_e actor_id, Actor**);
-void func_8028FA54(f32[3]);
+bool player_setCarryObjectPoseInCylinder(f32[3], f32, f32, enum actor_e actor_id, Actor**);
+void player_setThrowTargetPosition(f32[3]);
 
 f32  func_802915D8(void);
 f32  func_80291604(void);

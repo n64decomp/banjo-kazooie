@@ -111,7 +111,7 @@ void func_8038771C(Actor *this){
 void func_80387774(Actor **this_ptr){
     ActorLocal_Blubber *local = (ActorLocal_Blubber *)&(*this_ptr)->local;
 
-    func_8028F364(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
+    player_setCarryObjectPoseInCylinder(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
     if( func_80329530(*this_ptr, 200)
         && bacarry_get_markerId() == MARKER_37_GOLD_BULLION
         && player_throwCarriedObject()
