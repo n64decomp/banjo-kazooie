@@ -68,7 +68,7 @@ void func_803864D4(Actor *this){
         if(!CC_func_80388CA0()){
             local->unk4 = 2.0f;
         }
-        else if(60.0f < gu_sqrtf(sp30[0]*sp30[0] + sp30[1]*sp30[1] + sp30[2]*sp30[2])){
+        else if(60.0f < LENGTH_VEC3F(sp30)){
             local->unk4 = 0.05f;
         }
         else{

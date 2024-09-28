@@ -8,7 +8,7 @@
 #include <core1/viewport.h>
 
 
-extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
+extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);
 extern f32 player_getYaw(void);
 
 /* .bss */
@@ -179,7 +179,7 @@ int func_8028B094(void){
 int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
     f32 sp1C[3];
     _player_getPosition(sp1C);
-    return func_80259254(sp1C, arg0[0], arg0[2], arg1);
+    return ml_vec3f_point_within_horizontal_distance(sp1C, arg0[0], arg0[2], arg1);
 }
 
 s32 func_8028B120(void){return 0;}

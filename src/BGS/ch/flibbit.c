@@ -338,10 +338,8 @@ void chflibbit_update(Actor *this){
     }
     player_getPosition(player_position);
 
-    spB0[0] = player_position[0] - this->position[0];
-    spB0[1] = player_position[1] - this->position[1];
-    spB0[2] = player_position[2] - this->position[2];
-    player_distance = gu_sqrtf(spB0[0]*spB0[0] + spB0[1]*spB0[1] + spB0[2]*spB0[2]);
+    TUPLE_DIFF_COPY(spB0, player_position, this->position)
+    player_distance = LENGTH_VEC3F(spB0);
 
     if(ml_timer_update(&local->unk24, spA4)){
         func_8030E878(0x3f0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
@@ -427,15 +425,11 @@ void chflibbit_update(Actor *this){
     }
 
     if(this->state == 6){
-        sp4C[0] = this->position[0] - player_position[0];
-        sp4C[1] = this->position[1] - player_position[1];
-        sp4C[2] = this->position[2] - player_position[2];
+        TUPLE_DIFF_COPY(sp4C, this->position, player_position)
         sp4C[1] = 0.0f;
         ml_vec3f_set_length(sp4C, 400.0f * spA4);
 
-        this->position[0] = this->position[0] + sp4C[0];
-        this->position[1] = this->position[1] + sp4C[1];
-        this->position[2] = this->position[2] + sp4C[2];
+        TUPLE_ADD_COPY(this->position, this->position, sp4C)
 
         this->position_y += local->unk14*spA4;
         local->unk14 -= 3000.0f*spA4;

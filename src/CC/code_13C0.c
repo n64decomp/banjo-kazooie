@@ -136,7 +136,7 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
         sp50[2] -= sp38[2];
         sp28 = ((sp50[0]*sp44[0] + sp50[1]*sp44[1] + sp50[2]*sp44[2]) >= 0.0f) ? 1 : -1;
         if (sp28 == -arg0->unk8) {
-            if (gu_sqrtf(sp50[0]*sp50[0] + sp50[1]*sp50[1] + sp50[2] * sp50[2]) < (func_80351830(arg1) * 250.0f)) {
+            if (LENGTH_VEC3F(sp50) < (func_80351830(arg1) * 250.0f)) {
                 func_8038803C(arg0->unk0);
             }
         }

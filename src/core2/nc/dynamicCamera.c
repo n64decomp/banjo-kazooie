@@ -7,7 +7,7 @@
 extern bool func_80245314(f32[3], f32[3], f32, f32, u32);
 extern int func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 extern int func_8024575C(f32[3], f32[3], f32, f32[3], s32, u32);
-extern f32 func_80258708(f32[3], f32[3]);
+extern f32 ml_vec3f_length(f32[3], f32[3]);
 extern f32 func_80259198(f32, f32);
 extern f32 func_8028E82C(void);
 extern f32 player_getYaw(void);
@@ -102,7 +102,7 @@ bool func_802BC640(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3) {
         ml_vec3f_add(sp78, arg0, sp9C);
         func_80244D94(arg0, sp78, sp88, 0x9E0000, 40.0f);
         func_8024575C(arg0, sp78, 40.0f, sp88, 4, 0x9E0000);
-        if (phi_f26 < func_80258708(arg0, sp78)) {
+        if (phi_f26 < ml_vec3f_length(arg0, sp78)) {
             ncDynamicCamera_setPosition(sp78);
             ml_vec3f_clear(D_8037D9C8);
             ml_vec3f_clear(D_8037D9E0);
