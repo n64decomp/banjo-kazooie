@@ -39,7 +39,7 @@ typedef struct {
     u8 unk40;
     u8 unk41;
     u8 busy;
-    u8 unk43_7:3;
+    u8 unk43_7:3; // value is set to 1, 2 or 3
     u8 unk43_4:3;
     u8 unk43_1:2;
 }SfxSource;
@@ -420,11 +420,11 @@ void func_8030D644(void){
     }
 }
 
-void func_8030D6C4(enum sfx_e uid, f32 arg1, s32 arg2, s32 arg3, s32 arg4){
+void func_8030D6C4(enum sfx_e uid, f32 arg1, s32 sampleRate, s32 arg3, s32 arg4){
     u8 indx = sfxsource_createSfxsourceAndReturnIndex();
     if(indx){
         sfxsource_setSfxId(indx, uid);
-        sfxsource_setSampleRate(indx, arg2);
+        sfxsource_setSampleRate(indx, sampleRate);
         sfxsource_playSfxAtVolume(indx, arg1);
         func_8030DCCC(indx, arg3);
         func_8030DD14(indx, 1);
@@ -850,8 +850,8 @@ void func_8030E4E4(enum sfx_e uid){
     func_8030D6C4(uid, 1.0f, 22000, 0, 0);
 }
 
-void sfxsource_play(enum sfx_e uid, s32 sample_rate){
-    func_8030D6C4(uid, 1.0f, sample_rate, 0, 2);
+void sfxsource_play(enum sfx_e uid, s32 sampleRate){
+    func_8030D6C4(uid, 1.0f, sampleRate, 0, 2);
 }
 
 void func_8030E540(enum sfx_e uid){

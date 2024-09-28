@@ -35,7 +35,7 @@ void func_80392B6C(Actor *this) {
             marker_despawn(this->marker);
             return;
         }
-        phi_a0 = func_80304C38(0x3BE, this);
+        phi_a0 = nodeprop_findByActorIdAndActorPosition(0x3BE, this);
         if (this == NULL) {
             this->unk1C[0] = -1300.0f;
             this->unk1C[1] = 250.0f;

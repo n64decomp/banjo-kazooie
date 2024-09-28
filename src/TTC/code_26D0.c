@@ -6,7 +6,7 @@
 #include "actor.h"
 
 extern ActorInfo chClam;
-extern ActorInfo TTC_D_8038C510;
+extern ActorInfo TTC_BLUBBER_ACTOR_INFO;
 extern ActorInfo D_8038C580;
 extern ActorInfo D_8038C5E0;
 extern ActorInfo D_8038C604;
@@ -94,7 +94,7 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&D_8038C5E0, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038C604, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038C580, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
-    spawnableActorList_add(&TTC_D_8038C510, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
+    spawnableActorList_add(&TTC_BLUBBER_ACTOR_INFO, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
     spawnableActorList_add(&D_8038C718, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&D_8038C790, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&D_8038C7B4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);

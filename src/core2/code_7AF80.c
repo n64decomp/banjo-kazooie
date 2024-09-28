@@ -995,7 +995,7 @@ NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3])
     return NULL;
 }
 
-NodeProp *func_80304C38(enum actor_e actor_id, Actor *actor){
+NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor){
     s32 tmp_position[3];
     s32 *position;
 

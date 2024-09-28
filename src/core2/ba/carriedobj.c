@@ -56,7 +56,7 @@ void bacarriedobj_spawn(enum actor_e actor_id){
 void func_8028DEEC(enum actor_e actor_id, Actor *actor){
     f32 sp1C[3];
 
-    nodeprop_getPosition(func_80304C38(actor_id, actor), sp1C);
+    nodeprop_getPosition(nodeprop_findByActorIdAndActorPosition(actor_id, actor), sp1C);
     set_throw_target_position(sp1C);
 }
 

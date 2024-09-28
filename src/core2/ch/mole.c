@@ -349,7 +349,7 @@ void chmole_update(Actor *this){
     if(!this->initialized){
         // Checks if player is within radius of a specific actor exists within the same cube
         // If actor exists and player is within radius, force trigger conversation
-        node_prop = func_80304C38(0x372, this);
+        node_prop = nodeprop_findByActorIdAndActorPosition(0x372, this);
         if(node_prop == NULL){
             this->unk38_0 = FALSE;
         }
@@ -363,7 +363,7 @@ void chmole_update(Actor *this){
         this->marker->collidable = FALSE;
         this->initialized = TRUE;
         if(this->unkF4_8 == 0x12){
-            node_prop = func_80304C38(0x349, this);
+            node_prop = nodeprop_findByActorIdAndActorPosition(0x349, this);
             if(node_prop == NULL){
                 this->velocity[0] = this->position[0];
                 this->velocity[1] = this->position[1];
