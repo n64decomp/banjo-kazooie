@@ -899,7 +899,7 @@ void func_8030E760(enum sfx_e uid, f32 arg1, s32 arg2){
     func_8030D6C4(uid, arg1, arg2, 0, 0);
 }
 
-void sfx_play(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance, s32 arg6){
+void sfx_play(enum sfx_e uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance, s32 arg6){
     u8 sfxsource;
     f32 player_position[3];
     
@@ -913,7 +913,7 @@ void sfx_play(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 min
             func_8030DD90(sfxsource, arg6); // priority ?
             sfxsource_setSfxId(sfxsource, uid);
             sfxsource_setSampleRate(sfxsource, sampleRate);
-            sfxsource_playSfxAtVolume(sfxsource, arg1); // volume ?
+            sfxsource_playSfxAtVolume(sfxsource, volume);
             sfxsource_set_fade_distances(sfxsource, minFadeDistance, maxFadeDistance);
             sfxsource_set_position(sfxsource, position);
             func_8030DD14(sfxsource, 1);
@@ -922,8 +922,8 @@ void sfx_play(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 min
     }
 }
 
-void func_8030E878(enum sfx_e id, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
-    sfx_play(id, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 2);
+void func_8030E878(enum sfx_e id, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(id, volume, sampleRate, position, minFadeDistance, maxFadeDistance, 2);
 }
 
 // fadeDistance is a 32-bit value where the lower 16 bits represent minFadeDistance and the upper 16 bits represent maxFadeDistance.
@@ -935,12 +935,12 @@ void func_8030E8B4(u32 arg0, f32 position[3], u32 fadeDistance){
     );
 }
 
-void func_8030E988(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
-    sfx_play(uid, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 1);
+void func_8030E988(enum sfx_e uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, volume, sampleRate, position, minFadeDistance, maxFadeDistance, 1);
 }
 
-void func_8030E9C4(enum sfx_e uid, f32 arg1, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
-    sfx_play(uid, arg1, sampleRate, position, minFadeDistance, maxFadeDistance, 0);
+void func_8030E9C4(enum sfx_e uid, f32 volume, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
+    sfx_play(uid, volume, sampleRate, position, minFadeDistance, maxFadeDistance, 0);
 }
 
 void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){

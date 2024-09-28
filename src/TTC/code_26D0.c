@@ -5,7 +5,7 @@
 #include "SnS.h"
 #include "actor.h"
 
-extern ActorInfo chClam;
+extern ActorInfo TTC_CLAM_ACTOR;
 extern ActorInfo TTC_BLUBBER_ACTOR;
 extern ActorInfo TTC_NIPPER_ACTOR;
 extern ActorInfo D_8038C5E0;
@@ -109,7 +109,7 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&D_8038C694, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038C6B8, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038C6DC, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&chClam, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&TTC_CLAM_ACTOR, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
 }
 
 void TTC_func_80388C78(Actor *this){
