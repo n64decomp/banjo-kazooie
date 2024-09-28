@@ -6,8 +6,8 @@
 #include "actor.h"
 
 extern ActorInfo chClam;
-extern ActorInfo TTC_BLUBBER_ACTOR_INFO;
-extern ActorInfo D_8038C580;
+extern ActorInfo TTC_BLUBBER_ACTOR;
+extern ActorInfo TTC_NIPPER_ACTOR;
 extern ActorInfo D_8038C5E0;
 extern ActorInfo D_8038C604;
 extern ActorInfo D_8038C628;
@@ -17,9 +17,9 @@ extern ActorInfo D_8038C694;
 extern ActorInfo D_8038C6B8;
 extern ActorInfo D_8038C6DC;
 extern ActorInfo D_8038C718;
-extern ActorInfo TTC_LOCKUP_ACTOR_LOCKUP_SLOW;
-extern ActorInfo TTC_LOCKUP_ACTOR_LOCKUP_MEDIUM;
-extern ActorInfo TTC_LOCKUP_ACTOR_LOCKUP_FAST;
+extern ActorInfo TTC_LOCKUP_ACTOR_SLOW;
+extern ActorInfo TTC_LOCKUP_ACTOR_MEDIUM;
+extern ActorInfo TTC_LOCKUP_ACTOR_FAST;
 extern ActorInfo D_8038C8B0;
 extern ActorInfo D_8038C8D4;
 extern ActorInfo D_8038C8F8;
@@ -93,12 +93,12 @@ void TTC_func_80388AC0(void)
 {
     spawnableActorList_add(&D_8038C5E0, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038C604, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038C580, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
-    spawnableActorList_add(&TTC_BLUBBER_ACTOR_INFO, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
+    spawnableActorList_add(&TTC_NIPPER_ACTOR, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
+    spawnableActorList_add(&TTC_BLUBBER_ACTOR, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
     spawnableActorList_add(&D_8038C718, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&TTC_LOCKUP_ACTOR_LOCKUP_SLOW, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&TTC_LOCKUP_ACTOR_LOCKUP_MEDIUM, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&TTC_LOCKUP_ACTOR_LOCKUP_FAST, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&TTC_LOCKUP_ACTOR_SLOW, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&TTC_LOCKUP_ACTOR_MEDIUM, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&TTC_LOCKUP_ACTOR_FAST, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&D_8038C8B0, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038C8D4, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038C8F8, actor_new, ACTOR_FLAG_UNKNOWN_10);
