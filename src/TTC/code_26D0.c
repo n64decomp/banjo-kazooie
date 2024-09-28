@@ -20,9 +20,9 @@ extern ActorInfo D_8038C718;
 extern ActorInfo TTC_LOCKUP_ACTOR_SLOW;
 extern ActorInfo TTC_LOCKUP_ACTOR_MEDIUM;
 extern ActorInfo TTC_LOCKUP_ACTOR_FAST;
-extern ActorInfo D_8038C8B0;
-extern ActorInfo D_8038C8D4;
-extern ActorInfo D_8038C8F8;
+extern ActorInfo TTC_TREASUREHUNT_ACTOR_RED_ARROW;
+extern ActorInfo TTC_TREASUREHUNT_ACTOR_RED_QUESTION_MARK;
+extern ActorInfo TTC_TREASUREHUNT_ACTOR_RED_X;
 extern ActorInfo gChTreasureInfo;
 
 void TTC_func_80388C78(Actor *this);
@@ -99,9 +99,9 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&TTC_LOCKUP_ACTOR_SLOW, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&TTC_LOCKUP_ACTOR_MEDIUM, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&TTC_LOCKUP_ACTOR_FAST, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&D_8038C8B0, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038C8D4, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038C8F8, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&TTC_TREASUREHUNT_ACTOR_RED_ARROW, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&TTC_TREASUREHUNT_ACTOR_RED_QUESTION_MARK, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&TTC_TREASUREHUNT_ACTOR_RED_X, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChTreasureInfo, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_8038C628, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
     spawnableActorList_add(&D_8038C64C, actor_new, ACTOR_FLAG_UNKNOWN_10);

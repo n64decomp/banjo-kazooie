@@ -54,7 +54,7 @@ void func_803216D0(enum map_e map){
                 mm_resetHuts();
                 break;
             case MAP_7_TTC_TREASURE_TROVE_COVE:
-                ttc_resetTresureHunt();
+                TTC_Treasurehunt_resetProgress();
                 break;
             case MAP_1B_MMM_MAD_MONSTER_MANSION:
                 mmm_resetFlowerPots();

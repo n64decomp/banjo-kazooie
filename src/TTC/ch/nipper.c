@@ -25,7 +25,7 @@ ActorInfo TTC_NIPPER_ACTOR = {
     0, 0x299, 10.0f, 0
 };
 
-enum ttc_lockup_states_e {
+enum ttc_nipper_states_e {
     TTC_NIPPER_STATE_1_UNKNOWN = 1, // L80388578
     TTC_NIPPER_STATE_2_UNKNOWN = 2, // L8038872C
     TTC_NIPPER_STATE_3_UNKNOWN = 3, // L803887B4

@@ -291,12 +291,12 @@ extern void warp_lairEnterLairFromSMLevel(s32, s32);
 
 extern void func_802C1674(s32, s32);
 extern void func_802C169C(s32, s32);
-extern void TTC_func_80389BFC(s32, s32);
-extern void func_80389C24(s32, s32);
-extern void func_80389C4C(s32, s32);
-extern void func_80389C74(s32, s32);
-extern void func_80389C9C(s32, s32);
-extern void func_80389CC4(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress0(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress1(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress2(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress3(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress4(s32, s32);
+extern void TTC_Treasurehunt_checkStepProgress5(s32, s32);
 extern void chMumbo_detransformWarn(s32, s32);
 extern void chMumbo_detransformTrigger(s32, s32);
 extern void func_8033443C(s32, s32);
@@ -413,8 +413,8 @@ Method_core2_AD110 D_8036FE5C[] ={
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
-    func_8033443C, TTC_func_80389BFC, func_80389C24, func_80389C4C,
-    func_80389C74, func_80389C9C, func_80389CC4, chMumbo_detransformWarn,
+    func_8033443C, TTC_Treasurehunt_checkStepProgress0, TTC_Treasurehunt_checkStepProgress1, TTC_Treasurehunt_checkStepProgress2,
+    TTC_Treasurehunt_checkStepProgress3, TTC_Treasurehunt_checkStepProgress4, TTC_Treasurehunt_checkStepProgress5, chMumbo_detransformWarn,
     chMumbo_detransformTrigger, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
