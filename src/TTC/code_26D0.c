@@ -23,7 +23,7 @@ extern ActorInfo gChLockupFast;
 extern ActorInfo gChTreasurehuntRedArrow;
 extern ActorInfo gChTreasurehuntRedQuestionMark;
 extern ActorInfo gChTreasurehuntRedX;
-extern ActorInfo gChTreasureInfo;
+extern ActorInfo gChTreasure;
 
 void TTC_func_80388C78(Actor *this);
 void func_80388CB8(Actor *this);
@@ -102,7 +102,7 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&gChTreasurehuntRedArrow, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChTreasurehuntRedQuestionMark, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChTreasurehuntRedX, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&gChTreasureInfo, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChTreasure, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_8038C628, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
     spawnableActorList_add(&D_8038C64C, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038C670, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17);
