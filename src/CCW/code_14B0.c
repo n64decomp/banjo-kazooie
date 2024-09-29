@@ -101,7 +101,7 @@ void CCW_func_80387A40(Actor *this) {
         local->unk18[0] += sp5C[0] * sp68;
         local->unk18[1] += sp5C[1] * sp68;
         local->unk18[2] += sp5C[2] * sp68;
-        if (local->unk8 < gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])) {
+        if (local->unk8 < LENGTH_VEC3F(local->unk18)) {
             ml_vec3f_set_length(local->unk18, local->unk8);
         }
         func_80258A4C(this->position, this->yaw - 90.0f, local->unkC, &sp58, &sp54, &sp50);
@@ -117,7 +117,7 @@ void CCW_func_80387A40(Actor *this) {
     sfxsource_set_fade_distances(local->sfxsourceIdx, 500.0f, 1500.0f);
     sfxsource_set_position(local->sfxsourceIdx, this->position);
     func_8030E2C4(local->sfxsourceIdx);
-    sfxsource_setSampleRate(local->sfxsourceIdx, 2000.0f + 8000.0f*(gu_sqrtf(local->unk18[0]*local->unk18[0] + local->unk18[1]*local->unk18[1] + local->unk18[2]*local->unk18[2])/ local->unk8));
+    sfxsource_setSampleRate(local->sfxsourceIdx, 2000.0f + 8000.0f*(LENGTH_VEC3F(local->unk18)/ local->unk8));
     if (!mapSpecificFlags_get(local->unk4->unk2)) {
         player_getPosition(sp44);
         if (sp44[2] > -600.0f) {

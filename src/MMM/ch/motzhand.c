@@ -161,7 +161,7 @@ void chmotzhand_update(Actor *this){
         sp3C[0] = sp30[0] - this->position_x;
         sp3C[1] = sp30[1] - this->position_y;
         sp3C[2] = sp30[2] - this->position_z;
-        if(gu_sqrtf(sp3C[0]*sp3C[0] + sp3C[1]*sp3C[1] + sp3C[2]*sp3C[2]) < 5.0f){
+        if(LENGTH_VEC3F(sp3C) < 5.0f){
             if(*local->pattern_ptr == 0xff){
                 chMotzhand_setState(this, 1);
             }

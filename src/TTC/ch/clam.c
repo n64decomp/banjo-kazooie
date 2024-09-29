@@ -58,9 +58,7 @@ bool chClam_updateFuncTarget(Actor *this, f32 arg1) {
         && (egg != 0)
         && func_80307258(egg->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
     ) {
-            target_position[0] = egg->position[0];
-            target_position[1] = egg->position[1];
-            target_position[2] = egg->position[2];
+            TUPLE_COPY(target_position, egg->position)
             phi_f2 = red_feather_dist;
     }
     else if(
@@ -69,9 +67,7 @@ bool chClam_updateFuncTarget(Actor *this, f32 arg1) {
         && (red_feather != 0)
         && func_80307258(red_feather->position, this->unk10_25 - 1, this->unk10_18 - 1) != -1
     ){
-            target_position[0] = red_feather->position[0];
-            target_position[1] = red_feather->position[1];
-            target_position[2] = red_feather->position[2];
+            TUPLE_COPY(target_position, red_feather->position)
             phi_f2 = egg_dist;
     }
     else if ((func_80329530(this, 1200) != 0) && (func_803292E0(this) != 0)) {

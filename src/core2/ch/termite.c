@@ -57,7 +57,7 @@ void __chTermite_updateWalkSFX(Actor *this) {
     f32 sp24[3];
     f32 sp20;
 
-    viewport_getPosition_vec3f(&sp24);
+    viewport_getPosition_vec3f(sp24);
     sp20 = ml_map_f( (300.0f - sp24[0])*(300.0f - sp24[0]) + (this->position[1] - sp24[1])*(this->position[1] - sp24[1]) + (-858.0f - sp24[2])*(-858.0f - sp24[2])
                       , 7617600.0f, 8236900.0f
                       , 8000.0f, 1000.0f

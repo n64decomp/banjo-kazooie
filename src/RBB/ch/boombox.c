@@ -165,7 +165,7 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     sp54[0] = (*position)[0] - this->position_x;
     sp54[1] = (*position)[1] - this->position_y;
     sp54[2] = (*position)[2] - this->position_z;
-    if(180.0 < gu_sqrtf(sp54[0]*sp54[0] + sp54[1]*sp54[1] + sp54[2]*sp54[2]))
+    if(180.0 < LENGTH_VEC3F(sp54))
         ml_vec3f_set_length(&sp54, 150.0f);
     
     local->unk20[0] = sp54[0] + this->position_x;

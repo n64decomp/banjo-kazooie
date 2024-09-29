@@ -1759,7 +1759,7 @@ s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
                 for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->count; var_s0++){
                     if( (var_s0->unk10_3 & arg2)
                         && (temp_s4 >= var_s0->position[1]) && (temp_s6 < var_s0->position[1]) 
-                        && (func_80259328(arg0, (void *) var_s0, var_s0->radius))
+                        && (ml_vec3w_within_horizontal_distance(arg0, (void *) var_s0, var_s0->radius))
                     ) {
                             return var_s1 - D_8036A9C8;
                         }
@@ -1769,7 +1769,7 @@ s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
                 for(var_s0 = var_s1->unk8; var_s0 < var_s1->unk8 + var_s1->count; var_s0++){
                     if( (var_s0->unk10_3 & arg2) 
                         && ((var_s0->unk10_3 & 2) || ((temp_s4 >= var_s0->position[1]) && (temp_s6 < var_s0->position[1])))
-                        && (func_80259328(arg0, (void *) var_s0, var_s0->radius))
+                        && (ml_vec3w_within_horizontal_distance(arg0, (void *) var_s0, var_s0->radius))
                     ) {
                         return var_s1 - D_8036A9C8;
                     }
@@ -1865,7 +1865,7 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (arg4 & 1) {
         if (var_s0->unk10_3 & arg4) {
             if (!(max < var_s0->position[1]) && (min < var_s0->position[1])) {
-                if (func_80259328(sp4C, var_s0->position, var_s0->radius)) {
+                if (ml_vec3w_within_horizontal_distance(sp4C, var_s0->position, var_s0->radius)) {
                     return arg2;
                 }
             }
@@ -1874,7 +1874,7 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     else{
         if( (var_s0->unk10_3 & arg4))
             if( ((var_s0->unk10_3 & 2) || (!(max < var_s0->position[1]) && (min < var_s0->position[1]))))
-                if( func_80259328(&sp4C, var_s0->position, var_s0->radius))
+                if (ml_vec3w_within_horizontal_distance(&sp4C, var_s0->position, var_s0->radius))
                     return arg2;
     }
 
@@ -1882,7 +1882,7 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->count; var_s0++){
             if (var_s0->unk10_3 & arg4)
                 if (!(max < var_s0->position[1]) && (min < var_s0->position[1]))
-                    if(func_80259328(&sp4C, var_s0, var_s0->radius))
+                    if (ml_vec3w_within_horizontal_distance(&sp4C, var_s0, var_s0->radius))
                         return (var_s0 - temp_s1->unk8);
         }
     }
@@ -1890,7 +1890,7 @@ s32 func_80307504(f32 arg0[3], s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         for(var_s0 = temp_s1->unk8; var_s0 < temp_s1->unk8 + temp_s1->count; var_s0++){
             if ((var_s0->unk10_3 & arg4))
                 if(((var_s0->unk10_3 & 2) || (!(max < var_s0->position[1]) && (min < var_s0->position[1]))))
-                    if(func_80259328(&sp4C, var_s0, var_s0->radius))
+                    if (ml_vec3w_within_horizontal_distance(&sp4C, var_s0, var_s0->radius))
                         return var_s0 - temp_s1->unk8;
         }
     }

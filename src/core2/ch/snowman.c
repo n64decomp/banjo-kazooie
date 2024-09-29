@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int func_802592C4(f32[3], f32[3], f32);
+extern int ml_vec3f_within_horizontal_distance(f32[3], f32[3], f32);
 extern void func_802EFA20(ParticleEmitter *, f32, f32);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80328FB0(Actor *, f32);
@@ -198,7 +198,7 @@ int __chSnowman_CCW_playerInProtectedZone(void){
     f32 player_position[3];
     if(map_get() == MAP_46_CCW_WINTER){
         player_getPosition(player_position);
-        if(func_802592C4(player_position, ccw_no_attack_zone, 900.0f))
+        if(ml_vec3f_within_horizontal_distance(player_position, ccw_no_attack_zone, 900.0f))
             return 1;
     }
     return 0;

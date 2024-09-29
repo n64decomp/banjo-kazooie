@@ -43,8 +43,6 @@ void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
 
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
-#define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
-#define _SQ3v2(v1, v2) (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2])
 
 /* .code */
 f32 func_80255D70(f32 x)
@@ -101,9 +99,7 @@ void func_80255E58(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 vec4[3])
 {
     f32 tmp[3];
 
-    tmp[0] = vec3[0] - vec1[0];
-    tmp[1] = vec3[1] - vec1[1];
-    tmp[2] = vec3[2] - vec1[2];
+    TUPLE_DIFF_COPY(tmp, vec3, vec1)
 
     ml_vec3f_yaw_rotate_copy(tmp, tmp, -vec2[1]);
     ml_vec3f_pitch_rotate_copy( tmp, tmp, -vec2[0]);
@@ -118,17 +114,13 @@ f32 func_80255F14(f32 vec1[3], f32 vec2[3])
     ml_vec3f_normalize_copy(tmp1, vec1);
     ml_vec3f_normalize_copy(tmp2, vec2);
 
-    return tmp1[0] * tmp2[0]
-         + tmp1[1] * tmp2[1]
-         + tmp1[2] * tmp2[2];
+    return TUPLE_DOT_PRODUCT(tmp1, tmp2);
 }
 
 //ml_vec3f_cross_product
-void ml_crossProduct_vec3f(f32 dst[3], f32 src1[3], f32 src2[3])
+void ml_crossProduct_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3])
 {
-    dst[0] = src1[1] * src2[2] - src1[2] * src2[1];
-    dst[1] = src1[2] * src2[0] - src1[0] * src2[2];
-    dst[2] = src1[0] * src2[1] - src1[1] * src2[0];
+    TUPLE_CROSS_PRODUCT(dst, vec1, vec2)
 }
 
 void ml_interpolate_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
@@ -140,20 +132,14 @@ void ml_interpolate_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
 
 f32 ml_dotProduct_vec3f(f32 vec1[3], f32 vec2[3])
 {
-    return vec1[0] * vec2[0]
-         + vec1[1] * vec2[1]
-         + vec1[2] * vec2[2];
+    return TUPLE_DOT_PRODUCT(vec1, vec2);
 }
 
 f32 ml_distance_vec3f(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
-
-    diff[0] = vec1[0] - vec2[0];
-    diff[1] = vec1[1] - vec2[1];
-    diff[2] = vec1[2] - vec2[2];
-
-    return gu_sqrtf(_SQ3(diff[0], diff[1], diff[2]));
+    TUPLE_DIFF_COPY(diff, vec1, vec2)
+    return LENGTH_VEC3F(diff);
 }
 
 f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
@@ -167,18 +153,16 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     f32 sp20;
     f32 pad58;
 
-    sp24[0] = arg1[0] - arg0[0];
-    sp24[1] = arg1[1] - arg0[1];
-    sp24[2] = arg1[2] - arg0[2];
-    sp20 = gu_sqrtf(sp24[0]*sp24[0] + sp24[1]*sp24[1] + sp24[2]*sp24[2]);
+    TUPLE_DIFF_COPY(sp24, arg1, arg0)
+    sp20 = LENGTH_VEC3F(sp24);
+
     if (sp20 < 0.01) {
         return ml_distance_vec3f(arg0, arg2);
     }
 
-    sp3C[0] = arg2[0] - arg0[0];
-    sp3C[1] = arg2[1] - arg0[1];
-    sp3C[2] = arg2[2] - arg0[2];
-    sp38 = gu_sqrtf(sp3C[0]*sp3C[0] + sp3C[1]*sp3C[1] + sp3C[2]*sp3C[2]);
+    TUPLE_DIFF_COPY(sp3C, arg2, arg0)
+    sp38 = LENGTH_VEC3F(sp3C);
+
     if (sp38 < 0.01) {
         return sp38;
     }
@@ -195,11 +179,8 @@ f32 ml_distanceSquared_vec3f(f32 vec1[3], f32 vec2[3])
 {
     f32 diff[3];
 
-    diff[0] = vec1[0] - vec2[0];
-    diff[1] = vec1[1] - vec2[1];
-    diff[2] = vec1[2] - vec2[2];
-
-    return _SQ3(diff[0], diff[1], diff[2]);
+    TUPLE_DIFF_COPY(diff, vec1, vec2)
+    return LENGTH_SQ_VEC3F(diff);
 }
 
 void func_802562DC(f32 vec1[3], f32 vec2[3], f32 vec3[3])
@@ -208,23 +189,18 @@ void func_802562DC(f32 vec1[3], f32 vec2[3], f32 vec3[3])
         ? vec1[1] * 100
         : vec1[1] / -vec2[1];
 
-    vec2[0] *= tmp;
-    vec2[1] *= tmp;
-    vec2[2] *= tmp;
-
-    vec3[0] = vec1[0] + vec2[0];
-    vec3[1] = vec1[1] + vec2[1];
-    vec3[2] = vec1[2] + vec2[2];
+    TUPLE_SCALE(vec2, tmp)
+    TUPLE_ADD_COPY(vec3, vec1, vec2)
 }
 
-f32 ml_vec2f_length(f32 vec[3])
+f32 ml_vec3f_length_unused(f32 vec[3])
 {
-    return gu_sqrtf(_SQ3(vec[0], vec[1], vec[2]));
+    return LENGTH_VEC3F(vec);
 }
 
 void ml_vec3f_normalize_copy(f32 arg0[3], f32 arg1[3])
 {
-    f32 length_squared = _SQ3(arg1[0], arg1[1], arg1[2]);
+    f32 length_squared = LENGTH_SQ_VEC3F(arg1);
     f32 inverse;
 
     if (length_squared != 0)
@@ -240,15 +216,12 @@ void ml_vec3f_normalize_copy(f32 arg0[3], f32 arg1[3])
 
 void ml_vec3f_normalize(f32 vec[3])
 {
-    f32 length_squared = _SQ3(vec[0], vec[1], vec[2]);
+    f32 length_squared = LENGTH_SQ_VEC3F(vec);
 
     if (length_squared != 0)
     {
         f32 inverse = 1.0 / gu_sqrtf(length_squared);
-
-        vec[0] *= inverse;
-        vec[1] *= inverse;
-        vec[2] *= inverse;
+        TUPLE_SCALE(vec, inverse)
     }
 }
 
@@ -277,7 +250,7 @@ void ml_3f_normalize(f32 *x, f32 *y, f32 *z)
 
 void ml_vec3f_set_length_copy(f32 dst[3], f32 src[3], f32 len)
 {
-    f32 mag = gu_sqrtf(_SQ3(src[0], src[1], src[2]));
+    f32 mag = LENGTH_VEC3F(src);
 
     if (mag != 0)
         ml_vec3f_scale_copy(dst, src, len / mag);
@@ -374,15 +347,12 @@ void ml_vec3f_roll_rotate_copy(f32 dst[3], f32 src[3], f32 roll)
 
 void ml_vec3f_set_length(f32 arg0[3], f32 arg1)
 {
-    f32 length = gu_sqrtf(_SQ3(arg0[0], arg0[1], arg0[2]));
+    f32 length = LENGTH_VEC3F(arg0);
 
     if (length != 0)
     {
         f32 inv_length = arg1 / length;
-
-        arg0[0] = arg0[0] * inv_length;
-        arg0[1] = arg0[1] * inv_length;
-        arg0[2] = arg0[2] * inv_length;
+        TUPLE_SCALE_COPY(arg0, arg0, inv_length)
     }
 }
 
@@ -400,16 +370,12 @@ f32 func_80256AB4(f32 x1, f32 y1, f32 x2, f32 y2)
 //ml_vec3f_sin_of_angle_between_vectors
 f32 func_80256B54(f32 vec1[3], f32 vec2[3])
 {
-    f32 a = gu_sqrtf(_SQ3v1(vec1));
-    f32 b = gu_sqrtf(_SQ3v1(vec2));
-
+    f32 a = LENGTH_VEC3F(vec1);
+    f32 b = LENGTH_VEC3F(vec2);
     f32 tmp[3];
 
-    tmp[0] = vec1[1] * vec2[2] - vec1[2] * vec2[1];
-    tmp[1] = vec1[2] * vec2[0] - vec1[0] * vec2[2];
-    tmp[2] = vec1[0] * vec2[1] - vec1[1] * vec2[0];
-
-    return gu_sqrtf(_SQ3v1(tmp)) / (a * b);
+    TUPLE_CROSS_PRODUCT(tmp, vec1, vec2)
+    return LENGTH_VEC3F(tmp) / (a * b);
 }
 
 f32 func_80256C60(f32 vec[3], s32 val)
@@ -462,9 +428,7 @@ void func_80256F44(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 dst[3])
     ml_vec3f_pitch_rotate_copy(tmp2, tmp1, vec2[0]);
     ml_vec3f_yaw_rotate_copy(tmp1, tmp2, vec2[1]);
 
-    dst[0] = vec1[0] + tmp1[0];
-    dst[1] = vec1[1] + tmp1[1];
-    dst[2] = vec1[2] + tmp1[2];
+    TUPLE_ADD_COPY(dst, vec1, tmp1)
 }
 
 f32 ml_acosf(f32 x)
@@ -702,7 +666,7 @@ void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]){
     f32 sp2C[3];
     f32 scale;
 
-    scale = _SQ3v2(arg3, arg1) - _SQ3v2(arg3, arg2);
+    scale = TUPLE_DOT_PRODUCT(arg3, arg1) - TUPLE_DOT_PRODUCT(arg3, arg2);
     ml_vec3f_scale_copy(sp2C, arg3, scale);
     ml_vec3f_diff_copy(arg0, arg1, sp2C);
 }
@@ -816,12 +780,10 @@ void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])
 
 void ml_setLength_vec3f(f32 v[3], f32 a)
 {
-    if (_SQ3(v[0], v[1], v[2]) > a * a)
+    if (LENGTH_SQ_VEC3F(v) > a * a)
     {
         ml_vec3f_normalize_copy(v, v);
-        v[0] *= a;
-        v[1] *= a;
-        v[2] *= a;
+        TUPLE_SCALE(v, a)
     }
 }
 
@@ -855,10 +817,7 @@ int func_80257F18(f32 src[3], f32 target[3], f32 *yaw)
     
     *yaw = 0;
 
-    diff[0] = target[0] - src[0];
-    diff[1] = target[1] - src[1];
-    diff[2] = target[2] - src[2];
-
+    TUPLE_DIFF_COPY(diff, target, src)
     h = gu_sqrtf(_SQ2(diff[2], diff[0]));
 
     if (h < 0.01) // (f64) 0.01
@@ -883,10 +842,7 @@ int func_8025801C(f32 target[3], f32 *yaw)
 
     *yaw = 0;
 
-    diff[0] = target[0];
-    diff[1] = target[1];
-    diff[2] = target[2];
-
+    TUPLE_COPY(diff, target)
     h = gu_sqrtf(_SQ2(diff[2], diff[0]));
 
     if (h < 0.01) // (f64) 0.01
@@ -1014,7 +970,7 @@ f32 func_802586B0(f32 vec1[3], f32 vec2[3])
     return 0;
 }
 
-f32 func_80258708(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_length(f32 vec1[3], f32 vec2[3])
 {
     f32 val = vec1[0] - vec2[0];
     f32 dY  = vec1[1] - vec2[1];
@@ -1028,7 +984,7 @@ f32 func_80258708(f32 vec1[3], f32 vec2[3])
     return 0;
 }
 
-f32 func_80258780(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_length_sq(f32 vec1[3], f32 vec2[3])
 {
     f32 dX = vec1[0] - vec2[0];
     f32 dY = vec1[1] - vec2[1];
@@ -1118,10 +1074,7 @@ void func_80258A4C(f32 vec1[3], f32 arg1, f32 vec2[3], f32 *arg3, f32 *arg4, f32
     f32 t1[3];
     f32 t2[3];
 
-    t1[0] = vec2[0] - vec1[0];
-    t1[1] = vec2[1] - vec1[1];
-    t1[2] = vec2[2] - vec1[2];
-
+    TUPLE_DIFF_COPY(t1, vec2, vec1)
     t1[1] = 0;
 
     *arg3 = gu_sqrtf(_SQ3(t1[0], t1[1], t1[2]));
@@ -1132,7 +1085,7 @@ void func_80258A4C(f32 vec1[3], f32 arg1, f32 vec2[3], f32 *arg3, f32 *arg4, f32
 
     ml_vec3f_yaw_rotate_copy(t2, t2, arg1);
 
-    *arg4 = t1[0] * t2[0] + t1[1] * t2[1] + t1[2] * t2[2];
+    *arg4 = TUPLE_DOT_PRODUCT(t1, t2);
     *arg5 = func_80256AB4(t2[0], t2[2], t1[0], t1[2]);
 
     if (*arg4 < 0)
@@ -1148,51 +1101,37 @@ void ml_vec3f_clear(f32 dst[3])
 
 void ml_vec3f_copy(f32 dst[3], f32 src[3])
 {
-    dst[0] = src[0];
-    dst[1] = src[1];
-    dst[2] = src[2];
+    TUPLE_COPY(dst, src)
 }
 
 void ml_vec3f_diff_copy(f32 dst[3], f32 src1[3], f32 src2[3])
 {
-    dst[0] = src1[0] - src2[0];
-    dst[1] = src1[1] - src2[1];
-    dst[2] = src1[2] - src2[2];
+    TUPLE_DIFF_COPY(dst, src1, src2)
 }
 
 void ml_vec3f_diff(f32 dst[3], f32 src[3])
 {
-    dst[0] -= src[0];
-    dst[1] -= src[1];
-    dst[2] -= src[2];
+    TUPLE_DIFF(dst, src)
 }
 
 void ml_vec3f_assign(f32 dst[3], f32 x, f32 y, f32 z)
 {
-    dst[0] = x;
-    dst[1] = y;
-    dst[2] = z;
+    TUPLE_ASSIGN(dst, x, y, z)
 }
 
 void ml_vec3f_add(f32 dst[3], f32 src1[3], f32 src2[3])
 {
-    dst[0] = src1[0] + src2[0];
-    dst[1] = src1[1] + src2[1];
-    dst[2] = src1[2] + src2[2];
+    TUPLE_ADD_COPY(dst, src1, src2)
 }
 
 void ml_vec3f_scale(f32 vec[3], f32 scale)
 {
-    vec[0] *= scale;
-    vec[1] *= scale;
-    vec[2] *= scale;
+    TUPLE_SCALE(vec, scale)
 }
 
 void ml_vec3f_scale_copy(f32 dst[3], f32 src[3], f32 scale)
 {
-    dst[0] = src[0] * scale;
-    dst[1] = src[1] * scale;
-    dst[2] = src[2] * scale;
+    TUPLE_SCALE_COPY(dst, src, scale)
 }
 
 void func_80258CDC(f32 vec1[3], f32 vec2[3])
@@ -1204,78 +1143,55 @@ void func_80258CDC(f32 vec1[3], f32 vec2[3])
 
 void ml_vec3w_to_vec3f(f32 dst[3], s32 src[3])
 {
-    dst[0] = src[0];
-    dst[1] = src[1];
-    dst[2] = src[2];
+    TUPLE_COPY(dst, src)
 }
 
 void ml_vec3h_to_vec3f(f32 dst[3], s16 src[3])
 {
-    dst[0] = src[0];
-    dst[1] = src[1];
-    dst[2] = src[2];
+    TUPLE_COPY(dst, src)
 }
 
 void ml_vec3f_to_vec3w(s32 dst[3], f32 src[3])
 {
-    dst[0] = src[0];
-    dst[1] = src[1];
-    dst[2] = src[2];
+    TUPLE_COPY(dst, src)
 }
 
 void ml_vec3f_to_vec3h(s16 dst[3], f32 src[3])
 {
-    dst[0] = src[0];
-    dst[1] = src[1];
-    dst[2] = src[2];
+    TUPLE_COPY(dst, src)
 }
 
 void ml_translate_y_local(f32 position[3], f32 rotation[3], f32 dy)
 {
     f32 vec[3];
 
-    vec[0] = 0;
-    vec[1] = dy;
-    vec[2] = 0;
-
+    TUPLE_ASSIGN(vec, 0, dy, 0)
     ml_vec3f_pitch_rotate_copy(vec, vec, rotation[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, rotation[1]);
 
-    position[0] += vec[0];
-    position[1] += vec[1];
-    position[2] += vec[2];
+    TUPLE_ADD(position, vec)
 }
 
 void ml_translate_z_local(f32 dst[3], f32 src[3], f32 dz)
 {
     f32 vec[3];
 
-    vec[0] = 0;
-    vec[1] = 0;
-    vec[2] = dz;
-
+    TUPLE_ASSIGN(vec, 0, 0, dz)
     ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
 
-    dst[0] += vec[0];
-    dst[1] += vec[1];
-    dst[2] += vec[2];
+    TUPLE_ADD(dst, vec)
 }
 
 void ml_translate_x_local(f32 dst[3], f32 src[3], f32 dx)
 {
     f32 vec[3];
 
-    vec[0] = dx;
-    vec[1] = 0;
-    vec[2] = 0;
-
+    TUPLE_ASSIGN(vec, dx, 0, 0)
     ml_vec3f_pitch_rotate_copy(vec, vec, src[0]);
     ml_vec3f_yaw_rotate_copy(vec, vec, src[1]);
 
-    dst[0] += vec[0];
-    dst[1] += vec[1];
-    dst[2] += vec[2];
+    TUPLE_ADD(dst, vec)
 }
 
 void func_8025901C(f32 arg0, f32 arg1[3], f32 arg2[3], f32 arg3){
@@ -1333,46 +1249,43 @@ f32 mlDiffDegF(f32 arg0, f32 arg1)
     return diff;
 }
 
-bool func_80259254(f32 vec[3], f32 x, f32 z, f32 val)
+bool ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 distance)
+{
+    f32 diff[3];
+
+    diff[0] = x - vec[0];
+    diff[1] = 0;
+    diff[2] = z - vec[2];
+
+    return _SQ3(diff[0], 0, diff[2]) <= distance * distance;
+}
+
+bool ml_vec3f_within_horizontal_distance(f32 vec1[3], f32 vec2[3], f32 distance)
+{
+    f32 diff[3];
+
+    diff[0] = vec1[0] - vec2[0];
+    diff[2] = vec1[2] - vec2[2];
+
+    return _SQ3(diff[0], 0, diff[2]) < distance * distance;
+}
+
+bool ml_vec3w_within_horizontal_distance(s32 vec1[3], s32 vec2[3], s32 distance)
+{
+    s32 diff[3];
+
+    diff[0] = vec1[0] - vec2[0];
+    diff[2] = vec1[2] - vec2[2];
+
+    return _SQ3(diff[0], 0, diff[2]) < distance * distance;
+}
+
+bool ml_vec3f_within_distance(f32 vec1[3], f32 vec2[3], f32 distance)
 {
     f32 t[3];
 
-    t[0] = x - vec[0];
-    t[1] = 0;
-    t[2] = z - vec[2];
-
-    return _SQ3(t[0], 0, t[2]) <= val * val;
-}
-
-bool func_802592C4(f32 v1[3], f32 v2[3], f32 a)
-{
-    f32 t[3];
-
-    t[0] = v1[0] - v2[0];
-    t[2] = v1[2] - v2[2];
-
-    return _SQ3(t[0], 0, t[2]) < a * a;
-}
-
-bool func_80259328(s32 v1[3], s32 v2[3], s32 a)
-{
-    s32 t[3];
-
-    t[0] = v1[0] - v2[0];
-    t[2] = v1[2] - v2[2];
-
-    return _SQ3(t[0], 0, t[2]) < a * a;
-}
-
-bool func_80259384(f32 v1[3], f32 v2[3], f32 a)
-{
-    f32 t[3];
-
-    t[0] = v2[0] - v1[0];
-    t[1] = v2[1] - v1[1];
-    t[2] = v2[2] - v1[2];
-
-    return _SQ3(t[0], t[1], t[2]) <= a * a;
+    TUPLE_DIFF_COPY(t, vec2, vec1)
+    return LENGTH_SQ_VEC3F(t) <= distance * distance;
 }
 
 bool func_80259400(f32 a0)
@@ -1447,7 +1360,7 @@ f32 func_80259554(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 vec3[3])
     ml_vec3f_diff_copy(tmp1, vec2, vec1);
     ml_vec3f_diff_copy(tmp2, vec3, vec1);
 
-    mag = gu_sqrtf(_SQ3v1(tmp2));
+    mag = LENGTH_VEC3F(tmp2);
 
     if (mag == 0.0) // f64
     {
@@ -1459,7 +1372,7 @@ f32 func_80259554(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 vec3[3])
 
         ml_vec3f_set_length_copy(tmp1, tmp1, ml_cos_deg(tmp3) * mag);
 
-        if (_SQ3v2(tmp1, tmp2) > 0)
+        if (TUPLE_DOT_PRODUCT(tmp1, tmp2) > 0)
             ml_vec3f_add(dst, vec1, tmp1);
         else
             ml_vec3f_diff_copy(dst, vec1, tmp1);

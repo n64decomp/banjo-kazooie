@@ -371,7 +371,7 @@ void BGS_func_8038E034(Actor *this) {
     spA8[0] = spB4[0] - this->position[0];
     spA8[1] = spB4[1] - this->position[1];
     spA8[2] = spB4[2] - this->position[2];
-    spA4 = gu_sqrtf(spA8[0]*spA8[0] + spA8[1]*spA8[1] + spA8[2]*spA8[2]);
+    spA4 = LENGTH_VEC3F(spA8);
     if (ml_timer_update(&local->unk28, sp9C) != 0) {
         func_8030E878(0x3F0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
         local->unk28 = randf2(1.0f, 6.0f);

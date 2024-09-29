@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8028F738(f32[3], f32[3], f32, s32);
+extern void player_setClimbParams(f32[3], f32[3], f32, s32);
 extern int func_8030E3FC(u8);
 
 
@@ -62,7 +62,7 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         sp38[1] = this->position_y;
     }
     if(func_8038D920(this, sp38[1])){
-        func_8028F738(sp2C, sp38, (f32)this->unkF4_8, 2);
+        player_setClimbParams(sp2C, sp38, (f32)this->unkF4_8, 2);
     }
 
     return this;

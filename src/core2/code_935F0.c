@@ -163,7 +163,7 @@ void chMinigame_update(Actor *this){
         marker_setFreeMethod(this->marker, __chMinigame_free);
         func_8028FAB0(this->position);
         this->unk1C[0] = 0.0f; this->unk1C[1] = this->yaw; this->unk1C[2] = 0.0f;
-        func_8028FAEC(this->unk1C);
+        player_setIdealRotation(this->unk1C);
         this->has_met_before = FALSE;
         if(this->unk10_12 >= 7){
             marker_despawn(this->marker);

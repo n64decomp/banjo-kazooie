@@ -105,7 +105,7 @@ void __chScarfSled_func_80386630(Actor *this){
         sp64[0] = this->pitch;
         sp64[1] = this->yaw;
         sp64[2] = this->roll;
-        func_8028FAEC(sp64);
+        player_setIdealRotation(sp64);
     }//L80386724
 
     if(1.0 == this->unk48){
