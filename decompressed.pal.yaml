@@ -516,8 +516,8 @@ segments:
   - [0xF7FD00, c, code_6B30]
   - [0xF7FFA0, c, ba/carriedobj]
   - [0xF80230, c, code_7060]
-  - [0xF81F70, bin, core2_untouched_text]
-  # - [0xF5E700, c, code_8DA0] #DONE
+  - [0xF81F70, c, ba/flap]
+  - [0xF822B0, bin, core2_untouched_text]
   # - [0xF5EA40, c, code_90E0] #DONE 
   # - [0xF5EBF0, c, code_9290] #DONE
   # - [0xF5EDB0, c, code_9450] #DONE
@@ -1383,7 +1383,7 @@ segments:
   - [0x0106C980, .bss, ba/marker]
   - [0x0106C980, .bss, code_6B30]
   - [0x0106C980, .bss, code_7060]
-  # - [0x0106C980, .bss, code_8DA0]
+  - [0x0106C980, .bss, ba/flap]
   # - [0x0106C980, .bss, code_90E0]
   # - [0x0106C980, .bss, code_9290]
   # - [0x0106C980, .bss, code_9450]

@@ -3,8 +3,8 @@
 #include "variables.h"
 #include <core1/viewport.h>
 #include "core2/ba/physics.h"
+#include "core2/ba/flap.h"
 
-extern void func_8028FDC8(f32);
 extern void baModel_setYDisplacement(f32);
 extern f32 func_8029B2D0(void);
 extern void ncDynamicCam4_func_802BFE50(f32, f32, f32);
@@ -56,8 +56,8 @@ void func_802A3430(void){
     func_802A33D8();
     func_80293D48(60.0f, 45.0f);
     func_80294378(4);
-    func_8028FEF0();
-    func_8028FFBC(1);
+    baflap_reset();
+    baflap_activate(1);
 }
 
 void func_802A34C8(void){
@@ -71,7 +71,7 @@ void func_802A34C8(void){
         func_80291548();
         func_80293D74();
         func_80294378(1);
-        func_8028FFBC(0);
+        baflap_activate(0);
     }
 }
 
@@ -230,13 +230,13 @@ void bsbfly_update(void){
         }
         if(D_8037D346){
             D_8037D346 = 0;
-            func_8028FDC8(0.35f);
+            baflap_add(0.35f);
         }else{
-            func_8028FDC8(1.0f);
+            baflap_add(1.0f);
         }
     }//L802A3BB4
 
-    sp30 = func_8028FD30();
+    sp30 = baflap_getCount();
     switch(D_8037D344){
         case 0:
             if(sp30)
@@ -306,7 +306,7 @@ void bsbfly_update(void){
     if(func_802A3350())
         sp54 = BS_1_IDLE;
 
-    func_8028FFF0();
+    baflap_update();
     bs_setState(sp54);
 }
 

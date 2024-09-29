@@ -45,7 +45,7 @@ extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[
     iPtr = start_ptr;
     for(; iPtr < end_ptr && D_80383570.unk44 < D_80383570.unk48; iPtr++){
         if(iPtr->unk34 && ml_distance_vec3f(position, iPtr->unk0) < iPtr->unk1C + arg4){
-            func_8025235C(iPtr->unkC, iPtr->unk0);
+            mlMtx_apply_vec3f(iPtr->unkC, iPtr->unk0);
             iPtr->unk20 = iPtr->unk18/scale;
             iPtr->unk24 = iPtr->unk1C/scale;
             *D_80383570.unk44 = iPtr;

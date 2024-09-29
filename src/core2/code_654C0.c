@@ -52,7 +52,7 @@ void vtxList_getBoundsMlMtxTransformed(BKVertexList *self, f32 min[3], f32 max[3
     min[0] = (f32) start_vtx->v.ob[0];
     min[1] = (f32) start_vtx->v.ob[1];
     min[2] = (f32) start_vtx->v.ob[2];
-    func_8025235C(min, min);
+    mlMtx_apply_vec3f(min, min);
     max[0] = min[0];
     max[1] = min[1];
     max[2] = min[2];
@@ -61,7 +61,7 @@ void vtxList_getBoundsMlMtxTransformed(BKVertexList *self, f32 min[3], f32 max[3
         i_coord[0] = (f32) i_vtx->v.ob[0];
         i_coord[1] = (f32) i_vtx->v.ob[1];
         i_coord[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(i_coord, i_coord);
+        mlMtx_apply_vec3f(i_coord, i_coord);
 
         for(i = 0; i < 3; i++){
             if( i_coord[i] < min[i]){
@@ -88,7 +88,7 @@ void func_802EC680(BKVertexList *self, s32 arg1, f32 arg2[3], f32 arg3[3]) {
         i_coord[0] = (f32) i_vtx->v.ob[0];
         i_coord[1] = (f32) i_vtx->v.ob[1];
         i_coord[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(i_coord, i_coord);
+        mlMtx_apply_vec3f(i_coord, i_coord);
         if ((i_vtx == start_vtx) || (i_coord[1] < arg2[1])) {
             arg2[1] = i_coord[1];
         }
@@ -100,7 +100,7 @@ void func_802EC680(BKVertexList *self, s32 arg1, f32 arg2[3], f32 arg3[3]) {
         i_coord[0] = (f32) i_vtx->v.ob[0];
         i_coord[1] = (f32) i_vtx->v.ob[1];
         i_coord[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(i_coord, i_coord);
+        mlMtx_apply_vec3f(i_coord, i_coord);
         if (i_coord[1] < arg3[1]) {
 
             arg2[0] = i_coord[0];
@@ -116,7 +116,7 @@ void func_802EC680(BKVertexList *self, s32 arg1, f32 arg2[3], f32 arg3[3]) {
         i_coord[0] = (f32) i_vtx->v.ob[0];
         i_coord[1] = (f32) i_vtx->v.ob[1];
         i_coord[2] = (f32) i_vtx->v.ob[2];
-        func_8025235C(i_coord, i_coord);
+        mlMtx_apply_vec3f(i_coord, i_coord);
         if (i_coord[1] < arg3[1]) {
             for(i = 0; i < 3; i+=2){
                 if (i_coord[i] < arg2[i]) {
@@ -204,9 +204,18 @@ void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexLi
     osWritebackDCache(start_ptr, ((s32)(end_ptr - start_ptr)) * sizeof(Vtx));
 }
 
-void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 rotation[3], f32 arg4[4]) {
-    f32 sp74[3];
-    f32 sp68[3];
+/**
+ * @note Seems Recolor vtx based on how "in view" a vtx is
+ * 
+ * @param dst vertexList to recolor
+ * @param src vertexList to tak colors from
+ * @param position vertexlist world position
+ * @param rotation vertexlist world rotation
+ * @param arg4 Step function definition 
+ */
+void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 position[3], f32 rotation[3], f32 arg4[4]) {
+    f32 vp_position[3];
+    f32 vp_look[3];
     Vtx *dst_vtx;
     Vtx *start_vtx;
     Vtx *end_vtx;
@@ -216,23 +225,21 @@ void func_802ECBD4(BKVertexList *dst, BKVertexList *src, f32 arg2[3], f32 rotati
     f32 temp_f0;
     s32 pad40;
 
-    viewport_getPosition_vec3f(sp74);
-    viewport_getLookVector(sp68);
+    viewport_getPosition_vec3f(vp_position);
+    viewport_getLookVector(vp_look);
     mlMtxIdent();
-    func_80252CC4(arg2, rotation, 1.0f, NULL);
-    func_8025235C(sp74, sp74);
+    func_80252CC4(position, rotation, 1.0f, NULL);
+    mlMtx_apply_vec3f(vp_position, vp_position);
 
     mlMtxIdent();
     func_80252CC4(NULL, rotation, 1.0f, NULL);
-    func_8025235C(sp68, sp68);
+    mlMtx_apply_vec3f(vp_look, vp_look);
 
     start_vtx = (Vtx *)(dst + 1);
     end_vtx = start_vtx + dst->count;
     for(dst_vtx = start_vtx, src_vtx = (Vtx *)(src + 1); dst_vtx < end_vtx; dst_vtx++, src_vtx++){
-            sp4C[0] = dst_vtx->v.ob[0] - sp74[0];
-            sp4C[1] = dst_vtx->v.ob[1] - sp74[1];
-            sp4C[2] = dst_vtx->v.ob[2] - sp74[2];
-            temp_f0 = sp68[0]*sp4C[0] + sp68[1]*sp4C[1] + sp68[2]*sp4C[2];
+            TUPLE_DIFF_COPY(sp4C, dst_vtx->v.ob, vp_position);
+            temp_f0 = TUPLE_DOT_PRODUCT(vp_look, sp4C);
             temp_f0 = func_8034A9D0(arg4, temp_f0);
             for(i = 0; i < 3; i++){
                 dst_vtx->v.cn[i] = temp_f0*src_vtx->v.cn[i];
@@ -333,8 +340,8 @@ void func_802ED180(BKVertexList *self, f32 arg1[3], f32 arg2[3], f32 arg3, f32 a
 
     mlMtxIdent();
     func_80252CC4(arg1, arg2, arg3, arg4);
-    func_8025235C(sp88, D_803808C0.unk10);
-    func_8025235C(sp7C, D_803808C0.unk4);
+    mlMtx_apply_vec3f(sp88, D_803808C0.unk10);
+    mlMtx_apply_vec3f(sp7C, D_803808C0.unk4);
     temp_f20 = D_803808C0.unk1C / arg3;
     temp_f20 = temp_f20*temp_f20;
     start = (Vtx*)(self + 1);
@@ -353,7 +360,7 @@ void func_802ED180(BKVertexList *self, f32 arg1[3], f32 arg2[3], f32 arg3, f32 a
             D_803808C0.unk0 = 1;
             mlMtxIdent();
             func_80252C08(arg1, arg2, arg3, arg4);
-            func_8025235C(D_803808C0.unk20, sp70);
+            mlMtx_apply_vec3f(D_803808C0.unk20, sp70);
         }
     }
 }

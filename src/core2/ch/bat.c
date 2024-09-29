@@ -270,7 +270,7 @@ bool func_80360198(Actor *this) {
         this->position[1] += this->velocity[0];
     }
 
-    if (this->state == 4) {
+    if (this->state == CH_BAT_STATE_ROAM) {
         if (func_8035FF5C(this) == 0) {
             return FALSE;
         }

@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/flap.h"
 
 
 void func_80354030(f32*, f32);
@@ -14,7 +15,6 @@ void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 void yaw_setVelocityBounded(f32, f32);
 f32 func_8029B2D0(void);
 f32 func_8029B2DC(void);
-void func_8028FDC8(f32);
 void func_80290B40(f32);
 void func_80290A6C(void);
 
@@ -98,7 +98,7 @@ void _bsbeefly_end(void){
     func_80291548();
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
-    func_8028FFBC(0);
+    baflap_activate(0);
     func_8029099C();
 }
 
@@ -111,8 +111,8 @@ void func_802A07F8(void){
     func_802A0724();
     baphysics_set_gravity(-300.0f);
     baphysics_set_terminal_velocity(-99.9f);
-    func_8028FEF0();
-    func_8028FFBC(1);
+    baflap_reset();
+    baflap_activate(1);
     func_802909C4();
 }
 
@@ -161,7 +161,7 @@ void bsbeefly_enter(void){
     func_802914CC(4);
     func_802A07F8();
     if(mvmnt != 0x8b){
-        func_8028FDC8(1.0f);
+        baflap_add(1.0f);
         D_8037D2C0 = 0;
     }
     else {
@@ -186,12 +186,12 @@ void bsbeefly_update(void){
     _bsBeeFly_updatePitch();
     pitch_get(); //return value never used
     if(button_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
-        func_8028FDC8(1.0f);
+        baflap_add(1.0f);
     }
-    if(!func_8028FD30() && player_inWater()){
-        func_8028FDC8(1.0f);
+    if((baflap_getCount() == 0) && player_inWater()){
+        baflap_add(1.0f);
     }
-    sp44 = func_8028FD30();
+    sp44 = baflap_getCount();
     animctrl_setDuration(sp48, D_803649B0[sp44]);
     sp24 = &D_803649C4[sp44];
     sp40 = 0.9f;
@@ -255,7 +255,7 @@ void bsbeefly_update(void){
     baphysics_set_target_horizontal_velocity(sp38);
     if(player_isStable() && !player_inWater())
         sp4C = BS_85_BEE_IDLE;
-    func_8028FFF0();
+    baflap_update();
     bs_setState(sp4C);
 }
 

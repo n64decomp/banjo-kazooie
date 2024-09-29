@@ -128,7 +128,7 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
         sp44[2] = 1.0f;
         mlMtxIdent();
         func_80252C08(NULL, sp2C, 1.0f, NULL);
-        func_8025235C(sp44, sp44);
+        mlMtx_apply_vec3f(sp44, sp44);
         player_getPosition(sp50);
         sp50[1] += 50.0f;
         sp50[0] -= sp38[0];

@@ -95,7 +95,7 @@ void __chScarfSled_func_80386630(Actor *this){
         sp70[0] = 0.0f;
         sp70[1] = 18.0f;
         sp70[2] = 0.0f;
-        func_8025235C(sp70, sp70);
+        mlMtx_apply_vec3f(sp70, sp70);
         
         sp70[0] += this->position[0];
         sp70[1] += this->position[1];
