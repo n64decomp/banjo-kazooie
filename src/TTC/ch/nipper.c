@@ -2,12 +2,21 @@
 #include "functions.h"
 #include "variables.h"
 
-void TTC_Nipper_updateFunc(Actor *this);
-Actor *TTC_Nipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chNipper_updateFunc(Actor *this);
+Actor *chNipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
+enum ch_nipper_states_e {
+    CH_NIPPER_STATE_1_UNKNOWN = 1, // L80388578
+    CH_NIPPER_STATE_2_UNKNOWN = 2, // L8038872C
+    CH_NIPPER_STATE_3_UNKNOWN = 3, // L803887B4
+    CH_NIPPER_STATE_DIEING = 4,    // L80388910
+    CH_NIPPER_STATE_SPAWNED = 5,   // L80388938
+    CH_NIPPER_STATE_DEAD = 6,      // L803889A8
+    CH_NIPPER_STATE_7_UNKNOWN = 7  // already dead? L80388A20
+};
 
 /* .data */
-ActorAnimationInfo TTC_NIPPER_ANIMATIONS[8] = {
+ActorAnimationInfo gChNipperAnimations[8] = {
     {0x00, 0.0f},
     {ASSET_C0_ANIM_NIPPER_IDLE, 2.0f},
     {ASSET_BD_ANIM_NIPPER_VULNERABLE, 1.5f},
@@ -18,25 +27,15 @@ ActorAnimationInfo TTC_NIPPER_ANIMATIONS[8] = {
     {0x00, 0.0f}
 };
 
-ActorInfo TTC_NIPPER_ACTOR = { 
+ActorInfo gChNipper = { 
     MARKER_A5_NIPPER, ACTOR_117_NIPPER, ASSET_3D5_MODEL_NIPPER,
-    0x1, TTC_NIPPER_ANIMATIONS,
-    TTC_Nipper_updateFunc, func_80326224, TTC_Nipper_animFunc,
+    0x1, gChNipperAnimations,
+    chNipper_updateFunc, func_80326224, chNipper_animFunc,
     0, 0x299, 10.0f, 0
 };
 
-enum ttc_nipper_states_e {
-    TTC_NIPPER_STATE_1_UNKNOWN = 1, // L80388578
-    TTC_NIPPER_STATE_2_UNKNOWN = 2, // L8038872C
-    TTC_NIPPER_STATE_3_UNKNOWN = 3, // L803887B4
-    TTC_NIPPER_STATE_DIEING = 4,    // L80388910
-    TTC_NIPPER_STATE_SPAWNED = 5,   // L80388938
-    TTC_NIPPER_STATE_DEAD = 6,      // L803889A8
-    TTC_NIPPER_STATE_7_UNKNOWN = 7  // already dead? L80388A20
-};
-
 /* .code */
-void TTC_Nipper_drawParticlesAtPosition(f32 *position, s32 count) {
+void chNipper_drawParticlesAtPosition(f32 *position, s32 count) {
     static s32 D_8038C5A4[3] = {180, 180, 180};
     static ParticleScaleAndLifetimeRanges D_8038C5B0 = {
         {0.1f, 0.5f},
@@ -65,7 +64,7 @@ void TTC_Nipper_drawParticlesAtPosition(f32 *position, s32 count) {
     particleEmitter_emitN(pCtrl, count);
 }
 
-Actor *TTC_Nipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chNipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     
     this = marker_getActor(marker);
@@ -73,8 +72,8 @@ Actor *TTC_Nipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void TTC_Nipper_setAnimationDuration(Actor *this) {
-    subaddie_set_state_looped(this, TTC_NIPPER_STATE_3_UNKNOWN);
+void chNipper_setAnimationDuration(Actor *this) {
+    subaddie_set_state_looped(this, CH_NIPPER_STATE_3_UNKNOWN);
     this->unk1C[0] = 0.0f;
     switch((s32)this->lifetime_value){
         case 120:
@@ -91,18 +90,18 @@ void TTC_Nipper_setAnimationDuration(Actor *this) {
     }
 }
 
-void TTC_Nipper_spawnedShowTextCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+void chNipper_spawnedShowTextCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this;
     this = marker_getActor(caller);
-    TTC_Nipper_setAnimationDuration(this);
+    chNipper_setAnimationDuration(this);
     ncStaticCamera_exit();
     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, -1, 300);
 }
 
-void TTC_Nipper_playDeathAnimation(Actor *this) {
+void chNipper_playDeathAnimation(Actor *this) {
     s32 i;
 
-    subaddie_set_state_with_direction(this, TTC_NIPPER_STATE_DIEING, 0.01f, 1);
+    subaddie_set_state_with_direction(this, CH_NIPPER_STATE_DIEING, 0.01f, 1);
     actor_playAnimationOnce(this);
     for(i = 0; i < 3; i ++){
         FUNC_8030E8B4(SFX_79_TICKER_DEATH, 0.5f, 17000, this->position, 1500, 3000);
@@ -125,11 +124,11 @@ bool func_80388088(Actor *this){
     return BOOL(-35.0f < sp2C && sp2C < 35.0f);
 }
 
-bool TTC_Nipper_shouldShowActor(Actor *this){
+bool chNipper_shouldShowActor(Actor *this){
     return BOOL(func_80329530(this, 1300) && func_80388088(this));
 }
 
-void TTC_Nipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_marker) {
+void chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_marker) {
     Actor *this;
     s32 i;
 
@@ -137,7 +136,7 @@ void TTC_Nipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_marker) {
     func_8032B4DC(this, other_marker, 7);
 
     if (this->lifetime_value == 40.0f) {
-        subaddie_set_state_with_direction(this, TTC_NIPPER_STATE_DEAD, 0.01f, 1);
+        subaddie_set_state_with_direction(this, CH_NIPPER_STATE_DEAD, 0.01f, 1);
         actor_playAnimationOnce(this);
         for(i = 0; i < 3; i++){
             FUNC_8030E8B4(SFX_78_EAGLECRY, 0.7f, 20000, this->position, 1500, 3000);
@@ -150,18 +149,18 @@ void TTC_Nipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_marker) {
     }
     
     if (this->lifetime_value == 80.0f) {
-        TTC_Nipper_playDeathAnimation(this);
+        chNipper_playDeathAnimation(this);
         this->lifetime_value = 40.0f;
         return;
     }
 
-    TTC_Nipper_playDeathAnimation(this);
+    chNipper_playDeathAnimation(this);
     this->lifetime_value = 80.0f;
     gcdialog_showText(ASSET_A10_TEXT_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
-bool TTC_Nipper_determineMarkeId(ActorMarker * this_marker, ActorMarker * other_marker){
+bool chNipper_determineMarkeId(ActorMarker * this_marker, ActorMarker * other_marker){
     if(this_marker->unk40_31 == 1){
         this_marker->id = 0x16C;
     }
@@ -171,7 +170,7 @@ bool TTC_Nipper_determineMarkeId(ActorMarker * this_marker, ActorMarker * other_
     return TRUE;
 }
 
-void TTC_Nipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_marker){
+void chNipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this;
 
     if(other_marker->id == 1){
@@ -185,7 +184,7 @@ void TTC_Nipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_marker){
     }
 }
 
-void TTC_Nipper_owFunc(ActorMarker * this_marker, ActorMarker *other_marker){
+void chNipper_owFunc(ActorMarker * this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
         && this->has_met_before
@@ -195,7 +194,7 @@ void TTC_Nipper_owFunc(ActorMarker * this_marker, ActorMarker *other_marker){
     }
 }
 
-void TTC_Nipper_updateFunc(Actor *this){
+void chNipper_updateFunc(Actor *this){
     f32 particlePosition[3];
     s32 sp48;
     s32 xVelocity;
@@ -210,7 +209,7 @@ void TTC_Nipper_updateFunc(Actor *this){
         func_8032BC18(this);
     }
 
-    if(this->state != TTC_NIPPER_STATE_7_UNKNOWN){
+    if(this->state != CH_NIPPER_STATE_7_UNKNOWN){
         if(0.0f == this->velocity_x && xVelocity){
             comusic_8025AB44(COMUSIC_12_TTC_NIPPER, -1, 5000);
             func_8032BB88(this, 0, 4000);
@@ -226,32 +225,32 @@ void TTC_Nipper_updateFunc(Actor *this){
     }
 
     switch(this->state){
-        case TTC_NIPPER_STATE_1_UNKNOWN:
+        case CH_NIPPER_STATE_1_UNKNOWN:
             if(!this->initialized){
                 animctrl_setTransitionDuration(this->animctrl, 0.35f);
-                subaddie_set_state_with_direction(this, TTC_NIPPER_STATE_1_UNKNOWN, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CH_NIPPER_STATE_1_UNKNOWN, 0.01f, 1);
                 this->lifetime_value = 120.0f;
                 this->marker->propPtr->unk8_3 = TRUE;
-                marker_setCollisionScripts(this->marker, TTC_Nipper_owFunc, TTC_Nipper_ow2Func, TTC_Nipper_dieFunc);
-                func_803300C0(this->marker, TTC_Nipper_determineMarkeId);
+                marker_setCollisionScripts(this->marker, chNipper_owFunc, chNipper_ow2Func, chNipper_dieFunc);
+                func_803300C0(this->marker, chNipper_determineMarkeId);
                 this->initialized = TRUE;
             }
 
-            if(TTC_Nipper_shouldShowActor(this)){
+            if(chNipper_shouldShowActor(this)){
                 temp_v0 = func_8028ECAC();
                 if( !this->has_met_before
                     && temp_v0 != 1
                     && temp_v0 != 10
                 ){
-                    subaddie_set_state_with_direction(this, TTC_NIPPER_STATE_SPAWNED, 0.01f, 1);
-                    if(gcdialog_showText(ASSET_A0E_NIPPER_SPAWNED, 0xf, this->position, this->marker, TTC_Nipper_spawnedShowTextCallback, NULL)){
+                    subaddie_set_state_with_direction(this, CH_NIPPER_STATE_SPAWNED, 0.01f, 1);
+                    if(gcdialog_showText(ASSET_A0E_NIPPER_SPAWNED, 0xf, this->position, this->marker, chNipper_spawnedShowTextCallback, NULL)){
                         this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);
                     ncStaticCamera_setToNode(11);
                 }
                 else{
-                    TTC_Nipper_setAnimationDuration(this);
+                    chNipper_setAnimationDuration(this);
                 }
                 break;
             }
@@ -265,27 +264,27 @@ void TTC_Nipper_updateFunc(Actor *this){
             }
             break;
 
-        case TTC_NIPPER_STATE_2_UNKNOWN:
-            if(!TTC_Nipper_shouldShowActor(this)){
-                subaddie_set_state_looped(this, TTC_NIPPER_STATE_1_UNKNOWN);
+        case CH_NIPPER_STATE_2_UNKNOWN:
+            if(!chNipper_shouldShowActor(this)){
+                subaddie_set_state_looped(this, CH_NIPPER_STATE_1_UNKNOWN);
                 break;
             }
 
             if(this->lifetime_value <= this->unk38_31){
-                TTC_Nipper_setAnimationDuration(this);
+                chNipper_setAnimationDuration(this);
                 break;
             }
             this->unk38_31++;
             break;
 
-        case TTC_NIPPER_STATE_3_UNKNOWN:
+        case CH_NIPPER_STATE_3_UNKNOWN:
             if(actor_animationIsAt(this, 0.5f) && this->marker->unk14_21){
                 func_8034A174(this->marker->unk44, 6, particlePosition);
-                TTC_Nipper_drawParticlesAtPosition(particlePosition, 2);
+                chNipper_drawParticlesAtPosition(particlePosition, 2);
             }
             else if(actor_animationIsAt(this, 0.95f) && this->marker->unk14_21){//L80388800
                 func_8034A174(this->marker->unk44, 5, particlePosition);
-                TTC_Nipper_drawParticlesAtPosition(particlePosition, 2);
+                chNipper_drawParticlesAtPosition(particlePosition, 2);
             }
 
             if(actor_animationIsAt(this, 0.99f)){
@@ -293,7 +292,7 @@ void TTC_Nipper_updateFunc(Actor *this){
             }
 
             if(2.0f <= this->unk1C[0]){
-                subaddie_set_state_looped(this, TTC_NIPPER_STATE_2_UNKNOWN);
+                subaddie_set_state_looped(this, CH_NIPPER_STATE_2_UNKNOWN);
                 this->unk38_31 = 0;
                 break;
             }
@@ -307,13 +306,13 @@ void TTC_Nipper_updateFunc(Actor *this){
             }
             break;
 
-        case TTC_NIPPER_STATE_DIEING:
+        case CH_NIPPER_STATE_DIEING:
             if(actor_animationIsAt(this, 0.99f)){
-                TTC_Nipper_setAnimationDuration(this);
+                chNipper_setAnimationDuration(this);
             }
             break;
 
-        case TTC_NIPPER_STATE_SPAWNED:
+        case CH_NIPPER_STATE_SPAWNED:
             if( actor_animationIsAt(this, 0.2f)
                 || actor_animationIsAt(this, 0.2f)
                 || actor_animationIsAt(this, 0.6f)
@@ -323,7 +322,7 @@ void TTC_Nipper_updateFunc(Actor *this){
             }
             break;
 
-        case TTC_NIPPER_STATE_DEAD:
+        case CH_NIPPER_STATE_DEAD:
             this->marker->collidable = FALSE;
             if(actor_animationIsAt(this, 0.6f)){
                 FUNC_8030E8B4(SFX_7C_CHEBOOF, 0.9f, 20000, this->position, 1500, 3000);
@@ -331,15 +330,14 @@ void TTC_Nipper_updateFunc(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.99f)){
-                subaddie_set_state_with_direction(this, TTC_NIPPER_STATE_7_UNKNOWN, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CH_NIPPER_STATE_7_UNKNOWN, 0.01f, 1);
             }
             break;
 
-        case TTC_NIPPER_STATE_7_UNKNOWN:
+        case CH_NIPPER_STATE_7_UNKNOWN:
             this->marker->collidable = FALSE;
             break;
-
-    }//L80388A30
+    }
 }
 
 bool func_80388A44(s16 arg0[3]){
@@ -351,5 +349,5 @@ bool func_80388A44(s16 arg0[3]){
     sp1C[2] = (f32) arg0[2];
 
     nipper = actorArray_findClosestActorFromActorId(sp1C, ACTOR_117_NIPPER, -1, NULL);
-    return nipper->state == TTC_NIPPER_STATE_7_UNKNOWN;
+    return nipper->state == CH_NIPPER_STATE_7_UNKNOWN;
 }
