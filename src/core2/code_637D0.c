@@ -28,7 +28,7 @@ bool func_802EA760(BKModelUnk14List *arg0, s32 arg1, f32 arg2[3], f32 rotation[3
     *arg7 = (f32) temp_v0->unk0;
     mlMtxIdent();
     func_80252C08(arg2, rotation, scale, arg5);
-    func_8025235C(arg6, arg6);
+    mlMtx_apply_vec3f(arg6, arg6);
     *arg7 /= scale;
     return TRUE;
 }
@@ -69,7 +69,7 @@ s32 func_802EA864(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         mlMtxIdent();
         func_80252EC8(spB0, sp8C);
         func_80252CC4(position, rotation, scale, arg4);
-        func_8025235C(sp78, arg5);
+        mlMtx_apply_vec3f(sp78, arg5);
         for(j = 0; j < 3; j++){
             if (((sp78[j] + arg6 / scale) <= spA4[j]) || (sp98[j] <= (sp78[j] - arg6 / scale))) 
                 break;
@@ -110,7 +110,7 @@ s32 func_802EAB34(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         mlMtxIdent();
         func_80252DDC(spA0, sp94);
         func_80252CC4(position, rotation, scale, arg4);
-        func_8025235C(sp78, arg5);
+        mlMtx_apply_vec3f(sp78, arg5);
         if (!(temp_f20 / 2 <= (sp78[2] - arg6 / scale)) && !((sp78[2] + arg6 / scale) <= -(temp_f20 / 2))) {
             if (!(((arg6 / scale + temp_f24) *  (arg6 / scale + temp_f24)) <= ((sp78[0] * sp78[0]) + (sp78[1] * sp78[1])))) {
                 return iPtr->unkD;
@@ -134,7 +134,7 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
 
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg4);
-    func_8025235C(sp5C, arg5);
+    mlMtx_apply_vec3f(sp5C, arg5);
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
     i_ptr = (BKModelUnk14_2 *)(t1_ptr + arg0->cnt2);
@@ -328,7 +328,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
 
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg4);
-    func_8025235C(sp74, arg6);
+    mlMtx_apply_vec3f(sp74, arg6);
     t0_ptr = (BKModelUnk14_0 *)(arg0 + 1);
     t1_ptr = (BKModelUnk14_1 *)(t0_ptr + arg0->cnt0);
     i_ptr = (BKModelUnk14_2 *)(t1_ptr  + arg0->cnt2);
@@ -342,8 +342,8 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp5C[1] = sp68[1];
         sp5C[2] = sp68[2];
         mlMtxSet(animMtxList_get(arg5, i_ptr->unk9));
-        func_8025235C(sp68, sp68);
-        func_8025235C(sp5C, sp5C);
+        mlMtx_apply_vec3f(sp68, sp68);
+        mlMtx_apply_vec3f(sp5C, sp5C);
         sp44[0] = sp5C[0] - sp68[0];
         sp44[1] = sp5C[1] - sp68[1];
         sp44[2] = sp5C[2] - sp68[2];
@@ -449,7 +449,7 @@ s32 func_802EBD3C(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
             mlMtxIdent();
             func_80252EC8(i_position, i_rotation); //derotate about point
             func_80252CC4(arg1, rotation, scale, arg4); 
-            func_8025235C(sp68, arg5); //apply matrix to arg5
+            mlMtx_apply_vec3f(sp68, arg5); //apply matrix to arg5
             for (i = 0; i < 3; i++)
             {
                 if (1);
@@ -496,7 +496,7 @@ s32 func_802EC000(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
             mlMtxIdent();
             func_80252DDC(sp90, sp84);
             func_80252CC4(arg1, rotation, scale, arg4);
-            func_8025235C(sp68, arg5);
+            mlMtx_apply_vec3f(sp68, arg5);
             temp_f0 = (f32) (temp_f22 / 2.0);
             if (!(temp_f0 <= sp68[2]) && !(sp68[2] <= -temp_f0) && !((temp_f20 * temp_f20) <= (sp68[0] * sp68[0] + sp68[1]*sp68[1]))) {
                 return i_ptr->unkD;
@@ -523,7 +523,7 @@ s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
     end_ptr = i_ptr + arg0->unk4;
     mlMtxIdent();
     func_80252CC4(arg1, rotation, scale, arg4);
-    func_8025235C(sp54, arg5);
+    mlMtx_apply_vec3f(sp54, arg5);
     for (i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++) {
         if ((i_ptr->unk8 != 0) && ((arg6 == 0) || (arg6 == i_ptr->unk8))) {
             sp40[0] = i_ptr->unk2[0];

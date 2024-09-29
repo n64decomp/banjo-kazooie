@@ -242,7 +242,7 @@ void viewport_update(void) {
     sViewportLookVector[1] = 0.0f;
     sViewportLookVector[2] = -1.0f;
 
-    func_8025235C(sViewportLookVector, sViewportLookVector);
+    mlMtx_apply_vec3f(sViewportLookVector, sViewportLookVector);
 }
 
 void viewport_getFrustumPlanes(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3[4]) {

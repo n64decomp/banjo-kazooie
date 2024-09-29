@@ -407,29 +407,41 @@ void func_80252330(f32 x, f32 y, f32 z){
     s_mtx_stack->m[3][2] = z;
 }
 
-void func_8025235C(f32 arg0[3], f32 arg1[3]) {
+/**
+ * @brief Applies top mtxStack mtx to vec3f.
+ * 
+ * @param dst destination vec3f
+ * @param src source vec3f
+ */
+void mlMtx_apply_vec3f(f32 dst[3], f32 src[3]) {
     s32 i;
     f32 sp0[3];
 
-    sp0[0] = arg1[0];
-    sp0[1] = arg1[1];
-    sp0[2] = arg1[2];
+    sp0[0] = src[0];
+    sp0[1] = src[1];
+    sp0[2] = src[2];
     
     for(i = 0; i < 3; i++){
-        arg0[i] = sp0[0]*s_mtx_stack->m[0][i] 
+        dst[i] = sp0[0]*s_mtx_stack->m[0][i] 
                 + sp0[1]*s_mtx_stack->m[1][i] 
                 + sp0[2]*s_mtx_stack->m[2][i] 
                 + s_mtx_stack->m[3][i];
     }
 }
 
-void func_80252434(f32 arg0[3], f32 arg1[3]) {
+/**
+ * @brief Applies top mtxStack mtx to vec3f. `dst` can not equal `src`.
+ * 
+ * @param dst destination vec3f
+ * @param src source vec3f
+ */
+void mlMtx_apply_vec3f_restricted(f32 dst[3], f32 src[3]) {
     s32 i;
     
     for(i = 0; i < 3; i++){
-        arg0[i] = arg1[0]*s_mtx_stack->m[0][i] 
-                + arg1[1]*s_mtx_stack->m[1][i] 
-                + arg1[2]*s_mtx_stack->m[2][i] 
+        dst[i] = src[0]*s_mtx_stack->m[0][i] 
+                + src[1]*s_mtx_stack->m[1][i] 
+                + src[2]*s_mtx_stack->m[2][i] 
                 + s_mtx_stack->m[3][i];
     }
 }
@@ -473,7 +485,7 @@ void func_8025276C(s32 arg0[3], s32 arg1[3], s32 arg2[3], s32 arg3[3]) {
     }
 
     for(var_t0 = 0; var_t0 < 8; var_t0++){
-        func_8025235C(sp48[var_t0], sp48[var_t0]);
+        mlMtx_apply_vec3f(sp48[var_t0], sp48[var_t0]);
     }
 
     for(var_t0 = 0; var_t0< 3; var_t0++){

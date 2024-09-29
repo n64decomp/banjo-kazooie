@@ -44,7 +44,7 @@ void func_802E6BD0(BKModelUnk28List *arg0, BKVertexList *arg1, AnimMtxList *mtx_
             mtx_index = i_ptr->anim_index;
             mlMtxSet(animMtxList_get(mtx_list, mtx_index));
         }
-        mlMtx_apply_vec3s(sp50, i_ptr->coord);
+        mlMtx_apply_vec3f_r_vec3s(sp50, i_ptr->coord);
         for(i = 0; i < i_ptr->vtx_count; i++){
             i_vtx = &vtx[i_ptr->vtx_list[i]];
             i_vtx->v.ob[0] = sp50[0];

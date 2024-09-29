@@ -3,6 +3,14 @@
 #include "variables.h"
 
 /* .code */
+/*
+1.0|         ,----.
+   |        /      \
+   |       /        \
+0.0|______/          \_____ arg1
+       |   |   |   |
+      [2] [3] [0] [1]
+*/
 f32 func_8034A9D0(f32 arg0[4], f32 arg1) {
     if (arg0[1] <= arg1) {
         return 0.0f;

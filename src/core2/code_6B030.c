@@ -84,7 +84,7 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     spBC = (s32) ((f32)self->unk20 * (1.0f + temp_f2));
     temp_s5 = (s32) ((f32)self->unk20 * ((1.0f - (self->unk25 / 255.0f)) + ((self->unk25 / 255.0f) - temp_f2)));
     mlMtxSet(&D_80380A18);
-    func_8025235C(spD0, spD0);
+    mlMtx_apply_vec3f(spD0, spD0);
     spD0[0] = (-297.0f * spD0[0]) / spD0[2];
     spD0[1] = (297.0f * spD0[1]) / spD0[2];
     spC4 = (s32) (spD0[0] + (f32) (framebuffer_width / 2));

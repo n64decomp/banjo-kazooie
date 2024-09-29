@@ -451,7 +451,7 @@ void func_80351C48(void) {
             player_getPosition(sp4C);
             mlMtxIdent();
             func_80252CC4(D_80386180.unk2C->unk14, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, 0);
-            func_8025235C(D_80386180.unk14, sp4C);
+            mlMtx_apply_vec3f(D_80386180.unk14, sp4C);
             if (func_8029FC4C() != 0) {
                 D_80386180.unk0 = D_80386180.unk2C;
             } else {
@@ -470,7 +470,7 @@ void func_80351C48(void) {
     if (D_80386180.unk2C != NULL) {
         mlMtxIdent();
         func_80252C08(D_80386180.unk2C->unk14, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, NULL);
-        func_8025235C(&sp4C, &D_80386180.unk14);
+        mlMtx_apply_vec3f(&sp4C, &D_80386180.unk14);
         func_8028FAB0(&sp4C);
     }
     D_80386180.unk2C = NULL;
