@@ -243,7 +243,7 @@ void chNipper_updateFunc(Actor *this){
                     && temp_v0 != 10
                 ){
                     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_SPAWNED, 0.01f, 1);
-                    if(gcdialog_showText(ASSET_A0E_NIPPER_SPAWNED, 0xf, this->position, this->marker, chNipper_spawnedShowTextCallback, NULL)){
+                    if(gcdialog_showText(ASSET_A0E_TEXT_NIPPER_SPAWNED, 0xf, this->position, this->marker, chNipper_spawnedShowTextCallback, NULL)){
                         this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);

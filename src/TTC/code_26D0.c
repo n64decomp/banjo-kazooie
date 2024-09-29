@@ -16,7 +16,7 @@ extern ActorInfo D_8038C670;
 extern ActorInfo D_8038C694;
 extern ActorInfo D_8038C6B8;
 extern ActorInfo D_8038C6DC;
-extern ActorInfo D_8038C718;
+extern ActorInfo gChLeaky;
 extern ActorInfo gChLockupSlow;
 extern ActorInfo gChLockupMedium;
 extern ActorInfo gChLockupFast;
@@ -95,7 +95,7 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&D_8038C604, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gChNipper, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
     spawnableActorList_add(&gChBlubber, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
-    spawnableActorList_add(&D_8038C718, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&gChLeaky, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChLockupSlow, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChLockupMedium, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChLockupFast, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);

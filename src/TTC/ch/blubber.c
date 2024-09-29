@@ -70,7 +70,7 @@ void chBlubber_showTextCallback(ActorMarker *caller, enum asset_e text_id, s32 a
     Actor *this = marker_getActor(caller);
     ActorLocal_Blubber *local =  (ActorLocal_Blubber*)&this->local;
 
-    if(text_id == ASSET_A0D_BLUBBER_COMPLETE || text_id == ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED){
+    if(text_id == ASSET_A0D_TEXT_BLUBBER_COMPLETE || text_id == ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED){
         local->unk24 = 0;
     }
     else{
@@ -96,7 +96,7 @@ void chBlubber_showJiggySpawnedText(ActorMarker *marker){
     this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(CH_BLUBBER_MAP_FLAG_2_JIGGY_SPAWNED_TEXT_SHOWN)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_BLUBBER_COMPLETE;
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_TEXT_BLUBBER_COMPLETE;
         gcdialog_showText(text_id, 0xf, this->position, this->marker, chBlubber_showTextCallback, chBlubber_showTextCallback2);
         mapSpecificFlags_set(CH_BLUBBER_MAP_FLAG_2_JIGGY_SPAWNED_TEXT_SHOWN, TRUE);
     }
@@ -164,7 +164,7 @@ void chBlubber_updateFunc(Actor * this){
         && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        gcdialog_showText(ASSET_A0B_FIRST_MEET_BLUBBER, 0xe, this->position, this->marker, chBlubber_showTextCallback, NULL);
+        gcdialog_showText(ASSET_A0B_TEXT_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, chBlubber_showTextCallback, NULL);
         this->has_met_before = TRUE;
         subaddie_set_state_forward(this, CH_BLUBBER_STATE_3_UNKNOWN);
     }
@@ -173,7 +173,7 @@ void chBlubber_updateFunc(Actor * this){
         && !this->unk138_23
     ){
         if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
-            gcdialog_showText(ASSET_A0C_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(ASSET_A0C_TEXT_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
         }
         
         this->unk138_23 = TRUE;
