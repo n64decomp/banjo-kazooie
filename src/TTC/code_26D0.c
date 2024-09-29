@@ -8,14 +8,14 @@
 extern ActorInfo gChClam;
 extern ActorInfo gChBlubber;
 extern ActorInfo gChNipper;
-extern ActorInfo D_8038C5E0;
-extern ActorInfo D_8038C604;
-extern ActorInfo D_8038C628;
-extern ActorInfo D_8038C64C;
-extern ActorInfo D_8038C670;
-extern ActorInfo D_8038C694;
-extern ActorInfo D_8038C6B8;
-extern ActorInfo D_8038C6DC;
+extern ActorInfo gBlubberShipTopHatch;
+extern ActorInfo gLighthouseDoor;
+extern ActorInfo gSharkfoodIsland;
+extern ActorInfo gLighthouseA;
+extern ActorInfo gLighthouseB;
+extern ActorInfo gStairs1;
+extern ActorInfo gStairs2;
+extern ActorInfo gPalmTree;
 extern ActorInfo gChLeaky;
 extern ActorInfo gChLockupSlow;
 extern ActorInfo gChLockupMedium;
@@ -25,74 +25,74 @@ extern ActorInfo gChTreasurehuntRedQuestionMark;
 extern ActorInfo gChTreasurehuntRedX;
 extern ActorInfo gChTreasure;
 
-void TTC_func_80388C78(Actor *this);
-void func_80388CB8(Actor *this);
-void func_80388D34(Actor *this);
+void code26D0_genericUpdateFunc(Actor *this);
+void code26D0_palmTreeUpdateFunc(Actor *this);
+void code26D0_lighthouseAUpdateFunc(Actor *this);
 void func_802D3D54(Actor *this);
-void func_80388D8C(Actor *this);
+void code26D0_sharkfoodIslandUpdateFunc(Actor *this);
 
 /* .data */
-ActorInfo D_8038C5E0 = {
-     0xA1, 0x10E, 0x3D2,
+ActorInfo gBlubberShipTopHatch = {
+     MARKER_A1_BLUBBER_SHIP_TOP_HATCH, ACTOR_10E_BLUBBER_SHIP_TOP_HATCH, ASSET_3D2_MODEL_BLUBBER_SHIP_TOP_HATCH,
      0x1, NULL, 
      func_802D3D54, func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C604 = {
+ActorInfo gLighthouseDoor = {
      MARKER_EA_LIGHTHOUSE_DOOR, ACTOR_13E_LIGHTHOUSE_DOOR, ASSET_3D6_MODEL_LIGHTHOUSE_DOOR,
      0x1, NULL, 
      func_802D3D54, func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C628 = {
+ActorInfo gSharkfoodIsland = {
     MARKER_167_SHARKFOOD_ISLAND, ACTOR_25C_SHARKFOOD_ISLAND, ASSET_50A_MODEL_SHARKFOOD_ISLAND,
     0x1, NULL, 
-    func_80388D8C, func_80326224, actor_drawFullDepth,
+    code26D0_sharkfoodIslandUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C64C = {
-    0x267, 0x2E2, 0x3BD,
+ActorInfo gLighthouseA = {
+    MARKER_267_LIGHTHOUSE_A, ACTOR_2E2_LIGHTHOUSE_A, ASSET_3BD_MODEL_LIGHTHOUSE_A,
     0x1, NULL, 
-    func_80388D34, func_80326224, actor_drawFullDepth,
+    code26D0_lighthouseAUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C670 = {
-    0x26A, 0x2DF, 0x3BE,
+ActorInfo gLighthouseB = {
+    MARKER_26A_LIGHTHOUSE_B, ACTOR_2DF_LIGHTHOUSE_B, ASSET_3BE_MODEL_LIGHTHOUSE_B,
     0x1, NULL, 
-    TTC_func_80388C78, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C694 = {
-    0x268, 0x2E0, 0x3B6,
+ActorInfo gStairs1 = {
+    MARKER_268_STAIRS_1, ACTOR_2E0_TTC_STAIRS_1, ASSET_3B6_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    TTC_func_80388C78, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C6B8 = {
-    0x269, 0x2E1, 0x3B7,
+ActorInfo gStairs2 = {
+    MARKER_269_STAIRS_2, ACTOR_2E1_TTC_STAIRS_2, ASSET_3B7_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    TTC_func_80388C78, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038C6DC = {
+ActorInfo gPalmTree = {
     MARKER_1D5_PALM_TREE, ACTOR_31E_PALM_TREE, ASSET_3A9_MODEL_PALM_TREE,
     0x1, NULL, 
-    func_80388CB8, func_80326224, actor_drawFullDepth,
+    code26D0_palmTreeUpdateFunc, func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void TTC_func_80388AC0(void)
+void TTC_resetSpawnableActors(void)
 {
-    spawnableActorList_add(&D_8038C5E0, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038C604, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gBlubberShipTopHatch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gLighthouseDoor, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gChNipper, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
     spawnableActorList_add(&gChBlubber, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_26);
     spawnableActorList_add(&gChLeaky, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
@@ -103,23 +103,23 @@ void TTC_func_80388AC0(void)
     spawnableActorList_add(&gChTreasurehuntRedQuestionMark, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChTreasurehuntRedX, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChTreasure, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038C628, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_8038C64C, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038C670, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17);
-    spawnableActorList_add(&D_8038C694, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038C6B8, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038C6DC, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gSharkfoodIsland, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&gLighthouseA, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gLighthouseB, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17);
+    spawnableActorList_add(&gStairs1, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gStairs2, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gPalmTree, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gChClam, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
 }
 
-void TTC_func_80388C78(Actor *this){
+void code26D0_genericUpdateFunc(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
     }
 }
 
-void func_80388CB8(Actor *this){
+void code26D0_palmTreeUpdateFunc(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
@@ -127,22 +127,22 @@ void func_80388CB8(Actor *this){
     }
 }
 
-void func_80388D04(s32 arg0){
+void code26D0_spawnLighthouseB(s32 arg0){
     ActorMarker *marker = reinterpret_cast(ActorMarker *, arg0);
     Actor *this = marker_getActor(marker);
-    spawn_child_actor(0x2df, &this);
+    spawn_child_actor(ACTOR_2DF_LIGHTHOUSE_B, &this);
 }
 
-void func_80388D34(Actor *this){
-    TTC_func_80388C78(this);
+void code26D0_lighthouseAUpdateFunc(Actor *this){
+    code26D0_genericUpdateFunc(this);
     if(!this->volatile_initialized){
-        __spawnQueue_add_1((GenFunction_1)func_80388D04, (s32)this->marker);
+        __spawnQueue_add_1((GenFunction_1)code26D0_spawnLighthouseB, (s32)this->marker);
         this->volatile_initialized = TRUE;
     }
 }
 
-void func_80388D8C(Actor *this){
-    f32 sp1C[3];
+void code26D0_sharkfoodIslandUpdateFunc(Actor *this){
+    f32 player_position[3];
 
     if(!this->initialized){
         func_802D3CE8(this);
@@ -163,12 +163,12 @@ void func_80388D8C(Actor *this){
     }//L80388E7C
 
     if(this->position_y == 700.0f){
-        player_getPosition(sp1C);
-        if( 695.0f <= sp1C[1] && sp1C[1] < 1000.0f
-            && (sp1C[0] - 5542.0f)*(sp1C[0] - 5542.0f) + (sp1C[2] - 8687.0f)*(sp1C[2] - 8687.0f) < 96100.0f
-            && (sp1C[0] - 6837.0f)*(sp1C[0] - 6837.0f) + (sp1C[2] - 12714.0f)*(sp1C[2] - 12714.0f) < 17640000.0f
+        player_getPosition(player_position);
+        if( 695.0f <= player_position[1] && player_position[1] < 1000.0f
+            && (player_position[0] - 5542.0f)*(player_position[0] - 5542.0f) + (player_position[2] - 8687.0f)*(player_position[2] - 8687.0f) < 96100.0f
+            && (player_position[0] - 6837.0f)*(player_position[0] - 6837.0f) + (player_position[2] - 12714.0f)*(player_position[2] - 12714.0f) < 17640000.0f
         ){
-            func_8031D04C(0x8f, 1);
+            func_8031D04C(MAP_8F_TTC_SHARKFOOD_ISLAND, 1);
         }
     }
 }

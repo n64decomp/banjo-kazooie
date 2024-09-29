@@ -374,7 +374,7 @@ void spawnQueue_reset(void){
             GV_func_8038F154();
             break;
         case OVERLAY_5_BEACH:
-            TTC_func_80388AC0();
+            TTC_resetSpawnableActors();
             break;
         case OVERLAY_6_JUNGLE:
             MM_func_803888B0();

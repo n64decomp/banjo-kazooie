@@ -1681,6 +1681,8 @@ enum actor_e
     ACTOR_E_BULL_INTRO,
     ACTOR_F_CHIMPY            = 0xF,
 
+    ACTOR_10E_BLUBBER_SHIP_TOP_HATCH = 0x10e,
+
     ACTOR_11_JUJU_CTRL       = 0x11,
     ACTOR_12_BEEHIVE,
     //ACTOR_13_SINKING_BOBBER
@@ -2019,7 +2021,12 @@ enum actor_e
     ACTOR_2A9_ACORN,
 
     ACTOR_2DB_DINGPOT = 0x2DB,
+    ACTOR_2DF_LIGHTHOUSE_B = 0x2df,
 
+    ACTOR_2E0_TTC_STAIRS_1 = 0x2e0,
+    ACTOR_2E1_TTC_STAIRS_2 = 0x2e1,
+    ACTOR_2E2_LIGHTHOUSE_A = 0x2e2,
+    
     ACTOR_2E5_DOOR_OF_GRUNTY   = 0x2e5,
 
     ACTOR_30D_BOOM_BOX_FAST = 0x30D,
@@ -3015,15 +3022,15 @@ enum asset_e
     // 3b3 Mumbo's Hut
     // Unused
     // Unused
-    // 3b6 TTC Stairs 1
-    // 3b7 TTC Stairs 2
+    ASSET_3B6_MODEL_TTC_STAIRS_1 = 0x3b6,
+    ASSET_3B7_MODEL_TTC_STAIRS_1 = 0x3b7,
     // Unused
     // Unused
     // Unused
     ASSET_3BB_MODEL_JINJO_YELLOW = 0x3BB,
     ASSET_3BC_MODEL_JINJO_ORANGE,
-    // 3bd TTC Lighthouse A
-    // 3be TTC Lighthouse B
+    ASSET_3BD_MODEL_LIGHTHOUSE_A = 0x3bd,
+    ASSET_3BE_MODEL_LIGHTHOUSE_B = 0x3be,
     ASSET_3BF_MODEL_PLAYER_SHADOW = 0x3BF,
     ASSET_3C0_MODEL_JINJO_BLUE,
     ASSET_3C1_MODEL_JINJO_PINK,
@@ -3043,7 +3050,7 @@ enum asset_e
     // 3cf MMM Cellar Hatch
     // 3d0 MMM Locked Gate (Lock On Left)
     // 3d1 MMM Locked Gate (Lock On Right) 1
-    // 3d2 TTC Blubber's Ship Top Hatch
+    ASSET_3D2_MODEL_BLUBBER_SHIP_TOP_HATCH = 0x3d2,
     // 3d3 MMM Church Door
     // 3d4 Lockup
     ASSET_3D4_MODEL_LOCKUP = 0x3d4,
@@ -4536,6 +4543,8 @@ enum marker_e{
 
     MARKER_99_TEEHEE = 0x99,
 
+    MARKER_A1_BLUBBER_SHIP_TOP_HATCH = 0xa1,
+
     MARKER_A3_BLUBBER = 0xA3,
     MARKER_A4_LOCKUP_SLOW,
     MARKER_A5_NIPPER,
@@ -4772,6 +4781,11 @@ enum marker_e{
     MARKER_25F_ICECUBE_B,
 
     MARKER_261_FIGHT_FLIGHT_PAD = 0x261,
+
+    MARKER_267_LIGHTHOUSE_A = 0x267,
+    MARKER_268_STAIRS_1 = 0x268,
+    MARKER_269_STAIRS_2 = 0x269,
+    MARKER_26A_LIGHTHOUSE_B = 0x26a,
 
     MARKER_276_STONE_JINJO = 0x276,
 

@@ -4,14 +4,14 @@
 
 extern void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 extern void func_8028F760(s32, f32, f32);
-extern void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
+extern void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2);
 extern s32  fileProgressFlag_get(s32);
 extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
 extern void fileProgressFlag_set(s32 index, s32 set);
 extern void ml_vec3h_to_vec3f(f32 *, s32);
 extern NodeProp *func_80304ED0(void*, f32 *);
-extern void func_8031CD44(s32, s32, f32, f32, s32);
+extern void func_8031CD44(enum map_e, s32, f32, f32, s32);
 extern void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 extern void mapSpecificFlags_set(s32, s32);
 
@@ -170,7 +170,7 @@ void func_8031CD20(s32 arg0, s32 arg1, s32 arg2) {
     func_8031CC8C(arg0, (arg1 << 8) + arg2);
 }
 
-void func_8031CD44(s32 arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+void func_8031CD44(enum map_e arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp24[3];
@@ -195,7 +195,7 @@ void func_8031CE28(s32 arg0, s32 arg1, f32 arg2) {
     func_8031CD44(arg0, arg1, vec[1], arg2, 0x25);
 }
 
-void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
+void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2) {
     f32 playerPos[3];
     f32 sp38[3];
     NodeProp *phi_s0;
@@ -231,12 +231,12 @@ void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_8031D04C(s32 arg0, s32 arg1) {
+void func_8031D04C(enum map_e arg0, s32 arg1) {
     func_8031CB50(arg0, arg1, 0);
 }
 
-void func_8031D06C(s32 arg0, s32 arg1) {
-    func_8031CB50(0x20, 0, 0);
+void func_8031D06C(enum map_e arg0, s32 arg1) {
+    func_8031CB50(MAP_20_CS_END_NOT_100, 0, 0);
 }
 
 void func_8031D09C(s32 arg0, s32 arg1) {
@@ -402,7 +402,7 @@ void func_8031D628(s32 arg0, s32 arg1) {
     if (actor) {
         marker_despawn(actor->marker);
     }
-    func_8031CB50(7, 0xC, 0);
+    func_8031CB50(MAP_7_TTC_TREASURE_TROVE_COVE, 0xC, 0);
 }
 
 void warp_mmmEnterDiningRoomDoor(s32 arg0, s32 arg1) {
@@ -527,7 +527,7 @@ void warp_mmmEnterChurchSecretRoom(s32 arg0, s32 arg1) {
     func_8031CC8C(arg0, 0x2B01);
 }
 
-void func_8031DAA8(s32 arg0, s32 arg1) {
+void func_8031DAA8(enum map_e arg0, s32 arg1) {
     func_8028F918(0);
     func_8031CB50(arg0, arg1, 0);
 }
@@ -560,7 +560,7 @@ void warp_mmmEnterRainBarrel(s32 arg0, s32 arg1) {
 }
 
 void func_8031DBE8(void) {
-    func_8031CB50(0x2F, 1, 1);
+    func_8031CB50(MAP_2F_MMM_WATERDRAIN_BARREL, 1, 1);
 }
 
 void func_8031DC10(s32 arg0, s32 arg1) {

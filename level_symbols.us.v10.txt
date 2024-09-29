@@ -1,6 +1,6 @@
 sm_func_80386810 = 0x80386810;
 mm_func_803888B0 = 0x803888B0;
-ttc_func_80388AC0 = 0x80388AC0;
+TTC_resetSpawnableActors = 0x80388AC0;
 ttc_func_8038BF8C = 0x8038BF8C;
 cc_func_803870E0 = 0x803870E0;
 cc_func_80387DA0 = 0x80387DA0;
