@@ -100,7 +100,7 @@ void MMM_func_8038ADF0(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {
 }
 
 void func_8038AF0C(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    mapSpecificFlags_set(1, 1);
+    mapSpecificFlags_set(MMM_SPECIFIC_FLAG_1_UNKNOWN, TRUE);
 }
 
 void func_8038AF3C(Struct_MMM_47D0_0 *arg0, s32 arg1) {
@@ -177,15 +177,15 @@ void func_8038AF90(Struct_MMM_47D0_0 *arg0, Struct68s *arg1, f32 arg2) {
     }
     player_getPosition(sp48);
     func_8035179C(arg1, sp54);
-    if (!mapSpecificFlags_get(0) && (arg0->unk4 == 0) && (func_80258640(sp54, sp48) < 250.0f)){
+    if (!mapSpecificFlags_get(MMM_SPECIFIC_FLAG_0_UNKNOWN) && (arg0->unk4 == 0) && (func_80258640(sp54, sp48) < 250.0f)){
         if(gcdialog_showText(0xADA, 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(0, TRUE);
         }
     }
-    if ((arg0->unk4 == 1) && mapSpecificFlags_get(1)) {
+    if ((arg0->unk4 == 1) && mapSpecificFlags_get(MMM_SPECIFIC_FLAG_1_UNKNOWN)) {
         arg0->unk4 = 2U;
         arg0->unk8 = 0.0f;
-        mapSpecificFlags_set(1, 0);
+        mapSpecificFlags_set(MMM_SPECIFIC_FLAG_1_UNKNOWN, FALSE);
         FUNC_8030E8B4(SFX_11B_TUMBLAR_DISAPPEARING_1, 1.0f, 30000, sp54, 500, 2500);
 
     }
