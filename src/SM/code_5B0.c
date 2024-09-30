@@ -131,7 +131,7 @@ void SM_func_80386EF4(Actor *this) {
     Actor *other;
     if ((this->volatile_initialized) <= 0) {
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, 0, 0, func_80386EB4);
+        marker_setCollisionScripts(this->marker, NULL, NULL, func_80386EB4);
         this->unk38_31 = 0;
         this->unk138_31 = 1;
         this->volatile_initialized = TRUE;

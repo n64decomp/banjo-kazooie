@@ -140,7 +140,7 @@ void chGobiCCW_update(Actor *this) {
         this->has_met_before = FALSE;
         local->unk4 = skeletalAnim_new();
         local->spit_model = assetcache_get(ASSET_3F3_MODEL_GOBI_SPIT);
-        marker_setCollisionScripts(this->marker, 0, func_8038894C, 0);
+        marker_setCollisionScripts(this->marker, NULL, func_8038894C, NULL);
         if(!jiggyscore_isSpawned(JIGGY_4D_CCW_FLOWER)) {
             fileProgressFlag_set(FILEPROG_E5_CCW_FLOWER_AUTUMN, FALSE);
         }

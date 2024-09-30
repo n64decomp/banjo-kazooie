@@ -598,16 +598,12 @@ void ml_defrag(void)
 
 //ml_timer_update
 //decrement a counter and returns True if timer reaches 0
-bool ml_timer_update(f32 *timer, f32 delta)
-{
-    if (*timer > 0)
-    {
+bool ml_timer_update(f32 *timer, f32 delta) {
+    if (*timer > 0) {
         *timer -= delta;
 
-        if (*timer <= 0)
-        {
+        if (*timer <= 0) {
             *timer = 0;
-
             return TRUE;
         }
     }
