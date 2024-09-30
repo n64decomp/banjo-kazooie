@@ -100,17 +100,20 @@ Actor *func_80350E90(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     temp_s0 = &D_803861B0.unk4[marker->actrArrayIdx];
     temp_v0 = temp_s0->unkC;
+
     if (temp_v0 == NULL) {
-        return 0;
-    } else {
-        if (temp_s0->unk8 != NULL) {
-            temp_s0->unk8(&temp_s0->local, temp_s0, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, temp_v0, gfx, mtx, vtx);
-        } else {
-            modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-            modelRender_draw(gfx, mtx, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, NULL, temp_s0->unkC);
-        }
+        return NULL;
     }
-    return 0;
+
+    if (temp_s0->unk8 != NULL) {
+        temp_s0->unk8(&temp_s0->local, temp_s0, temp_s0->position, temp_s0->unk20, temp_s0->unk2C, temp_v0, gfx, mtx, vtx);
+    }
+    else {
+        modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
+        modelRender_draw(gfx, mtx, temp_s0->position, temp_s0->unk20, temp_s0->unk2C, NULL, temp_s0->unkC);
+    }
+
+    return NULL;
 }
 
 s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4) {
@@ -126,7 +129,7 @@ s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4
 
     colision_list = model_getCollisionList(temp_s0->unkC);
     vtx_list = model_getVtxList(temp_s0->unkC);
-    sp4C = func_802E805C(colision_list, vtx_list, temp_s0->unk14, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
+    sp4C = func_802E805C(colision_list, vtx_list, temp_s0->position, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
     if (sp4C != 0) {
         if (func_8029453C()) {
             D_80386180.unk20[0] = (s32) arg2[0];
@@ -150,7 +153,7 @@ s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4
     }
     collision_list = model_getCollisionList(sp40->unkC);
     vertex_list = model_getVtxList(sp40->unkC);
-    return func_802E9118(collision_list, vertex_list, sp40->unk14, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
+    return func_802E9118(collision_list, vertex_list, sp40->position, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
 }
 
 s32 func_80351198(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
@@ -165,11 +168,11 @@ s32 func_80351198(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
     }
     collision_list = model_getCollisionList(sp38->unkC);
     vtx_list = model_getVtxList(sp38->unkC);
-    return func_802E9DD8(collision_list, vtx_list, sp38->unk14, sp38->unk20, sp38->unk2C, arg1, arg2, arg3, arg4);
+    return func_802E9DD8(collision_list, vtx_list, sp38->position, sp38->unk20, sp38->unk2C, arg1, arg2, arg3, arg4);
 }
 
 
-Struct68s * func_8035126C(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, enum asset_e arg4) {
+Struct68s * func_8035126C(f32 position[3], f32 arg1[3], f32 arg2, s32 arg3, enum asset_e arg4) {
     s32 sp2C;
     s32 sp1C;
 
@@ -177,22 +180,20 @@ Struct68s * func_8035126C(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, enum ass
     if (D_803861B0.unk8 == D_803861B0.unkC) {
         sp2C = D_803861B0.unk8 - D_803861B0.unk4;
         sp1C = sp2C * 2;
-        D_803861B0.unk4 = (Struct68s *)realloc(D_803861B0.unk4, sp1C * sizeof(Struct68s));
+        D_803861B0.unk4 = (Struct68s *) realloc(D_803861B0.unk4, sp1C * sizeof(Struct68s));
         D_803861B0.unk8 = D_803861B0.unk4 + sp2C;
         D_803861B0.unkC = D_803861B0.unk4 + sp1C;
     }
+
     D_803861B0.unk8->unk0 = 0;
     D_803861B0.unk8->unk30 = 0;
     D_803861B0.unk8->unk8 = NULL;
     D_803861B0.unk8->unkC = NULL;
     D_803861B0.unk8->unk2C = arg2;
     D_803861B0.unk8->unk31 = arg3;
-    D_803861B0.unk8->unk14[0] = arg0[0];
-    D_803861B0.unk8->unk14[1] = arg0[1];
-    D_803861B0.unk8->unk14[2] = arg0[2];
-    D_803861B0.unk8->unk20[0] = arg1[0];
-    D_803861B0.unk8->unk20[1] = arg1[1];
-    D_803861B0.unk8->unk20[2] = arg1[2];
+
+    TUPLE_COPY(D_803861B0.unk8->position, position)
+    TUPLE_COPY(D_803861B0.unk8->unk20, arg1)
     func_80351AD0(D_803861B0.unk8, arg4);
     return D_803861B0.unk8++;
 
@@ -224,7 +225,7 @@ void func_803514F4(Struct68s *arg0){
 }
 
 void func_80351538(Struct68s *arg0){
-    arg0->unk4 = (ActorMarker *)func_8032FBE4(arg0->unk14, func_80350E90, 1, 0x47);
+    arg0->unk4 = (ActorMarker *)func_8032FBE4(arg0->position, func_80350E90, 1, 0x47);
     ((ActorMarker *)arg0->unk4)->collidable = FALSE;
     ((ActorMarker *)arg0->unk4)->actrArrayIdx = (arg0 - D_803861B0.unk4);
     ((ActorMarker *)arg0->unk4)->unk18 = &D_80386180.unk4;
@@ -291,9 +292,7 @@ ActorMarker *func_80351794(Struct68s *arg0){
 }
 
 void func_8035179C(Struct68s* arg0, f32 arg1[3]) {
-    arg1[0] = arg0->unk14[0];
-    arg1[1] = arg0->unk14[1];
-    arg1[2] = arg0->unk14[2];
+    TUPLE_COPY(arg1, arg0->position)
 }
 
 void * func_803517B8(s32 arg0){
@@ -305,9 +304,7 @@ Struct68s * func_803517E8(s32 arg0){
 }
 
 void func_80351814(Struct68s *arg0, f32 arg1[3]) {
-    arg1[0] = arg0->unk20[0];
-    arg1[1] = arg0->unk20[1];
-    arg1[2] = arg0->unk20[2];
+    TUPLE_COPY(arg1, arg0->unk20)
 }
 
 f32 func_80351830(Struct68s *arg0) {
@@ -315,14 +312,14 @@ f32 func_80351830(Struct68s *arg0) {
 }
 
 
-s32 func_80351838(f32 arg0[3], s32 arg1, s32 arg2) {
-    f32 sp2C[3];
+s32 func_80351838(f32 position[3], s32 key_flag, s32 arg2) {
+    f32 rotation[3];
     Struct68s *sp28;
 
-    sp2C[0] = sp2C[1] = sp2C[2] = 0.0f;
-    sp28 = func_8035126C(arg0, &sp2C, 1.0f, 4, arg1 + 0x884);
+    rotation[0] = rotation[1] = rotation[2] = 0.0f;
+    sp28 = func_8035126C(position, &rotation, 1.0f, 4, key_flag + 0x884);
     func_80351538(sp28);
-    func_8038B5D8(&sp28->local, sp28, arg1, arg2);
+    func_8038B5D8(&sp28->local, sp28, key_flag, arg2);
     return sp28 - D_803861B0.unk4;
 }
 
@@ -416,7 +413,7 @@ void func_80351B28(Struct68s *arg0, f32 arg1[3]) {
     if(arg0->unkC != NULL){
         sp34 = func_8033A12C(arg0->unkC);
         if(sp34 != NULL){
-            if(func_802EA760(sp34, 0, arg0->unk14, arg0->unk20, arg0->unk2C, 0, &sp48, &sp38)){
+            if(func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, &sp48, &sp38)){
                 func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, &sp3C, &sp38);
                 if(func_80309DBC(&sp48, &sp3C, sp38, &sp54, 3, 0)){
                     return;
@@ -424,17 +421,13 @@ void func_80351B28(Struct68s *arg0, f32 arg1[3]) {
             }
         }
     }
-    arg0->unk14[0] = arg1[0];
-    arg0->unk14[1] = arg1[1];
-    arg0->unk14[2] = arg1[2];
-    func_8032F64C(arg0->unk14, arg0->unk4);
+
+    TUPLE_COPY(arg0->position, arg1)
+    func_8032F64C(arg0->position, arg0->unk4);
 }
 
-
 void func_80351C2C(Struct68s *arg0, f32 arg1[3]){
-    arg0->unk20[0] = arg1[0];
-    arg0->unk20[1] = arg1[1];
-    arg0->unk20[2] = arg1[2];
+    TUPLE_COPY(arg0->unk20, arg1)
 }
 
 void func_80351C48(void) {
@@ -450,7 +443,7 @@ void func_80351C48(void) {
         if ((sp38[0] == D_80386180.unk20[0]) && (sp38[1] == D_80386180.unk20[1]) && (sp38[2] == D_80386180.unk20[2])) {
             player_getPosition(sp4C);
             mlMtxIdent();
-            func_80252CC4(D_80386180.unk2C->unk14, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, 0);
+            func_80252CC4(D_80386180.unk2C->position, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, 0);
             mlMtx_apply_vec3f(D_80386180.unk14, sp4C);
             if (func_8029FC4C() != 0) {
                 D_80386180.unk0 = D_80386180.unk2C;
@@ -469,7 +462,7 @@ void func_80351C48(void) {
     }
     if (D_80386180.unk2C != NULL) {
         mlMtxIdent();
-        func_80252C08(D_80386180.unk2C->unk14, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, NULL);
+        func_80252C08(D_80386180.unk2C->position, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, NULL);
         mlMtx_apply_vec3f(&sp4C, &D_80386180.unk14);
         func_8028FAB0(&sp4C);
     }
@@ -492,12 +485,10 @@ void func_80351E60(Struct6Bs *arg0, Struct68s *arg1, f32 arg2) {
     arg0->unk10[1] = sinf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 20.0f;
     arg0->unk4[0] = cosf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 7.5;
     arg0->unk4[1] = sinf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 3.0f;
-    sp24[0] =  arg0->unk1C[0] + arg0->unk10[0];
-    sp24[1] =  arg0->unk1C[1] + arg0->unk10[1];
-    sp24[2] =  arg0->unk1C[2] + arg0->unk10[2];
+
+    TUPLE_ADD_COPY(sp24, arg0->unk1C, arg0->unk10)
     func_80351B28(arg1, &sp24);
-    sp24[0] =  arg0->unk28[0] + arg0->unk4[0];
-    sp24[1] =  arg0->unk28[1] + arg0->unk4[1];
-    sp24[2] =  arg0->unk28[2] + arg0->unk4[2];
+
+    TUPLE_ADD_COPY(sp24, arg0->unk28, arg0->unk4)
     func_80351C2C(arg1, &sp24);
 }

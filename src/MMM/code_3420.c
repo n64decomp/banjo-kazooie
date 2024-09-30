@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+/* extern functions */
 extern void MMM_func_8038B6D4(f32* arg0, s32 arg1);
 
 /* internal definitions */
@@ -15,6 +16,7 @@ typedef struct {
     u8 unk1;
 } Struct_MMM_3420_1;
 
+/* public functions */
 void organMinigame_setState(s32 arg0);
 
 /* .data */
@@ -175,7 +177,7 @@ void func_803898EC() {
 }
 
 void func_80389910() {
-    gcdialog_showText(0xAD5, 0xE, NULL, NULL, MMM_func_80389810, NULL);
+    gcdialog_showText(ASSET_AD5_TEXT_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
     timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
@@ -192,13 +194,14 @@ void func_803899BC(void){
 
 void organMinigame_setState(s32 next_state){
     func_8028F8F8(1, FALSE);
-    if(next_state == 2){
-        if(D_8038C4F0.pattern == 0){
+
+    if (next_state == 2) {
+        if (D_8038C4F0.pattern == 0) {
             D_8038C4F0.pattern = 1;
-            gcdialog_showText(0xad3, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showText(ASSET_AD3_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
-        else{//L80389A84
-            gcdialog_showText(0xad6, 4, NULL, NULL, MMM_func_80389810, NULL);
+        else {//L80389A84
+            gcdialog_showText(ASSET_AD6_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
     }//L80389A9C
 
@@ -215,13 +218,13 @@ void organMinigame_setState(s32 next_state){
     }//L80389AF4
 
     if(next_state == 4){
-        gcdialog_showText(0xadd, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(ASSET_ADD_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 
     if(next_state == 5){
         D_8038C4F0.pattern++;
-        gcdialog_showText(0xad4, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(ASSET_AD4_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 
@@ -246,17 +249,22 @@ void organMinigame_getKeyPosition(s32 key_indx, f32 position[3]) {
     position[0] = -145.0f;
     position[1] = 0.0f;
     position[2] = 0.0f;
+
     for (iPtr = &D_8038C198[0]; iPtr <= &D_8038C198[key_indx]; iPtr++) {
         is_black_key = (iPtr->unk0 == 2 || iPtr->unk0 == 4);
+
         if (is_black_key != 0) {
             position[0] += 67.0f;
             position[1] += 12.5;
             position[2] += -230.0f;
-        } else {
+        }
+        else {
             position[0] += 170.0f;
         }
-        if (iPtr == &D_8038C198[key_indx]) 
+
+        if (iPtr == &D_8038C198[key_indx]) {
             break;
+        }
 
         if (is_black_key != 0) {
             position[0] -= 67.0f;
@@ -309,30 +317,39 @@ void code3420_handleOrganGame(s32 arg0, s32 arg1) {
     D_8038C4F0.unk8 = &D_8038BF20;
     func_80250170(0, 0x6A, 0);
     D_8038C4F0.state = 0;
+
     if ((map_get() == MAP_1C_MMM_CHURCH) && (arg1 == 2)) {
         D_8038C4F0.motzhand_marker = NULL;
         D_8038C4F0.pattern = 0;
+
         key_position[0] = -1345.0f;
         key_position[1] = 1150.0f;
         key_position[2] = -2300.0f;
-        for(iPtr = &D_8038C198[0]; iPtr->unk0; iPtr++){
-                is_black_key = (iPtr->unk0 == 2 || iPtr->unk0 == 4);
-                if (is_black_key) {
-                    key_position[0] += 122.0f;
-                    key_position[1] += 12.5;
-                } else {
-                    key_position[0] += 170.0f;
-                }
-                iPtr->unk1 = func_80351838(key_position, iPtr->unk0, iPtr - &D_8038C198[0]);
-                if (is_black_key) {
-                    key_position[0] -= 122.0f;
-                    key_position[1] -= 12.5;
-                }
+
+        for (iPtr = &D_8038C198[0]; iPtr->unk0; iPtr++) {
+            is_black_key = iPtr->unk0 == 2 || iPtr->unk0 == 4;
+
+            if (is_black_key) {
+                key_position[0] += 122.0f;
+                key_position[1] += 12.5;
+            }
+            else {
+                key_position[0] += 170.0f;
+            }
+
+            iPtr->unk1 = func_80351838(key_position, iPtr->unk0, iPtr - &D_8038C198[0]);
+
+            if (is_black_key) {
+                key_position[0] -= 122.0f;
+                key_position[1] -= 12.5;
+            }
         }
+
         if (jiggyscore_isSpawned(JIGGY_60_MMM_MOTZHAND)) {
             organMinigame_setState(7);
             return;
         }
+
         organMinigame_setState(1);
     }
 }
@@ -346,8 +363,9 @@ void organMinigame_update(void){
     f32 plyr_pos[3];
     Actor *motzhand_2;
 
-
-    if(D_8038C4F0.state == 0) return;
+    if (D_8038C4F0.state == 0) {
+        return;
+    }
 
     if(func_802501A0(0, 0x6A, &sp4C)){
         func_80250170(0, 0x6A, 0);
