@@ -11,8 +11,8 @@ typedef struct {
 
 typedef struct {
     s16 map_id;
-    s16 unk2;
-    s16 unk4;
+    s16 unk2; // enum file_progress_e
+    s16 unk4; // enum file_progress_e
     s16 unk6;
     Struct_CCW_3310_1 *unk8;
     s16 unkC;

@@ -8,7 +8,7 @@ extern void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
 extern s32  fileProgressFlag_get(s32);
 extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
-extern void fileProgressFlag_set(s32 index, s32 set);
+extern void fileProgressFlag_set(enum file_progress_e index, s32 set);
 extern void ml_vec3h_to_vec3f(f32 *, s32);
 extern NodeProp *func_80304ED0(void*, f32 *);
 extern void func_8031CD44(s32, s32, f32, f32, s32);
@@ -56,9 +56,9 @@ bool cutscene_skipGameOverCutsceneCheck(void) {
 
     sp24 = func_8024E698(0);
     if (mapSpecificFlags_get(0) != 0) {
-        fileProgressFlag_set(0xE1, 1);
+        fileProgressFlag_set(FILEPROG_E1_UNKNOWN, 1);
     }
-    if ((sp24 == 1) && fileProgressFlag_get(0xE1) && !gctransition_8030BDC0()) {
+    if ((sp24 == 1) && fileProgressFlag_get(FILEPROG_E1_UNKNOWN) && !gctransition_8030BDC0()) {
         if (!mapSpecificFlags_get(0xC)) {
             mapSpecificFlags_set(0xC, TRUE);
             func_802DC528(0, 0);
@@ -302,7 +302,7 @@ void warp_gvEnterWaterPyramidUpper(s32 arg0, s32 arg1) {
 }
 
 void warp_gvEnterMazePyramid(s32 arg0, s32 arg1) {
-    if (fileProgressFlag_getN(0xF8, 2) == 3) {
+    if (fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == 3) {
         func_8031CC8C(arg0, 0x1401);
     }
 }

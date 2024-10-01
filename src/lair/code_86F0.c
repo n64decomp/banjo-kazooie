@@ -18,7 +18,7 @@ typedef struct {
 typedef struct {
     u8 cost;
     u8 size_bits;
-    u16 progress_flag;
+    u16 progress_flag; // enum file_progress_e
 }Struct_lair_86F0_0;
 
 void func_8038F350(Actor *this, s32 next_state);

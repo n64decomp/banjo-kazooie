@@ -13,7 +13,7 @@ extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
 extern void func_80319EA4(void);
-extern void fileProgressFlag_set(s32, bool);
+extern void fileProgressFlag_set(enum file_progress_e, bool);
 
 void func_802D3D54(Actor *this);
 void func_802D3DA4(Actor *this);
@@ -50,7 +50,7 @@ s32 D_8036768C = 0;
 s32 D_80367690 = 0;
 s32 D_80367694 = 0; //enum map_e
 s32 D_80367698 = 0;
-s32 D_8036769C = 0; //enum file_progress_e
+enum file_progress_e D_8036769C = 0;
 s32 D_803676A0 = 0; //enum actor_e
 f32 D_803676A4 = 0.0f;
 s32 D_803676A8 = 0;
@@ -59,26 +59,26 @@ u8  D_803676AC = 0;
 ActorAnimationInfo D_803676B0[] = {
     {0x000, 0.0f},
     {0x000, 0.0f},
-    {0x0D4, 0.15f},
-    {0x0D5, 0.5f},
+    {ASSET_D4_ANIM_SWITCH_DOWN, 0.15f},
+    {ASSET_D5_ANIM_SWITCH_UP, 0.5f},
     {0x000, 0.0f},
     {0x000, 0.0f},
-    {0x0D4, 0.15f},
-    {0x0D5, 0.5f},
-    {0x0D5, 1e+8f},
-    {0x1E3, 0.73f},
-    {0x1E3, 1e+8f},
-    {0x1F0, 1.0f},
-    {0x1F1, 0.7f},
-    {0x1F1, 1e+8f},
-    {0x1F2, 1.0f},
-    {0x1F3, 0.4f},
-    {0x1F3, 1e+8f},
+    {ASSET_D4_ANIM_SWITCH_DOWN, 0.15f},
+    {ASSET_D5_ANIM_SWITCH_UP, 0.5f},
+    {ASSET_D5_ANIM_SWITCH_UP, 1e+8f},
+    {ASSET_1E3_ANIM_UNKNOWN, 0.73f},
+    {ASSET_1E3_ANIM_UNKNOWN, 1e+8f},
+    {ASSET_1F0_ANIM_UNKNOWN, 1.0f},
+    {ASSET_1F1_ANIM_UNKNOWN, 0.7f},
+    {ASSET_1F1_ANIM_UNKNOWN, 1e+8f},
+    {ASSET_1F2_ANIM_UNKNOWN, 1.0f},
+    {ASSET_1F3_ANIM_UNKNOWN, 0.4f},
+    {ASSET_1F3_ANIM_UNKNOWN, 1e+8f},
     {0x000, 0.0f},
-    {0x217, 1e+8f},
-    {0x217, 0.3f},
-    {0x217, 1e+8f},
-    {0x217, 0.3f}
+    {ASSET_217_ANIM_UNKNOWN, 1e+8f},
+    {ASSET_217_ANIM_UNKNOWN, 0.3f},
+    {ASSET_217_ANIM_UNKNOWN, 1e+8f},
+    {ASSET_217_ANIM_UNKNOWN, 0.3f}
 };
 
 ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
@@ -99,7 +99,20 @@ ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH
 ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, func_80326224, actor_draw, 0, 0, 0.0f, 0};
 
 s32 D_803679A0[4] = {0x87, 0x87, 0x87, 0xA0};
-s16 D_803679B0[] = {0x5, 0x90, 0xA, 0x93, 0xF,0x92, 0x14, 0x91, 0x19, 0x94, -1};
+s16 D_803679B0[] = {
+    FILEPROG_5_BLUE_EGG_TEXT,
+    FILEPROG_90_PAID_TERMITE_COST,
+    FILEPROG_A_HONEYCOMB_TEXT,
+    FILEPROG_93_PAID_CROC_COST,
+    FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
+    FILEPROG_92_PAID_WALRUS_COST,
+    FILEPROG_14_HAS_TOUCHED_FP_ICY_WATER,
+    FILEPROG_91_PAID_PUMPKIN_COST,
+    FILEPROG_19_MMM_WITCH_SWITCH_JIGGY_PRESSED,
+    FILEPROG_94_PAID_BEE_COST,
+    -1
+};
+
 Struct_core2_4C020_0 D_803679C8[] = {
     {0, 600, 1200, 1900}, 
     {-580, 0, 1550, 2200}, 
@@ -648,7 +661,7 @@ void func_802D4A9C(Actor *this, s32 arg1){
     func_802D4928(this, arg1, 2, 3);
 }
 
-void func_802D4AC0(Actor *this, s32 arg1, s32 arg2) {
+void func_802D4AC0(Actor *this, s32 arg1, enum file_progress_e arg2) {
     if (fileProgressFlag_get(arg2)) {
         if (arg1 & 0x800000) {
             fileProgressFlag_set(arg1 + 0xFF800000, 1);

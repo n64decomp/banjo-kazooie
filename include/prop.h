@@ -230,7 +230,7 @@ typedef struct actor_s{
     u32 unkF4_22:1;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
-    u32 unkF4_8:9;
+    u32 unkF4_8:9; // is used to determine file progress related stuff, can also be a file_progress_e
     f32 stored_animctrl_subrangeMin; //animCtrl_SubRangeStart
     f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
     ActorMarker *unk100;

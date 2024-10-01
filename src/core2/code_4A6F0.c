@@ -428,7 +428,7 @@ void chMumbo_update(Actor *this) {
 
         case 7: //L802D2704
             chMumbo_func_802D186C(this);
-            if (volatileFlag_get(FILEPROG_11_HAS_MET_MUMBO) == 0) {
+            if (volatileFlag_get(VOLATILE_FLAG_11) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -436,7 +436,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     gcdialog_showText(ASSET_DA7_DIALOG_MUMBO_CCW_SUMMER, 7, NULL, NULL, NULL, NULL);
-                    volatileFlag_set(FILEPROG_11_HAS_MET_MUMBO, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_11, TRUE);
                 }
             }
             actor_loopAnimation(this);
@@ -444,7 +444,7 @@ void chMumbo_update(Actor *this) {
 
         case 8: //L802D2790
             chMumbo_func_802D186C(this);
-            if (volatileFlag_get(FILEPROG_12_HAS_TRANSFORMED_BEFORE) == 0) {
+            if (volatileFlag_get(VOLATILE_FLAG_12) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -452,7 +452,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     gcdialog_showText(ASSET_DA8_DIALOG_MUMBO_CCW_AUTUMN, 7, NULL, NULL, NULL, NULL);
-                    volatileFlag_set(FILEPROG_12_HAS_TRANSFORMED_BEFORE, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_12, TRUE);
                 }
             }
             actor_loopAnimation(this);
