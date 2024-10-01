@@ -67,11 +67,11 @@ void func_802FDD20(void) {
 
 void fxhoneycarrierscore_free(s32 arg0, struct8s *arg1){
     if(D_8036A010){
-        func_8033BD4C(D_8036A010);
+        assetCache_free(D_8036A010);
         D_8036A010 = NULL;
     }
     if(D_8036A014){
-        func_8033BD4C(D_8036A014);
+        assetCache_free(D_8036A014);
         D_8036A014 = NULL;
     }
     D_803815E8 = 0x50;

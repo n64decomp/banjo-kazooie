@@ -124,7 +124,7 @@ void fxjinjoscore_free(enum item_e item_id, struct8s * arg1){
 
     for(i = 0; i < 5; i++){
         if(D_80381E40[i] != NULL){
-            func_8033BD4C(D_80381E40[i]);
+            assetCache_free(D_80381E40[i]);
             D_80381E40[i] = NULL;
         }
     }
