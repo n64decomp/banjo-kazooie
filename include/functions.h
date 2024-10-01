@@ -13,6 +13,7 @@
 #include "core1/core1.h"
 #include "core2/core2.h"
 
+#include "math.h" // ToDo: sort out actual dependencies
 #include "ml.h"
 #include "ml/mtx.h"
 #include "bs_funcs.h"
@@ -24,32 +25,6 @@
 
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
-
-#define TUPLE_ASSIGN(out, a, b, c) {\
-    out[0] = a;\
-    out[1] = b;\
-    out[2] = c;\
-}
-
-#define TUPLE_COPY(dst, src) {\
-    dst[0] = src[0];\
-    dst[1] = src[1];\
-    dst[2] = src[2];\
-}
-
-#define v3Copy(dst, src) {\
-    dst[0] = src[0];\
-    dst[1] = src[1];\
-    dst[2] = src[2];\
-}
-
-#define TUPLE_OP(out, a, op, b) {\
-    out##_x = a##_x op b##_x;\
-    out##_y = a##_y op b##_y;\
-    out##_z = a##_z op b##_z;\
-}
-
-#define LENGTH_SQ_VEC3F(v) (v[0]*v[0] + v[1]*v[1] + v[2]*v[2])
 
 //known it uses "+" instead of "|" for fight/code_9D40.c, func_8039049C, case 6
 #define FUNC_8030E624(sfx_e, vol, sample_rate) func_8030E624(\
@@ -284,8 +259,8 @@ void baanim_playForDuration_onceSmooth(enum asset_e, f32);
 void baanim_setEndAndDuration(f32, f32);
 int  func_8028AED4(f32*, f32);
 void func_8028E668(f32[3], f32, f32, f32);
-bool func_8028F364(f32[3], f32, f32, enum actor_e actor_id, Actor**);
-void func_8028FA54(f32[3]);
+bool player_setCarryObjectPoseInCylinder(f32[3], f32, f32, enum actor_e actor_id, Actor**);
+void player_setThrowTargetPosition(f32[3]);
 
 f32  func_802915D8(void);
 f32  func_80291604(void);

@@ -23,7 +23,7 @@ extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
 extern f32 func_80257204(f32, f32, f32, f32);
 extern void func_8028F85C(f32[3]);
-extern void func_8028FAEC(f32[3]);
+extern void player_setIdealRotation(f32[3]);
 extern f32 func_8033229C(ActorMarker *);
 
 Actor *chfinalboss_draw(ActorMarker *arg0, Gfx **arg1, Mtx **arg2, Vtx **arg3);
@@ -1883,7 +1883,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                 D_803928C8[0] = 0.0f;
                 D_803928C8[1] = func_80257204(D_803917E0[0], D_803917E0[2], this->position[0], this->position[2]);
                 D_803928C8[2] = 0.0f;
-                func_8028FAEC(D_803928C8);
+                player_setIdealRotation(D_803928C8);
             }
             if (__chFinalBossJinjonatorHits == 3) {
                 gcdialog_showText(randi2(0, 5) + 0x1159, 0x20, NULL, NULL, NULL, NULL);

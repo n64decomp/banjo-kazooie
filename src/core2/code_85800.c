@@ -219,8 +219,8 @@ s32 func_8030CDE4(SfxSource *arg0){
     f32 temp_f0;
     f32 pad;
 
-    viewport_getPosition_vec3f(&sp44);
-    viewport_getLookVector(&sp38);
+    viewport_getPosition_vec3f(sp44);
+    viewport_getLookVector(sp38);
     sp2C[0] = arg0->position[0] - sp44[0];
     sp2C[1] = arg0->position[1] - sp44[1];
     sp2C[2] = arg0->position[2] - sp44[2];
@@ -228,9 +228,9 @@ s32 func_8030CDE4(SfxSource *arg0){
     if(sp2C[0]*sp2C[0] + sp2C[1]*sp2C[1] + sp2C[2]*sp2C[2] < 10.0f){
         return 0x40;
     }
-    ml_vec3f_normalize(&sp2C);
+    ml_vec3f_normalize(sp2C);
     sp38[1] = 0.0f;
-    ml_vec3f_normalize(&sp38);
+    ml_vec3f_normalize(sp38);
     temp_f0 = func_80256AB4(sp38[0], sp38[2], sp2C[0], sp2C[2]);
     if(arg0->unk16){
         arg0->unk18 += 0.07*((f32)(s32)(64.0f - (temp_f0 * 63.0f)) - arg0->unk18);

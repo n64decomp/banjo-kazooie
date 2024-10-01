@@ -4,7 +4,6 @@
 #include <core1/viewport.h>
 
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
-#define _SQ3v1(v)      (v[0] * v[0] + v[1] * v[1] + v[2] * v[2])
 
 /*.code*/
 void func_802F87B0(struct6s *this){
@@ -28,8 +27,7 @@ void func_802F87B0(struct6s *this){
     sp4C[1] = randf2(200.0f, 500.0f);
     sp4C[2] = -f20;
 
-    if(gu_sqrtf(_SQ3v1((&this->unkC))) < 5.0f)
-    {
+    if (LENGTH_VEC3F((&this->unkC)) < 5.0f) {
         ml_vec3f_yaw_rotate_copy(sp4C, sp4C, randf2(0.0f, 360.0f));
     }
     else{

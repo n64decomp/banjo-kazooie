@@ -4,7 +4,7 @@
 
 
 void func_802D77D4(Actor *this);
-extern void func_8028F738(f32[3], f32[3], f32, u32);
+extern void player_setClimbParams(f32[3], f32[3], f32, u32);
 extern f32 func_80258640(f32[3], f32[3]);
 
 typedef struct {
@@ -78,7 +78,7 @@ void func_802D77D4(Actor *this) {
         if (((sp4C[0] * sp4C[0]) + (sp4C[2] * sp4C[2])) < (sp3C * sp3C)) {
             if ((this->position[1] < sp40[1]) && (sp40[1] <= local->unk0[1])) {
                 if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) == 0) {
-                    func_8028F738(this->position, local->unk0, (f32)this->unkF4_8, local->unkC);
+                    player_setClimbParams(this->position, local->unk0, (f32)this->unkF4_8, local->unkC);
                 }
             }
         }

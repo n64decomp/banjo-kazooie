@@ -14,7 +14,7 @@ extern void func_802A6388(f32);
 extern f32 chwadingboots_802D6E4C(Actor *);
 extern void set_turbo_duration(f32);
 extern f32 chtrainers_getDuration(Actor *);
-extern int func_80259254(f32 vec[3], f32 x, f32 z, f32 val);
+extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);

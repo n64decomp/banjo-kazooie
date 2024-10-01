@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool func_80259384(f32[3], f32[3], f32);
+extern bool ml_vec3f_within_distance(f32[3], f32[3], f32);
 
 void func_803902B8(Actor *this);
 Actor *func_80390030(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -96,7 +96,7 @@ void func_803902B8(Actor *this) {
         this->initialized = TRUE;
     }
     _player_getPosition(sp5C);
-    sp58 = func_80259384(this->position, sp5C, 1750.0f) && !this->has_met_before;
+    sp58 = ml_vec3f_within_distance(this->position, sp5C, 1750.0f) && !this->has_met_before;
     if (sp58 && !this->unk38_0) {
         func_8032BB88(this, 0, 0x1F4);
         func_8025A6EC(COMUSIC_79_CHEATO, 0);
@@ -106,7 +106,7 @@ void func_803902B8(Actor *this) {
         func_8039024C(this);
     }
     this->unk38_0 = sp58;
-    sp58 = func_80259384(this->position, sp5C, 400.0f);
+    sp58 = ml_vec3f_within_distance(this->position, sp5C, 400.0f);
     if (fileProgressFlag_get(sp54 + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
         func_8024E55C(0, sp3C);
         sp58 &= (sp3C[FACE_BUTTON(BUTTON_B)] == 1) || func_8028EC04();

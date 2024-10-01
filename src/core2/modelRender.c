@@ -710,7 +710,7 @@ void func_803384A8(Gfx **gfx, Mtx **mtx, void *arg2){
     f32 sp30[3];
 
     if(cmd->unk8){
-        func_8025235C(sp30, cmd->unkC);
+        mlMtx_apply_vec3f(sp30, cmd->unkC);
         mlMtx_push_translation(sp30[0], sp30[1], sp30[2]);
         mlMtxRotYaw(modelRenderCameraRotation[1]);
         if(!cmd->unkA){
@@ -732,8 +732,8 @@ void func_803385BC(Gfx **gfx, Mtx **mtx, void *arg2){
     f32 f14;
     s32 tmp_v0;
 
-    func_8025235C(D_80383C78, cmd->unk8);
-    func_8025235C(D_80383C88, cmd->unk14);
+    mlMtx_apply_vec3f(D_80383C78, cmd->unk8);
+    mlMtx_apply_vec3f(D_80383C88, cmd->unk14);
 
     D_80383C68[0] = D_80383C88[0] - D_80383C78[0];
     D_80383C68[1] = D_80383C88[1] - D_80383C78[1];
@@ -857,7 +857,7 @@ void func_80338B50(Gfx **gfx, Mtx **mtx, void *arg2){
     f32 dist;
     
     if(cmd->subgeo_offset_1C){
-        func_8025235C(D_80383C98, cmd->unk10);
+        mlMtx_apply_vec3f(D_80383C98, cmd->unk10);
         dist = gu_sqrtf(D_80383C98[0]*D_80383C98[0] + D_80383C98[1]*D_80383C98[1] + D_80383C98[2]*D_80383C98[2]);
         if(cmd->min_C < dist && dist <= cmd->max_8){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->subgeo_offset_1C));
@@ -873,11 +873,11 @@ void func_80338BFC(Gfx **gfx, Mtx **mtx, void *arg2){
     if(D_80383650){
         if(D_8038371C){
             mlMtx_push_multiplied_2(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unkA));
-            func_8025235C(sp20, cmd->unkC);
+            mlMtx_apply_vec3f(sp20, cmd->unkC);
             mlMtxPop();
         }
         else{
-            func_8025235C(sp20, cmd->unkC);
+            mlMtx_apply_vec3f(sp20, cmd->unkC);
         }
         sp20[0] += modelRenderCameraPosition[0];
         sp20[1] += modelRenderCameraPosition[1];
@@ -968,11 +968,11 @@ void func_80338EB8(Gfx ** gfx, Mtx ** mtx, void *arg2){
         sp30 = (f32)cmd->unkE*modelRenderScale;
         if(D_8038371C){
             mlMtx_push_multiplied_2(&D_80383BF8, animMtxList_get(D_8038371C, cmd->unk12));
-            func_8025235C(sp34, sp34);
+            mlMtx_apply_vec3f(sp34, sp34);
             mlMtxPop();
         }
         else{
-            func_8025235C(sp34, sp34);
+            mlMtx_apply_vec3f(sp34, sp34);
         }
 
         sp34[0] += modelRenderCameraPosition[0];

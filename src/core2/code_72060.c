@@ -231,7 +231,7 @@ bool func_802F989C(Gfx **gfx, Mtx **mtx, f32 arg2[3]) {
     ) {
         func_80251B5C(D_80381070[0], D_80381070[1], D_80381070[2]);
         mlMtxApply(*mtx);
-        func_80252434(&D_80381080, D_80381094->unkC);
+        mlMtx_apply_vec3f_restricted(&D_80381080, D_80381094->unkC);
         func_80251B5C(D_80381080[0], D_80381080[1], D_80381080[2]);
         mlMtx_rotate_yaw_deg(D_80381060[1]);
         mlMtx_rotate_pitch_deg(D_80381060[0]);

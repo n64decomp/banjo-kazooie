@@ -420,8 +420,8 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
     else{
         mlMtxIdent();
         func_80252CC4(arg2, arg3, arg4, 0);
-        func_8025235C(sp44, arg5);
-        func_8025235C(sp38, arg6);
+        mlMtx_apply_vec3f(sp44, arg5);
+        mlMtx_apply_vec3f(sp38, arg6);
         sp34 = func_802E76B0(collision_list, vtxList, sp44, sp38, arg7, arg8);
         if(!sp34){
             return 0;
@@ -429,17 +429,17 @@ int func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 ar
         else{
             mlMtxIdent();
             func_80252C08(arg2, arg3, arg4, NULL);
-            func_8025235C(arg6, sp38);
+            mlMtx_apply_vec3f(arg6, sp38);
 
             mlMtxIdent();
             func_80252C08(NULL, arg3, 1.0f, 0);
-            func_8025235C(arg7, arg7);
+            mlMtx_apply_vec3f(arg7, arg7);
 
             mlMtxIdent();
             func_80252C08(arg2, arg3, arg4, 0);
 
             for(i = 0; i < 3; i++){
-                func_8025235C(D_8037EAA8[i], D_8037EAA8[i]);
+                mlMtx_apply_vec3f(D_8037EAA8[i], D_8037EAA8[i]);
             }
 
         }
@@ -750,22 +750,22 @@ s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 
     }
     mlMtxIdent();
     func_80252CC4(arg2, arg3, arg4, 0);
-    func_8025235C(&sp4C, arg5);
-    func_8025235C(&sp40, arg6);
+    mlMtx_apply_vec3f(&sp4C, arg5);
+    mlMtx_apply_vec3f(&sp40, arg6);
     sp3C = func_802E8E88(collision_list, vtx_list, &sp4C, &sp40, arg7 / arg4, arg8, arg9, flagFilter);
     if (sp3C == 0) {
         return 0;
     }
     mlMtxIdent();
     func_80252C08(arg2, arg3, arg4, 0);
-    func_8025235C(arg6, &sp40);
+    mlMtx_apply_vec3f(arg6, &sp40);
     mlMtxIdent();
     func_80252C08(NULL, arg3, 1.0f, 0);
-    func_8025235C(arg8, arg8);
+    mlMtx_apply_vec3f(arg8, arg8);
     mlMtxIdent();
     func_80252C08(arg2, arg3, arg4, 0);
     for(i = 0; i < 3; i++){
-        func_8025235C(D_8037EAA8[i], D_8037EAA8[i]);
+        mlMtx_apply_vec3f(D_8037EAA8[i], D_8037EAA8[i]);
     }
     return sp3C;
 }
@@ -987,22 +987,22 @@ s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 pos
     }
     mlMtxIdent();
     func_80252CC4(posA, rotA, scaleA, NULL);
-    func_8025235C(sp34, posB);
+    mlMtx_apply_vec3f(sp34, posB);
     sp30 = func_802E92AC(collisionList, vtxList, &sp34, radB / scaleA, arg7, arg8);
     if (sp30 == 0) {
         return 0;
     }
     mlMtxIdent();
     func_80252C08(posA, rotA, scaleA, NULL);
-    func_8025235C(posB, sp34);
+    mlMtx_apply_vec3f(posB, sp34);
     mlMtxIdent();
     func_80252C08(NULL, rotA, 1.0f, NULL);
-    func_8025235C(arg7, arg7);
+    mlMtx_apply_vec3f(arg7, arg7);
     mlMtxIdent();
     func_80252C08(posA, rotA, scaleA, NULL);
     
     for(i = 0; i < 3; i++){
-        func_8025235C(D_8037EAA8[i], D_8037EAA8[i]);
+        mlMtx_apply_vec3f(D_8037EAA8[i], D_8037EAA8[i]);
     }
     return sp30;
 }

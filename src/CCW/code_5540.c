@@ -142,9 +142,9 @@ void chnabnut_update(Actor *this) {
             this->yaw += sp24 * 10.0f;
         }
         if (this->has_met_before && !func_803114B0()) {
-            func_8028F364(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
+            player_setCarryObjectPoseInCylinder(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
             if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_distance_vec3f(this->position, sp30) < 300.0f) && player_throwCarriedObject()) {
-                func_8028FA54(D_8038F350);
+                player_setThrowTargetPosition(D_8038F350);
                 local->returned_acorn_count++;
                 if (local->returned_acorn_count == 6) {
                     chnabnut_setState(this, NABNUT_STATE_2_WAIT);

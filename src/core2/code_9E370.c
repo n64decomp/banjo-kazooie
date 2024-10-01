@@ -8,8 +8,8 @@
 
 #define DIST_SQ_VEC3F(v1, v2) ((v1[0] - v2[0])*(v1[0] - v2[0]) + (v1[1] - v2[1])*(v1[1] - v2[1]) + (v1[2] - v2[2])*(v1[2] - v2[2]))
 
-extern f32  func_80258708(f32[3], f32[3]);
-extern bool func_80259384(f32[3], f32[3], f32);
+extern f32  ml_vec3f_length(f32[3], f32[3]);
+extern bool ml_vec3f_within_distance(f32[3], f32[3], f32);
 extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
@@ -661,7 +661,7 @@ Actor *actorArray_findClosestActorFromActorId(f32 position[3], enum actor_e acto
                  && (i_actor->modelCacheIndex != 0x108) 
                  && !i_actor->despawn_flag
             ) {
-                i_dist = func_80258708(position, i_actor->position);
+                i_dist = ml_vec3f_length(position, i_actor->position);
                 if (i_dist < min_dist) {
                     min_dist = i_dist;
                     closest_actor = i_actor;
@@ -736,7 +736,7 @@ bool func_803270B8(f32 arg0[3], f32 arg1, enum marker_collision_func_type_e arg2
         if( !i_ptr->despawn_flag 
             && i_ptr->marker->collidable 
             && ((arg3 == NULL) || arg3(i_ptr)) 
-            && func_80259384(i_ptr->position, arg0, arg1)
+            && ml_vec3f_within_distance(i_ptr->position, arg0, arg1)
         ) {
             if (i_ptr->marker->unk58 == NULL || i_ptr->marker->unk58(i_ptr->marker, arg4)
             ) {
