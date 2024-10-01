@@ -345,14 +345,12 @@ void ml_vec3f_roll_rotate_copy(f32 dst[3], f32 src[3], f32 roll)
     dst[0] = val;
 }
 
-void ml_vec3f_set_length(f32 arg0[3], f32 arg1)
-{
-    f32 length = LENGTH_VEC3F(arg0);
+void ml_vec3f_set_length(f32 vec[3], f32 length) {
+    f32 vec_length = LENGTH_VEC3F(vec);
 
-    if (length != 0)
-    {
-        f32 inv_length = arg1 / length;
-        TUPLE_SCALE_COPY(arg0, arg0, inv_length)
+    if (vec_length != 0) {
+        f32 inv_length = length / vec_length;
+        TUPLE_SCALE_COPY(vec, vec, inv_length)
     }
 }
 
@@ -942,14 +940,13 @@ int func_802585E0(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, 
         && vec[2] > minZ && vec[2] < maxZ;
 }
 
-//ml_vec3f_horizontal_distance_zero_likely
-f32 func_80258640(f32 vec1[3], f32 vec2[3])
-{
+f32 ml_vec3f_horizontal_distance_zero_likely(f32 vec1[3], f32 vec2[3]) {
     f32 dX = vec1[0] - vec2[0];
     f32 dZ = vec1[2] - vec2[2];
 
-    if (dX != 0 || dZ != 0)
+    if (dX != 0 || dZ != 0) {
         return gu_sqrtf(_SQ2(dX, dZ));
+    }
 
     return 0;
 }

@@ -121,7 +121,7 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
         }
     }
     if ((arg0->unk4 == 0) || (arg0->unk4 == 1)) {
-        func_8035179C(arg1, sp38);
+        func_8035179C_copyPosition(arg1, sp38);
         func_80351814(arg1, sp2C);
         sp44[0] = 0.0f;
         sp44[1] = 0.0f;

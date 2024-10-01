@@ -5,7 +5,7 @@
 
 void func_802D77D4(Actor *this);
 extern void player_setClimbParams(f32[3], f32[3], f32, u32);
-extern f32 func_80258640(f32[3], f32[3]);
+extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
 
 typedef struct {
     f32 unk0[3];
@@ -40,8 +40,8 @@ s32 func_802D76E0(Actor *this, f32 *arg1) {
         return FALSE;
     }
     if (sp28 && temp_v0) {
-        sp30 = func_80258640(this->position, sp40);
-        if (func_80258640(this->position, sp34) < sp30) {
+        sp30 = ml_vec3f_horizontal_distance_zero_likely(this->position, sp40);
+        if (ml_vec3f_horizontal_distance_zero_likely(this->position, sp34) < sp30) {
             sp28 = 0;
         }
     }

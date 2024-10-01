@@ -41,7 +41,7 @@ Struct_Core2_C9F00_1 D_803725C0[] = {
 
 
 void func_80351DE0(Struct6Bs *, Struct68s *);
-extern void MMM_func_8038ADF0(void *, Struct68s *);
+extern void chTumblar_init(void *, Struct68s *);
 extern void func_80387940(void *, Struct68s *);
 extern void GV_func_80387960(void *, Struct68s *);
 extern void func_80387980(void *, Struct68s *);
@@ -53,7 +53,7 @@ extern void CC_func_80387A20(void *, Struct68s *);
 extern void func_80351FE0(void *, Struct68s *);
 
 void func_80351E60(Struct6Bs *, Struct68s *, f32);
-extern void func_8038AF90(void *, Struct68s *, f32);
+extern void chTumblar_update(void *, Struct68s *, f32);
 extern void func_8038B790(void *, Struct68s *, f32);
 extern void CCW_func_80387A40(void *, Struct68s *, f32);
 extern void func_80352114(void *, Struct68s *, f32);
@@ -61,7 +61,7 @@ extern void func_80352114(void *, Struct68s *, f32);
 Struct_Core2_C9F00_0 D_803725F4[] = {
     {         NULL,          NULL}, 
     {func_80351DE0, func_80351E60}, 
-    {MMM_func_8038ADF0, func_8038AF90}, 
+    {chTumblar_init, chTumblar_update},
     {         NULL,          NULL}, 
     {         NULL, func_8038B790}, 
     {func_80387940, CCW_func_80387A40}, 
@@ -280,10 +280,11 @@ bool func_80351724(void * arg0){
     return TRUE;
 }
 
-s32 func_80351758(Struct68s *arg0){
-    if(arg0->unk0 == 0){
+s32 func_80351758_getSfxsourceIndex(Struct68s *arg0) {
+    if (arg0->unk0 == NULL) {
         arg0->unk0 = sfxsource_createSfxsourceAndReturnIndex();
     }
+
     return arg0->unk0;
 }
 
@@ -291,8 +292,8 @@ ActorMarker *func_80351794(Struct68s *arg0){
     return arg0->unk4;
 }
 
-void func_8035179C(Struct68s* arg0, f32 arg1[3]) {
-    TUPLE_COPY(arg1, arg0->position)
+void func_8035179C_copyPosition(Struct68s* arg0, f32 position[3]) {
+    TUPLE_COPY(position, arg0->position)
 }
 
 void * func_803517B8(s32 arg0){
@@ -473,7 +474,7 @@ void func_80351DE0(Struct6Bs *arg0, Struct68s *arg1) {
     arg0->unk0 = randf2(80.0f, 100.0f);
     arg0->unk4[0] = arg0->unk4[1] = arg0->unk4[2] = 0.0f;
     arg0->unk10[0] = arg0->unk10[1] = arg0->unk10[2] = 0.0f;
-    func_8035179C(arg1, arg0->unk1C);
+    func_8035179C_copyPosition(arg1, arg0->unk1C);
     func_80351814(arg1, arg0->unk28);
     arg0->unk34 = 0.0f;
 }

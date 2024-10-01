@@ -287,7 +287,7 @@ void func_80388BDC(Actor *this) {
     f64 phi_f0;
 
     func_802D3D74(this);
-    mapSpecificFlags_set(MMM_SPECIFIC_FLAG_1_UNKNOWN, BOOL((this->yaw > 260.0f) && (this->yaw < 330.0f)));
+    mapSpecificFlags_set(MMM_SPECIFIC_FLAG_TUMBLAR_BROKEN, BOOL((this->yaw > 260.0f) && (this->yaw < 330.0f)));
     if (!this->volatile_initialized) {
         if (this->yaw != 0.0f) {
             this->lifetime_value = 0.5f;
