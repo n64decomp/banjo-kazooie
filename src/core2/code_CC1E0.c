@@ -51,7 +51,7 @@ void fxegg_shatter(u8 projectile_indx){
 
 s32 func_803531C8(u8 projectile_indx, s32 arg1){
     ActorProp *prop;
-    f32 sp40[3];
+    f32 egg_position[3];
     ActorMarker * marker;
     ActorMarker * other_marker;
     s32 sp34;
@@ -63,7 +63,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
     
     marker = func_8033E840();
     sp34 = 0;
-    projectile_getPosition(projectile_indx, sp40);
+    projectile_getPosition(projectile_indx, egg_position);
     marker->unk38[1] = 0x1E;
     prop = func_80320EB0(marker, 30.0f, 1);
     if(prop != NULL && prop->unk8_0){
@@ -84,7 +84,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     break;
 
                 case MARKER_33_LEAKY: //L80353350
-                    if(func_802458A8(sp40, other_marker, 0x32) && chLeaky_eggCollision(other_marker)){
+                    if (collisionTri_isHitFromAbove_marker(egg_position, other_marker, 0x32) && chLeaky_eggCollision(other_marker)) {
                         func_8033E984();
                     }
                     break;
@@ -94,7 +94,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     func_803870EC(1);
                     break;
 
-                case 0x1ae: //L8035339C //zubba?
+                case MARKER_1AE_ZUBBA: //L8035339C //zubba?
                     func_8033E984();
                     fxegg_shatter(projectile_indx);
                     break;
@@ -109,26 +109,26 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     func_8038685C(other_marker);
                     break;
 
-                case 0xbb: //L803533E4 //"BIG_JINXYHEAD"
+                case MARKER_BB_UNKNOWN: //L803533E4 //"BIG_JINXYHEAD"
                     other_actor = marker_getActor(other_marker);
                     *(s32 *)&other_actor->local = 1;
                     func_8033E984();
                     break;
 
                 case MARKER_34_CEMETARY_POT: //L80353400
-                    if(func_802458A8(sp40, other_marker, 0x3C) && MMM_func_80387340(other_marker)){
+                    if (collisionTri_isHitFromAbove_marker(egg_position, other_marker, 0x3C) && chFlowerpot_eggCollision(other_marker)) {
                         func_8033E984();
                     }
                     break;
 
                 case MARKER_AB_RUBEES_EGG_POT: //L80353434
-                    if(func_802458A8(sp40, other_marker, 0x1E) && (func_8038E178() < func_8038E184())){
+                    if (collisionTri_isHitFromAbove_marker(egg_position, other_marker, 0x1E) && (func_8038E178() < func_8038E184())) {
                         func_8033E984();
                         func_8038E140();
                     }
                     break;
 
-                case 0xae: //L80353480 //big_jynxy_head
+                case MARKER_AE_UNKNOWN: //L80353480 //big_jynxy_head
                     if(func_8038E344(other_marker)){
                         func_8033E984();
                         func_8038E2FC(other_marker);

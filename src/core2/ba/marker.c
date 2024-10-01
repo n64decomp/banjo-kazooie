@@ -388,7 +388,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         return;
                     player_getPosition(spAC);
                     spAC[1] += 40.0f;
-                    if(func_802458E0(spAC, actor, 0x87) == 0)
+                    if(collisionTri_isHitFromAbove_actor(spAC, actor, 0x87) == 0)
                         return;
                     volatileFlag_set(VOLATILE_FLAG_1E, 1);
                     if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
