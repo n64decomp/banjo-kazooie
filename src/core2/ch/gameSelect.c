@@ -178,8 +178,8 @@ void *func_802C44EC(f32 arg0[3], f32 arg1[3], f32 arg2) {
 
 void func_802C4768(s32 gamenum){
     u8 * sp20[2];
-    static u8 D_8037DD48[0x20];
-    static u8 D_8037DD68[0x20];
+    static u8 upperTextLine[0x20];
+    static u8 lowerTextLine[0x20];
 
     func_8031FBF8();
     D_80365E00 = gamenum;
@@ -188,59 +188,59 @@ void func_802C4768(s32 gamenum){
         gameFile_load(gamenum);
         D_8037DCCE[gamenum] = (itemscore_timeScores_get(LEVEL_6_LAIR)) ? 1 : 0;
     
-        strcpy(D_8037DD48, "");
-        strcat(D_8037DD48, "GAME ");
+        strcpy(upperTextLine, "");
+        strcat(upperTextLine, "GAME ");
         switch(gamenum){
             case 0: //L802C4820
-                strIToA(D_8037DD48, 1);
+                strIToA(upperTextLine, 1);
                 break;
             case 1: //L802C4838
-                strIToA(D_8037DD48, 3);
+                strIToA(upperTextLine, 3);
                 break;
             case 2: //L802C484C
-                strIToA(D_8037DD48, 2);
+                strIToA(upperTextLine, 2);
                 break;
         }//L802C4858
-        strcat(D_8037DD48, ": TIME ");
-        strcat(D_8037DD48, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
-        strcat(D_8037DD48, ",");
-        strcat(D_8037DD48, "");
+        strcat(upperTextLine, ": TIME ");
+        strcat(upperTextLine, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
+        strcat(upperTextLine, ",");
+        strcat(upperTextLine, "");
 
-        strcpy(D_8037DD68, "");
-        strIToA(D_8037DD68, jiggyscore_total());
-        strcat(D_8037DD68, " JIGSAW");
+        strcpy(lowerTextLine, "");
+        strIToA(lowerTextLine, jiggyscore_total());
+        strcat(lowerTextLine, " JIGSAW");
         if(jiggyscore_total() != 1){
-            strcat(D_8037DD68, "S");
+            strcat(lowerTextLine, "S");
         }
-        strcat(D_8037DD68, ", ");
-        strIToA(D_8037DD68, itemscore_noteScores_getTotal());
-        strcat(D_8037DD68, " NOTE");
+        strcat(lowerTextLine, ", ");
+        strIToA(lowerTextLine, itemscore_noteScores_getTotal());
+        strcat(lowerTextLine, " NOTE");
         if(itemscore_noteScores_getTotal() != 1){
-            strcat(D_8037DD68, "S");
+            strcat(lowerTextLine, "S");
         }
-        strcat(D_8037DD68, ".");
-        strcat(D_8037DD68, "");
+        strcat(lowerTextLine, ".");
+        strcat(lowerTextLine, "");
     }//L802C49AC
     else{
         D_8037DCCE[gamenum] = 0;
-        strcpy(D_8037DD48, "");
-        strcat(D_8037DD48, "GAME ");
+        strcpy(upperTextLine, "");
+        strcat(upperTextLine, "GAME ");
         switch (gamenum){
             case 0:
-                strIToA(D_8037DD48, 1);
+                strIToA(upperTextLine, 1);
                 break;
             case 1:
-                strIToA(D_8037DD48, 3);
+                strIToA(upperTextLine, 3);
                 break;
             case 2:
-                strIToA(D_8037DD48, 2);
+                strIToA(upperTextLine, 2);
                 break;
         }//L802C4A40
-        strcat(D_8037DD48, ": EMPTY");
-        strcpy(D_8037DD68, "");
+        strcat(upperTextLine, ": EMPTY");
+        strcpy(lowerTextLine, "");
     }//L802C4A68
-    sp20[0] = D_8037DD48;\
-    sp20[1] = D_8037DD68;
+    sp20[0] = upperTextLine;\
+    sp20[1] = lowerTextLine;
     func_8031877C(chGameSelectBottomZoombox);
     gczoombox_setStrings(chGameSelectBottomZoombox, 2, sp20);
     gczoombox_maximize(chGameSelectBottomZoombox);
