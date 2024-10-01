@@ -119,16 +119,16 @@ s32 volatileFlag_setAndTriggerDialog(enum volatile_flags_e id, s32 arg1) {
 }
 
 // called for dialogs when banjo is not fast enough to reach a door or jiggy and for NOBONUS text
-void volatileFlag_setAndTriggerDialog_0(s32 arg0) {
+void volatileFlag_setAndTriggerDialog_0(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0);
 }
 
 // called for FFQ dialogs
-void volatileFlag_setAndTriggerDialog_4(s32 arg0) {
+void volatileFlag_setAndTriggerDialog_4(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 4);
 }
 
 // called for WISHYWASHYBANJO dialog
-void volatileFlag_setAndTriggerDialog_E(s32 arg0) {
+void volatileFlag_setAndTriggerDialog_E(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0xE);
 }
