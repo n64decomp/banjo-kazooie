@@ -509,7 +509,7 @@ f32 climbGetBottomY(void);
 f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
-void func_8024E55C(s32, s32 [6]);
+void controller_copyFaceButtons(s32, s32 [6]);
 
 void __spawnQueue_add_1(GenFunction_1, s32);
 #define SPAWNQUEUE_ADD_1(method, arg0) __spawnQueue_add_1((GenFunction_1) (method), reinterpret_cast(s32, (arg0)))

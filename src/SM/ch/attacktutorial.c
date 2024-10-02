@@ -211,8 +211,8 @@ void func_80387764(ActorMarker * marker){
         func_8028F94C(2, actor->unk1C);
     }
     //L80387848
-    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2) {
-        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
+    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities() && temp_a2) {
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
         sp34 = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
     }//L80387898
 

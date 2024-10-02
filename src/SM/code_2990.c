@@ -101,7 +101,7 @@ void chsmmole_skipIntroTutorial(void){
     ability_unlock(ABILITY_8_FLAP_FLIP);
     ability_unlock(ABILITY_5_CLIMB);
     chsmmole_setSpiralMountainAbilitiesAsUsed();
-    mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
+    mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
 }
 /**
  * @brief If the player is talking to Intro Bottles for the first time, use the
@@ -211,8 +211,8 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor;
 
     actor = marker_getActor(marker);
-    if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities()){
-        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
+    if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities()){
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
         gcdialog_showText(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, func_803892C8, NULL);
     }//L8038933C
     else{ 
@@ -306,7 +306,7 @@ void chsmmole_80389610(Actor * this){
             }
             break;
         case 8://L80389720
-            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_3)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED)){
                 if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                     sp2C = ASSET_E37_TEXT_BOTTLES_STOP_WASTING_TIME_AFTER_FURNACE_FUN;
                     sp28 |= 1;
@@ -429,7 +429,7 @@ void chsmmole_Update(Actor * this){
             mapSpecificFlags_set(SM_SPECIFIC_FLAG_1, TRUE);
 
             if(chmole_learnedAllSpiralMountainAbilities()){
-                mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_2, TRUE);
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_F, TRUE);
@@ -446,7 +446,7 @@ void chsmmole_Update(Actor * this){
         func_8028E668(this->position, 180.0f, -40.0f, 120.0f);
     }//L80389B64
 
-    func_8024E55C(0,sp50); //get face buttons press counters
+    controller_copyFaceButtons(0,sp50); //get face buttons press counters
     player_getPosition(sp44);
     switch (this->state)
     {
@@ -455,7 +455,7 @@ void chsmmole_Update(Actor * this){
         func_80328FB0(this, 4.0f);
         if( (this->unkF4_8 == 1 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_1))
             || (this->unkF4_8 == 8 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2))
-            || (this->unkF4_8 == 8 && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
+            || (this->unkF4_8 == 8 && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
         ){//L80389C50
             
             if( ((ml_distance_vec3f(sp44, this->unk1C) < this->actor_specific_1_f) && func_8028F20C())

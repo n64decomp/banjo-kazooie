@@ -46,7 +46,7 @@ void func_8038A8F8(Actor *this){
 
     if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_10) && sp2C < (f32) this->unkF4_8 && 1780.0f < func_8028E82C()){
         if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)
-            || (mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
+            || (mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
         ){ //L8038AA54
             this->yaw_ideal = ml_distance_vec3f(this->velocity, this->unk1C) / 150.0;
             func_8028F3D8(this->unk1C, this->yaw_ideal, func_8038A8C0, this->marker);

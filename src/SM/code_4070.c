@@ -2,143 +2,161 @@
 #include "functions.h"
 #include "variables.h"
 
-//extern
-Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx**);
+/* extern functions */
+Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void timed_exitStaticCamera(f32);
 
-//public
-void SM_func_8038A5D8(Actor *this);
-void func_8038A4DC(Actor *this, s32 arg1);
+/* public functions */
+void chBottles2_update(Actor *this);
+void chBottles2_setState(Actor *this, s32 state);
 
 /* .data */
-ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
-    SM_func_8038A5D8, actor_update_func_80326224, func_80325340,
+enum chBottles2_state_e {
+    BOTTLES2_STATE_1_IDLE = 1,
+    BOTTLES2_STATE_2_TEACHING,
+    BOTTLES2_STATE_3_DISAPPEARED
+};
+
+ActorInfo D_8038B0B0 = {
+    MARKER_1ED_UNKNOWN, ACTOR_3B9_UNKNOWN, NULL, 1, NULL,
+    chBottles2_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
-
 /* .code */
-void func_8038A460(Actor *this){
-    timed_setStaticCameraToNode(0.0f,4);
+void __chBottles2_setStaticCameraToNode4(Actor *this) {
+    timed_setStaticCameraToNode(0.0f, 4);
 }
 
-void func_8038A488(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+void __chBottles2_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     Actor *actor = marker_getActor(caller);
-    if(text_id == 0xdf9 || text_id == 0xe12){
-        func_8038A4DC(actor, 3);
+
+    if (text_id == ASSET_DF9_TEXT_BOTTLES_UNKNOWN || text_id == ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES) {
+        chBottles2_setState(actor, BOTTLES2_STATE_3_DISAPPEARED);
     }
+
     timed_exitStaticCamera(0.0f);
 }
 
-void func_8038A4DC(Actor *this, s32 arg1){
-    switch(arg1){
-    case 2://L8038A50C
-        this->sm_4070.unk0 = 0;
-        player_getPosition(this->velocity);
-        func_8028F918(0);
-        if(ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)){
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_9, TRUE);
-        }else if(ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)){//L8038A540
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, TRUE);
-        }else{//L8038A560
-            func_8038A460(this);
-            ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
-            gcdialog_showText(0xdf6, 0xe, this->unk1C, this->marker, func_8038A488, NULL);
-            this->sm_4070.unk0 = 0xe1a;
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, FALSE);
-        }
-        break;
-    case 3://L8038A5B0
-        mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
-        break;
+void chBottles2_setState(Actor *this, s32 state) {
+    switch (state) {
+        case BOTTLES2_STATE_2_TEACHING://L8038A50C
+            this->sm_4070.dialog_id = NULL;
+            player_getPosition(this->velocity);
+            func_8028F918(0);
+
+            if (ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)) {
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, TRUE);
+            }
+            else if (ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)) {//L8038A540
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, TRUE);
+            }
+            else {//L8038A560
+                __chBottles2_setStaticCameraToNode4(this);
+                ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
+
+                gcdialog_showText(ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                this->sm_4070.dialog_id = ASSET_E1A_TEXT_BOTTLES_UNKNOWN;
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
+            }
+            break;
+
+        case BOTTLES2_STATE_3_DISAPPEARED://L8038A5B0
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
+            break;
     }//L8038A5BC
-    subaddie_set_state(this, arg1);
+
+    subaddie_set_state(this, state);
 }
 
-void SM_func_8038A5D8(Actor *this){
-    f32 sp5C[3];
-    s32 sp44[6];
-    f32 sp40;
-    Actor *temp_v0;
-    s32 temp_a0;
+void chBottles2_update(Actor *this) {
+    f32 plyr_pos[3];
+    s32 face_buttons[6];
+    f32 distance_to_bottles;
+    Actor *bottles_ptr;
+    s32 dialog_id;
 
-    if(!this->initialized){
-        temp_v0 = actorArray_findClosestActorFromActorId(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &sp40);
-        if(temp_v0){
-            this->unk1C_x = temp_v0->position_x;
-            this->unk1C_y = temp_v0->position_y;
-            this->unk1C_z = temp_v0->position_z;
+    if (!this->initialized) {
+        bottles_ptr = actorArray_findClosestActorFromActorId(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &distance_to_bottles);
+
+        if (bottles_ptr) {
+            this->unk1C_x = bottles_ptr->position_x;
+            this->unk1C_y = bottles_ptr->position_y;
+            this->unk1C_z = bottles_ptr->position_z;
         }
-        else{//L8038A630
+        else {//L8038A630
             this->unk1C_x = this->position_x;
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;
         }//L8038A644
+
         this->initialized = TRUE;
     }//L8038A650
 
-    func_8024E55C(0, sp44);
-    switch (this->state)
-    {
-    case 1://L8038A688
-        if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
-            marker_despawn(this->marker);
-        }else{
-            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_E)){
-                func_8038A4DC(this, 2);
+    controller_copyFaceButtons(0, face_buttons);
+
+    switch (this->state) {
+        case BOTTLES2_STATE_1_IDLE://L8038A688
+            if (fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)) {
+                marker_despawn(this->marker);
             }
-        }
-        break;
-    
-    case 2://L8038A6C8
-        if(!func_803114B0()){
-            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_8)){
-                func_8038A460(this);
-                ability_unlock(ABILITY_7_FEATHERY_FLAP);
-                gcdialog_showText(0xdf7, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
-                this->sm_4070.unk0 = 0xe1b;
-                mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, FALSE);
-            }//L8038A730
+            else if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_E)) {
+                chBottles2_setState(this, BOTTLES2_STATE_2_TEACHING);
+            }
+            break;
 
-            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_9)){
-                func_8038A460(this);
-                ability_unlock(ABILITY_8_FLAP_FLIP);
-                gcdialog_showText(0xdf8, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
-                this->sm_4070.unk0 = 0xe1c;
-                mapSpecificFlags_set(SM_SPECIFIC_FLAG_9, FALSE);
-            }//L8038A794
+        case BOTTLES2_STATE_2_TEACHING://L8038A6C8
+            if (!func_803114B0()) {
+                if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED)) {
+                    __chBottles2_setStaticCameraToNode4(this);
+                    ability_unlock(ABILITY_7_FEATHERY_FLAP);
 
-            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_A)){
-                func_8038A460(this);
-                func_8028F94C(2, this->unk1C);
-                
-                if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities()){
-                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
-                    temp_a0 = 0xe12;
-                }else{
-                    temp_a0 = 0xdf9;
+                    gcdialog_showText(ASSET_DF7_TEXT_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    this->sm_4070.dialog_id = ASSET_E1B_TEXT_BOTTLES_UNKNOWN;
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
+                }//L8038A730
+
+                if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED)) {
+                    __chBottles2_setStaticCameraToNode4(this);
+                    ability_unlock(ABILITY_8_FLAP_FLIP);
+
+                    gcdialog_showText(ASSET_DF8_TEXT_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    this->sm_4070.dialog_id = ASSET_E1C_TEXT_BOTTLES_UNKNOWN;
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, FALSE);
+                }//L8038A794
+
+                if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_A)) {
+                    __chBottles2_setStaticCameraToNode4(this);
+                    func_8028F94C(2, this->unk1C);
+
+                    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities()) {
+                        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
+                        dialog_id = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
+                    }
+                    else {
+                        dialog_id = ASSET_DF9_TEXT_BOTTLES_UNKNOWN;
+                    }
+
+                    gcdialog_showText(dialog_id, 0xe, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_A, FALSE);
+                    this->sm_4070.dialog_id = NULL;
                 }
+            }//L8038A828
 
-                gcdialog_showText(temp_a0, 0xe, this->unk1C, this->marker, func_8038A488, NULL);
-                mapSpecificFlags_set(SM_SPECIFIC_FLAG_A, FALSE);
-                this->sm_4070.unk0 = 0;
+            player_getPosition(plyr_pos);
+            plyr_pos[0] = this->velocity_x;
+            plyr_pos[2] = this->velocity_z;
+            func_8028FAB0(plyr_pos);
+
+            if (func_8028EFC8() && face_buttons[FACE_BUTTON(BUTTON_B)] == TRUE && func_8028F20C()) {
+                if (this->sm_4070.dialog_id) {
+                    gcdialog_showText(dialog_id = this->sm_4070.dialog_id, 0, NULL, NULL, NULL, NULL);
+                }
             }
-        }//L8038A828
-        player_getPosition(sp5C);
-        sp5C[0] = this->velocity_x;
-        sp5C[2] = this->velocity_z;
-        func_8028FAB0(sp5C);
-        if( func_8028EFC8() 
-            && sp44[FACE_BUTTON(BUTTON_B)] == 1 
-            && func_8028F20C()
-        ){
-            if(this->sm_4070.unk0)
-                gcdialog_showText(temp_a0 = this->sm_4070.unk0, 0, NULL, NULL, NULL, NULL);
-        }
-        break;
-    
-    case 3://L8038A8A0
-        marker_despawn(this->marker);
-        break;
+            break;
+
+        case BOTTLES2_STATE_3_DISAPPEARED://L8038A8A0
+            marker_despawn(this->marker);
+            break;
     }//L8038A8AC
 }
