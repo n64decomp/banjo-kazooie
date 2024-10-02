@@ -450,8 +450,8 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 AnimCtrl *baanim_getAnimCtrlPtr(void);
 void player_setYPosition(f32);
 
-NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e arg0, Actor *arg1);
-NodeProp *func_80304CAC(s32 arg0, f32 position[3]);
+NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor_ptr);
+NodeProp *nodeprop_findByActorIdAndPosition_f32(enum actor_e actor_id, f32 position[3]);
 Actor *actorArray_findClosestActorFromActorId(f32 position[3], enum actor_e actor_id, s32 arg2, f32 *min_distance_ptr);
 Actor *subaddie_getLinkedActor(Actor *);
  

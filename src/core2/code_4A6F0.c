@@ -105,7 +105,7 @@ bool chMumbo_withinHorzDistToPlayer(s32 x, s32 z, s32 dist) {
 
 bool chMumbo_func_802D181C(s32 arg0) {
     s32 search_start_cube[3] = D_80367504;
-    return BOOL(cubeList_findNodePropByActorId(arg0, search_start_cube));
+    return BOOL(cubeList_findNodePropByActorIdAndPosition_s32(arg0, search_start_cube));
 }
 
 void chMumbo_func_802D186C(Actor *this) {

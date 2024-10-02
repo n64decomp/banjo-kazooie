@@ -4,7 +4,7 @@
 
 extern void func_8028E668(f32[3], f32, f32, f32);
 extern Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
-extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
+extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e, s32[3]);
 extern f32 func_8038BE20(f32 arg0[3]);
 
 typedef struct {
@@ -383,8 +383,8 @@ void func_803895E0(void){
 
     for (i = 0; i< 7; i++){
         s0 = (i < 3) 
-            ? cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DA0) 
-            : cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DAC);
+            ? cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DA0)
+            : cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DAC);
 
         nodeprop_getPosition(s0, sp64);
         f20 = (f32)func_80304DA8(s0);
