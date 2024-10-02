@@ -198,7 +198,7 @@ ParticleEmitter *partEmitMgr_newEmitter(u32);
 void func_802BB3DC(s32, f32, f32);
 void __spawnQueue_add_4(GenFunction_4, s32, s32, s32, s32);
 Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z);
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 
 
 void particleEmitter_emitInVolume(ParticleEmitter *, f32[3], f32[3], s32);

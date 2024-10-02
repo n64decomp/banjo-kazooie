@@ -64,7 +64,7 @@ void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
 
 void func_80244C78(int arg0){
     if(D_802758E0[arg0]){
-        func_8030DA44(D_802758E0[arg0]);
+        sfxsource_freeSfxsourceByIndex(D_802758E0[arg0]);
     }
     D_802758E0[arg0] = 0;
 }

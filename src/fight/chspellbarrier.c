@@ -42,12 +42,12 @@ void chspellbarrier_free(Actor *this) {
     ActorLocal_SpellBarrier *local = (ActorLocal_SpellBarrier *) &this->local;
 
     if ((u8) this->unk44_31) {
-        func_8030DA44(this->unk44_31);
+        sfxsource_freeSfxsourceByIndex(this->unk44_31);
         this->unk44_31 = 0;
     }
 
     if (local->sfxsourceIdx != 0) {
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
         local->sfxsourceIdx = 0;
     }
 }

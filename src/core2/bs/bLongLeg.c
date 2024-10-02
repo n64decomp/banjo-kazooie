@@ -152,7 +152,7 @@ void bsblongleg_enter_update(void){
 
 void bsblongleg_enter_end(void){
     func_802A5404();
-    func_8030DA44(D_8037D361);
+    sfxsource_freeSfxsourceByIndex(D_8037D361);
 }
 
 void bsblongleg_stand_enter(void){
@@ -308,7 +308,7 @@ void bsblongleg_exit_update(void){
 }
 
 void bsblongleg_exit_end(void){
-    func_8030DA44(D_8037D361);
+    sfxsource_freeSfxsourceByIndex(D_8037D361);
     func_802A5404();
 }
 

@@ -31,7 +31,7 @@ void func_80323190(void){
 }
 
 void func_803231E8(void){
-    func_8030DA44(D_80383370);
+    sfxsource_freeSfxsourceByIndex(D_80383370);
 }
 
 void func_8032320C(void){

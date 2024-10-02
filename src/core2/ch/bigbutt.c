@@ -263,7 +263,7 @@ void func_802C6240(Actor *this){
                 if (0.0f == this->actor_specific_1_f) {
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);
-                    func_8030DA44(this->unk44_31);
+                    sfxsource_freeSfxsourceByIndex(this->unk44_31);
                     this->unk44_31 = 0;
                     sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
                 }

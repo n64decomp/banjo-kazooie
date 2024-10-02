@@ -21,7 +21,7 @@ void func_8034F6F0(Gfx **gdl, Mtx **mptr, s32 vptr){
 
 void func_8034F734(void){
     if(D_803720A0.unk0){
-        func_8030DA44(D_803720A0.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_803720A0.sfxsourceIdx);
         particleEmitter_free(D_803720A0.unk0);
     }
 }

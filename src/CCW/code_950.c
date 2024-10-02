@@ -91,7 +91,7 @@ void func_8038717C(Actor *this){
     ActorLocal_CCW_950 *local;
 
     local = (ActorLocal_CCW_950 *)&this->local;
-    func_8030DA44(local->sfxsourceIdx);
+    sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
 }
 
 void chwasp_update(Actor *this) {

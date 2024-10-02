@@ -358,7 +358,7 @@ void func_8030D310(u8 indx){
     switch(func_8030C7E8(ptr)){
         case 1://L8030D468
             if( func_8030C814(ptr, 0) || (func_8030C814(ptr, 1) && !ptr->unk40))
-                func_8030DA44(indx);
+                sfxsource_freeSfxsourceByIndex(indx);
             break;
         case 2://L8030D4A4
             if(func_8030C814(ptr, 1) && sfxsource_isFlagCleared(ptr, 1))
@@ -444,7 +444,7 @@ void func_8030D778(void){
     int temp_s1;
     for(i = 1; i < 35; i++){
         if(sfxsources[i].busy)
-            func_8030DA44(i);
+            sfxsource_freeSfxsourceByIndex(i);
     }
     do{
         temp_s1 = 0;
@@ -511,8 +511,8 @@ u8 sfxsource_createSfxsourceAndReturnIndex(void){
     return s1;
 }
 
-void func_8030DA44(u8 indx){
-    SfxSource * sp1C = sfxsource_at(indx);
+void sfxsource_freeSfxsourceByIndex(u8 indx) {
+    SfxSource *sp1C = sfxsource_at(indx);
     func_8030E394(indx);
     func_8030C7F8(sp1C, 3);
 }

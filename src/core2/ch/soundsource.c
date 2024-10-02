@@ -47,7 +47,7 @@ void func_802D0500(Actor *this){
 void func_802D05A0(Actor *this, s32 next_state){
     ActorLocal_Core2_49570 *local = (ActorLocal_Core2_49570 *)this->local;
     if(this->state == 2 && local->sfxsourceIdx){
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
         local->sfxsourceIdx = 0;
     }
     if(next_state == 2){

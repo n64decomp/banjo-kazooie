@@ -376,7 +376,7 @@ void func_80325FE8(Actor *this) {
     }
     temp_v0 = this->unk44_31;
     if (temp_v0 != 0) {
-        func_8030DA44(temp_v0);
+        sfxsource_freeSfxsourceByIndex(temp_v0);
     }
     this->animctrl = NULL;
     this->unk44_31 = 0;

@@ -170,7 +170,7 @@ void chjinjonatorbase_update(Actor *this){
 
                 FUNC_8030E624(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000);
                 func_8030E394(this->unk44_31);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
 
                 this->position_x = this->unk1C[0];

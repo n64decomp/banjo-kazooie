@@ -91,7 +91,7 @@ void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
 void func_8035EE48(Actor *this){
     u8 val = this->unk44_31;
     if(val != 0){
-        func_8030DA44(val);
+        sfxsource_freeSfxsourceByIndex(val);
         this->unk44_31 = 0;
     }
 }

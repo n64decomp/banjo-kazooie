@@ -6,7 +6,7 @@
 Actor *func_802D94B4(ActorMarker*, Gfx**, Mtx**, Vtx**);
 void func_8028E668(f32*, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 void timed_exitStaticCamera(f32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
@@ -128,7 +128,7 @@ void func_80388FA0(Actor *this, s32 arg1){
         case 4://L80388FF8
             this->unk138_23 = 0;
         case 2://L80389004
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0;
             break;
         case 5://L80389018
@@ -387,7 +387,7 @@ void func_80389984(Actor * this){
 
     tmp = this->unk44_31;
     if(tmp)
-        func_8030DA44(tmp);
+        sfxsource_freeSfxsourceByIndex(tmp);
 }
 
 void chsmmole_Update(Actor * this){

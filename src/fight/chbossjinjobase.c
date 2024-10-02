@@ -22,7 +22,7 @@ void chbossjinjobase_spawnStoneJinjo(ActorMarker *marker) {
 }
 
 void chBossJinjoBase_createSmokeParticles(f32 position[3], s32 count) {
-    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(count);    
+    ParticleEmitter *pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(pCtrl, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setRGB(pCtrl, chBossJinjoBase_SmokeColor);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
@@ -61,11 +61,11 @@ void chBossJinjoBase_free(Actor *this) {
     ActorLocal_BossJinjoBase *local = (ActorLocal_BossJinjoBase *) &this->local;
 
     if ((u8)this->unk44_31 != 0) {
-        func_8030DA44(this->unk44_31);
+        sfxsource_freeSfxsourceByIndex(this->unk44_31);
         this->unk44_31 = 0;
     }
     if (local->sfxsourceIdx != 0) {
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
         local->sfxsourceIdx = 0;
     }
 }
@@ -124,9 +124,9 @@ void chBossJinjoBase_update(Actor *this) {
                     func_8030E2C4(local->sfxsourceIdx);
                 }
                 
-                position_delta[0] = (rumbling & 1) ? 3.0f : -3.0f; 
+                position_delta[0] = (rumbling & 1) ? 3.0f : -3.0f;
                 position_delta[1] = y_delta;
-                position_delta[2] = (rumbling & 2) ? 3.0f : -3.0f; 
+                position_delta[2] = (rumbling & 2) ? 3.0f : -3.0f;
 
                 this->position_x = this->unk1C[0];
                 this->position_z = this->unk1C[2];
@@ -142,9 +142,9 @@ void chBossJinjoBase_update(Actor *this) {
             }
             else {
                 subaddie_set_state(this, CHBOSSJINJOBASE_STATE_2_DEFAULT);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
-                func_8030DA44(local->sfxsourceIdx);
+                sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
                 local->sfxsourceIdx = 0;
                 TUPLE_COPY(this->position, this->unk1C);
                 TUPLE_COPY(actor_stonejinjo->position, this->unk1C);

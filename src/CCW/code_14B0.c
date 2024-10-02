@@ -55,7 +55,7 @@ void func_803878A0(Actor *this, s32 next_state) {
 
 void CCW_func_80387A20(Actor *this){
     ActorLocal_CCW_14B0 *local = (ActorLocal_CCW_14B0 *)&this->local;
-    func_8030DA44(local->sfxsourceIdx);
+    sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
 }
 
 void CCW_func_80387A40(Actor *this) {

@@ -44,7 +44,7 @@ f32 func_80290920(f32 arg0, f32 arg1, f32 arg2){
 }
 
 void func_8029099C(void){
-    func_8030DA44(D_8037C040);
+    sfxsource_freeSfxsourceByIndex(D_8037C040);
     D_8037C040 = 0;
 }
 

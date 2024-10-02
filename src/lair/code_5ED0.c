@@ -536,7 +536,7 @@ void lair_func_8038CC9C(void)
         return;
 
     func_8030E394(D_8037DCB8->UNK_18);
-    func_8030DA44(D_8037DCB8->UNK_18);
+    sfxsource_freeSfxsourceByIndex(D_8037DCB8->UNK_18);
     D_8037DCB8->UNK_18 = 0;
 }
 

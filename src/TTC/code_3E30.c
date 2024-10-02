@@ -377,8 +377,8 @@ void func_8038AFC8(void){
 void func_8038B04C(void){
     if(D_8038D720.model1){
         func_8038A258(0);
-        func_8030DA44(D_8038D720.sfxsourceIdx);
-        func_8030DA44(D_8038D720.unkA);
+        sfxsource_freeSfxsourceByIndex(D_8038D720.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_8038D720.unkA);
     }
 }
 

@@ -385,7 +385,7 @@ void chBeeSwarm_update(Actor *this) {
         return;
     if (!subaddie_playerIsWithinSphere(this, 0x5DC)) {
         if ((u8)this->unk44_31 != 0) {
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0;
             D_8037DCBC = 0;
         }

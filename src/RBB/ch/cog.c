@@ -38,7 +38,7 @@ void func_80388BD0(Actor *this, s32 arg1){
 void func_80388BE8(Actor *actor){
     ActorLocal_RBB_27E0 *local = (ActorLocal_RBB_27E0 *)&actor->local;
     if(actor->modelCacheIndex == 0x17b){
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
     }
 }
 

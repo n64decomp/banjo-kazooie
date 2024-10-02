@@ -127,7 +127,7 @@ bool func_8034DC80(Struct6Ds *arg0, f32 arg1[3]) {
 
 void func_8034DD48(Struct6Ds *arg0){
     if(arg0->unk0 != 0){
-        func_8030DA44(arg0->unk0);
+        sfxsource_freeSfxsourceByIndex(arg0->unk0);
     }
 }
 
@@ -359,7 +359,7 @@ void func_8034E26C(Struct6Ds *arg0, BKModel *model, s32 mesh_id) {
             arg0->unk10(arg0);
         }
         if (arg0->unk0 != 0) {
-            func_8030DA44(arg0->unk0);
+            sfxsource_freeSfxsourceByIndex(arg0->unk0);
             arg0->unk0 = 0;
         }
     }

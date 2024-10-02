@@ -86,7 +86,7 @@ void func_802F9D38(s32 arg0){
     ptr = vector_at(D_803810A0, arg0);
     if(ptr->unk0){
         func_8030E394(ptr->unk0);
-        func_8030DA44(ptr->unk0);
+        sfxsource_freeSfxsourceByIndex(ptr->unk0);
         ptr->unk0 = 0;
     }
 }
