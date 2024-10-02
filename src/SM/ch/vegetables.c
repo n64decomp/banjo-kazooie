@@ -206,8 +206,7 @@ void func_80387C28(Actor * this){
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
         __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, BUNDLE_1F_SM_EMPTY_HONEYCOMB, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
-
-    timed_mapSpecificFlags_setTrue(1.5f, 7);
+    timed_mapSpecificFlags_setTrue(1.5f, SM_SPECIFIC_FLAG_7);
     actor_collisionOff(this);
     if(local->unkC != 3){
         subaddie_set_state_with_direction(this, 3, 0.0f, 1);
@@ -248,7 +247,7 @@ void func_80387E64(Actor *this){
 void func_80387F00(Actor *this){
     ChVeg *local = (ChVeg *)&this->local;
     
-    this->position_y += (mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) ? 120.0 : 180.0;
+    this->position_y += (mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) ? 120.0 : 180.0;
     local->unk0_x = this->position_x;
     local->unk0_y = this->position_y;
     local->unk0_z = this->position_z;
@@ -331,9 +330,9 @@ void func_80388080(Actor *this){
     switch (this->state)
     {
     case 1: //L803882B0
-        if(mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) || this->unk10_12){
+        if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) || this->unk10_12){
             //L803882E4
-            if(mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //L8038830C
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //L8038830C
                 this->unk1C_y += (local->unkC == 3)? 120.0 : 0.0;
             }else{//L80388350
                 this->unk1C_y += (local->unkC == 3)? 270.0 : 85.0;
@@ -374,7 +373,7 @@ void func_80388080(Actor *this){
         }else{//L80388520
             if(local->unkC == 1){
                 this->actor_specific_1_f = 3.0f;
-                if(mapSpecificFlags_get(0xC) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){//L80388554
+                if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){//L80388554
                     if(!func_80329030(this, 0) && func_80329480(this)){
                         func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);
                         this->unk38_0 = 1;
@@ -398,7 +397,7 @@ void func_80388080(Actor *this){
                     func_80328CEC(this, (s32)this->yaw, 0x78, 0xB4);
                     this->unk38_0 = 1;
                 }//L80388698
-                if(mapSpecificFlags_get(0xC) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && func_803292E0(this))){
+                if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && func_803292E0(this))){
                     this->yaw_ideal = func_80329784(this);
                 }else{//L803886E4
                     if(randf() < 0.02){//D_8038B1D0){
@@ -429,7 +428,7 @@ void func_80388080(Actor *this){
                     func_80387E64(this);
                 }
                 this->actor_specific_1_f = 5.0f;
-                if(mapSpecificFlags_get(0xC) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))){ //L8038892C
+                if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))){ //L8038892C
                     if(!func_80387FA8(this, local, (s32)this->yaw, (s32)this->actor_specific_1_f)){
                         if(func_80329480(this)){
                             func_80328CEC(this, (s32)this->yaw, 0x78, 0xb4);

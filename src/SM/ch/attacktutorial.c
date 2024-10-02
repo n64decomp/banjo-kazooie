@@ -85,12 +85,13 @@ void chAttackTutorial_setState(Actor * this, s32 arg1){
         SM_func_803871FC(this, ++this->unk10_12);
         break;
     case 3://L8038742C
-        mapSpecificFlags_set(5,1);
-        mapSpecificFlags_set(0xC, 1);
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
         marker_despawn(this->marker);
         break;
+
     case 4://L80387454
-        mapSpecificFlags_set(0xC, 1);
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
         if(!honeycombscore_get(HONEYCOMB_17_SM_COLIWOBBLE)){
             this->unk10_12 = 3;
             this->unk38_31 = 1;
@@ -129,18 +130,22 @@ void chAttackTutorial_update(Actor *this){
 
     switch(this->state){
         case 1://L80387610
-            if(mapSpecificFlags_get(4))
+            if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_4)) {
                 chAttackTutorial_setState(this, 5);
-            
-            if(func_803874C4() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
+            }
+
+            if (func_803874C4() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) {
                 chAttackTutorial_setState(this, 4);
-            break;
-        case 2://L80387658
-            if(mapSpecificFlags_get(7)){
-                func_80387764(this->marker);
-                mapSpecificFlags_set(7,0);
             }
             break;
+
+        case 2://L80387658
+            if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_7)) {
+                func_80387764(this->marker);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_7, FALSE);
+            }
+            break;
+
         case 5://L80387680
             break;
     }////L80387680      
@@ -206,8 +211,8 @@ void func_80387764(ActorMarker * marker){
         func_8028F94C(2, actor->unk1C);
     }
     //L80387848
-    if (!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2) {
-        mapSpecificFlags_set(3, 1);
+    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities() && temp_a2) {
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
         sp34 = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
     }//L80387898
 

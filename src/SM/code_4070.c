@@ -37,19 +37,19 @@ void func_8038A4DC(Actor *this, s32 arg1){
         player_getPosition(this->velocity);
         func_8028F918(0);
         if(ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)){
-            mapSpecificFlags_set(9,1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_9, TRUE);
         }else if(ability_isUnlocked(ABILITY_A_HOLD_A_JUMP_HIGHER)){//L8038A540
-            mapSpecificFlags_set(8,1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, TRUE);
         }else{//L8038A560
             func_8038A460(this);
             ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
             gcdialog_showText(0xdf6, 0xe, this->unk1C, this->marker, func_8038A488, NULL);
             this->sm_4070.unk0 = 0xe1a;
-            mapSpecificFlags_set(8, 0);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, FALSE);
         }
         break;
     case 3://L8038A5B0
-        mapSpecificFlags_set(5, 1);
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
         break;
     }//L8038A5BC
     subaddie_set_state(this, arg1);
@@ -84,7 +84,7 @@ void SM_func_8038A5D8(Actor *this){
         if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
             marker_despawn(this->marker);
         }else{
-            if(mapSpecificFlags_get(0xe)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_E)){
                 func_8038A4DC(this, 2);
             }
         }
@@ -92,35 +92,35 @@ void SM_func_8038A5D8(Actor *this){
     
     case 2://L8038A6C8
         if(!func_803114B0()){
-            if(mapSpecificFlags_get(8)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_8)){
                 func_8038A460(this);
                 ability_unlock(ABILITY_7_FEATHERY_FLAP);
                 gcdialog_showText(0xdf7, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1b;
-                mapSpecificFlags_set(8,0);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_8, FALSE);
             }//L8038A730
 
-            if(mapSpecificFlags_get(9)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_9)){
                 func_8038A460(this);
                 ability_unlock(ABILITY_8_FLAP_FLIP);
                 gcdialog_showText(0xdf8, 0xa, this->unk1C, this->marker, func_8038A488, NULL);
                 this->sm_4070.unk0 = 0xe1c;
-                mapSpecificFlags_set(9,0);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_9, FALSE);
             }//L8038A794
 
-            if(mapSpecificFlags_get(0xa)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_A)){
                 func_8038A460(this);
                 func_8028F94C(2, this->unk1C);
                 
-                if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities()){
-                    mapSpecificFlags_set(3,1);
+                if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities()){
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
                     temp_a0 = 0xe12;
                 }else{
                     temp_a0 = 0xdf9;
                 }
 
                 gcdialog_showText(temp_a0, 0xe, this->unk1C, this->marker, func_8038A488, NULL);
-                mapSpecificFlags_set(0xa,0);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_A, FALSE);
                 this->sm_4070.unk0 = 0;
             }
         }//L8038A828

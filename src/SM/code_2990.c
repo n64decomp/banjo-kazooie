@@ -101,7 +101,7 @@ void chsmmole_skipIntroTutorial(void){
     ability_unlock(ABILITY_8_FLAP_FLIP);
     ability_unlock(ABILITY_5_CLIMB);
     chsmmole_setSpiralMountainAbilitiesAsUsed();
-    mapSpecificFlags_set(3,1);
+    mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
 }
 /**
  * @brief If the player is talking to Intro Bottles for the first time, use the
@@ -109,7 +109,7 @@ void chsmmole_skipIntroTutorial(void){
  */
 void chsmmole_setSpiralMountainStaticCamera(Actor *this){
 
-    if(this->unkF4_8 == 1 && !mapSpecificFlags_get(1)){
+    if(this->unkF4_8 == 1 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_1)){
         timed_setStaticCameraToNode(0.0f, 0x12);
     }
     else{ //L80388F68
@@ -193,7 +193,7 @@ static void __chsmmole_additionalAbilityLearnActions(ActorMarker *marker, enum a
             timed_setStaticCameraToNode(0.0f, 2);
             break;
         case 4:
-            mapSpecificFlags_set(4,1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_4, TRUE);
             break;
         case 5:
             timed_setStaticCameraToNode(0.0f, 0x12);
@@ -211,8 +211,8 @@ void func_803892C8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actor;
 
     actor = marker_getActor(marker);
-    if(!mapSpecificFlags_get(3) && chmole_learnedAllSpiralMountainAbilities()){
-        mapSpecificFlags_set(3, 1);
+    if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && chmole_learnedAllSpiralMountainAbilities()){
+        mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
         gcdialog_showText(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, func_803892C8, NULL);
     }//L8038933C
     else{ 
@@ -290,7 +290,7 @@ void chsmmole_80389610(Actor * this){
 
     switch(this->unkF4_8){
         case 1://L8038965C
-            if(mapSpecificFlags_get(1)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_1)){
                 sp28 |= 1;
                 if(fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)){
                     sp2C = D_8038AFE4 + 0xE0A; //dialog index
@@ -302,34 +302,34 @@ void chsmmole_80389610(Actor * this){
             }
             else{//L803896E8
                 sp2C = smMoleTable[this->unkF4_8 -1].learn_text;
-                mapSpecificFlags_set(1,1);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_1, TRUE);
             }
             break;
         case 8://L80389720
-            if(mapSpecificFlags_get(3)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_3)){
                 if(fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)){
                     sp2C = ASSET_E37_TEXT_BOTTLES_STOP_WASTING_TIME_AFTER_FURNACE_FUN;
                     sp28 |= 1;
                 }else{//L80389758
-                    if(mapSpecificFlags_get(0xf)){
+                    if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_F)){
                         sp2C = ASSET_E0F_TEXT_BOTTLES_STOP_WASTING_TIME_BEFORE_FURNACE_FUN;
                         sp28 |= 1;
                     }else{//L80389780
                         chsmmole_setSpiralMountainAbilitiesAsUsed();
                         sp2C = fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL) ? 0xe1e : 0xe13;
-                        mapSpecificFlags_set(0xf, 1);
+                        mapSpecificFlags_set(SM_SPECIFIC_FLAG_F, TRUE);
                     }
                 } //L803897B4
-                mapSpecificFlags_set(2, 1);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_2, TRUE);
             }
             else{//L803897C8
-                if(mapSpecificFlags_get(2)){
+                if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)){
                     sp2C = smMoleTable[this->unkF4_8 -1].refresher_text;
                     sp28 |= 1;
                 }
                 else{
                     sp2C = smMoleTable[this->unkF4_8 -1].learn_text;
-                    mapSpecificFlags_set(2, 1);
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_2, TRUE);
                 }
 
             }
@@ -340,7 +340,7 @@ void chsmmole_80389610(Actor * this){
                 || !ability_isUnlocked(ABILITY_C_ROLL)
                 || !ability_isUnlocked(ABILITY_B_RATATAT_RAP)
             ){//L803898D4
-                mapSpecificFlags_set(4, 1);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_4, TRUE);
             }
             else{//L803898E4
                 chsmmole_learnAbility(this, &sp2C, &sp28);
@@ -352,7 +352,7 @@ void chsmmole_80389610(Actor * this){
                 || !ability_isUnlocked(ABILITY_7_FEATHERY_FLAP)
                 || !ability_isUnlocked(ABILITY_8_FLAP_FLIP)
             ){//L803898D4
-                mapSpecificFlags_set(0xE, 1);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_E, TRUE);
             }
             else{//L803898E4
                 chsmmole_learnAbility(this, &sp2C, &sp28);
@@ -426,13 +426,13 @@ void chsmmole_Update(Actor * this){
             }
         }//L80389AC8
         if(chsmmole_learnedAnySpiralMountainAbilities()){
-            mapSpecificFlags_set(1,1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_1, TRUE);
 
             if(chmole_learnedAllSpiralMountainAbilities()){
-                mapSpecificFlags_set(3, 1);
-                mapSpecificFlags_set(2, 1);
-                mapSpecificFlags_set(0xC, 1);
-                mapSpecificFlags_set(0xF, 1);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_3, TRUE);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_2, TRUE);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
+                mapSpecificFlags_set(SM_SPECIFIC_FLAG_F, TRUE);
             }
         }
     }//L80389B20
@@ -453,13 +453,13 @@ void chsmmole_Update(Actor * this){
     case 1://L80389BAC
         this->yaw_ideal = (f32)func_80329784(this);
         func_80328FB0(this, 4.0f);
-        if( (this->unkF4_8 == 1 && !mapSpecificFlags_get(1))
-            || (this->unkF4_8 == 8 && !mapSpecificFlags_get(2))
-            || (this->unkF4_8 == 8 && mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xF))
+        if( (this->unkF4_8 == 1 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_1))
+            || (this->unkF4_8 == 8 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2))
+            || (this->unkF4_8 == 8 && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
         ){//L80389C50
             
             if( ((ml_distance_vec3f(sp44, this->unk1C) < this->actor_specific_1_f) && func_8028F20C())
-                || mapSpecificFlags_get(0x10)
+                || mapSpecificFlags_get(SM_SPECIFIC_FLAG_10)
             ){//L80389C8C
                 if(func_80329530(this, 0x96))
                     func_8028F45C(9, this->position);
@@ -506,7 +506,7 @@ void chsmmole_Update(Actor * this){
             func_8030E2C4(this->unk44_31);
         }//L80389EA0
         if(actor_animationIsAt(this, 0.9999f)){
-            if(!mapSpecificFlags_get(1)){
+            if(!mapSpecificFlags_get(SM_SPECIFIC_FLAG_1)){
                 chsmmole_80389610(this);
             }
             func_80388FA0(this, 3);
@@ -519,7 +519,7 @@ void chsmmole_Update(Actor * this){
             FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
 
         }else if(actor_animationIsAt(this, 0.35f)){//L80389F78
-            if(mapSpecificFlags_get(1)){
+            if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_1)){
                 chsmmole_80389610(this);
             }
         }
@@ -551,8 +551,8 @@ void chsmmole_Update(Actor * this){
             func_8030E878(SFX_6F_BANJO_HEADSCRATCH, randf2(1.35f, 1.5f), 6000, this->position, 1250.0f, 2500.0f);
         }//L8038A194
 
-        if(mapSpecificFlags_get(5)){
-            mapSpecificFlags_set(5,0);
+        if(mapSpecificFlags_get(SM_SPECIFIC_FLAG_5)){
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, FALSE);
             func_80388FA0(this, 4);
         }//L8038A1B8
         user_input = -1;
