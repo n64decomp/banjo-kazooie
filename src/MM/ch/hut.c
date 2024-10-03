@@ -8,7 +8,7 @@
 /* extern function declarations */
 
 void bundle_setYaw(f32);
-void spawnQueue_bundle_f32(s32, s32, s32, s32);
+Actor *spawnQueue_bundle_f32(s32, s32, s32, s32);
 
 /* public function declarations */
 Actor *chhut_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
@@ -50,7 +50,15 @@ void __chhut_spawnExplosion(ActorMarker *this) {
 }
 
 void chhut_update(Actor *this) {
-    static s32 D_803898D8[6] = {0, 1, 2, 3, 6, 4};
+    static enum bundle_e D_803898D8[6] = {
+        BUNDLE_0_MM_HUT_MUSIC_NOTE,
+        BUNDLE_1_MM_HUT_BLUE_EGG,
+        BUNDLE_2_MM_HUT_GRUBLIN,
+        BUNDLE_3_MM_HUT_JINJO_GREEN,
+        BUNDLE_6_MM_HUT_EXTRA_LIFE,
+        BUNDLE_4_MM_HUT_JIGGY
+    };
+
     f32 diff_pos[3];
     f32 plyr_pos[3];
 
@@ -87,7 +95,7 @@ void chhut_update(Actor *this) {
                 bundle_setYaw(this->yaw);
 
                 if (mm_hut_smash_count < 5) {
-                    __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, D_803898D8[mm_hut_smash_count], *(s32*)(&diff_pos[0]),*(s32*)(&diff_pos[1]),*(s32*)(&diff_pos[2]));
+                    __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_803898D8[mm_hut_smash_count], *(s32 * )(&diff_pos[0]), *(s32 * )(&diff_pos[1]), *(s32 * )(&diff_pos[2]));
                 }
                 else {
                     jiggy_spawn(JIGGY_5_MM_HUTS, diff_pos);

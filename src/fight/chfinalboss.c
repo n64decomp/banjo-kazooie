@@ -435,7 +435,7 @@ void __chfinalboss_dropHealth(ActorMarker *arg0) {
 
     actor = marker_getActor(arg0);
     bundle_setYaw(func_803297C8(actor, D_803916F4));
-    bundle_spawn_f32(0x14, actor->position);
+    bundle_spawn_f32(BUNDLE_14__HONEYCOMB, actor->position);
 }
 
 void chfinalboss_despawnFlightPad(void) {
@@ -1524,7 +1524,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
 
     case 32:
         func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
-        __bundle_spawnFromFirstActor(0x24, this);
+        __bundle_spawnFromFirstActor(BUNDLE_24__HONEYCOMB, this);
         return;
     case 33:
         FUNC_8030E624(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000);

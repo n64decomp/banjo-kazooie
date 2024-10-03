@@ -200,11 +200,13 @@ void func_80387C28(Actor * this){
         sp30[1] += 50.0f;
         func_80387910(partEmitMgr_newEmitter(8), sp30, 8);
     }//L80387D18
-    if(this->unk38_31){
+
+    if (this->unk38_31) {
         this->position_y += 100.0f;
         func_802CA1CC(HONEYCOMB_17_SM_COLIWOBBLE);
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, 0x1f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
+        __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, BUNDLE_1F_SM_EMPTY_HONEYCOMB, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z));
     }//L80387D64
+
     timed_mapSpecificFlags_setTrue(1.5f, 7);
     actor_collisionOff(this);
     if(local->unkC != 3){

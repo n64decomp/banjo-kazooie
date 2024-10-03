@@ -437,7 +437,7 @@ void lair_func_8038F924(Actor *this) {
                 return;
             }
             if (!fileProgressFlag_get(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE)) {
-                __bundle_spawnFromFirstActor(0x20, this);
+                __bundle_spawnFromFirstActor(BUNDLE_20__UNKOWN, this);
                 func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                 func_80324D2C(2.1f, COMUSIC_43_ENTER_LEVEL_GLITTER);
                 func_8030E6D4(SFX_113_PAD_APPEARS);

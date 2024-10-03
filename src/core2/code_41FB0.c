@@ -50,65 +50,47 @@ enum bundle_state_e {
     BUNDLE_STATE_3_IDLE
 };
 
-enum core2_41FB0_e {
-    CORE2_41FB0_0_MM_HUT_NOTES,
-    CORE2_41FB0_1_MM_HUT_EGGS,
-    CORE2_41FB0_2_MM_HUT_GRUBLIN,
-    CORE2_41FB0_3_MM_HUT_JINJO,
-    CORE2_41FB0_4_MM_HUT_JIGGY,
-
-    CORE2_41FB0_6_MM_HUT_EXTRA_LIFE = 0x6,
-
-
-    CORE2_41FB0_A_BGS_HUT_JUMP_PAD = 0xA,
-    CORE2_41FB0_B_BGS_HUT_NOTES,
-    CORE2_41FB0_C_BGS_HUT_JIGGY,
-
-    CORE2_41FB0_E_YUMYUM_EGG = 0xe,
-    CORE2_41FB0_F_YUMYUM_RED_FEATHER
-};
-
 // #define 41FB0_FLAG_SET_YAW 0x0020
 BundleInfo gBundle_array[] = {
-    /*MM HUT 1*/              {0x0021, ACTOR_51_MUSIC_NOTE,       5, SFX_3E9_UNKNOWN,         1, 16000, 125.0f,  25.0f,  725.0f, 125.0f, 125.0f,  25.0f, 0.6f,   0.0f},
-    /*MM HUT 2*/              {0x0021, ACTOR_52_BLUE_EGG,         5, SFX_21_EGG_BOUNCE_1,     1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
-    /*MM HUT 3*/              {0x0021, ACTOR_6_GRUBLIN,           1, SFX_8_BANJO_LANDING_04,  1, 20000,   0.0f,   0.0f,  550.0f, 250.0f, 200.0f,   0.0f, 0.6f,   0.0f},
-    /*MM HUT 4*/              {0x0021, ACTOR_62_JINJO_GREEN,      1, SFX_8_BANJO_LANDING_04,  1, 20000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
-    /*MM HUT 6*/              {0x0021, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
-                              {0x0001, ACTOR_50_HONEYCOMB,        3, SFX_3E9_UNKNOWN,         1, 16000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
-    /*MM HUT 5*/              {0x0021, ACTOR_49_EXTRA_LIFE,       1, SFX_3E9_UNKNOWN,         1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
-                              {0x0001, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0005, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,  90.0f,   0.0f,  930.0f,   0.0f, 100.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0049, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f, 300.0f,   0.0f, 0.5f,   0.0f},
-    /*BGS HUT 1,2,4,5*/       {0x002D, ACTOR_B_SHOCKSPRING_PAD,   1, 0,                       1, 16000,   0.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.2f, 315.0f},
-    /*BGS HUT 3*/             {0x0005, ACTOR_51_MUSIC_NOTE,       5, SFX_3E9_UNKNOWN,         1, 16000,  75.0f,   0.0f,  725.0f,   0.0f,  75.0f,   0.0f, 0.6f,   0.0f},
-    /*BGS HUT 4*/             {0x0005, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f,   0.0f,   0.0f, 0.5f,   0.0f},
-                              {0x0009, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  200.0f,   0.0f, 300.0f,   0.0f, 0.6f,   0.0f},
-    /*YUM YUM EGG*/           {0x0001, ACTOR_52_BLUE_EGG,         1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
-    /*YUM YUM FEATHER*/       {0x0001, ACTOR_129_RED_FEATHER,     1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
-    /*0x10*/                  {0x0005, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,  100.0f,   0.0f,   0.0f,   0.0f, 0.75f,  0.0f},
-                              {0x0005, ACTOR_6A_UNKNOWN,          1, 0,                       0,     0,   0.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0009, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  650.0f,   0.0f, 950.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0001, ACTOR_51_MUSIC_NOTE,       1, SFX_21_EGG_BOUNCE_1,     1, 16000, 125.0f,  25.0f,  725.0f, 125.0f, 125.0f,  25.0f, 0.6f,   0.0f},
-                              {0x0001, ACTOR_50_HONEYCOMB,        1, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
-                              {0x0065, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,  90.0f,   0.0f,  930.0f,   0.0f, 100.0f,   0.0f, 0.7f,   0.0f},
-                              {0x0021, ACTOR_50_HONEYCOMB,        1, SFX_3E9_UNKNOWN,         1, 18000,   0.0f,   0.0f,  750.0f, 250.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0021, ACTOR_50_HONEYCOMB,        2, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
-                              {0x0021, ACTOR_50_HONEYCOMB,        3, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
-                              {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 250.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 350.0f,   0.0f,  350.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 450.0f,   0.0f,  400.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 550.0f,   0.0f,  450.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 650.0f,   0.0f,  500.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0021, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,    0.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
-    /*SM QUARRIES & VEGGIES*/ {0x0025, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 18000,   0.0f,   0.0f,  750.0f, 500.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-                              {0x0129, ACTOR_352_UNKOWN,          1, SFX_3F2_UNKNOWN,         1, 16000,   0.0f,   0.0f, 2500.0f,   0.0f,   0.0f,   0.0f, 0.4f,   0.0f},
-                              {0x0081, ACTOR_3A0_ICECUBE_B,       1, SFX_116_DEAF_RUSTLING,   1, 32000, 220.0f, 100.0f,  350.0f, 200.0f, 220.0f, 100.0f, 0.6f,   0.0f},
-                              {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 250.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
-                              {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 350.0f,   0.0f,  350.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
-                              {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 450.0f,   0.0f,  400.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
-                              {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 550.0f,   0.0f,  450.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
-                              {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 650.0f,   0.0f,  500.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f}
+    {0x0021, ACTOR_51_MUSIC_NOTE,       5, SFX_3E9_UNKNOWN,         1, 16000, 125.0f,  25.0f,  725.0f, 125.0f, 125.0f,  25.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_52_BLUE_EGG,         5, SFX_21_EGG_BOUNCE_1,     1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_6_GRUBLIN,           1, SFX_8_BANJO_LANDING_04,  1, 20000,   0.0f,   0.0f,  550.0f, 250.0f, 200.0f,   0.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_62_JINJO_GREEN,      1, SFX_8_BANJO_LANDING_04,  1, 20000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_50_HONEYCOMB,        3, SFX_3E9_UNKNOWN,         1, 16000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_49_EXTRA_LIFE,       1, SFX_3E9_UNKNOWN,         1, 16000, 100.0f,  50.0f,  500.0f, 250.0f, 100.0f,  50.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x0005, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,  90.0f,   0.0f,  930.0f,   0.0f, 100.0f,   0.0f, 0.6f,   0.0f},
+    {0x0049, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f, 300.0f,   0.0f, 0.5f,   0.0f},
+    {0x002D, ACTOR_B_SHOCKSPRING_PAD,   1, 0,                       1, 16000,   0.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.2f, 315.0f},
+    {0x0005, ACTOR_51_MUSIC_NOTE,       5, SFX_3E9_UNKNOWN,         1, 16000,  75.0f,   0.0f,  725.0f,   0.0f,  75.0f,   0.0f, 0.6f,   0.0f},
+    {0x0005, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f, 1000.0f,   0.0f,   0.0f,   0.0f, 0.5f,   0.0f},
+    {0x0009, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  200.0f,   0.0f, 300.0f,   0.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_52_BLUE_EGG,         1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_129_RED_FEATHER,     1, SFX_21_EGG_BOUNCE_1,     1, 16000,   0.0f, 350.0f,  500.0f, 500.0f,   0.0f, 350.0f, 0.6f,   0.0f},
+    {0x0005, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,  100.0f,   0.0f,   0.0f,   0.0f, 0.75f,  0.0f},
+    {0x0005, ACTOR_6A_UNKNOWN,          1, 0,                       0,     0,   0.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x0009, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,   0.0f,   0.0f,  650.0f,   0.0f, 950.0f,   0.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_51_MUSIC_NOTE,       1, SFX_21_EGG_BOUNCE_1,     1, 16000, 125.0f,  25.0f,  725.0f, 125.0f, 125.0f,  25.0f, 0.6f,   0.0f},
+    {0x0001, ACTOR_50_HONEYCOMB,        1, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
+    {0x0065, ACTOR_46_JIGGY,            1, SFX_3E9_UNKNOWN,         1, 16000,  90.0f,   0.0f,  930.0f,   0.0f, 100.0f,   0.0f, 0.7f,   0.0f},
+    {0x0021, ACTOR_50_HONEYCOMB,        1, SFX_3E9_UNKNOWN,         1, 18000,   0.0f,   0.0f,  750.0f, 250.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_50_HONEYCOMB,        2, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_50_HONEYCOMB,        3, SFX_3E9_UNKNOWN,         1, 18000,  50.0f, 150.0f,  500.0f, 250.0f,  50.0f, 150.0f, 0.6f,   0.0f},
+    {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 250.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 350.0f,   0.0f,  350.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 450.0f,   0.0f,  400.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 550.0f,   0.0f,  450.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 650.0f,   0.0f,  500.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x0021, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,    0.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
+    {0x0025, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 18000,   0.0f,   0.0f,  750.0f, 500.0f,   0.0f,   0.0f, 0.6f,   0.0f},
+    {0x0129, ACTOR_352_UNKOWN,          1, SFX_3F2_UNKNOWN,         1, 16000,   0.0f,   0.0f, 2500.0f,   0.0f,   0.0f,   0.0f, 0.4f,   0.0f},
+    {0x0081, ACTOR_3A0_ICECUBE_B,       1, SFX_116_DEAF_RUSTLING,   1, 32000, 220.0f, 100.0f,  350.0f, 200.0f, 220.0f, 100.0f, 0.6f,   0.0f},
+    {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 250.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
+    {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 350.0f,   0.0f,  350.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
+    {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 450.0f,   0.0f,  400.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
+    {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 550.0f,   0.0f,  450.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
+    {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 650.0f,   0.0f,  500.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f}
 };
 
 /* .bss */
@@ -117,7 +99,7 @@ f32 gBundle_yaw;
 f32 gBundle_randomVelocity;
 
 /* .public */
-Actor *bundle_spawn_f32(s32 arg0, f32 position[3]);
+Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]);
 
 /* .code */
 void bundle_reset(void) {
@@ -136,14 +118,14 @@ void bundle_setRandomVelocity(f32 velocity) {
     gBundle_randomVelocity = velocity;
 }
 
-Actor *bundle_spawn_s32(s32 index, s32 position[3]) {
+Actor *bundle_spawn_s32(enum bundle_e bundle_id, s32 position[3]) {
     f32 pos_float[3];
 
     TUPLE_COPY(pos_float, position)
-    return bundle_spawn_f32(index, pos_float);
+    return bundle_spawn_f32(bundle_id, pos_float);
 }
 
-Actor *__bundle_spawnWithFirstActor(s32 index, f32 position[3], Actor *firstActor) {
+Actor *__bundle_spawnWithFirstActor(enum bundle_e bundle_id, f32 position[3], Actor *firstActor) {
     static f32 D_80366C4C = 400.0f;
     BundleInfo *bundle_info; //s2
     Actor *actor = NULL; //s3
@@ -151,7 +133,7 @@ Actor *__bundle_spawnWithFirstActor(s32 index, f32 position[3], Actor *firstActo
     s32 i;
     Bundle *bundle;
 
-    bundle_info = gBundle_array + index;
+    bundle_info = gBundle_array + bundle_id;
     actor = NULL;
 
     for (i = 0; i < bundle_info->count; i++) {//L802C90B0
@@ -166,7 +148,7 @@ Actor *__bundle_spawnWithFirstActor(s32 index, f32 position[3], Actor *firstActo
         actor->is_bundle = TRUE;
         
         bundle = (Bundle *) &actor->unkBC;
-        bundle->index = index;
+        bundle->index = bundle_id;
         bundle->state = BUNDLE_STATE_1_MOVING;
         bundle->unk6 = 1;
         ml_vec3f_copy(bundle->position, actor->position);
@@ -201,13 +183,13 @@ Actor *__bundle_spawnWithFirstActor(s32 index, f32 position[3], Actor *firstActo
     return actor;
 }
 
-Actor *__bundle_spawnFromFirstActor(s32 index, Actor *actor) {
-    gBundle_array[index].yaw = actor->yaw;
-    return __bundle_spawnWithFirstActor(index, actor->position, actor);
+Actor *__bundle_spawnFromFirstActor(enum bundle_e bundle_id, Actor *actor) {
+    gBundle_array[bundle_id].yaw = actor->yaw;
+    return __bundle_spawnWithFirstActor(bundle_id, actor->position, actor);
 }
 
-Actor *bundle_spawn_f32(s32 index, f32 position[3]) {
-    return __bundle_spawnWithFirstActor(index, position, NULL);
+Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]) {
+    return __bundle_spawnWithFirstActor(bundle_id, position, NULL);
 }
 
 bool func_802C939C(Actor *actor, f32 arg1[3], f32 arg2[3], f32 arg3[3], bool arg4) {
