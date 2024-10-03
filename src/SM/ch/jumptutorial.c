@@ -7,40 +7,40 @@ Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void timed_exitStaticCamera(f32);
 
 /* public functions */
-void chBottles2_update(Actor *this);
-void chBottles2_setState(Actor *this, s32 state);
+void chJumpTutorial_update(Actor *this);
+void chJumpTutorial_setState(Actor *this, s32 state);
 
 /* .data */
-enum chBottles2_state_e {
-    BOTTLES2_STATE_1_IDLE = 1,
-    BOTTLES2_STATE_2_TEACHING,
-    BOTTLES2_STATE_3_DISAPPEARED
+enum chJumpTutorial_state_e {
+    JUMP_TUTORIAL_STATE_1_IDLE = 1,
+    JUMP_TUTORIAL_STATE_2_TEACHING,
+    JUMP_TUTORIAL_STATE_3_DISAPPEARED
 };
 
 ActorInfo D_8038B0B0 = {
-    MARKER_1ED_UNKNOWN, ACTOR_3B9_UNKNOWN, NULL, 1, NULL,
-    chBottles2_update, actor_update_func_80326224, func_80325340,
+    MARKER_1ED_JUMP_TUTORIAL, ACTOR_3B9_JUMP_TUTORIAL, NULL, 1, NULL,
+    chJumpTutorial_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void __chBottles2_setStaticCameraToNode4(Actor *this) {
+void __chJumpTutorial_setStaticCameraToNode4(Actor *this) {
     timed_setStaticCameraToNode(0.0f, 4);
 }
 
-void __chBottles2_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
+void __chJumpTutorial_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     Actor *actor = marker_getActor(caller);
 
     if (text_id == ASSET_DF9_TEXT_BOTTLES_UNKNOWN || text_id == ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES) {
-        chBottles2_setState(actor, BOTTLES2_STATE_3_DISAPPEARED);
+        chJumpTutorial_setState(actor, JUMP_TUTORIAL_STATE_3_DISAPPEARED);
     }
 
     timed_exitStaticCamera(0.0f);
 }
 
-void chBottles2_setState(Actor *this, s32 state) {
+void chJumpTutorial_setState(Actor *this, s32 state) {
     switch (state) {
-        case BOTTLES2_STATE_2_TEACHING://L8038A50C
+        case JUMP_TUTORIAL_STATE_2_TEACHING://L8038A50C
             this->sm_4070.dialog_id = NULL;
             player_getPosition(this->velocity);
             func_8028F918(0);
@@ -52,16 +52,16 @@ void chBottles2_setState(Actor *this, s32 state) {
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, TRUE);
             }
             else {//L8038A560
-                __chBottles2_setStaticCameraToNode4(this);
+                __chJumpTutorial_setStaticCameraToNode4(this);
                 ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
-                gcdialog_showText(ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                gcdialog_showText(ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                 this->sm_4070.dialog_id = ASSET_E1A_TEXT_BOTTLES_UNKNOWN;
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
             }
             break;
 
-        case BOTTLES2_STATE_3_DISAPPEARED://L8038A5B0
+        case JUMP_TUTORIAL_STATE_3_DISAPPEARED://L8038A5B0
             mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
             break;
     }//L8038A5BC
@@ -69,7 +69,7 @@ void chBottles2_setState(Actor *this, s32 state) {
     subaddie_set_state(this, state);
 }
 
-void chBottles2_update(Actor *this) {
+void chJumpTutorial_update(Actor *this) {
     f32 plyr_pos[3];
     s32 face_buttons[6];
     f32 distance_to_bottles;
@@ -96,37 +96,37 @@ void chBottles2_update(Actor *this) {
     controller_copyFaceButtons(0, face_buttons);
 
     switch (this->state) {
-        case BOTTLES2_STATE_1_IDLE://L8038A688
+        case JUMP_TUTORIAL_STATE_1_IDLE://L8038A688
             if (fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)) {
                 marker_despawn(this->marker);
             }
             else if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_E)) {
-                chBottles2_setState(this, BOTTLES2_STATE_2_TEACHING);
+                chJumpTutorial_setState(this, JUMP_TUTORIAL_STATE_2_TEACHING);
             }
             break;
 
-        case BOTTLES2_STATE_2_TEACHING://L8038A6C8
+        case JUMP_TUTORIAL_STATE_2_TEACHING://L8038A6C8
             if (!func_803114B0()) {
                 if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED)) {
-                    __chBottles2_setStaticCameraToNode4(this);
+                    __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_7_FEATHERY_FLAP);
 
-                    gcdialog_showText(ASSET_DF7_TEXT_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    gcdialog_showText(ASSET_DF7_TEXT_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                     this->sm_4070.dialog_id = ASSET_E1B_TEXT_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
                 }//L8038A730
 
                 if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED)) {
-                    __chBottles2_setStaticCameraToNode4(this);
+                    __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_8_FLAP_FLIP);
 
-                    gcdialog_showText(ASSET_DF8_TEXT_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    gcdialog_showText(ASSET_DF8_TEXT_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                     this->sm_4070.dialog_id = ASSET_E1C_TEXT_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, FALSE);
                 }//L8038A794
 
                 if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_A)) {
-                    __chBottles2_setStaticCameraToNode4(this);
+                    __chJumpTutorial_setStaticCameraToNode4(this);
                     func_8028F94C(2, this->unk1C);
 
                     if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities()) {
@@ -137,7 +137,7 @@ void chBottles2_update(Actor *this) {
                         dialog_id = ASSET_DF9_TEXT_BOTTLES_UNKNOWN;
                     }
 
-                    gcdialog_showText(dialog_id, 0xe, this->unk1C, this->marker, __chBottles2_textCallback, NULL);
+                    gcdialog_showText(dialog_id, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_A, FALSE);
                     this->sm_4070.dialog_id = NULL;
                 }
@@ -155,7 +155,7 @@ void chBottles2_update(Actor *this) {
             }
             break;
 
-        case BOTTLES2_STATE_3_DISAPPEARED://L8038A8A0
+        case JUMP_TUTORIAL_STATE_3_DISAPPEARED://L8038A8A0
             marker_despawn(this->marker);
             break;
     }//L8038A8AC
