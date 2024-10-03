@@ -391,6 +391,20 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     if(func_802458E0(spAC, actor, 0x87) == 0)
                         return;
                     volatileFlag_set(VOLATILE_FLAG_1E, 1);
+                    /**
+                     * This should use the following fileprog flags:
+                     * 
+                     * FILEPROG_49_PINK_CAULDRON_1_ACTIVE
+                     * FILEPROG_4A_PINK_CAULDRON_2_ACTIVE
+                     * FILEPROG_4B_GREEN_CAULDRON_1_ACTIVE
+                     * FILEPROG_4C_GREEN_CAULDRON_2_ACTIVE
+                     * FILEPROG_4D_RED_CAULDRON_1_ACTIVE
+                     * FILEPROG_4E_RED_CAULDRON_2_ACTIVE
+                     * FILEPROG_4F_UNUSED_CAULDRON_1_ACTIVE
+                     * FILEPROG_50_UNUSED_CAULDRON_2_ACTIVE
+                     * FILEPROG_51_YELLOW_CAULDRON_1_ACTIVE
+                     * FILEPROG_52_YELLOW_CAULDRON_2_ACTIVE
+                     */
                     if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
                         actor->unk10_12 = 2;
                     }

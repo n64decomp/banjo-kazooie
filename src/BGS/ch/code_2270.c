@@ -255,7 +255,7 @@ void func_80388FC0(Actor *this){
     ActorLocal_Tiptup *local;
 
     local = (ActorLocal_Tiptup *)&this->local;
-    fileProgressFlag_setN(FILEPROG_0_UNKNOWN, local->unkA, 2);
+    fileProgressFlag_setN(FILEPROG_0_TIPTUP_MINIGAME_PROGRESS, local->unkA, 2);
     vector_free(local->unk4);
 }
 
@@ -291,7 +291,7 @@ void chTiptup_update(Actor *this){
         unqPtr->unk4 = vector_new(sizeof(Struct_BGS_2270_0s), 8);
         unqPtr->unk8 = 0;
         unqPtr->unk9 = 0;
-        unqPtr->unkA = fileProgressFlag_getN(FILEPROG_0_UNKNOWN, 2);
+        unqPtr->unkA = fileProgressFlag_getN(FILEPROG_0_TIPTUP_MINIGAME_PROGRESS, 2);
         unqPtr->unkB = 0;
         unqPtr->unkC = 0.0f;
         if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){

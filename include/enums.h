@@ -14,9 +14,9 @@
 #define SPRITE_TYPE_RGBA32 (1 << 11)
 
 enum file_progress_e {
-    FILEPROG_0_UNKNOWN,
-    FILEPROG_1_UNKNOWN,
-    FILEPROG_2_UNKNOWN,
+    FILEPROG_0_TIPTUP_MINIGAME_PROGRESS,
+    // unused
+    // unused
     FILEPROG_3_MUSIC_NOTE_TEXT,
     FILEPROG_4_MUMBO_TOKEN_TEXT,
     FILEPROG_5_BLUE_EGG_TEXT,
@@ -79,17 +79,17 @@ enum file_progress_e {
     FILEPROG_46_CCW_WITCH_SWITCH_JIGGY_PRESSED,
     FILEPROG_47_FP_WITCH_SWITCH_JIGGY_PRESSED,
     FILEPROG_48_FP_WITCH_SWITCH_ADVENT_DOOR_OPEN,
-    // {index=0x49, type="Prog", level=6, name="Pink Cauldron 1 Active"},
-    // {index=0x4A, type="Prog", level=6, name="Pink Cauldron 2 Active"},
-    // {index=0x4B, type="Prog", level=6, name="Green Cauldron 1 Active"},
-    // {index=0x4C, type="Prog", level=6, name="Green Cauldron 2 Active"},
-    // {index=0x4D, type="Prog", level=6, name="Red Cauldron 1 Active"},
-    // {index=0x4E, type="Prog", level=6, name="Red Cauldron 2 Active"},
-    // -- 0x4F - Unused Cauldron Pair?
-    // -- 0x50 - Unused Cauldron Pair?
-    // {index=0x51, type="Prog", level=6, name="Yellow Cauldron 1 Active"},
-    // {index=0x52, type="Prog", level=6, name="Yellow Cauldron 2 Active"},
-    FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED = 0x53,
+    FILEPROG_49_PINK_CAULDRON_1_ACTIVE,
+	FILEPROG_4A_PINK_CAULDRON_2_ACTIVE,
+	FILEPROG_4B_GREEN_CAULDRON_1_ACTIVE,
+	FILEPROG_4C_GREEN_CAULDRON_2_ACTIVE,
+	FILEPROG_4D_RED_CAULDRON_1_ACTIVE,
+	FILEPROG_4E_RED_CAULDRON_2_ACTIVE,
+	FILEPROG_4F_UNUSED_CAULDRON_1_ACTIVE,
+	FILEPROG_50_UNUSED_CAULDRON_2_ACTIVE,
+	FILEPROG_51_YELLOW_CAULDRON_1_ACTIVE,
+	FILEPROG_52_YELLOW_CAULDRON_2_ACTIVE,
+    FILEPROG_53_CCW_PUZZLE_PODIUM_SWITCH_PRESSED,
     FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE,
     FILEPROG_55_FF_BK_SQUARE_INSTRUCTIONS,
     FILEPROG_56_FF_PICTURE_SQUARE_INSTRUCTIONS,
@@ -110,7 +110,6 @@ enum file_progress_e {
     FILEPROG_76_CCW_PUZZLE_PIECES_PLACED = 0x76, //4 bit
     FILEPROG_7A_DOG_PUZZLE_PIECES_PLACED = 0x7A, //5 bit
     FILEPROG_7F_DOUBLE_HEALTH_PUZZLE_PIECES_PLACED = 0x7F, //3 bit
-    // {index=0x82, unknown}
     FILEPROG_82_MET_TWINKLIES = 0x82,
     FILEPROG_83_MAGIC_GET_WEAK_TEXT,
     FILEPROG_84_MAGIC_ALL_GONE_TEXT,
@@ -130,8 +129,8 @@ enum file_progress_e {
     FILEPROG_92_PAID_WALRUS_COST,
     FILEPROG_93_PAID_CROC_COST,
     FILEPROG_94_PAID_BEE_COST,
-
-    FILEPROG_96_MET_BRENTILDA = 0x96,
+    FILEPROG_95_UNKNOWN,
+    FILEPROG_96_MET_BRENTILDA,
     FILEPROG_97_ENTERED_LAIR_TEXT,
     FILEPROG_98_EXITED_LEVEL_TEXT,
     FILEPROG_99_PAST_50_NOTE_DOOR_TEXT,
@@ -225,7 +224,6 @@ enum file_progress_e {
     FILEPROG_F6_SEEN_DOOR_OF_GRUNTY_PUZZLE_PODIUM,
     FILEPROG_F7_HAS_TRANSFORMED_IN_CRYPT,
     FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF8, //2bit
-    // FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE = 0xF9, //2bit
 
     FILEPROG_FA_UNKNOWN = 0xFA, // Something that's set in FF
 

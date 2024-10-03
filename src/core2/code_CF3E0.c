@@ -29,7 +29,7 @@ MapProgressFlagToDialogID fileProgressDialogMap[] = {
     { FILEPROG_BE_CHEATO_BLUEEGGS,                0xFA8},
     { FILEPROG_BF_CHEATO_REDFEATHERS,             0xFA9},
     { FILEPROG_C0_CHEATO_GOLDFEATHERS,            0xFAA},
-    {0x95, 0xB50},
+    { FILEPROG_95_UNKNOWN, 0xB50},
     { FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,        0xF7B},
     { -1, -1}
 };
