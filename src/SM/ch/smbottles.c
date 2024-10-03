@@ -41,7 +41,8 @@ ActorAnimationInfo chSmBottlesAnimations[6] = {
 };
 
 ActorInfo chBottles = {
-    MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES, 1, chSmBottlesAnimations,
+    MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES,
+    1, chSmBottlesAnimations,
     chSmBottles_update, actor_update_func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
 };
