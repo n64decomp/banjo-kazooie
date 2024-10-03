@@ -8,7 +8,7 @@ void chmole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1
 
 typedef struct{
     s16 teach_text_id;
-    s16 refresher_text;
+    s16 refresher_text_id;
     s8 camera_node;
     s8 ability;
 } ChMoleDescription;
@@ -224,7 +224,7 @@ int chmole_learnAbility(Actor *this){
     // Known Ability: Refresher Dialog
     if(ability_isUnlocked(moleTable[this->unkF4_8-9].ability)){
         sp28 = 0xf;
-        sp2C = moleTable[this->unkF4_8-9].refresher_text;
+        sp2C = moleTable[this->unkF4_8-9].refresher_text_id;
     }//L802D99EC
     // New Ability: Learn Dialog & Misc Actions
     else{
