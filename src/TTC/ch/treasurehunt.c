@@ -9,13 +9,13 @@ typedef struct {
     s32 unk0;
 } ActorLocal_TreasureHunt;
 
-void chTreasurehunt_updateFunc(Actor *this);
-Actor *chTreasurehunt_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+static void __chTreasurehunt_updateFunc(Actor *this);
+static Actor *__chTreasurehunt_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 extern u32 CH_TREASUREHUNT_PUZZLE_CURRENT_STEP;
 
 /* .data */
-f32 CH_TREASUREHUNT_STEP_POSITIONS[6][3] = {
+static f32 sChTreasurehunt_stepPositions[6][3] = {
     {2904.0f, 2458.0f, -7351.0f},
     {-7007.0f, 2013.0f, 401.0f},
     {-3388.0f, 1519.0f, 5939.0f},
@@ -24,9 +24,9 @@ f32 CH_TREASUREHUNT_STEP_POSITIONS[6][3] = {
     {7667.0f, 717.0f, 1676.0f}
 };
 
-f32 CH_TREASUREHUNT_STEP_RED_X_YAWS[6] = { 300.0f, 180.0f, 220.0f, 270.0f, 330.0f, 255.0f };
-s32 CH_TREASUREHUNT_STEP_YAWS[6] = { 0x6E, 0xD2, 0x10E, 0x145, 0x14A, 0 };
-s32 CH_TREASUREHUNT_STEP_ACTORS[6] = {
+static f32 sChTreasurehunt_StepRedXYaws[6] = { 300.0f, 180.0f, 220.0f, 270.0f, 330.0f, 255.0f };
+static s32 sChTreasurehunt_StepYaws[6] = { 0x6E, 0xD2, 0x10E, 0x145, 0x14A, 0 };
+static s32 sChTreasurehunt_StepActors[6] = {
     ACTOR_53_RED_ARROW,
     ACTOR_53_RED_ARROW,
     ACTOR_53_RED_ARROW,
@@ -38,25 +38,25 @@ s32 CH_TREASUREHUNT_STEP_ACTORS[6] = {
 ActorInfo gChTreasurehuntRedArrow = {
     MARKER_62_RED_ARROW, ACTOR_53_RED_ARROW, ASSET_3E9_MODEL_RED_ARROW, 
     0, NULL, 
-    chTreasurehunt_updateFunc, func_80326224, chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo gChTreasurehuntRedQuestionMark = {
     MARKER_63_RED_QUESTION_MARK, ACTOR_54_RED_QUESTION_MARK, ASSET_3EB_MODEL_RED_QUESTION_MARK, 
     0, NULL, 
-    chTreasurehunt_updateFunc, func_80326224, chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo gChTreasurehuntRedX = {
     MARKER_64_RED_X, ACTOR_55_RED_X, ASSET_3EA_MODEL_RED_X, 
     0, NULL, 
-    chTreasurehunt_updateFunc, func_80326224, chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
-s32 CH_TREASUREHUNT_PARTICLE_RGB[3] = {160, 120, 20};
+static s32 sChTreasurehuntParticleRGB[3] = {160, 120, 20};
 
 ParticleScaleAndLifetimeRanges CH_TREASUREHUNT_PARTICLE_SCALE_AND_LIFETIME_RANGES = {
     {1.1f, 1.5f}, 
@@ -72,7 +72,7 @@ struct42s CH_TREASUREHUNT_VELOCITY_RANGES = {
 };
 
 /* .code */
-bool chTreasurehunt_isActiveHitboxBeakBusterHitbox(void) {
+static bool __chTreasurehunt_isActiveHitboxBeakBusterHitbox(void) {
     enum comusic_e comusic_id;
     s32 music_volume;
 
@@ -89,32 +89,32 @@ bool chTreasurehunt_isActiveHitboxBeakBusterHitbox(void) {
     return FALSE;
 }
 
-void chTreasurehunt_spawnRedXForNextStep(void) {
+static void __chTreasurehunt_spawnRedXForNextStep(void) {
     Actor *actor;
     ActorLocal_TreasureHunt *local;
 
-    actor = actor_spawnWithYaw_f32(ACTOR_55_RED_X, CH_TREASUREHUNT_STEP_POSITIONS[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP], 0);
+    actor = actor_spawnWithYaw_f32(ACTOR_55_RED_X, sChTreasurehunt_stepPositions[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
-    actor->yaw = CH_TREASUREHUNT_STEP_RED_X_YAWS[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP];
+    actor->yaw = sChTreasurehunt_StepRedXYaws[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP];
     local->unk0 = CH_TREASUREHUNT_PUZZLE_CURRENT_STEP;
     actor->lifetime_value = 0.0f;
     actor->state = 0;
 }
 
-void chTreasurehunt_spawnActorForNextStep(void) {
+static void __chTreasurehunt_spawnActorForNextStep(void) {
     Actor *actor;
     ActorLocal_TreasureHunt *local;
 
-    actor = actor_spawnWithYaw_f32((CH_TREASUREHUNT_STEP_ACTORS - 1)[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP], CH_TREASUREHUNT_STEP_POSITIONS[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP - 1], 0);
+    actor = actor_spawnWithYaw_f32((sChTreasurehunt_StepActors - 1)[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP], sChTreasurehunt_stepPositions[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP - 1], 0);
     local = (ActorLocal_TreasureHunt *)&actor->local;
-    actor->yaw = CH_TREASUREHUNT_STEP_YAWS[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP - 1];
+    actor->yaw = sChTreasurehunt_StepYaws[CH_TREASUREHUNT_PUZZLE_CURRENT_STEP - 1];
     local->unk0 = CH_TREASUREHUNT_PUZZLE_CURRENT_STEP;
     actor->lifetime_value = 0.0f;
     actor->state = 0;
 }
 
-void chTreasurehunt_checkStepProgress(s32 currentStep){
-    if(CH_TREASUREHUNT_PUZZLE_CURRENT_STEP == currentStep && chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
+static void __chTreasurehunt_checkStepProgress(s32 currentStep){
+    if(CH_TREASUREHUNT_PUZZLE_CURRENT_STEP == currentStep && __chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
         if(currentStep == 0 && !jiggyscore_isCollected(JIGGY_11_TTC_RED_X)){
             gcdialog_showText(ASSET_A18_TEXT_TREASUREHUNT_FOLLOW_CLUES, 4, NULL, NULL, NULL, NULL);
         }
@@ -123,43 +123,43 @@ void chTreasurehunt_checkStepProgress(s32 currentStep){
         }
 
         CH_TREASUREHUNT_PUZZLE_CURRENT_STEP++;
-        __spawnQueue_add_0(chTreasurehunt_spawnActorForNextStep);
-        __spawnQueue_add_0(chTreasurehunt_spawnRedXForNextStep);
+        __spawnQueue_add_0(__chTreasurehunt_spawnActorForNextStep);
+        __spawnQueue_add_0(__chTreasurehunt_spawnRedXForNextStep);
     }
 }
 
 void chTreasurehunt_checkStepProgress0(ActorMarker *this, ActorMarker *arg1){\
-    chTreasurehunt_checkStepProgress(0);
+    __chTreasurehunt_checkStepProgress(0);
 }
 
 void chTreasurehunt_checkStepProgress1(ActorMarker *this, ActorMarker *arg1){\
-    chTreasurehunt_checkStepProgress(1);
+    __chTreasurehunt_checkStepProgress(1);
 }
 
 void chTreasurehunt_checkStepProgress2(ActorMarker *this, ActorMarker *arg1){\
-    chTreasurehunt_checkStepProgress(2);
+    __chTreasurehunt_checkStepProgress(2);
 }
 
 void chTreasurehunt_checkStepProgress3(ActorMarker *this, ActorMarker *arg1){\
-    chTreasurehunt_checkStepProgress(3);
+    __chTreasurehunt_checkStepProgress(3);
 }
 
 void chTreasurehunt_checkStepProgress4(ActorMarker *this, ActorMarker *arg1){\
-    chTreasurehunt_checkStepProgress(4);
+    __chTreasurehunt_checkStepProgress(4);
 }
 
 void chTreasurehunt_checkStepProgress5(s16 arg0[3], s32 arg1){
     static ParticleEmitter *particleEmitter;
     static f32 particleTargetPosition[3];
 
-    if(CH_TREASUREHUNT_PUZZLE_CURRENT_STEP == 5 && chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
+    if(CH_TREASUREHUNT_PUZZLE_CURRENT_STEP == 5 && __chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
         particleTargetPosition[0] = (f32)arg0[0];
         particleTargetPosition[1] = (f32)arg0[1];
         particleTargetPosition[2] = (f32)arg0[2];
         particleTargetPosition[1] =  mapModel_getFloorY(particleTargetPosition);
         __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0xF4, reinterpret_cast(s32, particleTargetPosition[0]), reinterpret_cast(s32, particleTargetPosition[1]), reinterpret_cast(s32, particleTargetPosition[2]));
         particleEmitter = partEmitMgr_newEmitter(3);
-        particleEmitter_setRGB(particleEmitter, CH_TREASUREHUNT_PARTICLE_RGB);
+        particleEmitter_setRGB(particleEmitter, sChTreasurehuntParticleRGB);
         particleEmitter_setSprite(particleEmitter, ASSET_700_SPRITE_DUST);
         particleEmitter_setStartingFrameRange(particleEmitter, 0, 7);
         particleEmitter_setPosition(particleEmitter, particleTargetPosition);
@@ -179,7 +179,7 @@ void chTreasurehunt_resetProgress(void){
     CH_TREASUREHUNT_PUZZLE_CURRENT_STEP = 0;
 }
 
-void chTreasurehunt_updateFunc(Actor *this){
+static void __chTreasurehunt_updateFunc(Actor *this){
     f32 tick = time_getDelta();
     ActorLocal_TreasureHunt *local = (ActorLocal_TreasureHunt*)&this->local;
     f64 tmp_f12;
@@ -212,7 +212,7 @@ void chTreasurehunt_updateFunc(Actor *this){
     this->depth_mode = 2;
 }
 
-Actor *chTreasurehunt_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+static Actor *__chTreasurehunt_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 sp4C[3];
     f32 sp40[3];
     f32 sp3C;

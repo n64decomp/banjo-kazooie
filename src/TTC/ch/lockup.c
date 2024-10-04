@@ -51,8 +51,8 @@ ActorInfo gChLockupFast = {
     2500, 0x366, 0.0f, 0
 }; 
 
-static s32 sLockupCloseColor[4] = {120, 120, 120, 120};
-static s32 sLockupCloseVelocity[3] = {0,0,0};
+static s32 sLockup_CloseColor[4] = {120, 120, 120, 120};
+static s32 sLockup_CloseVelocity[3] = {0,0,0};
 
 /* .code */
 static Actor *__chLockup_drawFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -151,7 +151,7 @@ static void __chLockup_updateFunc(Actor *this){
                 __chLockup_close(this);
                 for(i = 5; i < 0xe; i++){
                     func_8034A174(this->marker->unk44, i, this->unk1C);
-                    func_802EE6CC(this->unk1C, sLockupCloseVelocity, sLockupCloseColor, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
+                    func_802EE6CC(this->unk1C, sLockup_CloseVelocity, sLockup_CloseColor, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
                 }
             }
             break;
