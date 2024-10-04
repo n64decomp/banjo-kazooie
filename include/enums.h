@@ -3314,7 +3314,7 @@ enum asset_e
     // 427 (Wooden Plank)
     ASSET_428_MODEL_BOSS_BOOM_BOX = 0x428,
     ASSET_429_MODEL_CC_KEY,
-    // 42a (Smoke 2D?)
+    ASSET_42A_UNKNOWN, // 42a (Smoke 2D?)
     // 42b (Orange Triangle?)
     ASSET_42C_MODEL_BURIED_TREASURE = 0x42C,
     ASSET_42D_MODEL_QUARRIE = 0x42D,
@@ -3391,14 +3391,14 @@ enum asset_e
     // 472 Blank Picture
     // 473 Mumbo The BBQ King! He Bares Coconuts!
     // 474 Roysten The Grill Master!
-    // 475 (Heart 2D?)
-    ASSET_476_SPRITE_BLUE_GLOW     = 0x476,
+    ASSET_475_UNKNOWN = 0x475,// 475 (Heart 2D?)
+    ASSET_476_SPRITE_BLUE_GLOW,
     ASSET_477_SPRITE_YELLOW_GLOW,
     // 478 (Yellow Glow?)
     // 479 Bikini Girl
     // 47a (Brown Ball?)
     ASSET_47B_MODEL_ROCK    = 0x47b,
-    // 47c (Snoring Z 2D?)
+    ASSET_47C_UNKNOWN,// 47c (Snoring Z 2D?)
     // Unused
     // Unused
     ASSET_47F_MODEL_XMAS_GIFT_BLUE = 0x47F,
@@ -3791,7 +3791,7 @@ enum asset_e
     // Unused
     // 606 Red Mushroom
     // 607 Green Mushroom
-    // 608 White Circle
+    ASSET_608_UNKNOWN = 0x608, // 608 White Circle
     // 609 Mushroom (2D)
     // Unused
     // Unused
@@ -3994,6 +3994,7 @@ enum asset_e
     ASSET_6DA_SPRITE_HOURGLASS,
     ASSET_6DB_SPRITE_SKULL_HOURGLASS,
     ASSET_6DC_SPRITE_XMAS_TREE_TIMER,
+    ASSET_6DD_UNKNOWN,
 
     SPRITE_DIALOG_FONT_ALPHAMASK = 0x6eb,
     SPRITE_BOLD_FONT_LETTERS_ALPHAMASK,
@@ -4017,8 +4018,8 @@ enum asset_e
     ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
     ASSET_712_SPRITE_SPARKLE_GREEN,
     ASSET_713_SPRITE_SPARKLE_YELLOW,
-
-    ASSET_715_SPRITE_SPARKLE_RED = 0x715,
+    ASSET_714_SPRITE_UNKNOWN,
+    ASSET_715_SPRITE_SPARKLE_RED,
     ASSET_716_SPRITE_SPARKLE_WHITE,
     ASSET_717_SPRITE_SPARKLE_YELLOW_2,
     ASSET_718_SPRITE_SPARKLE_WHITE_2,

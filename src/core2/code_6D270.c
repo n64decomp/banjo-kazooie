@@ -49,7 +49,7 @@ ParticleEmitter *func_802F4274(f32 arg0[3]) {
     if (sp20 != 0) {
         func_802EFAB0(temp_v0, sp20, sp2C[1]);
     }
-    particleEmitter_setSprite(temp_v0, 0x42A);
+    particleEmitter_setSprite(temp_v0, ASSET_42A_UNKNOWN);
     particleEmitter_setAlpha(temp_v0, 0xFF);
     particleEmitter_setFade(temp_v0, 0, 0.78f);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 0);
