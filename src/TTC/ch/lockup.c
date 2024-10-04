@@ -9,8 +9,8 @@ typedef struct {
     s32 open_ticks_counter;
 } ActorLocal_Lockup;
 
-Actor *chLockup_drawFunc(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void chLock_updateFunc(Actor *this);
+static Actor *__chLockup_drawFunc(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+static void __chLockup_updateFunc(Actor *this);
 
 enum ch_lockup_states_e {
     CH_LOCKUP_STATE_CLOSED = 1,   // L803896F0
@@ -22,7 +22,7 @@ enum ch_lockup_states_e {
 
 /* .data */
 ActorAnimationInfo gChLockupAnimations[6] ={
-    {0, 0.0f},
+    {NULL, NULL},
     {ASSET_BC_ANIM_LOCKUP, 8000000.0f},
     {ASSET_BC_ANIM_LOCKUP, 4.0f},
     {ASSET_BC_ANIM_LOCKUP, 8000000.0f},
@@ -33,50 +33,50 @@ ActorAnimationInfo gChLockupAnimations[6] ={
 ActorInfo gChLockupSlow = {
     MARKER_A4_LOCKUP_SLOW, ACTOR_151_LOCKUP_SLOW, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    chLock_updateFunc, func_80326224, chLockup_drawFunc,
+    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo gChLockupMedium = {
     MARKER_F6_LOCKUP_MEDIUM, ACTOR_152_LOCKUP_MEDIUM, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    chLock_updateFunc, func_80326224, chLockup_drawFunc,
+    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo gChLockupFast = {
     MARKER_F7_LOCKUP_FAST, ACTOR_153_LOCKUP_FAST, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    chLock_updateFunc, func_80326224, chLockup_drawFunc,
+    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 
-s32 CH_LOCKUP_CLOSE_COLOR[4] = {120, 120, 120, 120};
-s32 CH_LOCKUP_CLOSE_VELOCITY[3] = {0,0,0};
+static s32 sLockupCloseColor[4] = {120, 120, 120, 120};
+static s32 sLockupCloseVelocity[3] = {0,0,0};
 
 /* .code */
-Actor *chLockup_drawFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+static Actor *__chLockup_drawFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor * actor = marker_getActor(marker);
     func_8033A45C(3, actor->unk38_31);
     func_8033A45C(4, actor->unk38_31);
     actor_draw(marker, gfx, mtx, vtx);
 }
 
-void chLockup_close(Actor *this){
+static void __chLockup_close(Actor *this){
     subaddie_set_state_with_direction(this, CH_LOCKUP_STATE_CLOSED, 0.2f, 1);
     this->marker->collidable = FALSE;
     this->unk38_31 = 0;
     FUNC_8030E8B4(SFX_6C_LOCKUP_CLOSING, 1.0f, 32000, this->position, 1250, 2500);
 }
 
-void chLockup_open(Actor *this){
+static void __chLockup_open(Actor *this){
     func_80389468();
     subaddie_set_state_with_direction(this, CH_LOCKUP_STATE_OPENING, 0.2f, 1);
     this->unk38_31 = 1;
     FUNC_8030E8B4(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);
 }
 
-void chLock_updateFunc(Actor *this){
+static void __chLockup_updateFunc(Actor *this){
     ActorLocal_Lockup *local = (ActorLocal_Lockup *)&this->local;
     s32 tmp_v1;
     int i;
@@ -115,7 +115,7 @@ void chLock_updateFunc(Actor *this){
 
             if(!(local->closed_ticks_counter < tmp_v1)){
                 local->closed_ticks_counter = 0;
-                chLockup_open(this);
+                __chLockup_open(this);
             }
             break;
 
@@ -148,10 +148,10 @@ void chLock_updateFunc(Actor *this){
         case CH_LOCKUP_STATE_CLOSING:
         case CH_LOCKUP_STATE_CLOSING2:
             if(this->marker->unk14_21 && actor_animationIsAt(this, 0.99f)){
-                chLockup_close(this);
+                __chLockup_close(this);
                 for(i = 5; i < 0xe; i++){
                     func_8034A174(this->marker->unk44, i, this->unk1C);
-                    func_802EE6CC(this->unk1C, CH_LOCKUP_CLOSE_VELOCITY, CH_LOCKUP_CLOSE_COLOR, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
+                    func_802EE6CC(this->unk1C, sLockupCloseVelocity, sLockupCloseColor, 1, 0.4f, 50.0f, 0xb4, 0xa0, 0);
                 }
             }
             break;
