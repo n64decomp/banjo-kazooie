@@ -2,25 +2,25 @@
 #include "functions.h"
 #include "variables.h"
 
-void chTreasure_updateFunc(Actor *this);
+static void __chTreasure_updateFunc(Actor *this);
 
 /* .data */
 ActorAnimationInfo gChTreasureAnimations[4] = {
-    {0, 0.0f},
+    {NULL, NULL},
     {ASSET_153_ANIM_BURIED_TREASURE_APPEAR, 2.0f},
     {ASSET_166_ANIM_BURIED_TREASURE_BOUNCE, 0.33f},
-    {0, 0.0}
+    {NULL, NULL}
 };
 
 ActorInfo gChTreasure = {
     MARKER_DB_BURIED_TREASURE, ACTOR_F4_BURIED_TREASURE, ASSET_42C_MODEL_BURIED_TREASURE, 
     1, gChTreasureAnimations, 
-    chTreasure_updateFunc, func_80326224, actor_draw,
+    __chTreasure_updateFunc, func_80326224, actor_draw,
     0, 0, 1.7f, 0
 }; 
 
 /* .code */
-void chTreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
+static void __chTreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
     Actor *this = marker_getActor(marker);
     __spawnQueue_add_4((GenFunction_4) spawnQueue_actor_f32, 0x4C, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     func_802EE278(this, 3, 0xf, 0x3C, 0.2f, 1.2f);
@@ -29,7 +29,7 @@ void chTreasure_die(ActorMarker *marker, ActorMarker *otherMarker){
     marker_despawn(marker);
 }
 
-void chTreasure_updateFuncPosition(Actor *this){
+static void __chTreasure_updateFuncPosition(Actor *this){
     this->position[0] = this->unk1C[0];\
     this->position[1] = this->unk1C[1];\
     this->position[2] = this->unk1C[2];
@@ -42,7 +42,7 @@ void chTreasure_updateFuncPosition(Actor *this){
     this->yaw = this->lifetime_value*180.0/M_PI;
 }
 
-void chTreasure_updateFunc(Actor *this){
+static void __chTreasure_updateFunc(Actor *this){
     f32 sp3C[3];
     s16 sp34[3];
 
@@ -61,9 +61,9 @@ void chTreasure_updateFunc(Actor *this){
         this->unk1C[2] = this->position[2];
         
         actor_playAnimationOnce(this);
-        marker_setCollisionScripts(this->marker, NULL, NULL, chTreasure_die);
+        marker_setCollisionScripts(this->marker, NULL, NULL, __chTreasure_die);
     }
-    chTreasure_updateFuncPosition(this);
+    __chTreasure_updateFuncPosition(this);
     func_8034A174(this->marker->unk44, 5, sp3C);
     sp34[0] = (s16)sp3C[0];
     sp34[1] = (s16)sp3C[1];
