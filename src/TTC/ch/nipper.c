@@ -175,11 +175,11 @@ void chNipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_marker){
 
     if(other_marker->id == 1){
         this = marker_getActor(this_marker);
-        if( !mapSpecificFlags_get(7)
+        if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN)
             && this->has_met_before
             && gcdialog_showText(0xa0f, 0, NULL, NULL, NULL, NULL)
         ){
-            mapSpecificFlags_set(7, TRUE);
+            mapSpecificFlags_set(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN, TRUE);
         }
     }
 }
