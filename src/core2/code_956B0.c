@@ -598,7 +598,7 @@ void warp_bgsEnterTanktupConditional(s32 arg0, s32 arg1) {
 }
 
 void warp_ttcEnterNippersShell(s32 arg0, s32 arg1) {
-    if (func_80388A44() != 0) {
+    if (chNipper_isInState7() != 0) {
         func_8031CC8C(arg0, 0x601);
     }
 }
