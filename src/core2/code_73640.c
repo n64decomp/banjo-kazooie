@@ -89,7 +89,7 @@ ItemPrint D_803692F8[0x2C] = {
 /* .bss */
 s32 D_803810B0;
 f32 itemPrintValues[0x2C]; //item_print_value
-s32 D_80381168[0x2C]; //comusic_e
+s32 D_80381168[0x2C]; // item_e => comusic_e
 f32 D_80381218[0x2C]; //item_sfx_volume???
 s32 D_803812C8[0x2C]; //comusic_e
 s32 D_80381378[0x2C]; //sfx_e

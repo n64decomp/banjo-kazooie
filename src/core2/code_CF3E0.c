@@ -123,12 +123,12 @@ void volatileFlag_setAndTriggerDialog_0(s32 arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0);
 }
 
-// called for FFQ dialogs
+// called for FFQ dialogs, gruntilda speaking?
 void volatileFlag_setAndTriggerDialog_4(s32 arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 4);
 }
 
-// called for WISHYWASHYBANJO dialog
+// called for WISHYWASHYBANJO dialog, mumbo jumbo speaking?
 void volatileFlag_setAndTriggerDialog_E(s32 arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0xE);
 }
