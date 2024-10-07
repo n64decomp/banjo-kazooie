@@ -20,12 +20,6 @@ enum chAttackTutorial_state_e {
     ATTACK_TUTORIAL_STATE_5_UNKNOWN
 };
 
-enum chAttackTutorial_enemy_e {
-    ATTACK_TUTORIAL_ENEMY_1_TOPPER = 1,
-    ATTACK_TUTORIAL_ENEMY_2_BAWL,
-    ATTACK_TUTORIAL_ENEMY_3_COLLY_WOBBLE
-};
-
 ActorInfo D_8038AC20 = {
     MARKER_12B_ATTACK_TUTORIAL, ACTOR_167_ATTACK_TUTORIAL, NULL,
     1, NULL,
@@ -34,7 +28,7 @@ ActorInfo D_8038AC20 = {
 };
 
 /* .code */
-void __chAttackTutorial_enemy(ActorMarker *marker, s32 enemy_id) {
+void __chAttackTutorial_enemy(ActorMarker *marker, enum actor_e enemy_id) {
     Actor *actor = marker_getActor(marker);
     s32 pad;
     Actor *enemy = spawn_child_actor(enemy_id, &actor);
@@ -42,24 +36,24 @@ void __chAttackTutorial_enemy(ActorMarker *marker, s32 enemy_id) {
     actor->unk100 = enemy->marker;
     enemy->unk100 = actor->marker;
 
-    if (actor->unk10_12 == ATTACK_TUTORIAL_ENEMY_3_COLLY_WOBBLE && actor->unk38_31 == 1) {
+    if (actor->unk10_12 == VEGETABLE_3_COLLY_WOBBLE && actor->unk38_31 == 1) {
         enemy->unk38_31 = 1;
     }
     else {//L803871D4
         enemy->unk38_31 = 0;
     }
 
-    enemy->unk10_12 = ATTACK_TUTORIAL_ENEMY_1_TOPPER;
+    enemy->unk10_12 = VEGETABLE_1_TOPPER;
     if (marker);
 }
 
-s32 __chAttackTutorial_spawnEnemy(Actor *this, enum chAttackTutorial_enemy_e enemy) {
-    volatile s32 sp1C;
+s32 __chAttackTutorial_spawnEnemy(Actor *this, enum vegetable_e vegetable_id) {
+    volatile enum actor_e enemy_id;
 
-    sp1C = enemy == ATTACK_TUTORIAL_ENEMY_1_TOPPER ? ACTOR_166_TOPPER_A :
-           enemy == ATTACK_TUTORIAL_ENEMY_2_BAWL ? ACTOR_165_BAWL_A : ACTOR_164_COLLYWOBBLE_A;
+    enemy_id = vegetable_id == VEGETABLE_1_TOPPER ? ACTOR_166_TOPPER_A :
+               vegetable_id == VEGETABLE_2_BAWL ? ACTOR_165_BAWL_A : ACTOR_164_COLLYWOBBLE_A;
 
-    __spawnQueue_add_2(__chAttackTutorial_enemy, this->marker, sp1C);
+    __spawnQueue_add_2(__chAttackTutorial_enemy, this->marker, enemy_id);
 }
 
 void __chAttackTutorial_learnedTextActions(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
@@ -93,7 +87,7 @@ void chAttackTutorial_setState(Actor *this, s32 state) {
                 gcdialog_showText(ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, __chAttackTutorial_learnedTextActions);
             }
             else {
-                gcdialog_showText(this->unk10_12 == ATTACK_TUTORIAL_ENEMY_1_TOPPER ? ASSET_E15_TEXT_UNKNOWN : ASSET_E17_TEXT_UNKNOWN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, NULL);
+                gcdialog_showText(this->unk10_12 == VEGETABLE_1_TOPPER ? ASSET_E15_TEXT_UNKNOWN : ASSET_E17_TEXT_UNKNOWN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, NULL);
             }
             break;
 
@@ -112,7 +106,7 @@ void chAttackTutorial_setState(Actor *this, s32 state) {
             mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
 
             if (!honeycombscore_get(HONEYCOMB_17_SM_COLIWOBBLE)) {
-                this->unk10_12 = ATTACK_TUTORIAL_ENEMY_3_COLLY_WOBBLE;
+                this->unk10_12 = VEGETABLE_3_COLLY_WOBBLE;
                 this->unk38_31 = 1;
                 __chAttackTutorial_spawnEnemy(this, this->unk10_12);
             }
@@ -146,8 +140,8 @@ void chAttackTutorial_update(Actor *this) {
             this->unk1C_z = this->position_z;
         }
 
-        this->unk10_12 = ability_isUnlocked(ABILITY_C_ROLL) ? ATTACK_TUTORIAL_ENEMY_2_BAWL :
-                         ability_isUnlocked(ABILITY_4_CLAW_SWIPE) ? ATTACK_TUTORIAL_ENEMY_1_TOPPER : NULL;
+        this->unk10_12 = ability_isUnlocked(ABILITY_C_ROLL) ? VEGETABLE_2_BAWL :
+                         ability_isUnlocked(ABILITY_4_CLAW_SWIPE) ? VEGETABLE_1_TOPPER : NULL;
 
         this->initialized = TRUE;
     }
@@ -221,15 +215,15 @@ void chAttackTutorial_talk(ActorMarker *marker) {
     }
 
     switch (actor->unk10_12) {
-        case ATTACK_TUTORIAL_ENEMY_1_TOPPER: //L803877D8
+        case VEGETABLE_1_TOPPER: //L803877D8
             text_id = try_count ? ASSET_E15_TEXT_UNKNOWN : ASSET_E14_TEXT_UNKNOWN;
             break;
 
-        case ATTACK_TUTORIAL_ENEMY_2_BAWL: //L803877F4
+        case VEGETABLE_2_BAWL: //L803877F4
             text_id = try_count ? ASSET_E17_TEXT_UNKNOWN : ASSET_E16_TEXT_UNKNOWN;
             break;
 
-        case ATTACK_TUTORIAL_ENEMY_3_COLLY_WOBBLE: //L80387810
+        case VEGETABLE_3_COLLY_WOBBLE: //L80387810
             text_id = try_count ? ASSET_E19_TEXT_UNKNOWN : ASSET_E18_TEXT_UNKNOWN;
             break;
 

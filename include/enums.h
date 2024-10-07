@@ -1980,7 +1980,8 @@ enum actor_e
     ACTOR_166_TOPPER_A,
     ACTOR_167_ATTACK_TUTORIAL,
 
-    ACTOR_16F_QUARRIE = 0x16F,
+    ACTOR_16E_UNKNOWN = 0x16E,
+    ACTOR_16F_QUARRIE,
 
     ACTOR_172_RBB_EGG_TOLL = 0x172,
 
@@ -2942,6 +2943,11 @@ enum asset_e
     ASSET_220_ANIM_SIR_SLUSH_DIE = 0x220,
     ASSET_221_ANIM_WOZZA_IN_CAVE,
 
+    ASSET_223_ANIM_TOPPER_UNKNOWN = 0x223,
+    ASSET_224_ANIM_TOPPER_UNKNOWN,
+    ASSET_225_ANIM_COLLYWOBBLE_UNKNOWN,
+    ASSET_226_ANIM_BAWL_UNKNOWN,
+    ASSET_227_ANIM_BAWL_UNKNOWN,
     ASSET_228_ANIM_BANJO_SLED = 0x228,
     ASSET_229_ANIM_WHIPCRACK_ATTACK,
     ASSET_22A_ANIM_WHIPCRACK_IDLE,
@@ -3525,14 +3531,14 @@ enum asset_e
     // 4ea FP Finish Banner
     // 4eb FP Start Banner
     // 4ec FP Race Rostrum
-    MODEL_TOPPER            = 0x4ed,
-    MODEL_COLLYWOBBLE       = 0x4ee,
-    MODEL_BAWL              = 0x4ef,
-    // 4f0 Colliwobble Large Stem (Upon Death)
-    // 4f1 Colliwobble Small Stem (Upon Death)
-    // 4f2 Colliwobble Large Leaf (Upon Death)
-    // 4f3 Colliwobble Small Leaf (Upon Death)
-    // 4f4 Colliwobble Stem (Upon Death)
+    ASSET_4ED_MODEL_TOPPER = 0x4ed,
+    ASSET_4EE_MODEL_COLLYWOBBLE,
+    ASSET_4EF_MODEL_BAWL,
+    ASSET_4F0_MODEL_UNKNOWN, // 4f0 Colliwobble Large Stem (Upon Death)
+    ASSET_4F1_MODEL_UNKNOWN, // 4f1 Colliwobble Small Stem (Upon Death)
+    ASSET_4F2_MODEL_UNKNOWN, // 4f2 Colliwobble Large Leaf (Upon Death)
+    ASSET_4F3_MODEL_UNKNOWN, // 4f3 Colliwobble Small Leaf (Upon Death)
+    ASSET_4F4_MODEL_UNKNOWN, // 4f4 Colliwobble Stem (Upon Death)
     // 4f5 CCW Spring Switch
     // 4f6 CCW Summer Switch
     // 4f7 CCW Autumn Switch
@@ -4878,13 +4884,15 @@ enum marker_e{
 
     MARKER_124_BOGGY_1         = 0x124,
 
+    MARKER_126_UNKNOWN = 0x126,
     MARKER_127_BAT = 0x127,
     MARKER_128_COLLYWOBBLE_A,
     MARKER_129_BAWL_A,
     MARKER_12A_TOPPER_A,
     MARKER_12B_ATTACK_TUTORIAL,
 
-    MARKER_135_QUARRIE = 0x135,
+    MARKER_134_UNKNOWN = 0x134,
+    MARKER_135_QUARRIE,
 
     MARKER_161_GV_WITCH_SWITCH = 0x161,
     MARKER_162_BGS_WITCH_SWITCH,
@@ -5160,6 +5168,11 @@ enum marker_collision_func_type_e {
     MARKER_COLLISION_FUNC_2_DIE
 };
 
+enum vegetable_e {
+    VEGETABLE_1_TOPPER = 1,
+    VEGETABLE_2_BAWL,
+    VEGETABLE_3_COLLY_WOBBLE
+};
 
 
 #endif
