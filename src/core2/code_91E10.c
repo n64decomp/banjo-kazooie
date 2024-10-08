@@ -7,18 +7,18 @@
 extern void item_set(enum item_e, s32);
 extern void func_8025A55C(s32, s32, s32);
 
-enum code91E10_state {
-    CODE91E10_STATE_0_INITIAL, //803197F0
-    CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX, //80319910
-    CODE91E10_STATE_2_SHOW_PORTRAITS_FOR_QUESTION, //8031994C
-    CODE91E10_STATE_3_UNKNOWN, //80319B78
-    CODE91E10_STATE_4_UNKNOWN, //80319B78
-    CODE91E10_STATE_5_UNKNOWN, //80319B78
-    CODE91E10_STATE_6_SELECT_QUIZ_ANSWER, //80319B84
-    CODE91E10_STATE_7_CHECK_GIVEN_ANSWER, //80319C0C
-    CODE91E10_STATE_8_UNKNOWN, //80319CFC
-    CODE91E10_STATE_9_UNKNOWN, //80319D6C
-    CODE91E10_STATE_A_UNKNOWN //80319D80
+enum gcquiz_state {
+    GCQUIZ_STATE_0_INITIAL, //803197F0
+    GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX, //80319910
+    GCQUIZ_STATE_2_SHOW_PORTRAITS_FOR_QUESTION, //8031994C
+    GCQUIZ_STATE_3_UNKNOWN, //80319B78
+    GCQUIZ_STATE_4_UNKNOWN, //80319B78
+    GCQUIZ_STATE_5_UNKNOWN, //80319B78
+    GCQUIZ_STATE_6_SELECT_QUIZ_ANSWER, //80319B84
+    GCQUIZ_STATE_7_CHECK_GIVEN_ANSWER, //80319C0C
+    GCQUIZ_STATE_8_UNKNOWN, //80319CFC
+    GCQUIZ_STATE_9_UNKNOWN, //80319D6C
+    GCQUIZ_STATE_A_UNKNOWN //80319D80
 };
 
 typedef struct {
@@ -64,9 +64,9 @@ typedef struct {
     QuizQuestionStruct quiz_question;
 } Struct_Core2_91E10;
 
-static void __code91E10_advanceStateTo(enum code91E10_state state);
-static void __code91E10_func_80319E20(s32 portrait_id, s32 state);
-static void __code91E10_closeZoomboxes(void);
+static void __gcquiz_advanceStateTo(enum gcquiz_state state);
+static void __gcquiz_func_80319E20(s32 portrait_id, s32 state);
+static void __gcquiz_closeZoomboxes(void);
 
 #define SELECTABLE_PORTAIT_COUNT 0x2C
 
@@ -122,7 +122,7 @@ static u8 sPortraits[SELECTABLE_PORTAIT_COUNT+1] = {
 Struct_Core2_91E10 *sD_803830E0;
 
 /* .code */
-static void __code91E10_uniquelyRandomizeValuesInPointer(s8 *ptr, u8 min_index, u8 max_index, s32 min_value, s32 max_value){
+static void __gcquiz_uniquelyRandomizeValuesInPointer(s8 *ptr, u8 min_index, u8 max_index, s32 min_value, s32 max_value){
     s32 i;
     s32 j;
     bool is_unique;
@@ -144,12 +144,12 @@ static void __code91E10_uniquelyRandomizeValuesInPointer(s8 *ptr, u8 min_index, 
     }
 }
 
-static void __code91E10_randomizePortaitIds(void) {
+static void __gcquiz_randomizePortaitIds(void) {
     sD_803830E0->portait_ids[0] = 0;
-    __code91E10_uniquelyRandomizeValuesInPointer(sD_803830E0->portait_ids, 1, 3, 1, SELECTABLE_PORTAIT_COUNT);
+    __gcquiz_uniquelyRandomizeValuesInPointer(sD_803830E0->portait_ids, 1, 3, 1, SELECTABLE_PORTAIT_COUNT);
 }
 
-static enum asset_e __code91E10_getQuizQuestionAssetStartOffsetInclusive(enum ff_question_type_e question_type) {
+static enum asset_e __gcquiz_get_type_start_id(enum ff_question_type_e question_type) {
     switch(question_type) {
         case FFQT_1_PICTURE: return ASSET_12DB_FF_PICTURE_QUESTION;
         case FFQT_2_SOUND:   return ASSET_13A3_FF_SOUND_QUESTION;
@@ -159,7 +159,7 @@ static enum asset_e __code91E10_getQuizQuestionAssetStartOffsetInclusive(enum ff
     return ASSET_1213_FF_QUIZ_QUESTION;
 }
 
-static enum asset_e __code91E10_getQuizQuestionAssetEndOffset(enum ff_question_type_e question_type){
+static enum asset_e __gcquiz_get_type_end_id(enum ff_question_type_e question_type){
     switch(question_type) {
         case FFQT_1_PICTURE: return ASSET_12ED_FF_PICTURE_QUESTION + 1;
         case FFQT_2_SOUND:   return ASSET_13D5_FF_SOUND_QUESTION + 1;
@@ -171,7 +171,7 @@ static enum asset_e __code91E10_getQuizQuestionAssetEndOffset(enum ff_question_t
 
 
 // get correct question index?
-static s32 __code91E10_func_80318F60(enum ff_question_type_e question_type, s32 q_index, s32 arg2) {
+static s32 __gcquiz_func_80318F60(enum ff_question_type_e question_type, s32 q_index, s32 arg2) {
     s32 phi_v1;
     s32 phi_a0;
 
@@ -188,11 +188,11 @@ static s32 __code91E10_func_80318F60(enum ff_question_type_e question_type, s32 
     return phi_v1;
 }
 
-static bool __code91E10_isSoundQuestion(enum ff_question_type_e question_type){
+static bool __gcquiz_isSoundQuestion(enum ff_question_type_e question_type){
     return question_type == FFQT_2_SOUND;
 }
 
-static s32 __code91E10_getZoomboxY(s32 arg0){
+static s32 __gcquiz_getZoomboxY(s32 arg0){
     switch(arg0) {
         case 1: return 40;
         case 2: return 80;
@@ -202,23 +202,23 @@ static s32 __code91E10_getZoomboxY(s32 arg0){
     return 0;
 }
 
-static s32 __code91E10_func_80319004(s32 arg0){
+static s32 __gcquiz_func_80319004(s32 arg0){
     return arg0 == 0 ? 3 : 2;     
 }
 
-static s32 __code91E10_return0(s32 arg0){
+static s32 __gcquiz_return0(s32 arg0){
     return 0;
 }
 
-static bool __code91E10_isZero(s32 arg0){
+static bool __gcquiz_isZero(s32 arg0){
     return arg0 != 0 ? FALSE : TRUE;
 }
 
-static f32 __code91E10_getAnimationDuration(s32 arg0){
+static f32 __gcquiz_animation_duration(s32 arg0){
     return 0.4f;
 }
 
-void code_91E10_init() {
+void gcquiz_init() {
     s32 i;
 
     sD_803830E0 = malloc(sizeof(Struct_Core2_91E10));
@@ -226,16 +226,16 @@ void code_91E10_init() {
     sD_803830E0->unk16 = 0x14U;
     sD_803830E0->unk17 = 0x1E;
     sD_803830E0->portait_ids[0] = 0;
-    sD_803830E0->zoomboxes[0] = gczoombox_new(__code91E10_getZoomboxY(0), 0, __code91E10_func_80319004(0), __code91E10_return0(0), __code91E10_func_80319E20);
-    gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], (f32)sD_803830E0->unk16, 5, 2, __code91E10_getAnimationDuration(0), __code91E10_isZero(0), 0);
+    sD_803830E0->zoomboxes[0] = gczoombox_new(__gcquiz_getZoomboxY(0), 0, __gcquiz_func_80319004(0), __gcquiz_return0(0), __gcquiz_func_80319E20);
+    gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], (f32)sD_803830E0->unk16, 5, 2, __gcquiz_animation_duration(0), __gcquiz_isZero(0), 0);
     for(i = 1; i < 4; i++){
         sD_803830E0->portait_ids[i] = 0;
         sD_803830E0->zoomboxes[i] = NULL;
     }
-    __code91E10_advanceStateTo(CODE91E10_STATE_0_INITIAL);
+    __gcquiz_advanceStateTo(GCQUIZ_STATE_0_INITIAL);
 }
 
-void code_91E10_free() {
+void gcquiz_free() {
     s32 i;
 
     if (sD_803830E0 != NULL) {
@@ -250,7 +250,7 @@ void code_91E10_free() {
     }
 }
 
-void code91E10_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+void gcquiz_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 i;
 
     if (sD_803830E0 != NULL) {
@@ -261,7 +261,7 @@ void code91E10_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 // randomize quiz question?
-static bool __code91E10_func_803192A4(enum ff_question_type_e q_type, s32 q_index, s32 arg2) {
+static bool __gcquiz_func_803192A4(enum ff_question_type_e q_type, s32 q_index, s32 arg2) {
     char *char_iter;
     enum asset_e quiz_question_index;
     s32 temp_s2;
@@ -278,8 +278,8 @@ static bool __code91E10_func_803192A4(enum ff_question_type_e q_type, s32 q_inde
     s32 cmd;
     s32 option_text;
 
-    quiz_question_index = __code91E10_getQuizQuestionAssetStartOffsetInclusive(q_type) + q_index;
-    if (code91E10_isNotInInitialState()) {
+    quiz_question_index = __gcquiz_get_type_start_id(q_type) + q_index;
+    if (gcquiz_isNotInInitialState()) {
         return FALSE;
     }
 
@@ -293,9 +293,9 @@ static bool __code91E10_func_803192A4(enum ff_question_type_e q_type, s32 q_inde
     quiz_question_bin_unk0 = *(char_iter++); // NEXT
     quiz_question_bin_unk1 = *(char_iter++); // NEXT
     quiz_question_bin_unk2 = *(char_iter++); // NEXT
-    first_answer_cmd = ((quiz_question_bin_unk1 >= 2) ? __code91E10_func_80318F60(q_type, q_index, arg2) : 0) + 1;
+    first_answer_cmd = ((quiz_question_bin_unk1 >= 2) ? __gcquiz_func_80318F60(q_type, q_index, arg2) : 0) + 1;
     // is sound question or quiz_question_bin_unk2 == 0
-    if (((quiz_question_bin_unk2 == 0) || (__code91E10_isSoundQuestion(q_type) != FALSE)) != FALSE) {
+    if (((quiz_question_bin_unk2 == 0) || (__gcquiz_isSoundQuestion(q_type) != FALSE)) != FALSE) {
         do {
             second_answer_cmd = randi2(0, quiz_question_bin_unk1 + quiz_question_bin_unk2) + 1;
         } while (second_answer_cmd == first_answer_cmd);
@@ -346,7 +346,7 @@ static bool __code91E10_func_803192A4(enum ff_question_type_e q_type, s32 q_inde
     return TRUE;
 }
 
-void __code91E10_openZoomboxAndMaximizeWithStringsAt(s32 zoombox_index) {
+void __gcquiz_openZoomboxAndMaximizeWithStringsAt(s32 zoombox_index) {
     gczoombox_open(sD_803830E0->zoomboxes[zoombox_index]);
     gczoombox_maximize(sD_803830E0->zoomboxes[zoombox_index]);
     gczoombox_setStrings(
@@ -356,17 +356,17 @@ void __code91E10_openZoomboxAndMaximizeWithStringsAt(s32 zoombox_index) {
     );
 }
 
-void __code91E10_setZoomboxHighlight(s32 index, bool arg1){
+void __gcquiz_set_box_highlight(s32 index, bool arg1){
     gczoombox_highlight(sD_803830E0->zoomboxes[index], arg1);
     gczoombox_func_80318C48(sD_803830E0->zoomboxes[index], arg1);
 }
 
-static void __code91E10_advanceStateTo(enum code91E10_state state){
+static void __gcquiz_advanceStateTo(enum gcquiz_state state){
     s32 i;
     s32 j;
 
     switch(state){
-        case CODE91E10_STATE_0_INITIAL:
+        case GCQUIZ_STATE_0_INITIAL:
             sD_803830E0->question_type = 0;
             sD_803830E0->question_index = 0;
             sD_803830E0->quiz_question_time = 0;
@@ -374,7 +374,7 @@ static void __code91E10_advanceStateTo(enum code91E10_state state){
             sD_803830E0->selected_answer_index = -1;
             sD_803830E0->unk14 = 0;
             sD_803830E0->unk11 = -2;
-            gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], (f32) sD_803830E0->unk16, 5, 2, __code91E10_getAnimationDuration(0), __code91E10_isZero(0), 0);
+            gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], (f32) sD_803830E0->unk16, 5, 2, __gcquiz_animation_duration(0), __gcquiz_isZero(0), 0);
             gczoombox_setUnk13ATo0(sD_803830E0->zoomboxes[0]);
             gczoombox_highlight(sD_803830E0->zoomboxes[0], TRUE);
             for(i = 0; i < 4; i++){
@@ -385,49 +385,49 @@ static void __code91E10_advanceStateTo(enum code91E10_state state){
             }
             break;
 
-        case CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX:
+        case GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX:
             gczoombox_open(sD_803830E0->zoomboxes[0]);
             gczoombox_maximize(sD_803830E0->zoomboxes[0]);
             gczoombox_setStrings(sD_803830E0->zoomboxes[0], sD_803830E0->answer_str_counts[0], sD_803830E0->quiz_question.answer_options[0]);
             break;
 
-        case CODE91E10_STATE_2_SHOW_PORTRAITS_FOR_QUESTION:
+        case GCQUIZ_STATE_2_SHOW_PORTRAITS_FOR_QUESTION:
             if (sD_803830E0->question_type != -1) {
-                __code91E10_randomizePortaitIds();
+                __gcquiz_randomizePortaitIds();
                 for(i = 1; i < 4; i++){
-                    sD_803830E0->zoomboxes[i] = gczoombox_new(__code91E10_getZoomboxY(i), sPortraits[sD_803830E0->portait_ids[i]], __code91E10_func_80319004(i), __code91E10_return0(i), __code91E10_func_80319E20);
-                    gczoombox_func_803184C8(sD_803830E0->zoomboxes[i], (f32)sD_803830E0->unk17, 5, 2, __code91E10_getAnimationDuration(i), __code91E10_isZero(i), 0);
+                    sD_803830E0->zoomboxes[i] = gczoombox_new(__gcquiz_getZoomboxY(i), sPortraits[sD_803830E0->portait_ids[i]], __gcquiz_func_80319004(i), __gcquiz_return0(i), __gcquiz_func_80319E20);
+                    gczoombox_func_803184C8(sD_803830E0->zoomboxes[i], (f32)sD_803830E0->unk17, 5, 2, __gcquiz_animation_duration(i), __gcquiz_isZero(i), 0);
                 }
             } else {
                 for(i = 1; i < 4; i++){
-                    sD_803830E0->zoomboxes[i] = gczoombox_new(__code91E10_getZoomboxY(i), sD_803830E0->portait_ids[i], 1, __code91E10_return0(i), __code91E10_func_80319E20);
-                    gczoombox_func_803184C8(sD_803830E0->zoomboxes[i], (f32)sD_803830E0->unk17, 5, 2, __code91E10_getAnimationDuration(i), __code91E10_isZero(i), 0);
+                    sD_803830E0->zoomboxes[i] = gczoombox_new(__gcquiz_getZoomboxY(i), sD_803830E0->portait_ids[i], 1, __gcquiz_return0(i), __gcquiz_func_80319E20);
+                    gczoombox_func_803184C8(sD_803830E0->zoomboxes[i], (f32)sD_803830E0->unk17, 5, 2, __gcquiz_animation_duration(i), __gcquiz_isZero(i), 0);
                 }
             }
-            timedFunc_set_1(0.0f, __code91E10_advanceStateTo, CODE91E10_STATE_3_UNKNOWN);
-            timedFunc_set_1(0.0f, __code91E10_openZoomboxAndMaximizeWithStringsAt, 1);
-            timedFunc_set_1(0.2f, __code91E10_openZoomboxAndMaximizeWithStringsAt, 2);
-            timedFunc_set_1(0.4f, __code91E10_openZoomboxAndMaximizeWithStringsAt, 3);
+            timedFunc_set_1(0.0f, __gcquiz_advanceStateTo, GCQUIZ_STATE_3_UNKNOWN);
+            timedFunc_set_1(0.0f, __gcquiz_openZoomboxAndMaximizeWithStringsAt, 1);
+            timedFunc_set_1(0.2f, __gcquiz_openZoomboxAndMaximizeWithStringsAt, 2);
+            timedFunc_set_1(0.4f, __gcquiz_openZoomboxAndMaximizeWithStringsAt, 3);
             break;
 
-        case CODE91E10_STATE_3_UNKNOWN: 
-        case CODE91E10_STATE_4_UNKNOWN: 
-        case CODE91E10_STATE_5_UNKNOWN: 
+        case GCQUIZ_STATE_3_UNKNOWN: 
+        case GCQUIZ_STATE_4_UNKNOWN: 
+        case GCQUIZ_STATE_5_UNKNOWN: 
             break;
 
-        case CODE91E10_STATE_6_SELECT_QUIZ_ANSWER:
+        case GCQUIZ_STATE_6_SELECT_QUIZ_ANSWER:
             item_set(ITEM_0_HOURGLASS_TIMER, sD_803830E0->quiz_question_time * 60 - 1);
             item_set(ITEM_6_HOURGLASS, TRUE);
             sD_803830E0->answer_cursor_cooldown = 0;
             sD_803830E0->answer_cursor_index = 1U;
 
             for (i = 1; i < 4; i++) {
-                __code91E10_setZoomboxHighlight(i, BOOL(i == sD_803830E0->answer_cursor_index));
+                __gcquiz_set_box_highlight(i, BOOL(i == sD_803830E0->answer_cursor_index));
             }
 
             break;
 
-        case CODE91E10_STATE_7_CHECK_GIVEN_ANSWER:
+        case GCQUIZ_STATE_7_CHECK_GIVEN_ANSWER:
             if (sD_803830E0->question_type != -1) {
                  sD_803830E0->unk11 = (sD_803830E0->selected_answer_index == -1)                   ? -1
                                    : (sD_803830E0->answer_values[sD_803830E0->selected_answer_index] == 1) ? 1
@@ -445,24 +445,24 @@ static void __code91E10_advanceStateTo(enum code91E10_state state){
                     }
                 }
             }
-            timedFunc_set_1(1.0f, __code91E10_advanceStateTo, CODE91E10_STATE_8_UNKNOWN);
+            timedFunc_set_1(1.0f, __gcquiz_advanceStateTo, GCQUIZ_STATE_8_UNKNOWN);
             item_set(ITEM_6_HOURGLASS, FALSE);
             break;
 
-        case CODE91E10_STATE_8_UNKNOWN:
+        case GCQUIZ_STATE_8_UNKNOWN:
             if (sD_803830E0->question_type != -1) {
                 comusic_playTrack((sD_803830E0->unk11 == 1)? COMUSIC_2B_DING_B : COMUSIC_2C_BUZZER);
             } else {
                 comusic_playTrack(COMUSIC_2B_DING_B);
             }
-            timedFunc_set_1(1.0f, __code91E10_advanceStateTo, CODE91E10_STATE_9_UNKNOWN);
+            timedFunc_set_1(1.0f, __gcquiz_advanceStateTo, GCQUIZ_STATE_9_UNKNOWN);
             break;
 
-        case CODE91E10_STATE_9_UNKNOWN:
-            __code91E10_closeZoomboxes();
+        case GCQUIZ_STATE_9_UNKNOWN:
+            __gcquiz_closeZoomboxes();
             break;
 
-        case CODE91E10_STATE_A_UNKNOWN:
+        case GCQUIZ_STATE_A_UNKNOWN:
             if (sD_803830E0->unk8 != NULL) {
                 sD_803830E0->unk8(sD_803830E0->unk4, sD_803830E0->unk11);
             }
@@ -479,14 +479,14 @@ static void __code91E10_advanceStateTo(enum code91E10_state state){
     sD_803830E0->state = state;
 }
 
-void __code91E10_func_80319E20(s32 portrait_id, s32 zoombox_state) {
+void __gcquiz_func_80319E20(s32 portrait_id, s32 zoombox_state) {
     if (zoombox_state == 3) {
         if (portrait_id == sD_803830E0->portait_ids[0]) {
             if (sD_803830E0->unk8 != NULL) {
                 sD_803830E0->unk8(sD_803830E0->unk4, sD_803830E0->unk11);
             }
         } else {
-            __code91E10_advanceStateTo(sD_803830E0->state + 1);
+            __gcquiz_advanceStateTo(sD_803830E0->state + 1);
         }
     } else if (zoombox_state == 5) {
         sD_803830E0->unk14++;
@@ -494,7 +494,7 @@ void __code91E10_func_80319E20(s32 portrait_id, s32 zoombox_state) {
 }
 
 // handle selection in zoombox?
-void code_91E10_func_80319EA4(void) {
+void gcquiz_func_80319EA4(void) {
     s32 face_button_states[6];
     f32 joystick_states[3];
     s32 phi_s0;
@@ -513,30 +513,30 @@ void code_91E10_func_80319EA4(void) {
     }
 
     switch (sD_803830E0->state) {
-    case CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX:
+    case GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX:
         if (func_8028EFC8() && (face_button_states[FACE_BUTTON(BUTTON_B)] == 1)) {
-            sp44 = __code91E10_getAnimationDuration(0);
-            gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], 100.0f, 2, 4, sp44, __code91E10_isZero(0), 0);
+            sp44 = __gcquiz_animation_duration(0);
+            gczoombox_func_803184C8(sD_803830E0->zoomboxes[0], 100.0f, 2, 4, sp44, __gcquiz_isZero(0), 0);
             return;
         }
         break;
-    case CODE91E10_STATE_6_SELECT_QUIZ_ANSWER:
+    case GCQUIZ_STATE_6_SELECT_QUIZ_ANSWER:
         if (sD_803830E0->answer_cursor_cooldown > 0) {
             sD_803830E0->answer_cursor_cooldown--;
         } else {
             if (joystick_states[1] > 0.75) {
                 if (sD_803830E0->answer_cursor_index >= 2) {
-                    __code91E10_setZoomboxHighlight(sD_803830E0->answer_cursor_index, FALSE);
+                    __gcquiz_set_box_highlight(sD_803830E0->answer_cursor_index, FALSE);
                     sD_803830E0->answer_cursor_index--;
-                    __code91E10_setZoomboxHighlight(sD_803830E0->answer_cursor_index, TRUE);
+                    __gcquiz_set_box_highlight(sD_803830E0->answer_cursor_index, TRUE);
                     gczoombox_func_803160A8(sD_803830E0->zoomboxes[sD_803830E0->answer_cursor_index]);
                     sD_803830E0->answer_cursor_cooldown = 4U;
                 }
             } else if (joystick_states[1] < -0.75) {
                 if (sD_803830E0->answer_cursor_index < 3) {
-                    __code91E10_setZoomboxHighlight(sD_803830E0->answer_cursor_index, FALSE);
+                    __gcquiz_set_box_highlight(sD_803830E0->answer_cursor_index, FALSE);
                     sD_803830E0->answer_cursor_index++;
-                    __code91E10_setZoomboxHighlight(sD_803830E0->answer_cursor_index, TRUE);
+                    __gcquiz_set_box_highlight(sD_803830E0->answer_cursor_index, TRUE);
                     gczoombox_func_803160A8(sD_803830E0->zoomboxes[sD_803830E0->answer_cursor_index]);
                     sD_803830E0->answer_cursor_cooldown = 4U;
                 }
@@ -546,24 +546,24 @@ void code_91E10_func_80319EA4(void) {
             sD_803830E0->selected_answer_index = (u8) sD_803830E0->answer_cursor_index;
         }
         if ((s8) sD_803830E0->selected_answer_index != -1) {
-            __code91E10_advanceStateTo(CODE91E10_STATE_7_CHECK_GIVEN_ANSWER);
+            __gcquiz_advanceStateTo(GCQUIZ_STATE_7_CHECK_GIVEN_ANSWER);
             return;
         }
         break;
-    case CODE91E10_STATE_9_UNKNOWN:
+    case GCQUIZ_STATE_9_UNKNOWN:
         if (sD_803830E0->unk14 == 4) {
-            __code91E10_advanceStateTo(CODE91E10_STATE_A_UNKNOWN);
+            __gcquiz_advanceStateTo(GCQUIZ_STATE_A_UNKNOWN);
             return;
         }
         break;
-    case CODE91E10_STATE_A_UNKNOWN:
-        __code91E10_advanceStateTo(CODE91E10_STATE_0_INITIAL);
+    case GCQUIZ_STATE_A_UNKNOWN:
+        __gcquiz_advanceStateTo(GCQUIZ_STATE_0_INITIAL);
         break;
     }
 }
 
-bool code_91E10_func_8031A154(enum ff_question_type_e q_type, s32 q_index, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s8)) {
-    if (__code91E10_func_803192A4(q_type, q_index, arg2) != FALSE) {
+bool gcquiz_func_8031A154(enum ff_question_type_e q_type, s32 q_index, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s8)) {
+    if (__gcquiz_func_803192A4(q_type, q_index, arg2) != FALSE) {
         sD_803830E0->question_type = q_type;
         sD_803830E0->question_index = q_index;
         sD_803830E0->unk2 = arg2;
@@ -571,9 +571,9 @@ bool code_91E10_func_8031A154(enum ff_question_type_e q_type, s32 q_index, s32 a
         sD_803830E0->unk4 = arg4;
         sD_803830E0->unk8 = arg5;
         item_set(ITEM_6_HOURGLASS, FALSE);
-        __code91E10_uniquelyRandomizeValuesInPointer(sD_803830E0->answer_values, 1, 3, 1, 3);
+        __gcquiz_uniquelyRandomizeValuesInPointer(sD_803830E0->answer_values, 1, 3, 1, 3);
         func_8025A55C(6000, 500, 10);
-        __code91E10_advanceStateTo(CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX);
+        __gcquiz_advanceStateTo(GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX);
         return TRUE;
     }
 
@@ -581,7 +581,7 @@ bool code_91E10_func_8031A154(enum ff_question_type_e q_type, s32 q_index, s32 a
 }
 
 // unused but making this static differs checksum
-bool __code91E10_unused(u8 *arg0, s8 *arg1, QuizQuestionStruct *arg2, s32 arg3, void (*arg4)(s32, s8)) {
+bool __gcquiz_unused(u8 *arg0, s8 *arg1, QuizQuestionStruct *arg2, s32 arg3, void (*arg4)(s32, s8)) {
     s32 temp_v0;
     s8 *temp_a2;
     s8 *temp_s0;
@@ -595,7 +595,7 @@ bool __code91E10_unused(u8 *arg0, s8 *arg1, QuizQuestionStruct *arg2, s32 arg3, 
     s32 j;
     s8 *phi_s0;
 
-    if (code91E10_isNotInInitialState()) {
+    if (gcquiz_isNotInInitialState()) {
         return FALSE;
     }
 
@@ -617,23 +617,23 @@ bool __code91E10_unused(u8 *arg0, s8 *arg1, QuizQuestionStruct *arg2, s32 arg3, 
     sD_803830E0->unk4 = 0;
     sD_803830E0->unk8 = arg4;
     func_8025A55C(6000, 500, 10);
-    __code91E10_advanceStateTo(CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX);
+    __gcquiz_advanceStateTo(GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX);
     return TRUE;
 }
 
 // unused but making this static differs checksum
-void __code91E10_unused2(u8 arg0, u8 arg1) {
+void __gcquiz_unused2(u8 arg0, u8 arg1) {
     if (sD_803830E0 != NULL) {
         sD_803830E0->unk16 = arg0;
         sD_803830E0->unk17 = arg1;
     }
 }
 
-bool code91E10_isNotInInitialState(){
-    return (sD_803830E0 != NULL) ? sD_803830E0->state != CODE91E10_STATE_0_INITIAL: FALSE;
+bool gcquiz_isNotInInitialState(){
+    return (sD_803830E0 != NULL) ? sD_803830E0->state != GCQUIZ_STATE_0_INITIAL: FALSE;
 }
 
-static void __code91E10_closeZoomboxes(){
+static void __gcquiz_closeZoomboxes(){
     s32 i;
     if(sD_803830E0 != NULL){
         for(i = 0; i < 4; i++){
@@ -644,21 +644,21 @@ static void __code91E10_closeZoomboxes(){
 }
 
 // unused but making this static differs checksum
-s32 code91E10_unused3(){
+s32 gcquiz_unused3(){
     return 4;
 }
 
-s32 code91E10_getLastIndexOfQuestionType(enum ff_question_type_e question_type) {
-    return __code91E10_getQuizQuestionAssetEndOffset(question_type) - __code91E10_getQuizQuestionAssetStartOffsetInclusive(question_type);
+s32 gcquiz_getLastIndexOfQuestionType(enum ff_question_type_e question_type) {
+    return __gcquiz_get_type_end_id(question_type) - __gcquiz_get_type_start_id(question_type);
 }
 
-void code91E10_func_8031A48C(void) {
-    if ((sD_803830E0 != NULL) && (sD_803830E0->state == CODE91E10_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX)) {
-        __code91E10_advanceStateTo(CODE91E10_STATE_2_SHOW_PORTRAITS_FOR_QUESTION);
+void gcquiz_func_8031A48C(void) {
+    if ((sD_803830E0 != NULL) && (sD_803830E0->state == GCQUIZ_STATE_1_SHOW_QUESTION_VIA_ZOOMBOX)) {
+        __gcquiz_advanceStateTo(GCQUIZ_STATE_2_SHOW_PORTRAITS_FOR_QUESTION);
     }
 }
 
-void code91E10_defrag() {
+void gcquiz_defrag() {
     s32 i;
 
     if (sD_803830E0 != NULL) {
@@ -667,7 +667,7 @@ void code91E10_defrag() {
             sD_803830E0->zoomboxes[i] = (GcZoombox *)defrag(sD_803830E0->zoomboxes[i]);
         }
 
-        if (code91E10_isNotInInitialState() == FALSE) {
+        if (gcquiz_isNotInInitialState() == FALSE) {
             sD_803830E0->unkC = (QuizQuestionBin *)defrag(sD_803830E0->unkC);
         }
         sD_803830E0 = (Struct_Core2_91E10 *)defrag(sD_803830E0);

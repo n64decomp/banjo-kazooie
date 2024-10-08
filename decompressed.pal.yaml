@@ -780,7 +780,7 @@ segments:
   # - [0xFE0110, c, gc/pauseMenu] #DONE
   # - [0xFE3580, c, code_8DC20] #DONE
   # - [0xFE3BD0, c, gc/zoombox] #DONE
-  # - [0xFE7770, c, code_91E10] #DONE
+  # - [0xFE7770, c, gcquiz] #DONE
   # - [0xFE8F50, c, code_935F0] #DONE #chminigmae
   # - [0xFE9570, c, gc/parade] #DONE
   # - [0xFE9F80, c, code_94620] #DONE
@@ -1054,7 +1054,7 @@ segments:
   # - [0x103AEB0, .data, gc/pauseMenu]
   # - [0x103B000, .data, code_8DC20]
   # - [0x103B090, .data, gc/zoombox]
-  # - [0x103C310, .data, code_91E10]
+  # - [0x103C310, .data, gcquiz]
   # - [0x103C340, .data, code_935F0]
   # - [0x103C370, .data, gc/parade]
   # - [0x103C790, .data, code_94A20]
@@ -1301,7 +1301,7 @@ segments:
   # - [0x1046EA0, .rodata, gc/dialog]
   # - [0x1046F10, .rodata, gc/pauseMenu]
   # - [0x1047250, .rodata, gc/zoombox] 
-  # - [0x1047320, .rodata, code_91E10]
+  # - [0x1047320, .rodata, gcquiz]
   # - [0x1047360, .rodata, code_935F0]
   # - [0x1047380, .rodata, gc/parade]
   # - [0x1047700, .rodata, code_94A20]
@@ -1571,7 +1571,7 @@ segments:
   # - [0x0106C980, .bss, gc/pauseMenu]
   # - [0x0106C980, .bss, code_8DC20]
   # - [0x0106C980, .bss, gc/zoombox]
-  # - [0x0106C980, .bss, code_91E10]
+  # - [0x0106C980, .bss, gcquiz]
   # - [0x0106C980, .bss, gc/parade]
   # - [0x0106C980, .bss, code_94620]
   # - [0x0106C980, .bss, code_94780]
