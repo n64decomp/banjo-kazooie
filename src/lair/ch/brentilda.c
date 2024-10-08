@@ -71,7 +71,7 @@ void gzquiz_initGruntyQuestions(void) {
     if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !volatileFlag_get(VOLATILE_FLAG_62_FF_GRUNTY_QUESTIONS_INITIALIZED)) {
         rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
 
-        for(i = 0; i < func_8031A45C(FFQT_3_GRUNTY); i++){
+        for(i = 0; i < code91E10_getLastIndexOfQuestionType(FFQT_3_GRUNTY); i++){
             question_id = VOLATILE_FLAG_26_FF_GRUNTY_QUESTIONS + 2 * i;
             pattern = randi2(0, 3);
 

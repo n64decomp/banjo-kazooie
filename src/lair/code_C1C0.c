@@ -86,7 +86,7 @@ void func_80392700(Actor *this) {
             this->marker->unk2C_2 = TRUE;
         }
     }
-    this->unk58_0 = !func_8031A3BC();
+    this->unk58_0 = !code91E10_isNotInInitialState();
 }
 
 

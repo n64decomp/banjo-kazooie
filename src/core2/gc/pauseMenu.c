@@ -243,7 +243,7 @@ void gcpausemenu_zoomboxes_initMainMenu(void) {
     s32 i;
     for (i = 0; i < 4; i++) {
         D_80383010.zoombox[i] = gczoombox_new(D_8036C4E0[i].y, D_8036C4E0[i].portrait, 2, 0, gcpausemenu_zoombox_callback);
-        func_803184C8(D_80383010.zoombox[i], 60.0f, 5, 2, 0.3f, 0, 0);
+        gczoombox_func_803184C8(D_80383010.zoombox[i], 60.0f, 5, 2, 0.3f, 0, 0);
         func_80318640(D_80383010.zoombox[i], 0x1C, 0.75f, 0.9f, 0);
         func_80318760(D_80383010.zoombox[i], 8000);
     }
@@ -254,7 +254,7 @@ void gcpausemenu_zoomboxes_initTotalsMenu(void) {
 
     for (i = 0; i < 4; i++) {
         D_80383010.zoombox[i] = gczoombox_new(D_8036C520[i].y, D_8036C520[i].portrait, (i == 3) ? 1 : 2, 0, gcpausemenu_zoombox_callback);
-        func_803184C8(D_80383010.zoombox[i], 40.0f, 5, 2, 0.3f, 0, 0);
+        gczoombox_func_803184C8(D_80383010.zoombox[i], 40.0f, 5, 2, 0.3f, 0, 0);
         func_80318640(D_80383010.zoombox[i], 0x46, 0.9f, 0.7f, 1);
         func_80318760(D_80383010.zoombox[i], 8000);
     }
@@ -1006,7 +1006,7 @@ s32 gcPauseMenu_update(void) {
             }//L80313664
             else {
                 if (D_80383010.selection == PAUSE_SELECTION_2_VIEW_TOTALS && !D_80383010.unk3_6) {
-                    func_803160A8(D_80383010.zoombox[D_80383010.selection]);
+                    gczoombox_func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                     D_80383010.unk3_6 = 1;
                 }
 
@@ -1018,7 +1018,7 @@ s32 gcPauseMenu_update(void) {
                             D_80383010.selection--;
                         }
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], TRUE);
-                        func_803160A8(D_80383010.zoombox[D_80383010.selection]);
+                        gczoombox_func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                         D_80383010.unk3_6 = 0;
                         D_80383010.unk7 = 6;
                     }
@@ -1031,7 +1031,7 @@ s32 gcPauseMenu_update(void) {
                             D_80383010.selection++;
                         }
                         gczoombox_highlight(D_80383010.zoombox[D_80383010.selection], 1);
-                        func_803160A8(D_80383010.zoombox[D_80383010.selection]);
+                        gczoombox_func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                         D_80383010.unk3_6 = 0;
                         D_80383010.unk7 = 6;
                     }
@@ -1039,7 +1039,7 @@ s32 gcPauseMenu_update(void) {
             }
 
             if (D_80383010.selection == 2 && !D_80383010.unk3_6 && D_80383010.unk7 == 3) {
-                func_803160A8(D_80383010.zoombox[D_80383010.selection]);
+                gczoombox_func_803160A8(D_80383010.zoombox[D_80383010.selection]);
                 D_80383010.unk3_6 = 1;
             }
             break;

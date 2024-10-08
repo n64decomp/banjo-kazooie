@@ -12,7 +12,7 @@ extern void func_802F9D38(s32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
-extern void func_80319EA4(void);
+extern void code_91E10_func_80319EA4(void);
 extern void fileProgressFlag_set(enum file_progress_e, bool);
 
 void func_802D3D54(Actor *this);
@@ -814,7 +814,7 @@ void func_802D5178(s32 arg0, enum file_progress_e arg1, s32 arg2, enum map_e arg
 
 void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(volatileFlag_get(VOLATILE_FLAG_1) && map_get() != MAP_8E_GL_FURNACE_FUN){
-        func_80319214(gfx, mtx, vtx);
+        code91E10_draw(gfx, mtx, vtx);
     }
 }
 
@@ -1008,7 +1008,7 @@ void func_802D5628(void){
             case 0x15:// L802D5AB4
             case 0x2d:// L802D5AB4
                 if(D_80367684 && D_80367684 == map_get()){
-                    func_80319EA4();
+                    code_91E10_func_80319EA4();
                     if(0.0f < D_8037DE08){
                         D_8037DE08 -= time_getDelta();
                     }
