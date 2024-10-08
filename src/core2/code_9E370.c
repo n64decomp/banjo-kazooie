@@ -1190,9 +1190,11 @@ static bool __subaddie_set_state(Actor *this, s32 state)
 
 void func_803285E8(Actor *this, f32 anim_start_position, int direction){
     animctrl_setStart(this->animctrl, anim_start_position);
-    if(direction != -1){
+
+    if (direction != -1) {
         animctrl_setDirection(this->animctrl, direction);
     }
+
     this->sound_timer = anim_start_position;
 }
 
@@ -1275,8 +1277,8 @@ int actor_animationIsAt(Actor *this, f32 arg1){
     }
 }
 
-void func_803289EC(Actor *this , f32 arg1, int direction){
-    func_803285E8(this, arg1, direction);
+void func_803289EC(Actor *this , f32 anim_start_position, int direction){
+    func_803285E8(this, anim_start_position, direction);
     animctrl_start(this->animctrl, "subaddie.c", 0x6b1);
 }
 
@@ -1316,9 +1318,10 @@ int subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
     return 0;
 }
 
-void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction){
-    if(__subaddie_set_state(this, myAnimId) && this->animctrl)
-        func_803289EC(this, arg2, direction);
+void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction){
+    if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
+        func_803289EC(this, anim_start_position, direction);
+    }
 }
 
 bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {

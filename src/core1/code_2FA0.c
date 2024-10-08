@@ -14,7 +14,7 @@ void func_802409C0(f32 arg0[3], f32 arg1){
     f32 dt;
     
     dt = time_getDelta()*arg1;
-    func_8024E71C(0, sp28);
+    controller_getJoystick(0, sp28);
 
     sp30[0] = sp28[0] * dt;
     sp30[1] = 0.0f;
@@ -46,7 +46,7 @@ void func_80240AC8(f32 arg0[3], f32 arg1){
     f32 dt;
     
     dt = time_getDelta()*arg1;
-    func_8024E71C(0, sp28);
+    controller_getJoystick(0, sp28);
 
     if(0.0f != sp28[0] || 0.0f != sp28[1]){
         D_80275860++;

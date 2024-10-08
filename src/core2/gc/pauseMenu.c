@@ -33,7 +33,7 @@ void func_80310D2C(void);
 s32 level_get(void);
 void func_8024E6E0(s32, void *);
 void func_8024E60C(s32, void *);
-void func_8024E71C(s32, void *);
+void controller_getJoystick(s32, void *);
 s32 getGameMode(void);
 
 void func_802DC5B8(void);
@@ -937,7 +937,7 @@ s32 gcPauseMenu_update(void) {
     }
 
     func_8024E55C(0, face_button);
-    func_8024E71C(0, joystick);
+    controller_getJoystick(0, joystick);
     func_8024E60C(0, sp60);
     func_8024E6E0(0, sp50);
     func_80310D2C();

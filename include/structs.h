@@ -593,7 +593,7 @@ typedef struct struct_68_s{
     Struct68DrawMethod unk8;
     BKModelBin *unkC;
     u8 pad10[0x4];
-    f32 unk14[3]; //position
+    f32 position[3];
     f32 unk20[3]; //rotation
     f32 unk2C;    //scale
     u8 unk30;

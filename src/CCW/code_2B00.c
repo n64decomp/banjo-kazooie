@@ -90,7 +90,7 @@ void func_80388FD4(Actor *this) {
             subaddie_set_state_with_direction(this, 4, 0.999f, 1);
             actor_collisionOff(this);
         } else {
-            marker_setCollisionScripts(this->marker, 0, &func_80388F50, 0);
+            marker_setCollisionScripts(this->marker, NULL, &func_80388F50, NULL);
         }
         this->unk38_0 = FALSE;
         this->volatile_initialized = TRUE;

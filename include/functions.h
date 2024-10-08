@@ -406,7 +406,7 @@ int  func_80328A2C(Actor *, f32, s32, f32);
 void subaddie_set_state(Actor *, u32);
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id);
 int  subaddie_maybe_set_state(Actor *, s32, f32);
-void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
+void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction);
 bool subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
 void func_80328FB0(Actor *, f32);

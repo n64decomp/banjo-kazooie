@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80258640(f32[3], f32[3]);
+extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
 
 typedef struct {
     s32 unk0;
@@ -124,7 +124,7 @@ void chBrentilda_update(Actor *this) {
     player_getPosition(sp64);
     temp_f0 = sp64[1] - this->position[1];
     if ((temp_f0 > -100.0f) && (temp_f0 < 350.0f)) {
-        phi_f2 = func_80258640(sp64, this->position);
+        phi_f2 = ml_vec3f_horizontal_distance_zero_likely(sp64, this->position);
     } else {
         phi_f2 = 2000.0f;
     }

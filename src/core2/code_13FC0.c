@@ -3,7 +3,7 @@
 #include "variables.h"
 #include <core1/viewport.h>
 
-extern void func_8024E71C(s32, f32*);
+extern void controller_getJoystick(s32, f32*);
 extern f32 ml_acosf(f32);
 extern f32 player_getYaw(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
@@ -79,7 +79,7 @@ void func_8029B11C(void) {
 }
 
 void func_8029B174(void) {
-    func_8024E71C(0, &D_8037D1A0.unk1C);
+    controller_getJoystick(0, &D_8037D1A0.unk1C);
     if (D_8037D1A0.unk34) {
         D_8037D1A0.unk1C[0] = D_8037D1A0.unk1C[1] = 0.0f;
     }

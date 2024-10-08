@@ -149,7 +149,7 @@ void func_8024E6E0(s32 controller_index, s32 *dst[4]){
     dst[3] = D_80281138[controller_index].unk24[3];
 }
 
-void func_8024E71C(s32 controller_index, f32 dst[2]){
+void controller_getJoystick(s32 controller_index, f32 dst[2]){
     if(func_802E4A08()){
         dst[0] = D_80281250[controller_index].joystick[0];
         dst[1] = D_80281250[controller_index].joystick[1];

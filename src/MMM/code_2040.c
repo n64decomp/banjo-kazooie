@@ -287,7 +287,7 @@ void func_80388BDC(Actor *this) {
     f64 phi_f0;
 
     func_802D3D74(this);
-    mapSpecificFlags_set(1, BOOL((this->yaw > 260.0f) && (this->yaw < 330.0f)));
+    mapSpecificFlags_set(MMM_SPECIFIC_FLAG_TUMBLAR_BROKEN, BOOL((this->yaw > 260.0f) && (this->yaw < 330.0f)));
     if (!this->volatile_initialized) {
         if (this->yaw != 0.0f) {
             this->lifetime_value = 0.5f;
@@ -304,11 +304,11 @@ void func_80388BDC(Actor *this) {
     switch (this->state) {
     case 1:
         this->yaw = 0.0f;
-        if(mapSpecificFlags_get(0)) {
+        if(mapSpecificFlags_get(MMM_SPECIFIC_FLAG_0_UNKNOWN)) {
             func_802BAFE4(0x21);
             subaddie_set_state(this, 6);
             func_80244BB0(0, 0x6A, 0x7FF8, 0.3f);
-            mapSpecificFlags_set(2, 0);
+            mapSpecificFlags_set(MMM_SPECIFIC_FLAG_2_UNKNOWN, FALSE);
             func_8025A6EC(COMUSIC_4_MMM_CLOCK_VERSION, -1);
             func_8025AE0C(2000, 3.0f);
         }
@@ -350,7 +350,7 @@ void func_80388BDC(Actor *this) {
             subaddie_set_state(this, 1U);
             this->yaw = 0.0f;
             func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
-            mapSpecificFlags_set(0, 0);
+            mapSpecificFlags_set(MMM_SPECIFIC_FLAG_0_UNKNOWN, FALSE);
             func_80244C78(0);
             if (!this->unk38_31) {
                 func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 0x7FF8);

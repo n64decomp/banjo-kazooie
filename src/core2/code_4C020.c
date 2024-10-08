@@ -4,7 +4,7 @@
 
 #include "SnS.h"
 
-extern f32 func_80258640(f32 [3], f32[3]);
+extern f32 ml_vec3f_horizontal_distance_zero_likely(f32 [3], f32[3]);
 extern void func_8025A788(enum comusic_e, f32, f32);
 extern void func_8031CC40(enum map_e, s32);
 extern void fxRipple_802F363C(f32);
@@ -565,13 +565,13 @@ void func_802D4680(Actor *this){
     player_getPosition(sp1C);
     switch(this->state){
         case 0:
-            if(150.0f < func_80258640(this->position, sp1C)){
+            if(150.0f < ml_vec3f_horizontal_distance_zero_likely(this->position, sp1C)){
                 subaddie_set_state(this, 1);
                 D_803676AC = 0;
             }
             break;
         case 1:
-            if(func_80258640(this->position, sp1C) < 150.0f && func_8028F20C()){
+            if(ml_vec3f_horizontal_distance_zero_likely(this->position, sp1C) < 150.0f && func_8028F20C()){
                 if(func_8028ECAC() == 0 ||  func_8028ECAC() == BSGROUP_8_TROT){
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);

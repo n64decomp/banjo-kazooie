@@ -26,7 +26,7 @@ extern void warp_smExitBanjosHouse(s32, s32);
 extern void func_80335110(s32);
 
 extern void func_8024E60C(s32, s32[3]);
-extern void func_8024E71C(s32, f32*);
+extern void controller_getJoystick(s32, f32*);
 
 extern char *gcpausemenu_TimeToA(int);
 extern struct5Bs *func_803097A0(void);
@@ -334,7 +334,7 @@ void func_802C4C14(Actor *this){
     else{//L802C4D24
         func_8024E60C(0, sp74);
         func_8024E55C(0, sp5C);
-        func_8024E71C(0, &sp54);
+        controller_getJoystick(0, &sp54);
         switch(this->state){
             case 2:
             case 5:

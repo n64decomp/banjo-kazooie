@@ -105,7 +105,7 @@ void func_8038D85C(Actor *this) {
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
-        marker_setCollisionScripts(this->marker, 0, &func_8038D81C, 0);
+        marker_setCollisionScripts(this->marker, NULL, &func_8038D81C, NULL);
         func_8038D6D8(this, 1);
 
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != FALSE) {

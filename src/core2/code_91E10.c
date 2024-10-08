@@ -488,7 +488,7 @@ void func_80319EA4(void) {
         return;
 
     func_8024E55C(0, sp58);
-    func_8024E71C(0, sp4C);
+    controller_getJoystick(0, sp4C);
     for(phi_s0 = 0; phi_s0 < 4; phi_s0++){
         gczoombox_update(D_803830E0->unk24[phi_s0]);
     }
