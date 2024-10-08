@@ -39,7 +39,7 @@ void CC_func_80386FE0(Actor *this, s32 next_state){
     }
     else if(this->state == 3){
         if(prev_state == 2){
-            levelSpecificFlags_set((local->unk0 == 1) ? 0 : 1, TRUE);
+            levelSpecificFlags_set((local->unk0 == 1) ? LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN : LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN, TRUE);
         }
         if(local->unk0 == 1){
             this->yaw = -30.0f;

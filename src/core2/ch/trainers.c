@@ -56,8 +56,9 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
 }
 
 void chtrainers_update(Actor *this){
-    s32 sp2C = levelSpecificFlags_get(0x1a);
-    if(sp2C && this->unkF4_8 != 1){
+    s32 sp2C = levelSpecificFlags_get(LEVEL_FLAG_1A_UNKNOWN);
+
+    if (sp2C && this->unkF4_8 != 1) {
         return;
     }
 

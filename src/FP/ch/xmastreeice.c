@@ -83,18 +83,18 @@ void func_80390B70(Actor *this){
     timedFunc_set_1(2.5f, (GenFunction_1)func_80390B2C, reinterpret_cast(s32, this->marker));
 }
 
-void func_80390BDC(Actor *this){
+void func_80390BDC(Actor *this) {
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
-    if(!this->volatile_initialized){
+
+    if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
-        if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE)){
+
+        if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE)) {
             marker_despawn(this->marker);
         }
-        else{
-            if(levelSpecificFlags_get(0x29)){
-                func_80390B70(this);
-            }
+        else if (levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
+            func_80390B70(this);
         }
     }
 }

@@ -114,8 +114,8 @@ void chPropellorSwitch_update(Actor *this){
     }//L8038A47C
     if(this->state == 2){
         if( !levelSpecificFlags_get(local->unk0->unkA)
-            && !levelSpecificFlags_get(3)
-            && !levelSpecificFlags_get(4)
+            && !levelSpecificFlags_get(LEVEL_FLAG_3_RBB_UNKNOWN)
+            && !levelSpecificFlags_get(LEVEL_FLAG_4_RBB_UNKNOWN)
         ){
             __chPropellorSwitch_setState(this, 1);
         }

@@ -90,10 +90,10 @@ void func_80357264(Actor *this, s32 next_state){
     }
 
     if(next_state == 5){
-        if(!levelSpecificFlags_get(0x14)
+        if(!levelSpecificFlags_get(LEVEL_FLAG_14_TTC_UNKNOWN)
             && !( actorArray_findClosestActorFromActorId(this->position, 0x318, -1, &sp38) && ( sp38 < 250.0f))
         ){
-            levelSpecificFlags_set(0x14, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_14_TTC_UNKNOWN, TRUE);
             func_80324E38(0.0f, 3);
             __clucker_setDeathCutsceneCamera(this);
             timed_exitStaticCamera(2.0f);

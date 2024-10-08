@@ -192,7 +192,7 @@ void FP_func_8038F7AC(Actor *this){
             return;
         }
 
-        if(levelSpecificFlags_get(0x26)){
+        if (levelSpecificFlags_get(LEVEL_FLAG_26_FP_UNKNOWN)) {
             this->unk38_31 = TRUE;
             func_8038F274();
         }

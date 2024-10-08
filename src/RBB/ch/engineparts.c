@@ -58,8 +58,8 @@ ActorInfo D_8039083C = {
 f32 D_80390860[3] = {1.0f, 0.5f, 0.5f};
 
 /* .code */
-f32 func_8038A4E0(void){
-    return D_80390860[2*levelSpecificFlags_get(0x27) + levelSpecificFlags_get(0x28)];
+f32 func_8038A4E0(void) {
+    return D_80390860[2 * levelSpecificFlags_get(LEVEL_FLAG_27_RBB_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_28_RBB_UNKNOWN)];
 }
 
 void func_8038A524(Actor *this, s32 arg1){

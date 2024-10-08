@@ -104,11 +104,12 @@ void func_8038966C(void){
         if((s32)(tmp_v0->flags << 4) < 0){
             FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 1.4f, 32750);
             MMM_D_8038C4E0.unk1 = 2;
-            if(!levelSpecificFlags_get(0x1b)){
+
+            if (!levelSpecificFlags_get(LEVEL_FLAG_1B_MMM_UNKNOWN)) {
                 func_80324E38(0.0f, 3);
                 timed_setStaticCameraToNode(0.0f, 0);
                 func_80324DBC(0.0f, 0xad7, 6, NULL, NULL, func_803895D8, NULL);
-                levelSpecificFlags_set(0x1b, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_1B_MMM_UNKNOWN, TRUE);
             }
         }
     }

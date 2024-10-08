@@ -370,10 +370,13 @@ void func_80388FE4(Actor *this) {
 
 void func_80389004(Actor *this){
     func_802D3CE8(this);
-    if(!this->volatile_initialized){
+
+    if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
-        if(levelSpecificFlags_get(0x2e))
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_2E_MMM_UNKNOWN)) {
             marker_despawn(this->marker);
+        }
     }
 }
 

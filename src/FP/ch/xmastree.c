@@ -40,7 +40,7 @@ void __chXmasTree_80386EF4(Actor *this, int arg1){
 }
 
 void __chXmasTree_80386F3C(void){
-    levelSpecificFlags_set(0x29, TRUE);
+    levelSpecificFlags_set(LEVEL_FLAG_29_FP_UNKNOWN, TRUE);
     func_803228D8();
     volatileFlag_set(VOLATILE_FLAG_E, 1);
     func_802E4078(MAP_53_FP_CHRISTMAS_TREE, 1, 0);
@@ -107,7 +107,8 @@ void chXmasTree_update(Actor *this){
     }
 
     this->depth_mode = 1;
-    if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
+
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
         __chXmasTree_80386EF4(this, 1);
         return;
     }

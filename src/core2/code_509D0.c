@@ -85,7 +85,7 @@ void __chLevelCollectible_presentCollectEmitSparkles(f32 position[3], enum asset
 }
 
 s32 __chLevelCollectible_dialogCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    return -(levelSpecificFlags_get(0x2A) + levelSpecificFlags_get(0x2B) + levelSpecificFlags_get(0x2C));
+    return -(levelSpecificFlags_get(LEVEL_FLAG_2A_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_2B_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_2C_FP_UNKNOWN));
 }
 
 
@@ -123,21 +123,21 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
                 break;
 
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2A, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2A_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
                 dialog_id = ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE;
                 break;
 
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2B, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2B_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_712_SPRITE_SPARKLE_GREEN);
                 dialog_id = ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN;
                 break;
 
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2C, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2C_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
                 dialog_id = ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED;
@@ -241,15 +241,15 @@ void __chLevelCollectible_returnObj(Actor *this) {
                 break;
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x11, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_11_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x12, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_12_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x13, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_13_FP_UNKNOWN, TRUE);
                 break;
             }
         }

@@ -278,7 +278,7 @@ void func_803465E4(void){
     }
 
     if(!func_8028EC04() && func_8028F070()){
-        if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(5)){
+        if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(LEVEL_FLAG_5_TTC_UNKNOWN)){
             is_underwater = (player_getWaterState() == BSWATERGROUP_2_UNDERWATER);
             is_on_water_surface = (player_getWaterState() == BSWATERGROUP_1_SURFACE);
             is_in_polluted_or_winter_water = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (map_get() == MAP_46_CCW_WINTER));
@@ -398,10 +398,10 @@ void func_80346DB4(s32 note_count) {
                 gcdialog_showText(0xF78, 4, NULL, NULL, NULL, NULL);
             }
             if (note_count == 1) {
-                levelSpecificFlags_set(0x34, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_34_UNKNOWN, TRUE);
             }
-            if (!levelSpecificFlags_get(0x34) && (gcdialog_showText(0xF76, 0, NULL, NULL, NULL, NULL))) {
-                levelSpecificFlags_set(0x34, TRUE);
+            if (!levelSpecificFlags_get(LEVEL_FLAG_34_UNKNOWN) && (gcdialog_showText(0xF76, 0, NULL, NULL, NULL, NULL))) {
+                levelSpecificFlags_set(LEVEL_FLAG_34_UNKNOWN, TRUE);
             }
             if (volatileFlag_get(VOLATILE_FLAG_17) == 0) {
                 volatileFlag_set(VOLATILE_FLAG_17, 1);

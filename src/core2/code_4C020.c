@@ -218,10 +218,10 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x108:
         case 0x263:
             if ((arg0->id == 0x9D) || (arg0->id == 0xE7)) {
-                levelSpecificFlags_set(0x2E, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_2E_MMM_UNKNOWN, 1);
             }
             if (arg0->id == 0x263) {
-                levelSpecificFlags_set(0x38, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_38_CCW_UNKNOWN, 1);
             }
             func_802D2FB0(sp2C, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
             func_8030E540(SFX_D_EGGSHELL_BREAKING);
@@ -817,46 +817,50 @@ void func_802D5260(void) {
          : -1;
 
     if (sp3C == -1) {
-        levelSpecificFlags_set(0x3C, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_3C_LAIR_UNKNOWN, FALSE);
         fileProgressFlag_set(FILEPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
         fileProgressFlag_set(FILEPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
-        levelSpecificFlags_set(0x3D, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_3D_LAIR_UNKNOWN, FALSE);
         return;
     }
     sp38 = func_8034C528(sp3C + 0x190);
     if( fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3)
-        && !levelSpecificFlags_get(0x3D)
-        && !levelSpecificFlags_get(0x3C)
+        && !levelSpecificFlags_get(LEVEL_FLAG_3D_LAIR_UNKNOWN)
+        && !levelSpecificFlags_get(LEVEL_FLAG_3C_LAIR_UNKNOWN)
     ) {
         func_802D68F0(30);
         item_set(ITEM_6_HOURGLASS, TRUE);
-        levelSpecificFlags_set(0x3D, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_3D_LAIR_UNKNOWN, TRUE);
     }
-    if( levelSpecificFlags_get(0x3D)
-        && !levelSpecificFlags_get(0x3C) 
+    if( levelSpecificFlags_get(LEVEL_FLAG_3D_LAIR_UNKNOWN)
+        && !levelSpecificFlags_get(LEVEL_FLAG_3C_LAIR_UNKNOWN)
         && item_getCount(ITEM_6_HOURGLASS) == FALSE
     ) {
-        levelSpecificFlags_set(0x3C, TRUE);
-        levelSpecificFlags_set(0x3D, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_3C_LAIR_UNKNOWN, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_3D_LAIR_UNKNOWN, FALSE);
         D_803676A4 = 0.0f;
     }
-    if (levelSpecificFlags_get(0x3C)) {
+
+    if (levelSpecificFlags_get(LEVEL_FLAG_3C_LAIR_UNKNOWN)) {
         D_803676A4 -= 5.0;
+
         if (D_803676A8 == 0) {
             D_803676A8 = func_802F9AA8(SFX_3EC_CCW_DOOR_OPENING);
             func_802FA060(D_803676A8, 20000, 20000, 0.0f);
             func_802F9F80(D_803676A8, 0.0f, 1.0e8f, 0.0f);
         }
+
         if (D_803679C8[sp3C].unk6 + D_803676A4 <= D_803679C8[sp3C].unk4) {
-            levelSpecificFlags_set(0x3C, FALSE);
+            levelSpecificFlags_set(LEVEL_FLAG_3C_LAIR_UNKNOWN, FALSE);
             fileProgressFlag_set(FILEPROG_26_WATER_SWITCH_3_PRESSED, FALSE);
-            fileProgressFlag_set(FILEPROG_27_LAIR_WATER_LEVEL_3,     FALSE);
+            fileProgressFlag_set(FILEPROG_27_LAIR_WATER_LEVEL_3, FALSE);
             func_802F9D38(D_803676A8);
             D_803676A8 = 0;
         }
     }
+
     if (sp38 != 0) {
-        if (levelSpecificFlags_get(0x3C) != 0) {
+        if (levelSpecificFlags_get(LEVEL_FLAG_3C_LAIR_UNKNOWN) != FALSE) {
             sp34 = D_803679C8[sp3C].unk6 + D_803676A4;
         } else {
             sp34 = ((s16 *)&D_803679C8[sp3C])[(fileProgressFlag_get(FILEPROG_27_LAIR_WATER_LEVEL_3)) ? 3 
@@ -1012,16 +1016,16 @@ void func_802D5628(void){
     }
     else{//L802D5B64
         func_802D5260();
-        func_802D5178(0x1C, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR, 0x28);
-        func_802D5178(0x21, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,      0x12);
-        func_802D5178(0x1E, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_CC_ENTRANCE_BARS,         0xA);
-        func_802D5178(0x1D, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_TCC_ENTRANCE_CHEST_LID,         0xA);
-        func_802D5178(0x1F, 0x2B, 0x34, MAP_72_GL_BGS_LOBBY, 0xB, 0xB, ACTOR_210_BGS_ENTRANCE_DOOR, 0xA);
-        func_802D5178(0x23, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
-        func_802D5178(0x22, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
-        func_802D5178(0x24, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
-        func_802D5178(0x20, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
-        func_802D5178(0x3F, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
+        func_802D5178(LEVEL_FLAG_1C_MM_UNKNOWN, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR, 0x28);
+        func_802D5178(LEVEL_FLAG_21_GV_UNKNOWN, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,      0x12);
+        func_802D5178(LEVEL_FLAG_1E_CC_UNKNOWN, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_CC_ENTRANCE_BARS,         0xA);
+        func_802D5178(LEVEL_FLAG_1D_TTC_UNKNOWN, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_TCC_ENTRANCE_CHEST_LID,         0xA);
+        func_802D5178(LEVEL_FLAG_1F_BGS_UNKNOWN, 0x2B, 0x34, MAP_72_GL_BGS_LOBBY, 0xB, 0xB, ACTOR_210_BGS_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_23_RBB_UNKNOWN, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_22_MMM_UNKNOWN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
+        func_802D5178(LEVEL_FLAG_24_CCW_UNKNOWN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_20_FP_UNKNOWN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
+        func_802D5178(LEVEL_FLAG_3F_LAIR_UNKNOWN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
         if(volatileFlag_get(VOLATILE_FLAG_18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
                 func_80311174(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
