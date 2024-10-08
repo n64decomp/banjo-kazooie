@@ -97,12 +97,15 @@ void func_8038CC4C(Actor *this) {
             local->unk0++;
         }
         func_8038CB40(this, 1);
+
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-            levelSpecificFlags_set(0x25, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
-        if ((local->unk0->unk2 != 0) && levelSpecificFlags_get(0x25)) {
+
+        if ((local->unk0->unk2 != 0) && levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN)) {
             marker_despawn(this->marker);
         }
+
         return;
     } 
 

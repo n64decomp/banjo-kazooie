@@ -251,11 +251,11 @@ void func_8038AA44(void){
         && MMM_D_8038C510.unkC != NULL
         && func_8038AD4C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
     ){
-        if(!levelSpecificFlags_get(0x2f)){
-            levelSpecificFlags_set(0x2f, TRUE);
+        if (!levelSpecificFlags_get(LEVEL_FLAG_2F_MMM_UNKNOWN)) {
+            levelSpecificFlags_set(LEVEL_FLAG_2F_MMM_UNKNOWN, TRUE);
             func_8038A140(2);
         }
-        else{
+        else {
             func_8038A140(3);
         }
     }

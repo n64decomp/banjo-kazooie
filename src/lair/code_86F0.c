@@ -90,7 +90,7 @@ void func_8038EBEC(ActorMarker *marker) {
     if (this->unkF4_8 == 0xA) {
         func_8028F918(0);
         func_8028F918(2);
-        levelSpecificFlags_set(0x3F, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_3F_LAIR_UNKNOWN, TRUE);
         return;
     }
     if (this->unkF4_8 == 0xB) {

@@ -34,7 +34,7 @@ void func_80390630(Actor *this){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
-        this->unk38_31 = jiggyscore_isCollected(JIGGY_32_FP_WOZZA) || levelSpecificFlags_get(0x26) ? 0 : 1;
+        this->unk38_31 = jiggyscore_isCollected(JIGGY_32_FP_WOZZA) || levelSpecificFlags_get(LEVEL_FLAG_26_FP_UNKNOWN) ? 0 : 1;
     }//L80390714
  
     if(this->unk38_31){
@@ -66,18 +66,18 @@ void func_80390630(Actor *this){
             }
         }
 
-        if(func_80329530(this, 350)){
-            if(player_getTransformation() == TRANSFORM_4_WALRUS){
-                if(!levelSpecificFlags_get(0x31)){
-                    if(gcdialog_showText(ASSET_C27_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
-                        levelSpecificFlags_set(0x31, TRUE);
+        if (func_80329530(this, 350)) {
+            if (player_getTransformation() == TRANSFORM_4_WALRUS) {
+                if (!levelSpecificFlags_get(LEVEL_FLAG_31_FP_UNKNOWN)) {
+                    if (gcdialog_showText(ASSET_C27_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_31_FP_UNKNOWN, TRUE);
                     }
                 }
             }
-            else{
-                 if(!levelSpecificFlags_get(0x32)){
-                    if(gcdialog_showText(ASSET_C26_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
-                        levelSpecificFlags_set(0x32, TRUE);
+            else {
+                if (!levelSpecificFlags_get(LEVEL_FLAG_32_FP_UNKNOWN)) {
+                    if (gcdialog_showText(ASSET_C26_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_32_FP_UNKNOWN, TRUE);
                     }
                 }
             }

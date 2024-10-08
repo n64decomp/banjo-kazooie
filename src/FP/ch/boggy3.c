@@ -35,10 +35,11 @@ Actor *func_80390290(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-int func_80390334(void){
-    if( levelSpecificFlags_get(0x11) && levelSpecificFlags_get(0x12) && levelSpecificFlags_get(0x13)){ 
-        return TRUE; 
-    } 
+int func_80390334(void) {
+    if (levelSpecificFlags_get(LEVEL_FLAG_11_FP_UNKNOWN) && levelSpecificFlags_get(LEVEL_FLAG_12_FP_UNKNOWN) && levelSpecificFlags_get(LEVEL_FLAG_13_FP_UNKNOWN)) {
+        return TRUE;
+    }
+
     return FALSE;
 }
 
@@ -47,9 +48,9 @@ void func_80390388(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         if(jiggyscore_isSpawned(JIGGY_2E_FP_PRESENTS) || jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)){
-            levelSpecificFlags_set(0x11, TRUE);
-            levelSpecificFlags_set(0x12, TRUE);
-            levelSpecificFlags_set(0x13, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_11_FP_UNKNOWN, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_12_FP_UNKNOWN, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_13_FP_UNKNOWN, TRUE);
         }
         if(jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3) || jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)){
             this->unk38_31 = FALSE;

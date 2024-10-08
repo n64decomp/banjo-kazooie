@@ -152,7 +152,7 @@ void __chCrab_mutantTextCallback(ActorMarker *caller, enum asset_e text_id, s32 
         func_80324E38(3.0f, 0);
         return;
     }
-    levelSpecificFlags_set(0xE, FALSE);
+    levelSpecificFlags_set(LEVEL_FLAG_E_CC_UNKNOWN, FALSE);
 }
 
 bool __chCrab_802CB76C(ActorMarker *marker, ActorMarker *other) {
@@ -272,13 +272,13 @@ void chCrab_update(Actor *this) {
         if ((this->state != 6) && (this->state != 5)) {
             gcdialog_showText(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
-            levelSpecificFlags_set(0xE, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_E_CC_UNKNOWN, TRUE);
             this->has_met_before = TRUE;
         }
     }
     if (map_get() == MAP_A_TTC_SANDCASTLE) {
         if( !mapSpecificFlags_get(0)
-            && levelSpecificFlags_get(2)
+            && levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)
             && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
             && !jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && func_80329530(this, 1600)
@@ -290,7 +290,7 @@ void chCrab_update(Actor *this) {
             mapSpecificFlags_set(1, FALSE);
         }
     }
-    if (levelSpecificFlags_get(0xE)) {
+    if (levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
         if ((this->state != 8) && (this->state != 9)) {
             subaddie_set_state_with_direction(this, (this->has_met_before) ? 8 : 9, 0.0f, 1);
             this->has_met_before = FALSE;
@@ -306,7 +306,7 @@ void chCrab_update(Actor *this) {
             break;
 
         case 9: //L802CBE6C
-            if (!levelSpecificFlags_get(0xE)) {
+            if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }
             break;
@@ -337,7 +337,7 @@ void chCrab_update(Actor *this) {
             if (func_80329480(this)) {
                 subaddie_set_state(this, 9);
                 this->actor_specific_1_f = 12.0f;
-            } else if (!levelSpecificFlags_get(0xE)) {
+            } else if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
                 subaddie_set_state_with_direction(this, 3, 0.0f, 1);
             }
             break;

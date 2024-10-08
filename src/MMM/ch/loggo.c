@@ -70,8 +70,9 @@ void chLoggo_update(Actor *this){
         subaddie_set_state_with_direction(this, 1, 0.01f, 1);
         actor_loopAnimation(this);
         this->lifetime_value = 0.0f;
-        if(!fileProgressFlag_get(FILEPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(0x33)){
-            if(gcdialog_showText(ASSET_AE0_TEXT_EXIT_LOGGO, 4, NULL, NULL, NULL, NULL)){
+
+        if (!fileProgressFlag_get(FILEPROG_8A_EXITED_LOGGO) && levelSpecificFlags_get(LEVEL_FLAG_33_MMM_UNKNOWN)) {
+            if (gcdialog_showText(ASSET_AE0_TEXT_EXIT_LOGGO, 4, NULL, NULL, NULL, NULL)) {
                 fileProgressFlag_set(FILEPROG_8A_EXITED_LOGGO, TRUE);
             }
         }
@@ -107,7 +108,7 @@ void chLoggo_update(Actor *this){
             if(actor_animationIsAt(this, 0.46f)){
                 this->marker->propPtr->unk8_3 = FALSE;
                 FUNC_8030E8B4(SFX_92_TOILET_FLUSH, 1.0f, 32000, this->position, 600, 1500);
-                levelSpecificFlags_set(0x33, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_33_MMM_UNKNOWN, TRUE);
                 ml_vec3f_assign(sp38, this->position_x - 50.0f, this->position_y + 50.0f, this->position_z);
                 func_8028F6E4(BS_INTR_2F_LOGGO, sp38);
             }

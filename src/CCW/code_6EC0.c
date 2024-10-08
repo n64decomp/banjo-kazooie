@@ -39,9 +39,10 @@ void func_8038D2B0(Actor *this, s32 next_state) {
 }
 
 Actor *func_8038D30C(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx) {
-    if (levelSpecificFlags_get(0x25) == 0) {
+    if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) == FALSE) {
         return func_80325340(marker, gfx, mtx, vtx);
     }
+
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
@@ -61,7 +62,7 @@ void func_8038D368(Actor *this) {
 
         func_8038D2B0(this, 1);
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-            levelSpecificFlags_set(0x25, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
         return;
     } 

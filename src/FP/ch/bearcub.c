@@ -41,9 +41,9 @@ ActorInfo D_80391E50 = { MARKER_1FC_POLAR_BEAR_CUB_RED, ACTOR_1EC_POLAR_BEAR_CUB
 
 f32 FP_D_80391E74[3] = {-5.0f, 180.0f, 1.0f};
 Struct_FP_3E00 D_80391E80[] ={
-    {0x11, MARKER_1FD_BLUE_PRESENT_COLLECTIBLE,  ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE,  0x1EE},
-    {0x12, MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, 0x1F0},
-    {0x13, MARKER_1FF_RED_PRESENT_COLLECTIBLE,   ACTOR_1F1_RED_PRESENT_COLLECTIBLE,   0x1F2}
+    {LEVEL_FLAG_11_FP_UNKNOWN, MARKER_1FD_BLUE_PRESENT_COLLECTIBLE,  ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE,  0x1EE},
+    {LEVEL_FLAG_12_FP_UNKNOWN, MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, 0x1F0},
+    {LEVEL_FLAG_13_FP_UNKNOWN, MARKER_1FF_RED_PRESENT_COLLECTIBLE,   ACTOR_1F1_RED_PRESENT_COLLECTIBLE,   0x1F2}
 };
 
 /* .code */
@@ -123,7 +123,7 @@ void func_8038A384(Actor *this){
         }
     }//L8038A4E4
 
-    sp34 = levelSpecificFlags_get(0x11) + levelSpecificFlags_get(0x12) + levelSpecificFlags_get(0x13);
+    sp34 = levelSpecificFlags_get(LEVEL_FLAG_11_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_12_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_13_FP_UNKNOWN);
     sp38 = (sp34 == 1) ? ASSET_C17_TEXT_UNKNOWN
          : (sp34 == 2) ? ASSET_C18_TEXT_UNKNOWN
          : ASSET_C19_TEXT_UNKNOWN;
@@ -134,14 +134,14 @@ void func_8038A384(Actor *this){
 
     switch(this->state){
         case 1://L8038A5B0
-            if(!levelSpecificFlags_get(0x19) && func_80329530(this, 0xfa)){
+            if(!levelSpecificFlags_get(LEVEL_FLAG_19_FP_UNKNOWN) && func_80329530(this, 0xfa)){
                 if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
                     if(sp34 == 0
                         && !jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)
                         && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)
                     ){
                         if (gcdialog_showText(ASSET_C1A_TEXT_UNKNOWN, 0x2a, NULL, NULL, NULL, NULL)) {
-                            levelSpecificFlags_set(0x19, TRUE);
+                            levelSpecificFlags_set(LEVEL_FLAG_19_FP_UNKNOWN, TRUE);
                         }
                     }
                 }

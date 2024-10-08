@@ -107,7 +107,7 @@ void func_8024AAB0(void){
             break;
         case MAP_41_FP_BOGGYS_IGLOO: //L8024AD08
             if( jiggyscore_isCollected(JIGGY_2E_FP_PRESENTS)
-                || (levelSpecificFlags_get(0x11) && levelSpecificFlags_get(0x12) && levelSpecificFlags_get(0x13))
+                || (levelSpecificFlags_get(LEVEL_FLAG_11_FP_UNKNOWN) && levelSpecificFlags_get(LEVEL_FLAG_12_FP_UNKNOWN) && levelSpecificFlags_get(LEVEL_FLAG_13_FP_UNKNOWN))
             ){
                 D_80280708[2] = 0;
             }

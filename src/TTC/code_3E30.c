@@ -387,7 +387,7 @@ void func_8038B094(void){
     void *sp28;
 
     if( map_get() == MAP_7_TTC_TREASURE_TROVE_COVE
-        && levelSpecificFlags_get(0x2)
+        && levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)
     ){
         sp2C = func_8034C5AC(0x12C);
         if(sp2C){
@@ -401,7 +401,8 @@ void func_8038B094(void){
     else{
         sp2C = func_8034C5AC(0x131);
         sp28 = func_8034C5AC(0x12C);
-        if(levelSpecificFlags_get(5)){
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_5_TTC_UNKNOWN)) {
             func_8034E71C(sp2C, -500, 10.0f);
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(0.0f, 1);
@@ -410,10 +411,10 @@ void func_8038B094(void){
             func_803228D8();
             timedFunc_set_3(2.0f, (GenFunction_3) func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
         }
-        else if(levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
+        else if (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             func_8034E71C(sp2C, -500, 0.0f);
         }
-        else{
+        else {
             func_8034E71C(sp28, -500, 0.0f);
         }//L8038B1EC
 
@@ -474,7 +475,7 @@ void func_8038B2F0(void) {
             }
         }
         if ((D_8038D720.unk8 == 0) || (D_8038D720.unk8 == 3)) {
-            if( (levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_3)) 
+            if( (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_3))
                 && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) 
                 && func_8028F20C()
             ) {

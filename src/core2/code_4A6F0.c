@@ -360,8 +360,8 @@ void chMumbo_update(Actor *this) {
                         break;
                     }
                     func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
-                    if ((levelSpecificFlags_get(0x3E) == 0) && (gcdialog_showText(ASSET_DAC_DIALOG_MUMBO_FAIL_TO_BUY, 0, NULL, NULL, NULL, NULL) != 0)) {
-                        levelSpecificFlags_set(0x3E, 1);
+                    if ((levelSpecificFlags_get(LEVEL_FLAG_3E_UNKNOWN) == FALSE) && (gcdialog_showText(ASSET_DAC_DIALOG_MUMBO_FAIL_TO_BUY, 0, NULL, NULL, NULL, NULL) != 0)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_3E_UNKNOWN, 1);
                     }
                 }
             }

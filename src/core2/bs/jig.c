@@ -128,7 +128,7 @@ void bsjig_jiggy_end(void){
                     sp2C = 0xa16;
                     break;
                 case 0x17:
-                    if(!levelSpecificFlags_get(0) || !levelSpecificFlags_get(1))
+                    if(!levelSpecificFlags_get(LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN) || !levelSpecificFlags_get(LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN))
                         sp2C = 0xd2d;
                     break;
             }

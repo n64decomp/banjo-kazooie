@@ -142,12 +142,13 @@ void __chTermite_die(ActorMarker *marker, ActorMarker *other_marker){
     FUNC_8030E624(SFX_D1_SNORKEL_WAH, 1.4f, 32750);
     marker_despawn(marker);
 }
-void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+
+void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     Actor *this;
 
     this = marker_getActor(caller);
     this->has_met_before = FALSE;
-    levelSpecificFlags_set(0xd, FALSE);
+    levelSpecificFlags_set(LEVEL_FLAG_D_MM_UNKNOWN, FALSE);
 }
 
 void chTermite_update(Actor *this) {
@@ -172,7 +173,7 @@ void chTermite_update(Actor *this) {
     ) {
         gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
-        levelSpecificFlags_set(0xD, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_D_MM_UNKNOWN, TRUE);
         this->has_met_before = TRUE;
     }
 
@@ -181,13 +182,14 @@ void chTermite_update(Actor *this) {
         && func_8028ECAC() == 0
         && player_getTransformation() == TRANSFORM_2_TERMITE
     ) {
-        if (!levelSpecificFlags_get(0xB)) {
+        if (!levelSpecificFlags_get(LEVEL_FLAG_B_MM_UNKNOWN)) {
             if (gcdialog_showText(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
-                levelSpecificFlags_set(0xB, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_B_MM_UNKNOWN, TRUE);
                 this->unk138_23 = TRUE;
             }
-        } else if (!levelSpecificFlags_get(0xC) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
-            levelSpecificFlags_set(0xC, TRUE);
+        }
+        else if (!levelSpecificFlags_get(LEVEL_FLAG_C_MM_UNKNOWN) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
+            levelSpecificFlags_set(LEVEL_FLAG_C_MM_UNKNOWN, TRUE);
         }
     }
     switch (this->state) {

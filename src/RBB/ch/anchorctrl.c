@@ -53,10 +53,13 @@ void __chAnchorCtrl_setState(Actor *this, s32 new_state){
 void chAnchorCtrl_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        if(levelSpecificFlags_getSet(0x30, FALSE))
+
+        if (levelSpecificFlags_getSet(LEVEL_FLAG_30_RBB_UNKNOWN, FALSE)) {
             __chAnchorCtrl_setState(this, 2);
-        else
+        }
+        else {
             __chAnchorCtrl_setState(this, 1);
+        }
         
         if(jiggyscore_isSpawned(JIGGY_53_RBB_SNORKEL))
             marker_despawn(this->marker);

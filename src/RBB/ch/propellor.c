@@ -23,8 +23,8 @@ ActorInfo D_803906E0 = {
 s32 D_80390704[4] = {0x258, 0x12C, 0x12C, 0};
 
 /*.code */
-f32 __chPropellor_getSpeed(void){
-    return (f32) D_80390704[2*levelSpecificFlags_get(0x27) + levelSpecificFlags_get(0x28)];
+f32 __chPropellor_getSpeed(void) {
+    return (f32) D_80390704[2 * levelSpecificFlags_get(LEVEL_FLAG_27_RBB_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_28_RBB_UNKNOWN)];
 }
 
 void __chPropellor_setState(Actor *this, s32 arg1){
@@ -50,7 +50,8 @@ void func_80389B80(Actor *this, f32 arg1){
     func_802F9DB8(local->unk0, arg1, arg1, 0.0f);
     func_802F9F80(local->unk0, 0.0f, 8999999488.0f, 0.0f);
     func_802FA060(local->unk0, 0x4650, 0x4650, 0.0f);
-    if(!levelSpecificFlags_get(3) && !levelSpecificFlags_get(4)){
+
+    if (!levelSpecificFlags_get(LEVEL_FLAG_3_RBB_UNKNOWN) && !levelSpecificFlags_get(LEVEL_FLAG_4_RBB_UNKNOWN)) {
         func_802F9EC4(local->unk0, &this->position, 0x1f4, 0x7d0);
         func_802FA0B0(local->unk0, 1);
     }
@@ -90,7 +91,8 @@ void chPropellor_update(Actor *this){
         local->unk4 = 0.0f;
         local->unkC = 0.0f;
         __chPropellor_setState(this, 1);
-        if(levelSpecificFlags_get(local->unk8 ? 4 : 3)){
+
+        if (levelSpecificFlags_get(local->unk8 ? LEVEL_FLAG_4_RBB_UNKNOWN : LEVEL_FLAG_3_RBB_UNKNOWN)) {
             ncStaticCamera_setToNode(9);
             func_80324E38(0.0f, 3);
             timedFunc_set_2(0.1f, (GenFunction_2)levelSpecificFlags_set, local->unk8 ? 0x28 : 0x27, 1);
@@ -107,10 +109,12 @@ void chPropellor_update(Actor *this){
     if( (0.0f < tmp && this->pitch <= 0.0f)
         || (180.0f < tmp && this->pitch <= 180.0f)
     ){
-        if(levelSpecificFlags_get(3) || levelSpecificFlags_get(4))
+        if (levelSpecificFlags_get(LEVEL_FLAG_3_RBB_UNKNOWN) || levelSpecificFlags_get(LEVEL_FLAG_4_RBB_UNKNOWN)) {
             func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 20000);
-        else
+        }
+        else {
             func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 20000, &this->position, 500.0f, 1000.0f);
+        }
     }//L80389F94
     if(this->pitch < 0.0f)
         this->pitch += 360.0f;

@@ -83,7 +83,8 @@ void func_8038DAB0(Actor *this){
     if(!this->initialized){
         func_802D3CE8(this);
         this->initialized = TRUE;
-        if(levelSpecificFlags_get(0x38)){
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_38_CCW_UNKNOWN)) {
             marker_despawn(this->marker);
         }
     }

@@ -85,9 +85,9 @@ void func_8038CFB4(Actor *this) {
         this->has_met_before = FALSE;
         func_8038CEB0(this, 1);
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {
-            levelSpecificFlags_set(0x25, 1);
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
-        if (levelSpecificFlags_get(0x25) != 0) {
+        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) {
             marker_despawn(this->marker);
         }
         return;
@@ -121,7 +121,8 @@ void func_8038CFB4(Actor *this) {
                 this->has_met_before = TRUE;
             }
         }
-        if (levelSpecificFlags_get(0x25) != 0) {
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) {
             func_8038CEB0(this, 2);
         }
     }

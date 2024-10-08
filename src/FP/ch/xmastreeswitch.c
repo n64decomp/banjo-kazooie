@@ -67,7 +67,7 @@ void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
 }
 
 void func_8038E940(Actor *this){
-    if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         subaddie_set_state_with_direction(this, 3, 0.95f, 0);
