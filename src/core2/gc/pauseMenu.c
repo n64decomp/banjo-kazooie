@@ -26,7 +26,7 @@ typedef struct struct_1A_s {
 
 extern void func_802C5994(void);
 extern void func_802E412C(s32, s32);
-void volatileFlag_set(s32, s32);
+void volatileFlag_set(enum volatile_flags_e, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void func_80310D2C(void);
 

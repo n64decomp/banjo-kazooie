@@ -18,7 +18,7 @@ ActorInfo chXmasTree = {
 Actor *chXmasTree_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(5, this->unk38_31);
-    func_8033A45C(6, fileProgressFlag_get(0x13) && !func_8033A0F0(5));
+    func_8033A45C(6, fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !func_8033A0F0(5));
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
@@ -100,7 +100,7 @@ void chXmasTree_update(Actor *this){
         }
         __spawnQueue_add_0(__chXmasTree_spawnSwitch);
         __spawnQueue_add_1((GenFunction_1)__chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
-        if(fileProgressFlag_get(0x13)){
+        if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
             __chXmasTree_80386F84(this);
             mapSpecificFlags_set(2, FALSE);
         }
@@ -116,7 +116,7 @@ void chXmasTree_update(Actor *this){
     switch(this->state){
         case 1: // L80387268
             __chXmasTree_80386EF4(this, 0);
-            if(fileProgressFlag_get(0x13)){
+            if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 __chXmasTree_80386F84(this);
             }
             break;

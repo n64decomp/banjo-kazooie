@@ -36,7 +36,8 @@ void func_802A0340(void){
     }
 }
 
-// bsBee_inSet
+// bsBee_inSet 
+// move_idx is probably a bs_e
 int bsbee_inSet(s32 move_idx){
     return (move_idx == 0x85) 
     || (move_idx == 0x86) 

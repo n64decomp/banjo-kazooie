@@ -195,7 +195,7 @@ void __baMarker_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
 }
 
 // arg1 - if bit 0x400000 is set, it's a volatile flag, else it's a file progress flag (for witch switches)
-void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
+void __baMarker_8028BB1C(s32 arg0, enum file_progress_e progress_flag, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6){
     u32 sp24;
     if(arg0 != 1)
         return;
@@ -203,9 +203,9 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
     if(func_8028ECAC() == 1)
         return;
 
-    // if bit 0x400000 of arg1 is set, it's a volatile flag, else it's a file progress flag (for witch switches)
-    if(arg1 & 0x400000){
-        sp24 = arg1 + 0xFFC00000; // weird truncing 
+    // if bit 0x400000 of fileProgressFlag is set, it's a volatile flag, else it's a file progress flag (for witch switches)
+    if(progress_flag & 0x400000){
+        sp24 = progress_flag + 0xFFC00000; // weird truncing 
         if(!volatileFlag_get(sp24)){
             volatileFlag_set(sp24, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
@@ -214,8 +214,8 @@ void __baMarker_8028BB1C(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 a
         }
     }
     else{//L8028BBB8
-        if(!fileProgressFlag_get(arg1)){
-            fileProgressFlag_set(arg1, 1);
+        if(!fileProgressFlag_get(progress_flag)){
+            fileProgressFlag_set(progress_flag, 1);
             func_8030E6D4(SFX_90_SWITCH_PRESS);
             volatileFlag_set(VOLATILE_FLAG_BF, 1);
             func_802D6264(1.0f, arg2, arg3, arg4, arg5, arg6);
@@ -391,6 +391,20 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     if(collisionTri_isHitFromAbove_actor(spAC, actor, 0x87) == 0)
                         return;
                     volatileFlag_set(VOLATILE_FLAG_1E, 1);
+                    /**
+                     * This should use the following fileprog flags:
+                     * 
+                     * FILEPROG_49_PINK_CAULDRON_1_ACTIVE
+                     * FILEPROG_4A_PINK_CAULDRON_2_ACTIVE
+                     * FILEPROG_4B_GREEN_CAULDRON_1_ACTIVE
+                     * FILEPROG_4C_GREEN_CAULDRON_2_ACTIVE
+                     * FILEPROG_4D_RED_CAULDRON_1_ACTIVE
+                     * FILEPROG_4E_RED_CAULDRON_2_ACTIVE
+                     * FILEPROG_4F_UNUSED_CAULDRON_1_ACTIVE
+                     * FILEPROG_50_UNUSED_CAULDRON_2_ACTIVE
+                     * FILEPROG_51_YELLOW_CAULDRON_1_ACTIVE
+                     * FILEPROG_52_YELLOW_CAULDRON_2_ACTIVE
+                     */
                     if(fileProgressFlag_get(((actor->unkF4_8 - 1) ^ 1) + 0x49)){
                         actor->unk10_12 = 2;
                     }

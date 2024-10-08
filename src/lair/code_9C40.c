@@ -28,7 +28,7 @@ s32 func_80390084(void) {
     s32 phi_s1;
 
     for(phi_s0 = 0, phi_s1 = 0; phi_s0 < 3; phi_s0++){
-        if (fileProgressFlag_get(phi_s0 + 0xAD)) {
+        if (fileProgressFlag_get(phi_s0 + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
             phi_s1++;
         }
     }
@@ -44,8 +44,8 @@ void func_803900EC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     sp1C =  marker->id - 0x16D;
     func_8028F918(0);
-    if (!fileProgressFlag_get(sp1C + 0xAD)) {
-        fileProgressFlag_set(sp1C + 0xAD, 1);
+    if (!fileProgressFlag_get(sp1C + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
+        fileProgressFlag_set(sp1C + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED, 1);
         func_8025A6EC(COMUSIC_2B_DING_B, 28000);
     }
 }
@@ -63,7 +63,8 @@ void func_80390174(ActorMarker *marker, s32 arg1) {
     this = marker_getActor(marker);
     sp28 = this->marker->id - 0x16D;
     func_8028F94C(2, this->position);
-    if (fileProgressFlag_get(sp28 + 0xAD)) {
+    if (fileProgressFlag_get(sp28 + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
+        // cheato hint texts
         gcdialog_showText(sp28 + 0xF83, 0xE, this->position, this->marker, func_803900EC, lair_func_803900DC);
         return;
     }
@@ -106,7 +107,7 @@ void func_803902B8(Actor *this) {
     }
     this->unk38_0 = sp58;
     sp58 = ml_vec3f_within_distance(this->position, sp5C, 400.0f);
-    if (fileProgressFlag_get(sp54 + 0xAD)) {
+    if (fileProgressFlag_get(sp54 + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
         func_8024E55C(0, sp3C);
         sp58 &= (sp3C[FACE_BUTTON(BUTTON_B)] == 1) || func_8028EC04();
     }

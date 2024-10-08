@@ -165,7 +165,7 @@ typedef struct actor_s{
     u32 is_bundle:1;
     AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
-    TUPLE(f32, unk1C); // actor position?
+    TUPLE(f32, unk1C); // actor position? // used as "home" for chbat
     f32 actor_specific_1_f; //used in cheggs
     TUPLE(f32, velocity);
     u32  unk38_31:10; // hit count for jinjo base in fight
@@ -230,7 +230,9 @@ typedef struct actor_s{
     u32 unkF4_22:1;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
-    u32 unkF4_8:9; // jinjo id in final fight
+    u32 unkF4_8:9; /* jinjo id in final fight.
+                    *  Is used to determine file progress related stuff, can also be a file_progress_e
+                    */
     f32 stored_animctrl_subrangeMin; //animCtrl_SubRangeStart
     f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
     ActorMarker *unk100; // child actor marker ?

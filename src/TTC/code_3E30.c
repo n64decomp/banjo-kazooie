@@ -319,7 +319,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                                 D_8038D720.unk8 = 2U;
                                 D_8038D720.unkC = 0.0f;
                                 mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, TRUE);
-                                fileProgressFlag_set(0xFA, TRUE);
+                                fileProgressFlag_set(FILEPROG_FA_UNKNOWN, TRUE);
                                 func_8030E2C4(D_8038D720.sfxsourceIdx);
                                 func_8038A258(2);
                             } else if (var_v0 & 0xE) {
@@ -613,11 +613,11 @@ u32 func_8038B600(void) {
     return var_a3;
 }
 
-void TTC_func_8038B6D4(s32 arg0, s32 secretCodeIndex, s32 arg2, enum file_progress_e prog_id, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
+void TTC_func_8038B6D4(s32 arg0, s32 secretCodeIndex, s32 arg2, enum file_progress_e progress_flag, s32 prog_val, s32 prog_bit_size, enum file_progress_e arg6){
     if( ((arg2 + 20 == secretCodesTable[secretCodeIndex].id) && volatileFlag_get(arg2))
         || arg0 == 3
     ){
-        fileProgressFlag_setN(prog_id, prog_val, prog_bit_size);
+        fileProgressFlag_setN(progress_flag, prog_val, prog_bit_size);
         if(arg6){
             fileProgressFlag_set(arg6, TRUE);
         }

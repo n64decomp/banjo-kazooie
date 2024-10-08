@@ -391,7 +391,7 @@ void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4);
 void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
-void fileProgressFlag_setN(s32, s32, s32);
+void fileProgressFlag_setN(enum file_progress_e, s32, s32);
 Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -535,11 +535,11 @@ extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc metho
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
 extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
-extern s32  volatileFlag_get(s32);
-extern s32 volatileFlag_getN(s32 index, s32 numBits);
-extern s32 volatileFlag_getAndSet(s32 index, s32 arg1);
-extern void volatileFlag_set(s32 index, s32 set);
-extern void volatileFlag_setN(s32 startIndex, s32 set, s32 length);
+extern s32  volatileFlag_get(enum volatile_flags_e);
+extern s32 volatileFlag_getN(enum volatile_flags_e index, s32 numBits);
+extern s32 volatileFlag_getAndSet(enum volatile_flags_e index, s32 arg1);
+extern void volatileFlag_set(enum volatile_flags_e index, s32 set);
+extern void volatileFlag_setN(enum volatile_flags_e startIndex, s32 set, s32 length);
 
 extern void itemscore_noteScores_clear(void);
 extern s32 itemscore_noteScores_get(enum level_e lvl_id);
