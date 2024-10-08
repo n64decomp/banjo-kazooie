@@ -50,7 +50,7 @@ void chgloop_update(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
     }
 
-    func_80326224(this);
+    actor_update_func_80326224(this);
     
     switch(this->state){
         case 2://L802D14DC

@@ -208,7 +208,7 @@ void chGobiCCW_update(Actor *this) {
     }
 
     if (this->state == 6) {
-        func_80326224(this);
+        actor_update_func_80326224(this);
         if (0.99 < (f64) this->unk48) {
             CCW_func_8038868C(this, 7);
         }

@@ -18,7 +18,7 @@ ActorAnimationInfo D_8038C700[] = {
 ActorInfo D_8038C718 = { 
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, D_8038C700,
-    chLeaky_update, func_80326224, actor_draw,
+    chLeaky_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

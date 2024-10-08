@@ -42,7 +42,7 @@ ActorAnimationInfo chGrublinAnimations[11] = {
 
 ActorInfo chgrublinInfo = { MARKER_5_GRUBLIN, ACTOR_6_GRUBLIN, ASSET_3C5_MODEL_GRUBLIN,
     1, chGrublinAnimations,
-    func_80388A80, func_80326224, actor_draw,
+    func_80388A80, actor_update_func_80326224, actor_draw,
     2500, 0, 1.0f, 0
 };
 

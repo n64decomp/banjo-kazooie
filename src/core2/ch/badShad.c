@@ -14,7 +14,7 @@ void func_802D729C(Actor *actor, f32 arg1);
 ActorInfo chBadShad = { 
     0x9B, 0x108, 0x3BF,
     0x1, NULL, 
-    chBadShad_update, func_80326224, chBadShad_draw,
+    chBadShad_update, actor_update_func_80326224, chBadShad_draw,
     0, 0, 0.0f, 0
 };
 

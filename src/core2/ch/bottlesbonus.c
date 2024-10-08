@@ -94,7 +94,7 @@ f32 D_803682C4[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo chBottlesBonusDescription = {
     0x179, 0x1E0, 0x46C,
     0x1, chBottlesBonusAnimations,
-    chBottlesBonus_update, func_80326224, chBottlesBonus_draw,
+    chBottlesBonus_update, actor_update_func_80326224, chBottlesBonus_draw,
     0, 0, 0.0f, 0
 };
 

@@ -14,7 +14,7 @@ extern ActorAnimationInfo D_803926F0[]= {
 
 extern ActorInfo D_80392700 = { MARKER_20F_WOZZA_IN_CAVE, ACTOR_33F_WOZZA_IN_CAVE, ASSET_494_MODEL_WOZZA,
     0x1, D_803926F0,
-    func_80390630, func_80326224, actor_draw,
+    func_80390630, actor_update_func_80326224, actor_draw,
     2500, 0, 1.6f, 0
 };
 

@@ -33,12 +33,12 @@ ActorAnimationInfo chCarrotAnimations[5] = {
 };
 
 ActorInfo D_8038AC78 = { MARKER_12A_TOPPER_A, ACTOR_166_TOPPER_A, MODEL_TOPPER, 1, chCarrotAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     2000, 0, 1.0f, 0
 };
 
 ActorInfo D_8038AC9C = { MARKER_1E6_TOPPER_B, ACTOR_TOPPER_B, MODEL_TOPPER, 1, chCarrotAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     2000, 0, 1.0f, 0
 };
 
@@ -51,12 +51,12 @@ ActorAnimationInfo chOnionAnimations[5] = {
 };
 
 ActorInfo D_8038ACE8 = { MARKER_129_BAWL_A, ACTOR_165_BAWL_A, MODEL_BAWL, 1, chOnionAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_8038AD0C = { MARKER_1E7_BAWL_B, ACTOR_BAWL_B, MODEL_BAWL, 1, chOnionAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     0, 0, 1.0f, 0
 };
 
@@ -69,12 +69,12 @@ ActorAnimationInfo chCauliflowerAnimations[5] = {
 };
 
 ActorInfo D_8038AD58 = { MARKER_128_COLLYWOBBLE_A, ACTOR_164_COLLYWOBBLE_A, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };
 
 ActorInfo D_8038AD7C = { MARKER_1E8_COLLYWOBBLE_B, ACTOR_COLLYWOBBLE_B, MODEL_COLLYWOBBLE, 1, chCauliflowerAnimations,
-    func_80388080, func_80326224, func_80387DF4,
+    func_80388080, actor_update_func_80326224, func_80387DF4,
     0, 0, 2.0f, 0
 };
 
@@ -88,7 +88,7 @@ ParticleScaleAndLifetimeRanges D_8038ADAC = {
     0.0f, 0.01f,
 };
 
-struct42s D_8038ADD4 = {
+ParticleSettingsVelocityPosition D_8038ADD4 = {
     {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
     {{-40.0f, -40.0f, -40.0f}, {40.0f, 40.0f, 40.0f}}
 };
@@ -101,7 +101,7 @@ ParticleScaleAndLifetimeRanges D_8038AE04 = {
     0.0f, 0.2f
 };
 
-struct43s D_8038AE2C = {
+ParticleSettingsVelocityAccelerationPosition D_8038AE2C = {
     {{-100.0f, 200.0f, -100.0f}, {100.0f, 400.0f, 100.0f}}, 
     {{0.0f, -600.0f, 0.0f}, {0.0f, -600.0f, 0.0f}}, 
     {{-80.0f, -80.0f, -80.0f}, {80.0f, 80.0f, 80.0f}}
@@ -115,7 +115,7 @@ ParticleScaleAndLifetimeRanges D_8038AE74 = {
     0.0f, 0.5f
 };
 
-struct43s D_8038AE9C = {
+ParticleSettingsVelocityAccelerationPosition D_8038AE9C = {
     {{-100.0f, 400.0f, -100.0f}, {100.0f, 600.0f, 100.0f}}, 
     {{0.0f, -600.0f, 0.0f}, {0.0f, -600.0f, 0.0f}}, 
     {{-20.0f, -20.0f, -20.0f}, {20.0f, 20.0f, 20.0f}}
@@ -129,7 +129,7 @@ ParticleScaleAndLifetimeRanges D_8038AEE4 = {
     0.0f, 0.5f
 };
 
-struct43s D_8038AF0C ={
+ParticleSettingsVelocityAccelerationPosition D_8038AF0C ={
     {{-200.0f, 200.0f, -200.0f}, {200.0f, 600.0f, 200.0f}}, 
     {{0.0f, -900.0f, 0.0f}, {0.0f, -900.0f, 0.0f}}, 
     {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}, 
@@ -148,39 +148,39 @@ void func_80387910(ParticleEmitter *arg0, f32 *arg1, s32 arg2){
 }
 
 void func_803879B8(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e model_id){
-    func_802EF9F8(arg0, 0.6f);
-    func_802EFA18(arg0, 2);
+    particleEmitter_func_802EF9F8(arg0, 0.6f);
+    particleEmitter_func_802EFA18(arg0, 2);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AE04);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE2C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(arg0, &D_8038AE2C);
     particleEmitter_emitN(arg0, arg2);
 }
 
 void func_80387A80(ParticleEmitter *arg0, f32 *arg1, s32 arg2, enum asset_e model_id){
-    func_802EF9F8(arg0, 0.6f);
-    func_802EFA18(arg0, 3);
+    particleEmitter_func_802EF9F8(arg0, 0.6f);
+    particleEmitter_func_802EFA18(arg0, 3);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AE74);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AE9C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(arg0, &D_8038AE9C);
     particleEmitter_emitN(arg0, arg2);
 }
 
 void func_80387B48(ParticleEmitter *arg0, f32 arg1[3], s32 arg2, enum asset_e model_id){
-    func_802EF9F8(arg0, 0.7f);
-    func_802EFA18(arg0, 4);
+    particleEmitter_func_802EF9F8(arg0, 0.7f);
+    particleEmitter_func_802EFA18(arg0, 4);
     particleEmitter_setModel(arg0, model_id);
     particleEmitter_setPosition(arg0, arg1);
     particleEmitter_setDrawMode(arg0, 2);
     particleEmitter_setAngularVelocityRange(arg0, 150.0f, -300.0f, -300.0f, 300.0f, 300.0f, -150.0f);
     particleEmitter_setSfx(arg0, SFX_1F_HITTING_AN_ENEMY_3, 8000);
     particleEmitter_setScaleAndLifetimeRanges(arg0, &D_8038AEE4);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(arg0, &D_8038AF0C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(arg0, &D_8038AF0C);
     particleEmitter_emitN(arg0, arg2);
 }
 

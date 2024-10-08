@@ -20,13 +20,13 @@ ActorAnimationInfo chSarcophagusAnimations[] = {
 
 ActorInfo chSarcophagus = { MARKER_A8_GV_MAZE_SARCOPHAGUS, ACTOR_11A_GV_MAZE_SARCOPHAGUS, ASSET_33D_MODEL_SARCOPHAGUS, 
     0x1, chSarcophagusAnimations, 
-    chSarcophagus_update, func_80326224, actor_draw, 
+    chSarcophagus_update, actor_update_func_80326224, actor_draw, 
     2500, 0, 0.0f, 0
 };
 
 ActorInfo chSNSSarcophagus = { MARKER_23B_GV_SNS_SARCOPHAGUS, ACTOR_244_GV_SNS_SARCOPHAGUS, ASSET_33D_MODEL_SARCOPHAGUS, 
     0x1, chSarcophagusAnimations, 
-    chSarcophagus_updateSNS, func_80326224, actor_draw, 
+    chSarcophagus_updateSNS, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 

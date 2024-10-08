@@ -310,16 +310,16 @@ ParticleEmitter * particleEmitter_new(u32 capacity){
     particleEmitter_setFade(this, 0.0f, 1.0f);
     particleEmitter_setDrawMode(this, 0);
     particleEmitter_setPosition(this, sp40);
-    particleEmitter_setParticleAccelerationRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_setAccelerationRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_setAlpha(this, 0xff);
-    particleEmitter_setParticleSpawnPositionRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     particleEmitter_setSfx(this, 0, 0);
-    func_802EF9F8(this, 0.9f);
+    particleEmitter_func_802EF9F8(this, 0.9f);
     func_802EFA04(this, -100000.0f);
     func_802EFA34(this, 100000.0f);
     particleEmitter_setParticleCallback(this, 0);
-    func_802EFA18(this, 0);
+    particleEmitter_func_802EFA18(this, 0);
     func_802EFA20(this, 1.0f, 1.0f);
     particleEmitter_setStartingFrameRange(this, 0, 0);
     particleEmitter_setParticleFramerateRange(this, 0.0f, 0.0f);
@@ -348,7 +348,7 @@ void particleEmitter_setSprite(ParticleEmitter *this, enum asset_e sprite_id){
     }
 }
 
-void particleEmitter_setParticleAccelerationRange(ParticleEmitter *this, f32 min_x, f32 min_y, f32 min_z, f32 max_x, f32 max_y, f32 max_z){
+void particleEmitter_setAccelerationRange(ParticleEmitter *this, f32 min_x, f32 min_y, f32 min_z, f32 max_x, f32 max_y, f32 max_z){
     this->particleAccerationRange_4C_min_x = min_x;
     this->particleAccerationRange_4C_min_y = min_y;
     this->particleAccerationRange_4C_min_z = min_z;
@@ -366,7 +366,7 @@ void particleEmitter_setSfx(ParticleEmitter *this, enum sfx_e sfx_id, s32 arg2){
     this->unk7C = arg2;
 }
 
-void func_802EF9F8(ParticleEmitter *this, f32 arg1){
+void particleEmitter_func_802EF9F8(ParticleEmitter *this, f32 arg1){
     this->unk68 = arg1;
 }
 
@@ -378,7 +378,7 @@ void particleEmitter_setParticleCallback(ParticleEmitter *this, void (*arg1)(Par
     this->particleCallback_80 = arg1;
 }
 
-void func_802EFA18(ParticleEmitter *this, s32 arg1){
+void particleEmitter_func_802EFA18(ParticleEmitter *this, s32 arg1){
     this->unk64 = arg1;
 }
 
@@ -406,7 +406,7 @@ void particleEmitter_setDrawMode(ParticleEmitter *this, s32 arg1){
     this->draw_mode = arg1;
 }
 
-void func_802EFA78(ParticleEmitter *this, s32 arg1){
+void particleEmitter_func_802EFA78(ParticleEmitter *this, s32 arg1){
     this->unk0_16 = arg1;
 }
 
@@ -434,7 +434,7 @@ void particleEmitter_setModel(ParticleEmitter *this, enum asset_e model_id){
     }
 }
 
-void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *this, f32 min_x, f32 min_y, f32 min_z, f32 max_x, f32 max_y, f32 max_z){
+void particleEmitter_setSpawnPositionRange(ParticleEmitter *this, f32 min_x, f32 min_y, f32 min_z, f32 max_x, f32 max_y, f32 max_z){
     this->particleSpawnPositionRange_94_min_x = min_x;
     this->particleSpawnPositionRange_94_min_y = min_y;
     this->particleSpawnPositionRange_94_min_z = min_z;
@@ -459,61 +459,68 @@ void particleEmitter_setFinalScaleRange(ParticleEmitter * this, f32 min, f32 max
     this->particleFinalScaleRange_B4_max = max;
 }
 
-void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *this, ParticleScaleAndLifetimeRanges *arg1){
-    this->particleStartingScaleRange_AC_min = arg1->unk0[0];
-    this->particleStartingScaleRange_AC_max = arg1->unk0[1];
-    if(-1.0f != arg1->unk8[0]){
-        this->particleFinalScaleRange_B4_min = arg1->unk8[0];
-        this->particleFinalScaleRange_B4_max = arg1->unk8[1];
+void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *this, ParticleScaleAndLifetimeRanges *settings) {
+    this->particleStartingScaleRange_AC_min = settings->unk0[0];
+    this->particleStartingScaleRange_AC_max = settings->unk0[1];
+
+    if(-1.0f != settings->unk8[0]){
+        this->particleFinalScaleRange_B4_min = settings->unk8[0];
+        this->particleFinalScaleRange_B4_max = settings->unk8[1];
     }
-    particleEmitter_setSpawnIntervalRange(this, arg1->unk10[0], arg1->unk10[1]);
-    this->particleLifeTimeRange[0] = arg1->unk18[0];
-    this->particleLifeTimeRange[1] = arg1->unk18[1];
-    this->fade_in = arg1->unk20;
-    this->fade_out = arg1->unk24;
+
+    particleEmitter_setSpawnIntervalRange(this, settings->unk10[0], settings->unk10[1]);
+
+    this->particleLifeTimeRange[0] = settings->unk18[0];
+    this->particleLifeTimeRange[1] = settings->unk18[1];
+
+    this->fade_in = settings->unk20;
+    this->fade_out = settings->unk24;
 }
 
-void func_802EFC28(ParticleEmitter *this, struct40s *arg1){
-    particleEmitter_setScaleAndLifetimeRanges(this, &arg1->unk0);
-    particleEmitter_setDrawMode(this, (s32)arg1->unk28);
-    particleEmitter_emitN(this, (s32)arg1->unk2C);
+void func_802EFC28(ParticleEmitter *this, ParticleSettingsScaleAndLifetimeDrawModeEmitCount *settings) {
+    particleEmitter_setScaleAndLifetimeRanges(this, &settings->scale_and_lifetime);
+    particleEmitter_setDrawMode(this, (s32)settings->drawmode);
+    particleEmitter_emitN(this, (s32)settings->count);
 }
 
-void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *this, struct41s *arg1){
+void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *this, ParticleSettingsVelocityAcceleration *settings) {
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
-        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
+        settings->velocity.min[0], settings->velocity.min[1], settings->velocity.min[2],
+        settings->velocity.max[0], settings->velocity.max[1], settings->velocity.max[2]
     );
-    particleEmitter_setParticleAccelerationRange(this, 
-        arg1->unk18.unk0[0], arg1->unk18.unk0[1], arg1->unk18.unk0[2], 
-        arg1->unk18.unkC[0], arg1->unk18.unkC[1], arg1->unk18.unkC[2]
+
+    particleEmitter_setAccelerationRange(this, 
+        settings->acceleration.min[0], settings->acceleration.min[1], settings->acceleration.min[2], 
+        settings->acceleration.max[0], settings->acceleration.max[1], settings->acceleration.max[2]
     );
 }
 
-void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1){
+void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, ParticleSettingsVelocityPosition *settings) {
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
-        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
+        settings->velocity.min[0], settings->velocity.min[1], settings->velocity.min[2],
+        settings->velocity.max[0], settings->velocity.max[1], settings->velocity.max[2]
     );
 
-    particleEmitter_setParticleSpawnPositionRange( this, 
-        arg1->unk18.unk0[0], arg1->unk18.unk0[1], arg1->unk18.unk0[2], 
-        arg1->unk18.unkC[0], arg1->unk18.unkC[1], arg1->unk18.unkC[2]
+    particleEmitter_setSpawnPositionRange( this, 
+        settings->spawn_position.min[0], settings->spawn_position.min[1], settings->spawn_position.min[2],
+        settings->spawn_position.max[0], settings->spawn_position.max[1], settings->spawn_position.max[2]
     );
 }
 
-void particleEmitter_setPositionVelocityAndAccelerationRanges(ParticleEmitter *this, struct43s* arg1){
+void particleEmitter_setVelocityAccelerationAndPositionRanges(ParticleEmitter *this, ParticleSettingsVelocityAccelerationPosition *settings) {
     particleEmitter_setParticleVelocityRange(this, 
-        arg1->unk0.unk0[0], arg1->unk0.unk0[1], arg1->unk0.unk0[2],
-        arg1->unk0.unkC[0], arg1->unk0.unkC[1], arg1->unk0.unkC[2]
+        settings->velocity.min[0], settings->velocity.min[1], settings->velocity.min[2],
+        settings->velocity.max[0], settings->velocity.max[1], settings->velocity.max[2]
     );
-    particleEmitter_setParticleAccelerationRange(this, 
-        arg1->unk18.unk0[0], arg1->unk18.unk0[1], arg1->unk18.unk0[2], 
-        arg1->unk18.unkC[0], arg1->unk18.unkC[1], arg1->unk18.unkC[2]
+
+    particleEmitter_setAccelerationRange(this, 
+        settings->acceleration.min[0], settings->acceleration.min[1], settings->acceleration.min[2], 
+        settings->acceleration.max[0], settings->acceleration.max[1], settings->acceleration.max[2]
     );
-    particleEmitter_setParticleSpawnPositionRange( this, 
-        arg1->unk30.unk0[0], arg1->unk30.unk0[1], arg1->unk30.unk0[2], 
-        arg1->unk30.unkC[0], arg1->unk30.unkC[1], arg1->unk30.unkC[2]
+
+    particleEmitter_setSpawnPositionRange( this, 
+        settings->spawn_position.min[0], settings->spawn_position.min[1], settings->spawn_position.min[2], 
+        settings->spawn_position.max[0], settings->spawn_position.max[1], settings->spawn_position.max[2]
     );
 }
 
@@ -710,7 +717,7 @@ void func_802F053C(ParticleEmitter *this, f32 arg1[3]){
     particleEmitter_setRGB(this, D_803689B8);
     particleEmitter_setFade(this, 0.0f, 0.1f);
     particleEmitter_setStartingFrameRange(this, 0, 7);
-    particleEmitter_setParticleSpawnPositionRange(this, -80.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
+    particleEmitter_setSpawnPositionRange(this, -80.0f, 0.0f, -80.0f, 80.0f, 60.0f, 80.0f);
     particleEmitter_setPosition(this, arg1);
     particleEmitter_setStartingScaleRange(this, 1.0f, 1.0f);
     particleEmitter_setFinalScaleRange(this, 2.0f, 3.0f);
@@ -720,11 +727,11 @@ void func_802F053C(ParticleEmitter *this, f32 arg1[3]){
 }
 
 void func_802F066C(ParticleEmitter *this, f32 position[3]){
-    particleEmitter_setParticleAccelerationRange(this, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
-    func_802EF9F8(this, 0.6f);
-    func_802EFA18(this, 3);
+    particleEmitter_setAccelerationRange(this, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
+    particleEmitter_func_802EF9F8(this, 0.6f);
+    particleEmitter_func_802EFA18(this, 3);
     particleEmitter_setModel(this, ASSET_896_MODEL_GOLD_ROCK);
-    particleEmitter_setParticleSpawnPositionRange(this,
+    particleEmitter_setSpawnPositionRange(this,
         -120.0f, -60.0f, -120.0f,
         120.0f, 60.0f, 120.0f
     );

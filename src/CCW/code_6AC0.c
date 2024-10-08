@@ -133,7 +133,7 @@ void func_8038CFB4(Actor *this) {
     }
     
     if (this->state == 3) {
-        func_80326224(this);
+        actor_update_func_80326224(this);
         if (0.99 < (f64) this->unk48) {
             func_8038CEB0(this, 4);
         }

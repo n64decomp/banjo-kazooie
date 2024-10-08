@@ -26,7 +26,7 @@ enum chminigame_state_e {
 ActorInfo chMinigame = { 
     MARKER_1E1_FF_MINIGAME, ACTOR_376_FF_MINIGAME, 0x0, 
     MINIGAME_STATE_1_INTRODUCE_GAME, NULL,
-    chMinigame_update, func_80326224, func_80325340, 
+    chMinigame_update, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 

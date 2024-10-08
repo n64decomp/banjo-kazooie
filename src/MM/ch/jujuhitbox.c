@@ -24,7 +24,7 @@ void chjujuhitbox_setJuju(Actor *this, s32 slave_id, Actor *slavePtr);
 ActorInfo chjujuhitboxInfo = {
     MARKER_67_JUJU, ACTOR_11_JUJU_CTRL, 0,
     3, NULL,
-    chjujuhitbox_update, func_80326224, chjujuhitbox_draw,
+    chjujuhitbox_update, actor_update_func_80326224, chjujuhitbox_draw,
     0, 0, 0.0f, 0
 };
 

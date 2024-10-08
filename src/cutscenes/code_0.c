@@ -182,10 +182,10 @@ void func_80386AC8(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -350.0f, -400.0f, -350.0f, 350.0f, 450.0f, 350.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1100.0f, 0.0f, 0.0f, -1100.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f, 600.0f, -50.0f, 50.0f, 600.0f, 50.0f);
-    func_802EF9F8(pCtrl, 0.01f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1100.0f, 0.0f, 0.0f, -1100.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(pCtrl, -50.0f, 600.0f, -50.0f, 50.0f, 600.0f, 50.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.01f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D350);
     particleEmitter_emitN(pCtrl, 10);
 }
@@ -203,10 +203,10 @@ void func_80386C34(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -350.0f, -400.0f, -350.0f, 350.0f, 450.0f, 350.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1100.0f, 0.0f, 0.0f, -1100.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f, 600.0f, -50.0f, 50.0f, 600.0f, 50.0f);
-    func_802EF9F8(pCtrl, 0.01f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1100.0f, 0.0f, 0.0f, -1100.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(pCtrl, -50.0f, 600.0f, -50.0f, 50.0f, 600.0f, 50.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.01f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D378);
     particleEmitter_emitN(pCtrl, 15);
 }
@@ -224,10 +224,10 @@ void func_80386DA0(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -700.0f, 0.0f, 0.0f, -700.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f, 1500.0f, -50.0f, 50.0f, 1500.0f, 50.0f);
-    func_802EF9F8(pCtrl, 0.01f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -700.0f, 0.0f, 0.0f, -700.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(pCtrl, -50.0f, 1500.0f, -50.0f, 50.0f, 1500.0f, 50.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.01f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D3A0);
     particleEmitter_emitN(pCtrl, 1);
 }
@@ -245,9 +245,9 @@ void func_80386EF8(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x344);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -150.0f, 150.0f, -150.0f, 150.0f, 360.0f, 150.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -600.0f, 0.0f, 0.0f, -600.0f, 0.0f);
-    func_802EF9F8(pCtrl, 0.01f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -600.0f, 0.0f, 0.0f, -600.0f, 0.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.01f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D3C8);
     particleEmitter_emitN(pCtrl, 8);
 }
@@ -266,9 +266,9 @@ void func_8038702C(s32 arg0) {
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -250.0f, 250.0f, -250.0f, 250.0f, 360.0f, 250.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
-    func_802EF9F8(pCtrl, 0.4f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.4f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D3F0);
     particleEmitter_emitN(pCtrl, 8);
 }
@@ -287,16 +287,16 @@ void func_80387170(s32 arg0) {
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -250.0f, 250.0f, -250.0f, 250.0f, 360.0f, 250.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
-    func_802EF9F8(pCtrl, 0.4f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.4f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D418);
     particleEmitter_emitN(pCtrl, 8);
 }
 
 void func_803872B4(s32 arg0) {
-    static struct40s D_8038D440 = {{{1.8f, 1.8f}, {3.3f, 3.8f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.1f, 0.4f}, 4.0f, 4.0f};
-    static struct42s D_8038D470 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D440 = {{{1.8f, 1.8f}, {3.3f, 3.8f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.1f, 0.4f}, 4.0f, 4.0f};
+    static ParticleSettingsVelocityPosition D_8038D470 = {
         {{  40.0f,  5.0f,  -40.0f}, { 40.0f, 10.0f, -40.0f}}, 
         {{-150.0f, 50.0f, -150.0f}, {150.0f, 50.0f, 150.0f}} 
     };
@@ -312,14 +312,14 @@ void func_803872B4(s32 arg0) {
     func_8034A174((struct5Bs *)sp44->marker->unk44, 7, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D470);
-    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D440.unk0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D440.scale_and_lifetime);
     particleEmitter_emitN(pCtrl, 4);
 }
 
 void func_80387364(s32 arg0) {
     static s32 D_8038D4A0[3] = {0xA, 0xFF, 0xA};
-    static struct40s D_8038D4AC = {{{2.8f, 2.8f}, {3.5f, 3.9f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
-    static struct42s D_8038D4DC = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D4AC = {{{2.8f, 2.8f}, {3.5f, 3.9f}, {0.0f, 0.01f}, {9.0f, 9.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
+    static ParticleSettingsVelocityPosition D_8038D4DC = {
         {{-40.0f, -30.0f, -40.0f}, {40.0f,  30.0f, 40.0f}}, 
         {{-50.0f,   0.0f, -50.0f}, {50.0f, 100.0f, 50.0f}}
     };
@@ -336,7 +336,7 @@ void func_80387364(s32 arg0) {
     func_8034A174((struct5Bs *) sp34->marker->unk44, 8, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D4DC);
-    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D4AC.unk0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D4AC.scale_and_lifetime);
     particleEmitter_emitN(pCtrl, 1);
 }
 
@@ -356,7 +356,7 @@ void func_80387424(s32 arg0) {
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D50C);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -300.0f, 0.0f, 0.0f, -300.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -300.0f, 0.0f, 0.0f, -300.0f, 0.0f);
     particleEmitter_emitN(pCtrl, 8);
 }
 
@@ -374,7 +374,7 @@ void cutscenes_func_80387560(s32 arg0) {
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D534);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
     particleEmitter_emitN(pCtrl, 11);
 }
 
@@ -392,14 +392,14 @@ void func_80387680(s32 arg0) {
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D55C);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -500.0f, 0.0f, 0.0f, -500.0f, 0.0f);
     particleEmitter_emitN(pCtrl, 11);
 }
 
 void func_803877A0(s32 arg0) {
     static s32 D_8038D584[3] = {0xFF, 0xFF, 0xFF};
-    static struct40s D_8038D590 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
-    static struct42s D_8038D5C0 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D590 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f};
+    static ParticleSettingsVelocityPosition D_8038D5C0 = {
         {{-20.0f, 100.0f, -20.0f}, {20.0f, 150.0f, 20.0f}},
         {{  0.0f,   0.0f,   0.0f}, { 0.0f,   0.0f,  0.0f}} 
     };
@@ -419,7 +419,7 @@ void func_803877A0(s32 arg0) {
     func_8034A174((struct5Bs *) sp34->marker->unk44, 6, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D5C0);
-    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D590.unk0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D590.scale_and_lifetime);
     particleEmitter_emitN(pCtrl, 1);
 }
 
@@ -436,9 +436,9 @@ void func_803878A4(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x47A);
     particleEmitter_setAngularVelocityRange(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
-    func_802EF9F8(pCtrl, 0.3f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.3f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D5F0);
     particleEmitter_setSfx(pCtrl, SFX_21_EGG_BOUNCE_1, 15000);
@@ -458,10 +458,10 @@ void cutscenes_func_803879E0(s32 arg0) {
     particleEmitter_setModel(pCtrl, 0x47A);
     particleEmitter_setAngularVelocityRange(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -40.0f, 0.0f, -40.0f, 40.0f, 20.0f, 40.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
-    func_802EF9F8(pCtrl, 0.3f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_setSpawnPositionRange(pCtrl, -40.0f, 0.0f, -40.0f, 40.0f, 20.0f, 40.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    particleEmitter_func_802EF9F8(pCtrl, 0.3f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D618);
     particleEmitter_setSfx(pCtrl, SFX_21_EGG_BOUNCE_1, 15000);
@@ -469,8 +469,8 @@ void cutscenes_func_803879E0(s32 arg0) {
 }
 
 void func_80387B58(s32 arg0) {
-    static struct40s D_8038D640 = {{{0.5f, 0.8f}, {3.2f, 3.8f}, {0.0f, 0.3f}, {0.5f, 0.6f}, 0.2f, 0.8f}, 4.0f, 4.0f };
-    static struct42s D_8038D670 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D640 = {{{0.5f, 0.8f}, {3.2f, 3.8f}, {0.0f, 0.3f}, {0.5f, 0.6f}, 0.2f, 0.8f}, 4.0f, 4.0f };
+    static ParticleSettingsVelocityPosition D_8038D670 = {
         {{  0.0f, 100.0f,   0.0f}, { 0.0f, 100.0f,  0.0f}}, 
         {{-20.0f, -20.0f, -20.0f}, {20.0f,  20.0f, 20.0f}} 
     };
@@ -484,20 +484,20 @@ void func_80387B58(s32 arg0) {
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setAlpha(pCtrl, 0x3C);
     particleEmitter_setAngularVelocityRange(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -290.0f, 0.0f, 0.0f, -290.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -290.0f, 0.0f, 0.0f, -290.0f, 0.0f);
     func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D670);
-    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D640.unk0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D640.scale_and_lifetime);
     particleEmitter_emitN(pCtrl, 1);
 }
 
 void func_80387C64(s32 arg0) {
     static s32 D_8038D6A0[3] = {0x3C, 0x3C, 0xFF};
-    static struct40s D_8038D6AC = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D6AC = {
         {{0.5f, 0.6f}, {1.4f, 1.6f}, {0.0f, 0.2f}, {0.9f, 1.2f}, 0.2f, 0.8f}, 4.0f, 4.0f
     };
-    static struct42s D_8038D6DC ={
+    static ParticleSettingsVelocityPosition D_8038D6DC ={
         {{ 0.0f,  0.0f,  0.0f}, {0.0f, 0.0f, 0.0f}},
         {{-5.0f, -5.0f, -5.0f}, {5.0f, 5.0f, 5.0f}}
     }; 
@@ -514,17 +514,17 @@ void func_80387C64(s32 arg0) {
         particleEmitter_setRGB(pCtrl, D_8038D6A0);
         particleEmitter_setAlpha(pCtrl, 0x64);
         particleEmitter_setAngularVelocityRange(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
         particleEmitter_setPosition(pCtrl, sp34);
         particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D6DC);
-        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D6AC.unk0);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D6AC.scale_and_lifetime);
         particleEmitter_emitN(pCtrl, 1);
     }
 }
 
 void func_80387D88(s32 arg0) {
-    static struct40s D_8038D70C = {{{0.2f, 0.2f}, {0.3f, 0.3f}, {0.0f, 0.2f}, {0.7f, 0.9f}, 0.2f, 0.8f}, 4.0f, 4.0f};
-    static struct42s D_8038D73C = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D70C = {{{0.2f, 0.2f}, {0.3f, 0.3f}, {0.0f, 0.2f}, {0.7f, 0.9f}, 0.2f, 0.8f}, 4.0f, 4.0f};
+    static ParticleSettingsVelocityPosition D_8038D73C = {
         {{-800.0f, -800.0f, -800.0f}, {800.0f, 800.0f, 800.0f}},
         {{ -25.0f,  -25.0f,  -25.0f}, { 25.0f,  25.0f,  25.0f}} 
     };
@@ -540,18 +540,18 @@ void func_80387D88(s32 arg0) {
         particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
         particleEmitter_setAlpha(pCtrl, 0xFF);
         particleEmitter_setAngularVelocityRange(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
         particleEmitter_setPosition(pCtrl, sp34);
         particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D73C);
-        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D70C.unk0);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D70C.scale_and_lifetime);
         particleEmitter_emitN(pCtrl, 25);
     }
 }
 
 void func_80387E9C(s32 arg0) {
     static s32 D_8038D76C[3] = {0x32, 0xFF, 0x46};
-    static struct40s D_8038D778 ={{{0.2f, 0.2f}, {3.3f, 3.3f}, {0.0f, 0.2f}, {0.6f, 0.7f}, 0.1f, 0.9f}, 4.0f, 4.0f};
-    static struct42s D_8038D7A8 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D778 ={{{0.2f, 0.2f}, {3.3f, 3.3f}, {0.0f, 0.2f}, {0.6f, 0.7f}, 0.1f, 0.9f}, 4.0f, 4.0f};
+    static ParticleSettingsVelocityPosition D_8038D7A8 = {
         {{0,0,0}, {0,0,0}},
         {{0,0,0}, {0,0,0}}
     };
@@ -568,17 +568,17 @@ void func_80387E9C(s32 arg0) {
         particleEmitter_setAlpha(pCtrl, 0xC8);
         particleEmitter_setRGB(pCtrl, D_8038D76C);
         particleEmitter_setAngularVelocityRange(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, -30.0f, 0.0f, 0.0f, -30.0f, 0.0f);
         particleEmitter_setPosition(pCtrl, sp34);
         particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D7A8);
-        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D778.unk0);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D778.scale_and_lifetime);
         particleEmitter_emitN(pCtrl, 1);
     }
 }
 
 void func_80387FC0(s32 arg0) {
-    static struct40s D_8038D7D8 = {{{0.4f, 0.4f}, {3.7f, 3.8f}, {0.0f, 0.03f}, {0.6f, 0.6f}, 0.1f, 0.8f}, 4.0f, 4.0f};
-    static struct42s D_8038D808 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D7D8 = {{{0.4f, 0.4f}, {3.7f, 3.8f}, {0.0f, 0.03f}, {0.6f, 0.6f}, 0.1f, 0.8f}, 4.0f, 4.0f};
+    static ParticleSettingsVelocityPosition D_8038D808 = {
         {{0,0,0}, {0,0,0}},
         {{0,0,0}, {0,0,0}}
     };
@@ -595,18 +595,18 @@ void func_80387FC0(s32 arg0) {
         particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
         particleEmitter_setAlpha(pCtrl, 0x64);
         particleEmitter_setAngularVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
         particleEmitter_setPosition(pCtrl, sp34);
         particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D808);
-        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D7D8.unk0);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D7D8.scale_and_lifetime);
         particleEmitter_emitN(pCtrl, 1);
     }
 }
 
 void func_803880C8(s32 arg0) {
     static s32 D_8038D838[3] = {0xFF, 0xFF, 0XFF};
-    static struct40s D_8038D844 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f}; 
-    static struct42s D_8038D874 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D844 = {{{0.15f, 0.15f}, {0.4f, 0.4f}, {0.0f, 0.01f}, {4.0f, 4.5f}, 0.2f, 0.8f}, 4.0f, 1.0f}; 
+    static ParticleSettingsVelocityPosition D_8038D874 = {
         {{-20.0f, 70.0f, -20.0f}, {20.0f, 100.0f, 20.0f}},
         {{  0.0f,  0.0f,   0.0f}, { 0.0f,   0.0f,  0.0f}} 
     };
@@ -626,13 +626,13 @@ void func_803880C8(s32 arg0) {
     func_8034A174((struct5Bs *) sp34->marker->unk44, 5, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D874);
-    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D844.unk0);
+    particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D844.scale_and_lifetime);
     particleEmitter_emitN(pCtrl, 1);
 }
 
 void func_803881CC(s32 arg0) {
-    static struct40s D_8038D8A4 = {{{0.6f, 0.6f}, {3.0f, 3.4f}, {0.0f, 0.03f}, {1.0f, 1.3f}, 0.1f, 0.6f}, 4.0f, 4.0f}; 
-    static struct42s D_8038D8D4 = {
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_8038D8A4 = {{{0.6f, 0.6f}, {3.0f, 3.4f}, {0.0f, 0.03f}, {1.0f, 1.3f}, 0.1f, 0.6f}, 4.0f, 4.0f}; 
+    static ParticleSettingsVelocityPosition D_8038D8D4 = {
         {{  0.0f,   0.0f, -200.0f}, { 0.0f,  0.0f, -370.0f}}, /* position*/
         {{-40.0f, -40.0f,  -40.0f}, {40.0f, 40.0f,   40.0f}} /* velocity*/
     };
@@ -648,10 +648,10 @@ void func_803881CC(s32 arg0) {
         particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
         particleEmitter_setAlpha(pCtrl, 0x50);
         particleEmitter_setAngularVelocityRange(pCtrl, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, 100.0f, 0.0f, 0.0f, 300.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, 100.0f, 0.0f, 0.0f, 300.0f, 0.0f);
         particleEmitter_setPosition(pCtrl, sp34);
         particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D8D4);
-        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D8A4.unk0);
+        particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D8A4.scale_and_lifetime);
         particleEmitter_emitN(pCtrl, 2);
     }
 }

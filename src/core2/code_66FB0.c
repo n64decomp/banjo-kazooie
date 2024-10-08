@@ -61,13 +61,13 @@ void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, 
         particleEmitter_setAngularVelocityRange(pCtrl, 0, 0, 0, 0, 0, 0);
         func_802EFF9C(pCtrl, 0);
     }//L802EE0B4
-    particleEmitter_setParticleAccelerationRange(pCtrl, 
+    particleEmitter_setAccelerationRange(pCtrl, 
         0, -800.0f, 0,
         0, -800.0f, 0
     );
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 0);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, 
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 0);
+    particleEmitter_setSpawnPositionRange(pCtrl, 
         -10.0f, -10.0f, -10.0f,
         10.0f, 10.0f, 10.0f
     );

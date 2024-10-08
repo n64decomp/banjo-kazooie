@@ -22,12 +22,12 @@ ActorAnimationInfo D_80391040[] ={
 
 ActorInfo D_80391098 = { MARKER_AD_SLAPPA, ACTOR_120_SLAPPA, ASSET_376_MODEL_SLAPPA, 
     0x1, D_80391040, 
-    func_8038B124, func_80326224, actor_draw, 
+    func_8038B124, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 s32 D_803910BC[3] = {175, 100, 0};
 s32 D_803910C8[3] = {175, 140, 0};
-struct43s D_803910D4 = {
+ParticleSettingsVelocityAccelerationPosition D_803910D4 = {
     {{-120.0f, 550.0f, -120.0f}, {120.0f, 950.0f, 120.0f}},
     {{0.0f, -1400.0f, 0.0f}, {0.0f, -1400.0f, 0.0f}},
     {{-100.0f, 0.0f, -100.0f}, {100.0f, 30.0f, 100.0f}}
@@ -53,7 +53,7 @@ void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
 void func_8038ABD8(f32 position[3], s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038AB30(pCtrl, position, cnt);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, 
+    particleEmitter_setSpawnPositionRange(pCtrl, 
         -40.0f, -5.0f, -40.0f,
         60.0f, 20.0f, 60.0f
     );
@@ -71,7 +71,7 @@ void func_8038ABD8(f32 position[3], s32 cnt){
 void func_8038ACEC(f32 pos[3], s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038AB30(pCtrl, pos, cnt);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, 
+    particleEmitter_setSpawnPositionRange(pCtrl, 
         -80.0f, 20.0f, -80.0f,
         120.0f, 120.0f, 120.0f
     );
@@ -90,10 +90,10 @@ void func_8038ADFC(f32 pos[3], s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setModel(pCtrl, 0x389);
     particleEmitter_setPosition(pCtrl, pos);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803910D4);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_803910D4);
     particleEmitter_setAngularVelocityRange(pCtrl, -500.0f, -500.0f, -500.0f, 500.0f, 500.0f, 500.0f);
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 2);
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 2);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);

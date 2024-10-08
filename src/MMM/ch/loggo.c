@@ -16,7 +16,7 @@ ActorAnimationInfo chLoggoAnimations[] = {
 ActorInfo chLoggo = {
     MARKER_252_LOGGO, ACTOR_37F_LOGGO, ASSET_519_MODEL_LOGGO, 
     0x1, chLoggoAnimations, 
-    chLoggo_update, func_80326224, actor_draw, 
+    chLoggo_update, actor_update_func_80326224, actor_draw, 
     1000, 0, 0.0f, 0
 };
 

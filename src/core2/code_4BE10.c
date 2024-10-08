@@ -13,7 +13,7 @@ ActorInfo D_803675F0 = {
 };
 s16 D_80367614[] = {3,2,3,4,3,5,3,0};
 ParticleScaleAndLifetimeRanges D_80367624 = {{0.7f,  0.3f}, {0.01f, 0.01f}, {0.05f, 0.05f}, {0.2f,  0.2f},  0.0f,  0.01f};
-struct42s D_8036764C = {
+ParticleSettingsVelocityPosition D_8036764C = {
     {{-100.0f, 400.0f, -100.0f}, { 100.0f, 800.0f,  100.0f}}, 
     {{-100.0f,   0.0f, -100.0f}, { 100.0f,   0.0f,  100.0f}}
 };

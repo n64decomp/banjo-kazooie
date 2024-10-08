@@ -8,7 +8,7 @@ void SM_func_80386FE0(Actor *this);
 ActorInfo D_8038ABF0 = {
     0x134, 0x16E, 0,
     1, NULL,
-    SM_func_80386FE0, func_80326224, func_80325340,
+    SM_func_80386FE0, actor_update_func_80326224, func_80325340,
     2000, 0, 0.0f, 0
 };
 

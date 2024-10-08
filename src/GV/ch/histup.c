@@ -21,7 +21,7 @@ ActorAnimationInfo D_803912E0[] = {
 };
 ActorInfo D_80391318 = { MARKER_AA_HISTUP, ACTOR_11C_HISTUP, ASSET_3DE_MODEL_HISTUP, 
     0x1, D_803912E0, 
-    func_8038DBDC, func_80326224, func_8038DA18, 
+    func_8038DBDC, actor_update_func_80326224, func_8038DA18, 
     2500, 0, 1.7f, 0
 };
 

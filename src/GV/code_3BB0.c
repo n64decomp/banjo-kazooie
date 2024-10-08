@@ -8,11 +8,11 @@ void GV_func_8038A084(Actor *this);
 /* .data */
 ActorInfo D_80390F40 = { 0x24F, 0x37C, 0x0, 
     0, NULL, 
-    GV_func_8038A084, func_80326224, func_80325340, 
+    GV_func_8038A084, actor_update_func_80326224, func_80325340, 
     2000, 0, 0.0f, 0
 };
 
-struct40s D_80390F64 = {
+ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_80390F64 = {
     {   {2.5f, 2.8f},
         {4.0f, 5.0f},
         {0.0f, 0.01f},
@@ -33,7 +33,7 @@ void func_80389FA0(f32 position[3]){
     particleEmitter_setRGB(pCtrl, D_80390F94);
     particleEmitter_setAlpha(pCtrl, 100);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange( pCtrl, 
+    particleEmitter_setSpawnPositionRange( pCtrl, 
         -700.0f, 0.0f, -700.0f, 
          700.0f, 0.0f,  700.0f
     );

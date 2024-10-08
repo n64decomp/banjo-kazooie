@@ -77,12 +77,12 @@ void RBB_func_8038B0B8(Actor *this, s32 arg1){
         timed_playSfx(0.1f, local->unk0->unk14, 1.0f, 0x7d00);
         other = partEmitMgr_newEmitter(0xa);
         particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
-        particleEmitter_setParticleAccelerationRange(other, 
+        particleEmitter_setAccelerationRange(other, 
             0.0f, 100.0f, 0.0f,
             0.0f, 250.0f, 0.0f
         );
         particleEmitter_setStartingFrameRange(other, 0, 7);
-        particleEmitter_setParticleSpawnPositionRange(other, 
+        particleEmitter_setSpawnPositionRange(other, 
             -5.0f, -5.0f, 0.0f,
             5.0f, 5.0f, 0.0f
         );

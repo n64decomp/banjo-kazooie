@@ -25,21 +25,21 @@ ActorAnimationInfo D_8038C760[] ={
 ActorInfo D_8038C790 = {
     MARKER_A4_LOCKUP_SLOW, ACTOR_151_LOCKUP_SLOW, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
-    func_80389600, func_80326224, func_803894C0,
+    func_80389600, actor_update_func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo D_8038C7B4 = {
     MARKER_F6_LOCKUP_MEDIUM, ACTOR_152_LOCKUP_MEDIUM, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
-    func_80389600, func_80326224, func_803894C0,
+    func_80389600, actor_update_func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo D_8038C7D8 = {
     MARKER_F7_LOCKUP_FAST, ACTOR_153_LOCKUP_FAST, ASSET_3D4_MODEL_LOCKUP, 
     1, D_8038C760, 
-    func_80389600, func_80326224, func_803894C0,
+    func_80389600, actor_update_func_80326224, func_803894C0,
     2500, 0x366, 0.0f, 0
 }; 
 

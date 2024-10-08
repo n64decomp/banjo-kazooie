@@ -34,7 +34,7 @@ enum chjuju_animation_state_e {
 ActorInfo chjujuInfo = {
     MARKER_67_JUJU, ACTOR_59_JUJU, ASSET_2E6_MODEL_JUJU,
     0, NULL,
-    chjuju_update, func_80326224, chjuju_draw,
+    chjuju_update, actor_update_func_80326224, chjuju_draw,
     0, 0, 0.0f, 0
 };
 

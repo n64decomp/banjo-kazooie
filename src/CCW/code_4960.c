@@ -76,7 +76,7 @@ void func_8038AEBC(Actor *this) {
         }
     }
     if (this->state == 2) {
-        func_80326224(this);
+        actor_update_func_80326224(this);
         skeletalAnim_getProgressRange(this->unk148, &sp38, &sp34);
         for(iPtr = &D_8038F254[0]; iPtr->unk0 > 0.0f; iPtr++){
              if ((sp38 < iPtr->unk0) && (iPtr->unk0 <= sp34)) {
@@ -92,7 +92,7 @@ void func_8038AEBC(Actor *this) {
         }
     }
     if (this->state == 3) {
-        func_80326224(this);
+        actor_update_func_80326224(this);
         skeletalAnim_getProgressRange(this->unk148, &sp30, &sp2C);
         if ((sp30 <= 0.5) && (sp2C >= 0.5)) {
             jiggy_spawn(JIGGY_49_CCW_EYRIE, this->position);

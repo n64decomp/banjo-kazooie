@@ -17,7 +17,7 @@ Actor *chMotzhand_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 ActorInfo chMotzhand = {
     MARKER_49_MOTZHAND, ACTOR_3A_MOTZHAND, ASSET_88C_MODEL_MOTZHAND,
     0x0, NULL,
-    chmotzhand_update, func_80326224, chMotzhand_draw,
+    chmotzhand_update, actor_update_func_80326224, chMotzhand_draw,
     0, 0, 0.0f, 0
 };
 

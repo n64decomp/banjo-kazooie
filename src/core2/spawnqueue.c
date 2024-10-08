@@ -356,7 +356,7 @@ void spawnQueue_reset(void){
             lair_func_8038A0C4();
             break;
         case OVERLAY_E_BATTLE:
-            fight_func_803863F0();
+            fight_addSpawnableActors();
             break;
         case OVERLAY_C_INTRO:
             cutscene_func_8038C4E0();

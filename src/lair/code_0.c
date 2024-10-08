@@ -114,53 +114,53 @@ ActorAnimationInfo D_80392CB0[] = {
     {0x271,   3.0f}, 
     {0x271, 1e+08f}
 };
-ActorInfo lair_D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392E20 = { 0x11B, 0x221, 0x4B5, 0x1, D_80392CB0, func_80389734, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_8038975C, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392EF8 = { MARKER_109_BREAKABLE_BRICK_WALL, ACTOR_20D_BREAKABLE_BRICK_WALL, ASSET_4A1_MODEL_BREAKABLE_BRICK_WALL, 0x1, D_80392CB0, lair_func_80386550, func_80326224, actor_draw, 0, 0,   0.0f, 0x85};
-ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80392F40 = { MARKER_224_BREAKABLE_FLOOR_COBWEB, ACTOR_230_BREAKABLE_FLOOR_COBWEB, ASSET_4BF_MODEL_FLOOR_COBWEB, 0xB, D_80392CB0, chFloorCobweb_update, func_80326224, actor_draw, 0, 0,   0.0f, 0x88};
-ActorInfo D_80392F64 = { MARKER_225_BREAKABLE_WALL_COBWEB,  ACTOR_231_BREAKABLE_WALL_COBWEB, ASSET_4D5_MODEL_WALL_COBWEB, 0xE, D_80392CB0, chWallCobweb_update, func_80326224, actor_draw, 0, 0,   0.0f, 0x88};
-ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, lair_func_80389204, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80393060 = { 0x165, 0x25A, 0x508, 0x1, NULL, func_8038824C, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80393084 = { MARKER_240_LAIR_SWITCH_FLIGHT_PAD, 0x247, 0x48A, 0x1, NULL, func_80386D78, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_803930A8 = { 0x242, 0x249, 0x2DD, 0x1, NULL, func_803867A8, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_803930CC = { 0x11F, 0x225, 0x4B3, 0x1, NULL, func_8038A064, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_803930F0 = { 0x10A, 0x20E, 0x4A2, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_80393114 = { 0x11A, 0x220, 0x4B7, 0x1, NULL, func_80389FF4, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x91};
-ActorInfo D_80393138 = { 0x11E, 0x224, 0x4AF, 0x1, NULL, func_8038A014, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x83};
-ActorInfo D_8039315C = { 0x227, 0x234, 0x4D6, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x93};
-ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8B};
-ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8B};
-ActorInfo D_803931C8 = { MARKER_121_GLASS_EYE, ACTOR_227_GLASS_EYE, ASSET_4BD_MODEL_GLASS_EYE, 0x1, NULL, func_8038A034, func_80326224, actor_draw, 0, 0,   0.0f, 0x89};
-ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x82};
-ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, lair_func_803894B0, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x82};
-ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x90};
-ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x84};
-ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x7F};
-ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x87};
-ActorInfo D_803932C4 = { 0x122, ACTOR_228_MMM_ENTRANCE_DOOR, 0x4BE, 0x1, NULL, func_80388524, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8C};
-ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x80};
-ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, lair_func_8038A084, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8F};
-ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x92};
-ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, func_80326224, lair_func_80387560, 0, 0,   0.0f, 0};
-ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, func_80326224, func_80389E10, 0, 0,   0.0f, 0x8D};
-ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
-ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, func_80326224, func_8038664C, 0, 0,   0.0f, 0x8E};
-ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, func_80326224, actor_draw, 0, 0,   0.0f, 0};
-ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, func_80326224, func_80387DA8, 0, 0,   0.0f, 0};
+ActorInfo lair_D_80392D90 = { 0x270, 0x2D8, 0x3B2, 0x1, NULL, func_802D3D54, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80392DB4 = { 0x110, 0x214, 0x4AB, 0x1, D_80392CB0, func_803896D4, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392DD8 = { 0x113, 0x217, 0x4A9, 0x1, D_80392CB0, func_803896F4, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392DFC = { 0x115, 0x219, 0x4AA, 0x1, D_80392CB0, func_80389714, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392E20 = { 0x11B, 0x221, 0x4B5, 0x1, D_80392CB0, func_80389734, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392E44 = { 0x11C, 0x222, 0x4B2, 0x1, D_80392CB0, func_8038975C, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392E68 = { 0x11D, 0x223, 0x4B0, 0x1, D_80392CB0, func_80389784, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392E8C = { 0x232, 0x23C, 0x4B8, 0x1, D_80392CB0, func_803897AC, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392EB0 = { 0x23F, 0x246, 0x534, 0x1, D_80392CB0, func_80386D20, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392ED4 = { 0x241, 0x248, 0x540, 0x1, D_80392CB0, func_80386780, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392EF8 = { MARKER_109_BREAKABLE_BRICK_WALL, ACTOR_20D_BREAKABLE_BRICK_WALL, ASSET_4A1_MODEL_BREAKABLE_BRICK_WALL, 0x1, D_80392CB0, lair_func_80386550, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0x85};
+ActorInfo D_80392F1C = { 0x264, 0x2E5, 0x550, 0x19, D_80392CB0, func_80388524, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80392F40 = { MARKER_224_BREAKABLE_FLOOR_COBWEB, ACTOR_230_BREAKABLE_FLOOR_COBWEB, ASSET_4BF_MODEL_FLOOR_COBWEB, 0xB, D_80392CB0, chFloorCobweb_update, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0x88};
+ActorInfo D_80392F64 = { MARKER_225_BREAKABLE_WALL_COBWEB,  ACTOR_231_BREAKABLE_WALL_COBWEB, ASSET_4D5_MODEL_WALL_COBWEB, 0xE, D_80392CB0, chWallCobweb_update, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0x88};
+ActorInfo D_80392F88 = { 0x111, 0x215, 0x4A4, 0x1, NULL, func_80388FC8, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80392FAC = { 0x112, 0x216, 0x4A5, 0x1, NULL, func_80388FC8, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80392FD0 = { 0x114, 0x218, 0x4A6, 0x1, NULL, lair_func_80389204, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80392FF4 = { 0x10D, 0x211, 0x4A3, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80393018 = { 0x22C, 0x23A, 0x4D9, 0x1, NULL, func_803882B0, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_8039303C = { 0x164, 0x259, 0x507, 0x1, NULL, func_803880BC, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80393060 = { 0x165, 0x25A, 0x508, 0x1, NULL, func_8038824C, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80393084 = { MARKER_240_LAIR_SWITCH_FLIGHT_PAD, 0x247, 0x48A, 0x1, NULL, func_80386D78, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_803930A8 = { 0x242, 0x249, 0x2DD, 0x1, NULL, func_803867A8, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_803930CC = { 0x11F, 0x225, 0x4B3, 0x1, NULL, func_8038A064, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_803930F0 = { 0x10A, 0x20E, 0x4A2, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_80393114 = { 0x11A, 0x220, 0x4B7, 0x1, NULL, func_80389FF4, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x91};
+ActorInfo D_80393138 = { 0x11E, 0x224, 0x4AF, 0x1, NULL, func_8038A014, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x83};
+ActorInfo D_8039315C = { 0x227, 0x234, 0x4D6, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x93};
+ActorInfo D_80393180 = { 0x228, 0x235, 0x4D7, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8B};
+ActorInfo D_803931A4 = { 0x229, 0x236, 0x4D8, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8B};
+ActorInfo D_803931C8 = { MARKER_121_GLASS_EYE, ACTOR_227_GLASS_EYE, ASSET_4BD_MODEL_GLASS_EYE, 0x1, NULL, func_8038A034, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0x89};
+ActorInfo D_803931EC = { 0x116, 0x21A, 0x4AC, 0x1, NULL, func_803893B8, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x82};
+ActorInfo D_80393210 = { 0x117, 0x21B, 0x4AD, 0x1, NULL, lair_func_803894B0, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x82};
+ActorInfo D_80393234 = { 0x10B, 0x20F, 0x4B4, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x90};
+ActorInfo D_80393258 = { 0x10C, 0x210, 0x4AE, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x84};
+ActorInfo D_8039327C = { 0x10E, 0x212, 0x4A7, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x7F};
+ActorInfo D_803932A0 = { 0x120, 0x226, 0x4BC, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x87};
+ActorInfo D_803932C4 = { 0x122, ACTOR_228_MMM_ENTRANCE_DOOR, 0x4BE, 0x1, NULL, func_80388524, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8C};
+ActorInfo D_803932E8 = { 0x10F, 0x213, 0x4A8, 0x1, NULL, func_803875F0, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x80};
+ActorInfo D_8039330C = { 0x118, 0x21E, 0x4B1, 0x1, NULL, lair_func_8038A084, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x8F};
+ActorInfo D_80393330 = { 0x119, 0x21F, 0x4B6, 0x1, NULL, func_8038A0A4, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0x92};
+ActorInfo D_80393354 = { 0x266, 0x2E3, 0x563, 0x1, NULL, func_803870DC, actor_update_func_80326224, lair_func_80387560, 0, 0,   0.0f, 0};
+ActorInfo D_80393378 = { 0x17D, 0x1E1, 0x517, 0x1, NULL, func_80389D08, actor_update_func_80326224, func_80389E10, 0, 0,   0.0f, 0x8D};
+ActorInfo D_8039339C = { 0x234, 0x23E, 0x4E1, 0x12, D_80392CB0, func_8038982C, actor_update_func_80326224, actor_drawFullDepth, 0, 0,   0.0f, 0};
+ActorInfo D_803933C0 = { 0x163, 0x258, 0x511, 0x12, D_80392CB0, func_80389898, actor_update_func_80326224, func_8038664C, 0, 0,   0.0f, 0x8E};
+ActorInfo D_803933E4 = { 0x160, 0x255, 0x509, 0x15, D_80392CB0, func_80389934, actor_update_func_80326224, actor_draw, 0, 0,   0.0f, 0};
+ActorInfo D_80393408 = { 0x102, 0x203, 0x491, 0x1, D_80392CB0, func_80387730, actor_update_func_80326224, func_80387DA8, 0, 0,   0.0f, 0};
 ParticleScaleAndLifetimeRanges D_8039342C = {
     {0.31f, 0.37f},
     {0.17f, 0.22f},
@@ -205,7 +205,7 @@ ParticleScaleAndLifetimeRanges D_803934AC = {
     {3.8f, 5.0f},
     0.31f, 0.93f
 };
-struct42s D_803934D4 = {
+ParticleSettingsVelocityPosition D_803934D4 = {
     {{-80.0f, 30.0f, -80.0f}, {80.0f, 270.0f, 80.0f}},
     {{40.0f, 0.0f, -50.0f}, {100.0f, 200.0f, 50.0f}},
 };
@@ -417,9 +417,9 @@ void func_803867A8(Actor *this) {
                 sp50[0] = this->unk1C[0] + sp5C[0];
                 sp50[2] = this->unk1C[2] + sp5C[2];
                 particleEmitter_setPosition(sp44, sp50);
-                particleEmitter_setParticleSpawnPositionRange(sp44, -25.0f, 0.0f, -25.0f, 25.0f, 6.0f, 25.0f);
+                particleEmitter_setSpawnPositionRange(sp44, -25.0f, 0.0f, -25.0f, 25.0f, 6.0f, 25.0f);
                 particleEmitter_emitN(sp44, 1);
-                particleEmitter_setParticleSpawnPositionRange(sp44, -75.0f, 0.0f, -75.0f, 75.0f, 6.0f, 75.0f);
+                particleEmitter_setSpawnPositionRange(sp44, -75.0f, 0.0f, -75.0f, 75.0f, 6.0f, 75.0f);
                 particleEmitter_emitN(sp44, 1);
             }
         }
@@ -565,7 +565,7 @@ void func_803870DC(Actor *this) {
                 particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
                 particleEmitter_setStartingScaleRange(temp_s5, 0.13f, 0.18f);
                 particleEmitter_setFinalScaleRange(temp_s5, 0.08f, 0.13f);
-                particleEmitter_setParticleAccelerationRange(temp_s5, -500.0f, -1800.0f, -500.0f, 500.0f, 1800.0f, 500.0f);
+                particleEmitter_setAccelerationRange(temp_s5, -500.0f, -1800.0f, -500.0f, 500.0f, 1800.0f, 500.0f);
                 particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
                 particleEmitter_setParticleLifeTimeRange(temp_s5, 0.9f, 0.9f);
                 particleEmitter_setParticleVelocityRange(temp_s5, -400.0f, 400.0f, -400.0f, 400.0f, -400.0f, 400.0f);
@@ -723,7 +723,7 @@ void func_80387730(Actor *this) {
                     particleEmitter_setSprite(temp_s5, ASSET_710_SPRITE_SPARKLE_PURPLE);
                     particleEmitter_setStartingScaleRange(temp_s5, 0.13f, 0.18f);
                     particleEmitter_setFinalScaleRange(temp_s5, 0.08f, 0.13f);
-                    particleEmitter_setParticleAccelerationRange(temp_s5, -10.0f, 0.0f, -10.0f, 10.0f, 1600.0f, 10.0f);
+                    particleEmitter_setAccelerationRange(temp_s5, -10.0f, 0.0f, -10.0f, 10.0f, 1600.0f, 10.0f);
                     particleEmitter_setSpawnIntervalRange(temp_s5, 0.0f, 0.01f);
                     particleEmitter_setParticleLifeTimeRange(temp_s5, 1.4f, 1.4f);
                     particleEmitter_setParticleVelocityRange(temp_s5, -100.0f, 100.0f, -100.0f, 100.0f, 0.0f, 100.0f);

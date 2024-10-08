@@ -27,7 +27,7 @@ ParticleScaleAndLifetimeRanges D_8038E7D0 = {
     0.15f, 0.3f
 };
 
-struct42s D_8038E7F8 ={
+ParticleSettingsVelocityPosition D_8038E7F8 ={
     { {-10.0f, -10.0f, -10.0f}, {10.0f, 10.0f, 10.0f} },
     { {0.0f, 30.0f, 0.0f}, {0.0f, 30.0f, 0.0f} }
 };
@@ -42,7 +42,7 @@ ParticleScaleAndLifetimeRanges D_8038E834 = {
     0.01f, 0.3f
 };
 
-struct42s D_8038E85C ={
+ParticleSettingsVelocityPosition D_8038E85C ={
     { {-5.0f, -5.0f, -5.0f}, {5.0f, 5.0f, 5.0f} },
     { {0.0f, 30.0f, 0.0f}, {0.0f, 30.0f, 0.0f} }
 };
@@ -56,7 +56,7 @@ void func_8038CDE0(ParticleEmitter *pCtrl){
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038E7F8);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038E7D0);
-    func_802EFA78(pCtrl, 1);
+    particleEmitter_func_802EFA78(pCtrl, 1);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_manualFree(pCtrl);
 }
@@ -68,7 +68,7 @@ void func_8038CE98(ParticleEmitter *pCtrl){
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f,-600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038E85C);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038E834);
-    func_802EFA78(pCtrl, 1);
+    particleEmitter_func_802EFA78(pCtrl, 1);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_manualFree(pCtrl);
 }

@@ -21,7 +21,7 @@ f32 D_80368168[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_80368174 = { 
     MARKER_178_NO_CONTROLLER_OVERLAY, ACTOR_1DF_NO_CONTROLLER_OVERLAY, ASSET_55D_MODEL_NO_CONTROLLER_OVERLAY, 
     0x0, D_80368150,
-    chOverlayNoController_update, func_80326224, chOverlayNoController_draw,
+    chOverlayNoController_update, actor_update_func_80326224, chOverlayNoController_draw,
     0, 0, 0.0f, 0
 };
 

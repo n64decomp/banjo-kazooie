@@ -27,7 +27,7 @@ ActorAnimationInfo D_80390B30[4] = {
 u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC};
 
 ActorInfo D_80390B68 = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
-    chmudhut_update, func_80326224, chmudhut_draw,
+    chmudhut_update, actor_update_func_80326224, chmudhut_draw,
     0, 0, 0.0f, 0
 };
 

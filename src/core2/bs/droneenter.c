@@ -47,25 +47,25 @@ void __bsDroneEnter_emitParticles(void) {
     f32 plyr_pos[3];
 
     player_getPosition(plyr_pos);
-    particleEmitter_setParticleAccelerationRange(bsDroneEnter.yellow_sparkle_emitter, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -5.0f, -45.0f, 45.0f, 10.0f, 45.0f);
+    particleEmitter_setAccelerationRange(bsDroneEnter.yellow_sparkle_emitter, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -5.0f, -45.0f, 45.0f, 10.0f, 45.0f);
     particleEmitter_setPosition(bsDroneEnter.yellow_sparkle_emitter, plyr_pos);
     particleEmitter_emitN(bsDroneEnter.yellow_sparkle_emitter, 1);
 
-    particleEmitter_setParticleAccelerationRange(bsDroneEnter.white_sparkle_emitter, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -5.0f, -45.0f, 45.0f, 10.0f, 45.0f);
+    particleEmitter_setAccelerationRange(bsDroneEnter.white_sparkle_emitter, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -5.0f, -45.0f, 45.0f, 10.0f, 45.0f);
     particleEmitter_setPosition(bsDroneEnter.white_sparkle_emitter, plyr_pos);
     particleEmitter_emitN(bsDroneEnter.white_sparkle_emitter, 1);
 
     player_getPosition(plyr_pos);
     plyr_pos[1] += 130.0f;
-    particleEmitter_setParticleAccelerationRange(bsDroneEnter.yellow_sparkle_emitter, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -10.0f, -45.0f, 45.0f, 10.0f, 45.0f);
+    particleEmitter_setAccelerationRange(bsDroneEnter.yellow_sparkle_emitter, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -10.0f, -45.0f, 45.0f, 10.0f, 45.0f);
     particleEmitter_setPosition(bsDroneEnter.yellow_sparkle_emitter, plyr_pos);
     particleEmitter_emitN(bsDroneEnter.yellow_sparkle_emitter, 1);
 
-    particleEmitter_setParticleAccelerationRange(bsDroneEnter.white_sparkle_emitter, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
-    particleEmitter_setParticleSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -10.0f, -45.0f, 45.0f, 10.0f, 45.0f);
+    particleEmitter_setAccelerationRange(bsDroneEnter.white_sparkle_emitter, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(bsDroneEnter.yellow_sparkle_emitter, -45.0f, -10.0f, -45.0f, 45.0f, 10.0f, 45.0f);
     particleEmitter_setPosition(bsDroneEnter.white_sparkle_emitter, plyr_pos);
     particleEmitter_emitN(bsDroneEnter.white_sparkle_emitter, 1);
 }

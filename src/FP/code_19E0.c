@@ -23,7 +23,7 @@ ActorAnimationInfo D_80391C00[] = {
 ActorInfo D_80391C18 = { 
     0x125, 0x161, 0x38b, 
     0x1, D_80391C00, 
-    func_803881AC, func_80326224, func_80387DD0,
+    func_803881AC, actor_update_func_80326224, func_80387DD0,
     0, 0, 0.35f, 0
 };
 

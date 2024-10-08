@@ -24,7 +24,7 @@ ActorAnimationInfo D_803925C0[] = {
 
 ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
     0x1, D_803925C0,
-    func_8038FF54, func_80326224, func_8038FF00,
+    func_8038FF54, actor_update_func_80326224, func_8038FF00,
     0, 0, 0.0f, 0
 };
 
@@ -85,7 +85,7 @@ void func_8038FF54(Actor *this){
             particleEmitter_setSprite(sp3C, ASSET_713_SPRITE_SPARKLE_YELLOW);
             particleEmitter_setStartingFrameRange(sp3C, 1, 6);
             particleEmitter_setPosition(sp3C, sp40);
-            particleEmitter_setParticleSpawnPositionRange(sp3C,
+            particleEmitter_setSpawnPositionRange(sp3C,
                 0.0f, 20.0f, 0.0f,
                 0.0f, 20.0f, 0.0f
             );
@@ -93,7 +93,7 @@ void func_8038FF54(Actor *this){
                 -180.0f,   0.0f, -180.0f,
                  180.0f, 280.0f,  180.0f
             );
-            particleEmitter_setParticleAccelerationRange(sp3C,
+            particleEmitter_setAccelerationRange(sp3C,
                 0.0f, -60.0f, 0.0f,
                 0.0f, -90.0f, 0.0f
             );

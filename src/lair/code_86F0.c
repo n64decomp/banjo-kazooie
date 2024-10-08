@@ -25,8 +25,8 @@ void func_8038F350(Actor *this, s32 next_state);
 void lair_func_8038F924(Actor *this);
 
 /* .data */
-ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
 Struct_lair_86F0_0 D_803947F8[0xb] ={
     { 1, 0x1, FILEPROG_5D_MM_PUZZLE_PIECES_PLACED},
     { 2, 0x2, FILEPROG_5E_TCC_PUZZLE_PIECES_PLACED},
@@ -464,7 +464,7 @@ void lair_func_8038F924(Actor *this) {
             particleEmitter_setPosition(sp54, this->position);
             sp58[2] = randf() * 255.0f;
             particleEmitter_setRGB(sp54, sp58);
-            particleEmitter_setParticleSpawnPositionRange(sp54, -30.0f, -40.0f, -30.0f, 30.0f, 20.0f, 30.0f);
+            particleEmitter_setSpawnPositionRange(sp54, -30.0f, -40.0f, -30.0f, 30.0f, 20.0f, 30.0f);
             particleEmitter_emitN(sp54, 6);
         }
     }

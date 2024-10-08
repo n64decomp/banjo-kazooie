@@ -63,98 +63,98 @@ ActorAnimationInfo D_8038BBE0[] = {
 ActorInfo D_8038BC28 = {
     0x9C, 0x109, 0x3CD,
     0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BC4C = {
     0x9E, 0x10B, 0x3CF,
     0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BC70 = {
     0x9A,  0xCB, 0x3CC,
     0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BC94 = {
     0xA2, 0x114, 0x3D3,
     0x1, NULL,
-    func_80388BDC, func_80326224, actor_drawFullDepth,
+    func_80388BDC, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BCB8 = {
     0xE7, 0x265, 0x4DA,
     0x1, NULL,
-    func_80389004, func_80326224, actor_drawFullDepth,
+    func_80389004, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BCDC = {
     0x9D, 0x10A, 0x3CE,
     0x1, NULL,
-    func_80389004, func_80326224, actor_drawFullDepth,
+    func_80389004, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BD00 = {
     0xD3, 0x191, 0x50B,
     0x1, NULL,
-    func_80389060, func_80326224, actor_drawFullDepth,
+    func_80389060, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BD24 = {
 0x123, 0x2E8, 0x4C0,
     0x1, NULL,
-    func_803890B8, func_80326224, actor_drawFullDepth,
+    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BD48 = {
 0x1F2, 0x2E9, 0x4C1,
     0x1, NULL,
-    func_803890B8, func_80326224, actor_drawFullDepth,
+    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BD6C = {
 0x1F3, 0x2EA, 0x4C2,
     0x1, NULL,
-    func_803890B8, func_80326224, actor_drawFullDepth,
+    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BD90 = {
     0xFE, 0x1FD, 0x43D, 
     0x1, D_8038BBE0,
-    func_80388FE4, func_80326224, actor_draw,
+    func_80388FE4, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BDB4 = {
     0x9F, 0x10C, 0x3D0,
     0x1, NULL,
-    func_803888B8, func_80326224, func_80388994,
+    func_803888B8, actor_update_func_80326224, func_80388994,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BDD8 = {
     0xA0, 0x10D, 0x3D1,
     0x1, NULL,
-    func_803888B8, func_80326224, func_80388994,
+    func_803888B8, actor_update_func_80326224, func_80388994,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038BDFC = {
     0xFF, 0x1FE, 0x43E,
     0x1, NULL,
-    func_803888B8, func_80326224, func_80388994,
+    func_803888B8, actor_update_func_80326224, func_80388994,
     0, 0, 0.0f, 0
 };
 

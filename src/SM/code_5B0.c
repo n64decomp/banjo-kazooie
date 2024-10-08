@@ -18,18 +18,18 @@ ActorAnimationInfo D_8038AAF0[] = {
 ActorInfo D_8038AB00 = {
     MARKER_135_QUARRIE, ACTOR_16F_QUARRIE, ASSET_42D_MODEL_QUARRIE, 
     1,  NULL,
-    SM_func_80386EF4, func_80326224, actor_drawFullDepth,
+    SM_func_80386EF4, actor_update_func_80326224, actor_drawFullDepth,
     2000, 0, 5.0f, 0
 };
 
 ActorInfo D_8038AB24 = {
     MARKER_29D_ROCK_TRAPPING_GRUNTY, ACTOR_3CA_ROCK_TRAPPING_GRUNTY, ASSET_47B_MODEL_ROCK,
     1, D_8038AAF0,
-    SM_func_80386A00, func_80326224, actor_drawFullDepth, 
+    SM_func_80386A00, actor_update_func_80326224, actor_drawFullDepth, 
     0, 0, 0.0f, 0
 };
 
-struct43s D_8038AB48 = {
+ParticleSettingsVelocityAccelerationPosition D_8038AB48 = {
     {{-200.0f, 600.0f, -200.0f}, {200.0f, 800.0f, 200.0f}}, 
     {{0.0f, -1800.0f, 0.0f}, {0.0f, -1800.0f, 0.0f}},
     {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}
@@ -37,7 +37,7 @@ struct43s D_8038AB48 = {
 
 s32 D_8038AB90[3] = {0xFF, 0xFF, 0xFF};
 
-struct43s D_8038AB9C = {
+ParticleSettingsVelocityAccelerationPosition D_8038AB9C = {
     {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
     {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
     {{-100.0f, -100.0f, -100.0f}, {100.0f, 100.0f, 100.0f}}
@@ -70,8 +70,8 @@ void SM_func_80386A00(Actor *this) {
 }
 
 void func_80386B04(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
-    func_802EF9F8(p_ctrl, 0.6f);
-    func_802EFA18(p_ctrl, 4);
+    particleEmitter_func_802EF9F8(p_ctrl, 0.6f);
+    particleEmitter_func_802EFA18(p_ctrl, 4);
     particleEmitter_setFade(p_ctrl, 0.00f, 0.75f);
     particleEmitter_setModel(p_ctrl, 0x42E);
     particleEmitter_setPosition(p_ctrl, arg1);
@@ -81,7 +81,7 @@ void func_80386B04(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
     particleEmitter_setAngularVelocityRange(p_ctrl, -100.0f, -100.0f, -100.0f, 100.0f, 100.0f, 100.0f);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.00f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 2.0f, 2.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_8038AB48);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(p_ctrl, &D_8038AB48);
     particleEmitter_emitN(p_ctrl, arg2);
 }
 
@@ -95,7 +95,7 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
     particleEmitter_setFinalScaleRange(p_ctrl, (arg3 * 1.5), (arg3 * 3.0));
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 1.5f, 2.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_8038AB9C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(p_ctrl, &D_8038AB9C);
     particleEmitter_emitN(p_ctrl, arg2);
 }
 

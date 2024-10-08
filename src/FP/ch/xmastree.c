@@ -9,7 +9,7 @@ void chXmasTree_update(Actor *this);
 ActorInfo chXmasTree = { 
     MARKER_BA_XMAS_TREE, ACTOR_15F_XMAS_TREE, ASSET_488_MODEL_XMAS_TREE, 
     0x1, NULL, 
-    chXmasTree_update, func_80326224, chXmasTree_draw,
+    chXmasTree_update, actor_update_func_80326224, chXmasTree_draw,
     0, 0, 0.0f, 0
 };
 

@@ -33,8 +33,8 @@ ActorAnimationInfo D_80393520[] = {
     {0x28F, 5.167f},
     {0x290, 6.26f}
 };
-ActorInfo D_80393560 = { MARKER_231_WARP_CAULDRON, ACTOR_23B_WARP_CAULDRON, ASSET_4DF_MODEL_WARP_CAULDRON, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
-ActorInfo D_80393584 = { MARKER_244_DINGPOT, ACTOR_2DB_DINGPOT, ASSET_450_MODEL_DINGPOT, 1, D_80393520, chWarpCauldron_update, func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
+ActorInfo D_80393560 = { MARKER_231_WARP_CAULDRON, ACTOR_23B_WARP_CAULDRON, ASSET_4DF_MODEL_WARP_CAULDRON, 1, D_80393520, chWarpCauldron_update, actor_update_func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
+ActorInfo D_80393584 = { MARKER_244_DINGPOT, ACTOR_2DB_DINGPOT, ASSET_450_MODEL_DINGPOT, 1, D_80393520, chWarpCauldron_update, actor_update_func_80326224, chWarpCauldron_draw, 0, 0, 3.0f, 0};
 f32 D_803935A8[][2][3] = {
     {{1.0f, 1.0f, 1.0f}, {1.0f, 0.0f, 1.0f}}, 
     {{1.0f, 1.0f, 1.0f}, {0.0f, 1.0f, 1.0f}}, 

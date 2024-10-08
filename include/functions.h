@@ -203,19 +203,19 @@ void func_8030DA44(u8);
 
 void particleEmitter_emitInVolume(ParticleEmitter *, f32[3], f32[3], s32);
 ParticleEmitter *particleEmitter_new(u32 capacity);
-void particleEmitter_setParticleAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
-void func_802EF9F8(ParticleEmitter *, f32);
-void func_802EFA18(ParticleEmitter *, s32);
+void particleEmitter_setAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_func_802EF9F8(ParticleEmitter *, f32);
+void particleEmitter_func_802EFA18(ParticleEmitter *, s32);
 void particleEmitter_setFade(ParticleEmitter *, f32, f32);
 void particleEmitter_setDrawMode(ParticleEmitter *, s32);
 void particleEmitter_setStartingFrameRange(ParticleEmitter *this, s32 arg1, s32 arg2);
 void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
-void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_setSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void particleEmitter_setStartingScaleRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setFinalScaleRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *, ParticleScaleAndLifetimeRanges *);
-void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
-void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
+void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, ParticleSettingsVelocityAcceleration *);
+void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, ParticleSettingsVelocityPosition *arg1);
 void particleEmitter_setAngularVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void particleEmitter_setSpawnIntervalRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleLifeTimeRange(ParticleEmitter *, f32, f32);
@@ -499,7 +499,7 @@ void actor_playAnimationOnce(Actor *);
 void actor_loopAnimation(Actor *);
 
 /* used in fight */
-void func_80326224(Actor *this);
+void actor_update_func_80326224(Actor *this);
 
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 [3], f32, f32);
@@ -526,7 +526,7 @@ extern void subaddie_set_state_forward(Actor *, s32);
 
 extern BKModelBin *marker_loadModelBin(ActorMarker *this);
 extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
-extern void func_80326310(Actor *this);
+extern void func_80326310(Actor *this); // actor_setBlendStateFadeOut ??
 extern ActorMarker *marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4);
 extern s32 asset_getFlag(enum asset_e arg0);
 extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2);

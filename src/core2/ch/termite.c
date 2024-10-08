@@ -73,8 +73,8 @@ void __chTermite_updateWalkSFX(Actor *this) {
 void __chTermite_setupParticleEmitter(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setDrawMode(pCtrl, 2);
-    func_802EF9F8(pCtrl, 0.7f);
-    func_802EFA18(pCtrl, 5);
+    particleEmitter_func_802EF9F8(pCtrl, 0.7f);
+    particleEmitter_func_802EFA18(pCtrl, 5);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
@@ -84,7 +84,7 @@ void __chTermite_setupParticleEmitter(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitLegs(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_393_MODEL_TERMITE_LEG);
     particleEmitter_setStartingScaleRange(pCtrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
@@ -94,7 +94,7 @@ void __chTermite_emitLegs(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitHead(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_394_MODEL_TERMITE_HEAD);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -104,7 +104,7 @@ void __chTermite_emitHead(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitBody(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_395_MODEL_TERMITE_BODY);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -114,7 +114,7 @@ void __chTermite_emitBody(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitEyes(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_396_MODEL_TERMITE_EYES);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
@@ -242,6 +242,6 @@ void chTermite_update(Actor *this) {
 ActorInfo chTermite = { 
     MARKER_4_TERMITE, ACTOR_5_TERMITE, ASSET_350_MODEL_TERMITE, 
     0x1, chTermiteAnimations, 
-    chTermite_update, func_80326224, actor_draw, 
+    chTermite_update, actor_update_func_80326224, actor_draw, 
     2000, 0, 0.0f, 0
 };

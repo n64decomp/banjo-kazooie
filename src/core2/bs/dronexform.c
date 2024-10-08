@@ -36,7 +36,7 @@ struct {
 void func_802AF7A0(ParticleEmitter *arg0, enum asset_e arg1){
     particleEmitter_manualFree(arg0);
     particleEmitter_setSprite(arg0, arg1);
-    particleEmitter_setParticleAccelerationRange(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
+    particleEmitter_setAccelerationRange(arg0, 0.0f, -50.0f, 0.0f, 0.0f, -50.0f, 0.0f);
     particleEmitter_setFade(arg0, 0.4f, 0.8f);
     particleEmitter_setFinalScaleRange(arg0, 0.03f, 0.03f);
     particleEmitter_setAngularVelocityRange(arg0, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);
@@ -116,31 +116,31 @@ void func_802AFBAC(f32 arg0){
 }
 
 void func_802AFBB8(f32 arg0[3]){
-    static struct41s D_80364BB0 = {
+    static ParticleSettingsVelocityAcceleration D_80364BB0 = {
         {{-150.0f,   10.0f, -150.0f}, { 150.0f,   50.0f,  150.0f}},
         {{   0.0f,  -50.0f,    0.0f}, {   0.0f,  -50.0f,    0.0f}}
     };
 
-    static struct41s D_80364BE0 = {
+    static ParticleSettingsVelocityAcceleration D_80364BE0 = {
         {{-300.0f,  150.0f, -300.0f}, { 300.0f,  200.0f,  300.0f}},
         {{   0.0f, -150.0f,    0.0f}, {   0.0f, -150.0f,    0.0f}}
     };
 
 
-    static struct41s D_80364C10 = {
+    static ParticleSettingsVelocityAcceleration D_80364C10 = {
         {{-100.0f,   10.0f, -100.0f}, { 100.0f,   15.0f,  100.0f}},
         {{   0.0f, -700.0f,    0.0f}, {   0.0f, -700.0f,    0.0f}}
     };
 
-    static struct41s D_80364C40 = {
+    static ParticleSettingsVelocityAcceleration D_80364C40 = {
         {{ -50.0f,   60.0f,  -50.0f}, {  50.0f,  150.0f,   50.0f}},
         {{   0.0f,  -50.0f,    0.0f}, {   0.0f,  -50.0f,    0.0f}}
     };
-    static struct41s D_80364C70 = {
+    static ParticleSettingsVelocityAcceleration D_80364C70 = {
         {{-400.0f,  150.0f, -400.0f}, { 400.0f,  200.0f,  400.0f}},
         {{   0.0f, -200.0f,    0.0f}, {   0.0f, -200.0f,    0.0f}}
     };
-    static struct41s D_80364CA0 = {
+    static ParticleSettingsVelocityAcceleration D_80364CA0 = {
         {{-200.0f,   10.0f, -200.0f}, { 200.0f,   20.0f,  200.0f}},
         {{   0.0f, -850.0f,    0.0f}, {   0.0f, -850.0f,    0.0f}}
     };
@@ -180,8 +180,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_emitN(s0, 5);
     
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364C10);
-    func_802EF9F8(s0, 0.4f);
-    func_802EFA18(s0, 3);
+    particleEmitter_func_802EF9F8(s0, 0.4f);
+    particleEmitter_func_802EFA18(s0, 3);
     particleEmitter_emitN(s0, 4);
 
     s0 = partEmitMgr_newEmitter(0x11);
@@ -200,8 +200,8 @@ void func_802AFBB8(f32 arg0[3]){
     particleEmitter_emitN(s0, 5);
     
     particleEmitter_setVelocityAndAccelerationRanges(s0, &D_80364CA0);
-    func_802EF9F8(s0, 0.4f);
-    func_802EFA18(s0, 3);
+    particleEmitter_func_802EF9F8(s0, 0.4f);
+    particleEmitter_func_802EFA18(s0, 3);
     particleEmitter_emitN(s0, 4);
 }
 

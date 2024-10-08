@@ -168,7 +168,7 @@ typedef struct actor_s{
     TUPLE(f32, unk1C);
     f32 actor_specific_1_f; //used in cheggs
     TUPLE(f32, velocity);
-    u32  unk38_31:10;
+    u32  unk38_31:10; // hit count for jinjo base in fight
     u32  unk38_21:9;
     u32  unk38_13:9;
     u32  stored_animctrl_playbackType_:3; //animctrlPlaybackType
@@ -230,10 +230,10 @@ typedef struct actor_s{
     u32 unkF4_22:1;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
-    u32 unkF4_8:9;
+    u32 unkF4_8:9; // jinjo id in final fight
     f32 stored_animctrl_subrangeMin; //animCtrl_SubRangeStart
     f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
-    ActorMarker *unk100;
+    ActorMarker *unk100; // child actor marker ?
     ActorMarker *unk104;
     Struct62s *unk108;
     // void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->collisionFunc

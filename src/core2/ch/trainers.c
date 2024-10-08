@@ -19,7 +19,7 @@ ActorAnimationInfo chTrainersAnimations[] = {
 ActorInfo chTrainers = { 
     MARKER_38_TURBO_TALON_TRAINERS, ACTOR_2C_TURBO_TALON_TRAINERS, ASSET_367_MODEL_TURBO_TALON_TRAINERS,
     0x0, chTrainersAnimations,
-    chtrainers_update, func_80326224, chtrainers_draw,
+    chtrainers_update, actor_update_func_80326224, chtrainers_draw,
     0, 0, 0.0f, 0
 };
 

@@ -53,9 +53,9 @@ void func_80361330(Actor *this, s32 next_state){
         ml_vec3f_roll_rotate_copy(sp40, sp40, this->roll);
         ml_vec3f_yaw_rotate_copy(sp40, sp40, this->yaw);
         particleEmitter_setSprite(pctrl, ASSET_70E_SPRITE_SMOKE_2);
-        particleEmitter_setParticleAccelerationRange(pctrl, 0.0f, 200.0f, 0.0f, 0.0f, 1000.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pctrl, 0.0f, 200.0f, 0.0f, 0.0f, 1000.0f, 0.0f);
         particleEmitter_setStartingFrameRange(pctrl, 0, 7);
-        particleEmitter_setParticleSpawnPositionRange(pctrl, -20.0f, -20.0f, -20.0f, 20.0f, 20.0f, 20.0f);
+        particleEmitter_setSpawnPositionRange(pctrl, -20.0f, -20.0f, -20.0f, 20.0f, 20.0f, 20.0f);
         particleEmitter_setPosition(pctrl, this->position);
         particleEmitter_setScaleAndLifetimeRanges(pctrl, &D_8037317C);
         particleEmitter_setParticleVelocityRange(pctrl, 

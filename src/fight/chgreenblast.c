@@ -3,20 +3,9 @@
 #include "variables.h"
 #include "fight.h"
 
-extern void func_80386654(f32 arg0, f32 (*arg1)[4], f32 (*arg2)[4]);
-extern void func_80387470(Actor *, f32 [3], f32, f32, f32, f32, f32);
 extern Actor *func_80325CAC(ActorMarker *, Gfx **, Mtx **, Vtx**);
 
-void chGreenBlast_update(Actor *this);
-Actor *chGreenBlast_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-
-/* .data */
-ActorInfo chGreenBlast = {
-    MARKER_25D_GREEN_BLAST, ACTOR_38A_GREEN_BLAST, ASSET_6C7_GREEN_BLAST,
-    0x1, NULL,
-    chGreenBlast_update, func_80326224, chGreenBlast_draw,
-    0, 0, 1.0f, 0
-};
+ActorInfo chGreenBlast = { MARKER_25D_GREEN_BLAST, ACTOR_38A_GREEN_BLAST, ASSET_6C7_GREEN_BLAST, 1, NULL, chGreenBlast_update, actor_update_func_80326224, chGreenBlast_draw, 0, 0, 1.0f, 0 };
 
 f32 D_80391DE4[4] = {0.6f, 1.0f, 1.0f, 1.0f};
 f32 D_80391DF4[4] = {0.3f, 0.3f, 0.3f, 1.0f};
@@ -48,19 +37,18 @@ f32 chGreenBlastSparklesScaleRange[4] = {0.15f, 0.3f, 0.0f, 0.0f};
 f32 chGreenBlastSparklesLifetimeRange[4] = {0.0f, 0.01f, 0.7f, 0.8f};
 f32 chGreenBlastSparklesFade[2] = {0.0f, 0.65f};
 
-/* .code */
-Actor *chGreenBlast_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
+Actor *chGreenBlast_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *actor = marker_getActor(marker);
     func_80344C2C(1);
-    return func_80325CAC(marker, gdl, mptr, arg3);
+    return func_80325CAC(marker, gfx, mtx, vtx);
 }
 
-void func_8038FC88(void){
-    func_80386654(1.0f, &D_80391DF4, &D_80391DE4);
+void chGreenBlast_func_8038FC88(void){
+    chfinalboss_func_80386654(1.0f, D_80391DF4, D_80391DE4);
 }
 
-void func_8038FCBC(void){
-    func_80386654(1.0f, &D_80391DE4, &D_80391DF4);
+void chGreenBlast_func_8038FCBC(void){
+    chfinalboss_func_80386654(1.0f, D_80391DE4, D_80391DF4);
 }
 
 void chGreenBlast_collisionDie(ActorMarker *marker, ActorMarker *other_marker){
@@ -73,30 +61,18 @@ void chGreenBlast_collisionDie(ActorMarker *marker, ActorMarker *other_marker){
     explosion_position[1] += 160.0f;
 
     FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor->position, 1000, 3500);
-    timedFunc_set_0(0.0f, func_8038FC88);
-    timedFunc_set_0(0.3f, func_8038FCBC);
+    timedFunc_set_0(0.0f, chGreenBlast_func_8038FC88);
+    timedFunc_set_0(0.3f, chGreenBlast_func_8038FCBC);
 
-    chSpellFireball_emitSparkles(actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE,
-        chGreenBlastDieSparklesPositionRange, chGreenBlastDieSparklesAccelerationRange, chGreenBlastDieSparklesVelocityRange,
-        chGreenBlastDieSparklesScaleRange, chGreenBlastDieSparklesLifetimeRange, chGreenBlastDieSparklesFade
-    );
-
-    chSpellFireball_emitSparkles(actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
-        chGreenBlastDieSparklesPositionRange, chGreenBlastDieSparklesAccelerationRange, chGreenBlastDieSparklesVelocityRange,
-        chGreenBlastDieSparklesScaleRange, chGreenBlastDieSparklesLifetimeRange, chGreenBlastDieSparklesFade
-    );
-
-    chSpellFireball_emitSmoke(actor->position, 3, chGreenBlastSmokeLifetime);
-
-    chSpellFireball_emitExplosion(&explosion_position, 0x6C8, 3, 
-        chGreenBlastExplosionStartFrameRange, chGreenBlastExplosionPositionRange, 
-        chGreenBlastExplosionScaleRange, chGreenBlastExplosionLifetimeRange, chGreenBlastExplosionFade
-    );
+    fight_createSpriteParticles(actor->position, 4, ASSET_710_SPRITE_SPARKLE_PURPLE, chGreenBlastDieSparklesPositionRange, chGreenBlastDieSparklesAccelerationRange, chGreenBlastDieSparklesVelocityRange, chGreenBlastDieSparklesScaleRange, chGreenBlastDieSparklesLifetimeRange, chGreenBlastDieSparklesFade);
+    fight_createSpriteParticles(actor->position, 4, ASSET_711_SPRITE_SPARKLE_DARK_BLUE, chGreenBlastDieSparklesPositionRange, chGreenBlastDieSparklesAccelerationRange, chGreenBlastDieSparklesVelocityRange, chGreenBlastDieSparklesScaleRange, chGreenBlastDieSparklesLifetimeRange, chGreenBlastDieSparklesFade);
+    fight_createSmokeParticles(actor->position, 3, chGreenBlastSmokeLifetime);
+    fight_createAnimatedSpriteParticles(explosion_position, 0x6C8, 3, chGreenBlastExplosionStartFrameRange, chGreenBlastExplosionPositionRange, chGreenBlastExplosionScaleRange, chGreenBlastExplosionLifetimeRange, chGreenBlastExplosionFade);
 
     marker_despawn(actor->marker);
 }
 
-void chGreenBlast_update(Actor *this){
+void chGreenBlast_update(Actor *this) {
     f32 delta_time = time_getDelta();
     f32 target_position[3];
 
@@ -113,42 +89,33 @@ void chGreenBlast_update(Actor *this){
 
     if (globalTimer_getTime() % 4 == 1) {
         if (randf() < 0.5) {
-            chSpellFireball_emitSparkles(this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, 
-                chGreenBlastSparklesPositionRange, chGreenBlastSparklesAccelerationRange, chGreenBlastSparklesVelocityRange,
-                chGreenBlastSparklesScaleRange, chGreenBlastSparklesLifetimeRange, chGreenBlastSparklesFade
-            );
-        }
-        else {
-            chSpellFireball_emitSparkles(this->position, 4, ASSET_719_SPRITE_SPARKLE_GREEN_2, 
-                chGreenBlastSparklesPositionRange, chGreenBlastSparklesAccelerationRange, chGreenBlastSparklesVelocityRange,
-                chGreenBlastSparklesScaleRange, chGreenBlastSparklesLifetimeRange, chGreenBlastSparklesFade
-            );
+            fight_createSpriteParticles(this->position, 4, ASSET_718_SPRITE_SPARKLE_WHITE_2, chGreenBlastSparklesPositionRange, chGreenBlastSparklesAccelerationRange, chGreenBlastSparklesVelocityRange, chGreenBlastSparklesScaleRange, chGreenBlastSparklesLifetimeRange, chGreenBlastSparklesFade);
+        } else {
+            fight_createSpriteParticles(this->position, 4, ASSET_719_SPRITE_SPARKLE_GREEN_2, chGreenBlastSparklesPositionRange, chGreenBlastSparklesAccelerationRange, chGreenBlastSparklesVelocityRange, chGreenBlastSparklesScaleRange, chGreenBlastSparklesLifetimeRange, chGreenBlastSparklesFade);
         }
     }
 
     player_getPosition(target_position);
     target_position[1] += 50.0f;
-    func_80387470(this, target_position, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
+    chfinalboss_func_80387470(this, target_position, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
 
     if (func_8028F25C()) {
         chGreenBlast_collisionDie(this->marker, 0);
-    }
-    else {
-        if(0.0 <= this->lifetime_value) {
+    } else {
+        if (0.0 <= this->lifetime_value) {
             this->lifetime_value -= delta_time;
-        }
-        else {
+        } else {
             chGreenBlast_collisionDie(this->marker, 0);
         }
     }
 }
 
-void fight_func_803900DC(ActorMarker *marker, f32 (*arg1)[3], f32 arg2, f32 arg3){
+void chGreenBlast_func_803900DC(ActorMarker *marker, f32 position[3], f32 arg2, f32 arg3) {
     Actor *actor = marker_getActor(marker);
-    actor->position_x = (*arg1)[0];
-    actor->position_y = (*arg1)[1];
-    actor->position_z = (*arg1)[2];
 
+    actor->position_x = position[0];
+    actor->position_y = position[1];
+    actor->position_z = position[2];
     actor->unk1C[0] = arg2;
     actor->unk1C[1] = arg3;
 }

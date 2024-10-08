@@ -13,7 +13,7 @@ f32 D_803680A0[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_803680AC = { 
     0x175, 0x1DC, 0x54D, 
     0x1, NULL, 
-    func_802DC900, func_80326224, func_802DC7E0, 
+    func_802DC900, actor_update_func_80326224, func_802DC7E0, 
     0, 0, 0.0f, 0
 };
 

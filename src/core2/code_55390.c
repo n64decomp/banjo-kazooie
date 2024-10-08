@@ -14,7 +14,7 @@ f32 D_80368040[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_8036804C = {
     MARKER_174_GAME_OVER, ACTOR_1DB_GAME_OVER, ASSET_54C_MODEL_GAME_OVER, 
     0x1, NULL, 
-    func_802DC45C, func_80326224, func_802DC320,
+    func_802DC45C, actor_update_func_80326224, func_802DC320,
     0, 0, 0.0f, 0
 };
 
