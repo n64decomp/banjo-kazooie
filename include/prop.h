@@ -165,7 +165,7 @@ typedef struct actor_s{
     u32 is_bundle:1;
     AnimCtrl *animctrl;
     ActorAnimationInfo *unk18;
-    TUPLE(f32, unk1C);
+    TUPLE(f32, unk1C); // actor position?
     f32 actor_specific_1_f; //used in cheggs
     TUPLE(f32, velocity);
     u32  unk38_31:10; // hit count for jinjo base in fight

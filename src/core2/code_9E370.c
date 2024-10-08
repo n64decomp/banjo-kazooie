@@ -1932,7 +1932,7 @@ void func_8032A82C(Actor *arg0, s32 arg1) {
     Actorlocal_Core2_9E370 *sp1C;
 
     sp1C = &arg0->local;
-    sp24 = func_80304C38(arg1, arg0);
+    sp24 = nodeprop_findByActorIdAndActorPosition(arg1, arg0);
     if (sp24 != NULL) {
         sp1C->unkC = func_80304DA8(sp24);
         nodeprop_getPosition(sp24, sp1C->unk0);

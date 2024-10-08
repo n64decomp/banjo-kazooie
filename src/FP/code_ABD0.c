@@ -211,7 +211,7 @@ void func_80391744(Actor *this, Actor* other){
       void *sp24;
       f32 tmp_f0;
 
-      sp24 = func_80304C38(0x22A, this);
+      sp24 = nodeprop_findByActorIdAndActorPosition(0x22A, this);
       tmp_f0 = (f32)func_80304DA8(sp24);
       other->yaw = tmp_f0;
       this->yaw = tmp_f0;

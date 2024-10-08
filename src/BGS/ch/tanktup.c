@@ -100,7 +100,7 @@ void func_8038F6A4(Actor *this)
   NodeProp *temp_v0;
   if (!this->initialized)
   {
-    temp_v0 = func_80304C38(ACTOR_32B_UNKNOWN, this);
+    temp_v0 = nodeprop_findByActorIdAndActorPosition(ACTOR_32B_UNKNOWN, this);
     if (temp_v0 == 0)
     {
       local->unk18[0] = 3672.0f;

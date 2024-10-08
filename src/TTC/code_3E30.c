@@ -147,7 +147,7 @@ void func_8038A328(void) {
         i_ptr->unk3 = 2;
         i_ptr->unk4 = 0.0f;
     }
-    mapSpecificFlags_set(1, FALSE);
+    mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, FALSE);
 }
 
 void func_8038A37C(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3) {
@@ -318,7 +318,7 @@ void func_8038AC48(LetterFloorTile *arg0) {
                             if (var_v0 & 1) {
                                 D_8038D720.unk8 = 2U;
                                 D_8038D720.unkC = 0.0f;
-                                mapSpecificFlags_set(1, TRUE);
+                                mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, TRUE);
                                 fileProgressFlag_set(0xFA, TRUE);
                                 func_8030E2C4(D_8038D720.sfxsourceIdx);
                                 func_8038A258(2);

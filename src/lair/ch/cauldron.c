@@ -357,7 +357,7 @@ void chWarpCauldron_update(Actor *this) {
                 volatileFlag_set(VOLATILE_FLAG_1E, 0);
                 func_802D677C(0);
                 func_8028FCAC();
-                nodeprop_getPosition(func_80304C38(D_80393620[this->unkF4_8 - 1].unk6, this), sp54);
+                nodeprop_getPosition(nodeprop_findByActorIdAndActorPosition(D_80393620[this->unkF4_8 - 1].unk6, this), sp54);
                 if (this->unkF4_8 == 7) {
                     func_8028F66C(BS_INTR_36_DINGPOT);
                     func_802BAFE4(0x82);

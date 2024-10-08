@@ -142,7 +142,7 @@ void func_802CEEA4(Actor *this, Struct_core2_47BD0_0 *arg1) {
 }
 
 
-void func_802CEF54(Actor *this, f32 arg1[3], f32 arg2){
+void func_802CEF54(Actor *this, f32 arg1[3], f32 distance){
     f32 sp34[3];
     s32 phi_v1;
     s32 phi_v0;
@@ -153,7 +153,7 @@ void func_802CEF54(Actor *this, f32 arg1[3], f32 arg2){
 
     phi_v1 = (this->state == 5) ? 200 : 50;
     phi_v0 = (this->state == 5) ? 200 : 100;
-    func_802CEDE4(sp34, this->unk1C, arg2, &this->actor_specific_1_f, (f32) phi_v1, (f32) phi_v0);
+    func_802CEDE4(sp34, this->unk1C, distance, &this->actor_specific_1_f, (f32) phi_v1, (f32) phi_v0);
     this->unk1C[0] = this->unk1C[0] + arg1[0];
     this->unk1C[1] = this->unk1C[1] + arg1[1];
     this->unk1C[2] = this->unk1C[2] + arg1[2];

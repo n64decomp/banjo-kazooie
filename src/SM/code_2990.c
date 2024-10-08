@@ -409,7 +409,7 @@ void chsmmole_Update(Actor * this){
         this->initialized = TRUE;
         marker_setFreeMethod(this->marker, func_80389984);
         if(this->unkF4_8 == 1 || this->unkF4_8 == 8){//L80389A30
-            sp40 = func_80304C38(0x349, this);
+            sp40 = nodeprop_findByActorIdAndActorPosition(0x349, this);
             if(!sp40){
                 this->unk1C_x = this->position_x;
                 this->unk1C_y = this->position_y;
