@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include "SnS.h"
 
 /* extern */
 extern void func_802D6310(f32, enum map_e, s32, s32, enum file_progress_e);

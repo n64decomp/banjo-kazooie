@@ -1,8 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-
-#include "SnS.h"
 
 extern f32 ml_vec3f_horizontal_distance_zero_likely(f32 [3], f32[3]);
 extern void func_8025A788(enum comusic_e, f32, f32);

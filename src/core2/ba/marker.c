@@ -1,10 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
 #include "version.h"
 #include "prop.h"
-#include "SnS.h"
 
 extern void func_803012F8(void);
 extern f32 ml_distanceSquared_vec3f(f32 arg0[3], f32 arg1[3]);

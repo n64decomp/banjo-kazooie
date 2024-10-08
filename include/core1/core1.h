@@ -9,6 +9,7 @@
 #include "core1/mem.h"
 #include "core1/pfsmanager.h"
 #include "core1/rarezip.h"
+#include "core1/sns.h"
 #include "core1/ucode.h"
 #include "core1/viewport.h"
 

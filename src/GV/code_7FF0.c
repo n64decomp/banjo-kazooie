@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 #include "actor.h"
 
 extern void func_80244BB0(s32, s32, s32, f32);

@@ -2,7 +2,6 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 
 typedef struct {
     s16 x_min;

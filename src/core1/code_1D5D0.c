@@ -2,7 +2,6 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 #include "save.h"
 
 bool snsToRestoreItems = FALSE;
