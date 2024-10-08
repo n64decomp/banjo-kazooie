@@ -26,7 +26,7 @@ ActorAnimationInfo moleAnimations[]= {
 ActorInfo gChMole = {
     0x1DF, ACTOR_37A_BOTTLES, ASSET_387_MODEL_BOTTLES, 
     1, moleAnimations,
-    chmole_update, func_80326224, func_802D94B4,
+    chmole_update, actor_update_func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
 }; 
 

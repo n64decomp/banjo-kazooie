@@ -47,7 +47,7 @@ void func_8038CA10(ActorMarker *marker) {
             pCtrl = func_802EDD8C(local->unk4, 0.0f, this->position[1] + 500.0f);
             particleEmitter_setStartingScaleRange(pCtrl, 0.04f, 0.05f);
             particleEmitter_setFinalScaleRange(pCtrl, 0.18f, 0.2f);
-            particleEmitter_setParticleSpawnPositionRange(pCtrl, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
+            particleEmitter_setSpawnPositionRange(pCtrl, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
             particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
             particleEmitter_emitN(pCtrl, 1);
         }

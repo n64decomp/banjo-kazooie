@@ -52,7 +52,7 @@ ActorAnimationInfo sChSnackerAnimations[] ={
 ActorInfo gChSnacker = { 
     MARKER_14_SNACKER, ACTOR_68_SNACKER, ASSET_3B0_SNACKER,
     0x1, sChSnackerAnimations,
-    chsnacker_update, func_80326224, actor_draw,
+    chsnacker_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

@@ -19,7 +19,7 @@ ActorAnimationInfo D_8038E890[] ={
 ActorInfo D_8038E8A8 = {
     0x212, 0x342, 0x45F,
     1, D_8038E890,
-    func_8038D218, func_80326224, func_8038D13C,
+    func_8038D218, actor_update_func_80326224, func_8038D13C,
     3000, 0, 0.0f, 0
 };
 
@@ -33,7 +33,7 @@ ParticleScaleAndLifetimeRanges D_8038E8D8 = {
     0.05f, 0.9f
 };
 
-struct41s D_8038E900 = {
+ParticleSettingsVelocityAcceleration D_8038E900 = {
     { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
     { {0.0f, -30.0f, 0.0f}, {0.0f, -30.0f, 0.0f}}
 };

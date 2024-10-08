@@ -48,14 +48,14 @@ ActorAnimationInfo D_80372E20[] = {
 ActorInfo D_80372E78 = { 
     MARKER_219_MUMMUM, ACTOR_34F_MUMMUM, ASSET_4C7_MODEL_MUMMUM, 
     0x1, D_80372E20, 
-    func_8035D3D8, func_80326224, actor_draw, 
+    func_8035D3D8, actor_update_func_80326224, actor_draw, 
     2500, 0, 1.0f, 0
 };
 
 /* .code */
 void func_8035D110(ParticleEmitter *p_emitter, Actor *this, enum asset_e model_id) {
     func_802DABA0(p_emitter, this->position, this->scale, model_id);
-    particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_emitter, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setAngularVelocityRange(p_emitter, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(p_emitter, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(p_emitter, 1);

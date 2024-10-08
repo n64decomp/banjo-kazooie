@@ -19,7 +19,7 @@ ActorAnimationInfo chClamAnimations[] = {
 ActorInfo chClam = { 
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
     0x1, chClamAnimations,
-    chClam_update, func_80326224, actor_draw, 
+    chClam_update, actor_update_func_80326224, actor_draw, 
     4500, 0x366, 1.6f, 0
 };
 
@@ -134,8 +134,8 @@ bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
 
 void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
-    func_802EF9F8(pCtrl, 0.7f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.7f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
@@ -145,7 +145,7 @@ void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]){
 }
 
 void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
-    static struct41s D_8038C3F4 = {
+    static ParticleSettingsVelocityAcceleration D_8038C3F4 = {
         {{-50.0f,   750.0f, -50.0f}, {120.0f,   900.0f, 120.0f}},
         {{  0.0f, -1800.0f,   0.0f}, {  0.0f, -1800.0f,   0.0f}}
     };
@@ -161,7 +161,7 @@ void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
 }
 
 void __chClam_emitEyeParticles(f32 position[3], s32 count){
-    static struct41s D_8038C424 = {
+    static ParticleSettingsVelocityAcceleration D_8038C424 = {
         {{-80.0f,   400.0f, -80.0f}, {160.0f,   860.0f, 160.0f}},
         {{  0.0f, -1400.0f,   0.0f}, {  0.0f, -1400.0f,   0.0f}}
     };
@@ -177,7 +177,7 @@ void __chClam_emitEyeParticles(f32 position[3], s32 count){
 }
 
 void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
-    static struct41s D_8038C454 = {
+    static ParticleSettingsVelocityAcceleration D_8038C454 = {
         {{-200.0f,  850.0f, -200.0f}, {400.0f,  1000.0f, 400.0f}},
         {{  0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}}
     };
@@ -201,7 +201,7 @@ void __chClam_emitEatencollectibleParticles(f32 position[3], enum asset_e sprite
      0.0f,  0.5f
     };
 
-    static struct41s D_8038C4AC = {
+    static ParticleSettingsVelocityAcceleration D_8038C4AC = {
         {{-340.0f,   100.0f, -340.0f}, {340.0f,   250.0f, 340.0f}},
         {{   0.0f, -1200.0f,    0.0f}, {  0.0f, -1200.0f, 0.0f}}
     };

@@ -63,7 +63,7 @@ void chShrapnel_emitExplosion(Actor *this) {
     particleEmitter_setDrawMode(temp_v0, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(temp_v0, 0, 0);
     particleEmitter_setParticleFramerateRange(temp_v0, 4.0f, 4.0f);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(temp_v0, 0.0f, 200.0f, 0.0f, 0.0f, 200.0f, 0.0f);
     particleEmitter_setPosition(temp_v0, this->position);
     particleEmitter_setStartingScaleRange(temp_v0, 3.0f, 3.0f);
     particleEmitter_setFinalScaleRange(temp_v0, 8.0f, 8.0f);
@@ -83,7 +83,7 @@ void chShrapnel_emitSmoke(Actor *this) {
     particleEmitter_setPosition(temp_v0, this->position);
     particleEmitter_setStartingScaleRange(temp_v0, 1.0f, 1.5f);
     particleEmitter_setFinalScaleRange(temp_v0, 2.0f, 3.0f);
-    particleEmitter_setParticleSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
+    particleEmitter_setSpawnPositionRange(temp_v0, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(temp_v0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
     particleEmitter_setRGB(temp_v0, D_803673F8);
     particleEmitter_setParticleLifeTimeRange(temp_v0, 3.0f, 4.0f);
@@ -94,9 +94,9 @@ void chShrapnel_emitBodyParts(Actor *this, enum asset_e model_id, s32 n) {
     ParticleEmitter *temp_v0;
 
     temp_v0 = partEmitMgr_newEmitter(n);
-    particleEmitter_setParticleAccelerationRange(temp_v0, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
-    func_802EF9F8(temp_v0, 0.6f);
-    func_802EFA18(temp_v0, 1);
+    particleEmitter_setAccelerationRange(temp_v0, 0.0f, -800.0f, 0.0f, 0.0f, -800.0f, 0.0f);
+    particleEmitter_func_802EF9F8(temp_v0, 0.6f);
+    particleEmitter_func_802EFA18(temp_v0, 1);
     particleEmitter_setModel(temp_v0, model_id);
     particleEmitter_setPosition(temp_v0, this->position);
     particleEmitter_setStartingScaleRange(temp_v0, 0.05f, 2.0f);
@@ -194,6 +194,6 @@ void chshrapnel_update(Actor *this) {
 ActorInfo chShrapnelDescription = { 
     MARKER_65_SHRAPNEL, ACTOR_56_SHRAPNEL, ASSET_3EC_MODEL_SHRAPNEL,
     0x1, chShrapnelAnimations,
-    chshrapnel_update, func_80326224, actor_draw, 
+    chshrapnel_update, actor_update_func_80326224, actor_draw, 
     2500, 0x333, 0.0f, 0
 };

@@ -19,7 +19,7 @@ ActorAnimationInfo D_80368440[] = {
 ActorInfo D_80368450 = {
     MARKER_72_FIRE_SPARKLE, ACTOR_A2_FIRE_SPARKLE, ASSET_3AD_FIRE_SPARKLE, 
     0x1, D_80368440, 
-    func_802E08F0, func_80326224, actor_draw, 
+    func_802E08F0, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 

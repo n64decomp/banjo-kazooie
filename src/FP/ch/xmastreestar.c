@@ -17,7 +17,7 @@ void func_8038ECD8(Actor *this);
 /* .data */
 ActorInfo D_80392470 = { 0x207, 0x339, 0x426, 
     0x1, NULL,
-    func_8038ECD8, func_80326224, func_8038EBD0,
+    func_8038ECD8, actor_update_func_80326224, func_8038EBD0,
     0, 0, 0.0f, 0
 };
 

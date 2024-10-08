@@ -19,7 +19,7 @@ ActorAnimationInfo D_80367A00[] = {
 ActorInfo D_80367A20 = {
     MARKER_11_WADING_BOOTS, ACTOR_65_WADING_BOOTS, ASSET_366_MODEL_WADING_BOOTS, 
     0x0, D_80367A00, 
-    chwadingboots_update, func_80326224, chwadingboots_draw, 
+    chwadingboots_update, actor_update_func_80326224, chwadingboots_draw, 
     0, 0, 0.0f, 0
 };
 

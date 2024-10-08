@@ -24,7 +24,7 @@ f32 D_80368330[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_8036833C = { 
     0x294, 0x19B, ASSET_56D_MUMBOS_HAND_WITH_PICTURE, 
     0x1, D_80368300, 
-    func_802DEE1C, func_80326224, func_802DEC00, 
+    func_802DEE1C, actor_update_func_80326224, func_802DEC00, 
     0, 0, 0.0f, 0
 };
 

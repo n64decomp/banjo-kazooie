@@ -50,14 +50,14 @@ ActorAnimationInfo D_80372D20[] = {
 ActorInfo D_80372D78 = { 
     MARKER_218_LIMBO, ACTOR_34E_LIMBO, ASSET_4CC_MODEL_LIMBO, 
     0x1, D_80372D20, 
-    chskeleton_update, func_80326224, actor_draw, 
+    chskeleton_update, actor_update_func_80326224, actor_draw, 
     2500, 0, 1.0f, 0
 };
 
 /* .code */
 void func_8035CCA0(ParticleEmitter *pCtrl, Actor *this, enum asset_e model_id) {
     func_802DABA0(pCtrl, this->position, this->scale, model_id);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, 750.0f, -50.0f, 120.0f, 900.0f, 120.0f);
     particleEmitter_emitN(pCtrl, 4);

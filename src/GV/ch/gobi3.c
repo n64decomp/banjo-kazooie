@@ -143,7 +143,7 @@ void chGobi3_update(Actor *this){
     }
 
     if(this->state == 4){
-        func_80326224(this);
+        actor_update_func_80326224(this);
         if(timedFuncQueue_is_empty())
             chGobi3_setState(this, 6);
     }

@@ -32,12 +32,12 @@ f32 D_80366330 = 0.5f;
 f32 D_80366334 = 30.0f;
 f32 D_80366338 = 150.0f;
 f32 D_8036633C = 25.0f;
-ActorInfo D_80366340 = { 0x56,  0x4A,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_80366364 = { 0x56,  0x4B,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_80366388 = { 0x56,   0xD,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663AC = { 0x56, 0x11F,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663D0 = { 0x56, 0x14F,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663F4 = { 0x56, 0x3AD,   0x0, 0x2, 0x0, func_802C8C5C, func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_80366340 = { 0x56,  0x4A,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_80366364 = { 0x56,  0x4B,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_80366388 = { 0x56,   0xD,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_803663AC = { 0x56, 0x11F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_803663D0 = { 0x56, 0x14F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+ActorInfo D_803663F4 = { 0x56, 0x3AD,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
 s32 D_80366418[3] = {0,0,0};
 
 /* .bss */

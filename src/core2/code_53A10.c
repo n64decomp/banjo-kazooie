@@ -8,7 +8,7 @@ void func_802DAA14(Actor *this);
 ActorInfo D_80367E70= {
     0x21B, 0x351, 0, 
     0, NULL, 
-    func_802DAA14, func_80326224, func_80325340,
+    func_802DAA14, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 }; 
 //000E0F00

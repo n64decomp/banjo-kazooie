@@ -57,13 +57,13 @@ ActorAnimationInfo chGrublinHood_animations[] = {
 ActorInfo chGrublinHood = {
     MARKER_1E2_GRUBLIN_HOOD, ACTOR_375_GRUBLIN_HOOD, ASSET_52C_MODEL_GRUBLIN_HOOD,
     0x1, chGrublinHood_animations,
-    chgrublinhood_update, func_80326224, chgrublinhood_draw,
+    chgrublinhood_update, actor_update_func_80326224, chgrublinhood_draw,
     2500, 0, 1.0f, 0
 };
 
 /* .code */
 void __chgrublinhood_emitHat(ParticleEmitter *pCtrl, Actor *actor, enum asset_e model_id){
-    static struct43s D_8038F9AC = {
+    static ParticleSettingsVelocityAccelerationPosition D_8038F9AC = {
         {{-200.0f,   200.0f, -200.0f}, {200.0f,   400.0f, 200.0f}},
         {{   0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}},
         {{ -50.0f,   200.0f,  -50.0f}, { 50.0f,   400.0f,  50.0f}}
@@ -74,7 +74,7 @@ void __chgrublinhood_emitHat(ParticleEmitter *pCtrl, Actor *actor, enum asset_e 
         -600.0f, -600.0f, -600.0f, 
          600.0f,  600.0f,  600.0f
     );
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038F9AC);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8038F9AC);
     particleEmitter_emitN(pCtrl, 1);
 }
 

@@ -21,7 +21,7 @@ ActorAnimationInfo D_8038C540[] = {
 ActorInfo D_8038C580 = { 
     MARKER_A5_NIPPER, ACTOR_117_NIPPER, ASSET_3D5_MODEL_NIPPER,
     0x1, D_8038C540,
-    func_80388434, func_80326224, func_80387EB0,
+    func_80388434, actor_update_func_80326224, func_80387EB0,
     0, 0x299, 10.0f, 0
 };
 
@@ -45,7 +45,7 @@ void func_80387DC0(f32 *position, s32 count) {
     particleEmitter_setRGB(pCtrl, D_8038C5A4);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -10.0f, -5.0f, -10.0f,
          10.0f, 10.0f,  10.0f
     );

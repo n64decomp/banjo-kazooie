@@ -11,7 +11,7 @@ void chVacationTextTrigger_update(Actor* this);
 ActorInfo gChVacationTextTrigger = { 
     MARKER_1E3_VACATION_TEXT_TRIGGER, ACTOR_374_VACATION_TEXT_TRIGGER, 0x0,
     0x0, NULL,
-    chVacationTextTrigger_update, func_80326224, func_80325340, 
+    chVacationTextTrigger_update, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 

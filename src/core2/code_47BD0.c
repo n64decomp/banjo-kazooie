@@ -279,14 +279,14 @@ void chBeeSwarm_802CF610(Actor *this, ParticleEmitter *p_ctrl, f32 position[3]) 
     func_8030E6A4(SFX_66_BIRD_AUUGHH, randf2(1.75f, 1.85f), 15000);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setDrawMode(p_ctrl, 2);
-    func_802EF9F8(p_ctrl, 0.5f);
-    func_802EFA18(p_ctrl, 3);
+    particleEmitter_func_802EF9F8(p_ctrl, 0.5f);
+    particleEmitter_func_802EFA18(p_ctrl, 3);
     func_802EFA20(p_ctrl, 0.8f, 1.0f);
     particleEmitter_setSfx(p_ctrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(p_ctrl, 2.0f, 2.5f);
     particleEmitter_setFade(p_ctrl, 0.0f, 0.65f);
-    particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl,this->marker->modelId);
     particleEmitter_setStartingScaleRange(p_ctrl, 0.25f, 0.25f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);

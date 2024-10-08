@@ -19,7 +19,7 @@ void chdrips_update(Actor *this);
 ActorInfo gChDripsInfo = {
     0x246, ACTOR_354_DRIPS, 0, 
     0, NULL, 
-    chdrips_update, func_80326224, func_80325340,
+    chdrips_update, actor_update_func_80326224, func_80325340,
     5000, 0, 0.0f, 0
 }; 
 
@@ -27,7 +27,7 @@ s32 D_80372AE4[3] = {0xff, 0xff, 0xfe};
 
 struct_core2_D2AB0 D_80372AF0 = {0.0f, 0.0f, 1.0f, 1.4f};
 
-struct43s D_80372B00 = {
+ParticleSettingsVelocityAccelerationPosition D_80372B00 = {
     {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
     {{0.0f, -650.0f, 0.0f}, {0.0f, -650.0f, 0.0f}},
     {{-400.0f, 0.0f, -400.0f}, {400.0f, 0.0f, 400.0f}}
@@ -78,8 +78,8 @@ void chdrips_update(Actor *this){
         pCtrl = partEmitMgr_newEmitter(1);
         particleEmitter_setModel(pCtrl, ASSET_8A0_SPRITE_WATER_DROP);
         particleEmitter_setPosition(pCtrl, this->position);
-        particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80372B00);
-        func_802EFA18(pCtrl, 1);
+        particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80372B00);
+        particleEmitter_func_802EFA18(pCtrl, 1);
         particleEmitter_setParticleCallback(pCtrl, __chdrips_particleCallback);
         particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
         particleEmitter_setParticleLifeTimeRange(pCtrl, 7.0f, 7.0f);

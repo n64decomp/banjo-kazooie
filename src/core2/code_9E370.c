@@ -439,7 +439,7 @@ s32 func_80326218(void){
     return D_8036E564;
 }
 
-void func_80326224(Actor *this){
+void actor_update_func_80326224(Actor *this){
     func_80343DEC(this);
 }
 

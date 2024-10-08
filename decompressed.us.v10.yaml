@@ -2239,7 +2239,7 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x10A6FD0, c, code_0] #DONE
+  - [0x10A6FD0, c, fight] #DONE
   - [0x10A7150, c, chfinalboss] 
   - [0x10ACEA0, c, chbossjinjo] #DONE
   - [0x10ADE60, c, chbossjinjobase] #DONE
@@ -2270,7 +2270,7 @@ segments:
   - [0x10B31F0, .rodata, chgreenblast]
   - [0x10B3200, .rodata, chjinjonator]
   - [0x10B3310, .rodata, chbossshadow]
-  - [0x10B3320, .bss, code_0]
+  - [0x10B3320, .bss, fight]
   - [0x10B3320, .bss, chfinalboss]
   - [0x10B3320, .bss, chspellfireball]
   - [0x10B3320, .bss, chjinjonator]

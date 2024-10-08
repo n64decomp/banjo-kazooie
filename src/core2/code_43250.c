@@ -22,7 +22,7 @@ void func_802CA1E0(Actor *this);
 ActorInfo D_80366CD0 = {
     0x3D, 0x183, 0,
     0, NULL,
-    func_802CA1E0, func_80326224, func_80325340,
+    func_802CA1E0, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 

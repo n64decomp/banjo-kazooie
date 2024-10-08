@@ -30,7 +30,7 @@ ActorAnimationInfo D_80372EA0[] = {
 ActorInfo D_80372EE0 = { 
     MARKER_69_CHUMP_FISH, ACTOR_A_CHUMP_FISH, ASSET_36B_CHUMP_FISH, 
     0x2, D_80372EA0, 
-    func_8035DA1C, func_80326224, actor_draw, 
+    func_8035DA1C, actor_update_func_80326224, actor_draw, 
     3000, 0, 0.0f, 0
 };
 

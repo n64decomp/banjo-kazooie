@@ -94,8 +94,8 @@ void __chCrab_ow(ActorMarker *marker, ActorMarker *other) {
 void __chCrab_particleEmitterSetup(ParticleEmitter *p_ctrl, f32 position[3]) {
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setDrawMode(p_ctrl, 2);
-    func_802EF9F8(p_ctrl, 0.7f);
-    func_802EFA18(p_ctrl, 5);
+    particleEmitter_func_802EF9F8(p_ctrl, 0.7f);
+    particleEmitter_func_802EFA18(p_ctrl, 5);
     func_802EFA20(p_ctrl, 0.8f, 1.0f);
     particleEmitter_setSfx(p_ctrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
@@ -106,7 +106,7 @@ void __chCrab_particleEmitterSetup(ParticleEmitter *p_ctrl, f32 position[3]) {
 
 void __chCrab_emitClawPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset_e model_id) {
     __chCrab_particleEmitterSetup(p_ctrl, position);
-    particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
     particleEmitter_setStartingScaleRange(p_ctrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
@@ -116,7 +116,7 @@ void __chCrab_emitClawPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset
 
 void __chCrab_emitLegPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset_e model_id) {
     __chCrab_particleEmitterSetup(p_ctrl, position);
-    particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
     particleEmitter_setStartingScaleRange(p_ctrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
@@ -126,7 +126,7 @@ void __chCrab_emitLegPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset_
 
 void __chCrab_emitHeadPiece(ParticleEmitter *p_ctrl, f32 position[3], enum asset_e model_id) {
     __chCrab_particleEmitterSetup(p_ctrl, position);
-    particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_ctrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(p_ctrl, model_id);
     particleEmitter_setStartingScaleRange(p_ctrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -399,6 +399,6 @@ void chCrab_update(Actor *this) {
 }
 
 /* .data */
-ActorInfo D_803670B8 = { MARKER_13_SNIPPET,         ACTOR_67_SNIPPET,       ASSET_358_SNIPPET,             0x1, chCrabAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};
-ActorInfo D_803670DC = { MARKER_DD_BLACK_SNIPPET,   ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET, 0x1, chCrabAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};
-ActorInfo D_80367100 = { MARKER_13_SNIPPET,         ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET, 0x1, chCrabMutantAnimations, chCrab_update, func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+ActorInfo D_803670B8 = { MARKER_13_SNIPPET,         ACTOR_67_SNIPPET,       ASSET_358_SNIPPET,             0x1, chCrabAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+ActorInfo D_803670DC = { MARKER_DD_BLACK_SNIPPET,   ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET, 0x1, chCrabAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+ActorInfo D_80367100 = { MARKER_13_SNIPPET,         ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET, 0x1, chCrabMutantAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};

@@ -26,7 +26,7 @@ ActorAnimationInfo D_80391120[] ={
 
 ActorInfo D_80391158 = { MARKER_A6_GRABBA, ACTOR_118_GRABBA, ASSET_371_MODEL_GRABBA, 
     0x1, D_80391120, 
-    GV_func_8038BEA0, func_80326224, actor_draw, 
+    GV_func_8038BEA0, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -122,7 +122,7 @@ void func_8038BBFC(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
 void func_8038BC7C(f32 position[3], s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038BBFC(pCtrl, position, cnt);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -60.0f,  0.0f, -60.0f,
          60.0f, 30.0f,  60.0f
     );
@@ -140,7 +140,7 @@ void func_8038BC7C(f32 position[3], s32 cnt){
 void func_8038BD8C(f32 position[3], s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     func_8038BBFC(pCtrl, position, cnt);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -40.0f,  0.0f, -40.0f,
          40.0f, 30.0f,  40.0f
     );

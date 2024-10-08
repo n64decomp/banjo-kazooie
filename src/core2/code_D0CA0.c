@@ -239,7 +239,7 @@ void func_803584BC(Actor *this) {
 
 void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
     static ParticleScaleAndLifetimeRanges D_803728C4 = { {1.0f, 1.0f}, {1.0f, 1.0f}, {0.0f, 0.01f}, {1.2f, 1.2f}, 0.0f, 0.1f};
-    static struct43s D_803728EC = {
+    static ParticleSettingsVelocityAccelerationPosition D_803728EC = {
         {{-250.0f,   500.0f, -250.0f}, { 350.0f,   760.0f,  350.0f}},
         {{   0.0f, -1200.0f,    0.0f}, {   0.0f, -1200.0f,    0.0f}},
         {{ -50.0f,     0.0f,  -50.0f}, {  50.0f,    50.0f,   50.0f}}
@@ -252,11 +252,11 @@ void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
     particleEmitter_setModel(temp_v0, model_id);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setAngularVelocityRange(p_ctrl, -400.0f, -400.0f, -400.0f, 400.0f, 400.0f, 400.0f);
-    func_802EF9F8(p_ctrl, 0.01f);
-    func_802EFA18(p_ctrl, 3);
+    particleEmitter_func_802EF9F8(p_ctrl, 0.01f);
+    particleEmitter_func_802EFA18(p_ctrl, 3);
     func_802EFA20(p_ctrl, 1.0f, 1.3f);
     particleEmitter_setSfx(p_ctrl, SFX_2F_ORANGE_SPLAT, 16000);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_803728EC);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(p_ctrl, &D_803728EC);
     particleEmitter_setScaleAndLifetimeRanges(p_ctrl, &D_803728C4);
     particleEmitter_emitN(p_ctrl, count);
 }

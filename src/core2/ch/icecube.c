@@ -24,14 +24,14 @@ ActorAnimationInfo D_80372B50[] = {
 ActorInfo D_80372B80 = {
     MARKER_250_ICECUBE_A, ACTOR_37D_ICECUBE_A, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
-    chicecube_update, func_80326224, chicecube_draw,
+    chicecube_update, actor_update_func_80326224, chicecube_draw,
     0, 0, 0.0f, 0
 }; 
 
 ActorInfo D_80372BA4 = {
     MARKER_25F_ICECUBE_B, ACTOR_3A0_ICECUBE_B, ASSET_504_MODEL_ICECUBE, 
     1, D_80372B50, 
-    chicecube_update, func_80326224, chicecube_draw,
+    chicecube_update, actor_update_func_80326224, chicecube_draw,
     0, 0, 0.0f, 0
 }; 
 
@@ -110,8 +110,8 @@ void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
 
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -100.0f*scale, 0.0f, -100.0f*scale, 100.0f*scale, 200.0f*scale, 100.0f*scale);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(pCtrl, -100.0f*scale, 0.0f, -100.0f*scale, 100.0f*scale, 200.0f*scale, 100.0f*scale);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -400.0f*scale, 450.0f*scale, -400.0f*scale, 400.0f*scale, 600.0f*scale, 400.0f*scale);
     particleEmitter_setAngularVelocityRange(pCtrl, 100.0f*scale, 100.0f*scale, 100.0f*scale, 250.0f*scale, 250.0f*scale, 250.0f*scale);
     particleEmitter_setStartingScaleRange(pCtrl, scale*0.2, scale*0.4);
@@ -127,8 +127,8 @@ void func_8035A228(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     particleEmitter_setRGB(pCtrl, D_80372BC8);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(pCtrl, -50.0f*scale, 0.0f, -50.0f*scale, 50.0f*scale, 200.0f*scale, 50.0f*scale);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -280.0f*scale, 0.0f, -280.0f*scale, 280.0f*scale, 280.0f*scale, 280.0f*scale);
     particleEmitter_setStartingScaleRange(pCtrl, scale*0.6, scale*0.8);
     particleEmitter_setFinalScaleRange(pCtrl, scale*1.0, scale*1.4);
@@ -144,7 +144,7 @@ void func_8035A3F8(f32 position[3], s32 cnt, enum asset_e sprite_id, f32 scale){
     particleEmitter_setRGB(pCtrl, D_80372BD4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -10.0f, 0.0f, 0.0f, -10.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -60.0f*scale, 0.0f, -60.0f*scale, 60.0f*scale, 60.0f*scale, 60.0f*scale);
     particleEmitter_setStartingScaleRange(pCtrl, scale*0.4, scale*0.6);
     particleEmitter_setFinalScaleRange(pCtrl, scale*0.8, scale*1.2);

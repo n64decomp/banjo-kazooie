@@ -10,7 +10,7 @@ void func_802D8730(Actor *this);
 ActorInfo D_80367C60 = { 
     0x15E, 0x188, 0x0, 
     0, NULL, 
-    func_802D8730, func_80326224, func_80325340,
+    func_802D8730, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
@@ -46,7 +46,7 @@ void func_802D8730(Actor *this) {
         this->velocity_y = 0.07f;
         pCtrl = func_802F4094(this->position, 40.0f);
         particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.06f);
-        particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -3400.0f, 0.0f, 0.0f, -3400.0f, 0.0f);
+        particleEmitter_setAccelerationRange(pCtrl, 0.0f, -3400.0f, 0.0f, 0.0f, -3400.0f, 0.0f);
         particleEmitter_setRGB(pCtrl, D_80367C84);
         particleEmitter_setParticleVelocityRange(pCtrl, -180.0f, 200.0f, -180.0f, 180.0f, 400.0f, 180.0f);
         particleEmitter_emitN(pCtrl, 9);

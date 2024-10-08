@@ -40,7 +40,7 @@ ActorAnimationInfo sChBatAnimations[] = {
 ActorInfo gChBat = { 
     MARKER_127_BAT, ACTOR_163_BAT, ASSET_3CA_MODEL_BAT, 
     CH_BAT_STATE_ROOSTING, sChBatAnimations, 
-    chbat_update, func_80326224, actor_draw, 
+    chbat_update, actor_update_func_80326224, actor_draw, 
     2500, 0, 0.9f, 0
 };
 

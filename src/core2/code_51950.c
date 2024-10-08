@@ -10,14 +10,14 @@ void func_802D88E0(Actor *this);
 ActorInfo D_80367C90 = {
     0x100, 0x1FF, 0x580,
     0x0, NULL,
-    func_802D88E0, func_80326224, func_80325934, 
+    func_802D88E0, actor_update_func_80326224, func_80325934, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80367CB4 = {
     0x101, 0x200, 0x6D1,
     0x0, NULL,
-    func_802D88E0, func_80326224, func_80325934, 
+    func_802D88E0, actor_update_func_80326224, func_80325934, 
     0, 0, 0.0f, 0
 };
 

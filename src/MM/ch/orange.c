@@ -19,7 +19,7 @@ enum chorange_state_e {
 ActorInfo chorangeInfo = {
     MARKER_C_ORANGE_PROJECTILE, ACTOR_14_ORANGE_PROJECTILE, ASSET_2D2_MODEL_ORANGE,
     1, NULL,
-    chorange_update, func_80326224, chorange_draw,
+    chorange_update, actor_update_func_80326224, chorange_draw,
     0, 0, 0.6f, 0
 };
 

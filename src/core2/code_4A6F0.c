@@ -28,7 +28,7 @@ ActorAnimationInfo D_80367490[] = {
 ActorInfo D_803674E0 = { 
     MARKER_6_MUMBO, ACTOR_7_MUMBO, ASSET_3C6_MODEL_MUMBO, 
     0x1, D_80367490, 
-    chMumbo_update, func_80326224, chMumbo_draw, 
+    chMumbo_update, actor_update_func_80326224, chMumbo_draw, 
     0, 0, 0.0f, 0
 };
 s32 D_80367504[3] = {0.0f, 0.0f, 0.0f};

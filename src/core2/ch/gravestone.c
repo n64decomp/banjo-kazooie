@@ -28,14 +28,14 @@ ActorAnimationInfo D_80372F80[] = {
 ActorInfo D_80372FC0 = { 
     MARKER_96_GRAVESTONE, ACTOR_C7_GRAVESTONE, ASSET_3C9_MODEL_GRAVESTONE, 
     0x1, D_80372F80, 
-    func_8035F138, func_80326224, func_8035ECA0, 
+    func_8035F138, actor_update_func_80326224, func_8035ECA0, 
     3500, 0, 1.2f, 0
 };
 
 ActorInfo D_80372FE4 = { 
     MARKER_297_GIANT_GRAVESTONE, ACTOR_3C2_GIANT_GRAVESTONE, ASSET_3C9_MODEL_GRAVESTONE, 
     0x1, D_80372F80, 
-    func_8035F138, func_80326224, func_8035ECA0, 
+    func_8035F138, actor_update_func_80326224, func_8035ECA0, 
     14000, 0, 3.2f, 0
 };
 
@@ -71,7 +71,7 @@ bool func_8035ED60(Actor *this) {
 void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
     static s32 D_80373014[3] = {0xAA, 0xAA, 0xAA};
     static ParticleScaleAndLifetimeRanges D_80373020 = {{0.4f, 0.8f}, {1.4f, 2.0f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01};
-    static struct43s D_80373048 = {
+    static ParticleSettingsVelocityAccelerationPosition D_80373048 = {
         {{-200.0f, -200.0f, -200.0f}, { 200.0f,  200.0f,  200.0f}}, 
         {{   0.0f,  -10.0f,    0.0f}, {   0.0f,  -10.0f,    0.0f}}, 
         {{ -50.0f,    0.0f,  -50.0f}, {  50.0f,  200.0f,   50.0f}}
@@ -82,7 +82,7 @@ void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
     particleEmitter_setRGB(p_ctrl, D_80373014);
     particleEmitter_setSprite(p_ctrl, sprite);
     particleEmitter_setPosition(p_ctrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(p_ctrl, &D_80373048);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(p_ctrl, &D_80373048);
     particleEmitter_setScaleAndLifetimeRanges(p_ctrl, &D_80373020);
     particleEmitter_setDrawMode(p_ctrl, PART_EMIT_NO_DEPTH);
     particleEmitter_emitN(p_ctrl, count);

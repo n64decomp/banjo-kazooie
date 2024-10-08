@@ -8,7 +8,7 @@ void chGobiRope_update(Actor *this);
 /* .data */
 ActorInfo chGobiRope = { MARKER_BD_GOBI_ROPE, ACTOR_12F_GOBI_ROPE, ASSET_3E3_MODEL_GOBI_ROPE, 
     0, NULL, 
-    chGobiRope_update, func_80326224, actor_draw, 
+    chGobiRope_update, actor_update_func_80326224, actor_draw, 
     0, 0x533, 0.0f, 0
 };
 

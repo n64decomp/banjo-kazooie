@@ -15,7 +15,7 @@ enum mumbotoken_e func_802E0CB0(Actor *this);
  ActorInfo D_803685A0 = { 
     MARKER_39_MUMBO_TOKEN, ACTOR_2D_MUMBO_TOKEN, ASSET_41A_SPRITE_MUMBO_TOKEN,
     0, NULL, 
-    func_802E0B10, func_80326224, func_80325934,
+    func_802E0B10, actor_update_func_80326224, func_80325934,
     2000, 0, 0.0f, 0
 };
 

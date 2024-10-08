@@ -37,7 +37,7 @@ ParticleScaleAndLifetimeRanges D_80372CA4 = {
     0.1f, 0.5f
 };
 
-struct43s D_80372CCC = {
+ParticleSettingsVelocityAccelerationPosition D_80372CCC = {
     {{-5.0f, 10.0f, -5.0f}, {5.0f, 50.0f, 5.0f}}, 
     {{0.0f, 200.0f, 0.0f}, {0.0f, 1000.0f, 0.0f}},
     {{-20.0f, -20.0f, -20.0f}, {20.0f, 20.0f, 20.0f}}
@@ -182,7 +182,7 @@ void func_8035C080(Actor *this, s32 next_state){
         particleEmitter_setSprite(local->pCtrl_8, ASSET_70E_SPRITE_SMOKE_2);
         particleEmitter_setStartingFrameRange(local->pCtrl_8, 0, 7);
         particleEmitter_setPosition(local->pCtrl_8, this->position);
-        particleEmitter_setPositionVelocityAndAccelerationRanges(local->pCtrl_8, &D_80372CCC);
+        particleEmitter_setVelocityAccelerationAndPositionRanges(local->pCtrl_8, &D_80372CCC);
         particleEmitter_setScaleAndLifetimeRanges(local->pCtrl_8, &D_80372CA4);
         particleEmitter_setSpawnInterval(local->pCtrl_8, 4);
     }//L8035C698

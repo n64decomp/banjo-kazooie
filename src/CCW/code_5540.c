@@ -161,7 +161,7 @@ void chnabnut_update(Actor *this) {
         chnabnut_setState(this, NABNUT_STATE_5_EXIT);
     }
     if (this->state == NABNUT_STATE_5_EXIT) {
-        func_80326224(this);
+        actor_update_func_80326224(this);
         func_8028FC8C(this->position);
         if (0.99 < this->unk48) {
             chnabnut_setState(this, NABNUT_STATE_6_DESPAWN);

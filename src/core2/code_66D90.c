@@ -31,16 +31,16 @@ ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
     particleEmitter_setSprite(pCtrl, ASSET_70A_SPRITE_BUBBLE_1);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_setAlpha(pCtrl, 0xff);
-    particleEmitter_setParticleAccelerationRange( pCtrl,
+    particleEmitter_setAccelerationRange( pCtrl,
         0.0f, 150.0f, 0.0f,
         0.0f, 150.0f, 0.0f
     );
-    func_802EFA18(pCtrl, 1);
+    particleEmitter_func_802EFA18(pCtrl, 1);
     func_802EFA34(pCtrl, arg2);
     particleEmitter_setParticleCallback(pCtrl, func_802EDD68);
     particleEmitter_setFade(pCtrl, 0.0f, 0.8f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 4.0f, 4.0f);
-    particleEmitter_setParticleSpawnPositionRange( pCtrl,
+    particleEmitter_setSpawnPositionRange( pCtrl,
         -xz_range, 0.0f, -xz_range,
         xz_range, 0.0f, xz_range
     );

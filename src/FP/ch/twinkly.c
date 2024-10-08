@@ -21,30 +21,30 @@ ActorAnimationInfo D_80391F50[] = {
 
 ActorInfo D_80391F88 = { MARKER_200_TWINKLY_BLUE, ACTOR_332_TWINKLY_BLUE, ASSET_448_MODEL_TWINKLY_BLUE,
     0x1, D_80391F50,
-    func_8038C9A0, func_80326224, func_8038C1F8,
+    func_8038C9A0, actor_update_func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391FAC = { MARKER_201_TWINKLY_GREEN, ACTOR_333_TWINKLY_GREEN, ASSET_449_MODEL_TWINKLY_GREEN,
     0x1, D_80391F50,
-    func_8038C9A0, func_80326224, func_8038C1F8,
+    func_8038C9A0, actor_update_func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391FD0 = { MARKER_202_TWINKLY_ORANGE, ACTOR_334_TWINKLY_ORANGE, ASSET_44A_MODEL_TWINKLY_ORANGE,
     0x1, D_80391F50,
-    func_8038C9A0, func_80326224, func_8038C1F8,
+    func_8038C9A0, actor_update_func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
 ActorInfo D_80391FF4 = { MARKER_203_TWINKLY_RED, ACTOR_335_TWINKLY_RED, ASSET_44B_MODEL_TWINKLY_RED,
     0x1, D_80391F50,
-    func_8038C9A0, func_80326224, func_8038C1F8,
+    func_8038C9A0, actor_update_func_80326224, func_8038C1F8,
     0, 0, 1.0f, 0
 };
 
 Struct6Cs FP_D_80392018 = {NULL, NULL, NULL, (void*)func_8038C0B0};
-struct43s D_80392028 = {
+ParticleSettingsVelocityAccelerationPosition D_80392028 = {
     {{-200.0f,  200.0f, -200.0f}, {200.0f,  400.0f, 200.0f}}, 
     {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}}, 
     {{ -15.0f,  -15.0f,  -15.0f}, { 15.0f,   15.0f,  15.0f}}
@@ -95,7 +95,7 @@ void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
     pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392028);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80392028);
     particleEmitter_setAngularVelocityRange(pCtrl,
         400.0f, 400.0f, 400.0f,
         800.0f, 800.0f, 800.0f
@@ -104,8 +104,8 @@ void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.02f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.5f, 1.5f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 0);
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 0);
     func_802EFA20(pCtrl, 1.0f, 1.3f);
     particleEmitter_setSfx(pCtrl, SFX_7B_ICE_BREAKING_1, 8000);
     particleEmitter_emitN(pCtrl, count);

@@ -26,7 +26,7 @@ ActorAnimationInfo D_80372BE0[] ={
 ActorInfo D_80372C18 = { //TEEHEE
     MARKER_99_TEEHEE, ACTOR_CA_TEEHEE, ASSET_3CB_MODEL_TEEHEE, 
     0x1, D_80372BE0, 
-    func_8035B900, func_80326224, actor_draw, 
+    func_8035B900, actor_update_func_80326224, actor_draw, 
     6500, 0, 0.9f, 0
 };
 
@@ -48,11 +48,11 @@ void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 a
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setRGB(pCtrl, arg4);
     particleEmitter_setPosition(pCtrl, pos);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -100.0f*scale, 20.0f*scale, -100.0f*scale,
         100.0f*scale, 200.0f*scale, 100.0f*scale
     );
-    particleEmitter_setParticleAccelerationRange(pCtrl,
+    particleEmitter_setAccelerationRange(pCtrl,
         0.0f, -10.0f*scale, 0.0f,
         0.0f, -10.0f*scale, 0.0f
     );

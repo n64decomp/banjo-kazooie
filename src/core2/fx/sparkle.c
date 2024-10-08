@@ -17,7 +17,7 @@ ParticleEmitter *__fxSparkle_create(s16 position[3], f32 height, enum asset_e sp
 }
 
 void fxSparkle_emptyHoneycomb(s16 position[3]){
-    static struct42s D_80368BD0 = {
+    static ParticleSettingsVelocityPosition D_80368BD0 = {
         {{-100.0f, 100.0f, -100.0f}, { 100.0f, 250.0f,  100.0f}}, 
         {{ -10.0f,  10.0f,  -10.0f}, {  10.0f,  10.0f,   10.0f}}
     };
@@ -29,7 +29,7 @@ void fxSparkle_emptyHoneycomb(s16 position[3]){
 }
 
 void fxSparkle_honeycomb(s16 position[3]){
-    static struct42s D_80368C00 = {
+    static ParticleSettingsVelocityPosition D_80368C00 = {
         {{-100.0f, 100.0f, -100.0f}, { 100.0f, 250.0f,  100.0f}}, 
         {{ -10.0f,  10.0f,  -10.0f}, {  10.0f,  10.0f,   10.0f}} 
     };
@@ -59,7 +59,7 @@ void fxSparkle_blueEgg(s16 position[3]){
 }
 
 void fxSparkle_giantBlueEgg(s16 position[3]){
-    static struct42s D_80368C30 = {
+    static ParticleSettingsVelocityPosition D_80368C30 = {
         {{-200.0f, 100.0f, -200.0f}, { 200.0f, 350.0f,  200.0f}}, /*position*/
         {{ -30.0f, 100.0f,  -30.0f}, {  30.0f, 100.0f,   30.0f}}  /*velocity*/
     };
@@ -81,7 +81,7 @@ void fxSparkle_redFeather(s16 position[3]){
 }
 
 void fxSparkle_giantRedFeather(s16 position[3]){
-    static struct42s D_80368C60 = {
+    static ParticleSettingsVelocityPosition D_80368C60 = {
         {{-125.0f, 100.0f, -125.0f}, { 125.0f, 250.0f,  125.0f}}, /*position*/
         {{ -15.0f, 100.0f,  -15.0f}, {  15.0f, 100.0f,   15.0f}}  /*velocity*/
     };
@@ -102,7 +102,7 @@ void fxSparkle_goldFeather(s16 position[3]){
 }
 
 void fxSparkle_giantGoldFeather(s16 position[3]){
-    static struct42s D_80368C90 = {
+    static ParticleSettingsVelocityPosition D_80368C90 = {
         {{-125.0f, 100.0f, -125.0f}, { 125.0f, 250.0f,  125.0f}}, /*position*/
         {{ -15.0f, 100.0f,  -15.0f}, {  15.0f, 100.0f,   15.0f}}  /*velocity*/
     };
@@ -113,7 +113,7 @@ void fxSparkle_giantGoldFeather(s16 position[3]){
 }
 
 void fxSparkle_mumboToken(s16 position[3]){
-    static struct42s D_80368CC0 = {
+    static ParticleSettingsVelocityPosition D_80368CC0 = {
         {{-100.0f, 100.0f, -100.0f}, { 100.0f, 250.0f,  100.0f}}, /*position*/
         {{ -15.0f,  15.0f,  -15.0f}, {  15.0f,  15.0f,   15.0f}}  /*velocity*/
     };
@@ -125,7 +125,7 @@ void fxSparkle_mumboToken(s16 position[3]){
 }
 
 void fxSparkle_extraLife(s16 position[3]){
-    static struct42s D_80368CF0 = {
+    static ParticleSettingsVelocityPosition D_80368CF0 = {
         {{ -75.0f, 100.0f,  -75.0f}, {  75.0f, 250.0f,   75.0f}}, /*position*/
         {{  -8.0f,   5.0f,   -8.0f}, {  -5.0f,  35.0f,    8.0f}}  /*velocity*/
     };
@@ -136,7 +136,7 @@ void fxSparkle_extraLife(s16 position[3]){
 }
 
 void fxSparkle_brentilda(s16 position[3]){
-    static struct42s D_80368D20 = {
+    static ParticleSettingsVelocityPosition D_80368D20 = {
         {{   0.0f,   0.0f,    0.0f}, {   0.0f,   0.0f,    0.0f}}, /*position*/
         {{ -15.0f, -15.0f,  -15.0f}, {  15.0f,  15.0f,   15.0f}}  /*velocity*/
     };
@@ -147,7 +147,7 @@ void fxSparkle_brentilda(s16 position[3]){
 }
 
 void fxSparkle_chTreasure(s16 position[3]){
-    static struct42s D_80368D50 = {
+    static ParticleSettingsVelocityPosition D_80368D50 = {
         {{   0.0f,   0.0f,    0.0f}, {   0.0f,   0.0f,    0.0f}}, /*position*/
         {{ -25.0f,  -5.0f,  -25.0f}, {  25.0f,   5.0f,   25.0f}}  /*velocity*/
     };

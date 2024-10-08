@@ -117,6 +117,6 @@ void mm_resetHuts(void) {
 ActorInfo chhutInfo = {
     MARKER_51_MM_HUT, ACTOR_9_MM_HUT, ASSET_7D7_MODEL_MM_HUT,
     0, chhutAnimations,
-    chhut_update, func_80326224, chhut_draw,
+    chhut_update, actor_update_func_80326224, chhut_draw,
     0, 0x100, 0.0f, 0
 };

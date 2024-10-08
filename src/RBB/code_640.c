@@ -78,49 +78,49 @@ ActorAnimationInfo D_803900C0[4] = {
 
 ActorInfo D_803900E0 = {
     0x107, 0x21D, 0x493, 0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390104 = {
     0x108, 0x21C, 0x492, 0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390128 = {
     0x22D, 0x266, 0x4BA, 0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039014C = {
     0x22E, 0x267, 0x4BB, 0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390170 = {
     0x235, 0x23F, 0x4E2, 0x1, NULL,
-    func_802D3D54, func_80326224, actor_drawFullDepth,
+    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80390194 = {
     0x15F, 0x18F, 0x42F, 0x1, D_803900C0,
-    func_80386BF8, func_80326224, actor_draw,
+    func_80386BF8, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803901B8 = {
     0x22F, 0x263, 0x4DB, 0x1, NULL,
-    func_80386A7C, func_80326224, func_80386B9C,
+    func_80386A7C, actor_update_func_80326224, func_80386B9C,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803901DC = {
     0x230, 0x264, 0x4DE, 0x1, NULL,
-    func_80386A7C, func_80326224, func_80386B9C,
+    func_80386A7C, actor_update_func_80326224, func_80386B9C,
     0, 0, 0.0f, 0
 };
 

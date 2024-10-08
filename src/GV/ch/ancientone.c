@@ -28,7 +28,7 @@ ActorAnimationInfo chAncientOneAnimations[] = {
 
 ActorInfo chAncientOne = { MARKER_F4_ANCIENT_ONE, ACTOR_147_ANCIENT_ONE, ASSET_3E8_MODEL_ANCIENT_ONE, 
     0x1, chAncientOneAnimations, 
-    chAncientOne_update, func_80326224, chAncientOne_draw, 
+    chAncientOne_update, actor_update_func_80326224, chAncientOne_draw, 
     0, 0x100, 0.0f, 0
 };
 

@@ -88,7 +88,7 @@ void func_8038FD9C(Actor *this){
     switch(this->state){
         case 1:
             if(this->marker->unk2C_2)
-                func_80326224(this);
+                actor_update_func_80326224(this);
             this->marker->propPtr->unk8_3 = 1;
             this->unk1C[0] = 1.0f;
             this->alpha_124_19 = 0xff;
@@ -99,7 +99,7 @@ void func_8038FD9C(Actor *this){
 
         case 2:
             if(this->marker->unk2C_2)
-                func_80326224(this);
+                actor_update_func_80326224(this);
                 
             this->marker->propPtr->unk8_3 = 1;
             this->unk1C[0] = 1.0f;
@@ -118,7 +118,7 @@ void func_8038FD9C(Actor *this){
             break;
         case 3:
             if (this->marker->unk2C_2) {
-                func_80326224(this);
+                actor_update_func_80326224(this);
             }
             this->marker->propPtr->unk8_3 = FALSE;
             this->unk1C[0] = 0.0f;

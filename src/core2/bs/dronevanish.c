@@ -40,17 +40,17 @@ void __bsDroneVanish_emitParticles(void) {
     f32 position[3];
 
     player_getPosition(position);
-    particleEmitter_setParticleAccelerationRange(D_8037D450.unk4, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
+    particleEmitter_setAccelerationRange(D_8037D450.unk4, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
     particleEmitter_setPosition(D_8037D450.unk4, position);
     particleEmitter_emitN(D_8037D450.unk4, 1);
-    particleEmitter_setParticleAccelerationRange(D_8037D450.unk0, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
+    particleEmitter_setAccelerationRange(D_8037D450.unk0, 0.0f, 700.0f, 0.0f, 0.0f, 1200.0f, 0.0f);
     particleEmitter_setPosition(D_8037D450.unk0, position);
     particleEmitter_emitN(D_8037D450.unk0, 1);
     position[1] += 130.0f;
-    particleEmitter_setParticleAccelerationRange(D_8037D450.unk4, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
+    particleEmitter_setAccelerationRange(D_8037D450.unk4, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
     particleEmitter_setPosition(D_8037D450.unk4, position);
     particleEmitter_emitN(D_8037D450.unk4, 1);
-    particleEmitter_setParticleAccelerationRange(D_8037D450.unk0, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
+    particleEmitter_setAccelerationRange(D_8037D450.unk0, 0.0f, -700.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
     particleEmitter_setPosition(D_8037D450.unk0, position);
     particleEmitter_emitN(D_8037D450.unk0, 1);
 }
@@ -59,7 +59,7 @@ void __bsDroneVanish_particleEmitInit(ParticleEmitter *p_ctrl, enum asset_e spri
     particleEmitter_manualFree();
     particleEmitter_setSprite(p_ctrl, sprite_id);
     particleEmitter_setFade(p_ctrl, 0.3f, 0.8f);
-    particleEmitter_setParticleSpawnPositionRange(p_ctrl, -45.0f, 0.0f, -45.0f, 45.0f, 0.0f, 45.0f);
+    particleEmitter_setSpawnPositionRange(p_ctrl, -45.0f, 0.0f, -45.0f, 45.0f, 0.0f, 45.0f);
     particleEmitter_setStartingScaleRange(p_ctrl, 0.15f, 0.22f);
     particleEmitter_setFinalScaleRange(p_ctrl, 0.03f, 0.05f);
     particleEmitter_setAngularVelocityRange(p_ctrl, 0.0f, 0.0f, 300.0f, 0.0f, 0.0f, 300.0f);

@@ -32,7 +32,7 @@ ActorAnimationInfo D_80392520[] ={
 
 ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
-    FP_func_8038F7AC, func_80326224, func_8038F210,
+    FP_func_8038F7AC, actor_update_func_80326224, func_8038F210,
     0, 0, 1.6f, 0
 };
 

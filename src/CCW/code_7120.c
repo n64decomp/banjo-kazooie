@@ -19,7 +19,7 @@ ActorInfo D_8038F640 = {
 /* .code */
 void CCW_func_8038D510(Actor *this) {
     static s32 D_8038F664[3] = {0xDE, 0xA7, 0x71};
-    static struct42s D_8038F670 = {
+    static ParticleSettingsVelocityPosition D_8038F670 = {
         {{  0.0f,  50.0f,   0.0f}, { 70.0f, 100.0f,  70.0f}},
         {{100.0f, 100.0f, 100.0f}, {150.0f, 400.0f, 200.0f}}
     };
@@ -39,7 +39,7 @@ void CCW_func_8038D510(Actor *this) {
 }
 
 void func_8038D5DC(Actor *this) {
-    static struct43s D_8038F6A0 ={
+    static ParticleSettingsVelocityAccelerationPosition D_8038F6A0 ={
         {{-100.0f,  -50.0f, -100.0f}, {100.0f,   50.0f, 100.0f}},
         {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
         {{-100.0f,    0.0f, -200.0f}, {100.0f,  400.0f, 200.0f}}
@@ -48,8 +48,8 @@ void func_8038D5DC(Actor *this) {
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(30);
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setModel(pCtrl, 0x896);
     particleEmitter_setPosition(pCtrl, this->position);
     particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.3f);
@@ -59,7 +59,7 @@ void func_8038D5DC(Actor *this) {
     );
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 10.0f, 10.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038F6A0);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8038F6A0);
     particleEmitter_emitN(pCtrl, 30);
 }
 

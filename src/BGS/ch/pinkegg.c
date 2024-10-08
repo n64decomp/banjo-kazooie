@@ -28,27 +28,27 @@ ActorAnimationInfo D_803906D8[4] = {
 };
 
 ActorInfo D_803906F8 = {MARKER_6E_PINK_EGG_LARGEST, ACTOR_5B_PINK_EGG_LARGEST, ASSET_380_MODEL_PINK_EGG_LARGEST, 0x01, D_803906D8,
-    chpinkegg_update, func_80326224, chpinkegg_draw,
+    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
     0, 0x2CC, 6.0f, 0
 };
 
 ActorInfo D_8039071C = {MARKER_D6_PINK_EGG_LARGE, ACTOR_ED_PINK_EGG_LARGE, ASSET_381_MODEL_PINK_EGG_LARGE, 0x01, D_803906D8,
-    chpinkegg_update, func_80326224, chpinkegg_draw,
+    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
     0, 0x2CC, 5.0f, 0
 };
 
 ActorInfo D_80390740 = {MARKER_D7_PINK_EGG_MEDIUM, ACTOR_EE_PINK_EGG_MEDIUM, ASSET_382_MODEL_PINK_EGG_MEDIUM, 0x01, D_803906D8,
-    chpinkegg_update, func_80326224, chpinkegg_draw,
+    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
     0, 0x2CC, 4.0f, 0
 };
 
 ActorInfo D_80390764 = {MARKER_D8_PINK_EGG_SMALL, ACTOR_EF_PINK_EGG_SMALL, ASSET_383_MODEL_PINK_EGG_SMALL, 0x01, D_803906D8,
-    chpinkegg_update, func_80326224, chpinkegg_draw,
+    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
     0, 0x2CC, 3.0f, 0
 };
 
 ActorInfo D_80390788 = {MARKER_D9_PINK_EGG_SMALLEST, ACTOR_F0_PINK_EGG_SMALLEST, ASSET_384_MODEL_PINK_EGG_SMALLEST, 0x01, D_803906D8,
-    chpinkegg_update, func_80326224, chpinkegg_draw,
+    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
     0, 0x2CC, 2.0f, 0
 };
 

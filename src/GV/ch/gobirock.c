@@ -17,7 +17,7 @@ Actor *chGobiRock_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx
 /* .data */
 ActorInfo chGobiRock = { MARKER_BE_GOBI_ROCK, ACTOR_130_GOBI_ROCK, ASSET_3E4_MODEL_GOBI_ROCK, 
     0, NULL, 
-    chGobiRock_update, func_80326224, chGobiRock_draw, 
+    chGobiRock_update, actor_update_func_80326224, chGobiRock_draw, 
     0, 0x533, 0.0f, 0
 };
 
