@@ -1013,7 +1013,7 @@ void func_802D5628(void){
                         D_8037DE08 -= time_getDelta();
                     }
                     else{//L802D5B24
-                        func_8024E55C(0, sp50); //get button inputs
+                        pfsManager_getControllerFaceButtonState(0, sp50); //get button inputs
                         if(sp50[FACE_BUTTON(BUTTON_B)] == 1){
                             func_80324C58();
                             func_802D6114();

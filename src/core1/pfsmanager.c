@@ -1,12 +1,11 @@
 #include <ultra64.h>
+#include "core1/pfsmanager.h"
 #include "functions.h"
 #include "variables.h"
 
 #include "version.h"
 
 #define PFSMANAGER_THREAD_STACK_SIZE 0x200
-
-extern s32 D_803727F4;
 
 extern struct {
     u8 pad0[4];
@@ -15,22 +14,7 @@ extern struct {
     s32 unkC; 
 } D_80379B90;
 
-typedef struct {
-    s32 face_button[6];
-    s32 side_button[3];
-    s32 unk24[4];
-    s32 start_button;
-}Struct_core1_10A00_0;
-
-typedef struct {
-    s16 unk0;
-    s16 unk2;
-    u16 unk4;
-    u16 unk6;
-    f32 unk8[2];
-    f32 joystick[2];
-}Struct_core1_10A00_1;
-
+extern s32 D_803727F4;
 extern s32 D_80276574;
 
 /* .data */
@@ -41,13 +25,14 @@ extern s32 D_80276574;
     s32 D_80275D30 = 0xED7BCDB7; //WHAT IS THIS?
     s32 D_80275D34 = 0xF82DC7AC; //WHAT IS THIS?
 #endif
-s32 D_80275D38 = 0;
+
+static s32 D_80275D38 = 0;
 
 /* .bss */
 UNK_TYPE(s32) D_802810E0[4][5];
 u8 pfsManagerBitPattern;
-Struct_core1_10A00_0 D_80281138[4];
-Struct_core1_10A00_0 D_80281218;
+PfsManagerControllerData D_80281138[4];
+PfsManagerControllerData D_80281218;
 Struct_core1_10A00_1 D_80281250[4];
 OSMesg pfsManagerContPollingMsqBuf;
 OSMesg pfsManagerContReplyMsgBuf;
@@ -66,13 +51,6 @@ OSMesgQueue D_802816E8;
 OSMesg D_80281700[4];
 u8 pad_D_80281710[1];
 
-/* .h */
-void func_8024F224(void);
-void func_8024F35C(bool arg0);
-void func_8024F450(void);
-void func_8024F4AC(void);
-
-/* .code */
 f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     f32 phi_f2;
 
@@ -92,7 +70,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     return phi_f2 *= arg0;
 }
 
-void func_8024E55C(s32 controller_index, s32 dst[6]){
+void pfsManager_getControllerFaceButtonState(s32 controller_index, s32 dst[6]){
     dst[FACE_BUTTON(BUTTON_A)]       = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_A)];
     dst[FACE_BUTTON(BUTTON_B)]       = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_B)];
     dst[FACE_BUTTON(BUTTON_C_LEFT)]  = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_C_LEFT)];
@@ -101,7 +79,7 @@ void func_8024E55C(s32 controller_index, s32 dst[6]){
     dst[FACE_BUTTON(BUTTON_C_RIGHT)] = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_C_RIGHT)];
 }
 
-void func_8024E5A8(s32 controller_index, s32 dst[6]){
+void pfsManager_getFirstControllerFaceButtonState(s32 controller_index, s32 dst[6]){
     dst[FACE_BUTTON(BUTTON_A)]       = D_80281218.face_button[FACE_BUTTON(BUTTON_A)];
     dst[FACE_BUTTON(BUTTON_B)]       = D_80281218.face_button[FACE_BUTTON(BUTTON_B)];
     dst[FACE_BUTTON(BUTTON_C_LEFT)]  = D_80281218.face_button[FACE_BUTTON(BUTTON_C_LEFT)];
@@ -171,7 +149,9 @@ void pfsManager_update(void) {
     if (func_8023E000() == 3) {
         func_802E4384();
     }
+
     osSetThreadPri(0, 0x29);
+
     D_802812D0.stick_x = pfsManagerContPadData[0].stick_x;
     D_802812D0.stick_y = pfsManagerContPadData[0].stick_y;
     D_802812D0.button = pfsManagerContPadData[0].button;
@@ -304,7 +284,7 @@ void pfsManager_entry(void *arg) {
     } while (1);
 }
 
-void pfsManager_init(void){
+void pfsManager_init(void) {
     osCreateMesgQueue(&pfsManagerContPollingMsqQ, &pfsManagerContPollingMsqBuf, 1);
     osCreateMesgQueue(&pfsManagerContReplyMsgQ, &pfsManagerContReplyMsgBuf, 1);
     osCreateThread(&sPfsManagerThread, 7, pfsManager_entry, NULL, sPfsManagerThreadStack + PFSMANAGER_THREAD_STACK_SIZE, 40);
@@ -384,7 +364,7 @@ OSMesgQueue *pfsManager_getFrameMesgQ(void){
     return &pfsManagerContPollingMsqQ;
 }
 
-void func_8024F35C(bool arg0){
+void func_8024F35C(s32 arg0) {
     if(!arg0)
         func_8024F4AC();
     else
@@ -408,10 +388,10 @@ OSContPad *func_8024F3F4(void){
 }
 
 /* initilizes D_802816E8 message queue */
-void func_8024F400(void){
+void func_8024F400(void) {
     D_80275D38 = TRUE;
     osCreateMesgQueue(&D_802816E8, &D_80281700, 5);
-    osSendMesg(&D_802816E8, 0, 0);
+    osSendMesg(&D_802816E8, 0, OS_MESG_NOBLOCK);
 }
 
 void func_8024F450(void){
@@ -422,5 +402,5 @@ void func_8024F450(void){
 }
 
 void func_8024F4AC(void){
-    osSendMesg(&D_802816E8, 0, 0);
+    osSendMesg(&D_802816E8, NULL, OS_MESG_NOBLOCK);
 }

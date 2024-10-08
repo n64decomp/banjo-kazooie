@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "save.h"
+#include "core1/eeprom.h"
 
 
 typedef struct {
@@ -318,7 +319,7 @@ void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
 s32 savedata_8033CA2C(s32 filenum, SaveData *save_data){
     s32 sp1C;
     
-    sp1C = load_file_blocks(filenum, 0, save_data, 0xF);
+    sp1C = eeprom_readBlocks(filenum, 0, save_data, 0xF);
     if( sp1C 
         || savedata_verify(0x78, save_data) 
         || ((u8*)save_data)[baseOffset] != 0x11
@@ -331,7 +332,7 @@ s32 savedata_8033CA2C(s32 filenum, SaveData *save_data){
 s32 savedata_8033CA9C(SaveData *savedata){
     s32 sp1C;
     
-    sp1C = load_file_blocks(0, 0x3C, savedata, 0x4);
+    sp1C = eeprom_readBlocks(0, 0x3C, savedata, 0x4);
     if( sp1C 
         || savedata_verify(0x20, savedata) 
     ){
@@ -384,7 +385,7 @@ void saveData_create(SaveData *savedata){
 
 int savedata_8033CC98(s32 filenum, u8 *buffer){
     int out;
-    out = write_file_blocks(filenum, 0, buffer, 0xF);
+    out = eeprom_writeBlocks(filenum, 0, buffer, 0xF);
     if(out){
         out = 1;
     }
@@ -393,7 +394,7 @@ int savedata_8033CC98(s32 filenum, u8 *buffer){
 
 int savedata_8033CCD0(s32 filenum){
     int out;
-    out = write_file_blocks(filenum, 0, D_80383D18, 1);
+    out = eeprom_writeBlocks(filenum, 0, D_80383D18, 1);
     if(out){
         out = 1;
     }
@@ -403,7 +404,7 @@ int savedata_8033CCD0(s32 filenum){
 int savedata_8033CE40(u8 *buffer){
     int out;
     savedata_update_crc(buffer, sizeof(GlobalData));
-    out = write_file_blocks(0, 0x3C, buffer, 4);
+    out = eeprom_writeBlocks(0, 0x3C, buffer, 4);
     if(out){
         out = 1;
     }

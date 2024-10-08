@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "zoombox.h"
+#include "core1/pfsmanager.h"
 
 extern void func_803114D0(void );
 extern int func_803114B0(void);
@@ -373,10 +374,10 @@ void gcdialog_update(void) {
     ret = -1;
 
     if (g_Dialog.u8.unk128_31 & 0x80) {
-        func_8024E5A8(0, controller_face_buttons);
+        pfsManager_getFirstControllerFaceButtonState(0, controller_face_buttons);
         func_8024E640(0, controller_side_buttons);
     } else {
-        func_8024E55C(0, controller_face_buttons);
+        pfsManager_getControllerFaceButtonState(0, controller_face_buttons);
         func_8024E60C(0, controller_side_buttons);
     }
 

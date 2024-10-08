@@ -376,7 +376,7 @@ void chmole_update(Actor *this){
             }
         }
     }//L802D9F34
-    func_8024E55C(0, sp50); // get face buttons press counters
+    pfsManager_getControllerFaceButtonState(0, sp50); // get face buttons press counters
     switch(this->state){
         case 1://L802D9F70
             this->yaw_ideal = func_80329784(this);

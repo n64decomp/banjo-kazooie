@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "version.h"
 #include "gc/gctransition.h"
+#include "core1/eeprom.h"
+#include "core1/ucode.h"
 
 #define MAIN_THREAD_STACK_SIZE 0x17F0
 
@@ -70,7 +72,7 @@ void func_8023DA9C(s32 arg0){
     if (D_8027A130 == 4){
         dummy_func_802E35D0();
     }
-    dummy_func_80255CD8();
+    ucode_stub1();
 }
 
 u32 globalTimer_getTimeMasked(u32 mask){
@@ -107,7 +109,7 @@ void core1_init(void) {
 #if VERSION == VERSION_PAL
      osTvType = 0;
 #endif
-    func_80255C30();
+    ucode_load();
     setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table
     func_8024BE30();
@@ -158,7 +160,7 @@ void mainLoop(void){
     rumbleManager_80250C08();
 
     if(!mapSpecificFlags_validateCRC1()){
-        write_file_blocks(0, 0, 0x80397AD0, 0x40);
+        eeprom_writeBlocks(0, 0, 0x80397AD0, 0x40);
     }
 
     switch(D_8027A130){

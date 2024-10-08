@@ -446,7 +446,7 @@ void chsmmole_Update(Actor * this){
         func_8028E668(this->position, 180.0f, -40.0f, 120.0f);
     }//L80389B64
 
-    func_8024E55C(0,sp50); //get face buttons press counters
+    pfsManager_getControllerFaceButtonState(0,sp50); //get face buttons press counters
     player_getPosition(sp44);
     switch (this->state)
     {

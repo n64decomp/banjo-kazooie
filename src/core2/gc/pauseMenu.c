@@ -936,7 +936,7 @@ s32 gcPauseMenu_update(void) {
         return 0;
     }
 
-    func_8024E55C(0, face_button);
+    pfsManager_getControllerFaceButtonState(0, face_button);
     controller_getJoystick(0, joystick);
     func_8024E60C(0, sp60);
     func_8024E6E0(0, sp50);

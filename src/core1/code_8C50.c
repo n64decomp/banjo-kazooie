@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
+#include "core1/ucode.h"
 
 typedef struct {
     s32 unk0;
@@ -120,7 +121,7 @@ void func_80246744(OSMesg arg0){
 }
 
 void func_80246794(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
     D_80275910.t.ucode = n_aspMainTextStart;
     D_80275910.t.ucode_data = n_aspMainDataStart;
     D_80275910.t.data_ptr = (void*) arg0->unk8;
@@ -134,7 +135,7 @@ void func_80246794(Struct_Core1_8C50_s * arg0){
 }
 
 void func_80246844(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
     D_80275950.t.ucode = gSPF3DEX_fifoTextStart;
     D_80275950.t.ucode_data = gSPF3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
@@ -152,7 +153,7 @@ void func_80246844(Struct_Core1_8C50_s * arg0){
 }
 
 void func_8024692C(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
     D_80275950.t.ucode = gSPL3DEX_fifoTextStart;
     D_80275950.t.ucode_data = gSPL3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;

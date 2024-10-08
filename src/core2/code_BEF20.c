@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core1/ucode.h"
 
 
 f32 time_getDelta(void);
@@ -59,7 +60,7 @@ s32 item_adjustByDiff(enum item_e item, s32 diff, s32 no_hud){
     
     oldVal = D_80385F30[item];
 
-    if(func_80255D04())
+    if(ucode_stub3())
         diff = 0;
 
     if(diff < 0){

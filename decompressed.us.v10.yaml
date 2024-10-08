@@ -165,11 +165,11 @@ segments:
   - [0xF23E00, c, code_ABB0]                  #DONE
   - [0xF260B0, c, code_CE60]                  #DONE
   - [0xF275B0, c, code_E360]                  #DONE
-  - [0xF27D40, c, code_EAF0]                  #DONE
-  - [0xF29C50, c,code_10A00]    
+  - [0xF27D40, c, viewport]                  #DONE
+  - [0xF29C50, c,pfsmanager]    
   - [0xF2AD10, c, code_11AC0]                 #DONE
   - [0xF2C160, c, rumblemanager]                 #DONE
-  - [0xF2C890, c, code_13640]                 #DONE
+  - [0xF2C890, c, stub_13640]                 #DONE
   - [0xF2C8D0, c, code_13680]                 #DONE
   - [0xF2C920, c, overlaymanager]                 #DONE
   - [0xF2CBE0, c, code_13990]   
@@ -178,12 +178,12 @@ segments:
   - [0xF2E9C0, c, code_15770]                 #DONE
   - [0xF2ED80, c, code_15B30]                 #DONE
   - [0xF2FCA0, c, memory]                     #DONE
-  - [0xF31360, c, code_18110]                 #DONE
-  - [0xF31460, c, code_18210]                 #DONE
+  - [0xF31360, c, eeprom]                 #DONE
+  - [0xF31460, c, ucode]                 #DONE
   - [0xF31560, c, code_18310]                 #DONE
   - [0xF315A0, c, code_18350]                 #DONE
   - [0xF350E0, c, code_1BE90]                 #DONE
-  - [0xF367E0, c, code_1D590]                 #DONE
+  - [0xF367E0, c, stub_1D590]                 #DONE
   - [0xF36810, hasm, code_1D5C0]              #DONE
   - [0xF36820, c, code_1D5D0]                 #DONE
   - [0xF375B0, c, code_1E360]                 #DONE
@@ -377,8 +377,8 @@ segments:
   - [0xF51430, .data, code_ABB0]
   - [0xF51440, .data, code_CE60]
   - [0xF514B0, .data, code_E360]
-  - [0xF51550, .data, code_EAF0]
-  - [0xF51560, .data, code_10A00]
+  - [0xF51550, .data, viewport]
+  - [0xF51560, .data, pfsmanager]
   - [0xF51570, .data, code_11AC0]
   - [0xF51B00, .data, overlaymanager]
   - [0xF51DA0, .data, code_13990]
@@ -418,8 +418,8 @@ segments:
   - [0xF52F10, .rodata, code_7F60]
   - [0xF52F30, .rodata, code_9D30]
   - [0xF52F50, .rodata, code_CE60]
-  - [0xF53220, .rodata, code_EAF0]
-  - [0xF532A0, .rodata, code_10A00]
+  - [0xF53220, .rodata, viewport]
+  - [0xF532A0, .rodata, pfsmanager]
   - [0xF539B0, .rodata, code_11AC0]
   - [0xF539C0, .rodata, rumblemanager]
   - [0xF539D0, .rodata, overlaymanager]
@@ -467,17 +467,17 @@ segments:
   - [0xF55960, .bss, code_ABB0]
   - [0xF55960, .bss, code_CE60]
   - [0xF55960, .bss, code_E360]
-  - [0xF55960, .bss, code_EAF0]
-  - [0xF55960, .bss, code_10A00]
+  - [0xF55960, .bss, viewport]
+  - [0xF55960, .bss, pfsmanager]
   - [0xF55960, .bss, code_11AC0]
   - [0xF55960, .bss, rumblemanager]
-  - [0xF55960, .bss, code_13640]
+  - [0xF55960, .bss, stub_13640]
   - [0xF55960, .bss, overlaymanager]
   - [0xF55960, .bss, code_13990]
   - [0xF55960, .bss, code_15770]
   - [0xF55960, .bss, code_15B30]
   - [0xF55960, .bss, memory]
-  - [0xF55960, .bss, code_18210]
+  - [0xF55960, .bss, ucode]
   - [0xF55960, .bss, code_1D5D0]
   - [0xF55960, .bss, code_1E360]
   - [0xF55960, .bss, os/initialize]

@@ -6,6 +6,7 @@
 #include "core2/anim/sprite.h"
 #include <core2/file.h>
 #include "core2/particle.h"
+#include "core1/eeprom.h"
 
 /* .data */
 extern u8 D_80370250 = 0;
@@ -38,7 +39,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
         return;
     }
     if (func_80320708() == 0) {
-        write_file_blocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
     }
     spawnQueue_unlock();
     sky_draw(gdl, mptr, vptr);

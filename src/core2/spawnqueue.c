@@ -4,8 +4,9 @@
 #include "actor.h"
 #include "prop.h"
 #include "functions.h"
-
 #include "ch/snacker.h"
+#include "core1/eeprom.h"
+#include "core1/ucode.h"
 
 void spawnQueue_unlock(void);
 void spawnQueue_lock(void);
@@ -396,7 +397,7 @@ void spawnQueue_reset(void){
             break;
     }
 
-    if(func_80255D04() == 0 || loaded_asm_file == 0 ){
+    if(ucode_stub3() == 0 || loaded_asm_file == 0 ){
         func_8030578C();
     }
     func_80305990(1);
@@ -417,7 +418,7 @@ void spawnQueue_free(void){
 void spawnQueue_func_802C39D4(void){
     func_803268B4();
     if(!levelSpecificFlags_validateCRC2()){
-        write_file_blocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
     }
 }
 

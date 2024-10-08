@@ -4,13 +4,11 @@
 #include "zoombox.h"
 #include "ml/mtx.h"
 #include <core1/viewport.h>
+#include "core1/pfsmanager.h"
 
 
 void func_80252330(f32, f32, f32);
 extern f32 func_8033DDB8(void);
-extern void func_8024E60C(s32, void *);
-extern void func_8024E640(s32, void *);
-extern void func_8024E5A8(s32, void *);
 extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
 BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
 
@@ -881,11 +879,11 @@ void func_80316764(GcZoombox *this, s32 arg1) {
     f32 pad0;
 
     if (!this->unk1A4_10 ) {
-        func_8024E55C(0, sp38);
+        pfsManager_getControllerFaceButtonState(0, sp38);
         func_8024E60C(0, sp2C);
         phi_f0 = time_getDelta();
     } else {
-        func_8024E5A8(0, sp38);
+        pfsManager_getFirstControllerFaceButtonState(0, sp38);
         func_8024E640(0, sp2C);
         phi_f0 = func_8033DDB8();
     }
@@ -1067,12 +1065,12 @@ void gczoombox_update(GcZoombox *this){
           return;
 
      if( !this->unk1A4_10 ){
-          func_8024E55C(0, sp58);
+          pfsManager_getControllerFaceButtonState(0, sp58);
           func_8024E60C(0, sp4C);
           tmp_f0 = time_getDelta();
      }
      else{
-          func_8024E5A8(0, sp58);
+          pfsManager_getFirstControllerFaceButtonState(0, sp58);
           func_8024E640(0, sp4C);
           tmp_f0 = func_8033DDB8();
      }

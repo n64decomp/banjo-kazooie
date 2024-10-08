@@ -77,7 +77,7 @@ void SM_func_8038A5D8(Actor *this){
         this->initialized = TRUE;
     }//L8038A650
 
-    func_8024E55C(0, sp44);
+    pfsManager_getControllerFaceButtonState(0, sp44);
     switch (this->state)
     {
     case 1://L8038A688

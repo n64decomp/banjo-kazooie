@@ -333,7 +333,7 @@ void func_802C4C14(Actor *this){
     }
     else{//L802C4D24
         func_8024E60C(0, sp74);
-        func_8024E55C(0, sp5C);
+        pfsManager_getControllerFaceButtonState(0, sp5C);
         controller_getJoystick(0, &sp54);
         switch(this->state){
             case 2:
