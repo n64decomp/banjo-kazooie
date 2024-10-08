@@ -1,6 +1,5 @@
 #include <ultra64.h>
-#include "core1/eeprom.h"
-#include "core1/pfsmanager.h"
+#include "core1/core1.h"
 #include "save.h"
 
 #define ROUND_UP_DIVIDE(a, b) (((a) + (b) - 1) / (b))

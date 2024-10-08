@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);

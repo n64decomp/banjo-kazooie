@@ -1,8 +1,5 @@
-#ifndef BANJO_KAZOOIE_PFSMANAGER_H
-#define BANJO_KAZOOIE_PFSMANAGER_H
-
-#include <ultra64.h>
-#include "bool.h"
+#ifndef BANJO_KAZOOIE_CORE1_PFSMANAGER_H
+#define BANJO_KAZOOIE_CORE1_PFSMANAGER_H
 
 typedef struct pfs_manager_face_buttons_s {
     bool button_a;
@@ -17,11 +14,11 @@ typedef struct pfs_manager_side_buttons_s {
     bool button_z;
     bool button_l;
     bool button_r;
-};
+} PfsManagerSideButtons;
 
 typedef struct pfs_manager_controller_data {
     union { s32 face_button[6]; PfsManagerFaceButtons face_button2; };
-    s32 side_button[3];
+    union { s32 side_button[3]; PfsManagerSideButtons side_button2; };
     s32 unk24[4];
     s32 start_button;
 } PfsManagerControllerData;

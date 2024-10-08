@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 
 extern void __spawnQueue_add_2(void (*)(s32, s32), s32, s32);

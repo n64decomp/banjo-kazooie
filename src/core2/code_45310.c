@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 extern f32 func_8025715C(f32, f32);
 extern f32 func_802575BC(f32);

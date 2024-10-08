@@ -1,10 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "zoombox.h"
 #include "ml/mtx.h"
-#include <core1/viewport.h>
-#include "core1/pfsmanager.h"
 
 
 void func_80252330(f32, f32, f32);

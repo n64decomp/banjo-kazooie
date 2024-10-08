@@ -1,5 +1,5 @@
-#ifndef BANJO_KAZOOIE_VIEWPORT_H
-#define BANJO_KAZOOIE_VIEWPORT_H
+#ifndef BANJO_KAZOOIE_CORE1_VIEWPORT_H
+#define BANJO_KAZOOIE_CORE1_VIEWPORT_H
 
 #include <ultra64.h>
 #include <prop.h> // for Cube

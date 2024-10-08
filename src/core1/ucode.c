@@ -1,6 +1,6 @@
 #include <ultra64.h>
 #include <PR/rcp.h>
-#include "core1/ucode.h"
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 

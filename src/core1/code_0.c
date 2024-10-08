@@ -1,10 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
 #include "gc/gctransition.h"
-#include "core1/eeprom.h"
-#include "core1/ucode.h"
 
 #define MAIN_THREAD_STACK_SIZE 0x17F0
 
@@ -19,10 +18,7 @@ void func_8023DFF0(s32);
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
 u32 gGlobalTimer = 0;
-u32 sDebugVar_8027561C[] = { // never used
-    0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0, 
-    0x1, 0x6, 0xD,  -1
-};
+u32 sDebugVar_8027561C[] = { 0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0,  0x1, 0x6, 0xD,  -1 }; // never used
 u32 D_80275650 = VER_SELECT(0xAD019D3C, 0xA371A8F3, 0, 0); //SM_DATA_CRC_1
 u32 D_80275654 = VER_SELECT(0xD381B72F, 0xD0709154, 0, 0); //SM_DATA_CRC_2
 char sDebugVar_80275658[] = VER_SELECT("HjunkDire:218755", "HjunkDire:300875", "HjunkDire:", "HjunkDire:");
@@ -35,8 +31,8 @@ u64 sDebugVar_8027A540; // never used
 u8 sMainThreadStack[MAIN_THREAD_STACK_SIZE]; // The real size of the stack is unclear yet, maybe there are some out-optimized debug variables below the stack
 OSThread sMainThread;
 s32 gBootMap;
-s32 gDisableInput;
-u64 sDebugVar_8027BEF0; // never used
+static bool sDisableInput;
+static u64 sDebugVar_8027BEF0; // never used
 
 extern u8 core2_TEXT_START[];
 
@@ -153,9 +149,9 @@ void mainLoop(void){
     if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
         globalTimer_incTimer();
     
-    if(!gDisableInput)
+    if (!sDisableInput)
         pfsManager_update();
-    gDisableInput = 0;
+    sDisableInput = FALSE;
 
     rumbleManager_80250C08();
 
@@ -236,5 +232,5 @@ OSThread *mainThread_get(void) {
 }
 
 void disableInput_set(void){
-    gDisableInput = 1;
+    sDisableInput = TRUE;
 }

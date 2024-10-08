@@ -1,11 +1,11 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
 #include "prop.h"
 #include "core2/statetimer.h"
 #include "core2/ba/physics.h"
-#include <core1/viewport.h>
 
 
 extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);

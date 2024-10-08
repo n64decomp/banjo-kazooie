@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);

@@ -1,9 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "enums.h"
 
-#include <core1/viewport.h>
 #include <core2/file.h>
 
 #define AssetCacheSize 0x3D5
@@ -191,7 +191,7 @@ void func_8032CD60(Prop *prop) {
         sp30 = (sp44 == 3) ? sp38 : (sp38 - sp34)*2;
 
         sp2C = (s32)((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) * sp30) / 32;
-        var_v1 = (((globalTimer_getTime(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30;
+        var_v1 = (((globalTimer_getTime(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30; // TODO: globalTimer_getTime has no parameters, but if we remove them here (to forward declare them in include/core1/main.h, it doesn't match anymore)
         var_t5 = 0;
         switch (sp40) {                          /* irregular */
             default:

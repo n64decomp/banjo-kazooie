@@ -1,8 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-
-#include <core1/viewport.h>
 
 
 extern s16 D_803A5D00[2][0xF660];

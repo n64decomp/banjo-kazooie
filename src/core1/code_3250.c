@@ -1,4 +1,6 @@
 #include <ultra64.h>
+#include "core1/core1.h"
+
 extern f32 gu_sqrtf(f32);
 
 static void __guMtxF2L(float mf[4][4], Mtx *m)

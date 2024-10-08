@@ -1,12 +1,11 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "actor.h"
 #include "prop.h"
 #include "functions.h"
 #include "ch/snacker.h"
-#include "core1/eeprom.h"
-#include "core1/ucode.h"
 
 void spawnQueue_unlock(void);
 void spawnQueue_lock(void);

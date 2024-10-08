@@ -1,9 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
 #include "zoombox.h"
-#include "core1/pfsmanager.h"
 
 extern void func_803114D0(void );
 extern int func_803114B0(void);

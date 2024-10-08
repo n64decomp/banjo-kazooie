@@ -1,6 +1,6 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
-#include <core1/viewport.h>
 
 static f32 __playerStartPosition[3];
 

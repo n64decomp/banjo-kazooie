@@ -1,9 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
 #include "save.h"
-#include "core1/eeprom.h"
 
 
 typedef struct {

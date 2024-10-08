@@ -1,11 +1,11 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/yaw.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
-#include <core1/viewport.h>
 
 extern void controller_getJoystick(s32, f32*);
 extern f32 ml_acosf(f32);

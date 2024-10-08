@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "ml/mtx.h"
-#include <core1/viewport.h>
 
 #include "zoombox.h"
 
@@ -31,9 +31,6 @@ f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void func_80310D2C(void);
 
 s32 level_get(void);
-void func_8024E6E0(s32, void *);
-void func_8024E60C(s32, void *);
-void controller_getJoystick(s32, void *);
 s32 getGameMode(void);
 
 void func_802DC5B8(void);

@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 
 s32 stub_13640_get(void);
 void stub_13640_init(void);

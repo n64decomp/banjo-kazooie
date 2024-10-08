@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
-#include "core1/ucode.h"
 
 typedef struct {
     s32 unk0;

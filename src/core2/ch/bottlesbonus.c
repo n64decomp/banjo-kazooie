@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 extern void func_8025982C(f32[3], f32[3], f32[3], f32);
 extern void func_8025A6CC(enum comusic_e arg0, s32 arg1);

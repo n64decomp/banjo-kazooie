@@ -1,5 +1,5 @@
-#ifndef __MEM_H__
-#define __MEM_H__
+#ifndef BANJO_KAZOOIE_CORE1_MEMORY_H
+#define BANJO_KAZOOIE_CORE1_MEMORY_H
 
 /**
 * copy memory area

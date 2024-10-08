@@ -1,7 +1,5 @@
-#ifndef BANJO_KAZOOIE_UCODE_H
-#define BANJO_KAZOOIE_UCODE_H
-
-#include <ultra64.h>
+#ifndef BANJO_KAZOOIE_CORE1_UCODE_H
+#define BANJO_KAZOOIE_CORE1_UCODE_H
 
 void ucode_load(void);
 void ucode_stub1(void); // does nothing
