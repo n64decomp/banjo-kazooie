@@ -132,8 +132,9 @@ void func_8035D490(ActorMarker *marker){
 
     if (map_get() == MAP_13_GV_MEMORY_GAME) {
         sp1C = marker_getActor(marker);
+
         if (func_80329530(sp1C, 250) != 0) {
-            __bundle_spawnFromFirstActor(0x1C, sp1C);
+            __bundle_spawnFromFirstActor(BUNDLE_1C__HONEYCOMB, sp1C);
             func_8035D2C0(marker, 0);
         }
     }
@@ -145,8 +146,8 @@ void func_8035D4F0(ActorMarker *marker, s32 arg1){
     if(map_get() == MAP_13_GV_MEMORY_GAME){
         actor = marker_getActor(marker);
         if(actor->state != 9){
-            if(func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1){
-                __bundle_spawnFromFirstActor(0x1C, actor);
+            if (func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1) {
+                __bundle_spawnFromFirstActor(BUNDLE_1C__HONEYCOMB, actor);
                 func_8035D2C0(marker, 0);
             }
         }

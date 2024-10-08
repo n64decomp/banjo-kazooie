@@ -301,7 +301,7 @@ void func_80389F08(ActorMarker *marker) {
         if (var_s2 < 3) {
             bundle_setYaw(vile->yaw + (f32) (i * 30));
             bundle_setRandomVelocity(2.0f);
-            bundle_spawn_f32(6, vile->position);
+            bundle_spawn_f32(BUNDLE_6_MM_HUT_EXTRA_LIFE, vile->position);
             var_s2 += 1;
         } else {
             item_inc(ITEM_16_LIFE);

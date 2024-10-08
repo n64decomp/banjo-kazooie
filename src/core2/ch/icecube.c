@@ -202,7 +202,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
     sp54[1] += 100.0f;
     for(i = 0; i < 2; i++){//L8035A7FC
         bundle_setYaw((i & 1)? actor->yaw : actor->yaw + 180.0f);
-        other = bundle_spawn_f32(0x21, sp54);
+        other = bundle_spawn_f32(BUNDLE_21__ICECUBE_B, sp54);
         other->unkF4_8 = 1; //don't spawn more
         other->scale = randf2(0.5f, 0.6f)*actor->scale;
         actor->yaw = randi2(0, 359);
