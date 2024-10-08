@@ -46,7 +46,7 @@ void func_803016F0(void) {
 
 void fxairscore_free(s32 arg0, struct7s *arg1) {
     if (s_sprite != NULL) {
-        func_8033BD4C(s_sprite);
+        assetCache_free(s_sprite);
         s_sprite = NULL;
     }
     func_803016F0();

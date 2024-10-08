@@ -164,12 +164,14 @@ void func_8033B020(void *ptr){
 
     end_ptr = (struct21s *) vector_getEnd(D_80383CE0[0]);
     start_ptr = (struct21s *) vector_getBegin(D_80383CE0[0]);
-    for(iPtr = start_ptr; iPtr < end_ptr && ptr != iPtr->unk1; iPtr++);
+
+    for (iPtr = start_ptr; iPtr < end_ptr && ptr != iPtr->unk1; iPtr++);
+
     if (iPtr < end_ptr) {
         iPtr->unk0++;
     }
-    else{
-        iPtr = (struct21s *)vector_pushBackNew(&D_80383CE0[0]);
+    else {
+        iPtr = (struct21s *) vector_pushBackNew(&D_80383CE0[0]);
         iPtr->unk0 = 1;
         iPtr->unk1 = ptr;
     }
@@ -463,7 +465,7 @@ void func_8033BD20(BKModelBin **arg0){
     *arg0 = NULL;
 }
 
-void func_8033BD4C(void *arg0){
+void assetCache_free(void *arg0){
     func_8033B020(arg0);
 }
 

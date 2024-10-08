@@ -308,7 +308,7 @@ void fxcommon2score_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **m
 
 void fxcommon2score_free(enum item_e item_id, struct8s *arg1){
     if(arg1->unk50){
-        func_8033BD4C(arg1->unk50); //assetCache_free
+        assetCache_free(arg1->unk50); //assetCache_free
         arg1->unk50 = NULL;
     }
 }
