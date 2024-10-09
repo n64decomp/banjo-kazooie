@@ -102,8 +102,8 @@ void fxlifescore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mtx,
                 sp104 = sp104 + 4;
             }
 
-            var_s5 = (40.0f - ((f32) framebuffer_width / 2)) + spE0;
-            var_s4 = (((((f32) framebuffer_height / 2) - func_802FB0E4(arg1)) - -16.0f) - spDC);
+            var_s5 = (40.0f - ((f32) gFramebufferWidth / 2)) + spE0;
+            var_s4 = (((((f32) gFramebufferHeight / 2) - func_802FB0E4(arg1)) - -16.0f) - spDC);
             for(var_v1 = 0; var_v1 < 2; var_v1++){
                 for(var_v0 = 0; var_v0 < 2; var_v0++){
                         (*vtx)->v.ob[0] = (s16) (s32) (((((f32) spF0 * D_80381EB8 * (f32) var_v0) - (((f32) spE8 * D_80381EB8) / 2)) + var_s5) * 4.0f);

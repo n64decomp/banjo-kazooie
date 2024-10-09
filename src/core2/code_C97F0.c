@@ -136,14 +136,14 @@ void func_80350818(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         sp9C[2] = temp_s1->unk4[2];
         ml_vec3f_yaw_rotate_copy(sp9C, sp9C, -spD0[1]);
         ml_vec3f_pitch_rotate_copy(sp9C, sp9C, -spD0[0]);
-        if (!(((1.2 * (f32)framebuffer_width) / 2) < sp9C[0]) && !(sp9C[0] < ((-1.2 * (f32)framebuffer_width) / 2))) {
-            if (!(((1.2 * (f32)framebuffer_height) / 2) < sp9C[1]) && !(sp9C[1] < ((-1.2 * (f32)framebuffer_height) / 2))) {
+        if (!(((1.2 * (f32)gFramebufferWidth) / 2) < sp9C[0]) && !(sp9C[0] < ((-1.2 * (f32)gFramebufferWidth) / 2))) {
+            if (!(((1.2 * (f32)gFramebufferHeight) / 2) < sp9C[1]) && !(sp9C[1] < ((-1.2 * (f32)gFramebufferHeight) / 2))) {
                 sp90[0] = -sp9C[0];
                 sp90[1] = -sp9C[1];
                 sp90[2] =  sp9C[2];
                 ml_vec3f_pitch_rotate_copy(sp90, sp90, spD0[0]);
                 ml_vec3f_yaw_rotate_copy(sp90, sp90, spD0[1]);
-                var_f22 = 1.0f - (((sp9C[0] * sp9C[0]) + (sp9C[1] * sp9C[1])) / ((f32)framebuffer_height * (f32)framebuffer_height));
+                var_f22 = 1.0f - (((sp9C[0] * sp9C[0]) + (sp9C[1] * sp9C[1])) / ((f32)gFramebufferHeight * (f32)gFramebufferHeight));
                 if (var_f22 < 0.0f) {
                     var_f22 = 0.0f;
                 }
@@ -181,7 +181,7 @@ void func_80350BFC(void) {
     if (D_80386170.unk4 != NULL) {
         D_80386170.unk0 = func_80350780(D_80386170.unk4->unk10);
         D_80386170.unk8 = assetcache_get(0x882);
-        ml_vec3f_set_length(D_80386170.unk4->unk4, (2*(f32)framebuffer_width) / 2);
+        ml_vec3f_set_length(D_80386170.unk4->unk4, (2*(f32)gFramebufferWidth) / 2);
         D_8038617C.unk0 = 1;
         D_8038617C.unk1 = 0;
     }

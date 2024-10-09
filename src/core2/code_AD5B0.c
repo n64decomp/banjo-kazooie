@@ -31,7 +31,7 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     f32 sp40;
 
     if (D_803835E0 == 0) {
-        drawRectangle2D(gdl, 0, 0, framebuffer_width, framebuffer_height, 0, 0, 0);
+        drawRectangle2D(gdl, 0, 0, gFramebufferWidth, gFramebufferHeight, 0, 0, 0);
         func_802BBD2C(&sp44, &sp40);
         viewport_setNearAndFar(sp44, sp40);
         viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);

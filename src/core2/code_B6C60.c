@@ -21,7 +21,7 @@ void func_8033DC18(void){}
 
 f32 func_8033DC20(void){
     f32 out;
-    D_80384470 = func_8024BD94();
+    D_80384470 = viMgr_func_8024BD94();
     out = 0.016666666666666666*D_80384470;
     return out;
 }

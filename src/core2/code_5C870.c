@@ -301,7 +301,7 @@ void game_draw(s32 arg0){
 
     if(D_8037E8E0.unkC == 0){
         sp2C = gfx;
-        func_8024C1DC();
+        viMgr_func_8024C1DC();
         func_80253EC4(gfx_start, sp2C);
 
         if(arg0) {
@@ -365,7 +365,7 @@ void func_802E4170(void){
     timedFuncQueue_free();
     func_802F9C48();
     modelRender_free();
-    dummy_func_80253420();
+    depthBuffer_stub();
     func_802E398C(0);
     func_8030AFD8(0);
     func_80321854();

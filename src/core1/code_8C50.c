@@ -219,7 +219,7 @@ void func_80246C2C(void){
     if((D_8027FC14 << 1) < 0){
         osDpSetStatus(DPC_SET_FREEZE);
         D_80280688 = osViGetCurrentFramebuffer();
-        func_8024BFAC();
+        viMgr_func_8024BFAC();
     }
     D_8027FC14 = D_8027FC18 = 2;
     D_80275998 = 0;
@@ -474,7 +474,7 @@ void func_80247560(void){
     osSetEventMesg(OS_EVENT_SP, &D_8027FB60, CORE1_8C50_EVENT_SP);
     osSetEventMesg(OS_EVENT_FAULT, &D_8027FB60, CORE1_8C50_EVENT_FAULT);
     osSetEventMesg(OS_EVENT_PRENMI, &D_8027FB60, CORE1_8C50_EVENT_PRENMI);
-    func_8024BDAC(&D_8027FB60, 5);
+    viMgr_func_8024BDAC(&D_8027FB60, 5);
     D_8027FC0C = 0;
     D_8027FC10 = 0;
     D_8027FC14 = D_8027FC18 = 2;

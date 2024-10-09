@@ -6,7 +6,6 @@
 #include "ml/mtx.h"
 
 
-extern s16 D_803A5D00[2][0xF660];
 
 
 extern f32 func_80257680(f32, f32, f32);
@@ -87,23 +86,23 @@ void func_802F1FC0(Struct65s *self, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     mlMtx_apply_vec3f(spD0, spD0);
     spD0[0] = (-297.0f * spD0[0]) / spD0[2];
     spD0[1] = (297.0f * spD0[1]) / spD0[2];
-    spC4 = (s32) (spD0[0] + (f32) (framebuffer_width / 2));
-    spC0 = (s32) (spD0[1] + (f32) (framebuffer_height / 2));
+    spC4 = (s32) (spD0[0] + (f32) (gFramebufferWidth / 2));
+    spC0 = (s32) (spD0[1] + (f32) (gFramebufferHeight / 2));
     if (spC4 < 0) {
         spC4 = 0;
-    } else if (framebuffer_width - 0x20 < spC4) {
-        spC4 = framebuffer_width - 0x20;
+    } else if (gFramebufferWidth - 0x20 < spC4) {
+        spC4 = gFramebufferWidth - 0x20;
     }
     if (spC0 < 0) {
         spC0 = 0;
-    } else if (framebuffer_height - 0x20 < spC0) {
-        spC0 = framebuffer_height - 0x20;
+    } else if (gFramebufferHeight - 0x20 < spC0) {
+        spC0 = gFramebufferHeight - 0x20;
     }
     
     gSPDisplayList((*gfx)++, D_80368AC0);
     func_80347FC0(gfx, D_80368AB0[1].unk0, 0, 0, 0, 0, 0, NULL, NULL, &width, &height);
-    temp_addr = &D_803A5D00[func_8024BD80()][spC0*framebuffer_width + (spC4 & 0xFFFC)];
-    gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, temp_addr);
+    temp_addr = &gFramebuffers[getOtherFramebuffer()][spC0*gFramebufferWidth + (spC4 & 0xFFFC)];
+    gDPSetTextureImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, temp_addr);
     gDPSetTile((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 9, 0x0080, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOLOD);
     gDPLoadSync((*gfx)++);
     gDPLoadTile((*gfx)++, G_TX_LOADTILE, 0, 0, 0x008C, 0x007C);

@@ -164,7 +164,7 @@ segments:
   - [0xF22F80, c, code_9D30]                  #DONE
   - [0xF23E00, c, code_ABB0]                  #DONE
   - [0xF260B0, c, code_CE60]                  #DONE
-  - [0xF275B0, c, code_E360]                  #DONE
+  - [0xF275B0, c, vimgr]                  #DONE
   - [0xF27D40, c, viewport]                  #DONE
   - [0xF29C50, c,pfsmanager]    
   - [0xF2AD10, c, code_11AC0]                 #DONE
@@ -376,7 +376,7 @@ segments:
   - [0xF51280, .data, code_9D30]
   - [0xF51430, .data, code_ABB0]
   - [0xF51440, .data, code_CE60]
-  - [0xF514B0, .data, code_E360]
+  - [0xF514B0, .data, vimgr]
   - [0xF51550, .data, viewport]
   - [0xF51560, .data, pfsmanager]
   - [0xF51570, .data, code_11AC0]
@@ -466,7 +466,7 @@ segments:
   - [0xF55960, .bss, code_8C50]
   - [0xF55960, .bss, code_ABB0]
   - [0xF55960, .bss, code_CE60]
-  - [0xF55960, .bss, code_E360]
+  - [0xF55960, .bss, vimgr]
   - [0xF55960, .bss, viewport]
   - [0xF55960, .bss, pfsmanager]
   - [0xF55960, .bss, code_11AC0]

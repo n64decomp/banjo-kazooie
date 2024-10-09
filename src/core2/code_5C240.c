@@ -11,10 +11,6 @@ extern void func_8033DC18(void);
 extern f32  func_8033DC20(void);
 extern void func_8033DC9C(f32);
 
-extern s32 framebuffer_width; //framebuffer_width
-extern s32 framebuffer_height; //framebuffer_height
-extern s16 D_803A5D00[2][0xF660]; //framebuffer
-
 /* .bss */
 struct {
     f32 unk0;
@@ -35,7 +31,7 @@ void func_802E31D0(s32 arg0) {
     if ((temp_v0 == 0) || (temp_v0 == 3)) {
         func_8024A85C(arg0);
         func_80249DE0(0, 0, D_8037E8C0.unkC, 0, 0);
-        osWritebackDCache(D_803A5D00[arg0], (s32) ((f32) framebuffer_width * (f32) framebuffer_height * sizeof(s16)));
+        osWritebackDCache(gFramebuffers[arg0], (s32) ((f32) gFramebufferWidth * (f32) gFramebufferHeight * sizeof(s16)));
     }
 }
 
@@ -53,14 +49,14 @@ void func_802E329C(s32 arg0, Gfx **gfx_begin, Gfx **gfx_end) {
     vtx_start = vtx;
     scissorBox_SetForGameMode(&gfx, arg0);
     if (D_8037E8C0.unk14 == 2) {
-        drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
+        drawRectangle2D(&gfx, 0, 0, (s32) (f32) gFramebufferWidth, (s32) (f32) gFramebufferHeight, 0, 0, 0);
     }
     if ((D_8037E8C0.unk14 == 0) || (D_8037E8C0.unk14 == 3)) {
         viewport_setRenderViewportAndPerspectiveMatrix(&gfx, &mtx);
         gcbound_draw(&gfx);
     }
     if (D_8037E8C0.unk14 == 1) {
-        drawRectangle2D(&gfx, 0, 0, (s32) (f32) framebuffer_width, (s32) (f32) framebuffer_height, 0, 0, 0);
+        drawRectangle2D(&gfx, 0, 0, (s32) (f32) gFramebufferWidth, (s32) (f32) gFramebufferHeight, 0, 0, 0);
         viewport_setRenderViewportAndPerspectiveMatrix(&gfx, &mtx);
         func_802F1858(D_8037E8C0.unk10, &gfx, &mtx, &vtx);
     }
@@ -95,11 +91,11 @@ void func_802E3524(s32 arg0) {
     Gfx *gfx_begin;
     Gfx *gfx_end;
 
-    func_802E31D0(func_8024BD80());
-    func_802E329C(func_8024BD80(), &gfx_begin, &gfx_end);
+    func_802E31D0(getOtherFramebuffer());
+    func_802E329C(getOtherFramebuffer(), &gfx_begin, &gfx_end);
     func_80253EA4(gfx_begin, gfx_end);
     func_80254008();
-    func_8024C1B4();
+    viMgr_func_8024C1B4();
 }
 
 void func_802E3580(void) {
@@ -107,8 +103,8 @@ void func_802E3580(void) {
     func_802F1884(D_8037E8C0.unk10);
     func_802E5F68();
     comusicPlayer_free();
-    dummy_func_80253420();
-    func_8024BF94(2);
+    depthBuffer_stub();
+    viMgr_func_8024BF94(2);
 }
 
 void dummy_func_802E35D0(void){}

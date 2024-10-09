@@ -11,7 +11,6 @@ typedef struct{
 
 extern struct49s D_803FFE10[];
 
-extern u8  D_8000E800;
 extern u8  D_8002D500;
 extern u32 D_8027BF2C;
 extern u32 D_8027BF30;

@@ -7,7 +7,6 @@
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
 extern void func_80253208(Gfx **gdl, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
 
-extern s16 D_803A5D00[2][0xF660];
 extern f32 func_802FB0E4(struct8s*);
 
 typedef struct {
@@ -210,7 +209,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         if(a1->unk6C == 0.0f){
             a1->unk6C = 1.1*(vtxList_getGlobalNorm(model_getVtxList(a1->model)) * a1->unk3C);
         }
-        func_80253208(gfx, a1->unk30 - a1->unk6C, sp40 - a1->unk6C, 2*a1->unk6C, 2*a1->unk6C, D_803A5D00[getActiveFramebuffer()]);
+        func_80253208(gfx, a1->unk30 - a1->unk6C, sp40 - a1->unk6C, 2*a1->unk6C, 2*a1->unk6C, gFramebuffers[getActiveFramebuffer()]);
         if(a1->anim_ctrl != NULL){
             animctrl_drawSetup(a1->anim_ctrl, sp5C, 1);
         }

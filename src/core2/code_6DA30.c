@@ -740,8 +740,8 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx *
 
             temp_f24 = (sp214->x - 1.0);
             spD0 = sp214->y - 1.0;
-            temp_f26 = (f64) sp200 - (f32) framebuffer_width * 0.5;
-            spC0 = (f64)f28 - (f32)framebuffer_height*0.5 -0.5f;
+            temp_f26 = (f64) sp200 - (f32) gFramebufferWidth * 0.5;
+            spC0 = (f64)f28 - (f32)gFramebufferHeight*0.5 -0.5f;
             gSPVertex((*gfx)++, *vtx, 4, 0);
             for(iy = 0.0f; iy < 2.0; iy+= 1.0){
                 for(ix = 0.0f; ix < 2.0; ix += 1.0){

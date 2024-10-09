@@ -1,8 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-
-extern u8 D_803A5D00[2][0x1ecc0];
 
 
 #define TILE_SIZE 32
@@ -91,7 +90,7 @@ void func_8030C27C(void){
 
 void func_8030C2D4(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     scissorBox_setDefault();
-    func_80253640(gdl, D_803A5D00[getActiveFramebuffer()]);
+    func_80253640(gdl, gFramebuffers[getActiveFramebuffer()]);
 }
 
 // Draws a 160x128 image pointed to by D_80382450 into the center of the screen

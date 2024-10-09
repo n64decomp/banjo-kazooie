@@ -8,7 +8,6 @@
 #define	ABS(d)		((d) >= 0) ? (d) : -(d)
 #endif
 
-extern s16 D_803A5D00[2][0xF660]; //framebuffer
 extern u8 D_8037DCC8; //bottles bonus flags???
 
 
@@ -156,7 +155,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     func_80253208(gfx, 
         (s32)(D_8037E5C0.unk18[0]  - sp3C/2), (s32)(D_8037E5C0.unk18[1] - sp3C/2),
         (s32)sp3C, (s32)sp3C,
-        D_803A5D00[getActiveFramebuffer()]
+        gFramebuffers[getActiveFramebuffer()]
     );
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, marker_loadModelBin(chBottlesBonusCursorMarker));
     viewport_func_8024E030(this->position, D_8037E5C0.unk10);

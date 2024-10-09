@@ -36,8 +36,6 @@ static u64 sDebugVar_8027BEF0; // never used
 
 extern u8 core2_TEXT_START[];
 
-extern u16 D_803A5D00[2][0x1ECC0/2];
-
 void func_8023DA20(s32 arg0){ 
     bzero(&D_8027A130, core2_TEXT_START - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
@@ -53,7 +51,7 @@ void func_8023DA74(void){
 
 void func_8023DA9C(s32 arg0){
     func_80254008();
-    func_8024C428();
+    viMgr_clearFramebuffers();
     if (D_8027A130 == 4){
         func_802E3580();
     }
@@ -108,7 +106,7 @@ void core1_init(void) {
     ucode_load();
     setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table
-    func_8024BE30();
+    viMgr_init();
     overlayManagerloadCore2();
     sDebugVar_8027BEF0 = sDebugVar_8027A538;
     heap_init();
@@ -183,7 +181,7 @@ void mainLoop(void){
     ){
         s32 offset;
         //render weird CRC failure image
-        for(y= 0x1e; y < framebuffer_height - 0x1e; y++){//L8023DEB4
+        for(y= 0x1e; y < gFramebufferHeight - 0x1e; y++){//L8023DEB4
             for(x = 0x14; x < 0xeb; x++){
                 tmp = ((8 * globalTimer_getTime()) + ((x*x) + (y*y)));
                 
@@ -194,9 +192,9 @@ void mainLoop(void){
                 
                 rgba = b | r | g | a;
                 
-                offset = ((framebuffer_width - 0xFF) / 2) + x + (y*framebuffer_width);
-                D_803A5D00[0][offset] = (s32) rgba;
-                D_803A5D00[1][offset] = (s32) rgba;
+                offset = ((gFramebufferWidth - 0xFF) / 2) + x + (y*gFramebufferWidth);
+                gFramebuffers[0][offset] = (s32) rgba;
+                gFramebuffers[1][offset] = (s32) rgba;
             }
         }
     }//L8023DF70

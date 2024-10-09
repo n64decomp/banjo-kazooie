@@ -6,9 +6,6 @@
 #include "version.h"
 
 #if VERSION == VERSION_USA_1_0
-extern u16 D_803A5D00[2][0xF660]; //framebuffer
-extern s32 framebuffer_width; //framebuffer width
-extern s32 framebuffer_height; //framebuffer height
 
 /* .data */
 u8 D_80275A50[8][3] = {
@@ -96,11 +93,11 @@ void func_80247750(s32 r, s32 g, s32 b){
 
 void func_8024776C(s32 x, s32 y) {
     s32 rgba16;
-    if( ((x >= 0) && (x < framebuffer_width))
-        && ((y >= 0) && (y < framebuffer_height))
+    if( ((x >= 0) && (x < gFramebufferWidth))
+        && ((y >= 0) && (y < gFramebufferHeight))
     ) {
-        D_803A5D00[0][x + y*framebuffer_width] = _SHIFTL(D_80275A68 >> 3, 11, 5) | _SHIFTL(D_80275A6C >> 3, 6, 5) | _SHIFTL(D_80275A70 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
-        D_803A5D00[1][x + y*framebuffer_width] = _SHIFTL(D_80275A68 >> 3, 11, 5) | _SHIFTL(D_80275A6C >> 3, 6, 5) | _SHIFTL(D_80275A70 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
+        gFramebuffers[0][x + y*gFramebufferWidth] = _SHIFTL(D_80275A68 >> 3, 11, 5) | _SHIFTL(D_80275A6C >> 3, 6, 5) | _SHIFTL(D_80275A70 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
+        gFramebuffers[1][x + y*gFramebufferWidth] = _SHIFTL(D_80275A68 >> 3, 11, 5) | _SHIFTL(D_80275A6C >> 3, 6, 5) | _SHIFTL(D_80275A70 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
         
     }
 }
@@ -120,7 +117,7 @@ void func_80247818(s32 x, s32 y, s32 w, s32 h) {
 
 void func_802478C0(s32 r, s32 g, s32 b) {
     func_80247750(r, g, b);
-    func_80247818((framebuffer_width - 128) / 2, (framebuffer_height - 100) / 2, 128, 100);
+    func_80247818((gFramebufferWidth - 128) / 2, (gFramebufferHeight - 100) / 2, 128, 100);
 }
 
 void func_8024792C(void){}
@@ -207,9 +204,9 @@ void func_80247C20(void) {
     }
 
     if (D_80275BE0) {
-        for(i = 0; i < framebuffer_width * framebuffer_height; i++){
-                D_803A5D00[0][i] = 0;
-                D_803A5D00[1][i] = 0;
+        for(i = 0; i < gFramebufferWidth * gFramebufferHeight; i++){
+                gFramebuffers[0][i] = 0;
+                gFramebuffers[1][i] = 0;
         }
         osWriteBackDCacheAll();
     }

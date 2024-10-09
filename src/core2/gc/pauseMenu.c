@@ -1373,7 +1373,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
 
     gcpausemenu_drawSprite(gfx, mtx, vtx, D_80383010.joystick_sprite, D_80383010.joystick_frame, 30.0f, 196.0f, 1, (s32) D_80383010.left_joystick_alpha);
-    gcpausemenu_drawSprite(gfx, mtx, vtx, D_80383010.joystick_sprite, D_80383010.joystick_frame, (f32)(framebuffer_width - 0x1E), 196.0f, 0, (s32) D_80383010.right_joystick_alpha);
+    gcpausemenu_drawSprite(gfx, mtx, vtx, D_80383010.joystick_sprite, D_80383010.joystick_frame, (f32)(gFramebufferWidth - 0x1E), 196.0f, 0, (s32) D_80383010.right_joystick_alpha);
     var_a0 = ((*((u32 * ) & D_80383010.state) << 0x1c) >> 0x1f); //left_joystick_visible
     if (var_a0 != 0) {
         if (D_80383010.left_joystick_alpha < 0xFF) {
@@ -1396,7 +1396,7 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             D_80383010.right_joystick_alpha = (D_80383010.right_joystick_alpha - 0xC > 0) ? D_80383010.right_joystick_alpha - 0xC : 0;
         }
     }
-    gcpausemenu_drawSprite(gfx, mtx, vtx, D_80383010.b_button_sprite, (s32) D_80383010.b_button_frame, framebuffer_width * 0.5, 196.0f, 0, (s32) D_80383010.b_button_alpha);
+    gcpausemenu_drawSprite(gfx, mtx, vtx, D_80383010.b_button_sprite, (s32) D_80383010.b_button_frame, gFramebufferWidth * 0.5, 196.0f, 0, (s32) D_80383010.b_button_alpha);
     var_a0 = ((*((u32 * ) & D_80383010.state) << 0x1e) >> 0x1f);//b_button_visible
     if (var_a0 != 0) {
         if (D_80383010.b_button_alpha < 0xFF) {

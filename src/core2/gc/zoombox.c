@@ -861,7 +861,7 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BK
     }
     sp2C[1] = this->unk172 + ((f32) arg4 * this->unk198);
     sp2C[2] = -10.0f;
-    func_80252330((sp2C[0] * 4.0f) - ((f32)framebuffer_width * 2), ((f32)framebuffer_height * 2) - (sp2C[1] * 4.0f), sp2C[2]);
+    func_80252330((sp2C[0] * 4.0f) - ((f32)gFramebufferWidth * 2), ((f32)gFramebufferHeight * 2) - (sp2C[1] * 4.0f), sp2C[2]);
     temp_f12 = (f32) ((f64) this->unk198 * 0.8);
     mlMtxScale_xyz(temp_f12, temp_f12, 1.0f);
     mlMtxApply(*mtx);
@@ -1402,8 +1402,8 @@ GcZoombox *gczoombox_new(s32 y, GcZoomboxSprite portrait_id, s32 arg2, s32 arg3,
     this->unk1A4_24 = arg3;
     if(this->unk1A4_24){
         this->unk16A = 45;
-        this->unk174 = framebuffer_width - 0x25;
-        this->unk170 = framebuffer_width + 0x66;
+        this->unk174 = gFramebufferWidth - 0x25;
+        this->unk170 = gFramebufferWidth + 0x66;
     }else{
         this->unk16A = 71;
         this->unk174 = 0x25;
@@ -1604,9 +1604,9 @@ void func_80318640(GcZoombox *this, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 
     if (this != NULL) {
         if (this->unk1A4_24) {
-            this->unk174 = framebuffer_width - arg1;
+            this->unk174 = gFramebufferWidth - arg1;
             this->unk16A = arg1 + (8.0f * arg2);
-            this->unk170 = (framebuffer_width - arg1) + 0x8B;
+            this->unk170 = (gFramebufferWidth - arg1) + 0x8B;
         } else {
             this->unk174 = arg1;
             phi_v0 = arg4 ? 0x28 : 0x22;

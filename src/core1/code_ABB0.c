@@ -21,11 +21,6 @@ void draw_prim_rect(s32 x, s32 y, s32 w, s32 h);
 void set_prim_color(s32 r, s32 g, s32 b);
 void func_8024A85C(s32 buffer_indx);
 
-
-extern u16 D_803A5D00[2][0xF660]; //framebuffer
-extern s32 framebuffer_width; //framebuffer width
-extern s32 framebuffer_height; //framebuffer height
-
 /* .bss */
 s32 D_802806E0;
 s32 D_802806E4;
@@ -51,7 +46,7 @@ void draw_sprite_ci4(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enable
     s32 color1;
     s32 color2;
     
-    framebuffer = D_803A5D00[D_802806EC];
+    framebuffer = gFramebuffers[D_802806EC];
     sprite_frame = spriteGetFramePtr(sprite, (u32) frame);
     if (!alpha_enabled){
         set_prim_color(0, 0, 0x80);
@@ -79,12 +74,12 @@ void draw_sprite_ci4(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enable
                 indx1 = ((*tmem) >> 4) & 0xF;
                 indx2 = *tmem & 0xF;
                 fb_x = (chunk->x + x) + ix;
-                if ((0 <= fb_x) && (fb_x < framebuffer_width))
+                if ((0 <= fb_x) && (fb_x < gFramebufferWidth))
                 {
                     fb_y = (chunk->y + y) + iy;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height))
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight))
                     {
-                        pxl_ptr = (framebuffer + fb_x) + (fb_y * framebuffer_width);
+                        pxl_ptr = (framebuffer + fb_x) + (fb_y * gFramebufferWidth);
                         color1 = palette[indx1];
                         if (color1 & 1) {
                           *pxl_ptr = color1;
@@ -127,7 +122,7 @@ void draw_sprite_ci8(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enable
     if (D_80275C00 == 0xA) {
         D_80275C00 = 0;
     }
-    framebuffer = D_803A5D00[D_802806EC];
+    framebuffer = gFramebuffers[D_802806EC];
     sprite_frame = spriteGetFramePtr(sprite, (u32) frame);
     if (!alpha_enabled){
         set_prim_color(0, 0, 0x80);
@@ -150,12 +145,12 @@ void draw_sprite_ci8(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enable
         for (iy = 0; iy < chunk->h; iy++){
             for (ix = 0; ix < chunk->w; ix++){
                 fb_x = (chunk->x + x) + ix;
-                if ((0 <= fb_x) && (fb_x < framebuffer_width))
+                if ((0 <= fb_x) && (fb_x < gFramebufferWidth))
                 {
                     fb_y = (chunk->y + y) + iy;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height))
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight))
                     {
-                        pxl_ptr = (framebuffer + fb_x) + (fb_y * framebuffer_width);
+                        pxl_ptr = (framebuffer + fb_x) + (fb_y * gFramebufferWidth);
                         if (palette[*tmem] & 1){
                             *pxl_ptr = palette[*tmem];
                         } 
@@ -193,7 +188,7 @@ void draw_sprite_rgba16(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_en
     u16 *pxl_ptr;
     u16 rgba;
 
-    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][0];
     sprite_ptr = spriteGetFramePtr(sprite, frame);
     if (!alpha_enabled) {
         set_prim_color(0, 0, 0x80);
@@ -206,10 +201,10 @@ void draw_sprite_rgba16(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_en
         for(txtr_y = 0; txtr_y < chunk_ptr->h; txtr_y++) {
             for(txtr_x = 0; txtr_x < chunk_ptr->w; txtr_x++) {
                 fb_x = chunk_ptr->x + x + txtr_x;
-                if ((fb_x >= 0) && (fb_x < framebuffer_width)) {
+                if ((fb_x >= 0) && (fb_x < gFramebufferWidth)) {
                     fb_y = chunk_ptr->y + y + txtr_y;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height)) {
-                        pxl_ptr = framebuffer_ptr + fb_x +  (fb_y * framebuffer_width);
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight)) {
+                        pxl_ptr = framebuffer_ptr + fb_x +  (fb_y * gFramebufferWidth);
                         rgba = *tmem;
                         if (rgba & 1) {
                             *pxl_ptr = rgba;
@@ -240,7 +235,7 @@ void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enable
     s32 txtr_x;
     u16 *fb_pxl_ptr;
 
-    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][0];
     frame_ptr = spriteGetFramePtr(sprite, frame);
     if (!aplha_enabled) {
         set_prim_color(0, 0, 0x80);
@@ -253,12 +248,12 @@ void draw_sprite_i4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enable
         for(txtr_y = 0; txtr_y < chunk_ptr->h; txtr_y++) {
             for(txtr_x = 0; txtr_x < chunk_ptr->w; txtr_x += 2) {
                 fb_x = chunk_ptr->x + x + txtr_x;
-                if ((fb_x >= 0) &&  (fb_x < framebuffer_width)) {
+                if ((fb_x >= 0) &&  (fb_x < gFramebufferWidth)) {
                     fb_y = chunk_ptr->y + y + txtr_y;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height)) {
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight)) {
                         p1 = (*tmem >> 4);
                         p2 = (*tmem & 0xF);
-                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * framebuffer_width);
+                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * gFramebufferWidth);
                         if (p1) {
                             *fb_pxl_ptr = (p1 << 0xC) | (p1 << 0x7) | (p1 << 0x2) | 1;
                         } else if (!aplha_enabled) {
@@ -297,7 +292,7 @@ void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabl
     s32 txtr_x;
     u16 *fb_pxl_ptr;
 
-    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][0];
     frame_ptr = spriteGetFramePtr(sprite, frame);
     if (!aplha_enabled) {
         set_prim_color(0, 0, 0x80);
@@ -310,10 +305,10 @@ void draw_sprite_ia4(s32 x, s32 y, BKSprite *sprite, s32 frame, bool aplha_enabl
         for(txtr_y = 0; txtr_y < chunk_ptr->h; txtr_y++) {
             for(txtr_x = 0; txtr_x < chunk_ptr->w; txtr_x += 2) {
                 fb_x = chunk_ptr->x + x + txtr_x;
-                if ((fb_x >= 0) &&  (fb_x < framebuffer_width)) {
+                if ((fb_x >= 0) &&  (fb_x < gFramebufferWidth)) {
                     fb_y = chunk_ptr->y + y + txtr_y;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height)) {
-                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * framebuffer_width);\
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight)) {
+                        fb_pxl_ptr = framebuffer_ptr + fb_x + (fb_y * gFramebufferWidth);\
                         p1 = (*tmem >> 4);
                         p2 = (*tmem & 0xF);
                         p1_i = p1 & 0xE;
@@ -352,7 +347,7 @@ void draw_sprite_i8(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled
     s32 i_chunk;
     s32 txtr_y;
 
-    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][0];
     frame_ptr = spriteGetFramePtr(sprite, frame);
     if (!alpha_enabled) {
         set_prim_color(0, 0, 0x80);
@@ -367,10 +362,10 @@ void draw_sprite_i8(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_enabled
             for(txtr_x = 0; txtr_x < chunk_ptr->w; txtr_x++){
                 fb_x = chunk_ptr->x + x + txtr_x;
                 if (fb_x >= 0) {
-                    if (fb_x < framebuffer_width) {
+                    if (fb_x < gFramebufferWidth) {
                         fb_y = chunk_ptr->y + y + txtr_y;
-                        if ((fb_y >= 0) && (fb_y < framebuffer_height)) {
-                            pixel_ptr = framebuffer_ptr + fb_x + fb_y * framebuffer_width;
+                        if ((fb_y >= 0) && (fb_y < gFramebufferHeight)) {
+                            pixel_ptr = framebuffer_ptr + fb_x + fb_y * gFramebufferWidth;
                             intensity = (s32) *txtr_ptr >> 3;
                             if (intensity != 0) {
                                 *pixel_ptr = (intensity << 0xB) | (intensity << 6) | (intensity << 1) | 1;
@@ -401,7 +396,7 @@ void draw_sprite_ia8(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_enabl
     s32 var_t3;
     u32 temp_a2;
 
-    framebuffer_ptr = &D_803A5D00[D_802806EC][0];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][0];
     sprite_frame = spriteGetFramePtr(sprite, frame);
     if (!alpha_enabled) {
         //draw blue rect over display area
@@ -415,10 +410,10 @@ void draw_sprite_ia8(s32 x, s32 y, BKSprite *sprite, s32 frame, bool alpha_enabl
         for(var_t3 = 0; var_t3 < chunk_ptr->h; var_t3++){
             for(var_a3 = 0; var_a3 < chunk_ptr->w; var_a3++) {
                 fb_x = chunk_ptr->x + x + var_a3;
-                if ((fb_x >= 0) && (fb_x < framebuffer_width)) {
+                if ((fb_x >= 0) && (fb_x < gFramebufferWidth)) {
                     fb_y = chunk_ptr->y + y + var_t3;
-                    if ((fb_y >= 0) && (fb_y < framebuffer_height)) {
-                        temp_a1 = framebuffer_ptr + fb_x + fb_y * framebuffer_width;
+                    if ((fb_y >= 0) && (fb_y < gFramebufferHeight)) {
+                        temp_a1 = framebuffer_ptr + fb_x + fb_y * gFramebufferWidth;
                         temp_a2 = *var_t2;
                         if (IA8_A(temp_a2)) {
                             *temp_a1 = I4_2_RGBA16(IA8_I(temp_a2), 1);
@@ -456,7 +451,7 @@ void draw_sprite_rgba32(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_ena
     s32 blue8;
 
 
-    framebuffer = &D_803A5D00[D_802806EC][0];
+    framebuffer = &gFramebuffers[D_802806EC][0];
     sprite_frame = spriteGetFramePtr(sprite, frame);
     if (!alpha_enabled) {
         set_prim_color(0, 0, 0x80);
@@ -478,13 +473,13 @@ void draw_sprite_rgba32(s32 x, s32 y, BKSprite *sprite, s32 frame, s32 alpha_ena
                 for (ix = 0; ix < chunk_ptr->w; ix++)
                 {
                     fb_x = (chunk_ptr->x + x) + ix;
-                    if ((fb_x >= 0) && (fb_x < framebuffer_width))
+                    if ((fb_x >= 0) && (fb_x < gFramebufferWidth))
                     {
                         fb_y = (chunk_ptr->y + y) + iy;
-                        if ((fb_y >= 0) && (fb_y < framebuffer_height))
+                        if ((fb_y >= 0) && (fb_y < gFramebufferHeight))
                         {
                             txtr_value = *tmem;
-                            pxl_ptr = (framebuffer + fb_x) + (fb_y * framebuffer_width);
+                            pxl_ptr = (framebuffer + fb_x) + (fb_y * gFramebufferWidth);
                             fb_value = (unsigned int) (*pxl_ptr);
                             alpha = _SHIFTR(txtr_value, 0, 8);
                             if (alpha) {//blend texture with existing pixel color
@@ -524,7 +519,7 @@ void draw_texture_ci4(s32 x, s32 y, void *tmem, s32 w, s32 h, bool alpha_enabled
 
     palette_ptr = (u16*)tmem;
     pixel_ptr = (u8*)&palette_ptr[0x10];
-    framebuffer_ptr = &D_803A5D00[D_802806EC][x  + y * framebuffer_width];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][x  + y * gFramebufferWidth];
     for(iy = 0; iy < h; iy++){
         for(ix = 0; ix < w; ix++){
             icolor = (ix & 1)? pixel_ptr[ix/2 + (iy*w)/2] & 0xF
@@ -532,7 +527,7 @@ void draw_texture_ci4(s32 x, s32 y, void *tmem, s32 w, s32 h, bool alpha_enabled
             *framebuffer_ptr = palette_ptr[icolor];
             framebuffer_ptr++;
         }
-        framebuffer_ptr += (framebuffer_width - w);
+        framebuffer_ptr += (gFramebufferWidth - w);
     }
 }
 
@@ -576,7 +571,7 @@ void func_80249DE0(s32 x, s32 y, s16 *arg2, s32 arg3, s32 arg4) {
         return;
     }
     //otherwise RGBA16
-    framebuffer_ptr = &D_803A5D00[D_802806EC][x + y*framebuffer_width];
+    framebuffer_ptr = &gFramebuffers[D_802806EC][x + y*gFramebufferWidth];
     for(iy = 0; iy < temp_v0->h; iy++){
         for(ix = 0; ix < temp_v0->w; ix++){
                 temp_v1 = *texture_ptr;
@@ -588,7 +583,7 @@ void func_80249DE0(s32 x, s32 y, s16 *arg2, s32 arg3, s32 arg4) {
                 texture_ptr++;
                 framebuffer_ptr++;
         }
-        framebuffer_ptr += (framebuffer_width - temp_v0->w);
+        framebuffer_ptr += (gFramebufferWidth - temp_v0->w);
     }
 }
 
@@ -601,7 +596,7 @@ void func_80249F34(s32 x, s32 y, Struct84s* maskList, s32 maskIndex, s32 mX, s32
 
     mask_texture = func_8033EFB0(maskList, maskIndex);
     mask_ptr = (u16*)(mask_texture + 1) + mX + mY * mask_texture->w;
-    color_ptr = &D_803A5D00[D_802806EC][x + y * framebuffer_width];
+    color_ptr = &gFramebuffers[D_802806EC][x + y * gFramebufferWidth];
     for(iy = 0; iy < mH; iy += mStride){
         for(ix = 0; ix < mW; ix++){
 
@@ -619,7 +614,7 @@ void func_80249F34(s32 x, s32 y, Struct84s* maskList, s32 maskIndex, s32 mX, s32
             mask_ptr++;
         }
         mask_ptr += ((mStride * mask_texture->w) - mW);
-        color_ptr += (framebuffer_width - mW);
+        color_ptr += (gFramebufferWidth - mW);
     }
 }
 
@@ -628,14 +623,14 @@ void func_8024A284(s32 x, s32 y, s32 arg2, s32 arg3, s32 horz_spacing, s32 vert_
     s32 var_s2;
     s32 var_s3;
 
-    for(var_s2 = 0; var_s2 < framebuffer_width; var_s2 += horz_spacing){
-        for(var_s3 = 0; var_s3 < framebuffer_height; var_s3++){
+    for(var_s2 = 0; var_s2 < gFramebufferWidth; var_s2 += horz_spacing){
+        for(var_s3 = 0; var_s3 < gFramebufferHeight; var_s3++){
             func_8024A3C8(x + var_s2, y + var_s3);
 
         }
     }
-    for(var_s3 = 0; var_s3 < framebuffer_height; var_s3 += vert_spacing) {
-        for(var_s2 = 0; var_s2 < framebuffer_width; var_s2++){
+    for(var_s3 = 0; var_s3 < gFramebufferHeight; var_s3 += vert_spacing) {
+        for(var_s2 = 0; var_s2 < gFramebufferWidth; var_s2++){
             func_8024A3C8(x + var_s2, y + var_s3);
         }
     }
@@ -646,8 +641,8 @@ void func_8024A3C8(s32 x, s32 y) {
     s32 temp_v0;
 
     if (x >= 0) {
-        if ((x < framebuffer_width) && (y >= 0) && (y < framebuffer_height)) {
-            D_803A5D00[D_802806EC][x + y * framebuffer_width] = _SHIFTL(D_802806E0 >> 3, 11, 5) | _SHIFTL(D_802806E4 >> 3, 6, 5) | _SHIFTL(D_802806E8 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
+        if ((x < gFramebufferWidth) && (y >= 0) && (y < gFramebufferHeight)) {
+            gFramebuffers[D_802806EC][x + y * gFramebufferWidth] = _SHIFTL(D_802806E0 >> 3, 11, 5) | _SHIFTL(D_802806E4 >> 3, 6, 5) | _SHIFTL(D_802806E8 >> 3, 1, 5) | _SHIFTL(1, 0, 1);
         }
     }
 }
@@ -688,8 +683,8 @@ void func_8024A564(s32 x, s32 y, u16 *arg2, s32 arg3, s32 arg4, f32 arg5, f32 ar
   s16 *var_t0;
   s16 *var_t2;
   var_v0 = 0;
-  var_v1 = framebuffer_width;
-  var_t0 = &D_803A5D00[D_802806EC][x + (y * framebuffer_width)];
+  var_v1 = gFramebufferWidth;
+  var_t0 = &gFramebuffers[D_802806EC][x + (y * gFramebufferWidth)];
   new_var = (s32) (((f64) (256.0f / (new_var3 = arg6))) + 0.5);
   new_var2 = (s32) (((f64) (256.0f / arg5)) + 0.5);
   for (var_t1 = (arg4 * arg6) + 0.5; var_t1 != 0; var_t1--)
@@ -704,7 +699,7 @@ void func_8024A564(s32 x, s32 y, u16 *arg2, s32 arg3, s32 arg4, f32 arg5, f32 ar
       var_t2++;
     }
 
-    var_t0 += framebuffer_width;
+    var_t0 += gFramebufferWidth;
     var_v0 += new_var;
   }
 
