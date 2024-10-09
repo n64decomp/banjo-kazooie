@@ -504,7 +504,6 @@ void actor_update_func_80326224(Actor *this);
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 [3], f32, f32);
 
-void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
 f32 climbGetBottomY(void);
 f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);

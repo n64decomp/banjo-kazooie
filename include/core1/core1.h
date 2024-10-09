@@ -17,10 +17,10 @@
 
 void mlMtx_apply_vec3f(f32[3], f32[3]);
 void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]);
+void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]);
 
 
-
-/* src/core1/code_15770.c */
+/* src/core1/depthbuffer.c */
 
 extern u8 D_8000E800;
 
