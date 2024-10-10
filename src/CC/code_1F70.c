@@ -382,7 +382,7 @@ void CC_func_80388F4C(void){
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 6, sp48);
             if(ml_distance_vec3f(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
-                func_8031D04C(0x21, 1);
+                func_8031D04C(MAP_21_CC_WITCH_SWITCH_ROOM, 1);
             }
         }//L80389260
 

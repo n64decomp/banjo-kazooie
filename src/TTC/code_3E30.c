@@ -196,7 +196,7 @@ static void __code3E30_initFloorTiles(void)
     for (i_ptr = sLetterFloorTiles; i_ptr->meshId != 0; i_ptr++)
     {
         i_ptr->state = 2;
-        i_ptr->time_delta_sum = 0.0f;
+        i_ptr->timeDeltaSum = 0.0f;
     }
 
     mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, FALSE);
@@ -207,9 +207,9 @@ static void __code3E30_meshCallbackFloorTileState_1(s32 arg0, BKVtxRef *ref, Vtx
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f2;
 
-    if (ptr->time_delta_sum < 0.5)
+    if (ptr->timeDeltaSum < 0.5)
     {
-        temp_f2 = (ptr->time_delta_sum / 0.5);
+        temp_f2 = (ptr->timeDeltaSum / 0.5);
         dst->v.cn[0] = (ref->v.v.cn[0] - 0xFF) * temp_f2 + 255.0f;
         dst->v.cn[1] = ref->v.v.cn[1] * temp_f2;
         dst->v.cn[2] = ref->v.v.cn[2] * temp_f2;
@@ -229,7 +229,7 @@ static void __code3E30_setLetterFloorTileState(LetterFloorTile *arg0, s32 arg1)
 
     temp_v0 = arg0->state;
     arg0->state = arg1;
-    arg0->time_delta_sum = 0.0f;
+    arg0->timeDeltaSum = 0.0f;
     if ((arg1 == 1) && (temp_v0 != arg1))
     {
         func_8025A6EC(COMUSIC_2C_BUZZER, 32000);
@@ -241,14 +241,14 @@ static void __code3E30_meshCallbackFloorTileState_3(s32 arg0, BKVtxRef *ref, Vtx
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f12;
 
-    if (ptr->time_delta_sum <= 0.5)
+    if (ptr->timeDeltaSum <= 0.5)
     {
-        temp_f12 = (ptr->time_delta_sum / 0.5);
+        temp_f12 = (ptr->timeDeltaSum / 0.5);
         dst->v.cn[0] = ref->v.v.cn[0] * (1.0f - temp_f12);
         dst->v.cn[1] = 0xFF;
         dst->v.cn[2] = ref->v.v.cn[2] * (1.0f - temp_f12);
     }
-    if (ptr->time_delta_sum >= 0.5)
+    if (ptr->timeDeltaSum >= 0.5)
     {
         ptr->state = 4;
     }
@@ -259,9 +259,9 @@ static void __code3E30_meshCallbackFloorTileState_5(s32 arg0, BKVtxRef *ref, Vtx
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f2;
 
-    if (ptr->time_delta_sum < 0.5)
+    if (ptr->timeDeltaSum < 0.5)
     {
-        temp_f2 = (ptr->time_delta_sum / 0.5);
+        temp_f2 = (ptr->timeDeltaSum / 0.5);
         dst->v.cn[0] = (ref->v.v.cn[0] - 0xFF) * temp_f2 + 255.0f;
         dst->v.cn[1] = (ref->v.v.cn[1] - 0xFF) * temp_f2 + 255.0f;
         dst->v.cn[2] = ref->v.v.cn[2] * temp_f2;
@@ -283,7 +283,7 @@ static void __code3E30_updateTimeDeltaSumForFloorTiles()
     time_delta = time_getDelta();
     for (floor_tile = sLetterFloorTiles; floor_tile->meshId != 0; floor_tile++)
     {
-        floor_tile->time_delta_sum += time_delta;
+        floor_tile->timeDeltaSum += time_delta;
         if (floor_tile->state == 1)
         {
             BKModel_transformMesh(sMapState.model1, floor_tile->meshId, __code3E30_meshCallbackFloorTileState_1, (s32)floor_tile);

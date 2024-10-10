@@ -25,11 +25,12 @@ extern ActorInfo gChTreasurehuntRedQuestionMark;
 extern ActorInfo gChTreasurehuntRedX;
 extern ActorInfo gChTreasure;
 
-void code26D0_genericUpdateFunc(Actor *this);
-void code26D0_palmTreeUpdateFunc(Actor *this);
-void code26D0_lighthouseAUpdateFunc(Actor *this);
-void func_802D3D54(Actor *this);
-void code26D0_sharkfoodIslandUpdateFunc(Actor *this);
+extern void func_802D3D54(Actor *this);
+
+static void __code26D0_genericUpdateFunc(Actor *this);
+static void __code26D0_palmTreeUpdateFunc(Actor *this);
+static void __code26D0_lighthouseAUpdateFunc(Actor *this);
+static void __code26D0_sharkfoodIslandUpdateFunc(Actor *this);
 
 /* .data */
 ActorInfo gBlubberShipTopHatch = {
@@ -49,47 +50,47 @@ ActorInfo gLighthouseDoor = {
 ActorInfo gSharkfoodIsland = {
     MARKER_167_SHARKFOOD_ISLAND, ACTOR_25C_SHARKFOOD_ISLAND, ASSET_50A_MODEL_SHARKFOOD_ISLAND,
     0x1, NULL, 
-    code26D0_sharkfoodIslandUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_sharkfoodIslandUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseA = {
     MARKER_267_LIGHTHOUSE_A, ACTOR_2E2_LIGHTHOUSE_A, ASSET_3BD_MODEL_LIGHTHOUSE_A,
     0x1, NULL, 
-    code26D0_lighthouseAUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_lighthouseAUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseB = {
     MARKER_26A_LIGHTHOUSE_B, ACTOR_2DF_LIGHTHOUSE_B, ASSET_3BE_MODEL_LIGHTHOUSE_B,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gStairs1 = {
     MARKER_268_STAIRS_1, ACTOR_2E0_TTC_STAIRS_1, ASSET_3B6_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gStairs2 = {
     MARKER_269_STAIRS_2, ACTOR_2E1_TTC_STAIRS_2, ASSET_3B7_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gPalmTree = {
     MARKER_1D5_PALM_TREE, ACTOR_31E_PALM_TREE, ASSET_3A9_MODEL_PALM_TREE,
     0x1, NULL, 
-    code26D0_palmTreeUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
+    __code26D0_palmTreeUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void TTC_resetSpawnableActors(void)
+void code26D0_resetSpawnableActorsForTTC(void)
 {
     spawnableActorList_add(&gBlubberShipTopHatch, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gLighthouseDoor, actor_new, ACTOR_FLAG_NONE);
@@ -112,14 +113,14 @@ void TTC_resetSpawnableActors(void)
     spawnableActorList_add(&gChClam, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_25);
 }
 
-void code26D0_genericUpdateFunc(Actor *this){
+static void __code26D0_genericUpdateFunc(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
     }
 }
 
-void code26D0_palmTreeUpdateFunc(Actor *this){
+static void __code26D0_palmTreeUpdateFunc(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
@@ -127,21 +128,21 @@ void code26D0_palmTreeUpdateFunc(Actor *this){
     }
 }
 
-void code26D0_spawnLighthouseB(s32 arg0){
+static void __code26D0_spawnLighthouseB(s32 arg0){
     ActorMarker *marker = reinterpret_cast(ActorMarker *, arg0);
     Actor *this = marker_getActor(marker);
     spawn_child_actor(ACTOR_2DF_LIGHTHOUSE_B, &this);
 }
 
-void code26D0_lighthouseAUpdateFunc(Actor *this){
-    code26D0_genericUpdateFunc(this);
+static void __code26D0_lighthouseAUpdateFunc(Actor *this){
+    __code26D0_genericUpdateFunc(this);
     if(!this->volatile_initialized){
-        __spawnQueue_add_1((GenFunction_1)code26D0_spawnLighthouseB, (s32)this->marker);
+        __spawnQueue_add_1((GenFunction_1)__code26D0_spawnLighthouseB, (s32)this->marker);
         this->volatile_initialized = TRUE;
     }
 }
 
-void code26D0_sharkfoodIslandUpdateFunc(Actor *this){
+static void __code26D0_sharkfoodIslandUpdateFunc(Actor *this){
     f32 player_position[3];
 
     if(!this->initialized){
@@ -160,7 +161,7 @@ void code26D0_sharkfoodIslandUpdateFunc(Actor *this){
         else{
             this->position_y = -1000.0f;
         }
-    }//L80388E7C
+    }
 
     if(this->position_y == 700.0f){
         player_getPosition(player_position);
