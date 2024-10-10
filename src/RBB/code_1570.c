@@ -38,7 +38,7 @@ ParticleScaleAndLifetimeRanges D_80390304 = {
 
 f32 D_8039032C[3] = {3700.0f, -300.0f, -300.0f};  
 f32 D_80390338[3] = {4500.0f, 100.0f, 400.0f}; 
-struct41s D_80390344= {
+ParticleSettingsVelocityAcceleration D_80390344= {
     {{-700.0f, 200.0f, -700.0f}, {700.0f, 500.0f, 700.0f}}, 
     {{ 0.0f, -800.0f, 0.0f}, { 0.0f, -800.0f, 0.0f}}
 };
@@ -149,8 +149,8 @@ void func_80387D80(void){
 
 void func_80387E20(void){
     ParticleEmitter *actor = partEmitMgr_newEmitter(0x19);
-    func_802EF9F8(actor, 0.6f);
-    func_802EFA18(actor, 3);
+    particleEmitter_func_802EF9F8(actor, 0.6f);
+    particleEmitter_func_802EFA18(actor, 3);
     particleEmitter_setModel(actor, 0x427);
     particleEmitter_setStartingScaleRange(actor, 0.05f, 0.4f);
     particleEmitter_setAngularVelocityRange(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -210,7 +210,7 @@ void func_803881E8(Actor *this, s32 arg1){
         func_80324E38(0.2f, 3);
         timed_setStaticCameraToNode(1.1f, 7);
         timedFunc_set_1(1.6f, (GenFunction_1)func_80388154, (s32)this->marker);
-        levelSpecificFlags_set(0x2D, 1);
+        levelSpecificFlags_set(LEVEL_FLAG_2D_RBB_UNKNOWN, TRUE);
     }
 }
 
@@ -223,12 +223,14 @@ void func_803882B4(ActorMarker *marker, s32 arg1){
 void RBB_func_803882F4(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        if(levelSpecificFlags_get(0x2d)){
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_2D_RBB_UNKNOWN)) {
             func_80387AC0();
             RBB_func_80387960(0.0f);
             func_80387B24();
             func_803881E8(this, 3);
-        }else{
+        }
+        else {
             marker_setCollisionScripts(this->marker, NULL, func_803882B4, NULL);
             func_8032AA58(this, 1.1f);
             func_803881E8(this, 1);

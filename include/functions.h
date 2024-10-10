@@ -203,19 +203,19 @@ void func_8030DA44(u8);
 
 void particleEmitter_emitInVolume(ParticleEmitter *, f32[3], f32[3], s32);
 ParticleEmitter *particleEmitter_new(u32 capacity);
-void particleEmitter_setParticleAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
-void func_802EF9F8(ParticleEmitter *, f32);
-void func_802EFA18(ParticleEmitter *, s32);
+void particleEmitter_setAccelerationRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_func_802EF9F8(ParticleEmitter *, f32);
+void particleEmitter_func_802EFA18(ParticleEmitter *, s32);
 void particleEmitter_setFade(ParticleEmitter *, f32, f32);
 void particleEmitter_setDrawMode(ParticleEmitter *, s32);
 void particleEmitter_setStartingFrameRange(ParticleEmitter *this, s32 arg1, s32 arg2);
 void particleEmitter_setParticleFramerateRange(ParticleEmitter *, f32, f32);
-void particleEmitter_setParticleSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
+void particleEmitter_setSpawnPositionRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void particleEmitter_setStartingScaleRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setFinalScaleRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setScaleAndLifetimeRanges(ParticleEmitter *, ParticleScaleAndLifetimeRanges *);
-void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, struct41s *);
-void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, struct42s *arg1);
+void particleEmitter_setVelocityAndAccelerationRanges(ParticleEmitter *, ParticleSettingsVelocityAcceleration *);
+void particleEmitter_setPositionAndVelocityRanges(ParticleEmitter *this, ParticleSettingsVelocityPosition *arg1);
 void particleEmitter_setAngularVelocityRange(ParticleEmitter *, f32, f32, f32, f32, f32, f32);
 void particleEmitter_setSpawnIntervalRange(ParticleEmitter *, f32, f32);
 void particleEmitter_setParticleLifeTimeRange(ParticleEmitter *, f32, f32);
@@ -391,7 +391,7 @@ void func_8030EBC8(enum sfx_e uid, f32 arg1, f32 arg2, s32 arg3, s32 arg4);
 void func_8030EC20(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, u32 arg4);
 u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
-void fileProgressFlag_setN(s32, s32, s32);
+void fileProgressFlag_setN(enum file_progress_e, s32, s32);
 Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
 Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -406,7 +406,7 @@ int  func_80328A2C(Actor *, f32, s32, f32);
 void subaddie_set_state(Actor *, u32);
 ActorMarker *func_8032B16C(enum jiggy_e jiggy_id);
 int  subaddie_maybe_set_state(Actor *, s32, f32);
-void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction);
+void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction);
 bool subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
 void func_80328FB0(Actor *, f32);
@@ -499,7 +499,7 @@ void actor_playAnimationOnce(Actor *);
 void actor_loopAnimation(Actor *);
 
 /* used in fight */
-void func_80326224(Actor *this);
+void actor_update_func_80326224(Actor *this);
 
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 [3], f32, f32);
@@ -526,7 +526,7 @@ extern void subaddie_set_state_forward(Actor *, s32);
 
 extern BKModelBin *marker_loadModelBin(ActorMarker *this);
 extern Struct70s *func_8034C2C4(ActorMarker *marker, s32 arg1);
-extern void func_80326310(Actor *this);
+extern void func_80326310(Actor *this); // actor_setBlendStateFadeOut ??
 extern ActorMarker *marker_init(s32 *pos, MarkerDrawFunc draw_func, int arg2, int marker_id, int arg4);
 extern s32 asset_getFlag(enum asset_e arg0);
 extern void spawnableActorList_add(ActorInfo *arg0, Actor *(*arg1)(s32[3], s32, ActorInfo *, u32), u32 arg2);
@@ -535,11 +535,11 @@ extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc metho
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
 extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
-extern s32  volatileFlag_get(s32);
-extern s32 volatileFlag_getN(s32 index, s32 numBits);
-extern s32 volatileFlag_getAndSet(s32 index, s32 arg1);
-extern void volatileFlag_set(s32 index, s32 set);
-extern void volatileFlag_setN(s32 startIndex, s32 set, s32 length);
+extern s32  volatileFlag_get(enum volatile_flags_e);
+extern s32 volatileFlag_getN(enum volatile_flags_e index, s32 numBits);
+extern s32 volatileFlag_getAndSet(enum volatile_flags_e index, s32 arg1);
+extern void volatileFlag_set(enum volatile_flags_e index, s32 set);
+extern void volatileFlag_setN(enum volatile_flags_e startIndex, s32 set, s32 length);
 
 extern void itemscore_noteScores_clear(void);
 extern s32 itemscore_noteScores_get(enum level_e lvl_id);

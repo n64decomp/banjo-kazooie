@@ -19,7 +19,7 @@ ParticleEmitter *func_802F3E98(f32 pos[3], enum asset_e sprite_id){
     this = func_802F0EF0(D_80380A80);
 
     particleEmitter_setSprite(this, sprite_id);
-    particleEmitter_setParticleAccelerationRange(this,
+    particleEmitter_setAccelerationRange(this,
         0.0f, -250.0f, 0.0f,
         0.0f, -250.0f, 0.0f
     );

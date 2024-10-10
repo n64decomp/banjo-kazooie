@@ -38,21 +38,21 @@ static s32 sChTreasurehunt_StepActors[6] = {
 ActorInfo gChTreasurehuntRedArrow = {
     MARKER_62_RED_ARROW, ACTOR_53_RED_ARROW, ASSET_3E9_MODEL_RED_ARROW, 
     0, NULL, 
-    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, actor_update_func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo gChTreasurehuntRedQuestionMark = {
     MARKER_63_RED_QUESTION_MARK, ACTOR_54_RED_QUESTION_MARK, ASSET_3EB_MODEL_RED_QUESTION_MARK, 
     0, NULL, 
-    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, actor_update_func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
 ActorInfo gChTreasurehuntRedX = {
     MARKER_64_RED_X, ACTOR_55_RED_X, ASSET_3EA_MODEL_RED_X, 
     0, NULL, 
-    __chTreasurehunt_updateFunc, func_80326224, __chTreasurehunt_animFunc,
+    __chTreasurehunt_updateFunc, actor_update_func_80326224, __chTreasurehunt_animFunc,
     0, 0x400, 0.0f, 0
 }; 
 
@@ -66,7 +66,7 @@ ParticleScaleAndLifetimeRanges CH_TREASUREHUNT_PARTICLE_SCALE_AND_LIFETIME_RANGE
     0.0f, 0.01f
 };
 
-struct42s CH_TREASUREHUNT_VELOCITY_RANGES = {
+ParticleSettingsVelocityPosition CH_TREASUREHUNT_VELOCITY_RANGES = {
     {{-230.0f, 30.0f, -230.0f}, {230.0f, 110.0f, 230.0f}},
     {{-60.0f, 0.0f, -60.0f}, {60.0f, 30.0f, 60.0f}},
 };

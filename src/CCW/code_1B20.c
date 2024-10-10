@@ -8,7 +8,7 @@ typedef struct{
     u8 unk3;
     s16 unk4;
     s16 unk6;
-    s16 unk8;
+    s16 unk8; // enum file_progress_e
     s16 unkA;
 }Struct_CCW_1B20_0;
 

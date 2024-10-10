@@ -32,7 +32,7 @@ void func_80351FE0(Struct_core2_CB050_0 *arg0, Struct68s *arg1) {
     arg0->unk28[0] = arg0->unk28[1] = arg0->unk28[2] = 0.0f;
     arg0->unk34[0] = arg0->unk34[1] = arg0->unk34[2] = 0.0f;
     arg0->unk40[0] = arg0->unk40[1] = arg0->unk40[2] = 0.0f;
-    func_8035179C(arg1, arg0->unk4C);
+    func_8035179C_copyPosition(arg1, arg0->unk4C);
     func_80351814(arg1, arg0->unk58);
     arg0->unk64 = 0.0f;
     arg0->unk6C = 0;

@@ -30,7 +30,7 @@ void func_80390000(s32 arg0){
     }//L803900AC
 
     if(GV_D_80391AD0 == 2){
-        levelSpecificFlags_set(6, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_6_GV_UNKNOWN, FALSE);
         func_803228D8();
         func_802E4078(MAP_15_GV_WATER_PYRAMID, 1, 0);
     }
@@ -40,7 +40,8 @@ void func_803900F8(void){}
 
 void func_80390100(void){
     GV_D_80391AD0 = 0;
-    if(levelSpecificFlags_get(6)){
+
+    if (levelSpecificFlags_get(LEVEL_FLAG_6_GV_UNKNOWN)) {
         func_80390000(1);
     }
 }

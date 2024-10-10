@@ -422,7 +422,7 @@ static void __code3E30_checkFloorTileForRegularCheatCode(LetterFloorTile *letter
                                 sMapState.banjoKazooieCodeEnteredState = 2;
                                 sMapState.unkC = 0.0f;
                                 mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, TRUE);
-                                fileProgressFlag_set(0xFA, TRUE);
+                                fileProgressFlag_set(FILEPROG_FA_UNKNOWN, TRUE);
                                 func_8030E2C4(sMapState.doorOpeningSfxSourceIdx);
                                 __code3E30_setupCheatCodeTimer(2);
                             }
@@ -506,8 +506,9 @@ void code3E30_overlayInit(void)
     void *sp2C;
     void *sp28;
 
-    if (map_get() == MAP_7_TTC_TREASURE_TROVE_COVE && levelSpecificFlags_get(0x2))
-    {
+    if( map_get() == MAP_7_TTC_TREASURE_TROVE_COVE
+        && levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)
+    ){
         sp2C = func_8034C5AC(0x12C);
         if (sp2C)
         {
@@ -523,8 +524,7 @@ void code3E30_overlayInit(void)
     {
         sp2C = func_8034C5AC(0x131);
         sp28 = func_8034C5AC(0x12C);
-        if (levelSpecificFlags_get(5))
-        {
+        if (levelSpecificFlags_get(LEVEL_FLAG_5_TTC_UNKNOWN)) {
             func_8034E71C(sp2C, -500, 10.0f);
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(0.0f, 1);
@@ -533,12 +533,10 @@ void code3E30_overlayInit(void)
             func_803228D8();
             timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
         }
-        else if (levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
-        {
+        else if (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             func_8034E71C(sp2C, -500, 0.0f);
         }
-        else
-        {
+        else {
             func_8034E71C(sp28, -500, 0.0f);
         } // L8038B1EC
 
@@ -608,7 +606,7 @@ void code3E30_overlayUpdate(void)
         }
         if ((sMapState.banjoKazooieCodeEnteredState == 0) || (sMapState.banjoKazooieCodeEnteredState == 3))
         {
-            if ((levelSpecificFlags_get(2) || volatileFlag_get(VOLATILE_FLAG_3)) && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) && func_8028F20C())
+            if ((levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_3)) && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) && func_8028F20C())
             {
                 mesh_id_closest_to_player = func_8033F3C0(sMapState.model1, player_position);
                 if (mesh_id_closest_to_player != 0)

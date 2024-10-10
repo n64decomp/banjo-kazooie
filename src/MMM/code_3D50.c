@@ -72,21 +72,21 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
     if (arg0 == 2) {
         func_80324E38(0.3f, 3);
         timed_setStaticCameraToNode(0.3f, 1);
-        timedFunc_set_2(0.3f, mapSpecificFlags_set, 3, 1);
+        timedFunc_set_2(0.3f, mapSpecificFlags_set, MMM_SPECIFIC_FLAG_3_UNKNOWN, TRUE);
         func_80324E38(3.0f, 0);
         timed_exitStaticCamera(3.0f);
         timedFunc_set_1(3.0f, func_8038A140, 3);
     }
     if (arg0 == 3) {
         if (MMM_D_8038C510.unk8 == 1) {
-            mapSpecificFlags_set(3, 1);
+            mapSpecificFlags_set(MMM_SPECIFIC_FLAG_3_UNKNOWN, 1);
         }
         item_set(ITEM_0_HOURGLASS_TIMER, 75*60 - 1);
         item_set(6, 1);
     }
     if (MMM_D_8038C510.unk8 == 3) {
         item_set(6, 0);
-        mapSpecificFlags_set(4, 1);
+        mapSpecificFlags_set(MMM_SPECIFIC_FLAG_4_UNKNOWN, 1);
     }
     if (arg0 == 4) {
         func_8028F66C(BS_INTR_F);
@@ -181,7 +181,7 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
     if(arg0->unk2 == 'X'){
         MMM_func_8038A54C(arg0, 1);
         player_getPosition(sp44);
-        func_8038AD10(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp38);
+        chTumblar_copyPosition(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp38);
         sp38[1] = sp44[1];
         func_8028F620(sp38, 300.0f, -1500.0f);
         return;
@@ -192,7 +192,7 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
             MMM_func_8038A54C(arg0, 3);
             if( iPtr->unk0[iPtr->unk4] == 0){
                 func_8038A140(5);
-                func_8038AF3C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10);
+                chTumblar_congratulate(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10);
                 func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
             }
             else{
@@ -249,13 +249,13 @@ void func_8038AA44(void){
     func_8038A750();
     if( MMM_D_8038C510.unk8 == 1
         && MMM_D_8038C510.unkC != NULL
-        && func_8038AD4C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
+        && chTumblar_isBanjoAbove(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
     ){
-        if(!levelSpecificFlags_get(0x2f)){
-            levelSpecificFlags_set(0x2f, TRUE);
+        if (!levelSpecificFlags_get(LEVEL_FLAG_2F_MMM_UNKNOWN)) {
+            levelSpecificFlags_set(LEVEL_FLAG_2F_MMM_UNKNOWN, TRUE);
             func_8038A140(2);
         }
-        else{
+        else {
             func_8038A140(3);
         }
     }
@@ -265,9 +265,9 @@ void func_8038AA44(void){
             func_8038A140(4);
         }
         else if( MMM_D_8038C510.unkC != NULL
-            && func_8038AD4C(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
+            && chTumblar_isBanjoAbove(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
         ){
-            func_8038AD10(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp28);
+            chTumblar_copyPosition(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10, sp28);
             tmp_v0 = func_8033F3C0(MMM_D_8038C510.unk0, sp28);
             if(tmp_v0){
                 sp24 = func_8038A26C(tmp_v0);
@@ -286,7 +286,7 @@ void func_8038AA44(void){
     }//L8038AB7C
 
     if( MMM_D_8038C510.unk8 == 5
-        && func_8038AD38(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
+        && chTumblar_isDisappeared(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10)
     ){
         func_8038A140(6);
     }

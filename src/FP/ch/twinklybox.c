@@ -19,7 +19,7 @@ ActorAnimationInfo D_803920C0[] ={
 
 ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
     0x1, D_803920C0,
-    func_8038D6C8, func_80326224, FP_func_8038CED0,
+    func_8038D6C8, actor_update_func_80326224, FP_func_8038CED0,
     0, 0, 0.0f, 0
 };
 
@@ -42,7 +42,7 @@ void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
         0.0f,  
         0.7f
     };
-    static struct43s D_80392134 = {
+    static ParticleSettingsVelocityAccelerationPosition D_80392134 = {
         {{-200.0f, 200.0f, -200.0f}, {200.0f, 400.0f, 200.0f}},
         {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
         {{-100.0f,    0.0f, -100.0f}, {100.0f,  100.0f, 100.0f}}
@@ -52,14 +52,14 @@ void func_8038CF54(f32 position[3], s32 count, enum asset_e model_id){
     pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392134);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80392134);
     particleEmitter_setAngularVelocityRange(pCtrl,
         100.0f, 100.0f, 100.0f,
         200.0f, 200.0f, 200.0f
     );
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8039210C);
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -73,7 +73,7 @@ void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
         0.01f
     };
     static s32 D_803921A4[3] = { 0xDC, 0xDC, 0xE6};
-    static struct43s D_803921B0 = {
+    static ParticleSettingsVelocityAccelerationPosition D_803921B0 = {
         {{-200.0f, 0.0f, -200.0f}, {200.0f, 200.0f, 200.0f}},
         {{  0.0f, -10.0f,   0.0f}, { 0.0f, -10.0f,  0.0f}},
         {{-50.0f,   0.0f, -50.0f}, {50.0f, 200.0f, 50.0f}}
@@ -85,7 +85,7 @@ void func_8038D01C(f32 position[3], s32 count, enum asset_e sprite_id){
     particleEmitter_setRGB(pCtrl, D_803921A4);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_803921B0);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_803921B0);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8039217C);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -99,7 +99,7 @@ void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
         0.0f, 0.3f
     };
 
-    static struct43s D_80392220 = {
+    static ParticleSettingsVelocityAccelerationPosition D_80392220 = {
         {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
         {{  0.0f, -800.0f,  0.0f}, { 0.0f, -800.0f,  0.0f}},
         {{-80.0f,  80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
@@ -109,14 +109,14 @@ void func_8038D0A8(f32 position[3], s32 count, enum asset_e model_id){
     pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392220);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80392220);
     particleEmitter_setAngularVelocityRange(pCtrl,
         200.0f, 200.0f, 200.0f,
         300.0f, 300.0f, 300.0f
     );
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_803921F8);
-    func_802EF9F8(pCtrl, 0.2f);
-    func_802EFA18(pCtrl, 2);
+    particleEmitter_func_802EF9F8(pCtrl, 0.2f);
+    particleEmitter_func_802EFA18(pCtrl, 2);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -129,7 +129,7 @@ void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
         0.0f,
         0.3f
     };
-    static struct43s D_80392290 = {
+    static ParticleSettingsVelocityAccelerationPosition D_80392290 = {
         {{-300.0f, 400.0f, -300.0f}, {300.0f, 800.0f, 300.0f}},
         {{  0.0f, -800.0f,   0.0f}, { 0.0f, -800.0f,  0.0f}},
         {{-80.0f,   80.0f, -80.0f}, {80.0f,   80.0f, 80.0f}}
@@ -139,10 +139,10 @@ void func_8038D170(f32 position[3], s32 count, enum asset_e sprite_id){
     pCtrl = partEmitMgr_newEmitter(count);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80392290);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80392290);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80392268);
-    func_802EF9F8(pCtrl, 0.2f);
-    func_802EFA18(pCtrl, 2);
+    particleEmitter_func_802EF9F8(pCtrl, 0.2f);
+    particleEmitter_func_802EFA18(pCtrl, 2);
     particleEmitter_emitN(pCtrl, count);
 }
 
@@ -155,7 +155,7 @@ void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
         0.0f, 0.01f
     };
     static s32 D_80392300[3] = { 0xDC, 0xDC, 0xE6};
-    static struct43s D_8039230C = {
+    static ParticleSettingsVelocityAccelerationPosition D_8039230C = {
         {{-100.0f, 0.0f, -100.0f}, {100.0f, 100.0f, 100.0f}},
         {{0.0f, -10.0f, 0.0f}, {0.0f, -10.0f, 0.0f}},
         {{-80.0f, 0.0f, -80.0f}, {50.0f, 200.0f, 80.0f}}
@@ -166,7 +166,7 @@ void func_8038D208(f32 position[3], s32 count, enum asset_e sprite_id){
     particleEmitter_setRGB(pCtrl, D_80392300);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8039230C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8039230C);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_803922D8);
     particleEmitter_emitN(pCtrl, count);
 }

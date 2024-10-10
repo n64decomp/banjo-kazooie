@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void spawnQueue_bundle_f32(s32, s32, s32, s32);
+extern Actor *spawnQueue_bundle_f32(s32, s32, s32, s32);
 extern f32 func_80257204(f32, f32, f32, f32);
 extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 
@@ -19,7 +19,7 @@ ActorAnimationInfo gChClamAnimations[4] = {
 ActorInfo gChClam = { 
     MARKER_15_CLAM, ACTOR_69_CLAM, ASSET_351_MODEL_CLAM,
     0x1, gChClamAnimations,
-    __chClam_updateFunc, func_80326224, actor_draw, 
+    __chClam_updateFunc, actor_update_func_80326224, actor_draw, 
     4500, 0x366, 1.6f, 0
 };
 
@@ -134,8 +134,8 @@ static bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
 
 static void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
-    func_802EF9F8(pCtrl, 0.7f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.7f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
@@ -145,7 +145,7 @@ static void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]
 }
 
 static void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
-    static struct41s D_8038C3F4 = {
+    static ParticleSettingsVelocityAcceleration D_8038C3F4 = {
         {{-50.0f,   750.0f, -50.0f}, {120.0f,   900.0f, 120.0f}},
         {{  0.0f, -1800.0f,   0.0f}, {  0.0f, -1800.0f,   0.0f}}
     };
@@ -161,7 +161,7 @@ static void __chClam_emitLargeShellParticles(f32 position[3], s32 count){
 }
 
 static void __chClam_emitEyeParticles(f32 position[3], s32 count){
-    static struct41s D_8038C424 = {
+    static ParticleSettingsVelocityAcceleration D_8038C424 = {
         {{-80.0f,   400.0f, -80.0f}, {160.0f,   860.0f, 160.0f}},
         {{  0.0f, -1400.0f,   0.0f}, {  0.0f, -1400.0f,   0.0f}}
     };
@@ -177,7 +177,7 @@ static void __chClam_emitEyeParticles(f32 position[3], s32 count){
 }
 
 static void __chClam_emitSmallShellParticles(f32 position[3], s32 count){
-    static struct41s D_8038C454 = {
+    static ParticleSettingsVelocityAcceleration D_8038C454 = {
         {{-200.0f,  850.0f, -200.0f}, {400.0f,  1000.0f, 400.0f}},
         {{  0.0f, -1800.0f,    0.0f}, {  0.0f, -1800.0f,   0.0f}}
     };
@@ -201,7 +201,7 @@ static void __chClam_emitEatencollectibleParticles(f32 position[3], enum asset_e
      0.0f,  0.5f
     };
 
-    static struct41s D_8038C4AC = {
+    static ParticleSettingsVelocityAcceleration D_8038C4AC = {
         {{-340.0f,   100.0f, -340.0f}, {340.0f,   250.0f, 340.0f}},
         {{   0.0f, -1200.0f,    0.0f}, {  0.0f, -1200.0f, 0.0f}}
     };
@@ -232,12 +232,12 @@ static void __chClam_takeDamage(ActorMarker *this_marker, ActorMarker *other_mar
     marker_despawn(this->marker);
 }
 
-static void __chClam_playerDropsItem(s32 index, enum item_e item_id){
+static void __chClam_playerDropsItem(enum bundle_e bundle_id, enum item_e item_id){
     f32 position[3];
 
     player_getPosition(position);
     bundle_setYaw(randf2(0.0f, 359.0f));
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, index, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
+    __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, bundle_id, reinterpret_cast(s32, position[0]), reinterpret_cast(s32, position[1]), reinterpret_cast(s32, position[2]));
     item_dec(item_id);
 }
 
@@ -249,11 +249,13 @@ static void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_ma
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN, TRUE);
     }
 
-    if(item_getCount(ITEM_D_EGGS) != 0)
-        __chClam_playerDropsItem(0xe, ITEM_D_EGGS);
+    if (item_getCount(ITEM_D_EGGS) != 0) {
+        __chClam_playerDropsItem(BUNDLE_E_YUMYUM_BLUE_EGG, ITEM_D_EGGS);
+    }
 
-    if(item_getCount(ITEM_F_RED_FEATHER) != 0)
-        __chClam_playerDropsItem(0xf, ITEM_F_RED_FEATHER);
+    if (item_getCount(ITEM_F_RED_FEATHER) != 0) {
+        __chClam_playerDropsItem(BUNDLE_F_YUMYUM_RED_FEATHER, ITEM_F_RED_FEATHER);
+    }
 }
 
 static void __chClam_updateFunc(Actor *this){

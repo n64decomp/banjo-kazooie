@@ -8,15 +8,15 @@ void func_802DAA14(Actor *this);
 ActorInfo D_80367E70= {
     0x21B, 0x351, 0, 
     0, NULL, 
-    func_802DAA14, func_80326224, func_80325340,
+    func_802DAA14, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 }; 
 //000E0F00
 
 /* .code */
 void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
-    s32 flag;
-    s32 tmp;
+    enum file_progress_e flag;
+    enum file_progress_e tmp;
     if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
         flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
@@ -32,9 +32,9 @@ void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_802DAA14(Actor *this){
-    s32 flag;
-    s32 tmp;
-    s32 text_id;
+    enum file_progress_e flag;
+    s32 tmp; // file_progress_e OR asset_e
+    enum asset_e text_id;
 
     if(volatileFlag_get(VOLATILE_FLAG_1) || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)){
         marker_despawn(this->marker);
@@ -69,13 +69,13 @@ void func_802DAA14(Actor *this){
 
     if(!this->has_met_before){
         if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
-            text_id = 0xadc;
+            text_id = ASSET_ADC_DIALOG_UNKNOWN;
         }
         else{
             if(map_get() == MAP_69_GL_MM_LOBBY)
-                tmp = 0xf66;
+                tmp = ASSET_F66_DIALOG_UNKNOWN;
             else
-                tmp = 0xf67;
+                tmp = ASSET_F67_DIALOG_UNKNOWN;
             text_id = tmp;
         }
         gcdialog_showText(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);

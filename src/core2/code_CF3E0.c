@@ -29,7 +29,7 @@ MapProgressFlagToDialogID fileProgressDialogMap[] = {
     { FILEPROG_BE_CHEATO_BLUEEGGS,                0xFA8},
     { FILEPROG_BF_CHEATO_REDFEATHERS,             0xFA9},
     { FILEPROG_C0_CHEATO_GOLDFEATHERS,            0xFAA},
-    {0x95, 0xB50},
+    { FILEPROG_95_UNKNOWN, 0xB50},
     { FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT,        0xF7B},
     { -1, -1}
 };
@@ -119,16 +119,16 @@ s32 volatileFlag_setAndTriggerDialog(enum volatile_flags_e id, s32 arg1) {
 }
 
 // called for dialogs when banjo is not fast enough to reach a door or jiggy and for NOBONUS text
-void volatileFlag_setAndTriggerDialog_0(s32 arg0) {
+void volatileFlag_setAndTriggerDialog_0(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0);
 }
 
-// called for FFQ dialogs, gruntilda speaking?
-void volatileFlag_setAndTriggerDialog_4(s32 arg0) {
+// called for FFQ dialogs
+void volatileFlag_setAndTriggerDialog_4(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 4);
 }
 
 // called for WISHYWASHYBANJO dialog, mumbo jumbo speaking?
-void volatileFlag_setAndTriggerDialog_E(s32 arg0) {
+void volatileFlag_setAndTriggerDialog_E(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0xE);
 }

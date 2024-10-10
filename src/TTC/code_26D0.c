@@ -35,56 +35,56 @@ void code26D0_sharkfoodIslandUpdateFunc(Actor *this);
 ActorInfo gBlubberShipTopHatch = {
      MARKER_A1_BLUBBER_SHIP_TOP_HATCH, ACTOR_10E_BLUBBER_SHIP_TOP_HATCH, ASSET_3D2_MODEL_BLUBBER_SHIP_TOP_HATCH,
      0x1, NULL, 
-     func_802D3D54, func_80326224, actor_drawFullDepth,
+     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseDoor = {
      MARKER_EA_LIGHTHOUSE_DOOR, ACTOR_13E_LIGHTHOUSE_DOOR, ASSET_3D6_MODEL_LIGHTHOUSE_DOOR,
      0x1, NULL, 
-     func_802D3D54, func_80326224, actor_drawFullDepth,
+     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 
 ActorInfo gSharkfoodIsland = {
     MARKER_167_SHARKFOOD_ISLAND, ACTOR_25C_SHARKFOOD_ISLAND, ASSET_50A_MODEL_SHARKFOOD_ISLAND,
     0x1, NULL, 
-    code26D0_sharkfoodIslandUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_sharkfoodIslandUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseA = {
     MARKER_267_LIGHTHOUSE_A, ACTOR_2E2_LIGHTHOUSE_A, ASSET_3BD_MODEL_LIGHTHOUSE_A,
     0x1, NULL, 
-    code26D0_lighthouseAUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_lighthouseAUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseB = {
     MARKER_26A_LIGHTHOUSE_B, ACTOR_2DF_LIGHTHOUSE_B, ASSET_3BE_MODEL_LIGHTHOUSE_B,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gStairs1 = {
     MARKER_268_STAIRS_1, ACTOR_2E0_TTC_STAIRS_1, ASSET_3B6_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gStairs2 = {
     MARKER_269_STAIRS_2, ACTOR_2E1_TTC_STAIRS_2, ASSET_3B7_MODEL_TTC_STAIRS_1,
     0x1, NULL, 
-    code26D0_genericUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo gPalmTree = {
     MARKER_1D5_PALM_TREE, ACTOR_31E_PALM_TREE, ASSET_3A9_MODEL_PALM_TREE,
     0x1, NULL, 
-    code26D0_palmTreeUpdateFunc, func_80326224, actor_drawFullDepth,
+    code26D0_palmTreeUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 

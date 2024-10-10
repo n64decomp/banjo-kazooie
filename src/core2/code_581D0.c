@@ -13,7 +13,7 @@ s32 D_8036837C[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 ActorInfo D_8036838C = { 
     0x17B, 0x2B5, 0x472,
     0, NULL, 
-    func_802DF2C4, func_80326224, func_80325340, 
+    func_802DF2C4, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 

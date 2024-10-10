@@ -19,7 +19,7 @@ ActorInfo D_8038F640 = {
 /* .code */
 void CCW_func_8038D510(Actor *this) {
     static s32 D_8038F664[3] = {0xDE, 0xA7, 0x71};
-    static struct42s D_8038F670 = {
+    static ParticleSettingsVelocityPosition D_8038F670 = {
         {{  0.0f,  50.0f,   0.0f}, { 70.0f, 100.0f,  70.0f}},
         {{100.0f, 100.0f, 100.0f}, {150.0f, 400.0f, 200.0f}}
     };
@@ -39,7 +39,7 @@ void CCW_func_8038D510(Actor *this) {
 }
 
 void func_8038D5DC(Actor *this) {
-    static struct43s D_8038F6A0 ={
+    static ParticleSettingsVelocityAccelerationPosition D_8038F6A0 ={
         {{-100.0f,  -50.0f, -100.0f}, {100.0f,   50.0f, 100.0f}},
         {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
         {{-100.0f,    0.0f, -200.0f}, {100.0f,  400.0f, 200.0f}}
@@ -48,8 +48,8 @@ void func_8038D5DC(Actor *this) {
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(30);
-    func_802EF9F8(pCtrl, 0.6f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.6f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     particleEmitter_setModel(pCtrl, 0x896);
     particleEmitter_setPosition(pCtrl, this->position);
     particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.3f);
@@ -59,7 +59,7 @@ void func_8038D5DC(Actor *this) {
     );
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 10.0f, 10.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8038F6A0);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8038F6A0);
     particleEmitter_emitN(pCtrl, 30);
 }
 
@@ -78,7 +78,7 @@ void func_8038D6D8(Actor *this, s32 next_state) {
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.9f, 15000);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.5f, 3);
-        timedFunc_set_2(0.5f, levelSpecificFlags_set, 0x25, TRUE);
+        timedFunc_set_2(0.5f, levelSpecificFlags_set, LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         timed_exitStaticCamera(4.0f);
         func_80324E38(4.0f, 0);
         local->unk0 = 0.5f;
@@ -105,12 +105,14 @@ void func_8038D85C(Actor *this) {
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
-        marker_setCollisionScripts(this->marker, 0, &func_8038D81C, 0);
+        marker_setCollisionScripts(this->marker, NULL, &func_8038D81C, NULL);
         func_8038D6D8(this, 1);
-        if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {
-            levelSpecificFlags_set(0x25, 1);
+
+        if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != FALSE) {
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
-        if ((levelSpecificFlags_get(0x25) != 0) && (map_get() != MAP_43_CCW_SPRING)) {
+
+        if ((levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) && (map_get() != MAP_43_CCW_SPRING)) {
             marker_despawn(this->marker);
         }
         return;

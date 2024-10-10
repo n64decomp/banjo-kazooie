@@ -27,7 +27,7 @@ f32 D_80368118[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_80368124 = { 
     MARKER_177_PRESS_START_OVERLAY, ACTOR_1DE_PRESS_START_OVERLAY, ASSET_55C_MODEL_PRESS_START_OVERLAY, 
     0x0, D_80368100,
-    chOverlayPressStart_update, func_80326224, chOverlayPressStart_draw,
+    chOverlayPressStart_update, actor_update_func_80326224, chOverlayPressStart_draw,
     0, 0, 0.0f, 0
 };
 

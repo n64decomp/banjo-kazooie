@@ -26,7 +26,7 @@ ActorAnimationInfo moleAnimations[]= {
 ActorInfo gChMole = {
     0x1DF, ACTOR_37A_BOTTLES, ASSET_387_MODEL_BOTTLES, 
     1, moleAnimations,
-    chmole_update, func_80326224, func_802D94B4,
+    chmole_update, actor_update_func_80326224, func_802D94B4,
     0, 0, 0.0f, 0
 }; 
 
@@ -185,18 +185,18 @@ void chmole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1
     switch(arg2){
         case 1: // Stilt Stride
             timed_setStaticCameraToNode(0.0f, 0x11);
-            levelSpecificFlags_set(0x1A, 1);
+            levelSpecificFlags_set(LEVEL_FLAG_1A_UNKNOWN, TRUE);
             break;
         case 2:
-            levelSpecificFlags_set(0x1A, 0);
+            levelSpecificFlags_set(LEVEL_FLAG_1A_UNKNOWN, FALSE);
             chmole_setStaticCamera(actor);
             break;
         case 3: // Turbo Talon Trainer
             timed_setStaticCameraToNode(0.0f, 0x29);
-            levelSpecificFlags_set(0x1A, 1);
+            levelSpecificFlags_set(LEVEL_FLAG_1A_UNKNOWN, TRUE);
             break;
         case 4:
-            levelSpecificFlags_set(0x1A, 0);
+            levelSpecificFlags_set(LEVEL_FLAG_1A_UNKNOWN, FALSE);
             chmole_setStaticCamera(actor);
             break;
         case 5: // Egg Firing

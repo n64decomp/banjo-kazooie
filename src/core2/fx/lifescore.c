@@ -58,7 +58,7 @@ void fxlifescore_free(s32 item_id, struct8s *arg1){
     s32 i;
     for(i = 0; i < 2; i++){
         if(D_80381EB0[i] != NULL){
-           func_8033BD4C(D_80381EB0[i]);
+           assetCache_free(D_80381EB0[i]);
            D_80381EB0[i] = NULL;
         }
     };
@@ -150,7 +150,7 @@ void fxlifescore_update(enum item_e item_id, struct8s *arg1) {
             if (sp18 != D_80381EC0) {
                 D_80381EC4 = NOT(D_80381EC4);
                 if (D_80381EB0[D_80381EC4] != 0) {
-                    func_8033BD4C(D_80381EB0[D_80381EC4]);
+                    assetCache_free(D_80381EB0[D_80381EC4]);
                 }
                 D_80381EB0[D_80381EC4] = assetcache_get(sp18);
                 D_80381EC0 = sp18;

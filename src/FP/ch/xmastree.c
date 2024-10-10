@@ -9,7 +9,7 @@ void chXmasTree_update(Actor *this);
 ActorInfo chXmasTree = { 
     MARKER_BA_XMAS_TREE, ACTOR_15F_XMAS_TREE, ASSET_488_MODEL_XMAS_TREE, 
     0x1, NULL, 
-    chXmasTree_update, func_80326224, chXmasTree_draw,
+    chXmasTree_update, actor_update_func_80326224, chXmasTree_draw,
     0, 0, 0.0f, 0
 };
 
@@ -18,7 +18,7 @@ ActorInfo chXmasTree = {
 Actor *chXmasTree_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(5, this->unk38_31);
-    func_8033A45C(6, fileProgressFlag_get(0x13) && !func_8033A0F0(5));
+    func_8033A45C(6, fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !func_8033A0F0(5));
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
@@ -40,7 +40,7 @@ void __chXmasTree_80386EF4(Actor *this, int arg1){
 }
 
 void __chXmasTree_80386F3C(void){
-    levelSpecificFlags_set(0x29, TRUE);
+    levelSpecificFlags_set(LEVEL_FLAG_29_FP_UNKNOWN, TRUE);
     func_803228D8();
     volatileFlag_set(VOLATILE_FLAG_E, 1);
     func_802E4078(MAP_53_FP_CHRISTMAS_TREE, 1, 0);
@@ -100,14 +100,15 @@ void chXmasTree_update(Actor *this){
         }
         __spawnQueue_add_0(__chXmasTree_spawnSwitch);
         __spawnQueue_add_1((GenFunction_1)__chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
-        if(fileProgressFlag_get(0x13)){
+        if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
             __chXmasTree_80386F84(this);
             mapSpecificFlags_set(2, FALSE);
         }
     }
 
     this->depth_mode = 1;
-    if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
+
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
         __chXmasTree_80386EF4(this, 1);
         return;
     }
@@ -115,7 +116,7 @@ void chXmasTree_update(Actor *this){
     switch(this->state){
         case 1: // L80387268
             __chXmasTree_80386EF4(this, 0);
-            if(fileProgressFlag_get(0x13)){
+            if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 __chXmasTree_80386F84(this);
             }
             break;

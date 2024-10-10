@@ -8,7 +8,7 @@ extern void player_stateTimer_set(enum state_timer_e, f32);
 extern f32 player_stateTimer_get(enum state_timer_e);
 
 
-void spawnQueue_bundle_f32(u32,f32,f32,f32);
+Actor *spawnQueue_bundle_f32(u32,f32,f32,f32);
 void subaddie_set_state(Actor *, u32);
 
 /* local declarations */
@@ -24,10 +24,17 @@ ActorAnimationInfo D_80390B30[4] = {
     {ASSET_4E_ANIM_MUDHUT_SMASH, 1000000.0f}
 };
 
-u32 D_80390B50[6] = {0xA, 0xA, 0xB, 0xA, 0xA, 0xC};
+enum bundle_e D_80390B50[6] = {
+    BUNDLE_A_BGS_HUT_SHOCKSPRING_PAD,
+    BUNDLE_A_BGS_HUT_SHOCKSPRING_PAD,
+    BUNDLE_B_BGS_HUT_MUSIC_NOTE,
+    BUNDLE_A_BGS_HUT_SHOCKSPRING_PAD,
+    BUNDLE_A_BGS_HUT_SHOCKSPRING_PAD,
+    BUNDLE_C_BGS_HUT_JIGGY
+};
 
 ActorInfo D_80390B68 = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
-    chmudhut_update, func_80326224, chmudhut_draw,
+    chmudhut_update, actor_update_func_80326224, chmudhut_draw,
     0, 0, 0.0f, 0
 };
 
@@ -104,13 +111,11 @@ void chmudhut_update(Actor *this){
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
                     __spawnQueue_add_1((GenFunction_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
-                    if(tmp < 5){
-                        __spawnQueue_add_4((GenFunction_4)spawnQueue_bundle_f32, D_80390B50[tmp],
-                            reinterpret_cast(s32, diffPos[0]), 
-                            reinterpret_cast(s32, diffPos[1]), 
-                            reinterpret_cast(s32, diffPos[2])
-                        );
-                    } else {
+
+                    if (tmp < 5) {
+                        __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_80390B50[tmp], reinterpret_cast(s32, diffPos[0]), reinterpret_cast(s32, diffPos[1]), reinterpret_cast(s32, diffPos[2]));
+                    }
+                    else {
                         jiggy_spawn(JIGGY_23_BGS_HUTS, diffPos);
                     }
                 }

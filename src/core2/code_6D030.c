@@ -39,15 +39,15 @@ ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
     pCtrl = func_802F0EF0(D_80380A90);
     particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE_2);
     particleEmitter_setAlpha(pCtrl, 180);
-    particleEmitter_setParticleAccelerationRange(pCtrl,
+    particleEmitter_setAccelerationRange(pCtrl,
         0.0f, -1300.0f, 0.0f,
         0.0f, -1300.0f, 0.0f
     );
-    func_802EFA18(pCtrl, 1);
+    particleEmitter_func_802EFA18(pCtrl, 1);
     func_802EFA04(pCtrl, pos[1]);
     particleEmitter_setParticleCallback(pCtrl, func_802F3FC0);
     particleEmitter_setFade(pCtrl, 0.0f, 0.8f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -arg1, 0.0f, -arg1,
         arg1, 0.0f, arg1
     );

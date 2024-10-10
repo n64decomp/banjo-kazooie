@@ -21,7 +21,7 @@ extern ActorAnimationInfo D_80392390[] ={
 
 extern ActorInfo D_803923D0 = { MARKER_205_TWINKLY_MUNCHER, ACTOR_337_TWINKLY_MUNCHER, ASSET_496_MODEL_TWINKLY_MUNCHER, 
     0x1, D_80392390,
-    func_8038E094, func_80326224, func_8038DD70,
+    func_8038E094, actor_update_func_80326224, func_8038DD70,
     2500, 0, 1.0f, 0
 };
 

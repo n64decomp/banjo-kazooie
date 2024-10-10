@@ -24,7 +24,7 @@ void __chGobi3_spawnHoneyComb(Actor *this){
     TUPLE_ASSIGN(sp18, -6885.0f, 2383.0f, 1335.0f);
     bundle_setYaw(this->yaw);
     func_802CA1CC(HONEYCOMB_C_GV_GOBI_3);
-    bundle_spawn_f32(0xd, sp18);
+    bundle_spawn_f32(BUNDLE_D__EMPTY_HONEYCOMB, sp18);
 }
 
 void __chGobi3_runaway(ActorMarker *caller, enum asset_e text_id, s32 arg2){
@@ -143,7 +143,7 @@ void chGobi3_update(Actor *this){
     }
 
     if(this->state == 4){
-        func_80326224(this);
+        actor_update_func_80326224(this);
         if(timedFuncQueue_is_empty())
             chGobi3_setState(this, 6);
     }

@@ -57,7 +57,7 @@ f32 D_8036840C[3] = {-11.28f, 3.92f, -52.96f};
 ActorInfo D_80368418 = {
     0x17A, 0x2B4, 0x565, 
     0x1, D_803683B0, 
-    chBottlesBonusCursor_update, func_80326224, func_80325340, 
+    chBottlesBonusCursor_update, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 

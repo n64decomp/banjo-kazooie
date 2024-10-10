@@ -237,7 +237,7 @@ void func_80388EE8(ParticleEmitter *pCtrl){
         {0.3f, 0.45f},
         0.0f, 0.01f
     };
-    static struct42s D_80391D58 = {
+    static ParticleSettingsVelocityPosition D_80391D58 = {
         {{-10.0f, 10.0f, -10.0f}, {10.0f, 240.0f, 10.0f}}, /*position*/
         {{0.0f, 0.0f, 0.0f}, {0.0f, 20.0f, 0.0f}}          /*velocity*/
     };

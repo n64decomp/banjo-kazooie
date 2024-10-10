@@ -18,15 +18,15 @@ typedef struct {
 typedef struct {
     u8 cost;
     u8 size_bits;
-    u16 progress_flag;
+    u16 progress_flag; // enum file_progress_e
 }Struct_lair_86F0_0;
 
 void func_8038F350(Actor *this, s32 next_state);
 void lair_func_8038F924(Actor *this);
 
 /* .data */
-ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803947B0 = { 0x1EB, 0x3B7, 0x48B, 0x1, NULL, lair_func_8038F924, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_803947D4 = { 0x1EB, 0x3BC, 0x538, 0x1, NULL, lair_func_8038F924, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
 Struct_lair_86F0_0 D_803947F8[0xb] ={
     { 1, 0x1, FILEPROG_5D_MM_PUZZLE_PIECES_PLACED},
     { 2, 0x2, FILEPROG_5E_TCC_PUZZLE_PIECES_PLACED},
@@ -90,7 +90,7 @@ void func_8038EBEC(ActorMarker *marker) {
     if (this->unkF4_8 == 0xA) {
         func_8028F918(0);
         func_8028F918(2);
-        levelSpecificFlags_set(0x3F, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_3F_LAIR_UNKNOWN, TRUE);
         return;
     }
     if (this->unkF4_8 == 0xB) {
@@ -437,7 +437,7 @@ void lair_func_8038F924(Actor *this) {
                 return;
             }
             if (!fileProgressFlag_get(FILEPROG_54_CCW_PUZZLE_PODIUM_ACTIVE)) {
-                __bundle_spawnFromFirstActor(0x20, this);
+                __bundle_spawnFromFirstActor(BUNDLE_20__UNKOWN, this);
                 func_80324CFC(0.0f, COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                 func_80324D2C(2.1f, COMUSIC_43_ENTER_LEVEL_GLITTER);
                 func_8030E6D4(SFX_113_PAD_APPEARS);
@@ -464,7 +464,7 @@ void lair_func_8038F924(Actor *this) {
             particleEmitter_setPosition(sp54, this->position);
             sp58[2] = randf() * 255.0f;
             particleEmitter_setRGB(sp54, sp58);
-            particleEmitter_setParticleSpawnPositionRange(sp54, -30.0f, -40.0f, -30.0f, 30.0f, 20.0f, 30.0f);
+            particleEmitter_setSpawnPositionRange(sp54, -30.0f, -40.0f, -30.0f, 30.0f, 20.0f, 30.0f);
             particleEmitter_emitN(sp54, 6);
         }
     }

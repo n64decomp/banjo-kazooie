@@ -57,7 +57,7 @@ void func_803216D0(enum map_e map){
                 chTreasurehunt_resetProgress();
                 break;
             case MAP_1B_MMM_MAD_MONSTER_MANSION:
-                mmm_resetFlowerPots();
+                chFlowerpot_reset();
                 break;
         }
     }

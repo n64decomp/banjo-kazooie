@@ -17,7 +17,7 @@ void chAttackTutorial_update(Actor *);
 /* .data */
 ActorInfo D_8038AC20 = { MARKER_12B_ATTACK_TUTORIAL, ACTOR_167_ATTACK_TUTORIAL, 0,
     1, NULL,
-    chAttackTutorial_update, func_80326224, func_80325340,
+    chAttackTutorial_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 

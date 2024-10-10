@@ -26,7 +26,7 @@ extern void warp_smExitBanjosHouse(s32, s32);
 extern void func_80335110(s32);
 
 extern void func_8024E60C(s32, s32[3]);
-extern void func_8024E71C(s32, f32*);
+extern void controller_getJoystick(s32, f32*);
 
 extern char *gcpausemenu_TimeToA(int);
 extern struct5Bs *func_803097A0(void);
@@ -55,7 +55,7 @@ ActorAnimationInfo D_80365E28[] = {
     {0x24F, 0.6f},  
     {0x24D, 2.0f}
 };
-ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, func_80326224, func_802C4464, 0, 0, 0.0f, 0};
+ActorInfo D_80365E58 = { 0xE4, 0x195, 0x532, 0x1, D_80365E28, func_802C5740, actor_update_func_80326224, func_802C4464, 0, 0, 0.0f, 0};
 
 ActorAnimationInfo D_80365E7C[] = {
     {0x000, 0.0f}, 
@@ -65,7 +65,7 @@ ActorAnimationInfo D_80365E7C[] = {
     {0x252, 0.67f}, 
     {0x250, 4.5f},
 };
-ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, func_80326224, func_802C4360, 0, 0, 0.0f, 0};
+ActorInfo D_80365EAC = { 0xE5, 0x196, 0x532, 0x1, D_80365E7C, func_802C4C14, actor_update_func_80326224, func_802C4360, 0, 0, 0.0f, 0};
 
 ActorAnimationInfo D_80365ED0[] = {
     {0x000, 0.0f},
@@ -75,7 +75,7 @@ ActorAnimationInfo D_80365ED0[] = {
     {0x24C, 1.0f},
     {0x24A, 1.0f}
 };
-ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, func_80326224, func_802C4360, 0, 0, 0.0f, 0};
+ActorInfo D_80365F00 = { 0xE6, 0x197, 0x532, 0x1, D_80365ED0, func_802C4C14, actor_update_func_80326224, func_802C4360, 0, 0, 0.0f, 0};
 
 
 /* .bss */
@@ -178,8 +178,8 @@ void *func_802C44EC(f32 arg0[3], f32 arg1[3], f32 arg2) {
 
 void func_802C4768(s32 gamenum){
     u8 * sp20[2];
-    static u8 D_8037DD48[0x20];
-    static u8 D_8037DD68[0x20];
+    static u8 upperTextLine[0x20];
+    static u8 lowerTextLine[0x20];
 
     func_8031FBF8();
     D_80365E00 = gamenum;
@@ -188,59 +188,59 @@ void func_802C4768(s32 gamenum){
         gameFile_load(gamenum);
         D_8037DCCE[gamenum] = (itemscore_timeScores_get(LEVEL_6_LAIR)) ? 1 : 0;
     
-        strcpy(D_8037DD48, "");
-        strcat(D_8037DD48, "GAME ");
+        strcpy(upperTextLine, "");
+        strcat(upperTextLine, "GAME ");
         switch(gamenum){
             case 0: //L802C4820
-                strIToA(D_8037DD48, 1);
+                strIToA(upperTextLine, 1);
                 break;
             case 1: //L802C4838
-                strIToA(D_8037DD48, 3);
+                strIToA(upperTextLine, 3);
                 break;
             case 2: //L802C484C
-                strIToA(D_8037DD48, 2);
+                strIToA(upperTextLine, 2);
                 break;
         }//L802C4858
-        strcat(D_8037DD48, ": TIME ");
-        strcat(D_8037DD48, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
-        strcat(D_8037DD48, ",");
-        strcat(D_8037DD48, "");
+        strcat(upperTextLine, ": TIME ");
+        strcat(upperTextLine, gcpausemenu_TimeToA(itemscore_timeScores_getTotal()));
+        strcat(upperTextLine, ",");
+        strcat(upperTextLine, "");
 
-        strcpy(D_8037DD68, "");
-        strIToA(D_8037DD68, jiggyscore_total());
-        strcat(D_8037DD68, " JIGSAW");
+        strcpy(lowerTextLine, "");
+        strIToA(lowerTextLine, jiggyscore_total());
+        strcat(lowerTextLine, " JIGSAW");
         if(jiggyscore_total() != 1){
-            strcat(D_8037DD68, "S");
+            strcat(lowerTextLine, "S");
         }
-        strcat(D_8037DD68, ", ");
-        strIToA(D_8037DD68, itemscore_noteScores_getTotal());
-        strcat(D_8037DD68, " NOTE");
+        strcat(lowerTextLine, ", ");
+        strIToA(lowerTextLine, itemscore_noteScores_getTotal());
+        strcat(lowerTextLine, " NOTE");
         if(itemscore_noteScores_getTotal() != 1){
-            strcat(D_8037DD68, "S");
+            strcat(lowerTextLine, "S");
         }
-        strcat(D_8037DD68, ".");
-        strcat(D_8037DD68, "");
+        strcat(lowerTextLine, ".");
+        strcat(lowerTextLine, "");
     }//L802C49AC
     else{
         D_8037DCCE[gamenum] = 0;
-        strcpy(D_8037DD48, "");
-        strcat(D_8037DD48, "GAME ");
+        strcpy(upperTextLine, "");
+        strcat(upperTextLine, "GAME ");
         switch (gamenum){
             case 0:
-                strIToA(D_8037DD48, 1);
+                strIToA(upperTextLine, 1);
                 break;
             case 1:
-                strIToA(D_8037DD48, 3);
+                strIToA(upperTextLine, 3);
                 break;
             case 2:
-                strIToA(D_8037DD48, 2);
+                strIToA(upperTextLine, 2);
                 break;
         }//L802C4A40
-        strcat(D_8037DD48, ": EMPTY");
-        strcpy(D_8037DD68, "");
+        strcat(upperTextLine, ": EMPTY");
+        strcpy(lowerTextLine, "");
     }//L802C4A68
-    sp20[0] = D_8037DD48;\
-    sp20[1] = D_8037DD68;
+    sp20[0] = upperTextLine;\
+    sp20[1] = lowerTextLine;
     func_8031877C(chGameSelectBottomZoombox);
     gczoombox_setStrings(chGameSelectBottomZoombox, 2, sp20);
     gczoombox_maximize(chGameSelectBottomZoombox);
@@ -334,7 +334,7 @@ void func_802C4C14(Actor *this){
     else{//L802C4D24
         func_8024E60C(0, sp74);
         func_8024E55C(0, sp5C);
-        func_8024E71C(0, &sp54);
+        controller_getJoystick(0, &sp54);
         switch(this->state){
             case 2:
             case 5:

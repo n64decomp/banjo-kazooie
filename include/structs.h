@@ -384,41 +384,41 @@ typedef struct particle_scale_and_lifetime_ranges_s{
 } ParticleScaleAndLifetimeRanges;
 
 typedef struct struct_32_s{
-    f32 unk0[3];
-    f32 unkC[3];
-} struct32s;
+    f32 min[3];
+    f32 max[3];
+} ParticleSettingsVelocity;
 
 typedef struct struct_33_s{
-    f32 unk0[3];
-    f32 unkC[3];
-} struct33s;
+    f32 min[3];
+    f32 max[3];
+} ParticleSettingsAcceleration;
 
 typedef struct struct_34_s{
-    f32 unk0[3];
-    f32 unkC[3];
-} struct34s;
+    f32 min[3];
+    f32 max[3];
+} ParticleSettingsSpawnPosition;
 
 typedef struct struct_40_s{
-    ParticleScaleAndLifetimeRanges unk0;
-    f32 unk28;
-    f32 unk2C;
-} struct40s;
+    ParticleScaleAndLifetimeRanges scale_and_lifetime;
+    f32 drawmode;
+    f32 count;
+} ParticleSettingsScaleAndLifetimeDrawModeEmitCount;
 
 typedef struct struct_41_s{
-    struct32s unk0;
-    struct33s unk18;
-} struct41s;
+    ParticleSettingsVelocity velocity;
+    ParticleSettingsAcceleration acceleration;
+} ParticleSettingsVelocityAcceleration;
 
 typedef struct struct_42_s{
-    struct32s unk0;
-    struct34s unk18;
-} struct42s;
+    ParticleSettingsVelocity velocity;
+    ParticleSettingsSpawnPosition spawn_position;
+} ParticleSettingsVelocityPosition;
 
 typedef struct struct_43_s{
-    struct32s unk0;
-    struct33s unk18;
-    struct34s unk30;
-} struct43s;
+    ParticleSettingsVelocity velocity;
+    ParticleSettingsAcceleration acceleration;
+    ParticleSettingsSpawnPosition spawn_position;
+} ParticleSettingsVelocityAccelerationPosition;
 
 typedef struct {
     u32 unk0_31:11;
@@ -593,7 +593,7 @@ typedef struct struct_68_s{
     Struct68DrawMethod unk8;
     BKModelBin *unkC;
     u8 pad10[0x4];
-    f32 unk14[3]; //position
+    f32 position[3];
     f32 unk20[3]; //rotation
     f32 unk2C;    //scale
     u8 unk30;

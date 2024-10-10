@@ -18,16 +18,16 @@ s32 D_80373124[3] = {0xA0, 0x6B, 0x23};
 void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     
-    particleEmitter_setParticleAccelerationRange(pCtrl,
+    particleEmitter_setAccelerationRange(pCtrl,
         0.0f, -1000.0f, 0.0f,
         0.0f, -1000.0f, 0.0f
     );
-    func_802EF9F8(pCtrl, 0.7f);
-    func_802EFA18(pCtrl, 3);
+    particleEmitter_func_802EF9F8(pCtrl, 0.7f);
+    particleEmitter_func_802EFA18(pCtrl, 3);
     func_802EFA20(pCtrl, 0.5f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setModel(pCtrl, model_id);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -120.0f,  50.0f, -120.0f, 
          120.0f, 300.0f,  120.0f
     );
@@ -54,7 +54,7 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
     particleEmitter_setPosition(pCtrl, this->position);
     particleEmitter_setStartingScaleRange(pCtrl, 3.0f, 3.5f);
     particleEmitter_setFinalScaleRange(pCtrl, 4.5f, 5.5f);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -50.0f,  50.0f, -50.0f, 
          50.0f, 200.0f, 50.0f
     );

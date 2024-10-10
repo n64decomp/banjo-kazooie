@@ -15,7 +15,7 @@ ActorAnimationInfo D_80392400[] = {
 
 ActorInfo D_80392420 = { 0x206, 0x338, 0x486, 
     0x1, D_80392400, 
-    func_8038E940, func_80326224, func_8038E720, 
+    func_8038E940, actor_update_func_80326224, func_8038E720, 
     4500, 0, 0.0f, 0
 };
 
@@ -50,11 +50,11 @@ void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -100.0f, -80.0f, -70.0f,
          100.0f, 100.0f,  70.0f
     );
-    particleEmitter_setParticleAccelerationRange(pCtrl, 
+    particleEmitter_setAccelerationRange(pCtrl, 
         0.0f, -200.0f, 0.0f,
         0.0f, -200.0f, 0.0f
     );
@@ -67,7 +67,7 @@ void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
 }
 
 void func_8038E940(Actor *this){
-    if(jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(0x29)){
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         subaddie_set_state_with_direction(this, 3, 0.95f, 0);

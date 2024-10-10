@@ -15,7 +15,7 @@ ActorAnimationInfo gChTreasureAnimations[4] = {
 ActorInfo gChTreasure = {
     MARKER_DB_BURIED_TREASURE, ACTOR_F4_BURIED_TREASURE, ASSET_42C_MODEL_BURIED_TREASURE, 
     1, gChTreasureAnimations, 
-    __chTreasure_updateFunc, func_80326224, actor_draw,
+    __chTreasure_updateFunc, actor_update_func_80326224, actor_draw,
     0, 0, 1.7f, 0
 }; 
 

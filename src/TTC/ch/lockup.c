@@ -33,21 +33,21 @@ ActorAnimationInfo gChLockupAnimations[6] ={
 ActorInfo gChLockupSlow = {
     MARKER_A4_LOCKUP_SLOW, ACTOR_151_LOCKUP_SLOW, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
+    __chLockup_updateFunc, actor_update_func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo gChLockupMedium = {
     MARKER_F6_LOCKUP_MEDIUM, ACTOR_152_LOCKUP_MEDIUM, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
+    __chLockup_updateFunc, actor_update_func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 
 ActorInfo gChLockupFast = {
     MARKER_F7_LOCKUP_FAST, ACTOR_153_LOCKUP_FAST, ASSET_3D4_MODEL_LOCKUP, 
     1, gChLockupAnimations, 
-    __chLockup_updateFunc, func_80326224, __chLockup_drawFunc,
+    __chLockup_updateFunc, actor_update_func_80326224, __chLockup_drawFunc,
     2500, 0x366, 0.0f, 0
 }; 
 

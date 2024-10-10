@@ -15,7 +15,7 @@ ActorAnimationInfo D_8038F8F0[] = {
 ActorInfo D_8038F908 = { 
     MARKER_1F9_SNARE_BEAR, ACTOR_1E9_SNARE_BEAR, ASSET_440_MODEL_SNAREBEAR,
     0x1, D_8038F8F0,
-    func_8038E0C8, func_80326224, actor_draw,
+    func_8038E0C8, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 

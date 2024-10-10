@@ -72,14 +72,14 @@ ActorInfo RBB_D_80390C3C = {
 
 s32 D_80390C60[3] = {0xDE, 0xA7, 0x71};
 
-struct41s D_80390C6C = {
+ParticleSettingsVelocityAcceleration D_80390C6C = {
     { {-200.0f, 200.0f, -200.0f}, {200.0f, 500.0f, 200.0f} },
     { {0.0f, -800.0f, 0.0f}, {0.0f, -800.0f, 0.0f} }
 };
 
 s32 D_80390C9C[3] = {0xDE, 0xA7, 0x71};
 
-struct43s D_80390CA8 = {
+ParticleSettingsVelocityAccelerationPosition D_80390CA8 = {
     { {-200.0f, 0.0f, -200.0f}, {200.0f, -50.0f, 200.0f} },
     { {0.0f, 200.0f, 0.0f}, {0.0f, 400.0f, 0.0f} },
     { {-10.0f, -10.0f, -10.0f}, {10.0f, 10.0f, 10.0f} }
@@ -106,7 +106,7 @@ void func_8038C39C(Actor *this){
     particleEmitter_setPosition(other, this->position);
     particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     particleEmitter_setFinalScaleRange(other, 3.0f*local->unk0->unk4, local->unk0->unk4*7.0f);
-    particleEmitter_setParticleSpawnPositionRange(other, 
+    particleEmitter_setSpawnPositionRange(other, 
         local->unk0->unk4*-200.0f, local->unk0->unk4*100.0f, local->unk0->unk4*-200.0f,
         local->unk0->unk4*200.0f, local->unk0->unk4*100.0f, local->unk0->unk4*200.0f
     );
@@ -128,7 +128,7 @@ void RBB_func_8038C538(Actor *this){
     particleEmitter_setPosition(other, this->position);
     particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*6.0f);
     particleEmitter_setFinalScaleRange(other, 0.5*local->unk0->unk4, local->unk0->unk4*3.0f);
-    particleEmitter_setParticleSpawnPositionRange(other, 
+    particleEmitter_setSpawnPositionRange(other, 
         local->unk0->unk4*-300.0f, local->unk0->unk4*100.0f, local->unk0->unk4*-300.0f,
         local->unk0->unk4*300.0f, local->unk0->unk4*300.0f, local->unk0->unk4*300.0f
     );
@@ -146,11 +146,11 @@ void RBB_func_8038C70C(Actor *this){
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &this->local;
     ParticleEmitter *other = partEmitMgr_newEmitter(0xa);
 
-    func_802EF9F8(other, 0.6f);
-    func_802EFA18(other, 3);
+    particleEmitter_func_802EF9F8(other, 0.6f);
+    particleEmitter_func_802EFA18(other, 3);
     particleEmitter_setDrawMode(other, 4);
     particleEmitter_setModel(other, 0x427);
-    particleEmitter_setParticleSpawnPositionRange(other, 
+    particleEmitter_setSpawnPositionRange(other, 
         local->unk0->unk4 * -300.0f, local->unk0->unk4 * 100.0f, local->unk0->unk4 * -300.0f, 
         local->unk0->unk4 * 300.0f, local->unk0->unk4 * 200.0f, local->unk0->unk4 * 300.0f
     );
@@ -183,7 +183,7 @@ void func_8038C8A8(Actor * this){
     particleEmitter_setPosition(other, sp24);
     particleEmitter_setStartingScaleRange(other, local->unk0->unk4*1, local->unk0->unk4*3.0f);
     particleEmitter_setFinalScaleRange(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(other, &D_80390CA8);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(other, &D_80390CA8);
     particleEmitter_setParticleLifeTimeRange(other, 1.0f, 2.0f);
     particleEmitter_setRGB(other, &D_80390C9C);
     particleEmitter_emitN(other, 5);

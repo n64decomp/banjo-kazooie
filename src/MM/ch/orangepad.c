@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* extern functions */
-void func_80326224(Actor *);
+void actor_update_func_80326224(Actor *);
 void func_80329904(ActorMarker *, s32, void *);
 extern void func_802EFA20(ParticleEmitter *, f32, f32);
 
@@ -14,7 +14,7 @@ void chorangepad_update(Actor *);
 ActorInfo chorangepadInfo = {
     MARKER_66_ORANGE_PAD, ACTOR_57_ORANGE_PAD, ASSET_2EB_MODEL_ORANGE_PAD,
     0, NULL,
-    chorangepad_update, func_80326224, actor_draw,
+    chorangepad_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -66,12 +66,12 @@ void func_80386444(ActorMarker *marker) {
         particleEmitter_setStartingScaleRange(p_ctrl, 0.09f, 0.19f);
         particleEmitter_setFinalScaleRange(p_ctrl, 0.0f, 0.0f);
         particleEmitter_setParticleVelocityRange(p_ctrl, -200.0f, 500.0f, -200.0f, 200.0f, 700.0f, 200.0f);
-        particleEmitter_setParticleAccelerationRange(p_ctrl, 0.0f, -1200.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
+        particleEmitter_setAccelerationRange(p_ctrl, 0.0f, -1200.0f, 0.0f, 0.0f, -1200.0f, 0.0f);
         particleEmitter_setAngularVelocityRange(p_ctrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
         particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.01f);
         particleEmitter_setParticleLifeTimeRange(p_ctrl, 4.0f, 4.0f);
-        func_802EF9F8(p_ctrl, 0.01f);
-        func_802EFA18(p_ctrl, 3);
+        particleEmitter_func_802EF9F8(p_ctrl, 0.01f);
+        particleEmitter_func_802EFA18(p_ctrl, 3);
         func_802EFA20(p_ctrl, 1.0f, 1.3f);
         particleEmitter_emitN(p_ctrl, 30);
     }

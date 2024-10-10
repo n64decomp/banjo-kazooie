@@ -356,7 +356,7 @@ void spawnQueue_reset(void){
             lair_func_8038A0C4();
             break;
         case OVERLAY_E_BATTLE:
-            fight_func_803863F0();
+            fight_addSpawnableActors();
             break;
         case OVERLAY_C_INTRO:
             cutscene_func_8038C4E0();
@@ -558,37 +558,37 @@ Actor *spawnQueue_actor_s32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     return actor_spawnWithYaw_s32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *spawnQueue_bundle_f32(s32 index, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_bundle_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    return bundle_spawn_f32(reinterpret_cast(s32, index), position);
+    return bundle_spawn_f32(reinterpret_cast(s32, bundle_id), position);
 }
 
-Actor *spawnQueue_bundleWithYaw_f32(s32 index, s32 x, s32 y, s32 z, s32 yaw) {
+Actor *spawnQueue_bundleWithYaw_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z, s32 yaw) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
     bundle_setYaw(reinterpret_cast(f32, yaw));
-    return bundle_spawn_f32(reinterpret_cast(s32, index), position);
+    return bundle_spawn_f32(reinterpret_cast(s32, bundle_id), position);
 }
 
-Actor *spawnQueue_bundle_s32(s32 index, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_bundle_s32(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
     s32 position[3];
     position[0] = reinterpret_cast(s32, x);
     position[1] = reinterpret_cast(s32, y);
     position[2] = reinterpret_cast(s32, z);
-    return bundle_spawn_s32(reinterpret_cast(s32, index), position);
+    return bundle_spawn_s32(reinterpret_cast(s32, bundle_id), position);
 }
 
-Actor *spawnQueue_bundle_s32_2(s32 index, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_bundle_s32_2(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
     s32 position[3];
     position[0] = x;
     position[1] = y;
     position[2] = z;
-    return bundle_spawn_s32(index, position);
+    return bundle_spawn_s32(bundle_id, position);
 }
 
 void spawnQueue_defrag(FunctionQueue *arg0) {

@@ -218,7 +218,7 @@ void chnapper_update(Actor *this){
     }//L80387154
 
     if(this->state == 4){
-        func_80326224(this);
+        actor_update_func_80326224(this);
         if(0.99 <= this->unk48)
             marker_despawn(this->marker);
     }

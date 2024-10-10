@@ -31,7 +31,7 @@ ActorAnimationInfo D_803907CC[] = {
 };
 ActorInfo D_80390804 ={MARKER_FC_CROCTUS, ACTOR_1FA_CROCTUS, ASSET_425_MODEL_CROCTUS,
     1, D_803907CC,
-    func_80387FD4, func_80326224, func_8038860C,
+    func_80387FD4, actor_update_func_80326224, func_8038860C,
     0, 0, 0.0f, 0
 };
 

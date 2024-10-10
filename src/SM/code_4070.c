@@ -12,7 +12,7 @@ void func_8038A4DC(Actor *this, s32 arg1);
 
 /* .data */
 ActorInfo D_8038B0B0 = { 0x1ED, 0x3B9, 0, 1, NULL,
-    SM_func_8038A5D8, func_80326224, func_80325340,
+    SM_func_8038A5D8, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 

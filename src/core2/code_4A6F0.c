@@ -28,7 +28,7 @@ ActorAnimationInfo D_80367490[] = {
 ActorInfo D_803674E0 = { 
     MARKER_6_MUMBO, ACTOR_7_MUMBO, ASSET_3C6_MODEL_MUMBO, 
     0x1, D_80367490, 
-    chMumbo_update, func_80326224, chMumbo_draw, 
+    chMumbo_update, actor_update_func_80326224, chMumbo_draw, 
     0, 0, 0.0f, 0
 };
 s32 D_80367504[3] = {0.0f, 0.0f, 0.0f};
@@ -360,8 +360,8 @@ void chMumbo_update(Actor *this) {
                         break;
                     }
                     func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
-                    if ((levelSpecificFlags_get(0x3E) == 0) && (gcdialog_showText(ASSET_DAC_DIALOG_MUMBO_FAIL_TO_BUY, 0, NULL, NULL, NULL, NULL) != 0)) {
-                        levelSpecificFlags_set(0x3E, 1);
+                    if ((levelSpecificFlags_get(LEVEL_FLAG_3E_UNKNOWN) == FALSE) && (gcdialog_showText(ASSET_DAC_DIALOG_MUMBO_FAIL_TO_BUY, 0, NULL, NULL, NULL, NULL) != 0)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_3E_UNKNOWN, 1);
                     }
                 }
             }
@@ -428,7 +428,7 @@ void chMumbo_update(Actor *this) {
 
         case 7: //L802D2704
             chMumbo_func_802D186C(this);
-            if (volatileFlag_get(FILEPROG_11_HAS_MET_MUMBO) == 0) {
+            if (volatileFlag_get(VOLATILE_FLAG_11) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -436,7 +436,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     gcdialog_showText(ASSET_DA7_DIALOG_MUMBO_CCW_SUMMER, 7, NULL, NULL, NULL, NULL);
-                    volatileFlag_set(FILEPROG_11_HAS_MET_MUMBO, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_11, TRUE);
                 }
             }
             actor_loopAnimation(this);
@@ -444,7 +444,7 @@ void chMumbo_update(Actor *this) {
 
         case 8: //L802D2790
             chMumbo_func_802D186C(this);
-            if (volatileFlag_get(FILEPROG_12_HAS_TRANSFORMED_BEFORE) == 0) {
+            if (volatileFlag_get(VOLATILE_FLAG_12) == 0) {
                 if (map_get() == MAP_7A_GL_CRYPT) {
                     sp48 = chMumbo_withinHorzDistToPlayer(0x453, 0, 0xBC);
                 } else {
@@ -452,7 +452,7 @@ void chMumbo_update(Actor *this) {
                 }
                 if (sp48 != 0) {
                     gcdialog_showText(ASSET_DA8_DIALOG_MUMBO_CCW_AUTUMN, 7, NULL, NULL, NULL, NULL);
-                    volatileFlag_set(FILEPROG_12_HAS_TRANSFORMED_BEFORE, TRUE);
+                    volatileFlag_set(VOLATILE_FLAG_12, TRUE);
                 }
             }
             actor_loopAnimation(this);

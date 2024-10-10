@@ -73,8 +73,8 @@ void __chTermite_updateWalkSFX(Actor *this) {
 void __chTermite_setupParticleEmitter(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_setDrawMode(pCtrl, 2);
-    func_802EF9F8(pCtrl, 0.7f);
-    func_802EFA18(pCtrl, 5);
+    particleEmitter_func_802EF9F8(pCtrl, 0.7f);
+    particleEmitter_func_802EFA18(pCtrl, 5);
     func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
@@ -84,7 +84,7 @@ void __chTermite_setupParticleEmitter(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitLegs(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_393_MODEL_TERMITE_LEG);
     particleEmitter_setStartingScaleRange(pCtrl, 0.5f, 0.8f);
     particleEmitter_setAngularVelocityRange(pCtrl, -800.0f, -800.0f, -800.0f, 800.0f, 800.0f, 800.0f);
@@ -94,7 +94,7 @@ void __chTermite_emitLegs(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitHead(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_394_MODEL_TERMITE_HEAD);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -104,7 +104,7 @@ void __chTermite_emitHead(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitBody(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1800.0f, 0.0f, 0.0f, -1800.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_395_MODEL_TERMITE_BODY);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -114,7 +114,7 @@ void __chTermite_emitBody(ParticleEmitter *pCtrl, f32 position[3]){
 
 void __chTermite_emitEyes(ParticleEmitter *pCtrl, f32 position[3]){
     __chTermite_setupParticleEmitter(pCtrl, position);
-    particleEmitter_setParticleAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
+    particleEmitter_setAccelerationRange(pCtrl, 0.0f, -1400.0f, 0.0f, 0.0f, -1400.0f, 0.0f);
     particleEmitter_setModel(pCtrl, ASSET_396_MODEL_TERMITE_EYES);
     particleEmitter_setStartingScaleRange(pCtrl, 1.0f, 1.0f);
     particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
@@ -142,12 +142,13 @@ void __chTermite_die(ActorMarker *marker, ActorMarker *other_marker){
     FUNC_8030E624(SFX_D1_SNORKEL_WAH, 1.4f, 32750);
     marker_despawn(marker);
 }
-void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+
+void __chTermite_testCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     Actor *this;
 
     this = marker_getActor(caller);
     this->has_met_before = FALSE;
-    levelSpecificFlags_set(0xd, FALSE);
+    levelSpecificFlags_set(LEVEL_FLAG_D_MM_UNKNOWN, FALSE);
 }
 
 void chTermite_update(Actor *this) {
@@ -172,7 +173,7 @@ void chTermite_update(Actor *this) {
     ) {
         gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
-        levelSpecificFlags_set(0xD, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_D_MM_UNKNOWN, TRUE);
         this->has_met_before = TRUE;
     }
 
@@ -181,13 +182,14 @@ void chTermite_update(Actor *this) {
         && func_8028ECAC() == 0
         && player_getTransformation() == TRANSFORM_2_TERMITE
     ) {
-        if (!levelSpecificFlags_get(0xB)) {
+        if (!levelSpecificFlags_get(LEVEL_FLAG_B_MM_UNKNOWN)) {
             if (gcdialog_showText(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
-                levelSpecificFlags_set(0xB, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_B_MM_UNKNOWN, TRUE);
                 this->unk138_23 = TRUE;
             }
-        } else if (!levelSpecificFlags_get(0xC) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
-            levelSpecificFlags_set(0xC, TRUE);
+        }
+        else if (!levelSpecificFlags_get(LEVEL_FLAG_C_MM_UNKNOWN) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
+            levelSpecificFlags_set(LEVEL_FLAG_C_MM_UNKNOWN, TRUE);
         }
     }
     switch (this->state) {
@@ -242,6 +244,6 @@ void chTermite_update(Actor *this) {
 ActorInfo chTermite = { 
     MARKER_4_TERMITE, ACTOR_5_TERMITE, ASSET_350_MODEL_TERMITE, 
     0x1, chTermiteAnimations, 
-    chTermite_update, func_80326224, actor_draw, 
+    chTermite_update, actor_update_func_80326224, actor_draw, 
     2000, 0, 0.0f, 0
 };

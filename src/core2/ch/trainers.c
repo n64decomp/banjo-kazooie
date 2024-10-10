@@ -19,7 +19,7 @@ ActorAnimationInfo chTrainersAnimations[] = {
 ActorInfo chTrainers = { 
     MARKER_38_TURBO_TALON_TRAINERS, ACTOR_2C_TURBO_TALON_TRAINERS, ASSET_367_MODEL_TURBO_TALON_TRAINERS,
     0x0, chTrainersAnimations,
-    chtrainers_update, func_80326224, chtrainers_draw,
+    chtrainers_update, actor_update_func_80326224, chtrainers_draw,
     0, 0, 0.0f, 0
 };
 
@@ -56,8 +56,9 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
 }
 
 void chtrainers_update(Actor *this){
-    s32 sp2C = levelSpecificFlags_get(0x1a);
-    if(sp2C && this->unkF4_8 != 1){
+    s32 sp2C = levelSpecificFlags_get(LEVEL_FLAG_1A_UNKNOWN);
+
+    if (sp2C && this->unkF4_8 != 1) {
         return;
     }
 

@@ -21,8 +21,8 @@ void __propellorCtrl_setState(s32 arg0){
     }
 
     if(arg0 == 3 || arg0 == 4){
-        levelSpecificFlags_set(0x27, FALSE);
-        levelSpecificFlags_set(0x28, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_27_RBB_UNKNOWN, FALSE);
+        levelSpecificFlags_set(LEVEL_FLAG_28_RBB_UNKNOWN, FALSE);
         item_set(ITEM_9_PROPELLOR,0);
         if(arg0 == 3 && !jiggyscore_isCollected(JIGGY_57_RBB_PROPELLOR)){
             timedFunc_set_1(0.5f, (GenFunction_1)func_802FAD64, 3);
@@ -51,9 +51,11 @@ void rbb_propellorCtrl_start(void){
 }
 
 void rbb_propellorCtrl_update(void){
-    if( __propellorCtrlState == 0)
-        if(levelSpecificFlags_get(0x27) && levelSpecificFlags_get(0x28))
+    if (__propellorCtrlState == 0) {
+        if (levelSpecificFlags_get(LEVEL_FLAG_27_RBB_UNKNOWN) && levelSpecificFlags_get(LEVEL_FLAG_28_RBB_UNKNOWN)) {
             __propellorCtrl_setState(1);
+        }
+    }
 
     if(__propellorCtrlState == 1)
         if(ml_timer_update(&__propellorTimer,time_getDelta()))

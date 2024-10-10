@@ -224,7 +224,7 @@ void chGobi2_update(Actor *this){
     }
 
     if(this->state == 6){
-        func_80326224(this);
+        actor_update_func_80326224(this);
     }
 
     if(this->state == 8){

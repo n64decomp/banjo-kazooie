@@ -30,7 +30,7 @@ ActorAnimationInfo gChNipperAnimations[8] = {
 ActorInfo gChNipper = { 
     MARKER_A5_NIPPER, ACTOR_117_NIPPER, ASSET_3D5_MODEL_NIPPER,
     0x1, gChNipperAnimations,
-    __chNipper_updateFunc, func_80326224, __chNipper_animFunc,
+    __chNipper_updateFunc, actor_update_func_80326224, __chNipper_animFunc,
     0, 0x299, 10.0f, 0
 };
 
@@ -52,7 +52,7 @@ static void __chNipper_drawParticlesAtPosition(f32 *position, s32 count) {
     particleEmitter_setRGB(pCtrl, D_8038C5A4);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 7);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -10.0f, -5.0f, -10.0f,
          10.0f, 10.0f,  10.0f
     );

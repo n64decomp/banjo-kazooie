@@ -1,16 +1,17 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "enums.h"
 
 void func_8031FFAC(void);
-void fileProgressFlag_set(s32 index, s32 set);
+void fileProgressFlag_set(enum file_progress_e index, s32 set);
 s32 bitfield_get_bit(u8 *array, s32 index);
 s32 bitfield_get_n_bits(u8 *array, s32 offset, s32 numBits);
 void bitfield_set_bit(u8 *array, s32 index, s32 set);
 void bitfield_set_n_bits(u8 *array, s32 startIndex, s32 set, s32 length);
 void volatileFlag_clear(void);
-void volatileFlag_set(s32 arg0, s32 arg1);
-s32 fileProgressFlag_getN(s32 offset, s32 numBits);
+void volatileFlag_set(enum volatile_flags_e index, s32 set);
+s32 fileProgressFlag_getN(enum file_progress_e offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
 void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
@@ -109,11 +110,11 @@ bool fileProgressFlag_get(enum file_progress_e index) {
     return bitfield_get_bit(gFileProgressFlags.unk8, index);
 }
 
-s32 fileProgressFlag_getN(s32 offset, s32 numBits) {
+s32 fileProgressFlag_getN(enum file_progress_e offset, s32 numBits) {
     return bitfield_get_n_bits(gFileProgressFlags.unk8, offset, numBits);
 }
 
-s32 fileProgressFlag_getAndSet(s32 index, s32 set) {
+s32 fileProgressFlag_getAndSet(enum file_progress_e index, s32 set) {
     s32 ret;
 
     ret = fileProgressFlag_get(index);
@@ -131,13 +132,13 @@ void func_8031FFAC(void) {
     func_8031FEC0();
 }
 
-void fileProgressFlag_set(s32 index, s32 set) {
+void fileProgressFlag_set(enum file_progress_e index, s32 set) {
     bitfield_set_bit(gFileProgressFlags.unk8, index, set);
     func_8031FC40();
     func_8031FEC0();
 }
 
-void fileProgressFlag_setN(s32 startIndex, s32 set, s32 length) {
+void fileProgressFlag_setN(enum file_progress_e startIndex, s32 set, s32 length) {
     bitfield_set_n_bits(gFileProgressFlags.unk8, startIndex, set, length);
     func_8031FC40();
     func_8031FEC0();
@@ -243,15 +244,15 @@ void func_803203A0(void) {
     *obscured_addr = func_80320320();
 }
 
-s32 volatileFlag_get(s32 index) {
+s32 volatileFlag_get(enum volatile_flags_e index) {
     return bitfield_get_bit(gVolatileFlags.unk8, index);
 }
 
-s32 volatileFlag_getN(s32 index, s32 numBits) {
+s32 volatileFlag_getN(enum volatile_flags_e index, s32 numBits) {
     return bitfield_get_n_bits(gVolatileFlags.unk8, index, numBits);
 }
 
-s32 volatileFlag_getAndSet(s32 index, s32 arg1) {
+s32 volatileFlag_getAndSet(enum volatile_flags_e index, s32 arg1) {
     s32 temp_v0;
 
     temp_v0 = volatileFlag_get(index);
@@ -268,13 +269,13 @@ void volatileFlag_clear(void) {
     func_803203A0();
 }
 
-void volatileFlag_set(s32 index, s32 set) {
+void volatileFlag_set(enum volatile_flags_e index, s32 set) {
     bitfield_set_bit(gVolatileFlags.unk8, index, set);
     func_803202D0();
     func_803203A0();
 }
 
-void volatileFlag_setN(s32 startIndex, s32 set, s32 length) {
+void volatileFlag_setN(enum volatile_flags_e startIndex, s32 set, s32 length) {
     bitfield_set_n_bits(gVolatileFlags.unk8, startIndex, set, length);
     func_803202D0();
     func_803203A0();

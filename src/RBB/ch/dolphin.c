@@ -56,7 +56,7 @@ void func_8038B900(Actor *this){
                 other = func_802EDD8C(&sp48, 0.0f, -1300.0f);
                 particleEmitter_setStartingScaleRange(other, 0.04f, 0.04f);
                 particleEmitter_setFinalScaleRange(other, 0.18f, 0.18f);
-                particleEmitter_setParticleSpawnPositionRange(other, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
+                particleEmitter_setSpawnPositionRange(other, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
                 particleEmitter_setParticleVelocityRange(other, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
                 particleEmitter_emitN(other, 1);
             }
@@ -105,7 +105,7 @@ void func_8038B900(Actor *this){
         }
 
         if(this->state == 3){
-            func_80326224(this);
+            actor_update_func_80326224(this);
             if(0.99 < this->unk48){   
                 mapSpecificFlags_set(4, FALSE);
                 marker_despawn(this->marker);

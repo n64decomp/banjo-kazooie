@@ -14,21 +14,21 @@ void chCollectible_update(Actor *this);
 extern ActorInfo D_80367D00 = {
     MARKER_60_BLUE_EGG_COLLECTIBLE, ACTOR_52_BLUE_EGG, ASSET_36D_SPRITE_BLUE_EGG,
     0, NULL, 
-    chCollectible_update, func_80326224, chCollectible_draw, 
+    chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.7f, 0
 };
 
 extern ActorInfo D_80367D24 = {
     MARKER_B5_RED_FEATHER_COLLECTIBLE, ACTOR_129_RED_FEATHER, ASSET_580_SPRITE_RED_FEATHER,
     0, NULL, 
-    chCollectible_update, func_80326224, chCollectible_draw, 
+    chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
 };
 
 extern ActorInfo D_80367D48 = {
     MARKER_1E5_GOLD_FEATHER_COLLECTIBLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
     0, NULL, 
-    chCollectible_update, func_80326224, chCollectible_draw, 
+    chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
 };
 

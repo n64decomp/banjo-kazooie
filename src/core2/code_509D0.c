@@ -21,35 +21,35 @@ ActorAnimationInfo D_80367B50[] = {
 ActorInfo D_80367B80 = {
     MARKER_36_ORANGE_COLLECTIBLE, ACTOR_29_ORANGE_COLLECTIBLE, ASSET_2D2_MODEL_ORANGE,
     0x5, NULL,
-    chLevelCollectible_update, func_80326224, actor_draw,
+    chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.6f,0
 };
 
 ActorInfo D_80367BA4 = {
     MARKER_37_GOLD_BULLION, ACTOR_2A_GOLD_BULLION, ASSET_3C7_MODEL_GOLD_BULLION,
     0x5, NULL,
-    chLevelCollectible_update, func_80326224, actor_draw,
+    chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.6f, 0
 };
 
 ActorInfo D_80367BC8 = {
     MARKER_1FD_BLUE_PRESENT_COLLECTIBLE, ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, actor_draw,
+    chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.8f, 0
 };
 
 ActorInfo D_80367BEC = {
     MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, actor_draw,
+    chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };
 
 ActorInfo D_80367C10 = {
     MARKER_1FF_RED_PRESENT_COLLECTIBLE, ACTOR_1F1_RED_PRESENT_COLLECTIBLE, ASSET_481_MODEL_XMAS_GIFT_RED,
     0x5, D_80367B50,
-    chLevelCollectible_update, func_80326224, actor_draw,
+    chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };
 
@@ -62,8 +62,8 @@ void __chLevelCollectible_presentReturnEmitSparkles(f32 position[3], enum asset_
     particleEmitter_setSprite(p_emitter, sprite_id);
     particleEmitter_setStartingFrameRange(p_emitter, 0, 7);
     particleEmitter_setPosition(p_emitter, position);
-    particleEmitter_setParticleSpawnPositionRange(p_emitter, -40.0f, 0.0f, -40.0f, 40.0f, 60.0f, 40.0f);
-    particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
+    particleEmitter_setSpawnPositionRange(p_emitter, -40.0f, 0.0f, -40.0f, 40.0f, 60.0f, 40.0f);
+    particleEmitter_setAccelerationRange(p_emitter, 0.0f, -1000.0f, 0.0f, 0.0f, -1000.0f, 0.0f);
     particleEmitter_setScaleAndLifetimeRanges(p_emitter, &D_80367C34);
     particleEmitter_emitN(p_emitter, 1);
 }
@@ -74,7 +74,7 @@ void __chLevelCollectible_presentCollectEmitSparkles(f32 position[3], enum asset
     p_emitter = partEmitMgr_newEmitter(8);
     particleEmitter_setSprite(p_emitter, sprite_id);
     particleEmitter_setPosition(p_emitter, position);
-    particleEmitter_setParticleAccelerationRange(p_emitter, 0.0f, -250.0f, 0.0f, 0.0f, -250.0f, 0.0f);
+    particleEmitter_setAccelerationRange(p_emitter, 0.0f, -250.0f, 0.0f, 0.0f, -250.0f, 0.0f);
     particleEmitter_setParticleVelocityRange(p_emitter, -100.0f, 200.0f, -100.0f, 100.0f, 350.0f, 100.0f);
     particleEmitter_setAngularVelocityRange(p_emitter, 0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 240.0f);
     particleEmitter_setStartingScaleRange(p_emitter, 0.47f, 0.47f);
@@ -85,7 +85,7 @@ void __chLevelCollectible_presentCollectEmitSparkles(f32 position[3], enum asset
 }
 
 s32 __chLevelCollectible_dialogCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    return -(levelSpecificFlags_get(0x2A) + levelSpecificFlags_get(0x2B) + levelSpecificFlags_get(0x2C));
+    return -(levelSpecificFlags_get(LEVEL_FLAG_2A_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_2B_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_2C_FP_UNKNOWN));
 }
 
 
@@ -123,21 +123,21 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
                 break;
 
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2A, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2A_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
                 dialog_id = ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE;
                 break;
 
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2B, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2B_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_712_SPRITE_SPARKLE_GREEN);
                 dialog_id = ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN;
                 break;
 
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
-                levelSpecificFlags_set(0x2C, TRUE);
+                levelSpecificFlags_set(LEVEL_FLAG_2C_FP_UNKNOWN, TRUE);
                 func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
                 dialog_id = ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED;
@@ -241,15 +241,15 @@ void __chLevelCollectible_returnObj(Actor *this) {
                 break;
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x11, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_11_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x12, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_12_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
                 func_8025A6EC(COMUSIC_2B_DING_B, 32000);
-                levelSpecificFlags_set(0x13, 1);
+                levelSpecificFlags_set(LEVEL_FLAG_13_FP_UNKNOWN, TRUE);
                 break;
             }
         }

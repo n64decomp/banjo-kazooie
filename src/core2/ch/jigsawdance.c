@@ -20,7 +20,7 @@ ActorAnimationInfo chJigsawDanceAnimations[] = {
 
 ActorInfo chJigsawDance = {MARKER_68_JIGSAW_DANCE, ACTOR_5A_JIGSAW_DANCE, ASSET_35E_MODEL_JIGSAW_DANCE, 
     1, chJigsawDanceAnimations, 
-    __chJigsawDance_update, func_80326224, __chJigsawDance_draw,
+    __chJigsawDance_update, actor_update_func_80326224, __chJigsawDance_draw,
     0, 0, 0.0f, 0
 }; 
 

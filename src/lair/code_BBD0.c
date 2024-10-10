@@ -21,22 +21,22 @@ ActorAnimationInfo D_80394BE0[] = {
 };
 ActorInfo D_80394C28 = { MARKER_29A_FF_PRIZE, ACTOR_3C4_FF_PRIZE_WASHING_CAULDRON, ASSET_55F_MODEL_FF_PRIZE_WASHING_CAULDRON,   
     0x1, D_80394BE0, 
-    func_8039217C, func_80326224, actor_draw,
+    func_8039217C, actor_update_func_80326224, actor_draw,
     0, 0, 3.0f, 0
 };
 ActorInfo D_80394C4C = { MARKER_29A_FF_PRIZE, ACTOR_3C7_FF_PRIZE_GRUNTY_DOLL, ASSET_560_MODEL_FF_PRIZE_GRUNTY_DOLL,
     0x3, D_80394BE0,
-    func_8039217C, func_80326224, actor_draw,
+    func_8039217C, actor_update_func_80326224, actor_draw,
     0, 0, 1.0f, 0
 };
 ActorInfo D_80394C70 = { MARKER_29A_FF_PRIZE, 0x3C6, 0x34C,
     0x0, D_80394BE0,
-    func_8039217C, func_80326224, actor_draw,
+    func_8039217C, actor_update_func_80326224, actor_draw,
     0, 0, 3.0f, 0
 };
 ActorInfo D_80394C94 = { MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35B_FF_PRIZE_TOOTY,
     0x5, D_80394BE0,
-    func_8039217C, func_80326224, func_80391FC0,
+    func_8039217C, actor_update_func_80326224, func_80391FC0,
     0, 0, 1.0f, 0
 };
 

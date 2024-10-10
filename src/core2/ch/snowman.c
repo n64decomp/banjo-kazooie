@@ -38,7 +38,7 @@ enum chsnowman_state_e{
 ActorInfo chSnowman = { 
     MARKER_B1_SIR_SLUSH, ACTOR_124_SIR_SLUSH, ASSET_377_MODEL_SIR_SLUSH,
     CHSNOWMAN_STATE_1_IDLE, chSnowmanAnimations,
-    chSnowman_update, func_80326224, chSnowman_draw,
+    chSnowman_update, actor_update_func_80326224, chSnowman_draw,
     0, 0x199, 0.0f, 0
 };
 
@@ -111,7 +111,7 @@ void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
         {4.0f, 4.0f},
         0.0f, 0.3f
     };
-    static struct43s D_803686BC = {
+    static ParticleSettingsVelocityAccelerationPosition D_803686BC = {
         {{-250.0f, 600.0f, -250.0f}, {350.0f, 960.0f, 350.0f}},
         {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
         {{-80.0f, 0.0f, -80.0f}, {80.0f, 200.0f, 80.0f}}
@@ -121,10 +121,10 @@ void __chSnowman_spawnSnowballParticles(f32 position[3], s32 count){
 
     particleEmitter_setModel(particleSpawner, ASSET_378_MODEL_SNOWBALL);
     particleEmitter_setPosition(particleSpawner, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(particleSpawner, &D_803686BC);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(particleSpawner, &D_803686BC);
     particleEmitter_setAngularVelocityRange(particleSpawner, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
-    func_802EF9F8(particleSpawner, 0.01f);
-    func_802EFA18(particleSpawner, 3);
+    particleEmitter_func_802EF9F8(particleSpawner, 0.01f);
+    particleEmitter_func_802EFA18(particleSpawner, 3);
     func_802EFA20(particleSpawner, 1.0f, 1.3f);
     particleEmitter_setSfx(particleSpawner, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setScaleAndLifetimeRanges(particleSpawner, &D_80368694);
@@ -257,7 +257,7 @@ void chSnowman_update(Actor *this){
             else if( 
                 map_get() != MAP_27_FP_FREEZEEZY_PEAK
                 || func_8038DD34(local->unk0) == 0
-                || fileProgressFlag_get(0x13)
+                || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)
             ){//L802E2318
                 if(0.0 < local->unk4){
                     if( (globalTimer_getTime() & 1)

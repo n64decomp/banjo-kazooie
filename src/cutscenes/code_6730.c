@@ -19,7 +19,7 @@ extern ActorAnimationInfo D_8038E700[] ={
 extern ActorInfo D_8038E718 = {
     0x1F8, 0x1E8, 0x439,
     1, D_8038E700,
-    func_8038CCA8, func_80326224, func_8038CBCC,
+    func_8038CCA8, actor_update_func_80326224, func_8038CBCC,
     0, 0, 0.0f, 0
 };
 
@@ -33,7 +33,7 @@ extern ParticleScaleAndLifetimeRanges D_8038E748 = {
     0.05f, 0.9f
 };
 
-extern struct41s D_8038E770 ={
+extern ParticleSettingsVelocityAcceleration D_8038E770 ={
     { {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f} },
     { {0.0f, -200.0f, 0.0f}, {0.0f, -200.0f, 0.0f} }
 };

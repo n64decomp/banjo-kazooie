@@ -12,7 +12,7 @@ extern void func_802F32C4(s32, f32[3], f32, ActorMarker *, s32(*)(f32[3], f32, A
 /* .data */
 ActorInfo chBubble = { 
     MARKER_6B_GLOOPBUBBLE, ACTOR_E7_GLOOP_BUBBLE, ASSET_704_SPRITE_BUBBLE, 
-    0, NULL, chBubble_update, func_80326224, func_80325340, 
+    0, NULL, chBubble_update, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
 };
 

@@ -108,7 +108,7 @@ u8 func_8033FA84(void){
 
 void func_8033FB64(u8 indx){
     if(D_80385000[indx].sprite_0){
-        func_8033BD4C(D_80385000[indx].sprite_0);
+        assetCache_free(D_80385000[indx].sprite_0);
     }
     D_80385000[indx].sprite_0 = NULL;
     D_80385000[indx].unk28_13 = 0;
@@ -116,7 +116,7 @@ void func_8033FB64(u8 indx){
 
 void projectile_setSprite(u8 indx, enum asset_e arg1){
     if(D_80385000[indx].sprite_0){
-        func_8033BD4C(D_80385000[indx].sprite_0);
+        assetCache_free(D_80385000[indx].sprite_0);
     }
     D_80385000[indx].sprite_0 = assetcache_get(arg1);
 }

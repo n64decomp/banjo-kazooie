@@ -16,7 +16,7 @@ ActorAnimationInfo D_80390EA0[] = {
 
 ActorInfo D_80390ED0 = { MARKER_A9_RUBEE, ACTOR_11B_RUBEE, ASSET_3DD_MODEL_RUBEE, 
     0x2, D_80390EA0,
-    func_80389B1C, func_80326224, actor_draw,
+    func_80389B1C, actor_update_func_80326224, actor_draw,
     2500, 0, 1.6f, 0
 };
 

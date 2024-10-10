@@ -47,7 +47,7 @@ void func_8038CA10(ActorMarker *marker) {
             pCtrl = func_802EDD8C(local->unk4, 0.0f, this->position[1] + 500.0f);
             particleEmitter_setStartingScaleRange(pCtrl, 0.04f, 0.05f);
             particleEmitter_setFinalScaleRange(pCtrl, 0.18f, 0.2f);
-            particleEmitter_setParticleSpawnPositionRange(pCtrl, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
+            particleEmitter_setSpawnPositionRange(pCtrl, -10.0f, 0.0f, -10.0f, 10.0f, 20.0f, 10.0f);
             particleEmitter_setParticleVelocityRange(pCtrl, 0.0f, 31.0f, 0.0f, 0.0f, 37.0f, 0.0f);
             particleEmitter_emitN(pCtrl, 1);
         }
@@ -97,12 +97,15 @@ void func_8038CC4C(Actor *this) {
             local->unk0++;
         }
         func_8038CB40(this, 1);
+
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-            levelSpecificFlags_set(0x25, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
-        if ((local->unk0->unk2 != 0) && levelSpecificFlags_get(0x25)) {
+
+        if ((local->unk0->unk2 != 0) && levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN)) {
             marker_despawn(this->marker);
         }
+
         return;
     } 
 

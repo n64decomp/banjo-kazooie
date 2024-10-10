@@ -9,7 +9,7 @@ f32 D_803680D0[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo chOverlayCopyrightDescription = { 
     MARKER_176_COPYRIGHT_OVERLAY, ACTOR_1DD_COPYRIGHT_OVERLAY, ASSET_54E_MODEL_COPYRIGHT_OVERLAY, 
     0x1, NULL, 
-    chOverlayCopyright_update, func_80326224, func_802DC7E0, 
+    chOverlayCopyright_update, actor_update_func_80326224, func_802DC7E0, 
     0, 0, 0.0f, 0
 };
 

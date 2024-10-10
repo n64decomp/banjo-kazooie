@@ -5,9 +5,9 @@
 #include "fight.h"
 #include "actor.h"
 
-u8 pad_fight_80392740[0x10];
+u8 sFightPadding[0x10];
 
-void fight_func_803863F0(void)
+void fight_addSpawnableActors(void)
 {
     spawnableActorList_add(&chSpellFireball, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15 | ACTOR_FLAG_UNKNOWN_20);
     spawnableActorList_add(&chGreenBlast, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15 | ACTOR_FLAG_UNKNOWN_20);

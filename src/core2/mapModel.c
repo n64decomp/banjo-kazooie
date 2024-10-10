@@ -252,7 +252,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             break;
 
         case MAP_12_GV_GOBIS_VALLEY:
-            func_8033A45C(1, levelSpecificFlags_get(6) ? 1 : 0);
+            func_8033A45C(1, levelSpecificFlags_get(LEVEL_FLAG_6_GV_UNKNOWN) ? 1 : 0);
             func_8033A45C(2, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 0 : 1);
             func_8033A45C(5, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 1 : 0);
             break;

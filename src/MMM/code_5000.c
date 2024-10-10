@@ -74,7 +74,7 @@ void func_8038B630(Struct5Fs *arg0, Struct68s *arg1){
     f32 sp20;
     
     sp20 = alCents2Ratio(func_80389BBC()*100);
-    phi_s0 = func_80351758(arg1);
+    phi_s0 = func_80351758_getSfxsourceIndex(arg1);
     func_8030E394(phi_s0);
     sfxsource_playSfxAtVolume(phi_s0, sp20);
     sfxsource_setSfxId(phi_s0, 0x3f3);
@@ -118,7 +118,7 @@ void func_8038B790(Struct5Fs *arg0, Struct68s *arg1, f32 arg2) {
         if (arg0->unk14 <= 0.0f) {
             func_80351954(arg1);
         } else if (arg0->unk14 <= 1.0f) {
-            sfxsource_setSampleRate(func_80351758(arg1), (s32)(arg0->unk14 * 32767.0f));
+            sfxsource_setSampleRate(func_80351758_getSfxsourceIndex(arg1), (s32)(arg0->unk14 * 32767.0f));
         }
     }
 

@@ -19,7 +19,7 @@ void chSnowball_update(Actor *this);
 ActorInfo chSnowball = { 
     MARKER_B2_SNOWBALL, ACTOR_125_SNOWBALL, ASSET_378_MODEL_SNOWBALL, 
     0x1, NULL, 
-    chSnowball_update, func_80326224, chSnowball_draw, 
+    chSnowball_update, actor_update_func_80326224, chSnowball_draw, 
     0, 0x800, 0.8f, 0
 };
 
@@ -40,7 +40,7 @@ Actor *chSnowball_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 void __chSnowball_spawnPieces(f32 position[3]) {
     static ParticleScaleAndLifetimeRanges D_80368734 = {{0.65f, 1.1}, {0.0f, 0.0f}, {0.0f, 0.01f}, {0.8f, 0.8f}, 0.0f, 0.5f};
-    static struct43s D_8036875C = {
+    static ParticleSettingsVelocityAccelerationPosition D_8036875C = {
         {{-220.0f,  210.0f, -220.0f}, {280.0f,  460.0f, 280.0f}},
         {{   0.0f, -800.0f,    0.0f}, {  0.0f, -800.0f,   0.0f}},
         {{ -20.0f,  -20.0f,  -20.0f}, { 20.0f,   20.0f,  20.0f}}
@@ -51,7 +51,7 @@ void __chSnowball_spawnPieces(f32 position[3]) {
     pCtrl = partEmitMgr_newEmitter(8);
     particleEmitter_setModel(pCtrl, ASSET_37A_MODEL_TINY_SNOWBALL);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_8036875C);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8036875C);
     particleEmitter_setAngularVelocityRange(pCtrl, -300.0f, -300.0f, -300.0f, 300.0f, 300.0f, 300.0f);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_80368734);
     particleEmitter_emitN(pCtrl, 8);

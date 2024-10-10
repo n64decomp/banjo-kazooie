@@ -14,7 +14,7 @@ extern ActorAnimationInfo D_803926F0[]= {
 
 extern ActorInfo D_80392700 = { MARKER_20F_WOZZA_IN_CAVE, ACTOR_33F_WOZZA_IN_CAVE, ASSET_494_MODEL_WOZZA,
     0x1, D_803926F0,
-    func_80390630, func_80326224, actor_draw,
+    func_80390630, actor_update_func_80326224, actor_draw,
     2500, 0, 1.6f, 0
 };
 
@@ -34,7 +34,7 @@ void func_80390630(Actor *this){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
-        this->unk38_31 = jiggyscore_isCollected(JIGGY_32_FP_WOZZA) || levelSpecificFlags_get(0x26) ? 0 : 1;
+        this->unk38_31 = jiggyscore_isCollected(JIGGY_32_FP_WOZZA) || levelSpecificFlags_get(LEVEL_FLAG_26_FP_UNKNOWN) ? 0 : 1;
     }//L80390714
  
     if(this->unk38_31){
@@ -66,18 +66,18 @@ void func_80390630(Actor *this){
             }
         }
 
-        if(func_80329530(this, 350)){
-            if(player_getTransformation() == TRANSFORM_4_WALRUS){
-                if(!levelSpecificFlags_get(0x31)){
-                    if(gcdialog_showText(ASSET_C27_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
-                        levelSpecificFlags_set(0x31, TRUE);
+        if (func_80329530(this, 350)) {
+            if (player_getTransformation() == TRANSFORM_4_WALRUS) {
+                if (!levelSpecificFlags_get(LEVEL_FLAG_31_FP_UNKNOWN)) {
+                    if (gcdialog_showText(ASSET_C27_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_31_FP_UNKNOWN, TRUE);
                     }
                 }
             }
-            else{
-                 if(!levelSpecificFlags_get(0x32)){
-                    if(gcdialog_showText(ASSET_C26_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)){
-                        levelSpecificFlags_set(0x32, TRUE);
+            else {
+                if (!levelSpecificFlags_get(LEVEL_FLAG_32_FP_UNKNOWN)) {
+                    if (gcdialog_showText(ASSET_C26_TEXT_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                        levelSpecificFlags_set(LEVEL_FLAG_32_FP_UNKNOWN, TRUE);
                     }
                 }
             }

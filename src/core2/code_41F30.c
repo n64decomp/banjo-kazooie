@@ -6,7 +6,7 @@ void chextralife_update(Actor *this);
 
 ActorInfo chExtraLife = { MARKER_61_EXTRA_LIFE,  ACTOR_49_EXTRA_LIFE, ASSET_36E_MODEL_EXTRA_LIFE, 
     0x0, NULL,
-    chextralife_update, func_80326224, func_80325934, 
+    chextralife_update, actor_update_func_80326224, func_80325934, 
     0, 0, 0.7f, 0
 };
 

@@ -18,19 +18,19 @@ void func_802DC018(Actor *this);
 ActorInfo D_80367F30= {
     0x1F5, 0x1E5, 0, 
     0, NULL, 
-    func_802DC018, func_80326224, func_80325340,
+    func_802DC018, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 }; 
 
 s32 D_80367F54[3] = {0xff, 0xff, 0xff};
-struct40s D_80367F60 = {
+ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_80367F60 = {
     { {0.1f, 0.5f}, {1.0f, 1.5f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 
       0.0f, 0.01f
     }, 
     4, 1
 };
 
-struct43s D_80367F90 ={
+ParticleSettingsVelocityAccelerationPosition D_80367F90 ={
     {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}},
     {{0.0f, -650.0f, 0.0f}, {0.0f, -650.0f, 0.0f}},
     {{-200.0f, 0.0f, -200.0f}, {200.0f, 0.0f, 200.0f}}
@@ -63,12 +63,12 @@ void func_802DBCE0(ParticleEmitter *pCtrl, f32 arg1[3]){
 }
 
 void func_802DBE9C(Actor *this, ParticleEmitter *pCtrl){
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &D_80367F90);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_80367F90);
     particleEmitter_setModel(pCtrl, 0x344);
     particleEmitter_setPosition(pCtrl, this->position);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_setAngularVelocityRange(pCtrl, -450.0f, -450.0f, -450.0f, 450.0f, 450.0f, 450.0f);
-    func_802EFA18(pCtrl, 1);
+    particleEmitter_func_802EFA18(pCtrl, 1);
     particleEmitter_setParticleCallback(pCtrl, func_802DBCE0);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 7.0f, 7.0f);

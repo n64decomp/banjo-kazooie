@@ -18,7 +18,7 @@ ActorAnimationInfo gChLeakyAnimations[3] = {
 ActorInfo gChLeaky = { 
     MARKER_33_LEAKY,  ACTOR_1E_LEAKY, ASSET_51A_MODEL_LEAKY,
     0x1, gChLeakyAnimations,
-    __chLeaky_updateFunc, func_80326224, actor_draw,
+    __chLeaky_updateFunc, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -39,11 +39,13 @@ static void __chLeaky_updateFunc(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
-        if (levelSpecificFlags_get(5) != 0) {
-            levelSpecificFlags_set(5, FALSE);
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_5_TTC_UNKNOWN) != FALSE) {
+            levelSpecificFlags_set(LEVEL_FLAG_5_TTC_UNKNOWN, FALSE);
             timedFunc_set_1(0.5f, (GenFunction_1)comusic_playTrack, COMUSIC_2D_PUZZLE_SOLVED_FANFARE);
         }
-        if (levelSpecificFlags_get(2) != 0) {
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) != FALSE) {
             temp_v0_2 = func_8034C5AC(300);
             if (temp_v0_2 != 0) {
                 func_8034E71C(temp_v0_2, -600, 0.0f);
@@ -102,14 +104,17 @@ static void __chLeaky_showDoneText(ActorMarker *caller, enum asset_e text_id, s3
 
 bool chLeaky_eggCollision(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
-    
-    if(levelSpecificFlags_get(2)) 
+
+    if (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)) {
         return TRUE;
+    }
 
     comusic_playTrack(COMUSIC_2B_DING_B);
     this->unk38_31++;
-    if(this->unk38_31 < 2)
+
+    if (this->unk38_31 < 2) {
         return TRUE;
+    }
 
     levelSpecificFlags_set(2, TRUE);
     levelSpecificFlags_set(5, TRUE);

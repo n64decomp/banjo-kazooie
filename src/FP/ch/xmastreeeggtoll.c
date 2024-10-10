@@ -8,13 +8,13 @@ void func_80390EB0(Actor *this);
 /* .data */
 ActorInfo FP_D_80392840 = { MARKER_245_XMAS_TREE_EGG_TOLL, ACTOR_353_XMAS_TREE_EGG_TOLL, ASSET_402_MODEL_EGG_TOLL,
     0x0, NULL,
-    func_80390EB0, func_80326224, func_80325340,
+    func_80390EB0, actor_update_func_80326224, func_80325340,
     2000, 0, 0.0f, 0
 };
 
 /* .code */
 void func_80390C70(f32 position[3]){
-    static struct40s FP_D_80392864 = {{{1.7f, 2.0f}, {2.4f, 2.7f}, {0.0f, 0.01f}, {4.0f, 7.0f}, 0.3f, 0.7f}, 4.0f, 1.0f};
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount FP_D_80392864 = {{{1.7f, 2.0f}, {2.4f, 2.7f}, {0.0f, 0.01f}, {4.0f, 7.0f}, 0.3f, 0.7f}, 4.0f, 1.0f};
     static s32 D_80392894[3] = {0xFF, 0XFF, 0xFF};
     
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
@@ -23,7 +23,7 @@ void func_80390C70(f32 position[3]){
     particleEmitter_setRGB(pCtrl, D_80392894);
     particleEmitter_setAlpha(pCtrl, 0x41);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -40.0f, 110.0f, -40.0f,
          40.0f, 110.0f,  40.0f
     );
@@ -35,7 +35,7 @@ void func_80390C70(f32 position[3]){
 }
 
 void func_80390D58(f32 position[3]){
-    static struct40s D_803928A0 = {{{0.05f, 0.1f}, {0.1f, 0.2f}, {0.0f, 0.01f}, {0.9f, 1.3f}, 0.3f, 0.7f}, 4.0f, 1.0f};
+    static ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_803928A0 = {{{0.05f, 0.1f}, {0.1f, 0.2f}, {0.0f, 0.01f}, {0.9f, 1.3f}, 0.3f, 0.7f}, 4.0f, 1.0f};
     static s32 D_803928D0[3] = {0xFF, 0xFF, 0xFF};
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1);
@@ -44,7 +44,7 @@ void func_80390D58(f32 position[3]){
     particleEmitter_setRGB(pCtrl, D_803928D0);
     particleEmitter_setAlpha(pCtrl, 0xFF);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setParticleSpawnPositionRange(pCtrl,
+    particleEmitter_setSpawnPositionRange(pCtrl,
         -40.0f, 50.0,-40.0f,
          40.0f, 70.0, 40.0f
     );
@@ -52,7 +52,7 @@ void func_80390D58(f32 position[3]){
         -40.0f, 120.0,-40.0f,
          40.0f, 180.0, 40.0f
     );
-    particleEmitter_setParticleAccelerationRange(pCtrl, 
+    particleEmitter_setAccelerationRange(pCtrl, 
         0.0f,  -60.0f, 0.0f,
         0.0f, -100.0f, 0.0f
     );

@@ -17,7 +17,7 @@ extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_8033A244(f32);
 
 f32 func_80257204(f32, f32, f32, f32);
-extern Actor *spawnQueue_bundleWithYaw_f32(s32 actor_id, s32 x, s32 y, s32 z, s32 yaw);
+extern Actor *spawnQueue_bundleWithYaw_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z, s32 yaw);
 f32 func_8033229C(ActorMarker *);
 f32 player_getYaw(void);
 extern void __bundle_spawnFromFirstActor(s32, Actor *);
@@ -439,7 +439,7 @@ s32 func_80326218(void){
     return D_8036E564;
 }
 
-void func_80326224(Actor *this){
+void actor_update_func_80326224(Actor *this){
     func_80343DEC(this);
 }
 
@@ -1190,9 +1190,11 @@ static bool __subaddie_set_state(Actor *this, s32 state)
 
 void func_803285E8(Actor *this, f32 anim_start_position, int direction){
     animctrl_setStart(this->animctrl, anim_start_position);
-    if(direction != -1){
+
+    if (direction != -1) {
         animctrl_setDirection(this->animctrl, direction);
     }
+
     this->sound_timer = anim_start_position;
 }
 
@@ -1275,8 +1277,8 @@ int actor_animationIsAt(Actor *this, f32 arg1){
     }
 }
 
-void func_803289EC(Actor *this , f32 arg1, int direction){
-    func_803285E8(this, arg1, direction);
+void func_803289EC(Actor *this , f32 anim_start_position, int direction){
+    func_803285E8(this, anim_start_position, direction);
     animctrl_start(this->animctrl, "subaddie.c", 0x6b1);
 }
 
@@ -1316,9 +1318,10 @@ int subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
     return 0;
 }
 
-void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 arg2, s32 direction){
-    if(__subaddie_set_state(this, myAnimId) && this->animctrl)
-        func_803289EC(this, arg2, direction);
+void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction){
+    if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
+        func_803289EC(this, anim_start_position, direction);
+    }
 }
 
 bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {
@@ -2184,12 +2187,12 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
             func_8034A174( this->marker->unk44, 0x20, sp38);
         }
         if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
-            __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, this->unk138_27 + 0x15, reinterpret_cast(s32,sp38[0]), reinterpret_cast(s32,sp38[1]), reinterpret_cast(s32,sp38[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5) spawnQueue_bundleWithYaw_f32, this->unk138_27 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp38[0]), reinterpret_cast(s32, sp38[1]), reinterpret_cast(s32, sp38[2]), reinterpret_cast(s32, sp44));
             return;
         }
         else{
             sp34 = this->position[1] + 50.0f;
-            __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, this->unk138_27 + 0x15, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
+            __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, this->unk138_27 + BUNDLE_15__JIGGY, reinterpret_cast(s32,this->position[0]), reinterpret_cast(s32,sp34), reinterpret_cast(s32,this->position[2]), reinterpret_cast(s32,sp44));
         }
     }
 }
@@ -2273,10 +2276,10 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
             bundle_setYaw(func_80257204(arg0->propPtr->x, arg0->propPtr->z, arg1->propPtr->x, arg1->propPtr->z) + 90.0f);
             D_8036E564 = sp6C;
             if (this->unk138_25) {
-                __bundle_spawnFromFirstActor(sp6C + 0x21, this);
+                __bundle_spawnFromFirstActor(sp6C + BUNDLE_21__ICECUBE_B, this);
             } else {
                 if ((this->marker->id < 0x1A1) || (this->marker->id >= 0x1A5)) {
-                    __bundle_spawnFromFirstActor(sp6C + 0x18, this);
+                    __bundle_spawnFromFirstActor(sp6C + BUNDLE_18__HONEYCOMB, this);
                 }
             }
         }
@@ -2305,15 +2308,15 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     }
                     func_8032EE0C(func_8032B38C, this);
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
-                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
                         sp50[0] = (f32) sp48->x;
                         sp50[1] = (f32) sp48->y;
                         sp50[2] = (f32) sp48->z;
-                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else {
                         sp38 = this->position[1] + func_8033229C(arg0);
-                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + 0x15, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, player_yaw));
+                        __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + BUNDLE_15__JIGGY, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, sp38), reinterpret_cast(s32, this->position[2]), reinterpret_cast(s32, player_yaw));
                     }
                     func_8032EE20();
                 }

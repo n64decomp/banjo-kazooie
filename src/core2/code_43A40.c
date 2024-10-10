@@ -10,21 +10,21 @@ void chFightFlightPad_update(Actor *this);
 extern ActorInfo chShockJump = { 
     0x0D4, ACTOR_B_SHOCKSPRING_PAD, ASSET_489_MODEL_SHOCKSPRING_PAD, 
     0, NULL, 
-    chShockJump_update, func_80326224, actor_draw,
+    chShockJump_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo chFlightPad = { 
     MARKER_45_FLIGHT_PAD, ACTOR_E4_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    chFlightPad_update, func_80326224, actor_draw,
+    chFlightPad_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo chFightFlightPad = { 
     MARKER_261_FIGHT_FLIGHT_PAD, ACTOR_39F_FIGHT_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD, 
     0, NULL, 
-    chFightFlightPad_update, func_80326224, actor_draw,
+    chFightFlightPad_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -38,7 +38,7 @@ extern ParticleScaleAndLifetimeRanges chFightFlightPad_D_80366F8C = {
 };
 
 
-extern struct43s chFightFlightPad_D_80366FB4 = {
+extern ParticleSettingsVelocityAccelerationPosition chFightFlightPad_D_80366FB4 = {
     {{-360.0f, 360.0f, -360.0}, {360.0f, 660.0f, 360.0f}}, 
     {{0.0f, -1200.0f, 0.0f}, {0.0f, -1200.0f, 0.0f}},
     {{0.0f, 0.0f, 0.0f}, {0.0f, 40.0f, 0.0f}}
@@ -84,9 +84,9 @@ void chFightFlightPad_emitSparklesAtPosition(f32 position[3]){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x18);
     particleEmitter_setSprite(pCtrl, ASSET_715_SPRITE_SPARKLE_RED);
     particleEmitter_setPosition(pCtrl, position);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(pCtrl, &chFightFlightPad_D_80366FB4);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &chFightFlightPad_D_80366FB4);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &chFightFlightPad_D_80366F8C);
-    func_802EFA78(pCtrl, 1);
+    particleEmitter_func_802EFA78(pCtrl, 1);
     particleEmitter_emitN(pCtrl, 0x18);
 }
 

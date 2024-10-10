@@ -226,7 +226,7 @@ void fxcommon3score_free(enum item_e item_id, void *arg1){
     }
 
     if(a1->model != NULL){
-        func_8033BD4C(a1->model);
+        assetCache_free(a1->model);
         a1->model = NULL;
         a1->unk6C = 0.0f;
     }

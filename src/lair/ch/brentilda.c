@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80258640(f32[3], f32[3]);
+extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
 
 typedef struct {
     s32 unk0;
@@ -17,7 +17,7 @@ ActorAnimationInfo chBrentildaAnimations[] ={
     {0x26C, 4.0f},
     {0x26B, 4.0f},
 };
-ActorInfo chBrentilda = { 0x1E0, 0x348, 0x539, 0x1, chBrentildaAnimations, chBrentilda_update, func_80326224, actor_draw, 2000, 0, 2.0f, 0};
+ActorInfo chBrentilda = { 0x1E0, 0x348, 0x539, 0x1, chBrentildaAnimations, chBrentilda_update, actor_update_func_80326224, actor_draw, 2000, 0, 2.0f, 0};
 
 /* .code */
 void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -124,7 +124,7 @@ void chBrentilda_update(Actor *this) {
     player_getPosition(sp64);
     temp_f0 = sp64[1] - this->position[1];
     if ((temp_f0 > -100.0f) && (temp_f0 < 350.0f)) {
-        phi_f2 = func_80258640(sp64, this->position);
+        phi_f2 = ml_vec3f_horizontal_distance_zero_likely(sp64, this->position);
     } else {
         phi_f2 = 2000.0f;
     }

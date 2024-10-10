@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-int func_802458E0(f32 arg0[3], Actor *arg1, s32 arg2);
+int collisionTri_isHitFromAbove_actor(f32 arg0[3], Actor *arg1, s32 arg2);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
 extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
@@ -308,31 +308,32 @@ BKCollisionTri *func_802457C4(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 
     return var_v1;
 }
 
-void collisionTri_copy(BKCollisionTri *dst, BKCollisionTri *src){
-    dst->unk0[0] = src->unk0[0];
-    dst->unk0[1] = src->unk0[1];
-    dst->unk0[2] = src->unk0[2];
+void collisionTri_copy(BKCollisionTri *dst, BKCollisionTri *src) {
+    TUPLE_COPY(dst->unk0, src->unk0)
     dst->flags = src->flags;
     dst->unk6 = src->unk6;
 }
 
-int func_802458A8(f32 arg0[3], ActorMarker *arg1, s32 arg2){
-    return func_802458E0(arg0, marker_getActor(arg1), arg2);
+int collisionTri_isHitFromAbove_marker(f32 position[3], ActorMarker *marker, s32 verticalOffset) {
+    return collisionTri_isHitFromAbove_actor(position, marker_getActor(marker), verticalOffset);
 }
 
-int func_802458E0(f32 arg0[3], Actor *arg1, s32 arg2){
+int collisionTri_isHitFromAbove_actor(f32 position[3], Actor *actor, s32 verticalOffset) {
     f32 sp34[3];
-    f32 sp28[3];
-    f32 sp1C[3];
+    f32 tmp_position[3];
+    f32 adjusted_actor_position[3];
 
-    ml_vec3f_copy(sp28, arg0);
-    ml_vec3f_copy(sp1C, arg1->position);
-    sp1C[1] += (f32)arg2;
-    if(sp1C[1] < sp28[1])
-        return FALSE;
+    ml_vec3f_copy(tmp_position, position);
+    ml_vec3f_copy(adjusted_actor_position, actor->position);
+    adjusted_actor_position[1] += (f32) verticalOffset;
 
-    if(func_80320B98(sp28, sp1C, sp34, 0x25e0000)){
+    if (adjusted_actor_position[1] < tmp_position[1]) {
         return FALSE;
     }
+
+    if (func_80320B98(tmp_position, adjusted_actor_position, sp34, 0x25e0000)) {
+        return FALSE;
+    }
+
     return TRUE;
 }

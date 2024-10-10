@@ -103,7 +103,7 @@ void func_80392918(Actor *this) {
         }
         return;
     }
-    func_80326224(this);
+    actor_update_func_80326224(this);
     if ((this->unk48 > 0.5) && !this->has_met_before) {
         this->has_met_before = TRUE;
         ncStaticCamera_setToNode(0x1E);

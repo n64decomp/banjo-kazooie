@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .data */
-struct43s  D_803637A0 = {
+ParticleSettingsVelocityAccelerationPosition  D_803637A0 = {
     {{-200.0f, 200.0f, -200.0f}, {200.0f, 400.0f, 200.0f}},
     {{0.0f, -800.0, 0.0f}, {0.0f, -800.0f, 0.0f}},
     {{-10.0f, -10.0f, -10.0f}, {10.0f, 10.0f, 10.0f}}
@@ -24,13 +24,13 @@ void eggShatter_free(void){
 void eggShatter_init(void){
     gEggShatter_controller = particleEmitter_new(20);
     particleEmitter_setModel(gEggShatter_controller, 0x360);
-    func_802EF9F8(gEggShatter_controller, 0.6f);
-    func_802EFA18(gEggShatter_controller, 0);
+    particleEmitter_func_802EF9F8(gEggShatter_controller, 0.6f);
+    particleEmitter_func_802EFA18(gEggShatter_controller, 0);
     particleEmitter_setStartingScaleRange(gEggShatter_controller, 0.8f, 1.0f);
     particleEmitter_setAngularVelocityRange(gEggShatter_controller, 400.0f, 400.0f, 400.0f, 800.0f, 800.0f, 800.0f);
     particleEmitter_setSpawnIntervalRange(gEggShatter_controller, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(gEggShatter_controller, 1.5f, 1.5f);
-    particleEmitter_setPositionVelocityAndAccelerationRanges(gEggShatter_controller, &D_803637A0);
+    particleEmitter_setVelocityAccelerationAndPositionRanges(gEggShatter_controller, &D_803637A0);
 }
 
 void eggShatter_update(void){

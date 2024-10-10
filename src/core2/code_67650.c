@@ -57,7 +57,7 @@ void func_802EE6CC(f32 position[3], f32 velocity[3], s32 color[4], s32 arg3, f32
     particleEmitter_setFade(p_ctrl, 0.075f, 0.4f);
     particleEmitter_setPosition(p_ctrl, position);
     particleEmitter_setSpawnIntervalRange(p_ctrl, 0.0f, 0.0f);
-    func_802EFA78(p_ctrl, 1);
+    particleEmitter_func_802EFA78(p_ctrl, 1);
     if (velocity != NULL) {
         ml_vec3f_scale_copy(sp40, velocity, 30.0f);
     } else {
