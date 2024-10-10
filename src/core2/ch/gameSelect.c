@@ -83,7 +83,7 @@ s32 mm_hut_smash_count;
 u32 CH_TREASUREHUNT_PUZZLE_CURRENT_STEP;
 struct FF_StorageStruct* D_8037DCB8;
 s32 D_8037DCBC;
-u8 D_8037DCC0[7]; // bottle bonus puzzle?
+u8 gCompletedBottleBonusGames[7]; // bottle bonus puzzle?
 u8 D_8037DCC7;
 u8 D_8037DCC8;
 u8 D_8037DCC9;

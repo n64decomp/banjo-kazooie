@@ -5,14 +5,12 @@
 #include "SnS.h"
 
 /* extern */
-
-void func_802D6310(f32, enum map_e, s32, s32, enum file_progress_e);
+extern void func_802D6310(f32, enum map_e, s32, s32, enum file_progress_e);
 extern BKModel *mapModel_getModel(s32);
 
-extern u8 D_8037DCC0[7];
+extern u8 gCompletedBottleBonusGames[7];
 
 /* .h */
-
 static void __code3E30_resetSecretCheatCodeProgress(void);
 static u32 __code3E30_scrambleAddressForSecretCheatCode();
 
@@ -48,7 +46,7 @@ typedef struct
 static s32 __code3E30_getNumberOfBannedCheatCodesEntered();
 
 /* .data */
-static s32 secretCheatCodeRelatedValue = NULL;
+static s32 sSecretCheatCodeRelatedValue = NULL;
 
 enum floor_letters_e {
     FLOOR_LETTER_J = 0x70,
@@ -78,6 +76,17 @@ enum floor_letters_e {
     FLOOR_LETTER_K = 0x38
 };
 
+/**
+ * The floor tiles look like this (_ being empty):
+ * J _ G _ A _ L
+ * _ V _ E _ C _
+ * M _ N _ R _ P
+ * _ D _ O _ S _
+ * Z _ U _ Y _ I
+ * _ X _ T _ F _
+ * O _ A _ W _ O
+ * _ H _ B _ K _
+ */
 static LetterFloorTile sLetterFloorTiles[] = {
     {0x02, FLOOR_LETTER_J, 0, 0.0f}, 
     {0x04, FLOOR_LETTER_G, 0, 0.0f}, 
@@ -111,18 +120,18 @@ static LetterFloorTile sLetterFloorTiles[] = {
 };
 
 static CheatCode sCheatCodes[0xD] = {
-    {"knip68n3664j", 0x0001, 0},      // BANJOKAZOOIE
-    {"kbgjj552", 0x0002, 0},          // BLUEEGGS
-    {"9jlcjndmj92", 0x0004, 0},       // REDFEATHERS
-    {"56blcjndmj92", 0x0008, 0},      // GOLDFEATHERS
-    {"k6ddbj2k6ig26ij", 0x0010, 0},   // BOTTLESBONUSONE
-    {"k6ddbj2k6ig2d76", 0x0020, 0},   // BOTTLESBONUSTWO
-    {"k6ddbj2k6ig2dm9jj", 0x0040, 0}, // BOTTLESBONUSTHREE
-    {"k6ddbj2k6ig2c6g9", 0x0080, 0},  // BOTTLESBONUSFOUR
-    {"k6ddbj2k6ig2c4aj", 0x0100, 0},  // BOTTLESBONUSFIVE
-    {"k45k6ddbj2k6ig2", 0x0200, 0},   // BIGBOTTLESBONUS
-    {"742me7n2meknip6", 0x0400, 0},   // WISHYWASHYBANJO
-    {"i6k6ig2", 0x0800, 0},           // NOBONUS
+    {"knip68n3664j",        0x0001, 0}, // BANJOKAZOOIE
+    {"kbgjj552",            0x0002, 0}, // BLUEEGGS
+    {"9jlcjndmj92",         0x0004, 0}, // REDFEATHERS
+    {"56blcjndmj92",        0x0008, 0}, // GOLDFEATHERS
+    {"k6ddbj2k6ig26ij",     0x0010, 0}, // BOTTLESBONUSONE
+    {"k6ddbj2k6ig2d76",     0x0020, 0}, // BOTTLESBONUSTWO
+    {"k6ddbj2k6ig2dm9jj",   0x0040, 0}, // BOTTLESBONUSTHREE
+    {"k6ddbj2k6ig2c6g9",    0x0080, 0}, // BOTTLESBONUSFOUR
+    {"k6ddbj2k6ig2c4aj",    0x0100, 0}, // BOTTLESBONUSFIVE
+    {"k45k6ddbj2k6ig2",     0x0200, 0}, // BIGBOTTLESBONUS
+    {"742me7n2meknip6",     0x0400, 0}, // WISHYWASHYBANJO
+    {"i6k6ig2",             0x0800, 0}, // NOBONUS
     NULL
 };
 
@@ -152,7 +161,7 @@ static void __code3E30_transformMeshCallbackOverlayInit(s32 arg0, BKVtxRef *vtx_
 static void __code3E30_setupCheatCodeTimer(s32 new_timer_state)
 {
     if (new_timer_state == 1)
-    { // something in FF?
+    {
         if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         {
             // set timer to 50 seconds
@@ -163,6 +172,7 @@ static void __code3E30_setupCheatCodeTimer(s32 new_timer_state)
             // set timer to 100 seconds
             item_set(ITEM_0_HOURGLASS_TIMER, 5999);
         }
+
         item_set(ITEM_6_HOURGLASS, TRUE);
     }
 
@@ -301,7 +311,7 @@ static void __code3E30_updateTimeDeltaSumForFloorTiles()
 
 static void __code3E30_setsecretCheatCodeRelatedValue(void)
 {
-    secretCheatCodeRelatedValue = __code3E30_scrambleAddressForSecretCheatCode();
+    sSecretCheatCodeRelatedValue = __code3E30_scrambleAddressForSecretCheatCode();
 }
 
 static u32 __code3E30_cheatoCodeUnlocked(s32 cheato_code_index)
@@ -340,7 +350,7 @@ static void __code3E30_setVolatileFlags(u32 arg0)
 
 static void __code3E30_checkFloorTileForRegularCheatCode(LetterFloorTile *letter_floor_tile)
 {
-    s32 sp40[4]; // unused but required for checksum
+    s32 pad0[4];
 
     bool floor_is_valid_or_correct;
     bool is_in_ff_minigame;
@@ -365,7 +375,7 @@ static void __code3E30_checkFloorTileForRegularCheatCode(LetterFloorTile *letter
 
             for (i = 0; i < 7; i++)
             {
-                if (D_8037DCC0[i] != 0)
+                if (gCompletedBottleBonusGames[i] != 0)
                 {
                     unlocked_cheat_flags |= (0x10 << i);
                 }
@@ -563,10 +573,10 @@ void code3E30_overlayInit(void)
         {
             BKModel_transformMesh(sMapState.model2, 0x3C, __code3E30_transformMeshCallbackOverlayInit, 0);
             sMapState.banjoKazooieCodeEnteredState = 3;
-        } // L8038B2CC
+        }
         __code3E30_setsecretCheatCodeRelatedValue();
         __code3E30_resetSecretCheatCodeProgress();
-    } // L8038B2E0
+    }
 }
 
 void code3E30_overlayUpdate(void)
@@ -648,65 +658,176 @@ static s32 sThirdForbiddenSecretCheatCodeIndex = NULL;
 #define VOLATILE_FLAG_CHEAT_OFFSET 0x14
 
 static SecretCheatCode sSecretsCheatCodes[] = {
-    {"0mjnd", 0, 0x00, 00},                                                                                                                             // CHEAT
-    {"i67knip674bbkjnkbjd62jj4d6iinkigd2dnkbj", 0, 0x01, 00},                                                                                           // NOW BANJO WILL BE ABLE TO SEE IT ON NABNUTS TABLE
-    {"dm422j09jde6gbbkj59nkk4i4idmj0nrdn4i20nk4i", 0, 0x02, 00},                                                                                        // THIS SECRET YOULL BE GRABBIN IN THE CAPTAINS CABIN
-    {"n14l2ddmjmngidjl5b661n2j09jd4idmjkndm9661", 0, 0x03, 00},                                                                                         // AMIDST THE HAUNTED GLOOM A SECRET IN THE BATHROOM
-    {"nlj2j9dl6696rji274ljni04jid2j09jd27n4d4i24lj", 0, 0x04, 00},                                                                                      // A DESERT DOOR OPENS WIDE ANCIENT SECRETS WAIT INSIDE
-    {"6gd6cdmj2jn4d942j2d69jajnb169j2j09jdr943j2", 0, 0x05, 00},                                                                                        // OUT OF THE SEA IT RISES TO REVEAL MORE SECRET PRIZES
-    {"l6ide6g56nildjbbmj9nk6gddmj2j09jd4imj90jbbn9", 0, 0x06, 00},                                                                                      // DONT YOU GO AND TELL HER ABOUT THE SECRET IN HER CELLAR
-    {"i67e6g0ni2jjni40j40j8je7m40me6g0nimnajc69c9jj", 0, 0x07, 00},                                                                                     // NOW YOU CAN SEE A NICE ICE KEY WHICH YOU CAN HAVE FOR FREE
-    {"56945md6idm96g5mi6djl669d76", 0, VOLATILE_FLAG_66_SANDCASTLE_OPEN_DOOR_TWO + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                     // GO RIGHT ON THROUGH NOTE DOOR TWO
-    {"i6djl669dm9jj5jd4ic69c9jj", 0, VOLATILE_FLAG_67_SANDCASTLE_OPEN_DOOR_THREE + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                     // NOTE DOOR THREE GET IN FOR FREE
-    {"dn8jnd6g9dm96g5mi6djl669c6g9", 0, VOLATILE_FLAG_68_SANDCASTLE_OPEN_DOOR_FOUR + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                   // TAKE A TOUR THROUGH NOTE DOOR FOUR
-    {"g2jdm420mjndi6djl669c4aj42kjnd", 0, VOLATILE_FLAG_69_SANDCASTLE_OPEN_DOOR_FIVE + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                 // USE THIS CHEAT NOTE DOOR FIVE IS BEAT
-    {"dm42d94082g2jld66rjii6djl66924h", 0, VOLATILE_FLAG_6A_SANDCASTLE_OPEN_DOOR_SIX + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                 // THIS TRICKS USED TO OPEN NOTE DOOR SIX
-    {"dmj2jajidmi6djl66942i67i6169j", 0, VOLATILE_FLAG_6B_SANDCASTLE_OPEN_DOOR_SEVEN + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                 // THE SEVENTH NOTE DOOR IS NOW NO MORE
-    {"e6g0ni5jd7jdcjjdi670bni8j92p455e42061rbjdj", 0, VOLATILE_FLAG_6C_SANDCASTLE_PUZZLE_COMPLETE_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},                 // YOU CAN GET WET FEET NOW CLANKERS JIGGY IS COMPLETE
-    {"dmjp455e2cgbb6cce6g2d61r4id6l4i5ekgkkbj5b66r27n1r", 0, VOLATILE_FLAG_6D_SANDCASTLE_PUZZLE_COMPLETE_BGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},         // THE JIGGYS FULL OFF YOU STOMP IN TO DINGY BUBBLEGLOOP SWAMP
-    {"dmjp455e2l6ij266cce6g564id6c9jj3jj3erjn8nil4d22i67", 0, VOLATILE_FLAG_6E_SANDCASTLE_PUZZLE_COMPLETE_FP + VOLATILE_FLAG_CHEAT_OFFSET, 00},         // THE JIGGYS DONE SO OFF YOU GO INTO FREEZEEZY PEAK AND ITS SNOW
-    {"56k42p455e42i67l6ijd9j86i4inil5jd261j2gi", 0, VOLATILE_FLAG_6F_SANDCASTLE_PUZZLE_COMPLETE_GV + VOLATILE_FLAG_CHEAT_OFFSET, 00},                   // GOBIS JIGGY IS NOW DONE TREK ON IN AND GET SOME SUN
-    {"dmjp455e2i671nlj7m6bj4id6dmj1ni246ie6g0ni2d96bb", 0, VOLATILE_FLAG_70_SANDCASTLE_PUZZLE_COMPLETE_MMM + VOLATILE_FLAG_CHEAT_OFFSET, 00},           // THE JIGGYS NOW MADE WHOLE INTO THE MANSION YOU CAN STROLL
-    {"dmjp455e2l6ij26dn8jnd94r6id6dmj9g2dekg08jd2m4r", 0, VOLATILE_FLAG_71_SANDCASTLE_PUZZLE_COMPLETE_RBB + VOLATILE_FLAG_CHEAT_OFFSET, 00},            // THE JIGGYS DONE SO TAKE A TRIP ON TO THE RUSTY BUCKET SHIP
-    {"0b4080b608766l42b6d26ccgi566i4idmjp455e2l6ij", 0, VOLATILE_FLAG_72_SANDCASTLE_PUZZLE_COMPLETE_CCC + VOLATILE_FLAG_CHEAT_OFFSET, 00},              // CLICK CLOCK WOOD IS LOTS OF FUN GO ON IN THE JIGGYS DONE
-    {"b6d26c56j274dm1nieknip62", 0, VOLATILE_FLAG_73_SANDCASTLE_INFINITE_LIVES + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                       // LOTS OF GOES WITH MANY BANJOS
-    {"knip6kj52c69rbjide6cj552", 0, VOLATILE_FLAG_74_SANDCASTLE_INFINITE_EGGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                        // BANJO BEGS FOR PLENTY OF EGGS
-    {"i67e6g0nicbem45m4idmj28e", 0, VOLATILE_FLAG_75_SANDCASTLE_INFINITE_RED_FEATHERS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                // NOW YOU CAN FLY HIGH IN THE SKY
-    {"n56blji5b67d6r96dj0dknip6", 0, VOLATILE_FLAG_76_SANDCASTLE_INFINITE_GOLD_FEATHERS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                              // A GOLDEN GLOW TO PROTECT BANJO
-    {"k6dmr4rj2n9jdmj9jd60bni8j92bn49", 0, VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},                             // BOTH PIPES ARE THERE TO CLANKERS LAIR
-    {"e6gbb0jn2jd6594rj7mjigr56j2nr4rj", 0, VOLATILE_FLAG_7E_SANDCASTLE_RAISE_PIPE_TO_BRENTILDA + VOLATILE_FLAG_CHEAT_OFFSET, 00},                      // YOULL CEASE TO GRIPE WHEN UP GOES A PIPE
-    {"dmj9j2i67mj9jlni8j9dmni4i74dm0bni8j9", 0, VOLATILE_FLAG_7F_SANDCASTLE_OPEN_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                  // THERES NOWHERE DANKER THAN IN WITH CLANKER
-    {"e6gbbkjn1n3jli67dmj27n1rr400e594bbj429n42jl", 0, VOLATILE_FLAG_80_SANDCASTLE_REMOVE_GRILL_NEAR_BGS_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},       // YOULL BE AMAZED NOW THE SWAMP PICCY GRILLE IS RAISED
-    {"l6idlj2rn49dmjd9jjp455er6l4g142i67dmj9j", 0, VOLATILE_FLAG_81_SANDCASTLE_CCC_JIGGY_PODIUM + VOLATILE_FLAG_CHEAT_OFFSET, 00},                      // DONT DESPAIR THE TREE JIGGY PODIUM IS NOW THERE
-    {"2mj2nig5beknd26bjd29j16ajmj9594bbjnilmnd", 0, VOLATILE_FLAG_82_SANDCASTLE_REMOVE_GRILL_AND_HAT_FROM_STATUE + VOLATILE_FLAG_CHEAT_OFFSET, 00},     // SHES AN UGLY BAT SO LETS REMOVE HER GRILLE AND HAT
-    {"4d2e6g9bg08elnen2dmj40jknbb1jbd2n7ne", 0, VOLATILE_FLAG_83_SANDCASTLE_REMOVE_ICE + VOLATILE_FLAG_CHEAT_OFFSET, 00},                               // ITS YOUR LUCKY DAY AS THE ICE BALL MELTS AWAY
-    {"i674id6dmj27n1re6g0ni2d61r", 0, VOLATILE_FLAG_84_SANDCASTLE_OPEN_BGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                           // NOW IN TO THE SWAMP YOU CAN STOMP
-    {"dmje0ng2jd96gkbjkgdi67dmje9j9gkkbj", 0, VOLATILE_FLAG_85_SANDCASTLE_REMOVE_BREAKABLE_WALLS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                     // THEY CAUSE TROUBLE BUT NOW THEYRE RUBBLE
-    {"e6gbbkj5bnld62jjdmj2m608pg1rrnl", 0, VOLATILE_FLAG_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED + VOLATILE_FLAG_CHEAT_OFFSET, 00},                     // YOULL BE GLAD TO SEE THE SHOCK JUMP PAD
-    {"dm42061j24imniled66rji261j7mj9j2nile", 0, VOLATILE_FLAG_87_SANDCASTLE_OPEN_GV + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                  // THIS COMES IN HANDY TO OPEN SOMEWHERE SANDY
-    {"7jk22d6re6g9rbne26dn8jdmj1n7ne", 0, VOLATILE_FLAG_88_SANDCASTLE_REMOVE_WEBS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                    // WEBS STOP YOUR PLAY SO TAKE THEM AWAY
-    {"59gide74bb09ei67e6gaj21n2mjlmj9jej", 0, VOLATILE_FLAG_89_SANDCASTLE_REMOVE_GLASS_EYE + VOLATILE_FLAG_CHEAT_OFFSET, 00},                           // GRUNTY WILL CRY NOW YOUVE SMASHED HER EYE
-    {"e6g76idkj2nli67e6g0nig2jdmjcbernl", 0, VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED + VOLATILE_FLAG_CHEAT_OFFSET, 00},                             // YOU WONT BE SAD NOW YOU CAN USE THE FLY PAD
-    {"i67e6g0ni56nild9gl5j4idmj2i67", 0, VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                         // NOW YOU CAN GO AND TRUDGE IN THE SNOW
-    {"dmj1ni246i6c5m62d2n9ji67e6g9m62d2", 0, VOLATILE_FLAG_8C_SANDCASTLE_OPEN_MMM + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                    // THE MANSION OF GHOSTS ARE NOW YOUR HOSTS
-    {"e6g76idmnajd67n4di67dmj9j2i609erd5ndj", 0, VOLATILE_FLAG_8D_SANDCASTLE_REMOVE_CRYPT_GATE + VOLATILE_FLAG_CHEAT_OFFSET, 00},                       // YOU WONT HAVE TO WAIT NOW THERES NO CRYPT GATE
-    {"dm422m6gbl5jd94l6cdmj09erd06cc4ib4l", 0, VOLATILE_FLAG_8E_SANDCASTLE_REMOVE_CRYPT_COFFIN_LID + VOLATILE_FLAG_CHEAT_OFFSET, 00},                   // THIS SHOULD GET RID OF THE CRYPT COFFIN LID
-    {"gre6g5674dm6gdnm4d0mgrd6dmj7ndj9bjajb274d0m", 0, VOLATILE_FLAG_8F_SANDCASTLE_REMOVE_GRATE_NEAR_WATER_SWITCH + VOLATILE_FLAG_CHEAT_OFFSET, 00},    // UP YOU GO WITHOUT A HITCH UP TO THE WATER LEVEL SWITCH
-    {"7mei6ddn8jnd94r4i24lj59gide29g2de2m4r", 0, VOLATILE_FLAG_90_SANDCASTLE_OPEN_RBB + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                // WHY NOT TAKE A TRIP INSIDE GRUNTYS RUSTY SHIP
-    {"dmj594bbj56j2k661d6dmj2m4rr40dg9j9661", 0, VOLATILE_FLAG_91_SANDCASTLE_REMOVE_GRILL_NEAR_RBB_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},             // THE GRILLE GOES BOOM TO THE SHIP PICTURE ROOM
-    {"6i0j4d2m6ijkgddmjb6i5dgiijb594bbj4256ij", 0, VOLATILE_FLAG_92_SANDCASTLE_REMOVE_TUNNEL_GRILL_NEAR_RBB_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},    // ONCE IT SHONE BUT THE LONG TUNNEL GRILLE IS GONE
-    {"dm426ij2566ln2e6g0nijidj9dmj766l", 0, VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                     // THIS ONES GOOD AS YOU CAN ENTER THE WOOD
-    {"nijij95ekn9d65jde6gcn9", 0, VOLATILE_FLAG_94_SANDCASTLE_INFINITE_HEALTH + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                        // AN ENERGY BAR TO GET YOU FAR
-    {"l6idkjnlg1k6562jj1g1k6", 0, VOLATILE_FLAG_95_SANDCASTLE_INFINTE_MUMBO_TOKENS + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                   // DONT BE A DUMBO GO SEE MUMBO
-    {"54ajdmjkjn9b6d26cn49", 0, VOLATILE_FLAG_96_SANDCASTLE_INFINITE_AIR + VOLATILE_FLAG_CHEAT_OFFSET, 00},                                             // GIVE THE BEAR LOTS OF AIR
+    // CHEAT
+    {"0mjnd", 0, 0x00, 00},
+
+    // NOW BANJO WILL BE ABLE TO SEE IT ON NABNUTS TABLE
+    {"i67knip674bbkjnkbjd62jj4d6iinkigd2dnkbj", 0, 0x01, 00},
+
+    // THIS SECRET YOULL BE GRABBIN IN THE CAPTAINS CABIN
+    {"dm422j09jde6gbbkj59nkk4i4idmj0nrdn4i20nk4i", 0, 0x02, 00},
+
+    // AMIDST THE HAUNTED GLOOM A SECRET IN THE BATHROOM
+    {"n14l2ddmjmngidjl5b661n2j09jd4idmjkndm9661", 0, 0x03, 00},
+
+    // A DESERT DOOR OPENS WIDE ANCIENT SECRETS WAIT INSIDE
+    {"nlj2j9dl6696rji274ljni04jid2j09jd27n4d4i24lj", 0, 0x04, 00},
+
+    // OUT OF THE SEA IT RISES TO REVEAL MORE SECRET PRIZES
+    {"6gd6cdmj2jn4d942j2d69jajnb169j2j09jdr943j2", 0, 0x05, 00},
+
+    // DONT YOU GO AND TELL HER ABOUT THE SECRET IN HER CELLAR
+    {"l6ide6g56nildjbbmj9nk6gddmj2j09jd4imj90jbbn9", 0, 0x06, 00},
+
+    // NOW YOU CAN SEE A NICE ICE KEY WHICH YOU CAN HAVE FOR FREE
+    {"i67e6g0ni2jjni40j40j8je7m40me6g0nimnajc69c9jj", 0, 0x07, 00},
+
+    // GO RIGHT ON THROUGH NOTE DOOR TWO
+    {"56945md6idm96g5mi6djl669d76", 0, VOLATILE_FLAG_66_SANDCASTLE_OPEN_DOOR_TWO + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // NOTE DOOR THREE GET IN FOR FREE
+    {"i6djl669dm9jj5jd4ic69c9jj", 0, VOLATILE_FLAG_67_SANDCASTLE_OPEN_DOOR_THREE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // TAKE A TOUR THROUGH NOTE DOOR FOUR
+    {"dn8jnd6g9dm96g5mi6djl669c6g9", 0, VOLATILE_FLAG_68_SANDCASTLE_OPEN_DOOR_FOUR + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // USE THIS CHEAT NOTE DOOR FIVE IS BEAT
+    {"g2jdm420mjndi6djl669c4aj42kjnd", 0, VOLATILE_FLAG_69_SANDCASTLE_OPEN_DOOR_FIVE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THIS TRICKS USED TO OPEN NOTE DOOR SIX
+    {"dm42d94082g2jld66rjii6djl66924h", 0, VOLATILE_FLAG_6A_SANDCASTLE_OPEN_DOOR_SIX + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE SEVENTH NOTE DOOR IS NOW NO MORE
+    {"dmj2jajidmi6djl66942i67i6169j", 0, VOLATILE_FLAG_6B_SANDCASTLE_OPEN_DOOR_SEVEN + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOU CAN GET WET FEET NOW CLANKERS JIGGY IS COMPLETE
+    {"e6g0ni5jd7jdcjjdi670bni8j92p455e42061rbjdj", 0, VOLATILE_FLAG_6C_SANDCASTLE_PUZZLE_COMPLETE_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE JIGGYS FULL OFF YOU STOMP IN TO DINGY BUBBLEGLOOP SWAMP
+    {"dmjp455e2cgbb6cce6g2d61r4id6l4i5ekgkkbj5b66r27n1r", 0, VOLATILE_FLAG_6D_SANDCASTLE_PUZZLE_COMPLETE_BGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE JIGGYS DONE SO OFF YOU GO INTO FREEZEEZY PEAK AND ITS SNOW
+    {"dmjp455e2l6ij266cce6g564id6c9jj3jj3erjn8nil4d22i67", 0, VOLATILE_FLAG_6E_SANDCASTLE_PUZZLE_COMPLETE_FP + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // GOBIS JIGGY IS NOW DONE TREK ON IN AND GET SOME SUN
+    {"56k42p455e42i67l6ijd9j86i4inil5jd261j2gi", 0, VOLATILE_FLAG_6F_SANDCASTLE_PUZZLE_COMPLETE_GV + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE JIGGYS NOW MADE WHOLE INTO THE MANSION YOU CAN STROLL
+    {"dmjp455e2i671nlj7m6bj4id6dmj1ni246ie6g0ni2d96bb", 0, VOLATILE_FLAG_70_SANDCASTLE_PUZZLE_COMPLETE_MMM + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE JIGGYS DONE SO TAKE A TRIP ON TO THE RUSTY BUCKET SHIP
+    {"dmjp455e2l6ij26dn8jnd94r6id6dmj9g2dekg08jd2m4r", 0, VOLATILE_FLAG_71_SANDCASTLE_PUZZLE_COMPLETE_RBB + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // CLICK CLOCK WOOD IS LOTS OF FUN GO ON IN THE JIGGYS DONE
+    {"0b4080b608766l42b6d26ccgi566i4idmjp455e2l6ij", 0, VOLATILE_FLAG_72_SANDCASTLE_PUZZLE_COMPLETE_CCC + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // LOTS OF GOES WITH MANY BANJOS
+    {"b6d26c56j274dm1nieknip62", 0, VOLATILE_FLAG_73_SANDCASTLE_INFINITE_LIVES + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // BANJO BEGS FOR PLENTY OF EGGS
+    {"knip6kj52c69rbjide6cj552", 0, VOLATILE_FLAG_74_SANDCASTLE_INFINITE_EGGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // NOW YOU CAN FLY HIGH IN THE SKY
+    {"i67e6g0nicbem45m4idmj28e", 0, VOLATILE_FLAG_75_SANDCASTLE_INFINITE_RED_FEATHERS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // A GOLDEN GLOW TO PROTECT BANJO
+    {"n56blji5b67d6r96dj0dknip6", 0, VOLATILE_FLAG_76_SANDCASTLE_INFINITE_GOLD_FEATHERS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // BOTH PIPES ARE THERE TO CLANKERS LAIR
+    {"k6dmr4rj2n9jdmj9jd60bni8j92bn49", 0, VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOULL CEASE TO GRIPE WHEN UP GOES A PIPE
+    {"e6gbb0jn2jd6594rj7mjigr56j2nr4rj", 0, VOLATILE_FLAG_7E_SANDCASTLE_RAISE_PIPE_TO_BRENTILDA + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THERES NOWHERE DANKER THAN IN WITH CLANKER
+    {"dmj9j2i67mj9jlni8j9dmni4i74dm0bni8j9", 0, VOLATILE_FLAG_7F_SANDCASTLE_OPEN_CC + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOULL BE AMAZED NOW THE SWAMP PICCY GRILLE IS RAISED
+    {"e6gbbkjn1n3jli67dmj27n1rr400e594bbj429n42jl", 0, VOLATILE_FLAG_80_SANDCASTLE_REMOVE_GRILL_NEAR_BGS_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // DONT DESPAIR THE TREE JIGGY PODIUM IS NOW THERE
+    {"l6idlj2rn49dmjd9jjp455er6l4g142i67dmj9j", 0, VOLATILE_FLAG_81_SANDCASTLE_CCC_JIGGY_PODIUM + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // SHES AN UGLY BAT SO LETS REMOVE HER GRILLE AND HAT
+    {"2mj2nig5beknd26bjd29j16ajmj9594bbjnilmnd", 0, VOLATILE_FLAG_82_SANDCASTLE_REMOVE_GRILL_AND_HAT_FROM_STATUE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // ITS YOUR LUCKY DAY AS THE ICE BALL MELTS AWAY
+    {"4d2e6g9bg08elnen2dmj40jknbb1jbd2n7ne", 0, VOLATILE_FLAG_83_SANDCASTLE_REMOVE_ICE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // NOW IN TO THE SWAMP YOU CAN STOMP
+    {"i674id6dmj27n1re6g0ni2d61r", 0, VOLATILE_FLAG_84_SANDCASTLE_OPEN_BGS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THEY CAUSE TROUBLE BUT NOW THEYRE RUBBLE
+    {"dmje0ng2jd96gkbjkgdi67dmje9j9gkkbj", 0, VOLATILE_FLAG_85_SANDCASTLE_REMOVE_BREAKABLE_WALLS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOULL BE GLAD TO SEE THE SHOCK JUMP PAD
+    {"e6gbbkj5bnld62jjdmj2m608pg1rrnl", 0, VOLATILE_FLAG_86_SANDCASTLE_SHOCKSPRING_JUMP_UNLOCKED + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THIS COMES IN HANDY TO OPEN SOMEWHERE SANDY
+    {"dm42061j24imniled66rji261j7mj9j2nile", 0, VOLATILE_FLAG_87_SANDCASTLE_OPEN_GV + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // WEBS STOP YOUR PLAY SO TAKE THEM AWAY
+    {"7jk22d6re6g9rbne26dn8jdmj1n7ne", 0, VOLATILE_FLAG_88_SANDCASTLE_REMOVE_WEBS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // GRUNTY WILL CRY NOW YOUVE SMASHED HER EYE
+    {"59gide74bb09ei67e6gaj21n2mjlmj9jej", 0, VOLATILE_FLAG_89_SANDCASTLE_REMOVE_GLASS_EYE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOU WONT BE SAD NOW YOU CAN USE THE FLY PAD
+    {"e6g76idkj2nli67e6g0nig2jdmjcbernl", 0, VOLATILE_FLAG_8A_SANDCASTLE_FLIGHT_UNLOCKED + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // NOW YOU CAN GO AND TRUDGE IN THE SNOW
+    {"i67e6g0ni56nild9gl5j4idmj2i67", 0, VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE MANSION OF GHOSTS ARE NOW YOUR HOSTS
+    {"dmj1ni246i6c5m62d2n9ji67e6g9m62d2", 0, VOLATILE_FLAG_8C_SANDCASTLE_OPEN_MMM + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // YOU WONT HAVE TO WAIT NOW THERES NO CRYPT GATE
+    {"e6g76idmnajd67n4di67dmj9j2i609erd5ndj", 0, VOLATILE_FLAG_8D_SANDCASTLE_REMOVE_CRYPT_GATE + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THIS SHOULD GET RID OF THE CRYPT COFFIN LID
+    {"dm422m6gbl5jd94l6cdmj09erd06cc4ib4l", 0, VOLATILE_FLAG_8E_SANDCASTLE_REMOVE_CRYPT_COFFIN_LID + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // UP YOU GO WITHOUT A HITCH UP TO THE WATER LEVEL SWITCH
+    {"gre6g5674dm6gdnm4d0mgrd6dmj7ndj9bjajb274d0m", 0, VOLATILE_FLAG_8F_SANDCASTLE_REMOVE_GRATE_NEAR_WATER_SWITCH + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // WHY NOT TAKE A TRIP INSIDE GRUNTYS RUSTY SHIP
+    {"7mei6ddn8jnd94r4i24lj59gide29g2de2m4r", 0, VOLATILE_FLAG_90_SANDCASTLE_OPEN_RBB + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THE GRILLE GOES BOOM TO THE SHIP PICTURE ROOM
+    {"dmj594bbj56j2k661d6dmj2m4rr40dg9j9661", 0, VOLATILE_FLAG_91_SANDCASTLE_REMOVE_GRILL_NEAR_RBB_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // ONCE IT SHONE BUT THE LONG TUNNEL GRILLE IS GONE
+    {"6i0j4d2m6ijkgddmjb6i5dgiijb594bbj4256ij", 0, VOLATILE_FLAG_92_SANDCASTLE_REMOVE_TUNNEL_GRILL_NEAR_RBB_JIGGY + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // THIS ONES GOOD AS YOU CAN ENTER THE WOOD
+    {"dm426ij2566ln2e6g0nijidj9dmj766l", 0, VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // AN ENERGY BAR TO GET YOU FAR
+    {"nijij95ekn9d65jde6gcn9", 0, VOLATILE_FLAG_94_SANDCASTLE_INFINITE_HEALTH + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // DONT BE A DUMBO GO SEE MUMBO
+    {"l6idkjnlg1k6562jj1g1k6", 0, VOLATILE_FLAG_95_SANDCASTLE_INFINTE_MUMBO_TOKENS + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
+    // GIVE THE BEAR LOTS OF AIR
+    {"54ajdmjkjn9b6d26cn49", 0, VOLATILE_FLAG_96_SANDCASTLE_INFINITE_AIR + VOLATILE_FLAG_CHEAT_OFFSET, 00},
+
     NULL
 };
 
 static u8 sLastFloorTileHitCorret = 0; // 0 = "initial", 1 = incorrect, 2 = correct
 static BannedCheatCodeRange sBannedCheatCodeRanges[4] = {
-    {VOLATILE_FLAG_66_SANDCASTLE_OPEN_DOOR_TWO + VOLATILE_FLAG_CHEAT_OFFSET,        VOLATILE_FLAG_6B_SANDCASTLE_OPEN_DOOR_SEVEN + VOLATILE_FLAG_CHEAT_OFFSET},
-    {VOLATILE_FLAG_6C_SANDCASTLE_PUZZLE_COMPLETE_CC + VOLATILE_FLAG_CHEAT_OFFSET,   VOLATILE_FLAG_72_SANDCASTLE_PUZZLE_COMPLETE_CCC + VOLATILE_FLAG_CHEAT_OFFSET},
-    {VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC + VOLATILE_FLAG_CHEAT_OFFSET,    VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + VOLATILE_FLAG_CHEAT_OFFSET},
+    {
+        VOLATILE_FLAG_66_SANDCASTLE_OPEN_DOOR_TWO + VOLATILE_FLAG_CHEAT_OFFSET,
+        VOLATILE_FLAG_6B_SANDCASTLE_OPEN_DOOR_SEVEN + VOLATILE_FLAG_CHEAT_OFFSET
+    },
+    {
+        VOLATILE_FLAG_6C_SANDCASTLE_PUZZLE_COMPLETE_CC + VOLATILE_FLAG_CHEAT_OFFSET,
+        VOLATILE_FLAG_72_SANDCASTLE_PUZZLE_COMPLETE_CCC + VOLATILE_FLAG_CHEAT_OFFSET
+    },
+    {
+        VOLATILE_FLAG_7D_SANDCASTLE_RAISE_PIPES_TO_CC + VOLATILE_FLAG_CHEAT_OFFSET,
+        VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW + VOLATILE_FLAG_CHEAT_OFFSET
+    },
     NULL
 };
 
@@ -910,7 +1031,7 @@ static void __code3E30_eraseGameplayDialogCallback(ActorMarker *caller, enum ass
     {
         __code3E30_setNumberOfBannedCheatcodesEntered(3);
         __code3E30_checkSecretCheatCodeIndex(sThirdForbiddenSecretCheatCodeIndex);
-        gcdialog_showText(ASSET_FBF_TEXT_ERASED_SAVE, 0xC, NULL, NULL, NULL, NULL);
+        gcdialog_showText(ASSET_FBF_DIALOG_ERASED_SAVE, 0xC, NULL, NULL, NULL, NULL);
         gameFile_clear(func_802C5A30());
         gameFile_8033CFD4(func_802C5A30());
         func_802C5A3C(-1);
@@ -945,11 +1066,11 @@ static void __code3E30_checkIfBannedCheatCodeEntered(s32 secret_cheat_code_index
                         __code3E30_setNumberOfBannedCheatcodesEntered(2);
                         __code3E30_checkSecretCheatCodeIndex(secret_cheat_code_index);
                         __code3E30_resetSecretCheatCodeProgress();
-                        gcdialog_showText(ASSET_FBE_TEXT_CHEATING_ERASE_SAVE_WARNING, 0xC, NULL, NULL, NULL, NULL);
+                        gcdialog_showText(ASSET_FBE_DIALOG_CHEATING_ERASE_SAVE_WARNING, 0xC, NULL, NULL, NULL, NULL);
                         return;
                     case 2:
                         sThirdForbiddenSecretCheatCodeIndex = secret_cheat_code_index;
-                        gcdialog_showText(ASSET_E38_CHEATING_ERASE_SAVE_CONFIRMATION, 0xC, NULL, NULL, __code3E30_eraseGameplayDialogCallback, NULL);
+                        gcdialog_showText(ASSET_E38_DIALOG_CHEATING_ERASE_SAVE_CONFIRMATION, 0xC, NULL, NULL, __code3E30_eraseGameplayDialogCallback, NULL);
                         return;
                 }
                 return;
@@ -1068,5 +1189,5 @@ static bool __code3E30_isCurrentSecretCheatCodeCharacter0()
 
 bool code_3E30_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue()
 {
-    return __code3E30_scrambleAddressForSecretCheatCode() == secretCheatCodeRelatedValue;
+    return __code3E30_scrambleAddressForSecretCheatCode() == sSecretCheatCodeRelatedValue;
 }

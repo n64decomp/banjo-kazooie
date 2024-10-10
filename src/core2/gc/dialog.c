@@ -942,11 +942,6 @@ int func_80311174(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*ca
     return 0;
 }
 
-// arg1 = "person" that says text?
-// 0xC = Bottles
-// 0xE = Jumbo?
-// 0x4 = Gruntilda?
-// 0xF = Mr Vile?
 bool gcdialog_showText(s32 text_id, s32 arg1, f32 *pos, ActorMarker *marker, void(*callback)(ActorMarker *, enum asset_e, s32), void(*arg5)(ActorMarker *, enum asset_e, s32)){
     return func_80311174(text_id, arg1, pos, marker, callback, arg5, 0);
 }

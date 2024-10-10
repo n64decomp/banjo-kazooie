@@ -19,7 +19,7 @@ extern void func_803458E4(f32[4], f32[4], f32[4], f32);
 #define CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT (CH_BOTTLES_BONUS_PUZZLE_HEIGHT * CH_BOTTLES_BONUS_PUZZLE_WIDTH)
 
 /* .extern symbols??? */
-extern u8 D_8037DCC0[7];
+extern u8 gCompletedBottleBonusGames[7];
 extern u8 D_8037DCC7;
 extern u8 D_8037DCC8;
 extern u8 D_8037DCC9;
@@ -422,7 +422,7 @@ void chBottlesBonus_completedPuzzle(void) {
     Actor *actor;
 
     actor = marker_getActor(chBottlesBonusMarker);
-    D_8037DCC0[chBottleBonusPuzzleIndex] = TRUE;
+    gCompletedBottleBonusGames[chBottleBonusPuzzleIndex] = TRUE;
     func_80311714(0);
     gcdialog_showText(D_803681A0[chBottleBonusPuzzleIndex + 1].text_id, 0x86, actor->position, chBottlesBonusMarker, chBottlesBonus_IncrementPuzzle, NULL);
     func_80311714(1);
@@ -600,7 +600,7 @@ Actor *chBottlesBonus_new(s32 position[3], s32 yaw, ActorInfo *actor_info, u32 f
 void chBottlesBonus_func_802DEB80(void) {
     int i;
     for(i = 0; i < 7; i++){
-        D_8037DCC0[i] = 0;
+        gCompletedBottleBonusGames[i] = 0;
     }
     D_8037DCC7 = 0;
     D_8037DCC8 = 0;
