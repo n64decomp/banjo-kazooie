@@ -36,7 +36,7 @@ typedef struct
     s16 meshId;
     u8 letter; // floor_letters_e
     u8 state; // some sort of state, 1 - 5
-    f32 time_delta_sum;
+    f32 timeDeltaSum;
 } LetterFloorTile;
 
 typedef struct
