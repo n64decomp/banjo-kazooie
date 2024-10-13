@@ -152,7 +152,7 @@ segments:
   - [0xF3F680, c, code_1D00] # NONMATCHING
   - [0xF40490, c, pimanager]
   - [0xF40650, c, defragmanager]
-  - [0xF40850, c, code_2FA0]
+  - [0xF40850, c, stub_2FA0]
   - [0xF40A70, c, initthread]
   - [0xF40B00, c, code_3250]
   - [0xF41320, c, code_3A70]
@@ -365,7 +365,7 @@ segments:
   - [0xF74830, .data, code_660]
   - [0xF74930, .data, code_1D00]
   - [0xF74A10, bin, data_37E30] #unreferenced
-  - [0xF74A20, .data, code_2FA0]
+  - [0xF74A20, .data, stub_2FA0]
   - [0xF74A30, .data, code_3250]
   - [0xF74A40, .data, code_3A70]
   - [0xF74A80, .data, code_5650]

@@ -152,7 +152,7 @@ segments:
   - [0xF1AF50, c, code_1D00]                  #DONE
   - [0xF1BE20, c, pimanager]    
   - [0xF1BFF0, c, defragmanager]              #DONE
-  - [0xF1C1F0, c, code_2FA0]                  #DONE
+  - [0xF1C1F0, c, stub_2FA0]                  #DONE
   - [0xF1C410, c, initthread]                  #DONE
   - [0xF1C4A0, c, code_3250]                  #DONE
   - [0xF1CCC0, c, code_3A70]                  #DONE
@@ -365,7 +365,7 @@ segments:
   - [0xF50EA0, .data, code_660]
   - [0xF50FA0, .data, code_1D00]
   - [0xF51080, bin, data_37E30] #unreferenced
-  - [0xF51090, .data, code_2FA0]
+  - [0xF51090, .data, stub_2FA0]
   - [0xF510A0, .data, code_3250]
   - [0xF510B0, .data, code_3A70]
   - [0xF510F0, .data, code_5650]
