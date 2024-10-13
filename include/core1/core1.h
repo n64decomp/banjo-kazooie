@@ -6,6 +6,7 @@
 #include "enums.h"
 
 #include "core1/eeprom.h"
+#include "core1/lookup.h"
 #include "core1/main.h"
 #include "core1/mem.h"
 #include "core1/pfsmanager.h"

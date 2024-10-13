@@ -186,7 +186,7 @@ typedef struct actor_s{
     f32 unk4C;
     /* 0x50 */ f32 yaw; //0x50
     f32 unk54; //0x54
-    u32 unk58_31: 15;
+    u32 animctrl_asset_id: 15; // animation asset id (enum asset_id)
     u32 stored_animctrl_index: 14; //animctrlAnimIndex;
     u32 unk58_2: 1;
     u32 unk58_1: 1;

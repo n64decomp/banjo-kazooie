@@ -819,7 +819,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk10_7 = 0;
     suLastBaddie->unk10_6 = 0;
     suLastBaddie->unk54 = 0.0f;
-    suLastBaddie->unk58_31 = 0;
+    suLastBaddie->animctrl_asset_id = 0;
     suLastBaddie->unk5C = 0.0f;
     suLastBaddie->unkF4_31 = 0;
     suLastBaddie->unk138_30 = 0;

@@ -46,11 +46,11 @@ void func_80244B3C(void){
 void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
     s32 i;
     u8 indx;
-    if(func_8030ED70(func_80255D44(arg1))){
+    if(func_8030ED70(lookup_getSfxId(arg1))){
         i = sfxsource_createSfxsourceAndReturnIndex();
         indx = i;
         if(i){
-            sfxsource_setSfxId(indx, func_80255D44(arg1));
+            sfxsource_setSfxId(indx, lookup_getSfxId(arg1));
             sfxsource_playSfxAtVolume(indx, arg3);
             sfxsource_setSampleRate(indx, arg2);
             func_8030E2C4(indx);
@@ -59,7 +59,7 @@ void func_80244BB0(s32 arg0, s32 arg1, s32 arg2, f32 arg3){
         }
     }
     else{
-        func_8030E6A4(func_80255D44(arg1), arg3, arg2);
+        func_8030E6A4(lookup_getSfxId(arg1), arg3, arg2);
     }
 }
 

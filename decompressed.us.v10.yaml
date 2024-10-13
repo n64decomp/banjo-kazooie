@@ -180,7 +180,7 @@ segments:
   - [0xF2FCA0, c, memory]                     #DONE
   - [0xF31360, c, eeprom]                 #DONE
   - [0xF31460, c, ucode]                 #DONE
-  - [0xF31560, c, code_18310]                 #DONE
+  - [0xF31560, c, lookup]                 #DONE
   - [0xF315A0, c, code_18350]                 #DONE
   - [0xF350E0, c, code_1BE90]                 #DONE
   - [0xF367E0, c, stub_1D590]                 #DONE
@@ -384,7 +384,7 @@ segments:
   - [0xF51DA0, .data, code_13990]
   - [0xF51DB0, .data, code_15B30]
   - [0xF51DC0, .data, memory]
-  - [0xF51DF0, .data, code_18310]
+  - [0xF51DF0, .data, lookup]
   - [0xF524E0, .data, code_18350]
   - [0xF52660, .data, code_1BE90]
   - [0xF52670, .data, code_1D5D0]
