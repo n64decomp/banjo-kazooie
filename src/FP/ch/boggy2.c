@@ -403,7 +403,7 @@ void func_803896FC(Actor *this){
     
     sp58 = func_8038BE20(this->position);
     sp54 = time_getDelta();
-    func_8024E55C(0, sp3C);
+    controller_copyFaceButtons(0, sp3C);
     
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;

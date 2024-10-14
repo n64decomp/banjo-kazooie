@@ -506,7 +506,7 @@ void gcquiz_func_80319EA4(void) {
     if(sD_803830E0 == NULL)
         return;
 
-    func_8024E55C(0, face_button_states);
+    controller_copyFaceButtons(0, face_button_states);
     controller_getJoystick(0, joystick_states);
     for(phi_s0 = 0; phi_s0 < 4; phi_s0++){
         gczoombox_update(sD_803830E0->zoomboxes[phi_s0]);

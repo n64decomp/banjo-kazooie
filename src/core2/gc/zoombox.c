@@ -881,7 +881,7 @@ void func_80316764(GcZoombox *this, s32 arg1) {
     f32 pad0;
 
     if (!this->unk1A4_10 ) {
-        func_8024E55C(0, sp38);
+        controller_copyFaceButtons(0, sp38);
         func_8024E60C(0, sp2C);
         phi_f0 = time_getDelta();
     } else {
@@ -1067,7 +1067,7 @@ void gczoombox_update(GcZoombox *this){
           return;
 
      if( !this->unk1A4_10 ){
-          func_8024E55C(0, sp58);
+          controller_copyFaceButtons(0, sp58);
           func_8024E60C(0, sp4C);
           tmp_f0 = time_getDelta();
      }

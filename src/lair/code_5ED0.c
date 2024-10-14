@@ -1158,7 +1158,7 @@ void lair_func_8038E0B0(void) {
     ){
         gcquiz_func_80319EA4();
         func_8038C9D0();
-        func_8024E55C(0, sp48);
+        controller_copyFaceButtons(0, sp48);
         func_8024E60C(0, sp3C);
         if (D_8037DCB8->currFfMode < 3) {
             player_getPosition(D_8037DCB8->playerPosition);

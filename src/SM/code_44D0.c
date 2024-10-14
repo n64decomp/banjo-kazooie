@@ -18,7 +18,7 @@ ActorInfo D_8038B0E0 = { 0x1F0, 0x3BD, 0, 0, NULL,
 
 /* .code */
 void func_8038A8C0(ActorMarker *arg0){
-    mapSpecificFlags_set(0x10, 0);
+    mapSpecificFlags_set(SM_SPECIFIC_FLAG_10, FALSE);
     func_8028E6EC(2);
     func_8028F918(0);
 }
@@ -44,13 +44,13 @@ void func_8038A8F8(Actor *this){
     if(sp2C < (f32) this->unkF4_8)
         func_80388D48();
 
-    if( !mapSpecificFlags_get(0x10) && sp2C < (f32) this->unkF4_8 && 1780.0f < func_8028E82C()){
-        if( !mapSpecificFlags_get(2) 
-            || (mapSpecificFlags_get(3) && !mapSpecificFlags_get(0xf))
+    if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_10) && sp2C < (f32) this->unkF4_8 && 1780.0f < func_8028E82C()){
+        if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)
+            || (mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
         ){ //L8038AA54
             this->yaw_ideal = ml_distance_vec3f(this->velocity, this->unk1C) / 150.0;
             func_8028F3D8(this->unk1C, this->yaw_ideal, func_8038A8C0, this->marker);
-            mapSpecificFlags_set(0x10, 1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_10, TRUE);
         }
     }
 }

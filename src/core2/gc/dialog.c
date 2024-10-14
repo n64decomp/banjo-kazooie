@@ -376,7 +376,7 @@ void gcdialog_update(void) {
         func_8024E5A8(0, controller_face_buttons);
         func_8024E640(0, controller_side_buttons);
     } else {
-        func_8024E55C(0, controller_face_buttons);
+        controller_copyFaceButtons(0, controller_face_buttons);
         func_8024E60C(0, controller_side_buttons);
     }
 
