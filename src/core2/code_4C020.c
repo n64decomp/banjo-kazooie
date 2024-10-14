@@ -361,6 +361,7 @@ void func_802D3CC8(ActorMarker *marker){
     func_802D31AC(marker, NULL);
 }
 
+// used as init function
 void func_802D3CE8(Actor *this){
     if(!this->initialized){
         marker_setCollisionScripts(this->marker, NULL, func_802D3138, func_802D31AC);
@@ -373,6 +374,7 @@ void func_802D3D54(Actor *this){
     func_802D3CE8(this);
 }
 
+// used as init function
 void func_802D3D74(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);

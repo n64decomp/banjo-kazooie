@@ -231,8 +231,9 @@ void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2) {
     }
 }
 
-void func_8031D04C(enum map_e arg0, s32 arg1) {
-    func_8031CB50(arg0, arg1, 0);
+// set map and exit id?
+void func_8031D04C(enum map_e arg0, s32 exit_id) {
+    func_8031CB50(arg0, exit_id, 0);
 }
 
 void func_8031D06C(enum map_e arg0, s32 arg1) {
