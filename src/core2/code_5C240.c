@@ -138,7 +138,7 @@ void func_802E35D8(void ) {
         }
     } else if (D_8037E8C0.unk14 == 3) {
         sp38 = 0;
-        func_8024E55C(0, &sp40);
+        controller_copyFaceButtons(0, &sp40);
         for(i = 0; i < 6; i++){ 
             if (sp40[i] == 1) {
                 sp38++;

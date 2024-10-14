@@ -108,7 +108,7 @@ void func_803902B8(Actor *this) {
     this->unk38_0 = sp58;
     sp58 = ml_vec3f_within_distance(this->position, sp5C, 400.0f);
     if (fileProgressFlag_get(sp54 + FILEPROG_AD_CHEATO_BLUEEGGS_UNLOCKED)) {
-        func_8024E55C(0, sp3C);
+        controller_copyFaceButtons(0, sp3C);
         sp58 &= (sp3C[FACE_BUTTON(BUTTON_B)] == 1) || func_8028EC04();
     }
     if (sp58 && !*(s32 *)&this->local) {

@@ -468,7 +468,7 @@ void lair_func_8038F924(Actor *this) {
             particleEmitter_emitN(sp54, 6);
         }
     }
-    func_8024E55C(0, sp7C);
+    controller_copyFaceButtons(0, sp7C);
     func_8024E60C(0, sp6C);
     func_8038EDBC(this);
     switch(this->state){
