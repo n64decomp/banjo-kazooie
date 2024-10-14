@@ -10,10 +10,9 @@ struct {
     u8 unk0;
     char *ptr;
     s32 index;
-}
-s_dialogBin;
+} s_dialogBin;
 
-s32 func_8031B5B0(void) {
+s32 code94620_func_8031B5B0(void) {
     return s_dialogBin.unk0;
 }
 
@@ -55,7 +54,7 @@ char *dialogBin_get(enum asset_e text_id) {
     //get text_bin from asset cache
     s_dialogBin.ptr = assetcache_get(text_id);
     sp1C = s_dialogBin.ptr + 1;
-    sp1C += func_8031B5B0()*2;
+    sp1C += code94620_func_8031B5B0()*2;
     var_a0 = *(sp1C++);
     var_a0 += *(sp1C++)<< 8;
     if(sp1C);

@@ -548,7 +548,7 @@ void func_8038CCEC(void)
     free(D_8037DCB8);
     D_8037DCB8 = NULL;
 
-    func_80319190();
+    gcquiz_free();
     quizQuestionAskedBitfield_free();
     func_802C5994();
 }
@@ -590,7 +590,7 @@ void func_8038CE28(void)
 {
     s32 i;
 
-    func_80319050();
+    gcquiz_init();
     D_8037DCB8 = malloc(sizeof(struct FF_StorageStruct));
     quizQuestionAskedBitfield_init();
 
@@ -681,9 +681,8 @@ void lair_func_8038CF18(void)
     }
 }
 
-s32 func_8038D0AC(s32 questionType, s32 a1)
+static s32 __code5ED0_getQuizQuestionTime(s32 questionType, s32 a1)
 {
-    // :morphone: tf
     return 10;
 }
 
@@ -912,7 +911,7 @@ void func_8038D670(enum FF_Action next_state) {
             func_8028F918(2);
             if (D_8037DCB8->ffQuestionType != FFQT_4_MINIGAME) {
                 func_8038CE00();
-                func_8031A154(D_8037DCB8->ffQuestionType, D_8037DCB8->unkD, D_8037DCB8->unkE, func_8038D0AC(D_8037DCB8->ffQuestionType, D_8037DCB8->unkC), 0, &func_8038D3F0);
+                gcquiz_func_8031A154(D_8037DCB8->ffQuestionType, D_8037DCB8->unkD, D_8037DCB8->unkE, __code5ED0_getQuizQuestionTime(D_8037DCB8->ffQuestionType, D_8037DCB8->unkC), 0, &func_8038D3F0);
             } else {
                 func_8038D4BC();
             }
@@ -943,7 +942,7 @@ void func_8038D670(enum FF_Action next_state) {
                         break;
                 }//L8038D91C
             }
-            func_8031A48C();
+            gcquiz_func_8031A48C();
             break;
 
         case FFA_6_TRIGGER_QUESTION_POST_EFFECTS: //L8038D940
@@ -1157,7 +1156,7 @@ void lair_func_8038E0B0(void) {
         && (D_8037DCB8 != NULL) 
         && (D_8037DCB8->unk0 != NULL)
     ){
-        func_80319EA4();
+        gcquiz_func_80319EA4();
         func_8038C9D0();
         controller_copyFaceButtons(0, sp48);
         func_8024E60C(0, sp3C);
@@ -1328,7 +1327,7 @@ void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
     if (map_get() != MAP_8E_GL_FURNACE_FUN)
         return;
 
-    func_80319214(dl, m, v);
+    gcquiz_draw(dl, m, v);
     gczoombox_draw(D_8037DCB8->unk20, dl, m, v);
 }
 

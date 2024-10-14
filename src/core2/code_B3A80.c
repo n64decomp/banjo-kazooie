@@ -477,7 +477,7 @@ void func_8033BD8C(void* arg0){
     func_8033B0D0(arg0);
 }
 
-s32 func_8033BDAC(enum asset_e id, void *dst, s32 size) {
+s32 code_B3A80_func_8033BDAC(enum asset_e id, void *dst, s32 size) {
     s32 comp_size;
     s32 var_s0;
     s32 sp34;
