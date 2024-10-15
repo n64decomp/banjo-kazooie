@@ -33,7 +33,7 @@ typedef struct {
 }Struct_core1_10A00_1;
 
 f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2);
-void pfsManager_getControllerFaceButtonState(s32 controller_index, s32 dst[6]);
+void controller_copyFaceButtons(s32 controller_index, s32 dst[6]);
 void pfsManager_getFirstControllerFaceButtonState(s32 controller_index, s32 dst[6]);
 s32 func_8024E5E8(s32 arg0, s32 arg1);
 s32 func_8024E60C(s32 controller_index, s32 dst[3]);
