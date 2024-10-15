@@ -362,7 +362,7 @@ void CC_func_80388F4C(void){
             if(D_80389FA0.unk20 && skeletalAnim_getAnimId(D_80389FA0.unk0) != ASSET_C4_ANIM_CLANKER_BITE){
                 skeletalAnim_set(D_80389FA0.unk0, ASSET_C4_ANIM_CLANKER_BITE, 1.0f, 10.0f);
                 if(!D_80389FA0.unk48){
-                    gcdialog_showText(ASSET_D2B_TEXT_UNKNOWN, 0xE, D_80389FA0.unk28, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_D2B_DIALOG_UNKNOWN, 0xE, D_80389FA0.unk28, NULL, NULL, NULL);
                     D_80389FA0.unk48 = TRUE;
                 }
             }//L8038918C

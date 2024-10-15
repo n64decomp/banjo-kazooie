@@ -521,7 +521,7 @@ void chBottlesBonus_update(Actor *this) {
                 func_8025A7DC(COMUSIC_98_BBONUS_PIECES_SHUFFLE);
                 if (D_8037DCC7 == 0) {
                     func_80311714(0);
-                    gcdialog_showText(ASSET_E24_TEXT_UNKNOWN, 0x87, this->position, chBottlesBonusMarker, chBottlesBonus_startTimer, NULL);
+                    gcdialog_showText(ASSET_E24_DIALOG_UNKNOWN, 0x87, this->position, chBottlesBonusMarker, chBottlesBonus_startTimer, NULL);
                     func_80311714(1);
                     D_8037DCC7 = 1;
                 }

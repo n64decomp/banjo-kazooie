@@ -65,12 +65,12 @@ void __chAttackTutorial_learnedTextCallback(ActorMarker *marker, enum asset_e te
     func_8028F918(0);
 
     switch (text_id) {
-        case ASSET_E15_TEXT_UNKNOWN://L803872C8
+        case ASSET_E15_DIALOG_UNKNOWN://L803872C8
             ability_unlock(ABILITY_C_ROLL);
             chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
             break;
 
-        case ASSET_E17_TEXT_UNKNOWN://L803872E4
+        case ASSET_E17_DIALOG_UNKNOWN://L803872E4
             ability_unlock(ABILITY_B_RATATAT_RAP);
             chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
             break;
@@ -84,10 +84,10 @@ void chAttackTutorial_setState(Actor *this, s32 state) {
         case ATTACK_TUTORIAL_STATE_5_UNKNOWN:
             if (this->unk10_12 == NULL) {
                 ability_unlock(ABILITY_4_CLAW_SWIPE);
-                gcdialog_showText(ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, __chAttackTutorial_learnedTextActions);
+                gcdialog_showText(ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, __chAttackTutorial_learnedTextActions);
             }
             else {
-                gcdialog_showText(this->unk10_12 == VEGETABLE_1_TOPPER ? ASSET_E15_TEXT_UNKNOWN : ASSET_E17_TEXT_UNKNOWN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, NULL);
+                gcdialog_showText(this->unk10_12 == VEGETABLE_1_TOPPER ? ASSET_E15_DIALOG_UNKNOWN : ASSET_E17_DIALOG_UNKNOWN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, NULL);
             }
             break;
 
@@ -173,28 +173,28 @@ void __chAttackTutorial_attackTextCallback(ActorMarker *marker, enum asset_e tex
     Actor *actor = marker_getActor(marker);
 
     switch (text_id) {
-        case ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN:
+        case ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN:
             func_8028F918(0);
             break;
 
-        case ASSET_E14_TEXT_UNKNOWN:
-        case ASSET_E16_TEXT_UNKNOWN:
-        case ASSET_E18_TEXT_UNKNOWN:
+        case ASSET_E14_DIALOG_UNKNOWN:
+        case ASSET_E16_DIALOG_UNKNOWN:
+        case ASSET_E18_DIALOG_UNKNOWN:
             __chAttackTutorial_spawnEnemy(actor, actor->unk10_12);
             break;
 
-        case ASSET_E15_TEXT_UNKNOWN:
+        case ASSET_E15_DIALOG_UNKNOWN:
             ability_unlock(ABILITY_C_ROLL);
             chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
             break;
 
-        case ASSET_E17_TEXT_UNKNOWN:
+        case ASSET_E17_DIALOG_UNKNOWN:
             ability_unlock(ABILITY_B_RATATAT_RAP);
             chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
             break;
 
-        case ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES:
-        case ASSET_E19_TEXT_UNKNOWN:
+        case ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES:
+        case ASSET_E19_DIALOG_UNKNOWN:
             chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_3_UNKNOWN);
             break;
     }
@@ -216,15 +216,15 @@ void chAttackTutorial_talk(ActorMarker *marker) {
 
     switch (actor->unk10_12) {
         case VEGETABLE_1_TOPPER: //L803877D8
-            text_id = try_count ? ASSET_E15_TEXT_UNKNOWN : ASSET_E14_TEXT_UNKNOWN;
+            text_id = try_count ? ASSET_E15_DIALOG_UNKNOWN : ASSET_E14_DIALOG_UNKNOWN;
             break;
 
         case VEGETABLE_2_BAWL: //L803877F4
-            text_id = try_count ? ASSET_E17_TEXT_UNKNOWN : ASSET_E16_TEXT_UNKNOWN;
+            text_id = try_count ? ASSET_E17_DIALOG_UNKNOWN : ASSET_E16_DIALOG_UNKNOWN;
             break;
 
         case VEGETABLE_3_COLLY_WOBBLE: //L80387810
-            text_id = try_count ? ASSET_E19_TEXT_UNKNOWN : ASSET_E18_TEXT_UNKNOWN;
+            text_id = try_count ? ASSET_E19_DIALOG_UNKNOWN : ASSET_E18_DIALOG_UNKNOWN;
             break;
 
         default:
@@ -232,13 +232,13 @@ void chAttackTutorial_talk(ActorMarker *marker) {
             break;
     }//L8038782C
 
-    if (text_id == ASSET_E19_TEXT_UNKNOWN) {
+    if (text_id == ASSET_E19_DIALOG_UNKNOWN) {
         func_8028F94C(2, actor->unk1C);
     }//L80387848
 
     if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities() && try_count) {
         mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
-        text_id = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
+        text_id = ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES;
     }//L80387898
 
     if (try_count) {
