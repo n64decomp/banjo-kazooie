@@ -314,7 +314,7 @@ void chMumbo_update(Actor *this) {
                 && func_8028F20C()
                 && func_8028EFC8()
             ){
-                pfsManager_getControllerFaceButtonState(0, face_buttons);
+                controller_copyFaceButtons(0, face_buttons);
                 if(face_buttons[FACE_BUTTON(BUTTON_B)] == 1){
                     if (D_8037DDF0 == TRANSFORM_7_WISHWASHY) {
                         this->unk38_31 = 0;

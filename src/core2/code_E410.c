@@ -27,7 +27,7 @@ void func_80295448(void){
     D_8037C310.unk0[0] = controller_getStartButton(0);
     func_8024E60C(0, &D_8037C310.unk0[1]);
     func_8024E6E0(0, &D_8037C310.unk0[4]);
-    pfsManager_getControllerFaceButtonState(0, &D_8037C310.unk0[8]);
+    controller_copyFaceButtons(0, &D_8037C310.unk0[8]);
     for(i=0; i<0xE; i++){//L802954A8
         D_8037C310.unk7E[i] = D_8037C310.unk70[i];
         if(D_8037C310.unk70[i]){

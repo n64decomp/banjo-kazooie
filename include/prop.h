@@ -146,7 +146,7 @@ typedef struct jinjo_s{
 }ActorLocal_Jinjo;
 
 typedef struct ch_sm_4070{
-    s32 unk0;
+    s32 dialog_id;
 }ActorLocal_SM_4070;
 
 typedef struct actor_s{

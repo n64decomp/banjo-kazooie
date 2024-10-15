@@ -658,7 +658,7 @@ void chvilegame_update(Actor *this) {
     }
     if (this->state == 5) {
         if (local->unkC == 7) {
-            pfsManager_getControllerFaceButtonState(0, sp30);
+            controller_copyFaceButtons(0, sp30);
             if ((sp30[FACE_BUTTON(BUTTON_B)] > 0) && func_8038C2A8(local->vile_marker)) {
                 func_8038A068(this, 0xA);
             }

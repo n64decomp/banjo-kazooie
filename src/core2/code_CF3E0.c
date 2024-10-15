@@ -128,7 +128,7 @@ void volatileFlag_setAndTriggerDialog_4(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 4);
 }
 
-// called for WISHYWASHYBANJO dialog
+// called for WISHYWASHYBANJO dialog, mumbo jumbo speaking?
 void volatileFlag_setAndTriggerDialog_E(enum volatile_flags_e arg0) {
     volatileFlag_setAndTriggerDialog(arg0, 0xE);
 }

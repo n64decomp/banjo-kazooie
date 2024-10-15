@@ -377,7 +377,7 @@ void gcdialog_update(void) {
         pfsManager_getFirstControllerFaceButtonState(0, controller_face_buttons);
         func_8024E640(0, controller_side_buttons);
     } else {
-        pfsManager_getControllerFaceButtonState(0, controller_face_buttons);
+        controller_copyFaceButtons(0, controller_face_buttons);
         func_8024E60C(0, controller_side_buttons);
     }
 
@@ -726,7 +726,7 @@ void func_80310A5C(s32 next_state, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
     f32 tmpf;
     for(i = 0, tmpf = 0.4f; i< 2; i++){
         if(g_Dialog.zoombox[i]){
-            func_803184C8(g_Dialog.zoombox[i], arg2, next_state, arg1, tmpf, arg3, arg4);
+            gczoombox_func_803184C8(g_Dialog.zoombox[i], arg2, next_state, arg1, tmpf, arg3, arg4);
         }
     }
 }

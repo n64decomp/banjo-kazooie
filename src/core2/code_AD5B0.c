@@ -321,7 +321,7 @@ s32 func_80334ECC(void) {
             phi_v1 = 0x1F;
         }
         if (((phi_v1 & phi_v0) == 3) && (overlayManagergetLoadedId() == OVERLAY_5_BEACH)) {
-            if ((ttc_func_8038BF8C() == 0) || (D_80370250 != 0)) {
+            if ((code_3E30_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue() == FALSE) || (D_80370250 != 0)) {
                 D_80370250 = (u8)1;
                 for (phi_v0 = 0; phi_v0 != 0x8F0D180; phi_v0++){
                 }

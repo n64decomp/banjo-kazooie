@@ -7,8 +7,8 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chmole_additionalAbilityLearnActions(ActorMarker *marker, enum asset_e arg1, s32 arg2);
 
 typedef struct{
-    s16 learn_text;
-    s16 refresher_text;
+    s16 teach_text_id;
+    s16 refresher_text_id;
     s8 camera_node;
     s8 ability;
 } ChMoleDescription;
@@ -154,12 +154,12 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     // Also releases the camera
     Actor *actor = marker_getActor(marker);
 
-    if( arg1 == moleTable[actor->unkF4_8-9].learn_text 
+    if( arg1 == moleTable[actor->unkF4_8-9].teach_text_id
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
         gcdialog_showText(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
-    else if(arg1 == moleTable[actor->unkF4_8-9].learn_text || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
+    else if(arg1 == moleTable[actor->unkF4_8-9].teach_text_id || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
         gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
@@ -224,13 +224,13 @@ int chmole_learnAbility(Actor *this){
     // Known Ability: Refresher Dialog
     if(ability_isUnlocked(moleTable[this->unkF4_8-9].ability)){
         sp28 = 0xf;
-        sp2C = moleTable[this->unkF4_8-9].refresher_text;
+        sp2C = moleTable[this->unkF4_8-9].refresher_text_id;
     }//L802D99EC
     // New Ability: Learn Dialog & Misc Actions
     else{
         func_80347A14(0);
         this->has_met_before = TRUE;
-        sp2C = moleTable[this->unkF4_8-9].learn_text; 
+        sp2C = moleTable[this->unkF4_8-9].teach_text_id;
         ability_unlock(moleTable[this->unkF4_8-9].ability);
         switch(moleTable[this->unkF4_8-9].ability){
             case ABILITY_9_FLIGHT:
@@ -376,7 +376,7 @@ void chmole_update(Actor *this){
             }
         }
     }//L802D9F34
-    pfsManager_getControllerFaceButtonState(0, sp50); // get face buttons press counters
+    controller_copyFaceButtons(0, sp50); // get face buttons press counters
     switch(this->state){
         case 1://L802D9F70
             this->yaw_ideal = func_80329784(this);

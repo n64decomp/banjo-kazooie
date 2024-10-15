@@ -18,7 +18,7 @@ extern ActorInfo D_8038AD58; //ch cauliflower A
 extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
 extern ActorInfo D_8038AD0C; //ch onion B
 extern ActorInfo D_8038AD7C; //ch cauliflower B
-extern ActorInfo chSmMole; //chSmMole bottles
+extern ActorInfo chBottles; //chSmMole bottles
 extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
 extern ActorInfo D_8038B0E0;
 extern ActorInfo D_8038B008; //chBanjosBed
@@ -149,7 +149,7 @@ void SM_func_80386810(void)
     spawnableActorList_add(&D_8038AC9C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_8038AD0C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_8038AD7C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&chSmMole,  actor_new, ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&chBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&D_8038B0B0,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038B0E0,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038B008,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);

@@ -386,7 +386,7 @@ void func_802F5060(s32 textureId){
     tmp_a2 = func_802546E4(D_80380AB8[1]);
     if(tmp_a2 & 0xF)
         tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-    if(!func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8[1],tmp_a2)){
+    if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8[1],tmp_a2)){
         assetcache_release(D_80380AB8[1]);
         D_80380AB8[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
     }
@@ -394,7 +394,7 @@ void func_802F5060(s32 textureId){
         tmp_a2 = func_802546E4(D_80380AB8[3]);
         if(tmp_a2 & 0xF)
             tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-        if(!func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8[3],tmp_a2)){
+        if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8[3],tmp_a2)){
             assetcache_release(D_80380AB8[3]);
             D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
         }

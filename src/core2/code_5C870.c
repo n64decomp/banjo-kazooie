@@ -624,7 +624,7 @@ s32 getGameMode(void){
     return D_8037E8E0.game_mode;
 }
 
-int func_802E4A08(void){
+bool func_802E4A08(void){
     return (D_8037E8E0.game_mode == GAME_MODE_6_FILE_PLAYBACK) 
         || (D_8037E8E0.game_mode == GAME_MODE_5_UNKNOWN)
         || (D_8037E8E0.game_mode == GAME_MODE_7_ATTRACT_DEMO)

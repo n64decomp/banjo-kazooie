@@ -11,7 +11,7 @@ extern void func_802F9D38(s32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
-extern void func_80319EA4(void);
+extern void gcquiz_func_80319EA4(void);
 extern void fileProgressFlag_set(enum file_progress_e, bool);
 
 void func_802D3D54(Actor *this);
@@ -360,6 +360,7 @@ void func_802D3CC8(ActorMarker *marker){
     func_802D31AC(marker, NULL);
 }
 
+// used as init function
 void func_802D3CE8(Actor *this){
     if(!this->initialized){
         marker_setCollisionScripts(this->marker, NULL, func_802D3138, func_802D31AC);
@@ -372,6 +373,7 @@ void func_802D3D54(Actor *this){
     func_802D3CE8(this);
 }
 
+// used as init function
 void func_802D3D74(Actor *this){
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
@@ -813,7 +815,7 @@ void func_802D5178(s32 arg0, enum file_progress_e arg1, s32 arg2, enum map_e arg
 
 void func_802D520C(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(volatileFlag_get(VOLATILE_FLAG_1) && map_get() != MAP_8E_GL_FURNACE_FUN){
-        func_80319214(gfx, mtx, vtx);
+        gcquiz_draw(gfx, mtx, vtx);
     }
 }
 
@@ -1007,12 +1009,12 @@ void func_802D5628(void){
             case 0x15:// L802D5AB4
             case 0x2d:// L802D5AB4
                 if(D_80367684 && D_80367684 == map_get()){
-                    func_80319EA4();
+                    gcquiz_func_80319EA4();
                     if(0.0f < D_8037DE08){
                         D_8037DE08 -= time_getDelta();
                     }
                     else{//L802D5B24
-                        pfsManager_getControllerFaceButtonState(0, sp50); //get button inputs
+                        controller_copyFaceButtons(0, sp50); //get button inputs
                         if(sp50[FACE_BUTTON(BUTTON_B)] == 1){
                             func_80324C58();
                             func_802D6114();

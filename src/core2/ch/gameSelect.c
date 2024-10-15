@@ -81,7 +81,7 @@ s32 mm_hut_smash_count;
 u32 CH_TREASUREHUNT_PUZZLE_CURRENT_STEP;
 struct FF_StorageStruct* D_8037DCB8;
 s32 D_8037DCBC;
-u8 D_8037DCC0[7];
+u8 gCompletedBottleBonusGames[7]; // bottle bonus puzzle?
 u8 D_8037DCC7;
 u8 D_8037DCC8;
 u8 D_8037DCC9;
@@ -331,7 +331,7 @@ void func_802C4C14(Actor *this){
     }
     else{//L802C4D24
         func_8024E60C(0, sp74);
-        pfsManager_getControllerFaceButtonState(0, sp5C);
+        controller_copyFaceButtons(0, sp5C);
         controller_getJoystick(0, &sp54);
         switch(this->state){
             case 2:
@@ -426,7 +426,7 @@ void func_802C4C14(Actor *this){
                     if(sp74[0] == 1){
                         if(gameFile_isNotEmpty(sp84)){
                             func_8031877C(chGameSelectTopZoombox);
-                            func_803183A4(chGameSelectTopZoombox, (&D_80365DFC)[func_8031B5B0()]);
+                            func_803183A4(chGameSelectTopZoombox, (&D_80365DFC)[code94620_func_8031B5B0()]);
                             D_8037DD2C = 1;
                             subaddie_set_state(this, 5);
                         }
@@ -549,7 +549,7 @@ void func_802C4C14(Actor *this){
 }
 
 void func_802C5740(Actor * this){
-    int i = func_8031B5B0();
+    int i = code94620_func_8031B5B0();
     D_8037DCE0.unk0 = (&D_80365DF4)[i];
     D_8037DCE0.unk4 = (&D_80365DF8)[i];
 
@@ -558,7 +558,7 @@ void func_802C5740(Actor * this){
          if(chGameSelectBottomZoombox == NULL){
             chGameSelectBottomZoombox = gczoombox_new(0xA0, ZOOMBOX_SPRITE_C_BANJO_2, 2, 0, NULL);
             gczoombox_open(chGameSelectBottomZoombox);
-            func_803184C8(chGameSelectBottomZoombox, 30.0f, 5, 2, 0.4f, 0, 0);
+            gczoombox_func_803184C8(chGameSelectBottomZoombox, 30.0f, 5, 2, 0.4f, 0, 0);
         }//L802C57FC
 
         if(chGameSelectTopZoombox == NULL){

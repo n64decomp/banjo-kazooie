@@ -240,7 +240,7 @@ void func_80391B04(Actor *this) {
     func_8038E9A4(local->unk10, this->position);
     switch (this->state) {                              /* irregular */
     case 1:
-        if (func_8031A3BC() || mapSpecificFlags_get(0xA)) {
+        if (gcquiz_isNotInInitialState() || mapSpecificFlags_get(0xA)) {
             func_80391810(this, 4);
             break;
         }

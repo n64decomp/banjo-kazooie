@@ -137,7 +137,7 @@ void func_803870F8(Actor *this){
         sp3C[1] = this->position_y + 100;
         sp3C[2] = this->position_z;
         if(ml_distance_vec3f(&sp3C, &sp70) < 120.0f){
-            func_8031D04C(0x22, (local->unk0  == 1)? 7 : 6);
+            func_8031D04C(MAP_22_CC_INSIDE_CLANKER, (local->unk0  == 1)? 7 : 6);
         }
     }//L80387500
 }

@@ -71,7 +71,7 @@ void gzquiz_initGruntyQuestions(void) {
     if (fileProgressFlag_get(FILEPROG_5C_FF_PATTERN_SET) && !volatileFlag_get(VOLATILE_FLAG_62_FF_GRUNTY_QUESTIONS_INITIALIZED)) {
         rand_seed(fileProgressFlag_getN(FILEPROG_D3_FF_PATTERN, 8));
 
-        for(i = 0; i < func_8031A45C(FFQT_3_GRUNTY); i++){
+        for(i = 0; i < gcquiz_getLastIndexOfQuestionType(FFQT_3_GRUNTY); i++){
             question_id = VOLATILE_FLAG_26_FF_GRUNTY_QUESTIONS + 2 * i;
             pattern = randi2(0, 3);
 
@@ -120,7 +120,7 @@ void chBrentilda_update(Actor *this) {
     func_8028E668(this->position, 280.0f, -40.0f, 160.0f);
     this->yaw_ideal = (f32) func_80329784(this);
     func_80328FB0(this, 3.0f);
-    pfsManager_getControllerFaceButtonState(0, sp78);
+    controller_copyFaceButtons(0, sp78);
     player_getPosition(sp64);
     temp_f0 = sp64[1] - this->position[1];
     if ((temp_f0 > -100.0f) && (temp_f0 < 350.0f)) {

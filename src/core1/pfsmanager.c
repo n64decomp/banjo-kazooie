@@ -70,7 +70,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     return phi_f2 *= arg0;
 }
 
-void pfsManager_getControllerFaceButtonState(s32 controller_index, s32 dst[6]){
+void controller_copyFaceButtons(s32 controller_index, s32 dst[6]){
     dst[FACE_BUTTON(BUTTON_A)]       = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_A)];
     dst[FACE_BUTTON(BUTTON_B)]       = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_B)];
     dst[FACE_BUTTON(BUTTON_C_LEFT)]  = D_80281138[controller_index].face_button[FACE_BUTTON(BUTTON_C_LEFT)];
