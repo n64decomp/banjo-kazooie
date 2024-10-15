@@ -761,12 +761,12 @@ void gcpausemenu_init(void) {
     func_80311604();
     gcpausemenu_zoomboxes_initMainMenu();
     D_80383010.joystick_sprite = assetcache_get(0x7EB);
-    D_80383010.joystick_frame_count = spriteGetFrameCount(D_80383010.joystick_sprite);
+    D_80383010.joystick_frame_count = sprite_getFrameCount(D_80383010.joystick_sprite);
     D_80383010.left_joystick_alpha = temp_v1 = D_80383010.right_joystick_alpha = 0;
     D_80383010.joystick_frame = D_80383010.unk3_4 = temp_v1;
 
     D_80383010.b_button_sprite = assetcache_get(0x7ED);
-    D_80383010.b_button_frame_count = spriteGetFrameCount(D_80383010.b_button_sprite);
+    D_80383010.b_button_frame_count = sprite_getFrameCount(D_80383010.b_button_sprite);
     D_80383010.b_button_frame = D_80383010.unk3_0 = D_80383010.b_button_alpha = 0;
     D_80383010.page_cnt = gcpausemenu_initLargestPageIndex();
     D_80383010.sns_alpha = D_80383010.sns_visible = D_80383010.unk70_31 = D_80383010.unk70_30 = 0;
@@ -1303,7 +1303,7 @@ void __gcpausemenu_drawSprite(Gfx **gdl, Mtx **mptr, Vtx **vptr, BKSprite *sprit
     f32 sp2C;
     f32 sp28;
 
-    _frame = spriteGetFramePtr(sprite, frame);
+    _frame = sprite_getFramePtr(sprite, frame);
     sp2C = _frame->w;
     sp28 = _frame->h;
     func_803382E4(5);
@@ -1334,7 +1334,7 @@ void gcpausemenu_drawSprite(Gfx **gdl, Mtx **mptr, Vtx **vptr, BKSprite *sprite,
     BKSpriteFrame *_frame;
     s32 w;
     s32 h;
-    _frame = spriteGetFramePtr(sprite, frame);
+    _frame = sprite_getFramePtr(sprite, frame);
     w = ((mirror) ? -1 : 1) * _frame->w;
     h = _frame->h;
     __gcpausemenu_drawSprite(gdl, mptr, vptr, sprite, frame, (x - w * 0.5), (y - h * 0.5), w, h, a);

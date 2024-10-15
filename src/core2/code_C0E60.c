@@ -135,7 +135,7 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
     s32 var_v0;
     s32 maskt;
 
-    sprite_frame = spriteGetFramePtr(sprite, frame);
+    sprite_frame = sprite_getFramePtr(sprite, frame);
     *frame_width = (s32) sprite_frame->w;
     *frame_height = (s32) sprite_frame->h;
     if (*textureCount == -1) {

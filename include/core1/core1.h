@@ -4,14 +4,18 @@
 #include <ultra64.h>
 #include "bool.h"
 #include "enums.h"
+#include "structs.h"
+#include "prop.h"
 
 #include "core1/eeprom.h"
+#include "core1/framebufferdraw.h"
 #include "core1/lookup.h"
 #include "core1/main.h"
 #include "core1/mem.h"
 #include "core1/pfsmanager.h"
 #include "core1/rarezip.h"
 #include "core1/sns.h"
+#include "core1/sprite.h"
 #include "core1/ucode.h"
 #include "core1/viewport.h"
 #include "core1/vimgr.h"
@@ -19,6 +23,8 @@
 void mlMtx_apply_vec3f(f32[3], f32[3]);
 void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]);
 void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]);
+f32 ml_cos_deg(f32);
+f32 ml_sin_deg(f32);
 
 
 /* src/core1/depthbuffer.c */

@@ -121,7 +121,7 @@ BKSpriteTextureBlock **func_802E4D8C(BKSprite *sprite) {
     s32 i;
     s32 chunk_size;
 
-    frame = spriteGetFramePtr(sprite, 0);
+    frame = sprite_getFramePtr(sprite, 0);
     chunkPtrArray = (BKSpriteTextureBlock **)malloc((frame->chunkCnt + 1)*4);
     chunk = (BKSpriteTextureBlock *)(frame + 1);
     for (i = 0; i < frame->chunkCnt; i++) {
@@ -530,7 +530,7 @@ void func_802E6820(s32 arg0) {
                 
                 prev_sprite_ptr = D_8037E900->unk4[var_s5].font_bin;
                 if (D_8037E900->unk4[var_s5].font_bin != NULL) {
-                    chunk_count = spriteGetFramePtr(prev_sprite_ptr, 0U)->chunkCnt;
+                    chunk_count = sprite_getFramePtr(prev_sprite_ptr, 0U)->chunkCnt;
                     D_8037E900->unk4[var_s5].font_bin = (BKSprite *)defrag_asset(D_8037E900->unk4[var_s5].font_bin);
                     for(i_chunk = 0; i_chunk < chunk_count; i_chunk++){
                         D_8037E900->unk4[var_s5].letter_texture[i_chunk] = ((u32)(((s32)D_8037E900->unk4[var_s5].letter_texture[i_chunk] - (s32)prev_sprite_ptr)) + (u32)D_8037E900->unk4[var_s5].font_bin);

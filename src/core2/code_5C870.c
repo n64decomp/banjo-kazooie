@@ -166,7 +166,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 framebuffer_idx, s32 a
 }
 
 void func_802E3BD0(s32 frame_buffer_indx){
-    func_8024A85C(frame_buffer_indx);
+    framebufferdraw_setBufferIndex(frame_buffer_indx);
 }
 
 void func_802E3BF0(void){

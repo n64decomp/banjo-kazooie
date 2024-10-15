@@ -260,7 +260,7 @@ void spriteRender_drawWithSegment(Gfx **gfx, Vtx **vtx, BKSprite *sprite, u32 fr
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
     }
     
-    frame_ptr = spriteGetFramePtr(sprite, frame);
+    frame_ptr = sprite_getFramePtr(sprite, frame);
     
     //load palette in indexed pixels
     var_t2 = (BKSpriteTextureBlock *)(frame_ptr + 1);

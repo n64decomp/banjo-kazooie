@@ -7,10 +7,6 @@
 
 #define MAIN_THREAD_STACK_SIZE 0x17F0
 
-
-void setBootMap(enum map_e);
-void func_8023DFF0(s32);
-
 #if VERSION == VERSION_PAL
     extern s32 D_80000300;
 #endif

@@ -4,7 +4,7 @@
 #include "variables.h"
 #include "core2/particle.h"
 
-extern s32 spriteGetFrameCount(BKSprite *);
+extern s32 sprite_getFrameCount(BKSprite *);
 extern void func_80344720(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32[3], Gfx **, Mtx **);
 extern void func_80344424(s32 SpriteGfx, s32 frame, s32, f32[3], f32[3], f32, Gfx **, Mtx **);
 
@@ -626,9 +626,9 @@ void particleEmitter_update(ParticleEmitter *this){
                 
                 if(this->sprite_1C){
                     particle->frame += particle->framerate*tick;
-                    if(!((s32)particle->frame < spriteGetFrameCount(this->sprite_1C))){
+                    if(!((s32)particle->frame < sprite_getFrameCount(this->sprite_1C))){
                         if(this->draw_mode & PART_EMIT_NO_LOOP){
-                            particle->frame = spriteGetFrameCount(this->sprite_1C) - 1;
+                            particle->frame = sprite_getFrameCount(this->sprite_1C) - 1;
                         }else{
                             particle->frame = 0.0f;
                         }

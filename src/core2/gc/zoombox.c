@@ -1343,7 +1343,7 @@ void __gczoombox_load_sprite(GcZoombox *this, GcZoomboxSprite portrait_id){
      this->frame_count = this->unkF8->frameCnt;
      func_803382E4(-1);
      
-     func_80338308(func_802510A0(this->unkF8), func_802510A8(this->unkF8));
+     func_80338308(sprite_getUnk8(this->unkF8), sprite_getUnkA(this->unkF8));
 }
 
 void __gczoombox_load_sfx(GcZoombox *this, GcZoomboxSprite portrait_id){

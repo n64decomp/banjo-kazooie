@@ -283,7 +283,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
 
 //This functions seperates the fonts into letters
 FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
-    BKSpriteFrame * font = spriteGetFramePtr(alphaMask, 0);
+    BKSpriteFrame * font = sprite_getFramePtr(alphaMask, 0);
     BKSpriteTextureBlock *chunkPtr;
     FontLetter * sp2C = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
     u8* palDataPtr;
@@ -320,7 +320,7 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
             {
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(spriteGetFramePtr(textureSprite, 0) + 1));
+                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(sprite_getFramePtr(textureSprite, 0) + 1));
                     sp2C[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkDataPtr = (u8*)(chunkPtr + 1);

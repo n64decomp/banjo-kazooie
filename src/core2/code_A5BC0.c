@@ -1975,7 +1975,7 @@ f32 func_80331D20(BKSprite *sprite) {
     if (sprite == 0) {
         return 1.0f;
     }
-    frame = spriteGetFramePtr(sprite, 0);
+    frame = sprite_getFramePtr(sprite, 0);
     temp_lo =   (s32) (((frame->unk10 - frame->unkC) + 1) * sprite->unk8) / (s32) frame->w;
     temp_lo_2 = (s32) (((frame->unk12 - frame->unkE) + 1) * sprite->unkA) / (s32) frame->h;
     phi_v0 = (temp_lo_2 < temp_lo) ? temp_lo : temp_lo_2;

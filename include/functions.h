@@ -57,8 +57,6 @@ void ml_vec3f_scale_copy(f32 dst[3], f32 src[3], f32 scale);
 
 float gu_sqrtf(float val);
 
-BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
-
 bool  baanim_isAt(f32);
 void baanim_playForDuration_once(enum asset_e anim_id, f32 duration);
 void baanim_setEnd(f32);
