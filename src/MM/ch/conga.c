@@ -155,7 +155,7 @@ int func_803872EC(void){
         || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
         || text_id == ASSET_B3B_TEXT_CONGA_ORANGE_PAD_JIGGY
         || text_id == ASSET_B45_TEXT_JIGGY_COLLECT_10
-        || text_id == ASSET_B51_TEXT_BOTTLES_HOW_TO_EXIT_LEVEL;
+        || text_id == ASSET_B51_DIALOG_BOTTLES_HOW_TO_EXIT_LEVEL;
 }
 
 void func_80387370(ActorMarker *this, enum asset_e text_id, s32 arg2){

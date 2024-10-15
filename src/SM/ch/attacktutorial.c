@@ -2,249 +2,248 @@
 #include "functions.h"
 #include "variables.h"
 
-/* extern functions */
-void timed_exitStaticCamera(f32);
-void func_8028F918(s32);
+/* chAttackTutorial - controls bottle teaching moves in spiral */
 
-/* public functions */
-void chAttackTutorial_talk(ActorMarker *);
-void chAttackTutorial_setState(Actor *this, s32 state);
-void chAttackTutorial_update(Actor *);
+extern void timed_exitStaticCamera(f32 time);
+extern void func_8028F918(s32);
 
-/* .data */
-enum chAttackTutorial_state_e {
-    ATTACK_TUTORIAL_STATE_1_UNKNOWN = 1,
-    ATTACK_TUTORIAL_STATE_2_UNKNOWN,
-    ATTACK_TUTORIAL_STATE_3_UNKNOWN,
-    ATTACK_TUTORIAL_STATE_4_UNKNOWN,
-    ATTACK_TUTORIAL_STATE_5_UNKNOWN
+enum ch_attack_tutorial_states {
+    CH_ATTACK_TUTORIAL_STATE_1_UNKNOWN = 0x1,           // L80387610
+    CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE,      // L803873E0
+    CH_ATTACK_TUTORIAL_STATE_3_LEARNED_ALL_MOVES,       // L8038742C
+    CH_ATTACK_TUTORIAL_STATE_4_TUTORIAL_COMPLETED,      // L80387454
+    CH_ATTACK_TUTORIAL_STATE_5_SHOW_LEARN_MOVE_DIALOG   // L80387680
 };
 
-ActorInfo D_8038AC20 = {
+static void __chAttackTutorial_showDialogText(ActorMarker *);
+static void __chAttackTutorial_setState(Actor* this, enum ch_attack_tutorial_states state);
+static void __chAttackTutorial_update(Actor *);
+
+/* .data */
+ActorInfo gChAttackTutorial = {
     MARKER_12B_ATTACK_TUTORIAL, ACTOR_167_ATTACK_TUTORIAL, NULL,
     1, NULL,
-    chAttackTutorial_update, actor_update_func_80326224, func_80325340,
+    __chAttackTutorial_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-void __chAttackTutorial_enemy(ActorMarker *marker, enum actor_e enemy_id) {
-    Actor *actor = marker_getActor(marker);
+static void __chAttackTutorial_spawnEnemyActorForMarker(ActorMarker* marker, enum actor_e enemy_id) {
+    Actor* actor = marker_getActor(marker);
     s32 pad;
-    Actor *enemy = spawn_child_actor(enemy_id, &actor);
+    Actor *other = spawn_child_actor(enemy_id, &actor);
 
-    actor->unk100 = enemy->marker;
-    enemy->unk100 = actor->marker;
-
-    if (actor->unk10_12 == VEGETABLE_3_COLLY_WOBBLE && actor->unk38_31 == 1) {
-        enemy->unk38_31 = 1;
-    }
-    else {//L803871D4
-        enemy->unk38_31 = 0;
+    actor->unk100 = other->marker;
+    other->unk100 = actor->marker;
+    if (actor->unk10_12 == 3 && actor->unk38_31 == 1) {
+        other->unk38_31 = 1;
+    } else {
+        other->unk38_31 = 0;
     }
 
-    enemy->unk10_12 = VEGETABLE_1_TOPPER;
+    other->unk10_12 = 1;
     if (marker);
 }
 
-s32 __chAttackTutorial_spawnEnemy(Actor *this, enum vegetable_e vegetable_id) {
-    volatile enum actor_e enemy_id;
-
-    enemy_id = vegetable_id == VEGETABLE_1_TOPPER ? ACTOR_166_TOPPER_A :
-               vegetable_id == VEGETABLE_2_BAWL ? ACTOR_165_BAWL_A : ACTOR_164_COLLYWOBBLE_A;
-
-    __spawnQueue_add_2(__chAttackTutorial_enemy, this->marker, enemy_id);
+// spawn topper, bawl or collywobble based on already_killed_enemies (actor->unk10_12)
+static s32 __chAttackTutorial_spawnEnemyActor(Actor *this, s32 already_killed_enemies) {
+    volatile enum actor_e sp1C;
+    s32 tmp_v0;
+    
+    if (already_killed_enemies == 1) {
+        sp1C = ACTOR_166_TOPPER_THE_CARROT_A;
+    } else {
+        sp1C = tmp_v0 = (already_killed_enemies == 2) 
+          ? ACTOR_165_BAWL_THE_ONION_A 
+          : ACTOR_164_COLLYWOBBLE_THE_CAULIFLOWER_A;
+    }
+    
+    __spawnQueue_add_2(__chAttackTutorial_spawnEnemyActorForMarker, this->marker, sp1C);
+    
 }
 
-void __chAttackTutorial_learnedTextActions(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    chAttackTutorial_setState(marker_getActor(marker), ATTACK_TUTORIAL_STATE_2_UNKNOWN);
+static void __chAttackTutorial_advanceMarkToState2(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
+    __chAttackTutorial_setState(marker_getActor(marker), CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE);
 }
 
-void __chAttackTutorial_learnedTextCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    Actor *actor = marker_getActor(marker);
+static void __chAttackTutorial_learnAbilityBasedOnDialog(ActorMarker *marker, enum asset_e dialog_id, s32 arg2) {
+    Actor* actor = marker_getActor(marker);
     func_8028F918(0);
-
-    switch (text_id) {
-        case ASSET_E15_TEXT_UNKNOWN://L803872C8
+    switch(dialog_id) {
+        case ASSET_E15_DIALOG_ATTACK_TUTORIAL_FORWARD_ROLL:
             ability_unlock(ABILITY_C_ROLL);
-            chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
+            __chAttackTutorial_setState(actor, CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE);
             break;
 
-        case ASSET_E17_TEXT_UNKNOWN://L803872E4
+        case ASSET_E17_DIALOG_ATTACK_TUTORIAL_RATATAT_RAP:
             ability_unlock(ABILITY_B_RATATAT_RAP);
-            chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
+            __chAttackTutorial_setState(actor, CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE);
             break;
-    }//L803872FC
-
+    }
     timed_exitStaticCamera(0.0f);
 }
 
-void chAttackTutorial_setState(Actor *this, s32 state) {
-    switch (state) {
-        case ATTACK_TUTORIAL_STATE_5_UNKNOWN:
-            if (this->unk10_12 == NULL) {
+static void __chAttackTutorial_setState(Actor* this, enum ch_attack_tutorial_states state) {
+    switch (state)
+    {
+        case CH_ATTACK_TUTORIAL_STATE_5_SHOW_LEARN_MOVE_DIALOG:
+            if (this->unk10_12 == 0) {
                 ability_unlock(ABILITY_4_CLAW_SWIPE);
-                gcdialog_showText(ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, __chAttackTutorial_learnedTextActions);
+                gcdialog_showText(ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnAbilityBasedOnDialog, __chAttackTutorial_advanceMarkToState2);
             }
-            else {
-                gcdialog_showText(this->unk10_12 == VEGETABLE_1_TOPPER ? ASSET_E15_TEXT_UNKNOWN : ASSET_E17_TEXT_UNKNOWN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnedTextCallback, NULL);
+            else{
+                gcdialog_showText(
+                    (this->unk10_12 == 1) ? ASSET_E15_DIALOG_ATTACK_TUTORIAL_FORWARD_ROLL : ASSET_E17_DIALOG_ATTACK_TUTORIAL_RATATAT_RAP,
+                    0xE, this->unk1C, this->marker, __chAttackTutorial_learnAbilityBasedOnDialog, NULL
+                );
             }
             break;
 
-        case ATTACK_TUTORIAL_STATE_2_UNKNOWN://L803873E0
+        case CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE:
             this->unk38_31 = 0;
-            __chAttackTutorial_spawnEnemy(this, ++this->unk10_12);
+            __chAttackTutorial_spawnEnemyActor(this, ++this->unk10_12);
             break;
 
-        case ATTACK_TUTORIAL_STATE_3_UNKNOWN://L8038742C
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, TRUE);
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
+        case CH_ATTACK_TUTORIAL_STATE_3_LEARNED_ALL_MOVES:
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_5, 1);
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, 1);
             marker_despawn(this->marker);
             break;
 
-        case ATTACK_TUTORIAL_STATE_4_UNKNOWN://L80387454
-            mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, TRUE);
-
-            if (!honeycombscore_get(HONEYCOMB_17_SM_COLIWOBBLE)) {
-                this->unk10_12 = VEGETABLE_3_COLLY_WOBBLE;
+        case CH_ATTACK_TUTORIAL_STATE_4_TUTORIAL_COMPLETED:
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_C, 1);
+            if (!honeycombscore_get(HONEYCOMB_17_SM_COLLIWOBBLE)) {
+                this->unk10_12 = 3;
                 this->unk38_31 = 1;
-                __chAttackTutorial_spawnEnemy(this, this->unk10_12);
+                __chAttackTutorial_spawnEnemyActor(this, this->unk10_12);
             }
+
             break;
-    }//L803874A8
+    }
 
     subaddie_set_state(this, state);
 }
 
-int __chAttackTutorial_isEveryAbilitiesUnlocked(void) {
-    return ability_isUnlocked(ABILITY_4_CLAW_SWIPE) &&
-           ability_isUnlocked(ABILITY_C_ROLL) &&
-           ability_isUnlocked(ABILITY_B_RATATAT_RAP);
+static bool __chAttackTutorial_areLearnableAbilitiesUnlocked() {
+    return ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
+        && ability_isUnlocked(ABILITY_C_ROLL)
+        && ability_isUnlocked(ABILITY_B_RATATAT_RAP);
 }
 
-void chAttackTutorial_update(Actor *this) {
-    f32 distance_to_bottles;
-    Actor *bottles_ptr;
-
-    if (!this->initialized) {
-        bottles_ptr = actorArray_findClosestActorFromActorId(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &distance_to_bottles);
-
-        if (bottles_ptr != NULL) {
-            this->unk1C_x = bottles_ptr->position_x;
-            this->unk1C_y = bottles_ptr->position_y;
-            this->unk1C_z = bottles_ptr->position_z;
-        }
-        else {
+static void __chAttackTutorial_update(Actor *this) {
+    f32 minimum_distance;
+    Actor *bottles;
+    
+    if (!this->initialized) { 
+        bottles = actorArray_findClosestActorFromActorId(this->position, ACTOR_12B_TUTORIAL_BOTTLES, -1, &minimum_distance);
+        if (bottles != NULL) {
+            this->unk1C_x = bottles->position_x;
+            this->unk1C_y = bottles->position_y;
+            this->unk1C_z = bottles->position_z;
+        } else {
             this->unk1C_x = this->position_x;
             this->unk1C_y = this->position_y;
             this->unk1C_z = this->position_z;
         }
-
-        this->unk10_12 = ability_isUnlocked(ABILITY_C_ROLL) ? VEGETABLE_2_BAWL :
-                         ability_isUnlocked(ABILITY_4_CLAW_SWIPE) ? VEGETABLE_1_TOPPER : NULL;
+        this->unk10_12 = ability_isUnlocked(ABILITY_C_ROLL)
+        ? 2
+        : ability_isUnlocked(ABILITY_4_CLAW_SWIPE)
+          ? 1
+          : 0;
 
         this->initialized = TRUE;
     }
 
-    switch (this->state) {
-        case ATTACK_TUTORIAL_STATE_1_UNKNOWN://L80387610
-            if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_4)) {
-                chAttackTutorial_setState(this, ATTACK_TUTORIAL_STATE_5_UNKNOWN);
-            }
-
-            if (__chAttackTutorial_isEveryAbilitiesUnlocked() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) {
-                chAttackTutorial_setState(this, ATTACK_TUTORIAL_STATE_4_UNKNOWN);
-            }
+    switch(this->state) {
+        case CH_ATTACK_TUTORIAL_STATE_1_UNKNOWN:
+            if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_4))
+                __chAttackTutorial_setState(this, CH_ATTACK_TUTORIAL_STATE_5_SHOW_LEARN_MOVE_DIALOG);
+            
+            if (__chAttackTutorial_areLearnableAbilitiesUnlocked() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
+                __chAttackTutorial_setState(this, CH_ATTACK_TUTORIAL_STATE_4_TUTORIAL_COMPLETED);
             break;
 
-        case ATTACK_TUTORIAL_STATE_2_UNKNOWN://L80387658
+        case CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE:
             if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_7)) {
-                chAttackTutorial_talk(this->marker);
+                __chAttackTutorial_showDialogText(this->marker);
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_7, FALSE);
             }
             break;
 
-        case ATTACK_TUTORIAL_STATE_5_UNKNOWN://L80387680
-            break;
-    }////L80387680      
-}
-
-void __chAttackTutorial_attackTextCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
-    Actor *actor = marker_getActor(marker);
-
-    switch (text_id) {
-        case ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN:
-            func_8028F918(0);
-            break;
-
-        case ASSET_E14_TEXT_UNKNOWN:
-        case ASSET_E16_TEXT_UNKNOWN:
-        case ASSET_E18_TEXT_UNKNOWN:
-            __chAttackTutorial_spawnEnemy(actor, actor->unk10_12);
-            break;
-
-        case ASSET_E15_TEXT_UNKNOWN:
-            ability_unlock(ABILITY_C_ROLL);
-            chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
-            break;
-
-        case ASSET_E17_TEXT_UNKNOWN:
-            ability_unlock(ABILITY_B_RATATAT_RAP);
-            chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_2_UNKNOWN);
-            break;
-
-        case ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES:
-        case ASSET_E19_TEXT_UNKNOWN:
-            chAttackTutorial_setState(actor, ATTACK_TUTORIAL_STATE_3_UNKNOWN);
+        case CH_ATTACK_TUTORIAL_STATE_5_SHOW_LEARN_MOVE_DIALOG:
             break;
     }
+}
 
+static void __chAttackTutorial_handleDialog(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
+    Actor* actor = marker_getActor(marker);
+    switch(text_id) {
+        case ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN:
+            func_8028F918(0);
+            break;
+        case ASSET_E14_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL: // WOW...NICE ONE! TRY ANOTHER!
+        case ASSET_E16_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL: // BULLS-EYE! ONE MORE...
+        case ASSET_E18_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL: // MMMM...NOT BAD, FEATHER FACE!
+            __chAttackTutorial_spawnEnemyActor(actor, actor->unk10_12);
+            break;
+        case ASSET_E15_DIALOG_ATTACK_TUTORIAL_FORWARD_ROLL:
+            ability_unlock(ABILITY_C_ROLL);
+            __chAttackTutorial_setState(actor, CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE);
+            break;
+        case ASSET_E17_DIALOG_ATTACK_TUTORIAL_RATATAT_RAP:
+            ability_unlock(ABILITY_B_RATATAT_RAP);
+            __chAttackTutorial_setState(actor, CH_ATTACK_TUTORIAL_STATE_2_APPLY_LEARNED_MOVE);
+            break;
+        case ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES:
+        case ASSET_E19_DIALOG_ATTACK_TUTORIAL_LEARNED_ALL_MOVES:
+            __chAttackTutorial_setState(actor, CH_ATTACK_TUTORIAL_STATE_3_LEARNED_ALL_MOVES);
+            break;
+    }
     timed_exitStaticCamera(0.0f);
 }
 
-void chAttackTutorial_talk(ActorMarker *marker) {
-    s32 text_id;
-    int try_count;
-    s32 text_flags = 4;
-
-    Actor *actor = marker_getActor(marker);
-    try_count = BOOL(actor->unk38_31);
-
-    if (try_count) {
-        text_flags = 0xE;
+static void __chAttackTutorial_showDialogText(ActorMarker* marker) {
+    s32 dialog_text;
+    bool has_killed_enemy;
+    s32 dialog_flag = 0x4;
+    
+    Actor* actor = marker_getActor(marker);
+    
+    has_killed_enemy = actor->unk38_31 ? TRUE : FALSE;
+    if (has_killed_enemy) {
+        dialog_flag = 0xE;
     }
 
     switch (actor->unk10_12) {
-        case VEGETABLE_1_TOPPER: //L803877D8
-            text_id = try_count ? ASSET_E15_TEXT_UNKNOWN : ASSET_E14_TEXT_UNKNOWN;
+        case 1:
+            dialog_text = has_killed_enemy ? ASSET_E15_DIALOG_ATTACK_TUTORIAL_FORWARD_ROLL : ASSET_E14_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL;
             break;
 
-        case VEGETABLE_2_BAWL: //L803877F4
-            text_id = try_count ? ASSET_E17_TEXT_UNKNOWN : ASSET_E16_TEXT_UNKNOWN;
+        case 2:
+            dialog_text = has_killed_enemy ? ASSET_E17_DIALOG_ATTACK_TUTORIAL_RATATAT_RAP : ASSET_E16_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL;
             break;
 
-        case VEGETABLE_3_COLLY_WOBBLE: //L80387810
-            text_id = try_count ? ASSET_E19_TEXT_UNKNOWN : ASSET_E18_TEXT_UNKNOWN;
+        case 3:
+            dialog_text = has_killed_enemy ? ASSET_E19_DIALOG_ATTACK_TUTORIAL_LEARNED_ALL_MOVES : ASSET_E18_DIALOG_ATTACK_TUTORIAL_SUCCESSFUL_KILL;
             break;
 
         default:
-            //sp34 = actor->unk38_31;
             break;
-    }//L8038782C
+    }
 
-    if (text_id == ASSET_E19_TEXT_UNKNOWN) {
+    if (dialog_text == ASSET_E19_DIALOG_ATTACK_TUTORIAL_LEARNED_ALL_MOVES) {
         func_8028F94C(2, actor->unk1C);
-    }//L80387848
+    }
 
-    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities() && try_count) {
+    if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities() && has_killed_enemy) {
         mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
-        text_id = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
-    }//L80387898
+        dialog_text = ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES;
+    }
 
-    if (try_count) {
+    if (has_killed_enemy) {
         timed_setStaticCameraToNode(0.0f, 6);
-    }//L803878B0
+    }
 
-    gcdialog_showText(text_id, text_flags, actor->unk1C, actor->marker, __chAttackTutorial_attackTextCallback, NULL);
+    gcdialog_showText(dialog_text, dialog_flag, actor->unk1C, actor->marker, __chAttackTutorial_handleDialog, NULL);
     actor->unk38_31++;
 }

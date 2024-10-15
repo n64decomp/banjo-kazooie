@@ -155,7 +155,7 @@ typedef struct actor_s{
     u32 state:6; /* unk10_31*/
     u32 unk10_25:7;
     u32 unk10_18:6;
-    u32 unk10_12:4;
+    u32 unk10_12:4; // number of defeated enemies in SM attack tutorial
     u32 unk10_8:1;
     u32 unk10_7:1;
     u32 unk10_6:2;

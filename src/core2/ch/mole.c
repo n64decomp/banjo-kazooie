@@ -77,19 +77,19 @@ enum asset_e chmole_learnedAllLevelAbilitiesDialog(void){
     int learned_all_moves = chmole_learnedAllLevelAbilities(level_id);
     switch(level_id){
         case LEVEL_1_MUMBOS_MOUNTAIN:
-            return learned_all_moves ? ASSET_B4E_TEXT_BOTTLES_ALL_MM_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_B4E_DIALOG_BOTTLES_ALL_MM_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         case LEVEL_2_TREASURE_TROVE_COVE:
-            return learned_all_moves ? ASSET_A27_TEXT_BOTTLES_ALL_TTC_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_A27_DIALOG_BOTTLES_ALL_TTC_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         case LEVEL_3_CLANKERS_CAVERN:
-            return learned_all_moves ? ASSET_D37_TEXT_BOTTLES_ALL_CC_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_D37_DIALOG_BOTTLES_ALL_CC_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         case LEVEL_4_BUBBLEGLOOP_SWAMP:
-            return learned_all_moves ? ASSET_C8A_TEXT_BOTTLES_ALL_BGS_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C8A_DIALOG_BOTTLES_ALL_BGS_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         case LEVEL_5_FREEZEEZY_PEAK:
-            return learned_all_moves ? ASSET_C2A_TEXT_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         case LEVEL_7_GOBIS_VALLEY:
-            return learned_all_moves ? ASSET_C2A_TEXT_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
         default:
-            return ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED;
+            return ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
 
     }
 }
@@ -157,9 +157,9 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     if( arg1 == moleTable[actor->unkF4_8-9].teach_text_id
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        gcdialog_showText(ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+        gcdialog_showText(ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
-    else if(arg1 == moleTable[actor->unkF4_8-9].teach_text_id || arg1 == ASSET_D39_TEXT_BOTTLES_REFILL_HEALTH){
+    else if(arg1 == moleTable[actor->unkF4_8-9].teach_text_id || arg1 == ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH){
         gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC

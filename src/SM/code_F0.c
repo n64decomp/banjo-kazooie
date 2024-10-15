@@ -11,15 +11,15 @@ extern s32 D_80275650;
 
 extern ActorInfo D_8038AB00;
 extern ActorInfo D_8038ABF0;
-extern ActorInfo D_8038AC20; //chAttackTutorial
-extern ActorInfo D_8038AC78; //chCarrot Slave?
-extern ActorInfo D_8038ACE8; //ch onion A
-extern ActorInfo D_8038AD58; //ch cauliflower A
-extern ActorInfo D_8038AC9C; //chCarrot FreeRange?
-extern ActorInfo D_8038AD0C; //ch onion B
-extern ActorInfo D_8038AD7C; //ch cauliflower B
-extern ActorInfo chBottles; //chSmMole bottles
-extern ActorInfo D_8038B0B0; //chJumpTutorial code_4070
+extern ActorInfo gChAttackTutorial;
+extern ActorInfo gChVegetablesTopperA;
+extern ActorInfo gChVegetablesBawlA;
+extern ActorInfo gChVegetablesCollywobbleA;
+extern ActorInfo gChVegetablesTopperB;
+extern ActorInfo gChVegetablesBawlB;
+extern ActorInfo gChVegetablesCollywobbleB;
+extern ActorInfo gChBottles;
+extern ActorInfo gChJumpTutorial;
 extern ActorInfo D_8038B0E0;
 extern ActorInfo D_8038B008; //chBanjosBed
 extern ActorInfo D_8038B044; //chBanjosChair
@@ -142,15 +142,15 @@ void SM_func_80386810(void)
 {
     spawnableActorList_add(&D_8038AB00,  actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_8038ABF0,  actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038AC20,  actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038AC78,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038ACE8,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038AD58,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038AC9C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038AD0C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038AD7C,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&chBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&D_8038B0B0,  actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gChAttackTutorial,  actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gChVegetablesTopperA,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChVegetablesBawlA,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChVegetablesCollywobbleA,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChVegetablesTopperB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChVegetablesBawlB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChVegetablesCollywobbleB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gChBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&gChJumpTutorial,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038B0E0,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_8038B008,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038B044,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
