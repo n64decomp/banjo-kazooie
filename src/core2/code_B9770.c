@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80250530(s32, u16, f32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
 extern f32  func_803234FC(struct56s *, f32, f32);

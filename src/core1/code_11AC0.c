@@ -24,7 +24,6 @@ u8 func_8025F4A0(ALCSPlayer *, u8);
 
 void func_8025F3F0(ALCSPlayer *, f32, f32);
 u16 func_80250474(s32 arg0);
-void func_8024AF48(void);
 void func_8024FB8C(void);
 
 /* .data */
@@ -603,7 +602,7 @@ u16 func_80250474(s32 arg0){
         D_80282110[i].unk10 = -1.0f;
     }
     osSetIntMask(sp1C);
-    func_8024AF48();
+    core1_ce60_func_8024AF48();
     if(D_802762C0 == -1){
         D_802762C0 = 0xFFFF;
     }

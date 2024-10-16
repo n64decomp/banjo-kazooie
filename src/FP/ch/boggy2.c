@@ -201,7 +201,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         case 0xc29://L80388DC4
             func_8025A6EC(COMUSIC_3A_FP_BOGGY_RACE, 25000);
             func_8025A58C(0, 4000);
-            func_8024BD08(0);
+            core1_ce60_incOrDecCounter(FALSE);
             func_802BE720();
             local->unk0 = partEmitMgr_newEmitter(16);
             local->unk4 = partEmitMgr_newEmitter(16);

@@ -508,7 +508,7 @@ void bswalrus_die_update(void){
 }
 
 void bswalrus_die_end(void){
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
@@ -732,7 +732,7 @@ void bswalrus_timeout_init(void) {
     ncDynamicCamD_func_802BF2C0(60.0f);
     func_8025A58C(0, 4000);
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);
     func_802B813C();
@@ -749,7 +749,7 @@ void func_802B9830(void) {
 
 void func_802B9880(void) {
     func_80291548();
-    func_8024BD08(1);
+    core1_ce60_incOrDecCounter(TRUE);
     func_8025A904();
     func_80292EA4();
     func_802B80D0();

@@ -233,13 +233,13 @@ void func_8032278C(s32 arg0, s32 arg1) {
         D_8036E2B4 = 0;
         if (D_80383348 == 0) {
             if ((temp_v0 & 1) != 0) {
-                func_8024ADF0(0);
+                core1_ce60_func_8024ADF0(FALSE);
             } else {
-                func_8024ADF0(1);
+                core1_ce60_func_8024ADF0(TRUE);
             }
         } else {
             D_80383348 = 0;
-            func_8024BD08(1);
+            core1_ce60_incOrDecCounter(TRUE);
         }
     }
     if ((arg0 == 1) && (arg1 == 2)) {
@@ -253,7 +253,7 @@ void func_8032278C(s32 arg0, s32 arg1) {
 
 void func_803228D8(void){
     if(!D_80383348){
-        func_8024BD08(0);
+        core1_ce60_incOrDecCounter(FALSE);
         D_80383348 = TRUE;
     }
 }

@@ -181,7 +181,7 @@ void func_80334910(void) {
     if (func_80322914() == 0) {
         func_8024F7C4(func_803226E8(D_803835D0.map_4));
     }
-    func_80244B3C();
+    core1_7090_release();
     AnimTextureListCache_free();
     func_80322FDC();
     func_8033BD6C();
@@ -197,7 +197,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_80335110(1);
     func_80335128(1);
     func_802D2CB8();
-    func_80244AB0();
+    core1_7090_alloc();
     if (map_get() == MAP_8E_GL_FURNACE_FUN) {
         func_8038E7C4();
     }

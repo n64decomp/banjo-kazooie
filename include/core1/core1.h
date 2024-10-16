@@ -20,11 +20,51 @@
 #include "core1/viewport.h"
 #include "core1/vimgr.h"
 
+
+/* need to sort out in individual header files */
+
 void mlMtx_apply_vec3f(f32[3], f32[3]);
 void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]);
 void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]);
 f32 ml_cos_deg(f32);
 f32 ml_sin_deg(f32);
+
+void func_80250530(s32 arg0, u16 chan_mask, f32 arg2);
+int func_802585E0(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ);
+
+void func_8025A104(enum comusic_e arg0, s32 arg1);
+void func_8025A55C(s32 arg0, s32 arg1, s32 arg2);
+s32 func_8025A864(enum comusic_e track_id);
+void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3);
+int func_8025AD7C(enum comusic_e arg0);
+int func_8025ADBC(enum comusic_e arg0);
+
+
+/* src/core1/code_7090.c */
+
+void core1_7090_alloc(void);
+void core1_7090_release(void);
+void core1_7090_initSfxSource(s32 idx, s32 lookup_idx, s32 sample_rate, f32 volume);
+void core1_7090_freeSfxSource(int idx);
+
+
+/* src/core1/code_CE60.c */
+
+void core1_ce60_setChanMask(s32 chan_mask);
+void core1_ce60_setChanMaskWithValue(s32 chan_mask, f32 arg1);
+bool core1_ce60_isPlayerInRange(s32 x, s32 z, s32 distance);
+f32 core1_ce60_getPlayerDistance(f32 x, f32 z);
+bool core1_ce60_isPlayerInsideBoundingBox(s32 box_idx);
+void core1_ce60_func_8024A9EC(s32 arg0);
+void core1_ce60_func_8024AAB0(void);
+void core1_ce60_func_8024ADF0(bool arg0);
+void core1_ce60_func_8024AE74(void);
+void core1_ce60_resetState(void);
+void core1_ce60_setChanMaskFromWaterState(s32 chan_mask_underwater, s32 chan_mask_surface);
+void core1_ce60_func_8024AF48(void);
+void core1_ce60_incOrDecCounter(bool increment);
+void core1_ce60_func_8024BD40(s32 arg0, s32 arg1);
+
 
 
 /* src/core1/depthbuffer.c */

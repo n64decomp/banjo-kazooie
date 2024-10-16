@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80244BB0(s32, s32, s32, f32);
+extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 
 typedef struct {
     f32 unk0[3];
@@ -75,13 +75,13 @@ void func_80386620(Actor *this){
 }
 
 void func_8038678C(void){
-    func_80244BB0(3, 0x85, 0x7ff8, 1.0f);
-    func_80244BB0(4, 0x85, 0x7ff8, 1.0f);
+    core1_7090_initSfxSource(3, 0x85, 0x7ff8, 1.0f);
+    core1_7090_initSfxSource(4, 0x85, 0x7ff8, 1.0f);
 }
 
 void func_803867CC(void){
-    func_80244C78(3);
-    func_80244C78(4);
+    core1_7090_freeSfxSource(3);
+    core1_7090_freeSfxSource(4);
 }
 
 void func_803867F4(void){
@@ -167,7 +167,7 @@ void chAncientOne_update(Actor *this){
                                 if(this->unkF4_8 < 5){
                                     D_80390C28[this->unkF4_8]->propPtr->unk8_4 = TRUE;
                                     func_802BAFE4(GV_D_80390C20[this->unkF4_8 - 1]);
-                                    func_80244BB0(2, 0x86, 0x7ff8, 0.3f);
+                                    core1_7090_initSfxSource(2, 0x86, 0x7ff8, 0.3f);
                                     timedFunc_set_0(0.45f, func_8038678C);
                                 
                                 }//L80386DB0
@@ -190,7 +190,7 @@ void chAncientOne_update(Actor *this){
                         }//L80386D80
                     }
                     if(LOCAL_CH_ANCIENT_ONE(this)->unk1C <= this->position_y){
-                        func_80244C78(2);
+                        core1_7090_freeSfxSource(2);
                         timedFunc_set_0(0.5f, func_803867CC);
                     }
                 }//L80386DB0 

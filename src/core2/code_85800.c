@@ -458,7 +458,7 @@ void func_8030D778(void){
 
 void func_8030D86C(void){
     func_8030D750();
-    func_80244AB0();
+    core1_7090_alloc();
     func_8030EDAC(0.0f, 1.0f);
 }
 
@@ -472,7 +472,7 @@ void func_8030D8B4(void){
 }
 
 void func_8030D8DC(void){
-    func_80244B3C();
+    core1_7090_release();
     func_8030D778();
     func_8030D8B4();
 }
