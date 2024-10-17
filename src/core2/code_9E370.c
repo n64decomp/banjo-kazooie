@@ -135,7 +135,7 @@ void actor_predrawMethod(Actor *this){
             sp34[0] = this->pitch;
             sp34[1] = this->yaw;
             sp34[2] = this->roll;
-            func_80333D48(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
+            codeAC520_func_80333D48(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
         }//L80325560
         modelRender_setVertexList(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);

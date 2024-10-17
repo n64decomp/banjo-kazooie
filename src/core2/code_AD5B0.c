@@ -160,7 +160,7 @@ void func_80334910(void) {
     func_8031B710();
     mapModel_free();
     func_8030A6B0();
-    func_80333918();
+    lighting_free();
     sky_free();
     func_8034C8D8();
     func_80323238();
@@ -234,7 +234,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_802F13E0();
     func_802F7D30();
     func_8030A78C();
-    func_8033393C();
+    lighting_init();
     sky_reset();
     func_803343D0();
     cubeList_init();
@@ -396,7 +396,7 @@ void func_80335140(enum map_e map_id) {
         } else if (file_isNextByteExpected(fp, 3)) {
             ncCameraNodeList_fromFile(fp);
         } else if (file_isNextByteExpected(fp, 4)) {
-            func_80333B78(fp);
+            lightingVectorList_fromFile(fp);
         }
     }
     file_close(fp); //file close
