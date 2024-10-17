@@ -7,8 +7,6 @@
 #include <math.h>
 #include "prop.h"
 
-extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
-extern f32 func_802586B0(f32[3], f32[3]);
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void bitfield_setBit(u32*, s32, bool);

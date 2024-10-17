@@ -4,7 +4,6 @@
 #include "variables.h"
 
 extern void controller_getJoystick(s32, f32*);
-extern f32 ml_acosf(f32);
 extern f32 player_getYaw(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);

@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32  ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern void func_8028F3D8(f32[3], f32, void(*)(ActorMarker *), ActorMarker *);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void rand_seed(s32);

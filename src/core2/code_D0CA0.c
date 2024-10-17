@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8025715C(f32, f32);
-extern f32 func_802575BC(f32);
-extern void ml_interpolate_vec3f(f32[3], f32[3], f32[3], f32);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 
 /* .h */

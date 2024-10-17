@@ -15,10 +15,6 @@ extern f32 func_8033229C(ActorMarker *marker);
 
 extern f32 func_80309B24(f32 [3]);
 
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
-
-extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
-
 extern BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 
 /* .h */

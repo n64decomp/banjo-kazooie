@@ -3,7 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8025982C(f32[3], f32[3], f32[3], f32);
 extern void func_8025A6CC(enum comusic_e arg0, s32 arg1);
 extern void chBottlesBonusCursor_func_802DF99C(void);
 extern f32 *chBottlesBonusCursor_func_802E05AC(s32);

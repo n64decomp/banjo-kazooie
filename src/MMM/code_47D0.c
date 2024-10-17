@@ -5,7 +5,6 @@
 
 /* extern functions */
 extern void sfxsource_setSampleRate(u8, s32);
-extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
 
 /* data */
 enum chTumblar_state_e {

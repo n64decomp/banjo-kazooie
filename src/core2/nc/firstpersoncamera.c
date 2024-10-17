@@ -4,7 +4,6 @@
 
 
 extern void func_802BD780(f32[3], f32[3], f32, f32, f32, f32);
-extern f32 func_80257CF8(f32, f32, f32, f32, f32);
 
 void ncFirstPersonCamera_setState(enum nc_first_person_state state);
 

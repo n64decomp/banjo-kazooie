@@ -6,7 +6,6 @@
 
 extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3],s32, f32, s32);
-extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *);
 extern void points_to_boundingBoxWithMargin(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
 

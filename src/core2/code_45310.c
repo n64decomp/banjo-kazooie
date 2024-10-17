@@ -3,8 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8025715C(f32, f32);
-extern f32 func_802575BC(f32);
 extern f32 func_80309B24(f32[3]);
 extern void sfxsource_playSfxAtVolume(u8, f32);
 extern void func_802CC340(Actor *, f32[3]);

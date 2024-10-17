@@ -12,6 +12,7 @@
 #include "core1/lookup.h"
 #include "core1/main.h"
 #include "core1/mem.h"
+#include "core1/ml.h"
 #include "core1/pfsmanager.h"
 #include "core1/rarezip.h"
 #include "core1/sns.h"
@@ -26,11 +27,8 @@
 void mlMtx_apply_vec3f(f32[3], f32[3]);
 void func_80252C08(f32 arg0[3], f32 arg1[3], f32 scale, f32 arg3[3]);
 void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]);
-f32 ml_cos_deg(f32);
-f32 ml_sin_deg(f32);
 
 void func_80250530(s32 arg0, u16 chan_mask, f32 arg2);
-int func_802585E0(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ);
 
 void func_8025A104(enum comusic_e arg0, s32 arg1);
 void func_8025A55C(s32 arg0, s32 arg1, s32 arg2);

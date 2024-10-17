@@ -4,8 +4,6 @@
 
 #include "core2/statetimer.h"
 
-extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
-
 /* .bss */
 u8 D_8037D210;
 u8 D_8037D211;

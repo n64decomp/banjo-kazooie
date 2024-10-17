@@ -46,7 +46,6 @@ void func_80323238(void){}
 // =============================================BREAK ???
 
 extern f32 ml_vec3f_length(f32 [3], f32[3]);
-extern f32 ml_distanceSquared_vec3f(f32 [3], f32 [3]);
 extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
 /* .code */

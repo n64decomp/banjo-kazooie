@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-/* extern functions */
-extern void ml_vec3f_assign(f32[3], f32, f32, f32);
-
 /* public functions */
 void chLoggo_update(Actor *this);
 

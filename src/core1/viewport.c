@@ -5,7 +5,6 @@
 
 
 extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
 #define VIEWPORT_FOVY_DEFAULT (40.0f)
 #define VIEWPORT_STACK_SIZE (8)

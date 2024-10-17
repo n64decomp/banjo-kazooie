@@ -17,7 +17,6 @@ typedef struct{
 
 
 extern f32 mapModel_getFloorY(f32 *);
-extern void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 
 void chflibbit_update(Actor *this);
 Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);

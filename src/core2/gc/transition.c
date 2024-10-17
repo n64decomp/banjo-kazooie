@@ -6,7 +6,6 @@
 
 void animctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
-f32 func_80257618(void);
 
 typedef enum {
     TRANSITION_ID_1_BLACK_IN = 1,
@@ -320,7 +319,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
             case 0xA:
                 //zoom out only
                 vp_rotation[2] = 0.0f;
-                scale = (1.0f - func_80257618())*s_current_transition.transistion_info->scale + 0.1;
+                scale = (1.0f - func_80257618(percentage))*s_current_transition.transistion_info->scale + 0.1;
                 break;
         }
         if(!(s_current_transition.substate < 3) || s_current_transition.transistion_info->uid != 0x11){

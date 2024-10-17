@@ -5,7 +5,6 @@
 #include "core2/ba/physics.h"
 
 extern void func_8029AD68(f32, s32);
-extern f32  ml_dotProduct_vec3f(f32[3], f32[3]);
 
 int bswalrus_inSet(enum bs_e state);
 

@@ -7,7 +7,6 @@ Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8035F138(Actor *this);
 BKModelBin *func_803257B4(ActorMarker *marker);
 extern void actor_postdrawMethod(ActorMarker *);
-extern f32 func_80257204(f32, f32, f32, f32);
 
 typedef struct {
     s32 unk0;

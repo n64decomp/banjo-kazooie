@@ -8,7 +8,6 @@
 #include "core2/ba/physics.h"
 
 
-extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);
 extern f32 player_getYaw(void);
 
 /* .bss */

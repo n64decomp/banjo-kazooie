@@ -3,10 +3,6 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-extern f32 ml_sin_deg(f32);
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
-extern void func_80256D0C(f32, f32, f32, f32, f32, f32 *, f32 *, f32 *);
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 climbGetRadius(void);
 extern f32 func_8029CED0(void);
 

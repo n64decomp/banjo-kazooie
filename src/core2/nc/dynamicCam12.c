@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern f32 func_802453DC(struct56s *, f32, f32[3], s32);
-extern f32 func_80259198(f32, f32);
 extern f32 func_802BD51C(void);
 extern f32 player_getYaw(void);
 extern void func_802BE244(f32, f32);

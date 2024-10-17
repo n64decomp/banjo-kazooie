@@ -3,7 +3,6 @@
 #include "variables.h"
 #include "fight.h"
 
-extern f32  func_8025715C(f32, f32);
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 s32 func_803297C8(Actor*, f32*);
@@ -13,7 +12,6 @@ extern void func_803298D8();
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
-extern f32 func_80257204(f32, f32, f32, f32);
 extern void func_8028F85C(f32[3]);
 extern void player_setIdealRotation(f32[3]);
 extern f32 func_8033229C(ActorMarker *);
@@ -696,7 +694,7 @@ void chfinalboss_func_80387D4C(Actor *actor) {
     sp20[1] = -2.0 * (100.0f - local->unk1C);
     sp20[2] = actor->velocity[2] * local->unk14;
 
-    ml_vec3f_normalize(sp20, actor);
+    ml_vec3f_normalize(sp20);
     sp20[0] = sp20[0] * actor->actor_specific_1_f;
     sp20[1] = sp20[1] * actor->actor_specific_1_f;
     sp20[2] = sp20[2] * actor->actor_specific_1_f;

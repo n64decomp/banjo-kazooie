@@ -181,7 +181,7 @@ segments:
   - [0xF31360, c, eeprom]                 #DONE
   - [0xF31460, c, ucode]                 #DONE
   - [0xF31560, c, lookup]                 #DONE
-  - [0xF315A0, c, code_18350]                 #DONE
+  - [0xF315A0, c, ml]                 #DONE
   - [0xF350E0, c, code_1BE90]                 #DONE
   - [0xF367E0, c, stub_1D590]                 #DONE
   - [0xF36810, hasm, code_1D5C0]              #DONE
@@ -385,7 +385,7 @@ segments:
   - [0xF51DB0, .data, code_15B30]
   - [0xF51DC0, .data, memory]
   - [0xF51DF0, .data, lookup]
-  - [0xF524E0, .data, code_18350]
+  - [0xF524E0, .data, ml]
   - [0xF52660, .data, code_1BE90]
   - [0xF52670, .data, code_1D5D0]
   - [0xF52690, .data, sns]
@@ -424,7 +424,7 @@ segments:
   - [0xF539C0, .rodata, rumblemanager]
   - [0xF539D0, .rodata, overlaymanager]
   - [0xF53A50, .rodata, code_13990]
-  - [0xF53A70, .rodata, code_18350]
+  - [0xF53A70, .rodata, ml]
   - [0xF53B70, .rodata, code_1BE90]
   - [0xF53BA0, .rodata, code_1D5D0]
   - [0xF53C00, .rodata, audio/n_synthesizer]

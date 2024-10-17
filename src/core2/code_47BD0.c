@@ -11,7 +11,6 @@ extern void sfxsource_set_fade_distances(u8, f32, f32);
 extern void sfxsource_set_position(u8, f32[3]);
 extern void func_8030E2C4(u8);
 extern void sfxsource_setSampleRate(u8, s32);
-extern void ml_vec3f_normalize(f32[3]);
 
 typedef struct{
     f32 unk0[3];

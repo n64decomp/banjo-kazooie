@@ -4,7 +4,6 @@
 #include "variables.h"
 #include "n_libaudio.h"
 
-extern f32 func_80256AB4(f32, f32, f32, f32);
 extern void func_80335394(s32, f32);
 extern f32 sfx_randf2(f32, f32);
 

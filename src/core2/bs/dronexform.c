@@ -7,10 +7,7 @@
 
 extern void player_setYPosition(f32);
 extern void yaw_applyIdeal(void);
-extern f32 func_80257A44(f32, f32);
 extern f32 cosf(f32);
-extern f32 ml_remainder_f(f32, f32);
-extern f32 func_80257AD4(f32, f32);
 
 /* .bss */
 struct {

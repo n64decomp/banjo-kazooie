@@ -5,7 +5,6 @@
 #include "core2/nc/camera.h"
 
 
-extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
 /* .bss */
 static f32 ncStaticCameraPosition[3];

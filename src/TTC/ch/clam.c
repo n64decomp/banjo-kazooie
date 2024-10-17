@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern Actor *spawnQueue_bundle_f32(s32, s32, s32, s32);
-extern f32 func_80257204(f32, f32, f32, f32);
 extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 
 static void __chClam_updateFunc(Actor *this);

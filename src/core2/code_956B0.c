@@ -9,10 +9,8 @@ extern s32  fileProgressFlag_get(s32);
 extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
 extern void fileProgressFlag_set(enum file_progress_e index, s32 set);
-extern void ml_vec3h_to_vec3f(f32 *, s32);
 extern NodeProp *func_80304ED0(void*, f32 *);
 extern void func_8031CD44(enum map_e, s32, f32, f32, s32);
-extern void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 extern void mapSpecificFlags_set(s32, s32);
 
 bool cutscene_skipEnterLairCutsceneCheck(void);

@@ -8,7 +8,6 @@
 
 
 
-extern f32 func_80257680(f32, f32, f32);
 extern void func_80252330(f32, f32, f32);
 
 typedef struct {

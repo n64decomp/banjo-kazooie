@@ -11,7 +11,6 @@
 extern u8 D_8037DCC8; //bottles bonus flags???
 
 
-extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_8025AABC(enum comusic_e);
 extern f32 func_8024E420(s32, s32, s32);
 extern f32 func_8033DDB8(void);

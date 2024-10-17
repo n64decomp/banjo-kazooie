@@ -14,7 +14,6 @@ f32 baanim_getTimer(void);
 void baanim_setEndAndDuration(f32, f32);
 f32 func_8029B2E8(void);
 f32 func_8029B33C(void);
-f32 ml_interpolate_f(f32, f32, f32);
 f32 func_8029B30C();
 
 /* .data */

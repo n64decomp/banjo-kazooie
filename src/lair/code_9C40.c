@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool ml_vec3f_within_distance(f32[3], f32[3], f32);
-
 void func_803902B8(Actor *this);
 Actor *func_80390030(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 

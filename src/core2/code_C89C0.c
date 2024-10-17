@@ -5,7 +5,6 @@
 extern void func_8032F64C(f32[3], s32);
 extern void func_80323240(struct56s *, f32, f32[3]);
 extern f32 func_80323F74(struct56s *, f32, f32);
-extern f32 func_80256AB4(f32, f32, f32, f32);
 
 typedef struct {
     s32 unk0;

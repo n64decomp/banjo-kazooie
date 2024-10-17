@@ -3,8 +3,6 @@
 #include "math.h"
 #include "variables.h"
 
-extern f32  func_80256AB4(f32, f32, f32, f32);
-extern f32  func_8025715C(f32, f32);
 extern f32 *chVile_getPostion(ActorMarker *);
 extern void bundle_setRandomVelocity(f32);
 extern void func_802FDCB8(s32);

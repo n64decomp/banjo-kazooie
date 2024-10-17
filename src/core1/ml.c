@@ -37,10 +37,6 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
 
-// .h
-void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
-void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
-
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
 

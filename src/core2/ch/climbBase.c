@@ -5,7 +5,6 @@
 
 void func_802D77D4(Actor *this);
 extern void player_setClimbParams(f32[3], f32[3], f32, u32);
-extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
 
 typedef struct {
     f32 unk0[3];

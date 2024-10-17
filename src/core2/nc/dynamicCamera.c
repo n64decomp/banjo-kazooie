@@ -7,13 +7,10 @@
 extern bool func_80245314(f32[3], f32[3], f32, f32, u32);
 extern int func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 extern int func_8024575C(f32[3], f32[3], f32, f32[3], s32, u32);
-extern f32 ml_vec3f_length(f32[3], f32[3]);
-extern f32 func_80259198(f32, f32);
 extern f32 func_8028E82C(void);
 extern f32 player_getYaw(void);
 extern f32 func_8028EF88(void);
 extern int func_80320DB0(f32[3], f32, f32[3], u32);
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
 typedef struct {
     f32* unk0;
