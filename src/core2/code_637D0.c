@@ -1,7 +1,6 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
 
 extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
 extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);

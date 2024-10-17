@@ -1,9 +1,5 @@
-#ifndef __ML_MTX__
-#define __ML_MTX__
-
-typedef struct {
-    f32 m[4][4];
-} MtxF;
+#ifndef BANJO_KAZOOIE_CORE1_MLMTX_H
+#define BANJO_KAZOOIE_CORE1_MLMTX_H
 
 void mlMtxGet(MtxF *dst);
 MtxF *mlMtx_get_stack_pointer(void);

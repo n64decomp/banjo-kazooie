@@ -6,7 +6,6 @@
 #include "core2/modelRender.h"
 
 #include "animation.h"
-#include "ml/mtx.h"
 
 #define ARRAYLEN(x) (sizeof(x) / sizeof((x)[0]))
 

@@ -13,6 +13,7 @@
 #include "core1/main.h"
 #include "core1/mem.h"
 #include "core1/ml.h"
+#include "core1/mlmtx.h"
 #include "core1/pfsmanager.h"
 #include "core1/rarezip.h"
 #include "core1/sns.h"

@@ -14,7 +14,6 @@
 #include "core2/core2.h"
 
 #include "math.h" // ToDo: sort out actual dependencies
-#include "ml/mtx.h"
 #include "bs_funcs.h"
 
 #include "bsint.h"

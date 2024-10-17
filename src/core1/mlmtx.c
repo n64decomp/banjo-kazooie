@@ -6,8 +6,6 @@
 
 #include "version.h"
 
-#include "ml/mtx.h"
-
 void _guRotateF(f32 mf[4][4], f32, f32, f32, f32);
 f32 func_80263FF0(f32);
 f32 cosf(f32);

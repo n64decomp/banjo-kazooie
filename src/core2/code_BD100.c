@@ -2,7 +2,6 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
 
 
 extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);

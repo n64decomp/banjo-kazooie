@@ -2,7 +2,6 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
 
 void func_80252330(f32, f32, f32);
 void func_803382D8(s32 arg0);
