@@ -57,7 +57,7 @@ void __baphysics_update_normal(void){
     if(func_80294548()){
         func_80294480(sp54);
         ml_vec3f_normalize_copy(sp48, sp60);
-        sp44 = ml_dotProduct_vec3f(sp48, sp54);
+        sp44 = ml_vec3f_dot_product(sp48, sp54);
         sp40 = get_slope_timer();
         if(sp44 != 0.0f){
             if(sp44 < 0){

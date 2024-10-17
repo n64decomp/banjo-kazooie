@@ -1166,7 +1166,7 @@ bool func_80305248(f32 arg0[3], s32 arg1, s32 arg2){
 }
 
 bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){
-    return func_8030515C(arg0, arg1, arg2, func_802586B0);
+    return func_8030515C(arg0, arg1, arg2, ml_vec3f_horizontal_distance_squared_zero_likely);
 }
 
 bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){

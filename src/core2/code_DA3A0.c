@@ -97,7 +97,7 @@ void func_8036158C(Actor *this){
     if(this->state == 1){
         player_getPosition(sp24);
         actor_collisionOff(this);
-        if( ml_distance_vec3f(this->position, sp24) < 1000.0f 
+        if( ml_vec3f_distance(this->position, sp24) < 1000.0f 
             && viewport_isPointOutsideFrustum_3f(this->position_x, this->position_y, this->position_z)
             && ml_timer_update(&local->unk4, sp30)
         ){

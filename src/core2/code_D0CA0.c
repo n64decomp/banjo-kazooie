@@ -43,7 +43,7 @@ bool func_80357C30(Actor *this) {
     if (!this->marker->unk14_21) {
         return TRUE;
     }
-    ml_interpolate_vec3f(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
+    ml_vec3f_interpolate_fast(sp20, local->unk8, local->unk18, func_802575BC(local->unk4 + 0.05));
     sp20[1] += 60.0f;
     return !func_80320DB0(sp20, 50.0f, sp2C, 0);
 }
@@ -334,7 +334,7 @@ void func_80358684(Actor *this) {
                  : sp84;
         }
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, sp84);
-        sp78 = 1.0f - ml_distance_vec3f(sp94, this->position) / 2000.0f;
+        sp78 = 1.0f - ml_vec3f_distance(sp94, this->position) / 2000.0f;
         sp78 = (0.0f > sp78) ? 0 : sp78;
         if (sp78 > 0.0f) {
             sfxsource_setSampleRate(local->sfxsourceIdx, (s32) (sp78 * 10000.0f));
@@ -390,7 +390,7 @@ void func_80358684(Actor *this) {
                 local->unk4 = 1.0f;
             }
             sp70 = func_802575BC(local->unk4);
-            ml_interpolate_vec3f(this->position, local->unk8, local->unk18, sp70);
+            ml_vec3f_interpolate_fast(this->position, local->unk8, local->unk18, sp70);
             this->yaw = local->unk14 + (sp70 * (local->unk24 - local->unk14));
             if ((skeletalAnim_getAnimId(this->unk148) == 0x23B) && (skeletalAnim_getLoopCount(this->unk148) > 0)) {
                 skeletalAnim_set(this->unk148, 0x23C, 0.1f, 0.45f);
@@ -416,7 +416,7 @@ void func_80358684(Actor *this) {
                 sp54[1] = this->position[1];
                 sp54[2] = this->position[2];
                 sp54[0] = 0.0f;
-                if (ml_distance_vec3f(sp60, sp54) < 800.0f) {
+                if (ml_vec3f_distance(sp60, sp54) < 800.0f) {
                     next_state = 3;
                 }
             }

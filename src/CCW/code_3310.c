@@ -271,7 +271,7 @@ void CCW_func_80389BFC(Actor *this) {
         }
         if ((local->unk0->map_id != MAP_43_CCW_SPRING) && ((this->position[0] + 500.0f) < sp4C[0])) {
             player_setCarryObjectPoseInCylinder(this->position, 1110.0f, 200.0f, ACTOR_2A2_CATERPILLAR, &this);
-            if ((local->unk0->unkE != 0) && (carriedObj_getActorId() == ACTOR_2A2_CATERPILLAR) && (ml_distance_vec3f(this->position, sp4C) < 1010.0f) && (player_throwCarriedObject() != 0)) {
+            if ((local->unk0->unkE != 0) && (carriedObj_getActorId() == ACTOR_2A2_CATERPILLAR) && (ml_vec3f_distance(this->position, sp4C) < 1010.0f) && (player_throwCarriedObject() != 0)) {
                 player_setThrowTargetPosition(D_8038FDE0);
                 if ((local->unk0->map_id == MAP_44_CCW_SUMMER) && (local->unk4 == 0)) {
                     gcdialog_showText(0xCD8, 4, NULL, NULL, NULL, NULL);

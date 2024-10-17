@@ -76,7 +76,7 @@ void func_802B7F28(void) {
     if (900.0 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
         ml_vec3f_normalize(sp20);
         func_80294480(sp2C);
-        if ( ml_dotProduct_vec3f(sp20, sp2C) < -0.2) {
+        if ( ml_vec3f_dot_product(sp20, sp2C) < -0.2) {
             sp3C += D_8037D5C0 * 350.0;
         }
     }

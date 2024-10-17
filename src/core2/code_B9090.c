@@ -20,7 +20,7 @@ bool func_80340020(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 
     }
     
     self->unk1A = FALSE;
-    if (0.1 < ml_distance_vec3f(arg6, self->unk8)) {
+    if (0.1 < ml_vec3f_distance(arg6, self->unk8)) {
         return FALSE;
     }
     for(i = 0; i < 3; i++){

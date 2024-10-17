@@ -225,7 +225,7 @@ void func_80350250(void) {
     if ((D_80386150.unk0 != NULL) && (func_80334904() == 2)) {
         player_getPosition(sp7C);
         for(var_s0 = D_80386150.unk8; var_s0 < D_80386150.unkC; var_s0++) {
-            var_s0->unk4 = (ml_distance_vec3f(var_s0->unkC, sp7C) < 2000.0f);
+            var_s0->unk4 = (ml_vec3f_distance(var_s0->unkC, sp7C) < 2000.0f);
             if (var_s0->unk4) {
                 if (var_s0->unk8 > 0) {
                     var_s0->unk28 -= temp_f22;

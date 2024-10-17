@@ -202,7 +202,7 @@ void func_8038EFD8(Actor *this) {
     sp24[1] = this->position[1];
     sp24[2] = this->position[2];
     sp24[1] += 50.0f;
-    func_8028F3D8(sp24, ml_distance_vec3f(sp30, sp24) / 150.0, func_8038EF58, this->marker);
+    func_8028F3D8(sp24, ml_vec3f_distance(sp30, sp24) / 150.0, func_8038EF58, this->marker);
 }
 
 void func_8038F078(ActorMarker *marker, enum asset_e text_id, s32 arg2){

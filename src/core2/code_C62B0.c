@@ -30,7 +30,7 @@ void func_8034D554(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
 
     temp_f0 = arg3->unk44 / arg3->unk48;
     temp_f0 = temp_f0 * temp_f0 * temp_f0 * temp_f0;
-    ml_interpolate_vec3f(sp18, arg3->unk2C, arg3->unk38, temp_f0);
+    ml_vec3f_interpolate_fast(sp18, arg3->unk2C, arg3->unk38, temp_f0);
     dst->v.ob[0] = (s16)(src->v.v.ob[0] + sp18[0]);
     dst->v.ob[1] = (s16)(src->v.v.ob[1] + sp18[1]);
     dst->v.ob[2] = (s16)(src->v.v.ob[2] + sp18[2]);
@@ -41,7 +41,7 @@ void func_8034D634(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     f32 sp18[3];
 
     temp_f0 = arg3->unk44 / arg3->unk48;
-    ml_interpolate_vec3f(sp18, arg3->unk2C, arg3->unk38, temp_f0);
+    ml_vec3f_interpolate_fast(sp18, arg3->unk2C, arg3->unk38, temp_f0);
     dst->v.ob[0] = (s16)(src->v.v.ob[0] + sp18[0]);
     dst->v.ob[1] = (s16)(src->v.v.ob[1] + sp18[1]);
     dst->v.ob[2] = (s16)(src->v.v.ob[2] + sp18[2]);

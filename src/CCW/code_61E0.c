@@ -73,7 +73,7 @@ void func_8038C7A8(Actor *this) {
 
     if (this->state == 1) {
         player_getPosition(sp38);
-        if (ml_distance_vec3f(this->position, sp38) < 50.0f) {
+        if (ml_vec3f_distance(this->position, sp38) < 50.0f) {
             func_8028F030(0x2A9);
             FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 500, 2500);
             CCW_func_8038C6A0(this, 5);
@@ -91,7 +91,7 @@ void func_8038C7A8(Actor *this) {
     if (this->state == 3) {
         local->unk18 += 3.3333333333333333 * sp44;
         local->unk18 = (local->unk18 > 1.0) ? 1.0 : local->unk18;
-        ml_interpolate_vec3f(this->position, local->unk0, local->unkC, local->unk18);
+        ml_vec3f_interpolate_fast(this->position, local->unk0, local->unkC, local->unk18);
         this->position[1] += 50.0f * sinf(local->unk18 * BAD_PI);
         if (local->unk18 == 1.0) {
             CCW_func_8038C6A0(this, 4);

@@ -69,7 +69,7 @@ void func_8038D368(Actor *this) {
     
     if(!this->has_met_before){
         player_getPosition(plyr_pos);
-        if (ml_distance_vec3f(this->position, plyr_pos) < 600.0f) {
+        if (ml_vec3f_distance(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
                 gcdialog_showText(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
             } else {

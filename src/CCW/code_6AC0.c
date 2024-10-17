@@ -116,7 +116,7 @@ void func_8038CFB4(Actor *this) {
     if (this->state == 1) {
         if (!this->has_met_before) {
             player_getPosition(sp60);
-            if (ml_distance_vec3f(this->position, sp60) < 900.0f) {
+            if (ml_vec3f_distance(this->position, sp60) < 900.0f) {
                 gcdialog_showText(0xCCF, 4, NULL, NULL, NULL, NULL);
                 this->has_met_before = TRUE;
             }

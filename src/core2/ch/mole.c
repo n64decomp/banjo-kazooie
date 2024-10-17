@@ -387,7 +387,7 @@ void chmole_update(Actor *this){
                     && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
-                    if (ml_distance_vec3f(sp34, this->velocity) < this->actor_specific_1_f) {
+                    if (ml_vec3f_distance(sp34, this->velocity) < this->actor_specific_1_f) {
                         chmole_startingDialog(this);
                     }
                 }

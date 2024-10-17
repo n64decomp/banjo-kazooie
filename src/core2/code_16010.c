@@ -188,7 +188,7 @@ bool func_8029D66C(void){
 
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
             player_getPosition(sp2C);
-            return player_inWater() && func_80258424(sp2C, -9000.0f, -3000.0f, -3850.0f, -6820.0f, -700.0f, -1620.0f);
+            return player_inWater() && ml_vec3f_inside_box_f(sp2C, -9000.0f, -3000.0f, -3850.0f, -6820.0f, -700.0f, -1620.0f);
             break;
 
         case MAP_27_FP_FREEZEEZY_PEAK:

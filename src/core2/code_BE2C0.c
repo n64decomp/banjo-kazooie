@@ -97,7 +97,7 @@ void func_80345650(f32 arg0[4], f32 arg1[4], f32 arg2[4], f32 arg3) {
     temp_f12 =  (arg1[0]*arg2[0]) + (arg1[1]*arg2[1]) + (arg1[2]*arg2[2]) + (arg1[3]*arg2[3]);
     if (0.00001 < (1.0 + temp_f12)) {
         if (0.00001 < (1.0 - temp_f12)) {
-            sp3C = (BAD_PI/180.0) * func_80255D70(temp_f12);
+            sp3C = (BAD_PI/180.0) * ml_acosf_deg(temp_f12);
             sp40 = sinf(sp3C);
             if (0.0f != sp40) {
                 sp48 = sinf((1.0 - arg3) * sp3C) / sp40;

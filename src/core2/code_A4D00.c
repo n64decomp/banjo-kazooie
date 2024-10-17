@@ -209,7 +209,7 @@ bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
         arg0->position[0] = var_fp->unk0[0];
         arg0->position[1] = var_fp->unk0[1];
         arg0->position[2] = var_fp->unk0[2];
-        if ((temp_f20 != 0.0f) && ((ml_dotProduct_vec3f(var_fp->unk1C, sp284) / temp_f20) < 0.93969262)) {
+        if ((temp_f20 != 0.0f) && ((ml_vec3f_dot_product(var_fp->unk1C, sp284) / temp_f20) < 0.93969262)) {
             var_fp = NULL;
         }
     }

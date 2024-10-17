@@ -133,7 +133,7 @@ void chnabnut_update(Actor *this) {
 
     if (this->state == NABNUT_STATE_1_SAD) {
         player_getPosition(sp30);
-        if (!this->has_met_before && (ml_distance_vec3f(this->position, sp30) < 400.0f)) {
+        if (!this->has_met_before && (ml_vec3f_distance(this->position, sp30) < 400.0f)) {
             this->has_met_before = TRUE;
             gcdialog_showText(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
@@ -143,7 +143,7 @@ void chnabnut_update(Actor *this) {
         }
         if (this->has_met_before && !func_803114B0()) {
             player_setCarryObjectPoseInCylinder(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
-            if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_distance_vec3f(this->position, sp30) < 300.0f) && player_throwCarriedObject()) {
+            if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_vec3f_distance(this->position, sp30) < 300.0f) && player_throwCarriedObject()) {
                 player_setThrowTargetPosition(D_8038F350);
                 local->returned_acorn_count++;
                 if (local->returned_acorn_count == 6) {

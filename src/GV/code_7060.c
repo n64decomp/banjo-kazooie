@@ -72,7 +72,7 @@ void func_8038D47C(Actor *this){
     if(!mapSpecificFlags_get(0x14)){
         player_getPosition(sp3C);
         if(func_8028ECAC() == 0){
-            if( ml_distance_vec3f(sp3C, this->unk1C) < 100.0f || ml_distance_vec3f(sp3C, this->velocity) < 100.0f){
+            if( ml_vec3f_distance(sp3C, this->unk1C) < 100.0f || ml_vec3f_distance(sp3C, this->velocity) < 100.0f){
                 if(gcdialog_showText(ASSET_A7B_TEXT_JINXY_MEET, 0, NULL, NULL, NULL, NULL)){
                     mapSpecificFlags_set(0x14, 1);
                 }

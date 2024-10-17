@@ -33,7 +33,7 @@ void func_80295DD0(void){
 void func_80295E74(void){
     f32 sp1C[3];
     _player_getPosition(sp1C);
-    if(!func_802584FC(sp1C, D_8037C3C0.unkC, D_8037C3C0.unk0)){
+    if(!ml_vec3f_inside_box_vec3f(sp1C, D_8037C3C0.unkC, D_8037C3C0.unk0)){
         if(D_8037C3C0.unk18 == 0){
             D_8037C3C0.unk18 = 1;
             func_8029B6F0();

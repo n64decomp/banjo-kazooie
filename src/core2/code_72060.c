@@ -143,7 +143,7 @@ void func_802F919C(void) {
         D_8036928C++;
         if (D_8036928C < D_80369284) {
             sp5C = &D_80369280[0].unk1C[D_8036928C];
-            if (ml_distance_vec3f((*sp5C).unk0, D_80381040) > 1300.0f) {
+            if (ml_vec3f_distance((*sp5C).unk0, D_80381040) > 1300.0f) {
                 func_802F9134(D_8036928C);
             }
         } else {

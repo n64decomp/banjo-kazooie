@@ -35,7 +35,7 @@ void viewport_moveAlongZAxis(f32 offset) {
 }
 
 f32 viewport_getDistance(f32 arg0[3]) {
-    ml_distance_vec3f(arg0, sViewportPosition);
+    ml_vec3f_distance(arg0, sViewportPosition);
 }
 
 void viewport_getLookVector(f32 arg0[3]) {
@@ -363,7 +363,7 @@ bool viewport_func_8024DB50(f32 pos[3], f32 distance) {
     delta[2] = pos[2] - sViewportPosition[2];
 
     for(i = 0; i < 4; i++) {
-        if(distance <= ml_dotProduct_vec3f(delta, sViewportFrustumPlanes[i])) {
+        if(distance <= ml_vec3f_dot_product(delta, sViewportFrustumPlanes[i])) {
             return FALSE;
         }
     }

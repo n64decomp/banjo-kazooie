@@ -48,7 +48,7 @@ f32 core1_ce60_getPlayerDistance(f32 x, f32 z) {
 }
 
 bool core1_ce60_isPlayerInsideBoundingBox(s32 box_idx) {
-    return func_802585E0(sPlayerPosition,
+    return ml_vec3w_inside_box_w(sPlayerPosition,
         sBoundingBoxes[box_idx].x_min, sBoundingBoxes[box_idx].y_min, sBoundingBoxes[box_idx].z_min,
         sBoundingBoxes[box_idx].x_max, sBoundingBoxes[box_idx].y_max, sBoundingBoxes[box_idx].z_max
     );

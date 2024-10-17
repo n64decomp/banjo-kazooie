@@ -872,7 +872,7 @@ void func_802BE384(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3], f32 arg4[
     sp1C[0] = sp34[0] - sp28[0];
     sp1C[1] = sp34[1] - sp28[1];
     sp1C[2] = sp34[2] - sp28[2];
-    dp = -ml_dotProduct_vec3f(arg4, sp1C);
+    dp = -ml_vec3f_dot_product(arg4, sp1C);
     arg3[0] += dp*arg4[0];
     arg3[1] += dp*arg4[1];
     arg3[2] += dp*arg4[2];

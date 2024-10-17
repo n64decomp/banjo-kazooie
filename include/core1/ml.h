@@ -1,14 +1,14 @@
 #ifndef BANJO_KAZOOIE_CORE1_ML_H
 #define BANJO_KAZOOIE_CORE1_ML_H
 
-f32 func_80255D70(f32 x);
-void func_80255E58(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 vec4[3]);
-f32 func_80255F14(f32 vec1[3], f32 vec2[3]);
-void ml_crossProduct_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3]);
-void ml_interpolate_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale);
-f32 ml_dotProduct_vec3f(f32 vec1[3], f32 vec2[3]);
-f32 ml_distance_vec3f(f32 vec1[3], f32 vec2[3]);
-f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]);
+f32 ml_acosf_deg(f32 x);
+void ml_vec3f_sub_and_rotate(f32 vec1[3], f32 rotation[3], f32 vec2[3], f32 dst[3]);
+f32 ml_vec3f_cos_between(f32 vec1[3], f32 vec2[3]);
+void ml_vec3f_cross_product(f32 dst[3], f32 vec1[3], f32 vec2[3]);
+void ml_vec3f_interpolate_fast(f32 dst[3], f32 start[3], f32 end[3], f32 t);
+f32 ml_vec3f_dot_product(f32 vec1[3], f32 vec2[3]);
+f32 ml_vec3f_distance(f32 vec1[3], f32 vec2[3]);
+f32 ml_func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]);
 f32 ml_distanceSquared_vec3f(f32 vec1[3], f32 vec2[3]);
 void func_802562DC(f32 vec1[3], f32 vec2[3], f32 vec3[3]);
 f32 ml_vec3f_length_unused(f32 vec[3]);
@@ -64,14 +64,14 @@ int func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
 int func_8025801C(f32 target[3], f32 *yaw);
 int func_80258108(f32 vec[3], f32 *arg1, f32 *arg2);
 int func_80258210(f32 x, f32 y, f32 *dst);
-int ml_isZero_vec3f(f32 vec[3]);
+bool ml_isZero_vec3f(f32 vec[3]);
 bool ml_isNonzero_vec3f(f32 vec[3]);
-int func_802583D8(f32 vec[3]);
-int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
-int func_802584FC(f32 vec[3], f32 min[3], f32 max[3]);
-int func_802585E0(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ);
+bool ml_vec3f_not_on_vertical_axis(f32 vec[3]);
+bool ml_vec3f_inside_box_f(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
+bool ml_vec3f_inside_box_vec3f(f32 vec[3], f32 min[3], f32 max[3]);
+bool ml_vec3w_inside_box_w(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ);
 f32 ml_vec3f_horizontal_distance_zero_likely(f32 vec1[3], f32 vec2[3]);
-f32 func_802586B0(f32 vec1[3], f32 vec2[3]);
+f32 ml_vec3f_horizontal_distance_squared_zero_likely(f32 vec1[3], f32 vec2[3]);
 f32 ml_vec3f_length(f32 vec1[3], f32 vec2[3]);
 f32 ml_vec3f_length_sq(f32 vec1[3], f32 vec2[3]);
 f32 ml_sin_deg(f32 angle_deg);
@@ -110,13 +110,13 @@ bool ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 dis
 bool ml_vec3f_within_horizontal_distance(f32 vec1[3], f32 vec2[3], f32 distance);
 bool ml_vec3w_within_horizontal_distance(s32 vec1[3], s32 vec2[3], s32 distance);
 bool ml_vec3f_within_distance(f32 vec1[3], f32 vec2[3], f32 distance);
-bool func_80259400(f32 a0);
-void func_80259430(f32 *val);
+bool ml_stub_80259400(f32 x);
+void ml_sub_delta_time(f32 *x);
 void func_8025947C(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 f32 func_80259554(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 vec3[3]);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
-s32 func_8025975C(f32 a0);
-bool func_80259808(f32 a0);
-void func_8025982C(f32 dst[3], f32 arg1[3], f32 arg2[3], f32 arg3);
+s32 ml_getViewportYawWithOffset(f32 x);
+bool ml_isViewportYawWithOffsetNormalized(f32 x);
+void ml_vec3f_interpolate(f32 dst[3], f32 start[3], f32 end[3], f32 t);
 
 #endif

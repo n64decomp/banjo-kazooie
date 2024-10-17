@@ -146,7 +146,7 @@ void func_8035C080(Actor *this, s32 next_state){
             }
         }
         else if(next_state == 3){//L8035C4C0
-            if(ml_distance_vec3f(local->unk28, this->position) < 10.0f){
+            if(ml_vec3f_distance(local->unk28, this->position) < 10.0f){
                 func_8035C080(this, 1);
                 return;
             }
@@ -293,11 +293,11 @@ void func_8035C8F4(Actor *this){
         local->unk0 += 1.9047619047619049*sp34;
         if(1.0f <= local->unk0)
             local->unk0 = 1.0f;
-        ml_interpolate_vec3f(this->position, local->unk10, local->unk1C, local->unk0);
+        ml_vec3f_interpolate_fast(this->position, local->unk10, local->unk1C, local->unk0);
         this->position_y += 100.0f*sinf(local->unk0*3.141592654);
         this->yaw = local->unk0*(local->unk34[2] - local->unk34[1]) + local->unk34[1];
         if(skeletalAnim_getLoopCount(this->unk148) > 0){
-            if(ml_distance_vec3f(this->position, local->unk28) < 10.0f){
+            if(ml_vec3f_distance(this->position, local->unk28) < 10.0f){
                 func_8035C080(this, 1);
             }
             else if(local->unkC > 0){//L8035CB8C

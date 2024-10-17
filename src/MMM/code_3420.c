@@ -385,7 +385,7 @@ void organMinigame_update(void){
         if(func_8038769C(D_8038C4F0.motzhand_marker)){
             player_getPosition(plyr_pos);
             motzhand_2 = marker_getActor(D_8038C4F0.motzhand_marker);
-            if( ml_distance_vec3f(motzhand_2->position, plyr_pos) < 400.0f
+            if( ml_vec3f_distance(motzhand_2->position, plyr_pos) < 400.0f
                 && motzhand_2->position_y - 50.0f <= plyr_pos[1]
             ){
                 organMinigame_setState(2);

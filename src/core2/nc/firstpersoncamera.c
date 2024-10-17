@@ -21,13 +21,13 @@ struct{
 
 /* .code */
 bool __ncFirstPersonCamera_fullyZoomedIn(void) {
-    return (ml_distance_vec3f(D_8037DC60.position, D_8037DC60.zoomed_in_position) < 40.0f);
+    return (ml_vec3f_distance(D_8037DC60.position, D_8037DC60.zoomed_in_position) < 40.0f);
 }
 
 void __ncFirstPersonCamera_getPositionAndRotation_entering(f32 arg0[3], f32 arg1[3]) {
     s32 i;
 
-    func_80259430(&D_8037DC60.transistion_timer);
+    ml_sub_delta_time(&D_8037DC60.transistion_timer);
     for( i = 0; i<3; i++){
         D_8037DC60.position[i] = func_80257CF8(D_8037DC60.transistion_timer, 1.0f, 0.0f, D_8037DC60.zoomed_out_position[i], D_8037DC60.zoomed_in_position[i]);
         D_8037DC60.rotation[i] = mlNormalizeAngle(D_8037DC60.zoomed_out_rotation[i] + func_80257CF8(D_8037DC60.transistion_timer, 0.5f, 0.0f, 0.0f, mlDiffDegF(D_8037DC60.zoomed_in_rotation[i], D_8037DC60.zoomed_out_rotation[i])));
@@ -46,7 +46,7 @@ void __ncFirstPersonCamera_getPositionAndRotation_entering(f32 arg0[3], f32 arg1
 void __ncFirstPersonCamera_getPositionAndRotation_exiting(f32 arg0[3], f32 arg1[3]) {
     s32 i;
 
-    func_80259430(&D_8037DC60.transistion_timer);
+    ml_sub_delta_time(&D_8037DC60.transistion_timer);
     for( i = 0; i<3; i++){
         D_8037DC60.position[i] = func_80257CF8(D_8037DC60.transistion_timer, 1.0f, 0.0f, D_8037DC60.zoomed_in_position[i], arg0[i]);
         D_8037DC60.rotation[i] = mlNormalizeAngle(D_8037DC60.zoomed_in_rotation[i] + func_80257CF8(D_8037DC60.transistion_timer, 1.0f, 0.5f, 0.0f, mlDiffDegF(arg1[i], D_8037DC60.zoomed_in_rotation[i])));

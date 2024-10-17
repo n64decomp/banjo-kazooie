@@ -498,7 +498,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
     diff[2] = arg1[2] - this->position[2];
 
     if (arg5 != 0.00f) {
-        if (ml_distance_vec3f(this->position, arg1) < arg5) {
+        if (ml_vec3f_distance(this->position, arg1) < arg5) {
             ml_vec3f_set_length(diff, arg3 * 4.00f);
         } else {
             ml_vec3f_set_length(diff, arg3 * 1.00f);
@@ -527,7 +527,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
 
     this->yaw += (arg4 * temp.pos_x * dt);
 
-    if (ml_distance_vec3f(this->position, arg1) < arg6) {
+    if (ml_vec3f_distance(this->position, arg1) < arg6) {
         return TRUE;
     }
     return FALSE;
@@ -913,7 +913,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 3:
         chfinalboss_func_80386600(this->marker, 0);
         chfinalboss_spawnBroomstickGlowParticles(this);
-        sp50 = ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
+        sp50 = ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
         chfinalboss_func_80387ACC(this, 60.0f * sp54);
         if (chfinalboss_func_80387470(this, this->unk1C, sp50, 1800.0f, 200.0f, 500.0f, 300.0f)) {
             chfinalboss_phase1_setState(this, 4);
@@ -1115,7 +1115,7 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
         case 14:
             chfinalboss_spawnBroomstickGlowParticles(this);
             chfinalboss_func_80387ACC(this, 30.0f * sp4C);
-            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
                 local->unkA = 1;
                 chfinalboss_phase2_setState(this, 0xF);
             }
