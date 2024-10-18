@@ -3,7 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80252CC4(f32[3], f32 [3], f32, f32[3]);
 extern f32 func_8034A9D0(f32[4], f32);
 
 /*.bss */

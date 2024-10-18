@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80252CC4(f32[3], f32[3], f32, s32);
 extern int func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
 extern int func_802E9118(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, f32 arg7, s32 arg8, s32 arg9, s32 arg10);
 extern int func_802E9DD8(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, f32 arg6, s32 arg7, s32 arg8);

@@ -4,8 +4,6 @@
 
 #define ABS(s) (((s) >= 0) ? (s) : -(s))
 
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
-
 /* .code */
 bool func_80340020(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 *arg4, BKVertexList *arg5, f32 arg6[3], f32 arg7[3]) {
     f32 sp6C[3];

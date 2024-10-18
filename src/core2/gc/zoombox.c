@@ -6,7 +6,6 @@
 #include "zoombox.h"
 
 
-void func_80252330(f32, f32, f32);
 extern f32 func_8033DDB8(void);
 extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
 BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);

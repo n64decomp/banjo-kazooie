@@ -4,7 +4,6 @@
 
 #include <core2/file.h>
 
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
 extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 

@@ -3,7 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80252330(f32, f32, f32);
 void func_803382D8(s32 arg0);
 void func_803382E4(s32 arg0);
 void spriteRender_set1Primative(bool boolean);

@@ -8,8 +8,6 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern void func_80251B5C(f32, f32, f32);
-extern void func_80252A38(f32, f32, f32);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
 
 struct4Cs *D_80369280 = NULL;

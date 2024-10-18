@@ -5,7 +5,6 @@
 
 
 extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);
-extern void func_80252330(f32, f32, f32);\
 extern void func_80349AD0(void);
 
 

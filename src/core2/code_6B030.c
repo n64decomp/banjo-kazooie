@@ -3,11 +3,6 @@
 #include "functions.h"
 #include "variables.h"
 
-
-
-
-extern void func_80252330(f32, f32, f32);
-
 typedef struct {
     s16 unk0;
     s16 unk2;
