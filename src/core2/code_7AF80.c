@@ -27,8 +27,8 @@ typedef struct{
 } Struct_core2_7AF80_2;
 
 typedef struct {
-    s32 count; //count
-    s32 unk4;
+    s32 count;
+    s32 unk4; // some sort of id or type?
     Struct_core2_7AF80_2 *unk8;
 } Struct_core2_7AF80_1;
 
@@ -48,14 +48,19 @@ extern ActorInfo D_80367838;
 s32 sSpawnableActorSize = 0; //0x8036A9B0
 ActorSpawn *sSpawnableActorList = NULL; //0x8036A9B4
 
+// count / index of D_8036A9BC
 s32 D_8036A9B8 = 0;
 Struct_core2_7AF80_1 *D_8036A9BC = NULL;
+// pointer to cube(?) where bit6 == 7
 Struct_core2_7AF80_1 *D_8036A9C0 = NULL;
 
+// count / index of D_8036A9C8
 s32 D_8036A9C4 = 0;
 Struct_core2_7AF80_1 *D_8036A9C8 = NULL;
+// pointer to cube(?) where bit6 == 9
 Struct_core2_7AF80_1 *D_8036A9CC = NULL;
 
+// count / index of D_8036A9D4
 s32 D_8036A9D0 = 0;
 Struct_core2_7AF80_1 *D_8036A9D4 = NULL;
 Struct_core2_7AF80_1 *D_8036A9D8 = NULL;
@@ -63,9 +68,9 @@ Struct_core2_7AF80_1 *D_8036A9D8 = NULL;
 UNK_TYPE(s32)    D_8036A9DC = 0;
 UNK_TYPE(void *) D_8036A9E0 = NULL;
 
-u8 D_8036A9E4[] = {
-                               0,   9,   2,    3,    4,    5,    6,    7,   -1,    8,  0xA,  0xB, 
-     0xC,  0xD,  0xE,  0xF, 0x10, 0x11,  1, 0x13, 0x14, 0x15, 0x16, 0x64, 0x65, 0x66, 0x67, 0x68,
+u8 sMarkerToBitfield[] = {
+                               0,    9,    2,    3,    4,    5,    6,    7,   -1,    8,  0xA,  0xB, 
+     0xC,  0xD,  0xE,  0xF, 0x10, 0x11,    1, 0x13, 0x14, 0x15, 0x16, 0x64, 0x65, 0x66, 0x67, 0x68,
     0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x6F, 0x70, 0x71, 0x72, 0x73, 0x74,   -1,   -1,   -1,   -1,
       -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
       -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -911,7 +916,7 @@ void cubeList_fromFile(File *file_ptr) {
                 cube = cube_atIndices(sp5C);
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
-                        if (!iPtr->unk6.bit0) {
+                        if (!iPtr->bit0) {
                             bitfield_setBit(D_8036A9E0, iPtr->unkA, 1);
                         }
                     }
@@ -937,7 +942,7 @@ s32 func_80304984(s32 arg0, u32 *arg1) {
 
     temp_v0 = cubeList_findNodePropByActorId(arg0, 0);
     if (temp_v0 != 0) {
-        *arg1 = temp_v0->unk6.radius;
+        *arg1 = temp_v0->radius;
         return 1;
     }
     return 0;
@@ -1034,7 +1039,7 @@ NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
-    return arg0->unk6.radius;
+    return arg0->radius;
 }
 
 void nodeprop_getPosition_s32(NodeProp *nodeProp, s32 dst[3]) {
@@ -1229,12 +1234,12 @@ NodeProp *func_80305510(s32 arg0) {
 
     var_v0 = func_803080C8(arg0);
     sp20 = 1;
-    while ((var_v0 != NULL) && ((sp20 == 1) || (var_v0->unk6.bit0 == 1)) && (var_v0->unk10_19 != 0)) {
+    while ((var_v0 != NULL) && ((sp20 == 1) || (var_v0->bit0 == 1)) && (var_v0->unk10_19 != 0)) {
         var_v1 = var_v0->unk10_19;
         var_v0 = func_803080C8(var_v1);
         sp20 = 0;
     }
-    return ((sp20 == 1) || (var_v0 == NULL) || (var_v0->unk6.bit0 == 1)) ? NULL : var_v0;
+    return ((sp20 == 1) || (var_v0 == NULL) || (var_v0->bit0 == 1)) ? NULL : var_v0;
 }
 
 Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
@@ -1434,7 +1439,7 @@ void func_80305D94(void){
     }
 }
 
-void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
+void __code7AF80_concatElementsAndRemoveEmpty(s32 *count, Struct_core2_7AF80_1 **arg1) {
     bool continue_loop;
     Struct_core2_7AF80_2 *b_elem;
     Struct_core2_7AF80_1 *b_list;
@@ -1442,15 +1447,19 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
     Struct_core2_7AF80_1 *a_list;
 
     if ((D_8036A9BC != NULL) && (D_8036A9B8 != 0)) {
-        for(a_list = *arg1; a_list < *arg1 + *arg0; a_list++){
-            for(b_list = a_list + 1; b_list < *arg1 + *arg0; b_list++) {
+        for(a_list = *arg1; a_list < *arg1 + *count; a_list++){
+            for(b_list = a_list + 1; b_list < *arg1 + *count; b_list++) {
                 //same types and neither A or B are empty
                 if ((a_list->unk4 == b_list->unk4) &&  (a_list->count != 0) &&  (b_list->count != 0)) {
-                    
                     continue_loop = TRUE;
                     for(a_elem = a_list->unk8; (a_elem < a_list->unk8 + a_list->count) && continue_loop; a_elem++){
                         for(b_elem = b_list->unk8; (b_elem < b_list->unk8 + b_list->count) && continue_loop; b_elem++) {
-                            if ((((a_elem->position[0] - b_elem->position[0]) * (a_elem->position[0] - b_elem->position[0])) + ((a_elem->position[2] - b_elem->position[2]) * (a_elem->position[2] - b_elem->position[2]))) < ((a_elem->radius + b_elem->radius) * (a_elem->radius + b_elem->radius))) {
+                            if ((
+                                ((a_elem->position[0] - b_elem->position[0]) * (a_elem->position[0] - b_elem->position[0])) +
+                                ((a_elem->position[2] - b_elem->position[2]) * (a_elem->position[2] - b_elem->position[2]))
+                            ) < (
+                                (a_elem->radius + b_elem->radius) * (a_elem->radius + b_elem->radius)
+                            )) {
                                 //concat b_list to end of a_list
                                 a_list->unk8 = (Struct_core2_7AF80_2 *) realloc(a_list->unk8, (a_list->count + b_list->count)*sizeof(Struct_core2_7AF80_2));
                                 memcpy(a_list->unk8 + a_list->count, b_list->unk8, b_list->count * sizeof(Struct_core2_7AF80_2));
@@ -1470,10 +1479,10 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
         }
 
         //remove empty lists
-        for(a_list =  *arg1; a_list < *arg1 + *arg0; a_list++){
+        for(a_list =  *arg1; a_list < *arg1 + *count; a_list++){
             if (a_list->count == 0) { //A is empty
                 continue_loop = TRUE;
-                for(b_list = a_list + 1; (b_list < *arg1 + *arg0) && continue_loop; b_list++){
+                for(b_list = a_list + 1; (b_list < *arg1 + *count) && continue_loop; b_list++){
                     if (b_list->count != 0) { //B is not empty
                         //swap A an B
                         memcpy(a_list, b_list, sizeof(Struct_core2_7AF80_1));
@@ -1487,10 +1496,10 @@ void func_80305F04(s32 *arg0, Struct_core2_7AF80_1 **arg1) {
         }
 
         //find first empty list (end)
-        for(a_list = *arg1; (a_list < *arg1 + *arg0) && (a_list->count != 0); a_list++) { }
+        for(a_list = *arg1; (a_list < *arg1 + *count) && (a_list->count != 0); a_list++) { }
 
-        *arg0 = (a_list - *arg1); //count
-        *arg1 = (Struct_core2_7AF80_1 *)realloc((void *) *arg1, *arg0 * sizeof(Struct_core2_7AF80_1)); //ptr
+        *count = (a_list - *arg1); //count
+        *arg1 = (Struct_core2_7AF80_1 *)realloc((void *) *arg1, *count * sizeof(Struct_core2_7AF80_1)); //ptr
     }
 }
 
@@ -1501,12 +1510,12 @@ void func_803062D0(void) {
     for (var_s0 = D_80381FA0.cube_list; var_s0 < (D_80381FA0.cube_list + D_80381FA0.cubeCnt); var_s0++) {
         func_803303B8(var_s0);
     }
-    func_80305F04(&D_8036A9B8, &D_8036A9BC);
-    func_80305F04(&D_8036A9C4, &D_8036A9C8);
-    func_80305F04(&D_8036A9D0, &D_8036A9D4);
+    __code7AF80_concatElementsAndRemoveEmpty(&D_8036A9B8, &D_8036A9BC);
+    __code7AF80_concatElementsAndRemoveEmpty(&D_8036A9C4, &D_8036A9C8);
+    __code7AF80_concatElementsAndRemoveEmpty(&D_8036A9D0, &D_8036A9D4);
 }
 
-void func_80306390(void){
+void __code7AF90_assignDecrementedD_8036A9BCToD_8036A9C0(void){
     D_8036A9C0 = D_8036A9BC - 1;
 }
 
@@ -1560,21 +1569,28 @@ Struct_core2_7AF80_1 *func_803064C0(s32 arg0) {
     return NULL;
 }
 
-bool func_80306534(Struct_core2_7AF80_1 *arg0, s32 arg1, s32 arg2[3], s32 arg3) {
+// is within radius?
+bool func_80306534(Struct_core2_7AF80_1 *arg0, s32 arg1, s32 position[3], s32 radius) {
     Struct_core2_7AF80_2 *iPtr;
 
     for(iPtr = arg0->unk8; iPtr < &arg0->unk8[arg0->count]; iPtr++){
-        if(((arg2[0] - iPtr->position[0])*(arg2[0] - iPtr->position[0]) + (arg2[2] - iPtr->position[2])*(arg2[2] - iPtr->position[2])) < ((arg3 + iPtr->radius) * (arg3 + iPtr->radius))) {
+        if((
+            (position[0] - iPtr->position[0]) * (position[0] - iPtr->position[0]) +
+            (position[2] - iPtr->position[2]) * (position[2] - iPtr->position[2])
+        ) < (
+            (radius + iPtr->radius) * (radius + iPtr->radius)
+        )) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
+// some sort of init function if bit6 == 7
 void func_803065E4(s32 arg0, s32 position[3], s32 radius, s32 arg3, s32 arg4) {
     Struct_core2_7AF80_2 *temp_v1;
 
-    func_80306390();
+    __code7AF90_assignDecrementedD_8036A9BCToD_8036A9C0();
     while(func_803063D8(arg0) != NULL){
         if (func_80306534(D_8036A9C0, arg0, position, radius)) {
             D_8036A9C0->count++;
@@ -1615,6 +1631,7 @@ s32 func_80306840(s32 arg0){
     return 7;
 }
 
+// some sort of init function if bit6 == 9
 void func_8030688C(s32 arg0, s32 position[3], s32 radius, s32 arg3){
     Struct_core2_7AF80_2 *temp_v1;
 
@@ -1930,7 +1947,7 @@ bool func_803077FC(f32 arg0[3], s32 *arg1, s32 *arg2, s32 arg3, u32 arg4) {
     return FALSE;
 }
 
-Cube **func_80307948(int* arg0) {
+Cube **func_80307948(s32 arg0[3]) {
     int sp34[3];
     s32 cubeCount;
     int sp24[3];
@@ -1992,27 +2009,27 @@ Cube **func_80307948(int* arg0) {
 
 
 void func_80307CA0(ActorMarker *marker) {
-    s32 temp_s4;
-    s32 sp58[3];
+    s32 marker_bitfield;
+    s32 marker_position[3];
     s32 i;
     Cube **cubePtrList;
     NodeProp *node;
-    s32 sp40[3];
-    s32 temp_v0_3;
-    s32 var_s0;
+    s32 node_position[3];
+    s32 node_radius;
+    s32 node_idx;
 
-    temp_s4 = D_8036A9E4[marker->id];
-    if ((temp_s4 != 0xFF) && (bitfield_isBitSet(D_8036A9E0, temp_s4) == 1)) {
-        func_8032E010(marker->propPtr, sp58);
-        cubePtrList = func_80307948(sp58);
+    marker_bitfield = sMarkerToBitfield[marker->id];
+    if ((marker_bitfield != 0xFF) && (bitfield_isBitSet(D_8036A9E0, marker_bitfield) == 1)) {
+        codeA5BC0_getActorPosition(marker->propPtr, marker_position);
+        cubePtrList = func_80307948(marker_position);
         for(i = 0; cubePtrList[i] != NULL; i++) {
-            for(var_s0 = 0; var_s0 < cubePtrList[i]->unk0_4; var_s0++){
-                node = func_8032E02C(cubePtrList[i], var_s0);
-                if (func_80330F74(node) == temp_s4) {
-                    temp_v0_3 = func_80330F94(node, sp40);
-                    if( ((sp40[0] - temp_v0_3) < sp58[0]) && (sp58[0] < (sp40[0] + temp_v0_3)) 
-                        && ((sp40[1] - temp_v0_3) < sp58[1]) && (sp58[1] < (sp40[1] + temp_v0_3)) 
-                        && ((sp40[2] - temp_v0_3) < sp58[2]) && (sp58[2] < (sp40[2] + temp_v0_3))
+            for(node_idx = 0; node_idx < cubePtrList[i]->unk0_4; node_idx++){
+                node = codeA5BC0_getPropNodeAtIndex(cubePtrList[i], node_idx);
+                if (codeA5BC0_getNodePropUnkA(node) == marker_bitfield) {
+                    node_radius = codeA5BC0_getPositionAndReturnRadius(node, node_position);
+                    if( ((node_position[0] - node_radius) < marker_position[0]) && (marker_position[0] < (node_position[0] + node_radius)) 
+                        && ((node_position[1] - node_radius) < marker_position[1]) && (marker_position[1] < (node_position[1] + node_radius)) 
+                        && ((node_position[2] - node_radius) < marker_position[2]) && (marker_position[2] < (node_position[2] + node_radius))
                     ) {
                         func_80334448(node, marker);
                     }
@@ -2070,7 +2087,7 @@ u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
         if ((temp_v0 != NULL) && (temp_v0->prop1Cnt != 0)) {
             var_s4 =  temp_v0->prop1Ptr[D_803820B4].unk10_31;
             *arg2 =   temp_v0->prop1Ptr[D_803820B4].unk10_19;
-            *arg3 =   temp_v0->prop1Ptr[D_803820B4].unk6.bit0;
+            *arg3 =   temp_v0->prop1Ptr[D_803820B4].bit0;
             arg1[0] = temp_v0->prop1Ptr[D_803820B4].x;
             arg1[1] = temp_v0->prop1Ptr[D_803820B4].y;
             arg1[2] = temp_v0->prop1Ptr[D_803820B4].z;
@@ -2361,7 +2378,7 @@ void func_80308984(void) {
 
     for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
         for(iNode = iCube->prop1Ptr; iNode < iCube->prop1Ptr + iCube->prop1Cnt; iNode++){
-            if (iNode->unk6.bit6 == 6 && iNode->unk6.bit0 == 0){
+            if (iNode->bit6 == 6 && iNode->bit0 == 0){
                 u32 tmp = iNode->unk8;
 
                 if(tmp >= sp54 && tmp <= sp50) {
@@ -2375,7 +2392,7 @@ void func_80308984(void) {
 
                         for(jCube = D_80381FA0.cube_list; jCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; jCube++){
                             for(jNode = jCube->prop1Ptr; jNode < jCube->prop1Ptr + jCube->prop1Cnt; jNode++){
-                                if (jNode->unk6.bit6 == 6 && jNode->unk6.bit0 == 0 && jNode->unk8 == D_8036ABC0[i]) {
+                                if (jNode->bit6 == 6 && jNode->bit0 == 0 && jNode->unk8 == D_8036ABC0[i]) {
                                     func_8030895C(jCube - D_80381FA0.cube_list);
                                     D_80382150[temp_s4 + 1]++;
                                     jNode = jCube->prop1Ptr + jCube->prop1Cnt;

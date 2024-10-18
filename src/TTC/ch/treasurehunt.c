@@ -128,34 +128,34 @@ static void __chTreasurehunt_checkStepProgress(s32 currentStep){
     }
 }
 
-void chTreasurehunt_checkStepProgress0(ActorMarker *this, ActorMarker *arg1){\
+void chTreasurehunt_checkStepProgress0(NodeProp *this, ActorMarker *arg1){\
     __chTreasurehunt_checkStepProgress(0);
 }
 
-void chTreasurehunt_checkStepProgress1(ActorMarker *this, ActorMarker *arg1){\
+void chTreasurehunt_checkStepProgress1(NodeProp *this, ActorMarker *arg1){\
     __chTreasurehunt_checkStepProgress(1);
 }
 
-void chTreasurehunt_checkStepProgress2(ActorMarker *this, ActorMarker *arg1){\
+void chTreasurehunt_checkStepProgress2(NodeProp *this, ActorMarker *arg1){\
     __chTreasurehunt_checkStepProgress(2);
 }
 
-void chTreasurehunt_checkStepProgress3(ActorMarker *this, ActorMarker *arg1){\
+void chTreasurehunt_checkStepProgress3(NodeProp *this, ActorMarker *arg1){\
     __chTreasurehunt_checkStepProgress(3);
 }
 
-void chTreasurehunt_checkStepProgress4(ActorMarker *this, ActorMarker *arg1){\
+void chTreasurehunt_checkStepProgress4(NodeProp *this, ActorMarker *arg1){\
     __chTreasurehunt_checkStepProgress(4);
 }
 
-void chTreasurehunt_checkStepProgress5(s16 arg0[3], s32 arg1){
+void chTreasurehunt_checkStepProgress5(NodeProp *this, ActorMarker *arg1){
     static ParticleEmitter *particleEmitter;
     static f32 particleTargetPosition[3];
 
     if(CH_TREASUREHUNT_PUZZLE_CURRENT_STEP == 5 && __chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
-        particleTargetPosition[0] = (f32)arg0[0];
-        particleTargetPosition[1] = (f32)arg0[1];
-        particleTargetPosition[2] = (f32)arg0[2];
+        particleTargetPosition[0] = (f32)this->x;
+        particleTargetPosition[1] = (f32)this->y;
+        particleTargetPosition[2] = (f32)this->z;
         particleTargetPosition[1] =  mapModel_getFloorY(particleTargetPosition);
         __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0xF4, reinterpret_cast(s32, particleTargetPosition[0]), reinterpret_cast(s32, particleTargetPosition[1]), reinterpret_cast(s32, particleTargetPosition[2]));
         particleEmitter = partEmitMgr_newEmitter(3);

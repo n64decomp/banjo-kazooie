@@ -81,7 +81,7 @@ typedef struct actorMarker_s{
     u32         yaw:9;
     u32         unk14_22:1;
     u32         unk14_21:1;
-    u32         id:10; // marker_id
+    u32         id:10; //  marker id of type marker enum_e
     u32         unk14_10:11; //used in ch/jiggy
     Struct6Cs   *unk18;
     MarkerCollisionFunc dieFunc;
@@ -343,11 +343,9 @@ typedef struct {
     s16 x;
     s16 y;
     s16 z;
-    struct {
-        u16 radius: 9; //selector_value //volume??? diameter
-        u16 bit6:  6; //category
-        u16 bit0:  1;
-    }unk6;
+    u16 radius: 9; // selector / volume / diameter?
+    u16 bit6: 6; // category?
+    u16 bit0: 1;
     u16 unk8;       //actor_id?
     u8 unkA;        //marker_id
     struct {

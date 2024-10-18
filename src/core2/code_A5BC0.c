@@ -602,13 +602,13 @@ void func_8032DFF4(Prop *prop, s32 src[3]){
     prop->unk4[2] = src[2];
 }
 
-void func_8032E010(ActorProp *prop, s32 dst[3]){
+void codeA5BC0_getActorPosition(ActorProp *prop, s32 dst[3]){
     dst[0] = prop->x;
     dst[1] = prop->y;
     dst[2] = prop->z;
 }
 
-NodeProp *func_8032E02C(Cube *cube, s32 prop_index) {
+NodeProp *codeA5BC0_getPropNodeAtIndex(Cube *cube, s32 prop_index) {
     if ((prop_index < 0) || (prop_index >= cube->prop1Cnt)) {
         return NULL;
     }
@@ -640,24 +640,24 @@ void cube_free(Cube *cube){
     cube->unk0_4 = 0;
 }
 
-bool func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
-    NodeProp * temp_a2;
-    NodeProp *var_v1;
+bool __codeA5BC0_pad_func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
+    NodeProp *last_node_ptr;
+    NodeProp *node_ptr;
 
     if ((arg0 != NULL) && (arg0->prop1Cnt != 0)) {
-        var_v1 = arg0->prop1Ptr;
-        temp_a2 = arg0->prop1Ptr + arg0->prop1Cnt;
-        while (var_v1 < temp_a2) {
-            if( ((var_v1->unk6.bit0 == 1)
-                    || ((var_v1->unk6.bit0 == 0) && (var_v1->unk10_6 == 1))
+        node_ptr = arg0->prop1Ptr;
+        last_node_ptr = arg0->prop1Ptr + arg0->prop1Cnt;
+        while (node_ptr < last_node_ptr) {
+            if( ((node_ptr->bit0 == 1)
+                    || ((node_ptr->bit0 == 0) && (node_ptr->unk10_6 == 1))
                 ) 
-                && (var_v1->unk6.bit6 == 6) 
-                && (arg2 == var_v1->unk8)
+                && (node_ptr->bit6 == 6) 
+                && (arg2 == node_ptr->unk8)
             ) {
-                *arg1 = var_v1->unk6.radius;
+                *arg1 = node_ptr->radius;
                 return TRUE;
             }
-            var_v1++;
+            node_ptr++;
         }
     }
     return FALSE;
@@ -668,10 +668,10 @@ NodeProp *cube_findNodePropByActorId(Cube *cube, s32 arg1) {
 
     if (cube != NULL && cube->prop1Cnt != 0){
         for(i_ptr = cube->prop1Ptr; i_ptr < cube->prop1Ptr + cube->prop1Cnt; i_ptr++){
-            if( ( (i_ptr->unk6.bit0 == 1) 
-                  || ( (i_ptr->unk6.bit0 == 0) && (i_ptr->unk10_6 == 1))
+            if( ( (i_ptr->bit0 == 1) 
+                  || ( (i_ptr->bit0 == 0) && (i_ptr->unk10_6 == 1))
                 )
-                && (i_ptr->unk6.bit6 == 6) 
+                && (i_ptr->bit6 == 6) 
                 && (arg1 == i_ptr->unk8)
             ) {
                 return i_ptr;
@@ -689,10 +689,10 @@ bool func_8032E2D4(Cube *arg0, s32 arg1[3], s32 arg2) {
         var_v1 = arg0->prop1Ptr;
         temp_a2 = arg0->prop1Ptr + arg0->prop1Cnt;
         while (var_v1 < temp_a2) {
-            if( ((var_v1->unk6.bit0 == 1)
-                    || ((var_v1->unk6.bit0 == 0) && (var_v1->unk10_6 == 1))
+            if( ((var_v1->bit0 == 1)
+                    || ((var_v1->bit0 == 0) && (var_v1->unk10_6 == 1))
                 ) 
-                && (var_v1->unk6.bit6 == 6) 
+                && (var_v1->bit6 == 6) 
                 && (arg2 == var_v1->unk8)
             ) {
                 arg1[0] = var_v1->x;
@@ -751,7 +751,7 @@ s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list,
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (found_cnt < node_list_capacity)) {
-                if (((i_node->unk6.bit0 == 1) || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))) && (i_node->unk6.bit6 == 6)) {
+                if (((i_node->bit0 == 1) || ((i_node->bit0 == 0) && (i_node->unk10_6 == 1))) && (i_node->bit6 == 6)) {
                     i_actor = actor_id_list;
                     for(i_actor = actor_id_list; *i_actor != -1; i_actor++){
                         if (i_node->unk8 == *i_actor) {
@@ -778,10 +778,10 @@ s32 func_8032E5A8(Cube *cube, s32 arg1, f32 (*arg2)[3], s32 capacity) {
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (count < capacity)){
-                if( ( (i_node->unk6.bit0 == 1) 
-                      || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))
+                if( ( (i_node->bit0 == 1) 
+                      || ((i_node->bit0 == 0) && (i_node->unk10_6 == 1))
                     ) 
-                    && (i_node->unk6.bit6 == 6) && (arg1 == i_node->unk8)
+                    && (i_node->bit6 == 6) && (arg1 == i_node->unk8)
                 ) {
                     arg2[count][0] = (f32) i_node->x;
                     arg2[count][1] = (f32) i_node->y;
@@ -804,10 +804,10 @@ bool func_8032E6CC(Cube *cube, s32 *arg1, s32 arg2) {
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while (i_node < end_node) {
-                if( ( (i_node->unk6.bit0 == 1) 
-                      || ((i_node->unk6.bit0 == 0) && (i_node->unk10_6 == 1))
+                if( ( (i_node->bit0 == 1) 
+                      || ((i_node->bit0 == 0) && (i_node->unk10_6 == 1))
                     ) 
-                    && (i_node->unk6.bit6 == 6) && (arg2 == i_node->unk8)
+                    && (i_node->bit6 == 6) && (arg2 == i_node->unk8)
                 ) {
                     *arg1 = i_node->unkC_31;
                     return TRUE;
@@ -836,12 +836,12 @@ void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
     phi_s3 = cnt - 1;
     for(i = 0; i < cnt; i++){
         iPtr = node + i;
-        if( (iPtr->unk6.bit6 == 6) 
-            || (iPtr->unk6.bit6 == 8)
-            || (iPtr->unk6.bit6 == 7) 
-            || (iPtr->unk6.bit6 == 9) 
-            || (iPtr->unk6.bit6 == 0xA) 
-            || (iPtr->unk6.bit0 == 1)
+        if( (iPtr->bit6 == 6) 
+            || (iPtr->bit6 == 8)
+            || (iPtr->bit6 == 7) 
+            || (iPtr->bit6 == 9) 
+            || (iPtr->bit6 == 0xA) 
+            || (iPtr->bit0 == 1)
         ){
             memcpy(&cube->prop1Ptr[phi_s3], &node[i], sizeof(NodeProp));
             phi_s3--;
@@ -854,7 +854,7 @@ void func_8032E7E8(NodeProp *node, Cube *cube, s32 cnt) {
     
     for(i = 0; i < cnt; i++){
         iPtr = &cube->prop1Ptr[i];
-        if(!iPtr->unk6.bit0){
+        if(!iPtr->bit0){
             iPtr->unk10_6 = TRUE;
         }
     }
@@ -1316,14 +1316,14 @@ void func_80330208(Cube *cube) {
         end_prop = cube->prop1Ptr + cube->prop1Cnt;
         func_80326C24(1);
         while(i_prop < end_prop){
-            if (i_prop->unk6.bit6 == 6) {
+            if (i_prop->bit6 == 6) {
                 position[0] = (s32) i_prop->x;
                 position[1] = (s32) i_prop->y;
                 position[2] = (s32) i_prop->z;
                 actor = func_803055E0(i_prop->unk8, position, i_prop->unkC_31, i_prop->unk10_31, i_prop->unk10_19);
                 if (actor != NULL) {
                     actor->unk78_13 = i_prop->unk10_31;
-                    actor->unkF4_8 = i_prop->unk6.radius;
+                    actor->unkF4_8 = i_prop->radius;
                     func_8032AA58(actor, (i_prop->unkC_22 != 0) ? ((f32)i_prop->unkC_22 * 0.01) : 1.0);
                 }
             }
@@ -1333,32 +1333,33 @@ void func_80330208(Cube *cube) {
     }
 }
 
+// init "special" cubes?
 void func_803303B8(Cube *cube) {
-    s32 sp4C[3];
-    NodeProp *temp_s2;
-    NodeProp *var_s0;
+    s32 position[3];
+    NodeProp *last_node_prop_ptr;
+    NodeProp *current_node_ptr;
 
     if ((cube != NULL) && (cube->prop1Cnt != 0)){
-        var_s0 = cube->prop1Ptr;
-        temp_s2 = cube->prop1Ptr + cube->prop1Cnt;
-        while (var_s0 < temp_s2) {
-            if (var_s0->unk6.bit6 == 7) {
-                sp4C[0] = (s32) var_s0->x;
-                sp4C[1] = (s32) var_s0->y;
-                sp4C[2] = (s32) var_s0->z;
-                func_803065E4(var_s0->unk8, sp4C, var_s0->unk6.radius, var_s0->unk10_31, var_s0->unk10_7);
-            } else if (var_s0->unk6.bit6 == 9) {
-                sp4C[0] = (s32) var_s0->x;
-                sp4C[1] = (s32) var_s0->y;
-                sp4C[2] = (s32) var_s0->z;
-                func_8030688C(var_s0->unk8, sp4C, var_s0->unk6.radius, var_s0->unk10_0);
-            } else if (var_s0->unk6.bit6 == 0xA) {
-                sp4C[0] = (s32) var_s0->x;
-                sp4C[1] = (s32) var_s0->y;
-                sp4C[2] = (s32) var_s0->z;
-                func_80306AA8(var_s0->unk8, sp4C, var_s0->unk6.radius);
+        current_node_ptr = cube->prop1Ptr;
+        last_node_prop_ptr = cube->prop1Ptr + cube->prop1Cnt;
+        while (current_node_ptr < last_node_prop_ptr) {
+            if (current_node_ptr->bit6 == 7) {
+                position[0] = (s32) current_node_ptr->x;
+                position[1] = (s32) current_node_ptr->y;
+                position[2] = (s32) current_node_ptr->z;
+                func_803065E4(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_31, current_node_ptr->unk10_7);
+            } else if (current_node_ptr->bit6 == 9) {
+                position[0] = (s32) current_node_ptr->x;
+                position[1] = (s32) current_node_ptr->y;
+                position[2] = (s32) current_node_ptr->z;
+                func_8030688C(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_0);
+            } else if (current_node_ptr->bit6 == 0xA) {
+                position[0] = (s32) current_node_ptr->x;
+                position[1] = (s32) current_node_ptr->y;
+                position[2] = (s32) current_node_ptr->z;
+                func_80306AA8(current_node_ptr->unk8, position, current_node_ptr->radius);
             }
-            var_s0++;
+            current_node_ptr++;
         }
     }
 }
@@ -1598,30 +1599,34 @@ BKSprite *func_80330F50(ActorMarker * marker){
     return sp1C;
 }
 
-s32 func_80330F74(NodeProp *arg0){
+s32 codeA5BC0_getNodePropUnkA(NodeProp *arg0){
     return arg0->unkA; //marker_id
 }
 
-s32 func_80330F7C(NodeProp *arg0){
-    return arg0->unk6.bit6;
+s32 codeA5BC0_getNodePropBit6(NodeProp *arg0){
+    return arg0->bit6;
 }
 
-s32 func_80330F8C(NodeProp *arg0){
+s32 codeA5BC0_getNodePropUnk8(NodeProp *arg0){
     return arg0->unk8;
 }
 
-s32 func_80330F94(NodeProp *arg0, s32 arg1[3]){
+s32 codeA5BC0_getPositionAndReturnRadius(NodeProp *arg0, s32 arg1[3]){
     arg1[0] = arg0->x;
     arg1[1] = arg0->y;
     arg1[2] = arg0->z;
-    return arg0->unk6.radius;
+    return arg0->radius;
 }
 
-void func_80330FBC(UNK_TYPE(void *)arg0, s32 arg1){
+// is used to set global timer time?
+void codeA5BC0_setNodePropUnkC(NodeProp *arg0, s32 arg1){
+    // writes unkC_31 / unkC_22
     *(s32*)((s32)arg0 + 0xC) = arg1;
 }
 
-s32 func_80330FC4(UNK_TYPE(void *)arg0){
+// is used to retrieve global timer time?
+s32 codeA5BC0_getNodePropUnkC(NodeProp *arg0){
+    // reads unkC_31 / unkC_22
     return *(s32*)((s32)arg0 + 0xC);
 }
 

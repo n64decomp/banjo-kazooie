@@ -22,10 +22,10 @@ void func_802C16CC(s32 arg0);
 
 /* .bss */
 struct {
-    s32 unk0;
+    s32 unk0; // some sort of index?
     f32 unk4;
     f32 unk8;
-    f32 unkC[3];
+    f32 unkC[3]; // copy of camera position
     f32 unk18;
     f32 unk1C[3];
     s32 unk28;
@@ -208,20 +208,21 @@ void ncDynamicCam12_update(void) {
     }
 }
 
-void func_802C1674(s32 arg0, s32 arg1){
+void func_802C1674(NodeProp *arg0, ActorMarker *arg1){
     if(D_8037DBE0.unk28){
         D_8037DBE0.unk28 = -1;
     }
 }
 
-void func_802C169C(void *arg0, s32 arg1){
-    func_802C16CC(func_8033451C(*((u16 *)((s32)arg0 + 8))));
+void func_802C169C(NodeProp *arg0, ActorMarker *arg1){
+    func_802C16CC(func_8033451C(arg0->unk8));
 }
 
+// sets up dynamic camera for cubes in "area" of arg0
 void func_802C16CC(s32 arg0) {
-    f32 sp54[3];
-    f32 sp48[3];
-    f32 sp3C[3];
+    f32 player_or_node_position[3];
+    f32 player_position_copy[3];
+    f32 camera_position[3];
     s32 sp38;
     s32 sp34;
     s16 *sp30;
@@ -229,11 +230,11 @@ void func_802C16CC(s32 arg0) {
     if ((func_8028ECAC() != BSGROUP_4_LOOK) && !__is_flying_in_FP()){
         sp38 = func_80334524(arg0);
         if(sp38 != D_8037DBE0.unk28 && D_8037DBE0.unk28 != -1){
-            player_getPosition(sp54); 
-            ml_vec3f_to_vec3w(sp48, sp54);
-            sp30 = cubeList_findNodePropByActorId(sp38, sp48);
+            player_getPosition(player_or_node_position); 
+            ml_vec3f_to_vec3w(player_position_copy, player_or_node_position);
+            sp30 = cubeList_findNodePropByActorId(sp38, player_position_copy);
             if(sp30 != NULL) {
-                nodeprop_getPosition(sp30, sp54);
+                nodeprop_getPosition(sp30, player_or_node_position);
                 switch (func_80304DB8(sp30)) {                        /* irregular */
                 default:
                     D_8037DBE0.unk2E = 0;
@@ -253,13 +254,13 @@ void func_802C16CC(s32 arg0) {
                     break;
                 }
                 D_8037DBE0.unk2D = ncDynamicCamera_getState();
-                ncDynamicCamera_getPosition(sp3C);
-                ml_vec3f_copy(D_8037DBE0.unkC, sp3C);
+                ncDynamicCamera_getPosition(camera_position);
+                ml_vec3f_copy(D_8037DBE0.unkC, camera_position);
                 D_8037DBE0.unk18 = 0.0f;
                 D_8037DBE0.unk28 = sp38;
-                D_8037DBE0.unk0 = func_80341EC4(sp54);
-                D_8037DBE0.unk8 = func_803243D0(func_802C0EC0(), sp3C);
-                D_8037DBE0.unk8 = func_802453DC(func_802C0EC0(), D_8037DBE0.unk8, sp3C, baMarker_8028D694() | 0x1E0000);
+                D_8037DBE0.unk0 = func_80341EC4(player_or_node_position);
+                D_8037DBE0.unk8 = func_803243D0(func_802C0EC0(), camera_position);
+                D_8037DBE0.unk8 = func_802453DC(func_802C0EC0(), D_8037DBE0.unk8, camera_position, baMarker_8028D694() | 0x1E0000);
                 D_8037DBE0.unk2C = 1;
                 func_80323240(func_802C0EC0(), D_8037DBE0.unk8, D_8037DBE0.unk1C);
                 if (func_802C11C8(D_8037DBE0.unk1C) == 1) {

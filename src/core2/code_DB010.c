@@ -587,7 +587,7 @@ void func_80363330(Actor *this){
 void func_80363388(struct_core2_DB010 *arg0, s32 arg1){
     f32 sp2C[3];
     s32 sp20[3];
-    s32 tmp_v0 = func_80330F94(arg0, sp20);
+    s32 tmp_v0 = codeA5BC0_getPositionAndReturnRadius(arg0, sp20);
     sp2C[0] = (f32)sp20[0];
     sp2C[1] = (f32)sp20[1];
     sp2C[2] = (f32)sp20[2];

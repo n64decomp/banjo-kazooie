@@ -38,7 +38,7 @@ s32 D_8036751C[4] = {100, 100, 30, 100};
 /* .bss */
 u8 D_8037DDF0;
 u8 D_8037DDF1;
-u8 D_8037DDF2;
+u8 sHasWarnedBanjoAboutDetransform;
 u8 D_8037DDF3;
 
 /* .code */
@@ -502,20 +502,20 @@ Actor *chMumbo_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return out;
 }
 
-void chMumbo_detransformWarn(s32 this, s32 arg1){
+void chMumbo_detransformWarn(NodeProp *arg0, ActorMarker *arg1){
     s32 xform;
     xform = player_getTransformation();
-    if(xform == TRANSFORM_1_BANJO || xform  == TRANSFORM_7_WISHWASHY || D_8037DDF2)
+    if(xform == TRANSFORM_1_BANJO || xform  == TRANSFORM_7_WISHWASHY || sHasWarnedBanjoAboutDetransform)
         return;
     
-    D_8037DDF2++;
+    sHasWarnedBanjoAboutDetransform++;
     if(D_8037DDF3)
         return;
     
     gcdialog_showText(fileProgressFlag_getAndSet(FILEPROG_83_MAGIC_GET_WEAK_TEXT, TRUE) ? ASSET_F5C_DIALOG_MUMBO_MAGIC_GET_WEAK_ABREV : ASSET_F5B_DIALOG_MUMBO_MAGIC_GET_WEAK_FULL, 0xe, NULL, NULL, NULL, NULL);
 }
 
-void chMumbo_detransformTrigger(s32 this, s32 arg1){
+void chMumbo_detransformTrigger(NodeProp *arg0, ActorMarker *arg1){
     s32 xform;
     xform = player_getTransformation();
     if(xform == TRANSFORM_1_BANJO || xform  == TRANSFORM_7_WISHWASHY || D_8037DDF1)
@@ -526,10 +526,10 @@ void chMumbo_detransformTrigger(s32 this, s32 arg1){
 }
 
 void func_802D2CB8(void){
-    D_8037DDF2 = D_8037DDF3 = D_8037DDF1 = 0;
+    sHasWarnedBanjoAboutDetransform = D_8037DDF3 = D_8037DDF1 = 0;
 }
 
 void func_802D2CDC(void){
-    D_8037DDF3 = D_8037DDF2;
-    D_8037DDF2 = 0;
+    D_8037DDF3 = sHasWarnedBanjoAboutDetransform;
+    sHasWarnedBanjoAboutDetransform = 0;
 }
