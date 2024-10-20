@@ -242,8 +242,8 @@ bool func_803515EC(NodeProp *arg0) {
     s16 phi_v0;
 
 
-    if (arg0->unk6.bit6 != 6) {
-        return 1;
+    if (arg0->bit6 != 6) {
+        return TRUE;
     } else {
         for(phi_s0 = D_803725C0; phi_s0->unk0 != 0; phi_s0++){
             if( (arg0->unk8 == phi_s0->unk0) 
@@ -262,7 +262,7 @@ bool func_803515EC(NodeProp *arg0) {
     return TRUE;
 }
 
-bool func_80351700(void * arg0){
+bool func_80351700(Prop * arg0){
     if (((*(u16*)((s32)arg0 + 0xA) << 0x1E) >> 0x1F)) {
         return TRUE;
     }

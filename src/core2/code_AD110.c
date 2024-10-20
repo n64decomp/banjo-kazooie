@@ -299,7 +299,7 @@ extern void chTreasurehunt_checkStepProgress4(s32, s32);
 extern void chTreasurehunt_checkStepProgress5(s32, s32);
 extern void chMumbo_detransformWarn(s32, s32);
 extern void chMumbo_detransformTrigger(s32, s32);
-extern void func_8033443C(s32, s32);
+extern void func_8033443C(NodeProp *arg0, ActorMarker *arg1);
 
 
 typedef struct {
@@ -310,10 +310,10 @@ typedef struct {
     u8 pad1D[3];
 }Struct_core2_AD110_0;
 
-typedef void (*Method_core2_AD110)(s32, s32);
+typedef void (*CodeAD110Callback)(NodeProp *arg0, ActorMarker *arg1);
 
 /* .data */
-Method_core2_AD110 D_8036F980[] = {
+CodeAD110Callback sWarpFunctions[] = {
     func_80388BEC, func_80334430, func_80386744, func_80386744,
     func_80386744, warp_gvEnterJinxy, warp_gvExitJinxy, func_8038F10C,
     func_8038F130, warp_bgsEnterMumbosHut, warp_bgsExitMumbosHut, warp_ttcExitNipper,
@@ -394,7 +394,7 @@ Method_core2_AD110 D_8036F980[] = {
     func_80334430, func_80334430, func_80334430,
 };
 
-Method_core2_AD110 D_8036FE5C[] ={
+CodeAD110Callback sRadiusTriggers[] ={
     func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
     func_8033443C, func_8033443C, func_8033443C, func_8033443C,
@@ -547,22 +547,22 @@ void func_80334428(void){}
 
 void func_80334430(s32 arg0, s32 arg1){}
 
-void func_8033443C(s32 arg0, s32 arg1){}
+void func_8033443C(NodeProp *arg0, ActorMarker *arg1){}
 
 void func_80334448(NodeProp *arg0, ActorMarker *arg1) {
-    s32 sp24;
+    s32 global_timer_time;
 
-    switch(func_80330F7C(arg0)) {
-        case 3: //L80334480
-            sp24 = globalTimer_getTime();
-            if ((func_80330FC4(arg0) + 1) != sp24) {
-                D_8036F980[func_80330F8C(arg0)](arg0, arg1);
+    switch(codeA5BC0_getNodePropBit6(arg0)) {
+        case 3: // warp (L80334480)
+            global_timer_time = globalTimer_getTime();
+            if ((codeA5BC0_getNodePropUnkC(arg0) + 1) != global_timer_time) {
+                sWarpFunctions[codeA5BC0_getNodePropUnk8(arg0)](arg0, arg1);
             }
-            func_80330FBC(arg0, sp24);
+            codeA5BC0_setNodePropUnkC(arg0, global_timer_time);
             break;
 
-        case 4: //L803344E0
-            D_8036FE5C[func_80330F8C(arg0)](arg0, arg1);
+        case 4: // radius trigger like camera (L803344E0)
+            sRadiusTriggers[codeA5BC0_getNodePropUnk8(arg0)](arg0, arg1);
             break;
 
         case 0: //L80334508
