@@ -5,7 +5,6 @@
 #include <core2/file.h>
 #include <core2/lighting.h>
 
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
 static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 
@@ -33,7 +32,7 @@ static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32 arg
     sLightingVectorList.unk44 = sLightingVectorList.unk4;
     iPtr = start_ptr;
     for(; iPtr < end_ptr && sLightingVectorList.unk44 < sLightingVectorList.unk48; iPtr++) {
-        if(iPtr->unk34 && ml_distance_vec3f(position, iPtr->position) < iPtr->unk1C + global_norm) {
+        if(iPtr->unk34 && ml_vec3f_distance(position, iPtr->position) < iPtr->unk1C + global_norm) {
             mlMtx_apply_vec3f(iPtr->positionCopy, iPtr->position);
             iPtr->unk20 = iPtr->unk18/scale;
             iPtr->unk24 = iPtr->unk1C/scale;
@@ -144,7 +143,7 @@ s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
         if(iPtr->unk34) {
-            if(tmp_s0 == NULL || ml_distance_vec3f(arg0, iPtr->position) < ml_distance_vec3f(arg0, tmp_s0->position)) {
+            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->position) < ml_distance_vec3f(arg0, tmp_s0->position)) {
                 tmp_s0 = iPtr;
             }
         }
@@ -231,7 +230,7 @@ void codeAC520_func_80333D48(BKVertexList *vertex_list, f32 position[3], f32 rot
 
         for(struct_ptr_ptr = &sLightingVectorList.unk4[0]; struct_ptr_ptr < sLightingVectorList.unk44;struct_ptr_ptr++) {
             struct_ptr = *struct_ptr_ptr;
-            distance_between_vtx_and_lighting_node = ml_distance_vec3f(struct_ptr->positionCopy, vtx_position);
+            distance_between_vtx_and_lighting_node = ml_vec3f_distance(struct_ptr->positionCopy, vtx_position);
             if (!(struct_ptr->unk24 <= distance_between_vtx_and_lighting_node)) {
                 if (distance_between_vtx_and_lighting_node <= struct_ptr->unk20) {
                     rgb_modifier[0] = rgb_modifier[0] + struct_ptr->rgb[0];

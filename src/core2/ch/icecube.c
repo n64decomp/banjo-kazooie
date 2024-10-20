@@ -4,7 +4,6 @@
 
 #define _HorzDist3v(v1, v2) ((v1[0]-v2[0])*(v1[0]-v2[0]) + (v1[2]-v2[2])*(v1[2]-v2[2]))
 extern void func_802D729C(Actor *, f32);
-extern f32 func_80257204(f32, f32, f32, f32);
 extern Actor *bundle_spawn_f32(enum actor_e, f32[3]);
 
 void chicecube_update(Actor *this);

@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "fight.h"
-#include <core1/viewport.h>
 #include "core2/particle.h"
 
 extern void func_80324CFC(f32, enum comusic_e, s32);

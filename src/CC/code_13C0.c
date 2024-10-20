@@ -1,9 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "CC.h"
 
-#include <core1/viewport.h>
 #include "core2/modelRender.h"
 
 typedef struct{

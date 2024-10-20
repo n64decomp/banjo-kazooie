@@ -1,15 +1,12 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 f32 time_getDelta(void);
 f32 func_802FB0DC(struct8s *);
 f32 func_802FB0E4(struct8s *);
-
-extern s32 framebuffer_width; //framebuffer_w
-extern s32 framebuffer_height; //framebuffer_h
 
 
 Gfx D_80369920[] = {
@@ -154,8 +151,8 @@ void func_802FD360(struct8s *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     tmp_f26 = (arg0->unk20 == ITEM_0_HOURGLASS_TIMER && texture_width == 0x10) ? 1.0f : 0.0f;
     for(tmp_s4 = 0; tmp_s4 < 2; tmp_s4++){//L802FD528
         for(tmp_s2 = 0; tmp_s2 < 2; tmp_s2++){//
-            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((texture_width*arg0->unk40*tmp_s2 - texture_width*arg0->unk40/2) - (f32)framebuffer_width/2) + arg0->unk38)) + tmp_f26) * 4.0f;
-            (*vtx)->v.ob[1] =  ((((texture_height*arg0->unk40/2 - texture_height*arg0->unk40*tmp_s4) + (f32)framebuffer_height/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
+            (*vtx)->v.ob[0] =  ((func_802FB0DC(arg0) + (((texture_width*arg0->unk40*tmp_s2 - texture_width*arg0->unk40/2) - (f32)gFramebufferWidth/2) + arg0->unk38)) + tmp_f26) * 4.0f;
+            (*vtx)->v.ob[1] =  ((((texture_height*arg0->unk40/2 - texture_height*arg0->unk40*tmp_s4) + (f32)gFramebufferHeight/2) - arg0->unk3C) - func_802FB0E4(arg0)*arg0->unk4C)*4.0f;
             (*vtx)->v.ob[2] = -0x14;
             (*vtx)->v.tc[0] =  ((texture_width -1) * tmp_s2) << 6;
             (*vtx)->v.tc[1] =  ((texture_height -1) * tmp_s4) << 6;

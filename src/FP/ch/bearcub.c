@@ -84,7 +84,7 @@ void func_8038A318(ActorMarker *caller, enum asset_e text_id, s32 arg1){
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
         func_8025A6EC(COMUSIC_5B_FP_IGLOO_HAPPY, 25000);
         func_8025A58C(0, 4000);
-        func_8024BD08(0);
+        core1_ce60_incOrDecCounter(FALSE);
     }
 }
 
@@ -124,9 +124,9 @@ void func_8038A384(Actor *this){
     }//L8038A4E4
 
     sp34 = levelSpecificFlags_get(LEVEL_FLAG_11_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_12_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_13_FP_UNKNOWN);
-    sp38 = (sp34 == 1) ? ASSET_C17_TEXT_UNKNOWN
-         : (sp34 == 2) ? ASSET_C18_TEXT_UNKNOWN
-         : ASSET_C19_TEXT_UNKNOWN;
+    sp38 = (sp34 == 1) ? ASSET_C17_DIALOG_UNKNOWN
+         : (sp34 == 2) ? ASSET_C18_DIALOG_UNKNOWN
+         : ASSET_C19_DIALOG_UNKNOWN;
 
     this->yaw_ideal = (f32)func_80329784(this);
     func_80328FB0(this, 2.0f);
@@ -140,7 +140,7 @@ void func_8038A384(Actor *this){
                         && !jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)
                         && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)
                     ){
-                        if (gcdialog_showText(ASSET_C1A_TEXT_UNKNOWN, 0x2a, NULL, NULL, NULL, NULL)) {
+                        if (gcdialog_showText(ASSET_C1A_DIALOG_UNKNOWN, 0x2a, NULL, NULL, NULL, NULL)) {
                             levelSpecificFlags_set(LEVEL_FLAG_19_FP_UNKNOWN, TRUE);
                         }
                     }
@@ -163,7 +163,7 @@ void func_8038A384(Actor *this){
             }
             if(levelSpecificFlags_get(D_80391E80[sp3C].unk0)){
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
-                if (sp38 == ASSET_C19_TEXT_UNKNOWN) {
+                if (sp38 == ASSET_C19_DIALOG_UNKNOWN) {
                     gcdialog_showText(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
                 }
                 else {

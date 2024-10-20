@@ -14,9 +14,6 @@ struct Overlay {
 
 extern struct Overlay gOverlayTable[];
 
-extern s32  framebuffer_width;
-extern s32  framebuffer_height;
-
 extern f32  climbPoleBottom[3];
 extern f32  climbPoleTop[3];
 #endif

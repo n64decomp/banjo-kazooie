@@ -20,7 +20,7 @@ D_803FBE00 = 0x803FBE00;
 D_803FFE00 = 0x803FFE00;
 D_803FFE10 = 0x803FFE10;
 gOverlayTable = 0x803FFE10;
-D_803A5D00 = 0x803A5D00; /* framebuffers */
+gFramebuffers = 0x803A5D00; /* framebuffers */
 
 /* Renames for the boot segment */
 boot_D_8002D500 = D_8002D500;

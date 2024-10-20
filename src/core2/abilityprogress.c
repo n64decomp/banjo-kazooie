@@ -30,24 +30,24 @@ void ability_use(s32 arg0){
             break;
         case 0x3://L8029569C //
             if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_DFC_TEXT_UNKNOWN;
+                sp2C = ASSET_DFC_DIALOG_UNKNOWN;
             }
             break;
         case 0x4://L802956B8 //
             if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_E02_TEXT_UNKNOWN;
+                sp2C = ASSET_E02_DIALOG_UNKNOWN;
             }
             break;
         case 0x5://L802956D4 //barge
             if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_E05_TEXT_UNKNOWN;
+                sp2C = ASSET_E05_DIALOG_UNKNOWN;
             }
             break;
         case 0x6://L802956F0 //slide
             sp28 = 0;
             if (!ability_isUnlocked(ABILITY_10_TALON_TROT)) {
                 if (map_get() == MAP_2_MM_MUMBOS_MOUNTAIN) {
-                    sp2C = ASSET_B4D_TEXT_UNKNOWN;
+                    sp2C = ASSET_B4D_DIALOG_UNKNOWN;
                 }
                 else {
                     return;

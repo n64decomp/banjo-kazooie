@@ -17,7 +17,7 @@ enum chJumpTutorial_state_e {
     JUMP_TUTORIAL_STATE_3_DISAPPEARED
 };
 
-ActorInfo D_8038B0B0 = {
+ActorInfo gChJumpTutorial = {
     MARKER_1ED_JUMP_TUTORIAL, ACTOR_3B9_JUMP_TUTORIAL, NULL,
     1, NULL,
     chJumpTutorial_update, actor_update_func_80326224, func_80325340,
@@ -32,7 +32,7 @@ void __chJumpTutorial_setStaticCameraToNode4(Actor *this) {
 void __chJumpTutorial_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
     Actor *actor = marker_getActor(caller);
 
-    if (text_id == ASSET_DF9_TEXT_BOTTLES_UNKNOWN || text_id == ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES) {
+    if (text_id == ASSET_DF9_DIALOG_BOTTLES_UNKNOWN || text_id == ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES) {
         chJumpTutorial_setState(actor, JUMP_TUTORIAL_STATE_3_DISAPPEARED);
     }
 
@@ -56,8 +56,8 @@ void chJumpTutorial_setState(Actor *this, s32 state) {
                 __chJumpTutorial_setStaticCameraToNode4(this);
                 ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
-                gcdialog_showText(ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
-                this->sm_4070.dialog_id = ASSET_E1A_TEXT_BOTTLES_UNKNOWN;
+                gcdialog_showText(ASSET_DF6_DIALOG_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                this->sm_4070.dialog_id = ASSET_E1A_DIALOG_BOTTLES_UNKNOWN;
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
             }
             break;
@@ -112,8 +112,8 @@ void chJumpTutorial_update(Actor *this) {
                     __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_7_FEATHERY_FLAP);
 
-                    gcdialog_showText(ASSET_DF7_TEXT_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
-                    this->sm_4070.dialog_id = ASSET_E1B_TEXT_BOTTLES_UNKNOWN;
+                    gcdialog_showText(ASSET_DF7_DIALOG_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                    this->sm_4070.dialog_id = ASSET_E1B_DIALOG_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
                 }//L8038A730
 
@@ -121,8 +121,8 @@ void chJumpTutorial_update(Actor *this) {
                     __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_8_FLAP_FLIP);
 
-                    gcdialog_showText(ASSET_DF8_TEXT_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
-                    this->sm_4070.dialog_id = ASSET_E1C_TEXT_BOTTLES_UNKNOWN;
+                    gcdialog_showText(ASSET_DF8_DIALOG_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                    this->sm_4070.dialog_id = ASSET_E1C_DIALOG_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, FALSE);
                 }//L8038A794
 
@@ -132,10 +132,10 @@ void chJumpTutorial_update(Actor *this) {
 
                     if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities()) {
                         mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
-                        dialog_id = ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES;
+                        dialog_id = ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES;
                     }
                     else {
-                        dialog_id = ASSET_DF9_TEXT_BOTTLES_UNKNOWN;
+                        dialog_id = ASSET_DF9_DIALOG_BOTTLES_UNKNOWN;
                     }
 
                     gcdialog_showText(dialog_id, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);

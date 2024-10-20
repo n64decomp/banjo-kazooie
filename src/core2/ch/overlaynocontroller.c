@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 
 extern Actor *actor_spawnWithYaw_f32(enum actor_e, f32[3], s32);

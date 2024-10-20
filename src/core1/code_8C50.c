@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
@@ -120,7 +121,7 @@ void func_80246744(OSMesg arg0){
 }
 
 void func_80246794(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275910.t.ucode_boot, &D_80275910.t.ucode_boot_size);
     D_80275910.t.ucode = n_aspMainTextStart;
     D_80275910.t.ucode_data = n_aspMainDataStart;
     D_80275910.t.data_ptr = (void*) arg0->unk8;
@@ -134,7 +135,7 @@ void func_80246794(Struct_Core1_8C50_s * arg0){
 }
 
 void func_80246844(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
     D_80275950.t.ucode = gSPF3DEX_fifoTextStart;
     D_80275950.t.ucode_data = gSPF3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
@@ -152,7 +153,7 @@ void func_80246844(Struct_Core1_8C50_s * arg0){
 }
 
 void func_8024692C(Struct_Core1_8C50_s * arg0){
-    func_80255D0C(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
+    ucode_getPtrAndSize(&D_80275950.t.ucode_boot, &D_80275950.t.ucode_boot_size);
     D_80275950.t.ucode = gSPL3DEX_fifoTextStart;
     D_80275950.t.ucode_data = gSPL3DEX_fifoDataStart;
     D_80275950.t.data_ptr = (void*) arg0->unk8;
@@ -218,7 +219,7 @@ void func_80246C2C(void){
     if((D_8027FC14 << 1) < 0){
         osDpSetStatus(DPC_SET_FREEZE);
         D_80280688 = osViGetCurrentFramebuffer();
-        func_8024BFAC();
+        viMgr_func_8024BFAC();
     }
     D_8027FC14 = D_8027FC18 = 2;
     D_80275998 = 0;
@@ -473,7 +474,7 @@ void func_80247560(void){
     osSetEventMesg(OS_EVENT_SP, &D_8027FB60, CORE1_8C50_EVENT_SP);
     osSetEventMesg(OS_EVENT_FAULT, &D_8027FB60, CORE1_8C50_EVENT_FAULT);
     osSetEventMesg(OS_EVENT_PRENMI, &D_8027FB60, CORE1_8C50_EVENT_PRENMI);
-    func_8024BDAC(&D_8027FB60, 5);
+    viMgr_func_8024BDAC(&D_8027FB60, 5);
     D_8027FC0C = 0;
     D_8027FC10 = 0;
     D_8027FC14 = D_8027FC18 = 2;

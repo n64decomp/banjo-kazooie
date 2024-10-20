@@ -199,7 +199,7 @@ void func_8038D3D8(void){
     comusic_8025AB44(COMUSIC_68_TWINKLY_MINIGAME, 0, 4000);
     func_8025AABC(COMUSIC_68_TWINKLY_MINIGAME);
     func_8025A58C(-1, 4000);
-    func_8024BD08(1);
+    core1_ce60_incOrDecCounter(TRUE);
 }
 
 void func_8038D41C(ActorMarker *marker){
@@ -265,7 +265,7 @@ void func_8038D5C8(ActorMarker *this_marker, ActorMarker *other_marker){
         this->unk1C[1] = 0.0f;
         func_8025A6EC(COMUSIC_68_TWINKLY_MINIGAME, 25000);
         func_8025A58C(0, 4000);
-        func_8024BD08(0);
+        core1_ce60_incOrDecCounter(FALSE);
         this->unk1C[2] = 428571.0f;
         func_8025AEA0(0x68, (s32)this->unk1C[2]);
         subaddie_set_state_with_direction(this, 3, 0.001f, 1);

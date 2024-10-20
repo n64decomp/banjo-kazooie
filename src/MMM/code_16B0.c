@@ -210,7 +210,7 @@ void chChompa_update(Actor *this) {
     }//L803880B4
 
     player_getPosition(plyr_position);
-    plyr_dist = ml_distance_vec3f(this->position, plyr_position);
+    plyr_dist = ml_vec3f_distance(this->position, plyr_position);
 
     if (this->state == CHOMPA_STATE_4_BITING) {
         actor_collisionOn(this);

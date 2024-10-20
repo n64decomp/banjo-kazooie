@@ -464,7 +464,7 @@ void func_802A8098(void) {
 void func_802A82D4(void) {
     func_802906A4(1);
     func_80291548();
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOn();
     if (bs_getNextState() != BS_5A_LOADZONE) {
         func_80346CE8();

@@ -63,14 +63,14 @@ void ncDynamicCam8_func_802BF9B8(s32 arg0) {
     f32 sp28;
     s32 temp_s0;
 
-    temp_s0 = func_802B9E5C(arg0);
-    D_8037DB0C = func_802BA8BC(temp_s0);
-    D_8037DB0D = func_802BA87C(temp_s0);
-    func_802BA7D8(temp_s0, &D_8037DB00);
-    func_802BA78C(temp_s0, &D_8037DAF0);
-    func_802BA82C(temp_s0, &sp2C, &sp28);
+    temp_s0 = ncCameraNodeList_getCameraNodeType1(arg0);
+    D_8037DB0C = code336F0_func_802BA8BC (temp_s0);
+    D_8037DB0D = code336F0_func_802BA87C(temp_s0);
+    code336F0_func_802BA7D8(temp_s0, &D_8037DB00);
+    cameraNodeType1_getPosition(temp_s0, &D_8037DAF0);
+    cameraNodeType1_getHorizontalAndVerticalSpeed(temp_s0, &sp2C, &sp28);
     func_802BE230(sp2C, sp28);
-    func_802BA854(temp_s0, &sp2C, &sp28);
+    cameraNodeType1_getRotationAndAccelaration(temp_s0, &sp2C, &sp28);
     func_802BE244(sp2C, sp28);
     D_8037DB0E = 0;
 }

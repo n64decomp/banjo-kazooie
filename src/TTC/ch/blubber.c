@@ -37,10 +37,10 @@ ActorAnimationInfo gChBlubberAnimations[6] = {
     {ASSET_B8_ANIM_BLUBBER_RUN, 0.8f}
 };
 
-ActorInfo gChBlubber = { 
+ActorInfo gChBlubber = {
     MARKER_A3_BLUBBER, ACTOR_115_BLUBBER, ASSET_370_MODEL_BLUBBER,
-    0x1, gChBlubberAnimations, 
-    __chBlubber_updateFunc, __chBlubber_update2Func, __chBlubber_drawFunc, 
+    0x1, gChBlubberAnimations,
+    __chBlubber_updateFunc, __chBlubber_update2Func, __chBlubber_drawFunc,
     0, 0x399, 1.8f, 0
 };
 
@@ -63,7 +63,7 @@ static void __chBlubber_showTextCallback(ActorMarker *caller, enum asset_e text_
     Actor *this = marker_getActor(caller);
     ActorLocal_Blubber *local =  (ActorLocal_Blubber*)&this->local;
 
-    if(text_id == ASSET_A0D_TEXT_BLUBBER_COMPLETE || text_id == ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED){
+    if(text_id == ASSET_A0D_DIALOG_BLUBBER_COMPLETE || text_id == ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED){
         local->unk24 = 0;
     }
     else{
@@ -89,7 +89,7 @@ static void __chBlubber_showJiggySpawnedText(ActorMarker *marker){
     this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_TEXT_BLUBBER_COMPLETE;
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_DIALOG_BLUBBER_COMPLETE;
         gcdialog_showText(text_id, 0xf, this->position, this->marker, __chBlubber_showTextCallback, __chBlubber_showTextCallback2);
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN, TRUE);
     }
@@ -157,16 +157,16 @@ static void __chBlubber_updateFunc(Actor *this){
         && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        gcdialog_showText(ASSET_A0B_TEXT_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
+        gcdialog_showText(ASSET_A0B_DIALOG_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
         this->has_met_before = TRUE;
         subaddie_set_state_forward(this, CH_BLUBBER_STATE_3_UNKNOWN);
     }
 
-    if( mapSpecificFlags_get(TTC_SPECIFIC_FLAG_0_BLUBBER_UNKNOWN) 
+    if( mapSpecificFlags_get(TTC_SPECIFIC_FLAG_0_BLUBBER_UNKNOWN)
         && !this->unk138_23
     ){
         if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
-            gcdialog_showText(ASSET_A0C_TEXT_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showText(ASSET_A0C_DIALOG_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
         }
         
         this->unk138_23 = TRUE;
@@ -214,7 +214,7 @@ static void __chBlubber_updateFunc(Actor *this){
             __chBlubber_checkJiggySpawnedTextAndAdvanceState(this);
             break;
         
-        case CH_BLUBBER_STATE_3_UNKNOWN: 
+        case CH_BLUBBER_STATE_3_UNKNOWN:
             break;
         
         case CH_BLUBBER_STATE_4_UNKNOWN:

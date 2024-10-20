@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool ml_vec3f_point_within_horizontal_distance(f32[3], f32, f32, f32);
-
 /* .data */
 ActorAnimationInfo chCrabAnimations[] ={
     {    0, 0.0f},

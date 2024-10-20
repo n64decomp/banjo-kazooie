@@ -1,18 +1,16 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 #include "core2/modelRender.h"
 
 #include "animation.h"
-#include "ml/mtx.h"
 
 #define ARRAYLEN(x) (sizeof(x) / sizeof((x)[0]))
 
 extern bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2);
 extern void func_802ED52C(BKModelUnk20List *, f32[3], f32);
-extern void func_80252AF0(f32[3], f32[3], f32[3], f32, f32[3]);
 extern void mlMtxRotatePYR(f32, f32, f32);
 extern void assetCache_free(BKModelBin *);
 extern s32 func_8024DB50(f32[3], f32);

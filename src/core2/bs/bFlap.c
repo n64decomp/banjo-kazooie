@@ -196,5 +196,5 @@ void bsbflap_end(void) {
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
     func_8029E090(0, 0.2f);
-    func_8030DA44(D_8037D30C);
+    sfxsource_freeSfxsourceByIndex(D_8037D30C);
 }

@@ -39,7 +39,7 @@ static void __bsbwhirl_end(void){
         func_8029B0C0();
         func_8029E070(0);
         func_8025A55C(-1, 0xfa0, 0xd);
-        func_8024BD08(1);
+        core1_ce60_incOrDecCounter(TRUE);
         func_8025A7DC(COMUSIC_25_USING_GOLD_FEATHERS);
     }  
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
@@ -86,7 +86,7 @@ void bsbwhirl_enter_init(void){
     func_8029B324(1, 1.0f);
     func_8029E070(1);
     D_8037D3B0 = 0.0f;
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     func_8025A55C(0, 0xfa0, 0xd);
     func_8025A6EC(0x25, 0x6d60);
     func_80299BD4();

@@ -1,11 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 #include "core2/nc/camera.h"
 
 
-extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
 /* .bss */
 static f32 ncStaticCameraPosition[3];
@@ -41,9 +40,9 @@ void ncStaticCamera_update(void){
 void __ncStaticCamera_setToNode(s32 camera_node_index){
     UNK_TYPE(s32) sp1C;
 
-    sp1C = func_802B9E70(camera_node_index);
-    ncCameraNodeType2_getPosition(sp1C, ncStaticCameraPosition);
-    ncCameraNodeType2_getRotation(sp1C, ncStaticCameraRotation);
+    sp1C = ncCameraNodeList_getCameraNodeType2(camera_node_index);
+    cameraNodeType2_getPosition(sp1C, ncStaticCameraPosition);
+    cameraNodeType2_getPitchYawRoll(sp1C, ncStaticCameraRotation);
 }
 
 void ncStaticCamera_setToNode(s32 camera_node_index){

@@ -1,10 +1,5 @@
-#ifndef BANJO_KAZOOIE_VIEWPORT_H
-#define BANJO_KAZOOIE_VIEWPORT_H
-
-#include <ultra64.h>
-#include <prop.h> // for Cube
-#include "ml/mtx.h" // for MtxF
-
+#ifndef BANJO_KAZOOIE_CORE1_VIEWPORT_H
+#define BANJO_KAZOOIE_CORE1_VIEWPORT_H
 
 void viewport_moveAlongZAxis(f32 offset);
 f32 viewport_getDistance(f32 arg0[3]);

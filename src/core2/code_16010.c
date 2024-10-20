@@ -4,8 +4,6 @@
 
 #include "core2/statetimer.h"
 
-extern int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
-
 /* .bss */
 u8 D_8037D210;
 u8 D_8037D211;
@@ -19,7 +17,7 @@ bool func_8029CFA0(void){
 }
 
 void func_8029CFF8(void){
-    func_8030DA44(D_8037D210);
+    sfxsource_freeSfxsourceByIndex(D_8037D210);
 }
 
 void func_8029D01C(void){
@@ -190,7 +188,7 @@ bool func_8029D66C(void){
 
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
             player_getPosition(sp2C);
-            return player_inWater() && func_80258424(sp2C, -9000.0f, -3000.0f, -3850.0f, -6820.0f, -700.0f, -1620.0f);
+            return player_inWater() && ml_vec3f_inside_box_f(sp2C, -9000.0f, -3000.0f, -3850.0f, -6820.0f, -700.0f, -1620.0f);
             break;
 
         case MAP_27_FP_FREEZEEZY_PEAK:

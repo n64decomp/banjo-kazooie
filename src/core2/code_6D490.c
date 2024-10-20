@@ -155,8 +155,8 @@ void func_802F46F4(Struct5Ds *this){
 }
 
 void func_802F4798(Struct5Ds *this){
-    func_8030DA44(this->unk1C);
-    func_8030DA44(this->unk1D);
+    sfxsource_freeSfxsourceByIndex(this->unk1C);
+    sfxsource_freeSfxsourceByIndex(this->unk1D);
     free(this);
 }
 

@@ -55,7 +55,7 @@ s32 D_80394BD4[3] = {0xff, 0x80, 0x80};
 void func_80391160(f32 pos[3], u32 count)
 {
     ParticleEmitter *p = partEmitMgr_newEmitter(count);
-    particleEmitter_setSprite(p, 0x70E);
+    particleEmitter_setSprite(p, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setRGB(p, D_80394AD4);
     particleEmitter_setAlpha(p, 0xEB);
     particleEmitter_setStartingFrameRange(p, 0, 7);
@@ -99,7 +99,7 @@ void func_8039137C(f32 pos[3], u32 count, enum asset_e sprite)
 void func_8039144C(f32 pos[3], u32 count)
 {
     ParticleEmitter *p = partEmitMgr_newEmitter(count);
-    particleEmitter_setSprite(p, 0x713);
+    particleEmitter_setSprite(p, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setPosition(p, pos);
     particleEmitter_setSpawnPositionRange(p, -40, -40, -40, 40, 40, 40);
     particleEmitter_setDrawMode(p, 4);
@@ -115,7 +115,7 @@ void func_8039144C(f32 pos[3], u32 count)
 void func_803915A4(f32 pos[3], s32 count, f32 scale)
 {
     ParticleEmitter *p = partEmitMgr_newEmitter(count);
-    particleEmitter_setSprite(p, 0x4A0);
+    particleEmitter_setSprite(p, ASSET_4A0_SPRITE_EXPLOSION);
     particleEmitter_setFade(p, 0.1f, 0.2f);
     particleEmitter_setDrawMode(p, PART_EMIT_NO_LOOP);
     particleEmitter_setStartingFrameRange(p, 2, 8);

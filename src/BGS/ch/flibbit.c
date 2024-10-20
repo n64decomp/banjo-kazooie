@@ -17,7 +17,6 @@ typedef struct{
 
 
 extern f32 mapModel_getFloorY(f32 *);
-extern void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 
 void chflibbit_update(Actor *this);
 Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -373,7 +372,7 @@ void chflibbit_update(Actor *this){
             sp84[0]  = (f32)local->unkE[0];
             sp84[1]  = (f32)local->unkE[1];
             sp84[2]  = (f32)local->unkE[2];
-            if(ml_distance_vec3f(this->position, sp84) < 30.0f){
+            if(ml_vec3f_distance(this->position, sp84) < 30.0f){
                 func_80386AEC(this, 1);
             }
             else{

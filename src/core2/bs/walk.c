@@ -11,7 +11,6 @@ f32 func_8029B2E8(void);
 void func_8029AD28(f32, s32);
 void baanim_scaleDuration(f32);
 f32 func_8029B30C(void);
-f32 ml_interpolate_f(f32, f32, f32);
 void func_80299594(s32, f32);
 
 // .data

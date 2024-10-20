@@ -77,7 +77,7 @@ void func_802997E8(void){
     if(D_8037C6D0.sfxsourceIdx){
         D_8037C6D0.unk4 += time_getDelta();
         if(D_8037C6D0.unk8 <= D_8037C6D0.unk4){
-            func_8030DA44(D_8037C6D0.sfxsourceIdx);
+            sfxsource_freeSfxsourceByIndex(D_8037C6D0.sfxsourceIdx);
             D_8037C6D0.sfxsourceIdx = 0;
         }
         else{
@@ -127,13 +127,13 @@ void func_80299900(void){
 }
 
 void func_80299A20(void){
-    func_8030DA44(D_8037C6C1);
-    func_8030DA44(D_8037C6C0);
-    func_8030DA44(D_8037C6C3);
-    func_8030DA44(D_8037C6C2);
-    func_8030DA44(D_8037C6C4);
+    sfxsource_freeSfxsourceByIndex(D_8037C6C1);
+    sfxsource_freeSfxsourceByIndex(D_8037C6C0);
+    sfxsource_freeSfxsourceByIndex(D_8037C6C3);
+    sfxsource_freeSfxsourceByIndex(D_8037C6C2);
+    sfxsource_freeSfxsourceByIndex(D_8037C6C4);
     if(D_8037C6D0.sfxsourceIdx){
-        func_8030DA44(D_8037C6D0.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_8037C6D0.sfxsourceIdx);
     }
 }
 

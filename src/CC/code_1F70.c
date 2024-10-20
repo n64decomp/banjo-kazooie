@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 #include "core2/modelRender.h"
 
 extern BKCollisionTri *func_8028EF48(void);
@@ -19,7 +19,6 @@ extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32
 extern void boneTransformList_getBoneScale(s32, s32, f32[3]);
 extern void boneTransformList_setBoneScale(s32, s32, f32[3]);
 extern void func_8033A9A8(s32, s32, f32[3]);
-extern void ml_vec3f_normalize(f32[3]);
 extern void func_8033A45C(s32, s32);
 extern void modelRender_setBoneTransformList(s32);
 extern void func_8028FAB0(f32[3]);
@@ -249,7 +248,7 @@ int CC_func_80388CA0(void){
 void func_80388CB4(void){
     if(D_80389FA0.unk21){
         skeletalAnim_free(D_80389FA0.unk0);
-        func_8030DA44(D_80389FA0.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_80389FA0.sfxsourceIdx);
         func_80340690(D_80389FA0.unk18);
         func_8034A2A8(D_80389FA0.unk34);
         if(model_getVtxList(D_80389FA0.unk24) != D_80389FA0.unk40)
@@ -331,7 +330,7 @@ void CC_func_80388F4C(void){
     CC_func_80387D4C();
     if(D_80389FA0.unk21 != 0 && func_80334904() == 2){
         player_getPosition(sp6C);
-        D_80389FA0.unk20 = (ml_distance_vec3f(sp6C, D_80389FA0.unkC) < 200.0f);
+        D_80389FA0.unk20 = (ml_vec3f_distance(sp6C, D_80389FA0.unkC) < 200.0f);
 
         D_80389FA0.unk38 += sp68;
         sp64 = skeletalAnim_getProgress(D_80389FA0.unk0);
@@ -362,7 +361,7 @@ void CC_func_80388F4C(void){
             if(D_80389FA0.unk20 && skeletalAnim_getAnimId(D_80389FA0.unk0) != ASSET_C4_ANIM_CLANKER_BITE){
                 skeletalAnim_set(D_80389FA0.unk0, ASSET_C4_ANIM_CLANKER_BITE, 1.0f, 10.0f);
                 if(!D_80389FA0.unk48){
-                    gcdialog_showText(ASSET_D2B_TEXT_UNKNOWN, 0xE, D_80389FA0.unk28, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_D2B_DIALOG_UNKNOWN, 0xE, D_80389FA0.unk28, NULL, NULL, NULL);
                     D_80389FA0.unk48 = TRUE;
                 }
             }//L8038918C
@@ -381,7 +380,7 @@ void CC_func_80388F4C(void){
 
         if(D_80389FA0.unk21 == 3){
             func_8034A174(D_80389FA0.unk34, 6, sp48);
-            if(ml_distance_vec3f(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
+            if(ml_vec3f_distance(sp48, sp6C) <= 130.0f && sp6C[1] - sp48[1] < 50.0f){
                 func_8031D04C(MAP_21_CC_WITCH_SWITCH_ROOM, 1);
             }
         }//L80389260

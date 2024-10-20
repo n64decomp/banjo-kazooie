@@ -6,7 +6,7 @@
 Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8028E668(f32 *, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 void timed_exitStaticCamera(f32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
@@ -40,7 +40,7 @@ ActorAnimationInfo chSmBottlesAnimations[6] = {
     {ASSET_13A_ANIM_BOTTLES_ENTER, 2000000000.0f}
 };
 
-ActorInfo chBottles = {
+ActorInfo gChBottles = {
     MARKER_B7_TUTORIAL_BOTTLES, ACTOR_12B_TUTORIAL_BOTTLES, ASSET_387_MODEL_BOTTLES,
     1, chSmBottlesAnimations,
     chSmBottles_update, actor_update_func_80326224, func_802D94B4,
@@ -48,14 +48,14 @@ ActorInfo chBottles = {
 };
 
 ChSmBottlesDialog chSmBottlesDialogTable[8] = {
-    {ASSET_DF3_TEXT_BOTTLES_INTRODUCTION,         ASSET_E08_TEXT_BOTTLES_FIND_ANOTHER_MOLEHILL,    0x1,  -1},
-    {ASSET_DF4_TEXT_BOTTLES_CAMERA_CONTROL_LEARN, ASSET_DF5_TEXT_BOTTLES_CAMERA_CONTROL_REFRESHER, 0x3,  ABILITY_3_CAMERA_CONTROL},
-    {ASSET_DFB_TEXT_BOTTLES_DIVE_LEARN,           ASSET_DFE_TEXT_BOTTLES_DIVE_REFRESHER,           0x5,  ABILITY_F_DIVE},
-    {-1,                                          ASSET_E00_TEXT_BOTTLES_ATTACK_REFRESHER,         0x6,  ABILITY_B_RATATAT_RAP},
-    {ASSET_E04_TEXT_BOTTLES_BEAK_BARGE_LEARN,     ASSET_E06_TEXT_BOTTLES_BEAK_BARGE_REFRESHER,     0x8,  ABILITY_0_BARGE},
-    {-1,                                          ASSET_DFA_TEXT_BOTTLES_JUMP_REFRESHER,           0x4,  ABILITY_8_FLAP_FLIP},
-    {ASSET_E01_TEXT_BOTTLES_CLIMB_LEARN,          ASSET_E03_TEXT_BOTTLES_CLIMB_REFRESHER,          0x7,  ABILITY_5_CLIMB},
-    {ASSET_E10_TEXT_BOTTLES_BRIDGE_BROKEN,        ASSET_E11_TEXT_BOTTLES_BRIDGE_STILL_BROKEN,      0x11, -1},
+    {ASSET_DF3_DIALOG_BOTTLES_INTRODUCTION,         ASSET_E08_DIALOG_BOTTLES_FIND_ANOTHER_MOLEHILL,    0x1,  -1},
+    {ASSET_DF4_DIALOG_BOTTLES_CAMERA_CONTROL_LEARN, ASSET_DF5_DIALOG_BOTTLES_CAMERA_CONTROL_REFRESHER, 0x3,  ABILITY_3_CAMERA_CONTROL},
+    {ASSET_DFB_DIALOG_BOTTLES_DIVE_LEARN,           ASSET_DFE_DIALOG_BOTTLES_DIVE_REFRESHER,           0x5,  ABILITY_F_DIVE},
+    {-1,                                          ASSET_E00_DIALOG_BOTTLES_ATTACK_REFRESHER,         0x6,  ABILITY_B_RATATAT_RAP},
+    {ASSET_E04_DIALOG_BOTTLES_BEAK_BARGE_LEARN,     ASSET_E06_DIALOG_BOTTLES_BEAK_BARGE_REFRESHER,     0x8,  ABILITY_0_BARGE},
+    {-1,                                          ASSET_DFA_DIALOG_BOTTLES_JUMP_REFRESHER,           0x4,  ABILITY_8_FLAP_FLIP},
+    {ASSET_E01_DIALOG_BOTTLES_CLIMB_LEARN,          ASSET_E03_DIALOG_BOTTLES_CLIMB_REFRESHER,          0x7,  ABILITY_5_CLIMB},
+    {ASSET_E10_DIALOG_BOTTLES_BRIDGE_BROKEN,        ASSET_E11_DIALOG_BOTTLES_BRIDGE_STILL_BROKEN,      0x11, -1},
 };
 
 s32 chSmBottlesDialogIndex = 0;
@@ -137,7 +137,7 @@ void __chSmBottles_setState(Actor *this, s32 next_state) {
             this->unk138_23 = 0;
 
         case SM_BOTTLES_STATE_2_UNKNOWN://L80389004
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0;
             break;
 
@@ -241,43 +241,43 @@ void __chSmBottles_textCallback(ActorMarker *marker, enum asset_e text_id, s32 a
 
     if (!mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && chmole_learnedAllSpiralMountainAbilities()) {
         mapSpecificFlags_set(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED, TRUE);
-        gcdialog_showText(ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, __chSmBottles_textCallback, NULL);
+        gcdialog_showText(ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES, 0xe, actor->position, actor->marker, __chSmBottles_textCallback, NULL);
     }//L8038933C
     else {
-        if (!(text_id == ASSET_DF3_TEXT_BOTTLES_INTRODUCTION || text_id == ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER || text_id == ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT)) {
+        if (!(text_id == ASSET_DF3_DIALOG_BOTTLES_INTRODUCTION || text_id == ASSET_E1F_DIALOG_BOTTLES_TUTORIAL_OFFER || text_id == ASSET_E1D_DIALOG_BOTTLES_TUTORIAL_OFFER_WAIT)) {
             timed_exitStaticCamera(0.0f);
         }
 
         switch (text_id) {
-            case ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED:
+            case ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED:
                 break;
 
-            case ASSET_DF3_TEXT_BOTTLES_INTRODUCTION: /* 2FB8 803893A8 3C188039 */
-                gcdialog_showText(ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER, 0x8e, actor->position, actor->marker, __chSmBottles_textCallback, __chSmBottles_textActions);
+            case ASSET_DF3_DIALOG_BOTTLES_INTRODUCTION: /* 2FB8 803893A8 3C188039 */
+                gcdialog_showText(ASSET_E1F_DIALOG_BOTTLES_TUTORIAL_OFFER, 0x8e, actor->position, actor->marker, __chSmBottles_textCallback, __chSmBottles_textActions);
                 break;
 
-            case ASSET_E1F_TEXT_BOTTLES_TUTORIAL_OFFER: /* 2FEC 803893DC 9209003B */
+            case ASSET_E1F_DIALOG_BOTTLES_TUTORIAL_OFFER: /* 2FEC 803893DC 9209003B */
                 actor->unk38_0 = TRUE;
                 break;
 
-            case ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT: /* 2FFC 803893EC 920B0138 */
+            case ASSET_E1D_DIALOG_BOTTLES_TUTORIAL_OFFER_WAIT: /* 2FFC 803893EC 920B0138 */
                 actor->has_met_before = FALSE;
                 actor->lifetime_value = 0.0f;
                 break;
 
-            case ASSET_DF6_TEXT_BOTTLES_HIGH_JUMP_LEARN: /* 3014 80389404 0C0A3E46 */
-            case ASSET_DFF_TEXT_BOTTLES_CLAW_SWIPE_LEARN: /* 3014 80389404 0C0A3E46 */
+            case ASSET_DF6_DIALOG_BOTTLES_HIGH_JUMP_LEARN: /* 3014 80389404 0C0A3E46 */
+            case ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN: /* 3014 80389404 0C0A3E46 */
                 func_8028F918(0);
                 break;
 
-            case ASSET_E09_TEXT_BOTTLES_SKIPPED_TUTORIAL:
-            case ASSET_E12_TEXT_BOTTLES_LEARNED_TUTORIAL_MOVES:
+            case ASSET_E09_DIALOG_BOTTLES_SKIPPED_TUTORIAL:
+            case ASSET_E12_DIALOG_BOTTLES_LEARNED_TUTORIAL_MOVES:
                 __chSmBottles_setState(actor, SM_BOTTLES_STATE_4_UNKNOWN);
                 break;
 
             default:
                 if (actor->state != SM_BOTTLES_STATE_5_UNKNOWN) {
-                    gcdialog_showText(ASSET_D38_TEXT_BOTTLES_ALL_MOVES_LEARNED, 0x4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED, 0x4, NULL, NULL, NULL, NULL);
                 }
 
                 __chSmBottles_setState(actor, actor->state == SM_BOTTLES_STATE_5_UNKNOWN ? SM_BOTTLES_STATE_1_UNKNOWN : SM_BOTTLES_STATE_4_UNKNOWN);
@@ -291,11 +291,11 @@ void __chSmBottles_getRefresherDialog(Actor *this, s32 *text_id, s32 *text_flags
     // Gives the player the ability if not learned.
     if (ability_isUnlocked(chSmBottlesDialogTable[this->unkF4_8 - 1].ability)) {
         if (fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)) {
-            *text_id = chSmBottlesDialogIndex + ASSET_E0A_TEXT_BOTTLES_REFUSE_HELP_1;
+            *text_id = chSmBottlesDialogIndex + ASSET_E0A_DIALOG_BOTTLES_REFUSE_HELP_1;
             chSmBottlesDialogIndex++;
             chSmBottlesDialogIndex = MIN(chSmBottlesDialogIndex, 5);
 
-            if (*text_id != ASSET_E0E_TEXT_BOTTLES_REFUSE_HELP_5) {
+            if (*text_id != ASSET_E0E_DIALOG_BOTTLES_REFUSE_HELP_5) {
                 *text_flags |= 1;
             }
         }
@@ -303,8 +303,8 @@ void __chSmBottles_getRefresherDialog(Actor *this, s32 *text_id, s32 *text_flags
             *text_flags |= 1;
             *text_id = chSmBottlesDialogTable[this->unkF4_8 - 1].refresher_text_id;
 
-            if (*text_id == ASSET_DFE_TEXT_BOTTLES_DIVE_REFRESHER && !ability_hasUsed(ABILITY_3_CAMERA_CONTROL)) {
-                *text_id = ASSET_DFD_TEXT_BOTTLES_SWIM_LEARN;
+            if (*text_id == ASSET_DFE_DIALOG_BOTTLES_DIVE_REFRESHER && !ability_hasUsed(ABILITY_3_CAMERA_CONTROL)) {
+                *text_id = ASSET_DFD_DIALOG_BOTTLES_SWIM_LEARN;
             }
         }
     }
@@ -327,7 +327,7 @@ void __chSmBottles_talk(Actor *this) {
                 text_flags |= 1;
 
                 if (fileProgressFlag_get(FILEPROG_DB_SKIPPED_TUTORIAL)) {
-                    text_id = chSmBottlesDialogIndex + ASSET_E0A_TEXT_BOTTLES_REFUSE_HELP_1;
+                    text_id = chSmBottlesDialogIndex + ASSET_E0A_DIALOG_BOTTLES_REFUSE_HELP_1;
                     chSmBottlesDialogIndex++;
                     chSmBottlesDialogIndex = MIN(chSmBottlesDialogIndex, 5);
                 }
@@ -344,11 +344,11 @@ void __chSmBottles_talk(Actor *this) {
         case 8://L80389720
             if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED)) {
                 if (fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)) {
-                    text_id = ASSET_E37_TEXT_BOTTLES_STOP_WASTING_TIME_AFTER_FURNACE_FUN;
+                    text_id = ASSET_E37_DIALOG_BOTTLES_STOP_WASTING_TIME_AFTER_FURNACE_FUN;
                     text_flags |= 1;
                 }
                 else if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_F)) { //L80389758
-                    text_id = ASSET_E0F_TEXT_BOTTLES_STOP_WASTING_TIME_BEFORE_FURNACE_FUN;
+                    text_id = ASSET_E0F_DIALOG_BOTTLES_STOP_WASTING_TIME_BEFORE_FURNACE_FUN;
                     text_flags |= 1;
                 }
                 else {//L80389780
@@ -418,7 +418,7 @@ void __chSmBottles_free(Actor *this) {
     u8 tmp = this->unk44_31;
 
     if (tmp) {
-        func_8030DA44(tmp);
+        sfxsource_freeSfxsourceByIndex(tmp);
     }
 }
 
@@ -495,7 +495,7 @@ void chSmBottles_update(Actor *this) {
                 (this->unkF4_8 == 8 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)) ||
                 (this->unkF4_8 == 8 && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
             ) {//L80389C50
-                if (((ml_distance_vec3f(plyr_pos, this->unk1C) < this->actor_specific_1_f) && func_8028F20C()) ||
+                if (((ml_vec3f_distance(plyr_pos, this->unk1C) < this->actor_specific_1_f) && func_8028F20C()) ||
                     mapSpecificFlags_get(SM_SPECIFIC_FLAG_10)
                 ) {//L80389C8C
                     if (func_80329530(this, 0x96)) {
@@ -610,7 +610,7 @@ void chSmBottles_update(Actor *this) {
 
                 if (button_pressed != -1) {
                     fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, button_pressed ? 0 : 1);
-                    gcdialog_showText(button_pressed ? ASSET_E07_TEXT_BOTTLES_UNKNOWN : ASSET_E09_TEXT_BOTTLES_SKIPPED_TUTORIAL, 0xe, this->position, this->marker, __chSmBottles_textCallback,__chSmBottles_textActions);
+                    gcdialog_showText(button_pressed ? ASSET_E07_DIALOG_BOTTLES_UNKNOWN : ASSET_E09_DIALOG_BOTTLES_SKIPPED_TUTORIAL, 0xe, this->position, this->marker, __chSmBottles_textCallback,__chSmBottles_textActions);
 
                     if (!button_pressed) {
                         __chSmBottles_skipIntroTutorial();
@@ -619,7 +619,7 @@ void chSmBottles_update(Actor *this) {
                     this->unk38_0 = FALSE;
                 }
                 else if (!this->has_met_before && 5.0 < this->lifetime_value) {
-                    gcdialog_showText(ASSET_E1D_TEXT_BOTTLES_TUTORIAL_OFFER_WAIT, 0x86, this->position, this->marker, __chSmBottles_textCallback, NULL);
+                    gcdialog_showText(ASSET_E1D_DIALOG_BOTTLES_TUTORIAL_OFFER_WAIT, 0x86, this->position, this->marker, __chSmBottles_textCallback, NULL);
                     this->has_met_before = TRUE;
                 }
             }

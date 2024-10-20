@@ -1,14 +1,12 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 #include <core2/file.h>
 #include <math.h>
 #include "prop.h"
 
-extern f32 ml_distanceSquared_vec3f(f32[3], f32[3]);
-extern f32 func_802586B0(f32[3], f32[3]);
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void bitfield_setBit(u32*, s32, bool);
@@ -32,7 +30,7 @@ typedef struct {
     Struct_core2_7AF80_2 *unk8;
 } Struct_core2_7AF80_1;
 
-NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 arg1[3]);
+NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s32 arg1[3]);
 s32 func_80304FC4(enum actor_e *actor_id_list, NodeProp **node_list, s32 arg2);
 void cube_positionToIndices(s32 arg0[3], f32 arg1[3]);
 NodeProp *func_803080C8(s32 arg0);
@@ -932,18 +930,18 @@ s32 func_803048E0(s32 arg0[3], s32 arg1[3], s32 arg2, s32 arg3, s32 arg4) {
     return func_8032F170(arg1, arg2);
 }
 
-s32 func_80304984(s32 arg0, u32 *arg1) {
-    NodeProp *temp_v0;
+s32 func_80304984(s32 actor_id, u32 *arg1) {
+    NodeProp *temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(actor_id, NULL);
 
-    temp_v0 = cubeList_findNodePropByActorId(arg0, 0);
     if (temp_v0 != 0) {
         *arg1 = temp_v0->unk6.radius;
         return 1;
     }
+
     return 0;
 }
 
-NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3]) {
+NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s32 position[3]) {
     s32 cube_indices[3];
     s32 i;
     f32 position_f32[3];
@@ -995,42 +993,42 @@ NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3])
     return NULL;
 }
 
-NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor){
-    s32 tmp_position[3];
+NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor_ptr) {
+    s32 pos_s32[3];
     s32 *position;
 
-    if (actor != NULL) {
-        tmp_position[0] = actor->position_x;
-        tmp_position[1] = actor->position_y;
-        tmp_position[2] = actor->position_z;
+    if (actor_ptr != NULL) {
+        pos_s32[0] = actor_ptr->position_x;
+        pos_s32[1] = actor_ptr->position_y;
+        pos_s32[2] = actor_ptr->position_z;
     }
 
-    if (actor == NULL) {
+    if (actor_ptr == NULL) {
         position = NULL;
     }
     else {
-        position = tmp_position;
+        position = pos_s32;
     }
 
-    return cubeList_findNodePropByActorId(actor_id, position);
+    return cubeList_findNodePropByActorIdAndPosition_s32(actor_id, position);
 }
 
-NodeProp *func_80304CAC(s32 arg0, f32 *arg1) {
-    s32 vec[3];
+NodeProp *nodeprop_findByActorIdAndPosition_f32(enum actor_e actor_id, f32 *position) {
+    s32 pos_s32[3];
 
-    vec[0] = (s32)arg1[0];
-    vec[1] = (s32)arg1[1];
-    vec[2] = (s32)arg1[2];
-    return cubeList_findNodePropByActorId(arg0, vec);
+    pos_s32[0] = (s32) position[0];
+    pos_s32[1] = (s32) position[1];
+    pos_s32[2] = (s32) position[2];
+    return cubeList_findNodePropByActorIdAndPosition_s32(actor_id, pos_s32);
 }
 
-NodeProp *func_80304D04(s32 arg0, s16 *arg1) {
-    s32 arr[3];
+NodeProp *nodeprop_findByActorIdAndPosition_s16(enum actor_e actor_id, s16 *position) {
+    s32 pos_s32[3];
 
-    arr[0] = (s32)arg1[0];
-    arr[1] = (s32)arg1[1];
-    arr[2] = (s32)arg1[2];
-    return cubeList_findNodePropByActorId(arg0, arr);
+    pos_s32[0] = (s32) position[0];
+    pos_s32[1] = (s32) position[1];
+    pos_s32[2] = (s32) position[2];
+    return cubeList_findNodePropByActorIdAndPosition_s32(actor_id, pos_s32);
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
@@ -1056,7 +1054,7 @@ s32 func_80304DB8(NodeProp *arg0) {
 bool _nodeProp_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
     NodeProp *node_prop;
 
-    node_prop = cubeList_findNodePropByActorId(actor_id, NULL);
+    node_prop = cubeList_findNodePropByActorIdAndPosition_s32(actor_id, NULL);
     if (node_prop != 0) {
         position[0] = (s32) node_prop->x;
         position[1] = (s32) node_prop->y;
@@ -1168,7 +1166,7 @@ bool func_80305248(f32 arg0[3], s32 arg1, s32 arg2){
 }
 
 bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){
-    return func_8030515C(arg0, arg1, arg2, func_802586B0);
+    return func_8030515C(arg0, arg1, arg2, ml_vec3f_horizontal_distance_squared_zero_likely);
 }
 
 bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
@@ -1187,7 +1185,7 @@ bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
 bool func_80305344(s32 arg0, u32 *arg1) {
     NodeProp *temp_v0;
 
-    temp_v0 = cubeList_findNodePropByActorId(arg0, NULL);
+    temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(arg0, NULL);
     if (temp_v0 != NULL) {
         *arg1 = temp_v0->unkC_31;
         return 1;

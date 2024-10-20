@@ -3,7 +3,6 @@
 #include "variables.h"
 
 extern f32 func_802453DC(struct56s *, f32, f32[3], s32);
-extern f32 func_80259198(f32, f32);
 extern f32 func_802BD51C(void);
 extern f32 player_getYaw(void);
 extern void func_802BE244(f32, f32);
@@ -101,7 +100,7 @@ f32 func_802C1030(struct56s *arg0, f32 arg1[3], f32 arg2[3]) {
         ml_vec3f_set_length_copy(sp30, sp30, 400.0f);
         ml_vec3f_add(sp3C, sp30, sp48);
         func_80259554(sp54, sp48, sp3C, arg1);
-        return ml_distance_vec3f(sp54, arg2);
+        return ml_vec3f_distance(sp54, arg2);
     }
     else{
         func_80323240(arg0, sp2C, sp54);
@@ -140,8 +139,8 @@ s32 func_802C11C8(f32 arg0[3]) {
     sp3C = func_80323F74(sp2C, D_8037DBE0.unk8, -1000.0f);
     func_80323240(sp2C, sp40, sp64);
     func_80323240(sp2C, sp3C, sp58);
-    sp48 = ml_distance_vec3f(sp4C, sp64);
-    sp44 = ml_distance_vec3f(sp4C, sp58);
+    sp48 = ml_vec3f_distance(sp4C, sp64);
+    sp44 = ml_vec3f_distance(sp4C, sp58);
     sp38 = 0.0f;
     sp38 = 0.0f;
     if (mlAbsF(sp48 - sp44) > 3.0f) {
@@ -231,7 +230,7 @@ void func_802C16CC(s32 arg0) {
         if(sp38 != D_8037DBE0.unk28 && D_8037DBE0.unk28 != -1){
             player_getPosition(sp54); 
             ml_vec3f_to_vec3w(sp48, sp54);
-            sp30 = cubeList_findNodePropByActorId(sp38, sp48);
+            sp30 = cubeList_findNodePropByActorIdAndPosition_s32(sp38, sp48);
             if(sp30 != NULL) {
                 nodeprop_getPosition(sp30, sp54);
                 switch (func_80304DB8(sp30)) {                        /* irregular */

@@ -6,7 +6,6 @@
 
 
 extern f32 func_802E4B38(void);
-extern f32 ml_mapRange_f(f32, f32, f32, f32, f32);
 
 void baanim_80289F30(void);
 

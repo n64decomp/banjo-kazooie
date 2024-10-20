@@ -77,14 +77,14 @@ void func_80390388(Actor *this){
         && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
-            if(gcdialog_showText(ASSET_C1F_TEXT_UNKNOWN, 0xb, this->position, NULL, NULL, NULL)){
+            if(gcdialog_showText(ASSET_C1F_DIALOG_UNKNOWN, 0xb, this->position, NULL, NULL, NULL)){
                 this->has_met_before = TRUE;
                 this->unk1C[0] = 1.0f;
             }
         }
         else{
             if( !this->has_met_before ){
-                if(gcdialog_showText(ASSET_C1E_TEXT_UNKNOWN, 0x2b, this->position, NULL, NULL, NULL)){
+                if(gcdialog_showText(ASSET_C1E_DIALOG_UNKNOWN, 0x2b, this->position, NULL, NULL, NULL)){
                     this->has_met_before = TRUE;
                 }
             }

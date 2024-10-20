@@ -4,7 +4,6 @@
 #include "core2/particle.h"
 
 
-extern void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
 extern void bundle_setYaw(f32);
 extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
 extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
@@ -276,7 +275,7 @@ void func_8038F430(ActorMarker *marker, s32 arg1){
 
     if(actor->state < 3){
         player_getPosition(&sp18);
-        if(ml_distance_vec3f(&actor->position, &sp18) < 300.0f)
+        if(ml_vec3f_distance(&actor->position, &sp18) < 300.0f)
             func_8028F55C(5, actor->marker);
         func_8038F190(actor, 3);
     }//L8038F4A4
@@ -353,7 +352,7 @@ void func_8038F618(Actor *this){
     }
     func_8038E92C(this);
     if(this->state == 1){
-        if(sp78 && ml_distance_vec3f(&this->position, &sp7C) < 500.0f){
+        if(sp78 && ml_vec3f_distance(&this->position, &sp7C) < 500.0f){
             func_8038F190(this, 2);
         }
     }//L8038F7A0
@@ -372,7 +371,7 @@ void func_8038F618(Actor *this){
         skeletalAnim_getProgressRange(this->unk148, &sp6C, &sp68);
 
         if(0.1 <= sp68 && sp68 <= 0.6)
-            ml_interpolate_vec3f(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
+            ml_vec3f_interpolate_fast(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
         if(sp6C < 0.6 && 0.6 <= sp68)
             func_8030E878(SFX_6C_LOCKUP_CLOSING, 1.1 + randf2(-0.05f, 0.05f), 20000, this->position, 500.0f, 1000.0f);
 
@@ -387,7 +386,7 @@ void func_8038F618(Actor *this){
         
         this->yaw += (sp44*400.0f)*sp70;
         if(skeletalAnim_getLoopCount(this->unk148) > 0){
-            if(ml_distance_vec3f(&this->position, &local->unk8) < 10.0f){
+            if(ml_vec3f_distance(&this->position, &local->unk8) < 10.0f){
                 func_8038F190(this, 1);
             }else{
                 func_8038F190(this, 2);

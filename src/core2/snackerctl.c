@@ -11,7 +11,6 @@
 #define SNACKER_BB_DIALOG_0 VER_SELECT(0xe26, 0xa68, 0, 0)
 #define SNACKER_BB_DIALOG_1 VER_SELECT(0xe33, 0xa75, 0, 0)
 
-s32 ml_vec3f_point_within_horizontal_distance(f32 *, f32, f32, f32);
 void ncFirstPersonCamera_getZoomedInRotation(f32 *);
 
 extern u8  D_8037DCCA;

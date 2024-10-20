@@ -147,10 +147,10 @@ void chTiptup_setState(Actor *this, s32 arg1){
             this->has_met_before = TRUE;
 
             if (unqPtr->unkA == 0) {
-                gcdialog_showText(ASSET_C72_TEXT_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showText(ASSET_C72_DIALOG_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
             }
             else {
-                gcdialog_showText(ASSET_C74_TEXT_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showText(ASSET_C74_DIALOG_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
             }
         }
         else {
@@ -235,7 +235,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     unqPtr = (ActorLocal_Tiptup *)&thisActor->local;
     if((s32)unqPtr->unk0 >= (s32) vector_size(unqPtr->unk4)){
-        if(!mapSpecificFlags_get(0) && gcdialog_showText(ASSET_C76_TEXT_UNKNOWN, 0, 0, 0, 0, 0))
+        if(!mapSpecificFlags_get(0) && gcdialog_showText(ASSET_C76_DIALOG_UNKNOWN, 0, 0, 0, 0, 0))
             mapSpecificFlags_set(0,1);
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
@@ -321,7 +321,7 @@ void chTiptup_update(Actor *this){
                 }
             }
             else{
-                if(ml_distance_vec3f(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
+                if(ml_vec3f_distance(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
                     chTiptup_setState(this, 2);
                 }
             }
@@ -335,12 +335,12 @@ void chTiptup_update(Actor *this){
                 }
             } //L80389370
             else{
-                if(ml_distance_vec3f(this->position, player_position) >= 300.0f)
+                if(ml_vec3f_distance(this->position, player_position) >= 300.0f)
                     chTiptup_setState(this, 1);
             }
         }//L803893A0
         if(this->state == 6){
-            if(ml_distance_vec3f(this->position, player_position) < 300.0f && !unqPtr->unk8){
+            if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
                 gcdialog_showText(0xc7d, 4, 0, 0, 0, 0);
             }

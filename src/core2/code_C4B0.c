@@ -1,10 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
 
 
-extern int        func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 extern f32        func_8031C5D4(struct0*);
 extern void       func_8031C5AC(struct0 *, f32 *);
 extern f32        func_8031C5E4(struct0*);
@@ -12,7 +12,6 @@ extern void       func_8031C5FC(struct0 *, f32);
 extern void       func_80244FC0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5);
 extern s32        func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
 extern BKCollisionTri *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
-extern f32        func_80255D70(f32 arg0);
 extern s32        func_8029463C(void);
 extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
@@ -297,7 +296,7 @@ void func_80293F0C(void){
     f32 sp2C[3];
     
     _player_getPosition(sp44);
-    if(map_get() == MAP_34_RBB_ENGINE_ROOM && func_80258424(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
+    if(map_get() == MAP_34_RBB_ENGINE_ROOM && ml_vec3f_inside_box_f(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
         func_8031C5FC(D_8037C200, 150.0f);
     } else{
         func_8031C608(D_8037C200);
@@ -429,7 +428,7 @@ void func_80294480(f32 arg0[3]){
 f32 func_802944A8(void){
      f32 sp1C[3];
      func_80294480(sp1C);
-     return func_80255D70(sp1C[1]);
+     return ml_acosf_deg(sp1C[1]);
 }
 
 void func_802944D0(f32 dst[3]){

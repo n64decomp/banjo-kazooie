@@ -8,7 +8,7 @@
 /* external function declarations */
 void func_80353064(f32 *, f32);
 void func_802BB3DC(s32, f32, f32);
-void func_80244BB0(s32, s32, s32, f32);
+void core1_7090_initSfxSource(s32, s32, s32, f32);
 
 /* public function declarations */
 void chchimpystump_update(Actor *this);
@@ -33,7 +33,7 @@ void __chchimpystump_updateShaking(Actor *this) {
         if (this->unk10_12 == 0) {
             this->unk10_12 = 1;
             func_802BB3DC(1, 3.0f, 1.0f);
-            func_80244BB0(0, 0x6A, 0x7FF8, 0.2f);
+            core1_7090_initSfxSource(0, 0x6A, 0x7FF8, 0.2f);
         }//L80386D0C
 
         this->position_x = ((globalTimer_getTime() & 1) * 2) ^ (s32) this->position_x;
@@ -67,7 +67,7 @@ void chchimpystump_update(Actor *this) {
                 this->position_y = this->actor_specific_1_f;
                 subaddie_set_state(this, CHIMPY_STUMP_STATE_3_RAISED);
                 func_802BB41C(1);
-                func_80244C78(0);
+                core1_7090_freeSfxSource(0);
             }
 
             if ((globalTimer_getTime() & 3) == 2) {

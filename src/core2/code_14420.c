@@ -1,14 +1,13 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/yaw.h"
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
-#include <core1/viewport.h>
 
 extern void controller_getJoystick(s32, f32*);
-extern f32 ml_acosf(f32);
 extern f32 player_getYaw(void);
 extern void particleEmitter_setSphericalParticleVelocityRange(ParticleEmitter *this, f32 pitch_min, f32 yaw_min, f32 radial_min, f32 pitch_max, f32 yaw_max, f32 radial_max);
 ParticleEmitter * func_802EDD8C(f32[3], f32, f32);
@@ -823,7 +822,7 @@ void func_8029C984(void){
     func_8025AB00();
     func_8025A2FC(0, 4000);
     comusic_playTrack(COMUSIC_1A_DEATH);
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
 }
 
 s32 func_8029C9C0(s32 arg0){
@@ -885,7 +884,7 @@ void func_8029CB84(void){
 
 void func_8029CBC4(void){
     func_8025A55C(-1, 4000, 0xc);
-    func_8024BD08(1);
+    core1_ce60_incOrDecCounter(TRUE);
 }
 
 void func_8029CBF4(void){
@@ -920,7 +919,7 @@ void func_8029CCC4(void){
     if(jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
         func_8028F918(2);
     }
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     func_8025A55C(0, 4000, 0xC);
     func_8025A6EC(COMUSIC_D_JINGLE_JIGGY_COLLECTED, -1);
     timedFunc_set_0(4.0f, func_8029CBF4);

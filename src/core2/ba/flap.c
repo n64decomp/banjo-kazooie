@@ -91,7 +91,7 @@ void baflap_update(void) {
     if (s_active != 0) {
         //update timers
         for(i = 0; i < 5; i++){
-            func_80259430(&s_flap_list[i]);
+            ml_sub_delta_time(&s_flap_list[i]);
         }
         if (s_flap_max_timer != 0.0f) {
             temp_f0 = s_flap_max_timer;

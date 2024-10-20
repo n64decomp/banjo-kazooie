@@ -98,7 +98,7 @@ void func_8038DB88(Actor *this){
         if(func_8030E3FC(tmp)){
             func_8030E394(this->unk44_31);
         }
-        func_8030DA44(this->unk44_31);
+        sfxsource_freeSfxsourceByIndex(this->unk44_31);
         this->unk44_31 = 0;
     }
 }

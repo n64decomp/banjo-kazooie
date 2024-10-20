@@ -39,7 +39,7 @@ f32 time_getDelta(void){
 }
 
 f32 func_8033DDB8(void){
-    return func_8024BD94()*(1/60.0);
+    return viMgr_func_8024BD94()*(1/60.0);
 }
 
 f32 func_8033DDEC(void){

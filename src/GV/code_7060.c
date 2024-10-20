@@ -38,7 +38,7 @@ void func_8038D47C(Actor *this){
             this->spawn_position_y = 2997.0f;
             this->spawn_position_z = 5884.0f;
         }//L8038D4FC
-        tmp_v0 = func_80304CAC(0x32f, this->spawn_position);
+        tmp_v0 = nodeprop_findByActorIdAndPosition_f32(ACTOR_32F_UNKNOWN, this->spawn_position);
         if(!tmp_v0){
             this->unk1C_x = -1394.0f;
             this->unk1C_y = 2811.0f;
@@ -48,7 +48,7 @@ void func_8038D47C(Actor *this){
             nodeprop_getPosition(tmp_v0, this->unk1C);
         }
         
-        tmp_v0 = func_80304CAC(0x330, this->spawn_position);
+        tmp_v0 = nodeprop_findByActorIdAndPosition_f32(ACTOR_330_UNKNOWN, this->spawn_position);
         if(!tmp_v0){
             this->velocity_x = -1424.0f;
             this->velocity_y = 2811.0f;
@@ -72,8 +72,8 @@ void func_8038D47C(Actor *this){
     if(!mapSpecificFlags_get(0x14)){
         player_getPosition(sp3C);
         if(func_8028ECAC() == 0){
-            if( ml_distance_vec3f(sp3C, this->unk1C) < 100.0f || ml_distance_vec3f(sp3C, this->velocity) < 100.0f){
-                if(gcdialog_showText(ASSET_A7B_TEXT_JINXY_MEET, 0, NULL, NULL, NULL, NULL)){
+            if( ml_vec3f_distance(sp3C, this->unk1C) < 100.0f || ml_vec3f_distance(sp3C, this->velocity) < 100.0f){
+                if(gcdialog_showText(ASSET_A7B_DIALOG_JINXY_MEET, 0, NULL, NULL, NULL, NULL)){
                     mapSpecificFlags_set(0x14, 1);
                 }
             }
@@ -102,7 +102,7 @@ void func_8038D47C(Actor *this){
             }
             if( actor_animationIsAt(this, 0.99f) ){
                 if(--this->unk38_31 == 0){
-                    gcdialog_showText(ASSET_A7C_TEXT_JINXY_ONE_EGG, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showText(ASSET_A7C_DIALOG_JINXY_ONE_EGG, 4, NULL, NULL, NULL, NULL);
                     mapSpecificFlags_set(0x14, TRUE);
                     subaddie_set_state_forward(this, 1);
                 }

@@ -3,8 +3,6 @@
 #include "math.h"
 #include "variables.h"
 
-extern f32  func_80256AB4(f32, f32, f32, f32);
-extern f32  func_8025715C(f32, f32);
 extern f32 *chVile_getPostion(ActorMarker *);
 extern void bundle_setRandomVelocity(f32);
 extern void func_802FDCB8(s32);
@@ -47,43 +45,43 @@ ActorInfo D_80390960 = {
 // Vile Wins
 enum asset_e D_80390984[] = {
     0,
-    ASSET_C66_TEXT_MR_VILE_WINS_ROUND_1,
-    ASSET_C68_TEXT_MR_VILE_WINS_ROUND_2,
-    ASSET_C6A_TEXT_MR_VILE_WINS_ROUND_3,
-    ASSET_C92_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_2,
-    ASSET_C93_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_3,
-    ASSET_C94_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_4,
+    ASSET_C66_DIALOG_MR_VILE_WINS_ROUND_1,
+    ASSET_C68_DIALOG_MR_VILE_WINS_ROUND_2,
+    ASSET_C6A_DIALOG_MR_VILE_WINS_ROUND_3,
+    ASSET_C92_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_2,
+    ASSET_C93_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_3,
+    ASSET_C94_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_4,
     0
 };
 
 // Player Wins
 enum asset_e D_803909A4[] = {
     0,
-    ASSET_C67_TEXT_MR_VILE_ROUND_2_START,
-    ASSET_C69_TEXT_MR_VILE_ROUND_3_START,
+    ASSET_C67_DIALOG_MR_VILE_ROUND_2_START,
+    ASSET_C69_DIALOG_MR_VILE_ROUND_3_START,
     0,
-    ASSET_C95_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
-    ASSET_C96_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
-    ASSET_C97_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+    ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
+    ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
+    ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3
 };
 
 // Player Wins Rematch
 enum asset_e D_803909C0[] = {
     0,
-    ASSET_C6E_TEXT_MR_VILE_LOSE_ROUND_2_REMATCH,
-    ASSET_C6F_TEXT_MR_VILE_LOSE_ROUND_3_REMATCH,
+    ASSET_C6E_DIALOG_MR_VILE_LOSE_ROUND_2_REMATCH,
+    ASSET_C6F_DIALOG_MR_VILE_LOSE_ROUND_3_REMATCH,
     0,
-    ASSET_C95_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
-    ASSET_C96_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
-    ASSET_C97_TEXT_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+    ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
+    ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
+    ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3
 };
 
 // Player Declines
 enum asset_e D_803909DC[] = {
-    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
-    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
-    ASSET_C65_TEXT_MR_VILE_PLAYER_DECLINES,
-    ASSET_C8F_TEXT_MR_VILE_PLAYER_DECLINES_EXTRA_CHALLENGE,
+    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
+    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
+    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
+    ASSET_C8F_DIALOG_MR_VILE_PLAYER_DECLINES_EXTRA_CHALLENGE,
     0,
     0,
     0
@@ -91,10 +89,10 @@ enum asset_e D_803909DC[] = {
 
 // Round 1 Regular & Extra Challenge
 enum asset_e BGS_D_803909F8[] = {
-    ASSET_C64_TEXT_MR_VILE_ROUND_1_START,
+    ASSET_C64_DIALOG_MR_VILE_ROUND_1_START,
     0,
     0,
-    ASSET_C8E_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1,
     0,
     0,
     0,
@@ -102,10 +100,10 @@ enum asset_e BGS_D_803909F8[] = {
 };
 
 enum asset_e D_80390A18[] = {
-    ASSET_C6D_TEXT_MR_VILE_LOSE_ROUND_1_REMATCH,
-    ASSET_C70_TEXT_MR_VILE_WIN_ROUND_2_REMATCH,
-    ASSET_C71_TEXT_MR_VILE_WIN_ROUND_3_REMATCH,
-    ASSET_C8E_TEXT_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    ASSET_C6D_DIALOG_MR_VILE_LOSE_ROUND_1_REMATCH,
+    ASSET_C70_DIALOG_MR_VILE_WIN_ROUND_2_REMATCH,
+    ASSET_C71_DIALOG_MR_VILE_WIN_ROUND_3_REMATCH,
+    ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1,
     0,
     0,
     0,
@@ -171,7 +169,7 @@ void BGS_func_80389850(Actor *this, s32 arg1) {
         sp7C[2] = 0.0f;
         sp7C[1] = sp94[1];
         sp7C[0] = 0.0f;
-        if(ml_distance_vec3f(sp94, sp7C) <= 1000.0f){
+        if(ml_vec3f_distance(sp94, sp7C) <= 1000.0f){
             break;
         }
     }
@@ -430,7 +428,7 @@ void chvilegame_player_consume_piece(Actor *this) {
     if ((end != begin) && BGS_func_80389810(sp44)){
         sp44[1] = 0.0f;
         for(i_ptr = begin; i_ptr < end; i_ptr++){
-            if ((ml_distance_vec3f(i_ptr->position, sp44) < 65.25) && chyumblie_is_edible(i_ptr->marker)) {
+            if ((ml_vec3f_distance(i_ptr->position, sp44) < 65.25) && chyumblie_is_edible(i_ptr->marker)) {
                 is_correct_type = ((local->current_type != YUMBLIE) && (i_ptr->type != YUMBLIE)) || (((local->current_type == YUMBLIE) && i_ptr->type == YUMBLIE));
                 if (is_correct_type) {
                     local->player_score++;
@@ -468,7 +466,7 @@ bool chvilegame_cpu_consume_piece(ActorMarker *marker, f32 position[3]) {
     begin = vector_getBegin(local->game_pieces);
     end = vector_getEnd(local->game_pieces);
     for(i_ptr = begin; i_ptr < end; i_ptr++){
-        if ((ml_distance_vec3f(i_ptr->position, position) < 50.0f) && func_8038B684(i_ptr->marker)) {
+        if ((ml_vec3f_distance(i_ptr->position, position) < 50.0f) && func_8038B684(i_ptr->marker)) {
             local->vile_score++;
             timedFunc_set_1(0.0f, (GenFunction_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
             timedFunc_set_1(0.5f, (GenFunction_1)func_802FDCB8, ITEM_1B_VILE_VILE_SCORE);
@@ -547,12 +545,12 @@ bool chvilegame_find_closest_piece(ActorMarker *marker, f32 position[0], f32 yaw
             piece_direction[0] = i_ptr->position[0] - position[0];
             piece_direction[1] = i_ptr->position[1] - position[1];
             piece_direction[2] = i_ptr->position[2] - position[2];
-            distance = ml_distance_vec3f(i_ptr->position, position);
+            distance = ml_vec3f_distance(i_ptr->position, position);
             angle_diff = func_80256AB4(target_direction[0], target_direction[2], piece_direction[0], piece_direction[2]);
             if( (distance > 300.0f) 
                 || ((-0.8 < angle_diff) && (angle_diff < 0.8) && ((piece_direction[0]*target_direction[0] + piece_direction[1]*target_direction[1] + piece_direction[2]*target_direction[2]) >= 0.0f))
             ) {
-                if ((closest_piece == NULL) || (distance < ml_distance_vec3f(position, closest_piece->position))){
+                if ((closest_piece == NULL) || (distance < ml_vec3f_distance(position, closest_piece->position))){
                     closest_piece = i_ptr;
                 }
             }

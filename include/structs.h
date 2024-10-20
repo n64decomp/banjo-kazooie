@@ -47,6 +47,10 @@ typedef struct freelist_s{
 #define FREE_LIST(T) struct freelist_s
 //^defined to keep element type with sla
 
+typedef struct {
+    f32 m[4][4];
+} MtxF;
+
 typedef struct bk_sprite_s{
     s16 frameCnt;
     s16 type;

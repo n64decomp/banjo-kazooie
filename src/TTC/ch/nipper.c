@@ -156,7 +156,7 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
 
     __chNipper_playDeathAnimation(this);
     this->lifetime_value = 80.0f;
-    gcdialog_showText(ASSET_A10_TEXT_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showText(ASSET_A10_DIALOG_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -213,13 +213,13 @@ static void __chNipper_updateFunc(Actor *this){
         if(0.0f == this->velocity_x && xVelocity){
             comusic_8025AB44(COMUSIC_12_TTC_NIPPER, -1, 5000);
             func_8032BB88(this, 0, 4000);
-            func_8024BD08(0);
+            core1_ce60_incOrDecCounter(FALSE);
         }
         else if(!xVelocity && 0.0f != this->velocity_x){
             comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 0, 300);
             func_8025AABC(COMUSIC_12_TTC_NIPPER);
             func_8032BB88(this, -1, 300);
-            func_8024BD08(1);
+            core1_ce60_incOrDecCounter(TRUE);
         }
         this->velocity_x = xVelocity;
     }
@@ -243,7 +243,7 @@ static void __chNipper_updateFunc(Actor *this){
                     && temp_v0 != 10
                 ){
                     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_5_SPAWNED, 0.01f, 1);
-                    if(gcdialog_showText(ASSET_A0E_TEXT_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
+                    if(gcdialog_showText(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
                         this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);

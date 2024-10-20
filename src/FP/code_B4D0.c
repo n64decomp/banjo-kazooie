@@ -27,7 +27,7 @@ void func_803918C0(void){
 
 void func_8039195C(void){
     if(D_803935E0.sfxsourceIdx){
-        func_8030DA44(D_803935E0.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_803935E0.sfxsourceIdx);
         D_803935E0.sfxsourceIdx = 0;
     }
 }

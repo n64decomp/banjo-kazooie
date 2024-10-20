@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
@@ -62,7 +62,7 @@ void func_80362084(f32 position[3]) {
     ParticleEmitter *pCtrl;
 
     pCtrl = partEmitMgr_newEmitter(1U);
-    particleEmitter_setSprite(pCtrl, 0x702);
+    particleEmitter_setSprite(pCtrl, ASSET_702_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
     particleEmitter_setRGB(pCtrl, D_8037337C);
     particleEmitter_setAlpha(pCtrl, 0xA0);
@@ -86,7 +86,7 @@ void func_8036215C(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0xFU);
 
-    particleEmitter_setSprite(pCtrl, 0x700);
+    particleEmitter_setSprite(pCtrl, ASSET_700_SPRITE_DUST);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 4);
     particleEmitter_setRGB(pCtrl, D_803733E8);
     particleEmitter_setAlpha(pCtrl, 0x28);
@@ -105,7 +105,7 @@ void func_803621F0(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x12U);
 
-    particleEmitter_setSprite(pCtrl, 0x702);
+    particleEmitter_setSprite(pCtrl, ASSET_702_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 3, 5);
     particleEmitter_setAlpha(pCtrl, 0xD2);
     particleEmitter_setPosition(pCtrl, arg0);
@@ -162,7 +162,7 @@ void func_80362404(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
-    particleEmitter_setSprite(pCtrl, 0x6DD);
+    particleEmitter_setSprite(pCtrl, ASSET_6DD_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80373604);
@@ -179,7 +179,7 @@ void func_8036247C(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
-    particleEmitter_setSprite(pCtrl, 0x70D);
+    particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setRGB(pCtrl, &D_80373634);
     particleEmitter_setAlpha(pCtrl, 0x64);
@@ -196,7 +196,7 @@ void func_80362510(Actor *actor) {
     f32 sp30[3];
 
     pCtrl = partEmitMgr_newEmitter(0x19U);
-    particleEmitter_setSprite(pCtrl, 0x70D);
+    particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 0, 5);
     particleEmitter_setRGB(pCtrl, D_803736A0);
     particleEmitter_setAlpha(pCtrl, 0x1E);
@@ -224,7 +224,7 @@ void func_80362680(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
-    particleEmitter_setSprite(pCtrl, 0x45A);
+    particleEmitter_setSprite(pCtrl, ASSET_45A_SPRITE_GREEN_GLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 2, 2);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8037370C);
@@ -241,7 +241,7 @@ void func_803626F8(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(1U);
 
-    particleEmitter_setSprite(pCtrl, 0x713);
+    particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setVelocityAccelerationAndPositionRanges(pCtrl, &D_8037376C);
@@ -259,7 +259,7 @@ void func_80362770(f32 arg0[3]) {
 
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(0x10U);
 
-    particleEmitter_setSprite(pCtrl, 0x714);
+    particleEmitter_setSprite(pCtrl, ASSET_714_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 7, 8);
     particleEmitter_setRGB(pCtrl, &D_803737B4);
     particleEmitter_setPosition(pCtrl, arg0);
