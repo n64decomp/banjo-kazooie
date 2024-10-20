@@ -114,7 +114,7 @@ void __baMarker_8028B848(void){
         s0 = ASSET_E57_DIALOG_FIRST_JIGGY;
     }
     else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
-        s0 = ASSET_B45_TEXT_JIGGY_COLLECT_10;
+        s0 = ASSET_B45_DIALOG_JIGGY_COLLECT_10;
     }
 
     if(s0){

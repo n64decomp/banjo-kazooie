@@ -367,7 +367,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
-                    gcdialog_showText(ASSET_B9F_TEXT_UNKNOWN, 4, 0, 0, 0, 0);
+                    gcdialog_showText(ASSET_B9F_DIALOG_UNKNOWN, 4, 0, 0, 0, 0);
                 }
             }//L8038D278
         }

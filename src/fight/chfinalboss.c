@@ -1954,7 +1954,7 @@ void chfinalboss_func_8038B780(ActorMarker *marker) {
     sp24 = marker_getActor(marker);
     if (!fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) {
         fileProgressFlag_set(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT, TRUE);
-        gcdialog_showText(ASSET_10E7_TEXT_UNKNOWN, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
+        gcdialog_showText(ASSET_10E7_DIALOG_UNKNOWN, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
     }
     else{
         gcdialog_showText(randi2(0, 5) + 0x10E8, 0x2B, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
@@ -2067,7 +2067,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
 
         if (local->player_hit_in_phase1 == 0) {
-            if (gcdialog_showText(randi2(0, 5) + ASSET_10ED_TEXT_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
+            if (gcdialog_showText(randi2(0, 5) + ASSET_10ED_DIALOG_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
                 local->player_hit_in_phase1++;
             }
         }
@@ -2076,7 +2076,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
     if (local->phase == FINALBOSS_PHASE_3_FLIGHT) {
         if ((local->player_hit_in_phase3 == 0) && (this->state != 0x1A)) {
             local->player_hit_in_phase3++;
-            gcdialog_showText(randi2(0, 5) + ASSET_111D_TEXT_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showText(randi2(0, 5) + ASSET_111D_DIALOG_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

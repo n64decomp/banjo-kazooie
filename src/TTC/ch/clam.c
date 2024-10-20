@@ -244,7 +244,7 @@ static void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_ma
     
     if(func_80297C6C() == 3) return;
 
-    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showText(ASSET_A14_TEXT_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
+    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showText(ASSET_A14_DIALOG_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN, TRUE);
     }
 

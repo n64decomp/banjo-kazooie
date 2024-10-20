@@ -60,7 +60,7 @@ static void __chLeaky_updateFunc(Actor *this) {
         && !this->has_met_before
         && func_80329530(this, 250) && !func_80329530(this, 160)
         && !func_8028ECAC() 
-        && gcdialog_showText(ASSET_A1A_TEXT_LEAKY_FIRST_MEET, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showText(ASSET_A1A_DIALOG_LEAKY_FIRST_MEET, 0, NULL, NULL, NULL, NULL)
     ){
         this->has_met_before = TRUE;
     }
@@ -118,6 +118,6 @@ bool chLeaky_eggCollision(ActorMarker *marker){
 
     levelSpecificFlags_set(2, TRUE);
     levelSpecificFlags_set(5, TRUE);
-    gcdialog_showText(ASSET_A28_TEXT_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_showDoneText, NULL);
+    gcdialog_showText(ASSET_A28_DIALOG_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_showDoneText, NULL);
     return TRUE;
 }

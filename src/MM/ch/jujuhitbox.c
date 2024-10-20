@@ -138,7 +138,7 @@ void chjujuhitbox_update(Actor *this) {
     }
 
     if (func_80329530(this, 0xfa) && !func_80329530(this, 0x50) && !func_8028ECAC()) {
-        if (!this->has_met_before && gcdialog_showText(ASSET_B44_TEXT_JUJU_MEET, 0, 0, 0, NULL, NULL)) {
+        if (!this->has_met_before && gcdialog_showText(ASSET_B44_DIALOG_JUJU_MEET, 0, 0, 0, NULL, NULL)) {
             this->has_met_before = TRUE;
         }
     }

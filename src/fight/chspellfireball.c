@@ -184,21 +184,21 @@ void chSpellFireball_collisionDie(ActorMarker *marker, ActorMarker *other) {
 
     switch(volatileFlag_getN(VOLATILE_FLAG_23_FINAL_BOSS_PHASE, 3)) {
         case FINALBOSS_PHASE_1_BROOMSTICK:
-            if (!sFightPlayerHitBySpellInPhase1 && gcdialog_showText(randi2(0, 5) + ASSET_10F2_TEXT_FINALBOSS_PHASE_1_OPTION_1, 0, 0, 0, 0, 0))
+            if (!sFightPlayerHitBySpellInPhase1 && gcdialog_showText(randi2(0, 5) + ASSET_10F2_DIALOG_FINALBOSS_PHASE_1_OPTION_1, 0, 0, 0, 0, 0))
             {
                 sFightPlayerHitBySpellInPhase1 = TRUE;
             }
             break;
 
         case FINALBOSS_PHASE_2_AIR:
-            if (!sFightPlayerHitBySpellInPhase2 && gcdialog_showText(randi2(0, 5) + ASSET_110B_TEXT_FINALBOSS_PHASE_2_OPTION_1, 0, 0, 0, 0, 0))
+            if (!sFightPlayerHitBySpellInPhase2 && gcdialog_showText(randi2(0, 5) + ASSET_110B_DIALOG_FINALBOSS_PHASE_2_OPTION_1, 0, 0, 0, 0, 0))
             {
                 sFightPlayerHitBySpellInPhase2 = TRUE;
             }
             break;
 
         case FINALBOSS_PHASE_3_FLIGHT:
-            if (!sFightPlayerHitBySpellInPhase3 && gcdialog_showText(randi2(0, 5) + ASSET_1122_TEXT_FINALBOSS_PHASE_3_OPTION_1, 0, 0, 0, 0, 0))
+            if (!sFightPlayerHitBySpellInPhase3 && gcdialog_showText(randi2(0, 5) + ASSET_1122_DIALOG_FINALBOSS_PHASE_3_OPTION_1, 0, 0, 0, 0, 0))
             {
                 sFightPlayerHitBySpellInPhase3 = TRUE;
             }
@@ -207,7 +207,7 @@ void chSpellFireball_collisionDie(ActorMarker *marker, ActorMarker *other) {
         case FINALBOSS_PHASE_4_JINJOS:
             if (!sFightPlayerHitBySpellInPhase4 &&
                 chfinalboss_isJinjoSpawned() &&
-                gcdialog_showText(randi2(0, 5) + ASSET_113B_TEXT_FINALBOSS_PHASE_4_OPTION_1, 0, 0, 0, 0, 0))
+                gcdialog_showText(randi2(0, 5) + ASSET_113B_DIALOG_FINALBOSS_PHASE_4_OPTION_1, 0, 0, 0, 0, 0))
             {
                 sFightPlayerHitBySpellInPhase4 = TRUE;
             }
@@ -216,7 +216,7 @@ void chSpellFireball_collisionDie(ActorMarker *marker, ActorMarker *other) {
         case FINALBOSS_PHASE_5_JINJONATOR:
             if (!sFightPlayerHitBySpellInPhase5 &&
                 chfinalboss_isJinjonatorSpawned() &&
-                gcdialog_showText(randi2(0, 5) + ASSET_1154_TEXT_FINALBOSS_PHASE_5_OPTION_1, 0, 0, 0, 0, 0))
+                gcdialog_showText(randi2(0, 5) + ASSET_1154_DIALOG_FINALBOSS_PHASE_5_OPTION_1, 0, 0, 0, 0, 0))
             {
                 sFightPlayerHitBySpellInPhase5 = TRUE;
             }
