@@ -1,14 +1,11 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
 #include "gc/gctransition.h"
 
 #define MAIN_THREAD_STACK_SIZE 0x17F0
-
-
-void setBootMap(enum map_e);
-void func_8023DFF0(s32);
 
 #if VERSION == VERSION_PAL
     extern s32 D_80000300;
@@ -17,10 +14,7 @@ void func_8023DFF0(s32);
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
 u32 gGlobalTimer = 0;
-u32 sDebugVar_8027561C[] = { // never used
-    0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0, 
-    0x1, 0x6, 0xD,  -1
-};
+u32 sDebugVar_8027561C[] = { 0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0,  0x1, 0x6, 0xD,  -1 }; // never used
 u32 D_80275650 = VER_SELECT(0xAD019D3C, 0xA371A8F3, 0, 0); //SM_DATA_CRC_1
 u32 D_80275654 = VER_SELECT(0xD381B72F, 0xD0709154, 0, 0); //SM_DATA_CRC_2
 char sDebugVar_80275658[] = VER_SELECT("HjunkDire:218755", "HjunkDire:300875", "HjunkDire:", "HjunkDire:");
@@ -33,12 +27,10 @@ u64 sDebugVar_8027A540; // never used
 u8 sMainThreadStack[MAIN_THREAD_STACK_SIZE]; // The real size of the stack is unclear yet, maybe there are some out-optimized debug variables below the stack
 OSThread sMainThread;
 s32 gBootMap;
-s32 gDisableInput;
-u64 sDebugVar_8027BEF0; // never used
+static bool sDisableInput;
+static u64 sDebugVar_8027BEF0; // never used
 
 extern u8 core2_TEXT_START[];
-
-extern u16 D_803A5D00[2][0x1ECC0/2];
 
 void func_8023DA20(s32 arg0){ 
     bzero(&D_8027A130, core2_TEXT_START - (u8*)&D_8027A130);
@@ -55,7 +47,7 @@ void func_8023DA74(void){
 
 void func_8023DA9C(s32 arg0){
     func_80254008();
-    func_8024C428();
+    viMgr_clearFramebuffers();
     if (D_8027A130 == 4){
         func_802E3580();
     }
@@ -70,7 +62,7 @@ void func_8023DA9C(s32 arg0){
     if (D_8027A130 == 4){
         dummy_func_802E35D0();
     }
-    dummy_func_80255CD8();
+    ucode_stub1();
 }
 
 u32 globalTimer_getTimeMasked(u32 mask){
@@ -107,10 +99,10 @@ void core1_init(void) {
 #if VERSION == VERSION_PAL
      osTvType = 0;
 #endif
-    func_80255C30();
+    ucode_load();
     setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table
-    func_8024BE30();
+    viMgr_init();
     overlayManagerloadCore2();
     sDebugVar_8027BEF0 = sDebugVar_8027A538;
     heap_init();
@@ -151,14 +143,14 @@ void mainLoop(void){
     if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
         globalTimer_incTimer();
     
-    if(!gDisableInput)
+    if (!sDisableInput)
         pfsManager_update();
-    gDisableInput = 0;
+    sDisableInput = FALSE;
 
     rumbleManager_80250C08();
 
     if(!mapSpecificFlags_validateCRC1()){
-        write_file_blocks(0, 0, 0x80397AD0, 0x40);
+        eeprom_writeBlocks(0, 0, 0x80397AD0, 0x40);
     }
 
     switch(D_8027A130){
@@ -185,7 +177,7 @@ void mainLoop(void){
     ){
         s32 offset;
         //render weird CRC failure image
-        for(y= 0x1e; y < framebuffer_height - 0x1e; y++){//L8023DEB4
+        for(y= 0x1e; y < gFramebufferHeight - 0x1e; y++){//L8023DEB4
             for(x = 0x14; x < 0xeb; x++){
                 tmp = ((8 * globalTimer_getTime()) + ((x*x) + (y*y)));
                 
@@ -196,9 +188,9 @@ void mainLoop(void){
                 
                 rgba = b | r | g | a;
                 
-                offset = ((framebuffer_width - 0xFF) / 2) + x + (y*framebuffer_width);
-                D_803A5D00[0][offset] = (s32) rgba;
-                D_803A5D00[1][offset] = (s32) rgba;
+                offset = ((gFramebufferWidth - 0xFF) / 2) + x + (y*gFramebufferWidth);
+                gFramebuffers[0][offset] = (s32) rgba;
+                gFramebuffers[1][offset] = (s32) rgba;
             }
         }
     }//L8023DF70
@@ -234,5 +226,5 @@ OSThread *mainThread_get(void) {
 }
 
 void disableInput_set(void){
-    gDisableInput = 1;
+    sDisableInput = TRUE;
 }

@@ -1,7 +1,4 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
 #include "rarezip.h"
 
 struct huft *D_80007270;

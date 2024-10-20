@@ -1,20 +1,18 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
 #include "version.h"
 #include "prop.h"
-#include "SnS.h"
 
 extern void func_803012F8(void);
-extern f32 ml_distanceSquared_vec3f(f32 arg0[3], f32 arg1[3]);
 extern void __baMarker_8028BA00(s32);
 extern void spawnQueue_actor_s16(void);
 extern void func_802A6388(f32);
 extern f32 chwadingboots_802D6E4C(Actor *);
 extern void set_turbo_duration(f32);
 extern f32 chtrainers_getDuration(Actor *);
-extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);

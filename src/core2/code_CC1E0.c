@@ -7,8 +7,6 @@
 
 extern void func_80244D94(f32[3], f32[3], f32[3], u32, f32);
 
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
-
 extern f32 func_8033EA14(s32);
 extern void func_8033EA40(s32, f32);
 extern void projectile_setSprite(u8, enum asset_e);

@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 extern void func_80288C7C(VLA**);
 extern void func_80288D84(s32, f32, void (*)(s32,s32), s32, s32);

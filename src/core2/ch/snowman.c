@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern int ml_vec3f_within_horizontal_distance(f32[3], f32[3], f32);
 extern void func_802EFA20(ParticleEmitter *, f32, f32);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 extern void func_80328FB0(Actor *, f32);

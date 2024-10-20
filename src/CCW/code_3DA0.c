@@ -111,13 +111,13 @@ void chcaterpillar_update(Actor *this){
     if(this->state == 1){
         skeletalAnim_getProgressRange(this->unk148, &sp64, &sp60);
         player_getPosition(sp74);
-        if(ml_distance_vec3f(this->position, local->unk0) < 10.0f){
+        if(ml_vec3f_distance(this->position, local->unk0) < 10.0f){
             for(i = 0; i < 10; i++){
                 
                 local->unk0[0] = randf2(-300.0f, 300.0f) + this->position_x;
                 local->unk0[1] = this->position_y;
                 local->unk0[2] = randf2(-300.0f, 300.0f) + this->position_z;
-                if( !(ml_distance_vec3f(local->unk0, this->position) < 50.0f) && func_80329210(this, local->unk0))
+                if( !(ml_vec3f_distance(local->unk0, this->position) < 50.0f) && func_80329210(this, local->unk0))
                     break;
             }//L8038A544
             if(i == 10){
@@ -150,7 +150,7 @@ void chcaterpillar_update(Actor *this){
             }
         }//L8038A714
 
-        if(ml_distance_vec3f(this->position, sp74) < 50.0f){
+        if(ml_vec3f_distance(this->position, sp74) < 50.0f){
             func_8028F030(ACTOR_2A2_CATERPILLAR);
             if(!volatileFlag_get(VOLATILE_FLAG_B2)){
                 gcdialog_showText(ASSET_CC7_TEXT_UNKNOWN, 4, NULL, NULL, NULL, NULL);
@@ -177,7 +177,7 @@ void chcaterpillar_update(Actor *this){
         local->unk24 += 3.3333333333333335*sp84;
 
         local->unk24 = (1.0 < local->unk24) ? 1.0 : local->unk24;
-        ml_interpolate_vec3f(this->position, local->unkC, local->unk18, local->unk24);
+        ml_vec3f_interpolate_fast(this->position, local->unkC, local->unk18, local->unk24);
         
         this->position[1] += 50.0f*sinf(local->unk24*3.141592654);
         if(1.0 == local->unk24){

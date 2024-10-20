@@ -1,8 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#include "core1/rarezip.h"
+#include "core1/core1.h"
 
 /* static */ int huft_build(b, n, s, d, e, t, m)
 unsigned *b;            /* code lengths in bits (all assumed <= BMAX) */

@@ -152,42 +152,42 @@ segments:
   - [0xF1AF50, c, code_1D00]                  #DONE
   - [0xF1BE20, c, pimanager]    
   - [0xF1BFF0, c, defragmanager]              #DONE
-  - [0xF1C1F0, c, code_2FA0]                  #DONE
+  - [0xF1C1F0, c, stub_2FA0]                  #DONE
   - [0xF1C410, c, initthread]                  #DONE
   - [0xF1C4A0, c, code_3250]                  #DONE
-  - [0xF1CCC0, c, code_3A70]                  #DONE
+  - [0xF1CCC0, c, stub_3A70]                  #DONE
   - [0xF1E8A0, c, code_5650]    
   - [0xF202E0, c, code_7090]                  #DONE
   - [0xF20500, c, code_72B0]                  #DONE
   - [0xF211B0, c, code_7F60]                  #DONE
   - [0xF21EA0, c, code_8C50]                  #DONE
   - [0xF22F80, c, code_9D30]                  #DONE
-  - [0xF23E00, c, code_ABB0]                  #DONE
+  - [0xF23E00, c, framebufferdraw]                  #DONE
   - [0xF260B0, c, code_CE60]                  #DONE
-  - [0xF275B0, c, code_E360]                  #DONE
-  - [0xF27D40, c, code_EAF0]                  #DONE
-  - [0xF29C50, c,code_10A00]    
+  - [0xF275B0, c, vimgr]                  #DONE
+  - [0xF27D40, c, viewport]                  #DONE
+  - [0xF29C50, c,pfsmanager]    
   - [0xF2AD10, c, code_11AC0]                 #DONE
   - [0xF2C160, c, rumblemanager]                 #DONE
-  - [0xF2C890, c, code_13640]                 #DONE
-  - [0xF2C8D0, c, code_13680]                 #DONE
+  - [0xF2C890, c, stub_13640]                 #DONE
+  - [0xF2C8D0, c, sprite]                 #DONE
   - [0xF2C920, c, overlaymanager]                 #DONE
-  - [0xF2CBE0, c, code_13990]   
+  - [0xF2CBE0, c, mlmtx]   
   - [0xF2E840, hasm, code_155F0]              #DONE
   - [0xF2E880, c, overlay]                 #DONE
-  - [0xF2E9C0, c, code_15770]                 #DONE
+  - [0xF2E9C0, c, depthbuffer]                 #DONE
   - [0xF2ED80, c, code_15B30]                 #DONE
   - [0xF2FCA0, c, memory]                     #DONE
-  - [0xF31360, c, code_18110]                 #DONE
-  - [0xF31460, c, code_18210]                 #DONE
-  - [0xF31560, c, code_18310]                 #DONE
-  - [0xF315A0, c, code_18350]                 #DONE
+  - [0xF31360, c, eeprom]                 #DONE
+  - [0xF31460, c, ucode]                 #DONE
+  - [0xF31560, c, lookup]                 #DONE
+  - [0xF315A0, c, ml]                 #DONE
   - [0xF350E0, c, code_1BE90]                 #DONE
-  - [0xF367E0, c, code_1D590]                 #DONE
+  - [0xF367E0, c, stub_1D590]                 #DONE
   - [0xF36810, hasm, code_1D5C0]              #DONE
   - [0xF36820, c, code_1D5D0]                 #DONE
-  - [0xF375B0, c, code_1E360]                 #DONE
-  - [0xF37930, c, code_1E6E0]                 #DONE
+  - [0xF375B0, c, sns]                 #DONE
+  - [0xF37930, c, crccalc]                 #DONE
   - [0xF37A70, hasm, code_1E820]              #DONE
   - [0xF37B10, c, audio/n_sl]                 #DONE
   - [0xF37BA0, c, audio/n_synthesizer]        #DONE
@@ -365,30 +365,30 @@ segments:
   - [0xF50EA0, .data, code_660]
   - [0xF50FA0, .data, code_1D00]
   - [0xF51080, bin, data_37E30] #unreferenced
-  - [0xF51090, .data, code_2FA0]
+  - [0xF51090, .data, stub_2FA0]
   - [0xF510A0, .data, code_3250]
-  - [0xF510B0, .data, code_3A70]
+  - [0xF510B0, .data, stub_3A70]
   - [0xF510F0, .data, code_5650]
   - [0xF51110, .data, code_7090]
   - [0xF51120, bin, data_37ED0] #unreferenced
   - [0xF51130, .data, code_7F60]
   - [0xF51140, .data, code_8C50]
   - [0xF51280, .data, code_9D30]
-  - [0xF51430, .data, code_ABB0]
+  - [0xF51430, .data, framebufferdraw]
   - [0xF51440, .data, code_CE60]
-  - [0xF514B0, .data, code_E360]
-  - [0xF51550, .data, code_EAF0]
-  - [0xF51560, .data, code_10A00]
+  - [0xF514B0, .data, vimgr]
+  - [0xF51550, .data, viewport]
+  - [0xF51560, .data, pfsmanager]
   - [0xF51570, .data, code_11AC0]
   - [0xF51B00, .data, overlaymanager]
-  - [0xF51DA0, .data, code_13990]
+  - [0xF51DA0, .data, mlmtx]
   - [0xF51DB0, .data, code_15B30]
   - [0xF51DC0, .data, memory]
-  - [0xF51DF0, .data, code_18310]
-  - [0xF524E0, .data, code_18350]
+  - [0xF51DF0, .data, lookup]
+  - [0xF524E0, .data, ml]
   - [0xF52660, .data, code_1BE90]
   - [0xF52670, .data, code_1D5D0]
-  - [0xF52690, .data, code_1E360]
+  - [0xF52690, .data, sns]
   - [0xF526A0, .data, data_1E820]
   - [0xF526B0, .data, audio/n_sl]
   - [0xF526C0, .data, audio/n_drvrNew]
@@ -412,19 +412,19 @@ segments:
   - [0xF52DB0, .data, io/vimodentsclan1]
   - [0xF52E50, .rodata, code_1D00]
   - [0xF52E70, .rodata, code_3250]
-  - [0xF52E80, .rodata, code_3A70]
+  - [0xF52E80, .rodata, stub_3A70]
   - [0xF52E90, .rodata, code_5650]
   - [0xF52EF0, .rodata, code_72B0]
   - [0xF52F10, .rodata, code_7F60]
   - [0xF52F30, .rodata, code_9D30]
   - [0xF52F50, .rodata, code_CE60]
-  - [0xF53220, .rodata, code_EAF0]
-  - [0xF532A0, .rodata, code_10A00]
+  - [0xF53220, .rodata, viewport]
+  - [0xF532A0, .rodata, pfsmanager]
   - [0xF539B0, .rodata, code_11AC0]
   - [0xF539C0, .rodata, rumblemanager]
   - [0xF539D0, .rodata, overlaymanager]
-  - [0xF53A50, .rodata, code_13990]
-  - [0xF53A70, .rodata, code_18350]
+  - [0xF53A50, .rodata, mlmtx]
+  - [0xF53A70, .rodata, ml]
   - [0xF53B70, .rodata, code_1BE90]
   - [0xF53BA0, .rodata, code_1D5D0]
   - [0xF53C00, .rodata, audio/n_synthesizer]
@@ -464,22 +464,22 @@ segments:
   - [0xF55960, .bss, code_7090]
   - [0xF55960, .bss, code_72B0]
   - [0xF55960, .bss, code_8C50]
-  - [0xF55960, .bss, code_ABB0]
+  - [0xF55960, .bss, framebufferdraw]
   - [0xF55960, .bss, code_CE60]
-  - [0xF55960, .bss, code_E360]
-  - [0xF55960, .bss, code_EAF0]
-  - [0xF55960, .bss, code_10A00]
+  - [0xF55960, .bss, vimgr]
+  - [0xF55960, .bss, viewport]
+  - [0xF55960, .bss, pfsmanager]
   - [0xF55960, .bss, code_11AC0]
   - [0xF55960, .bss, rumblemanager]
-  - [0xF55960, .bss, code_13640]
+  - [0xF55960, .bss, stub_13640]
   - [0xF55960, .bss, overlaymanager]
-  - [0xF55960, .bss, code_13990]
-  - [0xF55960, .bss, code_15770]
+  - [0xF55960, .bss, mlmtx]
+  - [0xF55960, .bss, depthbuffer]
   - [0xF55960, .bss, code_15B30]
   - [0xF55960, .bss, memory]
-  - [0xF55960, .bss, code_18210]
+  - [0xF55960, .bss, ucode]
   - [0xF55960, .bss, code_1D5D0]
-  - [0xF55960, .bss, code_1E360]
+  - [0xF55960, .bss, sns]
   - [0xF55960, .bss, os/initialize]
   - [0xF55960, .bss, io/pimgr]
   - [0xF55960, .bss, io/sptask]

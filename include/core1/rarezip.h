@@ -1,7 +1,5 @@
-#ifndef RAREZIP_H
-#define RAREZIP_H
-#include <ultra64.h>
-
+#ifndef BANJO_KAZOOIE_CORE1_RAREZIP_H
+#define BANJO_KAZOOIE_CORE1_RAREZIP_H
 
 extern u8  D_80275670[]; 
 //border[]= {    /* Order of the bit length code lengths */

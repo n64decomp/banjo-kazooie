@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 
 typedef struct{
@@ -283,7 +283,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
 
 //This functions seperates the fonts into letters
 FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
-    BKSpriteFrame * font = spriteGetFramePtr(alphaMask, 0);
+    BKSpriteFrame * font = sprite_getFramePtr(alphaMask, 0);
     BKSpriteTextureBlock *chunkPtr;
     FontLetter * sp2C = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
     u8* palDataPtr;
@@ -320,7 +320,7 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
             {
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(spriteGetFramePtr(textureSprite, 0) + 1));
+                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(sprite_getFramePtr(textureSprite, 0) + 1));
                     sp2C[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkDataPtr = (u8*)(chunkPtr + 1);
@@ -740,8 +740,8 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx *
 
             temp_f24 = (sp214->x - 1.0);
             spD0 = sp214->y - 1.0;
-            temp_f26 = (f64) sp200 - (f32) framebuffer_width * 0.5;
-            spC0 = (f64)f28 - (f32)framebuffer_height*0.5 -0.5f;
+            temp_f26 = (f64) sp200 - (f32) gFramebufferWidth * 0.5;
+            spC0 = (f64)f28 - (f32)gFramebufferHeight*0.5 -0.5f;
             gSPVertex((*gfx)++, *vtx, 4, 0);
             for(iy = 0.0f; iy < 2.0; iy+= 1.0){
                 for(ix = 0.0f; ix < 2.0; ix += 1.0){

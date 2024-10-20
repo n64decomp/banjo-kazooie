@@ -4,7 +4,6 @@
 
 #include <core2/file.h>
 
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
 extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 
@@ -44,7 +43,7 @@ extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[
     D_80383570.unk44 = D_80383570.unk4;
     iPtr = start_ptr;
     for(; iPtr < end_ptr && D_80383570.unk44 < D_80383570.unk48; iPtr++){
-        if(iPtr->unk34 && ml_distance_vec3f(position, iPtr->unk0) < iPtr->unk1C + arg4){
+        if(iPtr->unk34 && ml_vec3f_distance(position, iPtr->unk0) < iPtr->unk1C + arg4){
             mlMtx_apply_vec3f(iPtr->unkC, iPtr->unk0);
             iPtr->unk20 = iPtr->unk18/scale;
             iPtr->unk24 = iPtr->unk1C/scale;
@@ -157,7 +156,7 @@ s32 func_803339A4(f32 arg0[3]){
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
         if(iPtr->unk34){
-            if(tmp_s0 == NULL || ml_distance_vec3f(arg0, iPtr->unk0) < ml_distance_vec3f(arg0, tmp_s0->unk0)){
+            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->unk0) < ml_vec3f_distance(arg0, tmp_s0->unk0)){
                 tmp_s0 = iPtr;
             }
         }
@@ -249,7 +248,7 @@ void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 sca
 
         for(struct_ptr_ptr = &D_80383570.unk4[0]; struct_ptr_ptr < D_80383570.unk44;struct_ptr_ptr++){
             struct_ptr = *struct_ptr_ptr;
-            temp_f0 = ml_distance_vec3f(struct_ptr->unkC, sp74);
+            temp_f0 = ml_vec3f_distance(struct_ptr->unkC, sp74);
             if (!(struct_ptr->unk24 <= temp_f0)) {
                 if (temp_f0 <= struct_ptr->unk20) {
                     sp68[0] = sp68[0] + struct_ptr->unk28[0];

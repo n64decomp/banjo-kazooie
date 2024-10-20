@@ -495,7 +495,7 @@ void chSmBottles_update(Actor *this) {
                 (this->unkF4_8 == 8 && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)) ||
                 (this->unkF4_8 == 8 && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
             ) {//L80389C50
-                if (((ml_distance_vec3f(plyr_pos, this->unk1C) < this->actor_specific_1_f) && func_8028F20C()) ||
+                if (((ml_vec3f_distance(plyr_pos, this->unk1C) < this->actor_specific_1_f) && func_8028F20C()) ||
                     mapSpecificFlags_get(SM_SPECIFIC_FLAG_10)
                 ) {//L80389C8C
                     if (func_80329530(this, 0x96)) {

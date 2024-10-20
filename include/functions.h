@@ -14,8 +14,6 @@
 #include "core2/core2.h"
 
 #include "math.h" // ToDo: sort out actual dependencies
-#include "ml.h"
-#include "ml/mtx.h"
 #include "bs_funcs.h"
 
 #include "bsint.h"
@@ -45,19 +43,7 @@ void * malloc(s32 size);
 void free(void*);
 void *realloc(void* ptr, s32 size);
 
-f32 ml_map_f(f32 val, f32 in_min, f32 in_max, f32 out_min, f32 out_max);
-float mlNormalizeAngle(float);
-f32 ml_max_f(f32, f32);
-f32 ml_min_f(f32, f32);
-void ml_vec3f_copy(f32 dst[3], f32 src[3]);
-
-void ml_vec3f_add(f32 dst[3], f32 src1[3], f32 src2[3]);
-void ml_vec3f_scale(f32 vec[3], f32 scale);
-void ml_vec3f_scale_copy(f32 dst[3], f32 src[3], f32 scale);
-
 float gu_sqrtf(float val);
-
-BKSpriteFrame *spriteGetFramePtr(BKSprite *, u32); 
 
 bool  baanim_isAt(f32);
 void baanim_playForDuration_once(enum asset_e anim_id, f32 duration);
@@ -226,22 +212,7 @@ void particleEmitter_setSpawnInterval(ParticleEmitter *, f32);
 OSContPad *func_8024F3F4(void);
 OSMesgQueue *pfsManager_getFrameReplyQ(void);
 
-void ml_vec3f_clear(f32 dst[3]);
-void ml_vec3f_roll_rotate_copy(f32[3], f32[3], f32);
 void rumbleManager_80250D94(f32, f32, f32);
-void func_80256E24(f32[3], f32, f32, f32, f32, f32);
-void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2);
-f32  func_80257A44(f32, f32);
-f32  ml_interpolate_f(f32, f32, f32);
-f32  ml_mapAbsRange_f(f32, f32, f32, f32, f32);
-int  func_80257F18(f32 src[3], f32 target[3], f32 *yaw);
-bool func_8025801C(f32[3], f32*);
-
-f32  mlAbsF(f32);
-f32  ml_clamp_f(f32, f32, f32);
-f32  ml_remainder_f(f32, f32);
-void func_802589E4(f32 dst[3], f32 yaw, f32 length);
-f32  mlDiffDegF(f32, f32);
 
 void func_8025A6EC(enum comusic_e, s32);
 void comusic_playTrack(enum comusic_e);
@@ -456,15 +427,12 @@ Actor *actorArray_findClosestActorFromActorId(f32 position[3], enum actor_e acto
 Actor *subaddie_getLinkedActor(Actor *);
  
  /* used in RBB */
-void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
-int ml_timer_update(f32 *arg0, f32 arg1);
 Actor *actor_draw(ActorMarker *, Gfx**, Mtx**, Vtx **);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8032AA58(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
-f32 ml_distance_vec3f(f32 [3], f32 [3]);
 void timed_setStaticCameraToNode(f32, s32);
 void timed_exitStaticCamera(f32);
 int actor_animationIsAt(Actor*, f32);
@@ -479,10 +447,8 @@ void func_802FA060(s32, s32, s32, f32);
 Actor *actorArray_findActorFromActorId(enum actor_e);
 f32 func_8038A6B8(ActorMarker *);
 void *defrag_asset(void *);
-void ml_interpolate_vec3f(f32 [3], f32 [3], f32 [3], f32);
 void sfxsource_set_fade_distances(u8, f32, f32);
 void func_8030DB04(u8, s32, f32 position[3], f32, f32);
-void func_80258A4C(f32 [3], f32, f32 [3], f32 *, f32 *, f32 *);
 
 
 void func_802E4078(enum map_e map, s32 exit, s32 transition);
@@ -494,7 +460,6 @@ void mapSpecificFlags_set(s32, s32);
 
 struct0 *func_8031B9D8(void);
 
-extern int  func_80259808(f32);
 void actor_playAnimationOnce(Actor *);
 void actor_loopAnimation(Actor *);
 
@@ -504,7 +469,6 @@ void actor_update_func_80326224(Actor *this);
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 [3], f32, f32);
 
-void glcrc_calc_checksum(void *start, void *end, u32 *checksum);
 f32 climbGetBottomY(void);
 f32 climbGetTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);

@@ -3,7 +3,6 @@
 
 #include <ultra64.h>
 #include "generic.h"
-#include "ml/mtx.h"
 
 #ifndef NONMATCHING
 #define animctrl_start(this, file, line) _animctrl_start(this, file, line)

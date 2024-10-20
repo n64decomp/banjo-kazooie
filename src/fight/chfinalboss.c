@@ -3,7 +3,6 @@
 #include "variables.h"
 #include "fight.h"
 
-extern f32  func_8025715C(f32, f32);
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 s32 func_803297C8(Actor*, f32*);
@@ -13,7 +12,6 @@ extern void func_803298D8();
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
-extern f32 func_80257204(f32, f32, f32, f32);
 extern void func_8028F85C(f32[3]);
 extern void player_setIdealRotation(f32[3]);
 extern f32 func_8033229C(ActorMarker *);
@@ -500,7 +498,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
     diff[2] = arg1[2] - this->position[2];
 
     if (arg5 != 0.00f) {
-        if (ml_distance_vec3f(this->position, arg1) < arg5) {
+        if (ml_vec3f_distance(this->position, arg1) < arg5) {
             ml_vec3f_set_length(diff, arg3 * 4.00f);
         } else {
             ml_vec3f_set_length(diff, arg3 * 1.00f);
@@ -529,7 +527,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
 
     this->yaw += (arg4 * temp.pos_x * dt);
 
-    if (ml_distance_vec3f(this->position, arg1) < arg6) {
+    if (ml_vec3f_distance(this->position, arg1) < arg6) {
         return TRUE;
     }
     return FALSE;
@@ -696,7 +694,7 @@ void chfinalboss_func_80387D4C(Actor *actor) {
     sp20[1] = -2.0 * (100.0f - local->unk1C);
     sp20[2] = actor->velocity[2] * local->unk14;
 
-    ml_vec3f_normalize(sp20, actor);
+    ml_vec3f_normalize(sp20);
     sp20[0] = sp20[0] * actor->actor_specific_1_f;
     sp20[1] = sp20[1] * actor->actor_specific_1_f;
     sp20[2] = sp20[2] * actor->actor_specific_1_f;
@@ -915,7 +913,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 3:
         chfinalboss_func_80386600(this->marker, 0);
         chfinalboss_spawnBroomstickGlowParticles(this);
-        sp50 = ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
+        sp50 = ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
         chfinalboss_func_80387ACC(this, 60.0f * sp54);
         if (chfinalboss_func_80387470(this, this->unk1C, sp50, 1800.0f, 200.0f, 500.0f, 300.0f)) {
             chfinalboss_phase1_setState(this, 4);
@@ -1117,7 +1115,7 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
         case 14:
             chfinalboss_spawnBroomstickGlowParticles(this);
             chfinalboss_func_80387ACC(this, 30.0f * sp4C);
-            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
                 local->unkA = 1;
                 chfinalboss_phase2_setState(this, 0xF);
             }

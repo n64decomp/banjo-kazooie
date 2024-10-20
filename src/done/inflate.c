@@ -1,7 +1,4 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
 #include "rarezip.h"
 
 u8 border[] = {    /* Order of the bit length code lengths */

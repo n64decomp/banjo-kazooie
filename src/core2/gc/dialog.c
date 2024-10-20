@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
@@ -373,7 +374,7 @@ void gcdialog_update(void) {
     ret = -1;
 
     if (g_Dialog.u8.unk128_31 & 0x80) {
-        func_8024E5A8(0, controller_face_buttons);
+        pfsManager_getFirstControllerFaceButtonState(0, controller_face_buttons);
         func_8024E640(0, controller_side_buttons);
     } else {
         controller_copyFaceButtons(0, controller_face_buttons);

@@ -7,8 +7,6 @@ extern bool func_80320C94(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern f32 func_8033229C(ActorMarker *);
 extern bool func_80309D58(f32[3], s32);
 
-extern void ml_vec3f_normalize(f32 [3]);
-
 typedef struct {
     s16 flags;
     // u8 pad2[0x2];

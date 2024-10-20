@@ -3,9 +3,6 @@
 #include "variables.h"
 
 
-f32 mlDiffDegF(f32, f32);
-
-
 /* .bss */
 static f32 s_position[3];
 static f32 s_rotation[3];

@@ -96,7 +96,7 @@ void func_80356CCC(Actor *this){
         func_803569F0(this, (this->state < 5)? 1 : 6);
     }//L80356D48
     player_getPosition(sp5C);
-    sp58 = ml_distance_vec3f(this->position, sp5C);
+    sp58 = ml_vec3f_distance(this->position, sp5C);
     if( this->state == 1){
         if( sp58 < this->scale*400.0f
             && (map_get() != MAP_3C_RBB_KITCHEN || this->position_z < sp5C[2])

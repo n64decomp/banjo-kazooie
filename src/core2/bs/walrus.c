@@ -5,7 +5,6 @@
 #include "core2/ba/physics.h"
 
 extern void func_8029AD68(f32, s32);
-extern f32  ml_dotProduct_vec3f(f32[3], f32[3]);
 
 int bswalrus_inSet(enum bs_e state);
 
@@ -77,7 +76,7 @@ void func_802B7F28(void) {
     if (900.0 < sp20[0] * sp20[0] + sp20[1] * sp20[1] + sp20[2] * sp20[2]) {
         ml_vec3f_normalize(sp20);
         func_80294480(sp2C);
-        if ( ml_dotProduct_vec3f(sp20, sp2C) < -0.2) {
+        if ( ml_vec3f_dot_product(sp20, sp2C) < -0.2) {
             sp3C += D_8037D5C0 * 350.0;
         }
     }
@@ -508,7 +507,7 @@ void bswalrus_die_update(void){
 }
 
 void bswalrus_die_end(void){
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
@@ -732,7 +731,7 @@ void bswalrus_timeout_init(void) {
     ncDynamicCamD_func_802BF2C0(60.0f);
     func_8025A58C(0, 4000);
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
-    func_8024BD08(0);
+    core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOff();
     func_8029E3C0(0, 2.9f);
     func_802B813C();
@@ -749,7 +748,7 @@ void func_802B9830(void) {
 
 void func_802B9880(void) {
     func_80291548();
-    func_8024BD08(1);
+    core1_ce60_incOrDecCounter(TRUE);
     func_8025A904();
     func_80292EA4();
     func_802B80D0();

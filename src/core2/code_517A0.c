@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 extern f32 func_8028EF88(void);
 void func_802D8730(Actor *this);

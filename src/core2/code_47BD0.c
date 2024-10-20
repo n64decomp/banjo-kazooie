@@ -11,7 +11,6 @@ extern void sfxsource_set_fade_distances(u8, f32, f32);
 extern void sfxsource_set_position(u8, f32[3]);
 extern void func_8030E2C4(u8);
 extern void sfxsource_setSampleRate(u8, s32);
-extern void ml_vec3f_normalize(f32[3]);
 
 typedef struct{
     f32 unk0[3];
@@ -122,7 +121,7 @@ void func_802CEDE4(f32 target_position[3], f32 p_ctrl[3], f32 distance, f32 *arg
         p_ctrl[1] = randf2(-distance, distance);
         p_ctrl[2] = randf2(-distance, distance);
         phi_s1++;
-    }while(phi_s1 < 10 &&  ml_distance_vec3f(target_position, p_ctrl) < distance);
+    }while(phi_s1 < 10 &&  ml_vec3f_distance(target_position, p_ctrl) < distance);
     *arg3 =  randf2(arg4, arg5);
 }
 
@@ -237,7 +236,7 @@ void chBeeSwarm_802CF434(Actor *this) {
     local = (ActorLocal_core2_47BD0 *) &this->local;
     for(phi_s2 = 0, phi_s0 = local->unk8; phi_s2 < local->unk0; phi_s2++){
         chBeeSwarm_802CF1C8(phi_s0->unk18, phi_s0->unk0, phi_s0->unkC, phi_s0->unk24[2], 150.0f, phi_s0->unk24, &sp58);
-        if (ml_distance_vec3f(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
+        if (ml_vec3f_distance(phi_s0->unk0, phi_s0->unk18) < 50.0f) {
             func_802CEEA4(this, phi_s0);
         }
         phi_s0++;
@@ -455,12 +454,12 @@ void chBeeSwarm_update(Actor *this) {
         if (chBeeSwarm_802CF5E4(this)) {
             subaddie_set_state(this, 2U);
         }
-        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, local->unkC, 100.0f);
         }
         break;
     case 2:
-        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, local->unkC, 100.0f);
         }
         chBeeSwarm_802CF518(this);
@@ -471,7 +470,7 @@ void chBeeSwarm_update(Actor *this) {
         this->unk1C[2] = spB4[2];
         this->unk1C[1] += 50.0f;
         this->actor_specific_1_f = 400.0f;
-        if (ml_distance_vec3f(this->position, this->unk1C) < 100.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 100.0f) {
             func_802CEF54(this, spB4, 50.0f);
             subaddie_set_state(this, 4);
         }
@@ -496,22 +495,22 @@ void chBeeSwarm_update(Actor *this) {
         if (local->unk0 == 0) {
             marker_despawn(this->marker);
         }
-        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
             func_802CEF54(this, (s32 *) spB4, 50.0f);
         }
-        if (ml_distance_vec3f(this->position, spB4) > 100.0f) {
+        if (ml_vec3f_distance(this->position, spB4) > 100.0f) {
             subaddie_set_state(this, 3);
         }
         chBeeSwarm_802CF57C(this);
         break;
     case 5:
-        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
             subaddie_set_state(this, 2);
         }
         chBeeSwarm_802CF518(this);
         break;
     case 6:
-        if (ml_distance_vec3f(this->position, this->unk1C) < 50.0f) {
+        if (ml_vec3f_distance(this->position, this->unk1C) < 50.0f) {
             subaddie_set_state(this, local->unk6);
         }
         break;

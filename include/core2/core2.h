@@ -12,4 +12,7 @@ void func_8035179C_copyPosition(Struct68s* arg0, f32 arg1[3]);
 void func_80351814(Struct68s *arg0, f32 arg1[3]);
 f32  func_80351830(Struct68s *arg0);
 
+
+extern void sfxsource_setSampleRate(u8, s32);
+
 #endif

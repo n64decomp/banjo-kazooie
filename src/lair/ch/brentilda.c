@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 ml_vec3f_horizontal_distance_zero_likely(f32[3], f32[3]);
-
 typedef struct {
     s32 unk0;
 } ActorLocal_lair_5640;

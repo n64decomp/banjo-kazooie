@@ -1,7 +1,6 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
 
 void chScarfSled_update(Actor *this);
 

@@ -1,13 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 extern f32 func_802FB0E4(struct8s*);
-
-extern s32 framebuffer_width;
-extern s32 framebuffer_height;
 
 /* .data */
 BKSprite * gSpriteHealth = NULL;
@@ -112,8 +109,8 @@ void fxhealthscore_draw(enum item_e item_id, struct8s *arg1, Gfx **gfx, Mtx **mt
             gDPSetPrimColor((*gfx)++, 0, 0, 0xFF, 0xFF, 0xFF, 0x78);
         }
 
-        f20 = 96.0f - (f32) framebuffer_width / 2 + (i * 13);
-        f14 = (f32) framebuffer_height / 2 - func_802FB0E4(arg1) - D_80381F08[s6] - -48.0f;
+        f20 = 96.0f - (f32) gFramebufferWidth / 2 + (i * 13);
+        f14 = (f32) gFramebufferHeight / 2 - func_802FB0E4(arg1) - D_80381F08[s6] - -48.0f;
         f14 = (i & 1) ? f14 + 5.75 : f14 - 5.75;
 
         gSPVertex((*gfx)++, *vtx, 4, 0);

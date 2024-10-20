@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 #include "actor.h"
 
 extern ActorInfo D_8038BC28;
@@ -33,7 +33,7 @@ extern ActorInfo D_8038BEFC;
 extern ActorInfo D_80367E70;
 extern ActorInfo D_80372C3C;
 
-extern void func_80244BB0(s32, s32, s32, f32);
+extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 extern void func_8025AE0C(s32, f32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void *func_80309B48(f32[3], f32[3], f32[3], u32);
@@ -307,7 +307,7 @@ void func_80388BDC(Actor *this) {
         if(mapSpecificFlags_get(MMM_SPECIFIC_FLAG_0_UNKNOWN)) {
             func_802BAFE4(0x21);
             subaddie_set_state(this, 6);
-            func_80244BB0(0, 0x6A, 0x7FF8, 0.3f);
+            core1_7090_initSfxSource(0, 0x6A, 0x7FF8, 0.3f);
             mapSpecificFlags_set(MMM_SPECIFIC_FLAG_2_UNKNOWN, FALSE);
             func_8025A6EC(COMUSIC_4_MMM_CLOCK_VERSION, -1);
             func_8025AE0C(2000, 3.0f);
@@ -320,7 +320,7 @@ void func_80388BDC(Actor *this) {
             subaddie_set_state(this, 7U);
             this->yaw = 270.0f;
             func_8030E540(0x7F);
-            func_80244C78(0);
+            core1_7090_freeSfxSource(0);
             func_802D68F0(0xE);
             item_set(6, 1);
         }
@@ -341,7 +341,7 @@ void func_80388BDC(Actor *this) {
                 func_802BAFE4(0x23);
             }
             subaddie_set_state(this, 8);
-            func_80244BB0(0, 0x6A, 0x7FF8, 0.3f);
+            core1_7090_initSfxSource(0, 0x6A, 0x7FF8, 0.3f);
         }
         break;
     case 8:
@@ -351,7 +351,7 @@ void func_80388BDC(Actor *this) {
             this->yaw = 0.0f;
             func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
             mapSpecificFlags_set(MMM_SPECIFIC_FLAG_0_UNKNOWN, FALSE);
-            func_80244C78(0);
+            core1_7090_freeSfxSource(0);
             if (!this->unk38_31) {
                 func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 0x7FF8);
                 func_8025AE0C(0x7D0, 2.5f);

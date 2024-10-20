@@ -1,9 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
-extern void func_8025982C(f32[3], f32[3], f32[3], f32);
 extern void func_8025A6CC(enum comusic_e arg0, s32 arg1);
 extern void chBottlesBonusCursor_func_802DF99C(void);
 extern f32 *chBottlesBonusCursor_func_802E05AC(s32);
@@ -327,8 +326,8 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
             switch(chBottlesBonusCursor_func_802E0538(i)){
                 case 1://L802DDBB4
                     chBottlesBonus_func_802DD484(spD8, spD4, 1.0f, 0.2);
-                    func_8025982C(D_8037DEBC[i].unk0, D_8037DEB8[i].unk0, chBottlesBonus_func_802DD60C(i), chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.2));
-                    func_8025982C(D_8037DEBC[i].unk1C, D_8037DEB8[i].unk1C, D_8037DEC4[i].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i]/ 0.2));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk0, D_8037DEB8[i].unk0, chBottlesBonus_func_802DD60C(i), chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.2));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk1C, D_8037DEB8[i].unk1C, D_8037DEC4[i].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i]/ 0.2));
                     func_80345D30(spAC, chBottlesBonusCursor_func_802E068C(i), D_8037DEB8[i].unkC);
                     func_803458E4(spBC, D_8037DEB8[i].unkC, spAC, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
                     
@@ -346,7 +345,7 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
                     break;
                 case 2://L802DDD9C
                     chBottlesBonus_func_802DD484(spD8, spD4, 1.0f, 0.2);
-                    func_8025982C(D_8037DEBC[i].unk0, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk0, chBottlesBonus_func_802DD60C(i), chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.2));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk0, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk0, chBottlesBonus_func_802DD60C(i), chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.2));
                     func_80345D30(sp9C, chBottlesBonusCursor_func_802E068C(i), D_8037DEB8[i].unkC);
                     func_80345D30(sp8C, chBottlesBonusCursor_func_802E0664(i), D_8037DEB8[i].unkC);
                     func_803458E4(D_8037DEBC[i].unkC, sp9C, sp8C, chBottlesBonus_func_802DD804(D_8037DF18[i] / 0.2));
@@ -363,15 +362,15 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
 
                 case 3://L802DDF48
                     chBottlesBonusCursor_func_802DF460(40 + i, chBottlesBonusMarker, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk0);
-                    func_8025982C(D_8037DEBC[i].unk0, D_8037DEC0[i].unk0, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk0, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
-                    func_8025982C(D_8037DEBC[i].unk1C, D_8037DEC0[i].unk1C, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk0, D_8037DEC0[i].unk0, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk0, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk1C, D_8037DEC0[i].unk1C, D_8037DEC4[chBottlesBonusCursor_func_802E0588(i)].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
                     func_80345D30(sp7C, chBottlesBonusCursor_func_802E0664(i), D_8037DEB8[i].unkC);
                     func_803458E4(D_8037DEBC[i].unkC, D_8037DEC0[i].unkC, sp7C, chBottlesBonus_func_802DD804(D_8037DF18[i] / 0.2));
                     break;
 
                 case 0://L802DE084
-                    func_8025982C(D_8037DEBC[i].unk0, D_8037DEC0[i].unk0, D_8037DEB8[i].unk0, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
-                    func_8025982C(D_8037DEBC[i].unk1C, D_8037DEC0[i].unk1C, D_8037DEB8[i].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk0, D_8037DEC0[i].unk0, D_8037DEB8[i].unk0, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
+                    ml_vec3f_interpolate(D_8037DEBC[i].unk1C, D_8037DEC0[i].unk1C, D_8037DEB8[i].unk1C, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
                     func_803458E4(D_8037DEBC[i].unkC, D_8037DEC0[i].unkC, D_8037DEB8[i].unkC, chBottlesBonus_func_802DD804(D_8037DEC8[i] / 0.4));
                     break;
             }

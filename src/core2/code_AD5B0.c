@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 #include "core2/anim/sprite.h"
 #include <core2/file.h>
 #include "core2/particle.h"
@@ -31,14 +31,14 @@ void func_80334540(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
     f32 sp40;
 
     if (D_803835E0 == 0) {
-        drawRectangle2D(gdl, 0, 0, framebuffer_width, framebuffer_height, 0, 0, 0);
+        drawRectangle2D(gdl, 0, 0, gFramebufferWidth, gFramebufferHeight, 0, 0, 0);
         func_802BBD2C(&sp44, &sp40);
         viewport_setNearAndFar(sp44, sp40);
         viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
         return;
     }
     if (func_80320708() == 0) {
-        write_file_blocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
     }
     spawnQueue_unlock();
     sky_draw(gdl, mptr, vptr);
@@ -181,7 +181,7 @@ void func_80334910(void) {
     if (func_80322914() == 0) {
         func_8024F7C4(func_803226E8(D_803835D0.map_4));
     }
-    func_80244B3C();
+    core1_7090_release();
     AnimTextureListCache_free();
     func_80322FDC();
     func_8033BD6C();
@@ -197,7 +197,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_80335110(1);
     func_80335128(1);
     func_802D2CB8();
-    func_80244AB0();
+    core1_7090_alloc();
     if (map_get() == MAP_8E_GL_FURNACE_FUN) {
         func_8038E7C4();
     }

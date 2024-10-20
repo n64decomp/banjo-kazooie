@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
@@ -17,7 +18,6 @@ typedef struct struct_2a_s{
 } OverlayAddressMap;
 
 
-extern u8 D_803A5D00;
 
 #define SEGMENT_EXTERNS(segname) \
     extern u8 segname##_VRAM[]; \
@@ -111,7 +111,7 @@ s32 __overlayManager80251178(void){
     sp18 = func_802546DC();
     sp1C = __overlayManager80251170();
 
-    return ((sp1C + &D_803A5D00) - largest_overlay->ram_end) + sp18;
+    return ((sp1C + (u8 *)gFramebuffers) - largest_overlay->ram_end) + sp18;
 }
 
 void __overlayManager802511C4(void){

@@ -7,20 +7,20 @@ u8 D_80383370;
 
 /* .code */
 void func_80323100(void){
-    func_8024AED8();
+    core1_ce60_resetState();
 }
 
 void func_80323120(void){
-    func_8024AE74();
+    core1_ce60_func_8024AE74();
 }
 
 void func_80323140(s32 arg0, s32 arg1){
-    func_8024BD40(arg0, arg1);
+    core1_ce60_func_8024BD40(arg0, arg1);
     func_8032278C(arg0, arg1);
 }
 
 void func_80323170(void){
-    func_8024AF48();
+    core1_ce60_func_8024AF48();
 }
 
 void func_80323190(void){
@@ -46,7 +46,6 @@ void func_80323238(void){}
 // =============================================BREAK ???
 
 extern f32 ml_vec3f_length(f32 [3], f32[3]);
-extern f32 ml_distanceSquared_vec3f(f32 [3], f32 [3]);
 extern void func_80341180(f32, s32, s32, f32 *, f32 [3]);
 
 /* .code */

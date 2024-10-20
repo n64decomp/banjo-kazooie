@@ -45,7 +45,7 @@ void func_803878A0(Actor *this, s32 next_state) {
             local->unkC[0] = randf2(-500.0f, 500.0f);
             local->unkC[1] = randf2(400.0f, 900.0f);
             local->unkC[2] = randf2(-400.0f, 700.0f);
-            if(ml_distance_vec3f(this->position, local->unkC) > 800.0f)
+            if(ml_vec3f_distance(this->position, local->unkC) > 800.0f)
                 break;
         }
         local->unk8 = randf2(500.0f, 1000.0f);
@@ -90,7 +90,7 @@ void CCW_func_80387A40(Actor *this) {
         sp5C[0] = local->unkC[0] - this->position[0];
         sp5C[1] = local->unkC[1] - this->position[1];
         sp5C[2] = local->unkC[2] - this->position[2];
-        if (ml_distance_vec3f(this->position, local->unkC) < 500.0f) {
+        if (ml_vec3f_distance(this->position, local->unkC) < 500.0f) {
             ml_vec3f_set_length(sp5C, local->unk8 * 8.0f);
         } else {
             ml_vec3f_set_length(sp5C, local->unk8 * 2);
@@ -106,7 +106,7 @@ void CCW_func_80387A40(Actor *this) {
         }
         func_80258A4C(this->position, this->yaw - 90.0f, local->unkC, &sp58, &sp54, &sp50);
         this->yaw += 140.0f * sp50 * sp68;
-        if (ml_distance_vec3f(this->position, local->unkC) < 100.0f) {
+        if (ml_vec3f_distance(this->position, local->unkC) < 100.0f) {
             func_803878A0(this, 1);
         }
     }

@@ -84,7 +84,7 @@ void func_802D07C8(Actor *this){
         func_802D05A0(this, 1);
     }
     player_getPosition(sp2C);
-    sp28 = ml_distance_vec3f(sp2C, this->position);
+    sp28 = ml_vec3f_distance(sp2C, this->position);
     if( this->state == 1){
         if(sp28 < D_80367340[(s32)this->yaw].unk6*this->scale){
             func_802D05A0(this, 2);

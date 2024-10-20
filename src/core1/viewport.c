@@ -1,12 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include "core1/viewport.h"
-
 
 extern void guPerspective(Mtx *, u16*, f32, f32, f32, f32, f32);
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
 
 #define VIEWPORT_FOVY_DEFAULT (40.0f)
 #define VIEWPORT_STACK_SIZE (8)
@@ -37,7 +35,7 @@ void viewport_moveAlongZAxis(f32 offset) {
 }
 
 f32 viewport_getDistance(f32 arg0[3]) {
-    ml_distance_vec3f(arg0, sViewportPosition);
+    ml_vec3f_distance(arg0, sViewportPosition);
 }
 
 void viewport_getLookVector(f32 arg0[3]) {
@@ -77,7 +75,7 @@ void viewport_getRotation_f3(f32 *pitch, f32 *yaw, f32 *roll) {
 void viewport_setRenderViewportAndOrthoMatrix(Gfx **gfx, Mtx **mtx) {
     gSPViewport((*gfx)++, &sViewportStack[sViewportStackIndex]);
 
-    guOrtho(*mtx, -(2*(f32)framebuffer_width), (2*(f32)framebuffer_width), -(2*(f32)framebuffer_height), (2*(f32)framebuffer_height), 1.0f, 20.0f, 1.0f);
+    guOrtho(*mtx, -(2*(f32)gFramebufferWidth), (2*(f32)gFramebufferWidth), -(2*(f32)gFramebufferHeight), (2*(f32)gFramebufferHeight), 1.0f, 20.0f, 1.0f);
     gSPMatrix((*gfx)++, OS_K0_TO_PHYSICAL((*mtx)++), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     
     guTranslate(*mtx, 0.0f, 0.0f, 0.0f);
@@ -134,7 +132,7 @@ f32 viewport_debug3(void) {
 }
 
 void viewport_pushFramebufferExtendsToVpStack(void) {
-    viewport_pushVpScaleAndTranslation((s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2), (s32) ((f32)framebuffer_width/2), (s32) ((f32)framebuffer_height/2));
+    viewport_pushVpScaleAndTranslation((s32) ((f32)gFramebufferWidth/2), (s32) ((f32)gFramebufferHeight/2), (s32) ((f32)gFramebufferWidth/2), (s32) ((f32)gFramebufferHeight/2));
 }
 
 void viewport_reset(void) {
@@ -365,7 +363,7 @@ bool viewport_func_8024DB50(f32 pos[3], f32 distance) {
     delta[2] = pos[2] - sViewportPosition[2];
 
     for(i = 0; i < 4; i++) {
-        if(distance <= ml_dotProduct_vec3f(delta, sViewportFrustumPlanes[i])) {
+        if(distance <= ml_vec3f_dot_product(delta, sViewportFrustumPlanes[i])) {
             return FALSE;
         }
     }
@@ -428,13 +426,13 @@ f32 viewport_transformCoordinate(f32 x, f32 y, f32 viewport_translation[3], f32 
 
     if ((sViewportFOVy != fovy) || (sViewportNear != near)) {
         fovy_rad = (sViewportFOVy * M_PI) / 360.0;
-        scale = (500.0 + sViewportNear) / (((framebuffer_height / (f32)2) / sinf(fovy_rad)) * cosf(fovy_rad));
+        scale = (500.0 + sViewportNear) / (((gFramebufferHeight / (f32)2) / sinf(fovy_rad)) * cosf(fovy_rad));
         fovy = sViewportFOVy;
         near = sViewportNear;
     }
 
-    x = x - (framebuffer_width / (f32)2);
-    y = (framebuffer_height / (f32)2) - y;
+    x = x - (gFramebufferWidth / (f32)2);
+    y = (gFramebufferHeight / (f32)2) - y;
 
     viewport_rotation[0] = sViewportRotation[0];
     viewport_rotation[1] = sViewportRotation[1];
@@ -482,16 +480,16 @@ bool viewport_func_8024E030(f32 pos[3], f32 *arg1)
     }
 
     temp_f2 = gu_sqrtf((delta[1] * delta[1]) + (delta[2] * delta[2])) * sinf(fovy_radians);
-    temp_f2_2 = (((f32) framebuffer_width) / ((f32) framebuffer_height)) * temp_f2;
+    temp_f2_2 = (((f32) gFramebufferWidth) / ((f32) gFramebufferHeight)) * temp_f2;
 
-    arg1[0] = (f32) (((delta[0] / temp_f2_2) + 1) * (((f32) framebuffer_width) / 2));
-    arg1[1] = (f32) ((1 - (delta[1] / temp_f2)) * (((f32) framebuffer_height) / 2));
+    arg1[0] = (f32) (((delta[0] / temp_f2_2) + 1) * (((f32) gFramebufferWidth) / 2));
+    arg1[1] = (f32) ((1 - (delta[1] / temp_f2)) * (((f32) gFramebufferHeight) / 2));
 
-    if ((arg1[0] < (-((f32) framebuffer_width))) || ((((f32) framebuffer_width) * 2) < arg1[0])) {
+    if ((arg1[0] < (-((f32) gFramebufferWidth))) || ((((f32) gFramebufferWidth) * 2) < arg1[0])) {
         return FALSE;
     }
 
-    if ((arg1[1] < (-((f32) framebuffer_height))) || ((((f32) framebuffer_height) * 2) < arg1[1])) {
+    if ((arg1[1] < (-((f32) gFramebufferHeight))) || ((((f32) gFramebufferHeight) * 2) < arg1[1])) {
         return FALSE;
     }
 

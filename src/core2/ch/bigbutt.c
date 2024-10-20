@@ -358,7 +358,7 @@ Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 break;
             case 4://L802C6F50
                 if((globalTimer_getTime() & 1) == 1){
-                    if(func_80259808(actor->yaw)){
+                    if(ml_isViewportYawWithOffsetNormalized(actor->yaw)){
                         func_802C6E3C(0xb, sp34);
                         func_802C6E3C(0xa, sp34);
                     }

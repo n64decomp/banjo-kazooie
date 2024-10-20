@@ -321,7 +321,7 @@ void chTiptup_update(Actor *this){
                 }
             }
             else{
-                if(ml_distance_vec3f(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
+                if(ml_vec3f_distance(this->position, player_position) < 300.0f && player_getTransformation() == TRANSFORM_1_BANJO && !jiggyscore_isSpawned(JIGGY_27_BGS_TIPTUP)){
                     chTiptup_setState(this, 2);
                 }
             }
@@ -335,12 +335,12 @@ void chTiptup_update(Actor *this){
                 }
             } //L80389370
             else{
-                if(ml_distance_vec3f(this->position, player_position) >= 300.0f)
+                if(ml_vec3f_distance(this->position, player_position) >= 300.0f)
                     chTiptup_setState(this, 1);
             }
         }//L803893A0
         if(this->state == 6){
-            if(ml_distance_vec3f(this->position, player_position) < 300.0f && !unqPtr->unk8){
+            if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
                 gcdialog_showText(0xc7d, 4, 0, 0, 0, 0);
             }

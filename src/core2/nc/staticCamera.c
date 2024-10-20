@@ -1,11 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 #include "core2/nc/camera.h"
 
 
-extern void func_8025727C(f32, f32, f32, f32, f32, f32, f32*, f32*);
 
 /* .bss */
 static f32 ncStaticCameraPosition[3];

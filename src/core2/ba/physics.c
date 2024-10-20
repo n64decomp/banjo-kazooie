@@ -3,10 +3,6 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-extern f32 ml_sin_deg(f32);
-extern f32 ml_dotProduct_vec3f(f32[3], f32[3]);
-extern void func_80256D0C(f32, f32, f32, f32, f32, f32 *, f32 *, f32 *);
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 climbGetRadius(void);
 extern f32 func_8029CED0(void);
 
@@ -61,7 +57,7 @@ void __baphysics_update_normal(void){
     if(func_80294548()){
         func_80294480(sp54);
         ml_vec3f_normalize_copy(sp48, sp60);
-        sp44 = ml_dotProduct_vec3f(sp48, sp54);
+        sp44 = ml_vec3f_dot_product(sp48, sp54);
         sp40 = get_slope_timer();
         if(sp44 != 0.0f){
             if(sp44 < 0){

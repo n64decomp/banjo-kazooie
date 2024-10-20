@@ -1,7 +1,4 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
 #include "rarezip.h"
 
 #define ENTRY_STACK_LEN 0x2000

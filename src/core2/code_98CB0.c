@@ -13,11 +13,9 @@ void volatileFlag_clear(void);
 void volatileFlag_set(enum volatile_flags_e index, s32 set);
 s32 fileProgressFlag_getN(enum file_progress_e offset, s32 numBits);
 void func_8031CE70(f32 *arg0, s32 arg1, s32 arg2);
-void ml_vec3h_to_vec3f(f32 *, s32);
 void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 struct unkfunc_80304ED0 *func_80304ED0(void*, f32 *);
 void func_8031CD44(s32, s32, f32, f32, s32);
-void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 
 #define OBSCURE(ptr) (((((s32)(ptr) ^ 0x746DF219) & 0xFF) + ((((s32)(ptr) >> 0x18) & 0xFF) << 0x18) + ((((s32)(ptr) >> 8) & 0xFFFF) << 8)) ^ 0x19)
 

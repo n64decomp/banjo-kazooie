@@ -1,12 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
-#include <core1/viewport.h>
 
 
 extern void spriteRender_drawWithSegment(Gfx**, Vtx**, BKSprite *, s32, s32);
-extern void func_80252330(f32, f32, f32);\
 extern void func_80349AD0(void);
 
 

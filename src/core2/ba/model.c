@@ -6,9 +6,7 @@
 #include "core2/ba/physics.h"
 
 void func_80254008(void);
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 void assetcache_release(void *); //assetcache_free
-extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 void func_8033A280(f32);
 
 extern s32 osCicId;

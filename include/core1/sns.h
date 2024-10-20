@@ -1,6 +1,5 @@
-#ifndef __SNS_H__
-#define __SNS_H__
-#include <ultra64.h>
+#ifndef BANJO_KAZOOIE_CORE1_SNS_H
+#define BANJO_KAZOOIE_CORE1_SNS_H
 
 /**
  * sns sets

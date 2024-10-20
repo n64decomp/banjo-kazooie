@@ -338,7 +338,7 @@ BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1){
     s0 = assetcache_get(sprite_id);
     if(D_80383CD4[assetCacheCurrentIndex] == NULL){
         func_803382E4(-1);
-        func_80338308(func_802510A0(s0), func_802510A8(s0));
+        func_80338308(sprite_getUnk8(s0), sprite_getUnkA(s0));
         D_80383CD4[assetCacheCurrentIndex] = func_80344A1C(s0);
     }
     *arg1 = D_80383CD4[assetCacheCurrentIndex];
