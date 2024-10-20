@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_802BA40C(void *);
-extern f32 func_802BA420(void *);
+extern f32 cameraNodeType3_getFarDistance(void *);
+extern f32 cameraNodeType3_getCloseDistance(void *);
 
 /* .bss */
 f32 D_8037DAC0[3];
@@ -74,17 +74,17 @@ void func_802BF798(void) {
     f32 sp28;
     s32 temp_v0;
 
-    temp_v0 = func_802B9E48();
-    D_8037DAE4 = func_802BA4F0(temp_v0);
-    func_802BA3B8(temp_v0, &D_8037DAD0);
-    func_802BA434(temp_v0, &D_8037DAC0);
-    func_802BA480(temp_v0, &sp2C, &sp28);
+    temp_v0 = ncCameraNodeList_getCameraNodeType3();
+    D_8037DAE4 = code33310_func_802BA4F0(temp_v0);
+    cameraNodeType3_getPositionWithPitchYawRoll(temp_v0, &D_8037DAD0);
+    cameraNodeType3_getPosition(temp_v0, &D_8037DAC0);
+    cameraNodeType3_getHorizontalAndVerticalSpeed(temp_v0, &sp2C, &sp28);
     func_802BE230(sp2C, sp28);
-    func_802BA4A8(temp_v0, &sp2C, &sp28);
+    cameraNodeType3_getRotationAndAccelaration(temp_v0, &sp2C, &sp28);
     func_802BE244(sp2C, sp28);
     D_8037DAE8 = sp2C;
     D_8037DAEC = sp28;
-    D_8037DAE0 = func_802BA420(temp_v0);
-    D_8037DADC = func_802BA40C(temp_v0);
+    D_8037DAE0 = cameraNodeType3_getCloseDistance(temp_v0);
+    D_8037DADC = cameraNodeType3_getFarDistance(temp_v0);
     D_8037DAE5 = 0;
 }

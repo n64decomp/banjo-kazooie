@@ -2,32 +2,35 @@
 #include "functions.h"
 #include "variables.h"
 
+#include <core2/camera.h>
 #include <core2/file.h>
 
-void func_802BA23C(s32 *arg0, s32 arg1);
+static void __code33250_func_802BA23C(CameraNodeType4 *this, s32 arg1);
 
 /* .code */
-s32 * func_802BA1E0(void){
-    s32 * sp1C = malloc(4);
-    func_802BA23C(sp1C, 1);
-    return sp1C;
+CameraNodeType4 *cameraNodeType4_init(){
+    CameraNodeType4 * this;
+    
+    this = malloc(sizeof(CameraNodeType4));
+    __code33250_func_802BA23C(this, 1);
+    return this;
 }
 
-void func_802BA214(s32 *arg0){
-    free(arg0);
+void cameraNodeType4_free(CameraNodeType4 *this){
+    free(this);
 }
 
-s32 func_802BA234(s32 *arg0){
-    return *arg0;
+s32 code33250_func_802BA234(CameraNodeType4 *this){
+    return this->unknownFlag;
 }
 
-void func_802BA23C(s32 *arg0, s32 arg1){
-    *arg0 = arg1;
+static void __code33250_func_802BA23C(CameraNodeType4 *this, s32 arg1){
+    this->unknownFlag = arg1;
 }
 
-void func_802BA244(File *file_ptr, s32 *arg1){
+void cameraNodeType4_fromFile(File *file_ptr, CameraNodeType4 *this){
     while(!file_isNextByteExpected(file_ptr, 0)){
-        file_getWord_ifExpected(file_ptr, 1, arg1);
+        file_getWord_ifExpected(file_ptr, 1, &this->unknownFlag);
     }
 }
 
