@@ -333,7 +333,7 @@ void chSnacker_spawn(void) {
 
     _player_getPosition(spawn_position);
     if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
-        nodeprop_getPosition(func_80304CAC(0x3CB, spawn_position), spawn_position);
+        nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_3CB_UNKNOWN, spawn_position), spawn_position);
     }
     else{
         spawn_angle_rad = randf2(0.0f, 3.28f);

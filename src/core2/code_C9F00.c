@@ -345,7 +345,7 @@ void func_803518E8(void){
 void func_80351954(Struct68s *arg0){
     if(arg0->unk0){
         func_8030E394(arg0->unk0);
-        func_8030DA44(arg0->unk0);
+        sfxsource_freeSfxsourceByIndex(arg0->unk0);
         arg0->unk0 = 0;
     }
 }

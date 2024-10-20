@@ -77,7 +77,7 @@ void func_80386AD0(ActorMarker *arg0, s32 arg1) {
 void func_80386AF8(Actor *arg0) {
     ActorLocal_CC_530 *local = (ActorLocal_CC_530 *)&arg0->local;
     CC_func_80386920(arg0, 0);
-    func_8030DA44(local->sfxsourceIdx);
+    sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
 }
 
 void func_80386B28(Actor *this){

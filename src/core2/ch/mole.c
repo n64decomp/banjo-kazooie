@@ -294,7 +294,7 @@ void chmole_spawnMolehill(ActorMarker *marker){
 void func_802D9C90(Actor *this){
     u8 tmp_a1 = this->unk44_31;
     if(tmp_a1){
-        func_8030DA44(tmp_a1);
+        sfxsource_freeSfxsourceByIndex(tmp_a1);
     }
 }
 
@@ -413,7 +413,7 @@ void chmole_update(Actor *this){
             }//L802DA128
             if(actor_animationIsAt(this, 0.9999f)){
                 chmole_setFacingDirection(this);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
             }
             else if(actor_animationIsAt(this, 0.14f)){//L802DA154
@@ -466,7 +466,7 @@ void chmole_update(Actor *this){
             }
             else if(actor_animationIsAt(this, 0.9999f)){//L802DA45C
                 func_802D9600(this);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
             }
             break;

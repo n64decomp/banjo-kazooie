@@ -98,8 +98,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         case 1:
             sp68 = 1;
             ml_vec3f_copy(sp40, sp7C);
-            nodeprop_getPosition(func_80304CAC(0x156, sp40), sp58);
-            nodeprop_getPosition(func_80304CAC(0x157, sp40), sp4C);
+            nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_156_UNKNOWN, sp40), sp58);
+            nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_157_UNKNOWN, sp40), sp4C);
             sp40[0] = ((sp4C[0] - sp58[0]) * D_8037BFB0[0]) + sp58[0];
             sp40[2] = ((sp4C[2] - sp58[2]) * D_8037BFB0[1]) + sp58[2];
             ml_vec3f_copy(sp7C, sp40);
@@ -107,8 +107,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
         case 2:
             sp64 = 1;
             ml_vec3f_copy(sp1C, sp7C);
-            nodeprop_getPosition(func_80304CAC(0x154, sp1C), sp34);
-            nodeprop_getPosition(func_80304CAC(0x155, sp1C), sp28);
+            nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_154_UNKNOWN, sp1C), sp34);
+            nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_155_UNKNOWN, sp1C), sp28);
             sp1C[1] = ((sp28[1] - sp34[1]) * D_8037BFB0[0]) + sp34[1];
             ml_vec3f_copy(sp7C, sp1C);
             break;

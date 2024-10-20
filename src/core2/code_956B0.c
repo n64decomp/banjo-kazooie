@@ -737,8 +737,8 @@ void func_8031E204(NodeProp *node, s32 arg1, s32 arg2){
     f32 sp28[3];
     f32 sp1C[3];
 
-    nodeprop_getPosition(func_80304D04(0x154, &node->x), sp34);
-    nodeprop_getPosition(func_80304D04(0x155, &node->x), sp28);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_154_UNKNOWN, &node->x), sp34);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_155_UNKNOWN, &node->x), sp28);
     player_getPosition(sp1C);
     if(sp28[1] < sp1C[1]){
         sp1C[1] = sp28[1];

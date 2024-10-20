@@ -501,13 +501,11 @@ static void __code3E30_resetCheatCodeProgress(void)
     __code3E30_resetSecretCheatCodeProgress();
 }
 
-void code3E30_overlayRelease(void)
-{
-    if (sMapState.model1)
-    {
+void code3E30_overlayRelease(void) {
+    if (sMapState.model1) {
         __code3E30_setupCheatCodeTimer(0);
-        func_8030DA44(sMapState.doorOpeningSfxSourceIdx);
-        func_8030DA44(sMapState.dullCannonShotSfxSourceId);
+        sfxsource_freeSfxsourceByIndex(sMapState.doorOpeningSfxSourceIdx);
+        sfxsource_freeSfxsourceByIndex(sMapState.dullCannonShotSfxSourceId);
     }
 }
 

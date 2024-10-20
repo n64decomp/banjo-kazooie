@@ -118,7 +118,7 @@ void func_803891B0(void* marker) {
 void func_8038921C(void* marker) {
     Actor* actor = marker_getActor(reinterpret_cast(ActorMarker*, marker));
     func_8030E394(actor->unk44_31);
-    func_8030DA44(actor->unk44_31);
+    sfxsource_freeSfxsourceByIndex(actor->unk44_31);
     actor->unk44_31 = 0U;
     FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 25000);
 }

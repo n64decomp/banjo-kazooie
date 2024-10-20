@@ -221,7 +221,7 @@ void func_80358490(Actor *this) {
 
     local = (ActorLocal_core2_D0CA0 *)&this->local;
     if(local->sfxsourceIdx != 0){
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
     }
 }
 
@@ -307,7 +307,7 @@ void func_80358684(Actor *this) {
 
     if (!subaddie_playerIsWithinSphere(this, 4000)) {
         if (local->sfxsourceIdx != 0) {
-            func_8030DA44(local->sfxsourceIdx);
+            sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
             local->sfxsourceIdx = 0U;
         }
         return;

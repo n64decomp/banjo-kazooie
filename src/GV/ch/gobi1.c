@@ -89,8 +89,8 @@ s32 func_80387360(void){
 void func_8038736C(Actor *this){
     ActorLocal_chGobi1 *local = (ActorLocal_chGobi1 *)&this->local;
     chGobi1_setState(this, 0);
-    func_8030DA44(local->unk0[0]);
-    func_8030DA44(local->unk0[1]);
+    sfxsource_freeSfxsourceByIndex(local->unk0[0]);
+    sfxsource_freeSfxsourceByIndex(local->unk0[1]);
 }
 
 void func_803873B0(ActorMarker *this_marker, ActorMarker *other_marker){

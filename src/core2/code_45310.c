@@ -262,7 +262,7 @@ void func_802CCBC8(Actor *this) {
 
     local = (ActorLocal_Core2_45310 * )&this->local;
     if(local->unk0 != 0){
-        func_8030DA44(local->unk0);
+        sfxsource_freeSfxsourceByIndex(local->unk0);
     }
 }
 
@@ -324,7 +324,7 @@ void func_802CCC5C(Actor *this) {
     }
     if (!subaddie_playerIsWithinSphere(this, 4000)) {
         if (local->unk0 != 0) {
-            func_8030DA44(local->unk0);
+            sfxsource_freeSfxsourceByIndex(local->unk0);
             local->unk0 = 0;
         }
     } else {

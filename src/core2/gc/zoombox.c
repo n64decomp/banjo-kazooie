@@ -429,7 +429,7 @@ s32 D_8036D924[] = { 70, 35, 18, 9, 4, 2, 1};
 /* .bss */
 char D_803830B0[0x30];
 
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 void func_80338338(s32, s32, s32);
 void func_803382FC(u8);
 
@@ -443,7 +443,7 @@ void func_80315200(GcZoombox *this){
      }else{
           for(s1 =0; s1 < 5; s1++){
                if(this->unk108[s1]){
-                    func_8030DA44(this->unk108[s1]);
+                    sfxsource_freeSfxsourceByIndex(this->unk108[s1]);
                     this->sfx_count--;
                }
           }

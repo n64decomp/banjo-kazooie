@@ -37,10 +37,10 @@ ActorAnimationInfo gChBlubberAnimations[6] = {
     {ASSET_B8_ANIM_BLUBBER_RUN, 0.8f}
 };
 
-ActorInfo gChBlubber = { 
+ActorInfo gChBlubber = {
     MARKER_A3_BLUBBER, ACTOR_115_BLUBBER, ASSET_370_MODEL_BLUBBER,
-    0x1, gChBlubberAnimations, 
-    __chBlubber_updateFunc, __chBlubber_update2Func, __chBlubber_drawFunc, 
+    0x1, gChBlubberAnimations,
+    __chBlubber_updateFunc, __chBlubber_update2Func, __chBlubber_drawFunc,
     0, 0x399, 1.8f, 0
 };
 
@@ -162,7 +162,7 @@ static void __chBlubber_updateFunc(Actor *this){
         subaddie_set_state_forward(this, CH_BLUBBER_STATE_3_UNKNOWN);
     }
 
-    if( mapSpecificFlags_get(TTC_SPECIFIC_FLAG_0_BLUBBER_UNKNOWN) 
+    if( mapSpecificFlags_get(TTC_SPECIFIC_FLAG_0_BLUBBER_UNKNOWN)
         && !this->unk138_23
     ){
         if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
@@ -214,7 +214,7 @@ static void __chBlubber_updateFunc(Actor *this){
             __chBlubber_checkJiggySpawnedTextAndAdvanceState(this);
             break;
         
-        case CH_BLUBBER_STATE_3_UNKNOWN: 
+        case CH_BLUBBER_STATE_3_UNKNOWN:
             break;
         
         case CH_BLUBBER_STATE_4_UNKNOWN:

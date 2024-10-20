@@ -19,7 +19,7 @@ bool func_8029CFA0(void){
 }
 
 void func_8029CFF8(void){
-    func_8030DA44(D_8037D210);
+    sfxsource_freeSfxsourceByIndex(D_8037D210);
 }
 
 void func_8029D01C(void){

@@ -6,7 +6,7 @@
 Actor *func_802D94B4(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_8028E668(f32 *, f32, f32, f32);
 void func_80328FB0(Actor *, f32);
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 void timed_exitStaticCamera(f32);
 void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
 
@@ -137,7 +137,7 @@ void __chSmBottles_setState(Actor *this, s32 next_state) {
             this->unk138_23 = 0;
 
         case SM_BOTTLES_STATE_2_UNKNOWN://L80389004
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0;
             break;
 
@@ -418,7 +418,7 @@ void __chSmBottles_free(Actor *this) {
     u8 tmp = this->unk44_31;
 
     if (tmp) {
-        func_8030DA44(tmp);
+        sfxsource_freeSfxsourceByIndex(tmp);
     }
 }
 

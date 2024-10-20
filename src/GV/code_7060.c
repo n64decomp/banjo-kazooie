@@ -38,7 +38,7 @@ void func_8038D47C(Actor *this){
             this->spawn_position_y = 2997.0f;
             this->spawn_position_z = 5884.0f;
         }//L8038D4FC
-        tmp_v0 = func_80304CAC(0x32f, this->spawn_position);
+        tmp_v0 = nodeprop_findByActorIdAndPosition_f32(ACTOR_32F_UNKNOWN, this->spawn_position);
         if(!tmp_v0){
             this->unk1C_x = -1394.0f;
             this->unk1C_y = 2811.0f;
@@ -48,7 +48,7 @@ void func_8038D47C(Actor *this){
             nodeprop_getPosition(tmp_v0, this->unk1C);
         }
         
-        tmp_v0 = func_80304CAC(0x330, this->spawn_position);
+        tmp_v0 = nodeprop_findByActorIdAndPosition_f32(ACTOR_330_UNKNOWN, this->spawn_position);
         if(!tmp_v0){
             this->velocity_x = -1424.0f;
             this->velocity_y = 2811.0f;

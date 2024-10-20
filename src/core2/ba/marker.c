@@ -24,7 +24,7 @@ extern Actor *baModel_80291AAC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **
 extern void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
-extern NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3]);
+extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s32 position[3]);
 
 typedef struct 
 {
@@ -157,7 +157,7 @@ void __baMarker_8028B9A8(s32 arg0){
     NodeProp *tmp_v0;
     s32 ideal_yaw[3];
 
-    tmp_v0 = cubeList_findNodePropByActorId(0x1F6, 0);
+    tmp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(0x1F6, NULL);
     nodeprop_getPosition_s32(tmp_v0, &ideal_yaw);
     func_802CA1CC(arg0);
     actor_spawnWithYaw_s32(ACTOR_47_EMPTY_HONEYCOMB, &ideal_yaw, 0);

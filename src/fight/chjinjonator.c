@@ -189,7 +189,7 @@ void chjinjonator_update(Actor *this){
                 subaddie_set_state_with_direction(this, JINJONATOR_STATE_3_MOVE_UPWARD, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 func_8030E394(this->unk44_31);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
                 local->velocity_move_up = (320.0f - this->position_y) * 0.5;
                 func_80324CFC(0.0f, COMUSIC_8C_JINJONATOR_POWERUP, 32000);
@@ -255,7 +255,7 @@ void chjinjonator_update(Actor *this){
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                     if((u8)this->unk44_31){
                         func_8030E394(this->unk44_31);
-                        func_8030DA44(this->unk44_31);
+                        sfxsource_freeSfxsourceByIndex(this->unk44_31);
                         this->unk44_31 = 0;
                     }
                     func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);

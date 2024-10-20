@@ -249,7 +249,7 @@ int CC_func_80388CA0(void){
 void func_80388CB4(void){
     if(D_80389FA0.unk21){
         skeletalAnim_free(D_80389FA0.unk0);
-        func_8030DA44(D_80389FA0.sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(D_80389FA0.sfxsourceIdx);
         func_80340690(D_80389FA0.unk18);
         func_8034A2A8(D_80389FA0.unk34);
         if(model_getVtxList(D_80389FA0.unk24) != D_80389FA0.unk40)

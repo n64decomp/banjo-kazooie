@@ -447,7 +447,7 @@ void chfinalboss_func_80387110(ActorMarker *marker, f32 arg1[3], f32 arg2, s32 a
     }
 }
 
-void chfinalboss_func_803872F8(Actor *arg0) { 
+void chfinalboss_func_803872F8(Actor *arg0) {
     f32 vec[3];
 
     func_8034A174(arg0->marker->unk44, 0xA, vec);
@@ -1044,7 +1044,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         chfinalboss_func_8038871C(this, 460.0f, 400.0f * sp54);
         chfinalboss_func_803873DC(this, 600.0f, 2000.0f);
         if (actor_animationIsAt(this, 0.9999f)) {
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0U;
             chfinalboss_setPhase(this->marker, FINALBOSS_PHASE_2_AIR);
         }
@@ -1657,7 +1657,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
                 timed_exitStaticCamera(0.0f);
                 func_80324E38(0.0f, 0);
                 chfinalboss_setPhase(this->marker, FINALBOSS_PHASE_5_JINJONATOR);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0U;
             }
             break;
@@ -1874,7 +1874,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             }
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_phase5_setState(this, 0x27);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
             }
             break;
@@ -1888,7 +1888,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                     v0 = this->unk44_31;
                     if (v0 != 0) {
                         func_8030E394(v0);
-                        func_8030DA44(this->unk44_31);
+                        sfxsource_freeSfxsourceByIndex(this->unk44_31);
                         this->unk44_31 = 0;
                     }
                 }
@@ -1982,7 +1982,7 @@ bool chfinalboss_func_8038B834(ActorMarker *marker, ActorMarker *other_marker) {
                 marker->id = 0x25E;
             }
             break;
-            
+
         case FINALBOSS_PHASE_2_AIR:
             if (local->unkA == 0) {
                 marker->id = 0x260;

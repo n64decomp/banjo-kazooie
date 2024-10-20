@@ -1964,8 +1964,11 @@ enum actor_e
     ACTOR_151_LOCKUP_SLOW = 0x151,
     ACTOR_152_LOCKUP_MEDIUM,
     ACTOR_153_LOCKUP_FAST,
-
-    ACTOR_158_UNKNOWN = 0x158,
+    ACTOR_154_UNKNOWN,
+    ACTOR_155_UNKNOWN,
+    ACTOR_156_UNKNOWN,
+    ACTOR_157_UNKNOWN,
+    ACTOR_158_UNKNOWN,
 
     ACTOR_15A_UNKNOWN = 0x15A,
 
@@ -2134,6 +2137,9 @@ enum actor_e
     
     ACTOR_32B_UNKNOWN = 0x32B, //something with Tanktup
 
+    ACTOR_32F_UNKNOWN = 0x32F,
+    ACTOR_330_UNKNOWN,
+
     ACTOR_332_TWINKLY_BLUE = 0x332,
     ACTOR_333_TWINKLY_GREEN,
     ACTOR_334_TWINKLY_ORANGE,
@@ -2226,7 +2232,8 @@ enum actor_e
     ACTOR_3C7_FF_PRIZE_GRUNTY_DOLL = 0x3C7,
     ACTOR_3C8_FF_PRIZE_TOOTY = 0x3C8,
 
-    ACTOR_3CA_ROCK_TRAPPING_GRUNTY = 0x3CA
+    ACTOR_3CA_ROCK_TRAPPING_GRUNTY = 0x3CA,
+    ACTOR_3CB_UNKNOWN
 };
 
 enum bundle_e {
@@ -3334,7 +3341,7 @@ enum asset_e
     // 427 (Wooden Plank)
     ASSET_428_MODEL_BOSS_BOOM_BOX = 0x428,
     ASSET_429_MODEL_CC_KEY,
-    // 42a (Smoke 2D?)
+    ASSET_42A_UNKNOWN, // 42a (Smoke 2D?)
     // 42b (Orange Triangle?)
     ASSET_42C_MODEL_BURIED_TREASURE = 0x42C,
     ASSET_42D_MODEL_QUARRIE = 0x42D,
@@ -3411,14 +3418,14 @@ enum asset_e
     // 472 Blank Picture
     // 473 Mumbo The BBQ King! He Bares Coconuts!
     // 474 Roysten The Grill Master!
-    // 475 (Heart 2D?)
-    ASSET_476_SPRITE_BLUE_GLOW     = 0x476,
+    ASSET_475_UNKNOWN = 0x475,// 475 (Heart 2D?)
+    ASSET_476_SPRITE_BLUE_GLOW,
     ASSET_477_SPRITE_YELLOW_GLOW,
     // 478 (Yellow Glow?)
     // 479 Bikini Girl
     // 47a (Brown Ball?)
     ASSET_47B_MODEL_ROCK    = 0x47b,
-    // 47c (Snoring Z 2D?)
+    ASSET_47C_UNKNOWN,// 47c (Snoring Z 2D?)
     // Unused
     // Unused
     ASSET_47F_MODEL_XMAS_GIFT_BLUE = 0x47F,
@@ -3811,7 +3818,7 @@ enum asset_e
     // Unused
     // 606 Red Mushroom
     // 607 Green Mushroom
-    // 608 White Circle
+    ASSET_608_UNKNOWN = 0x608, // 608 White Circle
     // 609 Mushroom (2D)
     // Unused
     // Unused
@@ -4014,6 +4021,7 @@ enum asset_e
     ASSET_6DA_SPRITE_HOURGLASS,
     ASSET_6DB_SPRITE_SKULL_HOURGLASS,
     ASSET_6DC_SPRITE_XMAS_TREE_TIMER,
+    ASSET_6DD_UNKNOWN,
 
     SPRITE_DIALOG_FONT_ALPHAMASK = 0x6eb,
     SPRITE_BOLD_FONT_LETTERS_ALPHAMASK,
@@ -4037,8 +4045,8 @@ enum asset_e
     ASSET_711_SPRITE_SPARKLE_DARK_BLUE,
     ASSET_712_SPRITE_SPARKLE_GREEN,
     ASSET_713_SPRITE_SPARKLE_YELLOW,
-
-    ASSET_715_SPRITE_SPARKLE_RED = 0x715,
+    ASSET_714_SPRITE_UNKNOWN,
+    ASSET_715_SPRITE_SPARKLE_RED,
     ASSET_716_SPRITE_SPARKLE_WHITE,
     ASSET_717_SPRITE_SPARKLE_YELLOW_2,
     ASSET_718_SPRITE_SPARKLE_WHITE_2,
