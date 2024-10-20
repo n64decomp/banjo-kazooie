@@ -147,216 +147,216 @@ segments:
   subalign: 4
   subsegments:
   - [0xF19250, c, code_0]
-  - [0xF198B0, c, code_660]                   #DONE
-  - [0xF19A10, c, inflate]                    #DONE
-  - [0xF1AF50, c, code_1D00]                  #DONE
+  - [0xF198B0, c, code_660]
+  - [0xF19A10, c, inflate]
+  - [0xF1AF50, c, code_1D00]
   - [0xF1BE20, c, pimanager]    
-  - [0xF1BFF0, c, defragmanager]              #DONE
-  - [0xF1C1F0, c, stub_2FA0]                  #DONE
-  - [0xF1C410, c, initthread]                  #DONE
-  - [0xF1C4A0, c, code_3250]                  #DONE
-  - [0xF1CCC0, c, stub_3A70]                  #DONE
+  - [0xF1BFF0, c, defragmanager]
+  - [0xF1C1F0, c, stub_2FA0]
+  - [0xF1C410, c, initthread]
+  - [0xF1C4A0, c, code_3250]
+  - [0xF1CCC0, c, stub_3A70]
   - [0xF1E8A0, c, code_5650]    
-  - [0xF202E0, c, code_7090]                  #DONE
-  - [0xF20500, c, code_72B0]                  #DONE
-  - [0xF211B0, c, code_7F60]                  #DONE
-  - [0xF21EA0, c, code_8C50]                  #DONE
-  - [0xF22F80, c, code_9D30]                  #DONE
-  - [0xF23E00, c, framebufferdraw]                  #DONE
-  - [0xF260B0, c, code_CE60]                  #DONE
-  - [0xF275B0, c, vimgr]                  #DONE
-  - [0xF27D40, c, viewport]                  #DONE
+  - [0xF202E0, c, code_7090]
+  - [0xF20500, c, code_72B0]
+  - [0xF211B0, c, code_7F60]
+  - [0xF21EA0, c, code_8C50]
+  - [0xF22F80, c, code_9D30]
+  - [0xF23E00, c, framebufferdraw]
+  - [0xF260B0, c, code_CE60]
+  - [0xF275B0, c, vimgr]
+  - [0xF27D40, c, viewport]
   - [0xF29C50, c,pfsmanager]    
-  - [0xF2AD10, c, code_11AC0]                 #DONE
-  - [0xF2C160, c, rumblemanager]                 #DONE
-  - [0xF2C890, c, stub_13640]                 #DONE
-  - [0xF2C8D0, c, sprite]                 #DONE
-  - [0xF2C920, c, overlaymanager]                 #DONE
+  - [0xF2AD10, c, code_11AC0]
+  - [0xF2C160, c, rumblemanager]
+  - [0xF2C890, c, stub_13640]
+  - [0xF2C8D0, c, sprite]
+  - [0xF2C920, c, overlaymanager]
   - [0xF2CBE0, c, mlmtx]   
-  - [0xF2E840, hasm, code_155F0]              #DONE
-  - [0xF2E880, c, overlay]                 #DONE
-  - [0xF2E9C0, c, depthbuffer]                 #DONE
-  - [0xF2ED80, c, code_15B30]                 #DONE
-  - [0xF2FCA0, c, memory]                     #DONE
-  - [0xF31360, c, eeprom]                 #DONE
-  - [0xF31460, c, ucode]                 #DONE
-  - [0xF31560, c, lookup]                 #DONE
-  - [0xF315A0, c, ml]                 #DONE
-  - [0xF350E0, c, code_1BE90]                 #DONE
-  - [0xF367E0, c, stub_1D590]                 #DONE
-  - [0xF36810, hasm, code_1D5C0]              #DONE
-  - [0xF36820, c, code_1D5D0]                 #DONE
-  - [0xF375B0, c, sns]                 #DONE
-  - [0xF37930, c, crccalc]                 #DONE
-  - [0xF37A70, hasm, code_1E820]              #DONE
-  - [0xF37B10, c, audio/n_sl]                 #DONE
-  - [0xF37BA0, c, audio/n_synthesizer]        #DONE
-  - [0xF38580, c, audio/event]                #DONE
-  - [0xF38860, c, audio/n_synaddplayer]       #DONE
-  - [0xF38A30, c, audio/n_synallocvoice]      #DONE
-  - [0xF38C30, c, audio/n_synsetvol]          #DONE
-  - [0xF38CD0, c, audio/n_synstartvoice]      #DONE
-  - [0xF38D50, c, audio/n_synsetpan]          #DONE
-  - [0xF38DD0, c, audio/n_synsetpitch]        #DONE
-  - [0xF38E50, c, audio/n_synsetfxmix]        #DONE
-  - [0xF38EE0, c, audio/n_synstopvoice]       #DONE
-  - [0xF38F50, c, audio/n_synfreevoice]       #DONE
-  - [0xF38FF0, c, audio/n_csplayer]           #DONE
-  - [0xF3A460, c, audio/cspsetbank]           #DONE
-  - [0xF3A4A0, c, audio/cspstop]              #DONE
-  - [0xF3A4D0, c, audio/n_csq]                #DONE
-  - [0xF3AB70, c, audio/cspsetseq]            #DONE
-  - [0xF3ABB0, c, audio/cspplay]              #DONE
-  - [0xF3ABE0, c, audio/cspsetvol]            #DONE
-  - [0xF3AC20, c, audio/code_219D0]           #DONE
-  - [0xF3AC60, c, audio/cspsettempo]          #DONE
-  - [0xF3ACD0, c, audio/code_21A80]           #DONE
-  - [0xF3AD00, c, audio/cspgettempo]          #DONE
-  - [0xF3AD40, c, audio/code_21AF0]           #DONE
-  - [0xF3ADA0, c, audio/code_21B50]           #DONE
-  - [0xF3AE40, c, audio/n_syndelete]          #DONE
-  - [0xF3AEA0, c, audio/n_synallocfx]         #DONE
-  - [0xF3AF00, c, audio/n_reverb]             #DONE
-  - [0xF3B990, c, audio/n_auxbus]             #DONE
-  - [0xF3BA40, c, audio/n_drvrNew]            #DONE
-  - [0xF3BFA0, c, audio/n_save]               #DONE
-  - [0xF3BFF0, c, audio/n_envresample]        #DONE
-  - [0xF3C090, c, audio/n_env]                #DONE
-  - [0xF3CA40, c, audio/n_seqplayer]          #DONE
-  - [0xF3E5B0, c, audio/n_synstartvoiceparam] #DONE
-  - [0xF3E690, c, audio/n_mainbus]            #DONE
-  - [0xF3E710, c, audio/n_load]               #DONE
-  - [0xF3E8D0, c, audio/n_adpcm]              #DONE
-  - [0xF3EE90, c, audio/n_resample]           #DONE
-  - [0xF3F070, c, audio/n_seq]                #DONE
-  - [0xF3F360, c, audio/n_synsetpriority]     #DONE
-  - [0xF3F370, asm, os/invaldcache]           #DONE
-  - [0xF3F410, asm, os/writebackdcacheall]    #DONE
-  - [0xF3F440, c, os/initialize]              #DONE
-  - [0xF3F6D0, c, os/createthread]            #DONE
-  - [0xF3F820, c, gu/sinf]                    #DONE
-  - [0xF3F9E0, c, audio/cents2ratio]          #DONE
-  - [0xF3FA30, c, audio/heapinit]             #DONE
-  - [0xF3FA70, hasm, ultra/parameters]        #DONE
-  - [0xF3FAD0, c, os/createmesgqueue]         #DONE
-  - [0xF3FB00, c, io/aisetfreq]               #DONE
-  - [0xF3FC60, c, audio/sl]                   #DONE
-  - [0xF3FD20, c, audio/heapalloc]            #DONE
-  - [0xF3FD80, c, os/recvmesg]                #DONE
-  - [0xF3FEC0, c, io/aigetlen]                #DONE
-  - [0xF3FED0, c, os/virtualtophysical]       #DONE
-  - [0xF3FF50, c, io/aisetnextbuf]            #DONE
-  - [0xF40000, c, os/pidma]                   #DONE
-  - [0xF40110, c, os/stopthread]              #DONE
-  - [0xF401D0, c, os/startthread]             #DONE
-  - [0xF40320, hasm, os/writebackdcache]      #DONE
-  - [0xF403A0, hasm, invaldcache]             #DONE
-  - [0xF40450, c, io/pimgr]                   #DONE
-  - [0xF405E0, c, os/destroythread]           #DONE
-  - [0xF406E0, c, os/sendmesg]                #DONE
-  - [0xF40830, c, os/settreadpri]             #DONE
-  - [0xF40910, c, gu/mtxutil]                 #DONE
-  - [0xF40B80, c, gu/sqrtf]                   #DONE
-  - [0xF40B90, c, gu/cosf]                    #DONE
-  - [0xF40D00, hasm, ultra/setintmask]        #DONE
-  - [0xF40DA0, c, io/dpsetstat]               #DONE
-  - [0xF40DB0, c, io/sptask]                  #DONE
-  - [0xF410A0, c, io/dpgetstat]               #DONE
-  - [0xF410A0, c, io/vigetcurrframebuf]       #DONE
-  - [0xF410F0, c, os/stoptimer]               #DONE
-  - [0xF411E0, c, os/settimer]                #DONE
-  - [0xF412C0, c, ll]                         #DONE
-  - [0xF41580, c, io/sptaskyielded]           #DONE
-  - [0xF41600, c, io/sptaskyield]             #DONE
-  - [0xF41620, c, io/visetmode]               #DONE
-  - [0xF41690, c, os/seteventmesg]            #DONE
-  - [0xF41700, c, io/vimgr]                   #DONE
-  - [0xF41A60, c, io/visetspecial]            #DONE
-  - [0xF41C20, c, io/viswapbuf]               #DONE
-  - [0xF41C70, c, io/visetevent]              #DONE
-  - [0xF41CE0, c, io/vigetnextframebuf]       #DONE
-  - [0xF41D20, c, io/viblack]                 #DONE
-  - [0xF41D90, c, gu/ortho]                   #DONE
-  - [0xF41F50, c, gu/translate]               #DONE
-  - [0xF41FF0, c, gu/rotate]                  #DONE
-  - [0xF421E0, c, io/contreaddata]            #DONE
-  - [0xF42440, c, io/controller]              #DONE
-  - [0xF42800, c, io/contsetch]               #DONE
-  - [0xF42870, c, audio/bnkf]                 #DONE
-  - [0xF42AC0, c, os/gettime]                 #DONE
-  - [0xF42B50, c, audio/cseq]                 #DONE
-  - [0xF43610, c, io/motor]                   #DONE
-  - [0xF43C30, c, io/pfsinit]                 #DONE
-  - [0xF43CF0, hasm, invalicache]             #DONE
-  - [0xF43D70, c, io/conteeplongwrite]        #DONE
-  - [0xF43EA0, c, io/conteeplongread]         #DONE
-  - [0xF43F30, c, io/piread]                  #DONE
-  - [0xF43F70, c, audio/copy]                 #DONE
-  - [0xF43FF0, c, audio/drvrNew]              #DONE
-  - [0xF44790, c, audio/reverb]               #DONE
-  - [0xF453E0, c, syncprintf]                 #DONE
-  - [0xF45420, c, audio/seq]                  #DONE
-  - [0xF45A40, hasm, setsr]                   #DONE
-  - [0xF45A50, hasm, getsr]                   #DONE
-  - [0xF45A60, hasm, setfpccsr]               #DONE
-  - [0xF45A70, c, io/sirawread]               #DONE
-  - [0xF45AC0, c, io/sirawwrite]              #DONE
-  - [0xF45B10, hasm, ultra/exceptasm]         #DONE
-  - [0xF46480, c, io/pirawread]               #DONE
-  - [0xF464E0, hasm, interrupt]               #DONE
-  - [0xF46520, c, os/thread]                  #DONE
-  - [0xF46560, c, audio/synthesizer]          #DONE
-  - [0xF46C40, c, audio/syndelete]            #DONE
-  - [0xF46C50, hasm, probetlb]                #DONE
-  - [0xF46D10, c, io/ai]                      #DONE
-  - [0xF46D40, c, os/jammesg]                 #DONE
-  - [0xF46E90, c, io/pigetcmdq]               #DONE
-  - [0xF46EC0, c, io/cartrominit]             #DONE
-  - [0xF46FC0, c, io/leodiskinit]             #DONE
-  - [0xF470C0, c, io/piacs]                   #DONE
-  - [0xF47180, c, os/getthreadpri]            #DONE
-  - [0xF471A0, c, io/pirawdma]                #DONE
-  - [0xF47280, c, io/epirawdma]               #DONE
-  - [0xF474B0, c, io/devmgr]                  #DONE
-  - [0xF47940, hasm, bcopy]                   #DONE
-  - [0xF47C50, c, io/spsetstat]               #DONE
-  - [0xF47C60, c, io/spsetpc]                 #DONE
-  - [0xF47CA0, c, io/sprawdma]                #DONE
-  - [0xF47D30, c, io/sp]                      #DONE
-  - [0xF47D60, c, io/vi]                      #DONE
-  - [0xF47EA0, c, os/timerintr]               #DONE
-  - [0xF482A0, hasm, setcompare]              #DONE
-  - [0xF482B0, c, io/spgetstat]               #DONE
-  - [0xF482C0, c, io/vigetcurrcontext]        #DONE
-  - [0xF482D0, c, io/viswapcontext]           #DONE
-  - [0xF48630, hasm, getcount]                #DONE
-  - [0xF48640, c, gu/normalize]               #DONE
-  - [0xF486D0, c, io/siacs]                   #DONE
-  - [0xF48790, c, io/sirawdma]                #DONE
-  - [0xF48840, c, io/pfsisplug]               #DONE
-  - [0xF48BB0, c, io/crc]                     #DONE
-  - [0xF48D30, c, io/contramwrite]            #DONE
-  - [0xF490B0, c, io/contramread]             #DONE
-  - [0xF49440, c, io/pfsgetstatus]            #DONE
-  - [0xF49550, c, io/contpfs]                 #DONE
-  - [0xF4A2B0, c, io/pfschecker]              #DONE
-  - [0xF4AD10, c, io/conteepwrite]            #DONE
-  - [0xF4B260, c, io/conteepread]             #DONE
-  - [0xF4B5C0, c, audio/filter]               #DONE
-  - [0xF4B5E0, c, audio/env]                  #DONE
-  - [0xF4C160, c, audio/load]                 #DONE
-  - [0xF4CCB0, c, audio/resample]             #DONE
-  - [0xF4CFB0, c, audio/auxbus]               #DONE
-  - [0xF4D0C0, c, audio/mainbus]              #DONE
-  - [0xF4D210, c, audio/save]                 #DONE
-  - [0xF4D2D0, c, io/si]                      #DONE
-  - [0xF4D300, c, io/leointerrupt]            #DONE
-  - [0xF4DB80, c, audio/synallocfx]           #DONE
-  - [0xF4DC20, c, os/resetglobalintmask]      #DONE
-  - [0xF4DC80, c, io/epirawwrite]             #DONE
-  - [0xF4DCD0, c, io/epirawread]              #DONE
-  - [0xF4DD20, c, os/setglobalintmask]        #DONE
-  - [0xF4DD70, c, os/yieldthread]             #DONE
+  - [0xF2E840, hasm, code_155F0]
+  - [0xF2E880, c, overlay]
+  - [0xF2E9C0, c, depthbuffer]
+  - [0xF2ED80, c, code_15B30]
+  - [0xF2FCA0, c, memory]
+  - [0xF31360, c, eeprom]
+  - [0xF31460, c, ucode]
+  - [0xF31560, c, lookup]
+  - [0xF315A0, c, ml]
+  - [0xF350E0, c, code_1BE90]
+  - [0xF367E0, c, stub_1D590]
+  - [0xF36810, hasm, code_1D5C0]
+  - [0xF36820, c, code_1D5D0]
+  - [0xF375B0, c, sns]
+  - [0xF37930, c, crccalc]
+  - [0xF37A70, hasm, code_1E820]
+  - [0xF37B10, c, audio/n_sl]
+  - [0xF37BA0, c, audio/n_synthesizer]
+  - [0xF38580, c, audio/event]
+  - [0xF38860, c, audio/n_synaddplayer]
+  - [0xF38A30, c, audio/n_synallocvoice]
+  - [0xF38C30, c, audio/n_synsetvol]
+  - [0xF38CD0, c, audio/n_synstartvoice]
+  - [0xF38D50, c, audio/n_synsetpan]
+  - [0xF38DD0, c, audio/n_synsetpitch]
+  - [0xF38E50, c, audio/n_synsetfxmix]
+  - [0xF38EE0, c, audio/n_synstopvoice]
+  - [0xF38F50, c, audio/n_synfreevoice]
+  - [0xF38FF0, c, audio/n_csplayer]
+  - [0xF3A460, c, audio/cspsetbank]
+  - [0xF3A4A0, c, audio/cspstop]
+  - [0xF3A4D0, c, audio/n_csq]
+  - [0xF3AB70, c, audio/cspsetseq]
+  - [0xF3ABB0, c, audio/cspplay]
+  - [0xF3ABE0, c, audio/cspsetvol]
+  - [0xF3AC20, c, audio/code_219D0]
+  - [0xF3AC60, c, audio/cspsettempo]
+  - [0xF3ACD0, c, audio/code_21A80]
+  - [0xF3AD00, c, audio/cspgettempo]
+  - [0xF3AD40, c, audio/code_21AF0]
+  - [0xF3ADA0, c, audio/code_21B50]
+  - [0xF3AE40, c, audio/n_syndelete]
+  - [0xF3AEA0, c, audio/n_synallocfx]
+  - [0xF3AF00, c, audio/n_reverb]
+  - [0xF3B990, c, audio/n_auxbus]
+  - [0xF3BA40, c, audio/n_drvrNew]
+  - [0xF3BFA0, c, audio/n_save]
+  - [0xF3BFF0, c, audio/n_envresample]
+  - [0xF3C090, c, audio/n_env]
+  - [0xF3CA40, c, audio/n_seqplayer]
+  - [0xF3E5B0, c, audio/n_synstartvoiceparam]
+  - [0xF3E690, c, audio/n_mainbus]
+  - [0xF3E710, c, audio/n_load]
+  - [0xF3E8D0, c, audio/n_adpcm]
+  - [0xF3EE90, c, audio/n_resample]
+  - [0xF3F070, c, audio/n_seq]
+  - [0xF3F360, c, audio/n_synsetpriority]
+  - [0xF3F370, asm, os/invaldcache]
+  - [0xF3F410, asm, os/writebackdcacheall]
+  - [0xF3F440, c, os/initialize]
+  - [0xF3F6D0, c, os/createthread]
+  - [0xF3F820, c, gu/sinf]
+  - [0xF3F9E0, c, audio/cents2ratio]
+  - [0xF3FA30, c, audio/heapinit]
+  - [0xF3FA70, hasm, ultra/parameters]
+  - [0xF3FAD0, c, os/createmesgqueue]
+  - [0xF3FB00, c, io/aisetfreq]
+  - [0xF3FC60, c, audio/sl]
+  - [0xF3FD20, c, audio/heapalloc]
+  - [0xF3FD80, c, os/recvmesg]
+  - [0xF3FEC0, c, io/aigetlen]
+  - [0xF3FED0, c, os/virtualtophysical]
+  - [0xF3FF50, c, io/aisetnextbuf]
+  - [0xF40000, c, os/pidma]
+  - [0xF40110, c, os/stopthread]
+  - [0xF401D0, c, os/startthread]
+  - [0xF40320, hasm, os/writebackdcache]
+  - [0xF403A0, hasm, invaldcache]
+  - [0xF40450, c, io/pimgr]
+  - [0xF405E0, c, os/destroythread]
+  - [0xF406E0, c, os/sendmesg]
+  - [0xF40830, c, os/settreadpri]
+  - [0xF40910, c, gu/mtxutil]
+  - [0xF40B80, c, gu/sqrtf]
+  - [0xF40B90, c, gu/cosf]
+  - [0xF40D00, hasm, ultra/setintmask]
+  - [0xF40DA0, c, io/dpsetstat]
+  - [0xF40DB0, c, io/sptask]
+  - [0xF410A0, c, io/dpgetstat]
+  - [0xF410A0, c, io/vigetcurrframebuf]
+  - [0xF410F0, c, os/stoptimer]
+  - [0xF411E0, c, os/settimer]
+  - [0xF412C0, c, ll]
+  - [0xF41580, c, io/sptaskyielded]
+  - [0xF41600, c, io/sptaskyield]
+  - [0xF41620, c, io/visetmode]
+  - [0xF41690, c, os/seteventmesg]
+  - [0xF41700, c, io/vimgr]
+  - [0xF41A60, c, io/visetspecial]
+  - [0xF41C20, c, io/viswapbuf]
+  - [0xF41C70, c, io/visetevent]
+  - [0xF41CE0, c, io/vigetnextframebuf]
+  - [0xF41D20, c, io/viblack]
+  - [0xF41D90, c, gu/ortho]
+  - [0xF41F50, c, gu/translate]
+  - [0xF41FF0, c, gu/rotate]
+  - [0xF421E0, c, io/contreaddata]
+  - [0xF42440, c, io/controller]
+  - [0xF42800, c, io/contsetch]
+  - [0xF42870, c, audio/bnkf]
+  - [0xF42AC0, c, os/gettime]
+  - [0xF42B50, c, audio/cseq]
+  - [0xF43610, c, io/motor]
+  - [0xF43C30, c, io/pfsinit]
+  - [0xF43CF0, hasm, invalicache]
+  - [0xF43D70, c, io/conteeplongwrite]
+  - [0xF43EA0, c, io/conteeplongread]
+  - [0xF43F30, c, io/piread]
+  - [0xF43F70, c, audio/copy]
+  - [0xF43FF0, c, audio/drvrNew]
+  - [0xF44790, c, audio/reverb]
+  - [0xF453E0, c, syncprintf]
+  - [0xF45420, c, audio/seq]
+  - [0xF45A40, hasm, setsr]
+  - [0xF45A50, hasm, getsr]
+  - [0xF45A60, hasm, setfpccsr]
+  - [0xF45A70, c, io/sirawread]
+  - [0xF45AC0, c, io/sirawwrite]
+  - [0xF45B10, hasm, ultra/exceptasm]
+  - [0xF46480, c, io/pirawread]
+  - [0xF464E0, hasm, interrupt]
+  - [0xF46520, c, os/thread]
+  - [0xF46560, c, audio/synthesizer]
+  - [0xF46C40, c, audio/syndelete]
+  - [0xF46C50, hasm, probetlb]
+  - [0xF46D10, c, io/ai]
+  - [0xF46D40, c, os/jammesg]
+  - [0xF46E90, c, io/pigetcmdq]
+  - [0xF46EC0, c, io/cartrominit]
+  - [0xF46FC0, c, io/leodiskinit]
+  - [0xF470C0, c, io/piacs]
+  - [0xF47180, c, os/getthreadpri]
+  - [0xF471A0, c, io/pirawdma]
+  - [0xF47280, c, io/epirawdma]
+  - [0xF474B0, c, io/devmgr]
+  - [0xF47940, hasm, bcopy]
+  - [0xF47C50, c, io/spsetstat]
+  - [0xF47C60, c, io/spsetpc]
+  - [0xF47CA0, c, io/sprawdma]
+  - [0xF47D30, c, io/sp]
+  - [0xF47D60, c, io/vi]
+  - [0xF47EA0, c, os/timerintr]
+  - [0xF482A0, hasm, setcompare]
+  - [0xF482B0, c, io/spgetstat]
+  - [0xF482C0, c, io/vigetcurrcontext]
+  - [0xF482D0, c, io/viswapcontext]
+  - [0xF48630, hasm, getcount]
+  - [0xF48640, c, gu/normalize]
+  - [0xF486D0, c, io/siacs]
+  - [0xF48790, c, io/sirawdma]
+  - [0xF48840, c, io/pfsisplug]
+  - [0xF48BB0, c, io/crc]
+  - [0xF48D30, c, io/contramwrite]
+  - [0xF490B0, c, io/contramread]
+  - [0xF49440, c, io/pfsgetstatus]
+  - [0xF49550, c, io/contpfs]
+  - [0xF4A2B0, c, io/pfschecker]
+  - [0xF4AD10, c, io/conteepwrite]
+  - [0xF4B260, c, io/conteepread]
+  - [0xF4B5C0, c, audio/filter]
+  - [0xF4B5E0, c, audio/env]
+  - [0xF4C160, c, audio/load]
+  - [0xF4CCB0, c, audio/resample]
+  - [0xF4CFB0, c, audio/auxbus]
+  - [0xF4D0C0, c, audio/mainbus]
+  - [0xF4D210, c, audio/save]
+  - [0xF4D2D0, c, io/si]
+  - [0xF4D300, c, io/leointerrupt]
+  - [0xF4DB80, c, audio/synallocfx]
+  - [0xF4DC20, c, os/resetglobalintmask]
+  - [0xF4DC80, c, io/epirawwrite]
+  - [0xF4DCD0, c, io/epirawread]
+  - [0xF4DD20, c, os/setglobalintmask]
+  - [0xF4DD70, c, os/yieldthread]
   - [0xF4DDC0, bin, n_aspMain_text]
   - [0xF4EA20, bin, gSPF3DEX_fifo_text]
   - [0xF4FE50, bin, gSPL3DEX_fifo_text]
@@ -504,401 +504,401 @@ segments:
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
   follows_vram: core1
   subsegments:
-  - [0xF55960, c, animctrl] #DONE
-  - [0xF56430, c, anim/sprite] #DONE
-  - [0xF56A40, c, animcache] #DONE
-  - [0xF56EB0, c, code_1550] #DONE
-  - [0xF57290, c, code_1930] #DONE
-  - [0xF57BA0, c, code_2240] #DONE
-  - [0xF581F0, c, ba/anim] #DONE
-  - [0xF58DE0, c, snackerctl] #DONE
-  - [0xF59330, c, code_39D0] #DONE
-  - [0xF5A120, c, ba/marker] #DONE
-  - [0xF5C490, c, code_6B30] #DONE
-  - [0xF5C730, c, ba/carriedobj] #DONE
-  - [0xF5C9C0, c, code_7060] #DONE
-  - [0xF5E700, c, ba/flap] #DONE
-  - [0xF5EA40, c, code_90E0] #DONE 
-  - [0xF5EBF0, c, code_9290] #DONE
-  - [0xF5EDB0, c, code_9450] #DONE
-  - [0xF5F260, c, code_9900] #DONE
-  - [0xF5F530, c, code_9BD0] #DONE
-  - [0xF5FF60, c, code_A600] #DONE
-  - [0xF60040, c, statetimer] #DONE
-  - [0xF602C0, c, code_A960] #DONE
-  - [0xF603C0, c, ba/model] #DONE
-  - [0xF60FB0, c, ba/drone] #DONE
-  - [0xF611B0, c, code_B850] #DONE
-  - [0xF614B0, c, eggshatter] #DONE
-  - [0xF61680, c, code_BD20] #DONE
-  - [0xF61A40, c, ba/falldamage] #DONE
-  - [0xF61D50, c, code_C3F0] #DONE
+  - [0xF55960, c, animctrl]
+  - [0xF56430, c, anim/sprite]
+  - [0xF56A40, c, animcache]
+  - [0xF56EB0, c, code_1550]
+  - [0xF57290, c, code_1930]
+  - [0xF57BA0, c, code_2240]
+  - [0xF581F0, c, ba/anim]
+  - [0xF58DE0, c, snackerctl]
+  - [0xF59330, c, code_39D0]
+  - [0xF5A120, c, ba/marker]
+  - [0xF5C490, c, code_6B30]
+  - [0xF5C730, c, ba/carriedobj]
+  - [0xF5C9C0, c, code_7060]
+  - [0xF5E700, c, ba/flap]
+  - [0xF5EA40, c, code_90E0]
+  - [0xF5EBF0, c, code_9290]
+  - [0xF5EDB0, c, code_9450]
+  - [0xF5F260, c, code_9900]
+  - [0xF5F530, c, code_9BD0]
+  - [0xF5FF60, c, code_A600]
+  - [0xF60040, c, statetimer]
+  - [0xF602C0, c, code_A960]
+  - [0xF603C0, c, ba/model]
+  - [0xF60FB0, c, ba/drone]
+  - [0xF611B0, c, code_B850]
+  - [0xF614B0, c, eggshatter]
+  - [0xF61680, c, code_BD20]
+  - [0xF61A40, c, ba/falldamage]
+  - [0xF61D50, c, code_C3F0]
   - [0xF61E10, c, code_C4B0]
-  - [0xF63160, c, ba/carry] #DONE
-  - [0xF63310, c, code_D9B0] #DONE
-  - [0xF638D0, c, code_DF70] #DONE
-  - [0xF63D70, c, code_E410] #DONE
-  - [0xF63FE0, c, abilityprogress] #DONE
-  - [0xF64270, c, code_E910] #DONE
-  - [0xF647A0, c, code_EE40] #DONE
-  - [0xF648B0, c, code_EF50] #DONE
-  - [0xF656C0, c, ba/physics] #DONE
-  - [0xF66630, c, code_10CD0] #DONE
-  - [0xF66700, c, pitch]      #DONE
-  - [0xF669A0, c, code_11040] #DONE
-  - [0xF66BB0, c, climb] #DONE
-  - [0xF66DC0, c, code_11460] #DONE
-  - [0xF66FC0, c, code_11660] #DONE
-  - [0xF67130, c, code_117D0] #DONE
-  - [0xF671D0, c, code_11870] #DONE
-  - [0xF674A0, c, roll]       #DONE
-  - [0xF67740, c, yaw]        #DONE
-  - [0xF67CC0, c, code_12360] #DONE
-  - [0xF68020, c, code_126C0] #DONE
+  - [0xF63160, c, ba/carry]
+  - [0xF63310, c, code_D9B0]
+  - [0xF638D0, c, code_DF70]
+  - [0xF63D70, c, code_E410]
+  - [0xF63FE0, c, abilityprogress]
+  - [0xF64270, c, code_E910]
+  - [0xF647A0, c, code_EE40]
+  - [0xF648B0, c, code_EF50]
+  - [0xF656C0, c, ba/physics]
+  - [0xF66630, c, code_10CD0]
+  - [0xF66700, c, pitch]
+  - [0xF669A0, c, code_11040]
+  - [0xF66BB0, c, climb]
+  - [0xF66DC0, c, code_11460]
+  - [0xF66FC0, c, code_11660]
+  - [0xF67130, c, code_117D0]
+  - [0xF671D0, c, code_11870]
+  - [0xF674A0, c, roll]
+  - [0xF67740, c, yaw]
+  - [0xF67CC0, c, code_12360]
+  - [0xF68020, c, code_126C0]
   - [0xF68890, c, code_12F30]
-  - [0xF68FD0, c, bsList]     #DONE
-  - [0xF690E0, c, code_13780] #DONE
-  - [0xF69260, c, bsStoredState] #DONE
-  - [0xF69360, c, code_13A00] #DONE
-  - [0xF69920, c, code_13FC0] #DONE
-  - [0xF69D80, c, code_14420] #DONE
-  - [0xF6B880, c, code_15F20]  #DONE
-  - [0xF6B970, c, code_16010]  #DONE
-  - [0xF6C5C0, c, code_16C60]  #DONE
-  - [0xF6CB50, c, code_171F0]  #DONE
-  - [0xF6CDB0, c, bs/ant]      #DONE
-  - [0xF6DEB0, c, bs/bBarge]   #DONE
-  - [0xF6E4F0, c, bs/bbuster]  #DONE
-  - [0xF6EC90, c, bs/bee]      #DONE
-  - [0xF6EEC0, c, bs/beeFly]   #DONE
-  - [0xF6F960, c, bs/beeMain]  #DONE
-  - [0xF70B40, c, bs/bEggAss]  #DONE
-  - [0xF70DB0, c, bs/bEggHead] #DONE
-  - [0xF71060, c, bs/bFlap]    #DONE
-  - [0xF71730, c, bs/bFlip]    #DONE
-  - [0xF71D20, c, bs/bFly]     #DONE
-  - [0xF73BA0, c, bs/bLongLeg] #DONE
-  - [0xF74EE0, c, bs/bPeck]    #DONE
-  - [0xF75380, c, bs/bShock]   #DONE
-  - [0xF75B10, c, bs/bSwim]    #DONE
-  - [0xF77190, c, bs/bTrot]    #DONE
-  - [0xF78DD0, c, bs/bWhirl]   #DONE
-  - [0xF79850, c, bs/carry]    #DONE
-  - [0xF79C50, c, bs/claw]     #DONE
-  - [0xF79F90, c, bs/climb]    #DONE
-  - [0xF7A790, c, bs/croc]     #DONE
-  - [0xF7C0A0, c, bs/crouch]   #DONE
-  - [0xF7C7D0, c, bs/die]      #DONE
-  - [0xF7CD40, c, bs/drone]    #DONE
-  - [0xF7CEB0, c, bs/droneenter]  #DONE
-  - [0xF7D530, c, bs/dronegoto] #DONE
-  - [0xF7D8A0, c, bs/dronelook]  #DONE
-  - [0xF7DB80, c, bs/dronevanish]  #DONE
-  - [0xF7E170, c, bs/dronexform] #DONE
-  - [0xF7F430, c, bs/jig]        #DONE
-  - [0xF7FAD0, c, bs/jump]     #DONE
-  - [0xF809A0, c, bs/ow]       #DONE
-  - [0xF80BA0, c, bs/pumpkin]  #DONE
-  - [0xF81FA0, c, bs/rebound]  #DONE
-  - [0xF82420, c, bs/rest]     #DONE
-  - [0xF828F0, c, bs/sled]     #DONE
-  - [0xF82AA0, c, bs/slide]    #DONE
-  - [0xF82F40, c, bs/splat]    #DONE
-  - [0xF83240, c, bs/stand]    #DONE
-  - [0xF83E50, c, bs/swim]     #DONE
-  - [0xF849A0, c, bs/surf]     #DONE
-  - [0xF84B00, c, bs/talk] #DONE
-  - [0xF84C40, c, bs/timeout]  #DONE
-  - [0xF84F10, c, bs/throw]    #DONE
-  - [0xF85130, c, bs/turn]     #DONE
-  - [0xF85410, c, bs/twirl]    #DONE
-  - [0xF856D0, c, bs/walk]     #DONE
-  - [0xF867D0, c, bs/walrus]   #DONE
-  - [0xF88350, c, bs/washy]   #DONE
-  - [0xF88710, c, nc/cameranodelist] #DONE
-  - [0xF88BB0, c, code_33250] #DONE
-  - [0xF88BB0, c, code_33310] #DONE
-  - [0xF89050, c, code_336F0] #DONE
-  - [0xF89410, c, code_33AB0] #DONE
-  - [0xF89590, c, code_33C30] #DONE
-  - [0xF896A0, c, nc/staticCamera] #DONE
-  - [0xF898F0, c, code_33F90] #DONE
-  - [0xF89C70, c, code_34310] #DONE
-  - [0xF8A0F0, c, code_34790] #DONE
-  - [0xF8AE80, c, code_35520] #DONE
-  - [0xF8B010, c, nc/dynamicCamera] #DONE
-  - [0xF8D310, c, code_379B0] #DONE
-  - [0xF8D630, c, nc/randomCamera] #DONE
-  - [0xF8D7B0, c, code_37E50] #DONE
-  - [0xF8DAB0, c, nc/dynamicCam10] #DONE
-  - [0xF8DC40, c, nc/dynamicCamD] #DONE
-  - [0xF8DDC0, c, nc/dynamicCam5] #DONE
-  - [0xF8DF90, c, nc/dynamicCam11] #DONE
-  - [0xF8E240, c, nc/dynamicCam8] #DONE
-  - [0xF8E430, c, nc/dynamicCam4] #DONE
-  - [0xF8E8A0, c, nc/dynamicCamC] #DONE
-  - [0xF8EAF0, c, code_F8EAF0] #DONE
-  - [0xF8ED40, c, nc/dynamicCamB] #DONE
-  - [0xF8F010, c, nc/dynamicCam13] #DONE
-  - [0xF8F370, c, nc/dynamicCam9] #DONE
-  - [0xF8F850, c, nc/dynamicCam12] #DONE
-  - [0xF90280, c, nc/dynamicCam1] #DONE
-  - [0xF904A0, c, nc/dynamicCam3] #DONE
-  - [0xF90770, c, nc/dynamicCamA] #DONE
-  - [0xF90C20, c, code_3B2C0] #DONE
-  - [0xF90E30, c, nc/dynamicCamF] #DONE
-  - [0xF90F20, c, nc/firstpersoncamera] #DONE
-  - [0xF914E0, c, spawnqueue] #DONE
-  - [0xF92D30, c, ch/gameSelect] #DONE
-  - [0xF94430, c, code_3EAD0] #DONE
-  - [0xF94590, c, code_3EC30] #DONE
-  - [0xF94640, c, ch/bubble] #DONE
-  - [0xF94850, c, ch/bigbutt] #DONE
-  - [0xF95A50, c, code_400F0] #DONE
-  - [0xF96400, c, ch/jiggy]   #DONE
-  - [0xF96A90, c, ch/jigsawdance] #DONE
-  - [0xF96DC0, c, code_41460]    #DONE
-  - [0xF97890, c, code_41F30]    #DONE
-  - [0xF97910, c, code_41FB0]    #DONE
-  - [0xF98600, c, ch/musicnote]  #DONE
-  - [0xF98610, c, code_42CB0]    #DONE
-  - [0xF98BB0, c, code_43250]    #DONE
-  - [0xF98CF0, c, ch/trainers]   #DONE
-  - [0xF99160, c, code_43800]    #DONE
-  - [0xF993A0, c, code_43A40]    #DONE
-  - [0xF99630, c, mapspecificflags] #DONE
-  - [0xF99A10, c, ch/crab]    #DONE
-  - [0xF9AC70, c, code_45310]    #DONE
-  - [0xF9C240, c, ch/code_468E0] #DONE
-  - [0xF9C520, c, ch/jinjo]   #DONE
-  - [0xF9D1B0, c, ch/beehive] #DONE
-  - [0xF9D530, c, code_47BD0] #DONE
-  - [0xF9EED0, c, ch/soundsource] #DONE
-  - [0xF9F3D0, c, ch/shrapnel] #DONE
-  - [0xF9FD80, c, ch/gloop] #DONE
-  - [0xFA0050, c, code_4A6F0] #DONE
-  - [0xFA16D0, c, code_4BD70] #DONE
-  - [0xFA1770, c, code_4BE10] #DONE
-  - [0xFA1980, c, code_4C020] #DONE
-  - [0xFA54E0, c, ch/wadingboots] #DONE
-  - [0xFA5870, c, ch/badShad] #DONE
-  - [0xFA5DF0, c, code_50490] #DONE
-  - [0xFA60B0, c, ch/climbBase] #DONE
-  - [0xFA6330, c, code_509D0] #DONE
-  - [0xFA7100, c, code_517A0] #DONE
-  - [0xFA72B0, c, code_51950] #DONE
-  - [0xFA75F0, c, ch/collectible] #DONE
-  - [0xFA7BF0, c, ch/mole]     #DONE
-  - [0xFA8F30, c, ch/molehill] #DONE
-  - [0xFA9370, c, code_53A10]  #DONE
-  - [0xFA9570, c, code_53C10] #DONE
-  - [0xFAA6B0, c, code_54D50] #DONE
-  - [0xFAAAE0, c, code_55180] #DONE
-  - [0xFAACF0, c, code_55390] #DONE
-  - [0xFAB020, c, code_556C0] #DONE
-  - [0xFAB1B0, c, code_55850] #DONE
-  - [0xFAB3F0, c, ch/overlaycopyright] #DONE
-  - [0xFAB520, c, ch/overlaypressstart] #DONE
-  - [0xFAB780, c, ch/overlaynocontroller] #DONE
-  - [0xFABA50, c, ch/bottlesbonus] #DONE
-  - [0xFAD5D0, c, code_57C70] #DONE
-  - [0xFADB30, c, code_581D0] #DONE
-  - [0xFADE30, c, ch/bottlesbonuscursor] #DONE
-  - [0xFAF0E0, c, code_59780] #DONE
-  - [0xFAF340, c, code_599E0] #DONE
-  - [0xFAF3E0, c, code_59A80] #DONE
-  - [0xFAF6A0, c, ch/snacker] #DONE
-  - [0xFB0490, c, ch/snowman] #DONE
-  - [0xFB1000, c, ch/snowball] #DONE
-  - [0xFB16F0, c, ch/snowmanhat] #DONE
+  - [0xF68FD0, c, bsList]
+  - [0xF690E0, c, code_13780]
+  - [0xF69260, c, bsStoredState]
+  - [0xF69360, c, code_13A00]
+  - [0xF69920, c, code_13FC0]
+  - [0xF69D80, c, code_14420]
+  - [0xF6B880, c, code_15F20]
+  - [0xF6B970, c, code_16010]
+  - [0xF6C5C0, c, code_16C60]
+  - [0xF6CB50, c, code_171F0]
+  - [0xF6CDB0, c, bs/ant]
+  - [0xF6DEB0, c, bs/bBarge]
+  - [0xF6E4F0, c, bs/bbuster]
+  - [0xF6EC90, c, bs/bee]
+  - [0xF6EEC0, c, bs/beeFly]
+  - [0xF6F960, c, bs/beeMain]
+  - [0xF70B40, c, bs/bEggAss]
+  - [0xF70DB0, c, bs/bEggHead]
+  - [0xF71060, c, bs/bFlap]
+  - [0xF71730, c, bs/bFlip]
+  - [0xF71D20, c, bs/bFly]
+  - [0xF73BA0, c, bs/bLongLeg]
+  - [0xF74EE0, c, bs/bPeck]
+  - [0xF75380, c, bs/bShock]
+  - [0xF75B10, c, bs/bSwim]
+  - [0xF77190, c, bs/bTrot]
+  - [0xF78DD0, c, bs/bWhirl]
+  - [0xF79850, c, bs/carry]
+  - [0xF79C50, c, bs/claw]
+  - [0xF79F90, c, bs/climb]
+  - [0xF7A790, c, bs/croc]
+  - [0xF7C0A0, c, bs/crouch]
+  - [0xF7C7D0, c, bs/die]
+  - [0xF7CD40, c, bs/drone]
+  - [0xF7CEB0, c, bs/droneenter]
+  - [0xF7D530, c, bs/dronegoto]
+  - [0xF7D8A0, c, bs/dronelook]
+  - [0xF7DB80, c, bs/dronevanish]
+  - [0xF7E170, c, bs/dronexform]
+  - [0xF7F430, c, bs/jig]
+  - [0xF7FAD0, c, bs/jump]
+  - [0xF809A0, c, bs/ow]
+  - [0xF80BA0, c, bs/pumpkin]
+  - [0xF81FA0, c, bs/rebound]
+  - [0xF82420, c, bs/rest]
+  - [0xF828F0, c, bs/sled]
+  - [0xF82AA0, c, bs/slide]
+  - [0xF82F40, c, bs/splat]
+  - [0xF83240, c, bs/stand]
+  - [0xF83E50, c, bs/swim]
+  - [0xF849A0, c, bs/surf]
+  - [0xF84B00, c, bs/talk]
+  - [0xF84C40, c, bs/timeout]
+  - [0xF84F10, c, bs/throw]
+  - [0xF85130, c, bs/turn]
+  - [0xF85410, c, bs/twirl]
+  - [0xF856D0, c, bs/walk]
+  - [0xF867D0, c, bs/walrus]
+  - [0xF88350, c, bs/washy]
+  - [0xF88710, c, nc/cameranodelist]
+  - [0xF88BB0, c, code_33250]
+  - [0xF88BB0, c, code_33310]
+  - [0xF89050, c, code_336F0]
+  - [0xF89410, c, code_33AB0]
+  - [0xF89590, c, code_33C30]
+  - [0xF896A0, c, nc/staticCamera]
+  - [0xF898F0, c, code_33F90]
+  - [0xF89C70, c, code_34310]
+  - [0xF8A0F0, c, code_34790]
+  - [0xF8AE80, c, code_35520]
+  - [0xF8B010, c, nc/dynamicCamera]
+  - [0xF8D310, c, code_379B0]
+  - [0xF8D630, c, nc/randomCamera]
+  - [0xF8D7B0, c, code_37E50]
+  - [0xF8DAB0, c, nc/dynamicCam10]
+  - [0xF8DC40, c, nc/dynamicCamD]
+  - [0xF8DDC0, c, nc/dynamicCam5]
+  - [0xF8DF90, c, nc/dynamicCam11]
+  - [0xF8E240, c, nc/dynamicCam8]
+  - [0xF8E430, c, nc/dynamicCam4]
+  - [0xF8E8A0, c, nc/dynamicCamC]
+  - [0xF8EAF0, c, code_F8EAF0]
+  - [0xF8ED40, c, nc/dynamicCamB]
+  - [0xF8F010, c, nc/dynamicCam13]
+  - [0xF8F370, c, nc/dynamicCam9]
+  - [0xF8F850, c, nc/dynamicCam12]
+  - [0xF90280, c, nc/dynamicCam1]
+  - [0xF904A0, c, nc/dynamicCam3]
+  - [0xF90770, c, nc/dynamicCamA]
+  - [0xF90C20, c, code_3B2C0]
+  - [0xF90E30, c, nc/dynamicCamF]
+  - [0xF90F20, c, nc/firstpersoncamera]
+  - [0xF914E0, c, spawnqueue]
+  - [0xF92D30, c, ch/gameSelect]
+  - [0xF94430, c, code_3EAD0]
+  - [0xF94590, c, code_3EC30]
+  - [0xF94640, c, ch/bubble]
+  - [0xF94850, c, ch/bigbutt]
+  - [0xF95A50, c, code_400F0]
+  - [0xF96400, c, ch/jiggy]
+  - [0xF96A90, c, ch/jigsawdance]
+  - [0xF96DC0, c, code_41460]
+  - [0xF97890, c, code_41F30]
+  - [0xF97910, c, code_41FB0]
+  - [0xF98600, c, ch/musicnote]
+  - [0xF98610, c, code_42CB0]
+  - [0xF98BB0, c, code_43250]
+  - [0xF98CF0, c, ch/trainers]
+  - [0xF99160, c, code_43800]
+  - [0xF993A0, c, code_43A40]
+  - [0xF99630, c, mapspecificflags]
+  - [0xF99A10, c, ch/crab]
+  - [0xF9AC70, c, code_45310]
+  - [0xF9C240, c, ch/code_468E0]
+  - [0xF9C520, c, ch/jinjo]
+  - [0xF9D1B0, c, ch/beehive]
+  - [0xF9D530, c, code_47BD0]
+  - [0xF9EED0, c, ch/soundsource]
+  - [0xF9F3D0, c, ch/shrapnel]
+  - [0xF9FD80, c, ch/gloop]
+  - [0xFA0050, c, code_4A6F0]
+  - [0xFA16D0, c, code_4BD70]
+  - [0xFA1770, c, code_4BE10]
+  - [0xFA1980, c, code_4C020]
+  - [0xFA54E0, c, ch/wadingboots]
+  - [0xFA5870, c, ch/badShad]
+  - [0xFA5DF0, c, code_50490]
+  - [0xFA60B0, c, ch/climbBase]
+  - [0xFA6330, c, code_509D0]
+  - [0xFA7100, c, code_517A0]
+  - [0xFA72B0, c, code_51950]
+  - [0xFA75F0, c, ch/collectible]
+  - [0xFA7BF0, c, ch/mole]
+  - [0xFA8F30, c, ch/molehill]
+  - [0xFA9370, c, code_53A10]
+  - [0xFA9570, c, code_53C10]
+  - [0xFAA6B0, c, code_54D50]
+  - [0xFAAAE0, c, code_55180]
+  - [0xFAACF0, c, code_55390]
+  - [0xFAB020, c, code_556C0]
+  - [0xFAB1B0, c, code_55850]
+  - [0xFAB3F0, c, ch/overlaycopyright]
+  - [0xFAB520, c, ch/overlaypressstart]
+  - [0xFAB780, c, ch/overlaynocontroller]
+  - [0xFABA50, c, ch/bottlesbonus]
+  - [0xFAD5D0, c, code_57C70]
+  - [0xFADB30, c, code_581D0]
+  - [0xFADE30, c, ch/bottlesbonuscursor]
+  - [0xFAF0E0, c, code_59780]
+  - [0xFAF340, c, code_599E0]
+  - [0xFAF3E0, c, code_59A80]
+  - [0xFAF6A0, c, ch/snacker]
+  - [0xFB0490, c, ch/snowman]
+  - [0xFB1000, c, ch/snowball]
+  - [0xFB16F0, c, ch/snowmanhat]
   - [0xFB1810, c, code_5BEB0]
-  - [0xFB1BA0, c, code_5C240] #DONE
-  - [0xFB21D0, c, code_5C870] #DONE
-  - [0xFB3520, c, code_5DBC0] #DONE
-  - [0xFB5460, c, code_5FB00] #DONE
-  - [0xFB56E0, c, code_5FD80] #DONE
-  - [0xFB56F0, c, code_5FD90] #DONE
-  - [0xFB8930, c, code_62FD0] #DONE
-  - [0xFB8A30, c, code_630D0] #DONE
-  - [0xFB8D70, c, code_63410] #DONE
-  - [0xFB8FF0, c, code_63690] #DONE
-  - [0xFB9130, c, code_637D0] #DONE
-  - [0xFBAE20, c, code_654C0] #DONE
-  - [0xFBBDF0, c, code_66490] #DONE
-  - [0xFBBFF0, c, vla]        #DONE
-  - [0xFBC410, c, fla]        #DONE
-  - [0xFBC6F0, c, code_66D90] #DONE
-  - [0xFBC910, c, code_66FB0] #DONE
-  - [0xFBCDF0, c, gc/bound]   #DONE
-  - [0xFBCFB0, c, code_67650] #DONE
-  - [0xFBD300, c, particle] #DONE
-  - [0xFBF8C0, c, code_69F60] #DONE
+  - [0xFB1BA0, c, code_5C240]
+  - [0xFB21D0, c, code_5C870]
+  - [0xFB3520, c, code_5DBC0]
+  - [0xFB5460, c, code_5FB00]
+  - [0xFB56E0, c, code_5FD80]
+  - [0xFB56F0, c, code_5FD90]
+  - [0xFB8930, c, code_62FD0]
+  - [0xFB8A30, c, code_630D0]
+  - [0xFB8D70, c, code_63410]
+  - [0xFB8FF0, c, code_63690]
+  - [0xFB9130, c, code_637D0]
+  - [0xFBAE20, c, code_654C0]
+  - [0xFBBDF0, c, code_66490]
+  - [0xFBBFF0, c, vla]
+  - [0xFBC410, c, fla]
+  - [0xFBC6F0, c, code_66D90]
+  - [0xFBC910, c, code_66FB0]
+  - [0xFBCDF0, c, gc/bound]
+  - [0xFBCFB0, c, code_67650]
+  - [0xFBD300, c, particle]
+  - [0xFBF8C0, c, code_69F60]
   - [0xFBFE10, c, code_6A4B0]
-  - [0xFC0850, c, code_6AEF0] #DONE
-  - [0xFC0990, c, code_6B030] #DONE
-  - [0xFC1D40, c, fx/ripple] #DONE
-  - [0xFC2040, c, fx/sparkle] #DONE
-  - [0xFC2680, c, code_6CD20] #DONE
-  - [0xFC2820, c, code_6CEC0] #DONE
-  - [0xFC2990, c, code_6D030] #DONE
-  - [0xFC2BD0, c, code_6D270] #DONE
-  - [0xFC2DF0, c, code_6D490] #DONE
+  - [0xFC0850, c, code_6AEF0]
+  - [0xFC0990, c, code_6B030]
+  - [0xFC1D40, c, fx/ripple]
+  - [0xFC2040, c, fx/sparkle]
+  - [0xFC2680, c, code_6CD20]
+  - [0xFC2820, c, code_6CEC0]
+  - [0xFC2990, c, code_6D030]
+  - [0xFC2BD0, c, code_6D270]
+  - [0xFC2DF0, c, code_6D490]
   - [0xFC3390, c, code_6DA30]
-  - [0xFC6590, c, code_70C30] #DONE
-  - [0xFC6880, c, code_70F20] #DONE
-  - [0xFC7180, c, code_71820] #DONE
-  - [0xFC79C0, c, code_72060] #DONE
-  - [0xFC8470, c, code_72B10] #DONE
-  - [0xFC8FA0, c, code_73640] #DONE
-  - [0xFC99F0, c, code_74090] #DONE
-  - [0xFC9BF0, c, code_74290] #DONE
-  - [0xFC9D80, c, code_74420] #DONE
-  - [0xFCA270, c, code_74910] #DONE
-  - [0xFCA830, c, code_74ED0] #DONE
-  - [0xFCADE0, c, code_75480] #DONE
-  - [0xFCB290, c, code_75930] #DONE
-  - [0xFCB7F0, c, code_75E90] #DONE
-  - [0xFCBCF0, c, fx/common1score] #DONE
-  - [0xFCBD30, c, fx/common2score] #DONE
-  - [0xFCC6F0, c, fx/honeycarrierscore] #DONE
-  - [0xFCD7B0, c, code_77E50] #DONE
-  - [0xFCDA60, c, fx/jinjoscore] #DONE
-  - [0xFCE7B0, c, fx/lifescore] #DONE
-  - [0xFCF190, c, fx/common3score] #DONE
-  - [0xFCF5E0, c, fx/healthscore] #DONE
-  - [0xFD00C0, c, fx/airscore] #DONE
+  - [0xFC6590, c, code_70C30]
+  - [0xFC6880, c, code_70F20]
+  - [0xFC7180, c, code_71820]
+  - [0xFC79C0, c, code_72060]
+  - [0xFC8470, c, code_72B10]
+  - [0xFC8FA0, c, code_73640]
+  - [0xFC99F0, c, code_74090]
+  - [0xFC9BF0, c, code_74290]
+  - [0xFC9D80, c, code_74420]
+  - [0xFCA270, c, code_74910]
+  - [0xFCA830, c, code_74ED0]
+  - [0xFCADE0, c, code_75480]
+  - [0xFCB290, c, code_75930]
+  - [0xFCB7F0, c, code_75E90]
+  - [0xFCBCF0, c, fx/common1score]
+  - [0xFCBD30, c, fx/common2score]
+  - [0xFCC6F0, c, fx/honeycarrierscore]
+  - [0xFCD7B0, c, code_77E50]
+  - [0xFCDA60, c, fx/jinjoscore]
+  - [0xFCE7B0, c, fx/lifescore]
+  - [0xFCF190, c, fx/common3score]
+  - [0xFCF5E0, c, fx/healthscore]
+  - [0xFD00C0, c, fx/airscore]
   - [0xFD08E0, c, code_7AF80]
-  - [0xFD7960, c, mapModel] #DONE
-  - [0xFD8CA0, c, code_83340] #DONE
-  - [0xFD96D0, c, gc/section] #DONE
-  - [0xFD9A30, c, gc/sky] #DONE
-  - [0xFD9DD0, c, gc/transition] #DONE
-  - [0xFDAB30, c, code_851D0] #DONE
-  - [0xFDB110, c, code_857B0] #DONE
-  - [0xFDB160, c, code_85800] #DONE
+  - [0xFD7960, c, mapModel]
+  - [0xFD8CA0, c, code_83340]
+  - [0xFD96D0, c, gc/section]
+  - [0xFD9A30, c, gc/sky]
+  - [0xFD9DD0, c, gc/transition]
+  - [0xFDAB30, c, code_851D0]
+  - [0xFDB110, c, code_857B0]
+  - [0xFDB160, c, code_85800]
   - [0xFDD790, c, gc/dialog]
-  - [0xFE0110, c, gc/pauseMenu] #DONE
-  - [0xFE3580, c, code_8DC20] #DONE
-  - [0xFE3BD0, c, gc/zoombox] #DONE
-  - [0xFE7770, c, code_91E10] #DONE
-  - [0xFE8F50, c, code_935F0] #DONE #chminigmae
-  - [0xFE9570, c, gc/parade] #DONE
-  - [0xFE9F80, c, code_94620] #DONE
-  - [0xFEA0E0, c, code_94780] #DONE
-  - [0xFEA380, c, code_94A20] #DONE
-  - [0xFEB010, c, code_956B0] #DONE
+  - [0xFE0110, c, gc/pauseMenu]
+  - [0xFE3580, c, code_8DC20]
+  - [0xFE3BD0, c, gc/zoombox]
+  - [0xFE7770, c, code_91E10]
+  - [0xFE8F50, c, code_935F0]#chminigmae
+  - [0xFE9570, c, gc/parade]
+  - [0xFE9F80, c, code_94620]
+  - [0xFEA0E0, c, code_94780]
+  - [0xFEA380, c, code_94A20]
+  - [0xFEB010, c, code_956B0]
   - [0xFEE610, c, code_98CB0]
-  - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
-  - [0xFEF300, c, code_999A0] #DONE
-  - [0xFEF8E0, c, jiggyscore] #DONE
-  - [0xFEFC80, c, honeycombscore] #DONE
-  - [0xFEFEE0, c, mumboscore] #DONE
-  - [0xFF00A0, c, code_9A740] #DONE
-  - [0xFF0330, c, code_9A9D0] #DONE
-  - [0xFF0660, c, levelspecificflags] #DONE
-  - [0xFF0AE0, c, code_9B180] #DONE
-  - [0xFF0FB0, c, code_9B650] #DONE
-  - [0xFF12F0, c, code_9B990] #DONE
-  - [0xFF1AD0, c, code_9C170] #DONE
-  - [0xFF2FA0, c, code_9D640] #DONE
-  - [0xFF30C0, c, code_9D760] #DONE
-  - [0xFF31C0, c, timedfuncqueue] #DONE
+  - [0xFEF1C0, c, quizquestionaskedbitfield]
+  - [0xFEF300, c, code_999A0]
+  - [0xFEF8E0, c, jiggyscore]
+  - [0xFEFC80, c, honeycombscore]
+  - [0xFEFEE0, c, mumboscore]
+  - [0xFF00A0, c, code_9A740]
+  - [0xFF0330, c, code_9A9D0]
+  - [0xFF0660, c, levelspecificflags]
+  - [0xFF0AE0, c, code_9B180]
+  - [0xFF0FB0, c, code_9B650]
+  - [0xFF12F0, c, code_9B990]
+  - [0xFF1AD0, c, code_9C170]
+  - [0xFF2FA0, c, code_9D640]
+  - [0xFF30C0, c, code_9D760]
+  - [0xFF31C0, c, timedfuncqueue]
   - [0xFF3CD0, c, code_9E370]
-  - [0xFFA660, c, code_A4D00] #DONE
+  - [0xFFA660, c, code_A4D00]
   - [0xFFB520, c, code_A5BC0]
-  - [0x1001560, c, code_ABC00] #DONE
-  - [0x1001E80, c, code_AC520] #DONE
-  - [0x1002A70, c, code_AD110] #DONE
-  - [0x1002F10, c, code_AD5B0] #DONE
-  - [0x1003BF0, c, code_AE290] #DONE
-  - [0x1003F30, c, skeletalanim] #DONE
+  - [0x1001560, c, code_ABC00]
+  - [0x1001E80, c, code_AC520]
+  - [0x1002A70, c, code_AD110]
+  - [0x1002F10, c, code_AD5B0]
+  - [0x1003BF0, c, code_AE290]
+  - [0x1003F30, c, skeletalanim]
   - [0x1004700, c, code_AEDA0]
   - [0x1006D60, c, modelRender]
-  - [0x1008EE0, c, code_B3580] #DONE
-  - [0x10093E0, c, code_B3A80] #DONE
-  - [0x100A9A0, c, code_B5040] #DONE
-  - [0x100B760, c, code_B5E00] #DONE
-  - [0x100BC10, c, code_B62B0] #DONE
-  - [0x100BFA0, c, code_B6640] #DONE
-  - [0x100C030, c, string]     #DONE
-  - [0x100C5C0, c, code_B6C60] #DONE
-  - [0x100C640, c, code_B6CE0] #DONE
-  - [0x100C800, c, code_B6EA0] #DONE
-  - [0x100D480, c, coords] #DONE
-  - [0x100D8A0, c, code_B7F40] #DONE
-  - [0x100D980, c, code_B8020] #DONE
-  - [0x100D9D0, c, code_B8070] #DONE
-  - [0x100D9E0, c, code_B8080] #DONE
-  - [0x100E1C0, c, code_B8860] #DONE
-  - [0x100E9F0, c, code_B9090] #DONE
+  - [0x1008EE0, c, code_B3580]
+  - [0x10093E0, c, code_B3A80]
+  - [0x100A9A0, c, code_B5040]
+  - [0x100B760, c, code_B5E00]
+  - [0x100BC10, c, code_B62B0]
+  - [0x100BFA0, c, code_B6640]
+  - [0x100C030, c, string]
+  - [0x100C5C0, c, code_B6C60]
+  - [0x100C640, c, code_B6CE0]
+  - [0x100C800, c, code_B6EA0]
+  - [0x100D480, c, coords]
+  - [0x100D8A0, c, code_B7F40]
+  - [0x100D980, c, code_B8020]
+  - [0x100D9D0, c, code_B8070]
+  - [0x100D9E0, c, code_B8080]
+  - [0x100E1C0, c, code_B8860]
+  - [0x100E9F0, c, code_B9090]
   - [0x100F0D0, c, code_B9770]
-  - [0x1012A60, c, code_BD100] #DONE
-  - [0x1013620, c, code_BDCC0] #DONE
-  - [0x1013C20, c, code_BE2C0] #DONE
+  - [0x1012A60, c, code_BD100]
+  - [0x1013620, c, code_BDCC0]
+  - [0x1013C20, c, code_BE2C0]
   - [0x1014880, c, code_BEF20]
-  - [0x10164E0, c, code_C0B80] #DONE
-  - [0x1016650, c, code_C0CF0] #DONE
-  - [0x10167C0, c, code_C0E60] #DONE
-  - [0x1018580, c, animtexturecache] #DONE
-  - [0x1018890, c, code_C2F30] #DONE
-  - [0x1018B00, c, code_C31A0] #DONE
-  - [0x1018D60, c, rand]       #DONE
-  - [0x10193A0, c, code_C3A40] #DONE
-  - [0x1019480, c, file] #DONE
-  - [0x1019C80, c, code_C4320] #DONE
-  - [0x101A8A0, c, code_C4F40] #DONE
-  - [0x101ADA0, c, code_C5440] #DONE
-  - [0x101B450, c, code_C5AF0] #DONE
-  - [0x101B620, c, code_C5CC0] #DONE
-  - [0x101B860, c, code_C5F00] #DONE
-  - [0x101BB20, c, code_C61C0] #DONE
-  - [0x101BC10, c, code_C62B0] #DONE
-  - [0x101D030, c, code_C76D0] #DONE
-  - [0x101D620, c, code_C7CC0] #DONE
-  - [0x101DB90, c, code_C8230] #DONE
-  - [0x101DCC0, c, code_C8360] #DONE
-  - [0x101DDF0, c, code_C8490] #DONE
-  - [0x101E0C0, c, code_C8760] #DONE
-  - [0x101E320, c, code_C89C0] #DONE
-  - [0x101F150, c, code_C97F0] #DONE
-  - [0x101F7D0, c, code_C9E70] #DONE
-  - [0x101F860, c, code_C9F00] #DONE
-  - [0x10209B0, c, code_CB050] #DONE
-  - [0x1020F70, c, code_CB610] #DONE
-  - [0x1021200, c, code_CB8A0] #DONE
-  - [0x1021550, c, code_CBBF0] #DONE
-  - [0x1021670, c, code_CBD10] #DONE
-  - [0x1021B40, c, code_CC1E0] #DONE
-  - [0x1022A00, c, code_CD0A0] #DONE
-  - [0x1022D50, c, code_CD3F0] #DONE
-  - [0x1023040, c, code_CD6E0] #DONE
-  - [0x1024630, c, code_CECD0] #DONE
-  - [0x10249F0, c, code_CF090] #DONE
-  - [0x1024D40, c, code_CF3E0] #DONE
-  - [0x1024F50, c, code_CF5F0] #DONE
-  - [0x1025140, c, ch/clankerwhipcrack] #DONE
-  - [0x10253C0, c, ch/code_CFA60] #DONE
-  - [0x1025B20, c, ch/clucker] #DONE
-  - [0x1026600, c, code_D0CA0] #DONE
-  - [0x1027AE0, c, code_D2180] #DONE
-  - [0x1027E60, c, ch/firefx]  #DONE
-  - [0x1028410, c, ch/drips]   #DONE
-  - [0x1028770, c, ch/icecube] #DONE
-  - [0x10299B0, c, ch/ghost]   #DONE
-  - [0x102AA50, c, ch/flotsam] #DONE
-  - [0x102B670, c, code_D5D10] #DONE
-  - [0x102B930, c, code_D5FD0] #DONE
-  - [0x102BAE0, c, code_D6180] #DONE
-  - [0x102BF60, c, code_D6600] #DONE
-  - [0x102C9A0, c, ch/termite] #DONE
-  - [0x102D670, c, ch/gravestone] #DONE
+  - [0x10164E0, c, code_C0B80]
+  - [0x1016650, c, code_C0CF0]
+  - [0x10167C0, c, code_C0E60]
+  - [0x1018580, c, animtexturecache]
+  - [0x1018890, c, code_C2F30]
+  - [0x1018B00, c, code_C31A0]
+  - [0x1018D60, c, rand]
+  - [0x10193A0, c, code_C3A40]
+  - [0x1019480, c, file]
+  - [0x1019C80, c, code_C4320]
+  - [0x101A8A0, c, code_C4F40]
+  - [0x101ADA0, c, code_C5440]
+  - [0x101B450, c, code_C5AF0]
+  - [0x101B620, c, code_C5CC0]
+  - [0x101B860, c, code_C5F00]
+  - [0x101BB20, c, code_C61C0]
+  - [0x101BC10, c, code_C62B0]
+  - [0x101D030, c, code_C76D0]
+  - [0x101D620, c, code_C7CC0]
+  - [0x101DB90, c, code_C8230]
+  - [0x101DCC0, c, code_C8360]
+  - [0x101DDF0, c, code_C8490]
+  - [0x101E0C0, c, code_C8760]
+  - [0x101E320, c, code_C89C0]
+  - [0x101F150, c, code_C97F0]
+  - [0x101F7D0, c, code_C9E70]
+  - [0x101F860, c, code_C9F00]
+  - [0x10209B0, c, code_CB050]
+  - [0x1020F70, c, code_CB610]
+  - [0x1021200, c, code_CB8A0]
+  - [0x1021550, c, code_CBBF0]
+  - [0x1021670, c, code_CBD10]
+  - [0x1021B40, c, code_CC1E0]
+  - [0x1022A00, c, code_CD0A0]
+  - [0x1022D50, c, code_CD3F0]
+  - [0x1023040, c, code_CD6E0]
+  - [0x1024630, c, code_CECD0]
+  - [0x10249F0, c, code_CF090]
+  - [0x1024D40, c, code_CF3E0]
+  - [0x1024F50, c, code_CF5F0]
+  - [0x1025140, c, ch/clankerwhipcrack]
+  - [0x10253C0, c, ch/code_CFA60]
+  - [0x1025B20, c, ch/clucker]
+  - [0x1026600, c, code_D0CA0]
+  - [0x1027AE0, c, code_D2180]
+  - [0x1027E60, c, ch/firefx]
+  - [0x1028410, c, ch/drips]
+  - [0x1028770, c, ch/icecube]
+  - [0x10299B0, c, ch/ghost]
+  - [0x102AA50, c, ch/flotsam]
+  - [0x102B670, c, code_D5D10]
+  - [0x102B930, c, code_D5FD0]
+  - [0x102BAE0, c, code_D6180]
+  - [0x102BF60, c, code_D6600]
+  - [0x102C9A0, c, ch/termite]
+  - [0x102D670, c, ch/gravestone]
   - [0x102E340, c, ch/bat]
-  - [0x102F700, c, ch/whipcrack] #DONE
-  - [0x102FD00, c, code_DA3A0] #DONE
-  - [0x10300C0, c, code_DA760] #DONE
-  - [0x1030400, c, code_DAAA0] #DONE
-  - [0x1030970, c, code_DB010] #DONE
-  - [0x1031E10, c, code_DC4B0] #DONE
+  - [0x102F700, c, ch/whipcrack]
+  - [0x102FD00, c, code_DA3A0]
+  - [0x10300C0, c, code_DA760]
+  - [0x1030400, c, code_DAAA0]
+  - [0x1030970, c, code_DB010]
+  - [0x1031E10, c, code_DC4B0]
   - [0x1031F60, bin, data_DC600] #unreferenced
   - [0x1031F90, .data, code_1550]
   - [0x1031FB0, .data, ba/anim]
@@ -1635,15 +1635,15 @@ segments:
   exclusive_ram_id: overlay
   subsegments:
   - [0x1048560, c, code_0]
-  - [0x1048A90, c, code_530] #Done
-  - [0x1049150, c, code_BF0] #Done
-  - [0x1049680, c, ch/tooth] #Done
-  - [0x1049920, c, code_13C0] #DONE
-  - [0x1049F10, c, code_19B0] #Done
-  - [0x104A0F0, c, code_1B90] #Done
-  - [0x104A4D0, c, code_1F70] #DONE
-  - [0x104B690, c, ch/sawblade] #Done
-  - [0x104B960, c, code_3400] #Done
+  - [0x1048A90, c, code_530]
+  - [0x1049150, c, code_BF0]
+  - [0x1049680, c, ch/tooth]
+  - [0x1049920, c, code_13C0]
+  - [0x1049F10, c, code_19B0]
+  - [0x104A0F0, c, code_1B90]
+  - [0x104A4D0, c, code_1F70]
+  - [0x104B690, c, ch/sawblade]
+  - [0x104B960, c, code_3400]
   - [0x104BC10, .data, code_0]
   - [0x104BC40, .data, code_530]
   - [0x104BC70, .data, code_BF0]
@@ -1670,39 +1670,39 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x104C0E0, c, ch/toots]       #DONE
-  - [0x104C310, c, ch/ancientone]   #DONE
-  - [0x104CE40, c, ch/gobi1]   #DONE
-  - [0x104D650, c, ch/gobi2] #DONE
-  - [0x104DF60, c, ch/gobi3] #DONE
-  - [0x104E5B0, c, ch/gobirope] #DONE
-  - [0x104E810, c, ch/gobirock] #DONE
-  - [0x104EC60, c, ch/trunker] #DONE
-  - [0x104EFC0, c, code_2EE0] #DONE
-  - [0x104F1A0, c, ch/sarcophagus] #DONE
-  - [0x104F710, c, code_3630] #DONE
-  - [0x104FB80, c, code_3AA0] #DONE
-  - [0x104FBF0, c, code_3B10] #DONE
-  - [0x104FC90, c, code_3BB0] #DONE
-  - [0x104FE70, c, code_3D90] #DONE
-  - [0x1050490, c, code_43B0] #DONE
-  - [0x1050820, c, code_4740] #DONE
-  - [0x1051650, c, code_5570] #DONE
-  - [0x10522C0, c, code_61E0] #DONE
-  - [0x1052450, c, code_6370] #DONE
-  - [0x1053060, c, code_6F80] #DONE
-  - [0x1053140, c, code_7060] #DONE
-  - [0x1053610, c, ch/histup] #DONE
-  - [0x1053E30, c, code_7D50] #DONE
-  - [0x1053E90, c, code_7DB0] #DONE
-  - [0x10540A0, c, code_7FC0] #DONE
-  - [0x10540D0, c, code_7FF0] #DONE
-  - [0x1055210, c, ch/mazectrl] #DONE
-  - [0x1055940, c, ch/buriedpyramid] #DONE
-  - [0x1055C50, c, code_9B70] #DONE
-  - [0x1055CF0, c, code_9C10] #DONE
-  - [0x1055E90, c, matchinggame] #DONE
-  - [0x1056570, c, waterctrl] #DONE
+  - [0x104C0E0, c, ch/toots]
+  - [0x104C310, c, ch/ancientone]
+  - [0x104CE40, c, ch/gobi1]
+  - [0x104D650, c, ch/gobi2]
+  - [0x104DF60, c, ch/gobi3]
+  - [0x104E5B0, c, ch/gobirope]
+  - [0x104E810, c, ch/gobirock]
+  - [0x104EC60, c, ch/trunker]
+  - [0x104EFC0, c, code_2EE0]
+  - [0x104F1A0, c, ch/sarcophagus]
+  - [0x104F710, c, code_3630]
+  - [0x104FB80, c, code_3AA0]
+  - [0x104FBF0, c, code_3B10]
+  - [0x104FC90, c, code_3BB0]
+  - [0x104FE70, c, code_3D90]
+  - [0x1050490, c, code_43B0]
+  - [0x1050820, c, code_4740]
+  - [0x1051650, c, code_5570]
+  - [0x10522C0, c, code_61E0]
+  - [0x1052450, c, code_6370]
+  - [0x1053060, c, code_6F80]
+  - [0x1053140, c, code_7060]
+  - [0x1053610, c, ch/histup]
+  - [0x1053E30, c, code_7D50]
+  - [0x1053E90, c, code_7DB0]
+  - [0x10540A0, c, code_7FC0]
+  - [0x10540D0, c, code_7FF0]
+  - [0x1055210, c, ch/mazectrl]
+  - [0x1055940, c, ch/buriedpyramid]
+  - [0x1055C50, c, code_9B70]
+  - [0x1055CF0, c, code_9C10]
+  - [0x1055E90, c, matchinggame]
+  - [0x1056570, c, waterctrl]
   - [0x10568C0, .data, ch/toots]
   - [0x1056910, .data, ch/ancientone]
   - [0x1056970, .data, ch/gobi1]
@@ -1773,19 +1773,19 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x1057710, c, ch/loggo]  #DONE
-  - [0x1057C80, c, ch/napper] #DONE
-  - [0x10584D0, c, code_DC0]  #DONE
-  - [0x1058730, c, ch/motzhand] #DONE
-  - [0x1058DC0, c, code_16B0]  #DONE
-  - [0x1059750, c, code_2040] #DONE
-  - [0x105A670, c, code_2F60] #DONE
-  - [0x105A830, c, code_3120] #DONE
-  - [0x105AB30, c, code_3420] #DONE
-  - [0x105B460, c, crc] #DONE
-  - [0x105B460, c, code_3D50] #DONE
-  - [0x105BEE0, c, code_47D0] #DONE
-  - [0x105C710, c, code_5000] #DONE
+  - [0x1057710, c, ch/loggo]
+  - [0x1057C80, c, ch/napper]
+  - [0x10584D0, c, code_DC0]
+  - [0x1058730, c, ch/motzhand]
+  - [0x1058DC0, c, code_16B0]
+  - [0x1059750, c, code_2040]
+  - [0x105A670, c, code_2F60]
+  - [0x105A830, c, code_3120]
+  - [0x105AB30, c, code_3420]
+  - [0x105B460, c, crc]
+  - [0x105B460, c, code_3D50]
+  - [0x105BEE0, c, code_47D0]
+  - [0x105C710, c, code_5000]
   - [0x105CD00, .data, ch/loggo]
   - [0x105CD40, .data, ch/napper]
   - [0x105CD70, .data, code_DC0]
@@ -1820,16 +1820,16 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x105D7E0, c, ch/clam]       #DONE
-  - [0x105E880, c, ch/blubber] #DONE
-  - [0x105F1B0, c, ch/nipper] #DONE
-  - [0x105FEB0, c, code_26D0] #DONE
-  - [0x1060360, c, ch/leaky] #DONE
-  - [0x1060820, c, code_3040] #DONE
-  - [0x10608B0, c, ch/lockup] #DONE
-  - [0x1060DB0, c, ch/treasurehunt] #DONE
-  - [0x1061610, c, code_3E30] #DONE
-  - [0x10633B0, c, ch/treasure] #DONE
+  - [0x105D7E0, c, ch/clam]
+  - [0x105E880, c, ch/blubber]
+  - [0x105F1B0, c, ch/nipper]
+  - [0x105FEB0, c, code_26D0]
+  - [0x1060360, c, ch/leaky]
+  - [0x1060820, c, code_3040]
+  - [0x10608B0, c, ch/lockup]
+  - [0x1060DB0, c, ch/treasurehunt]
+  - [0x1061610, c, code_3E30]
+  - [0x10633B0, c, ch/treasure]
   - [0x10637A0, .data, ch/clam]
   - [0x10638D0, .data, ch/blubber]
   - [0x1063930, .data, ch/nipper]
@@ -1900,23 +1900,23 @@ segments:
   exclusive_ram_id: overlay
   # after: core2-data
   subsegments:
-  - [0x1068370, c, ch/flibbit] #DONE
-  - [0x1069960, c, ch/pinkegg] #DONE
-  - [0x1069C10, c, ch/croctus] #DONE
-  - [0x106A5E0, c, ch/code_2270] #DONE
-  - [0x106B3A0, c, code_3030] #DONE
+  - [0x1068370, c, ch/flibbit]
+  - [0x1069960, c, ch/pinkegg]
+  - [0x1069C10, c, ch/croctus]
+  - [0x106A5E0, c, ch/code_2270]
+  - [0x106B3A0, c, code_3030]
   - [0x106B790, c, code_3420]
-  - [0x106D0E0, c, ch/yumblie] #DONE
-  - [0x106D970, c, ch/mrvile] #DONE
-  - [0x106EAA0, c, ch/frogminigame] #DONE
-  - [0x106F160, c, ch/yellowflibbit] #DONE
-  - [0x10709B0, c, ch/mudhut] #DONE
-  - [0x1070DD0, c, ch/code_8A60] #DONE
-  - [0x1071160, c, code_8DF0] #DONE
+  - [0x106D0E0, c, ch/yumblie]
+  - [0x106D970, c, ch/mrvile]
+  - [0x106EAA0, c, ch/frogminigame]
+  - [0x106F160, c, ch/yellowflibbit]
+  - [0x10709B0, c, ch/mudhut]
+  - [0x1070DD0, c, ch/code_8A60]
+  - [0x1071160, c, code_8DF0]
   - [0x10713F0, c, ch/tanktup]
-  - [0x1071AC0, c, code_9750] #DONE
-  - [0x1071C30, c, ch/bigalligator] #DONE
-  - [0x1071C90, c, ch/leafboat] #DONE
+  - [0x1071AC0, c, code_9750]
+  - [0x1071C30, c, ch/bigalligator]
+  - [0x1071C90, c, ch/leafboat]
   - [0x1072610, .data, ch/flibbit]
   - [0x1072640, .data, ch/pinkegg]
   - [0x1072730, .data, ch/croctus]
@@ -2045,33 +2045,33 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x107E030, c, ch/scarfsled]       #DONE
-  - [0x107E500, c, ch/racesled]   #DONE
-  - [0x107E7C0, c, ch/snowmanbutton]   #DONE
-  - [0x107EA70, c, ch/xmastree]   #DONE
-  - [0x107F220, c, ch/boggy1] #DONE
-  - [0x107FA10, c, code_19E0] #DONE
-  - [0x1080020, c, code_1FF0] #DONE
-  - [0x1080380, c, ch/boggy2] #DONE
-  - [0x1081E30, c, ch/bearcub] #DONE
-  - [0x1082430, c, sirslushgame] #DONE
-  - [0x1082600, c, snowmanbuttongame] #DONE
-  - [0x10827A0, c, ma/slalom] #DONE
+  - [0x107E030, c, ch/scarfsled]
+  - [0x107E500, c, ch/racesled]
+  - [0x107E7C0, c, ch/snowmanbutton]
+  - [0x107EA70, c, ch/xmastree]
+  - [0x107F220, c, ch/boggy1]
+  - [0x107FA10, c, code_19E0]
+  - [0x1080020, c, code_1FF0]
+  - [0x1080380, c, ch/boggy2]
+  - [0x1081E30, c, ch/bearcub]
+  - [0x1082430, c, sirslushgame]
+  - [0x1082600, c, ma/snowbutton]
+  - [0x10827A0, c, ma/slalom]
   - [0x1083CF0, c, ch/twinkly] 
-  - [0x1084B10, c, ch/twinklybox] #DONE
-  - [0x10859B0, c, ch/twinklymuncher] #DONE
-  - [0x1086360, c, ch/xmastreeswitch] #DONE
-  - [0x1086810, c, ch/xmastreestar] #DONE
-  - [0x1086D30, c, ch/present] #DONE
-  - [0x1086E50, c, ch/wozza] #DONE
-  - [0x1087B40, c, ch/wozzasjig] #DONE
-  - [0x1087ED0, c, ch/boggy3] #DONE
-  - [0x10881F0, c, code_A1C0] #DONE
-  - [0x1088270, c, ch/cavewozza] #DONE
-  - [0x1088530, c, ch/xmastreeice] #DONE
-  - [0x10888B0, c, ch/xmastreeeggtoll] #DONE
-  - [0x1088C00, c, code_ABD0] #DONE
-  - [0x1089500, c, code_B4D0] #DONE
+  - [0x1084B10, c, ch/twinklybox]
+  - [0x10859B0, c, ch/twinklymuncher]
+  - [0x1086360, c, ch/xmastreeswitch]
+  - [0x1086810, c, ch/xmastreestar]
+  - [0x1086D30, c, ch/present]
+  - [0x1086E50, c, ch/wozza]
+  - [0x1087B40, c, ch/wozzasjig]
+  - [0x1087ED0, c, ch/boggy3]
+  - [0x10881F0, c, code_A1C0]
+  - [0x1088270, c, ch/cavewozza]
+  - [0x1088530, c, ch/xmastreeice]
+  - [0x10888B0, c, ch/xmastreeeggtoll]
+  - [0x1088C00, c, code_ABD0]
+  - [0x1089500, c, code_B4D0]
   - [0x1089630, .data, ch/scarfsled]
   - [0x1089680, .data, ch/racesled]
   - [0x10896D0, .data, ch/snowmanbutton]
@@ -2082,7 +2082,7 @@ segments:
   - [0x10898C0, .data, ch/boggy2]
   - [0x1089A30, .data, ch/bearcub]
   - [0x1089AF0, .data, sirslushgame]
-  - [0x1089B00, .data, snowmanbuttongame]
+  - [0x1089B00, .data, ma/snowbutton]
   - [0x1089B10, .data, ma/slalom]
   - [0x1089B90, .data, ch/twinkly]
   - [0x1089D00, .data, ch/twinklybox]
@@ -2117,7 +2117,7 @@ segments:
   - [0x108AB50, .bss, bss_pad]
   - [0x108AB50, .bss, ch/boggy2]
   - [0x108AB50, .bss, sirslushgame]
-  - [0x108AB50, .bss, snowmanbuttongame]
+  - [0x108AB50, .bss, ma/snowbutton]
   - [0x108AB50, .bss, ma/slalom]
   - [0x108AB50, .bss, ch/xmastreestar]
   - [0x108AB50, .bss, code_B4D0]
@@ -2166,10 +2166,10 @@ segments:
   exclusive_ram_id: overlay
   subsegments:
   - [0x108FA80, c, code_0]
-  - [0x1095B70, c, code_60F0] #DONE
-  - [0x10961B0, c, code_6730] #DONE
-  - [0x1096470, c, code_69F0] #DONE
-  - [0x1096710, c, code_6C90] #DONE
+  - [0x1095B70, c, code_60F0]
+  - [0x10961B0, c, code_6730]
+  - [0x1096470, c, code_69F0]
+  - [0x1096710, c, code_6C90]
   - [0x10969E0, .data, code_0]
   - [0x1097320, .data, code_60F0]
   - [0x1097D90, .data, code_6730]
@@ -2188,20 +2188,20 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x1098070, c, code_0] #DONE
-  - [0x109C310, c, ch/cauldron] #DONE
-  - [0x109D6B0, c, ch/brentilda] #DONE
-  - [0x109DF40, c, code_5ED0] #DONE
-  - [0x10A0760, c, code_86F0] #DONE
-  - [0x10A1CB0, c, code_9C40] #DONE
-  - [0x10A21E0, c, code_A170] #DONE
-  - [0x10A24A0, c, code_A430] #DONE
-  - [0x10A2510, c, code_A4A0] #DONE
-  - [0x10A2880, c, code_A810] #DONE
-  - [0x10A2DE0, c, code_AD70] #DONE
-  - [0x10A3C40, c, code_BBD0] #DONE
-  - [0x10A4230, c, code_C1C0] #DONE
-  - [0x10A4730, c, code_C6C0] #DONE
+  - [0x1098070, c, code_0]
+  - [0x109C310, c, ch/cauldron]
+  - [0x109D6B0, c, ch/brentilda]
+  - [0x109DF40, c, code_5ED0]
+  - [0x10A0760, c, code_86F0]
+  - [0x10A1CB0, c, code_9C40]
+  - [0x10A21E0, c, code_A170]
+  - [0x10A24A0, c, code_A430]
+  - [0x10A2510, c, code_A4A0]
+  - [0x10A2880, c, code_A810]
+  - [0x10A2DE0, c, code_AD70]
+  - [0x10A3C40, c, code_BBD0]
+  - [0x10A4230, c, code_C1C0]
+  - [0x10A4730, c, code_C6C0]
   - [0x10A4930, .data, code_0]
   - [0x10A51A0, .data, ch/cauldron]
   - [0x10A5390, .data, ch/brentilda]
@@ -2239,17 +2239,17 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x10A6FD0, c, fight] #DONE
+  - [0x10A6FD0, c, fight]
   - [0x10A7150, c, chfinalboss] 
-  - [0x10ACEA0, c, chbossjinjo] #DONE
-  - [0x10ADE60, c, chbossjinjobase] #DONE
-  - [0x10AE550, c, chstonejinjo] #DONE
-  - [0x10AEBB0, c, chjinjonatorbase] #DONE
-  - [0x10AF360, c, chspellbarrier] #DONE
-  - [0x10AF770, c, chspellfireball] #DONE
-  - [0x10B0820, c, chgreenblast] #DONE
-  - [0x10B0D10, c, chjinjonator] #DONE
-  - [0x10B1EA0, c, chbossshadow] #DONE
+  - [0x10ACEA0, c, chbossjinjo]
+  - [0x10ADE60, c, chbossjinjobase]
+  - [0x10AE550, c, chstonejinjo]
+  - [0x10AEBB0, c, chjinjonatorbase]
+  - [0x10AF360, c, chspellbarrier]
+  - [0x10AF770, c, chspellfireball]
+  - [0x10B0820, c, chgreenblast]
+  - [0x10B0D10, c, chjinjonator]
+  - [0x10B1EA0, c, chbossshadow]
   - [0x10B1F60, .data, chfinalboss]
   - [0x10B23F0, .data, chbossjinjo]
   - [0x10B2570, .data, chbossjinjobase]
@@ -2282,34 +2282,34 @@ segments:
   follows_vram: core2
   exclusive_ram_id: overlay
   subsegments:
-  - [0x10B3320, c, code_0] #DONE
-  - [0x10B3480, c, code_160] #DONE
-  - [0x10B3C70, c, code_950] #DONE
-  - [0x10B47D0, c, code_14B0] #DONE
-  - [0x10B4E40, c, code_1B20] #DONE
-  - [0x10B54C0, c, code_21A0] #DONE
-  - [0x10B5590, c, code_2270] #DONE
-  - [0x10B5E20, c, code_2B00] #DONE
-  - [0x10B6370, c, code_3050] #DONE
-  - [0x10B6630, c, code_3310] #DONE
-  - [0x10B70C0, c, code_3DA0] #DONE
-  - [0x10B7850, c, code_4530] #DONE
-  - [0x10B7C80, c, code_4960] #DONE
-  - [0x10B8020, c, code_4D00] #DONE
-  - [0x10B83F0, c, code_50D0] #DONE
-  - [0x10B8860, c, code_5540] #DONE
-  - [0x10B8F10, c, code_5BF0] #DONE
-  - [0x10B9500, c, code_61E0] #DONE
-  - [0x10B9940, c, code_6620] #DONE
-  - [0x10B9DE0, c, code_6AC0] #DONE
-  - [0x10BA1E0, c, code_6EC0] #DONE
-  - [0x10BA440, c, code_7120] #DONE
-  - [0x10BA890, c, code_7570] #DONE
-  - [0x10BA9E0, c, code_76C0] #DONE
-  - [0x10BAEE0, c, code_7BC0] #DONE
-  - [0x10BAF10, c, code_7BF0] #DONE
-  - [0x10BB370, c, ch/grublinhood] #DONE
-  - [0x10BB990, c, ch/vacationtexttrigger] #DONE
+  - [0x10B3320, c, code_0]
+  - [0x10B3480, c, code_160]
+  - [0x10B3C70, c, code_950]
+  - [0x10B47D0, c, code_14B0]
+  - [0x10B4E40, c, code_1B20]
+  - [0x10B54C0, c, code_21A0]
+  - [0x10B5590, c, code_2270]
+  - [0x10B5E20, c, code_2B00]
+  - [0x10B6370, c, code_3050]
+  - [0x10B6630, c, code_3310]
+  - [0x10B70C0, c, code_3DA0]
+  - [0x10B7850, c, code_4530]
+  - [0x10B7C80, c, code_4960]
+  - [0x10B8020, c, code_4D00]
+  - [0x10B83F0, c, code_50D0]
+  - [0x10B8860, c, code_5540]
+  - [0x10B8F10, c, code_5BF0]
+  - [0x10B9500, c, code_61E0]
+  - [0x10B9940, c, code_6620]
+  - [0x10B9DE0, c, code_6AC0]
+  - [0x10BA1E0, c, code_6EC0]
+  - [0x10BA440, c, code_7120]
+  - [0x10BA890, c, code_7570]
+  - [0x10BA9E0, c, code_76C0]
+  - [0x10BAEE0, c, code_7BC0]
+  - [0x10BAF10, c, code_7BF0]
+  - [0x10BB370, c, ch/grublinhood]
+  - [0x10BB990, c, ch/vacationtexttrigger]
   - [0x10BBA80, .data, code_0]
   - [0x10BBAD0, .data, code_160]
   - [0x10BBB00, .data, code_950]

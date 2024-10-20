@@ -44,10 +44,10 @@ f32 D_80391F2C[3] = {-4454.0f, 1920.0f, -6898.0f};
 f32 D_80391F38[3] = {-4451.0f, 1920.0f, -6685.0f};
 
 /* .bss */
-MaSlalomGate meActiveFlags[NUM_GATES];
-MaSlalomGate meDummyFlags[NUM_GATES];
-ActorMarker *meBridgeLinks[NUM_BRIDGES];
-struct {
+static MaSlalomGate meActiveFlags[NUM_GATES];
+static MaSlalomGate meDummyFlags[NUM_GATES];
+static ActorMarker *meBridgeLinks[NUM_BRIDGES];
+static struct {
     u8 state;
     s32 flagCount;
     s32 playerGate;

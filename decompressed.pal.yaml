@@ -2057,7 +2057,7 @@ segments:
 #   # - [0x1080380, c, ch/boggy2] #DONE
 #   # - [0x1081E30, c, ch/bearcub] #DONE
 #   # - [0x1082430, c, sirslushgame] #DONE
-#   # - [0x1082600, c, snowmanbuttongame] #DONE
+#   # - [0x1082600, c, ma/snowbutton] #DONE
 #   # - [0x10827A0, c, ma/slalom] #DONE
 #   # - [0x1083CF0, c, ch/twinkly] 
 #   # - [0x1084B10, c, ch/twinklybox] #DONE
@@ -2084,7 +2084,7 @@ segments:
 #   # - [0x10898C0, .data, ch/boggy2]
 #   # - [0x1089A30, .data, ch/bearcub]
 #   # - [0x1089AF0, .data, sirslushgame]
-#   # - [0x1089B00, .data, snowmanbuttongame]
+#   # - [0x1089B00, .data, ma/snowbutton]
 #   # - [0x1089B10, .data, ma/slalom]
 #   # - [0x1089B90, .data, ch/twinkly]
 #   # - [0x1089D00, .data, ch/twinklybox]
@@ -2119,7 +2119,7 @@ segments:
 #   # - [0x108AB50, .bss, bss_pad]
 #   # - [0x108AB50, .bss, ch/boggy2]
 #   # - [0x108AB50, .bss, sirslushgame]
-#   # - [0x108AB50, .bss, snowmanbuttongame]
+#   # - [0x108AB50, .bss, ma/snowbutton]
 #   # - [0x108AB50, .bss, ma/slalom]
 #   # - [0x108AB50, .bss, ch/xmastreestar]
 #   # - [0x108AB50, .bss, code_B4D0]

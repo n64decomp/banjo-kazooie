@@ -18,16 +18,16 @@ s32 D_80367C84[3] = {255, 100, 100};
 
 /* .code */
 void func_802D8730(Actor *this) {
-    f32 sp3C;
+    f32 dt;
     f32 sp38;
     ParticleEmitter *pCtrl;
 
-    sp3C = time_getDelta();
+    dt = time_getDelta();
     if (!func_8032BBE8(this)) {
         this->velocity_y = 0.0f;
         this->velocity_x = 1.0f;
     } else {
-        this->velocity_x -= sp3C;
+        this->velocity_x -= dt;
     }
     if (this->velocity_x < 0.0f) {
         marker_despawn(this->marker);
@@ -41,7 +41,7 @@ void func_802D8730(Actor *this) {
 
     viewport_adjustPointDistance(this->position, 40.0f);
     this->position_y = sp38;
-    this->velocity_y -= sp3C;
+    this->velocity_y -= dt;
     if (this->velocity_y < 0.0f) {
         this->velocity_y = 0.07f;
         pCtrl = func_802F4094(this->position, 40.0f);
