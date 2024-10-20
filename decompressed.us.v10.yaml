@@ -1828,7 +1828,7 @@ segments:
   - [0x1060820, c, code_3040]
   - [0x10608B0, c, ch/lockup]
   - [0x1060DB0, c, ch/treasurehunt]
-  - [0x1061610, c, code_3E30]
+  - [0x1061610, c, ma/castle]
   - [0x10633B0, c, ch/treasure]
   - [0x10637A0, .data, ch/clam]
   - [0x10638D0, .data, ch/blubber]
@@ -1838,7 +1838,7 @@ segments:
   - [0x1063B40, .data, code_3040]
   - [0x1063B50, .data, ch/lockup]
   - [0x1063C10, .data, ch/treasurehunt]
-  - [0x1063D70, .data, code_3E30]
+  - [0x1063D70, .data, ma/castle]
   - [0x1064080, .data, ch/treasure]
   - [0x10640D0, .rodata, ch/clam]
   - [0x1064130, .rodata, ch/blubber]
@@ -1847,11 +1847,11 @@ segments:
   - [0x10641C0, .rodata, ch/leaky]
   - [0x10641E0, .rodata, ch/lockup]
   - [0x1064210, .rodata, ch/treasurehunt]
-  - [0x1064240, .rodata, code_3E30]
+  - [0x1064240, .rodata, ma/castle]
   - [0x1064A90, .rodata, ch/treasure]
   - [0x1064AE0, .bss, code_3040]
   - [0x1064AE0, .bss, ch/treasurehunt]
-  - [0x1064AE0, .bss, code_3E30]
+  - [0x1064AE0, .bss, ma/castle]
 - name: MM
   dir: MM
   type: code

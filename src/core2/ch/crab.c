@@ -37,7 +37,7 @@ void __chCrab_802CB040(Actor *this) {
 void __chCrab_802CB078(Actor *this) {
     u32 temp_t9;
 
-    if ((this->modelCacheIndex != ACTOR_F2_BLACK_SNIPPET) || code3E30_hasBanjoKazooieCodeBeenEntered()) {
+    if ((this->modelCacheIndex != ACTOR_F2_BLACK_SNIPPET) || maCastle_hasBanjoKazooieCodeBeenEntered()) {
         temp_t9 = (u32) this->unk38_31 >> 0x16;
         if (this->unk38_31 != 0) {
             this->unk38_31--;
@@ -157,7 +157,7 @@ bool __chCrab_802CB76C(ActorMarker *marker, ActorMarker *other) {
     Actor *this;
 
     this = marker_getActor(marker);
-    if ((this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) && !code3E30_hasBanjoKazooieCodeBeenEntered()) {
+    if ((this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) && !maCastle_hasBanjoKazooieCodeBeenEntered()) {
         return FALSE;
     }
     return TRUE;

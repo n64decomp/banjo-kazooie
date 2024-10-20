@@ -208,15 +208,15 @@ void func_80322B3C(s32 arg0, s32 arg1){ return; }
 void __overlay_ttc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_ttc_release(void){
-    code3E30_overlayRelease();
+    maCastle_release();
 }
 
 void overlay_ttc_init(void){
-    code3E30_overlayInit();
+    maCastle_init();
 }
 
 void __overlay_ttc_update(void){
-    code3E30_overlayUpdate();
+    maCastle_update();
 }
 
 void func_80322BB8(s32 arg0, s32 arg1){ return; }
