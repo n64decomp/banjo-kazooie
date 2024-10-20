@@ -2056,7 +2056,7 @@ segments:
   - [0x1081E30, c, ch/bearcub] #DONE
   - [0x1082430, c, sirslushgame] #DONE
   - [0x1082600, c, snowmanbuttongame] #DONE
-  - [0x10827A0, c, racectrl] #DONE
+  - [0x10827A0, c, ma/slalom] #DONE
   - [0x1083CF0, c, ch/twinkly] 
   - [0x1084B10, c, ch/twinklybox] #DONE
   - [0x10859B0, c, ch/twinklymuncher] #DONE
@@ -2083,7 +2083,7 @@ segments:
   - [0x1089A30, .data, ch/bearcub]
   - [0x1089AF0, .data, sirslushgame]
   - [0x1089B00, .data, snowmanbuttongame]
-  - [0x1089B10, .data, racectrl]
+  - [0x1089B10, .data, ma/slalom]
   - [0x1089B90, .data, ch/twinkly]
   - [0x1089D00, .data, ch/twinklybox]
   - [0x1089FD0, .data, ch/twinklymuncher]
@@ -2105,7 +2105,7 @@ segments:
   - [0x108A860, .rodata, code_1FF0]
   - [0x108A870, .rodata, ch/boggy2]
   - [0x108A950, .rodata, ch/bearcub]
-  - [0x108A970, .rodata, racectrl]
+  - [0x108A970, .rodata, ma/slalom]
   - [0x108A9C0, .rodata, ch/twinkly]
   - [0x108AA40, .rodata, ch/twinklybox]
   - [0x108AA80, .rodata, ch/twinklymuncher]
@@ -2118,7 +2118,7 @@ segments:
   - [0x108AB50, .bss, ch/boggy2]
   - [0x108AB50, .bss, sirslushgame]
   - [0x108AB50, .bss, snowmanbuttongame]
-  - [0x108AB50, .bss, racectrl]
+  - [0x108AB50, .bss, ma/slalom]
   - [0x108AB50, .bss, ch/xmastreestar]
   - [0x108AB50, .bss, code_B4D0]
 - name: SM

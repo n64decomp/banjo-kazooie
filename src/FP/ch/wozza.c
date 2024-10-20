@@ -41,7 +41,7 @@ f32 D_803925AC[3] = {-4026.0f, 800.0f, -4097.0f};
 /* .code */
 Actor *func_8038F210(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    if(func_8038BFA0() || this->unk38_31)
+    if(maSlalom_isActive() || this->unk38_31)
         return this;
     
     return actor_draw(marker, gfx, mtx, vtx);
@@ -209,7 +209,7 @@ void FP_func_8038F7AC(Actor *this){
         }
     }//L8038F910
 
-    if(func_8038BFA0() || this->unk38_31 || !subaddie_playerIsWithinSphere(this, 3000)){
+    if(maSlalom_isActive() || this->unk38_31 || !subaddie_playerIsWithinSphere(this, 3000)){
         actor_collisionOff(this);
         return;
     }

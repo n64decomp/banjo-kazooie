@@ -5,7 +5,7 @@
 extern void func_8028E668(f32[3], f32, f32, f32);
 extern Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
 extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e, s32[3]);
-extern f32 func_8038BE20(f32 arg0[3]);
+extern f32 maSlalom_compareBoggyToPlayer(f32 arg0[3]);
 
 typedef struct {
     ParticleEmitter *unk0;
@@ -110,7 +110,7 @@ void FP_func_803888E4(Actor *this){
         }
     }//L80388A30
     mapSpecificFlags_set(5, TRUE);
-    func_8038B9C8();
+    maSlalom_start();
 }
 
 void func_80388A50(Actor *this){
@@ -343,7 +343,7 @@ void func_803893E4(Actor *this, f32 arg1, u8 arg2){
         this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.02;
     }
     else{
-        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.03 + sp28*func_8038BE20(this->position);
+        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.03 + sp28*maSlalom_compareBoggyToPlayer(this->position);
     }
 
     if(this->unk4C < sp30){
@@ -401,7 +401,7 @@ void func_803896FC(Actor *this){
     f32 sp54;
     s32 sp3C[6];
     
-    sp58 = func_8038BE20(this->position);
+    sp58 = maSlalom_compareBoggyToPlayer(this->position);
     sp54 = time_getDelta();
     controller_copyFaceButtons(0, sp3C);
     
@@ -421,7 +421,7 @@ void func_803896FC(Actor *this){
        local->unkC = 0.0f;
        local->unk10 = 0.0f;
        local->unk8 = 1.0f;
-        func_8038B9B0(this->marker);
+        maSlalom_linkBoggy(this->marker);
         this->unk38_31 = 0;
         func_80388C88(this);
         __spawnQueue_add_0(func_803895E0);
@@ -583,12 +583,12 @@ void func_803896FC(Actor *this){
                         if(this->unk38_31 == 2){
                             if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
                                 __spawnQueue_add_1((GenFunction_1)func_80388F54, reinterpret_cast(s32, this->marker));
-                                func_8038B9BC();
+                                maSlalom_unlinkBoggy();
                                 marker_despawn(this->marker);
                             }
                         }
                         else{
-                            func_8038B9BC();
+                            maSlalom_unlinkBoggy();
                             marker_despawn(this->marker);
                         }
 
@@ -597,13 +597,13 @@ void func_803896FC(Actor *this){
                     case 2: //L80389FDC
                         if(this->unk38_31 == 2){
                             if(jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)){
-                                func_8038B9BC();
+                                maSlalom_unlinkBoggy();
                                 marker_despawn(this->marker);
                                 mapSpecificFlags_set(0xC, TRUE);
                             }
                         }
                         else{
-                            func_8038B9BC();
+                            maSlalom_unlinkBoggy();
                             marker_despawn(this->marker);
                         }
                         break;

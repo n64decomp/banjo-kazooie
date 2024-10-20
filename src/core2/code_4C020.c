@@ -712,7 +712,7 @@ void func_802D4CAC(Actor *this){
 
 void func_802D4CD4(Actor *this){
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
-        if(func_8038BFA0()){
+        if(maSlalom_isActive()){
             this->unk58_0 = FALSE;
             return;
         }//L802D4D10

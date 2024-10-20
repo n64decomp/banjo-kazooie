@@ -135,7 +135,7 @@ void chHoneycomb_update(Actor *this){
     }//L802CA098
 
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
-        if(func_8038BFA0()){
+        if(maSlalom_isActive()){
             this->unk58_0 = FALSE;
             actor_collisionOff(this);
             return;

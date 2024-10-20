@@ -228,7 +228,7 @@ void chSnowman_update(Actor *this){
         }
     }//L802E21D8
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
-        if(func_8038BFA0() || func_8038DD14()){
+        if(maSlalom_isActive() || func_8038DD14()){
             actor_collisionOff(this);
             this->unk58_0 = 0;
             return;

@@ -26,7 +26,7 @@ ActorInfo D_803920E8 = { 0x204, 0x336, 0x442,
 /* .code */
 Actor *FP_func_8038CED0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    if( func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) ){
+    if( maSlalom_isActive() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) ){
         if(0.0f == this->velocity[1])
             return this;
     }
@@ -281,7 +281,7 @@ void func_8038D6C8(Actor *this){
     sp24 = time_getDelta();
     mapSpecificFlags_set(0xd, BOOL(this->state != 1 && this->state != 2));
     
-    if(func_8038BFA0() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
+    if(maSlalom_isActive() || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOff(this);
         func_8028F8F8(7, FALSE);

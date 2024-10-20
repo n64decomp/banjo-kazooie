@@ -31,7 +31,7 @@ ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_
 /* .code */
 Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    if(func_8038BFA0()) return this;
+    if(maSlalom_isActive()) return this;
 
     return actor_draw(marker, gfx, mtx, vtx);
 }
@@ -42,7 +42,7 @@ void func_8038FF54(Actor *this){
     f32 sp40[3];
     ParticleEmitter *sp3C;
 
-    if( func_8038BFA0() )               return;
+    if( maSlalom_isActive() )               return;
     if( !subaddie_playerIsWithinSphere(this, 4500) )    return;
 
     this->marker->propPtr->unk8_3 = FALSE;

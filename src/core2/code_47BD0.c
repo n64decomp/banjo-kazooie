@@ -390,7 +390,7 @@ void chBeeSwarm_update(Actor *this) {
         }
     }
     if (map_get() == MAP_27_FP_FREEZEEZY_PEAK) {
-        if (func_8038BFA0()) {
+        if (maSlalom_isActive()) {
             this->unk58_0 = FALSE;
             return;
         }

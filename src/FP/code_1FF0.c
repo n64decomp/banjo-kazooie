@@ -55,7 +55,7 @@ void func_80388584(Actor *this){
         func_803289EC(this, randf(), 1);
         this->unk124_6 = 0;
         if(this->unk38_31 == 0){
-            func_8038B930(this->marker);
+            maSlalom_linkDummyFlag(this->marker);
             this->velocity[0] = 0.0f;
         }
     }//L8038863C
@@ -70,7 +70,7 @@ void func_80388584(Actor *this){
         }
     }
     else{//L80388694
-        if(!func_80329530(this, 2000)&& !func_8038BFE8(this->position, 2000))
+        if(!func_80329530(this, 2000)&& !maSlolam_WithinRadiusOfBoggy(this->position, 2000))
             return;
         this->marker->collidable = TRUE;
         this->unk124_6 = TRUE;

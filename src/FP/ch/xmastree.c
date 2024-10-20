@@ -176,7 +176,7 @@ void chXmasTree_update(Actor *this){
                     subaddie_set_state(this, 5);
                     mapSpecificFlags_set(2, FALSE);
                     this->lifetime_value = 0.1f;
-                    if(!func_8038BFA0()){
+                    if(!maSlalom_isActive()){
                         if(!mapSpecificFlags_get(9) || mapSpecificFlags_get(1)){
                             func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
                             func_802BAFE4(0x1a);
