@@ -1,15 +1,13 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 #include "actor.h"
 
 #include "prop.h"
 
 #define DIST_SQ_VEC3F(v1, v2) ((v1[0] - v2[0])*(v1[0] - v2[0]) + (v1[1] - v2[1])*(v1[1] - v2[1]) + (v1[2] - v2[2])*(v1[2] - v2[2]))
 
-extern f32  ml_vec3f_length(f32[3], f32[3]);
-extern bool ml_vec3f_within_distance(f32[3], f32[3], f32);
 extern void func_802D7124(Actor *, f32);
 extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
@@ -135,7 +133,7 @@ void actor_predrawMethod(Actor *this){
             sp34[0] = this->pitch;
             sp34[1] = this->yaw;
             sp34[2] = this->roll;
-            func_80333D48(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
+            codeAC520_func_80333D48(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
         }//L80325560
         modelRender_setVertexList(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);
@@ -376,7 +374,7 @@ void func_80325FE8(Actor *this) {
     }
     temp_v0 = this->unk44_31;
     if (temp_v0 != 0) {
-        func_8030DA44(temp_v0);
+        sfxsource_freeSfxsourceByIndex(temp_v0);
     }
     this->animctrl = NULL;
     this->unk44_31 = 0;
@@ -819,7 +817,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk10_7 = 0;
     suLastBaddie->unk10_6 = 0;
     suLastBaddie->unk54 = 0.0f;
-    suLastBaddie->unk58_31 = 0;
+    suLastBaddie->animctrl_asset_id = 0;
     suLastBaddie->unk5C = 0.0f;
     suLastBaddie->unkF4_31 = 0;
     suLastBaddie->unk138_30 = 0;

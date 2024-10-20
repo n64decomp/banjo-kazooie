@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32  ml_distanceSquared_vec3f(f32[3], f32[3]);
 extern void func_8028F3D8(f32[3], f32, void(*)(ActorMarker *), ActorMarker *);
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void rand_seed(s32);
@@ -203,7 +202,7 @@ void func_8038EFD8(Actor *this) {
     sp24[1] = this->position[1];
     sp24[2] = this->position[2];
     sp24[1] += 50.0f;
-    func_8028F3D8(sp24, ml_distance_vec3f(sp30, sp24) / 150.0, func_8038EF58, this->marker);
+    func_8028F3D8(sp24, ml_vec3f_distance(sp30, sp24) / 150.0, func_8038EF58, this->marker);
 }
 
 void func_8038F078(ActorMarker *marker, enum asset_e text_id, s32 arg2){

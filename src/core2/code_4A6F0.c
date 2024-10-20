@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80256E24(f32 [3], f32, f32, f32, f32, f32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_803255FC(Actor *);
 extern void func_80325760(Actor *);
@@ -105,7 +104,7 @@ bool chMumbo_withinHorzDistToPlayer(s32 x, s32 z, s32 dist) {
 
 bool chMumbo_func_802D181C(s32 arg0) {
     s32 search_start_cube[3] = D_80367504;
-    return BOOL(cubeList_findNodePropByActorId(arg0, search_start_cube));
+    return BOOL(cubeList_findNodePropByActorIdAndPosition_s32(arg0, search_start_cube));
 }
 
 void chMumbo_func_802D186C(Actor *this) {

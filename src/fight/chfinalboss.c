@@ -3,7 +3,6 @@
 #include "variables.h"
 #include "fight.h"
 
-extern f32  func_8025715C(f32, f32);
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 s32 func_803297C8(Actor*, f32*);
@@ -13,7 +12,6 @@ extern void func_803298D8();
 extern void func_80324CFC(f32, enum comusic_e, s32);
 extern void sfxsource_setSampleRate(u8, s32);
 extern void func_80328FF0(Actor *arg0, f32 arg1);
-extern f32 func_80257204(f32, f32, f32, f32);
 extern void func_8028F85C(f32[3]);
 extern void player_setIdealRotation(f32[3]);
 extern f32 func_8033229C(ActorMarker *);
@@ -447,7 +445,7 @@ void chfinalboss_func_80387110(ActorMarker *marker, f32 arg1[3], f32 arg2, s32 a
     }
 }
 
-void chfinalboss_func_803872F8(Actor *arg0) { 
+void chfinalboss_func_803872F8(Actor *arg0) {
     f32 vec[3];
 
     func_8034A174(arg0->marker->unk44, 0xA, vec);
@@ -500,7 +498,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
     diff[2] = arg1[2] - this->position[2];
 
     if (arg5 != 0.00f) {
-        if (ml_distance_vec3f(this->position, arg1) < arg5) {
+        if (ml_vec3f_distance(this->position, arg1) < arg5) {
             ml_vec3f_set_length(diff, arg3 * 4.00f);
         } else {
             ml_vec3f_set_length(diff, arg3 * 1.00f);
@@ -529,7 +527,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
 
     this->yaw += (arg4 * temp.pos_x * dt);
 
-    if (ml_distance_vec3f(this->position, arg1) < arg6) {
+    if (ml_vec3f_distance(this->position, arg1) < arg6) {
         return TRUE;
     }
     return FALSE;
@@ -696,7 +694,7 @@ void chfinalboss_func_80387D4C(Actor *actor) {
     sp20[1] = -2.0 * (100.0f - local->unk1C);
     sp20[2] = actor->velocity[2] * local->unk14;
 
-    ml_vec3f_normalize(sp20, actor);
+    ml_vec3f_normalize(sp20);
     sp20[0] = sp20[0] * actor->actor_specific_1_f;
     sp20[1] = sp20[1] * actor->actor_specific_1_f;
     sp20[2] = sp20[2] * actor->actor_specific_1_f;
@@ -915,7 +913,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
     case 3:
         chfinalboss_func_80386600(this->marker, 0);
         chfinalboss_spawnBroomstickGlowParticles(this);
-        sp50 = ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
+        sp50 = ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 300.0f, 1000.0f, 100.0f, 1000.0f);
         chfinalboss_func_80387ACC(this, 60.0f * sp54);
         if (chfinalboss_func_80387470(this, this->unk1C, sp50, 1800.0f, 200.0f, 500.0f, 300.0f)) {
             chfinalboss_phase1_setState(this, 4);
@@ -1044,7 +1042,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         chfinalboss_func_8038871C(this, 460.0f, 400.0f * sp54);
         chfinalboss_func_803873DC(this, 600.0f, 2000.0f);
         if (actor_animationIsAt(this, 0.9999f)) {
-            func_8030DA44(this->unk44_31);
+            sfxsource_freeSfxsourceByIndex(this->unk44_31);
             this->unk44_31 = 0U;
             chfinalboss_setPhase(this->marker, FINALBOSS_PHASE_2_AIR);
         }
@@ -1117,7 +1115,7 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
         case 14:
             chfinalboss_spawnBroomstickGlowParticles(this);
             chfinalboss_func_80387ACC(this, 30.0f * sp4C);
-            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_distance_vec3f(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
+            if (chfinalboss_func_80387470(this, this->unk1C, ml_map_f(ml_vec3f_distance(this->position, this->unk1C), 70.0f, 1000.0f, 100.0f, D_80391758[sp48]), D_80391758[sp48] * 2, 160.0f, 500.0f, 70.0f)) {
                 local->unkA = 1;
                 chfinalboss_phase2_setState(this, 0xF);
             }
@@ -1657,7 +1655,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
                 timed_exitStaticCamera(0.0f);
                 func_80324E38(0.0f, 0);
                 chfinalboss_setPhase(this->marker, FINALBOSS_PHASE_5_JINJONATOR);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0U;
             }
             break;
@@ -1874,7 +1872,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             }
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_phase5_setState(this, 0x27);
-                func_8030DA44(this->unk44_31);
+                sfxsource_freeSfxsourceByIndex(this->unk44_31);
                 this->unk44_31 = 0;
             }
             break;
@@ -1888,7 +1886,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                     v0 = this->unk44_31;
                     if (v0 != 0) {
                         func_8030E394(v0);
-                        func_8030DA44(this->unk44_31);
+                        sfxsource_freeSfxsourceByIndex(this->unk44_31);
                         this->unk44_31 = 0;
                     }
                 }
@@ -1956,7 +1954,7 @@ void chfinalboss_func_8038B780(ActorMarker *marker) {
     sp24 = marker_getActor(marker);
     if (!fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) {
         fileProgressFlag_set(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT, TRUE);
-        gcdialog_showText(ASSET_10E7_TEXT_UNKNOWN, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
+        gcdialog_showText(ASSET_10E7_DIALOG_UNKNOWN, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
     }
     else{
         gcdialog_showText(randi2(0, 5) + 0x10E8, 0x2B, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
@@ -1982,7 +1980,7 @@ bool chfinalboss_func_8038B834(ActorMarker *marker, ActorMarker *other_marker) {
                 marker->id = 0x25E;
             }
             break;
-            
+
         case FINALBOSS_PHASE_2_AIR:
             if (local->unkA == 0) {
                 marker->id = 0x260;
@@ -2069,7 +2067,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
 
         if (local->player_hit_in_phase1 == 0) {
-            if (gcdialog_showText(randi2(0, 5) + ASSET_10ED_TEXT_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
+            if (gcdialog_showText(randi2(0, 5) + ASSET_10ED_DIALOG_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
                 local->player_hit_in_phase1++;
             }
         }
@@ -2078,7 +2076,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
     if (local->phase == FINALBOSS_PHASE_3_FLIGHT) {
         if ((local->player_hit_in_phase3 == 0) && (this->state != 0x1A)) {
             local->player_hit_in_phase3++;
-            gcdialog_showText(randi2(0, 5) + ASSET_111D_TEXT_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showText(randi2(0, 5) + ASSET_111D_DIALOG_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

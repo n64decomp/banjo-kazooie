@@ -1,9 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
 
-extern s16 D_803A5D00[2][0xF660];
 
 Gfx D_8036C630[] =
 {
@@ -40,10 +40,10 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
     s32 y;
 
     gSPDisplayList((*gfx)++, D_8036C630);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(frame_buffer_1));
-    for(y = 0;  y < framebuffer_height / 32 + 1; y++){
-        for(x = 0; x < framebuffer_width / 32 + 1; x++){
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(frame_buffer_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, framebuffer_height,
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, OS_PHYSICAL_TO_K0(frame_buffer_1));
+    for(y = 0;  y < gFramebufferHeight / 32 + 1; y++){
+        for(x = 0; x < gFramebufferWidth / 32 + 1; x++){
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(frame_buffer_2), G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, gFramebufferHeight,
                 0x20*x, 0x20*y, 0x20*(x + 1) - 1, 0x20*(y + 1) - 1,
                 NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, 0, 0
             );
@@ -53,13 +53,13 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
         }
     }
     gSPDisplayList((*gfx)++, D_8036C690);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(D_803A5D00[getActiveFramebuffer()]));
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, OS_PHYSICAL_TO_K0(gFramebuffers[getActiveFramebuffer()]));
 }
 
 void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_80335128(0);
     D_803830A0 = 2;
-    func_80314BB0(gfx, mtx, vtx, zBuffer_get(), D_803A5D00[getActiveFramebuffer()]);
+    func_80314BB0(gfx, mtx, vtx, zBuffer_get(), gFramebuffers[getActiveFramebuffer()]);
 }
 
 void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -72,7 +72,7 @@ void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     else{
         D_803830A0--;
     }
-    func_80314BB0(gfx, mtx, vtx, D_803A5D00[getActiveFramebuffer()], zBuffer_get());
+    func_80314BB0(gfx, mtx, vtx, gFramebuffers[getActiveFramebuffer()], zBuffer_get());
 }
 
 void func_803151D0(Gfx **gfx, Mtx **mtx, Vtx **vtx){

@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/particle.h"
-#include <core1/viewport.h>
 
 void func_802DC208(Actor *this);
 

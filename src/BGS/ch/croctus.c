@@ -143,7 +143,7 @@ void func_80387FD4(Actor *this){
             func_8025A6EC(COMUSIC_2B_DING_B, 28000); //TODO ISSUE HERE
             if (this->unkF4_8 == 1) {
                 func_8028F94C(2, this->position);
-                gcdialog_showText(ASSET_C86_TEXT_UNKNOWN, 0xE, this->position, this->marker, func_80387E68, NULL);
+                gcdialog_showText(ASSET_C86_DIALOG_UNKNOWN, 0xE, this->position, this->marker, func_80387E68, NULL);
                 subaddie_set_state_with_direction(this, 6, 0.79f, 1);
             } else {
                 timed_playSfx(0.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000); //0.4f

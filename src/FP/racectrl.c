@@ -69,7 +69,7 @@ void func_8038ABDC(void){
     comusic_8025AB44(COMUSIC_3A_FP_BOGGY_RACE, 0, 4000);
     func_8025AABC(COMUSIC_3A_FP_BOGGY_RACE);
     func_8025A58C(-1, 4000);
-    func_8024BD08(1);
+    core1_ce60_incOrDecCounter(TRUE);
 }
 
 void func_8038AC20(s32 gate_indx, s32 arg1){

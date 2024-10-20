@@ -1,29 +1,13 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "core1/core1.h"
 
-#include <core1/viewport.h>
+static Gfx *sGfxStack[2] = { NULL, NULL };
+s32 gFramebufferWidth = DEFAULT_FRAMEBUFFER_WIDTH;
+s32 gFramebufferHeight = DEFAULT_FRAMEBUFFER_HEIGHT;
 
-typedef struct {
-    s32 unk0;
-    s32 unk4;
-    Gfx *unk8;
-    Gfx *unkC;
-    s32 unk10;
-    s32 unk14;
-}Struct_Core1_15B30;
-
-extern u8 D_803A5D00[2][0x1ecc0];
-
-/* .data */
-Gfx *gGfxStack[2] = {NULL, NULL};
-s32  framebuffer_width  = 292;
-s32  framebuffer_height = 216;
-
-/* .bss */
-Mtx *gMtxStack[2];
-Vtx *gVtxStack[2];
-s32  gStackSelector;
+static Mtx *sMtxStack[2];
+static Vtx *sVtxStack[2];
+static s32 sStackSelector;
 s32  gTextureFilterPoint;
 Struct_Core1_15B30 D_80283008[20];
 s32 D_802831E8;
@@ -35,11 +19,6 @@ u16  gScissorBoxTop;
 u16  gScissorBoxBottom;
 Gfx *D_80283214;
 
-/* .h */
-void scissorBox_setDefault(void);
-void dummy_func_80254464(void);
-
-/* .code */
 void func_80253550(void){
     osRecvMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
 }
@@ -74,8 +53,8 @@ void func_80253640(Gfx ** gdl, void *arg1){
     gDPSetAlphaCompare((*gdl)++, G_AC_NONE);
     gDPSetColorDither((*gdl)++, G_CD_MAGICSQ);
     gDPSetScissor((*gdl)++, G_SC_NON_INTERLACE, gScissorBoxLeft, gScissorBoxRight, gScissorBoxTop, gScissorBoxBottom);
-    func_80253208(gdl, 0, 0,  framebuffer_width, framebuffer_height, arg1);
-    gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_K0_TO_PHYSICAL(arg1));
+    func_80253208(gdl, 0, 0,  gFramebufferWidth, gFramebufferHeight, arg1);
+    gDPSetColorImage((*gdl)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, OS_K0_TO_PHYSICAL(arg1));
     gDPSetCycleType((*gdl)++, G_CYC_1CYCLE);
     gDPSetTextureConvert((*gdl)++, G_TC_FILT);
     gDPSetTextureDetail((*gdl)++, G_TD_CLAMP);
@@ -98,13 +77,13 @@ void scissorBox_SetForGameMode(Gfx **gdl, s32 framebuffer_idx) {
     }
     else{
         scissorBox_setDefault();
-        func_80253640(gdl, D_803A5D00[framebuffer_idx]);
+        func_80253640(gdl, gFramebuffers[framebuffer_idx]);
     }
 }
 
 void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address){
     gSPSegment((*gfx)++, 0x00, 0x00000000);
-    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, OS_PHYSICAL_TO_K0(framebuffer_address));
+    gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, OS_PHYSICAL_TO_K0(framebuffer_address));
     gSPClearGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
     gSPTexture((*gfx)++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
     gSPSetGeometryMode((*gfx)++, G_ZBUFFER | G_SHADE | G_SHADING_SMOOTH);
@@ -121,7 +100,7 @@ void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address){
 
 void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx){
     scissorBox_setDefault();
-    setupScissorBoxAndFramebuffer(gfx, D_803A5D00[framebuffer_idx]);
+    setupScissorBoxAndFramebuffer(gfx, gFramebuffers[framebuffer_idx]);
 }
 
 void func_80253DC0(Gfx **gfx){
@@ -184,7 +163,7 @@ void scissorBox_get(u32 *left, u32 *top, u32 *right, u32 *bottom){
 }
 
 void func_80253FE8(void){
-    func_8024BFAC();
+    viMgr_func_8024BFAC();
 }
 
 void func_80254008(void){
@@ -208,29 +187,29 @@ void drawRectangle2D(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, s32 r, s32 g, s32 b)
     gDPScisFillRectangle((*gfx)++,  x, y, x + w -1, y + h -1);
 }
 
-void graphicsCache_release(void){
-    if(gGfxStack[0]){
-        free(gGfxStack[0]);
-        free(gGfxStack[1]);
-        free(gMtxStack[0]);
-        free(gMtxStack[1]);
-        free(gVtxStack[0]);
-        free(gVtxStack[1]);
-        gGfxStack[0] = NULL;
+void graphicsCache_release(void) {
+    if (sGfxStack[0]) {
+        free(sGfxStack[0]);
+        free(sGfxStack[1]);
+        free(sMtxStack[0]);
+        free(sMtxStack[1]);
+        free(sVtxStack[0]);
+        free(sVtxStack[1]);
+        sGfxStack[0] = NULL;
     }
 }
 
 void graphicsCache_init(void){
-    if(gGfxStack[0] == NULL){
-        gGfxStack[0] = (Gfx *)malloc(29600); // 3700 dlist commands
-        gGfxStack[1] = (Gfx *)malloc(29600);
-        gMtxStack[0] = (Mtx *)malloc(44800); // 700 matrices
-        gMtxStack[1] = (Mtx *)malloc(44800);
-        gVtxStack[0] = (Vtx *)malloc(6880); // 430 vertices
-        gVtxStack[1] = (Vtx *)malloc(6880);
+    if(sGfxStack[0] == NULL){
+        sGfxStack[0] = (Gfx *)malloc(29600); // 3700 dlist commands
+        sGfxStack[1] = (Gfx *)malloc(29600);
+        sMtxStack[0] = (Mtx *)malloc(44800); // 700 matrices
+        sMtxStack[1] = (Mtx *)malloc(44800);
+        sVtxStack[0] = (Vtx *)malloc(6880); // 430 vertices
+        sVtxStack[1] = (Vtx *)malloc(6880);
         dummy_func_80254464();
     }
-    gStackSelector = 0;
+    sStackSelector = 0;
     gTextureFilterPoint = 0;
 }
 
@@ -239,8 +218,8 @@ void scissorBox_set(s32 left, s32 top, s32 right, s32 bottom) {
     gScissorBoxTop = top;
     gScissorBoxRight = right;
     gScissorBoxBottom = bottom;
-    framebuffer_width = top - left;
-    framebuffer_height = bottom - right;
+    gFramebufferWidth = top - left;
+    gFramebufferHeight = bottom - right;
     viewport_pushFramebufferExtendsToVpStack();
 }
 
@@ -253,7 +232,7 @@ void func_80254374(s32 arg0) {
     Struct_Core1_15B30 *sp1C;
 
     func_80253550();
-    func_8024C2A0(arg0);
+    viMgr_setActiveFramebuffer(arg0);
     sp1C = &D_80283008[D_802831E8];
     D_802831E8 = (s32) (D_802831E8 + 1) % 20;
     func_8025357C();
@@ -267,10 +246,10 @@ void toggleTextureFilterPoint(void){
 }
 
 void getGraphicsStacks(Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    gStackSelector = (1 - gStackSelector);
-    *gfx = gGfxStack[gStackSelector];
-    *mtx = gMtxStack[gStackSelector];
-    *vtx = gVtxStack[gStackSelector];
+    sStackSelector = (1 - sStackSelector);
+    *gfx = sGfxStack[sStackSelector];
+    *mtx = sMtxStack[sStackSelector];
+    *vtx = sVtxStack[sStackSelector];
 }
 
-void dummy_func_80254464(void){}
+void dummy_func_80254464(void) {}

@@ -177,7 +177,7 @@ void func_803898EC() {
 }
 
 void func_80389910() {
-    gcdialog_showText(ASSET_AD5_TEXT_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
+    gcdialog_showText(ASSET_AD5_DIALOG_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
     timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
@@ -198,10 +198,10 @@ void organMinigame_setState(s32 next_state){
     if (next_state == 2) {
         if (D_8038C4F0.pattern == 0) {
             D_8038C4F0.pattern = 1;
-            gcdialog_showText(ASSET_AD3_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showText(ASSET_AD3_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
         else {//L80389A84
-            gcdialog_showText(ASSET_AD6_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showText(ASSET_AD6_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
     }//L80389A9C
 
@@ -218,13 +218,13 @@ void organMinigame_setState(s32 next_state){
     }//L80389AF4
 
     if(next_state == 4){
-        gcdialog_showText(ASSET_ADD_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(ASSET_ADD_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 
     if(next_state == 5){
         D_8038C4F0.pattern++;
-        gcdialog_showText(ASSET_AD4_TEXT_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showText(ASSET_AD4_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(D_8038C4F0.motzhand_marker);
     }
 
@@ -385,7 +385,7 @@ void organMinigame_update(void){
         if(func_8038769C(D_8038C4F0.motzhand_marker)){
             player_getPosition(plyr_pos);
             motzhand_2 = marker_getActor(D_8038C4F0.motzhand_marker);
-            if( ml_distance_vec3f(motzhand_2->position, plyr_pos) < 400.0f
+            if( ml_vec3f_distance(motzhand_2->position, plyr_pos) < 400.0f
                 && motzhand_2->position_y - 50.0f <= plyr_pos[1]
             ){
                 organMinigame_setState(2);

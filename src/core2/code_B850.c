@@ -4,7 +4,6 @@
 #include "core2/ba/physics.h"
 
 
-extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 
 /* .data */
 s32 D_80363790 = 0;

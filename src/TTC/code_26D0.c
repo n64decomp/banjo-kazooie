@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "prop.h"
-#include "SnS.h"
 #include "actor.h"
 
 extern ActorInfo gChClam;

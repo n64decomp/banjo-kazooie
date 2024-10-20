@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
 
@@ -168,7 +168,7 @@ void func_802F8CD0(struct6s * this){
     this->unk18++;
     if((s32)this->unk18 < vector_size(this->unk1C)){
         iPtr = vector_at(this->unk1C, this->unk18);
-        if(1320.0 < ml_distance_vec3f(iPtr->unk4, plyr_pos)){
+        if(1320.0 < ml_vec3f_distance(iPtr->unk4, plyr_pos)){
             vector_remove(this->unk1C, this->unk18);
         }
     }

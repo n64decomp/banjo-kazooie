@@ -1,15 +1,15 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/nc/camera.h"
-#include <core1/viewport.h>
 #include "core2/coords.h"
 
 extern Actor *func_80328230(enum actor_e, f32[3], f32[3]);
 extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEBE8(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEAAC(f32[3], f32[3], f32, f32[3], f32[3], f32[3], f32[3]);
-extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
+extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e, s32[3]);
 extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], s32);
 f32 func_802BB938(f32[3], f32[3]);
 f32 func_802BBD48(void);
@@ -60,7 +60,7 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     if ((arg0 >= 0x5B) && (arg0 < 0x63)) {
         arg0 -= 0x40;
     }
-    temp_v0 = cubeList_findNodePropByActorId(D_803657E0[arg0], NULL);
+    temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(D_803657E0[arg0], NULL);
     if (temp_v0 != NULL) {
         nodeprop_getPosition(temp_v0, arg1);
         *arg3 = func_80304DB8(temp_v0);
@@ -217,7 +217,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     ml_vec3f_copy(sp4C, sp58[D_8037D8D0.unk30]);
     sp38 = func_80320B98(arg0, sp4C, sp3C, arg4);
     if (sp38 != NULL) {
-        phi_f2 = ml_distance_vec3f(arg0, sp4C);
+        phi_f2 = ml_vec3f_distance(arg0, sp4C);
         D_8037D8D0.unk0[D_8037D8D0.unk30] = sp38->flags;
     } else {
         phi_f2 = arg2;

@@ -1,11 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
-
-extern s16 D_803A5D00[2][0xF660];
 
 typedef struct Struct_Core2_6A4B0_2{
     s16 (*vtx_coord)[3];
@@ -76,8 +74,8 @@ void func_802F1440(Struct_Core2_6A4B0_2 *arg0, Gfx **gfx, Mtx **mtx, Vtx **vtx) 
     gSPVertex((*gfx)++, osVirtualToPhysical(i_vtx), 16, 0);
     for(sp4C = 0; sp4C < 6; sp4C++){
         for(sp50 = 0; sp50 < 9; sp50++){
-            s16 *tmem = arg0->tmem_ptr + (0x20*sp50 + 1) + (0x20*sp4C + 0xC)*framebuffer_width;
-            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(tmem), G_IM_FMT_RGBA, G_IM_SIZ_16b, framebuffer_width, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+            s16 *tmem = arg0->tmem_ptr + (0x20*sp50 + 1) + (0x20*sp4C + 0xC)*gFramebufferWidth;
+            gDPLoadTextureTile((*gfx)++, osVirtualToPhysical(tmem), G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, 0, 0, 0, 33, 33, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             for(sp54 = 0; sp54 < 2; sp54++){
                 gSP1Triangle((*gfx)++, var_s3, var_s3 + 1, var_s3 + 2, 0);
                 var_s3 += 3;
@@ -130,12 +128,12 @@ Struct_Core2_6A4B0_2 *func_802F18F0(void){
 
 void func_802F1934(Struct_Core2_6A4B0_2 * arg0, s32 arg1){
     func_802F18B8(arg0);
-    arg0->tmem_raw_ptr = malloc(framebuffer_width*framebuffer_height*sizeof(u16) + 0x10);
+    arg0->tmem_raw_ptr = malloc(gFramebufferWidth*gFramebufferHeight*sizeof(u16) + 0x10);
     arg0->tmem_ptr = arg0->tmem_raw_ptr;
     while(((s32)arg0->tmem_ptr & 0x10) == 0){
         arg0->tmem_ptr = (u16*)((s32)arg0->tmem_ptr + 1);
     }
-    func_80253010(arg0->tmem_ptr, D_803A5D00[arg1], framebuffer_width*framebuffer_height*sizeof(u16));
+    func_80253010(arg0->tmem_ptr, gFramebuffers[arg1], gFramebufferWidth*gFramebufferHeight*sizeof(u16));
     osWriteBackDCacheAll();
 }
 
@@ -164,8 +162,8 @@ void func_802F1A10(Struct_Core2_6A4B0_2 *arg0, f32 angle_degrees) {
     cos = cosf(angle_degrees * 2 * BAD_PI);
     sin = sinf(angle_degrees * 2 * BAD_PI);
     viewport_getPosition_vec3f(spC0);
-    spCC[0] = (-(framebuffer_width / 2) * 4) + 8;
-    spCC[1] = ((framebuffer_height / 2) * 4) - 0x38;
+    spCC[0] = (-(gFramebufferWidth / 2) * 4) + 8;
+    spCC[1] = ((gFramebufferHeight / 2) * 4) - 0x38;
     spCC[2] = -0xA;
     for(var_s6 = 0; var_s6 < 6; var_s6++){
         for(var_s4 = 0; var_s4 < 9; var_s4++){

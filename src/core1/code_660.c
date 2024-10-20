@@ -1,7 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-#include "core1/rarezip.h"
+#include "core1/core1.h"
 
 
 static int _rarezip_uncompress(u8 **arg0, u8 **arg1, struct huft * arg2);

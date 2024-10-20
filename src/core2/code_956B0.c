@@ -9,10 +9,8 @@ extern s32  fileProgressFlag_get(s32);
 extern s32  fileProgressFlag_getN(s32 offset, s32 numBits);
 extern void func_8031FFAC(void);
 extern void fileProgressFlag_set(enum file_progress_e index, s32 set);
-extern void ml_vec3h_to_vec3f(f32 *, s32);
 extern NodeProp *func_80304ED0(void*, f32 *);
 extern void func_8031CD44(enum map_e, s32, f32, f32, s32);
-extern void func_80256E24(f32 *, f32, f32, f32, f32, f32);
 extern void mapSpecificFlags_set(s32, s32);
 
 bool cutscene_skipEnterLairCutsceneCheck(void);
@@ -128,7 +126,7 @@ void func_8031CB50(enum map_e map_id, s32 exit_id, s32 arg2) {
         if ((func_803226E8(map_id) != sp1C) && (func_80322914() == 0)) {
             func_8025A388(0, 0x4E2);
             func_8025AB00();
-            func_8024BD08(0);
+            core1_ce60_incOrDecCounter(FALSE);
         }
         if (func_802E4A08()) {
             func_802E40D0(map_id, exit_id);
@@ -214,7 +212,7 @@ void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2) {
             if (phi_s0->unk8 == 0x186) {
                 phi_f2 = 1000.0f;
             }
-            if (ml_distance_vec3f(arg0, sp38) < phi_f2) {
+            if (ml_vec3f_distance(arg0, sp38) < phi_f2) {
                 if (phi_s0->unk8 == 0x184) {
                     ncDynamicCamera_setUpdateEnabled(0);
                     func_8031CB50(arg1, arg2, 1);
@@ -287,7 +285,7 @@ void warp_gvEnterWaterPyramidLower(s32 arg0, s32 arg1) {
 
 void warp_gvEnterRubeePyramid(s32 arg0, s32 arg1) {
     item_set(ITEM_6_HOURGLASS, 0);
-    func_80244C78(1);
+    core1_7090_freeSfxSource(1);
     func_8031CC8C(arg0, 0x1607);
 }
 
@@ -297,7 +295,7 @@ void warp_gvEnterMatchingPyramid(s32 arg0, s32 arg1) {
 }
 
 void warp_gvEnterWaterPyramidUpper(s32 arg0, s32 arg1) {
-    func_80244C78(0);
+    core1_7090_freeSfxSource(0);
     volatileFlag_set(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED, 1);
     func_8031CC8C(arg0, 0x1502);
 }
@@ -536,7 +534,7 @@ void func_8031DAA8(enum map_e arg0, s32 arg1) {
 void func_8031DAE0(s32 arg0, s32 arg1) {
     if (mapSpecificFlags_get(2) == 0) {
         volatileFlag_set(VOLATILE_FLAG_AD_MMM_CHURCH_DOOR_MISSED, 1);
-        func_80244C78(0);
+        core1_7090_freeSfxSource(0);
         mapSpecificFlags_set(2, 1);
         func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 0x6D60);
         func_8028F918(1);
@@ -737,8 +735,8 @@ void func_8031E204(NodeProp *node, s32 arg1, s32 arg2){
     f32 sp28[3];
     f32 sp1C[3];
 
-    nodeprop_getPosition(func_80304D04(0x154, &node->x), sp34);
-    nodeprop_getPosition(func_80304D04(0x155, &node->x), sp28);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_154_UNKNOWN, &node->x), sp34);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_155_UNKNOWN, &node->x), sp28);
     player_getPosition(sp1C);
     if(sp28[1] < sp1C[1]){
         sp1C[1] = sp28[1];

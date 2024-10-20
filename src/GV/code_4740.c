@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-f32 func_80257204(f32, f32, f32, f32);
 void func_8038B124(Actor *this);
 
 /* .data */

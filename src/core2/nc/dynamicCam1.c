@@ -2,7 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80259198(f32, f32);
 extern f32 func_802BD51C(void);
 extern f32 player_getYaw(void);
 extern void func_802BD870(f32, f32, f32, f32);

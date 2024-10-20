@@ -1,7 +1,7 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 #include "version.h"
 /* 
  *  Every chunk of allocated memory is prefixed with a HeapHeader.

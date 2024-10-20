@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80257248(f32[3], f32[3]);
-
 typedef struct {
     f32 unk0;
     f32 unk4;

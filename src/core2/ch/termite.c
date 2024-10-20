@@ -1,8 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include <core1/viewport.h>
 
 
 bool func_8034A6FC(f32, f32);

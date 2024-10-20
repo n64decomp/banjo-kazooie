@@ -121,7 +121,7 @@ BKSpriteTextureBlock **func_802E4D8C(BKSprite *sprite) {
     s32 i;
     s32 chunk_size;
 
-    frame = spriteGetFramePtr(sprite, 0);
+    frame = sprite_getFramePtr(sprite, 0);
     chunkPtrArray = (BKSpriteTextureBlock **)malloc((frame->chunkCnt + 1)*4);
     chunk = (BKSpriteTextureBlock *)(frame + 1);
     for (i = 0; i < frame->chunkCnt; i++) {
@@ -481,7 +481,7 @@ void func_802E6628(s32 arg0, char *arg1) {
 
     sp2C = func_802E4E54(0);
     arg0 *= D_8037E900->unk4[sp2C].height;
-    func_802E502C((s32) (((f32) framebuffer_width - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, sp28);
+    func_802E502C((s32) (((f32) gFramebufferWidth - (f32) func_802E51A4(arg1, sp2C, 0, D_8037E900->flags)) / 2), arg0, sp2C, arg1, sp28);
 }
 
 void func_802E66F0(s32 arg0, char *arg1) {
@@ -491,7 +491,7 @@ void func_802E66F0(s32 arg0, char *arg1) {
 
     sp24 = func_802E4E54(0);
     arg0 *= D_8037E900->unk4[sp24].height;
-    func_802E502C((s32) (((f32) framebuffer_width - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
+    func_802E502C((s32) (((f32) gFramebufferWidth - (f32) func_802E51A4(arg1, sp24, 0, D_8037E900->flags)) / 2), arg0, sp24, arg1, D_8037E900->unk1C);
 }
 
 void func_802E67AC(void){
@@ -530,7 +530,7 @@ void func_802E6820(s32 arg0) {
                 
                 prev_sprite_ptr = D_8037E900->unk4[var_s5].font_bin;
                 if (D_8037E900->unk4[var_s5].font_bin != NULL) {
-                    chunk_count = spriteGetFramePtr(prev_sprite_ptr, 0U)->chunkCnt;
+                    chunk_count = sprite_getFramePtr(prev_sprite_ptr, 0U)->chunkCnt;
                     D_8037E900->unk4[var_s5].font_bin = (BKSprite *)defrag_asset(D_8037E900->unk4[var_s5].font_bin);
                     for(i_chunk = 0; i_chunk < chunk_count; i_chunk++){
                         D_8037E900->unk4[var_s5].letter_texture[i_chunk] = ((u32)(((s32)D_8037E900->unk4[var_s5].letter_texture[i_chunk] - (s32)prev_sprite_ptr)) + (u32)D_8037E900->unk4[var_s5].font_bin);

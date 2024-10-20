@@ -1,12 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
 
-#include <core1/viewport.h>
-
-
-/* .data*/
 #if VERSION == VERSION_USA_1_0
 u32 D_80276CB0 = 0xD22FFFD8; //WHAT IS THIS?
 u32 D_80276CB4 = 0xDEFEF692; //WHAT IS THIS?
@@ -14,9 +11,11 @@ u32 D_80276CB4 = 0xDEFEF692; //WHAT IS THIS?
 u32 D_80276CB0 = 0x90FA97CB; //WHAT IS THIS?
 u32 D_80276CB4 = 0x8D96D002; //WHAT IS THIS?
 #endif
+
 u16 *D_80276CB8 = NULL; //! ml_acosPrecValTblPtr
+
 //! Might not be 90, but 91 or 92? Initial lowerIdx is OOB if 90
-f32 ml_acosValTbl[90] = { //D_80276CBC
+f32 sLookupTableAcosDegrees[90] = {
     1.0000000000, 0.9998480080, 0.9993910190, 0.9986299870, 0.9975640180, 
     0.9961950180, 0.9945219760, 0.9925460220, 0.9902679920, 0.9876880050, 
     0.9848080280, 0.9816269870, 0.9781479840, 0.9743700030, 0.9702960250, 
@@ -37,42 +36,27 @@ f32 ml_acosValTbl[90] = { //D_80276CBC
     0.0871559978, 0.0697569996, 0.0523359999, 0.0348990001, 0.0174519997
 };
 
-// .h
-void func_80257918(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3[3]);
-void ml_vec3f_roll_rotate_copy(f32 arg0[3], f32 arg1[3], f32);
-
 #define _SQ2(x, y)     ((x) * (x)  +  (y) * (y))
 #define _SQ3(x, y, z)  (((x) * (x)) + ((y) * (y)) + ((z) * (z)))
 
-/* .code */
-f32 func_80255D70(f32 x)
-{
+f32 ml_acosf_deg(f32 x) {
     s32 sign;
     s32 upperIdx;
     s32 lowerIdx;
-
     f32 res;
+    f32 *table = sLookupTableAcosDegrees;
 
-    f32 *table = &ml_acosValTbl[0];
-
-    if (x < 0)
-    {
-        // Invert the result
+    if (x < 0) {
         sign = -1;
-
-        // Precomputed values are all positive
         x = -x;
-    }
-    else
-    {
+    } else {
         sign = 1;
     }
 
     upperIdx = 0;
-    lowerIdx = 90 + 1;
+    lowerIdx = 91;
 
-    while (TRUE)
-    {
+    while (TRUE) {
         s32 idx = (upperIdx + lowerIdx) / 2;
 
         if (x > table[idx])
@@ -81,8 +65,7 @@ f32 func_80255D70(f32 x)
             upperIdx = idx;
 
         if (upperIdx + 1 == lowerIdx)
-            // Found the 1 degree range containing the result
-            break;
+            break; // Found the 1 degree range containing the result
     }
 
     // Check for trivial result
@@ -95,19 +78,17 @@ f32 func_80255D70(f32 x)
     return sign > 0 ? res : 180 - res;
 }
 
-void func_80255E58(f32 vec1[3], f32 vec2[3], f32 vec3[3], f32 vec4[3])
-{
+void ml_vec3f_sub_and_rotate(f32 vec1[3], f32 rotation[3], f32 vec2[3], f32 dst[3]) {
     f32 tmp[3];
 
-    TUPLE_DIFF_COPY(tmp, vec3, vec1)
+    TUPLE_DIFF_COPY(tmp, vec2, vec1)
 
-    ml_vec3f_yaw_rotate_copy(tmp, tmp, -vec2[1]);
-    ml_vec3f_pitch_rotate_copy( tmp, tmp, -vec2[0]);
-    ml_vec3f_roll_rotate_copy(vec4, tmp, -vec2[2]);
+    ml_vec3f_yaw_rotate_copy(tmp, tmp, -rotation[1]);
+    ml_vec3f_pitch_rotate_copy( tmp, tmp, -rotation[0]);
+    ml_vec3f_roll_rotate_copy(dst, tmp, -rotation[2]);
 }
 
-f32 func_80255F14(f32 vec1[3], f32 vec2[3])
-{
+f32 ml_vec3f_cos_between(f32 vec1[3], f32 vec2[3]) {
     f32 tmp1[3];
     f32 tmp2[3];
 
@@ -117,32 +98,27 @@ f32 func_80255F14(f32 vec1[3], f32 vec2[3])
     return TUPLE_DOT_PRODUCT(tmp1, tmp2);
 }
 
-//ml_vec3f_cross_product
-void ml_crossProduct_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3])
-{
+void ml_vec3f_cross_product(f32 dst[3], f32 vec1[3], f32 vec2[3]) {
     TUPLE_CROSS_PRODUCT(dst, vec1, vec2)
 }
 
-void ml_interpolate_vec3f(f32 dst[3], f32 vec1[3], f32 vec2[3], f32 scale)
-{
-    dst[0] = vec1[0] + (vec2[0] - vec1[0]) * scale;
-    dst[1] = vec1[1] + (vec2[1] - vec1[1]) * scale;
-    dst[2] = vec1[2] + (vec2[2] - vec1[2]) * scale;
+void ml_vec3f_interpolate_fast(f32 dst[3], f32 start[3], f32 end[3], f32 t) {
+    dst[0] = start[0] + (end[0] - start[0]) * t;
+    dst[1] = start[1] + (end[1] - start[1]) * t;
+    dst[2] = start[2] + (end[2] - start[2]) * t;
 }
 
-f32 ml_dotProduct_vec3f(f32 vec1[3], f32 vec2[3])
-{
+f32 ml_vec3f_dot_product(f32 vec1[3], f32 vec2[3]) {
     return TUPLE_DOT_PRODUCT(vec1, vec2);
 }
 
-f32 ml_distance_vec3f(f32 vec1[3], f32 vec2[3])
-{
+f32 ml_vec3f_distance(f32 vec1[3], f32 vec2[3]) {
     f32 diff[3];
     TUPLE_DIFF_COPY(diff, vec1, vec2)
     return LENGTH_VEC3F(diff);
 }
 
-f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
+f32 ml_func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     f32 sp4C[3];
     f32 pad48;
     f32 sp3C[3];
@@ -157,7 +133,7 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp20 = LENGTH_VEC3F(sp24);
 
     if (sp20 < 0.01) {
-        return ml_distance_vec3f(arg0, arg2);
+        return ml_vec3f_distance(arg0, arg2);
     }
 
     TUPLE_DIFF_COPY(sp3C, arg2, arg0)
@@ -172,7 +148,7 @@ f32 func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
     sp4C[0] = arg0[0] + (sp24[0] * sp30);
     sp4C[1] = arg0[1] + (sp24[1] * sp30);
     sp4C[2] = arg0[2] + (sp24[2] * sp30);
-    return ml_distance_vec3f(sp4C, arg2);
+    return ml_vec3f_distance(sp4C, arg2);
 }
 
 f32 ml_distanceSquared_vec3f(f32 vec1[3], f32 vec2[3])
@@ -651,7 +627,7 @@ void func_802578A4(f32 dst[3], f32 vec1[3], f32 vec2[3])
 
     ml_vec3f_diff_copy(tmp1, &vec2[3], vec2);
     ml_vec3f_diff_copy(tmp2, &vec2[6], vec2);
-    ml_crossProduct_vec3f(tmp3, tmp1, tmp2);
+    ml_vec3f_cross_product(tmp3, tmp1, tmp2);
     ml_vec3f_normalize(tmp3);
     func_80257918(dst, vec1, vec2, tmp3);
 }
@@ -767,7 +743,7 @@ void func_80257DB0(f32 arg0[3], f32 arg1[3], f32 arg2[3])
     f32 tmp[3];
 
     ml_vec3f_scale_copy(arg0, arg1, -1);
-    dot_product = ml_dotProduct_vec3f(arg0, arg2);
+    dot_product = ml_vec3f_dot_product(arg0, arg2);
     ml_vec3f_scale_copy(tmp, arg2, 2 * dot_product);
     ml_vec3f_diff_copy(arg0, tmp, arg0);
 }
@@ -900,7 +876,7 @@ int func_80258210(f32 x, f32 y, f32 *dst)
     return TRUE;
 }
 
-int ml_isZero_vec3f(f32 vec[3])
+bool ml_isZero_vec3f(f32 vec[3])
 {
     return !(vec[0] != 0 || vec[1] != 0 || vec[2] != 0);
 }
@@ -910,31 +886,26 @@ bool ml_isNonzero_vec3f(f32 vec[3])
     return vec[0] != 0 || vec[1] != 0 || vec[2] != 0;
 }
 
-//ml_vec3f_not_on_vertical_axis
-int func_802583D8(f32 vec[3])
+bool ml_vec3f_not_on_vertical_axis(f32 vec[3])
 {
     return vec[0] != 0 && vec[2] != 0;
 }
 
-//ml_vec3f_inside_box_f
-int func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ)
+bool ml_vec3f_inside_box_f(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ)
 {
     return vec[0] > minX && vec[0] < maxX
         && vec[1] > minY && vec[1] < maxY
         && vec[2] > minZ && vec[2] < maxZ;
 }
 
-//ml_vec3f_inside_box_vec3f
-int func_802584FC(f32 vec[3], f32 min[3], f32 max[3])
+bool ml_vec3f_inside_box_vec3f(f32 vec[3], f32 min[3], f32 max[3])
 {
     return vec[0] > min[0] && vec[0] < max[0]
         && vec[1] > min[1] && vec[1] < max[1]
         && vec[2] > min[2] && vec[2] < max[2];
 }
 
-//ml_vec3w_inside_box_w
-int func_802585E0(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ)
-{
+bool ml_vec3w_inside_box_w(s32 vec[3], s32 minX, s32 minY, s32 minZ, s32 maxX, s32 maxY, s32 maxZ) {
     return vec[0] > minX && vec[0] < maxX
         && vec[1] > minY && vec[1] < maxY
         && vec[2] > minZ && vec[2] < maxZ;
@@ -951,8 +922,7 @@ f32 ml_vec3f_horizontal_distance_zero_likely(f32 vec1[3], f32 vec2[3]) {
     return 0;
 }
 
-//ml_vec3f_horizontal_distance_squared_zero_likely
-f32 func_802586B0(f32 vec1[3], f32 vec2[3])
+f32 ml_vec3f_horizontal_distance_squared_zero_likely(f32 vec1[3], f32 vec2[3])
 {
     f32 dX = vec1[0] - vec2[0];
     f32 dZ = vec1[2] - vec2[2];
@@ -1281,20 +1251,16 @@ bool ml_vec3f_within_distance(f32 vec1[3], f32 vec2[3], f32 distance)
     return LENGTH_SQ_VEC3F(t) <= distance * distance;
 }
 
-bool func_80259400(f32 a0)
-{
+bool ml_stub_80259400(f32 x) {
     // wtf?
-    return *(u32 *)&a0 == 0x80 || *(u32 *)&a0 == 0x2A8800;
+    return *(u32 *)&x == 0x80 || *(u32 *)&x == 0x2A8800;
 }
 
-void func_80259430(f32 *val)
-{
-    *val -= time_getDelta();
+void ml_sub_delta_time(f32 *x) {
+    *x -= time_getDelta();
  
-    if (*val < 0)
-        *val = 0;
- 
-    return;
+    if (*x < 0)
+        *x = 0;
 }
 
 void func_8025947C(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
@@ -1392,9 +1358,8 @@ void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
 
 }
 
-s32 func_8025975C(f32 a0)
-{
-    f32 val = (s32)(viewport_getYaw() - a0);
+s32 ml_getViewportYawWithOffset(f32 x) {
+    f32 val = (s32)(viewport_getYaw() - x);
 
     while (val < 0)
         val += 360;
@@ -1405,14 +1370,13 @@ s32 func_8025975C(f32 a0)
     return val;
 }
 
-bool func_80259808(f32 a0)
-{
-    return func_8025975C(a0) < 0xB4;
+bool ml_isViewportYawWithOffsetNormalized(f32 x) {
+    return ml_getViewportYawWithOffset(x) < 180;
 }
 
-void func_8025982C(f32 dst[3], f32 arg1[3], f32 arg2[3], f32 arg3){
+void ml_vec3f_interpolate(f32 dst[3], f32 start[3], f32 end[3], f32 t) {
     int i;
-    for(i=0; i< 3; i++){
-        dst[i] = arg1[i] + (arg2[i]-arg1[i])*arg3;
+    for (i = 0; i < 3; i++) {
+        dst[i] = start[i] + (end[i] - start[i]) * t;
     }
 }

@@ -74,7 +74,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
     this->marker->propPtr->unk8_3 = (next_state == 1) ? FALSE : TRUE;
     this->marker->collidable = (next_state == 1) ? FALSE : TRUE;
     if(this->state == 4 || this->state == 5)
-        func_8030DA44(local->sfxsourceIdx);
+        sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
     
     if(next_state == 4 || next_state == 5){
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();

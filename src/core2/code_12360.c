@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 ml_mapAbsRange_f(f32, f32, f32, f32, f32);
-extern void func_8025901C(f32, f32 *, f32 *, f32);
 extern f32 func_8029B2D0(void);
 
 void func_8029957C(s32 arg0);

@@ -1,10 +1,9 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "n_libaudio.h"
-#include <core1/viewport.h>
 
-extern f32 func_80256AB4(f32, f32, f32, f32);
 extern void func_80335394(s32, f32);
 extern f32 sfx_randf2(f32, f32);
 
@@ -358,7 +357,7 @@ void func_8030D310(u8 indx){
     switch(func_8030C7E8(ptr)){
         case 1://L8030D468
             if( func_8030C814(ptr, 0) || (func_8030C814(ptr, 1) && !ptr->unk40))
-                func_8030DA44(indx);
+                sfxsource_freeSfxsourceByIndex(indx);
             break;
         case 2://L8030D4A4
             if(func_8030C814(ptr, 1) && sfxsource_isFlagCleared(ptr, 1))
@@ -444,7 +443,7 @@ void func_8030D778(void){
     int temp_s1;
     for(i = 1; i < 35; i++){
         if(sfxsources[i].busy)
-            func_8030DA44(i);
+            sfxsource_freeSfxsourceByIndex(i);
     }
     do{
         temp_s1 = 0;
@@ -458,7 +457,7 @@ void func_8030D778(void){
 
 void func_8030D86C(void){
     func_8030D750();
-    func_80244AB0();
+    core1_7090_alloc();
     func_8030EDAC(0.0f, 1.0f);
 }
 
@@ -472,7 +471,7 @@ void func_8030D8B4(void){
 }
 
 void func_8030D8DC(void){
-    func_80244B3C();
+    core1_7090_release();
     func_8030D778();
     func_8030D8B4();
 }
@@ -511,8 +510,8 @@ u8 sfxsource_createSfxsourceAndReturnIndex(void){
     return s1;
 }
 
-void func_8030DA44(u8 indx){
-    SfxSource * sp1C = sfxsource_at(indx);
+void sfxsource_freeSfxsourceByIndex(u8 indx) {
+    SfxSource *sp1C = sfxsource_at(indx);
     func_8030E394(indx);
     func_8030C7F8(sp1C, 3);
 }
@@ -536,7 +535,7 @@ void func_8030DB04(u8 indx, s32 arg1, f32 arg2[3], f32 min_dist, f32 max_dist){
     f32 dist;
     f32 temp_f2;
     __sfx_getPlayerPositionIfPresent(sp24);
-    dist = ml_distance_vec3f(arg2, sp24);
+    dist = ml_vec3f_distance(arg2, sp24);
     if(max_dist <= dist)
         temp_f2 = 0.0f;
     else{
@@ -904,7 +903,7 @@ void sfx_play(enum sfx_e uid, f32 volume, u32 sampleRate, f32 position[3], f32 m
     f32 player_position[3];
     
     __sfx_getPlayerPositionIfPresent(player_position);
-    if( !(maxFadeDistance <= ml_distance_vec3f(player_position, position))
+    if( !(maxFadeDistance <= ml_vec3f_distance(player_position, position))
         && levelSpecificFlags_validateCRC2()
         && dummy_func_80320240()
     ){

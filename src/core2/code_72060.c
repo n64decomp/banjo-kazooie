@@ -1,16 +1,13 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
-#include <core1/viewport.h>
 
 typedef struct {
     u8 pad0[0xC];
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern void func_80251B5C(f32, f32, f32);
-extern void func_80252A38(f32, f32, f32);
 extern f32 vtxList_getGlobalNorm(BKVertexList *);
 
 struct4Cs *D_80369280 = NULL;
@@ -143,7 +140,7 @@ void func_802F919C(void) {
         D_8036928C++;
         if (D_8036928C < D_80369284) {
             sp5C = &D_80369280[0].unk1C[D_8036928C];
-            if (ml_distance_vec3f((*sp5C).unk0, D_80381040) > 1300.0f) {
+            if (ml_vec3f_distance((*sp5C).unk0, D_80381040) > 1300.0f) {
                 func_802F9134(D_8036928C);
             }
         } else {

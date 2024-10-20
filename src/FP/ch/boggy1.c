@@ -86,7 +86,7 @@ void func_80387828(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
 
     if (text_id == 0xc00) {
-        gcdialog_showText(ASSET_C2B_TEXT_UNKNOWN, 0xf, NULL, this->marker, NULL, func_803877A8);
+        gcdialog_showText(ASSET_C2B_DIALOG_UNKNOWN, 0xf, NULL, this->marker, NULL, func_803877A8);
     }
 }
 
@@ -149,7 +149,7 @@ void func_8038794C(Actor *this){
 
             if(!this->has_met_before && func_80329530(this, 0x1f4)){
                 if(!func_8028ECAC() || func_8028ECAC() == BSGROUP_8_TROT){
-                    if (gcdialog_showText(ASSET_BFF_TEXT_UNKNOWN, 0x2a, this->position, NULL, NULL, NULL)) {
+                    if (gcdialog_showText(ASSET_BFF_DIALOG_UNKNOWN, 0x2a, this->position, NULL, NULL, NULL)) {
                         for (i = 0; i < 5; i++) {
                             timedFunc_set_1(D_80391BEC[i], (GenFunction_1) func_8038787C, (s32) this->marker);
                         }

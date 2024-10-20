@@ -4,7 +4,6 @@
 
 #include "core2/ba/physics.h"
 
-extern void func_80256E24(f32[3], f32, f32, f32, f32, f32);
 extern f32 player_getYaw(void);
 extern void chJigsawDance_setState(Actor *, s32);
 extern void bsjig_setJiggyMarkerPtr(ActorMarker *);

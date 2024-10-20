@@ -140,7 +140,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
     }
     this->actor_specific_1_f = (1.0f- sp24)*arg2;
     func_80329054(this, 2);
-    if(ml_distance_vec3f(this->position, arg1) <= arg4)
+    if(ml_vec3f_distance(this->position, arg1) <= arg4)
         return TRUE;
     return FALSE;
 

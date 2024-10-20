@@ -67,8 +67,6 @@ extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
 extern s32  item_getCount(s32); // item count get
 extern void item_adjustByDiffWithoutHud(s32, s32); // item count set
 
-extern void func_80250530(s32, u16, f32);
-
 extern void func_8025A55C(s32, s32, s32);
 
 extern void func_80324CFC(f32, s16, s16);
@@ -536,7 +534,7 @@ void lair_func_8038CC9C(void)
         return;
 
     func_8030E394(D_8037DCB8->UNK_18);
-    func_8030DA44(D_8037DCB8->UNK_18);
+    sfxsource_freeSfxsourceByIndex(D_8037DCB8->UNK_18);
     D_8037DCB8->UNK_18 = 0;
 }
 

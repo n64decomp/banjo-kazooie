@@ -263,7 +263,7 @@ void func_802C6240(Actor *this){
                 if (0.0f == this->actor_specific_1_f) {
                     animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);
-                    func_8030DA44(this->unk44_31);
+                    sfxsource_freeSfxsourceByIndex(this->unk44_31);
                     this->unk44_31 = 0;
                     sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
                 }
@@ -358,7 +358,7 @@ Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 break;
             case 4://L802C6F50
                 if((globalTimer_getTime() & 1) == 1){
-                    if(func_80259808(actor->yaw)){
+                    if(ml_isViewportYawWithOffsetNormalized(actor->yaw)){
                         func_802C6E3C(0xb, sp34);
                         func_802C6E3C(0xa, sp34);
                     }

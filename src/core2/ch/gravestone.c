@@ -7,7 +7,6 @@ Actor *func_8035ECA0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_8035F138(Actor *this);
 BKModelBin *func_803257B4(ActorMarker *marker);
 extern void actor_postdrawMethod(ActorMarker *);
-extern f32 func_80257204(f32, f32, f32, f32);
 
 typedef struct {
     s32 unk0;
@@ -91,7 +90,7 @@ void func_8035EDB0(f32 position[3], s32 count, enum asset_e sprite) {
 void func_8035EE48(Actor *this){
     u8 val = this->unk44_31;
     if(val != 0){
-        func_8030DA44(val);
+        sfxsource_freeSfxsourceByIndex(val);
         this->unk44_31 = 0;
     }
 }

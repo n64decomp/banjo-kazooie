@@ -4,9 +4,6 @@
 
 
 extern void rumbleManager_80250E6C(f32, f32);
-extern void ml_translate_y_local(f32[3], f32[3], f32);
-extern void ml_translate_z_local(f32[3], f32[3], f32);
-extern void ml_translate_x_local(f32[3], f32[3], f32);
 extern void func_802BE720(void);
 
 typedef struct {

@@ -119,7 +119,7 @@ void func_803890BC(Actor *this){
         local->unk1C += 0.25 * sp38;
         if(1.0f < local->unk1C)
             local->unk1C = 1.0f;
-        ml_interpolate_vec3f(sp2C, local->unk4, local->unk10, local->unk1C);
+        ml_vec3f_interpolate_fast(sp2C, local->unk4, local->unk10, local->unk1C);
         this->pitch = sp2C[0];
         this->yaw = sp2C[1];
         this->roll = sp2C[2];

@@ -367,7 +367,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
-                    gcdialog_showText(ASSET_B9F_TEXT_UNKNOWN, 4, 0, 0, 0, 0);
+                    gcdialog_showText(ASSET_B9F_DIALOG_UNKNOWN, 4, 0, 0, 0, 0);
                 }
             }//L8038D278
         }
@@ -546,7 +546,7 @@ void func_8038D8BC(Actor *this){
             }
         }
         else{//L8038DAA8
-            if(ml_distance_vec3f(this->position, player_position) < 1200.0f){
+            if(ml_vec3f_distance(this->position, player_position) < 1200.0f){
                 RBB_func_8038CC9C(this, 2);
             }
         }
@@ -582,7 +582,7 @@ void func_8038D8BC(Actor *this){
         skeletalAnim_getProgressRange(this->unk148, &sp54, &sp50);
         if(0.1 <= sp50 && sp50 <= 0.6){
             sp4C = (sp50 - 0.1)/0.5;
-            ml_interpolate_vec3f(this->position, local->unk8, local->unk14, sp4C);
+            ml_vec3f_interpolate_fast(this->position, local->unk8, local->unk14, sp4C);
             this->yaw = local->unk24 + sp4C*(local->unk28 - local->unk24);
         }
 
@@ -600,7 +600,7 @@ void func_8038D8BC(Actor *this){
                 tmp_f2 = tmp_f2/0.3;
             else
                 tmp_f2 = 1.0f;
-            ml_interpolate_vec3f(this->position, local->unk8, local->unk14, tmp_f2);
+            ml_vec3f_interpolate_fast(this->position, local->unk8, local->unk14, tmp_f2);
         }
     }//L8038DE10
 

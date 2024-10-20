@@ -1,10 +1,8 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
-#include <core1/viewport.h>
 
-void func_80252330(f32, f32, f32);
 void func_803382D8(s32 arg0);
 void func_803382E4(s32 arg0);
 void spriteRender_set1Primative(bool boolean);
@@ -260,7 +258,7 @@ void spriteRender_drawWithSegment(Gfx **gfx, Vtx **vtx, BKSprite *sprite, u32 fr
         gDPPipelineMode((*gfx)++, G_PM_1PRIMITIVE);
     }
     
-    frame_ptr = spriteGetFramePtr(sprite, frame);
+    frame_ptr = sprite_getFramePtr(sprite, frame);
     
     //load palette in indexed pixels
     var_t2 = (BKSpriteTextureBlock *)(frame_ptr + 1);

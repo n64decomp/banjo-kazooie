@@ -1,16 +1,13 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include <core1/viewport.h>
 #include "core2/ba/physics.h"
 
 
 extern void player_setYPosition(f32);
 extern void yaw_applyIdeal(void);
-extern f32 func_80257A44(f32, f32);
 extern f32 cosf(f32);
-extern f32 ml_remainder_f(f32, f32);
-extern f32 func_80257AD4(f32, f32);
 
 /* .bss */
 struct {

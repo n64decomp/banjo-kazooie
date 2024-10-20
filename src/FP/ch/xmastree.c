@@ -28,7 +28,7 @@ void __chXmasTree_free(Actor *this){
     item_set(ITEM_6_HOURGLASS, FALSE);
     tmp_a0 = this->unk44_31;
     if(tmp_a0){
-        func_8030DA44(tmp_a0);
+        sfxsource_freeSfxsourceByIndex(tmp_a0);
         this->unk44_31 = 0;
     }
 }
@@ -165,7 +165,7 @@ void chXmasTree_update(Actor *this){
                 item_set(ITEM_6_HOURGLASS, FALSE);
                 tmp_a0 = this->unk44_31;
                 if(tmp_a0){
-                    func_8030DA44(tmp_a0);
+                    sfxsource_freeSfxsourceByIndex(tmp_a0);
                     this->unk44_31 = 0;
                 }
                 func_80324E38(0.0f, 3);

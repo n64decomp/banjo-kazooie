@@ -1,20 +1,18 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
 #include "version.h"
 #include "prop.h"
-#include "SnS.h"
 
 extern void func_803012F8(void);
-extern f32 ml_distanceSquared_vec3f(f32 arg0[3], f32 arg1[3]);
 extern void __baMarker_8028BA00(s32);
 extern void spawnQueue_actor_s16(void);
 extern void func_802A6388(f32);
 extern f32 chwadingboots_802D6E4C(Actor *);
 extern void set_turbo_duration(f32);
 extern f32 chtrainers_getDuration(Actor *);
-extern int ml_vec3f_point_within_horizontal_distance(f32 vec[3], f32 x, f32 z, f32 val);
 extern void func_802EE354(Actor *, s32, s32, s32, f32, f32, f32, f32 arg8[3], s32, f32 arg10[2]);
 extern void func_8035644C(s32);
 extern void func_8035646C(s32 arg0);
@@ -24,7 +22,7 @@ extern Actor *baModel_80291AAC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **
 extern void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
 extern void func_802EE6CC(f32[3], s32, s32[4], s32, f32, f32, s32,s32,s32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
-extern NodeProp *cubeList_findNodePropByActorId(enum actor_e actor_id, s32 position[3]);
+extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s32 position[3]);
 
 typedef struct 
 {
@@ -116,7 +114,7 @@ void __baMarker_8028B848(void){
         s0 = ASSET_E57_DIALOG_FIRST_JIGGY;
     }
     else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
-        s0 = ASSET_B45_TEXT_JIGGY_COLLECT_10;
+        s0 = ASSET_B45_DIALOG_JIGGY_COLLECT_10;
     }
 
     if(s0){
@@ -157,7 +155,7 @@ void __baMarker_8028B9A8(s32 arg0){
     NodeProp *tmp_v0;
     s32 ideal_yaw[3];
 
-    tmp_v0 = cubeList_findNodePropByActorId(0x1F6, 0);
+    tmp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(0x1F6, NULL);
     nodeprop_getPosition_s32(tmp_v0, &ideal_yaw);
     func_802CA1CC(arg0);
     actor_spawnWithYaw_s32(ACTOR_47_EMPTY_HONEYCOMB, &ideal_yaw, 0);

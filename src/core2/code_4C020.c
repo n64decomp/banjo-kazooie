@@ -1,16 +1,13 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 
-#include "SnS.h"
-
-extern f32 ml_vec3f_horizontal_distance_zero_likely(f32 [3], f32[3]);
 extern void func_8025A788(enum comusic_e, f32, f32);
 extern void func_8031CC40(enum map_e, s32);
 extern void fxRipple_802F363C(f32);
 extern void func_802F9D38(s32);
 extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
-extern void ml_vec3f_assign(f32[3], f32, f32, f32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
 extern void gcquiz_func_80319EA4(void);
 extern void fileProgressFlag_set(enum file_progress_e, bool);

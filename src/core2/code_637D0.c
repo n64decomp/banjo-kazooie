@@ -1,10 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-#include "ml/mtx.h"
 
-extern void func_80252C08(f32[3], f32[3], f32, f32[3]);
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern void mlMtx_apply_f3(f32[3], f32, f32, f32);
 extern  s32 func_802EBAE0(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], AnimMtxList* arg5, f32 arg6[3], f32 arg7, f32 arg8[3]);
 extern MtxF *animMtxList_get(AnimMtxList *this, s32 arg1);
@@ -348,7 +345,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp44[1] = sp5C[1] - sp68[1];
         sp44[2] = sp5C[2] - sp68[2];
         temp_f0 = gu_sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
-        if ((arg7 + temp_f0 >= ml_distance_vec3f(sp68, sp74))) {
+        if ((arg7 + temp_f0 >= ml_vec3f_distance(sp68, sp74))) {
             return (s32) i_ptr->unk8;
         }
     }
@@ -530,7 +527,7 @@ s32 func_802EC238(BKModelUnk14List *arg0, f32 arg1[3], f32 rotation[3], f32 scal
             sp40[1] = i_ptr->unk2[1];
             sp40[2] = i_ptr->unk2[2];
             scale = i_ptr->unk0;
-            if (ml_distance_vec3f(sp40, sp54) < scale)
+            if (ml_vec3f_distance(sp40, sp54) < scale)
                 return i_ptr->unk8;
             if (!i_ptr->unk0){ }
         }

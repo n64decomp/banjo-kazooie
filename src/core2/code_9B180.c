@@ -130,7 +130,7 @@ void func_803223AC(void) {
 
     func_80244A98(1);
     for(i_ptr = D_8036DE00; i_ptr != &D_8036DE00[6]; i_ptr++){
-        i_ptr->unk4 = cubeList_findNodePropByActorId(i_ptr->unk0, 0);
+        i_ptr->unk4 = cubeList_findNodePropByActorIdAndPosition_s32(i_ptr->unk0, NULL);
         if(i_ptr->unk4 != 0 && i_ptr->unk8 != NULL){
             i_ptr->unk8(i_ptr);
         }
@@ -143,7 +143,7 @@ void func_803223AC(void) {
     func_8032236C(0x1C, 4, &sp28);
     func_8032236C(0x1D, 5, &sp28);
     sp28 = (sp28 == 0) ?  2 : sp28;
-    func_8024BF94(sp28);
+    viMgr_func_8024BF94(sp28);
 }
 
 void func_80322490(void) {

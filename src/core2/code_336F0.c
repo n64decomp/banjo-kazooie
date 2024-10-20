@@ -4,132 +4,124 @@
 
 #include "functions.h"
 #include "variables.h"
+#include <core2/camera.h>
 
-typedef struct {
-    f32 unk0[3];
-    f32 unkC;
-    f32 unk10;
-    f32 unk14;
-    f32 unk18;
-    f32 unk1C[3];
-    s32 unk28;
-} Struct_core2_336F0;
 
-void func_802BA7B8(Struct_core2_336F0 *arg0, f32 arg1[3]);
-void func_802BA808(Struct_core2_336F0 *arg0, f32 arg1[3]);
-void func_802BA840(Struct_core2_336F0 *arg0, f32 arg1, f32 arg2);
-void func_802BA868(Struct_core2_336F0 *arg0, f32 arg1, f32 arg2);
-void func_802BA8DC(Struct_core2_336F0 *arg0, s32 arg1);
-void func_802BA8FC(Struct_core2_336F0 *arg0, s32 arg1);
-void func_802BA91C(Struct_core2_336F0 *arg0, s32 arg1);
+static void __cameraNodeType1_setPosition(CameraNodeType1 *this, f32 position[3]);
+static void __cameraNodeType1_func_802BA808(CameraNodeType1 *this, f32 arg1[3]);
+static void __cameraNodeType1_setHorizontalAndVerticalSpeed(CameraNodeType1 *this, f32 horizontal_speed, f32 vertical_speed);
+static void __cameraNodeType1_setRotationAndAccelaration(CameraNodeType1 *this, f32 rotation, f32 accelaration);
+static void __code336F0_func_802BA8DC(CameraNodeType1 *this, s32 arg1);
+static void __code336F0_func_802BA8FC(CameraNodeType1 *this, s32 arg1);
+static void __code336F0_func_802BA91C(CameraNodeType1 *this, s32 arg1);
 
-void func_802BA680(Struct_core2_336F0 *arg0, s32 arg1, s32 arg2){
-    if(arg1){
-        arg0->unk28 |= arg2;
-    }else{
-        arg0->unk28 &= ~arg2;
+static void __code336F0_func_802BA680(CameraNodeType1 *this, s32 arg1, s32 arg2) {
+    if(arg1) {
+        this->unknownFlag |= arg2;
+    } else{
+        this->unknownFlag &= ~arg2;
     }
 }
 
-bool func_802BA6B0(Struct_core2_336F0 *arg0, s32 arg1){
-    if (arg0->unk28 & arg1) 
+static bool __code336F0_func_802BA6B0(CameraNodeType1 *this, s32 arg1) {
+    if (this->unknownFlag & arg1) 
         return TRUE;
     return FALSE;
 }
 
-Struct_core2_336F0 *func_802BA6D4(void){
-    Struct_core2_336F0 *this;
+CameraNodeType1 *cameraNodeType1_init() {
+    CameraNodeType1 *this;
     f32 sp20[3];
 
-    this = (Struct_core2_336F0 *)malloc(sizeof(Struct_core2_336F0));
+    this = (CameraNodeType1 *)malloc(sizeof(CameraNodeType1));
     ml_vec3f_clear(sp20);
-    func_802BA7B8(this, sp20);
-    func_802BA808(this, sp20);
-    func_802BA840(this, 0.7f, 2.33f);
-    func_802BA868(this, 4.0f, 16.0f);
-    func_802BA8DC(this, 0);
-    func_802BA91C(this, 1);
-    func_802BA8FC(this, 0);
+    __cameraNodeType1_setPosition(this, sp20);
+    __cameraNodeType1_func_802BA808(this, sp20);
+    __cameraNodeType1_setHorizontalAndVerticalSpeed(this, 0.7f, 2.33f);
+    __cameraNodeType1_setRotationAndAccelaration(this, 4.0f, 16.0f);
+    __code336F0_func_802BA8DC(this, 0);
+    __code336F0_func_802BA91C(this, 1);
+    __code336F0_func_802BA8FC(this, 0);
     return this;
 }
 
-void func_802BA76C(Struct_core2_336F0 *arg0){
-    free(arg0);
+void cameraNodeType1_free(CameraNodeType1 *this) {
+    free(this);
 }
 
-void func_802BA78C(Struct_core2_336F0 *arg0, f32 arg1[3]){
-    ml_vec3f_copy(arg1, arg0->unk0);
+void cameraNodeType1_getPosition(CameraNodeType1 *this, f32 position[3]) {
+    ml_vec3f_copy(position, this->position);
 }
 
-void func_802BA7B8(Struct_core2_336F0 *arg0, f32 arg1[3]){
-    ml_vec3f_copy(arg0->unk0, arg1);
+static void __cameraNodeType1_setPosition(CameraNodeType1 *this, f32 position[3]) {
+    ml_vec3f_copy(this->position, position);
 }
 
-void func_802BA7D8(Struct_core2_336F0 *arg0, f32 arg1[3]){
-    ml_vec3f_add(arg1, arg0->unk0, arg0->unk1C);
+void code336F0_func_802BA7D8(CameraNodeType1 *this, f32 arg1[3]) {
+    ml_vec3f_add(arg1, this->position, this->pitchYawRoll);
 }
 
-void func_802BA808(Struct_core2_336F0 *arg0, f32 arg1[3]){
-    ml_vec3f_diff_copy(arg0->unk1C, arg1, arg0->unk0);
+static void __cameraNodeType1_func_802BA808(CameraNodeType1 *this, f32 arg1[3]) {
+    ml_vec3f_diff_copy(this->pitchYawRoll, arg1, this->position);
 }
 
-void func_802BA82C(Struct_core2_336F0 *arg0, f32 *arg1, f32 *arg2){
-    *arg1 = arg0->unkC;
-    *arg2 = arg0->unk10;
+void cameraNodeType1_getHorizontalAndVerticalSpeed(CameraNodeType1 *this, f32 *horizontal_speed, f32 *vertical_speed) {
+    *horizontal_speed = this->horizontalSpeed;
+    *vertical_speed = this->verticalSpeed;
 }
 
-void func_802BA840(Struct_core2_336F0 *arg0, f32 arg1, f32 arg2){
-    arg0->unkC = arg1;
-    arg0->unk10 = arg2;
+static void __cameraNodeType1_setHorizontalAndVerticalSpeed(CameraNodeType1 *this, f32 horizontal_speed, f32 vertical_speed) {
+    this->horizontalSpeed = horizontal_speed;
+    this->verticalSpeed = vertical_speed;
 }
 
-void func_802BA854(Struct_core2_336F0 *arg0, f32 *arg1, f32 *arg2){
-    *arg1 = arg0->unk14;
-    *arg2 = arg0->unk18;
+void cameraNodeType1_getRotationAndAccelaration(CameraNodeType1 *this, f32 *rotation, f32 *accelaration) {
+    *rotation = this->rotation;
+    *accelaration = this->accelaration;
 }
 
-void func_802BA868(Struct_core2_336F0 *arg0, f32 arg1, f32 arg2){
-    arg0->unk14 = arg1;
-    arg0->unk18 = arg2;
+static void __cameraNodeType1_setRotationAndAccelaration(CameraNodeType1 *this, f32 rotation, f32 accelaration) {
+    this->rotation = rotation;
+    this->accelaration = accelaration;
 }
 
-bool func_802BA87C(Struct_core2_336F0 *arg0){
-    return func_802BA6B0(arg0, 1);
+bool code336F0_func_802BA87C(CameraNodeType1 *this) {
+    return __code336F0_func_802BA6B0(this, 0x1);
 }
 
-bool func_802BA89C(Struct_core2_336F0 *arg0){
-    return func_802BA6B0(arg0, 4);
+bool code336F0_func_802BA89C(CameraNodeType1 *this) {
+    return __code336F0_func_802BA6B0(this, 0x4);
 }
 
-bool func_802BA8BC(Struct_core2_336F0 *arg0){
-    return func_802BA6B0(arg0, 2);
+bool code336F0_func_802BA8BC(CameraNodeType1 *this) {
+    return __code336F0_func_802BA6B0(this, 0x2);
 }
 
-void func_802BA8DC(Struct_core2_336F0 *arg0, s32 arg1){
-    func_802BA680(arg0, arg1, 1);
+static void __code336F0_func_802BA8DC(CameraNodeType1 *this, s32 arg1) {
+    __code336F0_func_802BA680(this, arg1, 0x1);
 }
 
-void func_802BA8FC(Struct_core2_336F0 *arg0, s32 arg1){
-    func_802BA680(arg0, arg1, 4);
+static void __code336F0_func_802BA8FC(CameraNodeType1 *this, s32 arg1) {
+    __code336F0_func_802BA680(this, arg1, 0x4);
 }
 
-void func_802BA91C(Struct_core2_336F0 *arg0, s32 arg1){
-    func_802BA680(arg0, arg1, 2);
+static void __code336F0_func_802BA91C(CameraNodeType1 *this, s32 arg1) {
+    __code336F0_func_802BA680(this, arg1, 0x2);
 }
 
-void func_802BA93C(File *file_ptr, Struct_core2_336F0 *arg1){
-    while(!file_isNextByteExpected(file_ptr, 0)){
-        if(!file_getNFloats_ifExpected(file_ptr, 1, arg1->unk0, 3)){
-            if(file_isNextByteExpected(file_ptr, 2)){
-                file_getFloat(file_ptr, &arg1->unkC);
-                file_getFloat(file_ptr, &arg1->unk10);
+void cameraNodeType1_fromFile(File *file_ptr, CameraNodeType1 *this) {
+    while(!file_isNextByteExpected(file_ptr, 0)) {
+        if(!file_getNFloats_ifExpected(file_ptr, 1, this->position, 3)) {
+            if(file_isNextByteExpected(file_ptr, 2)) {
+                file_getFloat(file_ptr, &this->horizontalSpeed);
+                file_getFloat(file_ptr, &this->verticalSpeed);
             }
-            else if(file_isNextByteExpected(file_ptr, 3)){
-                file_getFloat(file_ptr, &arg1->unk14);
-                file_getFloat(file_ptr, &arg1->unk18);
+            else if(file_isNextByteExpected(file_ptr, 3)) {
+                file_getFloat(file_ptr, &this->rotation);
+                file_getFloat(file_ptr, &this->accelaration);
             }
-            else if(!file_getNFloats_ifExpected(file_ptr, 4, arg1->unk1C, 3)){
-                file_getWord_ifExpected(file_ptr, 5, &arg1->unk28);
+            else if(!file_getNFloats_ifExpected(file_ptr, 4, this->pitchYawRoll, 3)) {
+                file_getWord_ifExpected(file_ptr, 5, &this->unknownFlag);
             }
         }//L802BAA0C
     }

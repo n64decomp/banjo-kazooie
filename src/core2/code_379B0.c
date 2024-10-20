@@ -20,7 +20,7 @@ void func_802BE940(void)
   sp3C[0] = (sp3C[1] = (sp3C[2] = 0.0f));
   sp3C[1] = -1.0f;
   ml_vec3f_pitch_rotate_copy(sp24, sp3C, 68.0f);
-  sp30[0] = sp24[1] * ((f32) framebuffer_width / framebuffer_height);
+  sp30[0] = sp24[1] * ((f32) gFramebufferWidth / gFramebufferHeight);
   sp30[1] = 0;
     
   D_8037DA40[1] = sp24[1];

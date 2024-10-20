@@ -3,270 +3,251 @@
 #include "variables.h"
 
 #include <core2/file.h>
+#include <core2/lighting.h>
 
-extern void func_80252CC4(f32[3], f32[3], f32, f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
-extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
+static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 
-void func_80333918(void);
-void func_8033393C(void);
-
-typedef struct struct_22_s{
-    f32 unk0[3];
-    f32 unkC[3];
-    f32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    f32 unk24;
-    s32 unk28[3];
-    u8 unk34;
-    u8 pad35[0x3];
-} Struct_core2_AC520_0;//size 0x38
+void lighting_free();
+void lighting_init();
 
 /* .bss */
 struct {
-    vector(Struct_core2_AC520_0) *unk0;
-    Struct_core2_AC520_0 *unk4[0x10];
-    Struct_core2_AC520_0 **unk44;
-    Struct_core2_AC520_0 **unk48;
-} D_80383570;
+    vector(Lighting) *vector_ptr;
+    Lighting *unk4[0x10];
+    Lighting **unk44;
+    Lighting **unk48; // copy of unk44
+} sLightingVectorList;
 
 //.code
-extern void func_803334B0(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[3], f32 arg4){
-    Struct_core2_AC520_0 * start_ptr;
-    Struct_core2_AC520_0 * end_ptr;
-    Struct_core2_AC520_0 * iPtr;
+static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32 arg3[3], f32 global_norm) {
+    Lighting * start_ptr;
+    Lighting * end_ptr;
+    Lighting * iPtr;
 
-    start_ptr = (Struct_core2_AC520_0 *)vector_getBegin(D_80383570.unk0);
-    end_ptr = (Struct_core2_AC520_0 *)vector_getEnd(D_80383570.unk0);
+    start_ptr = (Lighting *)vector_getBegin(sLightingVectorList.vector_ptr);
+    end_ptr = (Lighting *)vector_getEnd(sLightingVectorList.vector_ptr);
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg3);
-    D_80383570.unk44 = D_80383570.unk4;
+    sLightingVectorList.unk44 = sLightingVectorList.unk4;
     iPtr = start_ptr;
-    for(; iPtr < end_ptr && D_80383570.unk44 < D_80383570.unk48; iPtr++){
-        if(iPtr->unk34 && ml_distance_vec3f(position, iPtr->unk0) < iPtr->unk1C + arg4){
-            mlMtx_apply_vec3f(iPtr->unkC, iPtr->unk0);
+    for(; iPtr < end_ptr && sLightingVectorList.unk44 < sLightingVectorList.unk48; iPtr++) {
+        if(iPtr->unk34 && ml_vec3f_distance(position, iPtr->position) < iPtr->unk1C + global_norm) {
+            mlMtx_apply_vec3f(iPtr->positionCopy, iPtr->position);
             iPtr->unk20 = iPtr->unk18/scale;
             iPtr->unk24 = iPtr->unk1C/scale;
-            *D_80383570.unk44 = iPtr;
-            D_80383570.unk44++;
-        }//L803335B0
+            *sLightingVectorList.unk44 = iPtr;
+            sLightingVectorList.unk44++;
+        }
     }
 }
 
 
-void func_803335F4(void){
-    func_80333918();
-    func_8033393C();
+void __lighting_freeAndInit() {
+    lighting_free();
+    lighting_init();
 }
 
-s32 func_8033361C(void){
-    Struct_core2_AC520_0 *startPtr = vector_getBegin(D_80383570.unk0);
-    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
-    Struct_core2_AC520_0 *iPtr;
+s32 __codeAC520_pad_func_8033361C() {
+    Lighting *startPtr = vector_getBegin(sLightingVectorList.vector_ptr);
+    Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
+    Lighting *iPtr;
 
-    for(iPtr = startPtr; iPtr < endPtr; iPtr++){
-        if(iPtr->unk34){
+    for(iPtr = startPtr; iPtr < endPtr; iPtr++) {
+        if(iPtr->unk34) {
             return (iPtr-startPtr) + 1;
         }
     }
-    return 0;
+
+    return NULL;
 }
 
-s32 func_80333698(s32 index){
-    Struct_core2_AC520_0 *startPtr = vector_getBegin(D_80383570.unk0);
-    Struct_core2_AC520_0 *iPtr = vector_at(D_80383570.unk0, index - 1);
-    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
+s32 __codeAC520_pad_func_80333698(s32 index) {
+    Lighting *startPtr = vector_getBegin(sLightingVectorList.vector_ptr);
+    Lighting *iPtr = vector_at(sLightingVectorList.vector_ptr, index - 1);
+    Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
     
-    for(++iPtr; iPtr < endPtr; iPtr++){
-        if(iPtr->unk34){
+    for(++iPtr; iPtr < endPtr; iPtr++) {
+        if(iPtr->unk34) {
             return (iPtr-startPtr) + 1;
         }
     }
-    return 0;
+
+    return NULL;
 }
 
-void func_80333734(s32 index, f32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
-    arg1[0] = v0->unk0[0];
-    arg1[1] = v0->unk0[1];
-    arg1[2] = v0->unk0[2];
+void __codeAC520_pad_func_80333734(s32 index, f32 *arg1) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    TUPLE_COPY(arg1, v0->position)
 }
 
-void func_80333784(s32 index, f32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
+void __codeAC520_pad_func_80333784(s32 index, f32 *arg1) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
     arg1[0] = v0->unk18;
     arg1[1] = v0->unk1C;
 }
 
-void func_803337C8(s32 index, s32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
-    arg1[0] = v0->unk28[0];
-    arg1[1] = v0->unk28[1];
-    arg1[2] = v0->unk28[2];
+void __codeAC520_pad_func_803337C8(s32 index, s32 *arg1) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    TUPLE_COPY(arg1, v0->rgb)
 }
 
-s32 func_80333818(void){
-    return vector_size(D_80383570.unk0);
+s32 __codeAC520_pad_func_80333818() {
+    return vector_size(sLightingVectorList.vector_ptr);
 }
 
-s32 func_8033383C(void){
-    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
-    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
-    Struct_core2_AC520_0 *iPtr;
+static s32 __lighting_create() {
+    Lighting *beginPtr = vector_getBegin(sLightingVectorList.vector_ptr);
+    Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
+    Lighting *iPtr;
 
-    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
         if(!iPtr->unk34)
             break;
     }
     if(iPtr == endPtr)
-        iPtr = vector_pushBackNew(&D_80383570.unk0);
+        iPtr = vector_pushBackNew(&sLightingVectorList.vector_ptr);
 
     iPtr->unk34 = 1;
-    iPtr->unk28[0] = 0xff;
-    iPtr->unk28[1] = 0xff;
-    iPtr->unk28[2] = 0xff;
-    iPtr->unk0[2] = 0.0f;
-    iPtr->unk0[1] = 0.0f;
-    iPtr->unk0[0] = 0.0f;
+    iPtr->rgb[0] = 0xff;
+    iPtr->rgb[1] = 0xff;
+    iPtr->rgb[2] = 0xff;
+    iPtr->position[2] = 0.0f;
+    iPtr->position[1] = 0.0f;
+    iPtr->position[0] = 0.0f;
     iPtr->unk18 = 150.0f;
     iPtr->unk1C = 300.0f;
-    return (iPtr - (Struct_core2_AC520_0 *)vector_getBegin(D_80383570.unk0)) + 1;
+    return (iPtr - (Lighting *)vector_getBegin(sLightingVectorList.vector_ptr)) + 1;
 }
 
 
-void func_80333918(void){
-    vector_free(D_80383570.unk0);
+void lighting_free() {
+    vector_free(sLightingVectorList.vector_ptr);
 }
 
-void func_8033393C(void){
-    D_80383570.unk0 = vector_new(sizeof(Struct_core2_AC520_0), 0x10);
-    D_80383570.unk48 = &D_80383570.unk44;
+void lighting_init() {
+    sLightingVectorList.vector_ptr = vector_new(sizeof(Lighting), 0x10);
+    sLightingVectorList.unk48 = &sLightingVectorList.unk44;
 }
 
-void func_80333974(s32 index){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
+void func_80333974(s32 index) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
     v0->unk34 = 0;
 }
 
-s32 func_803339A4(f32 arg0[3]){
-    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
-    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
-    Struct_core2_AC520_0 *iPtr;
-    Struct_core2_AC520_0 *tmp_s0 = NULL;
+s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
+    Lighting *beginPtr = vector_getBegin(sLightingVectorList.vector_ptr);
+    Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
+    Lighting *iPtr;
+    Lighting *tmp_s0 = NULL;
     
-    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
-        if(iPtr->unk34){
-            if(tmp_s0 == NULL || ml_distance_vec3f(arg0, iPtr->unk0) < ml_distance_vec3f(arg0, tmp_s0->unk0)){
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
+        if(iPtr->unk34) {
+            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->position) < ml_vec3f_distance(arg0, tmp_s0->position)) {
                 tmp_s0 = iPtr;
             }
         }
     }
+
     return (tmp_s0) ? tmp_s0 + 1 - beginPtr : 0;
 }
 
-void func_80333A94(s32 index , f32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
-    v0->unk0[0] = arg1[0];
-    v0->unk0[1] = arg1[1];
-    v0->unk0[2] = arg1[2];
+static void __lighting_setPosition(s32 index , f32 *position) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    TUPLE_COPY(v0->position, position)
 }
 
-void func_80333AE4(s32 index , f32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
-    v0->unk18 = arg1[0];
-    v0->unk1C = arg1[1];
+static void __lighting_setUnk18AndUnk1C(s32 index , f32 *unk18_and_unk1c) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    v0->unk18 = unk18_and_unk1c[0];
+    v0->unk1C = unk18_and_unk1c[1];
 }
 
-void func_80333B28(s32 index , s32 *arg1){
-    Struct_core2_AC520_0 *v0 = vector_at(D_80383570.unk0, index-1);
-    v0->unk28[0] = arg1[0];
-    v0->unk28[1] = arg1[1];
-    v0->unk28[2] = arg1[2];
+static void __lighting_setRgb(s32 index , s32 *rgb) {
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    TUPLE_COPY(v0->rgb, rgb);
 }
 
-void func_80333B78(File *file_ptr){
-    f32 sp4C[3];
-    f32 sp44[2];
-    s32 sp38[3];
-    s32 indx;
-    func_803335F4();
-    while(!file_isNextByteExpected(file_ptr, 0)){
+void lightingVectorList_fromFile(File *file_ptr) {
+    f32 position[3];
+    f32 unk18_and_unk1c[2];
+    s32 rgb[3];
+    s32 lighting_ptr;
+    __lighting_freeAndInit();
+    while(!file_isNextByteExpected(file_ptr, 0)) {
         if( file_isNextByteExpected(file_ptr, 1)
-            && file_getNFloats_ifExpected(file_ptr, 2, sp4C, 3)
-            && file_getNFloats_ifExpected(file_ptr, 3, sp44, 2)
-            && file_getNWords_ifExpected(file_ptr, 4, sp38, 3)
-        ){
-            indx = func_8033383C();
-            func_80333A94(indx, sp4C);
-            func_80333AE4(indx, sp44);
-            func_80333B28(indx, sp38);
+            && file_getNFloats_ifExpected(file_ptr, 2, position, 3)
+            && file_getNFloats_ifExpected(file_ptr, 3, unk18_and_unk1c, 2)
+            && file_getNWords_ifExpected(file_ptr, 4, rgb, 3)
+        ) {
+            lighting_ptr = __lighting_create();
+            __lighting_setPosition(lighting_ptr, position);
+            __lighting_setUnk18AndUnk1C(lighting_ptr, unk18_and_unk1c);
+            __lighting_setRgb(lighting_ptr, rgb);
         }
     }
 }
 
-s32 func_80333C78(s32 arg0){
-    Struct_core2_AC520_0 *beginPtr = vector_getBegin(D_80383570.unk0);
-    Struct_core2_AC520_0 *endPtr = vector_getEnd(D_80383570.unk0);
-    Struct_core2_AC520_0 *iPtr;
+s32 __codeAC520_pad_func_80333C78(s32 arg0) {
+    Lighting *beginPtr = vector_getBegin(sLightingVectorList.vector_ptr);
+    Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
+    Lighting *iPtr;
 
-    for(iPtr = beginPtr; iPtr < endPtr; iPtr++){
-        if(iPtr->unk34){
+    for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
+        if(iPtr->unk34) {
             file_isNextByteExpected(arg0, 1);
-            file_getNFloats_ifExpected(arg0, 2, &iPtr->unk0, 3);
+            file_getNFloats_ifExpected(arg0, 2, &iPtr->position, 3);
             file_getNFloats_ifExpected(arg0, 3, &iPtr->unk18, 2);
-            file_getNWords_ifExpected(arg0, 4, &iPtr->unk28, 3);
+            file_getNWords_ifExpected(arg0, 4, &iPtr->rgb, 3);
         }
     }
 
     return file_isNextByteExpected(arg0, 0);
 }
 
-void func_80333D48(BKVertexList *arg0, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *arg5) {
-    static s32 D_8036F970[3] = {0, 0, 0};
+void codeAC520_func_80333D48(BKVertexList *vertex_list, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *ref_vertex_list) {
+    static s32 sBlackRgb[3] = {0, 0, 0};
     Vtx *i_ptr;
     Vtx *end_ptr;
     Vtx *ref_ptr;
-    Struct_core2_AC520_0 **struct_ptr_ptr;
-    f32 sp74[3];
-    f32 sp68[3];
-    Struct_core2_AC520_0 *struct_ptr;
-    f32 temp_f0;
+    Lighting **struct_ptr_ptr;
+    f32 vtx_position[3];
+    f32 rgb_modifier[3];
+    Lighting *struct_ptr;
+    f32 distance_between_vtx_and_lighting_node;
 
-    func_803334B0(position, rotation, scale, arg4, vtxList_getGlobalNorm(arg0));
-    if (D_80383570.unk44 == (&D_80383570.unk4[0])) {
-        vtxList_recolor(arg0, &D_8036F970);
+    __lighting_init(position, rotation, scale, arg4, vtxList_getGlobalNorm(vertex_list));
+    if (sLightingVectorList.unk44 == (&sLightingVectorList.unk4[0])) {
+        vtxList_recolor(vertex_list, &sBlackRgb);
         return;
     }
-    ref_ptr = vtxList_getVertices(arg5);
-    vtxList_getVtxRange(arg0, &i_ptr, &end_ptr);
-    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++, ref_ptr++){
 
-        sp68[0] = sp68[1] = sp68[2] = 0.0f;
-        sp74[0] = ref_ptr->v.ob[0];
-        sp74[1] = ref_ptr->v.ob[1];
-        sp74[2] = ref_ptr->v.ob[2];
+    ref_ptr = vtxList_getVertices(ref_vertex_list);
+    vtxList_getVtxRange(vertex_list, &i_ptr, &end_ptr);
+    for(i_ptr = i_ptr; i_ptr < end_ptr; i_ptr++, ref_ptr++) {
+        rgb_modifier[0] = rgb_modifier[1] = rgb_modifier[2] = 0.0f;
+        TUPLE_COPY(vtx_position, ref_ptr->v.ob);
 
-        for(struct_ptr_ptr = &D_80383570.unk4[0]; struct_ptr_ptr < D_80383570.unk44;struct_ptr_ptr++){
+        for(struct_ptr_ptr = &sLightingVectorList.unk4[0]; struct_ptr_ptr < sLightingVectorList.unk44;struct_ptr_ptr++) {
             struct_ptr = *struct_ptr_ptr;
-            temp_f0 = ml_distance_vec3f(struct_ptr->unkC, sp74);
-            if (!(struct_ptr->unk24 <= temp_f0)) {
-                if (temp_f0 <= struct_ptr->unk20) {
-                    sp68[0] = sp68[0] + struct_ptr->unk28[0];
-                    sp68[1] = sp68[1] + struct_ptr->unk28[1];
-                    sp68[2] = sp68[2] + struct_ptr->unk28[2];
+            distance_between_vtx_and_lighting_node = ml_vec3f_distance(struct_ptr->positionCopy, vtx_position);
+            if (!(struct_ptr->unk24 <= distance_between_vtx_and_lighting_node)) {
+                if (distance_between_vtx_and_lighting_node <= struct_ptr->unk20) {
+                    rgb_modifier[0] = rgb_modifier[0] + struct_ptr->rgb[0];
+                    rgb_modifier[1] = rgb_modifier[1] + struct_ptr->rgb[1];
+                    rgb_modifier[2] = rgb_modifier[2] + struct_ptr->rgb[2];
                 } else {
-                    temp_f0 = 1.0f - ((temp_f0 - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
-                    sp68[0] += temp_f0 * struct_ptr->unk28[0];
-                    sp68[1] += temp_f0 * struct_ptr->unk28[1];
-                    sp68[2] += temp_f0 * struct_ptr->unk28[2];
+                    distance_between_vtx_and_lighting_node = 1.0f - ((distance_between_vtx_and_lighting_node - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
+                    rgb_modifier[0] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[0];
+                    rgb_modifier[1] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[1];
+                    rgb_modifier[2] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[2];
                 }
             }
         }
 
         //each of these lines needs to consume an extra t reg
-        i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0]*sp68[0])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
-        i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1]*sp68[1])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
-        i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]*sp68[2])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0]*rgb_modifier[0])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1]*rgb_modifier[1])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]*rgb_modifier[2])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
     }
 }

@@ -1,16 +1,12 @@
 #include <ultra64.h>
+#include "core1/core1.h"
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
 #include "zoombox.h"
-#include "ml/mtx.h"
-#include <core1/viewport.h>
 
 
-void func_80252330(f32, f32, f32);
 extern f32 func_8033DDB8(void);
-extern void func_8024E60C(s32, void *);
-extern void func_8024E640(s32, void *);
-extern void func_8024E5A8(s32, void *);
 extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
 BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
 
@@ -429,7 +425,7 @@ s32 D_8036D924[] = { 70, 35, 18, 9, 4, 2, 1};
 /* .bss */
 char D_803830B0[0x30];
 
-void func_8030DA44(u8);
+void sfxsource_freeSfxsourceByIndex(u8);
 void func_80338338(s32, s32, s32);
 void func_803382FC(u8);
 
@@ -443,7 +439,7 @@ void func_80315200(GcZoombox *this){
      }else{
           for(s1 =0; s1 < 5; s1++){
                if(this->unk108[s1]){
-                    func_8030DA44(this->unk108[s1]);
+                    sfxsource_freeSfxsourceByIndex(this->unk108[s1]);
                     this->sfx_count--;
                }
           }
@@ -863,7 +859,7 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BK
     }
     sp2C[1] = this->unk172 + ((f32) arg4 * this->unk198);
     sp2C[2] = -10.0f;
-    func_80252330((sp2C[0] * 4.0f) - ((f32)framebuffer_width * 2), ((f32)framebuffer_height * 2) - (sp2C[1] * 4.0f), sp2C[2]);
+    func_80252330((sp2C[0] * 4.0f) - ((f32)gFramebufferWidth * 2), ((f32)gFramebufferHeight * 2) - (sp2C[1] * 4.0f), sp2C[2]);
     temp_f12 = (f32) ((f64) this->unk198 * 0.8);
     mlMtxScale_xyz(temp_f12, temp_f12, 1.0f);
     mlMtxApply(*mtx);
@@ -885,7 +881,7 @@ void func_80316764(GcZoombox *this, s32 arg1) {
         func_8024E60C(0, sp2C);
         phi_f0 = time_getDelta();
     } else {
-        func_8024E5A8(0, sp38);
+        pfsManager_getFirstControllerFaceButtonState(0, sp38);
         func_8024E640(0, sp2C);
         phi_f0 = func_8033DDB8();
     }
@@ -1072,7 +1068,7 @@ void gczoombox_update(GcZoombox *this){
           tmp_f0 = time_getDelta();
      }
      else{
-          func_8024E5A8(0, sp58);
+          pfsManager_getFirstControllerFaceButtonState(0, sp58);
           func_8024E640(0, sp4C);
           tmp_f0 = func_8033DDB8();
      }
@@ -1345,7 +1341,7 @@ void __gczoombox_load_sprite(GcZoombox *this, GcZoomboxSprite portrait_id){
      this->frame_count = this->unkF8->frameCnt;
      func_803382E4(-1);
      
-     func_80338308(func_802510A0(this->unkF8), func_802510A8(this->unkF8));
+     func_80338308(sprite_getUnk8(this->unkF8), sprite_getUnkA(this->unkF8));
 }
 
 void __gczoombox_load_sfx(GcZoombox *this, GcZoomboxSprite portrait_id){
@@ -1404,8 +1400,8 @@ GcZoombox *gczoombox_new(s32 y, GcZoomboxSprite portrait_id, s32 arg2, s32 arg3,
     this->unk1A4_24 = arg3;
     if(this->unk1A4_24){
         this->unk16A = 45;
-        this->unk174 = framebuffer_width - 0x25;
-        this->unk170 = framebuffer_width + 0x66;
+        this->unk174 = gFramebufferWidth - 0x25;
+        this->unk170 = gFramebufferWidth + 0x66;
     }else{
         this->unk16A = 71;
         this->unk174 = 0x25;
@@ -1606,9 +1602,9 @@ void func_80318640(GcZoombox *this, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 
     if (this != NULL) {
         if (this->unk1A4_24) {
-            this->unk174 = framebuffer_width - arg1;
+            this->unk174 = gFramebufferWidth - arg1;
             this->unk16A = arg1 + (8.0f * arg2);
-            this->unk170 = (framebuffer_width - arg1) + 0x8B;
+            this->unk170 = (gFramebufferWidth - arg1) + 0x8B;
         } else {
             this->unk174 = arg1;
             phi_v0 = arg4 ? 0x28 : 0x22;

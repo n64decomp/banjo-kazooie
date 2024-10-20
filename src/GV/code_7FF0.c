@@ -1,10 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
-#include "SnS.h"
 #include "actor.h"
 
-extern void func_80244BB0(s32, s32, s32, f32);
+extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 extern void func_802D3D54(Actor *this);
 extern void func_802D3D74(Actor *this);
 extern Actor *func_80325F2C(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
@@ -177,7 +177,7 @@ void func_8038E460(Actor *this){//banjo_door
         if(!mapSpecificFlags_get(2)){
             mapSpecificFlags_set(2, TRUE);
             func_8028F918(0);
-            func_80324DBC(4.0f, ASSET_A7D_TEXT_JINXY_HELPED, 4, NULL, NULL, NULL, NULL);
+            func_80324DBC(4.0f, ASSET_A7D_DIALOG_JINXY_HELPED, 4, NULL, NULL, NULL, NULL);
         }
     }
 }
@@ -231,7 +231,7 @@ void func_8038E648(Actor *this){
                 func_802BAFE4(2);
                 subaddie_set_state(this, 6);
                 this->unk38_31 = 600;
-                func_80244BB0(0, 0x6A, 0x7ff8, 0.3f);
+                core1_7090_initSfxSource(0, 0x6A, 0x7ff8, 0.3f);
                 func_802D68F0(25);
                 item_set(ITEM_6_HOURGLASS, 1);
             }
@@ -243,7 +243,7 @@ void func_8038E648(Actor *this){
                 subaddie_set_state(this, 7);
                 this->pitch = 90.0f;
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
-                func_80244C78(0);
+                core1_7090_freeSfxSource(0);
             }
             break;
 
@@ -251,7 +251,7 @@ void func_8038E648(Actor *this){
             this->unk38_31 -= time_getDelta();
             if(this->unk38_31 == 0){
                 subaddie_set_state(this, 8);
-                func_80244BB0(0, 0x6A, 0x7ff8, 0.3f);
+                core1_7090_initSfxSource(0, 0x6A, 0x7ff8, 0.3f);
             }
             break;
 
@@ -262,7 +262,7 @@ void func_8038E648(Actor *this){
                 this->pitch = 0.0f;
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
                 mapSpecificFlags_set(5, FALSE);
-                func_80244C78(0);
+                core1_7090_freeSfxSource(0);
                 volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED);
             }
             break;
@@ -296,7 +296,7 @@ void func_8038E97C(Actor *this){
             this->position_y += 130.0;
             this->unk38_31 = 30;
             subaddie_set_state(this, 8);
-            func_80244BB0(1, 0x6A, 0x7ff8, 0.3f);
+            core1_7090_initSfxSource(1, 0x6A, 0x7ff8, 0.3f);
         }
     }//L8038EA6C
 
@@ -314,7 +314,7 @@ void func_8038E97C(Actor *this){
         this->unk38_31 -= 1;
         if(this->unk38_31 == 0){
             subaddie_set_state(this, 1);
-            func_80244C78(1);
+            core1_7090_freeSfxSource(1);
             func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
         }
 
@@ -330,7 +330,7 @@ void chKazooieDoor_update(Actor *this){
                 func_8025A6EC(COMUSIC_2B_DING_B, -1);
                 func_802BAFE4(3);
                 subaddie_set_state(this, 6);
-                func_80244BB0(1, 0x6a, 0x7ff8, 0.3f);
+                core1_7090_initSfxSource(1, 0x6a, 0x7ff8, 0.3f);
                 this->unk1C[1] = this->position_y + 210.0f;
                 this->unk1C[0] = this->position_y;
             }
@@ -342,7 +342,7 @@ void chKazooieDoor_update(Actor *this){
             if(this->unk1C[1] <= this->position_y){
                 subaddie_set_state(this, 7);
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
-                func_80244C78(1);
+                core1_7090_freeSfxSource(1);
                 this->unk38_31 = 450;
             }
             break;
@@ -351,7 +351,7 @@ void chKazooieDoor_update(Actor *this){
             this->unk38_31--;
             if(this->unk38_31 == 0){
                 subaddie_set_state(this, 8);
-                func_80244BB0(1, 0x6a, 0x7ff8, 0.3f);
+                core1_7090_initSfxSource(1, 0x6a, 0x7ff8, 0.3f);
             }
             break;
 
@@ -362,7 +362,7 @@ void chKazooieDoor_update(Actor *this){
                 this->position_y = this->unk1C[0];
                 subaddie_set_state(this, 1);
                 func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
-                func_80244C78(1);
+                core1_7090_freeSfxSource(1);
                 mapSpecificFlags_set(6, FALSE);
             }
             break;

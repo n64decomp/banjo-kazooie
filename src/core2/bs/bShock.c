@@ -116,7 +116,7 @@ void bsbshock_charge_update(void){
 }
 
 void bsbshock_charge_end(void){
-    func_8030DA44(D_8037D382);
+    sfxsource_freeSfxsourceByIndex(D_8037D382);
     func_8029E064(0);
     func_8029E070(0);
     if(baModel_80292230() != 0.0f){

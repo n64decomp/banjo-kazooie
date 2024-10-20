@@ -1,10 +1,10 @@
 #include <ultra64.h>
+#include "core1/core1.h"
+
 #include "functions.h"
 #include "variables.h"
 
 #include "version.h"
-
-#include "ml/mtx.h"
 
 void _guRotateF(f32 mf[4][4], f32, f32, f32, f32);
 f32 func_80263FF0(f32);

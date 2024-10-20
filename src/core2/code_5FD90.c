@@ -4,9 +4,6 @@
 
 #include "model.h"
 
-extern void func_80252C08(f32[3],f32[3], f32, f32[3]);
-extern void func_80252CC4(f32[3],s32, f32, s32);
-extern f32  func_802560D0(f32[3], f32[3], f32[3]);
 extern f32  vtxList_getGlobalNorm(BKVertexList *);
 extern void points_to_boundingBoxWithMargin(f32 arg0[3], f32 arg1[3], f32 margin, f32 min[3], f32 max[3]);
 
@@ -207,21 +204,21 @@ bool func_802E74A0(f32 arg0[3], f32 arg1, f32 arg2[3], f32 arg3[3]) {
     f32 sp24[3];
     f32 sp20;
 
-    if (arg1 <= func_802560D0(arg2, arg3, arg0)) {
+    if (arg1 <= ml_func_802560D0(arg2, arg3, arg0)) {
         return FALSE;
     }
     sp24[0] = (arg2[0] + arg3[0]) / 2;
     sp24[1] = (arg2[1] + arg3[1]) / 2;
     sp24[2] = (arg2[2] + arg3[2]) / 2;
-    sp20 = ml_distance_vec3f(sp24, arg0);
-    if ((ml_distance_vec3f(sp24, arg2) + arg1) <= sp20) {
+    sp20 = ml_vec3f_distance(sp24, arg0);
+    if ((ml_vec3f_distance(sp24, arg2) + arg1) <= sp20) {
         return FALSE;
     }
     return TRUE;
 }
 
 bool func_802E7588(f32 arg0[3], f32 arg1, f32 arg2[3], f32 arg3) {
-    return (ml_distance_vec3f(arg0, arg2) < (arg1 + arg3));
+    return (ml_vec3f_distance(arg0, arg2) < (arg1 + arg3));
 }
 
 void calculateBoundsAndDirection(f32 startPoint[3], f32 endPoint[3], s32 minBounds[3], s32 maxBounds[3], f32 directionVector[3]) {
@@ -745,7 +742,7 @@ s32 func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 
     s32 sp3C;
     s32 i;
 
-    if (((f32)vtx_list->global_norm * arg4) <= (ml_distance_vec3f(arg6, arg2) - arg7)) {
+    if (((f32)vtx_list->global_norm * arg4) <= (ml_vec3f_distance(arg6, arg2) - arg7)) {
         return 0;
     }
     mlMtxIdent();
@@ -982,7 +979,7 @@ s32 func_802E9DD8(BKCollisionList *collisionList, BKVertexList *vtxList, f32 pos
     s32 i;
 
     // check if (sphere around vtx's) <= ((distance between origins) - (radius of B))
-    if ((vtxList->global_norm * scaleA) <= (ml_distance_vec3f(posB, posA) - radB)) {
+    if ((vtxList->global_norm * scaleA) <= (ml_vec3f_distance(posB, posA) - radB)) {
         return 0;
     }
     mlMtxIdent();

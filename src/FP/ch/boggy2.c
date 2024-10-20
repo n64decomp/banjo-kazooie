@@ -4,7 +4,7 @@
 
 extern void func_8028E668(f32[3], f32, f32, f32);
 extern Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]);
-extern NodeProp *cubeList_findNodePropByActorId(enum actor_e, s32[3]);
+extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e, s32[3]);
 extern f32 func_8038BE20(f32 arg0[3]);
 
 typedef struct {
@@ -124,10 +124,10 @@ void func_80388A50(Actor *this){
 void func_80388A94(Actor *this){
     func_80388A50(this);
     if(mapSpecificFlags_get(6)){
-        gcdialog_showText(ASSET_C0A_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showText(ASSET_C0A_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
     else{
-        gcdialog_showText(ASSET_C09_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showText(ASSET_C09_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
 }
 
@@ -136,15 +136,15 @@ void func_80388B18(Actor *this, u8 arg1){
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             func_80388A50(this);
             if(mapSpecificFlags_get(5)){
-                gcdialog_showText(ASSET_C05_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showText(ASSET_C05_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
             else{
-                gcdialog_showText(ASSET_C02_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showText(ASSET_C02_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
         }
         else{//L80388BB8
             if(!volatileFlag_get(VOLATILE_FLAG_B3)){
-                if(gcdialog_showText(ASSET_C01_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showText(ASSET_C01_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B3, TRUE);
                     func_80388A50(this);
                 }
@@ -154,7 +154,7 @@ void func_80388B18(Actor *this, u8 arg1){
     else{//L80388C08
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             if(!volatileFlag_get(VOLATILE_FLAG_B4)){
-                if(gcdialog_showText(ASSET_C08_TEXT_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showText(ASSET_C08_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B4, TRUE);
                     func_80388A50(this);
                 }
@@ -201,7 +201,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         case 0xc29://L80388DC4
             func_8025A6EC(COMUSIC_3A_FP_BOGGY_RACE, 25000);
             func_8025A58C(0, 4000);
-            func_8024BD08(0);
+            core1_ce60_incOrDecCounter(FALSE);
             func_802BE720();
             local->unk0 = partEmitMgr_newEmitter(16);
             local->unk4 = partEmitMgr_newEmitter(16);
@@ -383,8 +383,8 @@ void func_803895E0(void){
 
     for (i = 0; i< 7; i++){
         s0 = (i < 3) 
-            ? cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DA0) 
-            : cubeList_findNodePropByActorId(D_80391DB8[i].unk0, D_80391DAC);
+            ? cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DA0)
+            : cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DAC);
 
         nodeprop_getPosition(s0, sp64);
         f20 = (f32)func_80304DA8(s0);
@@ -478,13 +478,13 @@ void func_803896FC(Actor *this){
                     && player_getTransformation() != TRANSFORM_4_WALRUS
                     && volatileFlag_get(VOLATILE_FLAG_B3)
                 ){
-                    gcdialog_showText(ASSET_C01_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                    gcdialog_showText(ASSET_C01_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                 }
                 else if( local->unk19 == 2){
                     if( player_getTransformation() == TRANSFORM_4_WALRUS
                         && volatileFlag_get(VOLATILE_FLAG_B4)
                     ){
-                        gcdialog_showText(ASSET_C08_TEXT_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                        gcdialog_showText(ASSET_C08_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                     }
                     else if( player_getTransformation() != TRANSFORM_4_WALRUS){
                         func_80388A94(this);
