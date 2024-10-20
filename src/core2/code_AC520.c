@@ -143,7 +143,7 @@ s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
         if(iPtr->unk34) {
-            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->position) < ml_distance_vec3f(arg0, tmp_s0->position)) {
+            if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->position) < ml_vec3f_distance(arg0, tmp_s0->position)) {
                 tmp_s0 = iPtr;
             }
         }
