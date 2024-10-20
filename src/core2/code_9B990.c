@@ -300,21 +300,21 @@ void func_80322D94(s32 arg0, s32 arg1){ return; }
 void __overlay_fp_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ return; }
 
 void __overlay_fp_release(void){
-    fp_sirslushgame_end();
+    maSnowy_end();
     maSnowButton_end();
     maSlalom_end();
     func_8039195C();
 }
 
 void overlay_fp_init(void){
-    fp_sirslushgame_init();
+    maSnowy_init();
     maSnowButton_init();
     maSlalom_init();
     func_803918C0();
 }
 
 void __overlay_fp_update(void){
-    fp_sirslushgame_update();
+    maSnowy_update();
     maSnowButton_update();
     maSlalom_update();
     func_80391994();

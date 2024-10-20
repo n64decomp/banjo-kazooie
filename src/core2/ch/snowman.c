@@ -187,7 +187,7 @@ void __chSnowman_deathCallback(ActorMarker *marker, ActorMarker *other_marker){
 
     __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnHat, (s32)actor->marker);
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
-        fp_sirslushgame_decRemaining();
+        maSnowy_decRemaining();
     __chSnowman_spawnSnowballParticles(actor->position, 0xC);
     marker_despawn(actor->marker);
 }
@@ -224,7 +224,7 @@ void chSnowman_update(Actor *this){
         func_8032BC18(this);
         if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
             local->unk0 = actorArray_findActorFromActorId(0x336)->marker;
-            fp_sirslushgame_incTotal();
+            maSnowy_incTotal();
         }
     }//L802E21D8
     if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
