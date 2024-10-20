@@ -434,7 +434,7 @@ void func_8032AA58(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
 void timed_setStaticCameraToNode(f32, s32);
-void timed_exitStaticCamera(f32);
+void timed_exitStaticCamera(f32 time);
 int actor_animationIsAt(Actor*, f32);
 
 void rumbleManager_80250E94(f32, f32, f32, f32, f32, f32);

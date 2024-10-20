@@ -17,7 +17,7 @@ enum chJumpTutorial_state_e {
     JUMP_TUTORIAL_STATE_3_DISAPPEARED
 };
 
-ActorInfo D_8038B0B0 = {
+ActorInfo gChJumpTutorial = {
     MARKER_1ED_JUMP_TUTORIAL, ACTOR_3B9_JUMP_TUTORIAL, NULL,
     1, NULL,
     chJumpTutorial_update, actor_update_func_80326224, func_80325340,
