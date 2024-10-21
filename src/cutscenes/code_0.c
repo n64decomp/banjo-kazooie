@@ -6,7 +6,7 @@
 extern void anSeq_PushStep_0Arg(vector(AnSeqElement) **, f32, void(*)(void));
 extern void anSeq_PushStep_1Arg(vector(AnSeqElement) **, f32, void(*)(s32), s32);
 extern void anSeq_PushStep_2Arg(vector(AnSeqElement) **, f32, void(*)(s32,s32), s32, s32);
-extern void func_80288EB0(vector(AnSeqElement) **, f32, s32, f32, f32);
+extern void anSeq_func_80288EB0(vector(AnSeqElement) **, f32, s32, f32, f32);
 extern void anSeq_func_80288EF8(vector(AnSeqElement) **, f32, s32, f32);
 extern void anSeq_func_80288F38(vector(AnSeqElement) **, f32, s32, f32);
 extern void anSeq_func_80288E68(vector(AnSeqElement) **, f32, s32, f32, f32);
@@ -693,7 +693,7 @@ void func_803884DC(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_setActivationFrameDelay(arg0, 1);
     anSeq_PushStep_0Arg(arg0, 0.01f, func_8038684C);
     anSeq_setActivationFrameDelay(arg0, 7);
-    func_80288EB0(arg0, 0.02f, 0, 35.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.02f, 0, 35.0f, 0.8f);
     anSeq_setActivationFrameDelay(arg0, 7);
     anSeq_PushStep_1Arg(arg0, 0.02f, func_80386C34, reinterpret_cast(s32, arg1));
     anSeq_setActivationFrameDelay(arg0, 0xB);
@@ -925,10 +925,10 @@ void func_803896C8(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     func_80361C64(arg0, 0.023f, arg1, 6, 1);
     func_80361C64(arg0, 0.023f, arg1, 5, 0);
     func_80361C64(arg0, 0.023f, arg1, 7, 0);
-    func_80288EB0(arg0, 0.035f, 0, 30.0f, 0.4f);
+    anSeq_func_80288EB0(arg0, 0.035f, 0, 30.0f, 0.4f);
     func_80361C64(arg0, 0.3f, arg1, 7, 1);
     func_80361C24(arg0, 0.31f, arg1, 6);
-    func_80288EB0(arg0, 0.3209f, 0, 30.0f, 0.4f);
+    anSeq_func_80288EB0(arg0, 0.3209f, 0, 30.0f, 0.4f);
     func_80361C64(arg0, 0.66f, arg1, 5, 1);
     anSeq_PushStep_1Arg(arg0, 0.66f, func_80387E9C, reinterpret_cast(s32, arg1));
     anSeq_func_80288F78(arg0, 0.66f, 0x3080FAU);
@@ -979,7 +979,7 @@ void func_80389B84(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_PushStep_1Arg(arg0, 0.001f, func_80387D88, reinterpret_cast(s32, arg1));
     anSeq_func_80288F78(arg0, 0.001f, 0x8299D2U);
     anSeq_func_80288F78(arg0, 0.003f, 0x66CCFAU);
-    func_80288EB0(arg0, 0.001f, 2, 50.0f, 0.5f);
+    anSeq_func_80288EB0(arg0, 0.001f, 2, 50.0f, 0.5f);
 }
 
 void func_80389C30(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
@@ -1003,7 +1003,7 @@ void func_80389D78(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_PushStep_0Arg(arg0, 0.01f, func_803864AC);
     anSeq_PushStep_0Arg(arg0, 0.0f, func_803865F0);
     anSeq_func_80288F78(arg0, 0.9f, 0x7F80EAU);
-    func_80288EB0(arg0, 0.9f, 0, 5.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.9f, 0, 5.0f, 0.8f);
 }
 
 void func_80389DFC(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
@@ -1011,7 +1011,7 @@ void func_80389DFC(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_PushStep_0Arg(arg0, 0.01f, func_803865F0);
     anSeq_PushStep_1Arg(arg0, 0.8f, func_803872B4, reinterpret_cast(s32, arg1));
     anSeq_func_80288F78(arg0, 0.9f, 0x7F80EAU);
-    func_80288EB0(arg0, 0.9f, 0, 5.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.9f, 0, 5.0f, 0.8f);
 }
 
 void cutscenes_func_80389EA8(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
@@ -1047,7 +1047,7 @@ void cutscenes_func_8038A0A0(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_func_80288F78(arg0, 0.8f, 0xB1C075U);
     anSeq_func_80288F78(arg0, 0.95f, 0xB1B375U);
     anSeq_func_80288F78(arg0, 0.97f, 0x7F80EAU);
-    func_80288EB0(arg0, 0.97f, 0, 5.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.97f, 0, 5.0f, 0.8f);
 }
 
 void func_8038A15C(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
@@ -1058,7 +1058,7 @@ void func_8038A15C(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_PushStep_1Arg(arg0, 0.3f, func_80387364, reinterpret_cast(s32, arg1));
     anSeq_PushStep_1Arg(arg0, 0.5f, func_80387364, reinterpret_cast(s32, arg1));
     anSeq_func_80288F78(arg0, 0.97f, 0x7F80EAU);
-    func_80288EB0(arg0, 0.97f, 0, 5.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.97f, 0, 5.0f, 0.8f);
 }
 
 void func_8038A254(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
@@ -1076,23 +1076,23 @@ void cutscenes_func_8038A2F0(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
 
 void func_8038A334(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     func_80361C64(arg0, 0.01f, arg1, 1, 0);
-    func_80288EB0(arg0, 0.1f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.1f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.1f, 0x9880C3U);
-    func_80288EB0(arg0, 0.13f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.13f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.13f, 0x9880C3U);
-    func_80288EB0(arg0, 0.35f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.35f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.35f, 0x9880C3U);
-    func_80288EB0(arg0, 0.39f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.39f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.391f, 0x9880C3U);
-    func_80288EB0(arg0, 0.43f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.43f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.43f, 0x9880C3U);
-    func_80288EB0(arg0, 0.46f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.46f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.46f, 0x9880C3U);
-    func_80288EB0(arg0, 0.7f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.7f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.7f, 0x9880C3U);
-    func_80288EB0(arg0, 0.78f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.78f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.78f, 0x9880C3U);
-    func_80288EB0(arg0, 0.93f, 0, 3.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.93f, 0, 3.0f, 0.8f);
     anSeq_func_80288F78(arg0, 0.93f, 0x9880C3U);
 }
 
@@ -1164,9 +1164,9 @@ void func_8038A9A0(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
 }
 
 void func_8038A9D0(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
-    func_80288EB0(arg0, 0.001f, 0, 6.0f, 0.4f);
+    anSeq_func_80288EB0(arg0, 0.001f, 0, 6.0f, 0.4f);
     anSeq_func_80288F78(arg0, 0.001f, 0x9880B3U);
-    func_80288EB0(arg0, 0.5069f, 0, 6.0f, 0.4f);
+    anSeq_func_80288EB0(arg0, 0.5069f, 0, 6.0f, 0.4f);
     anSeq_func_80288F78(arg0, 0.5069f, 0x988CB3U);
 }
 
@@ -1275,7 +1275,7 @@ void func_8038B214(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     func_80361C64(arg0, 0.01f, arg1, 9, 1);
     anSeq_func_80288F78(arg0, 0.21f, 0x3780C3U);
     anSeq_func_80288F78(arg0, 0.04f, 0x018F80FAU);
-    func_80288EB0(arg0, 0.59f, 0, 10.0f, 0.95f);
+    anSeq_func_80288EB0(arg0, 0.59f, 0, 10.0f, 0.95f);
     anSeq_func_80288F78(arg0, 0.59f, 0x1180C3U);
     anSeq_func_80288F78(arg0, 0.59f, 0xD80C3U);
     anSeq_func_80288F78(arg0, 0.6f, 0x3680C3U);
@@ -1357,12 +1357,12 @@ void func_8038B9B4(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     func_80361C64(arg0, 0.01f, arg1, 5, 1);
     anSeq_func_80288F78(arg0, 0.068f, 0x6180C3U);
     anSeq_func_80288F78(arg0, 0.66f, 0x1F8075U);
-    func_80288EB0(arg0, 0.66f, 0, 20.0f, 0.8f);
+    anSeq_func_80288EB0(arg0, 0.66f, 0, 20.0f, 0.8f);
     anSeq_PushStep_1Arg(arg0, 0.7f, func_803878A4, reinterpret_cast(s32, arg1));
     anSeq_func_80288F78(arg0, 0.76f, 0x1F8075U);
     anSeq_PushStep_1Arg(arg0, 0.77f, cutscenes_func_803879E0, reinterpret_cast(s32, arg1));
     anSeq_PushStep_1Arg(arg0, 0.86f, cutscenes_func_803879E0, reinterpret_cast(s32, arg1));
-    func_80288EB0(arg0, 0.86f, 0, 20.0f, 0.9f);
+    anSeq_func_80288EB0(arg0, 0.86f, 0, 20.0f, 0.9f);
     anSeq_PushStep_1Arg(arg0, 0.96f, cutscenes_func_803879E0, reinterpret_cast(s32, arg1));
 }
 
@@ -1379,11 +1379,11 @@ void func_8038BB30(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
 void func_8038BBF8(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     func_80361C64(arg0, 0.01f, arg1, 6, 1);
     anSeq_func_80288F78(arg0, 0.5f, 0x21809CU);
-    func_80288EB0(arg0, 0.5f, 0, 5.0f, 0.9f);
+    anSeq_func_80288EB0(arg0, 0.5f, 0, 5.0f, 0.9f);
     anSeq_func_80288F78(arg0, 0.56f, 0x21839CU);
-    func_80288EB0(arg0, 0.56f, 0, 5.0f, 0.9f);
+    anSeq_func_80288EB0(arg0, 0.56f, 0, 5.0f, 0.9f);
     anSeq_func_80288F78(arg0, 0.65f, 0x217C9CU);
-    func_80288EB0(arg0, 0.65f, 0, 5.0f, 0.9f);
+    anSeq_func_80288EB0(arg0, 0.65f, 0, 5.0f, 0.9f);
     anSeq_func_80288F78(arg0, 0.76f, 0xD3739CU);
     anSeq_func_80288F78(arg0, 0.83f, 0xD3799CU);
     anSeq_func_80288F78(arg0, 0.9f, 0xD3669CU);

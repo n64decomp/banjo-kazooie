@@ -156,7 +156,7 @@ void anSeq_func_80288E68(vector(AnSeqElement) **ppAnSeq, f32 duration, s32 arg2,
     anSeq_PushStep_3Arg(ppAnSeq, duration, __anSeq_func_80288914, arg2, arg3, arg4);
 }
 
-void func_80288EB0(vector(AnSeqElement) **ppAnSeq, f32 duration, s32 arg2, s32 arg3, s32 arg4){
+void anSeq_func_80288EB0(vector(AnSeqElement) **ppAnSeq, f32 duration, s32 arg2, s32 arg3, s32 arg4){
     anSeq_PushStep_3Arg(ppAnSeq, duration, __anSeq_func_8028894C, arg2, arg3, arg4);
 }
 
