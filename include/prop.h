@@ -255,7 +255,7 @@ typedef struct actor_s{
     f32 scale;
     /* 0x12C */ struct actor_info_s *actor_info;
     void (* unk130)(struct actor_s *);
-    vector(struct2s) **unk134; //vector<struct2s> //saved marker->dieFunc
+    vector(AnSeqElement) **unk134; //vector<AnSeqElement> //saved marker->dieFunc
     u32 unk138_31:1;
     u32 unk138_30:1;
     u32 unk138_29:1;

@@ -3,9 +3,9 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80288C7C(VLA**);
-extern void func_80288D84(s32, f32, void (*)(s32,s32), s32, s32);
-extern void func_80288DCC(s32 , f32, void (*)(s32, s32,s32), s32, s32, s32);
+extern void anSeq_clear(VLA**);
+extern void anSeq_PushStep_2Arg(s32, f32, void (*)(s32,s32), s32, s32);
+extern void anSeq_PushStep_3Arg(s32 , f32, void (*)(s32, s32,s32), s32, s32, s32);
 
 //TODO import from cutscenes/code_0.h
 extern Struct63s D_8038D904[];
@@ -148,32 +148,32 @@ void func_80361BD0(s32 arg0, s32 arg1, s32 arg2){
 }
 
 void func_80361C24(s32 arg0, f32 arg1, ActorMarker * arg2, f32 arg3){
-    func_80288D84(arg0, arg1, func_80361B68, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3));
+    anSeq_PushStep_2Arg(arg0, arg1, func_80361B68, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3));
 }
 
 void func_80361C64(s32 arg0, f32 arg1, ActorMarker * arg2, s32 arg3, s32 arg4){
-    func_80288DCC(arg0, arg1, func_80361B98, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), arg4);
+    anSeq_PushStep_3Arg(arg0, arg1, func_80361B98, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), arg4);
 }
 
 void func_80361CAC(s32 arg0, f32 arg1, ActorMarker *arg2, f32 arg3){
-    func_80288DCC(arg0, arg1, func_80361BD0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), 1);
+    anSeq_PushStep_3Arg(arg0, arg1, func_80361BD0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), 1);
 }
 
 void func_80361CF4(s32 arg0, f32 arg1, ActorMarker *arg2, f32 arg3){
-    func_80288DCC(arg0, arg1, func_80361BD0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), 2);
+    anSeq_PushStep_3Arg(arg0, arg1, func_80361BD0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3), 2);
 }
 
 void func_80361D3C(s32 arg0, f32 arg1, s32 arg2, s32 arg3){
-    func_80288D84(arg0, arg1, func_80361AB0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3));
+    anSeq_PushStep_2Arg(arg0, arg1, func_80361AB0, reinterpret_cast(s32, arg2), reinterpret_cast(s32, arg3));
 }
 
 void func_80361D7C(s32 arg0, f32 arg1, struct ActorMarker *arg2, s32 arg3, u32 arg4){
-    func_80288DCC(arg0, arg1, func_80361AE0, reinterpret_cast(s32, arg2), arg3, arg4);
+    anSeq_PushStep_3Arg(arg0, arg1, func_80361AE0, reinterpret_cast(s32, arg2), arg3, arg4);
 }
 
 void func_80361DC4(Actor *this){
     if(this->unk134){
-        func_802890D0(this->unk134);
+        anSeq_free(this->unk134);
     }
     this->unk134 = NULL;
 
@@ -188,7 +188,7 @@ void func_80361E10(Actor *this) {
     for(phi_v0 = 0; phi_v0 < 0x20; phi_v0++){
         if(D_803731E0[phi_v0].unk0 == this->modelCacheIndex){
             this->unk108 = &D_803731E0[phi_v0];
-            this->unk134 = func_802890FC();
+            this->unk134 = anSeq_new();
             this->unk160 = func_8032479C();
             this->unk10C = 0;
             return;
@@ -219,7 +219,7 @@ void func_80361EE0(Actor *this) {
         sp28 = animctrl_getIndex(this->animctrl);
         if (sp28 != this->unk10C) {
             this->unk10C = sp28;
-            func_80288C7C(this->unk134);
+            anSeq_clear(this->unk134);
             for(sp20 = sp24->unk4; sp20->unk4 != NULL; sp20++){
                 if (sp28 == sp20->unk0) {
                     sp20->unk4(this->unk134, this->marker);
@@ -227,6 +227,6 @@ void func_80361EE0(Actor *this) {
                 }
             }
         }
-        func_8028914C(this->unk134, this->animctrl);
+        anSeq_update(this->unk134, this->animctrl);
     }
 }

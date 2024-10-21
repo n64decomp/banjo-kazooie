@@ -136,7 +136,7 @@ u8 D_8038C1D4[] = {0xA, 0x12, 0xF, 0x9, 0xE, 0xD, 0x9, 0x11, 0xB, 0xF, 0, 0};
 f32 D_8038C1E0[3] = {0.0f, 3250.0f, -3200.0f}; //jiggy spawn position
 
 /* .bss */
-struct {
+static struct {
     s32 unk0;
     ActorMarker *motzhand_marker;
     Struct_MMM_3420_0 *unk8;
@@ -144,11 +144,11 @@ struct {
     u8 pattern;
     //u8 padE[2];
     u8 *unk10;
-}D_8038C4F0;
+}Me;
 
 /* .code */
 void MMM_func_80389810(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
-    switch (D_8038C4F0.state) {
+    switch (Me.state) {
     case 2:
         organMinigame_setState(3);
         return;
@@ -196,8 +196,8 @@ void organMinigame_setState(s32 next_state){
     func_8028F8F8(1, FALSE);
 
     if (next_state == 2) {
-        if (D_8038C4F0.pattern == 0) {
-            D_8038C4F0.pattern = 1;
+        if (Me.pattern == 0) {
+            Me.pattern = 1;
             gcdialog_showText(ASSET_AD3_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
         else {//L80389A84
@@ -206,39 +206,39 @@ void organMinigame_setState(s32 next_state){
     }//L80389A9C
 
     if(next_state == 3){
-        D_8038C4F0.unk0 = 0;
-        if(D_8038C4F0.pattern == 1){
-            D_8038C4F0.unk10 = D_8038C1CC;
+        Me.unk0 = 0;
+        if(Me.pattern == 1){
+            Me.unk10 = D_8038C1CC;
         }
         else{
-            D_8038C4F0.unk10 = D_8038C1D4;
+            Me.unk10 = D_8038C1D4;
         }
         func_8028F8F8(1, TRUE);
-        func_803876C8(D_8038C4F0.motzhand_marker, D_8038C4F0.pattern);
+        func_803876C8(Me.motzhand_marker, Me.pattern);
     }//L80389AF4
 
     if(next_state == 4){
         gcdialog_showText(ASSET_ADD_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
-        func_80387720(D_8038C4F0.motzhand_marker);
+        func_80387720(Me.motzhand_marker);
     }
 
     if(next_state == 5){
-        D_8038C4F0.pattern++;
+        Me.pattern++;
         gcdialog_showText(ASSET_AD4_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
-        func_80387720(D_8038C4F0.motzhand_marker);
+        func_80387720(Me.motzhand_marker);
     }
 
     if(next_state == 6){
         MMM_func_803898C8();
         timedFunc_set_0(1.25f, func_803899BC);
-        func_80387654(D_8038C4F0.motzhand_marker);
+        func_80387654(Me.motzhand_marker);
     }
 
-    D_8038C4F0.state = next_state;
+    Me.state = next_state;
 }
 
 s32 func_80389BBC(void){
-    return D_8038C4F0.unk8->unk4;
+    return Me.unk8->unk4;
 }
 
 //organCtrl_getKeyPosition
@@ -279,12 +279,12 @@ void MMM_func_80389CD8() {}
 void func_80389CE0() {}
 
 int func_80389CE8(s32 arg0, s32 arg1, s32 arg2){
-    if(D_8038C4F0.state == 3){
-        if(*D_8038C4F0.unk10 == arg2){
-            D_8038C4F0.unk0--;
-            D_8038C4F0.unk10++;
-            if(*D_8038C4F0.unk10 == 0){
-                if(D_8038C4F0.pattern == 1){
+    if(Me.state == 3){
+        if(*Me.unk10 == arg2){
+            Me.unk0--;
+            Me.unk10++;
+            if(*Me.unk10 == 0){
+                if(Me.pattern == 1){
                     organMinigame_setState(5);
                 }
                 else{
@@ -305,7 +305,7 @@ void func_80389D9C(s32 key_id){
     s32 sp24;
     sp24 = D_8038C198[key_id].unk1;
     MMM_func_8038B6D4(func_803517B8(sp24), func_803517E8(sp24));
-    D_8038C4F0.unk0++;
+    Me.unk0++;
 }
 
 // organ game/higgy in church?
@@ -314,13 +314,13 @@ void code3420_handleOrganGame(s32 arg0, s32 arg1) {
     f32 key_position[3];
     bool is_black_key;
 
-    D_8038C4F0.unk8 = &D_8038BF20;
+    Me.unk8 = &D_8038BF20;
     func_80250170(0, 0x6A, 0);
-    D_8038C4F0.state = 0;
+    Me.state = 0;
 
     if ((map_get() == MAP_1C_MMM_CHURCH) && (arg1 == 2)) {
-        D_8038C4F0.motzhand_marker = NULL;
-        D_8038C4F0.pattern = 0;
+        Me.motzhand_marker = NULL;
+        Me.pattern = 0;
 
         key_position[0] = -1345.0f;
         key_position[1] = 1150.0f;
@@ -355,7 +355,7 @@ void code3420_handleOrganGame(s32 arg0, s32 arg1) {
 }
 
 
-void organMinigame_update(void){
+void maOrgan_update(void){
     UNK_TYPE(u32) sp4C;
     f32 motzhand_dist;
     Actor *motzhand;
@@ -363,28 +363,28 @@ void organMinigame_update(void){
     f32 plyr_pos[3];
     Actor *motzhand_2;
 
-    if (D_8038C4F0.state == 0) {
+    if (Me.state == 0) {
         return;
     }
 
     if(func_802501A0(0, 0x6A, &sp4C)){
         func_80250170(0, 0x6A, 0);
-        D_8038C4F0.unk8++;
-        if(D_8038C4F0.unk8->unk4 == -1){
-            D_8038C4F0.unk8 = &D_8038BF20[10];
+        Me.unk8++;
+        if(Me.unk8->unk4 == -1){
+            Me.unk8 = &D_8038BF20[10];
         }
     }//L8038A02C
 
-    if(D_8038C4F0.state == 1 && D_8038C4F0.motzhand_marker == NULL){
+    if(Me.state == 1 && Me.motzhand_marker == NULL){
         sp38[0] = sp38[1] = sp38[2] = 0.0f;
         motzhand = actorArray_findClosestActorFromActorId(sp38, ACTOR_3A_MOTZHAND, -1, &motzhand_dist);
-        D_8038C4F0.motzhand_marker = motzhand->marker;
+        Me.motzhand_marker = motzhand->marker;
     }//L8038A078
 
-    if(D_8038C4F0.state == 1 || D_8038C4F0.state == 3){
-        if(func_8038769C(D_8038C4F0.motzhand_marker)){
+    if(Me.state == 1 || Me.state == 3){
+        if(func_8038769C(Me.motzhand_marker)){
             player_getPosition(plyr_pos);
-            motzhand_2 = marker_getActor(D_8038C4F0.motzhand_marker);
+            motzhand_2 = marker_getActor(Me.motzhand_marker);
             if( ml_vec3f_distance(motzhand_2->position, plyr_pos) < 400.0f
                 && motzhand_2->position_y - 50.0f <= plyr_pos[1]
             ){
@@ -393,7 +393,7 @@ void organMinigame_update(void){
         }
     }//L8038A104
 
-    if(D_8038C4F0.state == 3 && D_8038C4F0.unk0 >= 3){
+    if(Me.state == 3 && Me.unk0 >= 3){
         organMinigame_setState(4);
     }
 }

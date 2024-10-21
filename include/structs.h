@@ -150,15 +150,14 @@ typedef struct struct_0_s{ //floor
 } struct0; //geo(used for floor)
 
 typedef struct struct_2_s{
-    f32 unk0;
-    u8 unk4; //argument_count
-    u8 unk5;
-    u8 pad6[2];
-    u32 unk8;
-    s32 unkC;
-    s32 unk10;
-    void *unk14; //function_ptr
-} struct2s;
+    f32 duration;
+    u8 argCount;
+    u8 activationFrameDelay;
+    s32 arg0;
+    s32 arg1;
+    s32 arg2;
+    void *funcPtr;
+} AnSeqElement;
 
 typedef struct struct_3_s{
     u32 unk0;
@@ -563,7 +562,7 @@ typedef struct {
 typedef struct struct_63_s{
     s16 unk0;
     // u8 pad2[2];
-    void (*unk4)(vector(struct2s) **, struct actorMarker_s *);
+    void (*unk4)(vector(AnSeqElement) **, struct actorMarker_s *);
 } Struct63s;
 
 typedef struct struct_64_s{
