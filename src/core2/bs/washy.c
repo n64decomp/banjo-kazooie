@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 /* .bss */
 u8 D_8037D5D0;
@@ -23,18 +24,18 @@ void func_802B9980(s32 arg0){
             baphysics_set_vertical_velocity(300.0f);
             break;
         case 3: //L802B9A20
-            func_8029E3C0(0, 0.01f);
+            batimer_set(0, 0.01f);
             break;
         case 4: //L802B9A38
             FUNC_8030E624(SFX_3EB_UNKNOWN, 0.7f, 25000);
-            func_8029E3C0(0, 0.25f);
+            batimer_set(0, 0.25f);
             break;
         case 5: //L802B9A58
             func_8030E58C(SFX_D0_GRIMLET_SQUEAK, 0.9f);
             animctrl_setDuration(plyr_anim, 2.2f);
             break;
         case 6: //L802B9A84
-            func_8029E3C0(0, 0.01f);
+            batimer_set(0, 0.01f);
         case 0: //L802B9A94
             break;
     }
@@ -70,11 +71,11 @@ void func_802B9B14(void){
                 func_802B9980(3);
             break;
         case 3: // L802B9BA8
-            if(func_8029E1A8(0))
+            if(batimer_decrement(0))
                 func_802B9980(4);
             break;
         case 4: // L802B9BC8
-            if(func_8029E1A8(0))
+            if(batimer_decrement(0))
                 func_802B9980(5);
             break;
         case 5: // L802B9BE8
@@ -86,12 +87,12 @@ void func_802B9B14(void){
             }
             break;
         case 6: // L802B9C20
-            if(func_8029E1A8(0)){
+            if(batimer_decrement(0)){
                 sp18 = func_802F9AA8(SFX_12B_BOILING_AND_BUBBLING);
                 func_802F9DB8(sp18, 1.0f, 1.2f, 0.0f);
                 func_802F9F80(sp18, 0.05f,  0.05 + randf()*0.4, 0.1f);
                 func_802FA060(sp18, 28000, 32000, 0.0f);
-                func_8029E3C0(0, 0.8 + randf()*0.7);
+                batimer_set(0, 0.8 + randf()*0.7);
             }
             break;
     }

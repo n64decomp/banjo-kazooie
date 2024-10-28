@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 void codeA960_forceLoadzone(s32);
 
@@ -17,7 +18,7 @@ void codeA960_forceLoadzone(s32 arg0){
     if(!isLoadzoneFlagSet()){
         miscFlag_set(MISC_FLAG_15_LOADZONE);
         if(arg0){
-            func_8029E3C0(5, 2.0f);
+            batimer_set(5, 2.0f);
             func_8029C984();
             bs_setState(BS_5A_LOADZONE);
             baModel_setVisible(FALSE);
@@ -28,7 +29,7 @@ void codeA960_forceLoadzone(s32 arg0){
 }
 
 void func_802919A0(void){
-    if(isLoadzoneFlagSet() && func_8029E1A8(5)){
+    if(isLoadzoneFlagSet() && batimer_decrement(5)){
         func_8029B890();
         codeA960_forceLoadzone(0);
     }

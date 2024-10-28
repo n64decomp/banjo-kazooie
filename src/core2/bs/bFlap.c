@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 f32 func_802A2858(void);
 
@@ -31,7 +32,7 @@ void bsbflap_init(void) {
     baphysics_set_gravity(D_80364A14);
     func_8029E070(1);
     miscFlag_set(MISC_FLAG_12_HAS_FLAPPED);
-    func_8029E3C0(0, 2.5f);
+    batimer_set(0, 2.5f);
     D_8037D30C = sfxsource_createSfxsourceAndReturnIndex();
     func_80299BD4();
     D_8037D301 = 0;
@@ -173,8 +174,8 @@ void bsbflap_update(void){
                 sp1c = BS_3D_FALL_TUMBLING;
             break;
     }//L802A2C94
-    func_8029E1A8(0);
-    if(func_8029E384(0))
+    batimer_decrement(0);
+    if(batimer_isZero(0))
         sp1c = BS_2F_FALL;
     
     if(should_beak_bust())

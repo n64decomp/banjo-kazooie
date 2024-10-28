@@ -2,11 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
-s32 func_8029E2E0(s32, f32);
 void  func_80292864(f32, f32);
-void func_8029E3C0(s32, f32);
 
 
 /* .bss */
@@ -23,9 +22,9 @@ s32 func_8029F4E0(Actor * arg0){
 void func_8029F4F0(void){
     u8 val;
     f32 tmp_f;
-    if(func_8029E1A8(2)){
+    if(batimer_decrement(2)){
         func_8029AE74(0);
-        func_8029E3C0(2, 0.12f);
+        batimer_set(2, 0.12f);
     }
     if( (++D_8037D2A4) >= 3)
         D_8037D2A4 = 0;
@@ -79,7 +78,7 @@ void bsbarge_init(void){
     miscFlag_clear(MISC_FLAG_A);
     miscFlag_clear(MISC_FLAG_B);
     miscFlag_clear(MISC_FLAG_C);
-    func_8029E3C0(2, 0.01f);
+    batimer_set(2, 0.01f);
 
 }
 
@@ -105,12 +104,12 @@ void bsbarge_update(void){
             }else{
                 D_8037D2A0 = 500.0f;
             }
-            func_8029E3C0(1, 0.01f);
+            batimer_set(1, 0.01f);
             D_8037D2A5 = 1;
             break;
         case 1:
-            func_8029E1A8(1);
-            if(miscFlag_isFalse(MISC_FLAG_B) && func_8029E2E0(1, 0.1f)){
+            batimer_decrement(1);
+            if(miscFlag_isFalse(MISC_FLAG_B) && batimer_isLessThan(1, 0.1f)){
                 if(miscFlag_isTrue(MISC_FLAG_C)){
                     func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 30000);
                 }else{
@@ -118,7 +117,7 @@ void bsbarge_update(void){
                 }
                 miscFlag_set(MISC_FLAG_B);
             }
-            if(!func_8029E384(1))
+            if(!batimer_isZero(1))
                 break;
             
             animctrl_setDuration(plyrMvmnt, 1.0f);
@@ -135,14 +134,14 @@ void bsbarge_update(void){
             if(animctrl_isStopped(plyrMvmnt)){
                 animctrl_setDuration(plyrMvmnt, 2.0f);
                 baanim_setEnd(0.6f);
-                func_8029E3C0(0, 0.1f);
+                batimer_set(0, 0.1f);
                 D_8037D2A5 = 3;
             }
             func_8029F4F0();
             break;
         case 3:
-            func_8029E1A8(0);
-            if(miscFlag_isFalse(MISC_FLAG_C) || func_8029E384(0)){
+            batimer_decrement(0);
+            if(miscFlag_isFalse(MISC_FLAG_C) || batimer_isZero(0)){
                 D_8037D2A0 -= 80.0f;
             }
             baphysics_set_target_horizontal_velocity(D_8037D2A0);

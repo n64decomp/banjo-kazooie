@@ -3,9 +3,9 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 f32 func_8029B41C(void);
-void func_8029E3C0(s32, f32);
 void func_80299628(s32);
 void yaw_applyIdeal(void);
 void ncDynamicCamD_func_802BF2C0(f32);
@@ -426,7 +426,7 @@ void bsbeemain_die_init(void){
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    func_8029E3C0(0, 2.9f);
+    batimer_set(0, 2.9f);
     D_8037D2D4 = 0;
 }
 
@@ -460,7 +460,7 @@ void func_802A1DD8(void){
             }
             break;
     }//L802A1EFC
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B890();
 
     bs_setState(0);
@@ -523,12 +523,12 @@ void func_802A2098(void){
     func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
     baMarker_collisionOff();
-    func_8029E3C0(0, 3.0f);
+    batimer_set(0, 3.0f);
 }
 
 void func_802A2130(void){
     s32 next  = 0;
-    if(func_8029E1A8(0)){
+    if(batimer_decrement(0)){
         next = BS_85_BEE_IDLE;
     }
     bs_setState(next);

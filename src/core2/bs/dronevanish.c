@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 /* .bss */
 struct {
@@ -19,18 +20,18 @@ u8 D_8037D468;
 void __bsDroneVanish_setSubstate(s32 next_state) {
     switch (next_state) {
     case 1:
-        func_8029E3C0(0, 0.3f);
+        batimer_set(0, 0.3f);
         break;
     case 2:
         func_8025A6CC(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
         func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
-        func_8029E3C0(0, 0.4f);
+        batimer_set(0, 0.4f);
         break;
     case 3:
         gcpausemenu_returnToLair();
         baModel_setVisible(FALSE);
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
-        func_8029E3C0(0, 2.0f);
+        batimer_set(0, 2.0f);
         break;
     }
     D_8037D468 = next_state;
@@ -111,20 +112,20 @@ void bsDroneVanish_update(void) {
     switch (D_8037D468) {
     case 1:
         __bsDroneVanish_update();
-        if (func_8029E1A8(0)) {
+        if (batimer_decrement(0)) {
             __bsDroneVanish_setSubstate(2);
         }
         break;
     case 2:
         __bsDroneVanish_update();
-        sp20 = func_8029E1A8(0);
-        baModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 0.0f, 255.0f));
+        sp20 = batimer_decrement(0);
+        baModel_setEnvAlpha((s32) ml_map_f(batimer_get(0), 0.0f, 0.4f, 0.0f, 255.0f));
         if (sp20) {
             __bsDroneVanish_setSubstate(3);
         }
         break;
     case 3:
-        if (func_8029E1A8(0)) {
+        if (batimer_decrement(0)) {
             next_state = bs_getIdleState();
         }
         break;

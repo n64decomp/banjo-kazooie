@@ -4,12 +4,11 @@
 
 #include "core2/ba/model.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
 extern f32  func_8029494C(void);
 extern f32  func_8029B2D0(void);
-extern bool func_8029E284(s32, f32);
-extern bool func_8029E314(s32, f32);
 
 /* .bss */
 f32 D_8037D390;
@@ -360,12 +359,12 @@ void func_802A7E2C(void) {
             sp30 = yaw_get();
             func_80256E24(sp24, sp34, sp30, 0.0f, 0.0f, 800.0f);
             baphysics_set_velocity(sp24);
-            func_8029E3C0(1, 0.8f);
+            batimer_set(1, 0.8f);
             D_8037D396 = TRUE;
         }
         break;
     case 1:
-        if (func_8029E1A8(1)) {
+        if (batimer_decrement(1)) {
             next_state = BS_2B_DIVE_IDLE;
         }
         break;
@@ -403,8 +402,8 @@ void func_802A7F6C(void) {
     roll_setIdeal(0.0f);
     D_8037D396 = 0;
     baMarker_collisionOff();
-    func_8029E3C0(0, 0.0f);
-    func_8029E3C0(1, 0.0f);
+    batimer_set(0, 0.0f);
+    batimer_set(1, 0.0f);
     func_802906A4(3);
     func_80299CF4(SFX_CA_BANJO_DROWNING_1, 1.0f, 24000);
 }
@@ -419,10 +418,10 @@ void func_802A8098(void) {
     func_80256E24(sp40, -90.0f, 0.0f, 0.0f, 0.0f, 100.0f);
     baphysics_set_target_velocity(sp40);
     baphysics_set_velocity(sp40);
-    func_8029E22C(1);
-    if( func_8029E284(1, 0.2f) 
-        || func_8029E284(1, 0.8f) 
-        || func_8029E284(1, 1.4f)
+    batimer_increment(1);
+    if( batimer_isAt(1, 0.2f) 
+        || batimer_isAt(1, 0.8f) 
+        || batimer_isAt(1, 1.4f)
     ) {
         func_80299CF4(SFX_CB_BANJO_DROWNING_2, 1.0f, 24000);
     }
@@ -435,27 +434,27 @@ void func_802A8098(void) {
             particleEmitter_setParticleVelocityRange(p_ctrl, -60.0f, -50.0f, -60.0f, 60.0f, 100.0f, 60.0f);
             particleEmitter_emitN(p_ctrl, 1);
         }
-        if (func_8029E270(1) < 1.8 && func_802A73BC() && D_8037D395) {
+        if (batimer_get(1) < 1.8 && func_802A73BC() && D_8037D395) {
             next_state = BS_2D_SWIM_IDLE;
         }
-        if (func_8029E314(1, 1.55f)) {
+        if (batimer_isGreaterThan(1, 1.55f)) {
             baphysics_set_vertical_velocity(-50.0f);
         }
-        if (func_8029E284(1, 1.9f)) {
+        if (batimer_isAt(1, 1.9f)) {
             func_802914CC(0xD);
             ncDynamicCamD_func_802BF2C0(80.0f);
             if (D_8037D394) {
-                func_8029E3C0(0, 0.5f);
+                batimer_set(0, 0.5f);
             } else {
                 func_8029C984();
-                func_8029E3C0(0, 2.75f);
+                batimer_set(0, 2.75f);
             }
         }
         break;
     case 1:
         break;
     }
-    if (func_8029E1A8(0)) {
+    if (batimer_decrement(0)) {
         func_8029B890();
     }
     bs_setState(next_state);

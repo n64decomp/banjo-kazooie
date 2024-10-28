@@ -5,6 +5,7 @@
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
 /* .data */
@@ -88,7 +89,7 @@ void func_802A5404(void){
     stateTimer_clear(STATE_TIMER_2_LONGLEG);
     func_803219F4(1);
     miscFlag_clear(MISC_FLAG_3);
-    func_8029E180(4, 0.5f);
+    batimer_incrementBy(4, 0.5f);
     func_802A531C();
 }
 

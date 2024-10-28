@@ -565,7 +565,7 @@ segments:
   # - [0xF6B880, c, code_15F20]  #DONE
   # - [0xF6B970, c, code_16010]  #DONE
   # - [0xF6C5C0, c, code_16C60]  #DONE
-  # - [0xF6CB50, c, code_171F0]  #DONE
+  # - [0xF6CB50, c, batimer]  #DONE
   # - [0xF6CDB0, c, bs/ant]      #DONE
   # - [0xF6DEB0, c, bs/bBarge]   #DONE
   # - [0xF6E4F0, c, bs/bbuster]  #DONE
@@ -1429,7 +1429,7 @@ segments:
   # - [0x0106C980, .bss, code_15F20]
   # - [0x0106C980, .bss, code_16010]
   # - [0x0106C980, .bss, code_16C60]
-  # - [0x0106C980, .bss, code_171F0]
+  # - [0x0106C980, .bss, batimer]
   # - [0x0106C980, .bss, bs/ant]
   # - [0x0106C980, .bss, bs/bBarge]
   # - [0x0106C980, .bss, bs/bbuster]

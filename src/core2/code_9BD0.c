@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+#include "core2/ba/timer.h"
 
 void func_80291488(s32 arg0);
 void func_802914CC(s32 arg0);
@@ -31,7 +32,7 @@ void func_80290B6C(void){
     D_8037C062 = 0;
     func_80291488(2);
     func_80290B60(2);
-    func_8029E3C0(7, 0.5f);
+    batimer_set(7, 0.5f);
 }
 
 void func_80290BC0(s32 arg0){
@@ -119,7 +120,7 @@ int func_80290E8C(void){
 void func_80290F14(void){
     if( !func_80298850() 
         && func_8028ECAC() != 4
-        && func_8029E270(7) == 0.0f
+        && batimer_get(7) == 0.0f
         && should_zoom_out_camera()
     ){
         switch(D_8037C061){
@@ -142,7 +143,7 @@ void func_80290F14(void){
                 func_80290B60(1);
                 break;
         }
-        func_8029E3C0(0x7, 0.4f);
+        batimer_set(0x7, 0.4f);
     }
 }
 
@@ -239,7 +240,7 @@ void func_80291328(void){
 
 /* camera update */
 void cameraMode_update(void){
-    func_8029E1A8(7);
+    batimer_decrement(7);
     func_80290298();
     func_8029028C(0);
     switch(D_8037C062){

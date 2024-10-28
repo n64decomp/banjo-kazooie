@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
 enum bsdroneenter_state_e{
@@ -26,18 +27,18 @@ u8 bsDroneEnterSubstate;
 void __bsDroneEnter_setSubstate(enum bsdroneenter_state_e arg0) {
     switch (arg0) {
     case 1:
-        func_8029E3C0(0, 0.2f);
+        batimer_set(0, 0.2f);
         break;
     case 2:
         func_8025A6CC(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
         func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
-        func_8029E3C0(0, 0.4f);
+        batimer_set(0, 0.4f);
         baModel_setEnvAlpha(0);
         baModel_updateModel();
         break;
     case 3:
         comusic_8025AB44(COMUSIC_43_ENTER_LEVEL_GLITTER, 0, 2000);
-        func_8029E3C0(0, 0.55f);
+        batimer_set(0, 0.55f);
         break;
     }
     bsDroneEnterSubstate = arg0;
@@ -126,20 +127,20 @@ void bsDroneEnter_update(void) {
     switch (bsDroneEnterSubstate) {
     case BSDRONEENTER_SUBSTATE_1:
         func_802AE914();
-        if (func_8029E1A8(0)) {
+        if (batimer_decrement(0)) {
             __bsDroneEnter_setSubstate(BSDRONEENTER_SUBSTATE_2);
         }
         break;
     case BSDRONEENTER_SUBSTATE_2:
         func_802AE914();
-        sp20 = func_8029E1A8(0);
-        baModel_setEnvAlpha((s32) ml_map_f(func_8029E270(0), 0.0f, 0.4f, 255.0f, 0.0f));
+        sp20 = batimer_decrement(0);
+        baModel_setEnvAlpha((s32) ml_map_f(batimer_get(0), 0.0f, 0.4f, 255.0f, 0.0f));
         if (sp20) {
             __bsDroneEnter_setSubstate(BSDRONEENTER_SUBSTATE_3);
         }
         break;
     case BSDRONEENTER_SUBSTATE_3:
-        if (func_8029E1A8(0)) {
+        if (batimer_decrement(0)) {
             next_state = bs_getIdleState();
         }
         break;

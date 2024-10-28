@@ -309,7 +309,7 @@ void func_802B2BF0(void) {
     baanim_playForDuration_loop(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
     func_8029C7F4(1, 1, 2, BA_PHYSICS_FREEZE);
     func_80294378(6);
-    func_8029E3C0(0, 0.0f);
+    batimer_set(0, 0.0f);
 }
 
 void func_802B2C58(void) {
@@ -318,8 +318,8 @@ void func_802B2C58(void) {
     f32 sp34;
     f32 sp28[3];
 
-    func_8029E22C(0);
-    sp34 = func_8029E270(0);
+    batimer_increment(0);
+    sp34 = batimer_get(0);
     sp38 = yaw_getIdeal();
     sp3C = ml_map_f(sp34, 0.0f, 2.3f, 0.0f, 45.0f);
     yaw_setIdeal(mlNormalizeAngle(sp38 + sp3C));
@@ -459,7 +459,7 @@ void bspumpkin_die_init(void) {
     func_8029C984();
     baMarker_collisionOff();
     func_80292E48();
-    func_8029E3C0(1, 2.9f);
+    batimer_set(1, 2.9f);
     D_8037D4E0 = 0;
 }
 
@@ -516,7 +516,7 @@ void bspumpkin_die_update(void){
         break;
 
     }
-    if (func_8029E1A8(1) != 0) {
+    if (batimer_decrement(1) != 0) {
         func_8029B890();
     }
     bs_setState(0);

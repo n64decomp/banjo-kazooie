@@ -3,6 +3,8 @@
 #include "variables.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
+
 /* .bss */
 f32 D_8037D5A0;
 u8 D_8037D5A4;
@@ -32,7 +34,7 @@ void bstwirl_init(void){
     baphysics_set_target_horizontal_velocity(600.0f);
     func_80299CF4(SFX_32_BANJO_EGHEE, 1.0f, 0x6590);
     _bstwirlHitboxActive = TRUE;
-    func_8029E3C0(0, 0.01f);
+    batimer_set(0, 0.01f);
     D_8037D5A4 = 0;
 }
 
@@ -48,9 +50,9 @@ void bstwirl_update(void){
             D_8037D5A4 = 2;
             break;
         case 2:
-            if(func_8029E1A8(0)){
+            if(batimer_decrement(0)){
                 func_8029AE74(0);
-                func_8029E3C0(0, 0.12f);
+                batimer_set(0, 0.12f);
             }
             if(animctrl_isAt(aCtrl, 0.8011f)){
                 animctrl_setDuration(aCtrl, 2.5f);

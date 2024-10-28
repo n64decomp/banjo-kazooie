@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 /* .bss */
 f32 D_8037D400;
@@ -23,7 +24,7 @@ void func_802AD6FC(void){
 
 void func_802AD728(void){
     baanim_playForDuration_onceStartingAt(ASSET_10C_ANIM_BSCROUCH_IDLE, 0.5f, 0.9999f);
-    func_8029E3C0(2, 2.0f);
+    batimer_set(2, 2.0f);
     D_8037D404 = 1;
 }
 
@@ -64,8 +65,8 @@ void bscrouch_init(void){
     func_8029957C(7);
     func_8029932C(8.0f);
     baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
-    func_8029E3C0(0, 0.7f);
-    func_8029E3C0(1, 0.2f);
+    batimer_set(0, 0.7f);
+    batimer_set(1, 0.2f);
     baphysics_get_velocity(sp28);
     D_8037D400 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     if(140.0f < D_8037D400)
@@ -85,10 +86,10 @@ void bscrouch_update(void){
     f32 pad;
     f32 sp20;
 
-    func_8029E1A8(0);
-    func_8029E1A8(1);
+    batimer_decrement(0);
+    batimer_decrement(1);
     
-    sp30 = ml_map_f(func_8029E270(0), 0.0f, 0.3f, 0.0f, D_8037D400);
+    sp30 = ml_map_f(batimer_get(0), 0.0f, 0.3f, 0.0f, D_8037D400);
     baphysics_set_target_horizontal_velocity(sp30);
     if(220.0f < sp30)
         func_802929F8();
@@ -101,7 +102,7 @@ void bscrouch_update(void){
         case 0://802ADA64
             if(sp30 != 0.0f)
                 break;
-            func_8029E3C0(2, 2.0f);
+            batimer_set(2, 2.0f);
             D_8037D404 = 1;
             break;
 
@@ -110,8 +111,8 @@ void bscrouch_update(void){
                 func_802AD6D0();
             }
             else{
-                func_8029E1A8(2);
-                if(func_8029E384(2))
+                batimer_decrement(2);
+                if(batimer_isZero(2))
                     func_802AD6FC();
             }
             break; 
@@ -164,7 +165,7 @@ void bscrouch_update(void){
         sp34 = BS_2F_FALL;
 
     sp34 = func_802ADCD4(sp34);
-    if(sp34 == BS_1_IDLE && func_8029E348(1))
+    if(sp34 == BS_1_IDLE && batimer_isNonzero(1))
         sp34 = 0;
 
     if(player_inWater())

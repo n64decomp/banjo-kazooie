@@ -21,6 +21,8 @@
 
 #include "enums.h"
 
+#include "core2/ba/timer.h"
+
 extern f32 fabsf(f32);
 #pragma intrinsic (fabsf)
 
@@ -297,9 +299,6 @@ f32  func_8029DFD4(void);
 void func_8029E090(bool, f32);
 void func_8029E0C4(f32);
 void func_8029E0D0(f32);
-void func_8029E180(s32, f32);
-void func_8029E3C0(s32, f32);
-f32  func_8029E270(s32);
 void func_802BD8A4(f32, f32, f32);
 f32  func_802BD8D4(void);
 void func_802BE244(f32, f32);

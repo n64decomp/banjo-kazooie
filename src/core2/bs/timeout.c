@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
 void func_80292E80(s32, f32);
@@ -60,11 +61,11 @@ void func_802B63F8(void){
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOff();
-    func_8029E3C0(0, 2.9f);
+    batimer_set(0, 2.9f);
 }
 
 void func_802B64D0(void){
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B6F0();
 }
 

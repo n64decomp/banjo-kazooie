@@ -3,6 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 
 extern void player_setYPosition(f32);
@@ -260,21 +261,21 @@ static void __bsdronexform_setState(int next_state){
             func_802AFBAC(0.04f);
             func_802B01B0(0.05f);
             baphysics_set_type(BA_PHYSICS_FREEZE);
-            func_8029E3C0(0, 2.8f);
+            batimer_set(0, 2.8f);
             FUNC_8030E624(SFX_17E_MUMBO_TRANSFORMATION_01, 1.0f, 15000);
             break; 
         
         case 2:// 802B02A8
-            func_8029E3C0(0, 0.5f);
+            batimer_set(0, 0.5f);
             baphysics_set_type(BA_PHYSICS_TRANSFORM);
             break;
 
         case 3:// 802B02C4
-            func_8029E3C0(0, 0.05f);
+            batimer_set(0, 0.05f);
             break;
 
         case 4:// 802B02DC
-            func_8029E3C0(0, 0.8f);
+            batimer_set(0, 0.8f);
             break;
 
         case 5:// 802B02F4
@@ -282,7 +283,7 @@ static void __bsdronexform_setState(int next_state){
             sp24[1] += 30.0f;
             viewport_adjustPointDistance(sp24, 80.0f);
             func_802AFBB8(sp24);
-            func_8029E3C0(0, 0.1f);
+            batimer_set(0, 0.1f);
             break;
 
         case 6: // 802B033C
@@ -296,23 +297,23 @@ static void __bsdronexform_setState(int next_state){
             baModel_updateModel(); //update player model
             func_8029BD44(&sp34, &sp30);
             baanim_playForDuration_loopSmooth(sp34, sp30);
-            func_8029E3C0(0, 0.1f);
+            batimer_set(0, 0.1f);
             break;
 
         case 7: // 802B03E4
-            func_8029E3C0(0, 0.8f);
+            batimer_set(0, 0.8f);
             break;
 
         case 8: // 802B03FC
             if(D_8037D470.room_transformation == TRANSFORM_1_BANJO && D_8037D470.player_transformation == TRANSFORM_1_BANJO){
                 func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
             }
-            func_8029E3C0(0, 1.0f);
+            batimer_set(0, 1.0f);
             break;
 
         case 9:// 802B0438
             D_8037D470.unk1C = 0;
-            func_8029E3C0(0, 0.7f);
+            batimer_set(0, 0.7f);
             baphysics_set_type(BA_PHYSICS_FREEZE);
             break; 
     }
@@ -339,7 +340,7 @@ void bsdronexform_init(void){
 }
 
 f32 func_802B051C(s32 arg0, f32 arg1, f32 arg2, f32 arg3){
-    return ml_map_f(func_8029E270(arg0), arg1, 0.0f, arg2, arg3);
+    return ml_map_f(batimer_get(arg0), arg1, 0.0f, arg2, arg3);
 }
 
 void bsdronexform_update(void){
@@ -350,7 +351,7 @@ void bsdronexform_update(void){
     func_802B01C8();
     switch(D_8037D470.state){
         case 1: 
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             player_setYPosition(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D470.unk2C);
             func_802AFB94(func_802B051C(0, 2.8f, 0.28f, 1.0f));
             func_802AFBA0(func_802B051C(0, 2.8f, 180.0f, 55.0f));
@@ -369,40 +370,40 @@ void bsdronexform_update(void){
             break;
 
         case 2:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             func_802B01B0(func_802B051C(0, 0.5f, 0.4f, 0.6f));
             if(sp24)
                 __bsdronexform_setState(3);
             break;
 
         case 3:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             func_802B01BC(func_802B051C(0, 0.05f, 0.8f, 1.2f));
             if(sp24)
                 __bsdronexform_setState(4);
             break;
 
         case 4:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             func_802B01BC(func_802B051C(0, 0.8f, 1.2f, 0.09f));
             if(sp24)
                 __bsdronexform_setState(5);
             break;
 
         case 5:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             if(sp24)
                 __bsdronexform_setState(6);
             break;
 
         case 6:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             if(sp24)
                 __bsdronexform_setState(7);
             break;
 
         case 7:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             func_802B01BC(func_802B051C(0, 0.8f, 0.09f, 1.0f));
             if(sp24)
                 __bsdronexform_setState(8);
@@ -416,7 +417,7 @@ void bsdronexform_update(void){
                 (s32)func_802B051C(0, 1.0f, 80.0f, 255.0f),
                 (s32)func_802B051C(0, 1.0f, 80.0f, 255.0f)
             );
-            if(func_8029E1A8(0)){
+            if(batimer_decrement(0)){
                 if(player_getTransformation() == TRANSFORM_7_WISHWASHY){
                     bs_setState(0x33);
                 }else{
@@ -426,7 +427,7 @@ void bsdronexform_update(void){
             break;
 
         case 9:
-            sp24 = func_8029E1A8(0);
+            sp24 = batimer_decrement(0);
             player_setYPosition(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D470.unk2C);
             if(sp24)
                 bs_setState(bs_getIdleState());

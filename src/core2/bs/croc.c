@@ -4,6 +4,7 @@
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 int bscroc_inSet(enum bs_e state);
 
@@ -447,7 +448,7 @@ void bscroc_die_init(void){
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    func_8029E3C0(0, 2.9f);
+    batimer_set(0, 2.9f);
     D_8037D3EC = 0;
 }
 
@@ -483,7 +484,7 @@ void bscroc_die_update(void){
             break;
     }//L802ACECC
 
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B890();
 
     bs_setState(next_state);

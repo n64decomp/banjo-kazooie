@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/ba/timer.h"
 #include "core2/statetimer.h"
 
 /* .bss */
@@ -261,7 +262,7 @@ void func_8029D968(void){
     }//L8029DA18
 
     sp24 = func_8029D7B4();
-    func_8029E1A8(4);
+    batimer_decrement(4);
     if(sp24){
         if(map_get() == MAP_8E_GL_FURNACE_FUN){
             if(bs_checkInterrupt(BS_INTR_13)){
@@ -270,8 +271,8 @@ void func_8029D968(void){
         }
         else{//L8029DA6C
         
-            if(func_8029E384(4)){
-                func_8029E3C0(4, 4.0f);
+            if(batimer_isZero(4)){
+                batimer_set(4, 4.0f);
                 if(func_8028F504(0xD)){
                     func_8029D230();
                     rumbleManager_80250D94(1.0f, 0.5f, 0.4f);

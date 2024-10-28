@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 extern f32 func_80296548(void);
 extern f32 func_8029653C(void);
@@ -50,7 +51,7 @@ void func_802B360C(void) {
         sp44[2] /= sp24;
         sp44[1] = sp20;
         baphysics_set_velocity(sp44);
-        func_8029E3C0(6, sp24);
+        batimer_set(6, sp24);
     } else {
         func_802B35D0(0);
         func_80298760(sp1C);
@@ -72,7 +73,7 @@ void func_802B37DC(void) {
     f32 velocity[3];
 
     if (D_8037D500 != 0) {
-        if ((D_8037D500 == 1) && func_8029E1A8(6)) {
+        if ((D_8037D500 == 1) && batimer_decrement(6)) {
             baphysics_get_velocity(velocity);
             velocity[0] = 0.0f;
             velocity[2] = 0.0f;
@@ -103,7 +104,7 @@ void func_802B3868(void) {
     animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     animctrl_start(anim_ctrl, "bsrebound.c", 0xC6);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
-    func_8029E3C0(0, 1.5f);
+    batimer_set(0, 1.5f);
     baMarker_collisionOff();
 }
 
@@ -114,7 +115,7 @@ void func_802B3954(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    if (func_8029E1A8(0) && map_get() == MAP_93_GL_DINGPOT) {
+    if (batimer_decrement(0) && map_get() == MAP_93_GL_DINGPOT) {
         baMarker_collisionOn();
     }
     func_802B37DC();

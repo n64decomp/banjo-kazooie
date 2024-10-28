@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 /* .bss */
 f32 D_8037D410;
@@ -56,7 +57,7 @@ void bsdie_init(void){
     func_8029151C(0xd);
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
-    func_8029E3C0(0,2.9f);
+    batimer_set(0,2.9f);
     D_8037D414 = 0;
     baMarker_collisionOff();
     func_80292E48();
@@ -104,10 +105,10 @@ void bsdie_update(void){
         case 3:
             break;
     }//L802AE218
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B890();
 
-    if( func_8029E270(0) != 0.0f 
+    if( batimer_get(0) != 0.0f 
         && func_80294574() 
         && ( D_8037D414
              || ( animctrl_isStopped(aCtrl) 

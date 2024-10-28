@@ -4,6 +4,7 @@
 #include "core2/yaw.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 void func_80293D48(f32,f32);
 
@@ -401,7 +402,7 @@ void bsant_die_init(void){
     bsant_substate = 0;
     baMarker_collisionOff();
     func_80292E48();
-    func_8029E3C0(0, 2.9f);
+    batimer_set(0, 2.9f);
 }
 
 void bsant_die_update(void){
@@ -433,7 +434,7 @@ void bsant_die_update(void){
             break;
     }
 
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B890();
 
     bs_setState(0);

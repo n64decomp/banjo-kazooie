@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 extern void func_8029AD68(f32, s32);
 
@@ -470,7 +471,7 @@ void bswalrus_die_init(void){
     comusic_playTrack(0x1A);
     baMarker_collisionOff();
     func_80292E48();
-    func_8029E3C0(0, 1.5f);
+    batimer_set(0, 1.5f);
     func_802B8110();
     D_8037D5C8 = 0;
 }
@@ -500,7 +501,7 @@ void bswalrus_die_update(void){
             break;
     }//L802B8FE0
 
-    if(func_8029E1A8(0))
+    if(batimer_decrement(0))
         func_8029B890();
 
     bs_setState(next_state);
@@ -733,7 +734,7 @@ void bswalrus_timeout_init(void) {
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOff();
-    func_8029E3C0(0, 2.9f);
+    batimer_set(0, 2.9f);
     func_802B813C();
     func_80292E48();
 }
@@ -741,7 +742,7 @@ void bswalrus_timeout_init(void) {
 void func_802B9830(void) {
     yaw_setIdeal(func_8029B41C() + 35.0f);
     func_80299628(0);
-    if (func_8029E1A8(0) != 0) {
+    if (batimer_decrement(0) != 0) {
         func_8029B6F0();
     }
 }

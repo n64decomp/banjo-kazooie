@@ -6,6 +6,7 @@
 #include "core2/ba/anim.h"
 
 #include "core2/ba/physics.h"
+#include "core2/ba/timer.h"
 
 f32 func_80294438(void);
 void func_80299B58(f32, f32);
@@ -390,27 +391,27 @@ void bsjump_tumble_init(void){
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     baModel_setYDisplacement(60.0f);
     if(bafalldamage_get_state() == 1){
-        func_8029E3C0(0, 0.5f);
-        func_8029E3C0(1, 0.41f);
+        batimer_set(0, 0.5f);
+        batimer_set(1, 0.41f);
         func_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
     }else{
-        func_8029E3C0(0, 0.0f);
-        func_8029E3C0(1, 0.01f);
+        batimer_set(0, 0.0f);
+        batimer_set(1, 0.01f);
     }
     D_8037D4C0 = 0;
 }
 
 void bsjump_tumble_update(void){
     enum bs_e sp1C = 0;
-    if(func_8029E1A8(1))
+    if(batimer_decrement(1))
         func_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
     
-    func_8029E1A8(0);
+    batimer_decrement(0);
     func_802B6FA8();
-    if(func_8029E384(1)){
+    if(batimer_isZero(1)){
         pitch_setIdeal(pitch_getIdeal() + 20.0f);
     }
-    if(func_8029E348(0)){
+    if(batimer_isNonzero(0)){
         if(should_feathery_flap())
             sp1C = BS_BFLAP;
 

@@ -4,6 +4,7 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/flap.h"
+#include "core2/ba/timer.h"
 
 extern void baModel_setYDisplacement(f32);
 extern f32 func_8029B2D0(void);
@@ -577,7 +578,7 @@ void func_802A48B4(void) {
                 func_8029151C(0xD);
                 ncDynamicCamD_func_802BF2C0(30.0f);
                 func_8029B930();
-                func_8029E3C0(0, 2.5f);
+                batimer_set(0, 2.5f);
                 D_8037D344 = 2;
             }
         } else if (animctrl_isAt(sp18, 0.92f)) {
@@ -601,7 +602,7 @@ void func_802A48B4(void) {
         break;
     case 2:
         func_802A47E0();
-        if (func_8029E1A8(0)) {
+        if (batimer_decrement(0)) {
             func_8029B890();
         }
         break;
