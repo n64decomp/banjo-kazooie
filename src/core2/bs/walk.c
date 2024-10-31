@@ -161,7 +161,7 @@ void bswalk_creep_update(void){
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -234,7 +234,7 @@ void bswalk_slow_upate(void){
     if(func_8028B128())
         next_state = BS_WALK_MUD;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -310,7 +310,7 @@ void bswalk_update(void){
         next_state = BS_SKID;
     }
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())
@@ -385,7 +385,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(18.0f))
                 next_state = BS_1_IDLE;
 
-            if(should_look_first_person_camera())
+            if(bainput_should_look_first_person_camera())
                 next_state = badrone_look();
             
             break;
@@ -394,7 +394,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(bsWalkSlowWalkWalkVelocityThreshold))
                 next_state = BS_2_WALK_SLOW;
 
-            if(should_look_first_person_camera())
+            if(bainput_should_look_first_person_camera())
                 next_state = badrone_look();
 
             break;
@@ -402,7 +402,7 @@ void bswalk_fast_update(void){
             if(baphysics_is_slower_than(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
                 next_state = BS_WALK;
 
-            if(should_look_first_person_camera())
+            if(bainput_should_look_first_person_camera())
                 next_state = badrone_look();
             break;
     }//L802B7AA4
@@ -459,7 +459,7 @@ void bswalk_mud_update(void){
     if(!bastick_getZone())
         next_state = BS_1_IDLE;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(func_8028B094())

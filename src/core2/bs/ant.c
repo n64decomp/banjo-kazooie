@@ -97,7 +97,7 @@ void bsant_idle_update(void){
     if(func_8028B094())
         new_state = BS_38_ANT_FALL;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         new_state = badrone_look();
 
     if(bastick_getZone() > 0)
@@ -309,7 +309,7 @@ static void __bsant_recoil_init(int take_damage){
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     bsant_substate = 0;
 }
 
@@ -317,7 +317,7 @@ static void __bsant_recoil_update(void){
     enum bs_e sp1C = 0;
     
     if(baanim_isAt(0.5f))
-        func_80292EA4();
+        baeyes_open();
 
     switch(bsant_substate){
         case 0:
@@ -340,7 +340,7 @@ static void __bsant_recoil_end(void){
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_8029E4EC();
 }
 
@@ -401,7 +401,7 @@ void bsant_die_init(void){
     func_8029C984();
     bsant_substate = 0;
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     batimer_set(0, 2.9f);
 }
 
@@ -446,7 +446,7 @@ void bsant_die_end(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
-    func_80292EA4();
+    baeyes_open();
 }
 
 void func_8029F398(void){

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_80292E00(s32, f32);
+extern void baeyes_blinkSingleEye(s32, f32);
 
 typedef struct {
     f32 unk0;
@@ -79,7 +79,7 @@ void func_80290108(void) {
 
             phi_f20 = mlAbsF(D_8037C000.unk4);
             phi_s0 = &D_8037C000.unk0[D_8037C000.unk8];
-            func_80292E00(phi_s0->unk4, phi_s0->unk8);
+            baeyes_blinkSingleEye(phi_s0->unk4, phi_s0->unk8);
             phi_s0++;
             if (phi_s0->unk4 == 4) {
                 if (phi_s0->unk0 == 0.0f) {

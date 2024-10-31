@@ -5,7 +5,7 @@
 #include "core2/ba/timer.h"
 
 
-void func_80292E80(s32, f32);
+void baeyes_openSingleEye(s32, f32);
 f32 func_8029B41C(void);
 void ncDynamicCamD_func_802BF2C0(f32);
 
@@ -26,14 +26,14 @@ void func_802B6270(void){
 void func_802B6314(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     if(anctrl_isAt(aCtrl, 0.0625f))
-        func_80292E48();
+        baeyes_close();
 
     if(anctrl_isAt(aCtrl, 0.18f))
         FUNC_8030E624(SFX_3EB_UNKNOWN, 1.0f, 18000);
 
     if(anctrl_isAt(aCtrl, 0.8421f)){
-        func_80292E80(0, 0.3f);
-        func_80292E80(1, 0.3f);
+        baeyes_openSingleEye(0, 0.3f);
+        baeyes_openSingleEye(1, 0.3f);
     }
 
     if(anctrl_isAt(aCtrl, 0.84f))
@@ -41,7 +41,7 @@ void func_802B6314(void){
 }
 
 void func_802B63C8(void){
-    func_80292EA4();
+    baeyes_open();
     func_80291548();
     core1_ce60_incOrDecCounter(TRUE);
 }

@@ -146,7 +146,7 @@ void bsbfly_enter_init(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     baphysics_set_gravity(-1200.0f);
     func_8029E070(1);
-    func_80299BD4();
+    basfx_80299BD4();
     D_8037D344 = 0;
     D_8037D346 = 0;
 }
@@ -287,7 +287,7 @@ void bsbfly_update(void){
     baphysics_set_target_yaw(yaw_get());
     baphysics_set_target_horizontal_velocity(sp38);
 
-    if(should_beak_bust())
+    if(bainput_should_beak_bust())
         sp54 = BS_F_BBUSTER;
 
     D_8037D320 = ml_max_f(D_8037D320 - time_getDelta(), 0.0f);
@@ -382,7 +382,7 @@ void func_802A411C(void) {
             func_802914CC(5);
             ncDynamicCam5_func_802BF590(&D_8037D338);
             anctrl_setDuration(sp58, 0.05f);
-            func_80299CF4(SFX_50_KAZOOIE_RRRUH, 1.3f, 0x7FFF);
+            basfx_80299CF4(SFX_50_KAZOOIE_RRRUH, 1.3f, 0x7FFF);
             D_8037D345 = 1;
             D_8037D324 = 0.0f;
             D_8037D344 = 1;
@@ -441,7 +441,7 @@ void func_802A411C(void) {
 }
 
 void func_802A4404(void){
-    func_80299E6C();
+    basfx_80299E6C();
     D_8037D345 = 0;
     func_802A34C8();
 }
@@ -466,8 +466,8 @@ void func_802A4430(void){
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
     baModel_setYDisplacement(0.0f);
-    func_80299CF4(SFX_31_BANJO_OHHWAAOOO, 1.0f, 0x7fff);
-    func_80299D2C(SFX_61_CARTOONY_FALL, 1.0f, 0x7fff);
+    basfx_80299CF4(SFX_31_BANJO_OHHWAAOOO, 1.0f, 0x7fff);
+    basfx_80299D2C(SFX_61_CARTOONY_FALL, 1.0f, 0x7fff);
     D_8037D320 = 0.35f;
     D_8037D344 = 0;
 }
@@ -491,10 +491,10 @@ void func_802A4548(void){
         D_8037D346 = 1;
         next_state = BS_24_FLY;
     }
-    if(should_peck())
+    if(bainput_should_peck())
         next_state = BS_11_BPECK;
 
-    if(should_beak_bust())
+    if(bainput_should_beak_bust())
         next_state = BS_F_BBUSTER;
 
     if(player_isStable()){
@@ -510,8 +510,8 @@ void func_802A4548(void){
 
 void func_802A4664(void){
     s32 next_state;
-    func_80299E6C();
-    func_80299E90();
+    basfx_80299E6C();
+    basfx_80299E90();
     next_state = bs_getNextState();
     if(next_state == BS_20_LANDING || next_state == BS_24_FLY || next_state == BS_2D_SWIM_IDLE){
         sfxsource_playHighPriority(SFX_3EA_UNKNOWN);
@@ -534,7 +534,7 @@ void bsbfly_beakbomb_crash_init(void) {
     func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
     func_8029E070(1);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
-    func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
+    basfx_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
     baMotor_80250D94(1.0f, 0.5f, 0.5f);
     item_dec(ITEM_14_HEALTH);
     func_802A46C8();
@@ -548,11 +548,11 @@ void func_802A47E0(void) {
     sp1C = baanim_getAnimCtrlPtr();
     if (anctrl_isAt(sp1C, 0.3659f)) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 14000);
-        func_80299CF4(SFX_8B_KAZOOIE_RAWW, 1.0f, 28000);
+        basfx_80299CF4(SFX_8B_KAZOOIE_RAWW, 1.0f, 28000);
     }
     if (anctrl_isAt(sp1C, 0.6862f)) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
-        func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 22000);
+        basfx_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 22000);
     }
     if (anctrl_isAt(sp1C, 0.92f)) {
         baphysics_set_target_horizontal_velocity(0.0f);
@@ -588,7 +588,7 @@ void func_802A48B4(void) {
         break;
     case 1:
         if (anctrl_isAt(sp18, 0.219f)) {
-            func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 16000);
+            basfx_80299CF4(SFX_36_BANJO_DOH, 1.0f, 16000);
         }
         if (anctrl_isAt(sp18, 0.63f)) {
             next_state = BS_20_LANDING;
@@ -635,7 +635,7 @@ void func_802A4A78(s32 arg0) {
     }
     func_802BB3DC(2, 100.0f, 0.85f);
     baanim_playForDuration_onceSmooth(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
-    func_80299BFC(1.0f);
+    basfx_playOwSfx(1.0f);
     baMotor_80250D94(1.0f, 0.5f, 0.5f);
     _player_getPosition(sp3C);
     func_80294980(sp30);
@@ -815,7 +815,7 @@ void func_802A5120(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     baphysics_set_velocity(0);
     baphysics_set_vertical_velocity(2000.0f);
-    func_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
+    basfx_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
 }
 
 void func_802A5190(void){

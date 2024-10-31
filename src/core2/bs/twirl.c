@@ -32,7 +32,7 @@ void bstwirl_init(void){
     baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
     D_8037D5A0 = baphysics_get_target_horizontal_velocity();
     baphysics_set_target_horizontal_velocity(600.0f);
-    func_80299CF4(SFX_32_BANJO_EGHEE, 1.0f, 0x6590);
+    basfx_80299CF4(SFX_32_BANJO_EGHEE, 1.0f, 0x6590);
     _bstwirlHitboxActive = TRUE;
     batimer_set(0, 0.01f);
     D_8037D5A4 = 0;

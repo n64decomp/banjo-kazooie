@@ -33,7 +33,7 @@ void bsbshock_charge_init(void){
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     func_8029E064(1);
     func_8029E070(1);
-    func_80299BD4();
+    basfx_80299BD4();
     D_8037D382 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(D_8037D382, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D382, 1.4f, 0.4f, -1.2f);
@@ -95,10 +95,10 @@ void bsbshock_charge_update(void){
             baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{//L802A6D18
-        if(should_feathery_flap())
+        if(bainput_should_feathery_flap())
             sp2C = BS_BFLAP;
         
-        if(should_beak_bust())
+        if(bainput_should_beak_bust())
             sp2C = BS_F_BBUSTER;
     }//L802A6D44
     if(anctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
@@ -177,10 +177,10 @@ void bsbshock_update(void){
         if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_feathery_flap())
+        if(bainput_should_feathery_flap())
             sp2C = BS_BFLAP;
 
-        if(should_beak_bust())
+        if(bainput_should_beak_bust())
             sp2C =BS_F_BBUSTER;
     }
 

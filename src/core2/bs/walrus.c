@@ -162,7 +162,7 @@ void bswalrus_idle_update(void){
     if(func_8028B094())
         next_state = BS_6A_WALRUS_FALL;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(bastick_getZone() > 0)
@@ -390,14 +390,14 @@ static void __bswalrus_recoil_init(s32 damage){
     baphysics_set_vertical_velocity(func_802987C4());
     baphysics_set_gravity(func_802987E4());
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     func_802B8110();
 }
 
 static void __bswalrus_recoil_update(void){
     enum bs_e next_state = 0;
     if(baanim_isAt(0.5f))
-        func_80292EA4();
+        baeyes_open();
     
     if(player_isStable())
         next_state = BS_67_WALRUS_IDLE;
@@ -408,7 +408,7 @@ static void __bswalrus_recoil_update(void){
 static void __bswalrus_recoil_end(void){
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802B8048();
 }
 
@@ -470,7 +470,7 @@ void bswalrus_die_init(void){
     func_8025A2FC(0, 0xfa0);
     comusic_playTrack(0x1A);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     batimer_set(0, 1.5f);
     func_802B8110();
     D_8037D5C8 = 0;
@@ -513,7 +513,7 @@ void bswalrus_die_end(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
-    func_80292EA4();
+    baeyes_open();
 }
 
 void bswalrus_drone_init(void){
@@ -578,7 +578,7 @@ void bswalrus_sled_update(void){
 
     func_80299628(0);
     func_802B7F28();
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(bakey_pressed(BUTTON_A))
@@ -736,7 +736,7 @@ void bswalrus_timeout_init(void) {
     baMarker_collisionOff();
     batimer_set(0, 2.9f);
     func_802B813C();
-    func_80292E48();
+    baeyes_close();
 }
 
 void func_802B9830(void) {
@@ -751,7 +751,7 @@ void func_802B9880(void) {
     func_80291548();
     core1_ce60_incOrDecCounter(TRUE);
     func_8025A904();
-    func_80292EA4();
+    baeyes_open();
     func_802B80D0();
 }
 

@@ -17,7 +17,7 @@ u8  D_8037C03E;
 void func_802903E0(void){
     if(D_8037C030 == 0.0f){
         D_8037C030 = 0.09f;
-        func_80299D2C(0x3ED, randf2(0.5f, 0.7f), 6000);
+        basfx_80299D2C(0x3ED, randf2(0.5f, 0.7f), 6000);
     }
 }
 

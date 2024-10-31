@@ -19,7 +19,7 @@ void bsegghead_init(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029E070(1);
     D_8037D2F0 = (D_8037D2F1 = 1);
-    func_802952A8(2,0);
+    bainput_enable(2,0);
 }
 
 void bsegghead_update(void) {
@@ -33,7 +33,7 @@ void bsegghead_update(void) {
     next_state = 0;
     aCtrl = baanim_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
-    if (should_shoot_egg()) {
+    if (bainput_should_shoot_egg()) {
         if (has_eggs)
             D_8037D2F0 = ml_min_w(D_8037D2F0 + 1, 3);
         else 
@@ -69,7 +69,7 @@ void bsegghead_update(void) {
 }
 
 void bsegghead_end(void){
-    func_802952A8(2, 1);
+    bainput_enable(2, 1);
     baphysics_reset_gravity();
     func_8029E070(0);
 }

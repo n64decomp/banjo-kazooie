@@ -34,7 +34,7 @@ void bssplat_init(void){
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
         baMotor_80250D94(1.0f, 0.5f, 0.4f);
     }
-    func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 28000);
+    basfx_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 28000);
     func_802B4570();
     func_802BB3DC(0, 45.0f, 0.71f);
     if(item_getCount(ITEM_14_HEALTH) == 0)

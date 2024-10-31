@@ -92,7 +92,7 @@ void bspumpkin_idle_update(void) {
     if (func_8028B094()) {
         next_state = BS_4B_PUMPKIN_FALL;
     }
-    if (should_look_first_person_camera()) {
+    if (bainput_should_look_first_person_camera()) {
         next_state = badrone_look();
     }
     if (bastick_getZone() > 0) {
@@ -187,7 +187,7 @@ void bspumpkin_jump_update(void) {
     case 0:
         if (baphysics_get_vertical_velocity() < 0.0f) {
             if (func_8028B254(130)) {
-                func_80292E48();
+                baeyes_close();
                 anctrl_setDuration(anim_ctrl, 0.7f);
                 anctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
                 anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
@@ -201,7 +201,7 @@ void bspumpkin_jump_update(void) {
         break;
     case 1:
         if (func_8028B254(130)) {
-            func_80292E48();
+            baeyes_close();
             anctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
             anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             D_8037D4E0 = 2;
@@ -218,7 +218,7 @@ void bspumpkin_jump_update(void) {
         break;
     case 3:
         if (anctrl_isStopped(anim_ctrl)) {
-            func_80292EA4();
+            baeyes_open();
             baphysics_set_target_horizontal_velocity(0.0f);
             next_state = BS_48_PUMPKIN_IDLE;
         }
@@ -236,7 +236,7 @@ void bspumpkin_jump_update(void) {
 }
 
 void bspumpkin_jump_end(void){
-    func_80292EA4();
+    baeyes_open();
     baphysics_reset_gravity();
     func_802B229C();
 }
@@ -365,7 +365,7 @@ void __bspumpkin_bounce_init(s32 arg0) {
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     D_8037D4E0 = 0;
 }
 
@@ -374,7 +374,7 @@ void __bspumpkin_bounce_update(void) {
 
     next_state = 0;
     if (baanim_isAt(0.61f)) {
-        func_80292EA4();
+        baeyes_open();
     }
     switch (D_8037D4E0) {
     case 0:
@@ -397,7 +397,7 @@ void __bspumpkin_bounce_end(void) {
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802B229C();
 }
 
@@ -458,7 +458,7 @@ void bspumpkin_die_init(void) {
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     batimer_set(1, 2.9f);
     D_8037D4E0 = 0;
 }
@@ -528,7 +528,7 @@ void bspumpkin_die_end(void) {
     baphysics_reset_gravity();
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
-    func_80292EA4();
+    baeyes_open();
     func_80291548();
 }
 

@@ -60,7 +60,7 @@ void bsdie_init(void){
     batimer_set(0,2.9f);
     D_8037D414 = 0;
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
 }
 
 void bsdie_update(void){
@@ -74,7 +74,7 @@ void bsdie_update(void){
                 anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
                 anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 baphysics_set_vertical_velocity(400.0f);
-                func_80299DB8();
+                basfx_80299DB8();
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.0f, 18000);
                 baMotor_80250D94(1.0f, 1.0f, 0.4f);
                 _bsdie_802ADE20();
@@ -83,7 +83,7 @@ void bsdie_update(void){
             break;
         case 1://L802AE134
             if(_bsdie_802ADE00()){
-                func_80299E00();
+                basfx_80299E00();
                 FUNC_8030E624(SFX_38_BANJO_AYE_1, 1.0f, 18000);
                 baMotor_80250D94(1.0f, 0.5f, 0.4f);
                 D_8037D414 = 2;
@@ -131,5 +131,5 @@ void bsdie_end(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
-    func_80292EA4();
+    baeyes_open();
 }

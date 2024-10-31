@@ -530,13 +530,13 @@ segments:
   # - [0xF60FB0, c, ba/drone] #DONE
   # - [0xF611B0, c, code_B850] #DONE
   # - [0xF614B0, c, eggshatter] #DONE
-  # - [0xF61680, c, code_BD20] #DONE
+  # - [0xF61680, c, baeyes] #DONE
   # - [0xF61A40, c, ba/falldamage] #DONE
   # - [0xF61D50, c, code_C3F0] #DONE
   # - [0xF61E10, c, code_C4B0]
   # - [0xF63160, c, ba/carry] #DONE
   # - [0xF63310, c, code_D9B0] #DONE
-  # - [0xF638D0, c, code_DF70] #DONE
+  # - [0xF638D0, c, bainput] #DONE
   # - [0xF63D70, c, bakey] #DONE
   # - [0xF63FE0, c, abilityprogress] #DONE
   # - [0xF64270, c, code_E910] #DONE
@@ -554,7 +554,7 @@ segments:
   # - [0xF674A0, c, roll]       #DONE
   # - [0xF67740, c, yaw]        #DONE
   # - [0xF67CC0, c, code_12360] #DONE
-  # - [0xF68020, c, code_126C0] #DONE
+  # - [0xF68020, c, basfx] #DONE
   # - [0xF68890, c, code_12F30]
   # - [0xF68FD0, c, bsList]     #DONE
   # - [0xF690E0, c, code_13780] #DONE
@@ -914,7 +914,7 @@ segments:
   # - [0x10321F0, .data, code_E910]
   # - [0x1032E10, .data, ba/physics]
   # - [0x1032E20, .data, code_117D0]
-  # - [0x1032F30, .data, code_126C0]
+  # - [0x1032F30, .data, basfx]
   # - [0x1032F50, .data, code_12F30]
   # - [0x1032FF0, .data, code_14420]
   # - [0x1033330, .data, bs/ant]
@@ -1137,7 +1137,7 @@ segments:
   # - [0x1043010, .rodata, ba/model]
   # - [0x10430C0, .rodata, ba/drone]
   # - [0x10430D0, .rodata, code_B850]
-  # - [0x10430F0, .rodata, code_BD20]
+  # - [0x10430F0, .rodata, baeyes]
   # - [0x1043110, .rodata, ba/falldamage]
   # - [0x1043130, .rodata, code_C4B0]
   # - [0x1043170, .rodata, code_D9B0]
@@ -1153,7 +1153,7 @@ segments:
   # - [0x10435E0, .rodata, roll]
   # - [0x1043600, .rodata, yaw]
   # - [0x1043660, .rodata, code_12360]
-  # - [0x1043690, .rodata, code_126C0]
+  # - [0x1043690, .rodata, basfx]
   # - [0x10436C0, .rodata, code_12F30]
   # - [0x10436E0, .rodata, bastick]
   # - [0x10436F0, .rodata, code_14420]
@@ -1394,13 +1394,13 @@ segments:
   # - [0x0106C980, .bss, ba/model]
   # - [0x0106C980, .bss, ba/drone]
   # - [0x0106C980, .bss, eggshatter]
-  # - [0x0106C980, .bss, code_BD20]
+  # - [0x0106C980, .bss, baeyes]
   # - [0x0106C980, .bss, ba/falldamage]
   # - [0x0106C980, .bss, code_C3F0]
   # - [0x0106C980, .bss, code_C4B0]
   # - [0x0106C980, .bss, ba/carry]
   # - [0x0106C980, .bss, code_D9B0]
-  # - [0x0106C980, .bss, code_DF70]
+  # - [0x0106C980, .bss, bainput]
   # - [0x0106C980, .bss, bakey]
   # - [0x0106C980, .bss, abilityprogress]
   # - [0x0106C980, .bss, code_E910]
@@ -1418,7 +1418,7 @@ segments:
   # - [0x0106C980, .bss, roll]
   # - [0x0106C980, .bss, yaw]
   # - [0x0106C980, .bss, code_12360]
-  # - [0x0106C980, .bss, code_126C0]
+  # - [0x0106C980, .bss, basfx]
   # - [0x0106C980, .bss, code_12F30]
   # - [0x0106C980, .bss, bsList]
   # - [0x0106C980, .bss, code_13780]

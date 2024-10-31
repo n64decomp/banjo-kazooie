@@ -72,7 +72,7 @@ void func_802A10D4(void){
     if(func_8028B094())
         s0 = 0x88;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         s0 = badrone_look();
     
     if(bastick_getZone() > 0)
@@ -330,7 +330,7 @@ void func_802A18E8(s32 arg0){
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     D_8037D2D4 = 0;
 }
 
@@ -339,7 +339,7 @@ void func_802A1A50(void){
 
     sp1C= 0;
     if(baanim_isAt(0.5f)){
-        func_80292EA4();
+        baeyes_open();
     }
     switch(D_8037D2D4){
         case 0:
@@ -363,7 +363,7 @@ void func_802A1B28(void){
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802A02C0();
 }
 
@@ -421,7 +421,7 @@ void bsbeemain_die_init(void){
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     func_802914CC(0xd);
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
@@ -471,7 +471,7 @@ void func_802A1F2C(void){
     core1_ce60_incOrDecCounter(FALSE);
     baphysics_reset_gravity();
     func_80291548();
-    func_80292EA4();
+    baeyes_open();
     func_802A02C0();
 }
 

@@ -835,10 +835,10 @@ s32 func_8029C9C0(s32 arg0){
     if(bakey_pressed(BUTTON_B) && can_claw())
         arg0 = BS_CLAW;
 
-    if(bakey_held(BUTTON_Z) && should_beak_barge())
+    if(bakey_held(BUTTON_Z) && bainput_should_beak_barge())
         arg0 = BS_BBARGE;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         arg0 = badrone_look();
     
     if(player_isSliding())

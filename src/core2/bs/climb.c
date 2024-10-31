@@ -148,17 +148,17 @@ void bsclimb_move_update(void){
         || map == MAP_31_RBB_RUSTY_BUCKET_BAY
     ){
         if(baanim_isAt(0.25f))
-            func_80299D2C(SFX_D2_QUIET_METALLIC, 1.1f, 32000);
+            basfx_80299D2C(SFX_D2_QUIET_METALLIC, 1.1f, 32000);
         
         if(baanim_isAt(0.75f))
-            func_80299D2C(SFX_D2_QUIET_METALLIC, 1.2f, 32000);
+            basfx_80299D2C(SFX_D2_QUIET_METALLIC, 1.2f, 32000);
     }
     else{//L802ABB34
         if(baanim_isAt(0.25f))
-            func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.77f, 22000);
+            basfx_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.77f, 22000);
 
         if(baanim_isAt(0.75f))
-            func_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.87f, 22000);
+            basfx_80299D2C(SFX_D3_JINXIE_SNIFFLING_1, 0.87f, 22000);
     }//L802ABB84
 
     if(!func_802AB788() && baphysics_get_vertical_velocity() < 30.0f)

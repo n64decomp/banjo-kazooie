@@ -112,7 +112,7 @@ void func_802A8A40(void){
 }
 
 void func_802A8AD8(void){
-    func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), stateTimer_get(STATE_TIMER_3_TURBO_TALON));
+    basfx_updateClockSfxSource(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), stateTimer_get(STATE_TIMER_3_TURBO_TALON));
     if(miscFlag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) &&(bs_getState() != BS_17_BTROT_EXIT)){
         miscFlag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
@@ -190,7 +190,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
     if( bastick_getZone(arg0) > 0)
         arg0 = BS_16_BTROT_WALK;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         arg0 = badrone_look();
 
     if(func_8028B094())
@@ -217,14 +217,14 @@ void bsbtrot_enter_init(void){
     func_8029C7F4(1,1,2, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
-    func_80299BD4();
-    func_802952A8(0,0);
+    basfx_80299BD4();
+    bainput_enable(0,0);
 }
 
 void bsbtrot_enter_update(void){
     enum bs_e next_state = 0;
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    func_802952A8(0,1);
+    bainput_enable(0,1);
     func_80299628(1);
     if(anctrl_isStopped(aCtrl))
         next_state = BS_15_BTROT_IDLE;
@@ -237,7 +237,7 @@ void bsbtrot_enter_update(void){
 }
 
 void bsbtrot_enter_end(void){
-    func_802952A8(0,1);
+    bainput_enable(0,1);
     func_802A8BB0();
 }
 
@@ -413,13 +413,13 @@ void bsbtrot_jump_update(void){
                 func_8029957C(1);
                 D_8037D3A4 = 3;
                 if(220.0f < baphysics_get_target_horizontal_velocity())
-                    func_80299AAC();
+                    basfx_80299AAC();
                 func_8029C22C();
             }
             break;
         case 3://L802A9660
             if(220.0f < baphysics_get_target_horizontal_velocity())
-                func_80299AAC();
+                basfx_80299AAC();
             func_802A9320();
             func_80299628(1);
             if(anctrl_isStopped(aCtrl)){
@@ -432,7 +432,7 @@ void bsbtrot_jump_update(void){
             break;
         case 4://L802A96F0
             if(220.0f < baphysics_get_target_horizontal_velocity())
-                func_80299AAC();
+                basfx_80299AAC();
             
             func_802A9320();
             func_80299628(1);
@@ -446,7 +446,7 @@ void bsbtrot_jump_update(void){
             break;
         case 5://L802A9780
             if(220.0f < baphysics_get_target_horizontal_velocity())
-                func_80299AAC();
+                basfx_80299AAC();
             func_802A9320();
             func_80299628(1);
             if(anctrl_isStopped(aCtrl))
@@ -454,7 +454,7 @@ void bsbtrot_jump_update(void){
             break;
     }//LL802A97D0
 
-    if(should_peck())
+    if(bainput_should_peck())
         sp2C = BS_11_BPECK;
 
     if(player_isFallTumbling())
@@ -513,7 +513,7 @@ void bsbtrot_slide_init(void){
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D3A0 = 1.0f;
 }
 
@@ -525,7 +525,7 @@ void bsbtrot_slide_update(void){
     func_802A8AD8();
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         func_802A87C0();
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D3A0 = ml_max_f(D_8037D3A0-time_getDelta(), 0.0f);
     if(player_shouldSlideTrot()){
         func_80294480(sp30);
@@ -612,7 +612,7 @@ void bsbtrot_fall_update(void){
             anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             func_8029957C(1);
             if(220.0f < baphysics_get_target_horizontal_velocity()){
-                func_80299AAC();
+                basfx_80299AAC();
             }
             func_8029C22C();
             D_8037D3A4 = 2;
@@ -620,7 +620,7 @@ void bsbtrot_fall_update(void){
         break;
     case 2://L802A9E78
         if(220.0f < baphysics_get_target_horizontal_velocity())
-            func_80299AAC();
+            basfx_80299AAC();
         
         func_802A9320();
         func_80299628(1);
@@ -634,7 +634,7 @@ void bsbtrot_fall_update(void){
         break;
     case 3://L802A9F08
         if(220.0f < baphysics_get_target_horizontal_velocity())
-            func_80299AAC();
+            basfx_80299AAC();
 
         func_802A9320();
         func_80299628(1);
@@ -648,7 +648,7 @@ void bsbtrot_fall_update(void){
         break;
     case 4://802A9F98
         if(220.0f < baphysics_get_target_horizontal_velocity())
-            func_80299AAC();
+            basfx_80299AAC();
         
         func_802A9320();
         func_80299628(1);
@@ -710,7 +710,7 @@ void bsbtrot_ow_init(void){
     func_802A8A40();
     func_80298760(func_80296560());
     baanim_playForDuration_onceSmooth(ASSET_66_ANIM_BSBTROT_OW, 1.1f);
-    func_80299BFC(1.0f);
+    basfx_playOwSfx(1.0f);
     _player_getPosition(sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
@@ -725,7 +725,7 @@ void bsbtrot_ow_init(void){
     baphysics_set_vertical_velocity(func_802987C4());
     baphysics_set_gravity(func_802987E4());
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
 }
 
 void bsbtrot_ow_update(void){
@@ -734,7 +734,7 @@ void bsbtrot_ow_update(void){
         func_802B6FA8();
 
     if(baanim_isAt(0.3f))
-        func_80292EA4();
+        baeyes_open();
 
     if(player_isFallTumbling())
         sp1C = BS_3D_FALL_TUMBLING;
@@ -752,7 +752,7 @@ void bsbtrot_ow_end(void){
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802A8BB0();
 }
 

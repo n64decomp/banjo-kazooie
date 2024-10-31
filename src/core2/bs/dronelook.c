@@ -16,7 +16,7 @@ void bsDroneLook_init(void) {
     f32 eye_rotation[3];
     enum asset_e anim_id;
 
-    func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.2f, 12000);
+    basfx_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.2f, 12000);
     func_8029BCF8(&anim_id, &anim_duration);
     baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
@@ -76,7 +76,7 @@ void bsDroneLook_update(void) {
 
 void bsDroneLook_end(void) {
     if (func_80298850() == 0) {
-        func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
+        basfx_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
     ncDynamicCamera_exitFirstPerson();
     miscFlag_clear(MISC_FLAG_17_FIRST_PERSON_VIEW);

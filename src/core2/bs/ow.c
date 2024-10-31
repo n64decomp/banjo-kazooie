@@ -22,10 +22,10 @@ void bsow_init(void){
     anctrl_setDuration(plyr_mvmnt, 1.70000004768f);
     anctrl_setPlaybackType(plyr_mvmnt,  ANIMCTRL_ONCE);
     anctrl_start(plyr_mvmnt, "bsow.c", 0x50);
-    func_80299BFC(1.0f);
+    basfx_playOwSfx(1.0f);
     func_802B360C();
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     D_8037D4D0 = 0;
     func_802B1FD0(1);
 }
@@ -48,7 +48,7 @@ void bsow_update(void) {
     }
 
     if (baanim_isAt(0.3f) != 0) {
-        func_80292EA4();
+        baeyes_open();
     }
     if (player_isFallTumbling() != 0) {
         sp1C = BS_3D_FALL_TUMBLING;
@@ -69,5 +69,5 @@ void bsow_end(void){
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
 }

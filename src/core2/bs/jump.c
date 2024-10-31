@@ -9,7 +9,7 @@
 #include "core2/ba/timer.h"
 
 f32 func_80294438(void);
-void func_80299B58(f32, f32);
+void basfx_playJumpSfx(f32, f32);
 f32 bastick_distance(void);
 f32 bastick_getAngleRelativeToBanjo(void);
 void baanim_playForDuration_loop(s32, f32);
@@ -29,7 +29,7 @@ u8 D_8037D4C2;
 
 /* .code */
 void func_802B1100(void){
-    func_80299B58(0.91f, 1.09f);
+    basfx_playJumpSfx(0.91f, 1.09f);
 }
 
 void bsjump_init(void){
@@ -141,13 +141,13 @@ void bsjump_update(void){
     if(bakey_released(BUTTON_A))
         D_8037D4C2 = 0;
 
-    if(should_feathery_flap())
+    if(bainput_should_feathery_flap())
         sp34 = BS_BFLAP;
 
-    if(should_peck())
+    if(bainput_should_peck())
         sp34 = BS_11_BPECK;
 
-    if(should_beak_bust())
+    if(bainput_should_beak_bust())
         sp34 = BS_F_BBUSTER;
 
     if(player_isStable()){
@@ -218,13 +218,13 @@ void bsjump_fall_update(void){
         if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(should_feathery_flap() && miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED))
+        if(bainput_should_feathery_flap() && miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED))
             sp2C = BS_BFLAP;
 
-        if(should_peck())
+        if(bainput_should_peck())
             sp2C = BS_11_BPECK;
         
-        if(should_beak_bust())
+        if(bainput_should_beak_bust())
             sp2C = BS_F_BBUSTER;
         
         if(player_inWater())
@@ -393,7 +393,7 @@ void bsjump_tumble_init(void){
     if(bafalldamage_get_state() == 1){
         batimer_set(0, 0.5f);
         batimer_set(1, 0.41f);
-        func_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
+        basfx_80299CF4(SFX_52_BANJO_YAH_OH, 1.0f, 22000);
     }else{
         batimer_set(0, 0.0f);
         batimer_set(1, 0.01f);
@@ -404,7 +404,7 @@ void bsjump_tumble_init(void){
 void bsjump_tumble_update(void){
     enum bs_e sp1C = 0;
     if(batimer_decrement(1))
-        func_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
+        basfx_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
     
     batimer_decrement(0);
     func_802B6FA8();
@@ -412,13 +412,13 @@ void bsjump_tumble_update(void){
         pitch_setIdeal(pitch_getIdeal() + 20.0f);
     }
     if(batimer_isNonzero(0)){
-        if(should_feathery_flap())
+        if(bainput_should_feathery_flap())
             sp1C = BS_BFLAP;
 
-        if(should_peck())
+        if(bainput_should_peck())
             sp1C = BS_11_BPECK;
 
-        if(should_beak_bust())
+        if(bainput_should_beak_bust())
             sp1C = BS_F_BBUSTER;
     }//L802B1F2C
 
@@ -441,5 +441,5 @@ void bsjump_tumble_end(void){
     }
     func_8029CB84();
     baModel_setYDisplacement(0.0f);
-    func_80299E6C();
+    basfx_80299E6C();
 }

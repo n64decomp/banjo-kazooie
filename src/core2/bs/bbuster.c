@@ -91,7 +91,7 @@ void bsbbuster_update(void){
 
     D_8037D2B8 = 0;
     if(anctrl_isAt(aCtrl, 0.24f))
-        func_80299BD4();
+        basfx_80299BD4();
 
     switch(D_8037D2BA){
         case 0://8029FDF0

@@ -28,7 +28,7 @@ void func_8029D01C(void){
 }
 
 void func_8029D050(void){
-    func_80299E48();
+    basfx_80299E48();
     func_8030E394(D_8037D210);
     sfxsource_setSfxId(D_8037D210, SFX_14D_BANJO_FREEZING);
     sfxsource_setSampleRate(D_8037D210, 30000);

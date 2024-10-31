@@ -70,7 +70,7 @@ void bscrouch_init(void){
     baphysics_get_velocity(sp28);
     D_8037D400 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     if(140.0f < D_8037D400)
-        func_80299AAC();
+        basfx_80299AAC();
 
     if(func_8025801C(sp28, &sp20))
         baphysics_set_target_yaw(sp20);
@@ -94,7 +94,7 @@ void bscrouch_update(void){
     if(220.0f < sp30)
         func_802929F8();
     if(160.0f < sp30)
-        func_80299AAC();
+        basfx_80299AAC();
     sp20 = yaw_getIdeal();
     temp_f2 = mlAbsF(mlDiffDegF(sp20, yaw_get()));
     
@@ -187,22 +187,22 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
             arg0 = bs_getTypeOfJump();
 
     }else{
-        if(should_wonderwing())
+        if(bainput_should_wonderwing())
             func_80346C10(&arg0, -1, BS_1A_WONDERWING_ENTER, ITEM_10_GOLD_FEATHER, 1);
 
-        if(should_trot())
+        if(bainput_should_trot())
             arg0 = BS_14_BTROT_ENTER;
 
-        if(should_poop_egg())
+        if(bainput_should_poop_egg())
             func_80346C10(&arg0, -1, BS_A_EGG_ASS, ITEM_D_EGGS, 0);
 
-        if(should_shoot_egg())
+        if(bainput_should_shoot_egg())
             func_80346C10(&arg0, -1, BS_9_EGG_HEAD, ITEM_D_EGGS, 0);
 
-        if(should_flap_flip())
+        if(bainput_should_flap_flip())
             arg0 = BS_12_BFLIP;
 
-        if(should_beak_barge())
+        if(bainput_should_beak_barge())
             arg0 = BS_BBARGE;
 
 

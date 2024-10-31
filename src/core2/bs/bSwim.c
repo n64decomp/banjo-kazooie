@@ -126,7 +126,7 @@ void func_802A7674() {
     func_802A71D8();
     func_802A7304();
     
-    if (should_look_first_person_camera()) {
+    if (bainput_should_look_first_person_camera()) {
         state_id = badrone_look();
     }
     if (bakey_held(BUTTON_A)) {
@@ -286,7 +286,7 @@ void func_802A7BD0(void) {
 
     func_80298760(func_80296560());
     baanim_playForDuration_onceSmooth(0x1A0, 1.4f);
-    func_80299BFC(1.0f);
+    basfx_playOwSfx(1.0f);
     _player_getPosition(sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
@@ -297,7 +297,7 @@ void func_802A7BD0(void) {
     baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
     func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     func_802A744C();
 }
 
@@ -313,7 +313,7 @@ void func_802A7CA8(void) {
     particleEmitter_setParticleVelocityRange(p_ctrl, -60.0f, -50.0f, -60.0f, 60.0f, 100.0f, 60.0f);
     particleEmitter_emitN(p_ctrl, 1);
     if (baanim_isAt(0.3f)) {
-        func_80292EA4();
+        baeyes_open();
     }
     if (anctrl_isStopped(baanim_getAnimCtrlPtr())) {
         next_state = BS_2B_DIVE_IDLE;
@@ -325,7 +325,7 @@ void func_802A7CA8(void) {
 void func_802A7D74(void) {
     func_80297CA8();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802A75B0();
 }
 
@@ -337,7 +337,7 @@ void bsSwim_dive_init(void) {
     baphysics_set_target_velocity(0);
     func_802A744C();
     pitch_setAngVel(200.0f, 2.5f);
-    func_80299BD4();
+    basfx_80299BD4();
     D_8037D396 = 0;
 }
 
@@ -405,7 +405,7 @@ void func_802A7F6C(void) {
     batimer_set(0, 0.0f);
     batimer_set(1, 0.0f);
     func_802906A4(3);
-    func_80299CF4(SFX_CA_BANJO_DROWNING_1, 1.0f, 24000);
+    basfx_80299CF4(SFX_CA_BANJO_DROWNING_1, 1.0f, 24000);
 }
 
 void func_802A8098(void) {
@@ -423,7 +423,7 @@ void func_802A8098(void) {
         || batimer_isAt(1, 0.8f) 
         || batimer_isAt(1, 1.4f)
     ) {
-        func_80299CF4(SFX_CB_BANJO_DROWNING_2, 1.0f, 24000);
+        basfx_80299CF4(SFX_CB_BANJO_DROWNING_2, 1.0f, 24000);
     }
     switch (D_8037D396) {
     case 0:

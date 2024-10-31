@@ -121,25 +121,25 @@ void func_80290F14(void){
     if( !func_80298850() 
         && func_8028ECAC() != 4
         && batimer_get(7) == 0.0f
-        && should_zoom_out_camera()
+        && bainput_should_zoom_out_camera()
     ){
         switch(D_8037C061){
             case 1://L80290FA4
-                func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.0f, 12000);
+                basfx_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.0f, 12000);
                 func_80290B60(2);
                 break;
             case 2://L80290FBC
                 if(D_8037C07C){
-                    func_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
+                    basfx_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
                     func_80290B60(3);
                 }
                 else{
-                    func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
+                    basfx_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
                     func_80290B60(1);
                 }
                 break;
             case 3://L80291008
-                func_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
+                basfx_80299D2C(SFX_12D_CAMERA_ZOOM_CLOSEST, 1.0f, 12000);
                 func_80290B60(1);
                 break;
         }
@@ -148,20 +148,20 @@ void func_80290F14(void){
 }
 
 void func_8029103C(void){
-    func_80299EB4();
+    basfx_debug();
 }
 
 int func_8029105C(s32 arg0){
     if(func_80298850())
         return FALSE;
 
-    if(should_rotate_camera_left() && ncDynamicCamA_func_802C1DB0(-45.0f)){
+    if(bainput_should_rotate_camera_left() && ncDynamicCamA_func_802C1DB0(-45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;
     }
     
-    if(should_rotate_camera_right() && ncDynamicCamA_func_802C1DB0(45.0f)){
+    if(bainput_should_rotate_camera_right() && ncDynamicCamA_func_802C1DB0(45.0f)){
         func_80291488(arg0);
         func_8029103C();
         return TRUE;

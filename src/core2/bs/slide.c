@@ -73,7 +73,7 @@ void bsslide_init(void){
     baphysics_set_horizontal_velocity(yaw_getIdeal() ,baphysics_get_target_horizontal_velocity());
     pitch_setAngVel(800.0f, 8.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D524 = 0;
     D_8037D528 = 1.0f;
 
@@ -85,7 +85,7 @@ void bsslide_update(void){
     f32 sp2C;
     f32 sp28;
 
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D528 = ml_max_f(D_8037D528 - time_getDelta(), 0.0f);
     if(player_isSliding()){
         func_80294480(sp30);

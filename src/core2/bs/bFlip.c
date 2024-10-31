@@ -55,7 +55,7 @@ void bsbflip_init(void){
     bastick_setZoneMax(0, 0.03f);
     bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
-    func_80299BD4();
+    basfx_80299BD4();
     D_8037D310 = 0;
 }
 
@@ -107,7 +107,7 @@ void bsbflip_update(void){
             anctrl_start(aCtrl, "bsbflip.c", 0xd9);
             D_8037D310 = 2;
         }//L802A316C
-        if(should_beak_bust()){
+        if(bainput_should_beak_bust()){
             sp24 =BS_F_BBUSTER;
         }
         break;
@@ -129,7 +129,7 @@ void bsbflip_update(void){
             sp24 = func_8029C9C0(sp24);
             D_8037D310 = 4;
         }
-        else if(should_beak_bust()){
+        else if(bainput_should_beak_bust()){
             sp24 = BS_F_BBUSTER;
         }
         break;
@@ -142,7 +142,7 @@ void bsbflip_update(void){
             sp24 = func_8029C9C0(sp24);
             D_8037D310 = 4;
         }
-        else if(should_beak_bust()){
+        else if(bainput_should_beak_bust()){
             sp24 = BS_F_BBUSTER;
         }
         break;

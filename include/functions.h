@@ -75,7 +75,7 @@ void climbGetBottom(f32 dst[3]);
 
 void yaw_setIdeal(f32);
 
-void func_80299BFC(f32);
+void basfx_playOwSfx(f32);
 
 f32 roll_get(void);
 
@@ -247,7 +247,7 @@ void func_802927E0(f32, f32);
 void func_80292974(f32, f32, f32);
 void func_80292900(f32, f32);
 
-void func_80292E80(s32, f32);
+void baeyes_openSingleEye(s32, f32);
 void bafalldamage_start(void);
 void func_80293D48(f32, f32);
 f32  func_80294438(void);
@@ -273,10 +273,10 @@ void yaw_rotateTimed(f32);
 void func_8029932C(f32);
 void func_80299594(s32, f32);
 void func_80299628(s32);
-void func_80299650(f32, f32);
-void func_80299B58(f32, f32);
-void func_80299CF4(enum sfx_e, f32, s32);
-void func_80299D2C(enum sfx_e, f32, s32);
+void basfx_updateClockSfxSource(f32, f32);
+void basfx_playJumpSfx(f32, f32);
+void basfx_80299CF4(enum sfx_e, f32, s32);
+void basfx_80299D2C(enum sfx_e, f32, s32);
 void baanim_setVelocityMapRanges(f32, f32, f32, f32);
 void baanim_scaleDuration(f32);
 f32  bsStoredState_getLongLegTimer(void);

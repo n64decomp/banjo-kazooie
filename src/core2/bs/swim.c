@@ -5,7 +5,7 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
-extern void func_80295328(s32, f32);
+extern void bainput_setDiveCooldown(s32, f32);
 
 bool bsswim_inset(enum bs_e state_id);
 
@@ -119,11 +119,11 @@ void func_802B5774(void) {
     }
     if (bsbswim_inSet(prev_state) != 0) {
         if (prev_state == BS_54_SWIM_DIE) {
-            func_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, 30000);
+            basfx_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, 30000);
         } else {
-            func_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, (s32) ml_map_f(item_getCount(ITEM_17_AIR), 3600.0f, 0.0f, 8000.0f, 30000.0f));
+            basfx_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, (s32) ml_map_f(item_getCount(ITEM_17_AIR), 3600.0f, 0.0f, 8000.0f, 30000.0f));
         }
-        func_80295328(4, 0.7f);
+        bainput_setDiveCooldown(4, 0.7f);
     }
     if ((anctrl_getIndex(anim_ctrl) == ASSET_57_ANIM_BSSWIM_IDLE) && (prev_state != BS_4C_LANDING_IN_WATER)) {
         anctrl_setSmoothTransition(anim_ctrl, 0);
@@ -170,10 +170,10 @@ void func_802B5950(void) {
     if (!player_inWater()) {
         next_state = BS_1_IDLE;
     }
-    if (should_look_first_person_camera()) {
+    if (bainput_should_look_first_person_camera()) {
         next_state = badrone_look();
     }
-    if (should_dive()) {
+    if (bainput_should_dive()) {
         next_state = BS_30_DIVE_ENTER;
     }
     if (func_80294524() && bakey_pressed(BUTTON_A)) {
@@ -250,7 +250,7 @@ void func_802B5C40(void) {
             }
         }
     }
-    if (should_dive() != 0) {
+    if (bainput_should_dive() != 0) {
         next_state = BS_30_DIVE_ENTER;
     }
     if (func_80294524() && bakey_pressed(BUTTON_A)) {

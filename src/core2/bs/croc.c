@@ -49,7 +49,7 @@ void __bscroc_jumpSfx(void){
 
 void func_802ABE70(void){
     f32 sp1C = stateTimer_get(STATE_TIMER_3_TURBO_TALON);
-    func_80299650(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), sp1C);
+    basfx_updateClockSfxSource(stateTimer_getPrevious(STATE_TIMER_3_TURBO_TALON), sp1C);
     if(miscFlag_isTrue(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS) && bs_getState() != BS_17_BTROT_EXIT){
         miscFlag_clear(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
@@ -122,7 +122,7 @@ void bscroc_idle_update(void){
     if(func_8028B094())
         next_state = BS_61_CROC_FALL;
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(bastick_getZone() > 0)
@@ -357,7 +357,7 @@ static void __bscroc_recoil_init(s32 damage){
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     D_8037D3EC = 0;
 }
 
@@ -365,7 +365,7 @@ static void __bscroc_recoil_update(void){
     enum bs_e next_state = 0;
     func_802ABE70();
     if(baanim_isAt(0.5f))
-        func_80292EA4();
+        baeyes_open();
     
     switch(D_8037D3EC){
         case 0:
@@ -387,7 +387,7 @@ void __bscroc_recoil_end(void){
     func_80297CA8();
     baphysics_reset_gravity();
     baMarker_collisionOn();
-    func_80292EA4();
+    baeyes_open();
     func_802ABFBC();
 }
 
@@ -443,7 +443,7 @@ void bscroc_die_init(void){
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     baMarker_collisionOff();
-    func_80292E48();
+    baeyes_close();
     func_802914CC(0xd);
     ncDynamicCamD_func_802BF2C0(30.0f);
     func_8029C984();
@@ -496,7 +496,7 @@ void bscroc_die_end(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();
-    func_80292EA4();
+    baeyes_open();
 }
 
 int bscroc_hitboxActive(void){

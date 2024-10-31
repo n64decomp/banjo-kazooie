@@ -57,7 +57,7 @@ int bslongleg_inSet(s32 move_indx){
 }
 
 void func_802A531C(void){
-    func_80299650(stateTimer_getPrevious(STATE_TIMER_2_LONGLEG), stateTimer_get(STATE_TIMER_2_LONGLEG));
+    basfx_updateClockSfxSource(stateTimer_getPrevious(STATE_TIMER_2_LONGLEG), stateTimer_get(STATE_TIMER_2_LONGLEG));
     if(stateTimer_isAt(STATE_TIMER_2_LONGLEG, 0.01f))
         sfxsource_playHighPriority(SFX_3EB_UNKNOWN);
 }
@@ -130,7 +130,7 @@ void bsblongleg_enter_init(void){
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802A5374();
-    func_80299BD4();
+    basfx_80299BD4();
 }
 
 void bsblongleg_enter_update(void){
@@ -168,7 +168,7 @@ void bsblongleg_stand_update(void){
     enum bs_e next_state = 0;
     func_802A531C();
     func_80299594(1, 0.5f);
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
     if(bakey_pressed(BUTTON_B))
@@ -422,7 +422,7 @@ void bsblongleg_slide_init(void){
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D358 = 1.0f;
 }
 
@@ -432,7 +432,7 @@ void bsblongleg_slide_update(void){
     f32 sp2C;
 
     func_802A531C();
-    func_80299AAC();
+    basfx_80299AAC();
     D_8037D358 = ml_max_f(D_8037D358 - time_getDelta(), 0.0f);
 
     if(player_isSliding()){

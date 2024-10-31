@@ -34,7 +34,7 @@ void bsbflap_init(void) {
     miscFlag_set(MISC_FLAG_12_HAS_FLAPPED);
     batimer_set(0, 2.5f);
     D_8037D30C = sfxsource_createSfxsourceAndReturnIndex();
-    func_80299BD4();
+    basfx_80299BD4();
     D_8037D301 = 0;
     D_8037D308 = 0.0f;
     D_8037D300 = 0;
@@ -179,7 +179,7 @@ void bsbflap_update(void){
     if(batimer_isZero(0))
         sp1c = BS_2F_FALL;
     
-    if(should_beak_bust())
+    if(bainput_should_beak_bust())
         sp1c = BS_F_BBUSTER;
 
     if(player_isStable()){

@@ -93,7 +93,7 @@ void bsbarge_update(void){
     switch(D_8037D2A5){
         case 0:
             if(anctrl_isAt(plyrMvmnt, 0.1392f))
-                func_80299BD4();
+                basfx_80299BD4();
             
             if(!anctrl_isStopped(plyrMvmnt))
                 break;

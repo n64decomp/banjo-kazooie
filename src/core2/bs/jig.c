@@ -62,7 +62,7 @@ void bsjig_jiggy_update(void){
     yaw_setIdeal(func_8029B41C());
     
     if(anctrl_isAt(aCtrl, 0.6502f))
-        func_80299BD4();
+        basfx_80299BD4();
 
     if(anctrl_isAt(aCtrl, 0.835f)){
         D_8037D4B0++;
@@ -188,7 +188,7 @@ void bsjig_notedoor_update(void){
     enum bs_e sp1C = 0;
 
     if(baanim_isAt(0.59f) || baanim_isAt(0.84f))
-        func_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
+        basfx_80299CF4(SFX_3EA_UNKNOWN, 1.0f, 30000);
 
     if(baanim_isStopped())
         sp1C = BS_1_IDLE;

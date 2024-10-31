@@ -196,7 +196,7 @@ void func_80295914(void){
     func_80291590();
     bakey_reset();
     bastick_reset();
-    func_8029528C();
+    bainput_reset();
     bsList_clearAll();
     bs_clearState();
     func_80295DD0();
@@ -212,7 +212,7 @@ void func_80295914(void){
     func_8029CF6C();
     func_8029DFF8();
     func_80290B6C();
-    func_80292D88();
+    baeyes_reset();
     func_80290070();
     func_80290664();
     stateTimer_init();
@@ -222,7 +222,7 @@ void func_80295914(void){
     baAnim_init();
     baModel_reset();
     baMarker_init();
-    func_80299900();
+    basfx_reset();
     func_8029A4D0();
     func_8029ADCC();
     func_8029D01C();
@@ -265,7 +265,7 @@ void func_80295B04(void){
     baAnim_free();
     func_80293E88();
     bacarry_end();
-    func_80299A20();
+    basfx_free();
     func_8029A54C();
     func_8029ADA8();
     func_8029CFF8();
@@ -285,7 +285,7 @@ void func_80295C14(void){
     disableInput_set();
     bakey_update();
     bastick_update();
-    func_8029533C(); //dive_cooldown_update
+    bainput_update(); //dive_cooldown_update
     bs_updateState();
     baphysics_update();
     func_8029858C();
@@ -300,7 +300,7 @@ void func_80295C14(void){
     func_80298344(); //climb_cooldown_update
     func_80290108();
     eggShatter_update();
-    func_80292EDC();
+    baeyes_update();
     baModel_update();
     func_8029842C();
     baMarker_update();
@@ -316,7 +316,7 @@ void func_80295C14(void){
         D_8037C3B0();
         D_8037C3B0 = NULL;
     }
-    func_80299A8C();
+    basfx_update();
     func_80295E74();//voidOut_update
 }
 

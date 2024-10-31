@@ -73,7 +73,7 @@ s32 func_802B488C(s32 arg0){
     if(bakey_pressed(BUTTON_A))
         retVal = bs_getTypeOfJump();
 
-    if(should_look_first_person_camera())
+    if(bainput_should_look_first_person_camera())
         retVal = badrone_look();
 
     if(player_isSliding())
@@ -106,7 +106,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }//L802B4A54
 
     if(anctrl_isAt(arg0, 0.2057f)) //(30/145)
-        func_80292E48();
+        baeyes_close();
     //L802B4A78
 
     if(anctrl_isAt(arg0, 0.2555f)){ //(37/145)
@@ -124,7 +124,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }//L802B4B0C
 
     if(anctrl_isAt(arg0, 0.3607f)){
-        func_80292EA4();
+        baeyes_open();
     }//L802B4B30
 
     if(anctrl_isAt(arg0, 0.4183f)){
@@ -149,7 +149,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }//L802B4BF4
 
     if(anctrl_isAt(arg0, 0.6688f))
-        func_80292E48();
+        baeyes_close();
     //L802B4C18
 
     if(anctrl_isAt(arg0, 0.6964f)){
@@ -158,7 +158,7 @@ void func_802B4A10(AnimCtrl *arg0){
     }//L802B4C50
 
     if(anctrl_isAt(arg0, 0.7747f))
-        func_80292EA4();
+        baeyes_open();
     //L802B4C74
 
     if(anctrl_isAt(arg0, 0.7822f)){
@@ -204,7 +204,7 @@ void bsstand_update(void) {
     sp18 = D_80364D20[D_8037D540];
     if (sp18 & 8) {
         if (sp18 & 4) {
-            if (anctrl_isAt(anim_ctrl, 0.0909f)) func_80299BD4();
+            if (anctrl_isAt(anim_ctrl, 0.0909f)) basfx_80299BD4();
             if (anctrl_isAt(anim_ctrl, 0.0909f)) func_8029E070(1);
             if (anctrl_isAt(anim_ctrl, 0.6818f)) func_8029E070(0);
         }//L802B4E70
@@ -224,16 +224,16 @@ void bsstand_update(void) {
                 anctrl_start(anim_ctrl, "bsstand.c", 0x170);
             }
         } else {
-            if (anctrl_isAt(anim_ctrl, 0.069f))  func_80299D2C(SFX_4B_GULPING, 1.4f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.1677f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.0f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.2441f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.03f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.3141f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.06f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.3859f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.5f, 0x7D00);
-            if (anctrl_isAt(anim_ctrl, 0.414f))  func_80299CF4(SFX_2D_KABOING, 1.0f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.55f))   func_80299CF4(SFX_A3_BANJO_DOUBLE_COUGH, 1.0f, 0x6D60);
-            if (anctrl_isAt(anim_ctrl, 0.6187f)) func_80299D2C(SFX_A0_COUGHING, 1.7f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.7108f)) func_80299D2C(SFX_A0_COUGHING, 1.6f, 0x4650);
-            if (anctrl_isAt(anim_ctrl, 0.7927f)) func_80299D2C(SFX_A0_COUGHING, 1.5f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.069f))  basfx_80299D2C(SFX_4B_GULPING, 1.4f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.1677f)) basfx_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.0f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.2441f)) basfx_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.03f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.3141f)) basfx_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.06f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.3859f)) basfx_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.5f, 0x7D00);
+            if (anctrl_isAt(anim_ctrl, 0.414f))  basfx_80299CF4(SFX_2D_KABOING, 1.0f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.55f))   basfx_80299CF4(SFX_A3_BANJO_DOUBLE_COUGH, 1.0f, 0x6D60);
+            if (anctrl_isAt(anim_ctrl, 0.6187f)) basfx_80299D2C(SFX_A0_COUGHING, 1.7f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.7108f)) basfx_80299D2C(SFX_A0_COUGHING, 1.6f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.7927f)) basfx_80299D2C(SFX_A0_COUGHING, 1.5f, 0x4650);
         }
     } else /*L802B50D4*/if ((sp18 & 0x10) != 0) {
         func_802B4A10(anim_ctrl);
@@ -275,7 +275,7 @@ void bsstand_update(void) {
 void bsstand_end(void){
     func_8029E070(0);
     func_802900FC();
-    func_80292EA4();
+    baeyes_open();
 }
 
 //bsStand_Land_init
@@ -291,12 +291,12 @@ void bsstand_landing_update(void){
 
     if(anctrl_getIndex(sp18) == ASSET_D2_ANIM_BSSPLAT){
         if(anctrl_isAt(sp18, 0.8264f)){
-            func_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
+            basfx_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
         }
 
         //L802B52F8
         if(anctrl_isAt(sp18, 0.8864f)){
-            func_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
+            basfx_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
         }
     }
     //L802B531C

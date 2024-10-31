@@ -89,20 +89,20 @@ void bsbwhirl_enter_init(void){
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A55C(0, 0xfa0, 0xd);
     func_8025A6EC(0x25, 0x6d60);
-    func_80299BD4();
-    func_802952A8(1,0);
+    basfx_80299BD4();
+    bainput_enable(1,0);
 }
 
 void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
-    func_802952A8(1,1);
+    bainput_enable(1,1);
     if(anctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1B_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
 
 void bsbwhirl_enter_end(void){
-    func_802952A8(1,1);
+    bainput_enable(1,1);
     __bsbwhirl_end();
 }
 
@@ -189,7 +189,7 @@ void bsbwhirl_jump_init(void){
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     baphysics_set_vertical_velocity(D_80364AE0);
     baphysics_set_gravity(D_80364AE4);
-    func_80299B58(0.91f, 1.09f);
+    basfx_playJumpSfx(0.91f, 1.09f);
     D_8037D3B4 = 0;
 }
 

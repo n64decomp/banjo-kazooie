@@ -16,7 +16,7 @@ void bseggass_init(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029E058(1);
     D_8037D2E0 = (D_8037D2E1 = 1);
-    func_802952A8(5,0);
+    bainput_enable(5,0);
 }
 
 void bseggass_update(void) {
@@ -30,7 +30,7 @@ void bseggass_update(void) {
     next_state = 0;
     plyr_mvmt = baanim_getAnimCtrlPtr();
     has_eggs = (item_empty(ITEM_D_EGGS) == 0);
-    if (should_poop_egg()) {
+    if (bainput_should_poop_egg()) {
         if (has_eggs)
             D_8037D2E0 = ml_min_w(D_8037D2E0 + 1, 3);
         else 
@@ -61,7 +61,7 @@ void bseggass_update(void) {
 
 
 void bseggass_end(void){
-    func_802952A8(5, 1);
+    bainput_enable(5, 1);
     baphysics_reset_gravity();
     func_8029E058(0);
 }
