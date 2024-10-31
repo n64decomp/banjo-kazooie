@@ -17,8 +17,8 @@ u8 D_8037D310;
 /* .code */
 void _bsbflip_802A2D60(void){
     f32 sp1C;
-    sp1C = func_8029B30C();
-    if(!func_8029B300())
+    sp1C = bastick_getZonePosition();
+    if(!bastick_getZone())
         baphysics_set_target_horizontal_velocity(0.0f);
     else
         baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364A2C, D_80364A30));
@@ -52,8 +52,8 @@ void bsbflip_init(void){
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsbflip.c", 0x80);
     func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
     func_80299BD4();
     D_8037D310 = 0;
@@ -73,11 +73,11 @@ void bsbflip_update(void){
     switch(D_8037D310){
     case 0://L802A2FD4
         if(anctrl_isAt(aCtrl, 0.1837f)){
-            if(func_8029B2E8() != 0.0f){
+            if(bastick_distance() != 0.0f){
                 yaw_setUpdateState(2);
                 func_8029957C(3);
-                if(func_8029B2E8){ //!!! BUG !!!
-                    yaw_setIdeal(func_8029B33C());
+                if(bastick_distance){ //!!! BUG !!!
+                    yaw_setIdeal(bastick_getAngleRelativeToBanjo());
                 }
                 yaw_rotateTimed(1.0f);
                 baphysics_set_type(BA_PHYSICS_AIRBORN);
@@ -114,7 +114,7 @@ void bsbflip_update(void){
     case 2://L802A3184
         if(player_isFallTumbling())
             sp24 = BS_3D_FALL_TUMBLING;
-        if(button_released(BUTTON_A)){
+        if(bakey_released(BUTTON_A)){
             anctrl_reset(aCtrl);
             anctrl_setSmoothTransition(aCtrl, 0);
             anctrl_setIndex(aCtrl, ASSET_61_ANIM_BSBFLIP_EXIT);
@@ -164,5 +164,5 @@ void bsbflip_end(void){
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
     func_8029E070(0);
-    func_8029B0C0();
+    bastick_resetZones();
 }

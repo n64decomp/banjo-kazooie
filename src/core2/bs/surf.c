@@ -26,7 +26,7 @@ void func_802B6064(void) {
     enum bs_e next_state;
 
     next_state = 0;
-    if (button_pressed(BUTTON_A)) {
+    if (bakey_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
     if (D_8037D560 == 0) {

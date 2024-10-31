@@ -7,16 +7,16 @@
 
 
 void func_80354030(f32*, f32);
-f32  func_8029B2E8(void);
-f32 func_8029B33C(void);
+f32  bastick_distance(void);
+f32 bastick_getAngleRelativeToBanjo(void);
 
 void baModel_setYDisplacement(f32);
 void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 void yaw_setVelocityBounded(f32, f32);
-f32 func_8029B2D0(void);
-f32 func_8029B2DC(void);
-void func_80290B40(f32);
-void func_80290A6C(void);
+f32 bastick_getX(void);
+f32 bastick_getY(void);
+void babuzz_setVolume(f32);
+void babuzz_update(void);
 
 /* .data */
 f32 D_803649B0[5] = {0.38f, 0.3f, 0.24f, 0.18f, 0.14};
@@ -44,8 +44,8 @@ void func_802A0590(void){
     func_802A0340();
     baanim_playForDuration_onceSmooth(0x1df, 1.5f);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f){
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f){
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
     baphysics_set_target_yaw(yaw_getIdeal());
     baphysics_set_target_horizontal_velocity(0.0f);
@@ -99,7 +99,7 @@ void _bsbeefly_end(void){
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
     baflap_activate(0);
-    func_8029099C();
+    babuzz_release();
 }
 
 void func_802A07F8(void){
@@ -113,16 +113,16 @@ void func_802A07F8(void){
     baphysics_set_terminal_velocity(-99.9f);
     baflap_reset();
     baflap_activate(1);
-    func_802909C4();
+    babuzz_reset();
 }
 
 void _bsBeeFly_updateYaw(void){
     f32 sp34;
     f32 sp30;
     f32 stickX;
-    stickX = func_8029B2D0();
+    stickX = bastick_getX();
     ncDynamicCam4_func_802BFE50(2.0f, 2000.0f, 350.0f);
-    if(button_held(BUTTON_R)){
+    if(bakey_held(BUTTON_R)){
         yaw_setVelocityBounded(500.0f, 30.0f);
         sp34 = 6.0f;
         sp30 = 85.0f;
@@ -137,7 +137,7 @@ void _bsBeeFly_updateYaw(void){
 }
 
 void _bsBeeFly_updatePitch(void){
-    f32 stickY = func_8029B2DC();
+    f32 stickY = bastick_getY();
     if(stickY < 0.0f){
         pitch_setIdeal(ml_map_f(stickY, -1.0f, 0.0f, 300.0f, 360.0f));
     } else {
@@ -185,7 +185,7 @@ void bsbeefly_update(void){
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     pitch_get(); //return value never used
-    if(button_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
+    if(bakey_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
         baflap_add(1.0f);
     }
     if((baflap_getCount() == 0) && player_inWater()){
@@ -207,11 +207,11 @@ void bsbeefly_update(void){
         }
     }
     sp40 += sp30;
-    if(!sp44 && button_held(BUTTON_B)){
+    if(!sp44 && bakey_held(BUTTON_B)){
         sp40 += 0.12;
     }
-    func_80290B40(sp40);
-    func_80290A6C();
+    babuzz_setVolume(sp40);
+    babuzz_update();
     switch(D_8037D2C0){
         default:
             break;
@@ -249,7 +249,7 @@ void bsbeefly_update(void){
         }
     }
     baphysics_set_target_yaw(yaw_get());
-    if(button_held(9)){
+    if(bakey_held(9)){
         sp38 += (f64)sp38;
     }
     baphysics_set_target_horizontal_velocity(sp38);

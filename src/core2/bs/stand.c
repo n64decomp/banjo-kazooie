@@ -5,7 +5,7 @@
 #include "core2/statetimer.h"
 #include "core2/ba/physics.h"
 
-extern f32 func_8029B2E8(void);
+extern f32 bastick_distance(void);
 void yaw_setVelocityBounded(f32, f32);
 
 void anctrl_start(AnimCtrl *, char*, s32);
@@ -50,7 +50,7 @@ u32 func_802B4870(u32 arg0){
 
 s32 func_802B488C(s32 arg0){
     s32 retVal = arg0;
-    switch(func_8029B300()){
+    switch(bastick_getZone()){
         case 1: //L802B48CC
             retVal = BS_WALK_CREEP;
             break;
@@ -64,13 +64,13 @@ s32 func_802B488C(s32 arg0){
             retVal = BS_4_WALK_FAST;
             break;
     }
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         retVal = BS_CROUCH;
 
-    if(button_pressed(BUTTON_B) && can_claw())
+    if(bakey_pressed(BUTTON_B) && can_claw())
         retVal = BS_CLAW;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         retVal = bs_getTypeOfJump();
 
     if(should_look_first_person_camera())
@@ -189,7 +189,7 @@ void bsstand_update(void) {
     s32 sp18;
 
     anim_ctrl = baanim_getAnimCtrlPtr();
-    if ((func_8029B300() == 0) && (func_8029B2E8() > 0.0f)) {
+    if ((bastick_getZone() == 0) && (bastick_distance() > 0.0f)) {
         D_8037D544 = 1;
         yaw_setUpdateState(3);
         yaw_setVelocityBounded(200.0f, 14.0f);

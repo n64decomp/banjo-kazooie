@@ -18,8 +18,8 @@ u8 D_8037D3B4;
 
 /* .code */
 void func_802AA400(void){
-    f32 sp1C = func_8029B30C();
-    if(!func_8029B300()){
+    f32 sp1C = bastick_getZonePosition();
+    if(!bastick_getZone()){
         baphysics_set_target_horizontal_velocity(0.0f);
     }else{
         baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364AD0, D_80364AD4));
@@ -36,7 +36,7 @@ static void __bsbwhirl_end(void){
           || state == BS_A5_WONDERWING_UNKA5
         )
     ){
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8025A55C(-1, 0xfa0, 0xd);
         core1_ce60_incOrDecCounter(TRUE);
@@ -50,13 +50,13 @@ static void __bsbwhirl_spawnSparkle(void){
 }
 
 enum bs_e func_802AA510(enum bs_e arg0){
-    if(func_8029B300(arg0) > 0)
+    if(bastick_getZone(arg0) > 0)
         arg0 = BS_1C_WONDERWING_WALK;
 
-    if(button_released(BUTTON_Z))
+    if(bakey_released(BUTTON_Z))
         arg0 = BS_1E_WONDERWING_EXIT;
 
-    if(button_pressed(BUTTON_A) && player_isStable())
+    if(bakey_pressed(BUTTON_A) && player_isStable())
         arg0 = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
@@ -82,8 +82,8 @@ void bsbwhirl_enter_init(void){
     baanim_playForDuration_onceSmooth(ASSET_22_ANIM_BSWHIRL_EXIT, 0.5f);
     func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
     D_8037D3B0 = 0.0f;
     core1_ce60_incOrDecCounter(FALSE);
@@ -145,13 +145,13 @@ void bsbwhirl_walk_update(void){
     func_8029AD28(0.97f, 3);
     func_802AA400();
 
-    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
+    if(!bastick_getZone() && baphysics_is_slower_than(1.0f))
         sp1C = BS_1B_WONDERWING_IDLE;
 
-    if(button_released(BUTTON_Z))
+    if(bakey_released(BUTTON_Z))
         sp1C = BS_1E_WONDERWING_EXIT;
 
-    if(button_pressed(BUTTON_A) && player_isStable())
+    if(bakey_pressed(BUTTON_A) && player_isStable())
         sp1C = BS_1D_WONDERWING_JUMP;
 
     if(player_inWater())
@@ -181,8 +181,8 @@ void bsbwhirl_jump_init(void){
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802AA400();
@@ -201,7 +201,7 @@ void bsbwhirl_jump_update(void){
     __bsbwhirl_spawnSparkle();
     func_802AA400();
     baphysics_get_velocity(sp1C);
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
     
     switch(D_8037D3B4){

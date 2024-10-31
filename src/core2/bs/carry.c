@@ -13,8 +13,8 @@ const f32  D_80364AF8 = 0.84f;
 const f32  D_80364AFC = 0.4f;
 
 void func_802AAE80(void){
-    f32 sp1C = func_8029B30C();
-    if(func_8029B300() == 0)
+    f32 sp1C = bastick_getZonePosition();
+    if(bastick_getZone() == 0)
         baphysics_set_target_horizontal_velocity(0.0f);
     else
         baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364AF0, D_80364AF4));
@@ -24,7 +24,7 @@ void func_802AAEE0(void){
     enum bs_e state = bs_getNextState();
 
     if(state != BS_3A_CARRY_IDLE && state != BS_3B_CARRY_WALK)
-        func_8029B0C0();
+        bastick_resetZones();
     
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
 }
@@ -44,7 +44,7 @@ void bscarry_idle_init(void){
 void bscarry_idle_update(void){
     enum bs_e sp1C = 0;
 
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         sp1C = BS_3B_CARRY_WALK;
 
     if(bacarry_get_marker() == NULL)
@@ -73,7 +73,7 @@ void bscarry_walk_update(void){
     func_8029AD28(0.4f, 4);
     func_8029AD28(0.9f, 3);
     func_802AAE80();
-    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
+    if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_3A_CARRY_IDLE;
 
     if(bacarry_get_marker() == NULL)

@@ -12,9 +12,9 @@ void ncDynamicCamD_func_802BF2C0(f32);
 
 f32 baanim_getTimer(void);
 void baanim_setEndAndDuration(f32, f32);
-f32 func_8029B2E8(void);
-f32 func_8029B33C(void);
-f32 func_8029B30C();
+f32 bastick_distance(void);
+f32 bastick_getAngleRelativeToBanjo(void);
+f32 bastick_getZonePosition();
 
 /* .data */
 f32 D_803649E0 = 30.0f;
@@ -47,8 +47,8 @@ void func_802A0FB4(void){
 void func_802A1020(void){
     f32 sp1c;
 
-    sp1c = func_8029B30C();
-    if(func_8029B300() == 0){
+    sp1c = bastick_getZonePosition();
+    if(bastick_getZone() == 0){
         baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
@@ -75,10 +75,10 @@ void func_802A10D4(void){
     if(should_look_first_person_camera())
         s0 = badrone_look();
     
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         s0 = BS_BEE_WALK;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         s0 = BS_BEE_JUMP;
 
     if(player_inWater())
@@ -108,13 +108,13 @@ void func_802A1214(void){
     func_802A1020();
     func_8029AD28(0.94f, 4);
     func_8029AD28(0.44f, 3);
-    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
+    if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         s0 = BS_85_BEE_IDLE;
     
     if(func_8028B094())
         s0 = BS_88_BEE_FALL;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         s0 = BS_BEE_JUMP;
 
     if(player_inWater())
@@ -142,8 +142,8 @@ void func_802A12FC(void){
     anctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
     anctrl_start(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f){
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f){
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802A1020();
@@ -163,7 +163,7 @@ void func_802A1438(void){
     sp28 = baanim_getAnimCtrlPtr();
     func_802A1020();
     baphysics_get_velocity(sp1c);
-    if(button_released(BUTTON_A) && (0.0f < sp1c[1])){
+    if(bakey_released(BUTTON_A) && (0.0f < sp1c[1])){
         baphysics_reset_gravity();
     }
     switch (D_8037D2D4)
@@ -202,14 +202,14 @@ void func_802A1438(void){
         break;
     }
     if(player_isStable()){
-        if(func_8029B300() > 0)
+        if(bastick_getZone() > 0)
             sp2c = BS_BEE_WALK;
-        if(button_pressed(BUTTON_A)){
+        if(bakey_pressed(BUTTON_A)){
             sp2c = BS_BEE_JUMP;
         }
     }
     else{
-        if(button_pressed(BUTTON_A)){
+        if(bakey_pressed(BUTTON_A)){
             sp2c = BS_BEE_FLY;
         }
     }
@@ -277,15 +277,15 @@ void func_802A170C(void){
         if(miscFlag_isTrue(MISC_FLAG_19)){
             sp2c = badrone_transform();
         }else{
-            if(func_8029B300() > 0)
+            if(bastick_getZone() > 0)
                 sp2c = BS_BEE_WALK;
-            if(button_pressed(BUTTON_A))
+            if(bakey_pressed(BUTTON_A))
                 sp2c = BS_BEE_JUMP;
             sp2c = func_8029CA94(sp2c);
         }
     }
     else{
-        if(miscFlag_isFalse(MISC_FLAG_F) && button_pressed(BUTTON_A))
+        if(miscFlag_isFalse(MISC_FLAG_F) && bakey_pressed(BUTTON_A))
             sp2c = BS_BEE_FLY;
     }//L802A189C
     if(player_inWater())

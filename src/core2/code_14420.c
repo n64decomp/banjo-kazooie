@@ -753,7 +753,7 @@ void func_8029C748(void) {
 }
 
 enum bs_e bs_getTypeOfJump(void){
-    if(button_held(BUTTON_Z) && can_flap_flip())
+    if(bakey_held(BUTTON_Z) && can_flap_flip())
         return BS_12_BFLIP;
 
     if(miscFlag_isTrue(MISC_FLAG_2_ON_SPRING_PAD))
@@ -829,13 +829,13 @@ s32 func_8029C9C0(s32 arg0){
     if(miscFlag_isTrue(MISC_FLAG_F))
         return arg0;
     
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         arg0 = bs_getTypeOfJump();
 
-    if(button_pressed(BUTTON_B) && can_claw())
+    if(bakey_pressed(BUTTON_B) && can_claw())
         arg0 = BS_CLAW;
 
-    if(button_held(BUTTON_Z) && should_beak_barge())
+    if(bakey_held(BUTTON_Z) && should_beak_barge())
         arg0 = BS_BBARGE;
 
     if(should_look_first_person_camera())

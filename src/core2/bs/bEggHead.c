@@ -58,7 +58,7 @@ void bsegghead_update(void) {
         }
     }
     if (anctrl_isStopped(aCtrl)) {
-        next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
+        next_state = (bakey_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
 
     } else if (0.65 < (f64) anctrl_getAnimTimer(aCtrl)) {
         next_state = func_802ADCD4(0);

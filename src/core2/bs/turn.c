@@ -53,13 +53,13 @@ void bsturn_update(void){
     if(anctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp2C = BS_4_WALK_FAST;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         sp2C = BS_CROUCH;
 
-    if(button_pressed(BUTTON_B))
+    if(bakey_pressed(BUTTON_B))
         sp2C = BS_CLAW;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         sp2C = bs_getTypeOfJump();
 
     bs_setState(sp2C);

@@ -182,7 +182,7 @@ void func_80291108(void){
 void func_80291154(void){
     int tmp;
     if(!func_80290D48() && !func_80290E8C()){
-        if(button_held(BUTTON_R)){
+        if(bakey_held(BUTTON_R)){
             ncDynamicCamera_setState(0x13);
             func_80291488(0x4);
             func_80290F14();
@@ -200,7 +200,7 @@ void func_80291154(void){
 void func_802911E0(void){
     if( !func_80290D48() && !func_80290E8C() && !func_8029105C(7)){
         func_80290F14();
-        if(button_held(BUTTON_R)){
+        if(bakey_held(BUTTON_R)){
             func_802C095C();
         }
         else{

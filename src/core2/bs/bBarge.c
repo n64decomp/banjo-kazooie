@@ -88,7 +88,7 @@ void bsbarge_update(void){
     
     sp24 = 0;
     plyrMvmnt = baanim_getAnimCtrlPtr();
-    if(button_released(BUTTON_B))
+    if(bakey_released(BUTTON_B))
         miscFlag_set(MISC_FLAG_A);
     switch(D_8037D2A5){
         case 0:

@@ -10,8 +10,8 @@
 
 f32 func_80294438(void);
 void func_80299B58(f32, f32);
-f32 func_8029B2E8(void);
-f32 func_8029B33C(void);
+f32 bastick_distance(void);
+f32 bastick_getAngleRelativeToBanjo(void);
 void baanim_playForDuration_loop(s32, f32);
 
 /* .data */
@@ -60,8 +60,8 @@ void bsjump_init(void){
         anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         anctrl_start(aCtrl, "bsjump.c", 0x95);
         func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-        if(func_8029B2E8() != 0.0f){
-            yaw_setIdeal(func_8029B33C());
+        if(bastick_distance() != 0.0f){
+            yaw_setIdeal(bastick_getAngleRelativeToBanjo());
         }
         baphysics_set_target_yaw(yaw_getIdeal());
         func_802B6FA8();
@@ -97,7 +97,7 @@ void bsjump_update(void){
     }
 
     baphysics_get_velocity(velocity);
-    if((button_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !can_control_jump_height()){
+    if((bakey_released(BUTTON_A) && 0.0f < velocity[1] && !D_8037D4C2) || !can_control_jump_height()){
         baphysics_reset_gravity();
     }
 
@@ -138,7 +138,7 @@ void bsjump_update(void){
     if(player_isFallTumbling())
         sp34 = BS_3D_FALL_TUMBLING;
 
-    if(button_released(BUTTON_A))
+    if(bakey_released(BUTTON_A))
         D_8037D4C2 = 0;
 
     if(should_feathery_flap())

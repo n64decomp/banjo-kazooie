@@ -7,10 +7,10 @@
 
 void baanim_setDurationRange(f32, f32);
 void func_802927E0(f32, f32);
-f32 func_8029B2E8(void);
+f32 bastick_distance(void);
 void func_8029AD28(f32, s32);
 void baanim_scaleDuration(f32);
-f32 func_8029B30C(void);
+f32 bastick_getZonePosition(void);
 void func_80299594(s32, f32);
 
 // .data
@@ -41,13 +41,13 @@ void func_802B6D00(void){
     f32 sp1C;
     s32 sp18;
 
-    sp1C = func_8029B30C();
-    sp18 = func_8029B300();
+    sp1C = bastick_getZonePosition();
+    sp18 = bastick_getZone();
     if(func_8028B128()){
         if(sp18 == 0){
             baphysics_set_target_horizontal_velocity(0.0f);
         }else{//L802B6D48
-            baphysics_set_target_horizontal_velocity(ml_interpolate_f(func_8029B2E8(), bsWalkMinMudVelocity, bsWalkMaxMudVelocity));
+            baphysics_set_target_horizontal_velocity(ml_interpolate_f(bastick_distance(), bsWalkMinMudVelocity, bsWalkMaxMudVelocity));
         }
     }
     else{//L802B6D78
@@ -93,7 +93,7 @@ int func_802B6EF4(void){
 }
 
 s32 func_802B6F20(s32 arg0){
-    if(button_pressed(BUTTON_B)){
+    if(bakey_pressed(BUTTON_B)){
         if( bsWalkWalkFastWalkVelocityThreshold < baphysics_get_target_horizontal_velocity()){
             if(can_roll())
                 arg0 = BS_ROLL;
@@ -136,14 +136,14 @@ void bswalk_creep_init(void){
 void bswalk_creep_update(void){
     s32 next_state = 0;
     func_802B6E44();
-    if(func_8029B2E8() == 0.0f){
+    if(bastick_distance() == 0.0f){
         yaw_setIdeal(yaw_get());
     }
 
     func_8029AD28(0.47f, 4);
     func_8029AD28(0.97f, 3);
     func_802B6D00();
-    switch(func_8029B300()){
+    switch(bastick_getZone()){
         case 0://L802B7160
             if(baphysics_is_slower_than(1.0f))
                 next_state = BS_1_IDLE;
@@ -167,12 +167,12 @@ void bswalk_creep_update(void){
     if(func_8028B094())
         next_state = BS_2F_FALL;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         next_state = BS_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
@@ -209,14 +209,14 @@ void bswalk_slow_init(void){
 void bswalk_slow_upate(void){
     s32 next_state = 0;
     func_802B6E44();
-    if(func_8029B2E8() == 0.0f){
+    if(bastick_distance() == 0.0f){
         yaw_setIdeal(yaw_get());
     }
 
     func_8029AD28(0.4f, 4);
     func_8029AD28(0.9f, 3);
     func_802B6D00();
-    switch(func_8029B300()){
+    switch(bastick_getZone()){
         case 0://L802B7160
             if(baphysics_is_slower_than(3.0f))
                 next_state = BS_1_IDLE;
@@ -240,12 +240,12 @@ void bswalk_slow_upate(void){
     if(func_8028B094())
         next_state = BS_2F_FALL;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         next_state = BS_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
@@ -292,7 +292,7 @@ void bswalk_update(void){
     func_8029AD28(0.9f, 3);
     func_802B6EBC();
     func_802B6D00();
-    switch(func_8029B300()){
+    switch(bastick_getZone()){
         case 0:
         case 1:
         case 2:
@@ -316,12 +316,12 @@ void bswalk_update(void){
     if(func_8028B094())
         next_state = BS_2F_FALL;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         next_state = BS_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
@@ -380,7 +380,7 @@ void bswalk_fast_update(void){
     func_8029AD28(0.9f, 3);
     func_802B6EBC();
     func_802B6D00();
-    switch(func_8029B300()){
+    switch(bastick_getZone()){
         case 0://L802B79EC
             if(baphysics_is_slower_than(18.0f))
                 next_state = BS_1_IDLE;
@@ -416,12 +416,12 @@ void bswalk_fast_update(void){
     if(func_8028B094())
         next_state = BS_2F_FALL;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         next_state = BS_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
@@ -456,7 +456,7 @@ void bswalk_mud_update(void){
     if(!func_8028B128())
         next_state = BS_2_WALK_SLOW;
 
-    if(!func_8029B300())
+    if(!bastick_getZone())
         next_state = BS_1_IDLE;
 
     if(should_look_first_person_camera())
@@ -465,12 +465,12 @@ void bswalk_mud_update(void){
     if(func_8028B094())
         next_state = BS_2F_FALL;
 
-    if(button_held(BUTTON_Z))
+    if(bakey_held(BUTTON_Z))
         next_state = BS_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())

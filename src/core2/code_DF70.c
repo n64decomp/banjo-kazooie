@@ -6,51 +6,51 @@ u32 D_8037C300;
 f32 D_8037C304;
 
 int should_beak_barge(void){
-    return button_pressed(BUTTON_B) && can_beak_barge();
+    return bakey_pressed(BUTTON_B) && can_beak_barge();
 }
 
 int should_beak_bust(void){
-    return button_pressed(BUTTON_Z) && can_beak_bust();
+    return bakey_pressed(BUTTON_Z) && can_beak_bust();
 }
 
 int should_look_first_person_camera(void){
-    return button_pressed(BUTTON_C_UP) && can_view_first_person();
+    return bakey_pressed(BUTTON_C_UP) && can_view_first_person();
 }
 
 int should_rotate_camera_left(void){
-    return button_pressed(BUTTON_C_LEFT) && func_802951FC(0);
+    return bakey_pressed(BUTTON_C_LEFT) && func_802951FC(0);
 }
 
 int should_rotate_camera_right(void){
-    return button_pressed(BUTTON_C_RIGHT) && func_802951FC(1);
+    return bakey_pressed(BUTTON_C_RIGHT) && func_802951FC(1);
 }
 
 int should_zoom_out_camera(void){
-    return button_pressed(BUTTON_C_DOWN) && func_802951FC(5);
+    return bakey_pressed(BUTTON_C_DOWN) && func_802951FC(5);
 }
 
 int should_poop_egg(void){
-    return button_pressed(BUTTON_C_DOWN) && can_egg();
+    return bakey_pressed(BUTTON_C_DOWN) && can_egg();
 }
 
 int should_shoot_egg(void){
-    return button_pressed(BUTTON_C_UP) && can_egg();
+    return bakey_pressed(BUTTON_C_UP) && can_egg();
 }
 
 int should_feathery_flap(void){
-    return button_pressed(BUTTON_A) && can_feathery_flap();
+    return bakey_pressed(BUTTON_A) && can_feathery_flap();
 }
 
 int should_flap_flip(void){
-    return button_pressed(BUTTON_A) && can_flap_flip();
+    return bakey_pressed(BUTTON_A) && can_flap_flip();
 }
 
 int should_peck(void){
-    return button_pressed(BUTTON_B) && can_peck();
+    return bakey_pressed(BUTTON_B) && can_peck();
 }
 
 int should_dive(void){
-    return button_pressed(BUTTON_B) && (D_8037C304 == 0.0f) && can_dive();
+    return bakey_pressed(BUTTON_B) && (D_8037C304 == 0.0f) && can_dive();
 }
 
 int func_802951FC(s32 arg0){
@@ -58,11 +58,11 @@ int func_802951FC(s32 arg0){
 }
 
 int should_trot(void){
-    return button_pressed(BUTTON_C_LEFT) && can_trot();
+    return bakey_pressed(BUTTON_C_LEFT) && can_trot();
 }
 
 int should_wonderwing(void){
-    return button_pressed(BUTTON_C_RIGHT) && can_wonderwing();
+    return bakey_pressed(BUTTON_C_RIGHT) && can_wonderwing();
 }
 
 void func_8029528C(void){

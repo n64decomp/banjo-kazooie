@@ -504,41 +504,41 @@ segments:
   vram:  0x80286F90 # via https://hack64.net/wiki/doku.php?id=player_kazooie:ram_map
   follows_vram: core1
   subsegments:
-  - [0xF55960, c, anctrl]
-  - [0xF56430, c, anim/sprite]
-  - [0xF56A40, c, animcache]
-  - [0xF56EB0, c, code_1550]
-  - [0xF57290, c, anseq]
-  - [0xF57BA0, c, code_2240]
-  - [0xF581F0, c, ba/anim]
+  - [0xF55960, c, anctrl]       #anctrl
+  - [0xF56430, c, anim/sprite]  #anctrl2
+  - [0xF56A40, c, animcache]    # andb1
+  - [0xF56EB0, c, code_1550]    # andb2
+  - [0xF57290, c, anseq]        # anseq
+  - [0xF57BA0, c, code_2240]    
+  - [0xF581F0, c, ba/anim]      # anstate???
   - [0xF58DE0, c, snackerctl]
   - [0xF59330, c, code_39D0]
-  - [0xF5A120, c, ba/marker]
+  - [0xF5A120, c, ba/marker]    #babanjo? baavatar?
   - [0xF5C490, c, code_6B30]
   - [0xF5C730, c, ba/carriedobj]
   - [0xF5C9C0, c, code_7060]
-  - [0xF5E700, c, ba/flap]
+  - [0xF5E700, c, ba/flap]      #babflap?
   - [0xF5EA40, c, code_90E0]
   - [0xF5EBF0, c, code_9290]
-  - [0xF5EDB0, c, code_9450]
-  - [0xF5F260, c, code_9900]
+  - [0xF5EDB0, c, code_9450] 
+  - [0xF5F260, c, babuzz]       # babuzz
   - [0xF5F530, c, code_9BD0]
   - [0xF5FF60, c, code_A600]
   - [0xF60040, c, statetimer]
   - [0xF602C0, c, code_A960]
-  - [0xF603C0, c, ba/model]
+  - [0xF603C0, c, ba/model]     # badraw?
   - [0xF60FB0, c, ba/drone]
   - [0xF611B0, c, code_B850]
   - [0xF614B0, c, eggshatter]
-  - [0xF61680, c, code_BD20]
+  - [0xF61680, c, code_BD20]    # baeyes
   - [0xF61A40, c, ba/falldamage]
-  - [0xF61D50, c, code_C3F0]
+  - [0xF61D50, c, code_C3F0]    # baflag
   - [0xF61E10, c, code_C4B0]
   - [0xF63160, c, ba/carry]
   - [0xF63310, c, code_D9B0]
-  - [0xF638D0, c, code_DF70]
-  - [0xF63D70, c, code_E410]
-  - [0xF63FE0, c, abilityprogress]
+  - [0xF638D0, c, code_DF70]    # bainput
+  - [0xF63D70, c, bakey]    # bakey
+  - [0xF63FE0, c, abilityprogress] #baknow
   - [0xF64270, c, code_E910]
   - [0xF647A0, c, code_EE40]
   - [0xF648B0, c, code_EF50]
@@ -550,20 +550,20 @@ segments:
   - [0xF66DC0, c, code_11460]
   - [0xF66FC0, c, code_11660]
   - [0xF67130, c, code_117D0]
-  - [0xF671D0, c, code_11870]
+  - [0xF671D0, c, code_11870] # barest
   - [0xF674A0, c, roll]
   - [0xF67740, c, yaw]
   - [0xF67CC0, c, code_12360]
-  - [0xF68020, c, code_126C0]
+  - [0xF68020, c, code_126C0] # basfx
   - [0xF68890, c, code_12F30]
   - [0xF68FD0, c, bsList]
-  - [0xF690E0, c, code_13780]
-  - [0xF69260, c, bsStoredState]
+  - [0xF690E0, c, code_13780] 
+  - [0xF69260, c, bsStoredState] #bastate
   - [0xF69360, c, code_13A00]
-  - [0xF69920, c, code_13FC0]
+  - [0xF69920, c, bastick]
   - [0xF69D80, c, code_14420]
   - [0xF6B880, c, code_15F20]
-  - [0xF6B970, c, code_16010]
+  - [0xF6B970, c, code_16010] # baswamp?
   - [0xF6C5C0, c, code_16C60]
   - [0xF6CB50, c, batimer]
   - [0xF6CDB0, c, bs/ant]
@@ -1130,7 +1130,7 @@ segments:
   - [0x1042D70, .rodata, code_6B30]
   - [0x1042E60, .rodata, code_7060]
   - [0x1042F90, .rodata, code_9450]
-  - [0x1042FC0, .rodata, code_9900]
+  - [0x1042FC0, .rodata, babuzz]
   - [0x1042FD0, .rodata, code_9BD0]
   - [0x1043010, .rodata, ba/model]
   - [0x10430C0, .rodata, ba/drone]
@@ -1153,7 +1153,7 @@ segments:
   - [0x1043660, .rodata, code_12360]
   - [0x1043690, .rodata, code_126C0]
   - [0x10436C0, .rodata, code_12F30]
-  - [0x10436E0, .rodata, code_13FC0]
+  - [0x10436E0, .rodata, bastick]
   - [0x10436F0, .rodata, code_14420]
   - [0x1043770, .rodata, code_16010]
   - [0x1043BD0, .rodata, code_16C60]
@@ -1385,7 +1385,7 @@ segments:
   - [0x1048560, .bss, code_90E0]
   - [0x1048560, .bss, code_9290]
   - [0x1048560, .bss, code_9450]
-  - [0x1048560, .bss, code_9900]
+  - [0x1048560, .bss, babuzz]
   - [0x1048560, .bss, code_9BD0]
   - [0x1048560, .bss, code_A600]
   - [0x1048560, .bss, statetimer]
@@ -1399,7 +1399,7 @@ segments:
   - [0x1048560, .bss, ba/carry]
   - [0x1048560, .bss, code_D9B0]
   - [0x1048560, .bss, code_DF70]
-  - [0x1048560, .bss, code_E410]
+  - [0x1048560, .bss, bakey]
   - [0x1048560, .bss, abilityprogress]
   - [0x1048560, .bss, code_E910]
   - [0x1048560, .bss, code_EE40]
@@ -1422,7 +1422,7 @@ segments:
   - [0x1048560, .bss, code_13780]
   - [0x1048560, .bss, bsStoredState]
   - [0x1048560, .bss, code_13A00]
-  - [0x1048560, .bss, code_13FC0]
+  - [0x1048560, .bss, bastick]
   - [0x1048560, .bss, code_14420]
   - [0x1048560, .bss, code_15F20]
   - [0x1048560, .bss, code_16010]

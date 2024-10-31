@@ -427,7 +427,7 @@ void chSmBottles_update(Actor *this) {
     f32 plyr_pos[3];
     void *sp40;
     int sp34;
-    int button_pressed;
+    int bakey_pressed;
 
     // Checks the actor's selector value is lower than 0x9
     // Anything higher is a non-Spiral Mountain ability, and should use a different actor id
@@ -594,25 +594,25 @@ void chSmBottles_update(Actor *this) {
                 __chSmBottles_setState(this, SM_BOTTLES_STATE_4_UNKNOWN);
             }//L8038A1B8
 
-            button_pressed = -1;
+            bakey_pressed = -1;
 
             if (this->unk38_0) {
                 this->lifetime_value += time_getDelta();
 
                 if (func_803114C4() != 0xe1d) {
                     if (face_buttons[FACE_BUTTON(BUTTON_A)] == TRUE) {
-                        button_pressed = 1;
+                        bakey_pressed = 1;
                     }
                     else if (face_buttons[FACE_BUTTON(BUTTON_B)] == TRUE) {
-                        button_pressed = 0;
+                        bakey_pressed = 0;
                     }
                 }//L8038A218
 
-                if (button_pressed != -1) {
-                    fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, button_pressed ? 0 : 1);
-                    gcdialog_showText(button_pressed ? ASSET_E07_DIALOG_BOTTLES_UNKNOWN : ASSET_E09_DIALOG_BOTTLES_SKIPPED_TUTORIAL, 0xe, this->position, this->marker, __chSmBottles_textCallback,__chSmBottles_textActions);
+                if (bakey_pressed != -1) {
+                    fileProgressFlag_set(FILEPROG_DB_SKIPPED_TUTORIAL, bakey_pressed ? 0 : 1);
+                    gcdialog_showText(bakey_pressed ? ASSET_E07_DIALOG_BOTTLES_UNKNOWN : ASSET_E09_DIALOG_BOTTLES_SKIPPED_TUTORIAL, 0xe, this->position, this->marker, __chSmBottles_textCallback,__chSmBottles_textActions);
 
-                    if (!button_pressed) {
+                    if (!bakey_pressed) {
                         __chSmBottles_skipIntroTutorial();
                     }
 

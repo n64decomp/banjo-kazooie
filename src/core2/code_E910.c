@@ -194,8 +194,8 @@ void func_80295914(void){
     miscFlag_clearAll();
     func_8028B6FC();
     func_80291590();
-    func_802953A0();
-    func_8029B11C();
+    bakey_reset();
+    bastick_reset();
     func_8029528C();
     bsList_clearAll();
     bs_clearState();
@@ -283,8 +283,8 @@ void func_80295C14(void){
     func_8029E100();
     pfsManager_update();//controller_update
     disableInput_set();
-    func_80295448();
-    func_8029B174();
+    bakey_update();
+    bastick_update();
     func_8029533C(); //dive_cooldown_update
     bs_updateState();
     baphysics_update();

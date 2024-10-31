@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-extern f32 func_8029B2D0(void);
+extern f32 bastick_getX(void);
 
 /* .code */
 void __bsDroneLook_getEyePos(f32 arg0[3]) {
@@ -45,8 +45,8 @@ void bsDroneLook_update(void) {
     if (ncFirstPersonCamera_getState() == FIRSTPERSON_STATE_2_IDLE) {
         //camera is in "idle" state
         ncFirstPersonCamera_getZoomedInRotation(eye_rotation);
-        eye_rotation[0] -= func_8029B2DC() * 90.0f * dt;
-        eye_rotation[1] -= func_8029B2D0() * 90.0f * dt;
+        eye_rotation[0] -= bastick_getY() * 90.0f * dt;
+        eye_rotation[1] -= bastick_getX() * 90.0f * dt;
         eye_rotation[2] = 0.0f;
         eye_rotation[0] = (eye_rotation[0] > 180.0f) ? ml_max_f(305.0f, eye_rotation[0]) : ml_min_f(70.0f, eye_rotation[0]);
         ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
@@ -54,7 +54,7 @@ void bsDroneLook_update(void) {
 
         exit_first_person = FALSE;
         // 1st person cancelled via input
-        if (button_pressed(BUTTON_B) || button_pressed(BUTTON_A) || button_pressed(BUTTON_C_UP)) {
+        if (bakey_pressed(BUTTON_B) || bakey_pressed(BUTTON_A) || bakey_pressed(BUTTON_C_UP)) {
             exit_first_person = TRUE;
         }
         // 1st person cancelled via entering water

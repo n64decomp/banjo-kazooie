@@ -65,8 +65,8 @@ void func_802B5538(AnimCtrl *arg0) {
 void func_802B55DC(void) {
     f32 sp1C;
 
-    sp1C = func_8029B30C();
-    if (func_8029B300() == 0) {
+    sp1C = bastick_getZonePosition();
+    if (bastick_getZone() == 0) {
         baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
@@ -81,8 +81,8 @@ void swim_enteredWater(void) {
     }
     baphysics_set_gravity(100.0f);
     baphysics_set_terminal_velocity(133.33f);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_80294378(3);
 }
 
@@ -91,7 +91,7 @@ void func_802B56D4(void) {
     if (!bsswim_inset(bs_getNextState())) {
         baphysics_reset_terminal_velocity();
         baphysics_reset_gravity();
-        func_8029B0C0();
+        bastick_resetZones();
         func_80294378(1);
     }
 }
@@ -164,7 +164,7 @@ void func_802B5950(void) {
     if (anctrl_isAt(anim_ctrl, 0.4348f) != 0) {
         func_802B5538(anim_ctrl);
     }
-    if (func_8029B300() == 1) {
+    if (bastick_getZone() == 1) {
         next_state = BS_2E_SWIM;
     }
     if (!player_inWater()) {
@@ -176,7 +176,7 @@ void func_802B5950(void) {
     if (should_dive()) {
         next_state = BS_30_DIVE_ENTER;
     }
-    if (func_80294524() && button_pressed(BUTTON_A)) {
+    if (func_80294524() && bakey_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
     if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
@@ -236,7 +236,7 @@ void func_802B5C40(void) {
         func_8030EB88(SFX_12_WATER_PADDLING_1, 0.9f, 1.1f);
     }
     func_802B55DC();
-    if (func_8029B300() == 0) {
+    if (bastick_getZone() == 0) {
         next_state = BS_2D_SWIM_IDLE;
     }
     if (player_inWater() == 0) {
@@ -253,7 +253,7 @@ void func_802B5C40(void) {
     if (should_dive() != 0) {
         next_state = BS_30_DIVE_ENTER;
     }
-    if (func_80294524() && button_pressed(BUTTON_A)) {
+    if (func_80294524() && bakey_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
     if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {

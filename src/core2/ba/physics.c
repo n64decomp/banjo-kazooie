@@ -274,8 +274,8 @@ void baphysics_update(void){
             func_8029740C();
             break;
         case BA_PHYSICS_AIRBORN: //L80297840 
-            if(0.0f < func_8029B2E8()){
-                baphysics_set_target_yaw(func_8029B33C());
+            if(0.0f < bastick_distance()){
+                baphysics_set_target_yaw(bastick_getAngleRelativeToBanjo());
             }
             __baphysics_update_normal();
             break;

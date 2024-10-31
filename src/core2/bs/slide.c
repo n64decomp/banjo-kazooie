@@ -110,7 +110,7 @@ void bsslide_update(void){
     if(player_inWater())
         sp3C = BS_4C_LANDING_IN_WATER;
     
-    if(D_8037D528 == 0.0f && button_pressed(BUTTON_A))
+    if(D_8037D528 == 0.0f && bakey_pressed(BUTTON_A))
         sp3C = bs_getTypeOfJump();
 
     bs_setState(sp3C);

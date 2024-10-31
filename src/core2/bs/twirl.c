@@ -67,7 +67,7 @@ void bstwirl_update(void){
             break;
     }//L802B6C4C
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         sp1C = bs_getTypeOfJump();
 
     if(0.6 < anctrl_getAnimTimer(aCtrl) && !player_isStable())

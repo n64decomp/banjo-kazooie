@@ -44,8 +44,8 @@ void func_802B7E00(void) {
 void func_802B7E6C(void) {
     f32 sp1C;
 
-    sp1C = func_8029B30C();
-    if (func_8029B300() == 0) {
+    sp1C = bastick_getZonePosition();
+    if (bastick_getZone() == 0) {
         baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
@@ -54,7 +54,7 @@ void func_802B7E6C(void) {
 
 void func_802B7ECC(void) {
     D_8037D5C0 = 0.0f;
-    if (func_80295530(8) < 3) {
+    if (bakey_releaseCount(BUTTON_A) < 3) {
         D_8037D5C0 = 1.0f;
     }
     D_8037D5C0 = ml_clamp_f(D_8037D5C0, 0.0f, 1.0f);
@@ -70,7 +70,7 @@ void func_802B7F28(void) {
 
     sp38 = D_80364DD8;
     sp3C = D_80364DDC;
-    sp40 = func_8029B30C();
+    sp40 = bastick_getZonePosition();
     func_802B7ECC();
     baphysics_get_velocity(sp20);
     sp20[1] = 0.0f;
@@ -81,7 +81,7 @@ void func_802B7F28(void) {
             sp3C += D_8037D5C0 * 350.0;
         }
     }
-    if (func_8029B300() == 0) {
+    if (bastick_getZone() == 0) {
         baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
@@ -92,7 +92,7 @@ void func_802B8048(void){
     if(!bswalrus_inSet(bs_getNextState())){
         pitch_setIdeal(0.0f);
         roll_setIdeal(0.0f);
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
         miscFlag_clear(MISC_FLAG_3);
@@ -165,10 +165,10 @@ void bswalrus_idle_update(void){
     if(should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         next_state = BS_WALRUS_WALK;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_WALRUS_JUMP;
 
     bs_setState(next_state);
@@ -194,13 +194,13 @@ void bswalrus_walk_update(void){
     func_802B7E6C();
     func_8029AD68(0.3f, 4);
 
-    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
+    if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         next_state = BS_67_WALRUS_IDLE;
 
     if(func_8028B094())
         next_state = BS_6A_WALRUS_FALL;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_WALRUS_JUMP;
 
     bs_setState(next_state);
@@ -223,8 +223,8 @@ void bswalrus_jump_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bswalrus.c", 0x1f8);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B7E6C();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -242,7 +242,7 @@ void bswalrus_jump_update(void){
 
     func_802B7E6C();
     baphysics_get_velocity(sp1C);
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
 
     switch(D_8037D5C8){
@@ -288,10 +288,10 @@ void bswalrus_jump_update(void){
     }//L802B8838
 
     if(player_isStable()){
-        if(func_8029B300() > 0)
+        if(bastick_getZone() > 0)
             next_state = BS_WALRUS_WALK;
 
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             next_state = BS_WALRUS_JUMP;
     }
 
@@ -349,7 +349,7 @@ void bswalrus_fall_update(void){
     }//L802B8A38
 
     if(player_isStable()){
-        if( func_8029B300() > 0 
+        if( bastick_getZone() > 0 
             || (D_8037D5C8 == 2 && anctrl_isStopped(aCtrl))
         ){
             if(miscFlag_isTrue(MISC_FLAG_19))
@@ -581,7 +581,7 @@ void bswalrus_sled_update(void){
     if(should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_7E_WALRUS_SLED;
 
     next_state = func_8029CA94(next_state);
@@ -604,8 +604,8 @@ void bswalrus_sled_jump_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bswalrus.c", 0x477);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B7F28();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -624,7 +624,7 @@ void bswalrus_sled_jump_update(void){
     func_802B7F28();
     baphysics_get_velocity(sp1C);
 
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
 
     switch (D_8037D5C8)
@@ -649,7 +649,7 @@ void bswalrus_sled_jump_update(void){
     }//L802B9530
 
     if(player_isStable()){
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             next_state = BS_7E_WALRUS_SLED;
         
         next_state = func_8029CA94(next_state);
@@ -704,13 +704,13 @@ void func_802B963C(void){
     }//L802B96F0
 
     if(player_isStable()){
-        if( func_8029B300() > 0 
+        if( bastick_getZone() > 0 
             || (D_8037D5C8 == 2 && anctrl_isStopped(aCtrl))
         ){
             next_state = BS_7D_WALRUS_SLED;
         }
 
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             next_state = BS_7E_WALRUS_SLED;
 
         next_state = func_8029CA94(next_state);

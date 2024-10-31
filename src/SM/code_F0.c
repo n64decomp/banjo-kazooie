@@ -34,7 +34,7 @@ s32 D_8038AAE4 = 0x8C0992D1; //compiled SM_code_crc_2
 union {
     u8 byte[4];
     s32 word;
-} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //compiled SM_data_crc_1 (with this zeroed out)
+} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //compiled SM_data_crc_1 (with this disabled out)
 s32 D_8038AAEC = 0;
 
 /* .bss */

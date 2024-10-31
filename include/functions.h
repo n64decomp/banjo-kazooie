@@ -64,8 +64,8 @@ void player_getPosition(f32 dst[3]);
 void player_getRotation(f32 *dst);
 
 
-int button_pressed(s32);
-u32 button_held(s32);
+int bakey_pressed(s32);
+u32 bakey_held(s32);
 
 void pitch_setIdeal(f32);
 f32 pitch_get(void);
@@ -285,11 +285,11 @@ void bsStoredState_setLongLegTimer(f32);
 void bsStoredState_setTrot(bool);
 void bsStoredState_setTurboTimer(f32);
 void func_8029AD28(f32, s32);
-f32  func_8029B2DC(void);
-f32  func_8029B2E8(void);
-f32  func_8029B30C(void);
-void func_8029B324(s32, f32);
-f32  func_8029B33C(void);
+f32  bastick_getY(void);
+f32  bastick_distance(void);
+f32  bastick_getZonePosition(void);
+void bastick_setZoneMax(s32, f32);
+f32  bastick_getAngleRelativeToBanjo(void);
 f32  func_8029B41C(void);
 ParticleEmitter *func_8029B950(f32[3],f32);
 void func_8029C3E8(f32, f32);

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_8029B2D0(void);
+extern f32 bastick_getX(void);
 
 void func_8029957C(s32 arg0);
 
@@ -23,7 +23,7 @@ void func_8029932C(f32 arg0){
 }
 
 void func_80299338(void){
-    f32 stickX = func_8029B2D0();
+    f32 stickX = bastick_getX();
     f32 d_yaw_deg;
     d_yaw_deg =(0.03 < (f64)mlAbsF(stickX)) ? ml_mapAbsRange_f(stickX, 0.0f, 1.0f, 1.0f, 6.0f) : 0.0f;
     yaw_setIdeal(yaw_getIdeal() + d_yaw_deg);
@@ -32,14 +32,14 @@ void func_80299338(void){
 void func_802993C8(void){
     switch(D_8037C6B0){
         case 1://802993F8
-            if(func_8029B2E8() != 0.0f){
-                yaw_setIdeal(func_8029B33C());
+            if(bastick_distance() != 0.0f){
+                yaw_setIdeal(bastick_getAngleRelativeToBanjo());
             }
             yaw_update();
             break;
         case 5://80299438
-            if(func_8029B2E8() != 0.0f){
-                yaw_setIdeal(func_8029B33C() + 180.0f);
+            if(bastick_distance() != 0.0f){
+                yaw_setIdeal(bastick_getAngleRelativeToBanjo() + 180.0f);
             }
             yaw_update();
             break; 
@@ -51,18 +51,18 @@ void func_802993C8(void){
             yaw_update();
             break; 
         case 4://802994A8
-            if(func_8029B2E8() != 0.0f){
-                yaw_setIdeal(func_8029B33C());
+            if(bastick_distance() != 0.0f){
+                yaw_setIdeal(bastick_getAngleRelativeToBanjo());
                 yaw_set(yaw_getIdeal());
             }
             yaw_update();
             break;
         case 7://802994F8
-            if(func_8029B2E8() != 0.0f){
-                f32 sp1C = func_8029B33C();
+            if(bastick_distance() != 0.0f){
+                f32 sp1C = bastick_getAngleRelativeToBanjo();
                 f32 diff = mlDiffDegF(yaw_getIdeal(), sp1C);
                 if(D_8037C6B4 <= mlAbsF(diff)){
-                    yaw_setIdeal(func_8029B33C());
+                    yaw_setIdeal(bastick_getAngleRelativeToBanjo());
                 }
             }
             yaw_update();

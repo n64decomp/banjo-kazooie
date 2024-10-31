@@ -7,7 +7,7 @@
 #include "core2/ba/timer.h"
 
 extern void baModel_setYDisplacement(f32);
-extern f32 func_8029B2D0(void);
+extern f32 bastick_getX(void);
 extern void ncDynamicCam4_func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
 
@@ -81,8 +81,8 @@ void func_802A354C(void){
     f32 roll_range;
     f32 sp2C; 
 
-    sp2C = func_8029B2D0();
-    if(button_held(BUTTON_R)){
+    sp2C = bastick_getX();
+    if(bakey_held(BUTTON_R)){
         yaw_setVelocityBounded(500.0f, 30.0f);
         yaw_range = 6.0f;
         roll_range = 85.0f;
@@ -97,7 +97,7 @@ void func_802A354C(void){
 }
 
 void func_802A3648(void){
-    f32 tmp_f0 = func_8029B2DC();
+    f32 tmp_f0 = bastick_getY();
 
     if(tmp_f0 < 0.0f)
         pitch_setIdeal(ml_map_f(tmp_f0, -1.0f, 0.0f, 300.0f, 360.0f));
@@ -138,8 +138,8 @@ int func_802A37F8(void){
 void bsbfly_enter_init(void){
     baanim_playForDuration_onceSmooth(ASSET_45_ANIM_BSBFLY_ENTER, 1.4f);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
     baphysics_set_target_yaw(yaw_getIdeal());
     baphysics_set_velocity(0);
@@ -216,7 +216,7 @@ void bsbfly_update(void){
     func_802A3648();
     sp3C = pitch_get();
     sp2C = 0;
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         D_8037D347 = 1;
 
     if(D_8037D347 && globalTimer_getTime()%3 == 0){
@@ -292,7 +292,7 @@ void bsbfly_update(void){
 
     D_8037D320 = ml_max_f(D_8037D320 - time_getDelta(), 0.0f);
     if( D_8037D320 == 0.0f
-        && button_pressed(BUTTON_B)
+        && bakey_pressed(BUTTON_B)
         && can_beak_bomb()
     ){
         sp2C = 0;

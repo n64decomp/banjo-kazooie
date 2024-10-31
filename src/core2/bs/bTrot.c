@@ -41,7 +41,7 @@ void func_802A880C(s32 arg0){
 }
 
 void func_802A8850(void){
-    if( button_pressed(BUTTON_B) 
+    if( bakey_pressed(BUTTON_B) 
         && stateTimer_isActive(STATE_TIMER_3_TURBO_TALON)
         && baphysics_get_target_horizontal_velocity() == 0.0f
     ){
@@ -89,8 +89,8 @@ f32 func_802A8984(void){
 }
 
 void func_802A89D4(void){
-    f32 sp24 = func_8029B30C();
-    if(!func_8029B300()){
+    f32 sp24 = bastick_getZonePosition();
+    if(!bastick_getZone()){
         baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
@@ -100,8 +100,8 @@ void func_802A89D4(void){
 }
 
 void func_802A8A40(void){
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
     func_8029E064(1);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -138,7 +138,7 @@ void func_802A8BB0(void){
         return;
     
     baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
-    func_8029B0C0();
+    bastick_resetZones();
     func_8029E070(0);
     func_8029E064(0);
     pitch_setIdeal(0.0f);
@@ -157,7 +157,7 @@ int func_802A8C60(void){
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
         return 0;
 
-    return button_released(BUTTON_Z);
+    return bakey_released(BUTTON_Z);
 }
 
 void _bsbtrot_802A8C98(AnimCtrl *aCtrl, enum asset_e arg1){
@@ -187,7 +187,7 @@ enum bs_e func_802A8D34(enum bs_e arg0){
 }
 
 enum bs_e func_802A8D84(enum bs_e arg0){
-    if( func_8029B300(arg0) > 0)
+    if( bastick_getZone(arg0) > 0)
         arg0 = BS_16_BTROT_WALK;
 
     if(should_look_first_person_camera())
@@ -199,7 +199,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
     if(func_802A8C60())
         arg0 = BS_17_BTROT_EXIT;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         arg0 = func_802A8D34(arg0);
 
     if(player_shouldSlideTrot())
@@ -313,7 +313,7 @@ void bsbtrot_walk_update(void){
         if(anctrl_isAt(aCtrl, 0.2115f) || anctrl_isAt(aCtrl, 0.7115f))
             func_802A87C0();
     }
-    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
+    if(!bastick_getZone() && baphysics_is_slower_than(1.0f))
         sp1C = BS_15_BTROT_IDLE;
 
     if(func_8028B094())
@@ -322,7 +322,7 @@ void bsbtrot_walk_update(void){
     if(func_802A8C60())
         sp1C = BS_17_BTROT_EXIT;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         sp1C = func_802A8D34(sp1C);
 
     if(player_shouldSlideTrot())
@@ -357,8 +357,8 @@ void bsbtrot_jump_init(void){
     yaw_setUpdateState(1);
     func_8029957C(3);
     baphysics_set_type(BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
 
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802A89D4();
@@ -383,7 +383,7 @@ void bsbtrot_jump_update(void){
         func_802A89D4();
 
     baphysics_get_velocity(sp1C);
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
     
     switch(D_8037D3A4){
@@ -464,7 +464,7 @@ void bsbtrot_jump_update(void){
         sp2C = BS_4C_LANDING_IN_WATER;
     
     if(player_isStable()){
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
         
         if(player_shouldSlideTrot())
@@ -540,7 +540,7 @@ void bsbtrot_slide_update(void){
     if(player_inWater())
         sp3C = BS_2D_SWIM_IDLE;
 
-    if(D_8037D3A0 == 0.0f && button_pressed(BUTTON_A) && player_isStable())
+    if(D_8037D3A0 == 0.0f && bakey_pressed(BUTTON_A) && player_isStable())
         sp3C = func_802A8D34(sp3C);
     
 
@@ -664,7 +664,7 @@ void bsbtrot_fall_update(void){
         sp2C = BS_3D_FALL_TUMBLING;
 
     if(player_isStable()){
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             sp2C = func_802A8D34(sp2C);
 
         if(player_shouldSlideTrot())

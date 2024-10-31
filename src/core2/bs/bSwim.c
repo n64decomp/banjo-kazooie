@@ -8,7 +8,7 @@
 
 
 extern f32  func_8029494C(void);
-extern f32  func_8029B2D0(void);
+extern f32  bastick_getX(void);
 
 /* .bss */
 f32 D_8037D390;
@@ -33,9 +33,9 @@ void func_802A71D8(void) {
     f32 roll_range;
     f32 sp30;
 
-    sp30 = func_8029B2D0();
+    sp30 = bastick_getX();
     sp38 = func_802A716C();
-    if (button_held(BUTTON_R)) {
+    if (bakey_held(BUTTON_R)) {
         roll_range = 45.0f;
         yaw_range = 4.3f;
         yaw_setVelocityBounded(250.0f, 20.0f);
@@ -52,7 +52,7 @@ void func_802A7304() {
     f32 temp_f0;
 
     pitch_setAngVel(ml_interpolate_f(func_802A716C(), 70.0f, 30.0f), 0.9f);
-    temp_f0 = func_8029B2DC();
+    temp_f0 = bastick_getY();
     if (temp_f0 < 0.0f) {
         pitch_setIdeal(ml_map_f(temp_f0, -1.0f, 0.0f, 275.0f, 360.0f));
         return;
@@ -74,8 +74,8 @@ void func_802A744C(void) {
     roll_setAngularVelocity(30.0f, 0.9f);
     baphysics_set_gravity(0.0f);
     baphysics_set_terminal_velocity(-399.99f);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
     func_80294378(3);
     baModel_setYDisplacement(60.0f);
@@ -105,7 +105,7 @@ void func_802A75B0(void) {
         roll_setIdeal(0.0f);
         baphysics_reset_terminal_velocity();
         baphysics_reset_gravity();
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_80294378(1);
         baModel_setYDisplacement(0.0f);
@@ -129,10 +129,10 @@ void func_802A7674() {
     if (should_look_first_person_camera()) {
         state_id = badrone_look();
     }
-    if (button_held(BUTTON_A)) {
+    if (bakey_held(BUTTON_A)) {
         state_id = BS_39_DIVE_A;
     }
-    if (button_held(BUTTON_B)) {
+    if (bakey_held(BUTTON_B)) {
         state_id = BS_2C_DIVE_B;
     }
     if (func_802A73BC()) {
@@ -202,8 +202,8 @@ void func_802A7838(void) {
     if (anctrl_isAt(anim_ctrl, 0.2766f)) {
         anctrl_setDuration(anim_ctrl, 3.0f);
     }
-    if (!button_held(BUTTON_B)) {
-        if (button_held(BUTTON_A)) {
+    if (!bakey_held(BUTTON_B)) {
+        if (bakey_held(BUTTON_A)) {
             temp_f2 = (f64) anctrl_getAnimTimer(anim_ctrl);
             if (temp_f2 <= 0.4625 && 0.1 < temp_f2) {
                 next_state = BS_39_DIVE_A;
@@ -212,8 +212,8 @@ void func_802A7838(void) {
             next_state = BS_2B_DIVE_IDLE;
         }
     }
-    if (anctrl_isAt(anim_ctrl, 0.4625f) && !button_held(BUTTON_B)) {
-        if (button_held(BUTTON_A)) {
+    if (anctrl_isAt(anim_ctrl, 0.4625f) && !bakey_held(BUTTON_B)) {
+        if (bakey_held(BUTTON_A)) {
             next_state = BS_39_DIVE_A;
         } else {
             next_state = BS_2B_DIVE_IDLE;
@@ -258,10 +258,10 @@ void func_802A7AB0(void) {
         func_8030E760(SFX_0_BLOOP, 1.7f, 10000);
     }
     if (anctrl_isAt(anim_ctl, 0.99f)) {
-        if (!button_held(BUTTON_A)) {
+        if (!bakey_held(BUTTON_A)) {
             next_state = BS_2B_DIVE_IDLE;
         }
-        if (button_held(BUTTON_B)) {
+        if (bakey_held(BUTTON_B)) {
             next_state = BS_2C_DIVE_B;
         }
     }

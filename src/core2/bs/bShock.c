@@ -25,8 +25,8 @@ void bsbshock_charge_init(void){
     anctrl_start(aCtrl, "bsbshock.c", 0x61);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
@@ -59,7 +59,7 @@ void bsbshock_charge_update(void){
     }
     func_802B6FA8();
     baphysics_get_velocity(sp1C);
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1]){
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1]){
         baphysics_reset_gravity();
     }
     
@@ -88,7 +88,7 @@ void bsbshock_charge_update(void){
     }//L802A6CAC
 
     if(func_8028B254(0x3C)){
-        if(anctrl_getAnimTimer(aCtrl) < 0.3637 && button_released(8)){
+        if(anctrl_getAnimTimer(aCtrl) < 0.3637 && bakey_released(8)){
             D_8037D380 = 0;
         }//L802A6CF4
         if(player_isStable())
@@ -137,8 +137,8 @@ void bsbshock_init(void){
     anctrl_start(aCtrl, "bsbshock.c", 0x13a);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
@@ -164,7 +164,7 @@ void bsbshock_update(void){
     if(anctrl_isAt(aCtrl, 0.7f))
         sfxsource_playHighPriority(SFX_53_BANJO_HUIII);
 
-    if(button_released(BUTTON_A) && 0.0f < sp20[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp20[1])
         baphysics_reset_gravity();
 
     if(D_8037D381 == 0){

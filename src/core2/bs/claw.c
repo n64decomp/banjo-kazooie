@@ -60,7 +60,7 @@ void bsclaw_update(void){
     if(player_inWater())
         sp2C = BS_4C_LANDING_IN_WATER;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         sp2C = bs_getTypeOfJump();
 
     bs_setState(sp2C);

@@ -15,7 +15,7 @@ void func_802AB5C0(void){
     f32 sp28;
     f32 f2;
 
-    sp28 = func_8029B2DC();
+    sp28 = bastick_getY();
     if(mlAbsF(sp28) < 0.03){
         f2 = 0.0f; 
     }
@@ -32,8 +32,8 @@ void func_802AB654(void){
     func_8029957C(6);
     yaw_setUpdateState(3);
     yaw_setVelocityBounded(500.0f, 15.0f);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     baphysics_set_type(BA_PHYSICS_CLIMB);
     baphysics_set_acceleration(10.0f);
     func_80294378(5);
@@ -44,7 +44,7 @@ void func_802AB654(void){
 void func_802AB6F0(void){
     if(!bsclimb_inSet(bs_getNextState())){
         func_80291548();
-        func_8029B0C0();
+        bastick_resetZones();
         baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
         baphysics_set_type(BA_PHYSICS_NORMAL);
         func_80294378(1);
@@ -113,7 +113,7 @@ void bsclimb_idle_update(void){
         next_state = BS_50_CLIMB_MOVE;
     
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_5_JUMP;
 
     if(D_8037D3D8 == 0)
@@ -175,7 +175,7 @@ void bsclimb_move_update(void){
         next_state = BS_51_CLIMB_EXIT;
     }
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_5_JUMP;
 
     if(!D_8037D3D8)

@@ -521,7 +521,7 @@ segments:
   # - [0xF5EA40, c, code_90E0] #DONE 
   # - [0xF5EBF0, c, code_9290] #DONE
   # - [0xF5EDB0, c, code_9450] #DONE
-  # - [0xF5F260, c, code_9900] #DONE
+  # - [0xF5F260, c, babuzz] #DONE
   # - [0xF5F530, c, code_9BD0] #DONE
   # - [0xF5FF60, c, code_A600] #DONE
   # - [0xF60040, c, statetimer] #DONE
@@ -537,7 +537,7 @@ segments:
   # - [0xF63160, c, ba/carry] #DONE
   # - [0xF63310, c, code_D9B0] #DONE
   # - [0xF638D0, c, code_DF70] #DONE
-  # - [0xF63D70, c, code_E410] #DONE
+  # - [0xF63D70, c, bakey] #DONE
   # - [0xF63FE0, c, abilityprogress] #DONE
   # - [0xF64270, c, code_E910] #DONE
   # - [0xF647A0, c, code_EE40] #DONE
@@ -560,7 +560,7 @@ segments:
   # - [0xF690E0, c, code_13780] #DONE
   # - [0xF69260, c, bsStoredState] #DONE
   # - [0xF69360, c, code_13A00] #DONE
-  # - [0xF69920, c, code_13FC0] #DONE
+  # - [0xF69920, c, bastick] #DONE
   # - [0xF69D80, c, code_14420] #DONE
   # - [0xF6B880, c, code_15F20]  #DONE
   # - [0xF6B970, c, code_16010]  #DONE
@@ -1132,7 +1132,7 @@ segments:
   - [0x1066E30, .rodata, code_7060]
   - [0x1066F60, bin, core2_untouched_rodata]
   # - [0x1042F90, .rodata, code_9450]
-  # - [0x1042FC0, .rodata, code_9900]
+  # - [0x1042FC0, .rodata, babuzz]
   # - [0x1042FD0, .rodata, code_9BD0]
   # - [0x1043010, .rodata, ba/model]
   # - [0x10430C0, .rodata, ba/drone]
@@ -1155,7 +1155,7 @@ segments:
   # - [0x1043660, .rodata, code_12360]
   # - [0x1043690, .rodata, code_126C0]
   # - [0x10436C0, .rodata, code_12F30]
-  # - [0x10436E0, .rodata, code_13FC0]
+  # - [0x10436E0, .rodata, bastick]
   # - [0x10436F0, .rodata, code_14420]
   # - [0x1043770, .rodata, code_16010]
   # - [0x1043BD0, .rodata, code_16C60]
@@ -1387,7 +1387,7 @@ segments:
   # - [0x0106C980, .bss, code_90E0]
   # - [0x0106C980, .bss, code_9290]
   # - [0x0106C980, .bss, code_9450]
-  # - [0x0106C980, .bss, code_9900]
+  # - [0x0106C980, .bss, babuzz]
   # - [0x0106C980, .bss, code_9BD0]
   # - [0x0106C980, .bss, code_A600]
   # - [0x0106C980, .bss, statetimer]
@@ -1401,7 +1401,7 @@ segments:
   # - [0x0106C980, .bss, ba/carry]
   # - [0x0106C980, .bss, code_D9B0]
   # - [0x0106C980, .bss, code_DF70]
-  # - [0x0106C980, .bss, code_E410]
+  # - [0x0106C980, .bss, bakey]
   # - [0x0106C980, .bss, abilityprogress]
   # - [0x0106C980, .bss, code_E910]
   # - [0x0106C980, .bss, code_EE40]
@@ -1424,7 +1424,7 @@ segments:
   # - [0x0106C980, .bss, code_13780]
   # - [0x0106C980, .bss, bsStoredState]
   # - [0x0106C980, .bss, code_13A00]
-  # - [0x0106C980, .bss, code_13FC0]
+  # - [0x0106C980, .bss, bastick]
   # - [0x0106C980, .bss, code_14420]
   # - [0x0106C980, .bss, code_15F20]
   # - [0x0106C980, .bss, code_16010]

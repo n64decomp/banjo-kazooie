@@ -40,9 +40,9 @@ void func_8029E448(int arg0){
 }
 
 void func_8029E48C(void){
-    f32 sp1C = func_8029B30C();
+    f32 sp1C = bastick_getZonePosition();
 
-    if(func_8029B300() == 0){
+    if(bastick_getZone() == 0){
         baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
@@ -52,7 +52,7 @@ void func_8029E48C(void){
 
 void func_8029E4EC(void){
     if(!bsant_inSet(bs_getNextState())){
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
         miscFlag_clear(MISC_FLAG_3);
@@ -100,10 +100,10 @@ void bsant_idle_update(void){
     if(should_look_first_person_camera())
         new_state = badrone_look();
 
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         new_state = BS_ANT_WALK;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         new_state = BS_ANT_JUMP;
 
     bs_setState(new_state);
@@ -135,13 +135,13 @@ void bsant_walk_update(void){
     if(anctrl_isAt(aCtrl, 0.2781f))
         func_8029E448(1);
 
-    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
+    if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_35_ANT_IDLE;
 
     if(func_8028B094())
         sp1C = BS_38_ANT_FALL;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         sp1C = BS_ANT_JUMP;
 
     bs_setState(sp1C);
@@ -164,8 +164,8 @@ void bsant_jump_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsant.c", 0x17c);
     func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     baphysics_set_target_yaw(yaw_getIdeal());
     func_8029E48C();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -184,7 +184,7 @@ void bsant_jump_update(void){
     func_8029E48C();
     baphysics_get_velocity(sp1C);
 
-    if(button_released(BUTTON_A) && 0.0f < sp1C[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
         baphysics_reset_gravity();
 
     switch(bsant_substate){
@@ -216,10 +216,10 @@ void bsant_jump_update(void){
     }//L8029EB38
     if(player_isStable()){
         baphysics_set_target_horizontal_velocity(0.0f);
-        if(func_8029B300() > 0)
+        if(bastick_getZone() > 0)
             sp2C = BS_ANT_WALK;
 
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             sp2C = BS_ANT_JUMP;
     }
 

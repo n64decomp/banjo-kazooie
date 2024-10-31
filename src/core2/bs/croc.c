@@ -68,8 +68,8 @@ void func_802ABE70(void){
 }
 
 void func_802ABF54(void){
-    f32 sp1C = func_8029B30C();
-    if(func_8029B300() == 0){
+    f32 sp1C = bastick_getZonePosition();
+    if(bastick_getZone() == 0){
         baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
@@ -79,7 +79,7 @@ void func_802ABF54(void){
 
 void func_802ABFBC(void){
     if(!bscroc_inSet(bs_getNextState())){
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
         miscFlag_clear(MISC_FLAG_3);
@@ -125,13 +125,13 @@ void bscroc_idle_update(void){
     if(should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         next_state = BS_CROC_WALK;
 
-    if(button_pressed(BUTTON_B))
+    if(bakey_pressed(BUTTON_B))
         next_state = BS_6E_CROC_BITE;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
 
     next_state = func_8029CA94(next_state);
@@ -160,16 +160,16 @@ void bscroc_walk_update(void){
 
     func_8029AD28(0.1f, 4);
     func_8029AD28(0.6f, 3);
-    if(func_8029B300() == 0 && baphysics_is_slower_than(1.0f))
+    if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         next_state = BS_5E_CROC_IDLE;
 
     if(func_8028B094())
         next_state = BS_61_CROC_FALL;
 
-    if(button_pressed(BUTTON_B))
+    if(bakey_pressed(BUTTON_B))
         next_state = BS_6E_CROC_BITE;
 
-    if(button_pressed(BUTTON_A))
+    if(bakey_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
 
     bs_setState(next_state);
@@ -192,8 +192,8 @@ void bscroc_jump_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bscroc.c", 0x1ac);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f){
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f){
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802ABF54();
@@ -212,7 +212,7 @@ void bscroc_jump_update(void){
     func_802ABE70();
     func_802ABF54();
     baphysics_get_velocity(player_velocity);
-    if(button_released(BUTTON_A) && 0.0f < player_velocity[1])
+    if(bakey_released(BUTTON_A) && 0.0f < player_velocity[1])
         baphysics_reset_gravity();
 
     switch(D_8037D3EC){
@@ -252,14 +252,14 @@ void bscroc_jump_update(void){
     }//L802AC66C
 
     if(player_isStable()){
-        if(func_8029B300() > 0)
+        if(bastick_getZone() > 0)
             sp2C = BS_CROC_WALK;
         
-        if(button_pressed(BUTTON_A))
+        if(bakey_pressed(BUTTON_A))
             sp2C = BS_CROC_JUMP;
     }
 
-    if(button_pressed(BUTTON_B))
+    if(bakey_pressed(BUTTON_B))
             sp2C = BS_6E_CROC_BITE;
 
     bs_setState(sp2C);
@@ -312,7 +312,7 @@ void bscroc_fall_update(void){
     }//L802AC850
 
     if(player_isStable()){
-        if(func_8029B300() > 0 || (D_8037D3EC == 2 && anctrl_isStopped(aCtrl))){
+        if(bastick_getZone() > 0 || (D_8037D3EC == 2 && anctrl_isStopped(aCtrl))){
             if(miscFlag_isTrue(MISC_FLAG_19)){
                 next_state = badrone_transform();
             }else{
@@ -550,7 +550,7 @@ void bscroc_bite_update(void){
             next_state = BS_CROC_WALK;
     }
 
-    if(player_isStable() && button_pressed(BUTTON_A))
+    if(player_isStable() && bakey_pressed(BUTTON_A))
         next_state = BS_CROC_JUMP;
 
     bs_setState(next_state);

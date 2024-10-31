@@ -16,7 +16,7 @@ void func_802A02C0(void){
     if(bsbee_inSet(bs_getNextState()) == 0){
         pitch_setIdeal(0.0f); //pitch_setIdeal
         roll_setIdeal(0.0f);
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
         miscFlag_clear(MISC_FLAG_3);

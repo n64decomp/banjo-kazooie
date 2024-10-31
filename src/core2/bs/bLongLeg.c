@@ -39,8 +39,8 @@ void func_802A5208(int arg0){
 }
 
 void func_802A524C(void){
-    f32 sp1C = func_8029B30C();
-    if(!func_8029B300())
+    f32 sp1C = bastick_getZonePosition();
+    if(!bastick_getZone())
         baphysics_set_target_horizontal_velocity(0.0f);
     else
         baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, D_80364A40, D_80364A44));
@@ -64,8 +64,8 @@ void func_802A531C(void){
 
 void func_802A5374(void){
     baModel_80292078(1, -50.0f);
-    func_8029B324(0, 0.03f);
-    func_8029B324(1, 1.0f);
+    bastick_setZoneMax(0, 0.03f);
+    bastick_setZoneMax(1, 1.0f);
     func_8029E070(1);
     func_8029E064(1);
     func_8029E0F4(1);
@@ -79,7 +79,7 @@ void func_802A5404(void){
         return;
     
     baModel_80292078(1,0);
-    func_8029B0C0();
+    bastick_resetZones();
     func_8029E070(0);
     func_8029E064(0);
     func_8029E0F4(0);
@@ -171,16 +171,16 @@ void bsblongleg_stand_update(void){
     if(should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(button_pressed(BUTTON_B))
+    if(bakey_pressed(BUTTON_B))
         stateTimer_clear(STATE_TIMER_2_LONGLEG);
     
-    if(func_8029B300() > 0)
+    if(bastick_getZone() > 0)
         next_state = BS_LONGLEG_WALK;
     
     if(player_shouldSlideTrot())
         next_state = BS_LONGLEG_SLIDE;
     
-    if(button_pressed(BUTTON_A) && player_isStable())
+    if(bakey_pressed(BUTTON_A) && player_isStable())
         next_state = BS_LONGLEG_JUMP;
 
     if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
@@ -222,16 +222,16 @@ void bsblongleg_walk_update(void){
         func_802A5208(1);
     
     func_802A524C();
-    if(button_pressed(BUTTON_B) && baphysics_get_target_horizontal_velocity() == 0.0f)
+    if(bakey_pressed(BUTTON_B) && baphysics_get_target_horizontal_velocity() == 0.0f)
         stateTimer_clear(STATE_TIMER_2_LONGLEG);
 
-    if(!func_8029B300() && baphysics_is_slower_than(1.0f))
+    if(!bastick_getZone() && baphysics_is_slower_than(1.0f))
         next_state = BS_26_LONGLEG_IDLE;
 
     if(player_shouldSlideTrot())
         next_state = BS_LONGLEG_SLIDE;
 
-    if(button_pressed(BUTTON_A) && player_isStable())
+    if(bakey_pressed(BUTTON_A) && player_isStable())
         next_state = BS_LONGLEG_JUMP;
 
     if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
@@ -325,8 +325,8 @@ void bsblongleg_jump_init(void){
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
-    if(func_8029B2E8() != 0.0f)
-        yaw_setIdeal(func_8029B33C());
+    if(bastick_distance() != 0.0f)
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802A524C();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -345,7 +345,7 @@ void bsblongleg_jump_update(void){
     func_802A531C();
     func_802A524C();
     baphysics_get_velocity(sp34);
-    if(button_released(BUTTON_A) && 0.0f < sp34[1])
+    if(bakey_released(BUTTON_A) && 0.0f < sp34[1])
         baphysics_reset_gravity();
 
     sp30 = player_getYPosition() - func_80294438();
@@ -385,7 +385,7 @@ void bsblongleg_jump_update(void){
             if(anctrl_isStopped(aCtrl))
                 sp44 = BS_26_LONGLEG_IDLE;
 
-            if(button_pressed(BUTTON_A))
+            if(bakey_pressed(BUTTON_A))
                 sp44 = BS_LONGLEG_JUMP;
 
             if(stateTimer_isDone(STATE_TIMER_2_LONGLEG))
@@ -446,7 +446,7 @@ void bsblongleg_slide_update(void){
         sp3C = BS_26_LONGLEG_IDLE;
     }
 
-    if(D_8037D358 == 0.0f && button_pressed(BUTTON_A))
+    if(D_8037D358 == 0.0f && bakey_pressed(BUTTON_A))
         sp3C = BS_LONGLEG_JUMP;
 
     if(func_802A51D0())

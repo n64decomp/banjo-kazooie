@@ -551,11 +551,11 @@ f32 func_8028EF88(void){
 }
 
 bool func_8028EFC8(void){
-    return func_802955A4(BUTTON_B, 2);
+    return bakey_getAndSetState(BUTTON_B, 2);
 }
 
 bool func_8028EFEC(void){
-    return func_802955A4(BUTTON_A, 2);
+    return bakey_getAndSetState(BUTTON_A, 2);
 }
 
 void func_8028F010(enum actor_e actor_id){
@@ -786,12 +786,12 @@ void func_8028F760(s32 arg0, f32 arg1, f32 arg2){
 
 void func_8028F784(bool arg0){
     if(arg0){
-        func_802955BC(TRUE);
-        func_8029B318(TRUE);
+        bakey_disableAll(TRUE);
+        bastick_lockAtzero(TRUE);
     }
     else{
-        func_802955BC(FALSE);
-        func_8029B318(FALSE);
+        bakey_disableAll(FALSE);
+        bastick_lockAtzero(FALSE);
     }
 }
 

@@ -42,8 +42,8 @@ void func_802B21D0(void) {
 void func_802B223C(void) {
     f32 sp1C;
 
-    sp1C = func_8029B30C();
-    if (func_8029B300() == 0) {
+    sp1C = bastick_getZonePosition();
+    if (bastick_getZone() == 0) {
         baphysics_set_target_horizontal_velocity(0.0f);
         return;
     }
@@ -52,7 +52,7 @@ void func_802B223C(void) {
 
 void func_802B229C(void) {
     if (!bspumpkin_inSet(bs_getNextState())) {
-        func_8029B0C0();
+        bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
         miscFlag_clear(MISC_FLAG_3);
@@ -95,10 +95,10 @@ void bspumpkin_idle_update(void) {
     if (should_look_first_person_camera()) {
         next_state = badrone_look();
     }
-    if (func_8029B300() > 0) {
+    if (bastick_getZone() > 0) {
         next_state = BS_49_PUMPKIN_WALK;
     }
-    if (button_pressed(BUTTON_A)) {
+    if (bakey_pressed(BUTTON_A)) {
         next_state = BS_4A_PUMPKIN_JUMP;
     }
     bs_setState(next_state);
@@ -131,13 +131,13 @@ void bspumpkin_walk_update(void) {
     next_state = 0;
     func_802B223C();
     func_8029AD68(0.3f, 4);
-    if ((func_8029B300() == 0) && baphysics_is_slower_than(1.0f)) {
+    if ((bastick_getZone() == 0) && baphysics_is_slower_than(1.0f)) {
         next_state = BS_48_PUMPKIN_IDLE;
     }
     if (func_8028B094()) {
         next_state = BS_4B_PUMPKIN_FALL;
     }
-    if (button_pressed(BUTTON_A)) {
+    if (bakey_pressed(BUTTON_A)) {
         next_state = BS_4A_PUMPKIN_JUMP;
     }
     bs_setState(next_state);
@@ -159,8 +159,8 @@ void bspumpkin_jump_init(void) {
     anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     anctrl_start(anim_ctrl, "bspumpkin.c", 0x16C);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
-    if (func_8029B2E8() != 0.0f) {
-        yaw_setIdeal(func_8029B33C());
+    if (bastick_distance() != 0.0f) {
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B223C();
@@ -180,7 +180,7 @@ void bspumpkin_jump_update(void) {
     anim_ctrl = baanim_getAnimCtrlPtr();
     func_802B223C();
     baphysics_get_velocity(sp1C);
-    if (button_released(BUTTON_A) && sp1C[1] > 0.0f) {
+    if (bakey_released(BUTTON_A) && sp1C[1] > 0.0f) {
         baphysics_reset_gravity();
     }
     switch (D_8037D4E0) {
@@ -225,10 +225,10 @@ void bspumpkin_jump_update(void) {
         break;
     }
     if (player_isStable()) {
-        if (func_8029B300() > 0) {
+        if (bastick_getZone() > 0) {
             next_state = BS_49_PUMPKIN_WALK;
         }
-        if (button_pressed(BUTTON_A)) {
+        if (bakey_pressed(BUTTON_A)) {
             next_state = BS_4A_PUMPKIN_JUMP;
         }
     }
@@ -289,7 +289,7 @@ void bspumpkin_fall_update(void) {
     case 2:
         break;
     }
-    if (player_isStable() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && anctrl_isStopped(anim_ctrl)))) {
+    if (player_isStable() && ((bastick_getZone() > 0) || (D_8037D4E0 == 2 && anctrl_isStopped(anim_ctrl)))) {
         if (miscFlag_isTrue(MISC_FLAG_19)) {
             next_state = badrone_transform();
         } else {

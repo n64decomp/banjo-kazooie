@@ -22,8 +22,8 @@ u8 D_8037D30C;
 void bsbflap_init(void) {
     baanim_playForDuration_onceSmooth(ASSET_18_ANIM_BSBFLAP_ENTER, 0.3f);
     func_8029C7F4(1, 1, 1, BA_PHYSICS_NORMAL);
-    if (func_8029B2E8() != 0.0f) {
-        yaw_setIdeal(func_8029B33C());
+    if (bastick_distance() != 0.0f) {
+        yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
@@ -146,7 +146,7 @@ void bsbflap_update(void){
             if(D_8037D301 == 4) {
                 D_8037D300 = 3;
             }
-            if(button_released(BUTTON_A)){
+            if(bakey_released(BUTTON_A)){
                 baphysics_reset_gravity();
                 baphysics_reset_terminal_velocity();
                 anctrl_setDuration(sp18, 1.0f);
@@ -159,7 +159,7 @@ void bsbflap_update(void){
             func_802A2810();
             func_802A28CC();
             func_802A298C();
-            if(button_released(BUTTON_A)){
+            if(bakey_released(BUTTON_A)){
                 baphysics_reset_gravity();
                 baphysics_reset_terminal_velocity();
                 anctrl_setDuration(sp18, 1.0f);
