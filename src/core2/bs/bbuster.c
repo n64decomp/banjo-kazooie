@@ -124,7 +124,7 @@ void bsbbuster_update(void){
                 baMotor_80250D94(1.0f, 0.3f, 0.4f);
                 D_8037D2B6++;
             }
-            D_8037D2B9 = miscFlag_isTrue(MISC_FLAG_8);
+            D_8037D2B9 = baflag_isTrue(BA_FLAG_8);
             func_8029445C(sp30);
             //L8029FF78
             if(((0.0f <= sp30[1])? sp30[1] : -sp30[1]) < 1.0){

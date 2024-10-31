@@ -5334,36 +5334,36 @@ enum bswatergroup_e{
 };
 
 enum misc_flag_e{
-    MISC_FLAG_0, // unused
-    MISC_FLAG_1_ON_FLIGHT_PAD,
-    MISC_FLAG_2_ON_SPRING_PAD,
-    MISC_FLAG_3,
-    MISC_FLAG_4,
-    MISC_FLAG_5_HAS_PECKED,
-    MISC_FLAG_6,
-    MISC_FLAG_7,
-    MISC_FLAG_8,
-    MISC_FLAG_9,
-    MISC_FLAG_A,
-    MISC_FLAG_B,
-    MISC_FLAG_C,
-    MISC_FLAG_D, // unused
-    MISC_FLAG_E_TOUCHING_WADING_BOOTS,
-    MISC_FLAG_F, // related to A button ?
-    MISC_FLAG_10_TOUCHING_TURBO_TRAINERS,
-    MISC_FLAG_11, // unused
-    MISC_FLAG_12_HAS_FLAPPED, // has used flap
-    MISC_FLAG_13, // related to ground damage ?
-    MISC_FLAG_14_LOSE_BOGGY_RACE, // in difficult terrain (mud)
-    MISC_FLAG_15_LOADZONE, // touching loadzone?
-    MISC_FLAG_16, // related to flying
-    MISC_FLAG_17_FIRST_PERSON_VIEW,
-    MISC_FLAG_18, // related to underwater state
-    MISC_FLAG_19, // related to transformations
-    MISC_FLAG_1A, // related to bee transformation
-    MISC_FLAG_1B_TRANSFORMING,
+    BA_FLAG_0, // unused
+    BA_FLAG_1_ON_FLIGHT_PAD,
+    BA_FLAG_2_ON_SPRING_PAD,
+    BA_FLAG_3,
+    BA_FLAG_4,
+    BA_FLAG_5_HAS_PECKED,
+    BA_FLAG_6,
+    BA_FLAG_7,
+    BA_FLAG_8,
+    BA_FLAG_9,
+    BA_FLAG_A,
+    BA_FLAG_B,
+    BA_FLAG_C,
+    BA_FLAG_D, // unused
+    BA_FLAG_E_TOUCHING_WADING_BOOTS,
+    BA_FLAG_F, // related to A button ?
+    BA_FLAG_10_TOUCHING_TURBO_TRAINERS,
+    BA_FLAG_11, // unused
+    BA_FLAG_12_HAS_FLAPPED, // has used flap
+    BA_FLAG_13, // related to ground damage ?
+    BA_FLAG_14_LOSE_BOGGY_RACE, // in difficult terrain (mud)
+    BA_FLAG_15_LOADZONE, // touching loadzone?
+    BA_FLAG_16, // related to flying
+    BA_FLAG_17_FIRST_PERSON_VIEW,
+    BA_FLAG_18, // related to underwater state
+    BA_FLAG_19, // related to transformations
+    BA_FLAG_1A, // related to bee transformation
+    BA_FLAG_1B_TRANSFORMING,
 
-    MISC_FLAG_NUM_FLAGS
+    BA_FLAG_NUM_FLAGS
 };
 
 enum nc_first_person_state{

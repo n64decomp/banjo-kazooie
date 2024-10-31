@@ -55,8 +55,8 @@ void func_8029E4EC(void){
         bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
-        miscFlag_clear(MISC_FLAG_3);
-        miscFlag_clear(MISC_FLAG_4);
+        baflag_clear(BA_FLAG_3);
+        baflag_clear(BA_FLAG_4);
         func_80293D74();
     }
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
@@ -85,8 +85,8 @@ void bsant_idle_init(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
-    miscFlag_set(MISC_FLAG_3);
-    miscFlag_set(MISC_FLAG_4);
+    baflag_set(BA_FLAG_3);
+    baflag_set(BA_FLAG_4);
     func_802900B4();
 }
 
@@ -267,7 +267,7 @@ void bsant_fall_update(void){
             break;
     }
     if(player_isStable()){
-        if(miscFlag_isTrue(MISC_FLAG_19))
+        if(baflag_isTrue(BA_FLAG_19))
             sp2C = badrone_transform();
         else
             sp2C = BS_35_ANT_IDLE;

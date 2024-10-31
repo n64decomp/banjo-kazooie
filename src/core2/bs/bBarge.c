@@ -75,9 +75,9 @@ void bsbarge_init(void){
     func_8029E070(1);
     D_8037D2A6 = 0;
     D_8037D2A5 = 0;
-    miscFlag_clear(MISC_FLAG_A);
-    miscFlag_clear(MISC_FLAG_B);
-    miscFlag_clear(MISC_FLAG_C);
+    baflag_clear(BA_FLAG_A);
+    baflag_clear(BA_FLAG_B);
+    baflag_clear(BA_FLAG_C);
     batimer_set(2, 0.01f);
 
 }
@@ -89,7 +89,7 @@ void bsbarge_update(void){
     sp24 = 0;
     plyrMvmnt = baanim_getAnimCtrlPtr();
     if(bakey_released(BUTTON_B))
-        miscFlag_set(MISC_FLAG_A);
+        baflag_set(BA_FLAG_A);
     switch(D_8037D2A5){
         case 0:
             if(anctrl_isAt(plyrMvmnt, 0.1392f))
@@ -98,8 +98,8 @@ void bsbarge_update(void){
             if(!anctrl_isStopped(plyrMvmnt))
                 break;
 
-            if(miscFlag_isFalse(MISC_FLAG_A)){
-                miscFlag_set(MISC_FLAG_C);
+            if(baflag_isFalse(BA_FLAG_A)){
+                baflag_set(BA_FLAG_C);
                 D_8037D2A0 = 850.0f;
             }else{
                 D_8037D2A0 = 500.0f;
@@ -109,13 +109,13 @@ void bsbarge_update(void){
             break;
         case 1:
             batimer_decrement(1);
-            if(miscFlag_isFalse(MISC_FLAG_B) && batimer_isLessThan(1, 0.1f)){
-                if(miscFlag_isTrue(MISC_FLAG_C)){
+            if(baflag_isFalse(BA_FLAG_B) && batimer_isLessThan(1, 0.1f)){
+                if(baflag_isTrue(BA_FLAG_C)){
                     func_8030E560(SFX_4_KAZOOIE_RUUUUUH, 30000);
                 }else{
                     func_8030E560(SFX_43_KAZOOIE_RUH, 30000);
                 }
-                miscFlag_set(MISC_FLAG_B);
+                baflag_set(BA_FLAG_B);
             }
             if(!batimer_isZero(1))
                 break;
@@ -141,7 +141,7 @@ void bsbarge_update(void){
             break;
         case 3:
             batimer_decrement(0);
-            if(miscFlag_isFalse(MISC_FLAG_C) || batimer_isZero(0)){
+            if(baflag_isFalse(BA_FLAG_C) || batimer_isZero(0)){
                 D_8037D2A0 -= 80.0f;
             }
             baphysics_set_target_horizontal_velocity(D_8037D2A0);

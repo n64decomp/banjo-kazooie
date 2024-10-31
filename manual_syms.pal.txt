@@ -56,10 +56,10 @@ baModel_isVisible           = 0x80292368;
 badrone_goto                = 0x80292478;
 eggShatter_draw             = 0x80292900;
 bafalldamage_get_damage     = 0x80292ffc;
-miscFlag_isTrue             = 0x802931e0;
-miscFlag_isFalse            = 0x802931f0;
-miscFlag_set                = 0x80293208;
-miscFlag_clear              = 0x8029321c;
+baflag_isTrue             = 0x802931e0;
+baflag_isFalse            = 0x802931f0;
+baflag_set                = 0x80293208;
+baflag_clear              = 0x8029321c;
 func_80293D2C               = 0x80293b4c;
 func_80293F0C               = 0x80293d2c;
 

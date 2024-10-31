@@ -71,8 +71,8 @@ bool func_8028E060(s32 arg0, s32 *arg1){
 void func_8028E0B0(ActorMarker *arg0){
     bs_setState(bs_getIdleState());
     bsStoredState_setTrot(FALSE);
-    miscFlag_clear(MISC_FLAG_16);
-    miscFlag_clear(MISC_FLAG_18);
+    baflag_clear(BA_FLAG_16);
+    baflag_clear(BA_FLAG_18);
 }
 
 void func_8028E0F0(s32 arg0, s32 arg1[3]) {
@@ -118,17 +118,17 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     switch (map_get()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
-                miscFlag_set(MISC_FLAG_16);
+                baflag_set(BA_FLAG_16);
             }
             break;
         case MAP_77_GL_RBB_LOBBY:
             if ((arg0 == 2) && func_802D6088()) {
-                miscFlag_set(MISC_FLAG_18);
+                baflag_set(BA_FLAG_18);
             }
             break;
         case MAP_76_GL_640_NOTE_DOOR:
             if ((arg0 == 1) && func_802D60C4()) {
-                miscFlag_set(MISC_FLAG_18);
+                baflag_set(BA_FLAG_18);
             }
             break;
     }
@@ -154,8 +154,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     func_8028F85C(sp7C);
     func_80295A8C();
     bsStoredState_setTrot(FALSE);
-    miscFlag_clear(MISC_FLAG_16);
-    miscFlag_clear(MISC_FLAG_18);
+    baflag_clear(BA_FLAG_16);
+    baflag_clear(BA_FLAG_18);
     func_8028E060(arg0, &sp6C);
     yaw_setIdeal((f32) sp6C);
     yaw_applyIdeal();
@@ -198,7 +198,7 @@ void func_8028E4B0(void) {
         D_8037BFB8 = 1;
         func_80295A8C();
         bsStoredState_setTrot(FALSE);
-        miscFlag_clear(MISC_FLAG_16);
+        baflag_clear(BA_FLAG_16);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
     } else if (func_8028DFF0(sp20, sp24)) {
@@ -440,10 +440,10 @@ enum bsgroup_e func_8028ECAC(void) {
     s32 temp_a1;
 
     state_id = bs_getState();
-    if (miscFlag_isTrue(MISC_FLAG_1B_TRANSFORMING)) {
+    if (baflag_isTrue(BA_FLAG_1B_TRANSFORMING)) {
         return BSGROUP_D_TRANSFORMING;
     }
-    if (miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW)) {
+    if (baflag_isTrue(BA_FLAG_17_FIRST_PERSON_VIEW)) {
         return BSGROUP_4_LOOK;
     }
     if (bsbfly_inSet(state_id)) {
@@ -458,7 +458,7 @@ enum bsgroup_e func_8028ECAC(void) {
     if (bswalrus_inSledSet(state_id)) {
         return BSGROUP_C_WALRUS_SLED;
     }
-    if (miscFlag_isTrue(MISC_FLAG_9) != 0) {
+    if (baflag_isTrue(BA_FLAG_9) != 0) {
         return 1;
     }
     switch(state_id){
@@ -608,7 +608,7 @@ bool func_8028F150(void){
 }
 
 bool func_8028F170(void){
-    return miscFlag_isTrue(MISC_FLAG_17_FIRST_PERSON_VIEW);
+    return baflag_isTrue(BA_FLAG_17_FIRST_PERSON_VIEW);
 }
 
 int ability_isUnlocked(enum ability_e uid){

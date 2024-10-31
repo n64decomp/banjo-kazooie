@@ -532,7 +532,7 @@ segments:
   - [0xF614B0, c, eggshatter]
   - [0xF61680, c, baeyes]
   - [0xF61A40, c, ba/falldamage]
-  - [0xF61D50, c, code_C3F0]    # baflag
+  - [0xF61D50, c, baflag]
   - [0xF61E10, c, code_C4B0]
   - [0xF63160, c, ba/carry]
   - [0xF63310, c, code_D9B0]
@@ -1394,7 +1394,7 @@ segments:
   - [0x1048560, .bss, eggshatter]
   - [0x1048560, .bss, baeyes]
   - [0x1048560, .bss, ba/falldamage]
-  - [0x1048560, .bss, code_C3F0]
+  - [0x1048560, .bss, baflag]
   - [0x1048560, .bss, code_C4B0]
   - [0x1048560, .bss, ba/carry]
   - [0x1048560, .bss, code_D9B0]

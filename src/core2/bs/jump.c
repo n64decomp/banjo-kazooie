@@ -36,7 +36,7 @@ void bsjump_init(void){
     AnimCtrl *aCtrl =  baanim_getAnimCtrlPtr();
     enum bs_e sp30;
 
-    D_8037D4C2 = miscFlag_isTrue(MISC_FLAG_2_ON_SPRING_PAD);
+    D_8037D4C2 = baflag_isTrue(BA_FLAG_2_ON_SPRING_PAD);
     sp30 = bs_getPrevState();
     if(bsclimb_inSet(sp30)){
         climbRelease();
@@ -90,7 +90,7 @@ void bsjump_update(void){
     if(D_8037D4C2)
         func_8029C348();
     
-    if(miscFlag_isTrue(MISC_FLAG_F)){
+    if(baflag_isTrue(BA_FLAG_F)){
         baphysics_reset_horizontal_velocity();
     }else{
         func_802B6FA8();
@@ -173,7 +173,7 @@ void bsjump_fall_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int sp20;
 
-    if(miscFlag_isTrue(MISC_FLAG_7) && 700.0f < baphysics_get_vertical_velocity())
+    if(baflag_isTrue(BA_FLAG_7) && 700.0f < baphysics_get_vertical_velocity())
         baphysics_set_vertical_velocity(700.0f);
 
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;
@@ -192,7 +192,7 @@ void bsjump_fall_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 player_velocity[3];
 
-    if(miscFlag_isTrue(MISC_FLAG_F))
+    if(baflag_isTrue(BA_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
         func_802B6FA8();
@@ -214,11 +214,11 @@ void bsjump_fall_update(void){
         case 1:
             break;
     }//L802B1824
-    if(miscFlag_isFalse(MISC_FLAG_F)){
+    if(baflag_isFalse(BA_FLAG_F)){
         if(player_isFallTumbling())
             sp2C = BS_3D_FALL_TUMBLING;
 
-        if(bainput_should_feathery_flap() && miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED))
+        if(bainput_should_feathery_flap() && baflag_isFalse(BA_FLAG_5_HAS_PECKED))
             sp2C = BS_BFLAP;
 
         if(bainput_should_peck())
@@ -232,7 +232,7 @@ void bsjump_fall_update(void){
     }
     else if(player_inWater()){
         func_8029CCC4();
-        if(miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)){
+        if(baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)){
             sp2C = BS_D_TIMEOUT;
         }
 

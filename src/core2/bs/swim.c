@@ -179,7 +179,7 @@ void func_802B5950(void) {
     if (func_80294524() && bakey_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
+    if (baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);
@@ -256,7 +256,7 @@ void func_802B5C40(void) {
     if (func_80294524() && bakey_pressed(BUTTON_A)) {
         next_state = BS_5_JUMP;
     }
-    if (miscFlag_isTrue(MISC_FLAG_6) || miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE)) {
+    if (baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = BS_D_TIMEOUT;
     }
     bs_setState(next_state);

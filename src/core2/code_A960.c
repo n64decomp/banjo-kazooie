@@ -7,7 +7,7 @@
 void codeA960_forceLoadzone(s32);
 
 int isLoadzoneFlagSet(void){
-    return miscFlag_isTrue(MISC_FLAG_15_LOADZONE);
+    return baflag_isTrue(BA_FLAG_15_LOADZONE);
 }
 
 void func_80291910(void){
@@ -16,7 +16,7 @@ void func_80291910(void){
 
 void codeA960_forceLoadzone(s32 arg0){
     if(!isLoadzoneFlagSet()){
-        miscFlag_set(MISC_FLAG_15_LOADZONE);
+        baflag_set(BA_FLAG_15_LOADZONE);
         if(arg0){
             batimer_set(5, 2.0f);
             func_8029C984();

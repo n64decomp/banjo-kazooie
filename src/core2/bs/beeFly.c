@@ -152,7 +152,7 @@ void bsbeefly_enter(void){
     mvmnt = bs_getPrevState();
     baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
-    if(miscFlag_isTrue(MISC_FLAG_9))
+    if(baflag_isTrue(BA_FLAG_9))
         baphysics_set_target_horizontal_velocity(0.0f);
     else
         baphysics_set_target_horizontal_velocity(600.0f);
@@ -235,7 +235,7 @@ void bsbeefly_update(void){
             }
             break;
     }//L802A0DF0
-    if(miscFlag_isTrue(MISC_FLAG_9)){
+    if(baflag_isTrue(BA_FLAG_9)){
         baphysics_set_terminal_velocity(0.0f);
         baphysics_set_velocity(0);
         sp38 = 0.0f;

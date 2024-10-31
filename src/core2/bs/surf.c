@@ -33,7 +33,7 @@ void func_802B6064(void) {
         next_state = BS_1_IDLE;
     }
     D_8037D560 = 0;
-    if (miscFlag_isTrue(MISC_FLAG_6)) {
+    if (baflag_isTrue(BA_FLAG_6)) {
         next_state = BS_53_TIMEOUT;
     }
     bs_setState(next_state);

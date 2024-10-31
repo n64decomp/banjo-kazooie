@@ -51,8 +51,8 @@ s32 can_egg(void){
 }
 
 int can_feathery_flap(void){
-    return miscFlag_isFalse(MISC_FLAG_12_HAS_FLAPPED) 
-        && miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED) 
+    return baflag_isFalse(BA_FLAG_12_HAS_FLAPPED) 
+        && baflag_isFalse(BA_FLAG_5_HAS_PECKED) 
         && ability_hasLearned(ABILITY_7_FEATHERY_FLAP);
 }
 
@@ -69,13 +69,13 @@ s32 can_control_jump_height(void){
 }
 
 int can_peck(void){
-    return miscFlag_isFalse(MISC_FLAG_5_HAS_PECKED)
-        && miscFlag_isFalse(MISC_FLAG_12_HAS_FLAPPED)
+    return baflag_isFalse(BA_FLAG_5_HAS_PECKED)
+        && baflag_isFalse(BA_FLAG_12_HAS_FLAPPED)
         && ability_hasLearned(ABILITY_B_RATATAT_RAP);
 }
 
 int func_8028ABB8(void){
-        if(miscFlag_isTrue(MISC_FLAG_14_LOSE_BOGGY_RACE) || miscFlag_isTrue(MISC_FLAG_19))
+        if(baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE) || baflag_isTrue(BA_FLAG_19))
             return 0;
         if(bs_getState() == BS_56_RECOIL)
             return 0;
@@ -184,7 +184,7 @@ int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
 s32 func_8028B120(void){return 0;}
 
 int func_8028B128(void){
-    return miscFlag_isTrue(MISC_FLAG_13);
+    return baflag_isTrue(BA_FLAG_13);
 }
 
 bool player_isInRBB(void){
@@ -224,8 +224,8 @@ bool func_8028B3B4(void) {
     bool sp1C;
     bool sp18;
 
-    sp1C = func_80294610(0x10) && miscFlag_isFalse(MISC_FLAG_3);
-    sp18 = func_80294610(0x40) && miscFlag_isFalse(MISC_FLAG_4);
+    sp1C = func_80294610(0x10) && baflag_isFalse(BA_FLAG_3);
+    sp18 = func_80294610(0x40) && baflag_isFalse(BA_FLAG_4);
     if(sp1C || sp18)
         return TRUE;
     return FALSE;

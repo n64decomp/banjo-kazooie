@@ -31,7 +31,7 @@ void bsbflap_init(void) {
     baphysics_set_vertical_velocity(0.0f);
     baphysics_set_gravity(D_80364A14);
     func_8029E070(1);
-    miscFlag_set(MISC_FLAG_12_HAS_FLAPPED);
+    baflag_set(BA_FLAG_12_HAS_FLAPPED);
     batimer_set(0, 2.5f);
     D_8037D30C = sfxsource_createSfxsourceAndReturnIndex();
     basfx_80299BD4();

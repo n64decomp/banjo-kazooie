@@ -334,7 +334,7 @@ void bsdronexform_init(void){
     func_802B016C();
     D_8037D470.player_transformation = bsStoredState_getTransformation();
     D_8037D470.room_transformation = func_80294A4C();
-    miscFlag_set(MISC_FLAG_1B_TRANSFORMING);
+    baflag_set(BA_FLAG_1B_TRANSFORMING);
     D_8037D470.state = 0;
     __bsdronexform_setState(1);
 }
@@ -443,7 +443,7 @@ void bsdronexform_end(void){
     func_802AFADC();
     func_802B014C();
     func_80298A64();
-    miscFlag_clear(MISC_FLAG_1B_TRANSFORMING);
+    baflag_clear(BA_FLAG_1B_TRANSFORMING);
 }
 
 void bsdronexform_interrupt(void){}

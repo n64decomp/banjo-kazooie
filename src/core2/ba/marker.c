@@ -139,7 +139,7 @@ void __baMarker_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
     func_80296CC0(&sp1C);
     func_80296CB4(arg3);
-    if(miscFlag_isTrue(MISC_FLAG_7)){
+    if(baflag_isTrue(BA_FLAG_7)){
         func_8029CDA0();
     }
     else{
@@ -726,7 +726,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_D4_SPRING_PAD: //L8028CDEC
             case 0x242: //L8028CDEC
                 if(ability_isUnlocked(ABILITY_D_SHOCK_JUMP)){
-                    miscFlag_set(MISC_FLAG_2_ON_SPRING_PAD);
+                    baflag_set(BA_FLAG_2_ON_SPRING_PAD);
                 }else{
                     if(!volatileFlag_getAndSet(VOLATILE_FLAG_C_HAS_SEEN_SPRING_PAD, 1)){
                         gcdialog_showText(ASSET_A24_DIALOG_JUMP_PAD_DISCOVERED, 4, 0, 0, 0, 0);
@@ -738,7 +738,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_240_LAIR_SWITCH_FLIGHT_PAD: //L8028CE3C
             case MARKER_261_FIGHT_FLIGHT_PAD: //L8028CE3C
                 if(ability_isUnlocked(ABILITY_9_FLIGHT)){
-                    miscFlag_set(MISC_FLAG_1_ON_FLIGHT_PAD);
+                    baflag_set(BA_FLAG_1_ON_FLIGHT_PAD);
                 }
                 else if(! volatileFlag_getAndSet(VOLATILE_FLAG_D_HAS_SEEN_FLIGHT_PAD, 1)){
                     gcdialog_showText(ASSET_A25_DIALOG_FLY_DISC_DISCOVERED, 4, 0, 0, 0, 0);
@@ -757,7 +757,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(chwadingboots_802D6E0C(actor) == 0)
                     return;
                 
-                miscFlag_set(MISC_FLAG_E_TOUCHING_WADING_BOOTS);
+                baflag_set(BA_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(BS_INTR_1B);
                 __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
@@ -781,7 +781,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(!chtrainers_canUse(actor))
                     return;
 
-                miscFlag_set(MISC_FLAG_10_TOUCHING_TURBO_TRAINERS);
+                baflag_set(BA_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 set_turbo_duration(chtrainers_getDuration(actor));
                 bs_checkInterrupt(BS_INTR_1A);
                 __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
@@ -811,7 +811,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             plyr_collision_type = MARKER_COLLISION_FUNC_0;
         }
         if(obj_collision_type){
-            miscFlag_set(MISC_FLAG_8);
+            baflag_set(BA_FLAG_8);
         }
         marker_callCollisionFunc(playerMarker, marker, plyr_collision_type);
         marker_callCollisionFunc(marker, playerMarker, obj_collision_type);
@@ -825,10 +825,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
         switch (tmp2)
         {
         case 0x2E8:
-            miscFlag_set(MISC_FLAG_1_ON_FLIGHT_PAD); //on flight pad
+            baflag_set(BA_FLAG_1_ON_FLIGHT_PAD); //on flight pad
             break;
         case 0x2DD: //on shock spring pad
-            miscFlag_set(MISC_FLAG_2_ON_SPRING_PAD);
+            baflag_set(BA_FLAG_2_ON_SPRING_PAD);
             break;
         default:
             func_80332790(tmp2);
@@ -877,9 +877,9 @@ void baMarker_init(void){
     playerMarker->unk2C_1 = 1;
     marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
     func_803300B8(playerMarker, baMarker_8028D7B8);
-    miscFlag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
-    miscFlag_clear(MISC_FLAG_2_ON_SPRING_PAD);
-    miscFlag_clear(MISC_FLAG_8);
+    baflag_clear(BA_FLAG_1_ON_FLIGHT_PAD);
+    baflag_clear(BA_FLAG_2_ON_SPRING_PAD);
+    baflag_clear(BA_FLAG_8);
     baMarker_8028D638(0,0);
     func_8033D2F4();
     D_8037BF8C = 0;
@@ -910,11 +910,11 @@ void baMarker_update(void){
             D_8037BF88 = 0;
         }
     }//L8028D364
-    miscFlag_clear(MISC_FLAG_8);
+    baflag_clear(BA_FLAG_8);
     if(playerMarker->collidable){
         temp_s0_2 = __baMarker_8028B750();
-        miscFlag_clear(MISC_FLAG_1_ON_FLIGHT_PAD);
-        miscFlag_clear(MISC_FLAG_2_ON_SPRING_PAD);
+        baflag_clear(BA_FLAG_1_ON_FLIGHT_PAD);
+        baflag_clear(BA_FLAG_2_ON_SPRING_PAD);
         _player_getPosition(sp168);
         func_8032F64C(sp168, playerMarker);
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
@@ -1027,7 +1027,7 @@ void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
     s32 tmp_v0;
 
     if(func_8033D5A4(collision_flags))
-        miscFlag_set(MISC_FLAG_8);
+        baflag_set(BA_FLAG_8);
 
     if((func_80297C6C() != 3 && func_8028F1E0()) || !sp20){
         if(!func_8028F25C()){

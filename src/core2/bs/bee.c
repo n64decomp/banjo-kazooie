@@ -19,8 +19,8 @@ void func_802A02C0(void){
         bastick_resetZones();
         func_8029E070(0);
         func_8029E064(0);
-        miscFlag_clear(MISC_FLAG_3);
-        miscFlag_clear(MISC_FLAG_4);
+        baflag_clear(BA_FLAG_3);
+        baflag_clear(BA_FLAG_4);
         func_80293D74();
     }
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
@@ -31,8 +31,8 @@ void func_802A0340(void){
         pitch_setAngVel(1000.0f, 12.0f);
         roll_setAngularVelocity(1000.0f, 12.0f);
         func_80293D48(50.0f, 25.0f);
-        miscFlag_set(MISC_FLAG_3);
-        miscFlag_set(MISC_FLAG_4);
+        baflag_set(BA_FLAG_3);
+        baflag_set(BA_FLAG_4);
     }
 }
 

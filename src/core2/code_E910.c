@@ -191,7 +191,7 @@ void func_80295914(void){
     func_80291910();
     badrone_init();
     bafalldamage_init();
-    miscFlag_clearAll();
+    baflag_clearAll();
     func_8028B6FC();
     func_80291590();
     bakey_reset();
