@@ -73,8 +73,8 @@ static void __chTreasure_updateFunc(Actor *this){
 
     switch(this->state){
         case 1://L8038C29C
-            this->unk5C = animctrl_getAnimTimer(this->animctrl) *300.0; //radius of 300.0f
-            if(animctrl_isStopped(this->animctrl)){
+            this->unk5C = anctrl_getAnimTimer(this->anctrl) *300.0; //radius of 300.0f
+            if(anctrl_isStopped(this->anctrl)){
                 actor_loopAnimation(this);
                 subaddie_set_state_forward(this, 2);
                 this->marker->propPtr->unk8_3 = 1;

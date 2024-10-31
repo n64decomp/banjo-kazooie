@@ -402,7 +402,7 @@ void func_802C4C14(Actor *this){
                     break;
                 case 3://L802C50C8
                 case 4://L802C50C8
-                    if(animctrl_isStopped(this->animctrl)){
+                    if(anctrl_isStopped(this->anctrl)){
                         chBottlesBonus_func_802DEB80();
                         if(!gameFile_isNotEmpty(sp84)){
                             timedFunc_set_3(0.0f, (GenFunction_3)func_802E4078, MAP_85_CS_SPIRAL_MOUNTAIN_3, 0, 1);

@@ -96,13 +96,13 @@ void func_802B3868(void) {
     } else {
         sp20 = D_8037D504 + 0.5;
     }
-    animctrl_reset(anim_ctrl);
-    animctrl_setSmoothTransition(anim_ctrl, 0);
-    animctrl_setSubRange(anim_ctrl, 0.0f, 0.5823f);
-    animctrl_setIndex(anim_ctrl, ASSET_F_ANIM_BSREBOUND);
-    animctrl_setDuration(anim_ctrl, sp20);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_start(anim_ctrl, "bsrebound.c", 0xC6);
+    anctrl_reset(anim_ctrl);
+    anctrl_setSmoothTransition(anim_ctrl, 0);
+    anctrl_setSubRange(anim_ctrl, 0.0f, 0.5823f);
+    anctrl_setIndex(anim_ctrl, ASSET_F_ANIM_BSREBOUND);
+    anctrl_setDuration(anim_ctrl, sp20);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_start(anim_ctrl, "bsrebound.c", 0xC6);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
     batimer_set(0, 1.5f);
     baMarker_collisionOff();
@@ -125,7 +125,7 @@ void func_802B3954(void) {
     if (player_isFallTumbling() && D_8037D500 == 0) {
         next_state = BS_3D_FALL_TUMBLING;
     }
-    if (animctrl_isStopped(anim_ctrl) && func_8028B094() && (D_8037D500 == 0)) {
+    if (anctrl_isStopped(anim_ctrl) && func_8028B094() && (D_8037D500 == 0)) {
         next_state = BS_2F_FALL;
     }
     bs_setState(next_state);

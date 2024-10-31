@@ -211,7 +211,7 @@ void func_8035B900(Actor *this){
         this->velocity_y = this->scale*2.0;
         this->velocity_x = this->unk1C[0];
         local->unk0 = randf2(1.0f, 4.5f);
-        animctrl_setTransitionDuration(this->animctrl, 0.8f);
+        anctrl_setTransitionDuration(this->anctrl, 0.8f);
     }//L8035B9D4
     
     if(0.0 < this->lifetime_value - sp2C){

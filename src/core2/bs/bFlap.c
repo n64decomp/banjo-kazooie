@@ -53,7 +53,7 @@ void func_802A2790(s32 arg0, f32 arg1, s32 arg2) {
 void func_802A2810(void) {
     AnimCtrl *plyrMvPtr;
     plyrMvPtr = baanim_getAnimCtrlPtr();
-    if (animctrl_isAt(plyrMvPtr, 0.9f)) {
+    if (anctrl_isAt(plyrMvPtr, 0.9f)) {
         D_8037D301++;
     }
 }
@@ -78,7 +78,7 @@ f32 func_802A2858(void){
 
 void func_802A28CC(void){
     AnimCtrl *sp1c = baanim_getAnimCtrlPtr();
-    animctrl_setDuration(sp1c, func_802A2858());
+    anctrl_setDuration(sp1c, func_802A2858());
 }
 
 void func_802A2900(void){
@@ -97,7 +97,7 @@ void func_802A298C(void){
         func_802A2790(0x4e, 1.24f, 0x4e20);
     }
 
-    if((0.7 < D_8037D308) && animctrl_isAt(sp1c, 0.5698f)){
+    if((0.7 < D_8037D308) && anctrl_isAt(sp1c, 0.5698f)){
         func_802A2790(0x47, 1.0f, 0x55f0);
     }
 }
@@ -114,13 +114,13 @@ void bsbflap_update(void){
             bafalldamage_start();
             func_802A2900();
             func_802A298C();
-            if(animctrl_isAt(sp18, 0.9f)){
-                animctrl_setSmoothTransition(sp18, 0);
-                animctrl_setIndex(sp18, ASSET_17_ANIM_BSBFLAP);
-                animctrl_setDuration(sp18, func_802A2858());
-                animctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
-                animctrl_setStart(sp18, 0.0f);
-                animctrl_start(sp18, "bsbflap.c", 0xe1);
+            if(anctrl_isAt(sp18, 0.9f)){
+                anctrl_setSmoothTransition(sp18, 0);
+                anctrl_setIndex(sp18, ASSET_17_ANIM_BSBFLAP);
+                anctrl_setDuration(sp18, func_802A2858());
+                anctrl_setPlaybackType(sp18,  ANIMCTRL_LOOP);
+                anctrl_setStart(sp18, 0.0f);
+                anctrl_start(sp18, "bsbflap.c", 0xe1);
                 baphysics_set_vertical_velocity(D_80364A10);
                 baphysics_set_gravity(D_80364A14);
                 baphysics_set_terminal_velocity(D_80364A18);
@@ -143,12 +143,13 @@ void bsbflap_update(void){
             func_802A2810();
             func_802A28CC();
             func_802A298C();
-            if(D_8037D301 == 4)
+            if(D_8037D301 == 4) {
                 D_8037D300 = 3;
+            }
             if(button_released(BUTTON_A)){
                 baphysics_reset_gravity();
                 baphysics_reset_terminal_velocity();
-                animctrl_setDuration(sp18, 1.0f);
+                anctrl_setDuration(sp18, 1.0f);
                 D_8037D300 = 4;
             }
             break;
@@ -161,7 +162,7 @@ void bsbflap_update(void){
             if(button_released(BUTTON_A)){
                 baphysics_reset_gravity();
                 baphysics_reset_terminal_velocity();
-                animctrl_setDuration(sp18, 1.0f);
+                anctrl_setDuration(sp18, 1.0f);
                 bafalldamage_set_state(2);
                 D_8037D300 = 4;
             }

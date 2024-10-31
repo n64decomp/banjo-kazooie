@@ -237,7 +237,7 @@ void func_8035A998(Actor *this){
 }
 
 void func_8035A9E0(Actor *this){
-    subaddie_set_state_with_direction(this, 3, animctrl_getAnimTimer(this->animctrl), 1);
+    subaddie_set_state_with_direction(this, 3, anctrl_getAnimTimer(this->anctrl), 1);
     actor_loopAnimation(this);
     this->unk38_31 = 1;
     this->actor_specific_1_f = 0.0f;
@@ -300,7 +300,7 @@ void chicecube_update(Actor *this){
     }
     switch(this->state){
         case 1: // L8035AC9C
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             if( func_80359DF4(this, 900)
                 || (this->unkF4_8 == 2 && volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
             ){
@@ -314,13 +314,13 @@ void chicecube_update(Actor *this){
                 FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
             if( func_80359E38(this, 0xff, 0xa)
-                && 0.98 < animctrl_getAnimTimer(this->animctrl)
+                && 0.98 < anctrl_getAnimTimer(this->anctrl)
             ){
                 func_8035A9E0(this);
             }
             break;
         case 3: // L8035AD88
-            animctrl_setAnimTimer(this->animctrl, 0.999f);
+            anctrl_setAnimTimer(this->anctrl, 0.999f);
             if (this->actor_specific_1_f + 0.28 < 18.0) {
                 this->actor_specific_1_f = this->actor_specific_1_f + 0.28;
             }
@@ -329,7 +329,7 @@ void chicecube_update(Actor *this){
             }
             func_8035A694(this);
             if(!func_80359DF4(this, 1300)){
-                subaddie_set_state_with_direction(this, 4, animctrl_getAnimTimer(this->animctrl), 1);
+                subaddie_set_state_with_direction(this, 4, anctrl_getAnimTimer(this->anctrl), 1);
                 actor_loopAnimation(this);
                 this->unk38_31 = 1;
             }
@@ -341,7 +341,7 @@ void chicecube_update(Actor *this){
             }
             break;
         case 4: // L8035AE64
-            animctrl_setAnimTimer(this->animctrl, 0.999f);
+            anctrl_setAnimTimer(this->anctrl, 0.999f);
 
             if (this->actor_specific_1_f - 0.28 > 8.0) {
                 this->actor_specific_1_f = this->actor_specific_1_f - 0.28;
@@ -369,7 +369,7 @@ void chicecube_update(Actor *this){
             if(actor_animationIsAt(this, 0.25f)){
                 FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
-            if( animctrl_getAnimTimer(this->animctrl) < 0.1 
+            if( anctrl_getAnimTimer(this->anctrl) < 0.1 
                 && func_80359EBC(this, 0x50, 0xA)
             ){
                 func_8035A998(this);

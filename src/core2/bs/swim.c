@@ -51,10 +51,10 @@ void func_802B5538(AnimCtrl *arg0) {
     enum asset_e sp24;
 
     sp24 = bsSwimAnimations[bsSwimCurrentAnimation];
-    if (animctrl_getIndex(arg0) != sp24) {
-        animctrl_setStart(arg0, animctrl_getAnimTimer(arg0));
-        animctrl_setIndex(arg0, sp24);
-        animctrl_start(arg0, "bsswim.c", 0x79);
+    if (anctrl_getIndex(arg0) != sp24) {
+        anctrl_setStart(arg0, anctrl_getAnimTimer(arg0));
+        anctrl_setIndex(arg0, sp24);
+        anctrl_start(arg0, "bsswim.c", 0x79);
     }
     bsSwimCurrentAnimation++;
     if (bsSwimCurrentAnimation >= 10) {
@@ -125,19 +125,19 @@ void func_802B5774(void) {
         }
         func_80295328(4, 0.7f);
     }
-    if ((animctrl_getIndex(anim_ctrl) == ASSET_57_ANIM_BSSWIM_IDLE) && (prev_state != BS_4C_LANDING_IN_WATER)) {
-        animctrl_setSmoothTransition(anim_ctrl, 0);
-        animctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
-        animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-        animctrl_setDuration(anim_ctrl, 1.2f);
+    if ((anctrl_getIndex(anim_ctrl) == ASSET_57_ANIM_BSSWIM_IDLE) && (prev_state != BS_4C_LANDING_IN_WATER)) {
+        anctrl_setSmoothTransition(anim_ctrl, 0);
+        anctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
+        anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
+        anctrl_setDuration(anim_ctrl, 1.2f);
     } else {
-        animctrl_reset(anim_ctrl);
-        animctrl_setTransitionDuration(anim_ctrl, transition_duration);
-        animctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
-        animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-        animctrl_setStart(anim_ctrl, 0.3f);
-        animctrl_setDuration(anim_ctrl, 1.2f);
-        animctrl_start(anim_ctrl, "bsswim.c", 0xFD);
+        anctrl_reset(anim_ctrl);
+        anctrl_setTransitionDuration(anim_ctrl, transition_duration);
+        anctrl_setIndex(anim_ctrl, ASSET_57_ANIM_BSSWIM_IDLE);
+        anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
+        anctrl_setStart(anim_ctrl, 0.3f);
+        anctrl_setDuration(anim_ctrl, 1.2f);
+        anctrl_start(anim_ctrl, "bsswim.c", 0xFD);
     }
     func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
@@ -158,10 +158,10 @@ void func_802B5950(void) {
     if ((globalTimer_getTimeMasked(7) == 0) && ((f64) randf() < 0.5)) {
         func_802B5480();
     }
-    if (animctrl_isAt(anim_ctrl, 0.01f) != 0) {
+    if (anctrl_isAt(anim_ctrl, 0.01f) != 0) {
         func_8030EC20(SFX_DC_IDLE_PADDLING, 0.85f, 1.15f, 16000, 16000);
     }
-    if (animctrl_isAt(anim_ctrl, 0.4348f) != 0) {
+    if (anctrl_isAt(anim_ctrl, 0.4348f) != 0) {
         func_802B5538(anim_ctrl);
     }
     if (func_8029B300() == 1) {
@@ -199,13 +199,13 @@ void func_802B5B18(void) {
     } else {
         anim_duration = 0.4f;
     }
-    if (animctrl_getIndex(anim_ctrl) != ASSET_39_ANIM_BSSWIM_MOVE) {
-        animctrl_reset(anim_ctrl);
-        animctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_MOVE);
-        animctrl_setTransitionDuration(anim_ctrl, anim_duration);
-        animctrl_setStart(anim_ctrl, 0.8f);
-        animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-        animctrl_start(anim_ctrl, "bsswim.c", 0x164);
+    if (anctrl_getIndex(anim_ctrl) != ASSET_39_ANIM_BSSWIM_MOVE) {
+        anctrl_reset(anim_ctrl);
+        anctrl_setIndex(anim_ctrl, ASSET_39_ANIM_BSSWIM_MOVE);
+        anctrl_setTransitionDuration(anim_ctrl, anim_duration);
+        anctrl_setStart(anim_ctrl, 0.8f);
+        anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
+        anctrl_start(anim_ctrl, "bsswim.c", 0x164);
     }
     baanim_setUpdateType(BAANIM_UPDATE_2_SCALE_HORZ);
     baanim_setDurationRange(0.3f, 1.5f);
@@ -223,16 +223,16 @@ void func_802B5C40(void) {
 
     next_state = 0;
     anim_ctrl =baanim_getAnimCtrlPtr();
-    if (animctrl_isAt(anim_ctrl, 0.38f)) {
+    if (anctrl_isAt(anim_ctrl, 0.38f)) {
         func_8029C4E4(1);
     }
-    if (animctrl_isAt(anim_ctrl, 0.88f)) {
+    if (anctrl_isAt(anim_ctrl, 0.88f)) {
         func_8029C4E4(0);
     }
-    if (animctrl_isAt(anim_ctrl, 0.2f)) {
+    if (anctrl_isAt(anim_ctrl, 0.2f)) {
         func_8030EB88(SFX_12_WATER_PADDLING_1, 0.9f, 1.1f);
     }
-    if (animctrl_isAt(anim_ctrl, 0.7f)) {
+    if (anctrl_isAt(anim_ctrl, 0.7f)) {
         func_8030EB88(SFX_12_WATER_PADDLING_1, 0.9f, 1.1f);
     }
     func_802B55DC();

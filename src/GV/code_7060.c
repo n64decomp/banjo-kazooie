@@ -31,7 +31,7 @@ void func_8038D47C(Actor *this){
     NodeProp *tmp_v0;
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
-    func_80287784(this->animctrl, 0);
+    func_80287784(this->anctrl, 0);
     if(!this->initialized){
         if(!nodeProp_findPositionFromActorId(0x331, this->spawn_position)){
             this->spawn_position_x = -2569.0f;

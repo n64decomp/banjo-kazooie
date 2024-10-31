@@ -158,18 +158,18 @@ void fxcommon3score_update(enum item_e arg0, void *arg1) {
             a1->model = assetcache_get(a1->model_id);
         }
         if ((a1->anim_id != 0) && (a1->anim_ctrl == NULL)) {
-            a1->anim_ctrl = animctrl_new(0);
-            animctrl_reset(a1->anim_ctrl);
-            animctrl_setIndex(a1->anim_ctrl, (enum asset_e) a1->anim_id);
-            animctrl_setDuration(a1->anim_ctrl, a1->anim_duration);
-            animctrl_start(a1->anim_ctrl, "fxcommon3score.c", 0x74);
+            a1->anim_ctrl = anctrl_new(0);
+            anctrl_reset(a1->anim_ctrl);
+            anctrl_setIndex(a1->anim_ctrl, (enum asset_e) a1->anim_id);
+            anctrl_setDuration(a1->anim_ctrl, a1->anim_duration);
+            anctrl_start(a1->anim_ctrl, "fxcommon3score.c", 0x74);
         }
         /* fallthrough */
     case 2:
     case 3:
         a1->unk68 += sp24 * sp20 * a1->unk48;
         if ( a1->anim_ctrl != NULL) {
-            animctrl_update( a1->anim_ctrl);
+            anctrl_update( a1->anim_ctrl);
         }
         break;
     case 0:
@@ -211,7 +211,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
         }
         func_80253208(gfx, a1->unk30 - a1->unk6C, sp40 - a1->unk6C, 2*a1->unk6C, 2*a1->unk6C, gFramebuffers[getActiveFramebuffer()]);
         if(a1->anim_ctrl != NULL){
-            animctrl_drawSetup(a1->anim_ctrl, sp5C, 1);
+            anctrl_drawSetup(a1->anim_ctrl, sp5C, 1);
         }
         modelRender_draw(gfx, mtx, sp5C, sp68, a1->unk3C*sp3C, sp44, a1->model);
     }//L80300BA4
@@ -220,7 +220,7 @@ void fxcommon3score_draw(enum item_e item_id, void *arg1, Gfx **gfx, Mtx **mtx, 
 void fxcommon3score_free(enum item_e item_id, void *arg1){
     Struct_core2_79830_0 *a1 = (Struct_core2_79830_0 *)arg1;
     if(a1->anim_ctrl != NULL){
-        animctrl_free(a1->anim_ctrl);
+        anctrl_free(a1->anim_ctrl);
         a1->anim_ctrl = NULL;
     }
 

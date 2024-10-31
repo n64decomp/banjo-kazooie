@@ -8,10 +8,10 @@
 extern f32 func_8029B2E8(void);
 void yaw_setVelocityBounded(f32, f32);
 
-void animctrl_start(AnimCtrl *, char*, s32);
+void anctrl_start(AnimCtrl *, char*, s32);
 
 void func_802900B4(void);
-void rumbleManager_80250D94(f32, f32, f32);
+void baMotor_80250D94(f32, f32, f32);
 
 /* .data */
 u8 D_80364D20[] = {
@@ -100,84 +100,84 @@ void bsstand_init(void){
 }
 
 void func_802B4A10(AnimCtrl *arg0){
-    if(animctrl_isAt(arg0, 0.2057f)){ //(30/145)
+    if(anctrl_isAt(arg0, 0.2057f)){ //(30/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
+        baMotor_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4A54
 
-    if(animctrl_isAt(arg0, 0.2057f)) //(30/145)
+    if(anctrl_isAt(arg0, 0.2057f)) //(30/145)
         func_80292E48();
     //L802B4A78
 
-    if(animctrl_isAt(arg0, 0.2555f)){ //(37/145)
+    if(anctrl_isAt(arg0, 0.2555f)){ //(37/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
+        baMotor_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AB0
 
-    if(animctrl_isAt(arg0, 0.2896f)){ //(42/145)
+    if(anctrl_isAt(arg0, 0.2896f)){ //(42/145)
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
+        baMotor_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4AEC
 
-    if(animctrl_isAt(arg0, 0.3f)){ //(43.5/145)?
+    if(anctrl_isAt(arg0, 0.3f)){ //(43.5/145)?
         FUNC_8030E624(SFX_62_BANJO_ERGHH, 1.0f, 28000);
     }//L802B4B0C
 
-    if(animctrl_isAt(arg0, 0.3607f)){
+    if(anctrl_isAt(arg0, 0.3607f)){
         func_80292EA4();
     }//L802B4B30
 
-    if(animctrl_isAt(arg0, 0.4183f)){
+    if(anctrl_isAt(arg0, 0.4183f)){
         func_8030E58C(SFX_3F1_UNKNOWN, 1.6f);
     }//L802B4B50
 
-    if(animctrl_isAt(arg0, 0.455f)){
+    if(anctrl_isAt(arg0, 0.455f)){
         func_8030E58C(SFX_3F1_UNKNOWN, 1.45f);
     }//L802B4B74
 
-    if(animctrl_isAt(arg0, 0.49f)){
+    if(anctrl_isAt(arg0, 0.49f)){
         func_8030E58C(SFX_3F1_UNKNOWN, 1.4f);
     }//L802B4B98
 
-    if(animctrl_isAt(arg0, 0.5397f)){
+    if(anctrl_isAt(arg0, 0.5397f)){
         func_802900D8();
     }//L802B4BBC
 
-    if(animctrl_isAt(arg0, 0.6619f)){
+    if(anctrl_isAt(arg0, 0.6619f)){
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
+        baMotor_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4BF4
 
-    if(animctrl_isAt(arg0, 0.6688f))
+    if(anctrl_isAt(arg0, 0.6688f))
         func_80292E48();
     //L802B4C18
 
-    if(animctrl_isAt(arg0, 0.6964f)){
+    if(anctrl_isAt(arg0, 0.6964f)){
         FUNC_8030E624(SFX_21_EGG_BOUNCE_1, 1.8f, 16000);
-        rumbleManager_80250D94(0.5f, 0.25f, 0.4f);
+        baMotor_80250D94(0.5f, 0.25f, 0.4f);
     }//L802B4C50
 
-    if(animctrl_isAt(arg0, 0.7747f))
+    if(anctrl_isAt(arg0, 0.7747f))
         func_80292EA4();
     //L802B4C74
 
-    if(animctrl_isAt(arg0, 0.7822f)){
+    if(anctrl_isAt(arg0, 0.7822f)){
         FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4C90
 
-    if(animctrl_isAt(arg0, 0.8322f)){
+    if(anctrl_isAt(arg0, 0.8322f)){
         FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CB0
 
-    if(animctrl_isAt(arg0, 0.8669f)){
+    if(anctrl_isAt(arg0, 0.8669f)){
         FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CD0
 
-    if(animctrl_isAt(arg0, 0.9048f)){
+    if(anctrl_isAt(arg0, 0.9048f)){
         FUNC_8030E624(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 14000);
     }//L802B4CF0
 
-    if(animctrl_isAt(arg0, 0.9649f)){
+    if(anctrl_isAt(arg0, 0.9649f)){
         func_802900D8();
     }//L802B4CF0
 }
@@ -204,46 +204,46 @@ void bsstand_update(void) {
     sp18 = D_80364D20[D_8037D540];
     if (sp18 & 8) {
         if (sp18 & 4) {
-            if (animctrl_isAt(anim_ctrl, 0.0909f)) func_80299BD4();
-            if (animctrl_isAt(anim_ctrl, 0.0909f)) func_8029E070(1);
-            if (animctrl_isAt(anim_ctrl, 0.6818f)) func_8029E070(0);
+            if (anctrl_isAt(anim_ctrl, 0.0909f)) func_80299BD4();
+            if (anctrl_isAt(anim_ctrl, 0.0909f)) func_8029E070(1);
+            if (anctrl_isAt(anim_ctrl, 0.6818f)) func_8029E070(0);
         }//L802B4E70
         if (sp18 & 2) {
-            if (animctrl_isAt(anim_ctrl, 0.7727f)) func_8029E070(1);
-            if (animctrl_isAt(anim_ctrl, 0.9999f)) func_8029E070(0);
+            if (anctrl_isAt(anim_ctrl, 0.7727f)) func_8029E070(1);
+            if (anctrl_isAt(anim_ctrl, 0.9999f)) func_8029E070(0);
         }//L802B50E4
     } else if (sp18 & 0x20) {
-        if (animctrl_getIndex(anim_ctrl) == ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK) {
+        if (anctrl_getIndex(anim_ctrl) == ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK) {
             func_802B4A10(anim_ctrl);
-            if (animctrl_isAt(anim_ctrl, 0.37f)) {
-                animctrl_reset(anim_ctrl);
-                animctrl_setTransitionDuration(anim_ctrl, 0.1f);
-                animctrl_setIndex(anim_ctrl, ASSET_F6_ANIM_BSSTAND_PULL_KAZOOIE);
-                animctrl_setDuration(anim_ctrl, 5.0f);
-                animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-                animctrl_start(anim_ctrl, "bsstand.c", 0x170);
+            if (anctrl_isAt(anim_ctrl, 0.37f)) {
+                anctrl_reset(anim_ctrl);
+                anctrl_setTransitionDuration(anim_ctrl, 0.1f);
+                anctrl_setIndex(anim_ctrl, ASSET_F6_ANIM_BSSTAND_PULL_KAZOOIE);
+                anctrl_setDuration(anim_ctrl, 5.0f);
+                anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+                anctrl_start(anim_ctrl, "bsstand.c", 0x170);
             }
         } else {
-            if (animctrl_isAt(anim_ctrl, 0.069f))  func_80299D2C(SFX_4B_GULPING, 1.4f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.1677f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.0f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.2441f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.03f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.3141f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.06f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.3859f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.5f, 0x7D00);
-            if (animctrl_isAt(anim_ctrl, 0.414f))  func_80299CF4(SFX_2D_KABOING, 1.0f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.55f))   func_80299CF4(SFX_A3_BANJO_DOUBLE_COUGH, 1.0f, 0x6D60);
-            if (animctrl_isAt(anim_ctrl, 0.6187f)) func_80299D2C(SFX_A0_COUGHING, 1.7f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.7108f)) func_80299D2C(SFX_A0_COUGHING, 1.6f, 0x4650);
-            if (animctrl_isAt(anim_ctrl, 0.7927f)) func_80299D2C(SFX_A0_COUGHING, 1.5f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.069f))  func_80299D2C(SFX_4B_GULPING, 1.4f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.1677f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.0f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.2441f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.03f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.3141f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.06f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.3859f)) func_80299D2C(SFX_8B_KAZOOIE_RAWW, 1.5f, 0x7D00);
+            if (anctrl_isAt(anim_ctrl, 0.414f))  func_80299CF4(SFX_2D_KABOING, 1.0f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.55f))   func_80299CF4(SFX_A3_BANJO_DOUBLE_COUGH, 1.0f, 0x6D60);
+            if (anctrl_isAt(anim_ctrl, 0.6187f)) func_80299D2C(SFX_A0_COUGHING, 1.7f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.7108f)) func_80299D2C(SFX_A0_COUGHING, 1.6f, 0x4650);
+            if (anctrl_isAt(anim_ctrl, 0.7927f)) func_80299D2C(SFX_A0_COUGHING, 1.5f, 0x4650);
         }
     } else /*L802B50D4*/if ((sp18 & 0x10) != 0) {
         func_802B4A10(anim_ctrl);
     }
-    if (animctrl_isAt(anim_ctrl, 0.9999f) != 0) {
+    if (anctrl_isAt(anim_ctrl, 0.9999f) != 0) {
         D_8037D540 = func_802B4870(D_8037D540);
         sp18 = D_80364D20[D_8037D540];
         if (sp18 & 0x10) {
             baanim_playForDuration_once(ASSET_95_ANIM_BSSTAND_KAZOOIE_PECK, 5.5f);
-            animctrl_start(anim_ctrl, "bsstand.c", 0x1AB);
+            anctrl_start(anim_ctrl, "bsstand.c", 0x1AB);
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 0x20) {
@@ -251,18 +251,18 @@ void bsstand_update(void) {
             func_8029E070(1);
             func_802900FC();
         } else if (sp18 & 8) {
-            if (animctrl_getIndex(anim_ctrl) == ASSET_6F_ANIM_BSSTAND_IDLE) {
-                sp1C = animctrl_getAnimTimer(anim_ctrl);
+            if (anctrl_getIndex(anim_ctrl) == ASSET_6F_ANIM_BSSTAND_IDLE) {
+                sp1C = anctrl_getAnimTimer(anim_ctrl);
             } else {
                 sp1C = 0.0f;
                 func_802900B4();
             }
-            animctrl_reset(anim_ctrl);
-            animctrl_setIndex(anim_ctrl, ASSET_6F_ANIM_BSSTAND_IDLE);
-            animctrl_setDuration(anim_ctrl, 5.5f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-            animctrl_setStart(anim_ctrl, sp1C);
-            animctrl_start(anim_ctrl, "bsstand.c", 0x1C3);
+            anctrl_reset(anim_ctrl);
+            anctrl_setIndex(anim_ctrl, ASSET_6F_ANIM_BSSTAND_IDLE);
+            anctrl_setDuration(anim_ctrl, 5.5f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
+            anctrl_setStart(anim_ctrl, sp1C);
+            anctrl_start(anim_ctrl, "bsstand.c", 0x1C3);
             func_8029E070(0);
         }
     }
@@ -289,18 +289,18 @@ void bsstand_landing_update(void){
     s32 sp1C = 0;
     AnimCtrl * sp18 = baanim_getAnimCtrlPtr();
 
-    if(animctrl_getIndex(sp18) == ASSET_D2_ANIM_BSSPLAT){
-        if(animctrl_isAt(sp18, 0.8264f)){
+    if(anctrl_getIndex(sp18) == ASSET_D2_ANIM_BSSPLAT){
+        if(anctrl_isAt(sp18, 0.8264f)){
             func_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
         }
 
         //L802B52F8
-        if(animctrl_isAt(sp18, 0.8864f)){
+        if(anctrl_isAt(sp18, 0.8864f)){
             func_80299CF4(SFX_6F_BANJO_HEADSCRATCH, 1.0f, 0x36b0);
         }
     }
     //L802B531C
-    if(animctrl_isStopped(sp18))
+    if(anctrl_isStopped(sp18))
         sp1C = BS_1_IDLE;
 
     bs_setState(func_802B488C(sp1C));

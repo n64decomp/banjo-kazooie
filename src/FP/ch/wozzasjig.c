@@ -55,11 +55,11 @@ void func_8038FF54(Actor *this){
                 actor_playAnimationOnce(this);
             }
             else{
-                animctrl_setIndex(this->animctrl, animctrl_getIndex(other->animctrl));
-                animctrl_setStart(this->animctrl, animctrl_getAnimTimer(other->animctrl));
-                animctrl_setDuration(this->animctrl, animctrl_getDuration(other->animctrl));
-                animctrl_setSmoothTransition(this->animctrl, FALSE);
-                animctrl_start(this->animctrl, "chwozzasjig.c", 0x87);
+                anctrl_setIndex(this->anctrl, anctrl_getIndex(other->anctrl));
+                anctrl_setStart(this->anctrl, anctrl_getAnimTimer(other->anctrl));
+                anctrl_setDuration(this->anctrl, anctrl_getDuration(other->anctrl));
+                anctrl_setSmoothTransition(this->anctrl, FALSE);
+                anctrl_start(this->anctrl, "chwozzasjig.c", 0x87);
                 this->position[0] = other->position[0];
                 this->position[1] = other->position[1];
                 this->position[2] = other->position[2];
@@ -69,7 +69,7 @@ void func_8038FF54(Actor *this){
     }//L8039008C
 
     if(this->state == 9){
-       if(0.99999 <= animctrl_getAnimTimer(this->animctrl)){
+       if(0.99999 <= anctrl_getAnimTimer(this->anctrl)){
             func_8034A174(this->marker->unk44, 5, sp40);
             sp40[0] = (f32)(s32)sp40[0];
             sp40[1] = (f32)(s32)sp40[1];

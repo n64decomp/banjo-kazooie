@@ -77,15 +77,15 @@ static void __chNipper_setAnimationDuration(Actor *this) {
     this->unk1C[0] = 0.0f;
     switch((s32)this->lifetime_value){
         case 120:
-            animctrl_setDuration(this->animctrl, 1.2f);
+            anctrl_setDuration(this->anctrl, 1.2f);
             break;
 
         case 80:
-            animctrl_setDuration(this->animctrl, 1.05f);
+            anctrl_setDuration(this->anctrl, 1.05f);
             break;
 
         case 40:
-            animctrl_setDuration(this->animctrl, 0.9f);
+            anctrl_setDuration(this->anctrl, 0.9f);
             break;
     }
 }
@@ -227,7 +227,7 @@ static void __chNipper_updateFunc(Actor *this){
     switch(this->state){
         case CH_NIPPER_STATE_1_UNKNOWN:
             if(!this->initialized){
-                animctrl_setTransitionDuration(this->animctrl, 0.35f);
+                anctrl_setTransitionDuration(this->anctrl, 0.35f);
                 subaddie_set_state_with_direction(this, CH_NIPPER_STATE_1_UNKNOWN, 0.01f, 1);
                 this->lifetime_value = 120.0f;
                 this->marker->propPtr->unk8_3 = TRUE;

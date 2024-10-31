@@ -68,7 +68,7 @@ void chOverlayNoController_update(Actor *this) {
         actor_playAnimationOnce(this);
         marker_setFreeMethod(this->marker, chOverlayNoController_freeMethod);
     }
-    if (animctrl_isStopped(this->animctrl) != 0) {
+    if (anctrl_isStopped(this->anctrl) != 0) {
         subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         actor_loopAnimation(this);
     }

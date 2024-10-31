@@ -115,7 +115,7 @@ void chpinkegg_update(Actor *this){
             }
             break;
         case 3:
-            if(animctrl_isStopped(this->animctrl)){
+            if(anctrl_isStopped(this->anctrl)){
                 func_80326310(this);
                 if(this->alpha_124_19 < 0x60){
                     this->depth_mode = 0x2;

@@ -119,7 +119,7 @@ void chjinjonator_spawnAttackParticles(Actor *this, s32 hit_id){
 }
 
 void chjinjonator_803903C4(Actor *this) {
-    animctrl_setSmoothTransition(this->animctrl, FALSE);
+    anctrl_setSmoothTransition(this->anctrl, FALSE);
     subaddie_set_state_with_direction(this, JINJONATOR_STATE_7_ATTACK_END, 0.001f, 1);
     actor_loopAnimation(this);
 }
@@ -138,7 +138,7 @@ void chjinjonator_8039040C(Actor *this) {
 void chjinjonator_update(Actor *this){
     ActorLocal_Jinjonator *local = (ActorLocal_Jinjonator *) &this->local;
     f32 time_delta = time_getDelta();
-    f32 sp54 = animctrl_getDuration(this->animctrl);
+    f32 sp54 = anctrl_getDuration(this->anctrl);
     f32 sp50;
     s32 sp4C;
     f32 sp48;
@@ -164,7 +164,7 @@ void chjinjonator_update(Actor *this){
     switch (this->state) {
         case JINJONATOR_STATE_1_RELEASE:
             chjinjonator_8039040C(this);
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             this->lifetime_value -= time_delta;
 
             if (this->lifetime_value < 0.0) {
@@ -222,7 +222,7 @@ void chjinjonator_update(Actor *this){
             chjinjonator_spawnSparkleParticles(this);
 
             if (actor_animationIsAt(this, 0.998f)) {
-                animctrl_setSmoothTransition(this->animctrl, FALSE);
+                anctrl_setSmoothTransition(this->anctrl, FALSE);
                 subaddie_set_state_with_direction(this, JINJONATOR_STATE_6_ATTACK, 0.0001f, 1);
                 actor_loopAnimation(this);
 
@@ -241,7 +241,7 @@ void chjinjonator_update(Actor *this){
 
         case JINJONATOR_STATE_6_ATTACK:
             this->position[1] = MIN(1e+8f, this->position[1] + 80.0f * time_delta);
-            animctrl_setDuration(this->animctrl, MAX(0.4, sp54 - (0.5 * time_delta)));
+            anctrl_setDuration(this->anctrl, MAX(0.4, sp54 - (0.5 * time_delta)));
             chjinjonator_spawnSparkleParticles(this);
             if(actor_animationIsAt(this, 0.25f) || actor_animationIsAt(this, 0.75f)){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, local->boss_claw_sfx_volume, 26000);
@@ -340,7 +340,7 @@ void chjinjonator_update(Actor *this){
                 func_8034A174(this->marker->unk44, 0x1f, this->position);
                 FUNC_8030E624(SFX_17B_AIRPLANE_FALLING, 1.0f, 32000);
                 FUNC_8030E624(SFX_147_GRUNTY_SPELL_ATTACK_2, 1.0f, 32000);
-                animctrl_setSmoothTransition(this->animctrl, 0);
+                anctrl_setSmoothTransition(this->anctrl, 0);
                 subaddie_set_state_with_direction(this, JINJONATOR_STATE_12_FINAL_ATTACK_END, 0.001f, 1);
                 actor_playAnimationOnce(this);
                 this->velocity[2] = 0.0f;
@@ -382,7 +382,7 @@ void chjinjonator_attack(ActorMarker *marker, s32 hit_count, bool mirrored) {
     }
 
     local->hit_count = hit_count;
-    animctrl_setSmoothTransition(actor_jinjonator->animctrl, 1);
+    anctrl_setSmoothTransition(actor_jinjonator->anctrl, 1);
     actor_playAnimationOnce(actor_jinjonator);
 
     if (&chJinjonatorHitYawValue[hit_count] >= chJinjonatorHitSounds) {
@@ -391,7 +391,7 @@ void chjinjonator_attack(ActorMarker *marker, s32 hit_count, bool mirrored) {
     }
 
     subaddie_set_state_with_direction(actor_jinjonator, JINJONATOR_STATE_8, 0.001f, 1);
-    animctrl_setDuration(actor_jinjonator->animctrl, (f32) (1.75 - 0.11 * local->hit_count));
+    anctrl_setDuration(actor_jinjonator->anctrl, (f32) (1.75 - 0.11 * local->hit_count));
 }
 
 void chjinjonator_finalAttack(ActorMarker *marker) {

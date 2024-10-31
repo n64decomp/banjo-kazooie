@@ -121,7 +121,7 @@ void func_8029ACD4(void){
 
 void func_8029AD28(f32 arg0, s32 arg1){
     AnimCtrl *plyr_animCtrl = baanim_getAnimCtrlPtr();
-    if(animctrl_isAt(plyr_animCtrl, arg0)){
+    if(anctrl_isAt(plyr_animCtrl, arg0)){
         func_8029AE74(arg1);
     }
 }
@@ -129,7 +129,7 @@ void func_8029AD28(f32 arg0, s32 arg1){
 
 void func_8029AD68(f32 arg0, s32 arg1){
     AnimCtrl *plyr_animCtrl = baanim_getAnimCtrlPtr();
-    if(animctrl_isAt(plyr_animCtrl, arg0)){
+    if(anctrl_isAt(plyr_animCtrl, arg0)){
         func_8029AEE4(arg1);
     }
 }

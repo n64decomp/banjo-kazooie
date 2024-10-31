@@ -239,7 +239,7 @@ void chCrab_update(Actor *this) {
         this->unk124_0 = this->unk138_31 = FALSE;
         this->has_met_before = FALSE;
         this->volatile_initialized = TRUE;
-        animctrl_setTransitionDuration(this->animctrl, 0.25f);
+        anctrl_setTransitionDuration(this->anctrl, 0.25f);
         if (map_get() == MAP_A_TTC_SANDCASTLE) {
             if (!jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)) {
                 mapSpecificFlags_set(1, 0);
@@ -365,7 +365,7 @@ void chCrab_update(Actor *this) {
             break;
 
         case 6: //L802CC18C
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 if (this->lifetime_value == 0.0f) {
                     func_80326310(this);
                 } else {
@@ -376,7 +376,7 @@ void chCrab_update(Actor *this) {
             break;
 
         case 7: //L802CC1E8
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 subaddie_set_state(this, 1);
                 actor_loopAnimation(this);
             }

@@ -49,27 +49,27 @@ void __chJigsawDance_update(Actor * this){
             player_getPosition(this->position);
             this->yaw = player_getYaw();
             plyrMvmt = player_getAnimCtrlPtr();
-            animctrl_setSmoothTransition(this->animctrl, 0);
-            animctrl_setIndex(this->animctrl, animctrl_getIndex(plyrMvmt));
-            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
-            animctrl_setDuration(this->animctrl, 1000.0f);
-            animctrl_start(this->animctrl, "chjigsawdance.c", 0x59);
+            anctrl_setSmoothTransition(this->anctrl, 0);
+            anctrl_setIndex(this->anctrl, anctrl_getIndex(plyrMvmt));
+            anctrl_setStart(this->anctrl,anctrl_getAnimTimer(plyrMvmt));
+            anctrl_setDuration(this->anctrl, 1000.0f);
+            anctrl_start(this->anctrl, "chjigsawdance.c", 0x59);
             break;
         case 3:
             plyrMvmt = player_getAnimCtrlPtr();
-            animctrl_setSmoothTransition(this->animctrl, 0);
-            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
-            animctrl_setDuration(this->animctrl, 1000.0f);
-            animctrl_start(this->animctrl, "chjigsawdance.c", 0x62);
+            anctrl_setSmoothTransition(this->anctrl, 0);
+            anctrl_setStart(this->anctrl,anctrl_getAnimTimer(plyrMvmt));
+            anctrl_setDuration(this->anctrl, 1000.0f);
+            anctrl_start(this->anctrl, "chjigsawdance.c", 0x62);
             break;
         case 4:
             player_getPosition(this->position);
             this->yaw = player_getYaw();
             plyrMvmt = player_getAnimCtrlPtr();
-            animctrl_setSmoothTransition(this->animctrl, 0);
-            animctrl_setStart(this->animctrl,animctrl_getAnimTimer(plyrMvmt));
-            animctrl_setDuration(this->animctrl, 1000.0f);
-            animctrl_start(this->animctrl, "chjigsawdance.c", 0x6e);
+            anctrl_setSmoothTransition(this->anctrl, 0);
+            anctrl_setStart(this->anctrl,anctrl_getAnimTimer(plyrMvmt));
+            anctrl_setDuration(this->anctrl, 1000.0f);
+            anctrl_start(this->anctrl, "chjigsawdance.c", 0x6e);
             break;
         case 5:
             this->marker->propPtr->unk8_4 = 0;
@@ -82,7 +82,7 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
         case 3:
             if(this->state == 1){
                 subaddie_set_state(this, 2);
-                animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_ONCE);
+                anctrl_setPlaybackType(this->anctrl,  ANIMCTRL_ONCE);
             }
             break;
         case 2:
@@ -94,10 +94,10 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
         case 4:
             player_getPosition(this->position);
             this->yaw = player_getYaw();
-            animctrl_setSmoothTransition(this->animctrl, 0);
-            animctrl_setStart(this->animctrl, animctrl_getAnimTimer(player_getAnimCtrlPtr()));
-            animctrl_setDuration(this->animctrl, 1000.0f);
-            animctrl_start(this->animctrl, "chjigsawdance.c", 0x97);
+            anctrl_setSmoothTransition(this->anctrl, 0);
+            anctrl_setStart(this->anctrl, anctrl_getAnimTimer(player_getAnimCtrlPtr()));
+            anctrl_setDuration(this->anctrl, 1000.0f);
+            anctrl_start(this->anctrl, "chjigsawdance.c", 0x97);
             break;
         case 5:
             subaddie_set_state(this, 5);

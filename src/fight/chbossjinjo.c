@@ -166,7 +166,7 @@ void chBossJinjo_update(Actor *this){
 
     switch (this->state) {
         case BOSSJINJO_STATE_1_WAKE_UP:
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
 
             if (this->lifetime_value < 0.0) {
                 subaddie_set_state_with_direction(this, BOSSJINJO_STATE_2_YAWN, 0.001f, 1);
@@ -191,7 +191,7 @@ void chBossJinjo_update(Actor *this){
         case BOSSJINJO_STATE_4_ATTACK:
             inState3 = (this->state == BOSSJINJO_STATE_3_SPIN_UP);
 
-            if (!inState3 || 0.1 < animctrl_getAnimTimer(this->animctrl)) {
+            if (!inState3 || 0.1 < anctrl_getAnimTimer(this->anctrl)) {
                 player_getVelocity(&velocity_player);
 
                 velocity_player[0] *=  time_delta * 6.0f;
@@ -214,13 +214,13 @@ void chBossJinjo_update(Actor *this){
                 this->position_y = velocity_player[1] + this->position_y;
                 this->position_z = velocity_player[2] + this->position_z;
 
-                if (inState3 ||  animctrl_getAnimTimer(this->animctrl) < 0.8) {
+                if (inState3 ||  anctrl_getAnimTimer(this->anctrl) < 0.8) {
                     chbossjinjo_func_8038C79C(this);
                 }
             }
 
             if (inState3) {
-                if(animctrl_getAnimTimer(this->animctrl) < 0.2) {
+                if(anctrl_getAnimTimer(this->anctrl) < 0.2) {
                     chbossjinjo_rotateYaw(this, new_yaw);
                 }
                 
@@ -264,7 +264,7 @@ void chBossJinjo_update(Actor *this){
                 }
             } else {
                 if (actor_animationIsAt(this, 0.9f)) {
-                    animctrl_setSmoothTransition(this->animctrl, FALSE);
+                    anctrl_setSmoothTransition(this->anctrl, FALSE);
                     subaddie_set_state_with_direction(this, BOSSJINJO_STATE_5_HIT, 0.001f, 1);
                     FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);

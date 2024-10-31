@@ -77,7 +77,7 @@ void chPortrait_update(Actor *this) {
 
     switch (this->state) {
         case PORTRAIT_STATE_1_IDLE:
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             break;
 
         case PORTRAIT_STATE_2_BROKEN:
@@ -95,7 +95,7 @@ void chPortrait_break(ActorMarker *marker, f32 anim_duration) {
 
     subaddie_set_state_with_direction(this, PORTRAIT_STATE_2_BROKEN, 0.001f, 1);
     actor_playAnimationOnce(this);
-    animctrl_setDuration(this->animctrl, anim_duration);
+    anctrl_setDuration(this->anctrl, anim_duration);
     this->unk38_31 = 1;
     FUNC_8030E8B4(SFX_129_SWOOSH, 1.0f, 32000, this->position, 1000, 2000);
 }

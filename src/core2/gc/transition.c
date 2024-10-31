@@ -4,7 +4,7 @@
 #include "variables.h"
 #include "gc/gctransition.h"
 
-void animctrl_setAnimTimer(AnimCtrl*, f32);
+void anctrl_setAnimTimer(AnimCtrl*, f32);
 void func_8025AC20(s32, s32, s32, f32, char*, s32);
 
 typedef enum {
@@ -140,7 +140,7 @@ struct{
     void * model_ptr; //asset_ptr
     f32 rotation;
     f32 timer;
-    AnimCtrl *animctrl;
+    AnimCtrl *anctrl;
     s32 substate; //times update called?
 } s_current_transition;
 
@@ -168,9 +168,9 @@ void _gctranstion_changeState(s32 state, TransitionInfo *desc){
         func_8033BD20(&s_current_transition.model_ptr);
     }
 
-    if(s_current_transition.animctrl != NULL){
-        animctrl_free(s_current_transition.animctrl);
-        s_current_transition.animctrl = NULL;
+    if(s_current_transition.anctrl != NULL){
+        anctrl_free(s_current_transition.anctrl);
+        s_current_transition.anctrl = NULL;
     }
     
     s_current_transition.unk0 = 0;
@@ -188,21 +188,21 @@ void _gctranstion_changeState(s32 state, TransitionInfo *desc){
 
     //load transistion animation
     if(desc != NULL && desc->anim_index != NULL){
-        s_current_transition.animctrl = animctrl_new(0);
-        animctrl_reset(s_current_transition.animctrl);
-        animctrl_setIndex(s_current_transition.animctrl, desc->anim_index);
-        animctrl_setDuration(s_current_transition.animctrl, desc->duration);
-        animctrl_setPlaybackType(s_current_transition.animctrl,  ANIMCTRL_ONCE);
+        s_current_transition.anctrl = anctrl_new(0);
+        anctrl_reset(s_current_transition.anctrl);
+        anctrl_setIndex(s_current_transition.anctrl, desc->anim_index);
+        anctrl_setDuration(s_current_transition.anctrl, desc->duration);
+        anctrl_setPlaybackType(s_current_transition.anctrl,  ANIMCTRL_ONCE);
         if(state == TRANSITION_STATE_5_FADE_OUT){
-            animctrl_setDirection(s_current_transition.animctrl, 0);
+            anctrl_setDirection(s_current_transition.anctrl, 0);
             func_8028F7C8(1); //player_noControl(true)
             func_80335110(0); //objects_update(false)
         }
         else{
             osViBlack(1);
-            animctrl_setAnimTimer(s_current_transition.animctrl, 0.25f); //set animation timer
+            anctrl_setAnimTimer(s_current_transition.anctrl, 0.25f); //set animation timer
         }
-        animctrl_start(s_current_transition.animctrl, "gctransition.c", 0x125); 
+        anctrl_start(s_current_transition.anctrl, "gctransition.c", 0x125); 
     }
 
     if(state == TRANSITION_STATE_4_FADE_IN){
@@ -250,7 +250,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
         return;
 
     viewport_backupState();
-    if(s_current_transition.animctrl != NULL){
+    if(s_current_transition.anctrl != NULL){
         vp_position[0] = 0.0f;
         vp_position[1] = 0.0f;
         vp_position[2] = 350.0f;
@@ -273,17 +273,17 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     sp58[0] = 0.0f;
     sp58[1] = 0.0f;
     sp58[2] = 0.0f;
-    if(s_current_transition.animctrl != NULL){
+    if(s_current_transition.anctrl != NULL){
         gDPSetTextureFilter((*gdl)++, G_TF_POINT);
         gDPSetColorDither((*gdl)++, G_CD_DISABLE);
-        animctrl_drawSetup(s_current_transition.animctrl, sp58, 1);
+        anctrl_drawSetup(s_current_transition.anctrl, sp58, 1);
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     }
 
     //complex animation (from animation bin file)
     if(s_current_transition.state == 1 || s_current_transition.state == 6){
         modelRender_draw(gdl, mptr, sp58, vp_rotation, 1.0f, 0, s_current_transition.model_ptr);
-        if(s_current_transition.animctrl != NULL){
+        if(s_current_transition.anctrl != NULL){
             gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
             gDPSetColorDither((*gdl)++, G_CD_MAGICSQ);
         }
@@ -362,7 +362,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     else{
         
     }
-    if(s_current_transition.animctrl != NULL){
+    if(s_current_transition.anctrl != NULL){
         gDPSetTextureFilter((*gdl)++, G_TF_BILERP);
     }
     viewport_restoreState();
@@ -430,8 +430,8 @@ void gctransition_update(void){
     if(s_current_transition.transistion_info == NULL)
         return;
     
-    if(s_current_transition.animctrl != NULL){
-        animctrl_update(s_current_transition.animctrl);
+    if(s_current_transition.anctrl != NULL){
+        anctrl_update(s_current_transition.anctrl);
         if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN){
             switch(s_current_transition.substate){
                 case 0:
@@ -475,7 +475,7 @@ void gctransition_update(void){
         s_current_transition.timer += dt;
     }
     if(s_current_transition.transistion_info->duration < s_current_transition.timer
-        || (s_current_transition.animctrl!= NULL && animctrl_isStopped(s_current_transition.animctrl))
+        || (s_current_transition.anctrl!= NULL && anctrl_isStopped(s_current_transition.anctrl))
     ){
         s_current_transition.timer = s_current_transition.transistion_info->duration;
         //update next transition rotation
@@ -490,7 +490,7 @@ void gctransition_update(void){
         if(s_current_transition.state == TRANSITION_STATE_4_FADE_IN)
             func_8030C180();
 
-        if(s_current_transition.animctrl != NULL)
+        if(s_current_transition.anctrl != NULL)
             func_80334ECC();
     }
     s_current_transition.substate++;

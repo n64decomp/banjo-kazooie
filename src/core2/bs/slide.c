@@ -63,11 +63,11 @@ void bsslide_init(void){
             }
         }
     }
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, D_8037D520);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_start(aCtrl, "bsslide.c", 0x7f);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, D_8037D520);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_start(aCtrl, "bsslide.c", 0x7f);
     func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_yaw(yaw_getIdeal());
     baphysics_set_horizontal_velocity(yaw_getIdeal() ,baphysics_get_target_horizontal_velocity());

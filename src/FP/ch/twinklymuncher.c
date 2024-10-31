@@ -106,7 +106,7 @@ void func_8038E094(Actor *this){
         this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, NULL, func_8038DEB8, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
-        animctrl_setAnimTimer(this->animctrl, 0.99999f);
+        anctrl_setAnimTimer(this->anctrl, 0.99999f);
         this->lifetime_value = 0.0f;
         if(this->unkF4_8 == 1){
             func_8038DDC8(this);
@@ -147,7 +147,7 @@ void func_8038E094(Actor *this){
     switch(this->state){
         case 1: //L8038E2DC
             this->marker->propPtr->unk8_3 = FALSE;
-            animctrl_setAnimTimer(this->animctrl, 0.99f);
+            anctrl_setAnimTimer(this->anctrl, 0.99f);
             if(this->lifetime_value < 5.0){
                 this->lifetime_value += sp34;
             }

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-extern void rumbleManager_80250E6C(f32, f32);
+extern void baMotor_80250E6C(f32, f32);
 extern void func_802BE720(void);
 
 typedef struct {
@@ -124,7 +124,7 @@ void func_802BB4D8(f32 position[3], f32 rotation[3]) {
                     D_8037D840[phi_s1].unk10 *= D_8037D840[phi_s1].unk4;
                 }
                 if (level_get() != LEVEL_D_CUTSCENE) {
-                    rumbleManager_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, dt);
+                    baMotor_80250E6C(D_8037D840[phi_s1].unk10 * 0.25, dt);
                 }
                 func_802BB434(phi_s1, position, rotation, D_8037D840[phi_s1].unk14*D_8037D840[phi_s1].unk10);
                 D_8037D840[phi_s1].unk14 = (f32) -D_8037D840[phi_s1].unk14;

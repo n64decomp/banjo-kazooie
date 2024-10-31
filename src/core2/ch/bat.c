@@ -418,14 +418,14 @@ void chbat_update(Actor *this){
             }
             break;
         case CH_BAT_STATE_EXIT_ROOST: //L80360938
-            if( 0.98 <  animctrl_getAnimTimer(this->animctrl)
+            if( 0.98 <  anctrl_getAnimTimer(this->anctrl)
                 || !func_8035FD28(this)
             ){
                 chbat_chase(this);
             }
             break;
         case CH_BAT_STATE_CHASE: //L8036097C
-            animctrl_setDuration(this->animctrl, 1.2 - this->velocity_y);
+            anctrl_setDuration(this->anctrl, 1.2 - this->velocity_y);
             if(!chbat_nearPlayer(this)){
                 chbat_roam(this);
             }
@@ -473,7 +473,7 @@ void chbat_update(Actor *this){
             }
             break;
         case CH_BAT_STATE_ENTER_ROOST:
-            if(animctrl_getAnimTimer(this->animctrl) < 0.01){
+            if(anctrl_getAnimTimer(this->anctrl) < 0.01){
                 chbat_roost(this);
             }
             break;

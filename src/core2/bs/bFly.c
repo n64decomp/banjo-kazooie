@@ -157,8 +157,8 @@ void bsbfly_enter_update(void){
 
     switch(D_8037D344){
     case 0:
-        if(animctrl_isAt(aCtrl, 0.2416f)){
-            animctrl_setDuration(aCtrl, 2.4f);
+        if(anctrl_isAt(aCtrl, 0.2416f)){
+            anctrl_setDuration(aCtrl, 2.4f);
             baphysics_set_vertical_velocity(1600.0f);
             func_8030E58C(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.7f);
             D_8037D344 = 1;
@@ -226,7 +226,7 @@ void bsbfly_update(void){
 
     if(sp2C || D_8037D346){
         if(sp2C){
-            animctrl_setDuration(aCtrl, 0.3f);
+            anctrl_setDuration(aCtrl, 0.3f);
             func_802D8BE4(0);
         }
         if(D_8037D346){
@@ -253,13 +253,13 @@ void bsbfly_update(void){
                 baphysics_set_vertical_velocity(sp30 * 400.0);
             }
             if(!sp30){
-                animctrl_setDuration(aCtrl, 0.62f);
+                anctrl_setDuration(aCtrl, 0.62f);
                 func_802A33D8();
                 D_8037D344 = 0;
             }
             break;
     }//L802A3CB8
-    if(animctrl_isAt(aCtrl, 0.1358f)){
+    if(anctrl_isAt(aCtrl, 0.1358f)){
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 0x2710, 0x2ee0);
     }
     baphysics_set_gravity(-300.0f);
@@ -377,11 +377,11 @@ void func_802A411C(void) {
     sp58 = baanim_getAnimCtrlPtr();
     switch (D_8037D344) {
     case 0:
-        if (animctrl_isAt(sp58, 0.6905f)) {
+        if (anctrl_isAt(sp58, 0.6905f)) {
             baphysics_set_type(BA_PHYSICS_UNK8);
             func_802914CC(5);
             ncDynamicCam5_func_802BF590(&D_8037D338);
-            animctrl_setDuration(sp58, 0.05f);
+            anctrl_setDuration(sp58, 0.05f);
             func_80299CF4(SFX_50_KAZOOIE_RRRUH, 1.3f, 0x7FFF);
             D_8037D345 = 1;
             D_8037D324 = 0.0f;
@@ -429,11 +429,11 @@ void func_802A411C(void) {
         if (sp48[0]*sp48[0] + sp48[1]*sp48[1] + sp48[2]*sp48[2] > 16000000.0f) {
             next_state = BS_57_BOMB_END;
         }
-        if (animctrl_isStopped(sp58) != 0) {
-            animctrl_setIndex(sp58, 0x47);
-            animctrl_setDuration(sp58, 0.3f);
-            animctrl_setPlaybackType(sp58, ANIMCTRL_LOOP);
-            animctrl_start(sp58, "bsbfly.c", 0x361);
+        if (anctrl_isStopped(sp58) != 0) {
+            anctrl_setIndex(sp58, 0x47);
+            anctrl_setDuration(sp58, 0.3f);
+            anctrl_setPlaybackType(sp58, ANIMCTRL_LOOP);
+            anctrl_start(sp58, "bsbfly.c", 0x361);
         }
         break;
     }
@@ -447,15 +447,15 @@ void func_802A4404(void){
 }
 
 void func_802A4430(void){
-    AnimCtrl *plyr_animctrl;
+    AnimCtrl *plyr_anctrl;
 
-    plyr_animctrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(plyr_animctrl);
-    animctrl_setTransitionDuration(plyr_animctrl, 0.3f);
-    animctrl_setIndex(plyr_animctrl, ASSET_CC_ANIM_BSFLY_BEAKBOMB_END);
-    animctrl_setDuration(plyr_animctrl, 0.38f);
-    animctrl_setPlaybackType(plyr_animctrl, ANIMCTRL_LOOP);
-    animctrl_start(plyr_animctrl, "bsbfly.c", 0x38a);
+    plyr_anctrl = baanim_getAnimCtrlPtr();
+    anctrl_reset(plyr_anctrl);
+    anctrl_setTransitionDuration(plyr_anctrl, 0.3f);
+    anctrl_setIndex(plyr_anctrl, ASSET_CC_ANIM_BSFLY_BEAKBOMB_END);
+    anctrl_setDuration(plyr_anctrl, 0.38f);
+    anctrl_setPlaybackType(plyr_anctrl, ANIMCTRL_LOOP);
+    anctrl_start(plyr_anctrl, "bsbfly.c", 0x38a);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
     func_8029E070(1);
     func_802A3430();
@@ -535,7 +535,7 @@ void bsbfly_beakbomb_crash_init(void) {
     func_8029E070(1);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
     func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
-    rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
+    baMotor_80250D94(1.0f, 0.5f, 0.5f);
     item_dec(ITEM_14_HEALTH);
     func_802A46C8();
     baMarker_collisionOff();
@@ -546,18 +546,18 @@ void func_802A47E0(void) {
     AnimCtrl *sp1C;
 
     sp1C = baanim_getAnimCtrlPtr();
-    if (animctrl_isAt(sp1C, 0.3659f)) {
+    if (anctrl_isAt(sp1C, 0.3659f)) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 14000);
         func_80299CF4(SFX_8B_KAZOOIE_RAWW, 1.0f, 28000);
     }
-    if (animctrl_isAt(sp1C, 0.6862f)) {
+    if (anctrl_isAt(sp1C, 0.6862f)) {
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 18000);
         func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 22000);
     }
-    if (animctrl_isAt(sp1C, 0.92f)) {
+    if (anctrl_isAt(sp1C, 0.92f)) {
         baphysics_set_target_horizontal_velocity(0.0f);
     }
-    if (animctrl_getAnimTimer(sp1C) < 0.8) {
+    if (anctrl_getAnimTimer(sp1C) < 0.8) {
         func_802929F8();
     }
 }
@@ -572,7 +572,7 @@ void func_802A48B4(void) {
     switch (D_8037D344) {
     case 0:
         func_802A47E0();
-        if (animctrl_isAt(sp18, 0.2f) != 0) {
+        if (anctrl_isAt(sp18, 0.2f) != 0) {
             if (item_getCount(ITEM_14_HEALTH) == 0) {
                 func_8029C984();
                 func_8029151C(0xD);
@@ -581,19 +581,19 @@ void func_802A48B4(void) {
                 batimer_set(0, 2.5f);
                 D_8037D344 = 2;
             }
-        } else if (animctrl_isAt(sp18, 0.92f)) {
+        } else if (anctrl_isAt(sp18, 0.92f)) {
             baanim_playForDuration_once(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D344 = 1;
         }
         break;
     case 1:
-        if (animctrl_isAt(sp18, 0.219f)) {
+        if (anctrl_isAt(sp18, 0.219f)) {
             func_80299CF4(SFX_36_BANJO_DOH, 1.0f, 16000);
         }
-        if (animctrl_isAt(sp18, 0.63f)) {
+        if (anctrl_isAt(sp18, 0.63f)) {
             next_state = BS_20_LANDING;
         }
-        if (animctrl_isStopped(sp18)) {
+        if (anctrl_isStopped(sp18)) {
             next_state = BS_1_IDLE;
         }
         if (func_8028B094()) {
@@ -636,7 +636,7 @@ void func_802A4A78(s32 arg0) {
     func_802BB3DC(2, 100.0f, 0.85f);
     baanim_playForDuration_onceSmooth(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
     func_80299BFC(1.0f);
-    rumbleManager_80250D94(1.0f, 0.5f, 0.5f);
+    baMotor_80250D94(1.0f, 0.5f, 0.5f);
     _player_getPosition(sp3C);
     func_80294980(sp30);
     func_80257F18(sp30, sp3C, &sp28);
@@ -664,7 +664,7 @@ void func_802A4C34(s32 arg0) {
     s32 next_state;
 
     next_state = 0;
-    if (animctrl_isStopped(baanim_getAnimCtrlPtr())) {
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr())) {
         next_state = BS_24_FLY;
     }
     if (player_isStable()) {
@@ -743,7 +743,7 @@ void func_802A4EC8(void) {
     if (player_isStable()) {
         next_state = BS_20_LANDING;
     }
-    if (animctrl_isStopped(sp18) && (func_8028B094() || func_80294530())) {
+    if (anctrl_isStopped(sp18) && (func_8028B094() || func_80294530())) {
         D_8037D346 = 1;
         next_state = BS_24_FLY;
     }
@@ -768,7 +768,7 @@ void func_802A4FC8(void) {
     s32 next_state;
 
     next_state = 0;
-    if (animctrl_isAt(baanim_getAnimCtrlPtr(), 0.1358f) != 0) {
+    if (anctrl_isAt(baanim_getAnimCtrlPtr(), 0.1358f) != 0) {
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 10000, 12000);
     }
     if (func_80298850() == 0) {

@@ -32,7 +32,7 @@ void func_802B9980(s32 arg0){
             break;
         case 5: //L802B9A58
             func_8030E58C(SFX_D0_GRIMLET_SQUEAK, 0.9f);
-            animctrl_setDuration(plyr_anim, 2.2f);
+            anctrl_setDuration(plyr_anim, 2.2f);
             break;
         case 6: //L802B9A84
             batimer_set(0, 0.01f);

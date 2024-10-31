@@ -80,7 +80,7 @@ void chOverlayPressStart_update(Actor *this){
         marker_setFreeMethod(this->marker, chOverlayPressStart_func_802DCC78);
     }
 
-    if(animctrl_isStopped(this->animctrl)){
+    if(anctrl_isStopped(this->anctrl)){
         subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         actor_loopAnimation(this);
     }

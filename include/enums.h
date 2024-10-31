@@ -2553,7 +2553,7 @@ enum item_e
     ITEM_2B_UNKNOWN = 0x2B //uses jiggy model
 };
 
-enum animctrl_direction_e
+enum anctrl_direction_e
 {
     mvmt_dir_forwards = 1
 };

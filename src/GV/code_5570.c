@@ -216,7 +216,7 @@ void GV_func_8038BEA0(Actor *this){
                     }
                 }
                 else{
-                    if(animctrl_getAnimTimer(this->animctrl) < 0.55){
+                    if(anctrl_getAnimTimer(this->anctrl) < 0.55){
                         func_8030E2C4(this->unk44_31);
                         if(randf() < 0.6){
                             func_8038BC7C(this->position, 0xA);
@@ -262,7 +262,7 @@ void GV_func_8038BEA0(Actor *this){
                     D_80391A80 = this->state;
                 }
                 else{
-                    if(0.35 < animctrl_getAnimTimer(this->animctrl)){
+                    if(0.35 < anctrl_getAnimTimer(this->anctrl)){
                         func_8030E2C4(this->unk44_31);
                         if(randf() < 0.6){
                             func_8038BC7C(this->position, 5);

@@ -28,13 +28,13 @@ void bsdie_init(void){
     f32 sp2C[3];
     f32 sp20[3];
 
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_9_ANIM_BSDIE);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.3356f);
-    animctrl_setDuration(aCtrl, 2.0f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsdie.c", 0x7e);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_9_ANIM_BSDIE);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.3356f);
+    anctrl_setDuration(aCtrl, 2.0f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(SFX_36_BANJO_DOH, 1.0f);
     _player_getPosition(sp2C);
@@ -71,12 +71,12 @@ void bsdie_update(void){
     switch(D_8037D414){
         case 0://L802AE0B8
             if(_bsdie_802ADE00()){
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 baphysics_set_vertical_velocity(400.0f);
                 func_80299DB8();
                 FUNC_8030E624(SFX_39_BANJO_AYE_2, 1.0f, 18000);
-                rumbleManager_80250D94(1.0f, 1.0f, 0.4f);
+                baMotor_80250D94(1.0f, 1.0f, 0.4f);
                 _bsdie_802ADE20();
                 D_8037D414 = 1;
             }
@@ -85,7 +85,7 @@ void bsdie_update(void){
             if(_bsdie_802ADE00()){
                 func_80299E00();
                 FUNC_8030E624(SFX_38_BANJO_AYE_1, 1.0f, 18000);
-                rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
+                baMotor_80250D94(1.0f, 0.5f, 0.4f);
                 D_8037D414 = 2;
             }
             break;
@@ -94,10 +94,10 @@ void bsdie_update(void){
             if(140.0f < D_8037D410)
                 func_802929F8();
 
-            if(animctrl_isAt(aCtrl, 0.6538f))
-                animctrl_setDuration(aCtrl, 4.0f);
+            if(anctrl_isAt(aCtrl, 0.6538f))
+                anctrl_setDuration(aCtrl, 4.0f);
 
-            if(animctrl_isStopped(aCtrl)){
+            if(anctrl_isStopped(aCtrl)){
                 D_8037D410 = 0.0f;
                 D_8037D414 = 3;
             }
@@ -111,7 +111,7 @@ void bsdie_update(void){
     if( batimer_get(0) != 0.0f 
         && func_80294574() 
         && ( D_8037D414
-             || ( animctrl_isStopped(aCtrl) 
+             || ( anctrl_isStopped(aCtrl) 
                   && ( player_getYPosition() < (func_80294500() - 150.0f)) 
                 )
            )

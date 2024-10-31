@@ -165,7 +165,7 @@ void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
 }
 
 void RBB_func_80387F44(void){
-    rumbleManager_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
+    baMotor_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
 }
 
 void func_80387F88(ActorMarker *marker){

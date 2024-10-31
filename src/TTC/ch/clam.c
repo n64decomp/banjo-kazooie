@@ -36,7 +36,7 @@ static void __chClam_playSfx(enum sfx_e sfx_id, f32 volume, s32 sampleRate, f32 
 static void __chClam_func_80386454(Actor *this){
     subaddie_set_state_with_direction(this, 1, 0.01f, 1);
     actor_loopAnimation(this);
-    animctrl_setDuration(this->animctrl, randf2(1.9f, 2.1f));
+    anctrl_setDuration(this->anctrl, randf2(1.9f, 2.1f));
 }
 
 static bool __chClam_updateFuncTarget(Actor *this, f32 arg1) {
@@ -97,10 +97,10 @@ static bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
     if(this->unk10_25 == 0) return FALSE;
 
 
-    animctrl_setDuration(this->animctrl, 1.0f);
+    anctrl_setDuration(this->anctrl, 1.0f);
     sp2C = (s32) ((f64) (60.0f / (f32) func_8033DD90()) * 0.5);
     if ((this->unk1C[0] != 0.0f) || !__chClam_updateFuncTarget(this, sp2C)) {
-        if (((f64) animctrl_getAnimTimer(this->animctrl) < 0.1) && ((f64) randf() < 0.5)) {
+        if (((f64) anctrl_getAnimTimer(this->anctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
                 arg1 *= 2;
                 this->actor_specific_1_f = (f32) randi2(0, 0.5*(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0 : 0x11));
@@ -265,7 +265,7 @@ static void __chClam_updateFunc(Actor *this){
 
     if(!this->initialized){
         this->initialized = TRUE;
-        animctrl_setDuration(this->animctrl, 2.0f);
+        anctrl_setDuration(this->anctrl, 2.0f);
     }
 
     if(!this->volatile_initialized){
@@ -286,7 +286,7 @@ static void __chClam_updateFunc(Actor *this){
                 subaddie_set_state_with_direction(this, 3, 0.01f, 1);
                 actor_loopAnimation(this);
                 this->velocity_x = 0.0f;
-                animctrl_setDuration(this->animctrl, 0.6f);
+                anctrl_setDuration(this->anctrl, 0.6f);
                 marker_despawn(sp4C->marker);
             }
         }
@@ -297,11 +297,11 @@ static void __chClam_updateFunc(Actor *this){
             if(__chClam_rotateTowardTarget(this, 140)){
                 subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                 actor_playAnimationOnce(this);
-                animctrl_setDuration(this->animctrl, 1.0f);
+                anctrl_setDuration(this->anctrl, 1.0f);
                 __chClam_playSfx(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
             }
             else{
-                animctrl_setDuration(this->animctrl, 2.0f);
+                anctrl_setDuration(this->anctrl, 2.0f);
             }
             break;
             
@@ -314,7 +314,7 @@ static void __chClam_updateFunc(Actor *this){
 
             if(this->position_y <= sp48){
                 this->position_y = sp48;
-                if(actor_animationIsAt(this, 0.99f) || 0.98 < animctrl_getAnimTimer(this->animctrl)){
+                if(actor_animationIsAt(this, 0.99f) || 0.98 < anctrl_getAnimTimer(this->anctrl)){
                     __chClam_func_80386454(this);
                 }
             }

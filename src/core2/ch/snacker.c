@@ -263,7 +263,7 @@ void chsnacker_update(Actor *this) {
             break;
 
         case CH_SNACKER_STATE_8_HURT: //802E15BC
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 func_802E0CD0(this);
                 subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
@@ -271,7 +271,7 @@ void chsnacker_update(Actor *this) {
             break;
 
         case CH_SNACKER_STATE_9_DEAD: //802E15FC
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 s_chSnacker_respawnDelay_s = 60.0f;
                 D_8037E630 = 0x63;
                 func_802E0EC8();

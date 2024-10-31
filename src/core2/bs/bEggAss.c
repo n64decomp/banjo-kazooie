@@ -37,21 +37,21 @@ void bseggass_update(void) {
             func_80346C10(&sp28, -1, 0, ITEM_D_EGGS, 0);
     }
     if (has_eggs) {
-        if (animctrl_isAt(plyr_mvmt, 0.3837f)) {
+        if (anctrl_isAt(plyr_mvmt, 0.3837f)) {
             func_8030E760(SFX_3E_POOP_NOISE, 1.4f, 28000);
             func_8033E3F0(COMMON_PARTICLE_4_EGG_ASS, 1);
             item_dec(ITEM_D_EGGS);
             ability_use(7);
         }
-        if ((animctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
-            animctrl_setStart(plyr_mvmt, 0.349f);
-            animctrl_start(plyr_mvmt, "bsbeggass.c", 0x5E);
+        if ((anctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
+            anctrl_setStart(plyr_mvmt, 0.349f);
+            anctrl_start(plyr_mvmt, "bsbeggass.c", 0x5E);
             D_8037D2E1++;
         }
     }
-    if (animctrl_isStopped(plyr_mvmt)) {
+    if (anctrl_isStopped(plyr_mvmt)) {
         next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
-    } else if (0.6 < (f64) animctrl_getAnimTimer(plyr_mvmt)) {
+    } else if (0.6 < (f64) anctrl_getAnimTimer(plyr_mvmt)) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())

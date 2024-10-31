@@ -133,14 +133,14 @@ void func_802A12FC(void){
 
     s0 = baanim_getAnimCtrlPtr();
     func_802A0340();
-    animctrl_reset(s0);
-    animctrl_setSmoothTransition(s0, 0);
-    animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
-    animctrl_setSubRange(s0, 0, 0.34f);
-    animctrl_setStart(s0, 0.1f);
-    animctrl_setDuration(s0, 1.2f);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
-    animctrl_start(s0, "bsbeemain.c", 0x15b);
+    anctrl_reset(s0);
+    anctrl_setSmoothTransition(s0, 0);
+    anctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
+    anctrl_setSubRange(s0, 0, 0.34f);
+    anctrl_setStart(s0, 0.1f);
+    anctrl_setDuration(s0, 1.2f);
+    anctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
+    anctrl_start(s0, "bsbeemain.c", 0x15b);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f){
         yaw_setIdeal(func_8029B33C());
@@ -173,7 +173,7 @@ void func_802A1438(void){
             baanim_setEndAndDuration(0.715f, 0.7f);
             D_8037D2D4 = 2;
         }else{
-            if(animctrl_isStopped(sp28)){
+            if(anctrl_isStopped(sp28)){
                 baanim_setEndAndDuration(0.51f, 4.0f);
                 D_8037D2D4 = 1;
             }
@@ -195,7 +195,7 @@ void func_802A1438(void){
         break;
     case 3:
         func_80299628(0);
-        if(animctrl_isStopped(sp28)){
+        if(anctrl_isStopped(sp28)){
             baphysics_set_target_horizontal_velocity(0.0f);
             sp2c = BS_85_BEE_IDLE;
         }
@@ -228,13 +228,13 @@ void func_802A1664(void){
 
     s0 = baanim_getAnimCtrlPtr();
     func_802A0340();
-    animctrl_reset(s0);
-    animctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
-    animctrl_setStart(s0, 0.34f);
-    animctrl_setDuration(s0, 8.0f);
-    animctrl_setSubRange(s0, 0, 0.51f);
-    animctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
-    animctrl_start(s0, "bsbeemain.c", 0x1e2);
+    anctrl_reset(s0);
+    anctrl_setIndex(s0, ASSET_1E2_ANIM_BEE_JUMP);
+    anctrl_setStart(s0, 0.34f);
+    anctrl_setDuration(s0, 8.0f);
+    anctrl_setSubRange(s0, 0, 0.51f);
+    anctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
+    anctrl_start(s0, "bsbeemain.c", 0x1e2);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     D_8037D2D4 = 0;
 }
@@ -267,7 +267,7 @@ void func_802A170C(void){
             break;
         case 2:
             func_80299628(0);
-            if(animctrl_isStopped(sp28)){
+            if(anctrl_isStopped(sp28)){
                 baphysics_set_target_horizontal_velocity(0.0f);
                 sp2c = BS_85_BEE_IDLE;
             }
@@ -307,12 +307,12 @@ void func_802A18E8(s32 arg0){
     //sp40 = arg0;
     sp3C = baanim_getAnimCtrlPtr();
     func_802A0340();
-    animctrl_reset(sp3C);
-    animctrl_setIndex(sp3C, ASSET_1E0_ANIM_BEE_OW);
-    animctrl_setDuration(sp3C, 1.0f);
-    animctrl_setSubRange(sp3C, 0, 0.7518f);
-    animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
-    animctrl_start(sp3C, "bsbeemain.c", 0x269);
+    anctrl_reset(sp3C);
+    anctrl_setIndex(sp3C, ASSET_1E0_ANIM_BEE_OW);
+    anctrl_setDuration(sp3C, 1.0f);
+    anctrl_setSubRange(sp3C, 0, 0.7518f);
+    anctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
+    anctrl_start(sp3C, "bsbeemain.c", 0x269);
     if(arg0 == 1){
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     }else{
@@ -400,13 +400,13 @@ void bsbeemain_die_init(void){
     sp3C = baanim_getAnimCtrlPtr();
     func_8029B930();
     func_802A0340();
-    animctrl_reset(sp3C);
-    animctrl_setSmoothTransition(sp3C, 0);
-    animctrl_setIndex(sp3C, ASSET_1E1_ANIM_BEE_DIE);
-    animctrl_setSubRange(sp3C, 0, 0.3966f);
-    animctrl_setDuration(sp3C, 1.7f);
-    animctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
-    animctrl_start(sp3C, "bsbeemain.c", 0x2ef);
+    anctrl_reset(sp3C);
+    anctrl_setSmoothTransition(sp3C, 0);
+    anctrl_setIndex(sp3C, ASSET_1E1_ANIM_BEE_DIE);
+    anctrl_setSubRange(sp3C, 0, 0.3966f);
+    anctrl_setDuration(sp3C, 1.7f);
+    anctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
+    anctrl_start(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
     _player_getPosition(sp2C);
     func_80294980(sp20);

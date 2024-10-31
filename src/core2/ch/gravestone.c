@@ -172,7 +172,7 @@ void func_8035F138(Actor *this) {
 
     local = (ActorLocal_core2_D7D10 *)&this->local;
     sp2C = time_getDelta();
-    if ((this->state == 1) && (animctrl_getAnimTimer(this->animctrl) < 0.04)) {
+    if ((this->state == 1) && (anctrl_getAnimTimer(this->anctrl) < 0.04)) {
         this->velocity[1] = 2.0f;
     } else {
         this->velocity[1] = 1.0f;
@@ -196,7 +196,7 @@ void func_8035F138(Actor *this) {
                 this->unk1C[2] = this->position[2];
                 this->velocity[0] = this->yaw;
             }
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             if (func_80329530(this, (s32) (this->scale * 650.0f)) && func_803292E0(this)) {
                 subaddie_set_state(this, 2U);
                 actor_playAnimationOnce(this);
@@ -215,7 +215,7 @@ void func_8035F138(Actor *this) {
                 FUNC_8030E8B4(SFX_F9_GRUNTLING_NOISE_1, 0.8f, 32000, this->position, 1750, 3500);
 
             }
-            if (0.99 <= animctrl_getAnimTimer(this->animctrl)) {
+            if (0.99 <= anctrl_getAnimTimer(this->anctrl)) {
                 func_8035EE80(this);
                 break;
             }
@@ -236,9 +236,9 @@ void func_8035F138(Actor *this) {
                 break;
             }
 
-            if (((this->actor_specific_1_f + 0.28) <= 18.0) && ( 0.36 <= animctrl_getDuration(this->animctrl) - 0.0056000000000000008)) {
+            if (((this->actor_specific_1_f + 0.28) <= 18.0) && ( 0.36 <= anctrl_getDuration(this->anctrl) - 0.0056000000000000008)) {
                 this->actor_specific_1_f += 0.28;
-                animctrl_setDuration(this->animctrl, animctrl_getDuration(this->animctrl) - 0.0056000000000000008);
+                anctrl_setDuration(this->anctrl, anctrl_getDuration(this->anctrl) - 0.0056000000000000008);
             }
             break;
 
@@ -273,7 +273,7 @@ void func_8035F138(Actor *this) {
                 }
                 sfxsource_playSfxAtVolume(this->unk44_31, this->unk1C[1]);
             }
-            if (animctrl_getAnimTimer(this->animctrl) <= 0.02) {
+            if (anctrl_getAnimTimer(this->anctrl) <= 0.02) {
                 subaddie_set_state_with_direction(this, 1, 0.02f, 1);
                 actor_playAnimationOnce(this);
                 this->actor_specific_1_f = 0.0f;
@@ -289,7 +289,7 @@ void func_8035F138(Actor *this) {
             if (actor_animationIsAt(this, 0.64f)) {
                 local->unk0 = 1;
             }
-            if (0.99 <= animctrl_getAnimTimer(this->animctrl)) {
+            if (0.99 <= anctrl_getAnimTimer(this->anctrl)) {
                 func_8035EEC0(this);
             }
             break;

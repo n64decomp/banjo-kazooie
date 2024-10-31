@@ -6,7 +6,7 @@
 #include "core2/ba/physics.h"
 
 void func_80292900(f32, f32);
-void rumbleManager_80250D94(f32, f32, f32);
+void baMotor_80250D94(f32, f32, f32);
 
 /* .bss */
 u8 D_8037D530;
@@ -29,10 +29,10 @@ void bssplat_init(void){
     if(func_8029CEB0() == 4){
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.7f, 32000);
         FUNC_8030E624(SFX_116_DEAF_RUSTLING, 0.8f, 32000);
-        rumbleManager_80250D94(0.75f, 0.25f, 0.3f);
+        baMotor_80250D94(0.75f, 0.25f, 0.3f);
     }else{
         FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
-        rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
+        baMotor_80250D94(1.0f, 0.5f, 0.4f);
     }
     func_80299CF4(SFX_38_BANJO_AYE_1, 1.0f, 28000);
     func_802B4570();
@@ -58,17 +58,17 @@ void bssplat_update(void){
         if(func_8028B094())
             sp1C = BS_2F_FALL;
 
-        if(animctrl_isStopped(aCtrl)){
+        if(anctrl_isStopped(aCtrl)){
             baanim_playForDuration_once(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D530 = 1;
         }
         break;
     
     case 1://L802B47C8
-        if(animctrl_isAt(aCtrl, 0.63f))
+        if(anctrl_isAt(aCtrl, 0.63f))
             sp1C = BS_20_LANDING;
 
-        if(animctrl_isStopped(aCtrl))
+        if(anctrl_isStopped(aCtrl))
             sp1C = BS_1_IDLE;
 
         if(func_8028B094())

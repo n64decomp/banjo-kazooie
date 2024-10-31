@@ -56,13 +56,13 @@ void __baanim_update_scaleToHorizontalVelocity(void) {
     scale = (baAnimScale.scalable_duration != 0) ? baAnimScale.duration_scale : 1.0f;
     baphysics_get_velocity(velocity);
     temp_f12 = ml_mapRange_f(gu_sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
-    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, baAnimMinDuration, baAnimMaxDuration));
-    animctrl_update(playerAnimCtrl);
+    anctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, baAnimMinDuration, baAnimMaxDuration));
+    anctrl_update(playerAnimCtrl);
 }
 
 void __baanim_update_scaleToVerticalVelocity(void) {
-    animctrl_setDuration(playerAnimCtrl, ml_clamp_f(ml_mapRange_f(mlAbsF(baphysics_get_vertical_velocity()), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min, baAnimScale.duration_max), baAnimMinDuration, baAnimMaxDuration));
-    animctrl_update(playerAnimCtrl);
+    anctrl_setDuration(playerAnimCtrl, ml_clamp_f(ml_mapRange_f(mlAbsF(baphysics_get_vertical_velocity()), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min, baAnimScale.duration_max), baAnimMinDuration, baAnimMaxDuration));
+    anctrl_update(playerAnimCtrl);
 }
 
 
@@ -135,9 +135,9 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
 }
 
 void baAnim_init(void){
-    playerAnimCtrl = animctrl_new(1);
+    playerAnimCtrl = anctrl_new(1);
     func_80287784(playerAnimCtrl, 0);
-    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    anctrl_setSmoothTransition(playerAnimCtrl, FALSE);
     func_8028746C(playerAnimCtrl, __baanim_applyBottlesBonus);
     baAnimModifyFunction = NULL;
     baanim_80289F30();
@@ -150,7 +150,7 @@ void baAnim_init(void){
 }
 
 void baAnim_free(void){
-    animctrl_free(playerAnimCtrl);
+    anctrl_free(playerAnimCtrl);
 }
 
 void baAnim_update(void){
@@ -164,7 +164,7 @@ void baAnim_update(void){
             break;
 
         case BAANIM_UPDATE_1_NORMAL:
-            animctrl_update(playerAnimCtrl);
+            anctrl_update(playerAnimCtrl);
             break;
 
         case BAANIM_UPDATE_0_NONE:
@@ -173,7 +173,7 @@ void baAnim_update(void){
 }
 
 void baAnim_defrag(void){
-    playerAnimCtrl = animctrl_defrag(playerAnimCtrl);
+    playerAnimCtrl = anctrl_defrag(playerAnimCtrl);
 }
 
 enum baanim_update_type_e baanim_getUpdateType(void){
@@ -210,7 +210,7 @@ void baanim_80289F30(void){
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    animctrl_drawSetup(playerAnimCtrl, sp1C, 1);
+    anctrl_drawSetup(playerAnimCtrl, sp1C, 1);
 }
 
 AnimCtrl *baanim_getAnimCtrlPtr(void){
@@ -218,90 +218,90 @@ AnimCtrl *baanim_getAnimCtrlPtr(void){
 }
 
 f32 baanim_getTimer(void){
-    return animctrl_getAnimTimer(playerAnimCtrl);
+    return anctrl_getAnimTimer(playerAnimCtrl);
 }
 
 bool baanim_isAnimID(enum asset_e anim_id){
-    return animctrl_getIndex(playerAnimCtrl) == anim_id;
+    return anctrl_getIndex(playerAnimCtrl) == anim_id;
 }
 
 bool baanim_isStopped(void){
-    return animctrl_isStopped(playerAnimCtrl);
+    return anctrl_isStopped(playerAnimCtrl);
 }
 
 bool baanim_isAt(f32 time){
-    return animctrl_isAt(playerAnimCtrl, time);
+    return anctrl_isAt(playerAnimCtrl, time);
 }
 
 void baanim_playForDuration_loopSmooth(enum asset_e anim_id, f32 duration){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x188);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x188);
 }
 
 void baanim_playForDuration_loop(enum asset_e anim_id, f32 duration){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x193);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x193);
 }
 
 void baanim_playForDuration_loopStartingAt(enum asset_e anim_id, f32 duration, f32 start_position){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setStart(playerAnimCtrl, start_position);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x19e);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setStart(playerAnimCtrl, start_position);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_LOOP);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x19e);
 }
 
 void baanim_playForDuration_once(enum asset_e anim_id, f32 duration){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x1a8);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x1a8);
 }
 
 void baanim_playForDuration_onceStartingAt(enum asset_e anim_id, f32 duration, f32 start_position){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setStart(playerAnimCtrl, start_position);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x1b3);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setStart(playerAnimCtrl, start_position);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x1b3);
 }
 
 void baanim_playForDuration_onceSmooth(enum asset_e anim_id, f32 duration){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x1bd);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x1bd);
 }
 
 void baanim_playForDuration_onceSmoothStartingAt(enum asset_e anim_id, f32 duration, f32 start_position){
-    animctrl_reset(playerAnimCtrl);
-    animctrl_setSmoothTransition(playerAnimCtrl, FALSE);
-    animctrl_setIndex(playerAnimCtrl, anim_id);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setStart(playerAnimCtrl, start_position);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
-    animctrl_start(playerAnimCtrl, "baanim.c", 0x1c9);
+    anctrl_reset(playerAnimCtrl);
+    anctrl_setSmoothTransition(playerAnimCtrl, FALSE);
+    anctrl_setIndex(playerAnimCtrl, anim_id);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setStart(playerAnimCtrl, start_position);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_start(playerAnimCtrl, "baanim.c", 0x1c9);
 }
 
 void baanim_setEnd(f32 end_position){
-    animctrl_setSubRange(playerAnimCtrl, 0.0f, end_position);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_setSubRange(playerAnimCtrl, 0.0f, end_position);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
 }
 
 void baanim_setEndAndDuration(f32 end_position, f32 duration){
-    animctrl_setSubRange(playerAnimCtrl, 0.0f, end_position);
-    animctrl_setDuration(playerAnimCtrl, duration);
-    animctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
+    anctrl_setSubRange(playerAnimCtrl, 0.0f, end_position);
+    anctrl_setDuration(playerAnimCtrl, duration);
+    anctrl_setPlaybackType(playerAnimCtrl, ANIMCTRL_ONCE);
 }

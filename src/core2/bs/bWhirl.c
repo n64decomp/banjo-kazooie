@@ -96,7 +96,7 @@ void bsbwhirl_enter_init(void){
 void bsbwhirl_enter_update(void){
     enum bs_e sp1C = 0;
     func_802952A8(1,1);
-    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
+    if(anctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1B_WONDERWING_IDLE;
     bs_setState(sp1C);
 }
@@ -172,14 +172,14 @@ void bsbwhirl_walk_end(void){
 void bsbwhirl_jump_init(void){
     AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_1B_ANIM_BSWHIRL_JUMP);
-    animctrl_setDuration(aCtrl, 0.8f);
-    animctrl_setTransitionDuration(aCtrl, 0.134f);
-    animctrl_setStart(aCtrl, 0.14f);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsbwhirl.c", 0x181);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_1B_ANIM_BSWHIRL_JUMP);
+    anctrl_setDuration(aCtrl, 0.8f);
+    anctrl_setTransitionDuration(aCtrl, 0.134f);
+    anctrl_setStart(aCtrl, 0.14f);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsbwhirl.c", 0x181);
     func_8029C7F4(1,1,3,BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -207,9 +207,9 @@ void bsbwhirl_jump_update(void){
     switch(D_8037D3B4){
         case 0://L802AAB48
             if(func_8028B254(0x82)){
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setDuration(aCtrl, 0.8f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setDuration(aCtrl, 0.8f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D3B4 = 1;
             }
             break;
@@ -223,7 +223,7 @@ void bsbwhirl_jump_update(void){
             }
             break;
         case 2://L802AABC8
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 sp2C = BS_1B_WONDERWING_IDLE;
             sp2C = func_802AA510(sp2C);
             break;
@@ -243,13 +243,13 @@ void bsbwhirl_jump_end(void){
 void bsbwhirl_exit_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setDirection(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_22_ANIM_BSWHIRL_EXIT);
-    animctrl_setDuration(aCtrl, 0.5f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsbwhirl.c", 0x201);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setDirection(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_22_ANIM_BSWHIRL_EXIT);
+    anctrl_setDuration(aCtrl, 0.5f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsbwhirl.c", 0x201);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_8029957C(2);
     baphysics_set_target_horizontal_velocity(0.0f);
@@ -259,7 +259,7 @@ void bsbwhirl_exit_init(void){
 void bsbwhirl_exit_update(void){
     enum bs_e sp1C = 0;
     
-    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
+    if(anctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);

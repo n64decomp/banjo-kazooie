@@ -4,7 +4,7 @@
 #include <ultra64.h>
 
 #include "structs.h"
-#include "core2/animctrl.h"
+#include "core2/anctrl.h"
 #include "core2/modelRender.h"
 #include "core2/skeletalanim.h"
 
@@ -163,7 +163,7 @@ typedef struct actor_s{
     u32 unk10_3:2;
     u32 unk10_1:1;
     u32 is_bundle:1;
-    AnimCtrl *animctrl;
+    AnimCtrl *anctrl;
     ActorAnimationInfo *unk18;
     TUPLE(f32, unk1C); // actor position? // used as "home" for chbat
     f32 actor_specific_1_f; //used in cheggs
@@ -171,7 +171,7 @@ typedef struct actor_s{
     u32  unk38_31:10; // hit count for jinjo base in fight
     u32  unk38_21:9;
     u32  unk38_13:9;
-    u32  stored_animctrl_playbackType_:3; //animctrlPlaybackType
+    u32  stored_anctrl_playbackType_:3; //anctrlPlaybackType
     u32  unk38_0:1;
     u32 unk3C;
     s32 unk40;
@@ -186,8 +186,8 @@ typedef struct actor_s{
     f32 unk4C;
     /* 0x50 */ f32 yaw; //0x50
     f32 unk54; //0x54
-    u32 animctrl_asset_id: 15; // animation asset id (enum asset_id)
-    u32 stored_animctrl_index: 14; //animctrlAnimIndex;
+    u32 anctrl_asset_id: 15; // animation asset id (enum asset_id)
+    u32 stored_anctrl_index: 14; //anctrlAnimIndex;
     u32 unk58_2: 1;
     u32 unk58_1: 1;
     u32 unk58_0: 1;
@@ -201,8 +201,8 @@ typedef struct actor_s{
     u32 unk78_31:9;
     u32 unk78_22:9;
     u32 unk78_13:12; //default_spawn_yaw?
-    u32 stored_animctrl_forwards:1; //animCtrlDirection
-    u32 stored_animctrl_smoothTransistion:1; //animCtrlSmoothTransition
+    u32 stored_anctrl_forwards:1; //animCtrlDirection
+    u32 stored_anctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
     { //DON'T DO THIS JUST DEFINE STATICLY IN ch/ FILE AND CAST FROM &Actor->local
         ActorLocal_BGS_6730 bgs_6730;
@@ -217,8 +217,8 @@ typedef struct actor_s{
         
     };
     //u8  padAC[0x44];
-    f32 stored_animctrl_timer; // animCtrlTimer
-    f32 stored_animctrl_duration; //animCtrlDuration
+    f32 stored_anctrl_timer; // animCtrlTimer
+    f32 stored_anctrl_duration; //animCtrlDuration
     u32 unkF4_31:1;
     u32 unkF4_30:1; // has something to do with vertices
     u32 unkF4_29:1;
@@ -233,8 +233,8 @@ typedef struct actor_s{
     u32 unkF4_8:9; /* jinjo id in final fight.
                     *  Is used to determine file progress related stuff, can also be a file_progress_e
                     */
-    f32 stored_animctrl_subrangeMin; //animCtrl_SubRangeStart
-    f32 stored_animctrl_subrangeMax; //animCtrl_SubRangeEnd
+    f32 stored_anctrl_subrangeMin; //animCtrl_SubRangeStart
+    f32 stored_anctrl_subrangeMax; //animCtrl_SubRangeEnd
     ActorMarker *unk100; // child actor marker ?
     ActorMarker *unk104;
     Struct62s *unk108;

@@ -48,7 +48,7 @@ ActorInfo gChBlubber = {
 static void __chBlubber_initiliaze(Actor *this){
     ActorLocal_Blubber *local = (ActorLocal_Blubber *)&this->local;
 
-    animctrl_setTransitionDuration(this->animctrl, 0.2f);
+    anctrl_setTransitionDuration(this->anctrl, 0.2f);
     this->initialized = TRUE;
     local->gold_bullion_throw_target_node_prop = nodeprop_findByActorIdAndActorPosition(ACTOR_2B_GOLD_BULLION_THROW_TARGET, this);
     if(local->gold_bullion_throw_target_node_prop){

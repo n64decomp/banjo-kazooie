@@ -93,8 +93,8 @@ void actor_predrawMethod(Actor *this){
     
     sp48 = marker_loadModelBin(this->marker);
     func_80330534(this);
-    if(this->animctrl != NULL){
-        animctrl_drawSetup(this->animctrl, this->position, 1);
+    if(this->anctrl != NULL){
+        anctrl_drawSetup(this->anctrl, this->position, 1);
     }
 
     if(this->marker->unk20 != NULL){
@@ -103,8 +103,8 @@ void actor_predrawMethod(Actor *this){
             animMtxList_setBoned(&this->marker->unk20, model_getAnimationList(sp48), skeletalAnim_getBoneTransformList(this->unk148));
             sp44 = TRUE;
         }//L8032542C
-        else if(this->animctrl != NULL && model_getAnimationList(sp48)){
-            anim_802897D4(&this->marker->unk20, model_getAnimationList(sp48), animctrl_getAnimPtr(this->animctrl));
+        else if(this->anctrl != NULL && model_getAnimationList(sp48)){
+            anim_802897D4(&this->marker->unk20, model_getAnimationList(sp48), anctrl_getAnimPtr(this->anctrl));
             sp44 = TRUE;
         }//L80325474
 
@@ -369,14 +369,14 @@ void func_80325FE8(Actor *this) {
 
     marker = this->marker;
     marker->id = 0;
-    if (this->animctrl != NULL) {
-        animctrl_free(this->animctrl);
+    if (this->anctrl != NULL) {
+        anctrl_free(this->anctrl);
     }
     temp_v0 = this->unk44_31;
     if (temp_v0 != 0) {
         sfxsource_freeSfxsourceByIndex(temp_v0);
     }
-    this->animctrl = NULL;
+    this->anctrl = NULL;
     this->unk44_31 = 0;
 
     if (this->unk138_7 != 0) {
@@ -533,7 +533,7 @@ void func_803268B4(void) {
             actor = &suBaddieActorArray->data[temp_v1];
             actor_info = actor->actor_info;
             marker = actor->marker;
-            anim_ctrl = actor->animctrl;
+            anim_ctrl = actor->anctrl;
             temp_s1 = actor->actor_info->unk18;
             if (marker->propPtr->unk8_4) {
                 if(sp54){
@@ -545,20 +545,20 @@ void func_803268B4(void) {
                     if (marker->unk2C_2) {
                         marker->actorUpdate2Func(actor);
                         if (anim_ctrl != NULL) {
-                                actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
+                                actor->sound_timer = anctrl_getAnimTimer(anim_ctrl);
                         }
                     } else if (!temp_s1 || (temp_s1 && func_803296D8(actor, temp_s1))) {
                         if ( marker->actorUpdateFunc != NULL) {
                              marker->actorUpdateFunc(actor);
                             if (anim_ctrl != NULL) {
-                                    actor->sound_timer = animctrl_getAnimTimer(anim_ctrl);
+                                    actor->sound_timer = anctrl_getAnimTimer(anim_ctrl);
                             }
                         }
                     }
                     actor->unk124_7 = TRUE;
                     actor->unk138_28 = FALSE;
                     if (anim_ctrl != NULL) {
-                        animctrl_update(anim_ctrl);
+                        anctrl_update(anim_ctrl);
                     }
                     if (marker->unk4C) {
                         temp_v0_3 = func_80330C74(actor);
@@ -817,7 +817,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->unk10_7 = 0;
     suLastBaddie->unk10_6 = 0;
     suLastBaddie->unk54 = 0.0f;
-    suLastBaddie->animctrl_asset_id = 0;
+    suLastBaddie->anctrl_asset_id = 0;
     suLastBaddie->unk5C = 0.0f;
     suLastBaddie->unkF4_31 = 0;
     suLastBaddie->unk138_30 = 0;
@@ -852,22 +852,22 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     ml_vec3f_clear(suLastBaddie->unk1C);
     ml_vec3f_clear(suLastBaddie->velocity);
     ml_vec3f_clear(suLastBaddie->spawn_position);
-    suLastBaddie->stored_animctrl_index = 0;
+    suLastBaddie->stored_anctrl_index = 0;
     suLastBaddie->unk58_2 = 1;
-    suLastBaddie->stored_animctrl_playbackType_ = 0;
-    suLastBaddie->stored_animctrl_forwards = 0;
-    suLastBaddie->stored_animctrl_smoothTransistion = 0;
-    suLastBaddie->stored_animctrl_duration = 0.0f;
-    suLastBaddie->stored_animctrl_timer = 0.0f;
+    suLastBaddie->stored_anctrl_playbackType_ = 0;
+    suLastBaddie->stored_anctrl_forwards = 0;
+    suLastBaddie->stored_anctrl_smoothTransistion = 0;
+    suLastBaddie->stored_anctrl_duration = 0.0f;
+    suLastBaddie->stored_anctrl_timer = 0.0f;
     suLastBaddie->unk138_19 = 0;
-    suLastBaddie->stored_animctrl_subrangeMin = 0.0f;
-    suLastBaddie->stored_animctrl_subrangeMax = 1.0f;
+    suLastBaddie->stored_anctrl_subrangeMin = 0.0f;
+    suLastBaddie->stored_anctrl_subrangeMax = 1.0f;
     suLastBaddie->unkF4_22 = 0;
     suLastBaddie->unk58_1 = 0;
     suLastBaddie->unk138_29 = 0;
     suLastBaddie->unk18 = actorInfo->animations;
-    suLastBaddie->animctrl = NULL;
-    suLastBaddie->stored_animctrl_timer = 0.0f;
+    suLastBaddie->anctrl = NULL;
+    suLastBaddie->stored_anctrl_timer = 0.0f;
     suLastBaddie->unk130 = 0;
     suLastBaddie->unk124_5 = 0;
     suLastBaddie->unk124_3 = 0;
@@ -892,11 +892,11 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     if( actorInfo->animations){
         sp54 = &suLastBaddie->unk18[suLastBaddie->state];
         if(sp54->index != 0){
-            suLastBaddie->animctrl = animctrl_new(0);
-            animctrl_reset(suLastBaddie->animctrl);
-            animctrl_setIndex(suLastBaddie->animctrl, sp54->index);
-            animctrl_setDuration(suLastBaddie->animctrl, sp54->duration);
-            animctrl_start(suLastBaddie->animctrl, "subaddie.c", 0x4A5);
+            suLastBaddie->anctrl = anctrl_new(0);
+            anctrl_reset(suLastBaddie->anctrl);
+            anctrl_setIndex(suLastBaddie->anctrl, sp54->index);
+            anctrl_setDuration(suLastBaddie->anctrl, sp54->duration);
+            anctrl_start(suLastBaddie->anctrl, "subaddie.c", 0x4A5);
         }
     }//L80327BA8
     suLastBaddie->unk124_11 = 0;
@@ -1171,26 +1171,26 @@ static bool __subaddie_set_state(Actor *this, s32 state)
     if (1);
 
     if (index != 0){
-        if (this->animctrl == NULL){
-            this->animctrl = animctrl_new(0);
-            animctrl_reset(this->animctrl);
+        if (this->anctrl == NULL){
+            this->anctrl = anctrl_new(0);
+            anctrl_reset(this->anctrl);
         }
-        animctrl_setIndex(this->animctrl, animInfo->index);
-        animctrl_setDuration(this->animctrl, animInfo->duration);
-        animctrl_setDirection(this->animctrl, mvmt_dir_forwards);
+        anctrl_setIndex(this->anctrl, animInfo->index);
+        anctrl_setDuration(this->anctrl, animInfo->duration);
+        anctrl_setDirection(this->anctrl, mvmt_dir_forwards);
     }
-    else if (this->animctrl) {
-        animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
-        animctrl_setDirection(this->animctrl, mvmt_dir_forwards);
+    else if (this->anctrl) {
+        anctrl_setPlaybackType(this->anctrl, ANIMCTRL_STOPPED);
+        anctrl_setDirection(this->anctrl, mvmt_dir_forwards);
     }
     return TRUE;
 }
 
 void func_803285E8(Actor *this, f32 anim_start_position, int direction){
-    animctrl_setStart(this->animctrl, anim_start_position);
+    anctrl_setStart(this->anctrl, anim_start_position);
 
     if (direction != -1) {
-        animctrl_setDirection(this->animctrl, direction);
+        anctrl_setDirection(this->anctrl, direction);
     }
 
     this->sound_timer = anim_start_position;
@@ -1202,16 +1202,16 @@ int func_8032863C(AnimCtrl *anim_ctrl, f32 min, f32 max) {
     f32 timer;
     s32 sp18;
 
-    timer = animctrl_getAnimTimer(anim_ctrl);
+    timer = anctrl_getAnimTimer(anim_ctrl);
     if ((timer < min) || (max <= timer)) {
         return -1;
     }
-    sp18 = animctrl_isPlayedForwards(anim_ctrl);
+    sp18 = anctrl_isPlayedForwards(anim_ctrl);
     if( ((sp18 == 0) && (min <= timer) && (timer < (min + 0.015))) 
         || ((sp18 == 1) && (timer < max) && ((max - 0.015) <= timer))
     ) {
         sp18 = (sp18) ? 0 : 1;
-        animctrl_setDirection(anim_ctrl, sp18);
+        anctrl_setDirection(anim_ctrl, sp18);
         return sp18 + 2;
     }
     return sp18;
@@ -1226,37 +1226,37 @@ s32 func_80328748(AnimCtrl *anim_ctrl, f32 min, f32 max) {
     if (sp24 != -1) {
         return sp24;
     }
-    sp20 = animctrl_getAnimTimer(anim_ctrl);
-    if (animctrl_isPlayedForwards(anim_ctrl) == TRUE) {
+    sp20 = anctrl_getAnimTimer(anim_ctrl);
+    if (anctrl_isPlayedForwards(anim_ctrl) == TRUE) {
         if (max <= sp20) {
-            animctrl_setAnimTimer(anim_ctrl, max);
-            animctrl_setDirection(anim_ctrl, 0);
+            anctrl_setAnimTimer(anim_ctrl, max);
+            anctrl_setDirection(anim_ctrl, 0);
             sp24 = 2;
         }
     } else if (sp20 < min) {
-        animctrl_setAnimTimer(anim_ctrl, min);
-        animctrl_setDirection(anim_ctrl, 1);
+        anctrl_setAnimTimer(anim_ctrl, min);
+        anctrl_setDirection(anim_ctrl, 1);
         sp24 = 3;
     }
     return sp24;
 }
 
 int func_8032881C(Actor *this){
-    if(this->animctrl){
-        if(animctrl_getPlaybackType(this->animctrl) == ANIMCTRL_ONCE){
-            return animctrl_isStopped(this->animctrl);
+    if(this->anctrl){
+        if(anctrl_getPlaybackType(this->anctrl) == ANIMCTRL_ONCE){
+            return anctrl_isStopped(this->anctrl);
         }
     }
     return 0;
 }
 
 int actor_animationIsAt(Actor *this, f32 arg1){
-    f32 f2 = animctrl_getAnimTimer(this->animctrl);
+    f32 f2 = anctrl_getAnimTimer(this->anctrl);
     if(f2 == this->sound_timer){
         return 0;
     }
     else {
-        if(animctrl_isPlayedForwards(this->animctrl)){
+        if(anctrl_isPlayedForwards(this->anctrl)){
             if(this->sound_timer < f2){
                 return this->sound_timer <= arg1 && arg1 < f2;
             }
@@ -1277,7 +1277,7 @@ int actor_animationIsAt(Actor *this, f32 arg1){
 
 void func_803289EC(Actor *this , f32 anim_start_position, int direction){
     func_803285E8(this, anim_start_position, direction);
-    animctrl_start(this->animctrl, "subaddie.c", 0x6b1);
+    anctrl_start(this->anctrl, "subaddie.c", 0x6b1);
 }
 
 int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
@@ -1291,8 +1291,8 @@ int func_80328A2C(Actor *this, f32 arg1, s32 direction, f32 probability){
 }
 
 void subaddie_set_state(Actor * this, u32 arg1){
-    if(__subaddie_set_state(this, arg1) && this->animctrl){
-        animctrl_start(this->animctrl, "subaddie.c", 0X6CA);
+    if(__subaddie_set_state(this, arg1) && this->anctrl){
+        anctrl_start(this->anctrl, "subaddie.c", 0X6CA);
     }
 }
 
@@ -1301,8 +1301,8 @@ void subaddie_set_state_forward(Actor * this, s32 arg1){
 }
 
 void subaddie_set_state_looped(Actor * this, u32 arg1){
-    if(__subaddie_set_state(this, arg1) && this->animctrl){
-        animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_LOOP);
+    if(__subaddie_set_state(this, arg1) && this->anctrl){
+        anctrl_setPlaybackType(this->anctrl,  ANIMCTRL_LOOP);
         func_803289EC(this, 0.0f, 1);
     }
 }
@@ -1317,16 +1317,16 @@ int subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
 }
 
 void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction){
-    if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
+    if (__subaddie_set_state(this, myAnimId) && this->anctrl) {
         func_803289EC(this, anim_start_position, direction);
     }
 }
 
 bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {
     if (randf() < probability) {
-        if (__subaddie_set_state(this, myAnimId) && this->animctrl) {
+        if (__subaddie_set_state(this, myAnimId) && this->anctrl) {
             func_803285E8(this, start_position, direction);
-            animctrl_start(this->animctrl, "subaddie.c", 0x705);
+            anctrl_start(this->anctrl, "subaddie.c", 0x705);
         }
         return TRUE;
     }
@@ -1616,13 +1616,13 @@ void func_80329878(Actor *arg0, f32 arg1){
 }
 
 void actor_playAnimationOnce(Actor *this){
-    if(this->animctrl)
-        animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
+    if(this->anctrl)
+        anctrl_setPlaybackType(this->anctrl, ANIMCTRL_ONCE);
 }
 
 void actor_loopAnimation(Actor *this){
-    if(this->animctrl)
-        animctrl_setPlaybackType(this->animctrl,  ANIMCTRL_LOOP);
+    if(this->anctrl)
+        anctrl_setPlaybackType(this->anctrl,  ANIMCTRL_LOOP);
 }
 
 s32 func_80329904(ActorMarker *arg0, s32 arg1, f32 *arg2){
@@ -1681,25 +1681,25 @@ void func_803299B4(Actor *arg0) {
 }
 
 void func_80329B68(Actor *this){
-    if(this->animctrl == NULL)
+    if(this->anctrl == NULL)
         return;
 
-    if(this->stored_animctrl_playbackType_){
-        animctrl_setPlaybackType(this->animctrl, this->stored_animctrl_playbackType_);
+    if(this->stored_anctrl_playbackType_){
+        anctrl_setPlaybackType(this->anctrl, this->stored_anctrl_playbackType_);
     }
-    animctrl_setIndex(this->animctrl, this->stored_animctrl_index);
-    animctrl_setDirection(this->animctrl, this->stored_animctrl_forwards);
-    animctrl_setSmoothTransition(this->animctrl, this->stored_animctrl_smoothTransistion);
-    animctrl_setDuration(this->animctrl, this->stored_animctrl_duration);
-    animctrl_setStart(this->animctrl, this->stored_animctrl_timer);
-    animctrl_setSubRange(this->animctrl, this->stored_animctrl_subrangeMin, this->stored_animctrl_subrangeMax);
-    animctrl_start(this->animctrl, "subaddie.c", 0x8fd);
-    animctrl_setTimer(this->animctrl, this->sound_timer);
+    anctrl_setIndex(this->anctrl, this->stored_anctrl_index);
+    anctrl_setDirection(this->anctrl, this->stored_anctrl_forwards);
+    anctrl_setSmoothTransition(this->anctrl, this->stored_anctrl_smoothTransistion);
+    anctrl_setDuration(this->anctrl, this->stored_anctrl_duration);
+    anctrl_setStart(this->anctrl, this->stored_anctrl_timer);
+    anctrl_setSubRange(this->anctrl, this->stored_anctrl_subrangeMin, this->stored_anctrl_subrangeMax);
+    anctrl_start(this->anctrl, "subaddie.c", 0x8fd);
+    anctrl_setTimer(this->anctrl, this->sound_timer);
 }
 
 void actor_copy(Actor *dst, Actor *src){
     dst->marker = src->marker;
-    dst->animctrl = src->animctrl;
+    dst->anctrl = src->anctrl;
     dst->unk44_14 = src->unk44_14;
     dst->unk148 = src->unk148;
     dst->unk14C[0] = src->unk14C[0];
@@ -1762,16 +1762,16 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unkF4_28 = s1->marker->propPtr->unk8_3;
                 s0->unkF4_27 = s1->marker->propPtr->unk8_2;
                 //80329F94
-                if(s0->animctrl){
-                    s0->stored_animctrl_index = animctrl_getIndex(s0->animctrl);
-                    s0->stored_animctrl_playbackType_ = animctrl_getPlaybackType(s0->animctrl);
-                    s0->stored_animctrl_forwards = animctrl_isPlayedForwards(s0->animctrl);
-                    s0->stored_animctrl_smoothTransistion = animctrl_isSmoothTransistion(s0->animctrl);
-                    s0->stored_animctrl_duration = animctrl_getDuration(s0->animctrl);
-                    s0->stored_animctrl_timer = animctrl_getAnimTimer(s0->animctrl);
-                    animctrl_getSubRange(s0->animctrl, &s0->stored_animctrl_subrangeMin, &s0->stored_animctrl_subrangeMax);
+                if(s0->anctrl){
+                    s0->stored_anctrl_index = anctrl_getIndex(s0->anctrl);
+                    s0->stored_anctrl_playbackType_ = anctrl_getPlaybackType(s0->anctrl);
+                    s0->stored_anctrl_forwards = anctrl_isPlayedForwards(s0->anctrl);
+                    s0->stored_anctrl_smoothTransistion = anctrl_isSmoothTransistion(s0->anctrl);
+                    s0->stored_anctrl_duration = anctrl_getDuration(s0->anctrl);
+                    s0->stored_anctrl_timer = anctrl_getAnimTimer(s0->anctrl);
+                    anctrl_getSubRange(s0->anctrl, &s0->stored_anctrl_subrangeMin, &s0->stored_anctrl_subrangeMax);
                 }
-                s0->animctrl = NULL;
+                s0->anctrl = NULL;
                 s0->marker = NULL;
                 s0++;
             }
@@ -2127,8 +2127,8 @@ void actorArray_defrag(void) {
                 i_actor->unk158[1] = partEmitMgr_defragEmitter(i_actor->unk158[1]);
             }
 
-            if (i_actor->animctrl != NULL) {
-                i_actor->animctrl = animctrl_defrag(i_actor->animctrl);
+            if (i_actor->anctrl != NULL) {
+                i_actor->anctrl = anctrl_defrag(i_actor->anctrl);
             }
 
             if (i_actor->marker->unk20 != NULL) {
@@ -2344,7 +2344,7 @@ bool func_8032BBE8(Actor *this){
 }
 
 void func_8032BC18(Actor *this){
-    func_80287784(this->animctrl, 0);
+    func_80287784(this->anctrl, 0);
 }
 
 void func_8032BC3C(Actor *this, f32 arg1){

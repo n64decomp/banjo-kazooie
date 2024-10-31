@@ -463,7 +463,7 @@ void chMumbo_update(Actor *this) {
                     break;
                 }
                 if (0.6 < randf()) {
-                    animctrl_setDuration(this->animctrl, randf2(0.6f, 1.8f));
+                    anctrl_setDuration(this->anctrl, randf2(0.6f, 1.8f));
                 }
             }
             break;

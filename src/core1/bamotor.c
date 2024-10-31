@@ -23,9 +23,9 @@ OSThread     sRumbleThread;
 u8           sRumbleThreadStack[RUMBLE_THREAD_STACK_SIZE];
 
 /* .code */
-void rumbleManager_80250D94(f32, f32, f32);
+void baMotor_80250D94(f32, f32, f32);
 
-void __rumbleManager_startRumble(void){
+void __baMotor_startRumble(void){
     u32 motor_status;
 
     if(D_802823B0){
@@ -36,7 +36,7 @@ void __rumbleManager_startRumble(void){
     }
 }
 
-void __rumbleManager_stopRumble(void){
+void __baMotor_stopRumble(void){
     u32 motor_status;
 
     if(D_802823B0){
@@ -90,27 +90,27 @@ void rumbleThread_entry(void *arg) {
 
         if (rumble_state != prev_state) {
             if (rumble_state) {
-                __rumbleManager_startRumble(); //start_motor
+                __baMotor_startRumble(); //start_motor
             }
             else{
-                __rumbleManager_stopRumble(); //stop_motor
+                __baMotor_stopRumble(); //stop_motor
             }
         }
     }while(1);
 }
 
-void __rumbleManager_80250BA4(s32 arg0, s32 arg1, s32 arg2){
+void __baMotor_80250BA4(s32 arg0, s32 arg1, s32 arg2){
     f64 f0 = 524288.0;
-    rumbleManager_80250D94(arg0/f0, arg1/f0, arg2/f0);
+    baMotor_80250D94(arg0/f0, arg1/f0, arg2/f0);
 }
 
-void rumbleManager_80250C08(void) {
+void baMotor_80250C08(void) {
     if (D_802823AC != 0) {
         D_80282424 = MIN(D_80282420, D_80282424 + time_getDelta());
     }
 }
 
-void rumbleManager_init(void) {
+void baMotor_init(void) {
     s32 pfs_status;
     
     func_8024F35C(4);
@@ -130,9 +130,9 @@ void rumbleManager_init(void) {
     }
 }
 
-void __rumbleManager_80250D8C(void){}
+void __baMotor_80250D8C(void){}
 
-void rumbleManager_80250D94(f32 arg0, f32 arg1, f32 arg2){
+void baMotor_80250D94(f32 arg0, f32 arg1, f32 arg2){
     f32 f4;
     if(arg2 != 0.0f && D_802823AC){
         if(func_802E4A08() == 0){
@@ -146,20 +146,20 @@ void rumbleManager_80250D94(f32 arg0, f32 arg1, f32 arg2){
     }
 }
 
-void rumbleManager_80250E6C(f32 arg0, f32 arg1){
-    rumbleManager_80250D94(arg0, arg0, arg1);
+void baMotor_80250E6C(f32 arg0, f32 arg1){
+    baMotor_80250D94(arg0, arg0, arg1);
 }
 
-void rumbleManager_80250E94(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5){
+void baMotor_80250E94(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5){
     if(D_802823AC){
-        timedFunc_set_3(0.0f, (GenFunction_3) __rumbleManager_80250BA4, 0, (s32) (arg0 * 524288.0f), (s32) (arg2*524288.0f));
-        timedFunc_set_3(arg2, (GenFunction_3) __rumbleManager_80250BA4, (s32) (arg0 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg3*524288.0f));
-        timedFunc_set_3(arg2 + arg3, (GenFunction_3) __rumbleManager_80250BA4, (s32) (arg1 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg4*524288.0f));
-        timedFunc_set_3(arg2 + arg3 + arg4, (GenFunction_3) __rumbleManager_80250BA4, (s32) (arg1 * 524288.0f), 0, (s32) (arg5*524288.0f));
+        timedFunc_set_3(0.0f, (GenFunction_3) __baMotor_80250BA4, 0, (s32) (arg0 * 524288.0f), (s32) (arg2*524288.0f));
+        timedFunc_set_3(arg2, (GenFunction_3) __baMotor_80250BA4, (s32) (arg0 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg3*524288.0f));
+        timedFunc_set_3(arg2 + arg3, (GenFunction_3) __baMotor_80250BA4, (s32) (arg1 * 524288.0f), (s32) (arg1 * 524288.0f), (s32) (arg4*524288.0f));
+        timedFunc_set_3(arg2 + arg3 + arg4, (GenFunction_3) __baMotor_80250BA4, (s32) (arg1 * 524288.0f), 0, (s32) (arg5*524288.0f));
     }
 }
 
-void rumbleManager_80250FC0(void){
+void baMotor_80250FC0(void){
     int i;
     u32 motor_status;
     if(D_802823B0){

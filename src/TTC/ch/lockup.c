@@ -127,7 +127,7 @@ static void __chLockup_updateFunc(Actor *this){
             if(actor_animationIsAt(this, 0.5f)){
                 subaddie_set_state_with_direction(this, CH_LOCKUP_STATE_OPEN, 0.5f, 1);
             }
-            if(0.15 < animctrl_getAnimTimer(this->animctrl)){
+            if(0.15 < anctrl_getAnimTimer(this->anctrl)){
                 this->marker->collidable = TRUE;
             }
             break;

@@ -100,19 +100,19 @@ void func_8038A384(Actor *this){
             case MARKER_1FA_POLAR_BEAR_CUB_BLUE://L8038A404
                 this->unk1C[0] = 1.0f;
                 this->unk1C[1] = 1.2f;
-                animctrl_setAnimTimer(this->animctrl, 0.0f);
+                anctrl_setAnimTimer(this->anctrl, 0.0f);
                 break;
 
             case MARKER_1FB_POLAR_BEAR_CUB_GREEN://L8038A438
                 this->unk1C[0] = 1.1f;
                 this->unk1C[1] = 1.3f;
-                animctrl_setAnimTimer(this->animctrl, 0.4f);
+                anctrl_setAnimTimer(this->anctrl, 0.4f);
                 break;
 
             case MARKER_1FC_POLAR_BEAR_CUB_RED://L8038A470
                 this->unk1C[0] = 1.2f;
                 this->unk1C[1] = 1.4f;
-                animctrl_setAnimTimer(this->animctrl, 0.7f);
+                anctrl_setAnimTimer(this->anctrl, 0.7f);
                 break;
         }//L8038A4A0
 

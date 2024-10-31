@@ -16,10 +16,10 @@ void bstalk_init(void){
     f32 target_pos[3];
 
     player_anim_ctrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(player_anim_ctrl);
+    anctrl_reset(player_anim_ctrl);
     func_8029C848(player_anim_ctrl);
-    animctrl_setPlaybackType(player_anim_ctrl,  ANIMCTRL_LOOP);
-    animctrl_start(player_anim_ctrl, "bstalk.c", 0x38);
+    anctrl_setPlaybackType(player_anim_ctrl,  ANIMCTRL_LOOP);
+    anctrl_start(player_anim_ctrl, "bstalk.c", 0x38);
     _player_getPosition(plyr_pos);
     get_talk_target_position(target_pos);
     func_80257F18(plyr_pos, target_pos, &yaw);

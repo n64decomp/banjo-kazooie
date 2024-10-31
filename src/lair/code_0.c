@@ -1182,7 +1182,7 @@ void func_80388524(Actor *this) {
                             fileProgressFlag_set(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN, 1);
                             func_8030E6D4(SFX_6C_LOCKUP_CLOSING);
                         }
-                        if (animctrl_getAnimTimer(this->animctrl) < 0.68) {
+                        if (anctrl_getAnimTimer(this->anctrl) < 0.68) {
                             sp2C = partEmitMgr_newEmitter(3U);
                             particleEmitter_setSprite(sp2C, ASSET_70D_SPRITE_SMOKE_1);
                             particleEmitter_setStartingFrameRange(sp2C, 1, 6);

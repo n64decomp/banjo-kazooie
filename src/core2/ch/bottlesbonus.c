@@ -469,7 +469,7 @@ void chBottlesBonus_update(Actor *this) {
             D_8037DEAC = func_8033F5F8(func_8033A0B0(chBottleBonusBookselfModelBin), model_getVtxList(chBottleBonusBookselfModelBin));
             func_8034CF74(local, 0, D_8037DEAC, 0xF0);
         }
-        func_8028746C(this->animctrl, chBottlesBonus_func_802DD8AC);
+        func_8028746C(this->anctrl, chBottlesBonus_func_802DD8AC);
         for(phi_s0 = 0; phi_s0 < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; phi_s0++){
             func_8034DFB0(func_8034C2C4(this->marker, phi_s0 + 0x190), D_803682B4, D_803682A4, 0.0f);
         }
@@ -515,7 +515,7 @@ void chBottlesBonus_update(Actor *this) {
             }
             break;
         case 2:
-            if(animctrl_isStopped(this->animctrl)) {
+            if(anctrl_isStopped(this->anctrl)) {
                 this->state = 3;
                 func_8025A7DC(COMUSIC_98_BBONUS_PIECES_SHUFFLE);
                 if (D_8037DCC7 == 0) {

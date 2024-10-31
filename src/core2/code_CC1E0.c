@@ -72,7 +72,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                 case MARKER_FC_CROCTUS: //L803532C4
                     other_actor = marker_getActor(other_marker);
                     if(other_actor->unk38_31 == 0){
-                        temp_f2 = animctrl_getAnimTimer(other_actor->animctrl);
+                        temp_f2 = anctrl_getAnimTimer(other_actor->anctrl);
                         if(0.25 <= temp_f2 && temp_f2 <= 0.75){
                             other_actor->unk38_31 = 1;
                         }

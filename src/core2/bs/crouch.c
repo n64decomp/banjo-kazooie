@@ -29,7 +29,7 @@ void func_802AD728(void){
 }
 
 void func_802AD768(AnimCtrl *aCtrl, f32 arg1){
-    animctrl_setDuration(aCtrl, ml_map_f(arg1, 0.0f, 180.0f, 0.5, 0.2f));
+    anctrl_setDuration(aCtrl, ml_map_f(arg1, 0.0f, 180.0f, 0.5, 0.2f));
 }
 
 void func_802AD7B0(AnimCtrl *aCtrl){
@@ -53,12 +53,12 @@ void bscrouch_init(void){
             sp24 = 0.0f;
             break;
     }
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_1_ANIM_BSCROUCH_ENTER);
-    animctrl_setDuration(aCtrl, 0.5f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_setStart(aCtrl, sp24);
-    animctrl_start(aCtrl, "bscrouch.c", 0xa0);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_1_ANIM_BSCROUCH_ENTER);
+    anctrl_setDuration(aCtrl, 0.5f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_setStart(aCtrl, sp24);
+    anctrl_start(aCtrl, "bscrouch.c", 0xa0);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(3);
     yaw_setVelocityBounded(350.0f, 14.0f);
@@ -121,7 +121,7 @@ void bscrouch_update(void){
             if(temp_f2 != 0.0f){
                 func_802AD6D0();
             }else{
-                if(animctrl_isStopped(aCtrl))
+                if(anctrl_isStopped(aCtrl))
                     func_802AD728();
             }
             break;
@@ -133,12 +133,12 @@ void bscrouch_update(void){
             if(temp_f2 != 0.0f)
                 break;
 
-            if((f64)animctrl_getAnimTimer(aCtrl) <= 0.5){
-                animctrl_setSubRange(aCtrl, 0.0f, 0.5f);
+            if((f64)anctrl_getAnimTimer(aCtrl) <= 0.5){
+                anctrl_setSubRange(aCtrl, 0.0f, 0.5f);
             }else{
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
             }
-            animctrl_setPlaybackType(aCtrl,1);
+            anctrl_setPlaybackType(aCtrl,1);
             D_8037D404 = 3;
             break;
 
@@ -146,11 +146,11 @@ void bscrouch_update(void){
             func_802AD768(aCtrl, temp_f2);
             func_802AD7B0(aCtrl);
             if(temp_f2 != 0.0f){
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
                 D_8037D404 = 4;
             }else{
-                if(animctrl_isStopped(aCtrl)){
+                if(anctrl_isStopped(aCtrl)){
                     yaw_setIdeal(yaw_get());
                     func_802AD728();
                 }

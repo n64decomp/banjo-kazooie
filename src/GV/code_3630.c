@@ -59,7 +59,7 @@ void func_80389B1C(Actor *this){
         this->initialized = TRUE;
     }
 
-    animctrl_setTransitionDuration(this->animctrl, 0.15f);
+    anctrl_setTransitionDuration(this->anctrl, 0.15f);
 
     if(this->state == 1 || this->state == 2){
         if(! this->has_met_before && func_80329530(this, 250) && !func_80329530(this, 0x50)){

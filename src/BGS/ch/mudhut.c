@@ -122,7 +122,7 @@ void chmudhut_update(Actor *this){
                 break;
             case 2:
                 this->marker->propPtr->unk8_3 = 0;
-                if(0.99 < animctrl_getAnimTimer(this->animctrl)){
+                if(0.99 < anctrl_getAnimTimer(this->anctrl)){
                     this->state = 3;
                 }
                 break;

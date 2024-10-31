@@ -268,7 +268,7 @@ void func_803876D0(Actor *this){
             __chConga_playRandomNoise();
             if(actor_animationIsAt(this, 0.0f) || actor_animationIsAt(this, 0.45f)){
                 if(randf() < 0.2){
-                    animctrl_setDirection(this->animctrl, animctrl_isPlayedForwards(this->animctrl)?0:1);
+                    anctrl_setDirection(this->anctrl, anctrl_isPlayedForwards(this->anctrl)?0:1);
                 };
             }//L80387A18
             if(actor_animationIsAt(this, 0.66f)){
@@ -296,12 +296,12 @@ void func_803876D0(Actor *this){
             ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_playAnimationOnce(this);
             __chConga_playRandomNoise();
-            if( animctrl_isPlayedForwards(this->animctrl) == TRUE
+            if( anctrl_isPlayedForwards(this->anctrl) == TRUE
                 && actor_animationIsAt(this, 0.0f)
             ){
                 subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             }
-            else if( !animctrl_isPlayedForwards(this->animctrl)
+            else if( !anctrl_isPlayedForwards(this->anctrl)
                 && actor_animationIsAt(this, 0.001f)
             ){
                 subaddie_set_state_with_direction(this, 1, 0.76f, 1);

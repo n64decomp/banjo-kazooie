@@ -365,7 +365,7 @@ void chBottlesBonusCursor_update(Actor *this) {
 
             //rotate CCW
             case 3://L802E0420
-                if (animctrl_isStopped(this->animctrl) ) {
+                if (anctrl_isStopped(this->anctrl) ) {
                     subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
@@ -373,14 +373,14 @@ void chBottlesBonusCursor_update(Actor *this) {
 
             //rotate CW
             case 4://L802E0450
-                if (animctrl_isStopped(this->animctrl) ) {
+                if (anctrl_isStopped(this->anctrl) ) {
                     subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
                 break;
 
             case 7://L802E0480
-                if (animctrl_isStopped(this->animctrl) ) {
+                if (anctrl_isStopped(this->anctrl) ) {
                     subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     actor_loopAnimation(this);
                 }
@@ -395,7 +395,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 if (actor_animationIsAt(this, 0.5f) != 0) {
                     FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 24000);
                 }
-                if (animctrl_isStopped(this->animctrl) != 0) {
+                if (anctrl_isStopped(this->anctrl) != 0) {
                     subaddie_set_state_with_direction(this, 1, 0.0f, 1);
                     actor_loopAnimation(this);
                 }

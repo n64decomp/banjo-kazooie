@@ -111,7 +111,7 @@ void core1_init(void) {
     allocUnusedBlock();
     assetCache_init();
     pfsManager_init();
-    rumbleManager_init();
+    baMotor_init();
     audioManager_init();
     graphicsCache_init();
     ml_init();
@@ -147,7 +147,7 @@ void mainLoop(void){
         pfsManager_update();
     sDisableInput = FALSE;
 
-    rumbleManager_80250C08();
+    baMotor_80250C08();
 
     if(!mapSpecificFlags_validateCRC1()){
         eeprom_writeBlocks(0, 0, 0x80397AD0, 0x40);

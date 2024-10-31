@@ -13,12 +13,12 @@ void bsturn_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp28[3];
 
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_E_ANIM_BSTURN);
-    animctrl_setDuration(aCtrl, 0.3f);
-    animctrl_setTransitionDuration(aCtrl,0.1f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsturn.c", 0x37);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_E_ANIM_BSTURN);
+    anctrl_setDuration(aCtrl, 0.3f);
+    anctrl_setTransitionDuration(aCtrl,0.1f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsturn.c", 0x37);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(2);
@@ -32,7 +32,7 @@ void bsturn_init(void){
 void bsturn_update(void){
     enum bs_e sp2C = 0;
 
-    baphysics_set_target_horizontal_velocity(ml_map_f(animctrl_getAnimTimer(baanim_getAnimCtrlPtr()), 0.18f, 1.0f, bsturn_starting_horizontal_velocity, 0.0f));
+    baphysics_set_target_horizontal_velocity(ml_map_f(anctrl_getAnimTimer(baanim_getAnimCtrlPtr()), 0.18f, 1.0f, bsturn_starting_horizontal_velocity, 0.0f));
 
     D_8037D594++;
     if(!(D_8037D594 < 6))
@@ -50,7 +50,7 @@ void bsturn_update(void){
             break;
     }//L802B6978
 
-    if(animctrl_isStopped(baanim_getAnimCtrlPtr()))
+    if(anctrl_isStopped(baanim_getAnimCtrlPtr()))
         sp2C = BS_4_WALK_FAST;
 
     if(button_held(BUTTON_Z))

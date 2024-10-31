@@ -71,11 +71,11 @@ void func_802AECE4(void){
     }
 
     if( 250.0f <= gu_sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])
-        && animctrl_getIndex(aCtrl) == ASSET_3_ANIM_BSWALK
+        && anctrl_getIndex(aCtrl) == ASSET_3_ANIM_BSWALK
     ){
-        animctrl_reset(aCtrl);
-        animctrl_setIndex(aCtrl, ASSET_C_ANIM_BSWALK_RUN);
-        animctrl_start(aCtrl, "bsdronegoto.c", 0x9d);
+        anctrl_reset(aCtrl);
+        anctrl_setIndex(aCtrl, ASSET_C_ANIM_BSWALK_RUN);
+        anctrl_start(aCtrl, "bsdronegoto.c", 0x9d);
     }
 
     if(baphysics_goto_done() && D_8037D441 == 0){

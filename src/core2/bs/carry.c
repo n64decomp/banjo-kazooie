@@ -31,10 +31,10 @@ void func_802AAEE0(void){
 
 void bscarry_idle_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_72_ANIM_BSCARRY_IDLE);
-    animctrl_setDuration(aCtrl, 1.2f);
-    animctrl_start(aCtrl, "bscarry.c", 0x6f);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_72_ANIM_BSCARRY_IDLE);
+    anctrl_setDuration(aCtrl, 1.2f);
+    anctrl_start(aCtrl, "bscarry.c", 0x6f);
     func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -59,11 +59,11 @@ void bscarry_idle_end(void){
 
 void bscarry_walk_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_73_ANIM_BSCARRY_WALK);
-    animctrl_setDuration(aCtrl, 0.8f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
-    animctrl_start(aCtrl, "bscarry.c", 0xac);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_73_ANIM_BSCARRY_WALK);
+    anctrl_setDuration(aCtrl, 0.8f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
+    anctrl_start(aCtrl, "bscarry.c", 0xac);
     func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364AF0, D_80364AF4, D_80364AF8, D_80364AFC);
 }

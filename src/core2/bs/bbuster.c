@@ -57,13 +57,13 @@ void bsbbuster_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp20[3];
     
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_1D_ANIM_BSBBUSTER);
-    animctrl_setDuration(aCtrl, 1.02f);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.35f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsbbuster.c", 0x81);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_1D_ANIM_BSBBUSTER);
+    anctrl_setDuration(aCtrl, 1.02f);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.35f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsbbuster.c", 0x81);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     baphysics_set_gravity(0.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
@@ -90,13 +90,13 @@ void bsbbuster_update(void){
     f32 player_position[3];
 
     D_8037D2B8 = 0;
-    if(animctrl_isAt(aCtrl, 0.24f))
+    if(anctrl_isAt(aCtrl, 0.24f))
         func_80299BD4();
 
     switch(D_8037D2BA){
         case 0://8029FDF0
-            if(animctrl_isStopped(baanim_getAnimCtrlPtr())){
-                animctrl_setDuration(aCtrl, 0.4f);
+            if(anctrl_isStopped(baanim_getAnimCtrlPtr())){
+                anctrl_setDuration(aCtrl, 0.4f);
                 D_8037D2BA = 1;
             }
             break;
@@ -121,7 +121,7 @@ void bsbbuster_update(void){
                 D_8037D2B4++;
             }
             if(D_8037D2B6 == 0 && func_8028B254(0x4b)){
-                rumbleManager_80250D94(1.0f, 0.3f, 0.4f);
+                baMotor_80250D94(1.0f, 0.3f, 0.4f);
                 D_8037D2B6++;
             }
             D_8037D2B9 = miscFlag_isTrue(MISC_FLAG_8);
@@ -169,24 +169,24 @@ void bsbbuster_update(void){
                     baphysics_set_gravity(D_8036499C);
                 }
             
-                animctrl_setSubRange(aCtrl, 0.0f, 0.7299f);
-                animctrl_setDuration(aCtrl, 1.9f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 0.7299f);
+                anctrl_setDuration(aCtrl, 1.9f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D2BA = 4;
             }
             break;
         
         case 4://802A01CC
             func_802B6FA8();
-            if(animctrl_isStopped(aCtrl)){
-                animctrl_setSubRange(aCtrl, 0.0f, 0.74f);
-                animctrl_setDuration(aCtrl, 15.0f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+            if(anctrl_isStopped(aCtrl)){
+                anctrl_setSubRange(aCtrl, 0.0f, 0.74f);
+                anctrl_setDuration(aCtrl, 15.0f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
             }
             if(player_isStable()){
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setDuration(aCtrl, 1.9f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setDuration(aCtrl, 1.9f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 sp44 = BS_20_LANDING;
             }
             break;

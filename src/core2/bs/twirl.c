@@ -17,13 +17,13 @@ int bstwirl_hitboxActive(void){
 
 void bstwirl_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_4F_ANIM_BSTWIRL);
-    animctrl_setDuration(aCtrl, 0.9f);
-    animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bstwirl.c", 0x46);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_4F_ANIM_BSTWIRL);
+    anctrl_setDuration(aCtrl, 0.9f);
+    anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bstwirl.c", 0x46);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
     func_8029957C(3);
@@ -54,15 +54,15 @@ void bstwirl_update(void){
                 func_8029AE74(0);
                 batimer_set(0, 0.12f);
             }
-            if(animctrl_isAt(aCtrl, 0.8011f)){
-                animctrl_setDuration(aCtrl, 2.5f);
+            if(anctrl_isAt(aCtrl, 0.8011f)){
+                anctrl_setDuration(aCtrl, 2.5f);
                 baphysics_set_target_horizontal_velocity(0.0f);
                 _bstwirlHitboxActive = 0;
                 D_8037D5A4 = 3;
             }
             //??? missing break
         case 3://L802B6C38
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 sp1C = BS_1_IDLE;
             break;
     }//L802B6C4C
@@ -70,7 +70,7 @@ void bstwirl_update(void){
     if(button_pressed(BUTTON_A))
         sp1C = bs_getTypeOfJump();
 
-    if(0.6 < animctrl_getAnimTimer(aCtrl) && !player_isStable())
+    if(0.6 < anctrl_getAnimTimer(aCtrl) && !player_isStable())
         sp1C = BS_2F_FALL;
 
     if(player_inWater())

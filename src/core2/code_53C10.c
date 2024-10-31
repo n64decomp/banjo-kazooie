@@ -114,7 +114,7 @@ bool func_802DAFBC(Actor *this) {
 
     local = (ActorLocal_core2_53C10 *)&this->local;
 
-    sp44 = animctrl_getAnimTimer(this->animctrl) + 0.0333;
+    sp44 = anctrl_getAnimTimer(this->anctrl) + 0.0333;
     if (sp44 >= 1.0) {
         sp44 -= 1.0;
     }
@@ -268,7 +268,7 @@ void func_802DB5A0(Actor *this) {
         case 8://L802DB704
             func_80328FB0(this, 6.0f);
             if (func_80329480(this) != 0) {
-                phi_f14 = animctrl_getAnimTimer(this->animctrl) + 0.0333;
+                phi_f14 = anctrl_getAnimTimer(this->anctrl) + 0.0333;
                 if (phi_f14 >= 1.0) {
                     phi_f14 -= 1.0;
                 }
@@ -323,7 +323,7 @@ void func_802DB5A0(Actor *this) {
             
         case 4://L802DB990
             if (this->unk10_12 < local->unkC_31) {
-                animctrl_setDuration(this->animctrl, this->unk18[4].duration - ((local->unkC_31 - this->unk10_12) * 0.1));
+                anctrl_setDuration(this->anctrl, this->unk18[4].duration - ((local->unkC_31 - this->unk10_12) * 0.1));
             }
             this->yaw_ideal = (f32) func_80329784(this);
             if (!func_803294B4(this, 0x21)) {
@@ -359,13 +359,13 @@ void func_802DB5A0(Actor *this) {
             break;
             
         case 5://L802DBBDC
-            if (animctrl_isStopped(this->animctrl)){
+            if (anctrl_isStopped(this->anctrl)){
                 func_80326310(this);
             }
             break;
             
         case 9://L802DBBFC
-            if (animctrl_getAnimTimer(this->animctrl) != 0.0f) {
+            if (anctrl_getAnimTimer(this->anctrl) != 0.0f) {
                 func_802DB2F8(this);
             }
             if (this->lifetime_value > 0.0f) {
@@ -377,10 +377,10 @@ void func_802DB5A0(Actor *this) {
             break;
             
         case 10://L802DBC74
-            if (animctrl_getAnimTimer(this->animctrl) != 0.0f) {
+            if (anctrl_getAnimTimer(this->anctrl) != 0.0f) {
                 func_802DB354(this);
             }
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
                 actor_collisionOn(this);

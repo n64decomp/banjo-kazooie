@@ -168,7 +168,7 @@ void __chSmBottles_setState(Actor *this, s32 next_state) {
             break;
 
         case SM_BOTTLES_STATE_1_UNKNOWN:
-            animctrl_setSmoothTransition(this->animctrl, 0);
+            anctrl_setSmoothTransition(this->anctrl, 0);
             break;
 
         case SM_BOTTLES_STATE_5_UNKNOWN:
@@ -189,7 +189,7 @@ void __chSmBottles_setState(Actor *this, s32 next_state) {
                 subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
             }
 
-            animctrl_setSmoothTransition(this->animctrl, 1);
+            anctrl_setSmoothTransition(this->anctrl, 1);
             actor_playAnimationOnce(this);
 
             this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
@@ -536,7 +536,7 @@ void chSmBottles_update(Actor *this) {
             this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 4.0f);
 
-            if (0.0 < animctrl_getAnimTimer(this->animctrl) && animctrl_getAnimTimer(this->animctrl) < 0.16) {
+            if (0.0 < anctrl_getAnimTimer(this->anctrl) && anctrl_getAnimTimer(this->anctrl) < 0.16) {
                 func_8030E2C4(this->unk44_31);
             }//L80389EA0
 
@@ -571,7 +571,7 @@ void chSmBottles_update(Actor *this) {
                  actor_animationIsAt(this, 0.66f) ||
                  actor_animationIsAt(this, 0.85f)) && randf() < 0.2
             ) {
-                animctrl_setDirection(this->animctrl, animctrl_isPlayedForwards(this->animctrl) ^ 1);
+                anctrl_setDirection(this->anctrl, anctrl_isPlayedForwards(this->anctrl) ^ 1);
             }//L8038A088
             else if (actor_animationIsAt(this, 0.25f) ||
                      actor_animationIsAt(this, 0.28f) ||
@@ -626,7 +626,7 @@ void chSmBottles_update(Actor *this) {
             break;
 
         case SM_BOTTLES_STATE_4_UNKNOWN: //L8038A31C
-            if (0.35 < animctrl_getAnimTimer(this->animctrl) && animctrl_getAnimTimer(this->animctrl) < 0.9) {
+            if (0.35 < anctrl_getAnimTimer(this->anctrl) && anctrl_getAnimTimer(this->anctrl) < 0.9) {
                 func_8030E2C4(this->unk44_31);
             }
             else if (actor_animationIsAt(this, 0.9999f)) { //L8038A378

@@ -102,7 +102,7 @@ void func_8038ADFC(f32 pos[3], s32 cnt){
 }
 
 void func_8038AF10(Actor *this){
-    animctrl_setSmoothTransition(this->animctrl, TRUE);
+    anctrl_setSmoothTransition(this->anctrl, TRUE);
     subaddie_set_state_with_direction(this, 3, 0.00001f, 1);
     actor_loopAnimation(this);
     this->actor_specific_1_f = 16.0f;
@@ -187,7 +187,7 @@ void func_8038B124(Actor *this){
                 && func_80329530(this, 0x320)
                 && func_803292E0(this)
             ){
-                animctrl_setSmoothTransition(this->animctrl, 0);
+                anctrl_setSmoothTransition(this->anctrl, 0);
                 subaddie_set_state_with_direction(this, 2, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->yaw = (f32)func_80329784(this);
@@ -201,14 +201,14 @@ void func_8038B124(Actor *this){
                 func_80328FB0(this, 18.0f);
                 this->actor_specific_1_f = 18.0f;
                 func_80329030(this, 0);
-                animctrl_setAnimTimer(this->animctrl, 0.0f);
+                anctrl_setAnimTimer(this->anctrl, 0.0f);
 
             }
             break;
 
         case 2: //L8038B430
             func_8030E2C4(this->unk44_31);
-            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
+            if(0.98 < anctrl_getAnimTimer(this->anctrl)){
                 func_8038AF10(this);
             }
             else{
@@ -267,7 +267,7 @@ void func_8038B124(Actor *this){
                 func_802BB3DC(0, 18.0f, 0.92f);
                 func_8030E878(SFX_3_DULL_CANNON_SHOT, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
             }//L8038B734
-            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
+            if(0.98 < anctrl_getAnimTimer(this->anctrl)){
                 subaddie_set_state_with_direction(this, 6, 0.99f, 0);
                 actor_playAnimationOnce(this);
                 this->lifetime_value = 0.0f;
@@ -287,13 +287,13 @@ void func_8038B124(Actor *this){
             break;
 
         case 7: //L8038B7EC
-            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
+            if(0.98 < anctrl_getAnimTimer(this->anctrl)){
                 func_8038AF10(this);
             }
             break;
 
         case 8: //L8038B820
-            if(0.98 < animctrl_getAnimTimer(this->animctrl)){
+            if(0.98 < anctrl_getAnimTimer(this->anctrl)){
                 subaddie_set_state_with_direction(this, 1, 0.00001f, 1);
                 this->unk1C[0] = 0.0f;
                 this->unk1C[1] = 2.0f;

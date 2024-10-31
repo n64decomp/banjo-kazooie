@@ -137,7 +137,7 @@ void func_802D9530(Actor *this){
 }
 
 void func_802D9600(Actor * this){
-    animctrl_setSmoothTransition(this->animctrl, 0);
+    anctrl_setSmoothTransition(this->anctrl, 0);
     subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
     this->marker->propPtr->unk8_3 = 0;
 }
@@ -252,7 +252,7 @@ void func_802D9ADC(Actor *this){
         subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
     }
     this->marker->propPtr->unk8_3 = 1;
-    animctrl_setSmoothTransition(this->animctrl, TRUE);
+    anctrl_setSmoothTransition(this->anctrl, TRUE);
     subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
@@ -406,8 +406,8 @@ void chmole_update(Actor *this){
             this->marker->propPtr->unk8_3 = TRUE;
             this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 4.0f);
-            if( 0.0 < animctrl_getAnimTimer(this->animctrl)
-                && animctrl_getAnimTimer(this->animctrl) < 0.16
+            if( 0.0 < anctrl_getAnimTimer(this->anctrl)
+                && anctrl_getAnimTimer(this->anctrl) < 0.16
             ){
                 func_8030E2C4(this->unk44_31);
             }//L802DA128
@@ -438,7 +438,7 @@ void chmole_update(Actor *this){
                 )
                 && randf() < 0.2
             ){
-                    animctrl_setDirection(this->animctrl, 1 ^ animctrl_isPlayedForwards(this->animctrl));
+                    anctrl_setDirection(this->anctrl, 1 ^ anctrl_isPlayedForwards(this->anctrl));
             }
             else if(
                 actor_animationIsAt(this, 0.25f)
@@ -459,8 +459,8 @@ void chmole_update(Actor *this){
             }
             break;
         case 4://L802DA400
-            if( 0.35 < animctrl_getAnimTimer(this->animctrl) 
-                &&  animctrl_getAnimTimer(this->animctrl) < 0.9
+            if( 0.35 < anctrl_getAnimTimer(this->anctrl) 
+                &&  anctrl_getAnimTimer(this->anctrl) < 0.9
             ){
                 func_8030E2C4(this->unk44_31);
             }

@@ -15,13 +15,13 @@ void bsow_init(void){
     AnimCtrl *plyr_mvmnt;
 
     plyr_mvmnt = baanim_getAnimCtrlPtr();
-    animctrl_reset(plyr_mvmnt);
-    animctrl_setSmoothTransition(plyr_mvmnt, 0);
-    animctrl_setSubRange(plyr_mvmnt, 0.0f, 0.534399986267f);
-    animctrl_setIndex(plyr_mvmnt, ASSET_4D_ANIM_BSOW);
-    animctrl_setDuration(plyr_mvmnt, 1.70000004768f);
-    animctrl_setPlaybackType(plyr_mvmnt,  ANIMCTRL_ONCE);
-    animctrl_start(plyr_mvmnt, "bsow.c", 0x50);
+    anctrl_reset(plyr_mvmnt);
+    anctrl_setSmoothTransition(plyr_mvmnt, 0);
+    anctrl_setSubRange(plyr_mvmnt, 0.0f, 0.534399986267f);
+    anctrl_setIndex(plyr_mvmnt, ASSET_4D_ANIM_BSOW);
+    anctrl_setDuration(plyr_mvmnt, 1.70000004768f);
+    anctrl_setPlaybackType(plyr_mvmnt,  ANIMCTRL_ONCE);
+    anctrl_start(plyr_mvmnt, "bsow.c", 0x50);
     func_80299BFC(1.0f);
     func_802B360C();
     baMarker_collisionOff();

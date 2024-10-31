@@ -16,13 +16,13 @@ u8 D_8037D382;
 /* .code */
 void bsbshock_charge_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_48_ANIM_BSBSHOCK_CHARGE);
-    animctrl_setTransitionDuration(aCtrl, 0.4f);
-    animctrl_setDuration(aCtrl, 4.2f);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
-    animctrl_setPlaybackType(aCtrl,1);
-    animctrl_start(aCtrl, "bsbshock.c", 0x61);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_48_ANIM_BSBSHOCK_CHARGE);
+    anctrl_setTransitionDuration(aCtrl, 0.4f);
+    anctrl_setDuration(aCtrl, 4.2f);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
+    anctrl_setPlaybackType(aCtrl,1);
+    anctrl_start(aCtrl, "bsbshock.c", 0x61);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
     if(func_8029B2E8() != 0.0f)
@@ -69,26 +69,26 @@ void bsbshock_charge_update(void){
                 sp2C = BS_3D_FALL_TUMBLING;
 
             if(func_8028B254(0x82)){
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setDuration(aCtrl, 2.8f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setDuration(aCtrl, 2.8f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D381 = 1;
             }
             break;
         case 1:
-            if(animctrl_isAt(aCtrl, 0.11f))
+            if(anctrl_isAt(aCtrl, 0.11f))
                 func_8030E2C4(D_8037D382);
             
-            if(animctrl_isAt(aCtrl, 0.4036f))
-                animctrl_setDuration(aCtrl, 1.4f);
+            if(anctrl_isAt(aCtrl, 0.4036f))
+                anctrl_setDuration(aCtrl, 1.4f);
             
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 sp2C = BS_1_IDLE;
             break;
     }//L802A6CAC
 
     if(func_8028B254(0x3C)){
-        if(animctrl_getAnimTimer(aCtrl) < 0.3637 && button_released(8)){
+        if(anctrl_getAnimTimer(aCtrl) < 0.3637 && button_released(8)){
             D_8037D380 = 0;
         }//L802A6CF4
         if(player_isStable())
@@ -101,10 +101,10 @@ void bsbshock_charge_update(void){
         if(should_beak_bust())
             sp2C = BS_F_BBUSTER;
     }//L802A6D44
-    if(animctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
+    if(anctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
         sp2C = BS_BSHOCK_JUMP;
     
-    if(animctrl_isAt(aCtrl, 0.5551f)){
+    if(anctrl_isAt(aCtrl, 0.5551f)){
         baphysics_set_vertical_velocity(180.0f);
         baModel_80292158(0.0f);
         func_80298528(50.0f);
@@ -127,14 +127,14 @@ void bsbshock_charge_end(void){
 
 void bsbshock_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_49_ANIM_BSBSHOCK_JUMP);
-    animctrl_setDuration(aCtrl, 0.8f);
-    animctrl_setStart(aCtrl, 0.5304f);
-    animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-    animctrl_setPlaybackType(aCtrl,1);
-    animctrl_start(aCtrl, "bsbshock.c", 0x13a);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_49_ANIM_BSBSHOCK_JUMP);
+    anctrl_setDuration(aCtrl, 0.8f);
+    anctrl_setStart(aCtrl, 0.5304f);
+    anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+    anctrl_setPlaybackType(aCtrl,1);
+    anctrl_start(aCtrl, "bsbshock.c", 0x13a);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
 
     if(func_8029B2E8() != 0.0f)
@@ -161,7 +161,7 @@ void bsbshock_update(void){
 
     func_802B6FA8();
     baphysics_get_velocity(sp20);
-    if(animctrl_isAt(aCtrl, 0.7f))
+    if(anctrl_isAt(aCtrl, 0.7f))
         sfxsource_playHighPriority(SFX_53_BANJO_HUIII);
 
     if(button_released(BUTTON_A) && 0.0f < sp20[1])

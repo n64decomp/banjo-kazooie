@@ -780,39 +780,39 @@ void func_8029C834(enum map_e map_id, s32 exit_id){
 void func_8029C848(AnimCtrl *arg0) {
     switch(bsStoredState_getTransformation()) {
         case TRANSFORM_2_TERMITE: //L8029C880
-            animctrl_setIndex(arg0, ASSET_5E_ANIM_BSANT_IDLE);
-            animctrl_setDuration(arg0, 2.0f);
+            anctrl_setIndex(arg0, ASSET_5E_ANIM_BSANT_IDLE);
+            anctrl_setDuration(arg0, 2.0f);
             break;
 
         case TRANSFORM_3_PUMPKIN: //L8029C8A0
-            animctrl_setIndex(arg0, ASSET_A0_ANIM_BSPUMPKIN_WALK);
-            animctrl_setDuration(arg0, 0.8f);
+            anctrl_setIndex(arg0, ASSET_A0_ANIM_BSPUMPKIN_WALK);
+            anctrl_setDuration(arg0, 0.8f);
             break;
 
         case TRANSFORM_5_CROC: //L8029C8C4
-            animctrl_setIndex(arg0, ASSET_E1_ANIM_BSCROC_IDLE);
-            animctrl_setDuration(arg0, 1.0f);
+            anctrl_setIndex(arg0, ASSET_E1_ANIM_BSCROC_IDLE);
+            anctrl_setDuration(arg0, 1.0f);
             break;
 
         case TRANSFORM_4_WALRUS: //L8029C8E4
-            animctrl_setIndex(arg0, ASSET_11F_ANIM_BSWALRUS_IDLE);
-            animctrl_setDuration(arg0, 1.0f);
+            anctrl_setIndex(arg0, ASSET_11F_ANIM_BSWALRUS_IDLE);
+            anctrl_setDuration(arg0, 1.0f);
             break;
 
         case TRANSFORM_6_BEE: //L8029C904
-            animctrl_setIndex(arg0, ASSET_1DC_ANIM_BEE_FLY);
-            animctrl_setDuration(arg0, 0.38f);
+            anctrl_setIndex(arg0, ASSET_1DC_ANIM_BEE_FLY);
+            anctrl_setDuration(arg0, 0.38f);
             break;
 
         case TRANSFORM_1_BANJO:
         default:
             if (player_inWater()) {
-                animctrl_setIndex(arg0, ASSET_57_ANIM_BSSWIM_IDLE);
-                animctrl_setDuration(arg0, 1.2f);
+                anctrl_setIndex(arg0, ASSET_57_ANIM_BSSWIM_IDLE);
+                anctrl_setDuration(arg0, 1.2f);
             }
             else{
-                animctrl_setIndex(arg0, ASSET_6F_ANIM_BSSTAND_IDLE);
-                animctrl_setDuration(arg0, 5.5f);
+                anctrl_setIndex(arg0, ASSET_6F_ANIM_BSSTAND_IDLE);
+                anctrl_setDuration(arg0, 5.5f);
             }
             break;
     }

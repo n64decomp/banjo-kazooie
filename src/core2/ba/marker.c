@@ -1061,13 +1061,13 @@ void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
                     sp24 = MAX(MIN(sp24, 0xb), 7);
                     sp24 -= 7;
                     func_8028F428(sp24 +8, arg1);
-                    rumbleManager_80250D94(0.8f, sp24 + 0.2, 0.3f);
+                    baMotor_80250D94(0.8f, sp24 + 0.2, 0.3f);
                     break;
                 case 2://L8028DA10
                     sp24 = MAX(MIN(sp24, 5), 1);
                     sp24--;
                     func_8028F55C(sp24 + 3, arg1);
-                    rumbleManager_80250D94(1.0f, sp24 + 0.3, 0.5f);
+                    baMotor_80250D94(1.0f, sp24 + 0.3, 0.5f);
                     if(actor->unk16C_2 || actor->unk16C_1){
                         baMarker_8028D71C();
                     }

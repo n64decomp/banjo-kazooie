@@ -28,12 +28,12 @@ void _bsbflip_802A2DC0(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     f32 sp20[3];
 
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
-    animctrl_setDuration(aCtrl, 2.2f);
-    animctrl_setStart(aCtrl, 0.8566f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsbflip.c", 0x69); //nice
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
+    anctrl_setDuration(aCtrl, 2.2f);
+    anctrl_setStart(aCtrl, 0.8566f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsbflip.c", 0x69); //nice
     baphysics_set_type(BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_horizontal_velocity(0.0f);
     ml_vec3f_clear(sp20);
@@ -43,14 +43,14 @@ void _bsbflip_802A2DC0(void){
 
 void bsbflip_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
-    animctrl_setDuration(aCtrl, 2.3f);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.7866f);
-    animctrl_setStart(aCtrl, 0.0f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsbflip.c", 0x80);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_4B_ANIM_BSBFLIP_ENTER);
+    anctrl_setDuration(aCtrl, 2.3f);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.7866f);
+    anctrl_setStart(aCtrl, 0.0f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsbflip.c", 0x80);
     func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
     func_8029B324(0, 0.03f);
     func_8029B324(1, 1.0f);
@@ -63,16 +63,16 @@ void bsbflip_update(void){
     enum bs_e sp24 = 0;
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    if( animctrl_isAt(aCtrl, 0.2394f)
-        && animctrl_getPlaybackType(aCtrl) != 2
-        && animctrl_getIndex(aCtrl) == 0x4B
+    if( anctrl_isAt(aCtrl, 0.2394f)
+        && anctrl_getPlaybackType(aCtrl) != 2
+        && anctrl_getIndex(aCtrl) == 0x4B
     ){
         func_8030E760(SFX_2_CLAW_SWIPE, 0.558f, 22000);
     }
 
     switch(D_8037D310){
     case 0://L802A2FD4
-        if(animctrl_isAt(aCtrl, 0.1837f)){
+        if(anctrl_isAt(aCtrl, 0.1837f)){
             if(func_8029B2E8() != 0.0f){
                 yaw_setUpdateState(2);
                 func_8029957C(3);
@@ -91,20 +91,20 @@ void bsbflip_update(void){
             baphysics_set_vertical_velocity(D_80364A20);
             baphysics_set_gravity(D_80364A24);
             baphysics_set_terminal_velocity(D_80364A28);
-            animctrl_setDuration(aCtrl, 1.9f);
+            anctrl_setDuration(aCtrl, 1.9f);
             func_8030E4E4(SFX_33_BANJO_AHOO);
             D_8037D310 = 1;
         }
         break;
     case 1://L802A30F8
         _bsbflip_802A2D60();
-        if(animctrl_isStopped(aCtrl)){
-            animctrl_reset(aCtrl);
-            animctrl_setSmoothTransition(aCtrl, 0);
-            animctrl_setIndex(aCtrl, ASSET_4C_ANIM_BSBFLIP_HOLD);
-            animctrl_setDuration(aCtrl, 0.13f);
-            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-            animctrl_start(aCtrl, "bsbflip.c", 0xd9);
+        if(anctrl_isStopped(aCtrl)){
+            anctrl_reset(aCtrl);
+            anctrl_setSmoothTransition(aCtrl, 0);
+            anctrl_setIndex(aCtrl, ASSET_4C_ANIM_BSBFLIP_HOLD);
+            anctrl_setDuration(aCtrl, 0.13f);
+            anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
+            anctrl_start(aCtrl, "bsbflip.c", 0xd9);
             D_8037D310 = 2;
         }//L802A316C
         if(should_beak_bust()){
@@ -115,12 +115,12 @@ void bsbflip_update(void){
         if(player_isFallTumbling())
             sp24 = BS_3D_FALL_TUMBLING;
         if(button_released(BUTTON_A)){
-            animctrl_reset(aCtrl);
-            animctrl_setSmoothTransition(aCtrl, 0);
-            animctrl_setIndex(aCtrl, ASSET_61_ANIM_BSBFLIP_EXIT);
-            animctrl_setDuration(aCtrl, 0.8f);
-            animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-            animctrl_start(aCtrl, "bsbflip.c", 0xee);
+            anctrl_reset(aCtrl);
+            anctrl_setSmoothTransition(aCtrl, 0);
+            anctrl_setIndex(aCtrl, ASSET_61_ANIM_BSBFLIP_EXIT);
+            anctrl_setDuration(aCtrl, 0.8f);
+            anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+            anctrl_start(aCtrl, "bsbflip.c", 0xee);
             baphysics_reset_terminal_velocity();
             D_8037D310 = 3;
         }//L802A320C
@@ -147,7 +147,7 @@ void bsbflip_update(void){
         }
         break;
     case 4://L802A32C0
-        if(animctrl_isStopped(aCtrl))
+        if(anctrl_isStopped(aCtrl))
             sp24 = BS_2_WALK_SLOW;
         sp24 = func_8029C9C0(sp24);
         break;

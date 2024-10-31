@@ -106,8 +106,8 @@ void chhut_update(Actor *this) {
             break;
 
         case HUT_STATE_1_DAMAGED:
-            if (animctrl_getAnimTimer(this->animctrl) > 0.99) {
-                animctrl_setTransitionDuration(this->animctrl, 0.0f);
+            if (anctrl_getAnimTimer(this->anctrl) > 0.99) {
+                anctrl_setTransitionDuration(this->anctrl, 0.0f);
                 subaddie_set_state(this, HUT_STATE_2_DESTROYED);
                 this->position_y -= 160.0f;
             }

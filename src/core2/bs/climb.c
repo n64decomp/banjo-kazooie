@@ -101,7 +101,7 @@ void bsclimb_idle_update(void){
             }
             break;
         case 1:
-            if(animctrl_isStopped(anim_ctrl)){
+            if(anctrl_isStopped(anim_ctrl)){
                 baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
                 func_802AB750(3.0f, 4.0f);
                 D_8037D3D0 = 0;

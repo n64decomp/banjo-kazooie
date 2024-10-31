@@ -185,7 +185,7 @@ void chshrapnel_update(Actor *this) {
             break;
 
         case 4:
-            if (animctrl_isStopped(this->animctrl) != 0) {
+            if (anctrl_isStopped(this->anctrl) != 0) {
                 marker_despawn(this->marker);
             }
             break;

@@ -95,12 +95,12 @@ void func_802A5404(void){
 
 void __bsblongleg_enterFromTrot(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsblongleg.c", 0xe1);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsblongleg.c", 0xe1);
     stateTimer_set(STATE_TIMER_2_LONGLEG, D_8037D35C);
     func_803219F4(2);
     func_8030E2C4(D_8037D361);
@@ -109,12 +109,12 @@ void __bsblongleg_enterFromTrot(void){
 
 void __bsblongleg_enter(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_16_ANIM_BSBTROT_ENTER);
-    animctrl_setDuration(aCtrl, 0.5f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsblongleg.c", 0xf6);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_16_ANIM_BSBTROT_ENTER);
+    anctrl_setDuration(aCtrl, 0.5f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsblongleg.c", 0xf6);
     D_8037D360 = 0;
 }
 
@@ -140,11 +140,11 @@ void bsblongleg_enter_update(void){
     func_80299594(1, 0.5f);
     switch(D_8037D360){
         case 0:
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 __bsblongleg_enterFromTrot();
             break;
         case 1:
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 next_state = BS_26_LONGLEG_IDLE;
             break;
     }
@@ -200,10 +200,10 @@ void bsblongleg_stand_end(void){
 void bsblongleg_walk_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_42_ANIM_BSLONGLEG_WALK);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-    animctrl_start(aCtrl, "bsblongleg.c", 0x1a1);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_42_ANIM_BSLONGLEG_WALK);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
+    anctrl_start(aCtrl, "bsblongleg.c", 0x1a1);
     func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364A40, D_80364A44, D_80364A48, D_80364A4C);
 }
@@ -215,10 +215,10 @@ void bsblongleg_walk_update(void){
     func_80299594(1, 0.5f);
     func_8029AD28(0.47f, 4);
     func_8029AD28(0.97f, 3);
-    if(animctrl_isAt(aCtrl, 0.7781f))
+    if(anctrl_isAt(aCtrl, 0.7781f))
         func_802A5208(0);
 
-    if(animctrl_isAt(aCtrl, 0.2781f))
+    if(anctrl_isAt(aCtrl, 0.2781f))
         func_802A5208(1);
     
     func_802A524C();
@@ -249,25 +249,25 @@ void bsblongleg_walk_end(void){
 
 void func_802A5AB0(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setDirection(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsblongleg.c", 0x200);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setDirection(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_40_ANIM_BSLONGLEG_ENTER_FROM_BTROT);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsblongleg.c", 0x200);
     D_8037D360 = 0;
 }
 
 void func_802A5B34(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, 0);
-    animctrl_setIndex(aCtrl, ASSET_7_ANIM_BSBTROT_EXIT);
-    animctrl_setDuration(aCtrl, 0.6f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsblongleg.c", 0x210);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, 0);
+    anctrl_setIndex(aCtrl, ASSET_7_ANIM_BSBTROT_EXIT);
+    anctrl_setDuration(aCtrl, 0.6f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsblongleg.c", 0x210);
     D_8037D360 = 1;
 }
 
@@ -288,15 +288,15 @@ void bsblongleg_exit_update(void){
     func_80299628(1);
     switch(D_8037D360){
         case 0://L802A5C7C
-            if(animctrl_isAt(aCtrl, 0.68f))
+            if(anctrl_isAt(aCtrl, 0.68f))
                 func_8030E2C4(D_8037D361);
             
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 func_802A5B34();
 
             break;
         case 1://L802A5CB4
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 next_state = BS_1_IDLE;
             break;
     }
@@ -316,14 +316,14 @@ void bsblongleg_exit_end(void){
 void bsblongleg_jump_init(void){
     AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
     D_8037D350 = 0.14f;
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
-    animctrl_setTransitionDuration(aCtrl, 0.134f);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setStart(aCtrl, D_8037D350);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.42f);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsblongleg.c", 0x27F);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
+    anctrl_setTransitionDuration(aCtrl, 0.134f);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setStart(aCtrl, D_8037D350);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.42f);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsblongleg.c", 0x27F);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -352,37 +352,37 @@ void bsblongleg_jump_update(void){
     switch(D_8037D360){
         case 0://L802A5F24
             if((sp34[1] < 100.0f) || sp30 < 10.0f)
-                animctrl_setDuration(aCtrl, 0.4f);
+                anctrl_setDuration(aCtrl, 0.4f);
 
-            if(animctrl_isStopped(aCtrl)){
-                animctrl_setSubRange(aCtrl, 0.0f, 0.5282f);
-                animctrl_setDuration(aCtrl, 4.5f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+            if(anctrl_isStopped(aCtrl)){
+                anctrl_setSubRange(aCtrl, 0.0f, 0.5282f);
+                anctrl_setDuration(aCtrl, 4.5f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D360 = 1;
             }
             break;
         case 1://L802A5FA8
-            if((0.4 < animctrl_getAnimTimer(aCtrl)) && sp30  < 70.0f){
-                D_8037D350 = animctrl_getAnimTimer(aCtrl);
+            if((0.4 < anctrl_getAnimTimer(aCtrl)) && sp30  < 70.0f){
+                D_8037D350 = anctrl_getAnimTimer(aCtrl);
                 D_8037D354 = sp30;
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
                 D_8037D360 = 2;
             }
             break;
         case 2://L802A6020
-            animctrl_setAnimTimer(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
+            anctrl_setAnimTimer(aCtrl, ml_map_f(sp30, D_8037D354, 1.0f, D_8037D350, 0.6703f));
             func_80299594(1, 0.5f);
             if(player_isStable()){
                 func_8029C5E8();
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setDuration(aCtrl, 1.3f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setDuration(aCtrl, 1.3f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
                 D_8037D360 = 3;
             }
             break;
         case 3://L802A60AC
             func_80299594(1, 0.5f);
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 sp44 = BS_26_LONGLEG_IDLE;
 
             if(button_pressed(BUTTON_A))
@@ -409,11 +409,11 @@ void bsblongleg_jump_end(void){
 void bsblongleg_slide_init(void){
     AnimCtrl * aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
-    animctrl_setStart(aCtrl, 0.0865f);
-    animctrl_start(aCtrl, "bsblongleg.c", 0x339);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_3D_ANIM_BSLONGLEG_JUMP);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
+    anctrl_setStart(aCtrl, 0.0865f);
+    anctrl_start(aCtrl, "bsblongleg.c", 0x339);
     func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_yaw(yaw_getIdeal());
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());

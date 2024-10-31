@@ -186,7 +186,7 @@ void chJinjo_update(Actor * this){
         case 7:
         case 8:
             sp50 = this->state == 7;
-            if(!sp50 || 0.1 < animctrl_getAnimTimer(this->animctrl)){//L802CE158
+            if(!sp50 || 0.1 < anctrl_getAnimTimer(this->anctrl)){//L802CE158
                 player_getVelocity(sp70);
                 sp70[0] *= sp58*6.0f;\
                 sp70[1] *= sp58*6.0f;\
@@ -203,7 +203,7 @@ void chJinjo_update(Actor * this){
                 this->position_x = this->position_x + sp70[0];
                 this->position_y = this->position_y + sp70[1];
                 this->position_z = this->position_z + sp70[2];
-                if(sp50 || animctrl_getAnimTimer(this->animctrl) < 0.8){
+                if(sp50 || anctrl_getAnimTimer(this->anctrl) < 0.8){
                     for(i = 0; i < 4; i++){
                         if(randf() < 0.3){
                             func_8033E73C(this->marker, i + 5, func_80329904);
@@ -214,7 +214,7 @@ void chJinjo_update(Actor * this){
             }
 
             if(sp50){ 
-                if(animctrl_getAnimTimer(this->animctrl) < 0.2)
+                if(anctrl_getAnimTimer(this->anctrl) < 0.2)
                     __chJinjo_802CDC9C(this, sp66);
 
                 if(actor_animationIsAt(this, 0.1f)){

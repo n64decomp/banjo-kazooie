@@ -23,19 +23,19 @@ void func_802B3AAC(enum asset_e anim_id, f32 anim_duration) {
     anim_ctrl = baanim_getAnimCtrlPtr();
     if (anim_id == ASSET_14A_ANIM_BSREST_LISTEN) {
         func_8029E070(1);
-        switch (animctrl_getIndex(baanim_getAnimCtrlPtr())) {
+        switch (anctrl_getIndex(baanim_getAnimCtrlPtr())) {
         case ASSET_14A_ANIM_BSREST_LISTEN:
             baanim_playForDuration_loopSmooth(anim_id, anim_duration);
             break;
         case ASSET_167_ANIM_BSREST_MOVE:
-            animctrl_reset(anim_ctrl);
-            animctrl_setIndex(anim_ctrl, ASSET_167_ANIM_BSREST_MOVE);
-            animctrl_setDuration(anim_ctrl, 0.4f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_reset(anim_ctrl);
+            anctrl_setIndex(anim_ctrl, ASSET_167_ANIM_BSREST_MOVE);
+            anctrl_setDuration(anim_ctrl, 0.4f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             break;
         default:
             baanim_playForDuration_once(ASSET_167_ANIM_BSREST_MOVE, 0.5f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             break;
         }
     } else {
@@ -54,10 +54,10 @@ bool func_802B3BB0(void) {
     anim_ctrl = baanim_getAnimCtrlPtr();
     func_802B3A50();
     sp20 = FALSE;
-    switch(animctrl_getIndex(anim_ctrl)){
+    switch(anctrl_getIndex(anim_ctrl)){
         case ASSET_167_ANIM_BSREST_MOVE:
             if (baanim_isStopped() != 0) {
-                if (animctrl_isPlayedForwards(anim_ctrl) != 0) {
+                if (anctrl_isPlayedForwards(anim_ctrl) != 0) {
                     baanim_playForDuration_loopSmooth(ASSET_14A_ANIM_BSREST_LISTEN, 11.4f);
                 } else if (func_80298850() == 0) {
                     sp20 = TRUE;
@@ -66,13 +66,13 @@ bool func_802B3BB0(void) {
             break;
         case ASSET_14A_ANIM_BSREST_LISTEN:
             if (func_80298850() == 0) {
-                animctrl_reset(anim_ctrl);
-                animctrl_setDirection(anim_ctrl, 0);
-                animctrl_setIndex(anim_ctrl, 0x167);
-                animctrl_setStart(anim_ctrl, 1.0f);
-                animctrl_setDuration(anim_ctrl, 0.5f);
-                animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-                animctrl_start(anim_ctrl, "bsrest.c", 0xA3);
+                anctrl_reset(anim_ctrl);
+                anctrl_setDirection(anim_ctrl, 0);
+                anctrl_setIndex(anim_ctrl, 0x167);
+                anctrl_setStart(anim_ctrl, 1.0f);
+                anctrl_setDuration(anim_ctrl, 0.5f);
+                anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+                anctrl_start(anim_ctrl, "bsrest.c", 0xA3);
             }
             break;
         default:

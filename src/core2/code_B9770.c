@@ -883,16 +883,16 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
         }
         if (arg1->t1.unk8.bit10){
             arg0->unk5C = ((f32) arg1->t1.unk8.bit21) / 4;
-            arg0->animctrl_asset_id = lookup_getAnimAssetId(arg1->t1.unk8.bit31);
-            if (arg0->animctrl == 0) {
-                arg0->animctrl = animctrl_new(0);
-                animctrl_reset(arg0->animctrl);
+            arg0->anctrl_asset_id = lookup_getAnimAssetId(arg1->t1.unk8.bit31);
+            if (arg0->anctrl == 0) {
+                arg0->anctrl = anctrl_new(0);
+                anctrl_reset(arg0->anctrl);
             }
-            animctrl_setIndex(arg0->animctrl, arg0->animctrl_asset_id);
-            animctrl_setDuration(arg0->animctrl, arg0->unk5C);
-            animctrl_setDirection(arg0->animctrl, 1);
-            if (arg0->animctrl != 0) {
-                animctrl_start(arg0->animctrl, "glspline.c", 0x545);
+            anctrl_setIndex(arg0->anctrl, arg0->anctrl_asset_id);
+            anctrl_setDuration(arg0->anctrl, arg0->unk5C);
+            anctrl_setDirection(arg0->anctrl, 1);
+            if (arg0->anctrl != 0) {
+                anctrl_start(arg0->anctrl, "glspline.c", 0x545);
             }
         }
         switch (arg1->t1.unk4.bit6){

@@ -25,18 +25,18 @@ void func_802B6270(void){
 
 void func_802B6314(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    if(animctrl_isAt(aCtrl, 0.0625f))
+    if(anctrl_isAt(aCtrl, 0.0625f))
         func_80292E48();
 
-    if(animctrl_isAt(aCtrl, 0.18f))
+    if(anctrl_isAt(aCtrl, 0.18f))
         FUNC_8030E624(SFX_3EB_UNKNOWN, 1.0f, 18000);
 
-    if(animctrl_isAt(aCtrl, 0.8421f)){
+    if(anctrl_isAt(aCtrl, 0.8421f)){
         func_80292E80(0, 0.3f);
         func_80292E80(1, 0.3f);
     }
 
-    if(animctrl_isAt(aCtrl, 0.84f))
+    if(anctrl_isAt(aCtrl, 0.84f))
         func_8029B6F0();
 }
 
@@ -48,10 +48,10 @@ void func_802B63C8(void){
 
 void func_802B63F8(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
+    anctrl_reset(aCtrl);
     func_8029C848(aCtrl);
-    animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-    animctrl_start(aCtrl, "bstimeout.c", 0x7e);
+    anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
+    anctrl_start(aCtrl, "bstimeout.c", 0x7e);
     func_8029C7F4(1,1,3,BA_PHYSICS_FREEZE);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802914CC(0xd);

@@ -200,7 +200,7 @@ void func_80361E10(Actor *this) {
 
 
 void func_80361E9C(Actor *this){
-    if( this->animctrl != NULL
+    if( this->anctrl != NULL
         && this->unk134 != NULL
         && this->unk160 != NULL
     ){
@@ -214,9 +214,9 @@ void func_80361EE0(Actor *this) {
     Struct62s *sp24;
     Struct63s *sp20;
 
-    if (this->animctrl != NULL && this->unk134 != NULL) {
+    if (this->anctrl != NULL && this->unk134 != NULL) {
         sp24 = this->unk108;
-        sp28 = animctrl_getIndex(this->animctrl);
+        sp28 = anctrl_getIndex(this->anctrl);
         if (sp28 != this->unk10C) {
             this->unk10C = sp28;
             anSeq_clear(this->unk134);
@@ -227,6 +227,6 @@ void func_80361EE0(Actor *this) {
                 }
             }
         }
-        anSeq_update(this->unk134, this->animctrl);
+        anSeq_update(this->unk134, this->anctrl);
     }
 }

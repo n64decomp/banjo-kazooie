@@ -74,7 +74,7 @@ void func_8038CCA8(Actor *this){
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        animctrl_setSmoothTransition(this->animctrl, 0);
+        anctrl_setSmoothTransition(this->anctrl, 0);
         this->lifetime_value = this->yaw/4;
         local->unk0 = partEmitMgr_newEmitter(0xA0);
         cutscenes_func_8038CB20(local->unk0);

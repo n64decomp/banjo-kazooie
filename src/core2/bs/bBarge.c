@@ -60,13 +60,13 @@ void bsbarge_init(void){
     AnimCtrl *plyrMvmnt;
 
     plyrMvmnt = baanim_getAnimCtrlPtr();
-    animctrl_reset(plyrMvmnt);
-    animctrl_setSmoothTransition(plyrMvmnt, 0);
-    animctrl_setIndex(plyrMvmnt, ASSET_1C_ANIM_BSBBARGE);
-    animctrl_setDuration(plyrMvmnt, 1.0f);
-    animctrl_setSubRange(plyrMvmnt, 0, 0.375f);
-    animctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);
-    animctrl_start(plyrMvmnt, "bsbbarge.c", 0x98);
+    anctrl_reset(plyrMvmnt);
+    anctrl_setSmoothTransition(plyrMvmnt, 0);
+    anctrl_setIndex(plyrMvmnt, ASSET_1C_ANIM_BSBBARGE);
+    anctrl_setDuration(plyrMvmnt, 1.0f);
+    anctrl_setSubRange(plyrMvmnt, 0, 0.375f);
+    anctrl_setPlaybackType(plyrMvmnt,  ANIMCTRL_ONCE);
+    anctrl_start(plyrMvmnt, "bsbbarge.c", 0x98);
     D_8037D2A4 = 0;
     func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_yaw(yaw_getIdeal());
@@ -92,10 +92,10 @@ void bsbarge_update(void){
         miscFlag_set(MISC_FLAG_A);
     switch(D_8037D2A5){
         case 0:
-            if(animctrl_isAt(plyrMvmnt, 0.1392f))
+            if(anctrl_isAt(plyrMvmnt, 0.1392f))
                 func_80299BD4();
             
-            if(!animctrl_isStopped(plyrMvmnt))
+            if(!anctrl_isStopped(plyrMvmnt))
                 break;
 
             if(miscFlag_isFalse(MISC_FLAG_A)){
@@ -120,7 +120,7 @@ void bsbarge_update(void){
             if(!batimer_isZero(1))
                 break;
             
-            animctrl_setDuration(plyrMvmnt, 1.0f);
+            anctrl_setDuration(plyrMvmnt, 1.0f);
             baanim_setEnd(0.565f);
             baphysics_set_target_horizontal_velocity(D_8037D2A0);
             baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -131,8 +131,8 @@ void bsbarge_update(void){
             break;
         case 2:
             baphysics_set_target_horizontal_velocity(D_8037D2A0);
-            if(animctrl_isStopped(plyrMvmnt)){
-                animctrl_setDuration(plyrMvmnt, 2.0f);
+            if(anctrl_isStopped(plyrMvmnt)){
+                anctrl_setDuration(plyrMvmnt, 2.0f);
                 baanim_setEnd(0.6f);
                 batimer_set(0, 0.1f);
                 D_8037D2A5 = 3;
@@ -146,7 +146,7 @@ void bsbarge_update(void){
             }
             baphysics_set_target_horizontal_velocity(D_8037D2A0);
             if(D_8037D2A0 < 200.0f){
-                animctrl_setDuration(plyrMvmnt, 1.5f);
+                anctrl_setDuration(plyrMvmnt, 1.5f);
                 baanim_setEnd(1.0f);
                 D_8037D2A5 = 4;
             }
@@ -155,12 +155,12 @@ void bsbarge_update(void){
         case 4:
             if(!player_isStable())
                 sp24 = BS_2F_FALL;
-            if(animctrl_isAt(plyrMvmnt, 0.7f)){
+            if(anctrl_isAt(plyrMvmnt, 0.7f)){
                 D_8037D2A0 = 0.0f;
                 D_8037D2A6 = 0;
             }
             baphysics_set_target_horizontal_velocity(D_8037D2A0);
-            if(animctrl_isAt(plyrMvmnt, 0.9193f))
+            if(anctrl_isAt(plyrMvmnt, 0.9193f))
                 sp24 = BS_20_LANDING;
             break;
     }

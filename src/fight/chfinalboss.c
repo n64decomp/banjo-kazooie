@@ -772,7 +772,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
 
     local = (ActorLocal_FinalBoss *)&this->local;
     sp40 = globalTimer_getTime();
-    sp3C = animctrl_getAnimTimer(this->animctrl);
+    sp3C = anctrl_getAnimTimer(this->anctrl);
     local->phase = FINALBOSS_PHASE_1_BROOMSTICK;
     subaddie_set_state_with_direction(this, next_state, 0.0001f, 1);
     actor_loopAnimation(this);
@@ -811,7 +811,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
         local->unk18 = 400.0f;
         local->unk28 = (-this->actor_specific_1_f * this->actor_specific_1_f) / (2.0 * local->unk14);
         chfinalboss_func_80386600(this->marker, 1);
-        animctrl_setAnimTimer(this->animctrl, sp3C);
+        anctrl_setAnimTimer(this->anctrl, sp3C);
         break;
     case 8:
         temp_f12 = 1150.0f;
@@ -820,7 +820,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
         break;
     case 9:
         actor_playAnimationOnce(this);
-        animctrl_setAnimTimer(this->animctrl, sp3C);
+        anctrl_setAnimTimer(this->anctrl, sp3C);
         break;
     case 10:
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
@@ -1297,7 +1297,7 @@ void chfinalboss_phase3_update(ActorMarker *marker) {
     local = (ActorLocal_FinalBoss *)&this->local;
     sp3C = time_getDelta();
     sp38 = local->hits;
-    sp34 = animctrl_getAnimTimer(this->animctrl);
+    sp34 = anctrl_getAnimTimer(this->anctrl);
     switch (this->state) {
     case 21:
         chfinalboss_spawnBroomstickGlowParticles(this);
@@ -1398,12 +1398,12 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
     } iter;
     
     local = (ActorLocal_FinalBoss *)&this->local;
-    sp48 = animctrl_getAnimTimer(this->animctrl);
+    sp48 = anctrl_getAnimTimer(this->anctrl);
     local->phase = 4;
     subaddie_set_state_with_direction(this, arg1, 0.0001f, 1);
     switch (arg1) {
     case 28:
-        animctrl_setAnimTimer(this->animctrl, sp48);
+        anctrl_setAnimTimer(this->anctrl, sp48);
         this->unk1C[0] = D_803927D0[0x10][0];
         this->unk1C[1] = D_803927D0[0x10][1];
         this->unk1C[2] = D_803927D0[0x10][2];
@@ -1635,7 +1635,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 34:
-            sp58 = animctrl_getAnimTimer(this->animctrl);
+            sp58 = anctrl_getAnimTimer(this->anctrl);
             if (actor_animationIsAt(this, 0.17f) != 0) {
                 func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
                 func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
@@ -1767,7 +1767,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
     local = (ActorLocal_FinalBoss *)&this->local;
     dt = time_getDelta();
     sp38 = 0x14;
-    sp34 = animctrl_getAnimTimer(this->animctrl);
+    sp34 = anctrl_getAnimTimer(this->anctrl);
     jinjonator_marker = chfinalboss_findCollidingJinjo(this, func_8033229C(this->marker) / 3.0f);
     if ((jinjonator_marker != NULL) && (jinjonator_marker->id == MARKER_285_JINJONATOR)) {
         if (chjinjonator_8039125C(jinjonator_marker)) {

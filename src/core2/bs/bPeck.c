@@ -6,7 +6,7 @@
 #include "core2/ba/physics.h"
 
 void baModel_80292048(s32, f32, f32, f32);
-void animctrl_start(AnimCtrl *, char *, s32);
+void anctrl_start(AnimCtrl *, char *, s32);
 
 /* .data */
 f32 D_80364A60 = -1400.0f;
@@ -83,37 +83,37 @@ void bsbpeck_update(void){
 
     switch(D_8037D374){
         case 0://L802A6770
-            if(animctrl_isAt(aCtrl, 0.9126f)){
-                animctrl_setIndex(aCtrl, ASSET_19_ANIM_BSBPECK_ENTER);
-                animctrl_setStart(aCtrl, 0.0f);
-                animctrl_setDuration(aCtrl, 0.35f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-                animctrl_start(aCtrl, "bsbpeck.c", 0xbd);
+            if(anctrl_isAt(aCtrl, 0.9126f)){
+                anctrl_setIndex(aCtrl, ASSET_19_ANIM_BSBPECK_ENTER);
+                anctrl_setStart(aCtrl, 0.0f);
+                anctrl_setDuration(aCtrl, 0.35f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
+                anctrl_start(aCtrl, "bsbpeck.c", 0xbd);
                 D_8037D370 = 0.5f;
                 D_8037D374 = 1;
             }
             break;
         case 1://L802A67E8
-            if(animctrl_isAt(aCtrl, 0.1621f))
+            if(anctrl_isAt(aCtrl, 0.1621f))
                 func_802A664C();
             
-            if(animctrl_isAt(aCtrl, 0.7f))
+            if(anctrl_isAt(aCtrl, 0.7f))
                 func_802A664C();
 
             D_8037D370 -= time_getDelta();
             if(D_8037D370 < 0.0f){
-                animctrl_reset(aCtrl);
-                animctrl_setSmoothTransition(aCtrl, 0);
-                animctrl_setIndex(aCtrl, ASSET_1A_ANIM_BSBPECK);
-                animctrl_setDirection(aCtrl, 0);
-                animctrl_setDuration(aCtrl, 0.2f);
-                animctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
-                animctrl_start(aCtrl, "bsbpeck.c", 0xd4);
+                anctrl_reset(aCtrl);
+                anctrl_setSmoothTransition(aCtrl, 0);
+                anctrl_setIndex(aCtrl, ASSET_1A_ANIM_BSBPECK);
+                anctrl_setDirection(aCtrl, 0);
+                anctrl_setDuration(aCtrl, 0.2f);
+                anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
+                anctrl_start(aCtrl, "bsbpeck.c", 0xd4);
                 D_8037D374 = 2;
             }
             break;
         case 2://L802A68C4
-            if(animctrl_isStopped(aCtrl))
+            if(anctrl_isStopped(aCtrl))
                 sp24 = BS_2F_FALL;
             break;
     }//L802A68D8

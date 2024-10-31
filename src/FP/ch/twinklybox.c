@@ -330,8 +330,8 @@ void func_8038D6C8(Actor *this){
         break;
     
     case 2: //L8038D91C
-        sp20 = animctrl_isPlayedForwards(this->animctrl);
-        animctrl_setDuration(this->animctrl, this->velocity[2]);
+        sp20 = anctrl_isPlayedForwards(this->anctrl);
+        anctrl_setDuration(this->anctrl, this->velocity[2]);
         if( ( sp20 == TRUE && actor_animationIsAt(this, 0.999f) )
             || ( sp20 == FALSE && actor_animationIsAt(this, 0.001f) )
         ){
@@ -406,7 +406,7 @@ void func_8038D6C8(Actor *this){
         }
 
 
-        if(0.96 < animctrl_getAnimTimer(this->animctrl)){
+        if(0.96 < anctrl_getAnimTimer(this->anctrl)){
             if(this->lifetime_value <= 0.0){
                 __spawnQueue_add_1((GenFunction_1)func_8038D474, (s32)this->marker);
                 this->lifetime_value = 2.9f;

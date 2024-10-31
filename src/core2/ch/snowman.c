@@ -219,8 +219,8 @@ void chSnowman_update(Actor *this){
         local->unkA = 1;
         local->unkB = 0;
         local->unk4 = 0.0f;
-        animctrl_setTransitionDuration(this->animctrl, 0.8f);
-        animctrl_setAnimTimer(this->animctrl, randf());
+        anctrl_setTransitionDuration(this->anctrl, 0.8f);
+        anctrl_setAnimTimer(this->anctrl, randf());
         func_8032BC18(this);
         if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
             local->unk0 = actorArray_findActorFromActorId(0x336)->marker;
@@ -282,7 +282,7 @@ void chSnowman_update(Actor *this){
                 __chSnowman_enterDeath(this);
             }//L802E240C
             else if( 
-                0.98 < animctrl_getAnimTimer(this->animctrl)
+                0.98 < anctrl_getAnimTimer(this->anctrl)
                 || !__chSnowman_isPlayerInAttackRange(this, 500, 2750)
                 || player_getWaterState() == BSWATERGROUP_2_UNDERWATER
                 || __chSnowman_CCW_playerInProtectedZone()
@@ -290,7 +290,7 @@ void chSnowman_update(Actor *this){
                 __chSnowman_enterIdle(this);
             }
             else{
-                if(animctrl_getAnimTimer(this->animctrl) < 0.45){
+                if(anctrl_getAnimTimer(this->anctrl) < 0.45){
                     __chSnowman_setYawTarget(this, 6.0f);
                 }
                 if( actor_animationIsAt(this, 0.19f)

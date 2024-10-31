@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void rumbleManager_80250E6C(f32, f32);
+extern void baMotor_80250E6C(f32, f32);
 extern void func_802BB360(s32, f32);
 extern void func_802BB378(s32, f32, f32);
 extern void func_802BB3AC(s32, f32);
@@ -73,14 +73,14 @@ void __anSeq_func_8028B14(enum sfx_e arg0){
 void __anSeq_func_80288B34(s32 arg0, s32 arg1){
     f32 f12 = reinterpret_cast(f32, arg0);
     f32 f14 = reinterpret_cast(f32, arg1);
-    rumbleManager_80250E6C(f12, f14);
+    baMotor_80250E6C(f12, f14);
 }
 
 void __anSeq_func_80288B60(s32 arg0, s32 arg1, s32 arg2){
     f32 f12 = reinterpret_cast(f32, arg0);
     f32 f14 = reinterpret_cast(f32, arg1);
     f32 f0 = reinterpret_cast(f32, arg2);
-    rumbleManager_80250D94(f12, f14, f0);
+    baMotor_80250D94(f12, f14, f0);
 }
 
 void __anSeq_updateStep(vector(AnSeqElement) **ppAnSeq, AnSeqElement *pStep){
@@ -216,7 +216,7 @@ void anSeq_setActivationFrameDelay(vector(AnSeqElement) **ppAnSeq, s32 arg1){
 void anSeq_update(vector(AnSeqElement) **ppAnSeq, AnimCtrl *pAnCtl){
     AnSeqElement *iPtr;
     for(iPtr = vector_getBegin(*ppAnSeq); iPtr != (AnSeqElement*)vector_getEnd(*ppAnSeq); iPtr++){
-        if(animctrl_isAt(pAnCtl, iPtr->duration))
+        if(anctrl_isAt(pAnCtl, iPtr->duration))
             __anSeq_updateStep(ppAnSeq, iPtr);
     }
 }

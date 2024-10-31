@@ -60,7 +60,7 @@ void func_802A0630(void){
     mvmnt = baanim_getAnimCtrlPtr();
     switch(D_8037D2C0){
         case 0:
-            if(!animctrl_isAt(mvmnt, 0.266f))
+            if(!anctrl_isAt(mvmnt, 0.266f))
                 break;
             baphysics_set_vertical_velocity(1600.0f);
             func_8030E58C(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.7f);
@@ -68,7 +68,7 @@ void func_802A0630(void){
             break;
         case 1:
             func_802A04F0();
-            if(animctrl_isStopped(mvmnt))
+            if(anctrl_isStopped(mvmnt))
                 baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
             if(baphysics_get_vertical_velocity() < 0.0f)
                 next_state = BS_BEE_FLY;
@@ -192,7 +192,7 @@ void bsbeefly_update(void){
         baflap_add(1.0f);
     }
     sp44 = baflap_getCount();
-    animctrl_setDuration(sp48, D_803649B0[sp44]);
+    anctrl_setDuration(sp48, D_803649B0[sp44]);
     sp24 = &D_803649C4[sp44];
     sp40 = 0.9f;
     sp40 += *sp24;

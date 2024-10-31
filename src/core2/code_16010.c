@@ -256,7 +256,7 @@ void func_8029D968(void){
             sp18 = (temp_v0->flags & 0x4000)  && player_isStable();
         }
         if (sp1C || sp18) {
-            rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
+            baMotor_80250D94(1.0f, 0.5f, 0.4f);
             func_8028F504(0xD);
         }
     }//L8029DA18
@@ -275,7 +275,7 @@ void func_8029D968(void){
                 batimer_set(4, 4.0f);
                 if(func_8028F504(0xD)){
                     func_8029D230();
-                    rumbleManager_80250D94(1.0f, 0.5f, 0.4f);
+                    baMotor_80250D94(1.0f, 0.5f, 0.4f);
                 }
                 if(item_empty(ITEM_14_HEALTH)){
                     bs_checkInterrupt(BS_INTR_13);

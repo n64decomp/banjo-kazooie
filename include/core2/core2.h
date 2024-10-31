@@ -4,7 +4,7 @@
 #include "core2/timedfunc.h"
 #include "gc/gc.h"
 #include "core2/code_6DA30.h"
-#include "core2/animctrl.h"
+#include "core2/anctrl.h"
 
 void func_80351A04(Struct68s *arg0, s32 arg1);
 void func_80351A14(Struct68s *arg0, Struct68DrawMethod arg1);

@@ -182,7 +182,7 @@ void func_8038C428(Actor *arg0, f32 arg1[3], f32 arg2)
         temp_f0 = sp78;
         sp74 = (((arg1[1] + 40.0f) - arg0->position[1]) / temp_f0) - (((-3.2) * temp_f0) / 2.0);
     }
-    animctrl_setAnimTimer(arg0->animctrl, 0.0f);(arg0->animctrl, 0.0f);
+    anctrl_setAnimTimer(arg0->anctrl, 0.0f);(arg0->anctrl, 0.0f);
     temp_f0 = sp78;
     arg0->unk1C[0] = (f32) (0.99999 / temp_f0);
     arg0->velocity[1] = sp74;
@@ -202,8 +202,8 @@ bool func_8038C718(Actor *this, f32 arg1){
     this->position[0] += this->velocity[0];
     this->position_y += (this->velocity_y += -3.2);
     this->position_z += this->velocity_z;
-    tmp = 0.9999 < animctrl_getAnimTimer(this->animctrl) + this->unk1C[0] ? 0.999999 : animctrl_getAnimTimer(this->animctrl) + this->unk1C[0];
-    animctrl_setAnimTimer(this->animctrl, tmp);
+    tmp = 0.9999 < anctrl_getAnimTimer(this->anctrl) + this->unk1C[0] ? 0.999999 : anctrl_getAnimTimer(this->anctrl) + this->unk1C[0];
+    anctrl_setAnimTimer(this->anctrl, tmp);
 
     if(arg1 == 0.0f)
         arg1 = mapModel_getFloorY(this->position);
@@ -271,7 +271,7 @@ void func_8038C9A0(Actor *this){
             this->velocity_y = 0.0f;
             this->velocity_z = 0.0f;
             this->unk1C[0] = 0.0f;
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             func_8038C428(this, D_8039207C, 0);
             return;
         }
@@ -303,7 +303,7 @@ void func_8038C9A0(Actor *this){
                 func_8034DFB0(sp30, D_803920B0, D_803920A0, 0.14f);
             }
 
-            if(0.8 < animctrl_getAnimTimer(this->animctrl) || animctrl_getAnimTimer(this->animctrl) < 0.2){
+            if(0.8 < anctrl_getAnimTimer(this->anctrl) || anctrl_getAnimTimer(this->anctrl) < 0.2){
                 this->unk38_31 = TRUE;
             }
             else{

@@ -49,7 +49,7 @@ void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     subaddie_set_state_with_direction(this, 5, 0.0f, 1);
     actor_loopAnimation(this);
     this->yaw_ideal = 79.0f;
-    animctrl_setTransitionDuration(this->animctrl, 0.4f);
+    anctrl_setTransitionDuration(this->anctrl, 0.4f);
 }
 
 void func_80392700(Actor *this) {

@@ -529,7 +529,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x13: //L802D44B0
-            if(0.66 <= animctrl_getAnimTimer(this->animctrl)){
+            if(0.66 <= anctrl_getAnimTimer(this->anctrl)){
                 subaddie_set_state_with_direction(this, 0x14, 0.66f, 0);
             }
             break;
@@ -542,7 +542,7 @@ void func_802D4388(Actor *this){
             break;
 
         case 0x15: //L802D4534
-             if(animctrl_getAnimTimer(this->animctrl) < 0.03){
+             if(anctrl_getAnimTimer(this->anctrl) < 0.03){
                 subaddie_set_state_with_direction(this, 0x12, 0.0f, 1);
             }
             break;
@@ -670,7 +670,7 @@ void func_802D4AC0(Actor *this, s32 arg1, enum file_progress_e arg2) {
         }
     }
     if( (((arg1 & 0x800000) && (fileProgressFlag_get(arg1 + 0xFF800000))) || ((arg1 & 0x400000) && (volatileFlag_get(arg1 + 0xFFC00000)))) 
-        && (fileProgressFlag_get(arg2)) && (this->animctrl == NULL)
+        && (fileProgressFlag_get(arg2)) && (this->anctrl == NULL)
     ) {
         subaddie_set_state_with_direction(this, 8, 0.0f, 1);
     }

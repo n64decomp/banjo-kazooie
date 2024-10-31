@@ -46,7 +46,7 @@ void chstonejinjo_update(Actor *this) {
 
     switch (this->state) {
         case STONEJINJO_STATE_1_IDLE:
-            animctrl_setAnimTimer(this->animctrl, 0.0f);
+            anctrl_setAnimTimer(this->anctrl, 0.0f);
             break;
 
         case STONEJINJO_STATE_2_BREAK_OPEN:
@@ -115,7 +115,7 @@ void chstonejinjo_breakOpen(ActorMarker *marker) {
     if (actor_stonejinjo->state != STONEJINJO_STATE_2_BREAK_OPEN) {
         subaddie_set_state_with_direction(actor_stonejinjo, STONEJINJO_STATE_2_BREAK_OPEN, 0.0f, 1);
         actor_playAnimationOnce(actor_stonejinjo);
-        animctrl_setDuration(actor_stonejinjo->animctrl, actor_stonejinjo->unk1C[0]);
+        anctrl_setDuration(actor_stonejinjo->anctrl, actor_stonejinjo->unk1C[0]);
         SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor_stonejinjo->marker);
 
         if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor_stonejinjo->unkF4_8 != BOSSJINJO_5_JINJONATOR) {

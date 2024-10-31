@@ -462,7 +462,7 @@ void func_80315300(GcZoombox *this){
           this->model = NULL;
      }
      if(this->anim_ctrl != NULL){
-          animctrl_free(this->anim_ctrl);
+          anctrl_free(this->anim_ctrl);
           this->anim_ctrl = NULL;
      }
      if(this->unkF8 != NULL){
@@ -519,8 +519,8 @@ void func_80315524(GcZoombox *this){
 
 void func_8031556C(GcZoombox *this){
     this->state = 5;
-    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_setDirection(this->anim_ctrl, 1);
+    anctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_setDirection(this->anim_ctrl, 1);
     this->unk134 = 0;
     this->unk1A4_16 = 1;
     func_80318498(this);
@@ -530,8 +530,8 @@ void func_803155C8(GcZoombox *this){
     int i;
 
     this->state = 6;
-    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_setDirection(this->anim_ctrl, 0);
+    anctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_setDirection(this->anim_ctrl, 0);
     this->unk1A4_16 = 1;
     this->unk1A4_23 = 0;
     _gczoombox_memClear(this->unk0, 0x30);
@@ -833,7 +833,7 @@ void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx) {
     func_8033A308(sp44);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     if (this->anim_ctrl != NULL) {
-        animctrl_drawSetup(this->anim_ctrl, sp50, 1);
+        anctrl_drawSetup(this->anim_ctrl, sp50, 1);
     }
     modelRender_draw(gfx, mtx, sp50, sp5C, this->unk198 * sp34, sp38, this->model);
 }
@@ -1219,18 +1219,18 @@ void gczoombox_update(GcZoombox *this){
                break;
           case 0x5: //L803177D4
                if(this->unk1A4_16){
-                    animctrl_update(this->anim_ctrl);
+                    anctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14){
-                         this->unk17C = 1.0 - animctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
+                         this->unk17C = 1.0 - anctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
                     }
                }//L8031782C
-               if(this->unk1A4_11 && animctrl_isAt(this->anim_ctrl, 0.1f)){
+               if(this->unk1A4_11 && anctrl_isAt(this->anim_ctrl, 0.1f)){
                     func_8030E760(SFX_CC_PAUSEMENU_ENTER_SUBMENU, 1.1f, this->unk12E);
                }//L80317864
-               if(this->unk1A4_16 && animctrl_isAt(this->anim_ctrl, this->unk194)){
-                    animctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_STOPPED);
-                    animctrl_setAnimTimer(this->anim_ctrl, this->unk194);
-                    animctrl_update(this->anim_ctrl);
+               if(this->unk1A4_16 && anctrl_isAt(this->anim_ctrl, this->unk194)){
+                    anctrl_setPlaybackType(this->anim_ctrl, ANIMCTRL_STOPPED);
+                    anctrl_setAnimTimer(this->anim_ctrl, this->unk194);
+                    anctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14)
                          func_803152C4(this);
                     this->unk1A4_14 = this->unk1A4_13 = 0;
@@ -1248,15 +1248,15 @@ void gczoombox_update(GcZoombox *this){
                break;
           case 0x6: //L80317940
                if(this->unk1A4_16){
-                    animctrl_update(this->anim_ctrl);
+                    anctrl_update(this->anim_ctrl);
                     if(this->unk1A4_14){
-                         this->unk17C = animctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
+                         this->unk17C = anctrl_getAnimTimer(this->anim_ctrl)/this->unk194;
                     }
                }
-               if(this->unk1A4_11 && animctrl_isAt(this->anim_ctrl, 0.9f)){
+               if(this->unk1A4_11 && anctrl_isAt(this->anim_ctrl, 0.9f)){
                     func_8030E6A4(SFX_CD_PAUSEMENU_LEAVE_SUBMENU, 1.1f, this->unk12E);
                }
-               if(this->unk1A4_16 && animctrl_isStopped(this->anim_ctrl)){
+               if(this->unk1A4_16 && anctrl_isStopped(this->anim_ctrl)){
                     if(this->unk1A4_14){
                          func_803152C4(this);
                     }
@@ -1442,10 +1442,10 @@ GcZoombox *gczoombox_new(s32 y, GcZoomboxSprite portrait_id, s32 arg2, s32 arg3,
 
     this->model = assetcache_get(0x89d);
     __gczoombox_load_sprite(this, portrait_id);
-    this->anim_ctrl = animctrl_new(0);
-    animctrl_reset(this->anim_ctrl);
-    animctrl_setIndex(this->anim_ctrl, ASSET_138_ANIM_ZOOMBOX);
-    animctrl_start(this->anim_ctrl, "gczoombox.c", 0x6fd);
+    this->anim_ctrl = anctrl_new(0);
+    anctrl_reset(this->anim_ctrl);
+    anctrl_setIndex(this->anim_ctrl, ASSET_138_ANIM_ZOOMBOX);
+    anctrl_start(this->anim_ctrl, "gczoombox.c", 0x6fd);
 
     gczoombox_func_803184C8(this, 15.0f, 5, 2, 0.4f, 0, 0); //gczoombox_func_803184C8(this, 15.0f, 5, 2, D_80378940, 0, 0);
     this->unk176 = D_8036C6C0[portrait_id].unk2;
@@ -1561,7 +1561,7 @@ void gczoombox_func_803184C8(GcZoombox *this, f32 arg1, s32 arg2, s32 arg3, f32 
         this->unk184 = arg3;
         this->unk190 = 1.0 / arg1;
         if (this->anim_ctrl != NULL) {
-            animctrl_setDuration(this->anim_ctrl, animation_duration);
+            anctrl_setDuration(this->anim_ctrl, animation_duration);
         }
         this->unk1A4_12 = BOOL(arg5);
         this->unk1A4_10 = BOOL(arg6);
@@ -1756,7 +1756,7 @@ void gczoombox_defrag(GcZoombox *this) {
 
     if (this != NULL) {
         if (this->anim_ctrl != NULL) {
-            this->anim_ctrl = animctrl_defrag(this->anim_ctrl);
+            this->anim_ctrl = anctrl_defrag(this->anim_ctrl);
         }
     }
 }

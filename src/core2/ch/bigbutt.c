@@ -86,7 +86,7 @@ void func_802C60AC(ActorMarker *marker, ActorMarker *other_marker){
         && 5.0 <= actor->actor_specific_1_f
         && func_803294F0(actor, 80, func_80329784(actor))
     ){
-        animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
+        anctrl_setPlaybackType(actor->anctrl, ANIMCTRL_ONCE);
         subaddie_set_state(actor, 5);
         func_8030E58C(SFX_1E_HITTING_AN_ENEMY_2, 1.0f);
     }
@@ -129,7 +129,7 @@ void func_802C6240(Actor *this){
     switch(this->state){
         case 0x1: //L802C62E4
             this->unk10_12 = 3;
-            sp2C = func_8032863C(this->animctrl, 0.16f, 0.55f);
+            sp2C = func_8032863C(this->anctrl, 0.16f, 0.55f);
             if(!this->unk138_28){
                 if( actor_animationIsAt(this, 0.157f)
                     || actor_animationIsAt(this, 0.289f)
@@ -145,7 +145,7 @@ void func_802C6240(Actor *this){
                 func_80328A2C(this, 0.55f, 1, 0.35f);
             }
             func_802C5FF8(this);
-            if( func_8032863C(this->animctrl, 0.65f, 0.99f) >= 2 
+            if( func_8032863C(this->anctrl, 0.65f, 0.99f) >= 2 
                 && !func_80328A2C(this, 0.0f, -1, 0.45f)
                 && subaddie_maybe_set_state_position_direction(this, 2, 0.0f, -1, 0.58f)
             ){
@@ -197,7 +197,7 @@ void func_802C6240(Actor *this){
             break;
 
         case 0x6: //L802C66D0
-            animctrl_setDuration(this->animctrl, D_80366010[6].duration - (3 - this->unk10_12)*0.1085);
+            anctrl_setDuration(this->anctrl, D_80366010[6].duration - (3 - this->unk10_12)*0.1085);
             this->yaw_ideal = (f32)func_80329784(this);
             if(!func_803294B4(this, 0x21)){
                 subaddie_set_state(this, 8);
@@ -232,7 +232,7 @@ void func_802C6240(Actor *this){
 
             if(func_80329530(this, 320)){
                 if(func_80329078(this, (s32)this->yaw_ideal,200)){
-                    animctrl_setPlaybackType(this->animctrl, ANIMCTRL_ONCE);
+                    anctrl_setPlaybackType(this->anctrl, ANIMCTRL_ONCE);
                     subaddie_set_state(this, 4);
                     this->actor_specific_1_f += 5.7;
                     tmp_a0 = this->unk44_31;
@@ -252,16 +252,16 @@ void func_802C6240(Actor *this){
             break;
 
         case 0x4: //L802C6A14
-            if(animctrl_getAnimTimer(this->animctrl) < 0.99){
+            if(anctrl_getAnimTimer(this->anctrl) < 0.99){
                 this->yaw_ideal = (f32)func_80329784(this);
                 func_80328FB0(this, 1.0f);
             }
             func_80329030(this, 0);
             func_8030E2C4(this->unk44_31);
-            if(0.99 <= animctrl_getAnimTimer(this->animctrl)){
+            if(0.99 <= anctrl_getAnimTimer(this->anctrl)){
                 func_80329878(this, func_80329530(this, 250)? 0.8: 1.2);
                 if (0.0f == this->actor_specific_1_f) {
-                    animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
+                    anctrl_setPlaybackType(this->anctrl, ANIMCTRL_LOOP);
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);
                     sfxsource_freeSfxsourceByIndex(this->unk44_31);
                     this->unk44_31 = 0;
@@ -272,8 +272,8 @@ void func_802C6240(Actor *this){
 
         case 0x5: //L802C6B28
             actor_playAnimationOnce(this);
-            tmp_f0 = animctrl_getAnimTimer(this->animctrl);
-            animctrl_setDuration(this->animctrl, D_80366010[5].duration + ((0.65 < tmp_f0)? (tmp_f0 - 0.65)*16.0 : 0.0));
+            tmp_f0 = anctrl_getAnimTimer(this->anctrl);
+            anctrl_setDuration(this->anctrl, D_80366010[5].duration + ((0.65 < tmp_f0)? (tmp_f0 - 0.65)*16.0 : 0.0));
             if(actor_animationIsAt(this, 0.95f)){
                 actor_loopAnimation(this);
                 func_802C5F94(this);

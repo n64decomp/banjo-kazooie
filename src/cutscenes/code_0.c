@@ -166,7 +166,7 @@ void cutscenes_func_80386A00(void){
 void func_80386A90(s32 marker, s32 duration) {
     Actor * actor = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     f32 duration_f = reinterpret_cast(f32, duration);
-    animctrl_setTransitionDuration(actor->animctrl, duration_f);
+    anctrl_setTransitionDuration(actor->anctrl, duration_f);
 }
 
 void func_80386AC8(s32 arg0) {

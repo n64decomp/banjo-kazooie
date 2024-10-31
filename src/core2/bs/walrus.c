@@ -214,14 +214,14 @@ void bswalrus_walk_end(void){
 void bswalrus_jump_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.514f);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setStart(aCtrl, 0.1);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bswalrus.c", 0x1f8);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, FALSE);
+    anctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.514f);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setStart(aCtrl, 0.1);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bswalrus.c", 0x1f8);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -248,23 +248,23 @@ void bswalrus_jump_update(void){
     switch(D_8037D5C8){
         case 0://L802B86D8
             if(func_8028B254(0x82)){
-                animctrl_setDuration(aCtrl, 0.7f);
-                animctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
-                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                anctrl_setDuration(aCtrl, 0.7f);
+                anctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
+                anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
                 D_8037D5C8 = 2;
             }
-            else if(animctrl_isStopped(aCtrl)){
-                animctrl_setSubRange(aCtrl, 0.0f, 0.6734f);
-                animctrl_setDuration(aCtrl, 3.0f);
-                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+            else if(anctrl_isStopped(aCtrl)){
+                anctrl_setSubRange(aCtrl, 0.0f, 0.6734f);
+                anctrl_setDuration(aCtrl, 3.0f);
+                anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
                 D_8037D5C8 = 1;
             }
             break;
         case 1://L802B876C
             if(func_8028B254(0x82)){
-                animctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
-                animctrl_setDuration(aCtrl, 1.0f);
-                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
+                anctrl_setDuration(aCtrl, 1.0f);
+                anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
                 D_8037D5C8 = 2;
             }
             break;
@@ -272,15 +272,15 @@ void bswalrus_jump_update(void){
             func_80299628(0);
             if(player_isStable()){
                 func_8029AE48();
-                animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-                animctrl_setDuration(aCtrl, 1.0f);
-                animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+                anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+                anctrl_setDuration(aCtrl, 1.0f);
+                anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
                 D_8037D5C8 = 3;
             }
             break;
         case 3://L802B880C
             func_80299628(0);
-            if(animctrl_isStopped(aCtrl)){
+            if(anctrl_isStopped(aCtrl)){
                 baphysics_set_target_horizontal_velocity(0.0f);
                 next_state = BS_67_WALRUS_IDLE;
             }
@@ -305,12 +305,12 @@ void bswalrus_jump_end(void){
 
 void bswalrus_fall_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
-    animctrl_setStart(aCtrl, 0.662f);
-    animctrl_setDuration(aCtrl, 0.7f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    animctrl_start(aCtrl, "bswalrus.c", 0x284);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_121_ANIM_BSWALRUS_JUMP);
+    anctrl_setStart(aCtrl, 0.662f);
+    anctrl_setDuration(aCtrl, 0.7f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
+    anctrl_start(aCtrl, "bswalrus.c", 0x284);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     func_802B8110();
     D_8037D5C8 = 0;
@@ -329,8 +329,8 @@ void bswalrus_fall_update(void){
     {
     case 0://L802B89A4
         if(func_8028B254(0x82)){
-            animctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
-            animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(aCtrl, 0.0f, 0.8501f);
+            anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
             D_8037D5C8 = 1;
         }
         break;
@@ -338,9 +338,9 @@ void bswalrus_fall_update(void){
         if(player_isStable()){
             func_8029AE48();
             baphysics_set_target_horizontal_velocity(0.0f);
-            animctrl_setSubRange(aCtrl, 0.0f, 1.0f);
-            animctrl_setDuration(aCtrl, 1.0f);
-            animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
+            anctrl_setDuration(aCtrl, 1.0f);
+            anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
             D_8037D5C8 = 2;
         }
         break;
@@ -350,7 +350,7 @@ void bswalrus_fall_update(void){
 
     if(player_isStable()){
         if( func_8029B300() > 0 
-            || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
+            || (D_8037D5C8 == 2 && anctrl_isStopped(aCtrl))
         ){
             if(miscFlag_isTrue(MISC_FLAG_19))
                 next_state = badrone_transform();
@@ -443,13 +443,13 @@ void bswalrus_die_init(void){
     f32 sp20[3];
 
     func_8029B930();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, ASSET_19D_ANIM_BSWALRUS_DIE);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.4454f);
-    animctrl_setDuration(aCtrl, 2.2f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bswalrus.c", 0x366);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, FALSE);
+    anctrl_setIndex(aCtrl, ASSET_19D_ANIM_BSWALRUS_DIE);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.4454f);
+    anctrl_setDuration(aCtrl, 2.2f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bswalrus.c", 0x366);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     _player_getPosition(sp2C);
     func_80294980(sp20);
@@ -595,14 +595,14 @@ void bswalrus_sled_end(void){
  
 void bswalrus_sled_jump_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.4285f);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setStart(aCtrl, 0.14f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bswalrus.c", 0x477);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, FALSE);
+    anctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.4285f);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setStart(aCtrl, 0.14f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bswalrus.c", 0x477);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     if(func_8029B2E8() != 0.0f)
         yaw_setIdeal(func_8029B33C());
@@ -630,7 +630,7 @@ void bswalrus_sled_jump_update(void){
     switch (D_8037D5C8)
     {
     case 0:
-        if(animctrl_isStopped(aCtrl)){
+        if(anctrl_isStopped(aCtrl)){
             baanim_setEndAndDuration(0.5058f, 7.0f);
             D_8037D5C8 = 1;
         }
@@ -642,7 +642,7 @@ void bswalrus_sled_jump_update(void){
         }
         break;
     case 2://L802B951C
-        if(animctrl_isStopped(aCtrl)){
+        if(anctrl_isStopped(aCtrl)){
             next_state = BS_7D_WALRUS_SLED;
         }
         break;
@@ -665,12 +665,12 @@ void bswalrus_sled_jump_end(void){
 
 void func_802B95A0(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
-    animctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
-    animctrl_start(aCtrl, "bswalrus.c", 0x4e2);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_19F_ANIM_BSWALRUS_SLED_JUMP);
+    anctrl_setSubRange(aCtrl, 0.0f, 0.5058f);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
+    anctrl_start(aCtrl, "bswalrus.c", 0x4e2);
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     func_802B813C();
     D_8037D5C8 = 0;
@@ -705,7 +705,7 @@ void func_802B963C(void){
 
     if(player_isStable()){
         if( func_8029B300() > 0 
-            || (D_8037D5C8 == 2 && animctrl_isStopped(aCtrl))
+            || (D_8037D5C8 == 2 && anctrl_isStopped(aCtrl))
         ){
             next_state = BS_7D_WALRUS_SLED;
         }

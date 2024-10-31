@@ -89,7 +89,7 @@ void func_8038A31C(Actor *this){
         this->alpha_124_19 = 0xff;
         if(this->unk54 != 0.0f){
             subaddie_set_state_with_direction(this, 2, 0.02f, 1);
-            animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
+            anctrl_setPlaybackType(this->anctrl, ANIMCTRL_STOPPED);
         }
         break;
     case 2: //L8038A440
@@ -124,7 +124,7 @@ void func_8038A31C(Actor *this){
         this->unk1C[0] = 1.0;
         if(45.0f <= this->velocity[0]){
             subaddie_set_state_with_direction(this, 1, 0.02f, 1);
-            animctrl_setPlaybackType(this->animctrl, ANIMCTRL_LOOP);
+            anctrl_setPlaybackType(this->anctrl, ANIMCTRL_LOOP);
             this->velocity[0] = 0.0f;
         }
         else{

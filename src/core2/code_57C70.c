@@ -125,14 +125,14 @@ void func_802DEE1C(Actor *this) {
     }
     switch(this->state){
         case 1:
-            if (animctrl_isStopped(this->animctrl)) {
+            if (anctrl_isStopped(this->anctrl)) {
                 subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                 actor_loopAnimation(this);
             }
             break;
 
         case 3:
-            if(animctrl_isStopped(this->animctrl)) {
+            if(anctrl_isStopped(this->anctrl)) {
                 volatileFlag_set(VOLATILE_FLAG_C3, 1);
                 this->state = 4;
             }

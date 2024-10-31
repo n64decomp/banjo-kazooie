@@ -23,12 +23,12 @@ void bsjig_jiggy_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int tmp;
 
-    animctrl_reset(aCtrl);
-    animctrl_setSmoothTransition(aCtrl, FALSE);
-    animctrl_setIndex(aCtrl, ASSET_2E_ANIM_BSJIG_JIGGY);
-    animctrl_setDuration(aCtrl, 4.3f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsjig.c", 0x7f);
+    anctrl_reset(aCtrl);
+    anctrl_setSmoothTransition(aCtrl, FALSE);
+    anctrl_setIndex(aCtrl, ASSET_2E_ANIM_BSJIG_JIGGY);
+    anctrl_setDuration(aCtrl, 4.3f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsjig.c", 0x7f);
     yaw_setIdeal(func_8029B41C()); //face camera
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
@@ -61,19 +61,19 @@ void bsjig_jiggy_update(void){
     
     yaw_setIdeal(func_8029B41C());
     
-    if(animctrl_isAt(aCtrl, 0.6502f))
+    if(anctrl_isAt(aCtrl, 0.6502f))
         func_80299BD4();
 
-    if(animctrl_isAt(aCtrl, 0.835f)){
+    if(anctrl_isAt(aCtrl, 0.835f)){
         D_8037D4B0++;
         item_inc(ITEM_E_JIGGY);
         func_8030E58C(SFX_4B_GULPING, 1.3f);
     }
 
-    if(animctrl_isAt(aCtrl, 0.94f))
+    if(anctrl_isAt(aCtrl, 0.94f))
         sfxsource_playHighPriority(0x3ea);
 
-    if(animctrl_isStopped(aCtrl)){
+    if(anctrl_isStopped(aCtrl)){
         if(D_8037D4B1)
             sp1C =  BS_34_JIG_NOTEDOOR;
         else
@@ -165,11 +165,11 @@ void bsjig_notedoor_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     D_8037D4B2 = (bs_getPrevState() == BS_44_JIG_JIGGY);
     miscFlag_clear(MISC_FLAG_1A);
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
-    animctrl_setDuration(aCtrl, 3.6f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsjig.c", 0x14d);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
+    anctrl_setDuration(aCtrl, 3.6f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsjig.c", 0x14d);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);

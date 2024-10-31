@@ -5,7 +5,7 @@
 #include "core2/ba/physics.h"
 
 void yaw_setVelocityBounded(f32, f32);
-void animctrl_start(AnimCtrl *, char*, s32);
+void anctrl_start(AnimCtrl *, char*, s32);
 
 /* .bss */
 u8 D_8037D2F0;
@@ -40,27 +40,27 @@ void bsegghead_update(void) {
             func_80346C10(&sp28, -1, 0, ITEM_D_EGGS, 0);
     }
     if (has_eggs) {
-        if (animctrl_isAt(aCtrl, 0.1f))
+        if (anctrl_isAt(aCtrl, 0.1f))
             func_8030E760(SFX_46_KAZOOIE_CHOKING_UP, 1.0f, 0x7fff);
 
-        if (animctrl_isAt(aCtrl, 0.4f))
+        if (anctrl_isAt(aCtrl, 0.4f))
             func_8030E760(SFX_57_KAZOOIE_HEGH, 1.0f, 0x7fff);
 
-        if (animctrl_isAt(aCtrl, 0.4704f)){
+        if (anctrl_isAt(aCtrl, 0.4704f)){
             func_8033E3F0(COMMON_PARTICLE_1_EGG_HEAD, 1);
             item_dec(ITEM_D_EGGS);
             ability_use(7);
         }
-        if ((animctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {
-            animctrl_setStart(aCtrl, 0.3878f);
-            animctrl_start(aCtrl, "bsbegghead.c", 0x62);
+        if ((anctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {
+            anctrl_setStart(aCtrl, 0.3878f);
+            anctrl_start(aCtrl, "bsbegghead.c", 0x62);
             D_8037D2F1++;
         }
     }
-    if (animctrl_isStopped(aCtrl)) {
+    if (anctrl_isStopped(aCtrl)) {
         next_state = (button_held(BUTTON_Z))? BS_CROUCH : BS_1_IDLE;
 
-    } else if (0.65 < (f64) animctrl_getAnimTimer(aCtrl)) {
+    } else if (0.65 < (f64) anctrl_getAnimTimer(aCtrl)) {
         next_state = func_802ADCD4(0);
     }
     if (func_8028B094())

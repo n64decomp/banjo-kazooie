@@ -114,11 +114,11 @@ void bspumpkin_walk_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, ASSET_A0_ANIM_BSPUMPKIN_WALK);
-    animctrl_setDuration(anim_ctrl, 0.8f);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
-    animctrl_start(anim_ctrl, "bspumpkin.c", 0x11D);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, ASSET_A0_ANIM_BSPUMPKIN_WALK);
+    anctrl_setDuration(anim_ctrl, 0.8f);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
+    anctrl_start(anim_ctrl, "bspumpkin.c", 0x11D);
     func_8029C7F4(2, 1, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364CF0, D_80364CF4, D_80364CF8, D_80364CFC);
     func_802900B4();
@@ -152,12 +152,12 @@ void bspumpkin_jump_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
-    animctrl_setSubRange(anim_ctrl, 0.0f, 0.3941f);
-    animctrl_setDuration(anim_ctrl, 1.2f);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_start(anim_ctrl, "bspumpkin.c", 0x16C);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
+    anctrl_setSubRange(anim_ctrl, 0.0f, 0.3941f);
+    anctrl_setDuration(anim_ctrl, 1.2f);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_start(anim_ctrl, "bspumpkin.c", 0x16C);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
     if (func_8029B2E8() != 0.0f) {
         yaw_setIdeal(func_8029B33C());
@@ -188,13 +188,13 @@ void bspumpkin_jump_update(void) {
         if (baphysics_get_vertical_velocity() < 0.0f) {
             if (func_8028B254(130)) {
                 func_80292E48();
-                animctrl_setDuration(anim_ctrl, 0.7f);
-                animctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
-                animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+                anctrl_setDuration(anim_ctrl, 0.7f);
+                anctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
+                anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
                 D_8037D4E0 = 2;
             } else {
-                animctrl_setSubRange(anim_ctrl, 0.0f, 0.662f);
-                animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+                anctrl_setSubRange(anim_ctrl, 0.0f, 0.662f);
+                anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
                 D_8037D4E0 = 1;
             }
         }
@@ -202,22 +202,22 @@ void bspumpkin_jump_update(void) {
     case 1:
         if (func_8028B254(130)) {
             func_80292E48();
-            animctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             D_8037D4E0 = 2;
         }
         break;
     case 2:
         if (player_isStable()) {
             func_8029AE48();
-            animctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
-            animctrl_setDuration(anim_ctrl, 1.2f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
+            anctrl_setDuration(anim_ctrl, 1.2f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             D_8037D4E0 = 3;
         }
         break;
     case 3:
-        if (animctrl_isStopped(anim_ctrl)) {
+        if (anctrl_isStopped(anim_ctrl)) {
             func_80292EA4();
             baphysics_set_target_horizontal_velocity(0.0f);
             next_state = BS_48_PUMPKIN_IDLE;
@@ -246,12 +246,12 @@ void bspumpkin_fall_init(void) {
 
     anim_ctrl = baanim_getAnimCtrlPtr();
     D_8037D4E4 = 0;
-    animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
-    animctrl_setStart(anim_ctrl, 0.662f);
-    animctrl_setDuration(anim_ctrl, 0.7f);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
-    animctrl_start(anim_ctrl, "bspumpkin.c", 0x1F1);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, ASSET_A1_ANIM_BSPUMPKIN_JUMP);
+    anctrl_setStart(anim_ctrl, 0.662f);
+    anctrl_setDuration(anim_ctrl, 0.7f);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
+    anctrl_start(anim_ctrl, "bspumpkin.c", 0x1F1);
     func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
     D_8037D4E0 = 0;
 }
@@ -271,8 +271,8 @@ void bspumpkin_fall_update(void) {
     switch (D_8037D4E0) {
     case 0:
         if (func_8028B254(130)) {
-            animctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(anim_ctrl, 0.0f, 0.8059f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             D_8037D4E0 = 1;
         }
         break;
@@ -280,16 +280,16 @@ void bspumpkin_fall_update(void) {
         if (player_isStable()) {
             func_8029AE48();
             baphysics_set_target_horizontal_velocity(0.0f);
-            animctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
-            animctrl_setDuration(anim_ctrl, 1.2f);
-            animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+            anctrl_setSubRange(anim_ctrl, 0.0f, 1.0f);
+            anctrl_setDuration(anim_ctrl, 1.2f);
+            anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
             D_8037D4E0 = 2;
         }
         break;
     case 2:
         break;
     }
-    if (player_isStable() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && animctrl_isStopped(anim_ctrl)))) {
+    if (player_isStable() && ((func_8029B300() > 0) || (D_8037D4E0 == 2 && anctrl_isStopped(anim_ctrl)))) {
         if (miscFlag_isTrue(MISC_FLAG_19)) {
             next_state = badrone_transform();
         } else {
@@ -342,12 +342,12 @@ void __bspumpkin_bounce_init(s32 arg0) {
     f32 sp20[3];
 
     anim_ctrl = baanim_getAnimCtrlPtr();
-    animctrl_reset(anim_ctrl);
-    animctrl_setIndex(anim_ctrl, ASSET_236_ANIM_BSPUMPKIN_REBOUND);
-    animctrl_setDuration(anim_ctrl, 1.3f);
-    animctrl_setSubRange(anim_ctrl, 0.0f, 0.45f);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_start(anim_ctrl, "bspumpkin.c", 0x2AB);
+    anctrl_reset(anim_ctrl);
+    anctrl_setIndex(anim_ctrl, ASSET_236_ANIM_BSPUMPKIN_REBOUND);
+    anctrl_setDuration(anim_ctrl, 1.3f);
+    anctrl_setSubRange(anim_ctrl, 0.0f, 0.45f);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_start(anim_ctrl, "bspumpkin.c", 0x2AB);
     if (arg0 == 1) {
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
     } else {
@@ -433,13 +433,13 @@ void bspumpkin_die_init(void) {
 
     anim_ctrl = baanim_getAnimCtrlPtr();
     func_8029B930();
-    animctrl_reset(anim_ctrl);
-    animctrl_setSmoothTransition(anim_ctrl, 0);
-    animctrl_setIndex(anim_ctrl, ASSET_188_ANIM_BSPUMPKIN_DIE);
-    animctrl_setSubRange(anim_ctrl, 0.0f, 0.1439f);
-    animctrl_setDuration(anim_ctrl, 3.5f);
-    animctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
-    animctrl_start(anim_ctrl, "bspumpkin.c", 0x32E);
+    anctrl_reset(anim_ctrl);
+    anctrl_setSmoothTransition(anim_ctrl, 0);
+    anctrl_setIndex(anim_ctrl, ASSET_188_ANIM_BSPUMPKIN_DIE);
+    anctrl_setSubRange(anim_ctrl, 0.0f, 0.1439f);
+    anctrl_setDuration(anim_ctrl, 3.5f);
+    anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
+    anctrl_start(anim_ctrl, "bspumpkin.c", 0x32E);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     _player_getPosition(plyr_pos);
     func_80294980(sp20);

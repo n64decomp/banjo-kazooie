@@ -37,7 +37,7 @@ ActorInfo D_80390804 ={MARKER_FC_CROCTUS, ACTOR_1FA_CROCTUS, ASSET_425_MODEL_CRO
 
 /* .code */
 void func_80387C90(Actor *arg0){
-    animctrl_setDuration(arg0->animctrl, 0.4 + 0.9999999999999999 * ((f32)(5 - arg0->unkF4_8) * 0.25));
+    anctrl_setDuration(arg0->anctrl, 0.4 + 0.9999999999999999 * ((f32)(5 - arg0->unkF4_8) * 0.25));
 }
 
 void func_80387D18(ActorMarker * arg0, u32 arg1){
@@ -202,9 +202,9 @@ void func_80387FD4(Actor *this){
         break;
 
     case 5:// L80388538
-        func_80328748(this->animctrl, 0.79f, 0.97f);
+        func_80328748(this->anctrl, 0.79f, 0.97f);
         if( actor_animationIsAt(this, 0.84f) 
-            && !animctrl_isPlayedForwards(this->animctrl)
+            && !anctrl_isPlayedForwards(this->anctrl)
             && func_802BB270()
         ){
             func_8030E6A4(SFX_C8_CRUNCH, randf2(0.93f, 1.07f), 22000);
@@ -212,7 +212,7 @@ void func_80387FD4(Actor *this){
         break;
 
     case 6:// L803885B0
-        func_80328748(this->animctrl, 0.79f, 0.97f);
+        func_80328748(this->anctrl, 0.79f, 0.97f);
 
         break;
     }

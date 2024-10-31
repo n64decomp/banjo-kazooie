@@ -77,7 +77,7 @@ void chBeehive_update(Actor *this){
                     func_8030E394(this->unk44_31);
                     sfxsource_setSfxId(this->unk44_31, SFX_67_BEEHIVE_CLONK);
                     sfxsource_setSampleRate(this->unk44_31, 12000);
-                    sfxsource_playSfxAtVolume(this->unk44_31, (animctrl_getAnimTimer(this->animctrl) + 0.9) - 0.4);
+                    sfxsource_playSfxAtVolume(this->unk44_31, (anctrl_getAnimTimer(this->anctrl) + 0.9) - 0.4);
                     sfxsource_set_position(this->unk44_31, this->position);
                     sfxsource_set_fade_distances(this->unk44_31, 300.0f, 1500.0f);
                     func_8030DD14(this->unk44_31, 3);
@@ -87,7 +87,7 @@ void chBeehive_update(Actor *this){
             break;
 
         case CHBEEHIVE_STATE_2_DIE:
-            if(animctrl_isStopped(this->animctrl)) {
+            if(anctrl_isStopped(this->anctrl)) {
                 func_80326310(this);
             }
             break;

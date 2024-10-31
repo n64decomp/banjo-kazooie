@@ -14,11 +14,11 @@ u8 D_8037D580;
 void bsthrow_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
 
-    animctrl_reset(aCtrl);
-    animctrl_setIndex(aCtrl, ASSET_11B_ANIM_BSTHROW);
-    animctrl_setDuration(aCtrl, 1.0f);
-    animctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    animctrl_start(aCtrl, "bsthrow.c", 0x2e);
+    anctrl_reset(aCtrl);
+    anctrl_setIndex(aCtrl, ASSET_11B_ANIM_BSTHROW);
+    anctrl_setDuration(aCtrl, 1.0f);
+    anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
+    anctrl_start(aCtrl, "bsthrow.c", 0x2e);
 
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     yaw_setUpdateState(1);
@@ -45,12 +45,12 @@ void bsthrow_update(void){
     func_80257F18(player_position, sp34, &sp24);
     yaw_setIdeal(sp24);
 
-    if(animctrl_isAt(aCtrl, 0.35f) && sp20){
+    if(anctrl_isAt(aCtrl, 0.35f) && sp20){
         D_8037D580 = 1;
         marker_getActor(sp20)->unk138_21 = 1;
     }
 
-    if(animctrl_isStopped(aCtrl))
+    if(anctrl_isStopped(aCtrl))
         next_state = BS_1_IDLE;
 
     bs_setState(next_state);

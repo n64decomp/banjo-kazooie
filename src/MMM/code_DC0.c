@@ -61,7 +61,7 @@ void chFlowerpot_update(Actor *this) {
 
     switch (this->state) {
         case FLOWER_POT_STATE_1_IDLE:
-            animctrl_setPlaybackType(this->animctrl, ANIMCTRL_STOPPED);
+            anctrl_setPlaybackType(this->anctrl, ANIMCTRL_STOPPED);
             break;
 
         case FLOWER_POT_STATE_2_FLOWERED:
@@ -82,7 +82,7 @@ bool chFlowerpot_eggCollision(ActorMarker *marker) {
     }
 
     subaddie_set_state(actor, FLOWER_POT_STATE_2_FLOWERED);
-    animctrl_setPlaybackType(actor->animctrl, ANIMCTRL_ONCE);
+    anctrl_setPlaybackType(actor->anctrl, ANIMCTRL_ONCE);
     remaining = chFlowerpot_getRemaining();
 
     if (remaining != 0) {

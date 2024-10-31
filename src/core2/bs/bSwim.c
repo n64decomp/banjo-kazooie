@@ -155,11 +155,11 @@ void func_802A7738(void) {
 
     temp_v0 = baanim_getAnimCtrlPtr();
     temp_s0 = temp_v0;
-    animctrl_reset(temp_v0);
-    animctrl_setIndex(temp_s0, ASSET_3F_ANIM_BSSWIM_DIVE_MOVE);
-    animctrl_setStart(temp_s0, 0.4626f);
-    animctrl_setDuration(temp_s0, 1.0f);
-    animctrl_start(temp_s0, "bsbswim.c", 0x186);
+    anctrl_reset(temp_v0);
+    anctrl_setIndex(temp_s0, ASSET_3F_ANIM_BSSWIM_DIVE_MOVE);
+    anctrl_setStart(temp_s0, 0.4626f);
+    anctrl_setDuration(temp_s0, 1.0f);
+    anctrl_start(temp_s0, "bsbswim.c", 0x186);
     func_802A7140();
     func_802A744C();
     D_8037D390 = 0.0f;
@@ -192,27 +192,27 @@ void func_802A7838(void) {
         func_802A77D8();
         D_8037D390 = ml_max_f(D_8037D390 - 10.0f, 0.0f);
     }
-    if (animctrl_isAt(anim_ctrl, 0.1f)) {
+    if (anctrl_isAt(anim_ctrl, 0.1f)) {
         func_8030EB88(SFX_0_BLOOP, 1.2f, 1.4f);
         D_8037D390 = 600.0f;
     }
-    if (animctrl_isAt(anim_ctrl, 0.4626f)) {
-        animctrl_setDuration(anim_ctrl, 1.0f);
+    if (anctrl_isAt(anim_ctrl, 0.4626f)) {
+        anctrl_setDuration(anim_ctrl, 1.0f);
     }
-    if (animctrl_isAt(anim_ctrl, 0.2766f)) {
-        animctrl_setDuration(anim_ctrl, 3.0f);
+    if (anctrl_isAt(anim_ctrl, 0.2766f)) {
+        anctrl_setDuration(anim_ctrl, 3.0f);
     }
     if (!button_held(BUTTON_B)) {
         if (button_held(BUTTON_A)) {
-            temp_f2 = (f64) animctrl_getAnimTimer(anim_ctrl);
+            temp_f2 = (f64) anctrl_getAnimTimer(anim_ctrl);
             if (temp_f2 <= 0.4625 && 0.1 < temp_f2) {
                 next_state = BS_39_DIVE_A;
             }
-        } else if (animctrl_isAt(anim_ctrl, 0.4625f)) {
+        } else if (anctrl_isAt(anim_ctrl, 0.4625f)) {
             next_state = BS_2B_DIVE_IDLE;
         }
     }
-    if (animctrl_isAt(anim_ctrl, 0.4625f) && !button_held(BUTTON_B)) {
+    if (anctrl_isAt(anim_ctrl, 0.4625f) && !button_held(BUTTON_B)) {
         if (button_held(BUTTON_A)) {
             next_state = BS_39_DIVE_A;
         } else {
@@ -251,13 +251,13 @@ void func_802A7AB0(void) {
     func_802A71D8();
     func_802A7304();
     func_802A77D8();
-    if (animctrl_isAt(anim_ctl, 0.17f)) {
+    if (anctrl_isAt(anim_ctl, 0.17f)) {
         func_8030E760(SFX_0_BLOOP, 1.9f, 10000);
     }
-    if (animctrl_isAt(anim_ctl, 0.67f)) {
+    if (anctrl_isAt(anim_ctl, 0.67f)) {
         func_8030E760(SFX_0_BLOOP, 1.7f, 10000);
     }
-    if (animctrl_isAt(anim_ctl, 0.99f)) {
+    if (anctrl_isAt(anim_ctl, 0.99f)) {
         if (!button_held(BUTTON_A)) {
             next_state = BS_2B_DIVE_IDLE;
         }
@@ -315,7 +315,7 @@ void func_802A7CA8(void) {
     if (baanim_isAt(0.3f)) {
         func_80292EA4();
     }
-    if (animctrl_isStopped(baanim_getAnimCtrlPtr())) {
+    if (anctrl_isStopped(baanim_getAnimCtrlPtr())) {
         next_state = BS_2B_DIVE_IDLE;
     }
     bs_setState(next_state);
@@ -354,7 +354,7 @@ void func_802A7E2C(void) {
     switch (D_8037D396) {
     case 0:
         pitch_setIdeal(50.0f);
-        if (animctrl_isAt(sp38, 0.7247f)) {
+        if (anctrl_isAt(sp38, 0.7247f)) {
             sp34 = pitch_get();
             sp30 = yaw_get();
             func_80256E24(sp24, sp34, sp30, 0.0f, 0.0f, 800.0f);
@@ -369,7 +369,7 @@ void func_802A7E2C(void) {
         }
         break;
     }
-    if (animctrl_isAt(sp38, 0.6f)) {
+    if (anctrl_isAt(sp38, 0.6f)) {
         func_8030E4E4(SFX_0_BLOOP);
     }
     if (!player_inWater()) {
@@ -521,19 +521,19 @@ void func_802A846C(void) {
         sp28 = ml_max_f(sp28, 600.0f);
     }
     if (sp28 > 80.0f) {
-        animctrl_reset(temp_s0);
-        animctrl_setIndex(temp_s0, ASSET_4F_ANIM_BSTWIRL);
-        animctrl_setPlaybackType(temp_s0, ANIMCTRL_STOPPED);
-        animctrl_setDuration(temp_s0, 1.2f);
-        animctrl_setStart(temp_s0, 0.8204f);
-        animctrl_start(temp_s0, "bsbswim.c", 0x417);
+        anctrl_reset(temp_s0);
+        anctrl_setIndex(temp_s0, ASSET_4F_ANIM_BSTWIRL);
+        anctrl_setPlaybackType(temp_s0, ANIMCTRL_STOPPED);
+        anctrl_setDuration(temp_s0, 1.2f);
+        anctrl_setStart(temp_s0, 0.8204f);
+        anctrl_start(temp_s0, "bsbswim.c", 0x417);
     } else {
-        animctrl_reset(temp_s0);
-        animctrl_setIndex(temp_s0, ASSET_57_ANIM_BSSWIM_IDLE);
-        animctrl_setPlaybackType(temp_s0, ANIMCTRL_LOOP);
-        animctrl_setDuration(temp_s0, 1.2f);
-        animctrl_setStart(temp_s0, 0.6412f);
-        animctrl_start(temp_s0, "bsbswim.c", 0x41E);
+        anctrl_reset(temp_s0);
+        anctrl_setIndex(temp_s0, ASSET_57_ANIM_BSSWIM_IDLE);
+        anctrl_setPlaybackType(temp_s0, ANIMCTRL_LOOP);
+        anctrl_setDuration(temp_s0, 1.2f);
+        anctrl_setStart(temp_s0, 0.6412f);
+        anctrl_start(temp_s0, "bsbswim.c", 0x41E);
     }
     D_8037D398 = ml_map_f(sp28, 40.0f, 1000.0f, -300.0f, -1200.0f);
     baphysics_set_vertical_velocity(D_8037D398);

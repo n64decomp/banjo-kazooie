@@ -32,7 +32,7 @@ void __chTermite_updateAnimationSpeed(Actor *this) {
         this->actor_specific_1_f += (this->velocity[0] < this->actor_specific_1_f) ? -0.2 : 0.2;
     }
 
-    animctrl_setDuration(this->animctrl, ml_map_f(this->actor_specific_1_f, 5.0f, 12.0f, 0.54f, 0.36f));
+    anctrl_setDuration(this->anctrl, ml_map_f(this->actor_specific_1_f, 5.0f, 12.0f, 0.54f, 0.36f));
 }
 
 void __chTermite_updateRandomRotationSpeed(Actor *this) {
