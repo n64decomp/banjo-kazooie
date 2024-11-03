@@ -10,8 +10,9 @@ void func_8028F3D8(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 void func_8038A8F8(Actor *this);
 
 /* .data */
-ActorInfo D_8038B0E0 = { 0x1F0, 0x3BD, 0, 0, NULL,
-    func_8038A8F8, actor_update_func_80326224, func_80325340,
+ActorInfo gCode44D0  = { 
+    MARKER_1F0_SM_UNKNOWN, ACTOR_3BD_SM_UNKNOWN, NULL, 
+    0, NULL, func_8038A8F8, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 

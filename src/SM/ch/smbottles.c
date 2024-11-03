@@ -631,7 +631,7 @@ void chSmBottles_update(Actor *this) {
             }
             else if (actor_animationIsAt(this, 0.9999f)) { //L8038A378
                 __chSmBottles_setState(this, SM_BOTTLES_STATE_1_UNKNOWN);
-                func_80386540();
+                codeF0_func_80386540();
             }
             break;
     }//L8038A3A0

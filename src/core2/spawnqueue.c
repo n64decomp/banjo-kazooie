@@ -362,7 +362,7 @@ void spawnQueue_reset(void){
             cutscene_func_8038C4E0();
             break;
         case OVERLAY_B_TRAINING:
-            SM_func_80386810();
+            SM_resetSpawnableActors();
             break;
         case OVERLAY_3_HAUNTED:
             MMM_func_803890E0();

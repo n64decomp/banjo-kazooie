@@ -9,8 +9,8 @@ int ability_hasLearned(s32);
 extern s32 D_80275650;
 
 
-extern ActorInfo D_8038AB00;
-extern ActorInfo D_8038ABF0;
+extern ActorInfo gQuarrie;
+extern ActorInfo gCodeBF0;
 extern ActorInfo gChAttackTutorial;
 extern ActorInfo gChVegetablesTopperA;
 extern ActorInfo gChVegetablesBawlA;
@@ -20,11 +20,11 @@ extern ActorInfo gChVegetablesBawlB;
 extern ActorInfo gChVegetablesCollywobbleB;
 extern ActorInfo gChBottles;
 extern ActorInfo gChJumpTutorial;
-extern ActorInfo D_8038B0E0;
-extern ActorInfo D_8038B008; //chBanjosBed
-extern ActorInfo D_8038B044; //chBanjosChair
-extern ActorInfo D_8038B080; //chBanjosStove
-extern ActorInfo D_8038AB24;
+extern ActorInfo gCode44D0;
+extern ActorInfo gBanjosBed;
+extern ActorInfo gBanjosChair;
+extern ActorInfo gBanjosStove;
+extern ActorInfo gRockTrappingGrunty;
 
 extern u32 D_803FFE00[4];
 
@@ -47,29 +47,28 @@ struct {
 
 
 /* .code */
-//dynamically gets learned ability bitfield address
-u32 *func_803864E0(void){
+static u32 *__codeF0_getLearnedAbilitiesAddress(){
     s16 *addr;
     addr = (s16*)ability_hasLearned;
     return (u32 *)((addr[1] << 0x10) + addr[3]);
 }
 
-void func_803864FC(enum ability_e arg0){
+static void __codeF0_learnAbility(enum ability_e ability){
     u32 *addr;
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
-        addr = func_803864E0();
-        *addr = 1 << arg0;
+        addr = __codeF0_getLearnedAbilitiesAddress();
+        *addr = 1 << ability;
     }
 }
 
-void func_80386540(void){
-    u32 *sp2C;
+void codeF0_func_80386540(){
+    u32 *learned_abilities_address;
     s32 sp28;
     u32 *addr;
     u32 sp20;
-    sp2C = func_803864E0();
-    sp28 = *sp2C;
-    *sp2C = 0;
+    learned_abilities_address = __codeF0_getLearnedAbilitiesAddress();
+    sp28 = *learned_abilities_address;
+    *learned_abilities_address = 0;
     if(ability_hasLearned(ABILITY_1_BEAK_BOMB)){
         addr = (u32*)ability_hasLearned;
         addr[2] = 0x03E00008; //jr $ra
@@ -78,20 +77,20 @@ void func_80386540(void){
         osInvalICache(addr, 0x10);
     }
 
-    *sp2C = sp28;
+    *learned_abilities_address = sp28;
     osPiReadIo(0x574, &sp20);
-    if((sp20 = (sp20 & 0xffff)) !=  0x6c07)
-        func_803864FC(ABILITY_A_HOLD_A_JUMP_HIGHER);
+    if((sp20 = (sp20 & 0xffff)) != 0x6c07)
+        __codeF0_learnAbility(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
-    if(!SM_CRCs_are_valid())
-        func_803864FC(ABILITY_10_TALON_TROT);
+    if(!__codeF0_areCrcsValid())
+        __codeF0_learnAbility(ABILITY_10_TALON_TROT);
     
 
-    if(!func_803866CC())
-        func_803864FC(ABILITY_C_ROLL);
+    if(!__codeF0_areRomCrcsCorrect())
+        __codeF0_learnAbility(ABILITY_C_ROLL);
 }
 
-void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
+void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
     s32 temp_v0 = 0;
     s32 temp_v1 = -1;
     s32 i;
@@ -114,7 +113,7 @@ void func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
 
 extern u8 crc_ROM_START[];
 
-int func_803866CC(void){
+static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 
     if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == D_803FFE00[0])
@@ -122,12 +121,13 @@ int func_803866CC(void){
         && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == D_803FFE00[2])
         && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == D_803FFE00[3])
     ){
-        return 1;
+        return TRUE;
     }
-    return 0;
+
+    return FALSE;
 }
 
-bool SM_CRCs_are_valid(void){
+static bool __codeF0_areCrcsValid(){
     if( D_8038B320.unk0 == D_8038AAE0
         && D_8038B320.unk4 == D_8038AAE4 
         && D_8038B320.unkC == D_80275650 
@@ -138,10 +138,10 @@ bool SM_CRCs_are_valid(void){
     return FALSE;
 }
 
-void SM_func_80386810(void)
+void SM_resetSpawnableActors()
 {
-    spawnableActorList_add(&D_8038AB00,  actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038ABF0,  actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&gQuarrie,  actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&gCodeBF0,  actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&gChAttackTutorial,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gChVegetablesTopperA,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gChVegetablesBawlA,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
@@ -151,9 +151,9 @@ void SM_func_80386810(void)
     spawnableActorList_add(&gChVegetablesCollywobbleB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gChBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChJumpTutorial,  actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038B0E0,  actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038B008,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038B044,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038B080,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038AB24,  actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gCode44D0 ,  actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gBanjosBed,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gBanjosChair,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gBanjosStove,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&gRockTrappingGrunty,  actor_new, ACTOR_FLAG_UNKNOWN_10);
 }
