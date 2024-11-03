@@ -598,7 +598,7 @@ void func_802BD780(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4, f32 a
     s32 temp_s1;
     s32 i;
 
-    temp_s1 = func_8033DD90() * 5;
+    temp_s1 = time_getDeltaReal_frames() * 5;
     for(i = 0; i < temp_s1; i++){
         func_802BD610(arg0, arg1, arg2, arg3, arg4, arg5);
     }
@@ -758,7 +758,7 @@ void func_802BDE88(f32 *arg0, f32 *arg1, f32 arg2, f32 arg3, f32 arg4) {
     s32 end;
     s32 i;
 
-    end = func_8033DD90()*5;
+    end = time_getDeltaReal_frames()*5;
     for(i = 0; i < end; i++){
         temp_f14 = arg2 - *arg1;
         temp_f2 = temp_f14*arg3 - *arg0;
@@ -823,7 +823,7 @@ void func_802BE190(f32 arg0[3]){
         return;
     }
 
-    end = func_8033DD90()*5;
+    end = time_getDeltaReal_frames()*5;
     ncDynamicCamera_getPosition(sp34);
     for(i = 0; i < end; i++){
         func_802BDF5C(arg0, sp34);

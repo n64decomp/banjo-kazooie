@@ -4,6 +4,7 @@
 #include "variables.h"
 
 #include "gc/gctransition.h"
+#include "time.h"
 
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
@@ -30,7 +31,6 @@ void func_802E40E8(s32 transition);
 int  func_802E4A08(void);
 
 f32 func_8033DC20(void);
-void func_8033DC9C(f32);
 extern void func_80324C58(void);
 
 /* .data */
@@ -402,13 +402,13 @@ void func_802E4214(enum map_e map_id){
     rand_reset();
     scissorBox_setDefault();
     func_80253FE8();
-    func_8033DC70();
+    time_reset();
     func_8033DC04();
     func_8031FBA0();
     D_8037E8E0.game_mode = GAME_MODE_2_UNKNOWN;
     D_8037E8E0.unk8 = 0.0f;
-    func_8033DC9C(0.0f);
-    func_8033DD04(0);
+    time_setDeltaReal_sec(0.0f);
+    time_setDeltaReal_frames(0);
     func_803216D0(map_id);
     func_8030AFA0(map_id);
     func_802E3854();
@@ -419,12 +419,12 @@ void func_802E4214(enum map_e map_id){
 
 void func_802E4384(void){
     if(D_8037E8E0.unk8 == 0.0f){
-        func_8033DC9C(0.0f);
+        time_setDeltaReal_sec(0.0f);
     }
     else{
         func_8033DC18();
         ;
-        func_8033DD04((s32)(func_8033DC20()*60.0f + 0.5));
+        time_setDeltaReal_frames((s32)(func_8033DC20()*60.0f + 0.5));
     }
     func_8033DC10();
     

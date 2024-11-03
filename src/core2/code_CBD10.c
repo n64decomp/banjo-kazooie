@@ -6,7 +6,7 @@
 #include "core2/anim/sprite.h"
 #include "code_B6EA0.h"
 
-extern f32  func_8033DDEC(void);
+extern f32  time_getDelta_frames(void);
 extern u8   func_8033E8D0(void);
 extern void func_8033FFE4(u8, s32, s32);
 extern void func_8033FC34(u8, s32);
@@ -111,7 +111,7 @@ void func_80352F58(void){
     f32 *sp2C = func_8033E960();
     AnimSprite *sp28 = func_8033E8F4();
     u8 sp27 = func_8033E8D0();
-    f32 sp20 = func_8033DDEC();
+    f32 sp20 = time_getDelta_frames();
     if(animsprite_is_stopped(sp28)){
         func_8033E984();
     }

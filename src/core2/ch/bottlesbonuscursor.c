@@ -3,6 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "time.h"
 
 #ifndef ABS
 #define	ABS(d)		((d) >= 0) ? (d) : -(d)
@@ -13,7 +14,6 @@ extern u8 D_8037DCC8; //bottles bonus flags???
 
 extern void func_8025AABC(enum comusic_e);
 extern f32 func_8024E420(s32, s32, s32);
-extern f32 func_8033DDB8(void);
 extern void chBottlesBonus_func_802DEA50(s32);
 extern void actor_postdrawMethod(ActorMarker *);
 extern void chBottlesBonus_completedPuzzle(void);
@@ -209,7 +209,7 @@ void chBottlesBonusCursor_update(Actor *this) {
     s32 sp44;
 
     sp5C = func_8024F3F4();
-    sp58 = func_8033DDB8();
+    sp58 = time_func_8033DDB8();
     held_piece = &D_8037E248[D_8037E5C0.unk0];
     if (!this->initialized) {
         this->initialized = TRUE;

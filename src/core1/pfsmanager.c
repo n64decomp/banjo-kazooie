@@ -176,9 +176,9 @@ void pfsManager_update(void) {
                 volatileFlag_set(VOLATILE_FLAG_63, 1);
             }
         }
-        func_8033DD04(sp5C);
+        time_setDeltaReal_frames(sp5C);
     }
-    sp5C = func_8033DD90();
+    sp5C = time_getDeltaReal_frames();
     randf();
     for (i = 0; i < 4; i++) {
         if ((pfsManagerContPadData[i].button & 0x20) && (pfsManagerContPadData[i].button & 0x10)) {

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "time.h"
+
 #define _73640_MAX(s,t) ((s < t)? t: s)
 #define _73640_MIN(s,t) ((s > t)? t: s)
 
@@ -16,11 +18,6 @@ typedef struct item_print_s{
 
 
 s32 func_802FAD9C(enum item_e item_id);
-f32 time_getDelta(void);
-f32 time_getDelta(void);
-
-
-
 
 /* .data */
 s16 D_803692E0[6] = {

@@ -8,7 +8,7 @@ extern void chBottlesBonusCursor_func_802DF99C(void);
 extern f32 *chBottlesBonusCursor_func_802E05AC(s32);
 extern f32  func_802E4B38(void);
 extern void func_8033A8F0(s32, s32, f32[4]);
-extern f32  func_8033DDB8(void);
+extern f32  time_func_8033DDB8(void);
 BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
@@ -288,7 +288,7 @@ void chBottlesBonus_func_802DD8AC(BoneTransformList *arg0, s32 arg1) {
 
     actor = marker_getActor(chBottlesBonusMarker);
     spD4 = func_802E4B38();
-    spD0 = func_8033DDB8();
+    spD0 = time_func_8033DDB8();
     if (D_8037DEB0 == 0) {
         D_8037DEB0 = 1;
         for(i = 0; i < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; i++){
@@ -452,7 +452,7 @@ void chBottlesBonus_update(Actor *this) {
     s32 phi_s0_2;
 
     local = (ActorLocal_core2_560F0 *) &this->local;
-    sp50 = func_8033DDB8();
+    sp50 = time_func_8033DDB8();
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         actor_collisionOff(this);

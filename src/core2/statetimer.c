@@ -1,5 +1,5 @@
 #include "core2/statetimer.h"
-extern f32 time_getDelta(void);
+#include "time.h"
 
 typedef struct{
     f32 now;

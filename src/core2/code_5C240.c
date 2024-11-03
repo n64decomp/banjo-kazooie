@@ -3,13 +3,14 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "time.h"
+
 extern void func_8023DFF0(s32);
 extern void comusicPlayer_update(void);
 extern void func_802F1A10(void *, f32);
 extern void func_8033DC10(void);
 extern void func_8033DC18(void);
 extern f32  func_8033DC20(void);
-extern void func_8033DC9C(f32);
 
 /* .bss */
 struct {
@@ -115,10 +116,10 @@ void func_802E35D8(void ) {
     s32 sp38;
 
     if (D_8037E8C0.unk18 == 0.0f) {
-        func_8033DC9C(0.0f);
+        time_setDeltaReal_sec(0.0f);
     } else {
         func_8033DC18();
-        func_8033DC9C(func_8033DC20());
+        time_setDeltaReal_sec(func_8033DC20());
     }
     func_8033DC10();
     D_8037E8C0.unk18 += time_getDelta();

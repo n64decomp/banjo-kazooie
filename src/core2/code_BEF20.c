@@ -3,8 +3,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "time.h"
 
-f32 time_getDelta(void);
 void func_80346DB4(s32);
 
 s32  item_adjustByDiffWithHud(enum item_e item, s32 diff);

@@ -5,8 +5,8 @@
 #include "variables.h"
 #include "zoombox.h"
 
+#include "time.h"
 
-extern f32 func_8033DDB8(void);
 extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
 BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
 
@@ -883,7 +883,7 @@ void func_80316764(GcZoombox *this, s32 arg1) {
     } else {
         pfsManager_getFirstControllerFaceButtonState(0, sp38);
         func_8024E640(0, sp2C);
-        phi_f0 = func_8033DDB8();
+        phi_f0 = time_func_8033DDB8();
     }
 
     if (this->unkFC == NULL) 
@@ -1058,7 +1058,7 @@ void gczoombox_update(GcZoombox *this){
      s32 sp48;
      f32 sp44;
      f32 tmp_f0;
-     sp48 = func_8033DD90();
+     sp48 = time_getDeltaReal_frames();
      if(this == NULL)
           return;
 
@@ -1070,7 +1070,7 @@ void gczoombox_update(GcZoombox *this){
      else{
           pfsManager_getFirstControllerFaceButtonState(0, sp58);
           func_8024E640(0, sp4C);
-          tmp_f0 = func_8033DDB8();
+          tmp_f0 = time_func_8033DDB8();
      }
 
      switch(this->state){

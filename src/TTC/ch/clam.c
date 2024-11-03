@@ -98,7 +98,7 @@ static bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
 
 
     anctrl_setDuration(this->anctrl, 1.0f);
-    sp2C = (s32) ((f64) (60.0f / (f32) func_8033DD90()) * 0.5);
+    sp2C = (s32) ((f64) (60.0f / (f32) time_getDeltaReal_frames()) * 0.5);
     if ((this->unk1C[0] != 0.0f) || !__chClam_updateFuncTarget(this, sp2C)) {
         if (((f64) anctrl_getAnimTimer(this->anctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
