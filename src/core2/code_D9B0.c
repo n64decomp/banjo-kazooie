@@ -102,11 +102,11 @@ void func_80294B00(int arg0){
 
 void func_80294B0C(void){
     f32 sp1C = player_getYPosition();
-    int sp18 = func_8028ECAC();
+    enum bsgroup_e player_movement_group = player_movementGroup();
     if( player_isStable() 
         || player_inWater() 
-        || (sp18 == BSGROUP_A_FLYING && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
-        || sp18 == BSGROUP_5_CLIMB
+        || (player_movement_group == BSGROUP_A_FLYING && player_getActiveHitbox(0) != HITBOX_3_BEAK_BOMB) 
+        || player_movement_group == BSGROUP_5_CLIMB
     ){////L80294B74
         func_80294B00(1);
     }

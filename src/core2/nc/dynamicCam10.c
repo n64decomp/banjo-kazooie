@@ -7,7 +7,7 @@ f32 D_8037DAA0;
 
 /* .code */
 void func_802BF0E0(f32 arg0[3]){
-    if(func_8028ECAC() == BSGROUP_5_CLIMB){
+    if(player_movementGroup() == BSGROUP_5_CLIMB){
         func_802C0150(3);
     }
     else{

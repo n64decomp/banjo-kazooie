@@ -8,7 +8,7 @@ extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 extern bool func_80323240(struct56s *, f32, f32[3]);
 extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], u32);
 extern BKCollisionTri *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
-extern f32 func_8031C5D4(struct0*);
+extern f32 floor_getXPosition(struct0*);
 extern void func_8031C5AC(struct0 *, f32 *);
 
 /* .bss */
@@ -255,7 +255,7 @@ void func_8024560C(f32 arg0[3], struct0 *arg1, UNK_TYPE(s32) arg2, u8 *arg3, f32
     func_8031C618(arg1, arg0);
     func_8031C638(arg1, arg2);
     func_8031C44C(arg1);
-    sp40 = func_8031C5D4(arg1);
+    sp40 = floor_getXPosition(arg1);
     func_8031C5AC(arg1, sp44);
     temp_v0 = *arg3;
     *arg3 = 0;

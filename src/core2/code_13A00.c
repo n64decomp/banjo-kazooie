@@ -155,11 +155,11 @@ void func_8029AE48(void){
 }
 
 void func_8029AE74(s32 arg0){
-    s32 tmp_v0;
+    enum bsgroup_e player_movement_group;
     func_8029ACD4();
     D_8037D194 = arg0;
-    tmp_v0 = func_8028ECAC();
-    if(tmp_v0 == BSGROUP_6_TURBO_TALON_TRAINERS || tmp_v0 == BSGROUP_8_TROT || tmp_v0 == BSGROUP_9_LONG_LEG){
+    player_movement_group = player_movementGroup();
+    if(player_movement_group == BSGROUP_6_TURBO_TALON_TRAINERS || player_movement_group == BSGROUP_8_TROT || player_movement_group == BSGROUP_9_LONG_LEG){
         func_802F494C(D_8037D190, 0.2f);
     }
     else{

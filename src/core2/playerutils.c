@@ -75,11 +75,11 @@ int can_peck(void){
 }
 
 int func_8028ABB8(void){
-        if(baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE) || baflag_isTrue(BA_FLAG_19))
-            return 0;
-        if(bs_getState() == BS_56_RECOIL)
-            return 0;
-        return 1;
+    if(baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE) || baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM))
+        return 0;
+    if(bs_getState() == BS_56_RECOIL)
+        return 0;
+    return 1;
 }
 
 s32 can_roll(void){
@@ -98,7 +98,7 @@ s32 can_trot(void){
     return ability_hasLearned(ABILITY_10_TALON_TROT);
 }
 
-s32 func_8028AC98(void){
+s32 can_trot_unused(void){
     return ability_hasLearned(ABILITY_10_TALON_TROT);
 }
 
@@ -119,11 +119,11 @@ int can_view_first_person(void){
     return 1;
 }
 
-int func_8028AD64(void){
+int dummy_player_is_ant(void){
     return bsant_inSet(bs_getState());
 }
 
-int func_8028AD8C(void){
+int dummy_player_is_pumpkin(void){
     return bspumpkin_inSet(bs_getState());
 }
 
@@ -131,38 +131,38 @@ int func_8028ADB4(void){
     return func_8032190C() && map_get() != MAP_1_SM_SPIRAL_MOUNTAIN;
 }
 
-int func_8028ADF0(void){
+int wishyWashyFlag_get(void){
     return volatileFlag_get(VOLATILE_FLAG_9D_SANDCASTLE_WISHY_WASHY);
 }
 
-bool func_8028AE10(void) {
-    f32 sp2C;
-    f32 sp28;
-    f32 sp1C[3];
+bool dummy_player_withinIdealYaw(void) {
+    f32 right_angle;
+    f32 left_angle;
+    f32 position[3];
     f32 ideal_yaw;
 
-    _player_getPosition(sp1C);
+    _player_getPosition(position);
     ideal_yaw = yaw_getIdeal();
-    sp2C = viewport_adjustAngleToRight(sp1C, 90.0f);
-    sp28 = viewport_adjustAngleToRight(sp1C, 270.0f);
-    if (sp28 < sp2C) {
-        return (sp2C < ideal_yaw) || (ideal_yaw < sp28);
+    right_angle = viewport_adjustAngleToRight(position, 90.0f);
+    left_angle = viewport_adjustAngleToRight(position, 270.0f);
+    if (left_angle < right_angle) {
+        return (right_angle < ideal_yaw) || (ideal_yaw < left_angle);
     }
     else{
-        return (sp2C < ideal_yaw) && (ideal_yaw < sp28);
+        return (right_angle < ideal_yaw) && (ideal_yaw < left_angle);
     }
 }
 
 bool func_8028AED4(f32 arg0[3], f32 arg1) {
-    f32 sp2C[3];
+    f32 position[3];
     f32 sp28;
     u16 sp26;
     u16 sp24;
     s32 temp_v1;
     s32 phi_a0;
 
-    _player_getPosition(sp2C);
-    func_80257F18(arg0, sp2C, &sp28);
+    _player_getPosition(position);
+    func_80257F18(arg0, position, &sp28);
     sp26 = (u16) (sp28 * 182.044444);
     sp24 = (u16) (player_getYaw() * 182.044444);
     sp26 = (u16)((sp26 - sp24));
@@ -171,7 +171,7 @@ bool func_8028AED4(f32 arg0[3], f32 arg1) {
     return (phi_a0 < arg1 * 182.044444);
 }
 
-int func_8028B094(void){
+int player_shouldFall(void){
     return (60.0f < player_getYPosition() - func_80294438());
 }
 
@@ -183,8 +183,8 @@ int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
 
 s32 func_8028B120(void){return 0;}
 
-int func_8028B128(void){
-    return baflag_isTrue(BA_FLAG_13);
+int player_isOnDangerousGround(void){
+    return baflag_isTrue(BA_FLAG_13_TOUCHING_DANGEROUS_GROUND);
 }
 
 bool player_isInRBB(void){
@@ -220,7 +220,7 @@ int func_8028B394(void){
     return func_8029CF20(4);
 }
 
-bool func_8028B3B4(void) {
+bool player_isActive(void) {
     bool sp1C;
     bool sp18;
 
@@ -232,18 +232,18 @@ bool func_8028B3B4(void) {
 }
 
 bool player_isFallTumbling(void){
-    s32 sp1C;
+    s32 damage;
 
     if (player_isStable()) {
         return FALSE;
     }
-    if (!bafalldamage_get_damage(&sp1C)) {
+    if (!bafalldamage_get_damage(&damage)) {
         return FALSE;
     }
     return TRUE;
 }
 
-bool func_8028B470(void){
+bool player_isSwimming(void){
     bool out;
     switch(bs_getState()){
         case BS_2B_DIVE_IDLE:
@@ -274,12 +274,12 @@ int func_8028B528(void){
 }
 
 void func_8028B534(void){
-    s32 sp1C = func_8028ECAC();
+    enum bsgroup_e player_movement_group = player_movementGroup();
     if(player_inWater()){
         D_8037BF62 = 1;
     }
     else{
-        if(player_isStable() || sp1C == BSGROUP_A_FLYING || sp1C == BSGROUP_5_CLIMB){
+        if(player_isStable() || player_movement_group == BSGROUP_A_FLYING || player_movement_group == BSGROUP_5_CLIMB){
             D_8037BF62 = 0;
         }
     }

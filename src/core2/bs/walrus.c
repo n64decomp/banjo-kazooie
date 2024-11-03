@@ -159,7 +159,7 @@ void bswalrus_idle_update(void){
 
     func_80299628(0);
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_6A_WALRUS_FALL;
 
     if(bainput_should_look_first_person_camera())
@@ -197,7 +197,7 @@ void bswalrus_walk_update(void){
     if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         next_state = BS_67_WALRUS_IDLE;
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_6A_WALRUS_FALL;
 
     if(bakey_pressed(BUTTON_A))
@@ -352,7 +352,7 @@ void bswalrus_fall_update(void){
         if( bastick_getZone() > 0 
             || (D_8037D5C8 == 2 && anctrl_isStopped(aCtrl))
         ){
-            if(baflag_isTrue(BA_FLAG_19))
+            if(baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM))
                 next_state = badrone_transform();
             else
                 next_state = BS_67_WALRUS_IDLE;

@@ -5,7 +5,8 @@
 #include "core2/ba/physics.h"
 
 
-extern f32        func_8031C5D4(struct0*);
+extern int        func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
+extern f32        floor_getXPosition(struct0*);
 extern void       func_8031C5AC(struct0 *, f32 *);
 extern f32        func_8031C5E4(struct0*);
 extern void       func_8031C5FC(struct0 *, f32);
@@ -88,7 +89,7 @@ void func_8029350C(f32 *arg0) {
     func_8031C618(D_8037C200, arg0);
     func_8031C638(D_8037C200, baMarker_8028D694());
     func_8031C44C(D_8037C200);
-    sp38 = func_8031C5D4(D_8037C200);
+    sp38 = floor_getXPosition(D_8037C200);
     func_8031C5AC(D_8037C200, sp3C);
     temp_v0 = D_8037C279;
     D_8037C279 = FALSE;
@@ -410,11 +411,11 @@ void func_80294390(void) {
 }
 
 f32 func_80294404(void){
-     return player_getYPosition() - func_8031C5D4(D_8037C200);
+     return player_getYPosition() - floor_getXPosition(D_8037C200);
 }
 
 f32 func_80294438(void){
-     return func_8031C5D4(D_8037C200);
+     return floor_getXPosition(D_8037C200);
 }
 
 void func_8029445C(f32 arg0[3]){

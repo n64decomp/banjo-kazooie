@@ -43,7 +43,7 @@ void func_802B6D00(void){
 
     sp1C = bastick_getZonePosition();
     sp18 = bastick_getZone();
-    if(func_8028B128()){
+    if(player_isOnDangerousGround()){
         if(sp18 == 0){
             baphysics_set_target_horizontal_velocity(0.0f);
         }else{//L802B6D48
@@ -158,13 +158,13 @@ void bswalk_creep_update(void){
             next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         next_state = BS_WALK_MUD;
 
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
@@ -231,13 +231,13 @@ void bswalk_slow_upate(void){
             next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         next_state = BS_WALK_MUD;
 
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
@@ -303,7 +303,7 @@ void bswalk_update(void){
             next_state = BS_4_WALK_FAST;
             break;
     }//L802B76B8
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         next_state = BS_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
@@ -313,7 +313,7 @@ void bswalk_update(void){
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
@@ -406,14 +406,14 @@ void bswalk_fast_update(void){
                 next_state = badrone_look();
             break;
     }//L802B7AA4
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         next_state = BS_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
         next_state = BS_SKID;
     }
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
@@ -453,7 +453,7 @@ void bswalk_mud_update(void){
     func_8029AD28(0.4f, 4);
     func_8029AD28(0.9f, 3);
     func_802B6D00();
-    if(!func_8028B128())
+    if(!player_isOnDangerousGround())
         next_state = BS_2_WALK_SLOW;
 
     if(!bastick_getZone())
@@ -462,7 +462,7 @@ void bswalk_mud_update(void){
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))

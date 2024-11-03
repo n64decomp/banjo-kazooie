@@ -119,7 +119,7 @@ int func_80290E8C(void){
 
 void func_80290F14(void){
     if( !func_80298850() 
-        && func_8028ECAC() != 4
+        && player_movementGroup() != BSGROUP_4_LOOK
         && batimer_get(7) == 0.0f
         && bainput_should_zoom_out_camera()
     ){

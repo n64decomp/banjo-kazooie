@@ -419,12 +419,12 @@ void func_8030D644(void){
     }
 }
 
-void func_8030D6C4(enum sfx_e uid, f32 arg1, s32 sampleRate, s32 arg3, s32 arg4){
+void func_8030D6C4(enum sfx_e uid, f32 volume, s32 sampleRate, s32 arg3, s32 arg4){
     u8 indx = sfxsource_createSfxsourceAndReturnIndex();
     if(indx){
         sfxsource_setSfxId(indx, uid);
         sfxsource_setSampleRate(indx, sampleRate);
-        sfxsource_playSfxAtVolume(indx, arg1);
+        sfxsource_playSfxAtVolume(indx, volume);
         func_8030DCCC(indx, arg3);
         func_8030DD14(indx, 1);
         func_8030DD90(indx, arg4);

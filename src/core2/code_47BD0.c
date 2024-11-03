@@ -445,7 +445,7 @@ void chBeeSwarm_update(Actor *this) {
     switch (this->state) {
     case 1:
         if (!fileProgressFlag_get(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE) && subaddie_playerIsWithinCylinder(this, 250, 300) 
-            && ((func_8028ECAC() == 0) || (func_8028ECAC() == BSGROUP_8_TROT)) 
+            && ((player_movementGroup() == BSGROUP_0_NONE) || (player_movementGroup() == BSGROUP_8_TROT)) 
             && (player_getTransformation() == TRANSFORM_1_BANJO) 
             && (gcdialog_showText(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
         ) {
@@ -479,11 +479,11 @@ void chBeeSwarm_update(Actor *this) {
     case 4:
         spB4[1] += 50.0f;
         this->lifetime_value += dt;
-        if ((this->lifetime_value - 0.5 > 0.0) && (local->unk0 > 0) && (func_8028ECAC() != 3)) {
+        if ((this->lifetime_value - 0.5 > 0.0) && (local->unk0 > 0) && (player_movementGroup() != BSGROUP_3_WONDERWING)) {
             func_8028F504(0xD);
             this->lifetime_value -= 0.5;
         }
-        if ((this->lifetime_value > 0.2) && (func_8028ECAC() == 3)) {
+        if ((this->lifetime_value > 0.2) && (player_movementGroup() == BSGROUP_3_WONDERWING)) {
             if (local->unk0-- > 0) {
                 sp68[0] = local->unk8[local->unk0].unk0[0] + this->position[0];
                 sp68[1] = local->unk8[local->unk0].unk0[1] + this->position[1];

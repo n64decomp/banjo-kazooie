@@ -342,7 +342,7 @@ void func_8031C5AC(struct0 *this, f32 *dst)
 { ml_vec3f_copy(dst, &this->normX);
 }
 
-f32 func_8031C5D4(struct0 *this){
+f32 floor_getXPosition(struct0 *this){
     return this->posX;
 }
 

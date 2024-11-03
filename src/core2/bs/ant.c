@@ -94,7 +94,7 @@ void bsant_idle_update(void){
     enum bs_e new_state = 0;
     func_80299628(0);
     
-    if(func_8028B094())
+    if(player_shouldFall())
         new_state = BS_38_ANT_FALL;
 
     if(bainput_should_look_first_person_camera())
@@ -138,7 +138,7 @@ void bsant_walk_update(void){
     if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_35_ANT_IDLE;
 
-    if(func_8028B094())
+    if(player_shouldFall())
         sp1C = BS_38_ANT_FALL;
 
     if(bakey_pressed(BUTTON_A))
@@ -267,7 +267,7 @@ void bsant_fall_update(void){
             break;
     }
     if(player_isStable()){
-        if(baflag_isTrue(BA_FLAG_19))
+        if(baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM))
             sp2C = badrone_transform();
         else
             sp2C = BS_35_ANT_IDLE;

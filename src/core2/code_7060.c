@@ -71,8 +71,8 @@ bool func_8028E060(s32 arg0, s32 *arg1){
 void func_8028E0B0(ActorMarker *arg0){
     bs_setState(bs_getIdleState());
     bsStoredState_setTrot(FALSE);
-    baflag_clear(BA_FLAG_16);
-    baflag_clear(BA_FLAG_18);
+    baflag_clear(BA_FLAG_16_FLYING);
+    baflag_clear(BA_FLAG_18_UNDERWATER);
 }
 
 void func_8028E0F0(s32 arg0, s32 arg1[3]) {
@@ -118,17 +118,17 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     switch (map_get()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
-                baflag_set(BA_FLAG_16);
+                baflag_set(BA_FLAG_16_FLYING);
             }
             break;
         case MAP_77_GL_RBB_LOBBY:
             if ((arg0 == 2) && func_802D6088()) {
-                baflag_set(BA_FLAG_18);
+                baflag_set(BA_FLAG_18_UNDERWATER);
             }
             break;
         case MAP_76_GL_640_NOTE_DOOR:
             if ((arg0 == 1) && func_802D60C4()) {
-                baflag_set(BA_FLAG_18);
+                baflag_set(BA_FLAG_18_UNDERWATER);
             }
             break;
     }
@@ -154,8 +154,8 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     func_8028F85C(sp7C);
     func_80295A8C();
     bsStoredState_setTrot(FALSE);
-    baflag_clear(BA_FLAG_16);
-    baflag_clear(BA_FLAG_18);
+    baflag_clear(BA_FLAG_16_FLYING);
+    baflag_clear(BA_FLAG_18_UNDERWATER);
     func_8028E060(arg0, &sp6C);
     yaw_setIdeal((f32) sp6C);
     yaw_applyIdeal();
@@ -198,7 +198,7 @@ void func_8028E4B0(void) {
         D_8037BFB8 = 1;
         func_80295A8C();
         bsStoredState_setTrot(FALSE);
-        baflag_clear(BA_FLAG_16);
+        baflag_clear(BA_FLAG_16_FLYING);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
     } else if (func_8028DFF0(sp20, sp24)) {
@@ -435,7 +435,7 @@ f32 func_8028EC64(f32 arg0[3]){
     return sp1C;
 }
 
-enum bsgroup_e func_8028ECAC(void) {
+enum bsgroup_e player_movementGroup(void) {
     enum bs_e state_id;
     s32 temp_a1;
 
@@ -459,7 +459,7 @@ enum bsgroup_e func_8028ECAC(void) {
         return BSGROUP_C_WALRUS_SLED;
     }
     if (baflag_isTrue(BA_FLAG_9) != 0) {
-        return 1;
+        return BSGROUP_1_INTR;
     }
     switch(state_id){
         case BS_E_OW: //L8028EE00
@@ -468,7 +468,7 @@ enum bsgroup_e func_8028ECAC(void) {
         case BS_3F: //L8028EE00
         case BS_41_DIE: //L8028EE00
         case BS_44_JIG_JIGGY: //L8028EE00
-            return 1;
+            return BSGROUP_1_INTR;
 
         case BS_1A_WONDERWING_ENTER: //L8028EE08
         case BS_1B_WONDERWING_IDLE: //L8028EE08
@@ -490,19 +490,19 @@ enum bsgroup_e func_8028ECAC(void) {
             return BSGROUP_8_TROT;
 
         case BS_B_UNKOWN: //L8028EE30
-            return 2;
+            return BSGROUP_2;
 
         case BS_6E_CROC_BITE://L8028EE38
         case BS_70_CROC_EAT_GOOD://L8028EE38
             if(func_802AD3A0())
-                return 0;
+                return BSGROUP_0_NONE;
             return BSGROUP_7_CROC_ATTACK;
 
         default: //L8028EE58
             if (player_getActiveHitbox(NULL) != 0) {
                 return BSGROUP_B_ATTACKING;
             }
-            return 0;
+            return BSGROUP_0_NONE;
     }
 }
    
@@ -578,9 +578,9 @@ bool func_8028F070(void){
 }
 
 bool func_8028F098(void){
-    switch(func_8028ECAC()){
-        case 1:
-        case 2:
+    switch(player_movementGroup()){
+        case BSGROUP_1_INTR:
+        case BSGROUP_2:
             return FALSE;
         default:
             return TRUE;
@@ -647,7 +647,7 @@ bool func_8028F280(void){
 }
 
 bool func_8028F2A0(void) {
-    return (func_8028ECAC() == 0) && !func_80294610(0xE000);
+    return (player_movementGroup() == BSGROUP_0_NONE) && !func_80294610(0xE000);
 }
 
 
@@ -916,7 +916,7 @@ void func_8028FB68(void){
 }
 
 bool func_8028FB88(enum transformation_e xform_id) {
-    if (func_8028ADF0() && xform_id == TRANSFORM_1_BANJO) {
+    if (wishyWashyFlag_get() && xform_id == TRANSFORM_1_BANJO) {
         xform_id = TRANSFORM_7_WISHWASHY;
     }
     func_80294AF4(xform_id);
@@ -924,7 +924,7 @@ bool func_8028FB88(enum transformation_e xform_id) {
 }
 
 bool func_8028FBD4(f32 arg0[3]) {
-    if (func_803114B0() || func_8028ECAC()) {
+    if (func_803114B0() || player_movementGroup()) {
         return FALSE;
     }
     if (arg0 != NULL) {

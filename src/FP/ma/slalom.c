@@ -275,7 +275,7 @@ void maSlalom_dialogCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2
 }
 
 void maSlalom_win(void){
-    if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS){
+    if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && player_movementGroup() == BSGROUP_6_TURBO_TALON_TRAINERS){
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 2.0f);
     }
     func_8028F918(1);
@@ -333,7 +333,7 @@ void maSlalom_update(void){
             break;
 
         case MA_SLALOM_STATE_2_RACING: //L8038B61C
-            if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_6_TURBO_TALON_TRAINERS){
+            if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && player_movementGroup() == BSGROUP_6_TURBO_TALON_TRAINERS){
                 player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 20.0f);
             }
 

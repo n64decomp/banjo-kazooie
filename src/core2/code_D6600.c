@@ -62,7 +62,7 @@ void func_8035D65C(Actor *this) {
         this->unk38_31--;
         return;
     }
-    if (func_80329530(this, 500) && func_8028B470() && func_8035D608(this)) {
+    if (func_80329530(this, 500) && player_isSwimming() && func_8035D608(this)) {
         this->actor_specific_1_f = 2.0f;
         subaddie_set_state_with_direction(this, 4, 0.0f, -1);
     }

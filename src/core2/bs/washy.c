@@ -80,7 +80,7 @@ void func_802B9B14(void){
             break;
         case 5: // L802B9BE8
             if(baanim_isStopped()){
-                if(func_8028ADF0())
+                if(wishyWashyFlag_get())
                     next_state = BS_1_IDLE;
                 else
                     func_802B9980(6);

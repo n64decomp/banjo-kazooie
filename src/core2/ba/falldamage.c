@@ -122,9 +122,9 @@ void bafalldamage_init(void){
 }
 
 void bafalldamage_update(void){
-    s32 player_position;
-    player_position = func_8028ECAC();
-    if(player_isStable() || (player_getWaterState() != BSWATERGROUP_0_NONE) || player_position == BSGROUP_A_FLYING){
+    enum bsgroup_e player_movement_group;
+    player_movement_group = player_movementGroup();
+    if(player_isStable() || (player_getWaterState() != BSWATERGROUP_0_NONE) || player_movement_group == BSGROUP_A_FLYING){
         bafalldamage_start();
         bafalldamage_set_state(1);
     }

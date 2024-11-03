@@ -41,7 +41,7 @@ static SnackerCtlState __snackerctl_update_ttc(void){
     f32 player_position[3];
 
     _player_getPosition(player_position);
-    if(func_8028B470() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
+    if(player_isSwimming() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
         if(player_position[1] < 600.0f
             && !__snackerctl_player_within_distance(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
             && !__snackerctl_player_within_distance(-400.0, 2315.0f, 2000.0f)  //within 2000 of blubber's ship center
@@ -56,7 +56,7 @@ static SnackerCtlState __snackerctl_update_ttc(void){
 static SnackerCtlState __snackerctl_update_rbb(void){
     SnackerCtlState nextState = 0;
     f32 sp18[3];
-    if(func_8028B470()){
+    if(player_isSwimming()){
         func_8028E964(sp18);
         if(func_80309D58(sp18, 0))
             nextState = SNACKER_CTL_STATE_1_RBB;

@@ -199,7 +199,7 @@ static void __chNipper_updateFunc(Actor *this){
     s32 sp48;
     s32 xVelocity;
     f32 playerPosition[3];
-    s32 temp_v0;
+    enum bsgroup_e player_movement_group;
 
     player_getPosition(playerPosition);
     xVelocity = func_80309D58(playerPosition, 1);
@@ -237,10 +237,10 @@ static void __chNipper_updateFunc(Actor *this){
             }
 
             if(__chNipper_shouldShowActor(this)){
-                temp_v0 = func_8028ECAC();
+                player_movement_group = player_movementGroup();
                 if( !this->has_met_before
-                    && temp_v0 != 1
-                    && temp_v0 != 10
+                    && player_movement_group != BSGROUP_1_INTR
+                    && player_movement_group != BSGROUP_A_FLYING
                 ){
                     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_5_SPAWNED, 0.01f, 1);
                     if(gcdialog_showText(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){

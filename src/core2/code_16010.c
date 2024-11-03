@@ -22,7 +22,7 @@ void func_8029CFF8(void){
 }
 
 void func_8029D01C(void){
-    baflag_clear(BA_FLAG_13);
+    baflag_clear(BA_FLAG_13_TOUCHING_DANGEROUS_GROUND);
     D_8037D210 = sfxsource_createSfxsourceAndReturnIndex();
     D_8037D212 = 0;
 }
@@ -199,8 +199,7 @@ bool func_8029D66C(void){
     return FALSE;
 }
 
-//can_take_ground_damage
-bool func_8029D7B4(void){
+bool canTakeGroundDamage(void){
     enum bs_e sp1C;
 
     sp1C = bs_getState();
@@ -223,8 +222,8 @@ bool func_8029D7B4(void){
             return func_8029D66C() 
                 && bsStoredState_getTransformation() == TRANSFORM_1_BANJO
                 && stateTimer_isDone(STATE_TIMER_2_LONGLEG)
-                && func_8028ECAC() != BSGROUP_3_WONDERWING
-                && func_8028ECAC() != BSGROUP_9_LONG_LEG
+                && player_movementGroup() != BSGROUP_3_WONDERWING
+                && player_movementGroup() != BSGROUP_9_LONG_LEG
                 && baflag_isFalse(BA_FLAG_E_TOUCHING_WADING_BOOTS)
                 && sp1C != BS_25_LONGLEG_ENTER
                 && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
@@ -238,7 +237,7 @@ bool func_8029D7B4(void){
 }
 
 void func_8029D968(void){
-    s32 sp24;
+    s32 can_take_ground_damage;
     BKCollisionTri *temp_v0;
     s32 sp1C;
     s32 sp18;
@@ -261,11 +260,11 @@ void func_8029D968(void){
         }
     }//L8029DA18
 
-    sp24 = func_8029D7B4();
+    can_take_ground_damage = canTakeGroundDamage();
     batimer_decrement(4);
-    if(sp24){
+    if(can_take_ground_damage){
         if(map_get() == MAP_8E_GL_FURNACE_FUN){
-            if(bs_checkInterrupt(BS_INTR_13)){
+            if(bs_checkInterrupt(BS_INTR_13_FF_DEATH_SQUARE)){
                 func_8029D230();
             }
         }
@@ -278,7 +277,7 @@ void func_8029D968(void){
                     baMotor_80250D94(1.0f, 0.5f, 0.4f);
                 }
                 if(item_empty(ITEM_14_HEALTH)){
-                    bs_checkInterrupt(BS_INTR_13);
+                    bs_checkInterrupt(BS_INTR_13_FF_DEATH_SQUARE);
                 }
             }//L8029DAD0
 
@@ -316,9 +315,9 @@ void func_8029D968(void){
                     break;
             }
         }
-        baflag_set(BA_FLAG_13);
+        baflag_set(BA_FLAG_13_TOUCHING_DANGEROUS_GROUND);
     }
     else{
-        baflag_clear(BA_FLAG_13);
+        baflag_clear(BA_FLAG_13_TOUCHING_DANGEROUS_GROUND);
     }
 }

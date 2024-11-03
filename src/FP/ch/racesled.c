@@ -85,7 +85,7 @@ void chRaceSled_update(Actor *this){
         }
         break;
     case 3://L80386B50
-        if(func_8028ECAC() != BSGROUP_C_WALRUS_SLED){
+        if(player_movementGroup() != BSGROUP_C_WALRUS_SLED){
             __chRaceSled_setState(this, 2);
         }
         break;

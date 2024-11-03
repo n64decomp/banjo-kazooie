@@ -59,7 +59,7 @@ static void __chLeaky_updateFunc(Actor *this) {
     if( this->state == 1 
         && !this->has_met_before
         && func_80329530(this, 250) && !func_80329530(this, 160)
-        && !func_8028ECAC() 
+        && !player_movementGroup() 
         && gcdialog_showText(ASSET_A1A_DIALOG_LEAKY_FIRST_MEET, 0, NULL, NULL, NULL, NULL)
     ){
         this->has_met_before = TRUE;

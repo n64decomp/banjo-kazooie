@@ -55,7 +55,7 @@ void bssplat_update(void){
         if(140.0f < baphysics_get_target_horizontal_velocity())
             func_802929F8();
 
-        if(func_8028B094())
+        if(player_shouldFall())
             sp1C = BS_2F_FALL;
 
         if(anctrl_isStopped(aCtrl)){
@@ -71,7 +71,7 @@ void bssplat_update(void){
         if(anctrl_isStopped(aCtrl))
             sp1C = BS_1_IDLE;
 
-        if(func_8028B094())
+        if(player_shouldFall())
             sp1C = BS_2F_FALL;
         break;
     }//L802B4808

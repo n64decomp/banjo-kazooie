@@ -512,7 +512,7 @@ segments:
   - [0xF57BA0, c, code_2240]    
   - [0xF581F0, c, ba/anim]      # anstate???
   - [0xF58DE0, c, snackerctl]
-  - [0xF59330, c, code_39D0]
+  - [0xF59330, c, playerutils]
   - [0xF5A120, c, ba/marker]    #babanjo? baavatar?
   - [0xF5C490, c, code_6B30]
   - [0xF5C730, c, ba/carriedobj]
@@ -1125,7 +1125,7 @@ segments:
   - [0x1042800, .rodata, anseq]
   - [0x1042880, .rodata, ba/anim]
   - [0x1042890, .rodata, snackerctl]
-  - [0x10428A0, .rodata, code_39D0]
+  - [0x10428A0, .rodata, playerutils]
   - [0x1042940, .rodata, ba/marker]
   - [0x1042D70, .rodata, code_6B30]
   - [0x1042E60, .rodata, code_7060]
@@ -1377,7 +1377,7 @@ segments:
   - [0x1048560, .bss, anseq]
   - [0x1048560, .bss, ba/anim]
   - [0x1048560, .bss, snackerctl]
-  - [0x1048560, .bss, code_39D0]
+  - [0x1048560, .bss, playerutils]
   - [0x1048560, .bss, ba/marker]
   - [0x1048560, .bss, code_6B30]
   - [0x1048560, .bss, code_7060]

@@ -187,7 +187,7 @@ u8  D_8037D1E8;
 
 /* .code */
 f32 func_8029B3B0(f32 arg0) {
-    if (func_8028B128()) {
+    if (player_isOnDangerousGround()) {
         return arg0 * 0.2;
     }
     if (func_8028B120()) {
@@ -447,10 +447,10 @@ enum bs_14420_e func_8029BAF0(void){
         if (stateTimer_get(STATE_TIMER_2_LONGLEG) != 0.0f) {
             return BS14420_9_LONGLEG;
         }
-        if (baflag_isTrue(BA_FLAG_18)) {
+        if (baflag_isTrue(BA_FLAG_18_UNDERWATER)) {
             return BS14420_5_UNDERWATER;
         }
-        if (func_8028ECAC() == BSGROUP_3_WONDERWING) {
+        if (player_movementGroup() == BSGROUP_3_WONDERWING) {
             return BS14420_D_WONDERWING;
         }
         if (player_inWater()) {
@@ -568,10 +568,10 @@ enum bs_e bs_getIdleState(void){
 
         case TRANSFORM_1_BANJO:
         default:
-            if (baflag_isTrue(BA_FLAG_16)) {
+            if (baflag_isTrue(BA_FLAG_16_FLYING)) {
                 return BS_24_FLY;
             }
-            if (baflag_isTrue(BA_FLAG_18)) {
+            if (baflag_isTrue(BA_FLAG_18_UNDERWATER)) {
                 return BS_2B_DIVE_IDLE;
             }
             if (stateTimer_get(STATE_TIMER_3_TURBO_TALON) != 0.0f) {
@@ -848,10 +848,10 @@ s32 func_8029C9C0(s32 arg0){
 }
 
 s32 func_8029CA94(s32 arg0){
-    if(baflag_isTrue(BA_FLAG_19))
+    if(baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM))
         arg0 = badrone_transform();
     
-    if(baflag_isTrue(BA_FLAG_1A))
+    if(baflag_isTrue(BA_FLAG_1A_OPEN_NOTEDOOR))
         arg0 = (player_getTransformation() == TRANSFORM_6_BEE) ? 0x46 : BS_34_JIG_NOTEDOOR;
 
     if(baflag_isTrue(BA_FLAG_E_TOUCHING_WADING_BOOTS))
@@ -863,7 +863,7 @@ s32 func_8029CA94(s32 arg0){
     if(baflag_isTrue(BA_FLAG_6))
         arg0 = BS_53_TIMEOUT;
 
-    if(baflag_isTrue(BA_FLAG_7))
+    if(baflag_isTrue(BA_FLAG_7_TOUCHING_JIGGY))
         arg0 = BS_44_JIG_JIGGY;
 
     if(baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE))
@@ -906,14 +906,14 @@ void func_8029CBF4(void){
 }
 
 void func_8029CCC4(void){
-    if(baflag_isFalse(BA_FLAG_7)) return;
+    if(baflag_isFalse(BA_FLAG_7_TOUCHING_JIGGY)) return;
     if( baflag_isTrue(BA_FLAG_F)
         && baflag_isFalse(BA_FLAG_6)
         && baflag_isFalse(BA_FLAG_14_LOSE_BOGGY_RACE)
     ){
         baflag_clear(BA_FLAG_F);
     }
-    baflag_clear(BA_FLAG_7);
+    baflag_clear(BA_FLAG_7_TOUCHING_JIGGY);
     func_802B0CD8();
     item_inc(ITEM_E_JIGGY);
     if(jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){

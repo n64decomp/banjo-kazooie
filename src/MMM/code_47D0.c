@@ -67,7 +67,7 @@ bool chTumblar_isBanjoAbove(s32 arg0, s32 arg1) {
     return func_803518D4(arg1) &&
            ml_vec3f_horizontal_distance_zero_likely(position, plyr_pos) < 40.0f &&
            player_getTransformation() == TRANSFORM_1_BANJO &&
-           func_8028ECAC() == 0;
+           player_movementGroup() == BSGROUP_0_NONE;
 }
 
 void chTumblar_init(Struct_MMM_47D0_0 *arg0, Struct68s *arg1) {

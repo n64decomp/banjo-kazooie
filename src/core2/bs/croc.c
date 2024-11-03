@@ -119,7 +119,7 @@ void bscroc_idle_update(void){
     enum bs_e next_state = 0;
     func_802ABE70();
     func_80299628(0);
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_61_CROC_FALL;
 
     if(bainput_should_look_first_person_camera())
@@ -163,7 +163,7 @@ void bscroc_walk_update(void){
     if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         next_state = BS_5E_CROC_IDLE;
 
-    if(func_8028B094())
+    if(player_shouldFall())
         next_state = BS_61_CROC_FALL;
 
     if(bakey_pressed(BUTTON_B))
@@ -313,7 +313,7 @@ void bscroc_fall_update(void){
 
     if(player_isStable()){
         if(bastick_getZone() > 0 || (D_8037D3EC == 2 && anctrl_isStopped(aCtrl))){
-            if(baflag_isTrue(BA_FLAG_19)){
+            if(baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM)){
                 next_state = badrone_transform();
             }else{
                 next_state = BS_5E_CROC_IDLE;
@@ -544,7 +544,7 @@ void bscroc_bite_update(void){
     }
 
     if(D_8037D3F4 == 3){
-        if(func_8028B094())
+        if(player_shouldFall())
             next_state =  BS_61_CROC_FALL;
         else
             next_state = BS_CROC_WALK;

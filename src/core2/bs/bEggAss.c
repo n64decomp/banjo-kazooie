@@ -54,7 +54,7 @@ void bseggass_update(void) {
     } else if (0.6 < (f64) anctrl_getAnimTimer(plyr_mvmt)) {
         next_state = func_802ADCD4(0);
     }
-    if (func_8028B094())
+    if (player_shouldFall())
         next_state = BS_2F_FALL;
     bs_setState(next_state);
 }

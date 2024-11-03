@@ -309,7 +309,7 @@ void chMumbo_update(Actor *this) {
             actor_loopAnimation(this);
              sp48 = (map_get() == MAP_7A_GL_CRYPT) ? chMumbo_withinHorzDistToPlayer(0x442, 0, 0x3C) :  chMumbo_withinHorzDistToPlayer(0, -0x5A, 0x3C);
             if( sp48 
-                && func_8028ECAC() == 0 
+                && player_movementGroup() == BSGROUP_0_NONE 
                 && func_8028F20C()
                 && func_8028EFC8()
             ){

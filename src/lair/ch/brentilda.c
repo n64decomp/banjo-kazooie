@@ -176,7 +176,7 @@ void chBrentilda_update(Actor *this) {
             }
         }
         if( (phi_f2 < 300.0) 
-            && (func_8028ECAC() == 0) 
+            && (player_movementGroup() == BSGROUP_0_NONE) 
             && func_8028F20C()
             && !func_803114B0()) {
             if (!fileProgressFlag_get(FILEPROG_96_MET_BRENTILDA)) {

@@ -177,7 +177,7 @@ bool FP_func_80388CA0(Actor *this){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
     u32 sp20;
 
-    if(func_8028ECAC() != 0 && func_8028ECAC() != BSGROUP_8_TROT)
+    if(player_movementGroup() != BSGROUP_0_NONE && player_movementGroup() != BSGROUP_8_TROT)
         return FALSE;
 
     if( !func_80329530(this, 1100) ){
@@ -353,7 +353,7 @@ void func_803893E4(Actor *this, f32 arg1, u8 arg2){
         this->unk4C = sp2C;
     }
 
-    if((u8)arg2 == 2 && func_8028ECAC() != 6){
+    if((u8)arg2 == 2 && player_movementGroup() != BSGROUP_6_TURBO_TALON_TRAINERS){
         this->unk4C = 1200.0f;
     }
 
@@ -464,11 +464,11 @@ void func_803896FC(Actor *this){
             if(FP_func_80388CA0(this)){
                 func_80388B18(this, local->unk19);
             }//L803899DC
-            else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && func_8028ECAC() == BSGROUP_C_WALRUS_SLED){
+            else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && player_movementGroup() == BSGROUP_C_WALRUS_SLED){
                 FP_func_803888E4(this);
             }
             else if( func_80329530(this, 0x1C2)
-                && func_8028ECAC() == 0
+                && player_movementGroup() == BSGROUP_0_NONE
                 && func_8028F20C()
                 && func_8028EFC8()
                 && sp3C[FACE_BUTTON(BUTTON_B)] == 1

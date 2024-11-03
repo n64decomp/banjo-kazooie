@@ -63,7 +63,7 @@ void bsegghead_update(void) {
     } else if (0.65 < (f64) anctrl_getAnimTimer(aCtrl)) {
         next_state = func_802ADCD4(0);
     }
-    if (func_8028B094())
+    if (player_shouldFall())
         next_state = BS_2F_FALL;
     bs_setState(next_state);
 }

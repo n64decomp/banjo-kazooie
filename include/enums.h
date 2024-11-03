@@ -5314,9 +5314,12 @@ enum common_particle_e{
 };
 
 enum bsgroup_e {
-    BSGROUP_3_WONDERWING = 0x3,
-    BSGROUP_4_LOOK = 0x4,
-    BSGROUP_5_CLIMB = 0x5,
+    BSGROUP_0_NONE,
+    BSGROUP_1_INTR,
+    BSGROUP_2, // busy?
+    BSGROUP_3_WONDERWING,
+    BSGROUP_4_LOOK,
+    BSGROUP_5_CLIMB,
     BSGROUP_6_TURBO_TALON_TRAINERS,
     BSGROUP_7_CROC_ATTACK,
     BSGROUP_8_TROT,
@@ -5337,11 +5340,11 @@ enum misc_flag_e{
     BA_FLAG_0, // unused
     BA_FLAG_1_ON_FLIGHT_PAD,
     BA_FLAG_2_ON_SPRING_PAD,
-    BA_FLAG_3,
-    BA_FLAG_4,
+    BA_FLAG_3, // idling?
+    BA_FLAG_4, // idling?
     BA_FLAG_5_HAS_PECKED,
     BA_FLAG_6,
-    BA_FLAG_7,
+    BA_FLAG_7_TOUCHING_JIGGY,
     BA_FLAG_8,
     BA_FLAG_9,
     BA_FLAG_A,
@@ -5353,14 +5356,14 @@ enum misc_flag_e{
     BA_FLAG_10_TOUCHING_TURBO_TRAINERS,
     BA_FLAG_11, // unused
     BA_FLAG_12_HAS_FLAPPED, // has used flap
-    BA_FLAG_13, // related to ground damage ?
+    BA_FLAG_13_TOUCHING_DANGEROUS_GROUND, // related to ground damage
     BA_FLAG_14_LOSE_BOGGY_RACE, // in difficult terrain (mud)
     BA_FLAG_15_LOADZONE, // touching loadzone?
-    BA_FLAG_16, // related to flying
+    BA_FLAG_16_FLYING,
     BA_FLAG_17_FIRST_PERSON_VIEW,
-    BA_FLAG_18, // related to underwater state
-    BA_FLAG_19, // related to transformations
-    BA_FLAG_1A, // related to bee transformation
+    BA_FLAG_18_UNDERWATER,
+    BA_FLAG_19_SHOULD_TRANSFORM,
+    BA_FLAG_1A_OPEN_NOTEDOOR,
     BA_FLAG_1B_TRANSFORMING,
 
     BA_FLAG_NUM_FLAGS

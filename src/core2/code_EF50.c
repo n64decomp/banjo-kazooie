@@ -46,13 +46,13 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         sp28 = 1;
     }
 
-    switch(func_8028ECAC()){
-        case 6://L80295F5C
+    switch(player_movementGroup()){
+        case BSGROUP_6_TURBO_TALON_TRAINERS://L80295F5C
             if(D_8037C3E0.unk18 != ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH){
                 sp2C++;
             }
             break;
-        case 9://L80295F78
+        case BSGROUP_9_LONG_LEG://L80295F78
             sp2C++;
             break;
     }
@@ -60,7 +60,7 @@ enum bs_e func_80295EE0(enum bs_e arg0){
         func_8029CDA0();
     }
     else{ 
-        baflag_set(BA_FLAG_7);
+        baflag_set(BA_FLAG_7_TOUCHING_JIGGY);
         if(sp2C){
             func_8029CCC4();
         }
@@ -90,7 +90,7 @@ enum bs_e __get_rebound_state_id(void){
             return BS_BEE_BOUNCE;
         case TRANSFORM_1_BANJO:// L80296094
         default:
-            if(func_8028ECAC() == BSGROUP_A_FLYING)
+            if(player_movementGroup() == BSGROUP_A_FLYING)
                 return BS_18_FLY_KNOCKBACK;
             return BS_56_RECOIL;
     }
@@ -193,7 +193,7 @@ enum bs_e func_802962BC(u32 arg0){
                 if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER)
                     return BS_7F_DIVE_OW;
                 
-                if(func_8028ECAC() == BSGROUP_A_FLYING)
+                if(player_movementGroup() == BSGROUP_A_FLYING)
                     return BS_FLY_OW;
                 return BS_E_OW;
             }
@@ -303,7 +303,7 @@ void func_80296608(void){
                 next_state = badrone_transform();
             }
             else{
-                baflag_set(BA_FLAG_19);
+                baflag_set(BA_FLAG_19_SHOULD_TRANSFORM);
                 next_state = func_8029B504();
             }
             break;
@@ -336,7 +336,7 @@ void func_80296608(void){
             codeA960_forceLoadzone(1);
             sp2C = 2;
             break;
-        case BS_INTR_13: //L80296760
+        case BS_INTR_13_FF_DEATH_SQUARE: //L80296760
             item_set(ITEM_14_HEALTH, 0);
             /* missing break ? */
         case BS_INTR_B:  //L8029676C
@@ -423,7 +423,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_35: //L80296984
-            baflag_set(BA_FLAG_1A);
+            baflag_set(BA_FLAG_1A_OPEN_NOTEDOOR);
             next_state = func_8029B504();
             sp2C = 2;
             break;
