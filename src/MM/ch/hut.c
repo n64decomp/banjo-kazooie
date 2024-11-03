@@ -26,8 +26,8 @@ enum chhut_state_e {
 
 ActorAnimationInfo chhutAnimations[3] = {
     {0,                          0.0f},
-    {ASSET_4E_ANIM_MUDHUT_SMASH, 0.25f},
-    {ASSET_4E_ANIM_MUDHUT_SMASH, 1000000.0f}
+    {ASSET_4E_ANIM_MUD_HUT_SMASH, 0.25f},
+    {ASSET_4E_ANIM_MUD_HUT_SMASH, 1000000.0f}
 };
 
 /* .code */

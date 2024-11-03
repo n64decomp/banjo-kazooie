@@ -90,10 +90,10 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         this = marker_getActor(caller);
         timed_playSfx(0.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000);
         timed_playSfx(1.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000);
-        func_80324CFC(0.4f, COMUSIC_43_ENTER_LEVEL_GLITTER, 22000);
+        func_80324CFC(0.4f, COMUSIC_43_ENTER_LEVEL_GLITTER, 22000); 
         func_80324D2C(4.5f, COMUSIC_43_ENTER_LEVEL_GLITTER);
         subaddie_set_state_with_direction(this, 5, 0.79f, 1);
-        func_80326310(this);
+        func_80326310(this); //did not disappear when moved, after cutscene still there with collision but broken
         bgs_D_803907B8[this->unkF4_8]->propPtr->unk8_4 = TRUE;
         timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->unkF4_8]));
         timed_setStaticCameraToNode(0.8f, 9);

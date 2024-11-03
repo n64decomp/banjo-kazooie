@@ -15,22 +15,22 @@ typedef struct chleafboat_s{
     f32 unk6C;
 } ActorLocal_Leafboat;
 
-void func_8038FD9C(Actor *this);
-Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **Vtx);
+void chLeafBoat_update(Actor *this);
+Actor *chLeafBoat_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **Vtx);
 
 
 /* .data section */
 u8 D_80390DA0[6] = {0, 0, 0, 1, 1, 1};
 
-ActorInfo D_80390DA8 = {MARKER_DA_LEAFBOAT, ACTOR_F1_LEAFBOAT, ASSET_30D_MODEL_LEAFBOAT, 
+ActorInfo chLeafBoat = {MARKER_DA_LEAF_BOAT, ACTOR_F1_LEAF_BOAT, ASSET_30D_MODEL_LEAF_BOAT, 
     0x01, NULL,
-    func_8038FD9C, func_8038FD9C, func_8038FD10,
+    chLeafBoat_update, chLeafBoat_update, chLeafBoat_draw,
     0, 0, 0.0f, 0
 };
 
 
 /* .code section */
-Actor *func_8038FD10(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
+Actor *chLeafBoat_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     Actor * thisActor;
 
     thisActor = marker_getActor(this);
@@ -44,7 +44,7 @@ void func_8038FD88(ActorMarker *this, ActorMarker *other){
     this->unk3E_1 = 1;
 }
 
-void func_8038FD9C(Actor *this){
+void chLeafBoat_update(Actor *this){
     f32 sp64[3];
     f32 player_position[3];
     ActorLocal_Leafboat *local;

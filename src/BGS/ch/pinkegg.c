@@ -7,9 +7,9 @@ typedef struct chpinkegg_s{
     u32 unk4;
 } ActorLocal_PinkEgg;
 
-Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **vtx);
-void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker);
-void chpinkegg_update(Actor *this);
+Actor *chPinkEgg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **vtx);
+void chPinkEgg_collision(ActorMarker *this, ActorMarker *other_marker);
+void chPinkEgg_update(Actor *this);
 
 u32 D_803906C0 = 0x5B;
 enum actor_e D_803906C4[5] = {
@@ -20,40 +20,40 @@ enum actor_e D_803906C4[5] = {
     0x00
 };
 
-ActorAnimationInfo D_803906D8[4] = {
+ActorAnimationInfo chPinkEggAnimations[4] = {
     {0, 0.0f},
     {0, 0.0f},
     {0, 0.0f},
     {0x10B, 2.0f}
 };
 
-ActorInfo D_803906F8 = {MARKER_6E_PINK_EGG_LARGEST, ACTOR_5B_PINK_EGG_LARGEST, ASSET_380_MODEL_PINK_EGG_LARGEST, 0x01, D_803906D8,
-    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
+ActorInfo chPinkEggLargest = {MARKER_6E_PINK_EGG_LARGEST, ACTOR_5B_PINK_EGG_LARGEST, ASSET_380_MODEL_PINK_EGG_LARGEST, 0x01, chPinkEggAnimations,
+    chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 6.0f, 0
 };
 
-ActorInfo D_8039071C = {MARKER_D6_PINK_EGG_LARGE, ACTOR_ED_PINK_EGG_LARGE, ASSET_381_MODEL_PINK_EGG_LARGE, 0x01, D_803906D8,
-    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
+ActorInfo chPinkEggLarge = {MARKER_D6_PINK_EGG_LARGE, ACTOR_ED_PINK_EGG_LARGE, ASSET_381_MODEL_PINK_EGG_LARGE, 0x01, chPinkEggAnimations,
+    chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 5.0f, 0
 };
 
-ActorInfo D_80390740 = {MARKER_D7_PINK_EGG_MEDIUM, ACTOR_EE_PINK_EGG_MEDIUM, ASSET_382_MODEL_PINK_EGG_MEDIUM, 0x01, D_803906D8,
-    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
+ActorInfo chPinkEggMedium = {MARKER_D7_PINK_EGG_MEDIUM, ACTOR_EE_PINK_EGG_MEDIUM, ASSET_382_MODEL_PINK_EGG_MEDIUM, 0x01, chPinkEggAnimations,
+    chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 4.0f, 0
 };
 
-ActorInfo D_80390764 = {MARKER_D8_PINK_EGG_SMALL, ACTOR_EF_PINK_EGG_SMALL, ASSET_383_MODEL_PINK_EGG_SMALL, 0x01, D_803906D8,
-    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
+ActorInfo chPinkEggSmall = {MARKER_D8_PINK_EGG_SMALL, ACTOR_EF_PINK_EGG_SMALL, ASSET_383_MODEL_PINK_EGG_SMALL, 0x01, chPinkEggAnimations,
+    chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 3.0f, 0
 };
 
-ActorInfo D_80390788 = {MARKER_D9_PINK_EGG_SMALLEST, ACTOR_F0_PINK_EGG_SMALLEST, ASSET_384_MODEL_PINK_EGG_SMALLEST, 0x01, D_803906D8,
-    chpinkegg_update, actor_update_func_80326224, chpinkegg_draw,
+ActorInfo chPinkEggSmallest = {MARKER_D9_PINK_EGG_SMALLEST, ACTOR_F0_PINK_EGG_SMALLEST, ASSET_384_MODEL_PINK_EGG_SMALLEST, 0x01, chPinkEggAnimations,
+    chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 2.0f, 0
 };
 
 /* .code */
-void chpinkegg_spawn_next(ActorMarker * arg0, u32 arg1){
+void chPinkEgg_spawnNext(ActorMarker * arg0, u32 arg1){
     ActorLocal_PinkEgg *local;
     Actor *actorPtr;
     Actor *unkActor;
@@ -67,7 +67,7 @@ void chpinkegg_spawn_next(ActorMarker * arg0, u32 arg1){
     
 }
 
-Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **arg3){
+Actor *chPinkEgg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **arg3){
     u32 sp18;
     u32 t7;
 
@@ -78,7 +78,7 @@ Actor *chpinkegg_draw(ActorMarker *this, Gfx ** gdl, Mtx** mptr, Vtx **arg3){
 }
 
 
-void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
+void chPinkEgg_collision(ActorMarker *this, ActorMarker *other_marker){
     Actor *thisActor;
     ActorLocal_PinkEgg *tmp;
     
@@ -90,17 +90,17 @@ void chpinkegg_collision(ActorMarker *this, ActorMarker *other_marker){
     this->collidable = FALSE;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->unk0] != 0){
-        __spawnQueue_add_2(chpinkegg_spawn_next, thisActor->marker, tmp->unk0);
+        __spawnQueue_add_2(chPinkEgg_spawnNext, thisActor->marker, tmp->unk0);
     } else {
         jiggy_spawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     }
 }
 
-void chpinkegg_update(Actor *this){
+void chPinkEgg_update(Actor *this){
     if(!this->initialized){
         this->marker->propPtr->unk8_3 = 1;
-        marker_setCollisionScripts(this->marker, NULL, NULL, chpinkegg_collision);
+        marker_setCollisionScripts(this->marker, NULL, NULL, chPinkEgg_collision);
         this->initialized = TRUE;
     }
 
