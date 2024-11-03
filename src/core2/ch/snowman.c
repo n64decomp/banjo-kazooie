@@ -260,7 +260,7 @@ void chSnowman_update(Actor *this){
             ){//L802E2318
                 if(0.0 < local->unk4){
                     if( (globalTimer_getTime() & 1)
-                        || func_8028ECAC() == BSGROUP_A_FLYING
+                        || player_movementGroup() == BSGROUP_A_FLYING
                     ){//L802E236C
                         local->unk4 -= dt;
                     }

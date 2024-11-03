@@ -38,7 +38,7 @@ void func_802FB458(struct8s *arg0) {
         if (arg0 == D_80381530[var_v0]) {
             sp20 = D_80381530[0];
             func_802FB020(D_80381530[var_v0], 1);
-            if ((var_v0 == 0) || ((func_8028ECAC() != BSGROUP_A_FLYING)) || (func_802FDD0C(D_80381530[var_v0]) != ITEM_F_RED_FEATHER)) {
+            if ((var_v0 == 0) || ((player_movementGroup() != BSGROUP_A_FLYING)) || (func_802FDD0C(D_80381530[var_v0]) != ITEM_F_RED_FEATHER)) {
                 sp20->unk10 = 3.0f;
             }
             if (sp20->unk18 == 0) {

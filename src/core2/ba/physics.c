@@ -62,7 +62,7 @@ void __baphysics_update_normal(void){
         if(sp44 != 0.0f){
             if(sp44 < 0){
                 //sp44 = 0.0f;
-                if(func_8028B3B4()){
+                if(player_isActive()){
                     sp40 = ml_map_f(sp40, 0.0f, 1.0f, sp44*0.5, -1.0f);
                 }
                 else{//L80296E3C

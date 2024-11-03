@@ -507,7 +507,7 @@ void chSmBottles_update(Actor *this) {
                 }
             }
             else {//L80389CBC
-                if (!func_80329530(this, 0xfa) || func_8028ECAC() || !func_8028F20C() || func_8028EC04()) {
+                if (!func_80329530(this, 0xfa) || player_movementGroup() || !func_8028F20C() || func_8028EC04()) {
                     break;
                 }
 

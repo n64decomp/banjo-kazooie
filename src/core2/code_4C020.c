@@ -518,7 +518,7 @@ bool func_802D42F8(Actor *this) {
 void func_802D4388(Actor *this){
     func_802D3CE8(this);
     this->unk38_0 = BOOL(map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unkF4_8 || func_802D42F8(this));
-    mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || func_8028ECAC() == BSGROUP_D_TRANSFORMING);
+    mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || player_movementGroup() == BSGROUP_D_TRANSFORMING);
     switch(this->state){
         case 0x12: //L802D4468
             if(this->unk38_0 && mapSpecificFlags_get(0x1F)){
@@ -584,7 +584,7 @@ void func_802D4680(Actor *this){
             break;
         case 1:
             if(ml_vec3f_horizontal_distance_zero_likely(this->position, sp1C) < 150.0f && func_8028F20C()){
-                if(func_8028ECAC() == 0 ||  func_8028ECAC() == BSGROUP_8_TROT){
+                if(player_movementGroup() == BSGROUP_0_NONE ||  player_movementGroup() == BSGROUP_8_TROT){
                     if(map_get() == MAP_8E_GL_FURNACE_FUN){
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
                         func_802D4614(MAP_80_GL_FF_ENTRANCE);

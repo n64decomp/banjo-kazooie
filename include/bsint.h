@@ -27,7 +27,7 @@ enum bs_interrupt_e {
     BS_INTR_10,
     BS_INTR_11_DROWN,
     BS_INTR_12, //something with carried objects
-    BS_INTR_13, //ff death square?
+    BS_INTR_13_FF_DEATH_SQUARE,
     BS_INTR_14, //gv matching game?, forces jump state
     BS_INTR_15,
     BS_INTR_16_THROW_CARRIED_OBJ, //carry_object_throw_volume

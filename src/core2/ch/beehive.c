@@ -60,7 +60,7 @@ void chBeehive_update(Actor *this){
             if( !fileProgressFlag_get(FILEPROG_D_BEEHIVE_TEXT)
                 && subaddie_playerIsWithinCylinder(this, 250, 300)
             ){
-                if(func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT){
+                if(player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT){
                     if( player_getTransformation() == TRANSFORM_1_BANJO
                         && gcdialog_showText(ASSET_D96_DIALOG_BEEHIVE_MEET, 0, NULL, NULL, NULL, 0)
                     ){

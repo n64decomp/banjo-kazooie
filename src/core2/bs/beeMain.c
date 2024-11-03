@@ -69,7 +69,7 @@ void func_802A10D4(void){
 
     s0 = 0;
     func_80299628(0);
-    if(func_8028B094())
+    if(player_shouldFall())
         s0 = 0x88;
 
     if(bainput_should_look_first_person_camera())
@@ -111,7 +111,7 @@ void func_802A1214(void){
     if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         s0 = BS_85_BEE_IDLE;
     
-    if(func_8028B094())
+    if(player_shouldFall())
         s0 = BS_88_BEE_FALL;
 
     if(bakey_pressed(BUTTON_A))
@@ -274,7 +274,7 @@ void func_802A170C(void){
             break;
     }
     if(player_isStable()){
-        if(baflag_isTrue(BA_FLAG_19)){
+        if(baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM)){
             sp2c = badrone_transform();
         }else{
             if(bastick_getZone() > 0)
@@ -513,7 +513,7 @@ void func_802A2054(void){
 }
 
 void func_802A2098(void){
-    baflag_clear(BA_FLAG_1A);
+    baflag_clear(BA_FLAG_1A_OPEN_NOTEDOOR);
     baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);

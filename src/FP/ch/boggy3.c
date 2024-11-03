@@ -74,7 +74,7 @@ void func_80390388(Actor *this){
     }
 
     if( func_80329530(this, 0xFA) 
-        && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
+        && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
             if(gcdialog_showText(ASSET_C1F_DIALOG_UNKNOWN, 0xb, this->position, NULL, NULL, NULL)){

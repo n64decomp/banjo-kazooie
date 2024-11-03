@@ -265,7 +265,7 @@ void chCrab_update(Actor *this) {
         && is_mutant_snippet
         && !jiggyscore_isCollected(JIGGY_16_CC_SNIPPETS)
         && func_80329530(this, 500) && !func_80329530(this, 200)
-        && !func_8028ECAC()
+        && !player_movementGroup()
     ) {
         if ((this->state != 6) && (this->state != 5)) {
             gcdialog_showText(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);

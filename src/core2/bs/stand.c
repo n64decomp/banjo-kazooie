@@ -266,7 +266,7 @@ void bsstand_update(void) {
             func_8029E070(0);
         }
     }
-    if (func_8028B094() != 0) {
+    if (player_shouldFall() != 0) {
         next_state = BS_2F_FALL;
     }
     bs_setState(next_state);

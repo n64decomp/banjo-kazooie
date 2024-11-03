@@ -258,7 +258,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             break;
 
         case MAP_14_GV_SANDYBUTTS_MAZE:
-            func_8033A45C(5, (func_8028ECAC() == 4) ? 1 : 0);
+            func_8033A45C(5, (player_movementGroup() == BSGROUP_4_LOOK) ? 1 : 0);
             break;
 
         case MAP_E_MM_MUMBOS_SKULL:

@@ -168,7 +168,7 @@ void chTermite_update(Actor *this) {
         && !mapSpecificFlags_get(0) 
         && func_80329530(this, 700) 
         && !func_80329530(this, 150)
-        && func_8028ECAC() == 0
+        && player_movementGroup() == BSGROUP_0_NONE
         && player_getTransformation() == TRANSFORM_1_BANJO
     ) {
         gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
@@ -179,7 +179,7 @@ void chTermite_update(Actor *this) {
 
     if( func_80329530(this, 300)
         && !func_80329530(this, 150) 
-        && func_8028ECAC() == 0
+        && player_movementGroup() == BSGROUP_0_NONE
         && player_getTransformation() == TRANSFORM_2_TERMITE
     ) {
         if (!levelSpecificFlags_get(LEVEL_FLAG_B_MM_UNKNOWN)) {

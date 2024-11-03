@@ -139,7 +139,7 @@ void __baMarker_8028B904(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
 
     func_80296CC0(&sp1C);
     func_80296CB4(arg3);
-    if(baflag_isTrue(BA_FLAG_7)){
+    if(baflag_isTrue(BA_FLAG_7_TOUCHING_JIGGY)){
         func_8029CDA0();
     }
     else{
@@ -198,7 +198,7 @@ void __baMarker_8028BB1C(s32 arg0, enum file_progress_e progress_flag, s32 arg2,
     if(arg0 != 1)
         return;
     
-    if(func_8028ECAC() == 1)
+    if(player_movementGroup() == BSGROUP_1_INTR)
         return;
 
     // if bit 0x400000 of fileProgressFlag is set, it's a volatile flag, else it's a file progress flag (for witch switches)
@@ -370,7 +370,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 break;
 
             case MARKER_F1_GV_STAR_SWITCH: //L8028C0C8
-                if(func_8028ECAC() == 1)
+                if(player_movementGroup() == BSGROUP_1_INTR)
                     return;
                 if(!mapSpecificFlags_get(5)){
                     mapSpecificFlags_set(5, 1);
@@ -382,7 +382,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_244_DINGPOT: //L8028C104
                 {
 
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     player_getPosition(spAC);
                     spAC[1] += 40.0f;
@@ -414,7 +414,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case MARKER_FE_MMM_CLOCK_SWITCH: //L8028C1A4
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0,1);
@@ -425,7 +425,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             
             case MARKER_23F_LAIR_FLIGHT_PAD_SWITCH: //L8028C1EC
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0,1);
@@ -436,7 +436,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case 0x110: //L8028C238
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0, 1);
@@ -447,7 +447,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 
             case 0x113: //L8028C284
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     if(!mapSpecificFlags_get(1)){
                         mapSpecificFlags_set(1,1);
@@ -458,7 +458,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 
             case 0x115: //L8028C2D0
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
-                    if(func_8028ECAC() == 1)
+                    if(player_movementGroup() == BSGROUP_1_INTR)
                         return;
                     if(!mapSpecificFlags_get(2)){
                         mapSpecificFlags_set(2,1);

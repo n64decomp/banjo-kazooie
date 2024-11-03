@@ -161,7 +161,7 @@ void bscrouch_update(void){
     if(player_isSliding())
         sp34 = BS_SLIDE;
 
-    if(func_8028B094())
+    if(player_shouldFall())
         sp34 = BS_2F_FALL;
 
     sp34 = func_802ADCD4(sp34);

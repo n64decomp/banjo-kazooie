@@ -485,7 +485,7 @@ void lair_func_8038F924(Actor *this) {
                     func_8035644C(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT);
                 }
             }
-            if (func_8038ECA8(this->marker) && this->has_met_before && !func_8038EB58(this) && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)) {
+            if (func_8038ECA8(this->marker) && this->has_met_before && !func_8038EB58(this) && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)) {
                 func_8038F350(this, 2);
             }
             break;

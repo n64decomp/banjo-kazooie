@@ -86,7 +86,7 @@ static void __chLockup_updateFunc(Actor *this){
         && !jiggyscore_isCollected(JIGGY_13_TTC_LOCKUP)
         && func_80329530(this, 320)
         && !func_80329530(this, 160)
-        && !func_8028ECAC()
+        && !player_movementGroup()
         && gcdialog_showText(ASSET_A15_DIALOG_TTC_LOCKUP_SPAWNED, 0, NULL, NULL, NULL, NULL)
     ){
         this->has_met_before = TRUE;

@@ -88,7 +88,7 @@ void bsbshock_charge_update(void){
     }//L802A6CAC
 
     if(func_8028B254(0x3C)){
-        if(anctrl_getAnimTimer(aCtrl) < 0.3637 && bakey_released(8)){
+        if(anctrl_getAnimTimer(aCtrl) < 0.3637 && bakey_released(BUTTON_A)){
             D_8037D380 = 0;
         }//L802A6CF4
         if(player_isStable())

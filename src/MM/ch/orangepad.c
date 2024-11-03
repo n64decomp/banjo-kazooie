@@ -102,7 +102,7 @@ void chorangepad_update(Actor *this) {
     }
 
     if (func_80329530(this, 0x28) &&
-        !func_8028ECAC() &&
+        !player_movementGroup() &&
         !mapSpecificFlags_get(MM_SPECIFIC_FLAG_6_UNKNOWN) &&
         closest_actor->state != 3) {
 

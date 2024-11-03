@@ -67,7 +67,7 @@ void func_80388F50(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    if ((func_8028ECAC() != 1) && !this->unk38_0) {
+    if ((player_movementGroup() != BSGROUP_1_INTR) && !this->unk38_0) {
         this->unk38_0 = TRUE;
         actor_collisionOff(this);
         subaddie_set_state_with_direction(this, 4, 0.0f, 1);

@@ -384,7 +384,7 @@ void chmole_update(Actor *this){
             if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
                 if( this->unkF4_8 == 0x12 
                     && !ability_isUnlocked(moleTable[this->unkF4_8-9].ability)
-                    && (func_8028ECAC() == 0 || func_8028ECAC() == BSGROUP_8_TROT)
+                    && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
                     if (ml_vec3f_distance(sp34, this->velocity) < this->actor_specific_1_f) {
@@ -392,7 +392,7 @@ void chmole_update(Actor *this){
                     }
                 }
                 else{//L802DA054
-                    if( !func_8028ECAC() 
+                    if( !player_movementGroup() 
                         && func_80329530(this, 0xFA)
                         && func_8028EFC8()
                         && sp50[FACE_BUTTON(BUTTON_B)] == 1

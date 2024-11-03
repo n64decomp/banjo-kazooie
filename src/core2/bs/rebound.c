@@ -125,7 +125,7 @@ void func_802B3954(void) {
     if (player_isFallTumbling() && D_8037D500 == 0) {
         next_state = BS_3D_FALL_TUMBLING;
     }
-    if (anctrl_isStopped(anim_ctrl) && func_8028B094() && (D_8037D500 == 0)) {
+    if (anctrl_isStopped(anim_ctrl) && player_shouldFall() && (D_8037D500 == 0)) {
         next_state = BS_2F_FALL;
     }
     bs_setState(next_state);

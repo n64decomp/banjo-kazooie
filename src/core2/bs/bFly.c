@@ -596,7 +596,7 @@ void func_802A48B4(void) {
         if (anctrl_isStopped(sp18)) {
             next_state = BS_1_IDLE;
         }
-        if (func_8028B094()) {
+        if (player_shouldFall()) {
             next_state = BS_2F_FALL;
         }
         break;
@@ -743,7 +743,7 @@ void func_802A4EC8(void) {
     if (player_isStable()) {
         next_state = BS_20_LANDING;
     }
-    if (anctrl_isStopped(sp18) && (func_8028B094() || func_80294530())) {
+    if (anctrl_isStopped(sp18) && (player_shouldFall() || func_80294530())) {
         D_8037D346 = 1;
         next_state = BS_24_FLY;
     }
@@ -784,7 +784,7 @@ void func_802A503C(void){
 void func_802A505C(void){
     if(bs_getInterruptType() == BS_INTR_9){
         func_8029A86C(2);
-        baflag_set(BA_FLAG_7);
+        baflag_set(BA_FLAG_7_TOUCHING_JIGGY);
         func_8029CCC4();
     }else{
         func_80296608();

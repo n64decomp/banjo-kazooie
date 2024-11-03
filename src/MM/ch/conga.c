@@ -275,7 +275,7 @@ void func_803876D0(Actor *this){
                 subaddie_maybe_set_state_position_direction(this, 6, 0, 1, 0.38f);
             }
             if( sp3C
-                && func_8028ECAC() != 1
+                && player_movementGroup() != BSGROUP_1_INTR
                 && !__chConga_isPlayerNearCongaTree(this)
                 && timedFuncQueue_is_empty()
                 && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
@@ -283,7 +283,7 @@ void func_803876D0(Actor *this){
             ){
                 subaddie_set_state_with_direction(this, 4, 0.0f, 1);
             }//L80387AC0
-            if( func_8028ECAC() != 1
+            if( player_movementGroup() != BSGROUP_1_INTR
                 && __chConga_isPlayerNearCongaTree(this)
                 && this->unk38_31 != 0
                 && !func_803872EC()

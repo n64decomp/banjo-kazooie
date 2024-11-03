@@ -140,7 +140,7 @@ void func_8038F6A4(Actor *this)
       player_getPosition(sp48);
       if (!this->has_met_before)
     {
-      if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!func_8028ECAC())) && (player_getTransformation() == TRANSFORM_1_BANJO))
+      if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!player_movementGroup())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
         gcdialog_showText(0xC7E, 0, 0, 0, 0, 0);
         this->has_met_before = TRUE;

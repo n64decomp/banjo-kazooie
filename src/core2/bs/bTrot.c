@@ -51,7 +51,7 @@ void func_802A8850(void){
 }
 
 f32 func_802A88B0(void){
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         return D_80364AA0;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -69,7 +69,7 @@ f32 func_802A8900(void){
 }
 
 f32 func_802A8934(void){
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         return D_80364AB8;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -79,7 +79,7 @@ f32 func_802A8934(void){
 }
 
 f32 func_802A8984(void){
-    if(func_8028B128())
+    if(player_isOnDangerousGround())
         return D_80364AB4;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -193,7 +193,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
     if(bainput_should_look_first_person_camera())
         arg0 = badrone_look();
 
-    if(func_8028B094())
+    if(player_shouldFall())
         arg0 = BS_71_BTROT_FALL;
 
     if(func_802A8C60())
@@ -316,7 +316,7 @@ void bsbtrot_walk_update(void){
     if(!bastick_getZone() && baphysics_is_slower_than(1.0f))
         sp1C = BS_15_BTROT_IDLE;
 
-    if(func_8028B094())
+    if(player_shouldFall())
         sp1C = BS_71_BTROT_FALL;
 
     if(func_802A8C60())

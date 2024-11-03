@@ -173,7 +173,7 @@ void bsjump_fall_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     int sp20;
 
-    if(baflag_isTrue(BA_FLAG_7) && 700.0f < baphysics_get_vertical_velocity())
+    if(baflag_isTrue(BA_FLAG_7_TOUCHING_JIGGY) && 700.0f < baphysics_get_vertical_velocity())
         baphysics_set_vertical_velocity(700.0f);
 
     sp20 = (bs_getPrevState() == BS_12_BFLIP)? 0 : 1;

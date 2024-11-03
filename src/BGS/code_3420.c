@@ -112,7 +112,7 @@ enum asset_e D_80390A18[] = {
 
 /* .code */
 bool BGS_func_80389810(f32 arg0[3]) {
-    if (func_8028ECAC() != BSGROUP_7_CROC_ATTACK) {
+    if (player_movementGroup() != BSGROUP_7_CROC_ATTACK) {
         return FALSE;
     }
     func_8028E9C4(2, arg0);
