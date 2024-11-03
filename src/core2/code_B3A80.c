@@ -533,7 +533,7 @@ s32 code_B3A80_func_8033BDAC(enum asset_e id, void *dst, s32 size) {
         }
     }
     comp_size = assetSectionRomMetaList[id].offset + D_80383CCC;
-    piMgr_read(comp_ptr, comp_size, sp34);
+    piMgr_read((void *)comp_ptr, comp_size, sp34);
     if (assetSectionRomMetaList[id].compFlag & 1) {
         rarezip_inflate(comp_ptr, dst);
         osWritebackDCache(dst, assetCacheCurrentSize);

@@ -204,7 +204,7 @@ void func_8035C6F0(ActorMarker *this_marker, ActorMarker *other_marker){
 Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker); //sp64
     ActorLocal_Core2_D50F0 *local = (ActorLocal_Core2_D50F0 *)&this->local; //sp60
-    s32 sp5C;
+    BoneTransformList *sp5C;
     s32 pad58;
     f32 sp4C[3];
     f32 sp40[3];
@@ -215,7 +215,7 @@ Actor*  func_8035C71C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(this->state == 8){
         sp5C = skeletalAnim_getBoneTransformList(this->unk148);
-        if(sp5C){
+        if(sp5C != NULL){
             sp40[0] = 0.0f;
             sp40[1] = 0.0f;
             sp40[2] = local->unk0 * -2200.0f;

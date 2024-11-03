@@ -49,7 +49,7 @@ void func_80359A40(f32 position[3], struct_core2_D2AB0 *arg1, s32 cnt){
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void __chdrips_particleCallback(ParticleScaleAndLifetimeRanges *pCtrl, f32 position[3]){
+void __chdrips_particleCallback(ParticleEmitter *pCtrl, f32 position[3]){
     if(func_8024549C(position, 4.0f)){
         position[1] += 2.0f;
         func_80359A40(position, &D_80372AF0, 1);

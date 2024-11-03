@@ -53,7 +53,7 @@ void func_80388C20(Actor *this){
         if(this->modelCacheIndex == 0x17B){
             local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_set_fade_distances(local->sfxsourceIdx, 1000.0f, 2000.0f);
-            sfxsource_set_position(local->sfxsourceIdx, &this->position);
+            sfxsource_set_position(local->sfxsourceIdx, this->position);
             sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.5f);
             sfxsource_setSfxId(local->sfxsourceIdx, SFX_9F_GENERATOR_RUNNING);
             func_8030DD14(local->sfxsourceIdx, 3);
@@ -78,7 +78,7 @@ void func_80388C20(Actor *this){
         if(360.0f <= this->roll)
             this->roll -= 360.0f;
         if(this->modelCacheIndex == 0x17B){
-            func_8030DB04(local->sfxsourceIdx, 25000, &this->position, 1000.0f, 2000.0f);
+            func_8030DB04(local->sfxsourceIdx, 25000, this->position, 1000.0f, 2000.0f);
         }
     }
 }

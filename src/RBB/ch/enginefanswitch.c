@@ -29,7 +29,7 @@ void chEngineFanSwitch_setState(Actor * this, s32 arg1){
     }
 }
 
-void __chEngineFanSwitch_pressCallback(ActorMarker *marker, s32 arg1){
+void __chEngineFanSwitch_pressCallback(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1){
         chEngineFanSwitch_setState(actor, 2);

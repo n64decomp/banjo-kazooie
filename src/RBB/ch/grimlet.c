@@ -46,7 +46,7 @@ void RBB_func_80388430(ActorMarker * marker, ActorMarker *other_marker){
 Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
-    s32 sp5C;
+    BoneTransformList *sp5C;
     f32 pad58;
     f32 sp4C[3];
     f32 sp40[3];

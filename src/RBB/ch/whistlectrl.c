@@ -66,7 +66,7 @@ s32 chWhistleCtrl_newEvent(Actor *this, s32 whistle_id, Actor *other){
         }
     }
     else{ //wrong
-        timedFunc_set_1(1.0f, __chWhistleCtrl_wrong, other->marker);
+        timedFunc_set_1(1.0f, (GenFunction_1)__chWhistleCtrl_wrong, (s32)other->marker);
         local->unk0 = 0;
         return 2;
     }

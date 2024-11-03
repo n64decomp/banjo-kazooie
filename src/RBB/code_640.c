@@ -65,7 +65,7 @@ extern void func_802D3D54(Actor *);
 
 void func_80386A7C(Actor *);
 void func_80386BF8(Actor *arg0);
-Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 
 
 /* .data */
@@ -126,12 +126,12 @@ ActorInfo D_803901DC = {
 
 
 /* .code */
-s32 func_80386A30(f32 (*arg0)[3]){
+s32 func_80386A30(f32 arg0[3]){
     s32 r; 
     
-    r = ((*arg0)[0] < 0.0f)? 0 : 1;
+    r = (arg0[0] < 0.0f)? 0 : 1;
 
-    return (((*arg0)[2] < 0.0f)? 0 : 2) + r;
+    return ((arg0[2] < 0.0f)? 0 : 2) + r;
 }
 
 void func_80386A7C(Actor *this){
@@ -141,9 +141,9 @@ void func_80386A7C(Actor *this){
 
     func_802D3D74(this);
     this->depth_mode = 1;
-    viewport_getPosition_vec3f(&viewport);
-    sp28 = func_80386A30(&this->position);
-    temp_v0 = func_80386A30(&viewport);
+    viewport_getPosition_vec3f(viewport);
+    sp28 = func_80386A30(this->position);
+    temp_v0 = func_80386A30(viewport);
     this->unk38_0 = 0;
     if(viewport[0] + 8000.0f < this->position_x || this->position_x < viewport[0] - 8000.0f)
         return;
@@ -158,7 +158,7 @@ void func_80386A7C(Actor *this){
     }
 }
 
-Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *func_80386B9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
 
     return (actor->unk38_0) ? actor_drawFullDepth(marker, gdl, mptr, arg3): NULL;

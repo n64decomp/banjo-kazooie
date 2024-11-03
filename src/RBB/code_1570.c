@@ -55,69 +55,69 @@ void RBB_func_80387960(f32 arg0){
     sp24[2] = -40.0f;
     
     if(temp_v0 = func_8034C528(0x19e)){
-        func_8034DDF0(temp_v0, &sp34, &sp24, arg0, 1);
+        func_8034DDF0(temp_v0, sp34, sp24, arg0, 1);
     }
     if(temp_v0 = func_8034C528(0x19f)){
-        func_8034DDF0(temp_v0, &sp34, &sp24, arg0, 1);
+        func_8034DDF0(temp_v0, sp34, sp24, arg0, 1);
     }
 }
 
 void func_803879F0(void){
-    s32 temp_v0 = func_8034C528(0x19b);
+    Struct6Ds *temp_v0 = &func_8034C528(0x19b)->type_6D;
     f32 sp30[3];
     f32 sp24[3];
     if(temp_v0){
         TUPLE_ASSIGN(sp30, 0.0f, 0.0f, 0.0f);
         TUPLE_ASSIGN(sp24, 0.0f, -1000.0f, 0.0f);
-        func_8034DC08(temp_v0, &sp30, &sp24, 1.5f, 1);
+        func_8034DC08(temp_v0, sp30, sp24, 1.5f, 1);
     }
 }
 
 void func_80387A54(void){
-    s32 temp_v0 = func_8034C528(0x19b);
+    Struct6Ds *temp_v0 = &func_8034C528(0x19b)->type_6D;
     f32 sp30[3];
     f32 sp24[3];
     if(temp_v0){
         TUPLE_ASSIGN(sp30, 0.0f, -1000.0f, 0.0f);
         TUPLE_ASSIGN(sp24, 0.0f, -2000.0f, 0.0f);
-        func_8034DDF0(temp_v0, &sp30, &sp24, 1.0f, 1);
+        func_8034DDF0(temp_v0, sp30, sp24, 1.0f, 1);
     }
 }
 
 void func_80387AC0(void){
-    s32 temp_v0 = func_8034C528(0x19b);
+    Struct6Ds *temp_v0 = &func_8034C528(0x19b)->type_6D;
     f32 sp30[3];
     f32 sp24[3];
     if(temp_v0){
         TUPLE_ASSIGN(sp30, 0.0f, 0.0f, 0.0f);
         TUPLE_ASSIGN(sp24, 0.0f, -2000.0f, 0.0f);
-        func_8034DDF0(temp_v0, &sp30, &sp24, 0.0f, 1);
+        func_8034DDF0(temp_v0, sp30, sp24, 0.0f, 1);
     }
 }
 
 void func_80387B24(void){
-    s32 temp_v0 = func_8034C528(0x1a0);
+    Struct6Ds *temp_v0 = &func_8034C528(0x1a0)->type_6D;
     f32 sp30[3];
     f32 sp24[3];
     if(temp_v0){
         TUPLE_ASSIGN(sp30, 0.0f, 0.0f, 0.0f);
         TUPLE_ASSIGN(sp24, 0.0f, -500.0f, 0.0f);
-        func_8034DDF0(temp_v0, &sp30, &sp24, 0.1f, 1);
+        func_8034DDF0(temp_v0, sp30, sp24, 0.1f, 1);
     }
 }
 
 void func_80387B8C(s32 arg0, s32 arg1){
-    s32 v0 = func_8034C528(arg0);
+    Struct6Ds *v0 = &func_8034C528(arg0)->type_6D;
     if(v0){
-        func_8034DFB0(v0, &D_80390294, &D_803902A4, (f64)arg1/1000.0);
+        func_8034DFB0(v0, D_80390294, D_803902A4, (f64)arg1/1000.0);
     }
 }
 
 void func_80387BEC(s32 arg0, s32 arg1){
-    s32 v0;
+    Struct6Ds *v0;
     func_8030E6D4(SFX_90_SWITCH_PRESS);
-    if(v0 = func_8034C528(arg0)){
-        func_8034DFB0(v0, &D_803902B4, &D_803902C4, (f64)arg1/1000.0);
+    if(v0 = &func_8034C528(arg0)->type_6D){
+        func_8034DFB0(v0, D_803902B4, D_803902C4, (f64)arg1/1000.0);
     }
 }
 
@@ -135,7 +135,7 @@ void func_80387C5C(void){
     particleEmitter_setFinalScaleRange(actor, 15.0f, 20.0f);
     particleEmitter_setParticleLifeTimeRange(actor, 4.0f, 4.0f);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-    particleEmitter_emitInVolume(actor, &D_803902D4, &D_803902E0, 1);
+    particleEmitter_emitInVolume(actor, D_803902D4, D_803902E0, 1);
 }
 
 void func_80387D80(void){
@@ -144,7 +144,7 @@ void func_80387D80(void){
     particleEmitter_setStartingFrameRange(actor, 0, 7);
     particleEmitter_setScaleAndLifetimeRanges(actor, &D_80390304);
     particleEmitter_setParticleVelocityRange(actor, 0.0f, 100.0f, 0.0f, 0.0f, 200.0f ,0.0f);
-    particleEmitter_emitInVolume(actor, &D_803902EC, &D_803902F8, 3);
+    particleEmitter_emitInVolume(actor, D_803902EC, D_803902F8, 3);
 }
 
 void func_80387E20(void){
@@ -157,7 +157,7 @@ void func_80387E20(void){
     particleEmitter_setSpawnIntervalRange(actor, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(actor, 10.0f, 10.0f);
     particleEmitter_setVelocityAndAccelerationRanges(actor, &D_80390344);
-    particleEmitter_emitInVolume(actor, &D_8039032C, &D_80390338, 0x19);
+    particleEmitter_emitInVolume(actor, D_8039032C, D_80390338, 0x19);
 }
 
 void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
@@ -214,7 +214,7 @@ void func_803881E8(Actor *this, s32 arg1){
     }
 }
 
-void func_803882B4(ActorMarker *marker, s32 arg1){
+void func_803882B4(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1)
         func_803881E8(actor, 2);

@@ -2,7 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void vtxList_tint(s32, s32 (*)[3], f32, BKVertexList*);
+void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexList *src);
+BKVertexList *vtxList_clone(BKVertexList *);
 
 /* typedefs and declarations */
 typedef struct {
@@ -17,10 +18,10 @@ typedef struct {
     u8 pad1[3];
     Struct_RBB_47D0 *unk4;
     f32 unk8;
-    s32 unkC;
+    BKVertexList *unkC;
 }ActorLocal_RBB_47D0;
 
-Actor *func_8038AD9C(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3);
+Actor *func_8038AD9C(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3);
 void func_8038AEB8(Actor *this);
 
 
@@ -89,7 +90,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     this->state = new_state;
 }
 
-void func_8038AD3C(ActorMarker *marker, s32 arg1){
+void func_8038AD3C(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1)
         func_8038AC18(actor, 2);
@@ -99,12 +100,12 @@ void func_8038AD7C(Actor *this){
     func_8038AC18(this, 0);
 }
 
-Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor * actor = marker_getActor(marker);
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&actor->local;
-    s32 temp_v0;
+    BKModelBin *temp_v0;
     f32 pad0;
-    s32 (*sp1C)[3];
+    s32 *sp1C;
     
 
     if(actor->state == 0)
@@ -114,7 +115,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         && local->unk0 != 0
     ){
         temp_v0 = marker_loadModelBin(marker);
-        sp1C = (local->unk0 == 2) ? &D_80390938 : &D_8039092C;
+        sp1C = (local->unk0 == 2) ? D_80390938 : D_8039092C;
         vtxList_tint(local->unkC, sp1C, 
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
             model_getVtxList(temp_v0)

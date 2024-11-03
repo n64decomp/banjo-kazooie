@@ -27,18 +27,18 @@ void func_80387090(ActorMarker *marker, s32 arg1){
 }
 
 void func_803870BC(s32 arg0, s32 arg1){
-    s32 temp_v0;
+    Struct6Ds *temp_v0;
 
-    if(temp_v0 = func_8034C528(arg0))
-        func_8034DFB0(temp_v0, &D_80390224, &D_80390234, (f64)arg1/1000.0);
+    if(temp_v0 = &func_8034C528(arg0)->type_6D)
+        func_8034DFB0(temp_v0, D_80390224, D_80390234, (f64)arg1/1000.0);
 }
 
 void func_8038711C(s32 arg0, s32 arg1){
-    s32 temp_v0;
+    Struct6Ds *temp_v0;
 
     func_8030E6D4(SFX_90_SWITCH_PRESS);
-    if(temp_v0 = func_8034C528(arg0))
-        func_8034DFB0(temp_v0, &D_80390244, &D_80390254, (f64)arg1/1000.0);
+    if(temp_v0 = &func_8034C528(arg0)->type_6D)
+        func_8034DFB0(temp_v0, D_80390244, D_80390254, (f64)arg1/1000.0);
 }
 
 void func_8038718C(ActorMarker *marker){
@@ -51,7 +51,7 @@ void func_8038718C(ActorMarker *marker){
         sp2C[0] = 0.0f;
         sp2C[2] = 0.0f;
         sp2C[1] = 450.0f;
-        func_8034DDF0(sp44, &sp38, &sp2C, 4.0f, 1);
+        func_8034DDF0(sp44, sp38, sp2C, 4.0f, 1);
         func_8034E1A4(sp44, SFX_D8_CRANE, 1.0f, 1.0f);
     }
     timed_setStaticCameraToNode(0.0f, 4);
@@ -76,7 +76,7 @@ void func_80387308(ActorMarker *marker){
     if(sp40 = func_8034C528(0x19a)){
         TUPLE_ASSIGN(sp34, 0.0f,200.0f,0.0f);
         TUPLE_ASSIGN(sp28, 0.0f, 0.0f, 0.0f);
-        func_8034DDF0(sp40, &sp34, &sp28, 0.5f, 1);
+        func_8034DDF0(sp40, sp34, sp28, 0.5f, 1);
         func_8034E1A4(sp40, SFX_D8_CRANE, 1.0f, 1.0f);
     }//L80387394
 
@@ -98,10 +98,10 @@ void func_80387488(ActorMarker *marker){
     f32 sp1C[3];
     Actor *actor = marker_getActor(marker);
 
-    player_getPosition(&sp1C);
+    player_getPosition(sp1C);
     if(-50.0f < sp1C[1] && sp1C[1] < 600.0f){
         sp1C[1] = 0;
-        if(ml_vec3f_distance(&sp1C, &D_80390264) < 500.0f){
+        if(ml_vec3f_distance(sp1C, D_80390264) < 500.0f){
             timedFunc_set_1(1.0f, (GenFunction_1) func_80387488, (s32)actor->marker);
             return;
         }
@@ -130,10 +130,10 @@ void func_8038756C(Actor *this, s32 arg1){
             sp60[0] = sp60[1] = sp60[2] = 0.0f;
             
             if(temp_v0 = func_8034C528(0x19C))
-                func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
+                func_8034DDF0(temp_v0, sp6C, sp60, 0.1f, 1);
             
             if(temp_v0 = func_8034C528(0x19D))
-                func_8034DDF0(temp_v0, &sp6C, &sp60, 0.1f, 1);
+                func_8034DDF0(temp_v0, sp6C, sp60, 0.1f, 1);
         }
     }//L80387610
 
@@ -144,15 +144,15 @@ void func_8038756C(Actor *this, s32 arg1){
         sp44[2] = -40.0f;
         
         if(temp_v0 = func_8034C528(0x19C))
-            func_8034DDF0(temp_v0, &sp50, &sp44, 0.1f, 1);
+            func_8034DDF0(temp_v0, sp50, sp44, 0.1f, 1);
         
         if(temp_v0 = func_8034C528(0x19D))
-            func_8034DDF0(temp_v0, &sp50, &sp44, 0.1f, 1);
+            func_8034DDF0(temp_v0, sp50, sp44, 0.1f, 1);
         
-        timedFunc_set_2(0.1f, func_8038711C, 0x19d, 0x1f4);
-        timedFunc_set_2(0.1f, func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+        timedFunc_set_2(0.1f, (GenFunction_2)func_8038711C, 0x19d, 0x1f4);
+        timedFunc_set_2(0.1f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
-        timedFunc_set_1(1.1f, func_8038718C, this->marker);
+        timedFunc_set_1(1.1f, (GenFunction_1)func_8038718C, (s32)this->marker);
     }//L80387704
 
     if(arg1 == 3){
@@ -175,18 +175,18 @@ void func_8038756C(Actor *this, s32 arg1){
             sp24[2] = 0.0f;
             
             
-            func_8034DDF0(sp3C, &sp30, &sp24, 3.0f, 1);
+            func_8034DDF0(sp3C, sp30, sp24, 3.0f, 1);
             func_8034E1A4(sp3C, SFX_D8_CRANE, 1.0f, 1.0f);
         }//L803877D4
         timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.5f, 25000);
         timed_playSfx(3.0f, SFX_7F_HEAVYDOOR_SLAM, 0.6f, 25000);
-        timedFunc_set_1(4.0f, func_80387488, this->marker);
+        timedFunc_set_1(4.0f, (GenFunction_1)func_80387488, (s32)this->marker);
     }//L80387828
 
     this->state = arg1;
 }
 
-void func_80387850(ActorMarker *marker, s32 arg1){
+void func_80387850(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1){
         func_8038756C(actor, 2);

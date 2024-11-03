@@ -87,7 +87,7 @@ void func_803870F8(Actor *this){
             CC_func_80386FE0(this, 3);
         }
     }//L803871D8
-    player_getPosition(&sp70);
+    player_getPosition(sp70);
     local->unk8 += sp68;
     if(this->state == 2){
         temp_f2 = local->unk8/1;
@@ -113,7 +113,7 @@ void func_803870F8(Actor *this){
     TUPLE_COPY(this->position, sp5C);
 
     if(this->state == 1)
-        func_8028E668(&this->position, 290.0f, -10.0f, 150.0f);
+        func_8028E668(this->position, 290.0f, -10.0f, 150.0f);
     
     if(this->state == 1 && D_80389F80 == local->unk0){
         D_80389F80 = 0;
@@ -136,7 +136,7 @@ void func_803870F8(Actor *this){
         sp3C[0] = this->position_x;
         sp3C[1] = this->position_y + 100;
         sp3C[2] = this->position_z;
-        if(ml_vec3f_distance(&sp3C, &sp70) < 120.0f){
+        if(ml_vec3f_distance(sp3C, sp70) < 120.0f){
             func_8031D04C(MAP_22_CC_INSIDE_CLANKER, (local->unk0  == 1)? 7 : 6);
         }
     }//L80387500

@@ -19,7 +19,7 @@ typedef struct {
 }ActorLocal_RBB_3CB0;
 
 void chPropellorSwitch_update(Actor *this);
-Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 
 /* .data */
 Struct_RBB_3CB0 D_80390720[2] = {
@@ -58,7 +58,7 @@ void __chPropellorSwitch_setState(Actor *this, s32 arg1){
     this->state = arg1;
 }
 
-void func_8038A1C8(ActorMarker *marker, s32 arg1){
+void func_8038A1C8(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1){
         __chPropellorSwitch_setState(actor, 2);
@@ -68,7 +68,7 @@ void func_8038A1C8(ActorMarker *marker, s32 arg1){
     }
 }
 
-Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_3CB0 *local = (ActorLocal_RBB_3CB0 *)&actor->local;
 
@@ -76,12 +76,12 @@ Actor *chPropellorSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 ar
         return actor;
     }
 
-    modelRender_preDraw(actor_predrawMethod, actor);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)actor);
     if(local->unk4){
-        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, local->unk4);
+        modelRender_draw(gdl, mptr, actor->position, NULL, 1.0f, NULL, local->unk4);
     }
     else{
-        modelRender_draw(gdl, mptr, &actor->position, NULL, 1.0f, NULL, marker_loadModelBin(marker));
+        modelRender_draw(gdl, mptr, actor->position, NULL, 1.0f, NULL, marker_loadModelBin(marker));
     }
     return actor;
 }

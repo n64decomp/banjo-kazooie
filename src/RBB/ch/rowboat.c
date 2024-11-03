@@ -57,11 +57,11 @@ void func_8038E3D8(Actor *this){
 
     if(ml_timer_update(&local->unk2C, sp5C)){
         local->unk2C = randf2(3.5f, 5.5f);
-        func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, &this->position, 500.0f, 1500.0f);
+        func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, this->position, 500.0f, 1500.0f);
     }//L8038E544
 
     if(func_8032DCAC() == (int)this->marker && func_8028F20C()){
-        player_getPosition(&sp44);
+        player_getPosition(sp44);
         if(sp44[0] < this->position_x - 10.0f && local->unk4[2] < 3.0f)
             local->unk4[2] += 5.0f*sp5C;
 

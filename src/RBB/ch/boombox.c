@@ -23,7 +23,7 @@ typedef struct {
 }ActorLocal_RBB_8520;
 
 void func_8038F190(Actor *this, s32 arg1);
-Actor *func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3);
+Actor *func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void func_8038F618(Actor *this);
 
 
@@ -44,7 +44,7 @@ ActorInfo D_80390DAC = {
 
 s32 RBB_D_80390DD0[3] = {0xDE, 0xA7, 0x71};
 s32 D_80390DDC[4] = {0xFF, 0xFF, 0xFF, 0xFF};
-s32 D_80390DEC[4] = {0,0,0,0};
+f32 D_80390DEC[4] = {0.0f, 0.0f , 0.0f, 0.0f};
 
 /* .bss */
 f32 D_803912A0[3];
@@ -114,7 +114,7 @@ void func_8038EC14(Actor *this){
     particleEmitter_setFinalScaleRange(other, 2.0f, 3.0f);
     particleEmitter_setSpawnPositionRange(other, -75.0f, 25.0f, -75.0f, 75.0f, 75.0f, 75.0f);
     particleEmitter_setParticleVelocityRange(other, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
-    particleEmitter_setRGB(other, &RBB_D_80390DD0);
+    particleEmitter_setRGB(other, RBB_D_80390DD0);
     particleEmitter_setParticleLifeTimeRange(other, 3.0f, 4.0f);
     particleEmitter_emitN(other, 6);
 }
@@ -152,7 +152,7 @@ int func_8038EE90(Actor *this){
     return func_803342AC(&sp2C, &sp20, 100.0f);
 }
 
-int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
+int func_8038EF08(Actor *this, f32 position[3], f32 arg2){
     f32 sp54[3];
     int sp50;
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
@@ -161,17 +161,17 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
     f32 sp30[3];
     
 
-    sp54[0] = (*position)[0] - this->position_x;
-    sp54[1] = (*position)[1] - this->position_y;
-    sp54[2] = (*position)[2] - this->position_z;
+    sp54[0] = position[0] - this->position_x;
+    sp54[1] = position[1] - this->position_y;
+    sp54[2] = position[2] - this->position_z;
     if(180.0 < LENGTH_VEC3F(sp54))
-        ml_vec3f_set_length(&sp54, 150.0f);
+        ml_vec3f_set_length(sp54, 150.0f);
     
     local->unk20[0] = sp54[0] + this->position_x;
     local->unk20[1] = sp54[1] + this->position_y;
     local->unk20[2] = sp54[2] + this->position_z;
 
-    local->unk20[1] = mapModel_getFloorY(&local->unk20);
+    local->unk20[1] = mapModel_getFloorY(local->unk20);
 
     sp40[0] = local->unk20[0];
     sp40[1] = local->unk20[1] + this->scale*100.0f;
@@ -210,10 +210,10 @@ int func_8038EF08(Actor *this, f32 (*position)[3], f32 arg2){
 }
 
 void func_8038F190(Actor *this, s32 arg1){
-    f32 sp44[3];
+    f32 player_position[3];
     ActorLocal_RBB_8520 *local = (ActorLocal_RBB_8520 *)&this->local;
     
-    player_getPosition(&sp44);
+    player_getPosition(player_position);
 
     if(local->unk34){
         func_803343F8(local->unk34);
@@ -227,25 +227,25 @@ void func_8038F190(Actor *this, s32 arg1){
 
     if(arg1 == 2){
         int sp3C = 0;
-        if(func_80329210(this, &sp44)){
+        if(func_80329210(this, &player_position)){
             local->unk4 += 0.3;
             if(*local->unk0 < local->unk4)
                 local->unk4 = *local->unk0;
-            sp3C = func_8038EF08(this, &sp44, local->unk4);
+            sp3C = func_8038EF08(this, player_position, local->unk4);
         }//L8038F28C
         if(!sp3C){
             func_8038E920(this);
             local->unk4 -= 0.5;
             if(local->unk4 < 0.5)
                 local->unk4 = 0.5f;
-            func_8038EF08(this, &local->unk8, local->unk4);
+            func_8038EF08(this, local->unk8, local->unk4);
         }
     }//L8038F2FC
 
     if(arg1 == 3){
         func_8038FB6C();
         actor_collisionOff(this);
-        func_80324D54(0.0f, SFX_1B_EXPLOSION_1, 1.0f, 0x7d00, &this->position, 1000.0f, 2000.0f);
+        func_80324D54(0.0f, SFX_1B_EXPLOSION_1, 1.0f, 0x7d00, this->position, 1000.0f, 2000.0f);
         skeletalAnim_set(this->unk148, ASSET_148_ANIM_BOOMBOX_DIE, 0.2f, 1.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_8038EAB4(this);
@@ -262,26 +262,26 @@ void func_8038F190(Actor *this, s32 arg1){
 }
 
 
-void func_8038F3F0(ActorMarker *marker, s32 arg1){
+void func_8038F3F0(ActorMarker *marker, ActorMarker *arg1){
     Actor* actor =  marker_getActor(marker);
     if(actor->state < 3){
         func_8038F190(actor, 3);
     }
 }
 
-void func_8038F430(ActorMarker *marker, s32 arg1){
+void func_8038F430(ActorMarker *marker, ActorMarker *arg1){
     Actor* actor =  marker_getActor(marker);
     f32 sp18[3];
 
     if(actor->state < 3){
-        player_getPosition(&sp18);
-        if(ml_vec3f_distance(&actor->position, &sp18) < 300.0f)
+        player_getPosition(sp18);
+        if(ml_vec3f_distance(actor->position, sp18) < 300.0f)
             func_8028F55C(5, actor->marker);
         func_8038F190(actor, 3);
     }//L8038F4A4
 }
 
-Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
+Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor *actor;
     ActorLocal_RBB_8520 *local;
     s32 sp28[4];
@@ -306,7 +306,7 @@ Actor * func_8038F4B0(ActorMarker *marker, Gfx **gdl, Mtx **mptr, s32 arg3){
         D_803912A0[0] = actor->pitch;
         D_803912A0[1] = actor->yaw;
         D_803912A0[2] = actor->roll;
-        modelRender_setPrimAndEnvColors(sp28, &D_80390DDC);
+        modelRender_setPrimAndEnvColors(sp28, D_80390DDC);
     }//L8038F5F8
     return actor_draw(marker, gdl, mptr, arg3);
 }
@@ -335,7 +335,7 @@ void func_8038F618(Actor *this){
         local->unk38 = 0;
         local->unk39 = 0;
         local->unk0 = &D_80390D80[(this->modelCacheIndex ==  0x30d)? 1 : 0];
-        local->unk2C = mapModel_getFloorY(&this->position);
+        local->unk2C = mapModel_getFloorY(this->position);
         local->unk34 = 0;
         local->unk4 = 0.5f;
         local->unk30 = 0.0f;
@@ -352,7 +352,7 @@ void func_8038F618(Actor *this){
     }
     func_8038E92C(this);
     if(this->state == 1){
-        if(sp78 && ml_vec3f_distance(&this->position, &sp7C) < 500.0f){
+        if(sp78 && ml_vec3f_distance(this->position, sp7C) < 500.0f){
             func_8038F190(this, 2);
         }
     }//L8038F7A0
@@ -371,7 +371,7 @@ void func_8038F618(Actor *this){
         skeletalAnim_getProgressRange(this->unk148, &sp6C, &sp68);
 
         if(0.1 <= sp68 && sp68 <= 0.6)
-            ml_vec3f_interpolate_fast(this->position, &local->unk14, &local->unk20, (sp68 - 0.1) /0.5 );
+            ml_vec3f_interpolate_fast(this->position, local->unk14, local->unk20, (sp68 - 0.1) /0.5 );
         if(sp6C < 0.6 && 0.6 <= sp68)
             func_8030E878(SFX_6C_LOCKUP_CLOSING, 1.1 + randf2(-0.05f, 0.05f), 20000, this->position, 500.0f, 1000.0f);
 
@@ -382,11 +382,11 @@ void func_8038F618(Actor *this){
         sp50[1] = local->unk20[1] - local->unk14[1];
         sp50[2] = local->unk20[2] - local->unk14[2];
 
-        func_80258A4C(&D_80390DEC,this->yaw - 90.0f, &sp50, &sp4C, &sp48, &sp44);
+        func_80258A4C(D_80390DEC, this->yaw - 90.0f, sp50, &sp4C, &sp48, &sp44);
         
         this->yaw += (sp44*400.0f)*sp70;
         if(skeletalAnim_getLoopCount(this->unk148) > 0){
-            if(ml_vec3f_distance(&this->position, &local->unk8) < 10.0f){
+            if(ml_vec3f_distance(this->position, local->unk8) < 10.0f){
                 func_8038F190(this, 1);
             }else{
                 func_8038F190(this, 2);

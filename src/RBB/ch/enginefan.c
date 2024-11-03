@@ -94,25 +94,25 @@ void func_803892D8(Actor *this, s32 arg1){
         local->unk0[2] = 0.0f;
         local->unk0[1] = 0.0f;
         local->unk0[0] = 0.0f;
-        ml_vec3f_copy(&local->unk10, &local->unkC->unk1C);
-        ml_vec3f_copy(&local->unk1C, &local->unkC->unk1C);
+        ml_vec3f_copy(local->unk10, local->unkC->unk1C);
+        ml_vec3f_copy(local->unk1C, local->unkC->unk1C);
     }//L8038935C
 
     if(this->state == 2){
-        ml_vec3f_copy(&local->unk0, &local->unkC->unk28);
-        ml_vec3f_copy(&local->unk1C, &local->unkC->unk10);
+        ml_vec3f_copy(local->unk0, local->unkC->unk28);
+        ml_vec3f_copy(local->unk1C, local->unkC->unk10);
         local->unk28 = local->unkC->unk40;
     }//L803893A8
 
     if(this->state == 3){
-        ml_vec3f_copy(&local->unk0, &local->unkC->unk28);
-        ml_vec3f_copy(&local->unk1C, &local->unkC->unk1C);
+        ml_vec3f_copy(local->unk0, local->unkC->unk28);
+        ml_vec3f_copy(local->unk1C, local->unkC->unk1C);
         local->unk28 = local->unkC->unk40;
     }//L803893F4
 
     if(this->state == 4){
-        ml_vec3f_copy(&local->unk0, &local->unkC->unk34);
-        ml_vec3f_copy(&local->unk10, &local->unkC->unk1C);
+        ml_vec3f_copy(local->unk0, local->unkC->unk34);
+        ml_vec3f_copy(local->unk10, local->unkC->unk1C);
         local->unk1C[2] = 0.0f;
         local->unk1C[1] = 0.0f;
         local->unk1C[0] = 0.0f;
@@ -133,7 +133,7 @@ void func_8038944C(Actor *this){
         this->volatile_initialized = TRUE;
         local->unkC = func_80389280(this);
         if(this->state == 0){
-            ml_vec3f_copy(&this->position, &local->unkC->unk4);
+            ml_vec3f_copy(this->position, local->unkC->unk4);
             local->unk0[0]  = local->unk0[1]  = local->unk0[2]  = 0.0f;
             local->unk10[0] = local->unk10[1] = local->unk10[2] = 0.0f;
             local->unk1C[0] = local->unk1C[1] = local->unk1C[2] = 0.0f;

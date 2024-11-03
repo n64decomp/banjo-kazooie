@@ -17,7 +17,7 @@ typedef struct {
     f32 unk4[3];
 }ActorLocal_RBB_4C70;
 
-Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3);
+Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3);
 void func_8038B340(Actor *this);
 
 /* .data */
@@ -96,7 +96,7 @@ void RBB_func_8038B0B8(Actor *this, s32 arg1){
     }
 }
 
-Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3){
+Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_4C70 *local = (ActorLocal_RBB_4C70 *)&actor->local;
     f32 sp3C[3];
@@ -111,10 +111,10 @@ Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, s32 arg3){
     sp3C[0] = actor->pitch;
     sp3C[1] = actor->yaw;
     sp3C[2] = actor->roll;
-    modelRender_preDraw(&actor_predrawMethod, actor);
+    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)actor);
     func_8033A450(func_80329934());
-    modelRender_draw(gdl, mptr, &actor->position, &sp3C, actor->scale, NULL, marker_loadModelBin(marker));
-    func_8034A174(func_80329934(), 5, &local->unk4);
+    modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, marker_loadModelBin(marker));
+    func_8034A174(func_80329934(), 5, local->unk4);
     local->unk4[0] -= 60.0f;
     return actor;
 }

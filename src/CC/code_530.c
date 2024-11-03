@@ -51,7 +51,7 @@ void CC_func_80386920(Actor *this, s32 next_state){
     
     if(next_state == 2 || next_state == 4){
         func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
-        player_getPosition(&sp28);
+        player_getPosition(sp28);
         TUPLE_COPY(sp20, sp28);
         fxSparkle_giantGoldFeather(&sp20);
     }
@@ -68,7 +68,7 @@ void CC_func_80386920(Actor *this, s32 next_state){
 }
 
 
-void func_80386AD0(ActorMarker *arg0, s32 arg1) {
+void func_80386AD0(ActorMarker *arg0, ActorMarker *arg1) {
     Actor *actor = marker_getActor(arg0);
     ActorLocal_CC_530 *local = (ActorLocal_CC_530 *)&actor->local;
     local-> unk1 = 1;
@@ -99,7 +99,7 @@ void func_80386B28(Actor *this){
         local->unk2 = 0;
         local->unk10 = this->pitch;
         local->unk14 = 0.0f;
-        player_getPosition(&local->unk4);
+        player_getPosition(local->unk4);
         local->unk3 = 3;
         marker->actorFreeFunc = func_80386AF8;
         marker->propPtr->unk8_3 = 1;
@@ -115,12 +115,12 @@ void func_80386B28(Actor *this){
     }
     else{//L80386C40
         local->unk14 += tick;
-        player_getPosition(&sp58);
+        player_getPosition(sp58);
         if(local->unk1 && ! local->unk2){
             sp38[0] = 0.0f;
             sp38[1] = 0.0f;
             sp38[2] = -200.0f;
-            ml_vec3f_pitch_rotate_copy(&sp38, &sp38, this->pitch);
+            ml_vec3f_pitch_rotate_copy(sp38, sp38, this->pitch);
 
             sp44[0] = local->unk4[0] - D_80389AF4[0]; 
             sp44[1] = local->unk4[1] - D_80389AF4[1]; 

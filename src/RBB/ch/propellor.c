@@ -113,7 +113,7 @@ void chPropellor_update(Actor *this){
             func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 20000);
         }
         else {
-            func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 20000, &this->position, 500.0f, 1000.0f);
+            func_8030E988(SFX_2_CLAW_SWIPE, 0.4f, 20000, this->position, 500.0f, 1000.0f);
         }
     }//L80389F94
     if(this->pitch < 0.0f)

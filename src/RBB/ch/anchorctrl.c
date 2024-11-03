@@ -27,11 +27,11 @@ void func_8038C058(void){
     func_8030E760(SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x55f0);
 }
 
-void __chAnchorCtrl_spawnJiggy(ActorMarker *marker, s32 arg1, s32 arg2){
+void __chAnchorCtrl_spawnJiggy(ActorMarker *marker, enum asset_e id, s32 arg2){
     static f32 D_80390B34[3] = {-5100.0f, -2550.0f, 1470.0f};
 
     Actor *actor = marker_getActor(marker);
-    jiggy_spawn(JIGGY_53_RBB_SNORKEL, &D_80390B34);
+    jiggy_spawn(JIGGY_53_RBB_SNORKEL, D_80390B34);
     timed_setStaticCameraToNode(0.5f, 0xb);
     __chAnchorCtrl_setState(actor, 3);
 }

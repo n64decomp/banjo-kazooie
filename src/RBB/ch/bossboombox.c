@@ -35,7 +35,7 @@ typedef struct{
 
 void RBB_func_8038CC9C(Actor *this, s32 new_state);
 void func_8038D7E8(ActorMarker *marker, s32 arg1);
-Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3);
+Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, Vtx **arg3);
 void func_8038D8BC(Actor *this);
 
 /* .data */
@@ -136,7 +136,7 @@ void RBB_func_8038C538(Actor *this){
         -70.0f, 50.0f, -70.0f,
         70.0f, 100.0f, 70.0f
     );
-    particleEmitter_setRGB(other, &D_80390C60);
+    particleEmitter_setRGB(other, D_80390C60);
     particleEmitter_setParticleLifeTimeRange(other, 3.0f, 4.0f);
     particleEmitter_emitN(other, 3*local->unk0->unkE);
 
@@ -173,7 +173,7 @@ void func_8038C8A8(Actor * this){
     f32 sp24[3];
     
 
-    player_getPosition(&sp24);
+    player_getPosition(sp24);
     sp24[1] += 50.0f;
 
     particleEmitter_setSprite(other, ASSET_70E_SPRITE_SMOKE_2);
@@ -185,7 +185,7 @@ void func_8038C8A8(Actor * this){
     particleEmitter_setFinalScaleRange(other, local->unk0->unk4*3.0f, local->unk0->unk4*6.0f);
     particleEmitter_setVelocityAccelerationAndPositionRanges(other, &D_80390CA8);
     particleEmitter_setParticleLifeTimeRange(other, 1.0f, 2.0f);
-    particleEmitter_setRGB(other, &D_80390C9C);
+    particleEmitter_setRGB(other, D_80390C9C);
     particleEmitter_emitN(other, 5);
 }
 
@@ -197,7 +197,7 @@ void chbossboombox_respawnJiggy(s32 position_x, s32 position_y, s32 position_z){
     D_80391288[0] = (f32)position_x;
     D_80391288[1] = (f32)(position_y + 0x28);
     D_80391288[2] = (f32)position_z;
-    jiggy_spawn(JIGGY_56_RBB_BOSS_BOOM_BOX, &D_80391288);
+    jiggy_spawn(JIGGY_56_RBB_BOSS_BOOM_BOX, D_80391288);
 }
 
 void func_8038CA70(Actor *this, f32(*arg1)[3]){
@@ -220,15 +220,15 @@ void func_8038CA70(Actor *this, f32(*arg1)[3]){
 
 }
 
-void func_8038CB34(ActorMarker *marker, s32 arg1, s32 arg2){
+void func_8038CB34(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     comusic_8025AB44(COMUSIC_62_RBB_BOOMBOX, -1, 0x12C);
 }
 
-void func_8038CB68(ActorMarker *marker, s32 arg1, s32 arg2){
+void func_8038CB68(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     Actor *actor = marker_getActor(marker);
     timed_exitStaticCamera(0.0f);
     func_80324E38(0.0f, 0);
-    timedFunc_set_2(0.0f, (GenFunction_2)RBB_func_8038C370, actor->marker, 3);
+    timedFunc_set_2(0.0f, (GenFunction_2)RBB_func_8038C370, (s32)actor->marker, 3);
 }
 
 void chbossboombox_hideJiggy(void){
@@ -270,7 +270,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     
     
     
-    player_getPosition(&sp8C);
+    player_getPosition(sp8C);
     
     sp8C[1] = 0.0f;
 
@@ -327,7 +327,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     }//L8038CF60
 
     if(this->state == 3 || this->state == 4){
-        func_8030E878(0x3f2, local->unk0->unk14, 0x6d60, &this->position, 500.0f, 1000.0f);
+        func_8030E878(0x3f2, local->unk0->unk14, 0x6d60, this->position, 500.0f, 1000.0f);
         skeletalAnim_set(this->unk148, ASSET_147_ANIM_BOOMBOX_MOVE, 0.2f, (1.0/(local->unk0->unk8)*randf2(1.0f, 1.1f)));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         ml_vec3f_set_length(sp80, (this->state == 4)? -0x32*(2 + func_80326218()) : 300.0f/local->unk0->unk8);
@@ -421,7 +421,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     }//L8038D4DC
     
     if(this->state == 3){
-        func_80258A4C(&this->position, this->yaw - 90.0f, &sp8C, &sp60, &sp5C, &sp58);
+        func_80258A4C(this->position, this->yaw - 90.0f, sp8C, &sp60, &sp5C, &sp58);
         if(0.7 < sp58)
             local->unk28 += 90.0f;
         else if(sp58 < -0.7){
@@ -430,12 +430,12 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
     }
 }
 
-void func_8038D590(ActorMarker *marker, s32 arg1){
+void func_8038D590(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     RBB_func_8038CC9C(actor, 4);
 }
 
-void func_8038D5BC(ActorMarker *marker, s32 arg1){
+void func_8038D5BC(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
 
@@ -448,9 +448,9 @@ void func_8038D608(ActorMarker *marker, ActorMarker *other){
     func_8038D7E8(marker, other->id == 1);
 }
 
-Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, s32 arg3){
+Actor *func_8038D638(ActorMarker *marker, Gfx **gdl, Mtx ** mptr, Vtx **arg3){
     f32 sp3C[3];
-    Actor *actor = marker_getActorAndRotation(marker, &sp3C);
+    Actor *actor = marker_getActorAndRotation(marker, sp3C);
     ActorLocal_RBB_5F80 *local = (ActorLocal_RBB_5F80 *) &actor->local;
     func_8033A45C(1, local->unk0->unkD);
     if(local->unk0->unkD == 1){
