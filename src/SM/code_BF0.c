@@ -2,18 +2,18 @@
 #include "functions.h"
 #include "variables.h"
 
-void SM_func_80386FE0(Actor *this);
+void __codeBF0_draw(Actor *this);
 
 /* .data */
-ActorInfo D_8038ABF0 = {
+ActorInfo gCodeBF0 = {
     MARKER_134_UNKNOWN, ACTOR_16E_UNKNOWN, NULL,
     1, NULL,
-    SM_func_80386FE0, actor_update_func_80326224, func_80325340,
+    __codeBF0_draw, actor_update_func_80326224, func_80325340,
     2000, 0, 0.0f, 0
 };
 
 /* .code */
-void SM_func_80386FE0(Actor *this){
+static void __codeBF0_draw(Actor *this){
     if(!this->volatile_initialized){
         this->unk10_12 = 0;
         this->unk38_31 = this->unk10_12;
@@ -22,22 +22,21 @@ void SM_func_80386FE0(Actor *this){
     }
 
     switch(this->state){
-        case 1://L80387064
+        case 1:
             if(this->unk38_31++ == 2){
                 this->unk10_12 = actorArray_actorCount(ACTOR_16F_QUARRIE);
                 subaddie_set_state(this, 2);
             }
             break;
-        case 2://L803870C4
+        case 2:
             if(this->unk10_12 == 0)
                 marker_despawn(this->marker);
             break;
-    }//L803870DC
+    }
 }
 
-int func_803870E8(ActorMarker * arg0){
-    Actor *actor = marker_getActor(arg0);
+bool codeBF0_shouldSpawnQuarrieHoneyComb(ActorMarker *marker){
+    Actor *actor = marker_getActor(marker);
     
-    return (--actor->unk10_12)==0 ? 1 : 0;
-
+    return (--actor->unk10_12) == 0 ? TRUE : FALSE;
 }

@@ -1993,6 +1993,10 @@ enum actor_e
     ACTOR_181_SCARF_SLED = 0x181,
     ACTOR_182_RACE_SLED = 0x182,
 
+    ACTOR_198_BANJOS_BED = 0x198,
+    ACTOR_199_BANJOS_CHAIR,
+    ACTOR_19A_BANJOS_STOVE,
+
     ACTOR_1BB_ENGINE_ROOM_PROPELLOR_1 = 0x1bb,
     ACTOR_1BC_ENGINE_ROOM_PROPELLOR_2,
     ACTOR_1BD_ENGINE_ROOM_PROPELLOR_3,
@@ -2222,6 +2226,8 @@ enum actor_e
     ACTOR_3BA_UNKNOWN        = 0x3BA,
     
     ACTOR_3B9_JUMP_TUTORIAL = 0x3B9,
+
+    ACTOR_3BD_SM_UNKNOWN = 0x3BD,
 
     ACTOR_3BF_GRUNTLING_BLUE = 0x3BF,
     ACTOR_3C0_GRUNTLING_BLACK,
@@ -3095,7 +3101,7 @@ enum asset_e
     // 334 Palm Tree
     // 335 BGS Cattail
     // 336 Banjo's Drawers
-    // 337 Banjo's Kitchen
+    ASSET_337_BANJOS_STOVE = 0x337,
     // 338 Table And Radio
     // 339 Winter Tree
     // 33a Wall Torch
@@ -3602,8 +3608,8 @@ enum asset_e
     ASSET_52C_MODEL_GRUBLIN_HOOD,
     ASSET_52D_MODEL_GRUBLIN_HOOD_HAT,
     // 52e (CCW Season Door?)
-    // 52f Banjo's Chair (Secret Spring)
-    // 530 Banjo's Bed (Secret Spring?)
+    ASSET_52F_BANJOS_CHAIR = 0x52F,
+    ASSET_530_BANJOS_BED,
     // 531 Gnawty's Den
     // 532 Banjo & Kazooie (Gameboy/Beer/Sunglasses/Chair)
     // 533 CCW Nabnut's Door
@@ -5061,6 +5067,10 @@ enum marker_e{
     MARKER_DD_BLACK_SNIPPET,
     MARKER_DE_BLACK_SNIPPET_UPSIDEDOWN,
 
+    MARKER_E1_BANJOS_BED = 0xE1,
+    MARKER_E2_BANJOS_CHAIR,
+    MARKER_E3_BANJOS_STOVE,
+
     MARKER_EA_LIGHTHOUSE_DOOR = 0xEA,
     MARKER_EB_GV_BANJO_DOOR,
     MARKER_EC_GV_SUN_SWITCH,
@@ -5181,7 +5191,9 @@ enum marker_e{
     MARKER_1EA_GRUNTLING_RED,
 
     MARKER_1ED_JUMP_TUTORIAL = 0x1ED,
-    MARKER_1F1_GRUNTLING_BLACK = 0x1F1,
+
+    MARKER_1F0_SM_UNKNOWN = 0x1F0,
+    MARKER_1F1_GRUNTLING_BLACK,
 
     MARKER_1F4_TOOTS = 0x1F4,
 

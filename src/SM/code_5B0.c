@@ -15,14 +15,14 @@ ActorAnimationInfo D_8038AAF0[] = {
     {0x2B9, 5.0f}
 };
 
-ActorInfo D_8038AB00 = {
+ActorInfo gQuarrie = {
     MARKER_135_QUARRIE, ACTOR_16F_QUARRIE, ASSET_42D_MODEL_QUARRIE, 
     1,  NULL,
     SM_func_80386EF4, actor_update_func_80326224, actor_drawFullDepth,
     2000, 0, 5.0f, 0
 };
 
-ActorInfo D_8038AB24 = {
+ActorInfo gRockTrappingGrunty = {
     MARKER_29D_ROCK_TRAPPING_GRUNTY, ACTOR_3CA_ROCK_TRAPPING_GRUNTY, ASSET_47B_MODEL_ROCK,
     1, D_8038AAF0,
     SM_func_80386A00, actor_update_func_80326224, actor_drawFullDepth, 
@@ -111,7 +111,7 @@ void SM_func_80386D68(Actor *this){
     func_80386B04(partEmitMgr_newEmitter(0xA), this->position, 0xA, this->scale);
     func_80386C2C(partEmitMgr_newEmitter(0x10), this->position, 0x10, this->scale);
 
-    if (this->unk100 && func_803870E8(this->unk100)) {
+    if (this->unk100 && codeBF0_shouldSpawnQuarrieHoneyComb(this->unk100)) {
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
         __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, BUNDLE_1F_SM_EMPTY_HONEYCOMB, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }

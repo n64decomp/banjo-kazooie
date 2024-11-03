@@ -1,4 +1,4 @@
-sm_func_80386810 = 0x80386810;
+SM_resetSpawnableActors = 0x80386810;
 mm_func_803888B0 = 0x803888B0;
 code26D0_resetSpawnableActorsForTTC = 0x80388AC0;
 code_3E30_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue = 0x8038BF8C;
