@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "core2/particle.h"
 
+extern ParticleEmitter *func_802F0EF0(u8);
 
 /* .data */
 s16 D_80368D80[] = {

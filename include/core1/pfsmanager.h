@@ -41,7 +41,7 @@ s32 func_8024E640(s32 controller_index, s32 dst[3]);
 f32 func_8024E668(s32 controller_index);
 s32 controller_getStartButton(s32 controller_index);
 s32 func_8024E698(s32 controller_index);
-void func_8024E6E0(s32 controller_index, s32 *dst[4]);
+void func_8024E6E0(s32 controller_index, s32 dst[4]);
 void controller_getJoystick(s32 controller_index, f32 dst[2]);
 void pfsManager_update(void);
 void pfsManager_readData();

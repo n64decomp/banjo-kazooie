@@ -6,6 +6,7 @@
 extern void anSeq_clear(VLA**);
 extern void anSeq_PushStep_2Arg(s32, f32, void (*)(s32,s32), s32, s32);
 extern void anSeq_PushStep_3Arg(s32 , f32, void (*)(s32, s32,s32), s32, s32, s32);
+vector(AnSeqElement) **anSeq_new(void);
 
 //TODO import from cutscenes/code_0.h
 extern Struct63s D_8038D904[];

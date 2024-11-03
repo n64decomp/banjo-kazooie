@@ -2,15 +2,15 @@
 #include "functions.h"
 #include "variables.h"
 
-extern BKCollisionTri *func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
-extern int func_802E9118(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, f32 arg7, s32 arg8, s32 arg9, s32 arg10);
-extern int func_802E9DD8(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, f32 arg6, s32 arg7, s32 arg8);
+extern BKCollisionTri *func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7[3], s32 arg8);
+extern BKCollisionTri *func_802E9118(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 arg10);
+extern BKCollisionTri *func_802E9DD8(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8);
 extern s32 func_802EA760(BKModelUnk14List *, s32, f32[3], f32[3], f32, s32, f32*, f32*);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
-
+extern BKCollisionList *model_getCollisionList(BKModelBin *);
+extern BKModelUnk14List *func_8033A12C(BKModelBin *);
 void func_80351954(Struct68s *arg);
 void func_80351AD0(Struct68s *arg0, enum asset_e model_id);
-
 typedef struct {
     s16 unk0;
     u8 unk2;
@@ -59,7 +59,7 @@ extern void func_80352114(void *, Struct68s *, f32);
 
 Struct_Core2_C9F00_0 D_803725F4[] = {
     {         NULL,          NULL}, 
-    {func_80351DE0, func_80351E60}, 
+    {(void (*)(void *, Struct68s *))func_80351DE0, (void (*)(void *, Struct68s *, f32))func_80351E60}, 
     {chTumblar_init, chTumblar_update},
     {         NULL,          NULL}, 
     {         NULL, func_8038B790}, 
@@ -115,8 +115,8 @@ Actor *func_80350E90(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return NULL;
 }
 
-s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4) {
-    s32 sp4C;
+BKCollisionTri * func_80350F7C(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3[3], s32 arg4) {
+    BKCollisionTri * sp4C;
     Struct68s *temp_s0;
     BKVertexList *vtx_list;
     BKCollisionList *colision_list;
@@ -140,7 +140,7 @@ s32 func_80350F7C(ActorMarker *marker, s32 arg1, f32 arg2[3], s32 arg3, s32 arg4
     return sp4C;
 }
 
-s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4, s32 arg5, s32 flagFliter) {
+BKCollisionTri *func_803510B4(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flagFliter) {
     s32 pad44;
     Struct68s *sp40;
     BKVertexList *vertex_list;
@@ -155,7 +155,7 @@ s32 func_803510B4(ActorMarker *marker, s32 arg1, f32 arg2[3], f32 arg3, s32 arg4
     return func_802E9118(collision_list, vertex_list, sp40->position, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
 }
 
-s32 func_80351198(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3, s32 arg4) {
+BKCollisionTri *func_80351198(ActorMarker *marker, f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4) {
     s32 pad3C;
     Struct68s *sp38;
     BKVertexList *vtx_list;
@@ -317,7 +317,7 @@ s32 func_80351838(f32 position[3], s32 key_flag, s32 arg2) {
     Struct68s *sp28;
 
     rotation[0] = rotation[1] = rotation[2] = 0.0f;
-    sp28 = func_8035126C(position, &rotation, 1.0f, 4, key_flag + 0x884);
+    sp28 = func_8035126C(position, rotation, 1.0f, 4, key_flag + 0x884);
     func_80351538(sp28);
     func_8038B5D8(&sp28->local, sp28, key_flag, arg2);
     return sp28 - D_803861B0.unk4;
@@ -413,9 +413,9 @@ void func_80351B28(Struct68s *arg0, f32 arg1[3]) {
     if(arg0->unkC != NULL){
         sp34 = func_8033A12C(arg0->unkC);
         if(sp34 != NULL){
-            if(func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, &sp48, &sp38)){
-                func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, &sp3C, &sp38);
-                if(func_80309DBC(&sp48, &sp3C, sp38, &sp54, 3, 0)){
+            if(func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, sp48, &sp38)){
+                func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, sp3C, &sp38);
+                if(func_80309DBC(sp48, sp3C, sp38, sp54, 3, 0)){
                     return;
                 }
             }
@@ -463,8 +463,8 @@ void func_80351C48(void) {
     if (D_80386180.unk2C != NULL) {
         mlMtxIdent();
         func_80252C08(D_80386180.unk2C->position, D_80386180.unk2C->unk20, D_80386180.unk2C->unk2C, NULL);
-        mlMtx_apply_vec3f(&sp4C, &D_80386180.unk14);
-        func_8028FAB0(&sp4C);
+        mlMtx_apply_vec3f(sp4C, D_80386180.unk14);
+        func_8028FAB0(sp4C);
     }
     D_80386180.unk2C = NULL;
 }
@@ -487,8 +487,8 @@ void func_80351E60(Struct6Bs *arg0, Struct68s *arg1, f32 arg2) {
     arg0->unk4[1] = sinf(((arg0->unk34 * arg0->unk0) / 180.0) * BAD_PI) * 3.0f;
 
     TUPLE_ADD_COPY(sp24, arg0->unk1C, arg0->unk10)
-    func_80351B28(arg1, &sp24);
+    func_80351B28(arg1, sp24);
 
     TUPLE_ADD_COPY(sp24, arg0->unk28, arg0->unk4)
-    func_80351C2C(arg1, &sp24);
+    func_80351C2C(arg1, sp24);
 }

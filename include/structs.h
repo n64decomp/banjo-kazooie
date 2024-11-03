@@ -615,9 +615,9 @@ typedef struct {
 } Struct6Bs;
 
 typedef struct{
-    s32 (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
-    s32 (* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
-    s32 (* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
+    BKCollisionTri * (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
+    BKCollisionTri *(* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
+    BKCollisionTri *(* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
     s32 (* unkC)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
 } Struct6Cs;
 

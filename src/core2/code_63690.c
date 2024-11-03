@@ -5,7 +5,7 @@
 
 //textureList_getDataPtr
 u8 *func_802EA620(BKTextureList *this){
-    return (s32)this + this->cnt_4*sizeof(BKTextureHeader) + sizeof(BKTextureList);
+    return (u8*)this + this->cnt_4*sizeof(BKTextureHeader) + sizeof(BKTextureList);
 }
 
 s32 texture_getPixelBitSize(BKTextureHeader *this){

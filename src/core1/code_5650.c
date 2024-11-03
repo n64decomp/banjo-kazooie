@@ -368,7 +368,7 @@ void func_80243FE4(N_AL_Struct81s *arg0) {
     alEvtqPostEvent(&D_802758CC->evtq, &evt, 33333);
 }
 
-void func_80244050(ALEventQueue *arg0, struct struct_81_s *arg1, u16 arg2) {
+void func_80244050(ALEventQueue *arg0, N_AL_Struct81s *arg1, u16 arg2) {
     s32 pad[5];
     u32 mask;
     ALEventListItem *next_event_list;

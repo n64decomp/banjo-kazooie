@@ -2,8 +2,10 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
+#include "core1/pfsmanager.h"
 
 #include "version.h"
+
 
 #define PFSMANAGER_THREAD_STACK_SIZE 0x200
 
@@ -120,7 +122,7 @@ s32 func_8024E698(s32 controller_index){
     return D_80281138[controller_index].start_button;
 }
 
-void func_8024E6E0(s32 controller_index, s32 *dst[4]){
+void func_8024E6E0(s32 controller_index, s32 dst[4]){
     dst[0] = D_80281138[controller_index].unk24[0];
     dst[1] = D_80281138[controller_index].unk24[1];
     dst[2] = D_80281138[controller_index].unk24[2];

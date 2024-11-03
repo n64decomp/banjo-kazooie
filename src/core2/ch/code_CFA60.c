@@ -116,7 +116,7 @@ void func_80356CCC(Actor *this){
         }
     }//L80356E88
     if(this->state == 3){
-        if(ml_timer_update(&this->local, sp50)){
+        if(ml_timer_update(&local->unk0, sp50)){
             func_803569F0(this, 4);
         }
     }//L80356EAC

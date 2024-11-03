@@ -65,7 +65,7 @@ Actor *chOverlayPressStart_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx 
     return actor;
 }  
 
-void chOverlayPressStart_func_802DCC78(ActorMarker *this){
+void chOverlayPressStart_func_802DCC78(Actor *this){
     D_8037DE80 = 0;
     D_8037DE84 = 0;
 }

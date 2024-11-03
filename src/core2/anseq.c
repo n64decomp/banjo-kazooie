@@ -201,7 +201,7 @@ void anSeq_free(vector(AnSeqElement)** ppAnSeq){
     free(ppAnSeq);
 }
 
-vector(AnSeqElement) **anSeq_new(void){
+vector(AnSeqElement) **anSeq_new(void) {
     vector(AnSeqElement) **ptr = (vector(AnSeqElement) **)malloc(sizeof(vector(AnSeqElement) **));
     *ptr = vector_new(sizeof(AnSeqElement), 2);
     anSeq_clear(ptr);

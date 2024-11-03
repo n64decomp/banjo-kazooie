@@ -6,6 +6,7 @@ extern void func_802EFA34(ParticleEmitter *, f32);
 extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF9C(ParticleEmitter *, f32);
+extern ParticleEmitter *func_802F0EF0(u8);
 
 /* .data */
 s32 D_80368850[3] = {0xFF, 0xFF, 0xFE};

@@ -4,6 +4,9 @@
 #include "n_libaudio.h"
 
 extern ALBank *music_get_sound_bank(void);
+extern OSIoMesg *func_802405D0(void);
+extern OSMesgQueue *func_802405C4(void);
+extern ALHeap *func_802405B8(void);
 
 extern u8 soundfont1ctl_ROM_START[];
 extern u8 soundfont1ctl_ROM_END[];

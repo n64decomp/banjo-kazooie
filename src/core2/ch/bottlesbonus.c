@@ -7,11 +7,13 @@ extern void func_8025A6CC(enum comusic_e arg0, s32 arg1);
 extern void chBottlesBonusCursor_func_802DF99C(void);
 extern f32 *chBottlesBonusCursor_func_802E05AC(s32);
 extern f32  func_802E4B38(void);
-extern void func_8033A8F0(s32, s32, f32[4]);
+extern void func_8033A8F0(BoneTransformList *, s32, f32[4]);
 extern f32  time_func_8033DDB8(void);
 BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
+extern BKModel *func_8033F5F8(BKMeshList *, BKVertexList *);
+extern BKMeshList *func_8033A0B0(BKModelBin *);
 
 #define CH_BOTTLES_BONUS_PUZZLE_HEIGHT (4)
 #define CH_BOTTLES_BONUS_PUZZLE_WIDTH  (5)
@@ -51,6 +53,7 @@ typedef struct{
 extern void item_set(enum item_e, s32);
 extern void actor_postdrawMethod(ActorMarker *);
 extern void viewport_setNearAndFar(f32, f32);
+extern s16 *func_8030C704(void);
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chBottlesBonus_update(Actor *this);
@@ -230,7 +233,7 @@ f32 *chBottlesBonus_func_802DD584(s32 arg0){
     D_8037DF70[0] = temp_v1[5 + arg0].unk0[0] * 0.01;
     D_8037DF70[1] = temp_v1[5 + arg0].unk0[1] * 0.01;
     D_8037DF70[2] = temp_v1[5 + arg0].unk0[2] * 0.01;
-    return &D_8037DF70;
+    return D_8037DF70;
 }
 
 f32 *chBottlesBonus_func_802DD60C(s32 arg0) {
@@ -246,10 +249,10 @@ f32 *chBottlesBonus_func_802DD60C(s32 arg0) {
         D_8037DF80[1] = 0.0f;
         D_8037DF80[2] = 0.0f;
     }
-    return &D_8037DF80;
+    return D_8037DF80;
 }
 
-void chBottlesBonus_func_802DD6E0(s32 arg0, s32 arg1, f32 arg2[3]) {
+void chBottlesBonus_func_802DD6E0(BoneTransformList *arg0, s32 arg1, f32 arg2[3]) {
     f32 sp1C[3];
 
     sp1C[0] = arg2[0] - chBottlesBonus_func_802DD584(arg1)[0];
@@ -259,7 +262,7 @@ void chBottlesBonus_func_802DD6E0(s32 arg0, s32 arg1, f32 arg2[3]) {
     func_8033A968(arg0, D_80368254[arg1], sp1C);
 }
 
-void chBottlesBonus_func_802DD778(s32 arg0, s32 arg1, f32 arg2[3]) {
+void chBottlesBonus_func_802DD778(BoneTransformList *arg0, s32 arg1, f32 arg2[3]) {
     f32 sp1C[3];
 
     func_8033A6B0(arg0, D_80368254[arg1], sp1C);
@@ -431,20 +434,20 @@ s32 chBottlesBonus_getPuzzleIndex(void){
     return chBottleBonusPuzzleIndex;
 }
 
-void chBottlesBonus_startTimer(s32 arg0, s32 arg1, s32 arg2) {
+void chBottlesBonus_startTimer(ActorMarker *arg0, enum asset_e arg1, s32 arg2) {
     Actor *actor;
 
     actor = marker_getActor(chBottlesBonusMarker);
     actor->state = 4;
     actor->lifetime_value = 0.0f;
-    timedFunc_set_2(0.25f, item_set, ITEM_6_HOURGLASS, TRUE);
-    timedFunc_set_2(0.25f, item_set, ITEM_0_HOURGLASS_TIMER, D_803681A0[chBottleBonusPuzzleIndex + 1].time_seconds * 60 - 1);
+    timedFunc_set_2(0.25f, (GenFunction_2)item_set, ITEM_6_HOURGLASS, TRUE);
+    timedFunc_set_2(0.25f, (GenFunction_2)item_set, ITEM_0_HOURGLASS_TIMER, D_803681A0[chBottleBonusPuzzleIndex + 1].time_seconds * 60 - 1);
 }
 
 void chBottlesBonus_update(Actor *this) {
     ActorLocal_core2_560F0 *local;
     f32 sp50;
-    s32 temp_v0_2;
+    Struct6Ds *temp_v0_2;
     s32 sp48;
     s32 cursor_state;
     s32 sp40;
@@ -469,9 +472,9 @@ void chBottlesBonus_update(Actor *this) {
             D_8037DEAC = func_8033F5F8(func_8033A0B0(chBottleBonusBookselfModelBin), model_getVtxList(chBottleBonusBookselfModelBin));
             func_8034CF74(local, 0, D_8037DEAC, 0xF0);
         }
-        func_8028746C(this->anctrl, chBottlesBonus_func_802DD8AC);
+        func_8028746C(this->anctrl, (GenFunction_2)chBottlesBonus_func_802DD8AC);
         for(phi_s0 = 0; phi_s0 < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; phi_s0++){
-            func_8034DFB0(func_8034C2C4(this->marker, phi_s0 + 0x190), D_803682B4, D_803682A4, 0.0f);
+            func_8034DFB0(&func_8034C2C4(this->marker, phi_s0 + 0x190)->type_6D, D_803682B4, D_803682A4, 0.0f);
         }
         D_8037DEB8 = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
         D_8037DEBC = (Struct_core2_560F0_1 *) malloc(CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT*sizeof(Struct_core2_560F0_1));
@@ -483,7 +486,7 @@ void chBottlesBonus_update(Actor *this) {
     cursor_state = chBottlesBonusCursor_getState();
     for(phi_s0_2 = 0; phi_s0_2 < CH_BOTTLES_BONUS_PUZZLE_PIECE_COUNT; phi_s0_2++){
         sp40 = D_8037DF90[phi_s0_2];
-        temp_v0_2 = func_8034C2C4(this->marker, phi_s0_2 + 0x190);
+        temp_v0_2 = &func_8034C2C4(this->marker, phi_s0_2 + 0x190)->type_6D;
         if ((phi_s0_2 == sp48) && (cursor_state == 1) && !chBottlesBonusCursor_func_802E0538(phi_s0_2)) {
             D_8037DF90[phi_s0_2] = TRUE;
         } else {

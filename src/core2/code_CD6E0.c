@@ -8,7 +8,7 @@
 extern f32 player_getYaw(void);
 extern void projectile_getPosition(u8 arg0, f32 arg1[3]);
 extern void func_8033FC98(u8 arg0, s32 arg1);
-
+extern f32 *bundle_getVelocity(Actor *actor);
 
 /* .data */
 u8 D_803726C0[] = { 0,   1,   1,  1,  2,  1,  3,  1, 4,   1,  5,  1,  6,  1,  7,  1,  8,  1,  9,  1};
@@ -25,7 +25,7 @@ void func_803546E8(void) {
     u8 projectile_indx;
     AnimSprite* sp48;
     u8 sp47;
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     f32 plyr_pos[3];
     f32 sp28[3];
 
@@ -35,14 +35,14 @@ void func_803546E8(void) {
     temp_s0 = func_8033E960();
     player_getPosition(plyr_pos);
 
-    temp_s0->unk0[0] = randf2(-10.0f, 10.0f);
-    temp_s0->unk0[1] = (randf() * 35.0f) + 50.0f;
-    temp_s0->unk0[2] = randf2(-10.0f, 10.0f);
+    temp_s0->unk0 = randf2(-10.0f, 10.0f);
+    temp_s0->unk4 = (randf() * 35.0f) + 50.0f;
+    temp_s0->unk8 = randf2(-10.0f, 10.0f);
     func_802589E4(sp28, player_getYaw(), 48.0f);
     sp28[1] = 0.0f;
-    temp_s0->unk0[0] += sp28[0];
-    temp_s0->unk0[1] += sp28[1];
-    temp_s0->unk0[2] += sp28[2];
+    temp_s0->unk0 += sp28[0];
+    temp_s0->unk4 += sp28[1];
+    temp_s0->unk8 += sp28[2];
     projectile_setSprite(projectile_indx, ASSET_713_SPRITE_SPARKLE_YELLOW);
     projectile_setPosition(projectile_indx, plyr_pos);
     func_8033FCD8(projectile_indx, 0xC);
@@ -60,7 +60,7 @@ void func_803546E8(void) {
 }
 
 void func_8035489C(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     u8 projectile_indx;
     f32 playerVelocity[3];
     f32 playerPosition[3];
@@ -80,9 +80,9 @@ void func_8035489C(void) {
         playerVelocity[1] = 0.0f;
         playerPosition[0] += playerVelocity[0] * time_getDelta();
         playerPosition[2] += playerVelocity[2] * time_getDelta();
-        playerPosition[0] += temp_s0->unk0[0];
-        playerPosition[1] += temp_s0->unk0[1];
-        playerPosition[2] += temp_s0->unk0[2];
+        playerPosition[0] += temp_s0->unk0;
+        playerPosition[1] += temp_s0->unk4;
+        playerPosition[2] += temp_s0->unk8;
         projectile_setPosition(projectile_indx, playerPosition);
     }
 }
@@ -94,7 +94,7 @@ void func_80354998(void) {
     ActorMarker *sp50;
     AnimSprite *sp4C;
     u8 sp4B;
-    ParticleStruct1s *temp_s0;
+    ParticleStruct0s *temp_s0;
     f32 sp38[3];
     f32 sp2C[3];
     s32 sp28;
@@ -105,13 +105,13 @@ void func_80354998(void) {
     sp4B = func_8033E93C();
     temp_s0 = func_8033E960();
     ml_vec3f_clear(sp38);
-    temp_s0->unk0[0] = randf2(-2.0f, 2.0f);
-    temp_s0->unk0[1] = 0.0f;
+    (&temp_s0->unk0)[0] = randf2(-2.0f, 2.0f);
+    (&temp_s0->unk0)[1] = 0.0f;
     randf2(-10.0f, 10.0f);
-    temp_s0->unk0[2] = randf2(-2.0f, 2.0f);
-    temp_s0->unkC[0] = 0.0f;
-    temp_s0->unkC[1] = -0.05f;
-    temp_s0->unkC[2] = 0.0f;
+    (&temp_s0->unk0)[2] = randf2(-2.0f, 2.0f);
+    (&temp_s0->unkC)[0] = 0.0f;
+    (&temp_s0->unkC)[1] = -0.05f;
+    (&temp_s0->unkC)[2] = 0.0f;
     animsprite_default(sp4C);
     animsprite_set_speed(sp4C, 3.0f);
     animsprite_set_state(sp4C, ANIM_SPRITE_STATE_STOPPED);
@@ -134,23 +134,23 @@ void func_80354998(void) {
         break;
     case 0x548:
         sp28 = 5;
-        ml_vec3f_clear(temp_s0->unk0);
-        ml_vec3f_clear(temp_s0->unkC);
+        ml_vec3f_clear(&temp_s0->unk0);
+        ml_vec3f_clear(&temp_s0->unkC);
         break;
     case 0x549:
         sp28 = 3;
-        ml_vec3f_clear(temp_s0->unk0);
-        ml_vec3f_clear(temp_s0->unkC);
+        ml_vec3f_clear(&temp_s0->unk0);
+        ml_vec3f_clear(&temp_s0->unkC);
         break;
     case 0x547:
         sp28 = 1;
-        ml_vec3f_clear(temp_s0->unk0);
-        ml_vec3f_clear(temp_s0->unkC);
+        ml_vec3f_clear(&temp_s0->unk0);
+        ml_vec3f_clear(&temp_s0->unkC);
         break;
     default:
         sp28 = 3;
-        ml_vec3f_clear(temp_s0->unk0);
-        ml_vec3f_clear(temp_s0->unkC);
+        ml_vec3f_clear(&temp_s0->unk0);
+        ml_vec3f_clear(&temp_s0->unkC);
         break;
     }
     projectile_setSprite(sp57, sp28 + 0x710);
@@ -166,7 +166,7 @@ void func_80354998(void) {
 }
 
 void func_80354C18(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     s32 pad;
     ActorMarker *sp4C;
     u8 sp4B;
@@ -198,16 +198,16 @@ void func_80354C18(void) {
             projectile_getPosition(projectile_indx, sp34);
         }
         func_80344E7C(sp4B, sp28);
-        sp28[0] += temp_s0->unkC[0];
-        sp28[1] += temp_s0->unkC[1];
-        sp28[2] += temp_s0->unkC[2];
+        sp28[0] += (&temp_s0->unkC)[0];
+        sp28[1] += (&temp_s0->unkC)[1];
+        sp28[2] += (&temp_s0->unkC)[2];
         func_80344E3C(sp4B, sp28);
-        temp_s0->unk0[0] += sp28[0];
-        temp_s0->unk0[1] += sp28[1];
-        temp_s0->unk0[2] += sp28[2];
-        sp34[0] += temp_s0->unk0[0];
-        sp34[1] += temp_s0->unk0[1];
-        sp34[2] += temp_s0->unk0[2];
+        (&temp_s0->unk0)[0] += sp28[0];
+        (&temp_s0->unk0)[1] += sp28[1];
+        (&temp_s0->unk0)[2] += sp28[2];
+        sp34[0] += (&temp_s0->unk0)[0];
+        sp34[1] += (&temp_s0->unk0)[1];
+        sp34[2] += (&temp_s0->unk0)[2];
         projectile_setPosition(projectile_indx, sp34);
     }
     func_8033FC34(projectile_indx, 0xB4);
@@ -217,7 +217,7 @@ void func_80354C18(void) {
 void func_80354DC8(void){}
 
 void func_80354DD0(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     AnimSprite* sp40;
     u8 sp3F;
     u8 pad3C[3];
@@ -230,9 +230,9 @@ void func_80354DD0(void) {
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
     ml_vec3f_clear(sp2C);
-    temp_s0->unk0[0] = randf2(-50.0f, 50.0f);
-    temp_s0->unk0[1] = randf2(-65.0f, -65.0f);
-    temp_s0->unk0[2] = randf2(-50.0f, 50.0f);
+    (&temp_s0->unk0)[0] = randf2(-50.0f, 50.0f);
+    (&temp_s0->unk0)[1] = randf2(-65.0f, -65.0f);
+    (&temp_s0->unk0)[2] = randf2(-50.0f, 50.0f);
     projectile_setSprite(projectile_indx, ASSET_710_SPRITE_SPARKLE_PURPLE);
     projectile_setColor(projectile_indx, 0xE1, 0xFF, 0);
     projectile_setPosition(projectile_indx, sp2C);
@@ -249,7 +249,7 @@ void func_80354DD0(void) {
 }
 
 void func_80354EEC(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     s32 pad;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -273,9 +273,9 @@ void func_80354EEC(void) {
             } else {
                 func_8033FC98(temp_s1, 1);
             }
-            sp28[0] += temp_s0->unk0[0];
-            sp28[1] += temp_s0->unk0[1];
-            sp28[2] += temp_s0->unk0[2];
+            sp28[0] += (&temp_s0->unk0)[0];
+            sp28[1] += (&temp_s0->unk0)[1];
+            sp28[2] += (&temp_s0->unk0)[2];
             projectile_setPosition(temp_s1, sp28);
         }
     }
@@ -289,7 +289,7 @@ void func_8035500C(void) {
     u8 projectile_indx;
     AnimSprite* sp40;
     u8 sp3F;
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     f32 sp2C[3];
     f32 sp20[3];
 
@@ -298,9 +298,9 @@ void func_8035500C(void) {
     sp3F = func_8033E93C();
     temp_s0 = func_8033E960();
     ml_vec3f_clear(sp2C);
-    temp_s0->unk0[0] = randf2(-40.0f, 40.0f);
-    temp_s0->unk0[1] = randf2(-40.0f, 40.0f);
-    temp_s0->unk0[2] = randf2(-40.0f, 40.0f);
+    (&temp_s0->unk0)[0] = randf2(-40.0f, 40.0f);
+    (&temp_s0->unk0)[1] = randf2(-40.0f, 40.0f);
+    (&temp_s0->unk0)[2] = randf2(-40.0f, 40.0f);
     projectile_setSprite(projectile_indx, 0x70F);
     projectile_setColor(projectile_indx, 0xFF, 0xE6, 0xF5);
     projectile_setPosition(projectile_indx, sp2C);
@@ -318,7 +318,7 @@ void func_8035500C(void) {
 }
 
 void func_80355134(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -339,10 +339,10 @@ void func_80355134(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk0[1] -= time_getDelta() * 200.0f;
-            sp28[0] += temp_s0->unk0[0];
-            sp28[1] += temp_s0->unk0[1];
-            sp28[2] += temp_s0->unk0[2];
+            (&temp_s0->unk0)[1] -= time_getDelta() * 200.0f;
+            sp28[0] += (&temp_s0->unk0)[0];
+            sp28[1] += (&temp_s0->unk0)[1];
+            sp28[2] += (&temp_s0->unk0)[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -360,7 +360,7 @@ void func_8035529C(void) {
     u8 projectile_indx;
     AnimSprite* sp48;
     u8 sp47;
-    ParticleStruct1s* sp40;
+    ParticleStruct0s* sp40;
     f32 sp34[3];
     f32 sp28[3];
 
@@ -369,9 +369,9 @@ void func_8035529C(void) {
     sp47 = func_8033E93C();
     sp40 = func_8033E960();
     ml_vec3f_clear(sp34);
-    sp40->unk0[0] = randf2(-40.0f, 40.0f);
-    sp40->unk0[1] = 0.0f;
-    sp40->unk0[2] = randf2(-40.0f, 40.0f);
+    (&sp40->unk0)[0] = randf2(-40.0f, 40.0f);
+    (&sp40->unk0)[1] = 0.0f;
+    (&sp40->unk0)[2] = randf2(-40.0f, 40.0f);
     projectile_setSprite(projectile_indx, 0x70F);
     projectile_setColor(projectile_indx, randi2(0xD2, 0xFF), randi2(0xBE, 0xFF), randi2(0xC8, 0xFF));
     projectile_setPosition(projectile_indx, sp34);
@@ -389,7 +389,7 @@ void func_8035529C(void) {
 }
 
 void func_803553E8(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -410,10 +410,10 @@ void func_803553E8(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0xD) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk0[1] -= time_getDelta() * 40.0f;
-            sp28[0] += temp_s0->unk0[0];
-            sp28[1] += temp_s0->unk0[1];
-            sp28[2] += temp_s0->unk0[2];
+            (&temp_s0->unk0)[1] -= time_getDelta() * 40.0f;
+            sp28[0] += (&temp_s0->unk0)[0];
+            sp28[1] += (&temp_s0->unk0)[1];
+            sp28[2] += (&temp_s0->unk0)[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -432,7 +432,7 @@ void func_80355550(void) {
     u8 projectile_indx;
     AnimSprite *sp38;
     u8 sp37;
-    ParticleStruct1s *sp30;
+    ParticleStruct0s *sp30;
     f32 sp24[3];
     f32 sp18[3];
 
@@ -441,9 +441,9 @@ void func_80355550(void) {
     sp37 = func_8033E93C();
     sp30 = func_8033E960();
     ml_vec3f_clear(sp24);
-    sp30->unk0[0] = randf2(-30.0f, 30.0f);
-    sp30->unk0[1] = randf2(-30.0f, 30.0f);
-    sp30->unk0[2] = randf2(-30.0f, 30.0f);
+    (&sp30->unk0)[0] = randf2(-30.0f, 30.0f);
+    (&sp30->unk0)[1] = randf2(-30.0f, 30.0f);
+    (&sp30->unk0)[2] = randf2(-30.0f, 30.0f);
     if ((f64) randf() < 0.25) {
         projectile_setSprite(projectile_indx, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
     } else if ((f64) randf() < 0.5) {
@@ -470,7 +470,7 @@ void func_80355550(void) {
 }
 
 void func_8035570C(void) {
-    ParticleStruct1s* temp_s0;
+    ParticleStruct0s* temp_s0;
     u8 temp_s1;
     ActorMarker *sp3C;
     FuncUnk40 sp38;
@@ -489,10 +489,10 @@ void func_8035570C(void) {
         func_80354670(temp_s1, temp_s0->unk20);
         if (temp_s0->unk20 >= 0x13) {
             sp38(sp3C, sp34, sp28);
-            temp_s0->unk0[1] -= time_getDelta() * 80.0f;
-            sp28[0] += temp_s0->unk0[0];
-            sp28[1] += temp_s0->unk0[1];
-            sp28[2] += temp_s0->unk0[2];
+            (&temp_s0->unk0)[1] -= time_getDelta() * 80.0f;
+            sp28[0] += (&temp_s0->unk0)[0];
+            sp28[1] += (&temp_s0->unk0)[1];
+            sp28[2] += (&temp_s0->unk0)[2];
             projectile_setPosition(temp_s1, sp28);
         } else {
             projectile_getPosition(temp_s1, sp28);
@@ -513,7 +513,7 @@ void func_80355864(void) {
     static s32 D_803863E4;
     f32 var_f2;
     Actor *sp4C;
-    ParticleStruct1s *sp48;
+    ParticleStruct0s *sp48;
     s32 sp44;
     f32 sp38[3];
     f32 sp2C[3];
@@ -529,11 +529,11 @@ void func_80355864(void) {
     sp38[0] = sp4C->position[0];
     sp38[1] = sp4C->position[1];
     sp38[2] = sp4C->position[2];
-    sp48->unk0[0] = randf2(-10.0f, 10.0f);
-    sp48->unk0[1] = (f32) ((randf() * 45.0f) + 10.0f);
-    sp48->unk0[2] = randf2(-10.0f, 10.0f);
+    (&sp48->unk0)[0] = randf2(-10.0f, 10.0f);
+    (&sp48->unk0)[1] = (f32) ((randf() * 45.0f) + 10.0f);
+    (&sp48->unk0)[2] = randf2(-10.0f, 10.0f);
     projectile_setSprite(sp5F, 0x713);
-    projectile_setPosition(sp5F, &sp38);
+    projectile_setPosition(sp5F, sp38);
     func_8033FCD8(sp5F, 0xC);
     animsprite_default(sp58);
     animsprite_set_state(sp58, ANIM_SPRITE_STATE_STOPPED);
@@ -555,7 +555,7 @@ void func_80355864(void) {
 }
 
 void func_80355B00(void) {
-    ParticleStruct1s *sp44;
+    ParticleStruct0s *sp44;
     u8 projectile_indx;
     ActorMarker *pad40;
     Actor *sp38;
@@ -587,9 +587,9 @@ void func_80355B00(void) {
         sp28[0] += sp34[0] * time_getDelta();
         sp28[2] += sp34[2] * time_getDelta();
 
-        sp28[0] += sp44->unk0[0];
-        sp28[1] += sp44->unk0[1];
-        sp28[2] += sp44->unk0[2];
+        sp28[0] += (&sp44->unk0)[0];
+        sp28[1] += (&sp44->unk0)[1];
+        sp28[2] += (&sp44->unk0)[2];
         projectile_setPosition(projectile_indx, sp28);
     }
 }

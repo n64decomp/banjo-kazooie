@@ -10,11 +10,12 @@ static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32[3],
 
 void lighting_free();
 void lighting_init();
+#define NUM_LIGHTING_ELEM 0x10
 
 /* .bss */
 struct {
     vector(Lighting) *vector_ptr;
-    Lighting *unk4[0x10];
+    Lighting *unk4[NUM_LIGHTING_ELEM];
     Lighting **unk44;
     Lighting **unk48; // copy of unk44
 } sLightingVectorList;
@@ -127,7 +128,7 @@ void lighting_free() {
 
 void lighting_init() {
     sLightingVectorList.vector_ptr = vector_new(sizeof(Lighting), 0x10);
-    sLightingVectorList.unk48 = &sLightingVectorList.unk44;
+    sLightingVectorList.unk48 = &sLightingVectorList.unk4[NUM_LIGHTING_ELEM];
 }
 
 void func_80333974(s32 index) {
@@ -188,7 +189,7 @@ void lightingVectorList_fromFile(File *file_ptr) {
     }
 }
 
-s32 __codeAC520_pad_func_80333C78(s32 arg0) {
+s32 __codeAC520_pad_func_80333C78(File *arg0) {
     Lighting *beginPtr = vector_getBegin(sLightingVectorList.vector_ptr);
     Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
     Lighting *iPtr;
@@ -196,9 +197,9 @@ s32 __codeAC520_pad_func_80333C78(s32 arg0) {
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
         if(iPtr->unk34) {
             file_isNextByteExpected(arg0, 1);
-            file_getNFloats_ifExpected(arg0, 2, &iPtr->position, 3);
+            file_getNFloats_ifExpected(arg0, 2, iPtr->position, 3);
             file_getNFloats_ifExpected(arg0, 3, &iPtr->unk18, 2);
-            file_getNWords_ifExpected(arg0, 4, &iPtr->rgb, 3);
+            file_getNWords_ifExpected(arg0, 4, iPtr->rgb, 3);
         }
     }
 

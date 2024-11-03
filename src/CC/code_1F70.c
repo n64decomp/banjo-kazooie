@@ -13,7 +13,7 @@ void timed_exitStaticCamera(f32);
 extern BKCollisionTri *func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
 extern void func_80340200(s32, f32[3], s32, f32, s32, s32, BKVertexList *, s32);
 extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
-extern void func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
+extern BKCollisionTri *func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
 extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32[3]);
 
 extern void boneTransformList_getBoneScale(s32, s32, f32[3]);

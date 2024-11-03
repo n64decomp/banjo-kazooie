@@ -4,7 +4,7 @@
 #include "variables.h"
 #include "n_libaudio.h"
 
-extern void func_80335394(s32, f32);
+extern void func_80335394(N_AL_Struct81s *, f32);
 extern f32 sfx_randf2(f32, f32);
 
 #define SFX_SRC_FLAG_0_UNKOWN (1 << 0)
@@ -114,7 +114,7 @@ struct46s *func_8030C8DC(s32 indx){
     return D_80382470 + indx - 1;
 }
 
-Struct81s *func_8030C8F4(s32 indx){
+N_AL_Struct81s *func_8030C8F4(s32 indx){
     return D_80382470[indx - 1].unk0;
 }
 

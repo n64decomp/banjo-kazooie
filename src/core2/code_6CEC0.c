@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+extern ParticleEmitter *func_802F0EF0(u8);
+
 /* .bss */
 u8 D_80380A80;
 

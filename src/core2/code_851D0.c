@@ -123,7 +123,7 @@ void func_8030C33C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 }
 
 
-s32 func_8030C704(void){
+s16 *func_8030C704(void){
     return D_80382450;
 }
 
