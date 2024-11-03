@@ -132,7 +132,7 @@ void func_8038687C(Actor *this) {
     if(!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        local->unk0 = 1;
+        reinterpret_cast(s32, local->unk0) = 1;
         local->unk4 = 0;
         local->unk8 = 0;
         local->unkC = 0.0f;

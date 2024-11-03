@@ -151,8 +151,8 @@ void func_80389268(Actor *this) {
     switch (this->state) {                              /* irregular */
     case 1:
         if (levelSpecificFlags_get(this->unk10_12 + 7)) {
-            timedFunc_set_1(0.05f, func_803891B0, (s32) this->marker);
-            timedFunc_set_1(4.0f, func_8038921C, (s32) this->marker);
+            timedFunc_set_1(0.05f, (GenFunction_1)func_803891B0, (s32) this->marker);
+            timedFunc_set_1(4.0f, (GenFunction_1)func_8038921C, (s32) this->marker);
             subaddie_set_state(this, 2);
         }
         break;

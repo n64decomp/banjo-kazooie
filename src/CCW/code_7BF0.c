@@ -29,7 +29,7 @@ void CCW_func_8038E034(Actor* actor) {
     subaddie_set_state_with_direction(actor, 2, 0.001f, 1);
 }
 
-void func_8038E060(s32 arg0, ActorMarker *marker){
+void func_8038E060(BoneTransformList *arg0, ActorMarker *marker){
     Actor *this;
     f32 sp28[3];
     s32 pad24;
@@ -61,7 +61,7 @@ void func_8038E0C8(Actor *this) {
 
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
-        func_8028746C(this->anctrl, func_8038E060);
+        func_8028746C(this->anctrl, (GenFunction_2)func_8038E060);
         func_8028748C(this->anctrl, (s32) this->marker);
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk1C[0] = 0.0f;

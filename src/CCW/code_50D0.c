@@ -66,14 +66,14 @@ void func_8038B6DC(ActorMarker *marker) {
     skeletalAnim_clearCallbacks(this->unk148);
     phi_f20 = randf2(0.1f, 0.3f);
     for(i = 0; i < 3; i++){
-        skeletalAnim_setCallback_1(this->unk148, phi_f20, func_8038B610, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, phi_f20, (GenFunction_1)func_8038B610, (s32)this->marker);
         phi_f20 += randf2(0.15f, 0.3f);
         if(0.85 < phi_f20)
             break;
     }
-    skeletalAnim_setCallback_1(this->unk148, 0.35f, func_8038B4C0, this->marker);
-    skeletalAnim_setCallback_1(this->unk148, 0.63f, func_8038B58C, this->marker);
-    skeletalAnim_setCallback_1(this->unk148, 0.9f, func_8038B6DC, this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.35f, (GenFunction_1)func_8038B4C0, (s32)this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.63f, (GenFunction_1)func_8038B58C, (s32)this->marker);
+    skeletalAnim_setCallback_1(this->unk148, 0.9f, (GenFunction_1)func_8038B6DC, (s32)this->marker);
 }
 
 void func_8038B814(Actor *this, s32 next_state) {

@@ -29,7 +29,7 @@ void __chAnchorSwitch_setState(Actor *this, s32 arg1){
     this->state = arg1;
 }
 
-void __chAnchorSwitch_press(ActorMarker *marker, s32 arg1){
+void __chAnchorSwitch_press(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     __chAnchorSwitch_setState(actor, 2);
 }

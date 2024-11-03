@@ -47,15 +47,15 @@ void CCW_func_8038C16C(Actor *this, s32 next_state) {
     if (next_state == 2) {
         if (this->marker->id == 0x1CA) {
             skeletalAnim_set(this->unk148, 0x22E, 0.2f, 3.53f);
-            skeletalAnim_setCallback_1(this->unk148, 0.1f, func_8038C0E8, this->marker);
+            skeletalAnim_setCallback_1(this->unk148, 0.1f, (GenFunction_1)func_8038C0E8, (s32)this->marker);
         }
         if (this->marker->id == 0x1C7) {
             skeletalAnim_set(this->unk148, 0x230, 0.2f, 4.0f);
         }
         if (this->marker->id == 0x1CB) {
             skeletalAnim_set(this->unk148, 0x1A2, 0.2f, 4.0f);
-            skeletalAnim_setCallback_1(this->unk148, 0.3f, func_8038BFE0, this->marker);
-            skeletalAnim_setCallback_1(this->unk148, 0.65f, func_8038C064, this->marker);
+            skeletalAnim_setCallback_1(this->unk148, 0.3f, (GenFunction_1)func_8038BFE0, (s32)this->marker);
+            skeletalAnim_setCallback_1(this->unk148, 0.65f, (GenFunction_1)func_8038C064, (s32)this->marker);
         }
         if (this->marker->id == 0x1C8) {
             skeletalAnim_set(this->unk148, 0x231, 0.2f, 4.0f);

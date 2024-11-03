@@ -32,8 +32,8 @@ void CCW_func_8038C6A0(Actor *this, s32 next_state) {
     local = (ActorLocal_CCW_61E0 *)&this->local;
     if (next_state == 1) {
         skeletalAnim_set(this->unk148, 0x25B, 0.0f, 1.0f);
-        skeletalAnim_setCallback_1(this->unk148, 0.5f, CCW_func_8038C5D0, this->marker);
-        skeletalAnim_setCallback_1(this->unk148, 0.7f, CCW_func_8038C638, this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.5f, (GenFunction_1)CCW_func_8038C5D0, (s32)this->marker);
+        skeletalAnim_setCallback_1(this->unk148, 0.7f, (GenFunction_1)CCW_func_8038C638, (s32)this->marker);
     }
     if (next_state == 3) {
         local->unk0[0] = this->position[0];

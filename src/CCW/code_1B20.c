@@ -68,13 +68,13 @@ void func_80387F64(Actor *this, s32 next_state){
         if (local->unk0->unkA != 0) {
             timed_setStaticCameraToNode(6.0f, 1);
             timedFunc_set_0(6.1f, func_80387F10);
-            timedFunc_set_2(8.0f, func_80387F38, (s32) this->marker, 3);
+            timedFunc_set_2(8.0f, (GenFunction_2)func_80387F38, (s32) this->marker, 3);
         } else {
             if (map_get() == MAP_43_CCW_SPRING) {
                 timed_exitStaticCamera(7.0f);
                 func_80324E38(7.0f, 0);
             }
-            timedFunc_set_2(7.0f, func_80387F38, (s32) this->marker, 3);
+            timedFunc_set_2(7.0f, (GenFunction_2)func_80387F38, (s32) this->marker, 3);
         }
     }
 

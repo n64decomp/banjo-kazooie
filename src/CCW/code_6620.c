@@ -60,7 +60,7 @@ void func_8038CB40(Actor *this, s32 next_state) {
     if (next_state == 1) {
         skeletalAnim_set(this->unk148, 0x289, 0.2f, 1.1f);
         for(i = 0; i < 10; i++){
-            skeletalAnim_setCallback_1(this->unk148, randf(), func_8038CA10, (s32)this->marker);
+            skeletalAnim_setCallback_1(this->unk148, randf(), (GenFunction_1)func_8038CA10, (s32)this->marker);
         }
     }
     this->state = next_state;
