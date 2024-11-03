@@ -387,8 +387,8 @@ void func_803895E0(void){
             : cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DAC);
 
         nodeprop_getPosition(s0, sp64);
-        f20 = (f32)func_80304DA8(s0);
-        f8 = (f32)func_80304DB8(s0);
+        f20 = (f32)nodeprop_getYaw(s0);
+        f8 = (f32)nodeprop_getScale(s0);
         f22 = f8*0.01;
         actor = actor_spawnWithYaw_f32(D_80391DB8[i].actor_id, sp64, (s32)f20);
         actor->scale = f22;

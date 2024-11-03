@@ -19,9 +19,8 @@ typedef struct{
     s32 position[3];
     s32 radius;
     u32 unk10_31: 28;
-    u32 unk10_3: 3;
+    u32 unk10_3: 3; // is 1, 2, 4 or 7 (maybe a bitmask?)
     u32 unk10_0: 1;
-    // u8 pad10[0x4];
 } Struct_core2_7AF80_2;
 
 typedef struct {
@@ -34,9 +33,9 @@ NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s
 s32 func_80304FC4(enum actor_e *actor_id_list, NodeProp **node_list, s32 arg2);
 void cube_positionToIndices(s32 arg0[3], f32 arg1[3]);
 NodeProp *func_803080C8(s32 arg0);
-void func_80308984(void);
+void __code7AF80_func_80308984(void);
 void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80308F0C(Cube *cube);
+void __code7AF80_func_80308F0C(Cube *cube);
 void func_80308EC8(void);
 
 extern ActorInfo D_803675F0;
@@ -63,8 +62,8 @@ s32 D_8036A9D0 = 0;
 Struct_core2_7AF80_1 *D_8036A9D4 = NULL;
 Struct_core2_7AF80_1 *D_8036A9D8 = NULL;
 
-UNK_TYPE(s32)    D_8036A9DC = 0;
-UNK_TYPE(void *) D_8036A9E0 = NULL;
+Cube *D_8036A9DC = NULL;
+s32 *D_8036A9E0 = NULL;
 
 u8 sMarkerToBitfield[] = {
                                0,    9,    2,    3,    4,    5,    6,    7,   -1,    8,  0xA,  0xB, 
@@ -97,33 +96,36 @@ u8 sMarkerToBitfield[] = {
       -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1
 };
 
-s16 *D_8036ABA0 = NULL;
-s16 *D_8036ABA4 = NULL;
-s32  D_8036ABA8 = 0; //max index of D_8036ABA4
+// total count of prop1Cnt?
+s16 *sProp1TotalCounts = NULL;
+// total count of prop2Cnt?
+s16 *sProp2TotalCounts = NULL;
+s32  D_8036ABA8 = 0; //max index of sProp2TotalCounts
+// list of "actors" when unk6 == 6 and bit0 == 0
 s16  D_8036ABAC[] = {0x269, 0x26B, 0x26D, 0x26F, 0x271, 0x273, 0x275, 0x277, 0x279, -1};
+// list of "actors" when unk6 == 6 and bit0 == 0
 s16  D_8036ABC0[] = {0x268, 0x26A, 0x26C, 0x26E, 0x270, 0x272, 0x274, 0x276, 0x278, -1};
+// used to index D_80382150
 s16  D_8036ABD4 = 0;
 
 /* .bss */
 struct {
-    Cube *cube_list;
-    f32 unk4;
-    s32 min[3]; //8
-    s32 max[3]; //14
-    s32 stride[2]; //20
+    Cube *cubes;
+    f32 margin;
+    s32 min[3];
+    s32 max[3];
+    s32 stride[2];
     s32 cubeCnt; 
     s32 unk2C;
     s32 width[3];
-    // s32 unk34;
-    // s32 unk38;
-    Cube *unk3C;
-    Cube *unk40;
-    s32 unk44;
-} D_80381FA0;
+    Cube *unk3C; // fallback cube?
+    Cube *unk40; // some other fallback cube?
+    s32 unk44; // index of some sort
+} sCubeList;
 
 /* .code */
-void func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    func_80308F0C(cube);
+void __7AF80_func_80301F10(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    __code7AF80_func_80308F0C(cube);
     func_8032D510(cube, gfx, mtx, vtx);
 }
 
@@ -136,29 +138,29 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
     Cube *var_fp;
 
     sp50 = arg4[1];
-    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    sp44 = sCubeList.cubes + sp50*sCubeList.stride[0];
     while(sp50 < arg3[1]) {
         sp54 = arg4[0];
         var_fp = sp44 + sp54;
         while(sp54 < arg3[0]) {
             var_s1 = arg4[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
-                var_s0 += D_80381FA0.stride[1];
+                var_s0 += sCubeList.stride[1];
             }
 
             var_s1 = arg5[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while( var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
-                var_s0 -= D_80381FA0.stride[1];
+                var_s0 -= sCubeList.stride[1];
             }
             sp54++;
             var_fp++;
@@ -168,33 +170,33 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         var_fp = sp44 + sp54;
         while(sp54 >= arg3[0]) {
             var_s1 = arg4[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
-                var_s0 += D_80381FA0.stride[1];
+                var_s0 += sCubeList.stride[1];
             }
 
             var_s1 = arg5[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while(var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
-                var_s0 -= D_80381FA0.stride[1];
+                var_s0 -= sCubeList.stride[1];
             }
             sp54--;
             var_fp--;
         }
         sp50++;
-        sp44 += D_80381FA0.stride[0];
+        sp44 += sCubeList.stride[0];
     }
 
     sp50 = arg5[1];
-    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    sp44 = sCubeList.cubes + sp50*sCubeList.stride[0];
     while(sp50 >= arg3[1]) {
 
         sp54 = arg4[0];
@@ -202,23 +204,23 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         while(sp54 < arg3[0]) {
 
             var_s1 = arg4[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while( var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
-                var_s0 += D_80381FA0.stride[1];
+                var_s0 += sCubeList.stride[1];
             }
 
             var_s1 = arg5[2];
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while( var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
-                var_s0 -= D_80381FA0.stride[1];
+                var_s0 -= sCubeList.stride[1];
             }
             sp54++;
             var_fp++;
@@ -228,29 +230,29 @@ void func_80301F50(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
         var_fp = sp44 + sp54;
         while(sp54 >= arg3[0]) {
             var_s1 = arg4[2];            
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while(var_s1 < arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1++;
-                var_s0 += D_80381FA0.stride[1];
+                var_s0 += sCubeList.stride[1];
             }
 
             var_s1 = arg5[2];            
-            var_s0 = var_fp + var_s1*D_80381FA0.stride[1];
+            var_s0 = var_fp + var_s1*sCubeList.stride[1];
             while(var_s1 >= arg3[2]) {
                 if ((var_s0->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_s0) != 0) {
-                    func_80301F10(var_s0, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_s0, gfx, mtx, vtx);
                 }
                 var_s1--;
-                var_s0 -= D_80381FA0.stride[1];
+                var_s0 -= sCubeList.stride[1];
             }
             sp54--;
             var_fp--;
         }
         sp50--;
-        sp44 -= D_80381FA0.stride[0];
+        sp44 -= sCubeList.stride[0];
     }
 }
 u8 D_80381FE8[0x50];
@@ -264,15 +266,15 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
     Cube *var_fp;
 
     sp50 = arg4[1];
-    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    sp44 = sCubeList.cubes + sp50*sCubeList.stride[0];
     while(sp50 < arg3[1]) {
         sp54 = arg4[2];
-        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
+        var_s0 = sp44 + sp54*sCubeList.stride[1];
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
             }
@@ -280,20 +282,20 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
             }
-            var_s0 += D_80381FA0.stride[1];
+            var_s0 += sCubeList.stride[1];
         }
 
         sp54 = arg5[2];
-        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
+        var_s0 = sp44 + sp54*sCubeList.stride[1];
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
             }
@@ -301,26 +303,26 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
             }
-            var_s0 -= D_80381FA0.stride[1];
+            var_s0 -= sCubeList.stride[1];
         }
         sp50++;
-        sp44 += D_80381FA0.stride[0];
+        sp44 += sCubeList.stride[0];
     }
 
     sp50 = arg5[1];
-    sp44 = D_80381FA0.cube_list + sp50*D_80381FA0.stride[0];
+    sp44 = sCubeList.cubes + sp50*sCubeList.stride[0];
     while(sp50 >= arg3[1]) {
         sp54 = arg4[2];
-        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
+        var_s0 = sp44 + sp54*sCubeList.stride[1];
         for(sp54 = arg4[2]; sp54 < arg3[2]; sp54++) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
             }
@@ -328,20 +330,20 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
             }
-            var_s0 += D_80381FA0.stride[1];
+            var_s0 += sCubeList.stride[1];
         }
 
         sp54 = arg5[2];
-        var_s0 = sp44 + sp54*D_80381FA0.stride[1];
+        var_s0 = sp44 + sp54*sCubeList.stride[1];
         for(sp54 = arg5[2]; sp54 >= arg3[2]; sp54--) {
             var_fp = var_s0 + arg4[0];
             for(var_s1 = arg4[0]; var_s1 < arg3[0]; var_s1++) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp++;
             }
@@ -349,14 +351,14 @@ void func_80302634(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 arg3[3], s32 arg4[3], s3
             var_fp = var_s0 + arg5[0];
             for(var_s1 = arg5[0]; var_s1 >= arg3[0]; var_s1--) {
                 if ((var_fp->prop2Cnt != 0) && viewport_cube_isInFrustum2(var_fp) != 0) {
-                    func_80301F10(var_fp, gfx, mtx, vtx);
+                    __7AF80_func_80301F10(var_fp, gfx, mtx, vtx);
                 }
                 var_fp--;
             }
-            var_s0 -= D_80381FA0.stride[1];
+            var_s0 -= sCubeList.stride[1];
         }
         sp50--;
-        sp44 -= D_80381FA0.stride[0];
+        sp44 -= sCubeList.stride[0];
     }
 }
 
@@ -377,14 +379,14 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     viewport_getRotation_vec3f(vp_rotation);
     func_80256664(vp_rotation);
     cube_positionToIndices(vp_cube_indices, vp_position);
-    vp_cube_indices[0] -= D_80381FA0.min[0];\
-    vp_cube_indices[1] -= D_80381FA0.min[1];\
-    vp_cube_indices[2] -= D_80381FA0.min[2];
+    vp_cube_indices[0] -= sCubeList.min[0];\
+    vp_cube_indices[1] -= sCubeList.min[1];\
+    vp_cube_indices[2] -= sCubeList.min[2];
     func_80308EC8();
     sp44[0] = sp44[1] = sp44[2] = 0;
-    sp38[0] = D_80381FA0.width[0] - 1;\
-    sp38[1] = D_80381FA0.width[1] - 1;\
-    sp38[2] = D_80381FA0.width[2] - 1;
+    sp38[0] = sCubeList.width[0] - 1;\
+    sp38[1] = sCubeList.width[1] - 1;\
+    sp38[2] = sCubeList.width[2] - 1;
     if ((vp_rotation[0]> 250.0f) && (vp_rotation[0]< 290.0f)) {
         if ((vp_rotation[1] >= 225.0f) && (vp_rotation[1] <= 315.0f)) {
             sp44[0] = (vp_cube_indices[0] > sp44[0]) ? vp_cube_indices[0] - 1 : sp44[0];
@@ -434,12 +436,12 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             sp38[i] = vp_cube_indices[i] + 4;
         }
     }
-    if (D_80381FA0.unk3C != NULL) {
-        func_8032D510(D_80381FA0.unk3C, gfx, mtx, vtx);
+    if (sCubeList.unk3C != NULL) {
+        func_8032D510(sCubeList.unk3C, gfx, mtx, vtx);
     }
 
-    if (D_80381FA0.unk40 != NULL) {
-        func_8032D510(D_80381FA0.unk40, gfx, mtx, vtx);
+    if (sCubeList.unk40 != NULL) {
+        func_8032D510(sCubeList.unk40, gfx, mtx, vtx);
     }
     if (((45.0f <= vp_rotation[1]) && (vp_rotation[1] <= 135.0f)) || ((225.0f <= vp_rotation[1]) && (vp_rotation[1] <= 315.0f))) {
         func_80301F50(gfx, mtx, vtx, vp_cube_indices, sp44, sp38);
@@ -459,11 +461,11 @@ void cube_positionToIndices(s32 indices[3], f32 position[3]) {
             indices[i] = (s32) ((position[i] / 1000.0f) + -1.0f);
         }
 
-        if (indices[i] < D_80381FA0.min[i]) {
-            indices[i] = D_80381FA0.min[i];
+        if (indices[i] < sCubeList.min[i]) {
+            indices[i] = sCubeList.min[i];
         }
-        if (D_80381FA0.max[i] < indices[i]) {
-            indices[i] = D_80381FA0.max[i];
+        if (sCubeList.max[i] < indices[i]) {
+            indices[i] = sCubeList.max[i];
         }
     }
 }
@@ -480,8 +482,8 @@ void cube_volumeToIndices(s32 min_indices[3], s32 max_indices[3], f32 vol_p1[3],
         } else {
             min_indices[i] = (phi_f12 - margin) / 1000.0f + -1.0f;
         }
-        if (min_indices[i] < D_80381FA0.min[i]) {
-            min_indices[i] = D_80381FA0.min[i];
+        if (min_indices[i] < sCubeList.min[i]) {
+            min_indices[i] = sCubeList.min[i];
         }
 
         phi_f12 = (vol_p2[i] <= vol_p1[i]) ? vol_p1[i] : vol_p2[i];
@@ -492,18 +494,28 @@ void cube_volumeToIndices(s32 min_indices[3], s32 max_indices[3], f32 vol_p1[3],
             max_indices[i] = (phi_f12 + margin) / 1000.0f + -1.0f;
         }
 
-        if (D_80381FA0.max[i] < max_indices[i]) {
-            max_indices[i] = D_80381FA0.max[i];
+        if (sCubeList.max[i] < max_indices[i]) {
+            max_indices[i] = sCubeList.max[i];
         }
     }
 }
 
-Cube *cube_atIndices(s32 arg0[3]) {
-    if( (arg0[0] < D_80381FA0.min[0]) || (arg0[1] < D_80381FA0.min[1]) || (arg0[2] < D_80381FA0.min[2]) 
-        || (D_80381FA0.max[0] < arg0[0]) || (D_80381FA0.max[1] < arg0[1]) || (D_80381FA0.max[2] < arg0[2])) {
-        return D_80381FA0.unk3C;
+static Cube *__code7AF80_getCubeAtPosition(s32 position[3]) {
+    if( 
+        (position[0] < sCubeList.min[0]) ||
+        (position[1] < sCubeList.min[1]) ||
+        (position[2] < sCubeList.min[2]) ||
+        (sCubeList.max[0] < position[0]) ||
+        (sCubeList.max[1] < position[1]) ||
+        (sCubeList.max[2] < position[2])
+    ) {
+        return sCubeList.unk3C;
     }
-    return D_80381FA0.cube_list + (arg0[0] - D_80381FA0.min[0]) + (arg0[1] - D_80381FA0.min[1]) * D_80381FA0.stride[0] +  (arg0[2] - D_80381FA0.min[2])*D_80381FA0.stride[1];
+
+    return sCubeList.cubes + 
+        (position[0] - sCubeList.min[0]) + 
+        (position[1] - sCubeList.min[1]) * sCubeList.stride[0] +
+        (position[2] - sCubeList.min[2]) * sCubeList.stride[1];
 }
 
 Cube *cube_atPosition_s32(s32 position[3]) {
@@ -516,18 +528,18 @@ Cube *cube_atPosition_s32(s32 position[3]) {
     for(i = 0; i < 3; i++){
         sp1C[i] = (position[i] >= 0) ? position[i]/1000 : position[i] / 1000 - 1;
     }
-    if( (sp1C[0] < D_80381FA0.min[0]) || (sp1C[1] < D_80381FA0.min[1]) || (sp1C[2] < D_80381FA0.min[2])
-        || (D_80381FA0.max[0] < sp1C[0]) || (D_80381FA0.max[1] < sp1C[1]) || (D_80381FA0.max[2] < sp1C[2])
+    if( (sp1C[0] < sCubeList.min[0]) || (sp1C[1] < sCubeList.min[1]) || (sp1C[2] < sCubeList.min[2])
+        || (sCubeList.max[0] < sp1C[0]) || (sCubeList.max[1] < sp1C[1]) || (sCubeList.max[2] < sp1C[2])
     ){
-        return D_80381FA0.unk3C;
+        return sCubeList.unk3C;
     }
-    diff[0] = sp1C[0] - D_80381FA0.min[0];
-    diff[1] = sp1C[1] - D_80381FA0.min[1];
-    diff[2] = sp1C[2] - D_80381FA0.min[2];
-    return D_80381FA0.cube_list
+    diff[0] = sp1C[0] - sCubeList.min[0];
+    diff[1] = sp1C[1] - sCubeList.min[1];
+    diff[2] = sp1C[2] - sCubeList.min[2];
+    return sCubeList.cubes
         + diff[0]
-        + diff[1]*D_80381FA0.stride[0]
-        + diff[2]*D_80381FA0.stride[1];
+        + diff[1]*sCubeList.stride[0]
+        + diff[2]*sCubeList.stride[1];
 }
 
 Cube *cube_atPosition_f32(f32 position[3]){
@@ -540,38 +552,37 @@ Cube *cube_atPosition_f32(f32 position[3]){
 }
 
 Cube *func_8030364C(void){
-    return D_80381FA0.unk40;
+    return sCubeList.unk40;
 }
 
 s32 D_803820A8[3];
 Cube *func_80303658(void){
-    return D_80381FA0.unk3C;
+    return sCubeList.unk3C;
 }
 
-void func_80303664(s32 arg0[3], s32 arg1[3]){
-    arg0[0] = D_80381FA0.min[0];
-    arg0[1] = D_80381FA0.min[1];
-    arg0[2] = D_80381FA0.min[2];
+void __code7AF80_pad_func_80303664(s32 arg0[3], s32 arg1[3]){
+    arg0[0] = sCubeList.min[0];
+    arg0[1] = sCubeList.min[1];
+    arg0[2] = sCubeList.min[2];
 
-    arg1[0] = D_80381FA0.max[0];
-    arg1[1] = D_80381FA0.max[1];
-    arg1[2] = D_80381FA0.max[2];
+    arg1[0] = sCubeList.max[0];
+    arg1[1] = sCubeList.max[1];
+    arg1[2] = sCubeList.max[2];
 }
 
-//BKCollisionTri *
-void * func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
+static BKCollisionTri *__code7AF80_func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    void *temp_v0;
-    void *var_s5;
+    BKCollisionTri *temp_v0;
+    BKCollisionTri *var_s5;
 
     var_s5 = NULL;
-    cube_volumeToIndices(min, max, volume_p1, volume_p2, D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, volume_p1, volume_p2, sCubeList.margin);
     for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
-                temp_v0 = func_803311D4(cube_atIndices(cube_indx), volume_p1, volume_p2, arg2, arg3);
+                temp_v0 = func_803311D4(__code7AF80_getCubeAtPosition(cube_indx), volume_p1, volume_p2, arg2, arg3);
                 if (temp_v0 != NULL) {
                     var_s5 = temp_v0;
                 }
@@ -585,18 +596,18 @@ void * func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
     return var_s5;
 }
 
-void * func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
+BKCollisionTri *func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    void *temp_v0;
-    void *var_s5;
+    BKCollisionTri *temp_v0;
+    BKCollisionTri *var_s5;
 
-    cube_volumeToIndices(min, max, volume_p1, volume_p2, D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, volume_p1, volume_p2, sCubeList.margin);
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
-                temp_v0 = func_803311D4(cube_atIndices(cube_indx), volume_p1, volume_p2, arg2, arg3);
+                temp_v0 = func_803311D4(__code7AF80_getCubeAtPosition(cube_indx), volume_p1, volume_p2, arg2, arg3);
                 if (temp_v0 != NULL) {
                     return temp_v0;
                 }
@@ -610,7 +621,7 @@ void * func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) 
     return NULL;
 }
 
-BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
+static BKCollisionTri *__code7AF80_func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
@@ -619,12 +630,12 @@ BKCollisionTri * func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f
     Cube *cube;
 
     var_s5 = NULL;
-    cube_volumeToIndices(min, max, volume_p1, volume_p2, radius + D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, volume_p1, volume_p2, radius + sCubeList.margin);
     if(cube_indx);
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
-                cube = cube_atIndices(cube_indx);
+                cube = __code7AF80_getCubeAtPosition(cube_indx);
                 temp_v0 = func_80331638(cube, volume_p1, volume_p2, radius, arg3, arg4, flags);
                 if (temp_v0 != NULL) {
                     var_s5 = temp_v0;
@@ -645,8 +656,7 @@ u8 pad_80382138[4];
 s32 D_8038213C;
 
 extern Cube *D_80382144;
-//BKCollisionTri *
-BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
+BKCollisionTri* __code7AF80_func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
@@ -654,11 +664,11 @@ BKCollisionTri * func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg
     BKCollisionTri *var_s5;
 
     var_s5 = NULL;
-    cube_volumeToIndices(min, max, position, position, radius + D_80381FA0.unk4);
+    cube_volumeToIndices(min, max, position, position, radius + sCubeList.margin);
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
         for(cube_indx[1] = min[1]; cube_indx[1] <= max[1]; cube_indx[1]++){
             for(cube_indx[2] = min[2]; cube_indx[2] <= max[2]; cube_indx[2]++){
-                temp_v0 = func_803319C0(cube_atIndices(cube_indx), position, radius, arg2, arg3);
+                temp_v0 = func_803319C0(__code7AF80_getCubeAtPosition(cube_indx), position, radius, arg2, arg3);
                 if (temp_v0 != NULL) {
                     var_s5 = temp_v0;
                 }
@@ -683,7 +693,7 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
         phi_s0 = func_803322F0(cube, marker, arg2, arg3, arg4);
         if (phi_s0 != NULL) {
             if (phi_s0->unk8_0 && phi_s0->marker->unk58 != NULL) {
-            if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
+                if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
                     phi_s0 = NULL;
                 }
             }
@@ -699,7 +709,7 @@ Cube *D_80382144;
 s32 D_80382148;
 s16 D_80382150[0x48];
 u32 D_803821E0[0x5B];
-void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
+void func_80303D78(ActorMarker *marker, f32 arg1, UNK_TYPE(s32) arg2) {
     s32 sp6C[3];
     s32 sp60[3];
     s32 sp5C;
@@ -707,18 +717,18 @@ void func_80303D78(ActorMarker *arg0, f32 arg1, UNK_TYPE(s32) arg2) {
 
 
     sp5C = 0;
-    sp50[0] = (f32) arg0->propPtr->x;
-    sp50[1] = (f32) arg0->propPtr->y;
-    sp50[2] = (f32) arg0->propPtr->z;
+    sp50[0] = (f32) marker->propPtr->x;
+    sp50[1] = (f32) marker->propPtr->y;
+    sp50[2] = (f32) marker->propPtr->z;
     cube_positionToIndices(sp60, sp50);
     for(sp6C[2] = sp60[2] - 1; sp6C[2] <= sp60[2] + 1; sp6C[2]++){
         for(sp6C[1] = sp60[1] - 1; sp6C[1] <= sp60[1] + 1; sp6C[1]++){
             for(sp6C[0] = sp60[0] - 1; sp6C[0] <= sp60[0] + 1; sp6C[0]++){
-                    func_80303C54(cube_atIndices(sp6C), arg0, arg1, arg2, &D_8038213C, &sp5C);
+                    func_80303C54(__code7AF80_getCubeAtPosition(sp6C), marker, arg1, arg2, &D_8038213C, &sp5C);
             }
         }
     }
-    func_80303C54(D_80381FA0.unk40, arg0, arg1, arg2, &D_8038213C, &sp5C);
+    func_80303C54(sCubeList.unk40, marker, arg1, arg2, &D_8038213C, &sp5C);
     D_803820B8[sp5C] = 0;
 }
 
@@ -760,50 +770,48 @@ ActorProp *func_80303FE4(ActorMarker *arg0, f32 arg1, s32 arg2) {
     return D_803820B8[0];
 }
 
-void cubeList_free(void){
+void cubeList_free(){
     Cube *iCube;
     
-    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+    for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         cube_free(iCube);
     }
-    free(D_80381FA0.cube_list);
+    free(sCubeList.cubes);
     
-    if(D_80381FA0.unk3C){
-        cube_free(D_80381FA0.unk3C);
-        free(D_80381FA0.unk3C);
+    if(sCubeList.unk3C){
+        cube_free(sCubeList.unk3C);
+        free(sCubeList.unk3C);
     }
 
-    if(D_80381FA0.unk40){
-        cube_free(D_80381FA0.unk40);
-        free(D_80381FA0.unk40);
+    if(sCubeList.unk40){
+        cube_free(sCubeList.unk40);
+        free(sCubeList.unk40);
     }
     bitfield_free(D_8036A9E0);
     D_8036A9E0 = NULL;
 }
 
-void cubeList_init(void){
-    int indx[3];
-    int diff[3];
+void cubeList_init(){
+    s32 indx[3];
+    s32 diff[3];
     Cube *iCube;
     
     func_80303F38();
-    D_80381FA0.unk44 = 0;
-    mapModel_getCubeBounds(D_80381FA0.min, D_80381FA0.max);
-    D_80381FA0.unk2C = 0;
-    D_80381FA0.width[0] = D_80381FA0.max[0] - D_80381FA0.min[0] + 1;
-    D_80381FA0.width[1] = D_80381FA0.max[1] - D_80381FA0.min[1] + 1;
-    D_80381FA0.width[2] = D_80381FA0.max[2] - D_80381FA0.min[2] + 1;
-    D_80381FA0.stride[0] = D_80381FA0.width[0];
-    D_80381FA0.stride[1] = D_80381FA0.stride[0]*D_80381FA0.width[1];
-    D_80381FA0.cubeCnt   = D_80381FA0.stride[1]*D_80381FA0.width[2];
-    D_80381FA0.cube_list = (Cube *)malloc(D_80381FA0.cubeCnt*sizeof(Cube));
-    for(indx[0] = D_80381FA0.min[0]; D_80381FA0.max[0] >= indx[0]; indx[0]++){
-        for(indx[1] = D_80381FA0.min[1]; D_80381FA0.max[1] >= indx[1]; indx[1]++){
-            for(indx[2] = D_80381FA0.min[2]; D_80381FA0.max[2] >= indx[2]; indx[2]++){
-                diff[0] = indx[0] - D_80381FA0.min[0];\
-                diff[1] = indx[1] - D_80381FA0.min[1];\
-                diff[2] = indx[2] - D_80381FA0.min[2];
-                iCube = D_80381FA0.cube_list + diff[0] + diff[1]*D_80381FA0.stride[0] + diff[2]*D_80381FA0.stride[1];
+    sCubeList.unk44 = 0;
+    mapModel_getCubeBounds(sCubeList.min, sCubeList.max);
+    sCubeList.unk2C = 0;
+    sCubeList.width[0] = sCubeList.max[0] - sCubeList.min[0] + 1;
+    sCubeList.width[1] = sCubeList.max[1] - sCubeList.min[1] + 1;
+    sCubeList.width[2] = sCubeList.max[2] - sCubeList.min[2] + 1;
+    sCubeList.stride[0] = sCubeList.width[0];
+    sCubeList.stride[1] = sCubeList.stride[0]*sCubeList.width[1];
+    sCubeList.cubeCnt   = sCubeList.stride[1]*sCubeList.width[2];
+    sCubeList.cubes = (Cube *)malloc(sCubeList.cubeCnt*sizeof(Cube));
+    for(indx[0] = sCubeList.min[0]; sCubeList.max[0] >= indx[0]; indx[0]++){
+        for(indx[1] = sCubeList.min[1]; sCubeList.max[1] >= indx[1]; indx[1]++){
+            for(indx[2] = sCubeList.min[2]; sCubeList.max[2] >= indx[2]; indx[2]++){
+                TUPLE_DIFF_COPY(diff, indx, sCubeList.min)
+                iCube = sCubeList.cubes + diff[0] + diff[1]*sCubeList.stride[0] + diff[2]*sCubeList.stride[1];
                 iCube->x = indx[0];
                 iCube->y = indx[1];
                 iCube->z = indx[2];
@@ -814,104 +822,106 @@ void cubeList_init(void){
                 iCube->unk0_4 = 0;
             }
         }
-    }//L8030432C
-    D_80381FA0.unk3C = (Cube *)malloc(1*sizeof(Cube));
-    D_80381FA0.unk3C->x = 16;
-    D_80381FA0.unk3C->y = 16;
-    D_80381FA0.unk3C->z = 16;
-    D_80381FA0.unk3C->prop2Ptr = NULL;
-    D_80381FA0.unk3C->prop1Ptr = NULL;
-    D_80381FA0.unk3C->prop2Cnt = 0;
-    D_80381FA0.unk3C->prop1Cnt = 0;
-    D_80381FA0.unk3C->unk0_4 = 0;
+    }
+    sCubeList.unk3C = (Cube *)malloc(sizeof(Cube));
+    sCubeList.unk3C->x = 16;
+    sCubeList.unk3C->y = 16;
+    sCubeList.unk3C->z = 16;
+    sCubeList.unk3C->prop2Ptr = NULL;
+    sCubeList.unk3C->prop1Ptr = NULL;
+    sCubeList.unk3C->prop2Cnt = 0;
+    sCubeList.unk3C->prop1Cnt = 0;
+    sCubeList.unk3C->unk0_4 = 0;
 
 
-    D_80381FA0.unk40 = (Cube *)malloc(1*sizeof(Cube));
-    D_80381FA0.unk40->x = 16;
-    D_80381FA0.unk40->y = 16;
-    D_80381FA0.unk40->z = 16;
-    D_80381FA0.unk40->prop2Ptr = NULL;
-    D_80381FA0.unk40->prop1Ptr = NULL;
-    D_80381FA0.unk40->prop2Cnt = 0;
-    D_80381FA0.unk40->prop1Cnt = 0;
-    D_80381FA0.unk40->unk0_4 = 0;
+    sCubeList.unk40 = (Cube *)malloc(sizeof(Cube));
+    sCubeList.unk40->x = 16;
+    sCubeList.unk40->y = 16;
+    sCubeList.unk40->z = 16;
+    sCubeList.unk40->prop2Ptr = NULL;
+    sCubeList.unk40->prop1Ptr = NULL;
+    sCubeList.unk40->prop2Cnt = 0;
+    sCubeList.unk40->prop1Cnt = 0;
+    sCubeList.unk40->unk0_4 = 0;
 
     sSpawnableActorSize = 0;
     sSpawnableActorList = NULL;
+
     if(map_get() == MAP_21_CC_WITCH_SWITCH_ROOM){
-        D_80381FA0.unk4 = 500.0f;
+        sCubeList.margin = 500.0f;
     }
     else if(map_get() == MAP_12_GV_GOBIS_VALLEY){
-        D_80381FA0.unk4 = 500.0f;
+        sCubeList.margin = 500.0f;
     }
     else if(map_get() == MAP_7F_FP_WOZZAS_CAVE){
-        D_80381FA0.unk4 = 500.0f;
+        sCubeList.margin = 500.0f;
     }
     else if(map_get() == MAP_D_BGS_BUBBLEGLOOP_SWAMP){
-        D_80381FA0.unk4 = 700.0f;
+        sCubeList.margin = 700.0f;
     }
     else if(map_get() == MAP_7_TTC_TREASURE_TROVE_COVE){
-        D_80381FA0.unk4 = 400.0f;
+        sCubeList.margin = 400.0f;
     }
     else if(map_get() == MAP_16_GV_RUBEES_CHAMBER){
-        D_80381FA0.unk4 = 400.0f;
+        sCubeList.margin = 400.0f;
     }
     else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
-        D_80381FA0.unk4 = 250.0f;
+        sCubeList.margin = 250.0f;
     }
     else if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
-        D_80381FA0.unk4 = 250.0f;
+        sCubeList.margin = 250.0f;
     }
     else if(map_get() == MAP_92_GV_SNS_CHAMBER){
-        D_80381FA0.unk4 = 300.0f;
+        sCubeList.margin = 300.0f;
     }
     else{
-        D_80381FA0.unk4 = 200.0f;
+        sCubeList.margin = 200.0f;
     }
-    func_80320B24(func_803036A0, func_80303960, func_80303AF0);
+
+    func_80320B24(__code7AF80_func_803036A0, __code7AF80_func_80303960, __code7AF80_func_80303AF0);
     D_8036A9E0 = bitfield_new(0xF0);
     func_8032E070();
 }
 
 void func_803045CC(s32 arg0, s32 arg1){}
 
-void func_803045D8(void){}
+void func_803045D8(){}
 
-void func_803045E0(Cube *cube, File* file_ptr) {
-    s32 sp2C[3];
+static void __code7AF80_initCubeFromFile(Cube *cube, File* file_ptr) {
+    s32 pad[3];
 
     while(!file_isNextByteExpected(file_ptr, 1)) {
-        if (file_getNWords_ifExpected(file_ptr, 0, sp2C, 3)) {
-            file_getNWords(file_ptr, sp2C, 3);
-        } else if (!file_getNWords_ifExpected(file_ptr, 2, &sp2C, 3) && file_isNextByteExpected(file_ptr, 3) 
+        if (file_getNWords_ifExpected(file_ptr, 0, pad, 3)) {
+            file_getNWords(file_ptr, pad, 3);
+        } else if (!file_getNWords_ifExpected(file_ptr, 2, &pad, 3) && file_isNextByteExpected(file_ptr, 3) 
         ) {
-            cube_fromFile(file_ptr, cube);
+            code7AF80_initCubeFromFile(file_ptr, cube);
         }
     }
 }
 
 void cubeList_fromFile(File *file_ptr) {
-    s32 sp5C[3];
-    s32 sp50[3];
-    s32 sp44[3];
-    Cube *cube; //should be cube
+    s32 cube_position[3];
+    s32 cube_position_from[3];
+    s32 cube_position_to[3];
+    Cube *cube;
     NodeProp *iPtr;
 
-    file_getNWords_ifExpected(file_ptr, 1, sp50, 3);
-    file_getNWords(file_ptr, sp44, 3);
-    for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
-        for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
-            for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
-                func_803045E0(cube_atIndices(sp5C), file_ptr);
+    file_getNWords_ifExpected(file_ptr, 1, cube_position_from, 3);
+    file_getNWords(file_ptr, cube_position_to, 3);
+    for(cube_position[0] = cube_position_from[0]; cube_position[0] <= cube_position_to[0]; cube_position[0]++){
+        for(cube_position[1] = cube_position_from[1]; cube_position[1] <= cube_position_to[1]; cube_position[1]++){
+            for(cube_position[2] = cube_position_from[2]; cube_position[2] <= cube_position_to[2]; cube_position[2]++){
+                __code7AF80_initCubeFromFile(__code7AF80_getCubeAtPosition(cube_position), file_ptr);
             }
         }
     }
     file_isNextByteExpected(file_ptr, 0);
     bitfield_setAll(D_8036A9E0, 0);
-    for(sp5C[0] = sp50[0]; sp5C[0] <= sp44[0]; sp5C[0]++){
-        for(sp5C[1] = sp50[1]; sp5C[1] <= sp44[1]; sp5C[1]++){
-            for(sp5C[2] = sp50[2]; sp5C[2] <= sp44[2]; sp5C[2]++){
-                cube = cube_atIndices(sp5C);
+    for(cube_position[0] = cube_position_from[0]; cube_position[0] <= cube_position_to[0]; cube_position[0]++){
+        for(cube_position[1] = cube_position_from[1]; cube_position[1] <= cube_position_to[1]; cube_position[1]++){
+            for(cube_position[2] = cube_position_from[2]; cube_position[2] <= cube_position_to[2]; cube_position[2]++){
+                cube = __code7AF80_getCubeAtPosition(cube_position);
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
                         if (!iPtr->bit0) {
@@ -922,14 +932,14 @@ void cubeList_fromFile(File *file_ptr) {
             }
         }
     }
-    func_80308984();
+    __code7AF80_func_80308984();
 }
 
 s32 func_803048E0(s32 arg0[3], s32 arg1[3], s32 arg2, s32 arg3, s32 arg4) {
     Cube * var_s0;
 
     func_8032EE2C(arg0, arg3, arg4);
-    for(var_s0 = D_80381FA0.cube_list; var_s0 < D_80381FA0.cube_list + D_80381FA0.cubeCnt; var_s0++) {
+    for(var_s0 = sCubeList.cubes; var_s0 < sCubeList.cubes + sCubeList.cubeCnt; var_s0++) {
         func_8032EE80(var_s0);
     }
     return func_8032F170(arg1, arg2);
@@ -963,18 +973,18 @@ NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s
         for(i = 0; i < 3; i++){
             cube_min[i] = cube_indices[i] - 1;
             cube_max[i] = cube_indices[i] + 1;
-            if (cube_min[i] < D_80381FA0.min[i]) {
-                cube_min[i] = D_80381FA0.min[i];
+            if (cube_min[i] < sCubeList.min[i]) {
+                cube_min[i] = sCubeList.min[i];
             }
-            if (D_80381FA0.max[i] < cube_max[i]) {
-                cube_max[i] = D_80381FA0.max[i];
+            if (sCubeList.max[i] < cube_max[i]) {
+                cube_max[i] = sCubeList.max[i];
             }
         }
 
         for(cube_indices[0] = cube_min[0]; cube_indices[0] <= cube_max[0]; cube_indices[0]++){
             for(cube_indices[1] = cube_min[1]; cube_indices[1] <= cube_max[1]; cube_indices[1]++){
                 for(cube_indices[2] = cube_min[2]; cube_indices[2] <= cube_max[2]; cube_indices[2]++){
-                    i_node_prop = cube_findNodePropByActorId(cube_atIndices(cube_indices), actor_id);
+                    i_node_prop = cube_findNodePropByActorId(__code7AF80_getCubeAtPosition(cube_indices), actor_id);
                     if (i_node_prop != NULL) {
                         return i_node_prop;
                     }
@@ -983,11 +993,11 @@ NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s
         }
     }
 
-    for(cube_indices[1] = D_80381FA0.min[1]; cube_indices[1] <= D_80381FA0.max[1] ; cube_indices[1]++) {
-        if (func_80305C30(cube_indices[1] - D_80381FA0.min[1]) != 0) {
-            for(cube_indices[0] = D_80381FA0.min[0]; cube_indices[0] <= D_80381FA0.max[0] ; cube_indices[0]++) {
-                for(cube_indices[2] = D_80381FA0.min[2]; cube_indices[2] <= D_80381FA0.max[2] ; cube_indices[2]++) {
-                    i_node_prop = cube_findNodePropByActorId(cube_atIndices(cube_indices), actor_id);
+    for(cube_indices[1] = sCubeList.min[1]; cube_indices[1] <= sCubeList.max[1] ; cube_indices[1]++) {
+        if (func_80305C30(cube_indices[1] - sCubeList.min[1]) != 0) {
+            for(cube_indices[0] = sCubeList.min[0]; cube_indices[0] <= sCubeList.max[0] ; cube_indices[0]++) {
+                for(cube_indices[2] = sCubeList.min[2]; cube_indices[2] <= sCubeList.max[2] ; cube_indices[2]++) {
+                    i_node_prop = cube_findNodePropByActorId(__code7AF80_getCubeAtPosition(cube_indices), actor_id);
                     if (i_node_prop != NULL) {
                         return i_node_prop;
                     }
@@ -1048,15 +1058,15 @@ void nodeprop_getPosition(NodeProp *nodeProp, f32 dst[3]) {
     TUPLE_ASSIGN(dst, nodeProp->x, nodeProp->y, nodeProp->z)
 }
 
-u32 func_80304DA8(NodeProp *arg0) {
-    return arg0->unkC_31;
+u32 nodeprop_getYaw(NodeProp *nodeProp) {
+    return nodeProp->yaw;
 }
 
-s32 func_80304DB8(NodeProp *arg0) {
-    return arg0->unkC_22;
+s32 nodeprop_getScale(NodeProp *nodeProp) {
+    return nodeProp->scale;
 }
 
-bool _nodeProp_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
+bool nodeprop_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
     NodeProp *node_prop;
 
     node_prop = cubeList_findNodePropByActorIdAndPosition_s32(actor_id, NULL);
@@ -1072,7 +1082,7 @@ bool _nodeProp_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
 bool nodeProp_findPositionFromActorId(enum actor_e actor_id, f32 *arg1) {
     s32 vec[3];
 
-    if (_nodeProp_findPositionFromActorId(actor_id, vec) == 0) {
+    if (nodeprop_findPositionFromActorId(actor_id, vec) == 0) {
         return FALSE;
     }
     arg1[0] = vec[0];
@@ -1119,7 +1129,7 @@ s32 func_80304FC4(enum actor_e *arg0, NodeProp **arg1, s32 arg2) {
     Cube *var_s0;
 
     var_s1 = 0;
-    for(var_s0 = D_80381FA0.cube_list; var_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]; var_s0++) {
+    for(var_s0 = sCubeList.cubes; var_s0 < &sCubeList.cubes[sCubeList.cubeCnt]; var_s0++) {
             temp_v0 = func_8032E49C(var_s0, arg0, arg1 + var_s1, arg2 - var_s1);
             var_s1 += temp_v0;
     }
@@ -1130,9 +1140,9 @@ s32 func_8030508C(s32 arg0, f32 arg1[3], s32 arg2) {
     Cube *phi_s0;
     s32 phi_s1;
 
-    phi_s0 = D_80381FA0.cube_list;
+    phi_s0 = sCubeList.cubes;
     phi_s1 = 0;
-    while(phi_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]){
+    while(phi_s0 < &sCubeList.cubes[sCubeList.cubeCnt]){
         phi_s1 += func_8032E5A8(phi_s0, arg0, (f32 *)(phi_s1*0xC + (s32)arg1), arg2 - phi_s1);
         phi_s0++;
     }
@@ -1177,8 +1187,8 @@ bool func_8030526C(f32 arg0[3], s32 arg1, s32 arg2){
 bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
     Cube *phi_s0;
 
-    phi_s0 = D_80381FA0.cube_list;
-    while (phi_s0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]) {
+    phi_s0 = sCubeList.cubes;
+    while (phi_s0 < &sCubeList.cubes[sCubeList.cubeCnt]) {
         if (!func_8032E398(phi_s0, arg0, arg1)) {
             return FALSE;
         }
@@ -1192,7 +1202,7 @@ bool func_80305344(s32 arg0, u32 *arg1) {
 
     temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(arg0, NULL);
     if (temp_v0 != NULL) {
-        *arg1 = temp_v0->unkC_31;
+        *arg1 = temp_v0->yaw;
         return 1;
     }
     return 0;
@@ -1240,8 +1250,8 @@ NodeProp *func_80305510(s32 arg0) {
     return ((sp20 == 1) || (var_v0 == NULL) || (var_v0->bit0 == 1)) ? NULL : var_v0;
 }
 
-Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 arg4){
-    Actor *actor = __actor_spawnWithYaw_s32(arg0, arg1, arg2);
+Actor * func_803055E0(enum actor_e arg0, s32 position[3], s32 yaw, s32 arg3, s32 pad){
+    Actor *actor = __actor_spawnWithYaw_s32(arg0, position, yaw);
     NodeProp *tmp;
     s32 sp34[3];
     f32 sp28[3];
@@ -1250,15 +1260,15 @@ Actor * func_803055E0(enum actor_e arg0, s32 arg1[3], s32 arg2, s32 arg3, s32 ar
         tmp = func_80305510(arg3);
         if(tmp != NULL){
             nodeprop_getPosition_s32(tmp, sp34);
-            actor->unk44_14 = func_80341D5C(arg1, sp34);
+            actor->unk44_14 = func_80341D5C(position, sp34);
         }
         else{
-            actor->unk44_14 = func_80341C78(arg1);
+            actor->unk44_14 = func_80341C78(position);
         }
         if(!(actor->unk44_14  < 0)){
-            sp28[0] = (f32)arg1[0];
-            sp28[1] = (f32)arg1[1];
-            sp28[2] = (f32)arg1[2];
+            sp28[0] = (f32)position[0];
+            sp28[1] = (f32)position[1];
+            sp28[2] = (f32)position[2];
             actor->unk48 = func_803243D0(func_80342038(actor->unk44_14), sp28);
             actor->marker->unk2C_2 = TRUE;
         }
@@ -1300,13 +1310,13 @@ void func_8030578C(void){
             }
         }
     }//L80305850
-    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+    for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         func_80330208(iCube);
     }
 }
 
 s32 func_803058C0(f32 arg0) {
-    return ((arg0 >= 0.0f) ? arg0 / 1000 : (arg0 / 1000) - 1.0f) - D_80381FA0.min[1];
+    return ((arg0 >= 0.0f) ? arg0 / 1000 : (arg0 / 1000) - 1.0f) - sCubeList.min[1];
 }
 
 s16 *func_80305924(void) {
@@ -1324,28 +1334,29 @@ s16 *func_80305924(void) {
     return temp_a0;
 }
 
-void func_80305990(s32 arg0) {
+// init/reset/unlock? function, mode = 0 => init/reset, mode = 1 => spawnqueue unlocked
+void func_80305990(s32 mode) {
     s32 sp1C[3];
     s16 *temp_v0;
     Cube *cube;
 
-    D_8036ABA8 = (D_80381FA0.max[1] - D_80381FA0.min[1]) + 1;
-    if ((arg0 == 0) && (D_8036ABA0 == NULL)) {
-        D_8036ABA0 = func_80305924();
+    D_8036ABA8 = (sCubeList.max[1] - sCubeList.min[1]) + 1;
+    if ((mode == 0) && (sProp1TotalCounts == NULL)) {
+        sProp1TotalCounts = func_80305924();
     }
-    if ((arg0 == 1) && (D_8036ABA4 == NULL)) {
-        D_8036ABA4 = func_80305924();
+    if ((mode == 1) && (sProp2TotalCounts == NULL)) {
+        sProp2TotalCounts = func_80305924();
     }
-    for(sp1C[1] = 0; sp1C[1] <= D_80381FA0.max[1] - D_80381FA0.min[1]; sp1C[1]++){
-        for(sp1C[0] = 0; sp1C[0] <= D_80381FA0.max[0] - D_80381FA0.min[0]; sp1C[0]++){
-            for(sp1C[2] = 0; sp1C[2] <= D_80381FA0.max[2] - D_80381FA0.min[2]; sp1C[2]++){
-                    cube = D_80381FA0.cube_list + sp1C[0] + sp1C[1]*D_80381FA0.stride[0] + sp1C[2]*D_80381FA0.stride[1];
-                    if ((arg0 == 0) && (cube->prop1Ptr != NULL)) {
-                        temp_v0 = D_8036ABA0 + sp1C[1];
+    for(sp1C[1] = 0; sp1C[1] <= sCubeList.max[1] - sCubeList.min[1]; sp1C[1]++){
+        for(sp1C[0] = 0; sp1C[0] <= sCubeList.max[0] - sCubeList.min[0]; sp1C[0]++){
+            for(sp1C[2] = 0; sp1C[2] <= sCubeList.max[2] - sCubeList.min[2]; sp1C[2]++){
+                    cube = sCubeList.cubes + sp1C[0] + sp1C[1]*sCubeList.stride[0] + sp1C[2]*sCubeList.stride[1];
+                    if ((mode == 0) && (cube->prop1Ptr != NULL)) {
+                        temp_v0 = sProp1TotalCounts + sp1C[1];
                         *temp_v0 += cube->prop1Cnt;
                     }
-                    if ((arg0 == 1) && (cube->prop2Ptr != NULL)) {
-                        temp_v0 = D_8036ABA4 + sp1C[1];
+                    if ((mode == 1) && (cube->prop2Ptr != NULL)) {
+                        temp_v0 = sProp2TotalCounts + sp1C[1];
                         *temp_v0 += cube->prop2Cnt;
                     }
             }
@@ -1353,15 +1364,15 @@ void func_80305990(s32 arg0) {
     }
 }
 
-void func_80305BD4(void){
-    if(D_8036ABA0 != NULL){
-        free(D_8036ABA0);
-        D_8036ABA0 = NULL;
+void code7AF80_freeTotalCounts(void){
+    if(sProp1TotalCounts != NULL){
+        free(sProp1TotalCounts);
+        sProp1TotalCounts = NULL;
     }
 
-    if(D_8036ABA4 != NULL){
-        free(D_8036ABA4);
-        D_8036ABA4 = NULL;
+    if(sProp2TotalCounts != NULL){
+        free(sProp2TotalCounts);
+        sProp2TotalCounts = NULL;
     }
 
     D_8036ABA8 = 0;
@@ -1369,26 +1380,26 @@ void func_80305BD4(void){
 
 bool func_80305C30(s32 arg0){
     if(!((arg0 >= 0) && (arg0 < D_8036ABA8)))
-        return 0;
+        return FALSE;
     
-    return ((D_8036ABA0[arg0] != 0)) ? 1 : 0;
+    return ((sProp1TotalCounts[arg0] != 0)) ? TRUE : FALSE;
 }
 
-bool func_80305C84(s32 arg0){
+bool __code7AF80_pad_func_80305C84(s32 arg0){
     if(!((arg0 >= 0) && (arg0 < D_8036ABA8)))
-        return 0;
+        return FALSE;
     
-    return ((D_8036ABA4[arg0] != 0)) ? 1 : 0;
+    return ((sProp2TotalCounts[arg0] != 0)) ? TRUE : FALSE;
 }
 
-void func_80305CD8(s32 arg0, s32 arg1){
-    if((arg0 >= 0) && (arg0 < D_8036ABA8)){
-        D_8036ABA4[arg0] += arg1;
+void func_80305CD8(s32 idx, s32 count){
+    if((idx >= 0) && (idx < D_8036ABA8)){
+        sProp2TotalCounts[idx] += count;
     }
 }
 
 bool func_80305D14(void) {
-    return BOOL(D_8036ABA4 != NULL);
+    return BOOL(sProp2TotalCounts != NULL);
 }
 
 void func_80305D38(void){
@@ -1505,7 +1516,7 @@ void __code7AF80_concatElementsAndRemoveEmpty(s32 *count, Struct_core2_7AF80_1 *
 void func_803062D0(void) {
     Cube* var_s0;
 
-    for (var_s0 = D_80381FA0.cube_list; var_s0 < (D_80381FA0.cube_list + D_80381FA0.cubeCnt); var_s0++) {
+    for (var_s0 = sCubeList.cubes; var_s0 < (sCubeList.cubes + sCubeList.cubeCnt); var_s0++) {
         func_803303B8(var_s0);
     }
     __code7AF80_concatElementsAndRemoveEmpty(&D_8036A9B8, &D_8036A9BC);
@@ -1690,7 +1701,7 @@ void func_80306AA8(s32 arg0, s32 position[3], s32 radius){
     temp_v1->unk10_3 = 0;
 }
 
-bool func_80306C88(s32 arg0) {
+bool __code7AF80_pad_func_80306C88(s32 arg0) {
     Struct_core2_7AF80_1 *phi_v1;
 
     phi_v1 = D_8036A9BC;
@@ -1703,7 +1714,7 @@ bool func_80306C88(s32 arg0) {
     return FALSE;
 }
 
-bool func_80306CE4(s32 arg0) {
+bool __code7AF80_pad_func_80306CE4(s32 arg0) {
     Struct_core2_7AF80_1 *phi_v1;
 
     phi_v1 = D_8036A9C8;
@@ -1721,7 +1732,7 @@ s32 func_80306D40(s32 arg0){
     return phi_v1->unk4;
 }
 
-bool func_80306D60(s32 arg0) {
+bool __code7AF80_pad_func_80306D60(s32 arg0) {
     Struct_core2_7AF80_1 *phi_v1;
 
     phi_v1 = D_8036A9D4;
@@ -1739,7 +1750,7 @@ s32 func_80306DBC(s32 arg0){
     return phi_v1->unk4;
 }
 
-s32 func_80306DDC(Struct_core2_7AF80_2 *arg0) {
+s32 func_80306DDC(s32 *position) {
     Struct_core2_7AF80_1 *phi_v1;
     Struct_core2_7AF80_2 *phi_a0;
 
@@ -1747,8 +1758,8 @@ s32 func_80306DDC(Struct_core2_7AF80_2 *arg0) {
     while(phi_v1 < &D_8036A9BC[D_8036A9B8]){
         phi_a0 = phi_v1->unk8;
         while(phi_a0 < &phi_v1->unk8[phi_v1->count]){
-            if (((phi_a0->position[1] - 150) < arg0->position[1]) && (arg0->position[1] < (phi_a0->position[1] + 150))) {
-                if ((SQ(arg0->position[0] - phi_a0->position[0]) + SQ(arg0->position[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
+            if (((phi_a0->position[1] - 150) < position[1]) && (position[1] < (phi_a0->position[1] + 150))) {
+                if ((SQ(position[0] - phi_a0->position[0]) + SQ(position[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
                     return phi_v1 - D_8036A9BC;
                 }
             }
@@ -1954,43 +1965,43 @@ Cube **func_80307948(s32 arg0[3]) {
     s32 base;
 
     for(cubeCount = 0; cubeCount < 3; cubeCount++){
-        sp34[cubeCount] = ((arg0[cubeCount] >= 0) ? (arg0[cubeCount] / 1000) : ((arg0[cubeCount]/1000) - 1)) - D_80381FA0.min[cubeCount];
+        sp34[cubeCount] = ((arg0[cubeCount] >= 0) ? (arg0[cubeCount] / 1000) : ((arg0[cubeCount]/1000) - 1)) - sCubeList.min[cubeCount];
     }
 
     cubeCount = 0;
 
-    if(    sp34[0] > 0 && sp34[0] < D_80381FA0.width[0] - 1
-        && sp34[1] > 0 && sp34[1] < D_80381FA0.width[1] - 1
-        && sp34[2] > 0 && sp34[2] < D_80381FA0.width[2] - 1
+    if(    sp34[0] > 0 && sp34[0] < sCubeList.width[0] - 1
+        && sp34[1] > 0 && sp34[1] < sCubeList.width[1] - 1
+        && sp34[2] > 0 && sp34[2] < sCubeList.width[2] - 1
     ) {
         base = (sp34[0] - 1)
-            + (sp34[1] - 1) * D_80381FA0.stride[0]
-            + (sp34[2] - 1) * D_80381FA0.stride[1];
+            + (sp34[1] - 1) * sCubeList.stride[0]
+            + (sp34[2] - 1) * sCubeList.stride[1];
         idx = base;
 
         for(sp24[0] = 0; sp24[0] < 3; sp24[0]++){
-            for(sp24[1] = 0; sp24[1] < 3; sp24[1]++, idx += D_80381FA0.stride[0] - 3){
+            for(sp24[1] = 0; sp24[1] < 3; sp24[1]++, idx += sCubeList.stride[0] - 3){
                 for(sp24[2] = 0; sp24[2] < 3; sp24[2]++, idx++){
-                    if (D_80381FA0.cube_list[idx].unk0_4) {
-                        D_80382038[cubeCount] = &D_80381FA0.cube_list[idx];
+                    if (sCubeList.cubes[idx].unk0_4) {
+                        D_80382038[cubeCount] = &sCubeList.cubes[idx];
                         cubeCount++;
                     }
                 }
             }
-            base += D_80381FA0.stride[1];
+            base += sCubeList.stride[1];
             idx = base;
         }
     } else {
         for(sp24[0] = sp34[0] - 1; sp24[0] < sp34[0] + 2; sp24[0]++){
-            if (sp24[0] >= 0 && sp24[0] < D_80381FA0.width[0]) {
+            if (sp24[0] >= 0 && sp24[0] < sCubeList.width[0]) {
                 for(sp24[1] = sp34[1] - 1; sp24[1] < sp34[1] + 2; sp24[1]++){
-                    if (sp24[1] >= 0 && sp24[1] < D_80381FA0.width[1]) {
+                    if (sp24[1] >= 0 && sp24[1] < sCubeList.width[1]) {
                         for(sp24[2] = sp34[2] - 1; sp24[2] < sp34[2] + 2; sp24[2]++){
-                            if (sp24[2] >= 0 && sp24[2] < D_80381FA0.width[2]) {
-                                idx = sp24[0] + sp24[1] * D_80381FA0.stride[0] + sp24[2] * D_80381FA0.stride[1];
+                            if (sp24[2] >= 0 && sp24[2] < sCubeList.width[2]) {
+                                idx = sp24[0] + sp24[1] * sCubeList.stride[0] + sp24[2] * sCubeList.stride[1];
 
-                                if (D_80381FA0.cube_list[idx].unk0_4) {
-                                    D_80382038[cubeCount] = &D_80381FA0.cube_list[idx];
+                                if (sCubeList.cubes[idx].unk0_4) {
+                                    D_80382038[cubeCount] = &sCubeList.cubes[idx];
                                     cubeCount++;
                                 }
                             }
@@ -2043,8 +2054,8 @@ u32 func_80307E1C(void) {
     u32 phi_v1;
 
     phi_v1 = 0;
-    phi_v0 = D_80381FA0.cube_list;
-    while(phi_v0 < &D_80381FA0.cube_list[D_80381FA0.cubeCnt]){
+    phi_v0 = sCubeList.cubes;
+    while(phi_v0 < &sCubeList.cubes[sCubeList.cubeCnt]){
             i = 0;
             while(i < phi_v0->prop1Cnt){
                 if (phi_v1 < phi_v0->prop1Ptr[i].unk10_31) {
@@ -2057,7 +2068,7 @@ u32 func_80307E1C(void) {
     return phi_v1;
 }
 
-u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
+u32 func_80307EA8(s32 arg0, s32 position[3], s32 *arg2, s32 *arg3) {
     s32 temp_lo;
     s32 temp_t1;
     s32 temp_t6;
@@ -2070,37 +2081,37 @@ u32 func_80307EA8(s32 arg0, s32 arg1[3], s32 *arg2, s32 *arg3) {
 
     var_s4 = 0;
     if (arg0 == 0) {
-        D_803820A8[0] = (s32) D_80381FA0.min[0];
-        D_803820A8[1] = (s32) D_80381FA0.min[1];
-        D_803820A8[2] = (s32) D_80381FA0.min[2];
+        D_803820A8[0] = (s32) sCubeList.min[0];
+        D_803820A8[1] = (s32) sCubeList.min[1];
+        D_803820A8[2] = (s32) sCubeList.min[2];
         D_803820B4 = 0;
         return 0;
     }
     while(var_s4 == 0){
-        if (D_80381FA0.max[0] < D_803820A8[0]) {
+        if (sCubeList.max[0] < D_803820A8[0]) {
             return -1U;
         }
 
-        temp_v0 = cube_atIndices(D_803820A8);
+        temp_v0 = __code7AF80_getCubeAtPosition(D_803820A8);
         if ((temp_v0 != NULL) && (temp_v0->prop1Cnt != 0)) {
             var_s4 =  temp_v0->prop1Ptr[D_803820B4].unk10_31;
             *arg2 =   temp_v0->prop1Ptr[D_803820B4].unk10_19;
             *arg3 =   temp_v0->prop1Ptr[D_803820B4].bit0;
-            arg1[0] = temp_v0->prop1Ptr[D_803820B4].x;
-            arg1[1] = temp_v0->prop1Ptr[D_803820B4].y;
-            arg1[2] = temp_v0->prop1Ptr[D_803820B4].z;
+            position[0] = temp_v0->prop1Ptr[D_803820B4].x;
+            position[1] = temp_v0->prop1Ptr[D_803820B4].y;
+            position[2] = temp_v0->prop1Ptr[D_803820B4].z;
             D_803820B4++;
         }
         if ((temp_v0 == NULL) || (D_803820B4 >= temp_v0->prop1Cnt)) {
             D_803820B4 = 0;
             D_803820A8[2]++;
-            if (D_80381FA0.max[2] < D_803820A8[2]) {
-                D_803820A8[2] = D_80381FA0.min[2];
+            if (sCubeList.max[2] < D_803820A8[2]) {
+                D_803820A8[2] = sCubeList.min[2];
                 D_803820A8[1]++;
-                if (D_80381FA0.max[1] < D_803820A8[1]) {
-                    D_803820A8[1] = D_80381FA0.min[1];
+                if (sCubeList.max[1] < D_803820A8[1]) {
+                    D_803820A8[1] = sCubeList.min[1];
                     D_803820A8[0]++;
-                    if (D_80381FA0.max[0] < D_803820A8[0]) {
+                    if (sCubeList.max[0] < D_803820A8[0]) {
                         D_803820B4 = 0;
                         return (var_s4 != 0) ? var_s4 : -1;
                     }
@@ -2117,11 +2128,11 @@ NodeProp *func_803080C8(s32 arg0) {
     u32 var_v1;
     Cube *temp_v0;
 
-    for(sp3C[1] = D_80381FA0.min[1]; sp3C[1] <= D_80381FA0.max[1]; sp3C[1]++){
-        if(func_80305C30(sp3C[1] - D_80381FA0.min[1])){
-            for(sp3C[0] = D_80381FA0.min[0]; sp3C[0] <= D_80381FA0.max[0]; sp3C[0]++){
-                for(sp3C[2] = D_80381FA0.min[2]; sp3C[2] <= D_80381FA0.max[2]; sp3C[2]++){
-                    temp_v0 = cube_atIndices(sp3C);
+    for(sp3C[1] = sCubeList.min[1]; sp3C[1] <= sCubeList.max[1]; sp3C[1]++){
+        if(func_80305C30(sp3C[1] - sCubeList.min[1])){
+            for(sp3C[0] = sCubeList.min[0]; sp3C[0] <= sCubeList.max[0]; sp3C[0]++){
+                for(sp3C[2] = sCubeList.min[2]; sp3C[2] <= sCubeList.max[2]; sp3C[2]++){
+                    temp_v0 = __code7AF80_getCubeAtPosition(sp3C);
                     if (temp_v0 != NULL) {
                         for(var_v1 = 0; var_v1 < temp_v0->prop1Cnt; var_v1++){
                             if (arg0 == temp_v0->prop1Ptr[var_v1].unk10_31) {
@@ -2139,13 +2150,13 @@ NodeProp *func_803080C8(s32 arg0) {
     return NULL;
 }
 
-UNK_TYPE(s32) func_80308224(void){
+Cube *func_80308224(void){
     return D_8036A9DC;
 }
 
 void func_80308230(s32 arg0) {
     Cube *iCube;
-    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+    for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         if (arg0 == 0) {
             func_8032D158(iCube); //sort cube props (dist from viewport)
         } else {
@@ -2182,7 +2193,7 @@ s32 func_803083B0(s32 arg0) {
     static s32 D_80382140;
 
     if (arg0 == -1) {
-        var_s0 = D_80381FA0.cube_list;
+        var_s0 = sCubeList.cubes;
         D_80382140 = 0;
         D_80382144 = var_s0;
         return 0;
@@ -2190,7 +2201,7 @@ s32 func_803083B0(s32 arg0) {
    
     var_s0 = *(Cube **)&D_80382144;
     if (D_80382140 < var_s0->prop2Cnt) {
-        if (D_80381FA0.cube_list && D_80381FA0.cube_list && D_80381FA0.cube_list );
+        if (sCubeList.cubes && sCubeList.cubes && sCubeList.cubes );
         var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
         if (D_80382140 != 0) {
             return var_v0;
@@ -2201,7 +2212,7 @@ s32 func_803083B0(s32 arg0) {
     while(D_80382140 == 0) {
         do{
             var_s0++;
-            if (var_s0 >= D_80381FA0.cube_list + D_80381FA0.cubeCnt) {
+            if (var_s0 >= sCubeList.cubes + sCubeList.cubeCnt) {
                 D_80382144 = var_s0;
                 return -1;
             }
@@ -2257,36 +2268,37 @@ enum actor_e func_803084F0(s32 arg0){
     return var_v1;
 }
 
-void func_80308658(Struct_core2_7AF80_1 *arg0, s32 arg1) {
+static void __code7AF80_defragStructCode27AF80(Struct_core2_7AF80_1 *this, s32 count) {
     Struct_core2_7AF80_1 * i;
 
-    if(arg0 == NULL)
+    if(this == NULL)
         return;
 
-    for(i = arg0; i < arg0 + arg1; i++){
+    for(i = this; i < this + count; i++){
         i->unk8 = (Struct_core2_7AF80_2 *)defrag(i->unk8);
     }
 }
 
-void func_803086B4(void) {
+void cubeList_defrag() {
     s32 phi_s1;
     Cube *cube;
     Prop *prop;
     NodeProp *node;
 
-
-    cube = &D_80381FA0.cube_list[D_80381FA0.unk44];
-    for(phi_s1 = 0xB4; phi_s1 > 0; phi_s1--){
+    // this should be the first cube in the list as unk44 should be 0/NULL
+    cube = &sCubeList.cubes[sCubeList.unk44];
+    for(phi_s1 = 180; phi_s1 > 0; phi_s1--){
         if (cube->prop2Cnt != 0) {
             if (cube->prop2Ptr != NULL) {
                 prop = cube->prop2Ptr;
                 cube->prop2Ptr = (Prop *)defrag(cube->prop2Ptr);
                 if (prop != cube->prop2Ptr) {
-                    func_80330104(cube);
+                    code_A5BC0_initCubePropActorProp(cube);
                     phi_s1 -= 5;
                 }
             }
         }
+
         if (cube->prop1Cnt != 0) {
             if (cube->prop1Ptr != NULL) {
                 node = cube->prop1Ptr;
@@ -2296,20 +2308,22 @@ void func_803086B4(void) {
                 }
             }
         }
-        D_80381FA0.unk44++;
+
+        sCubeList.unk44++;
         cube++;
-        if (D_80381FA0.unk44 >= D_80381FA0.cubeCnt) {
-            D_80381FA0.unk44 = 0;
-            cube = D_80381FA0.cube_list;
+        if (sCubeList.unk44 >= sCubeList.cubeCnt) {
+            sCubeList.unk44 = 0;
+            cube = sCubeList.cubes;
         }
     };
+
     if (globalTimer_getTime() & 1) {
-        if (D_8036ABA0 != NULL) { 
-            D_8036ABA0 = (s16*) defrag(D_8036ABA0);
+        if (sProp1TotalCounts != NULL) { 
+            sProp1TotalCounts = (s16*) defrag(sProp1TotalCounts);
         }
 
-        if (D_8036ABA4 != NULL) { 
-            D_8036ABA4 = (s16*) defrag(D_8036ABA4);
+        if (sProp2TotalCounts != NULL) { 
+            sProp2TotalCounts = (s16*) defrag(sProp2TotalCounts);
         }
 
         if (D_8036A9BC != NULL) {
@@ -2328,13 +2342,13 @@ void func_803086B4(void) {
             sSpawnableActorList = (ActorSpawn *)defrag(sSpawnableActorList);
         }
     } else {
-        func_80308658(D_8036A9BC, D_8036A9B8);
-        func_80308658(D_8036A9C8, D_8036A9C4);
-        func_80308658(D_8036A9D4, D_8036A9D0);
+        __code7AF80_defragStructCode27AF80(D_8036A9BC, D_8036A9B8);
+        __code7AF80_defragStructCode27AF80(D_8036A9C8, D_8036A9C4);
+        __code7AF80_defragStructCode27AF80(D_8036A9D4, D_8036A9D0);
     }
 }
 
-bool func_803088C8(s32 arg0) {
+bool __code7AF80_pad_func_803088C8(s32 arg0) {
     s32 i;
 
     for(i = 0; D_8036ABAC[i] != -1 && arg0 != D_8036ABAC[i] && arg0 != D_8036ABC0[i]; i++){
@@ -2344,16 +2358,16 @@ bool func_803088C8(s32 arg0) {
 }
 
 /* .code */
-void func_8030895C(s32 arg0){
-    D_80382150[D_8036ABD4] = arg0;
+void __code7AF80_addCubeIndexToD_80382150(s32 cube_idx){
+    D_80382150[D_8036ABD4] = cube_idx;
     D_8036ABD4++;
 }
 
-void func_80308984(void) {
+static void __code7AF80_func_80308984(void) {
     Cube *iCube;
     s16 temp_s4;
-    s32 sp54;
-    s32 sp50;
+    s32 unk8_range_min;
+    s32 unk8_range_max;
     u32 padding[2];
     NodeProp *iNode;
     s32 i;
@@ -2362,36 +2376,37 @@ void func_80308984(void) {
 
 
     D_8036ABD4 = 0;
-    sp54 = 1000000;
-    sp50 = 0;
+    unk8_range_min = 1000000;
+    unk8_range_max = 0;
 
     for(i = 0; D_8036ABAC[i] != -1; i++){
-        if (D_8036ABAC[i] < sp54) {
-            sp54 = D_8036ABAC[i];
+        if (D_8036ABAC[i] < unk8_range_min) {
+            unk8_range_min = D_8036ABAC[i];
         }
-        if (D_8036ABAC[i] > sp50) {
-            sp50 = D_8036ABAC[i];
+        if (D_8036ABAC[i] > unk8_range_max) {
+            unk8_range_max = D_8036ABAC[i];
         }
     }
 
-    for(iCube = D_80381FA0.cube_list; iCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; iCube++){
+    // this iterates over the cubes and assumes that the cubes pointer is currently at index 0
+    for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         for(iNode = iCube->prop1Ptr; iNode < iCube->prop1Ptr + iCube->prop1Cnt; iNode++){
-            if (iNode->bit6 == 6 && iNode->bit0 == 0){
+            if (iNode->bit6 == 6 && iNode->bit0 == FALSE){
                 u32 tmp = iNode->unk8;
 
-                if(tmp >= sp54 && tmp <= sp50) {
+                if(tmp >= unk8_range_min && tmp <= unk8_range_max) {
                     for(i = 0; D_8036ABAC[i] != tmp && D_8036ABAC[i] != -1; i++){
                     }
 
                     if(D_8036ABAC[i] != -1){
                         temp_s4 = D_8036ABD4;
-                        func_8030895C(iCube - D_80381FA0.cube_list);
-                        func_8030895C(0);
+                        __code7AF80_addCubeIndexToD_80382150(iCube - sCubeList.cubes);
+                        __code7AF80_addCubeIndexToD_80382150(NULL);
 
-                        for(jCube = D_80381FA0.cube_list; jCube < D_80381FA0.cube_list + D_80381FA0.cubeCnt; jCube++){
+                        for(jCube = sCubeList.cubes; jCube < sCubeList.cubes + sCubeList.cubeCnt; jCube++){
                             for(jNode = jCube->prop1Ptr; jNode < jCube->prop1Ptr + jCube->prop1Cnt; jNode++){
-                                if (jNode->bit6 == 6 && jNode->bit0 == 0 && jNode->unk8 == D_8036ABC0[i]) {
-                                    func_8030895C(jCube - D_80381FA0.cube_list);
+                                if (jNode->bit6 == 6 && jNode->bit0 == FALSE && jNode->unk8 == D_8036ABC0[i]) {
+                                    __code7AF80_addCubeIndexToD_80382150(jCube - sCubeList.cubes);
                                     D_80382150[temp_s4 + 1]++;
                                     jNode = jCube->prop1Ptr + jCube->prop1Cnt;
                                 }
@@ -2408,27 +2423,27 @@ void func_80308D2C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_s4;
     s32 phi_s0;
     s32 vp_pos[3];
-    Cube *temp_s3;
+    Cube *cube;
     s32 vp_cube_index;
 
     func_8032F464(1);
     phi_s4 = 0;
-    if ((s32) D_8036ABD4 > 0) {
+    if (D_8036ABD4 > 0) {
         do {
             if (!func_80308F54(D_80382150[phi_s4])) {
-                temp_s3 = &D_80381FA0.cube_list[D_80382150[phi_s4]];
-                if (viewport_cube_isInFrustum(temp_s3)) {
+                cube = &sCubeList.cubes[D_80382150[phi_s4]];
+                if (viewport_cube_isInFrustum(cube)) {
                     viewport_getPosition_vec3w(vp_pos);
-                    vp_cube_index = cube_atPosition_s32(vp_pos) - D_80381FA0.cube_list;
+                    vp_cube_index = cube_atPosition_s32(vp_pos) - sCubeList.cubes;
                     for(phi_s0 = 0; (phi_s0 < D_80382150[phi_s4 + 1]) && (vp_cube_index != D_80382150[phi_s0 + 2]); phi_s0++) {
                     }
-                    if (phi_s0 < (s32) D_80382150[phi_s4 + 1]) {
-                        func_80301F10(temp_s3, gfx, mtx, vtx);
+                    if (phi_s0 < D_80382150[phi_s4 + 1]) {
+                        __7AF80_func_80301F10(cube, gfx, mtx, vtx);
                     }
                 }
             }
             phi_s4 += D_80382150[phi_s4 + 1] + 2;
-        } while (phi_s4 < (s32) D_8036ABD4);
+        } while (phi_s4 < D_8036ABD4);
     }
     func_8032F464(0);
 }
@@ -2441,11 +2456,10 @@ void func_80308EC8(void){
     }
 }
 
-void func_80308F0C(Cube *cube) {
-    s32 *temp_v1;
+static void __code7AF80_func_80308F0C(Cube *cube) {
     s32 indx;
 
-    indx = cube - D_80381FA0.cube_list;
+    indx = cube - sCubeList.cubes;
     D_803821E0[indx >> 5] |= 1 << (indx & 0x1F);
 }
 

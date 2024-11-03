@@ -234,7 +234,7 @@ void func_802C16CC(s32 arg0) {
             sp30 = cubeList_findNodePropByActorIdAndPosition_s32(sp38, player_position_copy);
             if(sp30 != NULL) {
                 nodeprop_getPosition(sp30, player_or_node_position);
-                switch (func_80304DB8(sp30)) {                        /* irregular */
+                switch (nodeprop_getScale(sp30)) {                        /* irregular */
                 default:
                     D_8037DBE0.unk2E = 0;
                     D_8037DBE0.unk2F = 0;
