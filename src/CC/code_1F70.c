@@ -10,7 +10,7 @@ extern void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4
 extern void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8031CE28(s32, s32, f32);
 void timed_exitStaticCamera(f32);
-extern int func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
+extern BKCollisionTri *func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
 extern void func_80340200(s32, f32[3], s32, f32, s32, s32, BKVertexList *, s32);
 extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
 extern void func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
@@ -57,18 +57,17 @@ struct {
     f32 unk54;
 }D_80389FA0;
 
-s32 func_80388360(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    s32 out_v0;
+BKCollisionTri *__code1F70_func_80388360(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    BKCollisionTri *out_v0;
 
     out_v0 = func_802E805C(D_80389FA0.unk1C, D_80389FA0.unk40, D_80389FA0.unk28, 0, 1.0f, arg0, arg1, arg2, arg3);
     if(out_v0 && func_8029453C()){
         func_80340200(D_80389FA0.unk18, D_80389FA0.unk28, 0, 1.0f, 0, out_v0, D_80389FA0.unk40, arg1);
-    
     }
     return out_v0;
 }
 
-void func_80388428(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5){
+void __code1F70_func_80388428(s32 arg0, s32 arg1, f32 arg2, s32 arg3, s32 arg4, s32 arg5){
     func_802E9118(D_80389FA0.unk1C, D_80389FA0.unk40, D_80389FA0.unk28, 0, 1.0f, arg0, arg1, arg2, arg3, arg4, arg5);
 }
 
@@ -284,7 +283,7 @@ void func_80388D54(void){
         D_80389FA0.unk28[0] = 5500.0f;
         D_80389FA0.unk28[2] = 0.0f;
         D_80389FA0.unk28[1] = 0.0f;
-        func_80320B24(func_80388360, func_80388428, func_803884A8);
+        func_80320B24(__code1F70_func_80388360, __code1F70_func_80388428, func_803884A8);
         if(!nodeProp_findPositionFromActorId(0x3B, D_80389FA0.unkC)){
             D_80389FA0.unkC[0] = 0.0f;
             D_80389FA0.unkC[1] =-1e+06f;

@@ -593,7 +593,7 @@ s32 game_defrag(void){
     func_8028FB68();
     partEmitMgr_defrag();
     mapModel_defrag();
-    func_803086B4();
+    cubeList_defrag();
     actorArray_defrag();
     spawnQueue_defrag();
     func_802F3300();

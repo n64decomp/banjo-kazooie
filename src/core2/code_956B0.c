@@ -168,13 +168,13 @@ void func_8031CD20(s32 arg0, s32 arg1, s32 arg2) {
     func_8031CC8C(arg0, (arg1 << 8) + arg2);
 }
 
-void func_8031CD44(enum map_e arg0, s32 arg1, f32 arg2, f32 arg3, s32 arg4) {
+void func_8031CD44(enum map_e arg0, s32 arg1, f32 arg2, f32 yaw, s32 arg4) {
     f32 sp3C[3];
     f32 sp30[3];
     f32 sp24[3];
 
     player_getPosition((f32 *) &sp3C);
-    func_80256E24(sp24, 0.0f, arg3, 0.0f, 0.0f, ml_map_f((f32) arg4, 0.0f, 200.0f, 10.0f, 800.0f));
+    func_80256E24(sp24, 0.0f, yaw, 0.0f, 0.0f, ml_map_f((f32) arg4, 0.0f, 200.0f, 10.0f, 800.0f));
     sp24[0] = sp3C[0] + sp24[0];
     sp24[1] = sp3C[1] + sp24[1];
     sp24[2] = sp3C[2] + sp24[2];
@@ -218,9 +218,9 @@ void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2) {
                     func_8031CB50(arg1, arg2, 1);
                     func_8028F3D8(sp38, 1.0f, NULL, NULL);
                 } else if (phi_s0->unk8 == 0x185) {
-                    func_8031CD44(arg1, arg2, sp38[1], (f32) phi_s0->unkC_31, phi_s0->unkC_22);
+                    func_8031CD44(arg1, arg2, sp38[1], (f32) phi_s0->yaw, phi_s0->scale);
                 } else {
-                    func_8031CD44(arg1, arg2, playerPos[1], (f32) phi_s0->unkC_31, phi_s0->unkC_22);
+                    func_8031CD44(arg1, arg2, playerPos[1], (f32) phi_s0->yaw, phi_s0->scale);
                 }
                 return;
             }

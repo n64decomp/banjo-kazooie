@@ -1935,7 +1935,7 @@ void func_8032A82C(Actor *arg0, s32 arg1) {
     sp1C = &arg0->local;
     sp24 = nodeprop_findByActorIdAndActorPosition(arg1, arg0);
     if (sp24 != NULL) {
-        sp1C->unkC = func_80304DA8(sp24);
+        sp1C->unkC = nodeprop_getYaw(sp24);
         nodeprop_getPosition(sp24, sp1C->unk0);
         sp1C->unkE = func_80341EC4(sp1C);
     }
@@ -1973,8 +1973,8 @@ bool func_8032A9E4(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 //actor_setScale
-void func_8032AA58(Actor *this, f32 arg1){
-    this->scale = arg1;
+void func_8032AA58(Actor *this, f32 scale){
+    this->scale = scale;
     this->marker->unk14_10 = 0;
 }
 

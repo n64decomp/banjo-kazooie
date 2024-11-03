@@ -171,7 +171,7 @@ void func_80334910(void) {
     func_803231E8();
     func_80320B7C();
     func_802BAF20();
-    func_80305BD4();
+    code7AF80_freeTotalCounts();
     func_80332A38();
     if (func_802E4A08() == 0) {
         itemPrint_free();

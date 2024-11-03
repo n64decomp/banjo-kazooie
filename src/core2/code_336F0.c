@@ -26,6 +26,7 @@ static void __code336F0_func_802BA680(CameraNodeType1 *this, s32 arg1, s32 arg2)
 static bool __code336F0_func_802BA6B0(CameraNodeType1 *this, s32 arg1) {
     if (this->unknownFlag & arg1) 
         return TRUE;
+
     return FALSE;
 }
 
@@ -123,6 +124,6 @@ void cameraNodeType1_fromFile(File *file_ptr, CameraNodeType1 *this) {
             else if(!file_getNFloats_ifExpected(file_ptr, 4, this->pitchYawRoll, 3)) {
                 file_getWord_ifExpected(file_ptr, 5, &this->unknownFlag);
             }
-        }//L802BAA0C
+        }
     }
 }

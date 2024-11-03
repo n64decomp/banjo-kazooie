@@ -326,7 +326,7 @@ typedef union prop_s
     SpriteProp  spriteProp;
     ModelProp    modelProp;
     struct{
-        u8 pad0[4];
+        u32 pad0;
         s16 unk4[3];
         // s16 unk6;
         s16 pad8_15: 10;
@@ -348,38 +348,31 @@ typedef struct {
     u16 bit0: 1;
     u16 unk8;       //actor_id?
     u8 unkA;        //marker_id
-    struct {
-        u8 pad_bit7: 2;
-        u8 bit5: 1;
-        u8 bit4: 1;
-        u8 pad_bit3: 3;
-        u8 bit0: 1;
-    }unkB;
-    // u8 padB[1];
-    u32 unkC_31:9; //yaw???
-    u32 unkC_22:23;
-    u32 unk10_31 : 12;
-    u32 unk10_19 : 12;
-    u32 unk10_7 : 1;
-    u32 unk10_6 : 1;
-    u32 pad10_5 : 4;
-    u32 unk10_0 : 2;
-} NodeProp;
+    u8 padB;
+    u32 yaw: 9; // unkC_31
+    u32 scale: 23; // unkC_22
+    u32 unk10_31: 12; // unk10_31 and unk10_19 seem to be related
+    u32 unk10_19: 12; // unk10_31 and unk10_19 seem to be related
+    u32 pad10_7: 1;
+    u32 unk10_6: 1; // isInitialized flag?
+    u32 pad10_5: 4;
+    u32 unk10_0: 2; // is only for used in func_803303B8
+} NodeProp; // size = 20 (0x14) bytes
 
 typedef struct {
     u8 pad0[0x4];
     u32 pad4_31:14;
-    u32 unk4_17:2;
+    u32 unk4_17:2;  // only ever gets 0 written to it
     u32 pad4_15:8;
     u32 pad4_7:7;
-    u32 unk4_0:1;
+    u32 unk4_0:1; // if this and unkC_0 is false then unk10_4 and unk4_17 are set to 0 
     u8 pad8[0x4];
     u32 padC_31:31;
-    u32 unkC_0:1;
+    u32 unkC_0:1; // if this and unk4_0 is false then unk10_4 and unk4_17 are set to 0 
     u32 pad10_31:27;
-    u32 unk10_4:4; 
+    u32 unk10_4:4; // only ever gets 0 written to it
     u32 pad10_0:1; 
-} OtherNode; //can be inplace of NodeProp (see cube_fromFile)
+} OtherNode; //can be inplace of NodeProp (see code7AF80_initCubeFromFile) size: 12 (0xC) bytes
 
 typedef struct cude_s{
     s32 x:5;

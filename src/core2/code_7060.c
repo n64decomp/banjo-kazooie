@@ -54,7 +54,7 @@ bool func_8028DFF0(s32 arg0, s32 position[3]) {
         return TRUE;
     }
     else{
-        return _nodeProp_findPositionFromActorId(func_803084F0(arg0), position);
+        return nodeprop_findPositionFromActorId(func_803084F0(arg0), position);
     }
 }
 

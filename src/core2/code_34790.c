@@ -63,8 +63,8 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(D_803657E0[arg0], NULL);
     if (temp_v0 != NULL) {
         nodeprop_getPosition(temp_v0, arg1);
-        *arg3 = func_80304DB8(temp_v0);
-        temp_f6 = (f32) func_80304DA8(temp_v0) - 180.0f;
+        *arg3 = nodeprop_getScale(temp_v0);
+        temp_f6 = (f32) nodeprop_getYaw(temp_v0) - 180.0f;
         arg2[0] = 0.0f;\
         arg2[1] = mlNormalizeAngle(temp_f6);\
         arg2[2] = 0.0f;

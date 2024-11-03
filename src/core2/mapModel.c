@@ -19,8 +19,8 @@ typedef struct {
     s16 map_id; //enum map_e
     s16 opa_model_id; //enum asset_e level_model_id
     s16 xlu_model_id; //enum asset_e level2_model_id
-    s16 unk6[3];
-    s16 unkC[3];
+    s16 unk6[3]; // min bounds (for cubes?)
+    s16 unkC[3]; // max bounds (for cubes?)
     // u8 pad12[0x2];
     f32 scale;
 }MapModelDescription;
