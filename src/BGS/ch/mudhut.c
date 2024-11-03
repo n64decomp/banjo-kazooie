@@ -12,16 +12,16 @@ Actor *spawnQueue_bundle_f32(u32,f32,f32,f32);
 void subaddie_set_state(Actor *, u32);
 
 /* local declarations */
-Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx);
-void func_8038EB4C(ActorMarker *);
-void chmudhut_update(Actor *this);
+Actor *chMudHut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx);
+void chMudHut_spawnExplosion(ActorMarker *);
+void chMudHut_update(Actor *this);
 
 /* .data section */
-ActorAnimationInfo D_80390B30[4] = {
+ActorAnimationInfo chMudHutAnimations[4] = {
     {0, 0.0f},
     {0, 0.0f},
-    {ASSET_4E_ANIM_MUDHUT_SMASH, 0.25f},
-    {ASSET_4E_ANIM_MUDHUT_SMASH, 1000000.0f}
+    {ASSET_4E_ANIM_MUD_HUT_SMASH, 0.25f},
+    {ASSET_4E_ANIM_MUD_HUT_SMASH, 1000000.0f}
 };
 
 enum bundle_e D_80390B50[6] = {
@@ -33,14 +33,14 @@ enum bundle_e D_80390B50[6] = {
     BUNDLE_C_BGS_HUT_JIGGY
 };
 
-ActorInfo D_80390B68 = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, D_80390B30,
-    chmudhut_update, actor_update_func_80326224, chmudhut_draw,
+ActorInfo chMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, chMudHutAnimations,
+    chMudHut_update, actor_update_func_80326224, chMudHut_draw,
     0, 0, 0.0f, 0
 };
 
 /* .code section */
 void func_8038EA30(void){
-    if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(2)) ){
+    if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(STATE_TIMER_2_LONGLEG)) ){
         player_stateTimer_set(STATE_TIMER_2_LONGLEG, 1.5);
     }
 }
@@ -53,7 +53,7 @@ void func_8038EA90(void){
     }
 }
 
-Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
+Actor *chMudHut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
@@ -64,7 +64,7 @@ Actor *chmudhut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     return actor_draw(this, gdl, mtx, vtx);
 }
 
-void func_8038EB4C(ActorMarker *this){
+void chMudHut_spawnExplosion(ActorMarker *this){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
@@ -73,7 +73,7 @@ void func_8038EB4C(ActorMarker *this){
     if(this);
 }
 
-void chmudhut_update(Actor *this){
+void chMudHut_update(Actor *this){
     
     f32 diffPos[3];
     f32 plyrPos[3];
@@ -110,7 +110,7 @@ void chmudhut_update(Actor *this){
                     if(tmp == 5){
                         func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
-                    __spawnQueue_add_1((GenFunction_1)func_8038EB4C, reinterpret_cast(s32, this->marker));
+                    __spawnQueue_add_1((GenFunction_1)chMudHut_spawnExplosion, reinterpret_cast(s32, this->marker));
 
                     if (tmp < 5) {
                         __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_80390B50[tmp], reinterpret_cast(s32, diffPos[0]), reinterpret_cast(s32, diffPos[1]), reinterpret_cast(s32, diffPos[2]));

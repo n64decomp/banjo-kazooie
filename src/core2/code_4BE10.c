@@ -34,7 +34,6 @@ void func_802D2DA0(Actor *this) {
             for(i = 0; i < 3; i++){
                 sp70[i] = this->position[i] + randf()*2*this->unkF4_8 - ((i == 1)? 0: this->unkF4_8);
             }
-
             particleEmitter_setSprite(pCtrl, ASSET_710_SPRITE_SPARKLE_PURPLE);
             particleEmitter_setStartingFrameRange(pCtrl, 0, 0);
             particleEmitter_setPosition(pCtrl, sp70);
