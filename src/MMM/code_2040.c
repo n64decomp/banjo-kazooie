@@ -256,8 +256,8 @@ Actor *func_80388994(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     this = actor_drawFullDepth(marker, gfx, mtx, vtx);
     if (marker->unk14_21 && (this->lifetime_value != 0.0f)) {
-        func_8034A174((struct5Bs *) marker->unk44, 5, &sp84);
-        func_8034A174((struct5Bs *) marker->unk44, 6, &sp78);
+        func_8034A174(marker->unk44, 5, sp84);
+        func_8034A174(marker->unk44, 6, sp78);
         for(i = 0;  i < 8; i++){
             sp6C[0] = sp6C[2] = 0.0f;
             sp6C[1] = randf2(5.0f, 20.0f);

@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-Struct5Es * func_80309B48(f32[3], f32[3], f32[3], u32);
+BKCollisionTri * func_80309B48(f32[3], f32[3], f32[3], u32);
 
 /* .bss */
 struct{

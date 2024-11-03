@@ -4,6 +4,7 @@
 
 /* extern functions */
 extern void MMM_func_8038B6D4(f32* arg0, s32 arg1);
+extern void *func_803517B8(s32);
 
 /* internal definitions */
 typedef struct {
@@ -178,7 +179,7 @@ void func_803898EC() {
 
 void func_80389910() {
     gcdialog_showText(ASSET_AD5_DIALOG_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
-    timedFunc_set_2(0.0f, func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+    timedFunc_set_2(0.0f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
     timedFunc_set_0(6.0f, func_803898EC);
@@ -314,7 +315,7 @@ void code3420_handleOrganGame(s32 arg0, s32 arg1) {
     f32 key_position[3];
     bool is_black_key;
 
-    Me.unk8 = &D_8038BF20;
+    Me.unk8 = D_8038BF20;
     func_80250170(0, 0x6A, 0);
     Me.state = 0;
 

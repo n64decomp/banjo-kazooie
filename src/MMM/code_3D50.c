@@ -10,7 +10,8 @@ typedef struct {
     f32 unk4;
 }Struct_MMM_3D50_0;
 
-extern void func_8028F620(Struct_MMM_3D50_0 *, f32, f32);
+extern bool func_8028F620(f32[3], f32, f32);
+extern BKModel *mapModel_getModel(s32 arg0);
 
 typedef struct {
     u8 *unk0;
