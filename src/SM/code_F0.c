@@ -26,7 +26,7 @@ extern ActorInfo gBanjosChair;
 extern ActorInfo gBanjosStove;
 extern ActorInfo gRockTrappingGrunty;
 
-extern u32 D_803FFE00[4];
+extern u32 gCore1CRCs[4];
 
 /* .data */
 s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
@@ -116,10 +116,10 @@ extern u8 crc_ROM_START[];
 static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 
-    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == D_803FFE00[0])
-        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == D_803FFE00[1])
-        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == D_803FFE00[2])
-        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == D_803FFE00[3])
+    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == gCore1CRCs[0])
+        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == gCore1CRCs[1])
+        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == gCore1CRCs[2])
+        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == gCore1CRCs[3])
     ){
         return TRUE;
     }

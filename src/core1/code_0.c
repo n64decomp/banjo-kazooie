@@ -32,7 +32,7 @@ static u64 sDebugVar_8027BEF0; // never used
 
 extern u8 core2_TEXT_START[];
 
-void func_8023DA20(s32 arg0){ 
+void core1_main(s32 arg0){ 
     bzero(&D_8027A130, core2_TEXT_START - (u8*)&D_8027A130);
     osWriteBackDCacheAll();
     sns_find_and_parse_payload();

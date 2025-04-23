@@ -1,12 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define OVERLAY(ovl, _) \
-    extern u8 ovl##_rzip_ROM_START[]; \
-    extern u8 ovl##_rzip_ROM_END[];
-#include <overlays.h>
-#undef OVERLAY
+#include "boot/overlays.h"
 
 // This doesn't match as macros, even if two macros are used per overlay.
 // Look into autogenerating this table in the long run for a cleaner solution.
@@ -41,4 +34,20 @@ void overlay_table_init(void) {
     gOverlayTable[13].end   = lair_rzip_ROM_END;
     gOverlayTable[14].start = fight_rzip_ROM_START;
     gOverlayTable[14].end   = fight_rzip_ROM_END;
+    
+    // MAKE_OVERLAY_TABLE_ENTRY(core2, 0)
+    // MAKE_OVERLAY_TABLE_ENTRY(emptyLvl, 1)
+    // MAKE_OVERLAY_TABLE_ENTRY(CC, 2)
+    // MAKE_OVERLAY_TABLE_ENTRY(MMM, 3)
+    // MAKE_OVERLAY_TABLE_ENTRY(GV, 4)
+    // MAKE_OVERLAY_TABLE_ENTRY(TTC, 5)
+    // MAKE_OVERLAY_TABLE_ENTRY(MM, 6)
+    // MAKE_OVERLAY_TABLE_ENTRY(BGS, 7)
+    // MAKE_OVERLAY_TABLE_ENTRY(RBB, 8)
+    // MAKE_OVERLAY_TABLE_ENTRY(FP, 9)
+    // MAKE_OVERLAY_TABLE_ENTRY(CCW, 10)
+    // MAKE_OVERLAY_TABLE_ENTRY(SM, 11)
+    // MAKE_OVERLAY_TABLE_ENTRY(cutscenes, 12)
+    // MAKE_OVERLAY_TABLE_ENTRY(lair, 13)
+    // MAKE_OVERLAY_TABLE_ENTRY(fight, 14)
 }
