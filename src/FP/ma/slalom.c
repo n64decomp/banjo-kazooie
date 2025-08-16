@@ -107,8 +107,8 @@ void __maSlalom_spawnGate(s32 indx, s32 arg1){
     a1->unk38_31 = 1;
     a2->unk38_31 = 1;
 
-    a1->unkF4_8 = indx + 1;
-    a2->unkF4_8 = indx + 1;
+    a1->actorTypeSpecificField = indx + 1;
+    a2->actorTypeSpecificField = indx + 1;
 
     meActiveFlags[indx].marker = a1->marker;
     meDummyFlags[indx].marker = a2->marker;
@@ -279,7 +279,7 @@ void maSlalom_win(void){
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 2.0f);
     }
     func_8028F918(1);
-    func_8025A6EC(COMUSIC_3B_MINIGAME_VICTORY, 28000);
+    coMusicPlayer_playMusic(COMUSIC_3B_MINIGAME_VICTORY, 28000);
     FP_func_8038AB60(0);
     func_8038ABDC();
     timed_setStaticCameraToNode(0.0f, 1);
@@ -293,7 +293,7 @@ void maSlalom_lose(void){
         pntBoggy = marker_getActor(Me.boggyLink);
     
     pntBoggy->unk38_31 = 1;
-    func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
+    coMusicPlayer_playMusic(COMUSIC_3C_MINIGAME_LOSS, 28000);
     FP_func_8038AB60(0);
     func_8038ABDC();
     if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
@@ -407,7 +407,7 @@ void maSlalom_linkActiveFlag(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     s32 num;
     
-    num = actor->unkF4_8 - 1;
+    num = actor->actorTypeSpecificField - 1;
     if(num < NUM_GATES){
         meActiveFlags[num].marker = actor->marker;
         meActiveFlags[num].position[0] = actor->position[0];
@@ -421,7 +421,7 @@ void maSlalom_linkDummyFlag(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     s32 num;
     
-    num = actor->unkF4_8 - 1;
+    num = actor->actorTypeSpecificField - 1;
     if(num < NUM_GATES){
         meDummyFlags[num].marker = actor->marker;
         meDummyFlags[num].position[0] = actor->position[0];
@@ -538,7 +538,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
                 FP_func_8038AB60(0);
                 if(!player_isDead()){
                     func_8028F918(2);
-                    gcdialog_showText(0xc10, 0x20, NULL, NULL, maSlalom_dialogCallback, NULL);
+                    gcdialog_showDialog(0xc10, 0x20, NULL, NULL, maSlalom_dialogCallback, NULL);
                 }//L8038BD40
                 Me.state = MA_SLALOM_STATE_4_LOSE;
                 break;
@@ -546,7 +546,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
             case 3:
                 if(!Me.hasBeenThreeBehind && !player_isDead()){
                     Me.hasBeenThreeBehind = 1;
-                    gcdialog_showText(0xc0f, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(0xc0f, 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BD94
                 func_8025AEA0(0x3a, 0x411aa);
                 break;
@@ -554,7 +554,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
             case 2:
                 if(!Me.hasBeenTwoBehind && !player_isDead()){
                     Me.hasBeenTwoBehind = 1;
-                    gcdialog_showText(0xc0e, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(0xc0e, 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BDF0
                 func_8025AEA0(0x3a, 0x493e0);
                 break;

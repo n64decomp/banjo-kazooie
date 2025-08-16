@@ -2,120 +2,133 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 abilityprogress_learnedAbilities;
-s32 abilityprogress_usedAbilities;
+#include "core2/abilityprogress.h"
 
-void ability_use(s32 arg0){
-    s32 sp2C;
-    s32 sp28;
+// Special note: The learned abilities and used abilities IDs are different!
 
-    sp2C = 0;
-    sp28 = 1;
+s32 learnedAbilities;
+s32 usedAbilities;
 
-    if(abilityprogress_usedAbilities & (1 << arg0))
+void ability_use(enum ability_used ability) {
+    s32 dialog_id;
+    bool play_ding;
+
+    dialog_id = 0;
+    play_ding = TRUE;
+
+    // Has this ability been used before?
+    if (usedAbilities & (1 << ability)) {
         return;
+    }
 
-    switch(arg0){
-        case 0x0://L80295660 //jump
-            mapSpecificFlags_set(8, TRUE);
-            sp28 = 1;
+    switch (ability) {
+        case ABILITY_USED_JUMP:
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, TRUE);
+            play_ding = TRUE;
             break;
-        case 0x1://L80295674 //flap
-            mapSpecificFlags_set(9, TRUE);
-            sp28 = 1;
+
+        case ABILITY_USED_FLAP:
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, TRUE);
+            play_ding = TRUE;
             break;
-        case 0x2://L80295688 //bust
-            mapSpecificFlags_set(0xa, TRUE);
-            sp28 = 1;
+
+        case ABILITY_USED_FLIP:
+            mapSpecificFlags_set(SM_SPECIFIC_FLAG_A_ABILITY_FLIP_UNLOCKED, TRUE);
+            play_ding = TRUE;
             break;
-        case 0x3://L8029569C //
-            if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_DFC_DIALOG_UNKNOWN;
+
+        case ABILITY_USED_SWIM:
+            if (map_get() == MAP_1_SM_SPIRAL_MOUNTAIN) {
+                dialog_id = ASSET_DFC_BOTTLES_UNDERWATER_TUTORIAL;
             }
             break;
-        case 0x4://L802956B8 //
-            if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_E02_DIALOG_UNKNOWN;
+
+        case ABILITY_USED_CLIMB:
+            if (map_get() == MAP_1_SM_SPIRAL_MOUNTAIN) {
+                dialog_id = ASSET_E02_DIALOG_BOTTLES_CLIMB_OTHER;
             }
             break;
-        case 0x5://L802956D4 //barge
-            if(map_get() == MAP_1_SM_SPIRAL_MOUNTAIN){
-                sp2C = ASSET_E05_DIALOG_UNKNOWN;
+
+        case ABILITY_USED_BEAK_BARGE:
+            if (map_get() == MAP_1_SM_SPIRAL_MOUNTAIN) {
+                dialog_id = ASSET_E05_DIALOG_BOTTLES_KAZOOIE_BARGE;
             }
             break;
-        case 0x6://L802956F0 //slide
-            sp28 = 0;
+
+        case ABILITY_USED_SLIDE:
+            play_ding = FALSE;
             if (!ability_isUnlocked(ABILITY_10_TALON_TROT)) {
                 if (map_get() == MAP_2_MM_MUMBOS_MOUNTAIN) {
-                    sp2C = ASSET_B4D_DIALOG_UNKNOWN;
-                }
-                else {
+                    dialog_id = ASSET_B4D_DIALOG_BOTTLES_SLIPPERY;
+                } else {
                     return;
                 }
+            } else {
+                usedAbilities |= (1 << ability);
             }
-            else {
-                abilityprogress_usedAbilities |= (1 << arg0);
-            }
             break;
-        case 0x8://L80295738 //fly
-            sp2C = ASSET_A26_DIALOG_NEED_RED_FEATHERS_TO_FLY;
-            break;
-        case 0x7://L80295740 //egg
-        case 0x9://L80295740 //shock
-            break;
-    }//L80295744
 
-    if (sp28) {
+        case ABILITY_USED_FLY:
+            dialog_id = ASSET_A26_DIALOG_NEED_RED_FEATHERS_TO_FLY;
+            break;
+
+        case ABILITY_USED_EGG:
+        case ABILITY_USED_SHOCK:
+            break;
+    }
+
+    if (play_ding) {
         comusic_playTrack(COMUSIC_2B_DING_B);
     }
 
-    if (sp2C) {
-        gcdialog_showText(sp2C, 4, NULL, NULL, NULL, 0);
+    if (dialog_id) {
+        gcdialog_showDialog(dialog_id, 4, NULL, NULL, NULL, 0);
     }
 
-    abilityprogress_usedAbilities |= (1 << arg0);
+    usedAbilities |= (1 << ability);
 }
 
-int ability_hasUsed(enum ability_e move){
-    return (1 << move) & abilityprogress_usedAbilities;
+int ability_hasUsed(enum ability_used ability) {
+    return (1 << ability) & usedAbilities;
 }
 
-void ability_setHasUsed(enum ability_e move){
-    abilityprogress_usedAbilities |= (1 << move);
+void ability_setHasUsed(enum ability_used ability) {
+    usedAbilities |= (1 << ability);
 }
 
-int ability_hasLearned(enum ability_e move){
-    return (1 << move) & abilityprogress_learnedAbilities;
+int ability_hasLearned(enum ability_e ability) {
+    return (1 << ability) & learnedAbilities;
 }
 
-s32 ability_getAllLearned(void){
-    return abilityprogress_learnedAbilities;
+s32 ability_getAllLearned(void) {
+    return learnedAbilities;
 }
 
-void ability_debug(void){}
+void ability_debug(void) { }
 
-void ability_clearAll(void){
-    abilityprogress_learnedAbilities = 0;
-    abilityprogress_usedAbilities = 0;
+void ability_clearAll(void) {
+    learnedAbilities = 0;
+    usedAbilities = 0;
 }
 
-void ability_setLearned(s32 move, s32 val){
-    if(val){
-        abilityprogress_learnedAbilities |= (1 << move);
-    }else{
-        abilityprogress_learnedAbilities &= ~(1 << move);
+void ability_setLearned(enum ability_e ability, bool hasLearned) {
+    if (hasLearned) {
+        learnedAbilities |= (1 << ability);
+    } else {
+        learnedAbilities &= ~(1 << ability);
     }
 }
 
-void ability_setAllLearned(s32 val){
-    abilityprogress_learnedAbilities = val;
+void ability_setAllLearned(s32 val) {
+    learnedAbilities = val;
 }
 
-void ability_setAllUsed(s32 val){
-    abilityprogress_usedAbilities = val;
+void ability_setAllUsed(s32 val) {
+    usedAbilities = val;
 }
 
-void ability_getSizeAndPtr(s32 *size, u8 **addr){
+// Gets the size of the bitflags needed and address for which moves have been learned
+void ability_getSizeAndPtr(s32 *size, u8 **addr) {
     *size = 8;
-    *addr = &abilityprogress_learnedAbilities;
+    *addr = &learnedAbilities;
 }

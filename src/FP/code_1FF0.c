@@ -70,7 +70,7 @@ void func_80388584(Actor *this){
         }
     }
     else{//L80388694
-        if(!func_80329530(this, 2000)&& !maSlolam_WithinRadiusOfBoggy(this->position, 2000))
+        if(!subaddie_playerIsWithinSphereAndActive(this, 2000)&& !maSlolam_WithinRadiusOfBoggy(this->position, 2000))
             return;
         this->marker->collidable = TRUE;
         this->unk124_6 = TRUE;

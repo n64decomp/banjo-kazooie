@@ -27,7 +27,7 @@ void bakey_update(void){
     s32 i;
 
     bakey.pressed_count[0] = controller_getStartButton(0);
-    func_8024E60C(0, &bakey.pressed_count[BUTTON_Z]);
+    controller_copySideButtons(0, &bakey.pressed_count[BUTTON_Z]);
     func_8024E6E0(0, &bakey.pressed_count[BUTTON_D_UP]);
     controller_copyFaceButtons(0, &bakey.pressed_count[BUTTON_A]);
     for(i=0; i<0xE; i++){//L802954A8

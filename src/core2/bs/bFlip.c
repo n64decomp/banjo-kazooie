@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 
 /* .data */
@@ -160,7 +163,7 @@ void bsbflip_update(void){
 }
 
 void bsbflip_end(void){
-    ability_use(2);
+    ability_use(ABILITY_USED_FLIP);
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
     func_8029E070(0);

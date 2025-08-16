@@ -58,7 +58,7 @@ void func_802D05A0(Actor *this, s32 next_state){
         }
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unk0);
-        func_8030DD14(local->sfxsourceIdx, 3);
+        sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 3);
         func_8030DFF0(local->sfxsourceIdx, 1);
         sfxsource_set_position(local->sfxsourceIdx, this->position);
         sfxsource_set_fade_distances(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unk4*this->scale, D_80367340[(s32)this->yaw].unk6*this->scale);
@@ -66,7 +66,7 @@ void func_802D05A0(Actor *this, s32 next_state){
         func_802D0500(this);
         if(-1.0f != D_80367340[(s32)this->yaw].unkC)
             sfxsource_playSfxAtVolume(local->sfxsourceIdx, D_80367340[(s32)this->yaw].unkC);
-        func_8030E2C4(local->sfxsourceIdx);
+        sfxSource_func_8030E2C4(local->sfxsourceIdx);
     }//L802D0780
     this->state = next_state;
 }

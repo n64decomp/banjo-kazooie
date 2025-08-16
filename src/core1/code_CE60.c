@@ -80,10 +80,10 @@ void core1_ce60_func_8024AAB0(void) {
     sTrackId[2] = sTrackId[3] = COMUSIC_0_DING_A;
 
     if (0 <= sTrackId[0])
-        sTrackId[2] = func_80250034(sTrackId[0]);
+        sTrackId[2] = gcMusic_getDefaultVolumeForTrack(sTrackId[0]);
 
     if (0 <= sTrackId[1])
-        sTrackId[3] = func_80250034(sTrackId[1]);
+        sTrackId[3] = gcMusic_getDefaultVolumeForTrack(sTrackId[1]);
 
     switch (map_get()) {
         case MAP_7_TTC_TREASURE_TROVE_COVE:
@@ -160,7 +160,7 @@ void core1_ce60_func_8024ADF0(bool arg0) {
         func_8025A104(sTrackId[0], sTrackId[2]);
     
     if (0 < sTrackId[1] && 0 < sTrackId[3])
-        func_8025A6CC(sTrackId[1], sTrackId[3]);
+        coMusicPlayer_playMusicWeak(sTrackId[1], sTrackId[3]);
 }
 
 void core1_ce60_func_8024AE74(void) {
@@ -588,7 +588,7 @@ void core1_ce60_func_8024AF48(void) {
             break;
 
         case MAP_91_FILE_SELECT:
-            if (!func_802C5A30()) {
+            if (!gameSelect_getGameNumber()) {
                 core1_ce60_setChanMaskWithValue(0x200, 0.5f);
             } else {
                 core1_ce60_setChanMaskWithValue(0x1ff, 0.5f);

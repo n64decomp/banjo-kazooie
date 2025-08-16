@@ -315,21 +315,21 @@ void func_802B5350(void){
     }
     if(sp1C == 0x7){
         if(bsStoredState_getTransformation() != TRANSFORM_1_BANJO)
-            func_8029A86C(1);
+            bs_setInterruptResponse(1);
         else{
             bacarry_set_marker(baMarker_8028D688());
             bs_setState(BS_3A_CARRY_IDLE);
         }
     }
     else if(sp1C == 0x12){//L802B53D0
-        func_8029A86C(1);
+        bs_setInterruptResponse(1);
         if( bsStoredState_getTransformation() == TRANSFORM_1_BANJO && !baflag_isTrue(BA_FLAG_F) && stateTimer_isDone(STATE_TIMER_0_UNKNOWN)){
             bacarriedobj_spawn(baMarker_getCarriedObjectActorId());
-            func_8029A86C(2);
+            bs_setInterruptResponse(2);
         }
     }
     else if(sp1C == 0x8){//L802B5438
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
         bs_setState(BS_3C_TALK);
     }else{
         bacarry_reset_marker();

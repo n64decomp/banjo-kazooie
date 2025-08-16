@@ -1806,17 +1806,18 @@ s32 func_80306EF4(s32 arg0[3], s32 arg1, u32 arg2) {
     return -1;
 }
 
-s32 func_80307164(s32 arg0[3]) {
+s32 func_80307164(s32 position[3]) {
     Struct_core2_7AF80_1 *phi_v1;
     Struct_core2_7AF80_2 *phi_a0;
 
-    for( phi_v1 = D_8036A9D4; phi_v1 < &D_8036A9D4[D_8036A9D0]; phi_v1++){
-        for(phi_a0 = phi_v1->unk8; phi_a0 < &phi_v1->unk8[phi_v1->count]; phi_a0++){
-            if ((SQ(arg0[0] - phi_a0->position[0]) + SQ(arg0[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
+    for (phi_v1 = D_8036A9D4; phi_v1 < &D_8036A9D4[D_8036A9D0]; phi_v1++) {
+        for (phi_a0 = phi_v1->unk8; phi_a0 < &phi_v1->unk8[phi_v1->count]; phi_a0++) {
+            if ((SQ(position[0] - phi_a0->position[0]) + SQ(position[2] - phi_a0->position[2])) < SQ(phi_a0->radius)) {
                 return phi_v1 - D_8036A9D4;
             }
         }
     }
+
     return -1;
 }
 

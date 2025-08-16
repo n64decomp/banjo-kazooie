@@ -62,7 +62,7 @@ void func_8035D65C(Actor *this) {
         this->unk38_31--;
         return;
     }
-    if (func_80329530(this, 500) && player_isSwimming() && func_8035D608(this)) {
+    if (subaddie_playerIsWithinSphereAndActive(this, 500) && player_isSwimming() && func_8035D608(this)) {
         this->actor_specific_1_f = 2.0f;
         subaddie_set_state_with_direction(this, 4, 0.0f, -1);
     }
@@ -89,7 +89,7 @@ void func_8035D88C(ActorMarker *marker, ActorMarker *other_marker){
     this = marker_getActor(marker);
     subaddie_set_state_with_direction(this, 7, 0.0f, -1);
     actor_playAnimationOnce(this);
-    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 0.8f, 30000, this->position, 1500, 3000);
+    sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 0.8f, 30000, this->position, 1500, 3000);
     actor_collisionOff(this);
 }
 
@@ -204,7 +204,7 @@ void func_8035DA1C(Actor *this) {
 
         case 6://L8035DE60
             if (actor_animationIsAt(this, 0.5f)) {
-                func_8030E6A4(SFX_6D_CROC_BITE, 1.1f, 10000);
+                gcsfx_playWithPitch(SFX_6D_CROC_BITE, 1.1f, 10000);
             }
         case 5://L8035DE84
             this->marker->id = MARKER_173_CHUMP_FISH_2;
@@ -213,7 +213,7 @@ void func_8035DA1C(Actor *this) {
             func_80328CA8(this, (s32) func_8035D590(sp40));
             func_80328FB0(this, 10.0f);
             func_80328FF0(this, 10.0f);
-            sp38 = func_80329530(this, 0x12C);
+            sp38 = subaddie_playerIsWithinSphereAndActive(this, 0x12C);
             if ((this->state == 5) && sp38) {
                 subaddie_set_state_with_direction(this, 6, 0.0f, -1);
             }

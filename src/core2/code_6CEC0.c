@@ -2,23 +2,23 @@
 #include "functions.h"
 #include "variables.h"
 
-extern ParticleEmitter *func_802F0EF0(u8);
+extern ParticleEmitter *pem_getEmitterByIndex(u8);
 
 /* .bss */
 u8 D_80380A80;
 
 /* .code */
 void func_802F3E50(void){
-    func_802F1190(D_80380A80);
+    pem_free(D_80380A80);
 }
 
 void func_802F3E74(void){
-    D_80380A80 = func_802F0F78(0xF);
+    D_80380A80 = pem_newEmitter(0xF);
 }
 
 ParticleEmitter *func_802F3E98(f32 pos[3], enum asset_e sprite_id){
     ParticleEmitter *this;
-    this = func_802F0EF0(D_80380A80);
+    this = pem_getEmitterByIndex(D_80380A80);
 
     particleEmitter_setSprite(this, sprite_id);
     particleEmitter_setAccelerationRange(this,

@@ -35,7 +35,7 @@ void func_802B5480(void) {
     f32 bubble_spawn_position[3];
     ParticleEmitter *bubble_emitter;
 
-    if (func_80294574()) {
+    if (floor_isCurrentFloorunk59()) {
         if (randf() > 0.5) {
             baModel_8029223C(bubble_spawn_position);
         } else {
@@ -75,9 +75,9 @@ void func_802B55DC(void) {
 
 void swim_enteredWater(void) {
     if (level_get() == LEVEL_9_RUSTY_BUCKET_BAY) {
-        func_8035644C(FILEPROG_AB_SWIM_OILY_WATER);
+        progressDialog_showDialogMaskZero(FILEPROG_AB_SWIM_OILY_WATER);
     } else if (map_get() == MAP_46_CCW_WINTER) {
-        func_8035644C(FILEPROG_DD_HAS_TOUCHED_CCW_ICY_WATER);
+        progressDialog_showDialogMaskZero(FILEPROG_DD_HAS_TOUCHED_CCW_ICY_WATER);
     }
     baphysics_set_gravity(100.0f);
     baphysics_set_terminal_velocity(133.33f);
@@ -245,7 +245,7 @@ void func_802B5C40(void) {
     if ((func_80294530() != 0) && (can_dive() != 0)) {
         func_802944D0(sp1C);
         if (sp1C[1] < -0.7) {
-            if ((func_80294500() - player_getYPosition()) > 90.0f) {
+            if ((floor_getCurrentFloorYPosition() - player_getYPosition()) > 90.0f) {
                 next_state = BS_30_DIVE_ENTER;
             }
         }

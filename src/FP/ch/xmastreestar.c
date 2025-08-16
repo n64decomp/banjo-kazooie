@@ -42,7 +42,7 @@ void func_8038EC5C(Actor *this){
         this->unk38_31++;
         this->lifetime_value = 0.33f;
         if(this->unk38_31 < 4){
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+            coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
         }
 
     }

@@ -46,7 +46,7 @@ void bstalk_end(void){}
 void bstalk_interrupt(void){
     if(bs_getInterruptType() == BS_INTR_8){
         bsTalkStayInState = TRUE;
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
     }
     else{
         func_80296608();

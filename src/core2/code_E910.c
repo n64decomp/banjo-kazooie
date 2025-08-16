@@ -202,7 +202,7 @@ void func_80295914(void){
     func_80295DD0();
     func_80296C30();
     baphysics_init();
-    func_80297C78();
+    bsiFrame_reset();
     pitch_reset();
     climbClear();
     func_8029887C();
@@ -225,7 +225,7 @@ void func_80295914(void){
     basfx_reset();
     func_8029A4D0();
     func_8029ADCC();
-    func_8029D01C();
+    hazards_reset();
     func_802958A0();
 }
 
@@ -249,7 +249,8 @@ void func_80295B04(void){
     bsStoredState_setLongLegTimer(sp24);
     sp24 = 0.0f;
     is_in_talon_trot = FALSE;
-    if(bsbtrot_inSet(sp20)){
+
+    if (bsbtrot_inSet(sp20)) {
         sp24 = stateTimer_get(STATE_TIMER_3_TURBO_TALON);
         is_in_talon_trot = TRUE;
     }
@@ -268,7 +269,7 @@ void func_80295B04(void){
     basfx_free();
     func_8029A54C();
     func_8029ADA8();
-    func_8029CFF8();
+    freeHazardSfxId();
     D_80363820 = 0;
 }
 
@@ -307,8 +308,8 @@ void func_80295C14(void){
     bacarry_update();
     snackerctl_update();
     func_8028B71C();
-    func_8029D968();
-    func_80297CF8();
+    hazards_update();
+    bsiFrame_update();
     func_80294E60();
     cameraMode_update();
     func_802919A0();

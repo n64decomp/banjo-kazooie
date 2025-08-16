@@ -47,7 +47,7 @@ void maSnowButton_update(void){
         case MA_SNOW_BUTTON_STATE_1_ACTIVE:
             if(Me.remainingButtonCount <= 0){
                 Me.state = MA_SNOW_BUTTON_STATE_2_WIN;
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+                coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                 Me.delay = 0;
             }
             break;
@@ -56,7 +56,7 @@ void maSnowButton_update(void){
             if(!(Me.delay < 30)){
 
                 if(Me.jiggySpawnerExists){
-                    func_802BAFE4(0x11);
+                    gcStaticCamera_activate(0x11);
                     jiggy_spawn(JIGGY_2D_FP_SNOWMAN_BUTTONS, Me.spawn_pos);
                     __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM,
                         reinterpret_cast(s32, Me.spawn_pos[0]),

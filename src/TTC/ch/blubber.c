@@ -90,7 +90,7 @@ static void __chBlubber_showJiggySpawnedText(ActorMarker *marker){
 
     if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN)) {
         text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_DIALOG_BLUBBER_COMPLETE;
-        gcdialog_showText(text_id, 0xf, this->position, this->marker, __chBlubber_showTextCallback, __chBlubber_showTextCallback2);
+        gcdialog_showDialog(text_id, 0xf, this->position, this->marker, __chBlubber_showTextCallback, __chBlubber_showTextCallback2);
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN, TRUE);
     }
 }
@@ -120,7 +120,7 @@ static void __func_80387774(Actor **this_ptr){
     ActorLocal_Blubber *local = (ActorLocal_Blubber *)&(*this_ptr)->local;
 
     player_setCarryObjectPoseInCylinder(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
-    if( func_80329530(*this_ptr, 200)
+    if( subaddie_playerIsWithinSphereAndActive(*this_ptr, 200)
         && bacarry_get_markerId() == MARKER_37_GOLD_BULLION
         && player_throwCarriedObject()
     ) {
@@ -143,7 +143,7 @@ static void __chBlubber_updateFunc(Actor *this){
 
     this->marker->propPtr->unk8_3 = TRUE;
     func_8028E668(this->position, 90.0f, -10.0f, 110.0f);
-    if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_1_UNKNOWN) && !func_80329530(this, 2500))
+    if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_1_UNKNOWN) && !subaddie_playerIsWithinSphereAndActive(this, 2500))
         return;
     
     if(!this->volatile_initialized){
@@ -153,11 +153,11 @@ static void __chBlubber_updateFunc(Actor *this){
         this->volatile_initialized = TRUE;
     }//L80387970
 
-    if(func_80329530(this, 250) && !func_80329530(this, 80)
+    if(subaddie_playerIsWithinSphereAndActive(this, 250) && !subaddie_playerIsWithinSphereAndActive(this, 80)
         && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        gcdialog_showText(ASSET_A0B_DIALOG_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
+        gcdialog_showDialog(ASSET_A0B_DIALOG_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
         this->has_met_before = TRUE;
         subaddie_set_state_forward(this, CH_BLUBBER_STATE_3_UNKNOWN);
     }
@@ -166,7 +166,7 @@ static void __chBlubber_updateFunc(Actor *this){
         && !this->unk138_23
     ){
         if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
-            gcdialog_showText(ASSET_A0C_DIALOG_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_A0C_DIALOG_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
         }
         
         this->unk138_23 = TRUE;
@@ -200,15 +200,15 @@ static void __chBlubber_updateFunc(Actor *this){
             }
 
             if(actor_animationIsAt(this, 0.3f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.95f, 17000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_83_BLUBBER_CRYING, 0.95f, 17000, this->position, 1250, 2500);
             }
 
             if(actor_animationIsAt(this, 0.53f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.93f, 17000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_83_BLUBBER_CRYING, 0.93f, 17000, this->position, 1250, 2500);
             }
 
             if(actor_animationIsAt(this, 0.72f)){
-                FUNC_8030E8B4(SFX_83_BLUBBER_CRYING, 0.91f, 17000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_83_BLUBBER_CRYING, 0.91f, 17000, this->position, 1250, 2500);
             }
 
             __chBlubber_checkJiggySpawnedTextAndAdvanceState(this);
@@ -227,12 +227,12 @@ static void __chBlubber_updateFunc(Actor *this){
                 }
             }
             
-            if(actor_animationIsAt(this, 0.3f) && !func_803114B0()){
+            if(actor_animationIsAt(this, 0.3f) && !gcdialog_hasCurrentTextId()){
                 FUNC_8030E624(SFX_8C_BOGGY_WAHEY, 1.0f, 27000);
             }
 
             if(actor_animationIsAt(this, 0.28f) || 
-                (actor_animationIsAt(this, 0.78f) && !func_803114B0())
+                (actor_animationIsAt(this, 0.78f) && !gcdialog_hasCurrentTextId())
             ){
                 FUNC_8030E624(SFX_80_YUMYUM_CLACK, 0.9f, 13000);
             }

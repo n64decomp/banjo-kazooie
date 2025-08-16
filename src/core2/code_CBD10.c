@@ -4,10 +4,10 @@
 
 
 #include "core2/anim/sprite.h"
-#include "code_B6EA0.h"
+#include "core2/commonParticle.h"
 
 extern f32  time_getDelta_frames(void);
-extern u8   func_8033E8D0(void);
+extern u8   commonParticle_getCurrentProjectileIndex(void);
 extern void func_8033FFE4(u8, s32, s32);
 extern void func_8033FC34(u8, s32);
 extern void projectile_setPosition(u8, f32[3]);
@@ -51,10 +51,10 @@ void func_80352CF4(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3) {
     u8 sp1A;
 
 
-    if (func_8033E3F0(7, 1) >= 0) {
-        sp1A = func_8033E8D0();
+    if (commonParticle_new(7, 1) >= 0) {
+        sp1A = commonParticle_getCurrentProjectileIndex();
         sp1B = func_8033E93C();
-        sp1C = func_8033E960();
+        sp1C = commonParticle_getCurrentParticle();
         sp1C[0] = arg2;
         sp1C[1] = (arg3 - arg2) / 20.0f;
         projectile_setPosition(sp1A, arg0);
@@ -72,15 +72,15 @@ void func_80352DE4(void) {
     u8 projectile_indx;
     AnimSprite *sp58;
     u8 sp57;
-    ParticleStruct0s *temp_s1;
+    CommonParticle *temp_s1;
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
 
-    projectile_indx = func_8033E8D0();
-    sp58 = func_8033E8F4();
+    projectile_indx = commonParticle_getCurrentProjectileIndex();
+    sp58 = commonParticle_getCurrentAnimSprite();
     sp57 = func_8033E93C();
-    temp_s1 = func_8033E960();
+    temp_s1 = commonParticle_getCurrentParticle();
     player_getPosition(sp44);
     temp_s1->unk0 = 10.0f;
     temp_s1->unk4 = 8.0f;
@@ -108,12 +108,12 @@ void func_80352DE4(void) {
 }
 
 void func_80352F58(void){
-    f32 *sp2C = func_8033E960();
-    AnimSprite *sp28 = func_8033E8F4();
-    u8 sp27 = func_8033E8D0();
+    f32 *sp2C = commonParticle_getCurrentParticle();
+    AnimSprite *sp28 = commonParticle_getCurrentAnimSprite();
+    u8 sp27 = commonParticle_getCurrentProjectileIndex();
     f32 sp20 = time_getDelta_frames();
     if(animsprite_is_stopped(sp28)){
-        func_8033E984();
+        commonParticle_setCurrentInUseFalse();
     }
     else{
         sp2C[0] += sp2C[1]*sp20;

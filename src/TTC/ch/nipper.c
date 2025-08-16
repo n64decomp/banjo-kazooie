@@ -104,7 +104,7 @@ static void __chNipper_playDeathAnimation(Actor *this) {
     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_4_DIEING, 0.01f, 1);
     actor_playAnimationOnce(this);
     for(i = 0; i < 3; i ++){
-        FUNC_8030E8B4(SFX_79_TICKER_DEATH, 0.5f, 17000, this->position, 1500, 3000);
+        sfx_playFadeShorthandDefault(SFX_79_TICKER_DEATH, 0.5f, 17000, this->position, 1500, 3000);
     };
 }
 
@@ -125,7 +125,7 @@ static bool __func_80388088(Actor *this){
 }
 
 static bool __chNipper_shouldShowActor(Actor *this){
-    return BOOL(func_80329530(this, 1300) && __func_80388088(this));
+    return BOOL(subaddie_playerIsWithinSphereAndActive(this, 1300) && __func_80388088(this));
 }
 
 static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_marker) {
@@ -139,12 +139,12 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
         subaddie_set_state_with_direction(this, CH_NIPPER_STATE_6_DEAD, 0.01f, 1);
         actor_playAnimationOnce(this);
         for(i = 0; i < 3; i++){
-            FUNC_8030E8B4(SFX_78_EAGLECRY, 0.7f, 20000, this->position, 1500, 3000);
+            sfx_playFadeShorthandDefault(SFX_78_EAGLECRY, 0.7f, 20000, this->position, 1500, 3000);
         };
         comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 0, 300);
         func_8025AABC(COMUSIC_12_TTC_NIPPER);
         func_8032BB88(this, -1, 300);
-        func_802BAFE4(0x1C);
+        gcStaticCamera_activate(0x1C);
         return;
     }
     
@@ -156,7 +156,7 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
 
     __chNipper_playDeathAnimation(this);
     this->lifetime_value = 80.0f;
-    gcdialog_showText(ASSET_A10_DIALOG_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showDialog(ASSET_A10_DIALOG_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -177,7 +177,7 @@ static void __chNipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_mar
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN)
             && this->has_met_before
-            && gcdialog_showText(0xa0f, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showDialog(0xa0f, 0, NULL, NULL, NULL, NULL)
         ){
             mapSpecificFlags_set(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN, TRUE);
         }
@@ -188,7 +188,7 @@ static void __chNipper_owFunc(ActorMarker * this_marker, ActorMarker *other_mark
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
         && this->has_met_before
-        && gcdialog_showText(0xa11, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showDialog(0xa11, 0, NULL, NULL, NULL, NULL)
     ){
         this->unk138_23 = TRUE;
     }
@@ -243,7 +243,7 @@ static void __chNipper_updateFunc(Actor *this){
                     && player_movement_group != BSGROUP_A_FLYING
                 ){
                     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_5_SPAWNED, 0.01f, 1);
-                    if(gcdialog_showText(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
+                    if(gcdialog_showDialog(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
                         this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);
@@ -260,7 +260,7 @@ static void __chNipper_updateFunc(Actor *this){
                 || actor_animationIsAt(this, 0.6f)
                 || actor_animationIsAt(this, 0.7f)
             ){
-                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
+                sfx_playFadeShorthandDefault(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
             }
             break;
 
@@ -301,7 +301,7 @@ static void __chNipper_updateFunc(Actor *this){
                 || actor_animationIsAt(this, 0.95f) 
             ){
                 for(sp48 = 0; sp48 < 3; sp48++){
-                    FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 1500, 3000);
+                    sfx_playFadeShorthandDefault(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 1500, 3000);
                 }
             }
             break;
@@ -318,14 +318,14 @@ static void __chNipper_updateFunc(Actor *this){
                 || actor_animationIsAt(this, 0.6f)
                 || actor_animationIsAt(this, 0.7f)
             ){
-                FUNC_8030E8B4(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
+                sfx_playFadeShorthandDefault(SFX_3D_TICKER_WALKING, 0.75f, 12000, this->position, 0x5dc, 0xbb8);
             }
             break;
 
         case CH_NIPPER_STATE_6_DEAD:
             this->marker->collidable = FALSE;
             if(actor_animationIsAt(this, 0.6f)){
-                FUNC_8030E8B4(SFX_7C_CHEBOOF, 0.9f, 20000, this->position, 1500, 3000);
+                sfx_playFadeShorthandDefault(SFX_7C_CHEBOOF, 0.9f, 20000, this->position, 1500, 3000);
                 break;
             }
 

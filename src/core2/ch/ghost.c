@@ -100,7 +100,7 @@ void func_8035B3B4(ActorMarker *this_marker, ActorMarker *other_marker){
 }
 
 int func_8035B3E4(Actor *this){
-    if(func_80329530(this, (s32)(this->scale*600.0f)) && func_803292E0(this))
+    if(subaddie_playerIsWithinSphereAndActive(this, (s32)(this->scale*600.0f)) && func_803292E0(this))
         return 1;
     return 0;
 }

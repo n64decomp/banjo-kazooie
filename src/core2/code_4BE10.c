@@ -32,7 +32,7 @@ void func_802D2DA0(Actor *this) {
         pCtrl = partEmitMgr_newEmitter((s32) this->lifetime_value);
         for(phi_s6 = 0; phi_s6 < (s32)this->lifetime_value; phi_s6++){
             for(i = 0; i < 3; i++){
-                sp70[i] = this->position[i] + randf()*2*this->unkF4_8 - ((i == 1)? 0: this->unkF4_8);
+                sp70[i] = this->position[i] + randf()*2*this->actorTypeSpecificField - ((i == 1)? 0: this->actorTypeSpecificField);
             }
             particleEmitter_setSprite(pCtrl, ASSET_710_SPRITE_SPARKLE_PURPLE);
             particleEmitter_setStartingFrameRange(pCtrl, 0, 0);

@@ -2,6 +2,9 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 #include "core2/ba/flap.h"
 #include "core2/ba/timer.h"
@@ -174,8 +177,8 @@ void bsbfly_enter_update(void){
     bs_setState(sp1C);
 }
 
-void bsbfly_enter_end(void){
-    ability_use(8);
+void bsbfly_enter_end(void) {
+    ability_use(ABILITY_USED_FLY);
     func_8029E070(0);
 }
 
@@ -514,7 +517,7 @@ void func_802A4664(void){
     basfx_80299E90();
     next_state = bs_getNextState();
     if(next_state == BS_20_LANDING || next_state == BS_24_FLY || next_state == BS_2D_SWIM_IDLE){
-        sfxsource_playHighPriority(SFX_3EA_UNKNOWN);
+        sfxsource_playHighPriority(SFX_3EA_BANJO_GUH_HUH);
     }
     func_802A34C8();
     func_8029E070(0);
@@ -676,7 +679,7 @@ void func_802A4C34(s32 arg0) {
 void func_802A4C88(s32 arg0) {
     baphysics_reset();
     baMarker_collisionOn();
-    func_80297CA8();
+    bsiFrame_start();
     func_8029E070(0);
     func_80291548();
     func_802A34C8();
@@ -783,7 +786,7 @@ void func_802A503C(void){
 
 void func_802A505C(void){
     if(bs_getInterruptType() == BS_INTR_9){
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
         baflag_set(BA_FLAG_7_TOUCHING_JIGGY);
         func_8029CCC4();
     }else{

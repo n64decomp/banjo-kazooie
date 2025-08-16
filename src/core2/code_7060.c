@@ -544,8 +544,8 @@ void player_getVelocity(f32 dst[3]){
 }
 
 f32 func_8028EF88(void){
-    if(func_80294574()){
-        return func_80294500();
+    if(floor_isCurrentFloorunk59()){
+        return floor_getCurrentFloorYPosition();
     }
     return player_getYPosition();
 }
@@ -679,8 +679,8 @@ void ability_unlock(enum ability_e uid){
     ability_setLearned(uid, TRUE);
 }
 
-void func_8028F3D8(f32 arg0[3], f32 arg1, void(*arg2)(ActorMarker *), ActorMarker *arg3){
-    bs_setState(badrone_goto(arg0, arg1, arg2, arg3));
+void player_walkToPosition(f32 position[3], f32 duration, void(*callback)(ActorMarker *), ActorMarker *arg3){
+    bs_setState(badrone_goto(position, duration, callback, arg3));
 }
 
 void func_8028F408(f32 arg0[3]){
@@ -711,9 +711,9 @@ bool func_8028F4B8(f32 arg0[3], f32 arg1, f32 arg2) {
     return bs_checkInterrupt(BS_INTR_2D) == 2;
 }
 
-bool func_8028F504(s32 arg0) {
+bool player_checkHazardInterrupt(s32 arg0) {
     func_80296CB4(arg0);
-    return bs_checkInterrupt(BS_INTR_1F) == 2;
+    return bs_checkInterrupt(BS_INTR_1F_HAZARD) == 2;
 }
 
 bool func_8028F530(s32 arg0) {
@@ -858,7 +858,7 @@ void func_8028F974(void){
 void func_8028F994(void){
     D_803636B0 = 1;
     player_getPosition(D_803636B4);
-    func_802E4078(map_get(), 0, 0);
+    transitionToMap(map_get(), 0, 0);
 }
 
 void func_8028F9DC(s32 arg0){
@@ -924,7 +924,7 @@ bool func_8028FB88(enum transformation_e xform_id) {
 }
 
 bool func_8028FBD4(f32 arg0[3]) {
-    if (func_803114B0() || player_movementGroup()) {
+    if (gcdialog_hasCurrentTextId() || player_movementGroup()) {
         return FALSE;
     }
     if (arg0 != NULL) {
@@ -953,9 +953,8 @@ void func_8028FCBC(void){
     D_8037BFB8 = FALSE;
 }
 
-//player_setModelVisibile
-void func_8028FCC8(bool arg0){
-    baModel_setVisible(arg0);
+void player_setModelVisible(bool visible) {
+    baModel_setVisible(visible);
 }
 
 void func_8028FCE8(void) {

@@ -46,7 +46,7 @@ Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 int func_80359DF4(Actor *this, s32 arg1){
-    if(func_80329530(this, arg1) && func_803292E0(this))
+    if(subaddie_playerIsWithinSphereAndActive(this, arg1) && func_803292E0(this))
         return 1;
     return 0;
 }
@@ -202,7 +202,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
     for(i = 0; i < 2; i++){//L8035A7FC
         bundle_setYaw((i & 1)? actor->yaw : actor->yaw + 180.0f);
         other = bundle_spawn_f32(BUNDLE_21__ICECUBE_B, sp54);
-        other->unkF4_8 = 1; //don't spawn more
+        other->actorTypeSpecificField = 1; //don't spawn more
         other->scale = randf2(0.5f, 0.6f)*actor->scale;
         actor->yaw = randi2(0, 359);
     }
@@ -212,7 +212,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
 //__chicecube_ow
 void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 0.9f, 22000, actor->position, 1500, 3000);
+    sfx_playFadeShorthandDefault(SFX_1D_HITTING_AN_ENEMY_1, 0.9f, 22000, actor->position, 1500, 3000);
     actor->velocity[1] = 0.8f;
     actor->actor_specific_1_f = 0.0f;
 }
@@ -220,11 +220,11 @@ void __chicecube_ow(ActorMarker *marker, ActorMarker *other_marker){
 //__chicecube_die
 void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_B6_GLASS_BREAKING_1, 1.0f, 32000, actor->position, 1500, 4500);
+    sfx_playFadeShorthandDefault(SFX_B6_GLASS_BREAKING_1, 1.0f, 32000, actor->position, 1500, 4500);
     actor->velocity[1] = 0.0f;
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
-    if(actor->unkF4_8 != 1){
+    if(actor->actorTypeSpecificField != 1){
         __spawnQueue_add_1((GenFunction_1)__chicecube_spawnHalfCubes, reinterpret_cast(s32, actor->marker));
     }
     marker_despawn(actor->marker);
@@ -302,7 +302,7 @@ void chicecube_update(Actor *this){
         case 1: // L8035AC9C
             anctrl_setAnimTimer(this->anctrl, 0.0f);
             if( func_80359DF4(this, 900)
-                || (this->unkF4_8 == 2 && volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
+                || (this->actorTypeSpecificField == 2 && volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
             ){
                 subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
                 actor_playAnimationOnce(this);
@@ -311,7 +311,7 @@ void chicecube_update(Actor *this){
             break; 
         case 2: // L8035AD10
             if(actor_animationIsAt(this, 0.1f)){
-                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
+                sfx_playFadeShorthandDefault(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
             if( func_80359E38(this, 0xff, 0xa)
                 && 0.98 < anctrl_getAnimTimer(this->anctrl)
@@ -367,7 +367,7 @@ void chicecube_update(Actor *this){
             break;
         case 5: // L8035AF58
             if(actor_animationIsAt(this, 0.25f)){
-                FUNC_8030E8B4(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
+                sfx_playFadeShorthandDefault(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
             if( anctrl_getAnimTimer(this->anctrl) < 0.1 
                 && func_80359EBC(this, 0x50, 0xA)

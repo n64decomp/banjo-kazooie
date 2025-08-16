@@ -229,7 +229,7 @@ void func_803584BC(Actor *this) {
     local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.9f);
     sfxsource_setSfxId(local->sfxsourceIdx, 0x3FA);
-    func_8030DD14(local->sfxsourceIdx, 2);
+    sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 2);
     sfxsource_setSampleRate(local->sfxsourceIdx, 0);
 }
 
@@ -251,7 +251,7 @@ void func_80358524(f32 position[3], s32 count, enum asset_e model_id) {
     particleEmitter_setAngularVelocityRange(p_ctrl, -400.0f, -400.0f, -400.0f, 400.0f, 400.0f, 400.0f);
     particleEmitter_func_802EF9F8(p_ctrl, 0.01f);
     particleEmitter_func_802EFA18(p_ctrl, 3);
-    func_802EFA20(p_ctrl, 1.0f, 1.3f);
+    particleEmitter_func_802EFA20(p_ctrl, 1.0f, 1.3f);
     particleEmitter_setSfx(p_ctrl, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setVelocityAccelerationAndPositionRanges(p_ctrl, &D_803728EC);
     particleEmitter_setScaleAndLifetimeRanges(p_ctrl, &D_803728C4);
@@ -338,7 +338,7 @@ void func_80358684(Actor *this) {
         sp78 = (0.0f > sp78) ? 0 : sp78;
         if (sp78 > 0.0f) {
             sfxsource_setSampleRate(local->sfxsourceIdx, (s32) (sp78 * 10000.0f));
-            func_8030E2C4(local->sfxsourceIdx);
+            sfxSource_func_8030E2C4(local->sfxsourceIdx);
         }
     }
     if (this->unk10_25) {

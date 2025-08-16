@@ -76,7 +76,7 @@ void chPropellor_update(Actor *this){
         func_803300C0(this->marker, func_80389B44);
         marker_setFreeMethod(this->marker, __chPropellor_free);
         func_80389B80(this, 1.0f);
-        if(this->unk78_13 == 0x1C){
+        if(this->secondaryId == 0x1C){
             local->unk8 = 0;
             this->position_x = 7625.5f;
             this->position_y = -1950.0f;
@@ -99,7 +99,7 @@ void chPropellor_update(Actor *this){
             timed_exitStaticCamera(4.5f);
             func_80324E38(4.5f, 0);
             timedFunc_set_2(4.5f, (GenFunction_2)levelSpecificFlags_set, local->unk8 ? 0x4 : 0x3, 0);
-            timedFunc_set_3(4.5f, (GenFunction_3)func_802E4078, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
+            timedFunc_set_3(4.5f, (GenFunction_3)transitionToMap, MAP_34_RBB_ENGINE_ROOM, !local->unk8 ? 3 : 2, 0);
             func_803228D8();
         }
     }//L80389EA8

@@ -85,5 +85,5 @@ void bssplat_update(void){
 
 void bssplat_end(void){
     baMarker_collisionOn();
-    func_80297CA8();
+    bsiFrame_start();
 }

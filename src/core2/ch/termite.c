@@ -63,10 +63,10 @@ void __chTermite_updateWalkSFX(Actor *this) {
                       , 8000.0f, 1000.0f
     );
     if (actor_animationIsAt(this, 0.4f)) {
-        func_8030E6A4(SFX_3D_TICKER_WALKING, 0.85f, (s32) sp20);
+        gcsfx_playWithPitch(SFX_3D_TICKER_WALKING, 0.85f, (s32) sp20);
     }
     if (actor_animationIsAt(this, 0.9f)) {
-        func_8030E6A4(SFX_3D_TICKER_WALKING, 1.15f, (s32) sp20);
+        gcsfx_playWithPitch(SFX_3D_TICKER_WALKING, 1.15f, (s32) sp20);
     }
 }
 
@@ -75,7 +75,7 @@ void __chTermite_setupParticleEmitter(ParticleEmitter *pCtrl, f32 position[3]){
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_func_802EF9F8(pCtrl, 0.7f);
     particleEmitter_func_802EFA18(pCtrl, 5);
-    func_802EFA20(pCtrl, 0.8f, 1.0f);
+    particleEmitter_func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 3.5f, 3.5f);
@@ -166,29 +166,29 @@ void chTermite_update(Actor *this) {
     }
     if( map_get() == MAP_C_MM_TICKERS_TOWER 
         && !mapSpecificFlags_get(0) 
-        && func_80329530(this, 700) 
-        && !func_80329530(this, 150)
+        && subaddie_playerIsWithinSphereAndActive(this, 700)
+        && !subaddie_playerIsWithinSphereAndActive(this, 150)
         && player_movementGroup() == BSGROUP_0_NONE
         && player_getTransformation() == TRANSFORM_1_BANJO
     ) {
-        gcdialog_showText(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
+        gcdialog_showDialog(ASSET_B43_DIALOG_TERMITE_MEET_AS_BEAR, 7, this->position, this->marker, __chTermite_testCallback, NULL);
         mapSpecificFlags_set(0, TRUE);
         levelSpecificFlags_set(LEVEL_FLAG_D_MM_UNKNOWN, TRUE);
         this->has_met_before = TRUE;
     }
 
-    if( func_80329530(this, 300)
-        && !func_80329530(this, 150) 
+    if( subaddie_playerIsWithinSphereAndActive(this, 300)
+        && !subaddie_playerIsWithinSphereAndActive(this, 150)
         && player_movementGroup() == BSGROUP_0_NONE
         && player_getTransformation() == TRANSFORM_2_TERMITE
     ) {
         if (!levelSpecificFlags_get(LEVEL_FLAG_B_MM_UNKNOWN)) {
-            if (gcdialog_showText(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
+            if (gcdialog_showDialog(ASSET_B41_DIALOG_TERMITE_COOL_SHORTS, 0, NULL, NULL, NULL, NULL)) {
                 levelSpecificFlags_set(LEVEL_FLAG_B_MM_UNKNOWN, TRUE);
                 this->unk138_23 = TRUE;
             }
         }
-        else if (!levelSpecificFlags_get(LEVEL_FLAG_C_MM_UNKNOWN) && !this->unk138_23 && (gcdialog_showText(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
+        else if (!levelSpecificFlags_get(LEVEL_FLAG_C_MM_UNKNOWN) && !this->unk138_23 && (gcdialog_showDialog(ASSET_B42_DIALOG_TERMITE_COOL_BACKPACK, 0, NULL, NULL, NULL, NULL))) {
             levelSpecificFlags_set(LEVEL_FLAG_C_MM_UNKNOWN, TRUE);
         }
     }

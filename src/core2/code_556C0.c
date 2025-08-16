@@ -41,7 +41,7 @@ void func_802DC6E4(void) {
         D_8037DE50 = actor->marker;
         func_8025A58C(0, 5000);
         func_8025AB00();
-        func_8025A6EC(COMUSIC_AC_GOOD_ENDING, -1);
+        coMusicPlayer_playMusic(COMUSIC_AC_GOOD_ENDING, -1);
     }
 }
 

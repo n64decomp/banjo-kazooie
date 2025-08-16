@@ -271,7 +271,7 @@ f32 func_8029B56C(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 void func_8029B5EC(void){
     func_802DC560(0, 0);
     func_802E412C(1, 0);
-    func_802E4078(MAP_1F_CS_START_RAREWARE, 0, 1);
+    transitionToMap(MAP_1F_CS_START_RAREWARE, 0, 1);
 }
 
 void func_8029B62C(void){
@@ -285,7 +285,7 @@ void func_8029B62C(void){
         }
         else{
             func_802E412C(1, 0);
-            func_802E4078(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
+            transitionToMap(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
 
         }
     }
@@ -299,7 +299,7 @@ void func_8029B6F0(void){
         func_8029B62C();
     }
     else{
-        func_802E4078(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
+        transitionToMap(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
     }
 }
 
@@ -341,7 +341,7 @@ void func_8029B890(void){
             func_8029B62C();
             return;
         }
-        gcdialog_showText(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
+        gcdialog_showDialog(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
         fileProgressFlag_set(FILEPROG_A8_HAS_DIED, TRUE);
     }
     else{
@@ -354,7 +354,7 @@ void func_8029B930(void){
 }
 
 ParticleEmitter *func_8029B950(f32 pos[3],f32 arg1){
-    return func_802EDD8C(pos, arg1, func_80294500());
+    return func_802EDD8C(pos, arg1, floor_getCurrentFloorYPosition());
 }
 
 void func_8029B984(f32 dst[3]){
@@ -581,7 +581,7 @@ enum bs_e bs_getIdleState(void){
                 return BS_26_LONGLEG_IDLE;
             }
             if (player_inWater()) {
-                if (player_getYPosition() > (func_80294500() - 80.0f)) {
+                if (player_getYPosition() > (floor_getCurrentFloorYPosition() - 80.0f)) {
                     return BS_2D_SWIM_IDLE;
                 }
                 return BS_2B_DIVE_IDLE;
@@ -599,9 +599,9 @@ void func_8029C0D0(void) {
     ParticleEmitter *p_ctrl;
     f32 sp34;
 
-    if (func_80294574()) {
+    if (floor_isCurrentFloorunk59()) {
         _player_getPosition(sp3C);
-        sp3C[1] = sp34 = func_80294500();
+        sp3C[1] = sp34 = floor_getCurrentFloorYPosition();
         p_ctrl = func_802F4094(sp3C, 35.0f);
         fxRipple_802F3554(3, sp3C);
         particleEmitter_setParticleVelocityRange(p_ctrl, -350.0f, 300.0f, -350.0f, 350.0f, 500.0f, 350.0f);
@@ -620,7 +620,7 @@ void func_8029C0D0(void) {
 
 void func_8029C22C(void) {
 
-    if(func_80294574() && func_80294500() > player_getYPosition())
+    if(floor_isCurrentFloorunk59() && floor_getCurrentFloorYPosition() > player_getYPosition())
         return;
 
     D_80364620 = D_80364620 ? FALSE : TRUE;
@@ -638,7 +638,7 @@ void func_8029C304(s32 arg0) {
     f32 sp1C[3];
 
     _player_getPosition(sp1C);
-    sp1C[1] = func_80294500();
+    sp1C[1] = floor_getCurrentFloorYPosition();
     fxRipple_802F3584(arg0, sp1C, func_802946CC());
 }
 
@@ -679,13 +679,13 @@ void func_8029C4E4(bool arg0) {
     f32 sp38;
     ParticleEmitter *sp34;
 
-    if (func_80294574()) {
+    if (floor_isCurrentFloorunk59()) {
         if (arg0) {
             baModel_80292260(sp3C);
         } else {
             baModel_8029223C(sp3C);
         }
-        sp3C[1] = func_80294500();
+        sp3C[1] = floor_getCurrentFloorYPosition();
         sp38 = yaw_get();
         sp34 = func_802F4094(sp3C, 8.0f);
         particleEmitter_setSphericalParticleVelocityRange(sp34, -140.0f, sp38 - 35.0f, 200.0f, -120.0f, sp38 + 35.0f, 250.0f);
@@ -890,15 +890,15 @@ void func_8029CBC4(void){
 void func_8029CBF4(void){
     if(item_getCount(ITEM_E_JIGGY) == 10){
         if( jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
-            timedFunc_set_3(4.1f, (GenFunction_3)func_802E4078, MAP_95_CS_END_ALL_100, 0, 1);
+            timedFunc_set_3(4.1f, (GenFunction_3)transitionToMap, MAP_95_CS_END_ALL_100, 0, 1);
         }//L8029CC58
 
         timedFunc_set_0(4.0f, func_8029CBC4);
-        func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
+        coMusicPlayer_playMusic(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     }//L8029CC7C
     else{
         if( jiggyscore_total() == 100 && fileProgressFlag_get(FILEPROG_FC_DEFEAT_GRUNTY)){
-            func_802E4078(MAP_95_CS_END_ALL_100, 0, 1);
+            transitionToMap(MAP_95_CS_END_ALL_100, 0, 1);
         }
         func_8029CBC4();
     }
@@ -921,7 +921,7 @@ void func_8029CCC4(void){
     }
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A55C(0, 4000, 0xC);
-    func_8025A6EC(COMUSIC_D_JINGLE_JIGGY_COLLECTED, -1);
+    coMusicPlayer_playMusic(COMUSIC_D_JINGLE_JIGGY_COLLECTED, -1);
     timedFunc_set_0(4.0f, func_8029CBF4);
 }
 

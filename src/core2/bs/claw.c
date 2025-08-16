@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 
 
@@ -66,8 +69,8 @@ void bsclaw_update(void){
     bs_setState(sp2C);
 }
 
-void bsclaw_end(void){
-    ability_use(0xB);
+void bsclaw_end(void) {
+    ability_use(ABILITY_USED_CLAW);
     _bsclawHitboxActive = 0;
     func_802915B8();
 

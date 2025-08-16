@@ -3,11 +3,12 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/dustemitter.h"
+
 extern void func_8025A788(enum comusic_e, f32, f32);
 extern void func_8031CC40(enum map_e, s32);
 extern void fxRipple_802F363C(f32);
 extern void func_802F9D38(s32);
-extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
 extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6);
 extern void gcquiz_func_80319EA4(void);
 extern void fileProgressFlag_set(enum file_progress_e, bool);
@@ -101,7 +102,7 @@ s16 D_803679B0[] = {
     FILEPROG_90_PAID_TERMITE_COST,
     FILEPROG_A_HONEYCOMB_TEXT,
     FILEPROG_93_PAID_CROC_COST,
-    FILEPROG_F_HAS_TOUCHED_PIRAHANA_WATER,
+    FILEPROG_F_HAS_TOUCHED_PIRANHA_WATER,
     FILEPROG_92_PAID_WALRUS_COST,
     FILEPROG_14_HAS_TOUCHED_FP_ICY_WATER,
     FILEPROG_91_PAID_PUMPKIN_COST,
@@ -142,7 +143,7 @@ void func_802D2FB0(Actor *this, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5
         spA4[1] = randf2(4.0f, 10.0f);
         spA4[0] = randf2(-8.0f, 8.0f);
         spA4[2] = randf2(-8.0f, 8.0f);
-        func_802EE6CC(sp98, spA4, D_803679A0, 1, arg4, 50.0f, arg5, randi2(arg6, arg7), 0);
+        dustEmitter_emit(sp98, spA4, D_803679A0, 1, arg4, 50.0f, arg5, randi2(arg6, arg7), DUST_EMITTER_TYPE_DUST);
     }
 }
 
@@ -169,7 +170,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x9F:
         case 0xA0:
         case 0xFF:
-            func_8030E540(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_82_METAL_BREAK);
             subaddie_set_state(sp2C, 4);
             break;
 
@@ -183,28 +184,28 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
 
         case MARKER_109_BREAKABLE_BRICK_WALL:
             func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
-            sfxsource_play(SFX_11_WOOD_BREAKING_1, 28000);
+            gcsfx_playAtSampleRate(SFX_11_WOOD_BREAKING_1, 28000);
             subaddie_set_state_looped(sp2C, 9);
-            fileProgressFlag_set((sp2C->unkF4_8 == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
+            fileProgressFlag_set((sp2C->actorTypeSpecificField == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
             break;
 
         case 0x107:
-            func_8030E540(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 0xF, 0x46, 0.8f, 0.7f);
             marker_despawn(arg0);
             break;
 
         case MARKER_224_BREAKABLE_FLOOR_COBWEB:
             comusic_playTrack(COMUSIC_2B_DING_B);
-            func_8030E6A4(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
+            gcsfx_playWithPitch(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
             subaddie_set_state_looped(sp2C, 0xC);
             func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
-            fileProgressFlag_set((sp2C->unkF4_8== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
+            fileProgressFlag_set((sp2C->actorTypeSpecificField== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
             break;
 
         case MARKER_225_BREAKABLE_WALL_COBWEB:
             comusic_playTrack(COMUSIC_2B_DING_B);
-            func_8030E540(SFX_129_SWOOSH);
+            gcsfx_play(SFX_129_SWOOSH);
             subaddie_set_state_looped(sp2C, 0xF);
             func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
             fileProgressFlag_set(FILEPROG_CA_COBWEB_BLOCKING_PURPLE_CAULDRON_BROKEN, 1);
@@ -234,8 +235,8 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
                 levelSpecificFlags_set(LEVEL_FLAG_38_CCW_UNKNOWN, 1);
             }
             func_802D2FB0(sp2C, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
-            func_8030E540(SFX_D_EGGSHELL_BREAKING);
-            func_8030E540(SFX_11_WOOD_BREAKING_1);
+            gcsfx_play(SFX_D_EGGSHELL_BREAKING);
+            gcsfx_play(SFX_11_WOOD_BREAKING_1);
             switch (arg0->id) {
                 case 0x9E:
                     func_802EE278(sp2C, 0xD, 9, 0x82, 0.34f, 1.0f);
@@ -270,28 +271,28 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             break;
 
         case 0x11F:
-            func_8030E540(SFX_D9_WOODEN_CRATE_BREAKING_1);
+            gcsfx_play(SFX_D9_WOODEN_CRATE_BREAKING_1);
             func_802EE2E8(sp2C, 7, 9, 0x78, 0.43f, 1.3f, 3.0f);
             func_802EE2E8(sp2C, 3, 6, 0x78, 0.43f, 1.3f, 3.0f);
             func_802D317C(arg0, FILEPROG_C5_RAREWARE_BOX_BROKEN);
             break;
 
         case 0x11A:
-            func_8030E540(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 0xD, 0x32, 0.8f, 0.9f);
             func_802EE278(sp2C, 0xE, 0xD, 0xAA, 0.8f, 0.9f);
             func_802D317C(arg0, FILEPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN);
             break;
 
         case 0x118:
-            func_8030E540(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 0xD, 0x50, 1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 0xD, 0xB4, 1.2f, 0.9f);
             func_802D317C(arg0, FILEPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
             break;
 
         case 0x119:
-            func_8030E540(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_82_METAL_BREAK);
             func_802EE278(sp2C, 0xE, 9, 0x50,  1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 9, 0xAA,  1.2f, 0.9f);
             func_802EE278(sp2C, 0xE, 9, 0x104, 1.2f, 0.9f);
@@ -300,8 +301,8 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
 
         case 0x22D:
         case 0x22E:
-            func_8030E540(SFX_82_METAL_BREAK);
-            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            gcsfx_play(SFX_82_METAL_BREAK);
+            gcsfx_play(SFX_B6_GLASS_BREAKING_1);
             func_802EE278(sp2C, 4, 0x23, 0x1E, 0.7f, 0.6f);
             marker_despawn(arg0);
             break;
@@ -314,7 +315,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x237:
         case 0x238:
         case 0x239:
-            func_8030E540(SFX_13A_GLASS_BREAKING_7);
+            gcsfx_play(SFX_13A_GLASS_BREAKING_7);
             func_802EE278(sp2C, 4, 0x2D, 0x82, 1.0f, 1.0f);
             if (arg0->id == 0x1F3) {
                 func_802EE278(sp2C, 4, 0x2D, 0x104, 1.0f, 1.0f);
@@ -323,7 +324,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             break;
 
         case 0x11E:
-            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            gcsfx_play(SFX_B6_GLASS_BREAKING_1);
             func_802EE278(sp2C, 4, 0x32, 0x50, 1.0f, 1.4f);
             func_802EE278(sp2C, 4, 0x32, 0xA0, 1.0f, 1.4f);
             func_802EE278(sp2C, 4, 0x1E, 0xF0, 0.8f, 1.1f);
@@ -331,7 +332,7 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
             break;
 
         case MARKER_121_GLASS_EYE:
-            func_8030E540(SFX_B6_GLASS_BREAKING_1);
+            gcsfx_play(SFX_B6_GLASS_BREAKING_1);
             func_802EE2E8(sp2C, 1, 0x32, 0x14, 1.2f, 1.4f, 2.2f);
             func_802EE2E8(sp2C, 1, 0x3C, 0x64, 1.6f, 1.8f, 2.2f);
             func_802EE2E8(sp2C, 1, 0x32, 0xB4, 1.2f, 1.4f, 2.2f);
@@ -341,14 +342,14 @@ void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
         case 0x164:
         case 0x165:
             if (sp2C->unk1C[1] == sp2C->position[1]) {
-                sfxsource_play(SFX_9B_BOULDER_BREAKING_1, 25000);
+                gcsfx_playAtSampleRate(SFX_9B_BOULDER_BREAKING_1, 25000);
                 sp2C->unk1C[0] = 1.0f;
             }
             break;
 
         default:   
-            func_8030E540(SFX_D_EGGSHELL_BREAKING);
-            func_8030E540(SFX_11_WOOD_BREAKING_1);
+            gcsfx_play(SFX_D_EGGSHELL_BREAKING);
+            gcsfx_play(SFX_11_WOOD_BREAKING_1);
             marker_despawn(arg0);
             break;
     }
@@ -410,7 +411,7 @@ Actor *func_802D3F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 i;
 
     this = marker_getActor(marker);
-    phi_s2 = this->unkF4_8;
+    phi_s2 = this->actorTypeSpecificField;
     for(i = 0; i < 9; i++){
         func_8033A45C(i + 1, i+1 == phi_s2);
     }
@@ -460,7 +461,7 @@ void func_802D3FD4(Actor *this){
         return;
     }//L802D4134
 
-    this->yaw += (this->unkF4_8 & 1) ? -1.4 : 1.4;
+    this->yaw += (this->actorTypeSpecificField & 1) ? -1.4 : 1.4;
     if(this->yaw < 0.0f){
         this->yaw += 360.0f;
     }
@@ -475,7 +476,7 @@ Actor *func_802D41C4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 i;
 
     this = marker_getActor(marker);
-    sp2C = this->unkF4_8;
+    sp2C = this->actorTypeSpecificField;
     for(i = 0; i < 6; i++){
         func_8033A45C(i+1, FALSE);
     }
@@ -503,7 +504,7 @@ void func_802D4250(Actor *this){
 bool func_802D42F8(Actor *this) {
     s32 i;
 
-    for(i = 0; D_803679B0[i] != -1 && this->unkF4_8 != D_803679B0[i]; i+=2){
+    for(i = 0; D_803679B0[i] != -1 && this->actorTypeSpecificField != D_803679B0[i]; i+=2){
     }
 
     if (D_803679B0[i] == -1) {
@@ -517,7 +518,7 @@ bool func_802D42F8(Actor *this) {
 
 void func_802D4388(Actor *this){
     func_802D3CE8(this);
-    this->unk38_0 = BOOL(map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->unkF4_8 || func_802D42F8(this));
+    this->unk38_0 = BOOL(map_get() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->actorTypeSpecificField || func_802D42F8(this));
     mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || player_movementGroup() == BSGROUP_D_TRANSFORMING);
     switch(this->state){
         case 0x12: //L802D4468
@@ -728,33 +729,33 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
 
     if (nodeProp_findPositionFromActorId(arg1, sp5C)) {
         codeABC00_spawnJiggyAtLocation(arg0, sp5C);
-        func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
+        coMusicPlayer_playMusic(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
         if (arg0 == 0x36) {
             
             sp4C[3] = 200;
             sp4C[0] = sp4C[1] = sp4C[2] = 180;\
             ml_vec3f_assign(sp40, 0.0f, 0.0f, 0.0f);
-            func_802EE6CC(sp5C, sp40, sp4C, 0, 6.0f, 200.0f, 200, 100, 0);
+            dustEmitter_emit(sp5C, sp40, sp4C, 0, 6.0f, 200.0f, 200, 100, DUST_EMITTER_TYPE_DUST);
 
             sp4C[3] = 230;
             sp4C[0] = sp4C[1] = sp4C[2] = 150;
             ml_vec3f_assign(sp40, 0.0f, 2.0f, 0.0f);
-            func_802EE6CC(sp5C, sp40, sp4C, 0, 2.0f, 90.0f, 50, 33, 0);
+            dustEmitter_emit(sp5C, sp40, sp4C, 0, 2.0f, 90.0f, 50, 33, DUST_EMITTER_TYPE_DUST);
           
             sp4C[3] = 150;
             sp4C[0] = sp4C[1] = sp4C[2] = 230;
             ml_vec3f_assign(sp40, -3.0f, 1.0f, 1.0f);
-            func_802EE6CC(sp5C, sp40, sp4C, 0, 3.5f, 130.0f, 100, 80, 0);
+            dustEmitter_emit(sp5C, sp40, sp4C, 0, 3.5f, 130.0f, 100, 80, DUST_EMITTER_TYPE_DUST);
 
             sp4C[3] = 200;
             sp4C[0] = sp4C[1] = sp4C[2] = 250;
             ml_vec3f_assign(sp40, -1.0f, 3.0f, -3.0f);
-            func_802EE6CC(sp5C, sp40, sp4C, 0, 2.4f, 40.0f, 10, 120, 0);
+            dustEmitter_emit(sp5C, sp40, sp4C, 0, 2.4f, 40.0f, 10, 120, DUST_EMITTER_TYPE_DUST);
             
             sp4C[3] = 130;
             sp4C[0] = sp4C[1] = sp4C[2] = 130;
             ml_vec3f_assign(sp40, 2.0f, -2.0f, 2.0f);
-            func_802EE6CC(sp5C, sp40, sp4C, 0, 4.7f, 180.0f, 20, 160, 0);
+            dustEmitter_emit(sp5C, sp40, sp4C, 0, 4.7f, 180.0f, 20, 160, DUST_EMITTER_TYPE_DUST);
             func_8030E6D4(SFX_1B_EXPLOSION_1);
         }
         else{
@@ -771,7 +772,7 @@ void func_802D5000(enum map_e map_id){
     if(map_getLevel(map_id) != level_get())
         func_802E4A70();
     func_803228D8();
-    func_802E4078(D_80367684, 0x65, 0);
+    transitionToMap(D_80367684, 0x65, 0);
 }
 
 void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
@@ -917,7 +918,7 @@ void func_802D5628(void){
                 if(D_803679EC < 2){
                     D_803679EC = 2;
                 }
-                func_8030E6A4(SFX_2_CLAW_SWIPE, MIN(2.0,D_803679F0), 20000);
+                gcsfx_playWithPitch(SFX_2_CLAW_SWIPE, MIN(2.0,D_803679F0), 20000);
                 D_803679F0 += 0.05;
             }
         }
@@ -1028,25 +1029,25 @@ void func_802D5628(void){
     }
     else{//L802D5B64
         func_802D5260();
-        func_802D5178(LEVEL_FLAG_1C_MM_UNKNOWN, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR, 0x28);
-        func_802D5178(LEVEL_FLAG_21_GV_UNKNOWN, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,      0x12);
-        func_802D5178(LEVEL_FLAG_1E_CC_UNKNOWN, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_CC_ENTRANCE_BARS,         0xA);
-        func_802D5178(LEVEL_FLAG_1D_TTC_UNKNOWN, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_TCC_ENTRANCE_CHEST_LID,         0xA);
-        func_802D5178(LEVEL_FLAG_1F_BGS_UNKNOWN, 0x2B, 0x34, MAP_72_GL_BGS_LOBBY, 0xB, 0xB, ACTOR_210_BGS_ENTRANCE_DOOR, 0xA);
-        func_802D5178(LEVEL_FLAG_23_RBB_UNKNOWN, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
-        func_802D5178(LEVEL_FLAG_22_MMM_UNKNOWN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
-        func_802D5178(LEVEL_FLAG_24_CCW_UNKNOWN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
-        func_802D5178(LEVEL_FLAG_20_FP_UNKNOWN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
-        func_802D5178(LEVEL_FLAG_3F_LAIR_UNKNOWN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
+        func_802D5178(LEVEL_FLAG_1C_MM_OPEN, 0x28, 0x30, MAP_69_GL_MM_LOBBY,  0x8, 0xA, ACTOR_20E_MM_ENTRANCE_DOOR, 0x28);
+        func_802D5178(LEVEL_FLAG_21_GV_OPEN, 0x2D, 0x31, MAP_6E_GL_GV_LOBBY,  0xA, 0xA, ACTOR_226_GV_ENTRANCE,      0x12);
+        func_802D5178(LEVEL_FLAG_1E_CC_OPEN, 0x2A, 0x32, MAP_70_GL_CC_LOBBY,  0xE, 0xA, ACTOR_212_CC_ENTRANCE_BARS,         0xA);
+        func_802D5178(LEVEL_FLAG_1D_TTC_OPEN, 0x29, 0x33, MAP_6D_GL_TTC_LOBBY, 0x9, 0xB, ACTOR_211_TCC_ENTRANCE_CHEST_LID,         0xA);
+        func_802D5178(LEVEL_FLAG_1F_BGS_OPEN, 0x2B, 0x34, MAP_72_GL_BGS_LOBBY, 0xB, 0xB, ACTOR_210_BGS_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_23_RBB_OPEN, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_22_MMM_OPEN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
+        func_802D5178(LEVEL_FLAG_24_CCW_OPEN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
+        func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
+        func_802D5178(LEVEL_FLAG_3F_LAIR_GRUNTY_DOOR_OPEN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
         if(volatileFlag_get(VOLATILE_FLAG_18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
-                func_80311174(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
+                gcdialog_showDialogConditional(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
                 fileProgressFlag_set(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT, TRUE);
                 volatileFlag_set(VOLATILE_FLAG_18, 0);
             }
             else{//L802D5DD8
                 if(!volatileFlag_get(VOLATILE_FLAG_16)){
-                    func_80311174(0xF77, 0x4, NULL, NULL, NULL, NULL, func_802D5140);
+                    gcdialog_showDialogConditional(0xF77, 0x4, NULL, NULL, NULL, NULL, func_802D5140);
                     volatileFlag_set(VOLATILE_FLAG_18, 0);
                 }
             }
@@ -1073,7 +1074,7 @@ void func_802D5628(void){
                         }//L802D5F1C
 
                         if(volatileFlag_get(VOLATILE_FLAG_22)){
-                            if(gcdialog_showText(0xF82, 4, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showDialog(0xF82, 4, NULL, NULL, NULL, NULL)){
                                 fileProgressFlag_set(FILEPROG_C1_BADDIES_ESCAPE_TEXT, TRUE);
                                 volatileFlag_set(VOLATILE_FLAG_22, 0);
                                 D_8037DE04 = 0.0f;
@@ -1083,7 +1084,7 @@ void func_802D5628(void){
                             }
                         }
                         else{//L802D5FCC
-                            if(gcdialog_showText(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showDialog(D_8037DE00, 0, NULL, NULL, NULL, NULL)){
                                 D_8037DE00++;
                                 if(!(D_8037DE00 < sp4C)){
                                     D_8037DE00 = 0xF86;
@@ -1131,7 +1132,7 @@ void func_802D6114(void){
         if(sp24 != 0x1C || !func_8025ADBC(COMUSIC_23_MMM_INSIDE_CHURCH)){
             func_803228D8();
         }
-        func_802E4078(sp24, sp20, 0);
+        transitionToMap(sp24, sp20, 0);
     }
     else{//L802D61DC
         func_80347A14(1);
@@ -1143,7 +1144,7 @@ void func_802D61FC(enum map_e arg0){
     if( map_getLevel(arg0) != map_getLevel(map_get()))
         func_802E4A70();
     func_803228D8();
-    func_802E4078(D_80367684, 0, 0);
+    transitionToMap(D_80367684, 0, 0);
     func_802D6750();
 }
 
@@ -1210,7 +1211,7 @@ void func_802D63D4(void){
             func_8028F85C(sp1C);
             break;
         default: //L802D6460
-            func_802BAFE4(D_80367688);
+            gcStaticCamera_activate(D_80367688);
             timedFuncQueue_update();
             volatileFlag_set(VOLATILE_FLAG_BF, 0);
             func_802D6750();
@@ -1227,52 +1228,52 @@ void func_802D6494(void){
                 break;
             case ACTOR_20E_MM_ENTRANCE_DOOR:// L802D6510
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
-                func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_211_TCC_ENTRANCE_CHEST_LID:// L802D6530
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
-                func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 break;
             case ACTOR_212_CC_ENTRANCE_BARS:// L802D6550
                 if(map_get() == MAP_70_GL_CC_LOBBY && !volatileFlag_get(VOLATILE_FLAG_7F_SANDCASTLE_OPEN_CC)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_212_CC_ENTRANCE_BARS), SFX_9A_MECHANICAL_CLOSING, 0.5f);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_234_CCW_ENTRANCE_DOOR:// L802D65A0
                 if(map_get() == MAP_79_GL_CCW_LOBBY && !volatileFlag_get(VOLATILE_FLAG_93_SANDCASTLE_OPEN_CCW)){
                     func_802D485C(actorArray_findActorFromActorId(ACTOR_234_CCW_ENTRANCE_DOOR), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_210_BGS_ENTRANCE_DOOR:// L802D65F8
                 if(!volatileFlag_get(VOLATILE_FLAG_84_SANDCASTLE_OPEN_BGS)){
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
                 if(map_get() == MAP_6F_GL_FP_LOBBY && !volatileFlag_get(VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_226_GV_ENTRANCE:// L802D6674
                 if(map_get() == MAP_6E_GL_GV_LOBBY && !volatileFlag_get(VOLATILE_FLAG_87_SANDCASTLE_OPEN_GV)){
                     func_802D485C(actorArray_findActorFromActorId(ACTOR_226_GV_ENTRANCE), SFX_3EC_CCW_DOOR_OPENING, 0.8f, 15000);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_228_MMM_ENTRANCE_DOOR:// L802D66CC
                 if(!volatileFlag_get(VOLATILE_FLAG_8C_SANDCASTLE_OPEN_MMM)){
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
             case ACTOR_20F_RBB_ENTRANCE_DOOR:// L802D66F8
                 if(map_get() == MAP_77_GL_RBB_LOBBY && !volatileFlag_get(VOLATILE_FLAG_90_SANDCASTLE_OPEN_RBB)){
                     func_802D4830(actorArray_findActorFromActorId(ACTOR_20F_RBB_ENTRANCE_DOOR), SFX_9A_MECHANICAL_CLOSING, 0.5f);
-                    func_8025A6CC(COMUSIC_64_WORLD_OPENING_A, 32000);
+                    coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
         }

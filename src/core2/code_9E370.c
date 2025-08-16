@@ -5,11 +5,11 @@
 #include "actor.h"
 
 #include "prop.h"
+#include "core2/dustemitter.h"
 
 #define DIST_SQ_VEC3F(v1, v2) ((v1[0] - v2[0])*(v1[0] - v2[0]) + (v1[1] - v2[1])*(v1[1] - v2[1]) + (v1[2] - v2[2])*(v1[2] - v2[2]))
 
 extern void func_802D7124(Actor *, f32);
-extern void func_802EE6CC(f32[3], s32[4], s32[4], s32, f32, f32, s32, s32, s32);
 
 
 extern void func_8033A244(f32);
@@ -356,7 +356,7 @@ void func_80325F84(Actor *this){}
 void func_80325F8C(void) {
     suBaddieActorArray = NULL;
     D_8036E568 = func_8034A2C8();
-    D_8036E56C = func_802EE5E0(0x10);
+    D_8036E56C = dustEmitter_returnGiven(0x10);
     D_8036E570 = func_802F2AEC();
     D_8036E574 = 0;
     D_8036E578 = 0;
@@ -388,7 +388,7 @@ void func_80325FE8(Actor *this) {
        marker->actorFreeFunc = NULL;
     }
     if ((s32)marker->unk44 < 0) {
-        func_8033E7CC(marker);
+        commonParticle_freeParticleByActorMarker(marker);
         func_8034A2A8(marker->unk44);
        marker->unk44 = 0;
     }
@@ -427,7 +427,7 @@ void actorArray_free(void) {
     }
     func_8034A2A8(D_8036E568);
     D_8036E568 = NULL;
-    func_802EE5E8(D_8036E56C);
+    dustEmitter_empty(D_8036E56C);
     D_8036E56C = NULL;
     func_802F2C78(D_8036E570);
     D_8036E570 = NULL;
@@ -596,7 +596,7 @@ void func_803268B4(void) {
         }
     }
     if (D_8036E56C != 0) {
-        func_802EE5F0(D_8036E56C);
+        dustEmitter_isActive(D_8036E56C);
     }
     if (D_8036E570 != 0) {
         func_802F2D8C(D_8036E570);
@@ -783,7 +783,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->position_x = (f32)position[0];
     suLastBaddie->position_y = (f32)position[1];
     suLastBaddie->position_z = (f32)position[2];
-    suLastBaddie->unkF4_8 = 0;
+    suLastBaddie->actorTypeSpecificField = 0;
     suLastBaddie->yaw = (f32) yaw;
     suLastBaddie->yaw_ideal = (f32) yaw;
     suLastBaddie->pitch = 0.0f;
@@ -838,10 +838,10 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
     suLastBaddie->lifetime_value = 0.0f;
     suLastBaddie->is_bundle = FALSE;
     suLastBaddie->unk104 = NULL;
-    suLastBaddie->unk100 = NULL;
+    suLastBaddie->partnerActor = NULL;
     suLastBaddie->unk158[0] = NULL;
     suLastBaddie->unk158[1] = NULL;
-    suLastBaddie->unk78_13 = 0;
+    suLastBaddie->secondaryId = 0;
     suLastBaddie->unk124_31 = 0;
     suLastBaddie->unkF4_20 = 0;
     suLastBaddie->sound_timer = 0.0f;
@@ -1316,15 +1316,15 @@ int subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
     return 0;
 }
 
-void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction){
-    if (__subaddie_set_state(this, myAnimId) && this->anctrl) {
+void subaddie_set_state_with_direction(Actor * this, s32 state, f32 anim_start_position, s32 direction){
+    if (__subaddie_set_state(this, state) && this->anctrl) {
         func_803289EC(this, anim_start_position, direction);
     }
 }
 
-bool subaddie_maybe_set_state_position_direction(Actor *this, s32 myAnimId, f32 start_position, s32 direction, f32 probability) {
+bool subaddie_maybe_set_state_position_direction(Actor *this, s32 state, f32 start_position, s32 direction, f32 probability) {
     if (randf() < probability) {
-        if (__subaddie_set_state(this, myAnimId) && this->anctrl) {
+        if (__subaddie_set_state(this, state) && this->anctrl) {
             func_803285E8(this, start_position, direction);
             anctrl_start(this->anctrl, "subaddie.c", 0x705);
         }
@@ -1522,13 +1522,14 @@ bool func_803294F0(Actor *this, s32 arg1, s32 arg2){
     return ((-arg1 <= v1) && (v1 <= arg1));
 }
 
-bool func_80329530(Actor *this, s32 dist){
-    if( func_8028F098() 
-        && !volatileFlag_get(VOLATILE_FLAG_BF) 
-        && subaddie_playerIsWithinSphere(this, dist)
-    ){
+bool subaddie_playerIsWithinSphereAndActive(Actor *this, s32 dist) {
+    if (func_8028F098()
+        && !volatileFlag_get(VOLATILE_FLAG_BF)
+        && subaddie_playerIsWithinSphere(this, dist)) {
+
         return TRUE;
     }
+
     return FALSE;
 }
 
@@ -1570,7 +1571,7 @@ bool func_803296D8(Actor *this, s32 dist){
         return TRUE;
     }
     else{
-        return func_80329530(this, dist);
+        return subaddie_playerIsWithinSphereAndActive(this, dist);
     }
 }
 
@@ -1625,9 +1626,9 @@ void actor_loopAnimation(Actor *this){
         anctrl_setPlaybackType(this->anctrl,  ANIMCTRL_LOOP);
 }
 
-s32 func_80329904(ActorMarker *arg0, s32 arg1, f32 *arg2){
-    func_8034A174(arg0->unk44, arg1, arg2);
-    return arg0->unk14_21;
+s32 func_80329904(ActorMarker *marker, s32 arg1, f32 *arg2) {
+    func_8034A174(marker->unk44, arg1, arg2);
+    return marker->unk14_21;
 }
 
 struct5Bs *func_80329934(void){
@@ -1648,9 +1649,9 @@ Actor *marker_getActor(ActorMarker *this){
 }
 
 Actor *subaddie_getLinkedActor(Actor *this){
-    if(this->unk100 == NULL)
+    if(this->partnerActor == NULL)
         return NULL;
-    return marker_getActor(this->unk100);
+    return marker_getActor(this->partnerActor);
 }
 
 void func_803299B4(Actor *arg0) {
@@ -1746,7 +1747,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->volatile_initialized = FALSE;
                 s0->unk44_31 = 0;
                 s0->unk104 = NULL;
-                s0->unk100 = NULL;
+                s0->partnerActor = NULL;
                 s0->unk158[0] = NULL;
                 s0->unk158[1] = NULL;
                 s0->unk138_19 = s1->marker->id;
@@ -1799,14 +1800,14 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
         var_s3 = 0;
         var_s0 = arg1->actor_save_state;
         for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
-            if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
-                var_s3 = var_s0->unk78_13;
+            if ((var_s0->secondaryId != 0) && (var_s3 < var_s0->secondaryId)) {
+                var_s3 = var_s0->secondaryId;
             }
             var_s0++;
         }
         for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
-            if ((var_s0->unk78_13 != 0) && (var_s3 < var_s0->unk78_13)) {
-                var_s3 = var_s0->unk78_13;
+            if ((var_s0->secondaryId != 0) && (var_s3 < var_s0->secondaryId)) {
+                var_s3 = var_s0->secondaryId;
             }
         }
 
@@ -1823,14 +1824,14 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
        
         var_s0 = arg1->actor_save_state;
         for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
-            if (var_s0->unk78_13 != 0) {
-                sp5C[var_s0->unk78_13] = var_s0;
+            if (var_s0->secondaryId != 0) {
+                sp5C[var_s0->secondaryId] = var_s0;
             }
             var_s0++;
         }
         for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
-            if ((var_s0->unk78_13 != 0)) {
-                sp60[var_s0->unk78_13] = var_s0;
+            if ((var_s0->secondaryId != 0)) {
+                sp60[var_s0->secondaryId] = var_s0;
             }
         }
 
@@ -1856,7 +1857,7 @@ void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
 
         var_s0 = arg1->actor_save_state;
         for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--){
-            if (var_s0->unk78_13 == 0) {
+            if (var_s0->secondaryId == 0) {
                 sp50[0] = (s32) var_s0->position[0];
                 sp50[1] = (s32) var_s0->position[1];
                 sp50[2] = (s32) var_s0->position[2];
@@ -1902,8 +1903,8 @@ void func_8032A6A8(Actor *arg0) {
             if ((arg0->unk44_14 == var_v0->unk44_14) && (arg0 != var_v0)) {
                 var_f2 = var_v0->unk48;
                 if ((var_f2 <= var_f0) && (arg0->unk48 <= var_f2)) {
-                    if (var_v0->unk78_13 != 0) {
-                        arg0->unk124_31 = var_v0->unk78_13;
+                    if (var_v0->secondaryId != 0) {
+                        arg0->unk124_31 = var_v0->secondaryId;
                         var_f0 = var_f2;
                     }
                 }
@@ -1919,7 +1920,7 @@ Actor *func_8032A7AC(Actor *arg0) {
     if (arg0->unk124_31 != 0) {
         if (suBaddieActorArray != NULL) {
             for(var_a0 = &suBaddieActorArray->data[0]; var_a0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_a0++){
-                if (arg0->unk124_31 == var_a0->unk78_13) {
+                if (arg0->unk124_31 == var_a0->secondaryId) {
                     return var_a0;
                 }
             }
@@ -2208,7 +2209,7 @@ void func_8032B3A0(Actor *this, ActorMarker *arg1) {
         sp54[0] = this->position[0];
         sp54[1] = this->position[1] + func_8033229C(this->marker)*((this->unk16C_0) ? 0.5 : 1.0);
         sp54[2] = this->position[2];
-        func_802EE6CC(sp54, 0, D_8036E5B0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
+        dustEmitter_emit(sp54, 0, D_8036E5B0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, DUST_EMITTER_TYPE_DUST);
         func_802F3CF8(sp54, !this->unk16C_0, 
             (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
@@ -2224,7 +2225,7 @@ void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
 
     if (arg1 != NULL) {
         func_8034A174(this->marker->unk44, arg2, &sp3C);
-        func_802EE6CC(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, 0);
+        dustEmitter_emit(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, DUST_EMITTER_TYPE_DUST);
         func_802F3CF8(sp3C, !this->unk16C_0, 
             (arg1->id == 1) ? 1 
             : (player_getTransformation() == TRANSFORM_5_CROC) ? 2
@@ -2253,7 +2254,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     sp6C = func_8033D584(arg2);
     sp68 = func_8033D5A4(arg2);
     sp64 = func_8033D574(arg2);
-    if (((func_80297C6C() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
+    if (((bsiFrame_getState() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
         if (sp64 == 0) {
             if ((sp68 != 0) || (arg1->id == 0)) {
                 if (sp68 <= 0) {
@@ -2321,7 +2322,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                 marker_callCollisionFunc(arg0, arg1, sp64);
             }
             if ((sp64 != 0) && (sp6C != 0)) {
-                FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 25984, this->position, (s32)((500.0f + func_8033229C(arg0)) * 0.5), (s32)((500.0f + func_8033229C(arg0)) * 5));
+                sfx_playFadeShorthandDefault(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 25984, this->position, (s32)((500.0f + func_8033229C(arg0)) * 0.5), (s32)((500.0f + func_8033229C(arg0)) * 5));
             }
         }
     }

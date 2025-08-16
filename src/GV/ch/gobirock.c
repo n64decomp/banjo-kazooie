@@ -41,7 +41,7 @@ void __chGobiRock_setState(Actor *this, s32 next_state){
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.5f, 9000);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.7f, 9000);
         FUNC_8030E624(SFX_9B_BOULDER_BREAKING_1, 0.9f, 9000);
-        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         func_802F066C(local->unkC, local->unk0);
         particleEmitter_emitN(local->unkC, 10);
         func_802F053C(local->unk10, local->unk0);

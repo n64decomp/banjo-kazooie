@@ -97,7 +97,7 @@ void func_8038E0C8(Actor *this) {
             this->unk38_31--; 
             break;
         }
-        if( func_80329530(this, 0x2A8) 
+        if( subaddie_playerIsWithinSphereAndActive(this, 0x2A8)
             && (this->unk38_31 == 0) 
             && (player_getTransformation() == TRANSFORM_1_BANJO)
         ) {
@@ -114,7 +114,7 @@ void func_8038E0C8(Actor *this) {
             || actor_animationIsAt(this, 0.47f)
             || actor_animationIsAt(this, 0.78f)
         ) {
-            FUNC_8030E8B4(SFX_80_YUMYUM_CLACK, 1.0f, 32000, this->position, 1500, 3000);
+            sfx_playFadeShorthandDefault(SFX_80_YUMYUM_CLACK, 1.0f, 32000, this->position, 1500, 3000);
         }
         break;
     }

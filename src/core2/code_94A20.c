@@ -350,7 +350,7 @@ BKModelBin *func_8031C5DC(struct0 *this){
     return this->model;
 }
 
-f32 func_8031C5E4(struct0 *this){
+f32 floor_getYPosition(struct0 *this){
     return this->posY;
 }
 

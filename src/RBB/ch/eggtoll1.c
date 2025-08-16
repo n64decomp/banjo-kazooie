@@ -105,15 +105,15 @@ void func_803866F4(Actor *this, s32 arg1){
     
 
     if(arg1 == 2){
-        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
         local = (ActorLocal_RBB_0 *) &this->local;
         local->unkC = 3;
     }
     if(arg1 == 3){
         local->unk8++;
-        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(0.5f, (GenFunction_2) func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+        timedFunc_set_2(0.5f, (GenFunction_2) coMusicPlayer_playMusic, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         timedFunc_set_1(1.0f,  (GenFunction_1) func_803865D0, (s32)this->marker);
     }//L803867D4
     if(arg1 == 4){
@@ -152,10 +152,10 @@ void func_803868F0(Actor *this){
             local->unk4 = 0;
             local->unk8 = 0;
             local->unkC = 0;
-            local->unk4 = (this->unk78_13 == 0x15)? 0: local->unk4;
-            local->unk4 = (this->unk78_13 == 0x13)? 1: local->unk4;
-            local->unk4 = (this->unk78_13 == 0x14)? 2: local->unk4;
-            local->unk4 = (this->unk78_13 == 0xB)?  3: local->unk4;
+            local->unk4 = (this->secondaryId == 0x15)? 0: local->unk4;
+            local->unk4 = (this->secondaryId == 0x13)? 1: local->unk4;
+            local->unk4 = (this->secondaryId == 0x14)? 2: local->unk4;
+            local->unk4 = (this->secondaryId == 0xB)?  3: local->unk4;
             func_803866F4(this, 1);
         }
         RBB_func_803863F0(this, 0);

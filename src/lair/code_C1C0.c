@@ -55,11 +55,11 @@ void func_80392690(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 void func_80392700(Actor *this) {
     if (mapSpecificFlags_get(4)) {
         if (fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE)) {
-            gcdialog_showText(0x1031, 0xF, this->position, this->marker, func_80392664, func_80392610);
+            gcdialog_showDialog(0x1031, 0xF, this->position, this->marker, func_80392664, func_80392610);
         } else {
             func_802BC280();
             ncStaticCamera_setToNode(0x1F);
-            gcdialog_showText(0x102C, 0xE, this->position, this->marker, func_80392664, func_80392610);
+            gcdialog_showDialog(0x102C, 0xE, this->position, this->marker, func_80392664, func_80392610);
             fileProgressFlag_set(FILEPROG_F4_ENTER_FF_CUTSCENE, TRUE);
         }
         mapSpecificFlags_set(4, 0);
@@ -70,7 +70,7 @@ void func_80392700(Actor *this) {
         ncStaticCamera_setToNode(9);
         mapSpecificFlags_set(9, 1);
         func_8028F94C(2, this->position);
-        gcdialog_showText(0x103F, 0x2A, this->position, this->marker, func_80392690, func_80392610);
+        gcdialog_showDialog(0x103F, 0x2A, this->position, this->marker, func_80392690, func_80392610);
         mapSpecificFlags_set(6, 0);
         subaddie_set_state_with_direction(this, 3, 0.0f, 1);
         actor_playAnimationOnce(this);

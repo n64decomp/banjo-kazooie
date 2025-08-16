@@ -71,13 +71,13 @@ void func_802D77D4(Actor *this) {
         return;
 
     case 2:
-        sp3C = (f32)(this->unkF4_8 + 0x19);
+        sp3C = (f32)(this->actorTypeSpecificField + 0x19);
         player_getPosition(sp40);
         ml_vec3f_diff_copy(sp4C, this->position, sp40);
         if (((sp4C[0] * sp4C[0]) + (sp4C[2] * sp4C[2])) < (sp3C * sp3C)) {
             if ((this->position[1] < sp40[1]) && (sp40[1] <= local->unk0[1])) {
                 if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) == 0) {
-                    player_setClimbParams(this->position, local->unk0, (f32)this->unkF4_8, local->unkC);
+                    player_setClimbParams(this->position, local->unk0, (f32)this->actorTypeSpecificField, local->unkC);
                 }
             }
         }

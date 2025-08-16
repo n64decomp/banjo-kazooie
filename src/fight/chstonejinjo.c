@@ -16,13 +16,13 @@ void chstonejinjo_spawnJinjo(ActorMarker *marker) {
     Actor *actor_stonejinjo = marker_getActor(marker);
     Actor *actor_jinjo;
 
-    if (actor_stonejinjo->unkF4_8 == BOSSJINJO_5_JINJONATOR) {
+    if (actor_stonejinjo->actorTypeSpecificField == BOSSJINJO_5_JINJONATOR) {
         actor_jinjo = spawn_child_actor(ACTOR_3AC_JINJONATOR, &actor_stonejinjo);
     } else {
-        actor_jinjo = spawn_child_actor(ACTOR_3A4_BOSS_JINJO_BASE_IDX + actor_stonejinjo->unkF4_8, &actor_stonejinjo);
+        actor_jinjo = spawn_child_actor(ACTOR_3A4_BOSS_JINJO_BASE_IDX + actor_stonejinjo->actorTypeSpecificField, &actor_stonejinjo);
     }
 
-    actor_jinjo->unkF4_8 = actor_stonejinjo->unkF4_8;
+    actor_jinjo->actorTypeSpecificField = actor_stonejinjo->actorTypeSpecificField;
     actor_jinjo->lifetime_value = actor_stonejinjo->unk1C[0];
     actor_jinjo->scale = actor_stonejinjo->scale;
 }
@@ -33,7 +33,7 @@ void chstonejinjo_update(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         actor_collisionOff(this);
         
-        if (this->unkF4_8 == BOSSJINJO_5_JINJONATOR) {
+        if (this->actorTypeSpecificField == BOSSJINJO_5_JINJONATOR) {
             this->marker->unk40_23 = TRUE;
             this->marker->unk40_20 = TRUE;
             this->unk1C[0] = 6.0f;
@@ -50,9 +50,9 @@ void chstonejinjo_update(Actor *this) {
             break;
 
         case STONEJINJO_STATE_2_BREAK_OPEN:
-            if (this->unkF4_8 != BOSSJINJO_5_JINJONATOR) {
+            if (this->actorTypeSpecificField != BOSSJINJO_5_JINJONATOR) {
                 if (actor_animationIsAt(this, 0.001f)) {
-                    FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
+                    sfx_playFadeShorthandDefault(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
                     func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.6f, 0.8f), 20000, this->position, 1000.0f, 5000.0f);
                 }
 
@@ -67,7 +67,7 @@ void chstonejinjo_update(Actor *this) {
             } else {
                 if (actor_animationIsAt(this, 0.001f))
                 {
-                    FUNC_8030E8B4(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
+                    sfx_playFadeShorthandDefault(SFX_D_EGGSHELL_BREAKING, 1.2f, 25000, this->position, 1000, 5000);
                     func_8030E878(SFX_80_YUMYUM_CLACK, randf2(0.4f, 0.6f), 20000, this->position, 1000.0f, 5000.0f);
                 }
 
@@ -91,7 +91,7 @@ void chstonejinjo_update(Actor *this) {
                     actor_animationIsAt(this, 0.9f) ||
                     actor_animationIsAt(this, 0.98f))
                 {
-                    func_8030E6A4(SFX_3_DULL_CANNON_SHOT, randf2(1.2f, 1.4f), 20000);
+                    gcsfx_playWithPitch(SFX_3_DULL_CANNON_SHOT, randf2(1.2f, 1.4f), 20000);
                 }
             }
 
@@ -118,8 +118,8 @@ void chstonejinjo_breakOpen(ActorMarker *marker) {
         anctrl_setDuration(actor_stonejinjo->anctrl, actor_stonejinjo->unk1C[0]);
         SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor_stonejinjo->marker);
 
-        if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor_stonejinjo->unkF4_8 != BOSSJINJO_5_JINJONATOR) {
-            camera_node = 48 + actor_stonejinjo->unkF4_8 * 2;
+        if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor_stonejinjo->actorTypeSpecificField != BOSSJINJO_5_JINJONATOR) {
+            camera_node = 48 + actor_stonejinjo->actorTypeSpecificField * 2;
             bossjinjo_wakeup_time = chbossjinjo_getWakeUpTime();
             camera_duration_time = actor_stonejinjo->unk1C[0] + bossjinjo_wakeup_time;
             chfinalboss_getPosition(position_finalboss);

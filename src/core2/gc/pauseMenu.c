@@ -23,7 +23,7 @@ typedef struct struct_1A_s {
     u8 unkF;
 } struct1As;
 
-extern void func_802C5994(void);
+extern void gameSelect_saveAndExit(void);
 extern void func_802E412C(s32, s32);
 void volatileFlag_set(enum volatile_flags_e, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
@@ -232,7 +232,7 @@ void gcpausemenu_free(void) {
         D_80383010.b_button_sprite = NULL;
     }
     gcpausemenu_zoomboxes_free();
-    func_80311650();
+    gcdialog_decrementYPositionModifier();
 }
 
 void gcpausemenu_zoomboxes_initMainMenu(void) {
@@ -757,7 +757,7 @@ void gcpausemenu_init(void) {
     sp38 = sns_get_item_state(1, 0);
     D_80383010.sns_items = sp38 + sp34 + sp30 + sp2C + sp28 + sp24 + sns_get_item_state(7, 0);
     D_80383010.return_to_lair_disabled = gcpausemenu_initReturnToLair();
-    func_80311604();
+    gcdialog_incrementYPositionModifier();
     gcpausemenu_zoomboxes_initMainMenu();
     D_80383010.joystick_sprite = assetcache_get(0x7EB);
     D_80383010.joystick_frame_count = sprite_getFrameCount(D_80383010.joystick_sprite);
@@ -934,7 +934,7 @@ s32 gcPauseMenu_update(void) {
 
     controller_copyFaceButtons(0, face_button);
     controller_getJoystick(0, joystick);
-    func_8024E60C(0, sp60);
+    controller_copySideButtons(0, sp60);
     func_8024E6E0(0, sp50);
     func_80310D2C();
 
@@ -1065,10 +1065,10 @@ s32 gcPauseMenu_update(void) {
 
                     if (map_get() == MAP_8E_GL_FURNACE_FUN) {
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
-                        func_802E4078(MAP_80_GL_FF_ENTRANCE, 2, 1);
+                        transitionToMap(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }
                     else {
-                        func_802E4078(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);
+                        transitionToMap(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);
                     }
 
                     gcPauseMenu_setState(PAUSE_STATE_13_EXIT_PAUSE);
@@ -1080,7 +1080,7 @@ s32 gcPauseMenu_update(void) {
                     break;
 
                 case PAUSE_SELECTION_3_SAVE_AND_EXIT://L8031399C
-                    func_802C5994();
+                    gameSelect_saveAndExit();
                     volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
 
                     if (!fileProgressFlag_get(FILEPROG_BD_ENTER_LAIR_CUTSCENE) ||
@@ -1089,7 +1089,7 @@ s32 gcPauseMenu_update(void) {
                     }
                     else {
                         func_802E412C(1, 0);
-                        func_802E4078(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
+                        transitionToMap(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
                         gcPauseMenu_setState(PAUSE_STATE_13_EXIT_PAUSE);
                     }
                     break;
@@ -1282,7 +1282,7 @@ s32 gcPauseMenu_update(void) {
                 if (!D_80383010.unk3_6) {
                     func_802DC560(0, 0);
                     func_802E412C(1, 0);
-                    func_802E4078(MAP_1F_CS_START_RAREWARE, 0, 1);
+                    transitionToMap(MAP_1F_CS_START_RAREWARE, 0, 1);
                     D_80383010.unk3_6 = 1;
                 }
             }
@@ -1535,6 +1535,6 @@ void gcpausemenu_returnToLair(void) {
 
     if (0 < level && level < LEVEL_C_BOSS && D_8036C560[level - 1].map != -1) {
         volatileFlag_set(VOLATILE_FLAG_16, TRUE);
-        func_802E4078(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);
+        transitionToMap(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);
     }
 }

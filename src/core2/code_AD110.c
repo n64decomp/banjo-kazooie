@@ -66,7 +66,7 @@ extern void warp_lairEnterRBBLobbyFromRBBPuzzleRoom(s32, s32);
 extern void warp_lairEnterRBBLobbyFromMMMPuzzleRoom(s32, s32);
 extern void func_80334430(s32, s32);
 extern void func_80363388(s32, s32);
-extern void func_80386744(s32, s32);
+extern void chOrangePad_handleOrangeCollision(s32, s32);
 extern void func_80388BEC(s32, s32);
 extern void func_80388C00(s32, s32);
 extern void func_80388C28(s32, s32);
@@ -314,8 +314,8 @@ typedef void (*CodeAD110Callback)(NodeProp *arg0, ActorMarker *arg1);
 
 /* .data */
 CodeAD110Callback sWarpFunctions[] = {
-    func_80388BEC, func_80334430, func_80386744, func_80386744,
-    func_80386744, warp_gvEnterJinxy, warp_gvExitJinxy, func_8038F10C,
+    func_80388BEC, func_80334430, chOrangePad_handleOrangeCollision, chOrangePad_handleOrangeCollision,
+    chOrangePad_handleOrangeCollision, warp_gvEnterJinxy, warp_gvExitJinxy, func_8038F10C,
     func_8038F130, warp_bgsEnterMumbosHut, warp_bgsExitMumbosHut, warp_ttcExitNipper,
     warp_ttcEnterLevel, warp_ccEnterLevel, warp_bgsEnterLevel, warp_gvEnterLevel,
     warp_mmmEnterLevel, warp_rbbEnterLevel, warp_ccwEnterSpringWhipcrackRoom, warp_ccwEnterSummerWhipcrackRoom,

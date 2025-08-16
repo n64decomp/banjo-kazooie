@@ -29,7 +29,7 @@ f32 func_80294940(void){
 }
 
 f32 func_8029494C(void){
-    return D_8037C2F0.unk0 - func_80294500();
+    return D_8037C2F0.unk0 - floor_getCurrentFloorYPosition();
 }
 
 enum asset_e func_80294974(void){

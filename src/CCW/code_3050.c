@@ -13,7 +13,7 @@ void func_80389440(Actor *this, s32 next_state) {
     void *temp_v0;
 
     if (next_state == 2) {
-        sfxsource_play(SFX_AA_BGS_EGG_BREAKING_1, 28000);
+        gcsfx_playAtSampleRate(SFX_AA_BGS_EGG_BREAKING_1, 28000);
         this->marker->propPtr->unk8_3 = FALSE;
         fileProgressFlag_set(FILEPROG_E6_SPRING_EYRIE_HATCHED, TRUE);
         skeletalAnim_set(this->unk148, 0x187, 0.0f, 2.0f);

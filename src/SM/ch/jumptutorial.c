@@ -56,7 +56,7 @@ void chJumpTutorial_setState(Actor *this, s32 state) {
                 __chJumpTutorial_setStaticCameraToNode4(this);
                 ability_unlock(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
-                gcdialog_showText(ASSET_DF6_DIALOG_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                gcdialog_showDialog(ASSET_DF6_DIALOG_BOTTLES_HIGH_JUMP_LEARN, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                 this->sm_4070.dialog_id = ASSET_E1A_DIALOG_BOTTLES_UNKNOWN;
                 mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
             }
@@ -107,12 +107,12 @@ void chJumpTutorial_update(Actor *this) {
             break;
 
         case JUMP_TUTORIAL_STATE_2_TEACHING://L8038A6C8
-            if (!func_803114B0()) {
+            if (!gcdialog_hasCurrentTextId()) {
                 if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED)) {
                     __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_7_FEATHERY_FLAP);
 
-                    gcdialog_showText(ASSET_DF7_DIALOG_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                    gcdialog_showDialog(ASSET_DF7_DIALOG_BOTTLES_FEATHERY_FLAP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                     this->sm_4070.dialog_id = ASSET_E1B_DIALOG_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_8_ABILITY_HOLD_A_JUMP_HIGHER_UNLOCKED, FALSE);
                 }//L8038A730
@@ -121,12 +121,12 @@ void chJumpTutorial_update(Actor *this) {
                     __chJumpTutorial_setStaticCameraToNode4(this);
                     ability_unlock(ABILITY_8_FLAP_FLIP);
 
-                    gcdialog_showText(ASSET_DF8_DIALOG_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                    gcdialog_showDialog(ASSET_DF8_DIALOG_BOTTLES_FLAP_FLIP_LEARN, 0xa, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
                     this->sm_4070.dialog_id = ASSET_E1C_DIALOG_BOTTLES_UNKNOWN;
                     mapSpecificFlags_set(SM_SPECIFIC_FLAG_9_ABILITY_FEATHERY_UNLOCKED, FALSE);
                 }//L8038A794
 
-                if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_A)) {
+                if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_A_ABILITY_FLIP_UNLOCKED)) {
                     __chJumpTutorial_setStaticCameraToNode4(this);
                     func_8028F94C(2, this->unk1C);
 
@@ -138,8 +138,8 @@ void chJumpTutorial_update(Actor *this) {
                         dialog_id = ASSET_DF9_DIALOG_BOTTLES_UNKNOWN;
                     }
 
-                    gcdialog_showText(dialog_id, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
-                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_A, FALSE);
+                    gcdialog_showDialog(dialog_id, 0xe, this->unk1C, this->marker, __chJumpTutorial_textCallback, NULL);
+                    mapSpecificFlags_set(SM_SPECIFIC_FLAG_A_ABILITY_FLIP_UNLOCKED, FALSE);
                     this->sm_4070.dialog_id = NULL;
                 }
             }//L8038A828
@@ -151,7 +151,7 @@ void chJumpTutorial_update(Actor *this) {
 
             if (func_8028EFC8() && face_buttons[FACE_BUTTON(BUTTON_B)] == TRUE && func_8028F20C()) {
                 if (this->sm_4070.dialog_id) {
-                    gcdialog_showText(dialog_id = this->sm_4070.dialog_id, 0, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(dialog_id = this->sm_4070.dialog_id, 0, NULL, NULL, NULL, NULL);
                 }
             }
             break;

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 
 /* .data */
@@ -77,7 +79,7 @@ void bsbshock_charge_update(void){
             break;
         case 1:
             if(anctrl_isAt(aCtrl, 0.11f))
-                func_8030E2C4(D_8037D382);
+                sfxSource_func_8030E2C4(D_8037D382);
             
             if(anctrl_isAt(aCtrl, 0.4036f))
                 anctrl_setDuration(aCtrl, 1.4f);
@@ -148,7 +150,7 @@ void bsbshock_init(void){
     sfxsource_playHighPriority(SFX_E_SHOCKSPRING_BOING);
     func_8029E064(1);
     func_8029E070(1);
-    ability_use(9);
+    ability_use(ABILITY_USED_SHOCK);
     baModel_80292158(-50.0f);
     func_80298528(-50.0f);
     D_8037D381 = 0;

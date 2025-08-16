@@ -35,10 +35,10 @@ Actor *func_8038A180(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         if( this->unk54 == 0.0f
             && this->unk48 != this->unk1C[1]
             && this_marker->unk14_21
-            && func_80329530(this, 3000)
+            && subaddie_playerIsWithinSphereAndActive(this, 3000)
         ){
-            func_8033E73C(this->marker, 6, func_80329904);
-            func_8033E3F0(0xc, this->marker->unk14_21);
+            commonParticle_add(this->marker, 6, func_80329904);
+            commonParticle_new(0xc, this->marker->unk14_21);
         }
     }
     return this;
@@ -60,7 +60,7 @@ void func_8038A2C0(void *this_marker){
     s32 pad;
 
     func_8032AA58(shadow, this->scale);
-    this->unk100 = shadow->marker;
+    this->partnerActor = shadow->marker;
 }
 
 void func_8038A314(Actor *this){}
@@ -74,7 +74,7 @@ void func_8038A31C(Actor *this){
         this->velocity[0] = 0.0f;
     }
 
-    if(this->unk100)
+    if(this->partnerActor)
         sp24 = subaddie_getLinkedActor(this);
 
     this->unk1C[1] = this->unk48;
@@ -141,7 +141,7 @@ void func_8038A31C(Actor *this){
     }//L8038A6A4
     this->unk124_11 = 0x3;
     this->pitch = 0.0f;
-    if(this->unk100 && sp24 && this->unk100->id == MARKER_AF_MAGIC_CARPET_SHADOW){
+    if(this->partnerActor && sp24 && this->partnerActor->id == MARKER_AF_MAGIC_CARPET_SHADOW){
         sp24->position_x = this->position_x;
         sp24->position_y = mapModel_getFloorY(this->position) + 60.0f;
         sp24->position_z = this->position_z;

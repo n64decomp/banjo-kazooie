@@ -3,6 +3,9 @@
 #include "functions.h"
 #include "variables.h"
 #include <math.h>
+
+#include "conga.h"
+
 #ifndef MIN
 #define MIN(s,t) ((s)<(t)?(s):(t))
 #endif
@@ -19,16 +22,16 @@ void timed_exitStaticCamera(f32);
 Actor *actor_spawnWithYaw_s32(s32 actor_id, s32 position[3], s32 yaw);
 void MM_func_80387F44(void);
 
-void func_803876D0(Actor *);
+void chConga_update(Actor *);
 
-typedef struct chconga_s{
+typedef struct chconga_s {
     TUPLE(s32, orangeSpawnPosition);
     s32     unkC;
     s32     unk10;
     u8      pad14[0x4];
     s32     unk18;
     s32     unk1C;
-}ActorLocal_Conga;
+} ActorLocal_Conga;
 
 
 /* .data */
@@ -44,9 +47,9 @@ ActorAnimationInfo chCongaAnimations[9] = {
     {ASSET_52_ANIM_CONGA_OW, 1.0f}
 };
 
-ActorInfo chcongaInfo = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
+ActorInfo chCongaInfo = { MARKER_7_CONGA, ACTOR_8_CONGA, ASSET_35C_MODEL_CONGA,
     1, chCongaAnimations,
-    func_803876D0, actor_update_func_80326224, actor_draw,
+    chConga_update, actor_update_func_80326224, actor_draw,
     0, 0x333, 0.0f, 0
 };
 
@@ -87,7 +90,7 @@ void func_80386FB0(Actor *this){
 void __chConga_playRandomNoise(void){
     if( (globalTimer_getTime() & 0xF) == 0xB 
         && 0.85 < randf ()
-        && !func_803114B0()
+        && !gcdialog_hasCurrentTextId()
     ){
         func_8030E58C(((s32)(randf ()*256.0f) & 1)? SFX_22_KONGA_NOISE_1: SFX_23_KONGA_NOISE_2, 1.0f);
     }
@@ -99,7 +102,7 @@ void func_8038708C(Actor *this, s32 anim_id){
 }
 
 void func_803870D0(Actor *this, ActorMarker *arg1){
-    marker_getActor(arg1)->unk100 = this->marker;
+    marker_getActor(arg1)->partnerActor = this->marker;
 }
 
 void func_80387100(ActorMarker *this){
@@ -140,7 +143,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){
-                    gcdialog_showText(ASSET_B39_DIALOG_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
+                    gcdialog_showDialog(ASSET_B39_DIALOG_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
                 }
             }
         }
@@ -148,7 +151,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
 }
 
 int func_803872EC(void){
-    s32 text_id = func_803114C4();
+    s32 text_id = gcdialog_getCurrentTextId();
 
     return text_id == ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE
         || text_id == ASSET_B38_DIALOG_CONGA_DEFEAT
@@ -209,13 +212,15 @@ void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
     }
 }
 
-void func_803876D0(Actor *this){
+void chConga_update(Actor *this) {
+
     f32 unused;
     NodeProp *node_prop;
     s32 sp3C;
 
-    this->marker->propPtr->unk8_3 = (timedFuncQueue_is_empty(this))?1:0;
-    if(!this->initialized){
+    this->marker->propPtr->unk8_3 = timedFuncQueue_is_empty(this) ? 1 : 0;
+
+    if (!this->initialized) {
         ((ActorLocal_Conga *)&this->local)->unkC = 1;
         this->unk16C_0 = 1;
         this->initialized = TRUE;
@@ -225,152 +230,173 @@ void func_803876D0(Actor *this){
         ((ActorLocal_Conga *)&this->local)->unk1C = nodeprop_getRadius(node_prop);
         nodeprop_getPosition_s32(node_prop, &((ActorLocal_Conga *)&this->local)->unk10);
     }
-    if(0.0f == this->actor_specific_1_f){
+
+    if (0.0f == this->actor_specific_1_f) {
         this->actor_specific_1_f = (actorArray_findActorFromMarkerId(MARKER_36_ORANGE_COLLECTIBLE) != NULL)? 2.0f: 1.0f;
     }
-    if(0.0f != this->velocity_x){
+
+    if (0.0f != this->velocity_x) {
         this->velocity_x -= 1.0f; 
         if(0.0f == this->velocity_x){
             __spawnQueue_add_1((GenFunction_1)func_80387100, (s32)this->marker);
         }
     }
+
     marker_setCollisionScripts(this->marker, NULL, NULL, func_80387168);
-    if( !func_80329530(this, 2100)
+
+    if (!subaddie_playerIsWithinSphereAndActive(this, 2100)
         && this->state != 2
-        && this->state != 8
-    ){
+        && this->state != 8) {
+
         if(this->state > 3 && this->state < 8){
             actor_loopAnimation(this);
             subaddie_set_state_with_direction(this, 1, 0.76f, 1);
         }
+
         return;
     }
 
-    sp3C = func_80329530(this, 1000);
-    if( func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C) 
+    sp3C = subaddie_playerIsWithinSphereAndActive(this, 1000);
+
+    if (func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
         && !this->unk138_23
-        && gcdialog_showText(ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)
-    ){
+        && gcdialog_showDialog(ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)) {
         this->unk138_23 = 1;
         mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
-    if( sp3C && !this->has_met_before){
-        if(gcdialog_showText((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_DIALOG_CONGA_MEET_AS_TERMITE : ASSET_B3C_DIALOG_CONGA_MEET, 0, this->position, 0,0,0)){
+    if (sp3C && !this->has_met_before) {
+        if (gcdialog_showDialog((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_DIALOG_CONGA_MEET_AS_TERMITE : ASSET_B3C_DIALOG_CONGA_MEET, 0, this->position, 0,0,0)) {
             this->has_met_before = TRUE;
         }
     } //L80387968
 
-    switch(this->state){
-        case 1://80387990
+    switch (this->state) {
+        case CONGA_STATE_IDLE://80387990
             actor_loopAnimation(this);
             func_80386FB0(this);
             __chConga_playRandomNoise();
+
             if(actor_animationIsAt(this, 0.0f) || actor_animationIsAt(this, 0.45f)){
                 if(randf() < 0.2){
                     anctrl_setDirection(this->anctrl, anctrl_isPlayedForwards(this->anctrl)?0:1);
                 };
             }//L80387A18
-            if(actor_animationIsAt(this, 0.66f)){
-                subaddie_maybe_set_state_position_direction(this, 6, 0, 1, 0.38f);
+
+            if (actor_animationIsAt(this, 0.66f)) {
+                subaddie_maybe_set_state_position_direction(this, CONGA_STATE_BEAT_CHEST_STOP, 0, 1, 0.38f);
             }
-            if( sp3C
+
+            if (sp3C
                 && player_movementGroup() != BSGROUP_1_INTR
                 && !__chConga_isPlayerNearCongaTree(this)
                 && timedFuncQueue_is_empty()
                 && !func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
-                && !func_803872EC()
-            ){
-                subaddie_set_state_with_direction(this, 4, 0.0f, 1);
+                && !func_803872EC()) {
+
+                subaddie_set_state_with_direction(this, CONGA_STATE_TARGET_GROUND, 0.0f, 1);
             }//L80387AC0
-            if( player_movementGroup() != BSGROUP_1_INTR
+
+            if (player_movementGroup() != BSGROUP_1_INTR
                 && __chConga_isPlayerNearCongaTree(this)
                 && this->unk38_31 != 0
-                && !func_803872EC()
-            ){
-                subaddie_set_state_with_direction(this, 7, 0.0f, 1);
+                && !func_803872EC()) {
+
+                subaddie_set_state_with_direction(this, CONGA_STATE_TARGET_BANJO, 0.0f, 1);
             }
             break;
 
-        case 6: //L80387B24
+        case CONGA_STATE_BEAT_CHEST_STOP: //L80387B24
             ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_playAnimationOnce(this);
             __chConga_playRandomNoise();
-            if( anctrl_isPlayedForwards(this->anctrl) == TRUE
-                && actor_animationIsAt(this, 0.0f)
-            ){
-                subaddie_set_state_with_direction(this, 5, 0.0f, 1);
+
+            if (anctrl_isPlayedForwards(this->anctrl) == TRUE
+                && actor_animationIsAt(this, 0.0f)) {
+
+                subaddie_set_state_with_direction(this, CONGA_STATE_BEAT_CHEST, 0.0f, 1);
+            } else if (!anctrl_isPlayedForwards(this->anctrl)
+                && actor_animationIsAt(this, 0.001f)) {
+                subaddie_set_state_with_direction(this, CONGA_STATE_IDLE, 0.76f, 1);
             }
-            else if( !anctrl_isPlayedForwards(this->anctrl)
-                && actor_animationIsAt(this, 0.001f)
-            ){
-                subaddie_set_state_with_direction(this, 1, 0.76f, 1);
-            }
+
             break;
 
-        case 5: //L80387BC0
+        case CONGA_STATE_BEAT_CHEST: //L80387BC0
             ((ActorLocal_Conga *)&this->local)->unkC = 1;
             actor_loopAnimation(this);
             __chConga_playRandomNoise();
-            if( actor_animationIsAt(this, 0.99f)){
-                subaddie_maybe_set_state_position_direction(this, 6, 0.999f, 0, sp3C ? 1.0 : 0.4);
+
+            if (actor_animationIsAt(this, 0.99f)) {
+                subaddie_maybe_set_state_position_direction(this, CONGA_STATE_BEAT_CHEST_STOP, 0.999f, 0, sp3C ? 1.0 : 0.4);
             }//L80387C30
-            if( actor_animationIsAt(this, 0.9f)
-                || actor_animationIsAt(this, 0.4f)
-            ){
+
+            if (actor_animationIsAt(this, 0.9f)
+                || actor_animationIsAt(this, 0.4f)) {
                 func_8030E6D4(SFX_3FB_UNKNOWN);
             }
+
             break;
 
-        case 4: //L80387C74
-            if(actor_animationIsAt(this, 0.6f)){
+        case CONGA_STATE_TARGET_GROUND: //L80387C74
+            if (actor_animationIsAt(this, 0.6f)) {
                 func_8030E58C(SFX_2_CLAW_SWIPE, 0.7f);
             }
+
             func_80386FB0(this);
-            if( !sp3C
+
+            if (!sp3C
                 || player_is_in_jiggy_jig()
                 || __chConga_isPlayerNearCongaTree(this)
                 || !timedFuncQueue_is_empty()
-                || func_803872EC()
-            ){
-                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
+                || func_803872EC()) {
+
+                subaddie_set_state_with_direction(this, CONGA_STATE_IDLE, 0.0f, 1);
             }
+
             break;
 
-        case 2: //L80387D0C
+        case CONGA_STATE_HIT: //L80387D0C
             actor_playAnimationOnce(this);
-            if(actor_animationIsAt(this, 0.99f)){
-                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
+            if (actor_animationIsAt(this, 0.99f)) {
+                subaddie_set_state_with_direction(this, CONGA_STATE_IDLE, 0.0f, 1);
             }
+
             break;
 
-        case 8: //L80387D4C
+        case CONGA_STATE_ROAR: //L80387D4C
             actor_playAnimationOnce(this);
-            if(actor_animationIsAt(this, 0.99f)){
-                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
-                gcdialog_showText(ASSET_B38_DIALOG_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
+
+            if (actor_animationIsAt(this, 0.99f)) {
+                subaddie_set_state_with_direction(this, CONGA_STATE_MOPEY, 0.0f, 1);
+                gcdialog_showDialog(ASSET_B38_DIALOG_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
             }
+
             break;
 
-        case 3: //L80387DB8
+        case CONGA_STATE_MOPEY: //L80387DB8
             actor_loopAnimation(this);
-            if(jiggyscore_isCollected(JIGGY_A_MM_CONGA)){
-                subaddie_set_state_with_direction(this, 1, 0.0f, 1);
+
+            if (jiggyscore_isCollected(JIGGY_A_MM_CONGA)) {
+                subaddie_set_state_with_direction(this, CONGA_STATE_IDLE, 0.0f, 1);
             }
+
             break;
 
-        case 7: //L80387DF0
-            if(this->unk10_12 == 0){
-                if(actor_animationIsAt(this, 0.97f)){
+        case CONGA_STATE_TARGET_BANJO: //L80387DF0
+            if (this->unk10_12 == 0) {
+                if (actor_animationIsAt(this, 0.97f)) {
                     ((ActorLocal_Conga *)&this->local)->unkC = 1;
-                    subaddie_set_state_with_direction(this, 6, 0.0f, 1);
+                    subaddie_set_state_with_direction(this, CONGA_STATE_BEAT_CHEST_STOP, 0.0f, 1);
                 }
             }
+
             break;
     }//L80387E38
-    if( (this->state == 4 && actor_animationIsAt(this, 0.56f))
-        || (this->state == 7 && actor_animationIsAt(this, 0.468f))
-    ){
+
+    if ((this->state == CONGA_STATE_TARGET_GROUND && actor_animationIsAt(this, 0.56f))
+        || (this->state == CONGA_STATE_TARGET_BANJO && actor_animationIsAt(this, 0.468f))) {
+
         func_8034A1B4(this->marker->unk44, 5, &this->local);
         __spawnQueue_add_1((GenFunction_1)__chConga_sendOrangeProjectile, (s32)this->marker); //spawn orange
     }

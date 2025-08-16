@@ -25,6 +25,8 @@ void func_802BB3AC(s32 arg0, f32 arg1);
 /* .data */
 extern s32  D_80364E00 = 0;
 extern s32  D_80364E04 = -1;
+
+//                                                                                         Time
 s16 D_80364E08[] = {   0,            -1,   0,     1, 0x13,    0,                       -1, 0x32};
 s16 D_80364E18[] = { 0xF,            -1, 0xF,     2, 0x1B,    3,                       -1, 0x2A};
 s16 D_80364E28[] = { 0x3,            -1, 0xF,     4, 0x20,    5,                       -1, 0x37};
@@ -221,9 +223,9 @@ s16 *D_803654B8[] = {
     D_80364EA4, 
     D_80364EB0,
     D_80364EBC,
-    D_80364EC8,
-    D_80364ED4, 
-    D_80364EE0,
+    D_80364EC8, // MM Conga Orange Pad Top Jiggy Spawn
+    D_80364ED4, // MM Conga Orange Pad Left Jiggy Spawn
+    D_80364EE0, // MM Conga Orange Pad Right Jiggy Spawn
     D_80364EEC,
     D_80364EF8,
     D_80364F04, 
@@ -404,65 +406,72 @@ void func_802BAF80(s32 arg0){
     func_802BE720();
 }
 
-f32  func_802BAFA0(s32 arg0, s32 arg1){
+f32 func_802BAFA0(s32 arg0, s32 arg1) {
     return (f32)D_803654B8[arg0][arg1]/10.0;
 }
 
-void func_802BAFE4(s32 arg0) {
+void gcStaticCamera_activate(s32 cameraId) {
     f32 temp_f0;
     s32 phi_s1;
     s32 phi_s0;
 
     phi_s0 = 0;
-    if (arg0 != D_80364E04) {
-        D_80364E04 = arg0;
-        func_802BB22C();
-        D_80364E00 = 1;
-        for(phi_s1 = 0; D_803654B8[arg0][phi_s1] != -1 && D_803654B8[arg0][phi_s1] != -4; phi_s1+=2){
-            temp_f0 = func_802BAFA0(arg0, phi_s1);
-            switch(D_803654B8[arg0][phi_s1 + 1]){
-                case -5:
-                    timedFunc_set_6(temp_f0, (GenFunction_6) func_802BAF80, NULL);
-                    phi_s0++;
-                    break;
 
-                case -3:
-                    func_80324E38(temp_f0, 1);
-                    phi_s0++;
-                    break;
+    if (cameraId == D_80364E04) {
+        return;
+    }
 
-                case -2:
-                    func_80324E38(temp_f0, 2);
-                    phi_s0++;
-                    break;
+    D_80364E04 = cameraId;
+    func_802BB22C();
+    D_80364E00 = 1;
 
-                case -1:
-                    func_80324E38(temp_f0, 3);
-                    phi_s0++;
-                    break;
+    for (phi_s1 = 0; D_803654B8[cameraId][phi_s1] != -1 && D_803654B8[cameraId][phi_s1] != -4; phi_s1+=2) {
+        temp_f0 = func_802BAFA0(cameraId, phi_s1);
+        switch(D_803654B8[cameraId][phi_s1 + 1]){
+            case -5:
+                timedFunc_set_6(temp_f0, (GenFunction_6) func_802BAF80, NULL);
+                phi_s0++;
+                break;
 
-                case -4:
-                    func_80324E38(temp_f0, 4);
-                    break;
+            case -3:
+                func_80324E38(temp_f0, 1);
+                phi_s0++;
+                break;
 
-                case -6:
-                    func_80324E38(temp_f0, 4);
-                    break;
-                
-                default:
-                    timed_setStaticCameraToNode(temp_f0, D_803654B8[arg0][phi_s1 + 1]);
-                    break;
-            }
+            case -2:
+                func_80324E38(temp_f0, 2);
+                phi_s0++;
+                break;
+
+            case -1:
+                func_80324E38(temp_f0, 3);
+                phi_s0++;
+                break;
+
+            case -4:
+                func_80324E38(temp_f0, 4);
+                break;
+
+            case -6:
+                func_80324E38(temp_f0, 4);
+                break;
+
+            default:
+                timed_setStaticCameraToNode(temp_f0, D_803654B8[cameraId][phi_s1 + 1]);
+                break;
         }
-        temp_f0 = func_802BAFA0(arg0, phi_s1 + 1);
-        if (D_803654B8[arg0][phi_s1] == -4) {
-            func_80324E38(temp_f0, 4);
-        } else {
-            timed_exitStaticCamera(temp_f0);
-        }
-        for(phi_s1 = 0; phi_s1 < phi_s0; phi_s1++){
-            func_80324E38(temp_f0, 0);
-        }
+    }
+
+    temp_f0 = func_802BAFA0(cameraId, phi_s1 + 1);
+
+    if (D_803654B8[cameraId][phi_s1] == -4) {
+        func_80324E38(temp_f0, 4);
+    } else {
+        timed_exitStaticCamera(temp_f0);
+    }
+
+    for (phi_s1 = 0; phi_s1 < phi_s0; phi_s1++) {
+        func_80324E38(temp_f0, 0);
     }
 }
 

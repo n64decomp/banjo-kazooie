@@ -29,7 +29,7 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80389A60(Actor *this){
-    gcdialog_showText(ASSET_A70_DIALOG_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
+    gcdialog_showDialog(ASSET_A70_DIALOG_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
     this->has_met_before = TRUE;
     subaddie_set_state(this, 5);
 }
@@ -62,8 +62,8 @@ void func_80389B1C(Actor *this){
     anctrl_setTransitionDuration(this->anctrl, 0.15f);
 
     if(this->state == 1 || this->state == 2){
-        if(! this->has_met_before && func_80329530(this, 250) && !func_80329530(this, 0x50)){
-            gcdialog_showText(ASSET_A6F_DIALOG_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
+        if(! this->has_met_before && subaddie_playerIsWithinSphereAndActive(this, 250) && !subaddie_playerIsWithinSphereAndActive(this, 0x50)){
+            gcdialog_showDialog(ASSET_A6F_DIALOG_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
             this->has_met_before = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }
@@ -83,7 +83,7 @@ void func_80389B1C(Actor *this){
                 || actor_animationIsAt(this, 0.51f)
                 || actor_animationIsAt(this, 0.57f)
             ){
-                FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 3.802f, 8000, this->position, 1500, 4500);
+                sfx_playFadeShorthandDefault(SFX_8_BANJO_LANDING_04, 3.802f, 8000, this->position, 1500, 4500);
             }
 
             if( actor_animationIsAt(this, 0.4f)){
@@ -102,7 +102,7 @@ void func_80389B1C(Actor *this){
         case 3: //L80389E14
             if( actor_animationIsAt(this, 0.2f)){
                 func_8025A58C(500, 400);
-                func_8025A6EC(COMUSIC_27_GV_RUBEES_SONG, 28000);
+                coMusicPlayer_playMusic(COMUSIC_27_GV_RUBEES_SONG, 28000);
             }
 
             if( actor_animationIsAt(this, 0.99f)){

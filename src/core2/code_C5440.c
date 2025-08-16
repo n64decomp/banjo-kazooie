@@ -117,10 +117,12 @@ Struct70s *func_8034C528(s32 arg0){
     struct1Ds *iPtr;
     struct1Ds *endPtr = vector_getEnd(D_80386140.unk4);
 
-    for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
-        if(iPtr->xform_id == 2 && iPtr->unk4 == arg0)
+    for (iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++) {
+        if (iPtr->xform_id == 2 && iPtr->unk4 == arg0) {
             return &iPtr->unk8;
+        }
     }
+
     return NULL;
 }
 

@@ -58,14 +58,14 @@ static void __chLeaky_updateFunc(Actor *this) {
 
     if( this->state == 1 
         && !this->has_met_before
-        && func_80329530(this, 250) && !func_80329530(this, 160)
+        && subaddie_playerIsWithinSphereAndActive(this, 250) && !subaddie_playerIsWithinSphereAndActive(this, 160)
         && !player_movementGroup() 
-        && gcdialog_showText(ASSET_A1A_DIALOG_LEAKY_FIRST_MEET, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showDialog(ASSET_A1A_DIALOG_LEAKY_FIRST_MEET, 0, NULL, NULL, NULL, NULL)
     ){
         this->has_met_before = TRUE;
     }
 
-    if (func_803114B0() == 0) {
+    if (gcdialog_hasCurrentTextId() == 0) {
         if (actor_animationIsAt(this, 0.83f)) {
             func_8030E878(SFX_109_LOGGO_LID_CLAP, randf2(0.775f, 0.825f), 22000, this->position, 400.0f, 1000.0f);
             return;
@@ -98,7 +98,7 @@ static void __chLeaky_showDoneText(ActorMarker *caller, enum asset_e text_id, s3
     timedFunc_set_0(1.0f, __func_80388F88);
     func_80324E38(2.5f, 0);
     timedFunc_set_1(2.5f, func_8028F9DC, 2);
-    timedFunc_set_3(2.5f, (GenFunction_3)func_802E4078, MAP_A_TTC_SANDCASTLE, 0, 0);
+    timedFunc_set_3(2.5f, (GenFunction_3)transitionToMap, MAP_A_TTC_SANDCASTLE, 0, 0);
     func_803228D8();
 }
 
@@ -118,6 +118,6 @@ bool chLeaky_eggCollision(ActorMarker *marker){
 
     levelSpecificFlags_set(2, TRUE);
     levelSpecificFlags_set(5, TRUE);
-    gcdialog_showText(ASSET_A28_DIALOG_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_showDoneText, NULL);
+    gcdialog_showDialog(ASSET_A28_DIALOG_LEAKY_DONE, 0x2a, this->position, this->marker, __chLeaky_showDoneText, NULL);
     return TRUE;
 }

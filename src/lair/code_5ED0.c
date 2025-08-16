@@ -525,7 +525,7 @@ void func_8038CC10(void)
     func_8030DD90(D_8037DCB8->UNK_18, 0);
     sfxsource_setSampleRate(D_8037DCB8->UNK_18, 32760);
     sfxsource_playSfxAtVolume(D_8037DCB8->UNK_18, 0.7f);
-    func_8030E2C4(D_8037DCB8->UNK_18);
+    sfxSource_func_8030E2C4(D_8037DCB8->UNK_18);
 }
 
 void lair_func_8038CC9C(void)
@@ -533,7 +533,7 @@ void lair_func_8038CC9C(void)
     if (!D_8037DCB8->UNK_18)
         return;
 
-    func_8030E394(D_8037DCB8->UNK_18);
+    sfxSource_triggerCallbackByIndex(D_8037DCB8->UNK_18);
     sfxsource_freeSfxsourceByIndex(D_8037DCB8->UNK_18);
     D_8037DCB8->UNK_18 = 0;
 }
@@ -548,7 +548,7 @@ void func_8038CCEC(void)
 
     gcquiz_free();
     quizQuestionAskedBitfield_free();
-    func_802C5994();
+    gameSelect_saveAndExit();
 }
 
 void lair_func_8038CD48(void)
@@ -707,7 +707,7 @@ void func_8038D0BC(s32 a0, s32 a1)
 
 void func_8038D16C(s32 a0, u16 a1)
 {
-    func_8025A6EC(a0, 0);
+    coMusicPlayer_playMusic(a0, 0);
     comusic_8025AB44(a0, 28000, 500);
     func_80250530(func_8025ADD4(a0), a1, 0);
 }
@@ -831,7 +831,7 @@ void func_8038D4BC(void)
 
     // trigger warp after a delay
     timedFunc_set_3(0.25f,
-        (GenFunction_3)func_802E4078,
+        (GenFunction_3)transitionToMap,
         D_803945B8[D_8037DCB8->unkC].map,
         D_803945B8[D_8037DCB8->unkC].exit,
         1
@@ -956,17 +956,17 @@ void func_8038D670(enum FF_Action next_state) {
                 if (((s32) D_8037DCB8->unk4->unk8 >= 7) && (quizQuestionAskedBitfield_get(func_8038D60C(D_8037DCB8->unk8)) == 0)) {
                     item_adjustByDiffWithHud(ITEM_27_JOKER_CARD, D_8037DCB8->unk4->unk8 - 6);
                     quizQuestionAskedBitfield_set(func_8038D60C(D_8037DCB8->unk8), TRUE);
-                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A8_FF_GOT_JOKER);
+                    progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A8_FF_GOT_JOKER);
                 }
                 if (D_8037DCB8->unk8 != 0x1EF) {
-                    func_8030E6A4(SFX_126_AUDIENCE_BOOING, 1.0f, 0x7FF8);
+                    gcsfx_playWithPitch(SFX_126_AUDIENCE_BOOING, 1.0f, 0x7FF8);
                     if (D_8037DCB8->unk4->unk8 == FFTT_5_GRUNTY) {
-                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A2_FF_GRUNTY_ANSWER_RIGHT);
+                        progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A2_FF_GRUNTY_ANSWER_RIGHT);
                     }
                     if (volatileFlag_get(VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT)) {
-                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A1_FF_NEXT_ANSWER_RIGHT);
+                        progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A1_FF_NEXT_ANSWER_RIGHT);
                     }
-                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT);
+                    progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A0_FF_FIRST_ANSWER_RIGHT);
                 }
             } else {
                 if (D_8037DCB8->unk4->unk8 == FFTT_6_SKULL) {
@@ -993,9 +993,9 @@ void func_8038D670(enum FF_Action next_state) {
                     lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                 }
                 if (volatileFlag_get(VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG)) {
-                    volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A4_FF_NEXT_ANSWER_WRONG);
+                    progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A4_FF_NEXT_ANSWER_WRONG);
                 }
-                volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG);
+                progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A3_FF_FIRST_ANSWER_WRONG);
             }
             break;
 
@@ -1157,7 +1157,7 @@ void lair_func_8038E0B0(void) {
         gcquiz_func_80319EA4();
         func_8038C9D0();
         controller_copyFaceButtons(0, sp48);
-        func_8024E60C(0, sp3C);
+        controller_copySideButtons(0, sp3C);
         if (D_8037DCB8->currFfMode < 3) {
             player_getPosition(D_8037DCB8->playerPosition);
             temp_v0 = func_8033F3E8(D_8037DCB8->unk0, D_8037DCB8->playerPosition, 0x191, 0x1F0);
@@ -1231,13 +1231,13 @@ void lair_func_8038E0B0(void) {
                 func_802FACA4(0x16);
                 if (sp38 != FFTT_0_NIL) {
                     sp28 = sp38 - 1 + FILEPROG_55_FF_BK_SQUARE_INSTRUCTIONS;
-                    if (!fileProgressFlag_get(sp28) && gcdialog_showText(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
+                    if (!fileProgressFlag_get(sp28) && gcdialog_showDialog(sp38 + 0x101E, 0, NULL, NULL, NULL, NULL)) {
                         fileProgressFlag_set(sp28, TRUE);
                     }
                     if ((sp38 == FFTT_6_SKULL) && (item_getCount(ITEM_16_LIFE) == 1)) {
-                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_AB_LAST_LIFE_ON_SKULL);
+                        progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_AB_LAST_LIFE_ON_SKULL);
                     } else if (item_getCount(ITEM_14_HEALTH) == 1) {
-                        volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_AA_FF_LOW_HEALTH);
+                        progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_AA_FF_LOW_HEALTH);
                     }
                     if ((D_8037DCB8->unk4->unk9 == 2) && (player_movementGroup() == BSGROUP_0_NONE)) {
                         if (func_8028EFEC() && (sp48[FACE_BUTTON(BUTTON_A)] == 1)) {
@@ -1252,8 +1252,8 @@ void lair_func_8038E0B0(void) {
                             if ((item_getCount(ITEM_27_JOKER_CARD) > 0) && (sp28 < 0x5B)) {
                                 lair_func_8038C640(D_8037DCB8->unk8, D_8037DCB8->unk4);
                                 item_dec(ITEM_27_JOKER_CARD);
-                                func_8030E6D4(SFX_3EA_UNKNOWN);
-                                volatileFlag_setAndTriggerDialog_4(VOLATILE_FLAG_A9_FF_USED_JOKER);
+                                func_8030E6D4(SFX_3EA_BANJO_GUH_HUH);
+                                progressDialog_setAndTriggerDialog_4(VOLATILE_FLAG_A9_FF_USED_JOKER);
                                 if (D_8037DCB8->unk8 == 0x1EF) {
                                     func_8038D670(8);
                                 }

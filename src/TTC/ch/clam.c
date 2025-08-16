@@ -24,7 +24,7 @@ ActorInfo gChClam = {
 
 /* .code */
 static void __chClam_playSfx(enum sfx_e sfx_id, f32 volume, s32 sampleRate, f32 position[3], f32 minFadeDistance, f32 maxFadeDistance){
-    if(func_803114B0()){
+    if(gcdialog_hasCurrentTextId()){
         sampleRate -= 10000;
         if(sampleRate < 0)
             sampleRate = 0;
@@ -69,7 +69,7 @@ static bool __chClam_updateFuncTarget(Actor *this, f32 arg1) {
             TUPLE_COPY(target_position, red_feather->position)
             phi_f2 = egg_dist;
     }
-    else if ((func_80329530(this, 1200) != 0) && (func_803292E0(this) != 0)) {
+    else if ((subaddie_playerIsWithinSphereAndActive(this, 1200) != 0) && (func_803292E0(this) != 0)) {
         phi_f2 = gu_sqrtf((f32) func_8032970C(this));
         player_getPosition(target_position);
         sp38 = 1;
@@ -135,7 +135,7 @@ static void __chClam_particalEmitterInit(ParticleEmitter *pCtrl, f32 position[3]
     particleEmitter_setPosition(pCtrl, position);
     particleEmitter_func_802EF9F8(pCtrl, 0.7f);
     particleEmitter_func_802EFA18(pCtrl, 3);
-    func_802EFA20(pCtrl, 0.8f, 1.0f);
+    particleEmitter_func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 3.5f, 3.5f);
@@ -242,9 +242,9 @@ static void __chClam_playerDropsItem(enum bundle_e bundle_id, enum item_e item_i
 
 static void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_marker){
     
-    if(func_80297C6C() == 3) return;
+    if(bsiFrame_getState() == 3) return;
 
-    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showText(ASSET_A14_DIALOG_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
+    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showDialog(ASSET_A14_DIALOG_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN, TRUE);
     }
 

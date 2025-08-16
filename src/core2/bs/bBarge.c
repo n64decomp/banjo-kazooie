@@ -1,8 +1,12 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
+
 
 
 void  func_80292864(f32, f32);
@@ -172,8 +176,8 @@ void bsbarge_update(void){
     bs_setState(sp24);
 }
 
-void bsbarge_end(void){
-    ability_use(5);
+void bsbarge_end(void) {
+    ability_use(ABILITY_USED_BEAK_BARGE);
     func_8029E070(0);
     D_8037D2A6 = 0;
 }

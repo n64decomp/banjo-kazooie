@@ -142,7 +142,7 @@ void func_8038F6A4(Actor *this)
     {
       if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!player_movementGroup())) && (player_getTransformation() == TRANSFORM_1_BANJO))
       {
-        gcdialog_showText(0xC7E, 0, 0, 0, 0, 0);
+        gcdialog_showDialog(0xC7E, 0, 0, 0, 0, 0);
         this->has_met_before = TRUE;
       }
     }
@@ -163,7 +163,7 @@ void func_8038F6A4(Actor *this)
 
       if ((!this->unk138_23) && (!local->unk14))
       {
-        if (gcdialog_showText(0xC80, 0, 0, 0, 0, 0))
+        if (gcdialog_showDialog(0xC80, 0, 0, 0, 0, 0))
         {
           this->unk138_23 = 1;
         }
@@ -175,7 +175,7 @@ void func_8038F6A4(Actor *this)
       func_8038F610(this);
       if (actor_animationIsAt(this, 0.6f) && local->unk14)
     {
-      func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+      coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
       func_8028F94C(2, local->unk18);
     }
       if (actor_animationIsAt(this, 0.99f))
@@ -214,7 +214,7 @@ void func_8038F6A4(Actor *this)
       func_8028F918(0);
       if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0)
       {
-        gcdialog_showText(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, 0);
+        gcdialog_showDialog(0xC7F, 0xF, this->position, this->marker, func_8038F5E4, 0);
       }
       else
       {

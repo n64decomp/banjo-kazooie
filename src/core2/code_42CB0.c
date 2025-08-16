@@ -152,8 +152,8 @@ void chHoneycomb_update(Actor *this){
 
     for(i = 0; i < 4; i++){
         if(randf() < 0.03){
-            func_8033E73C(this->marker, i+5, func_80329904);
-            func_8033E3F0(8, this->marker->unk14_21);
+            commonParticle_add(this->marker, i+5, func_80329904);
+            commonParticle_new(8, this->marker->unk14_21);
         }
     }
 }

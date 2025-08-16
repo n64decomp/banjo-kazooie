@@ -49,7 +49,7 @@ void chnabnut_setState(Actor *this, s32 next_state) {
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0xB);
-        gcdialog_showText(0xCCC, 0x20, this->position, NULL, NULL, NULL);
+        gcdialog_showDialog(0xCCC, 0x20, this->position, NULL, NULL, NULL);
     }
 
     if (next_state == NABNUT_STATE_4_THANK_PLAYER) {
@@ -135,13 +135,13 @@ void chnabnut_update(Actor *this) {
         player_getPosition(sp30);
         if (!this->has_met_before && (ml_vec3f_distance(this->position, sp30) < 400.0f)) {
             this->has_met_before = TRUE;
-            gcdialog_showText(0xCCA, 0xE, this->position, NULL, NULL, NULL);
+            gcdialog_showDialog(0xCCA, 0xE, this->position, NULL, NULL, NULL);
         }
         if (item_getCount(ITEM_23_ACORNS) > 0) {
             func_80258A4C(this->position, this->yaw - 90.0f, sp30, &sp2C, &sp28, &sp24);
             this->yaw += sp24 * 10.0f;
         }
-        if (this->has_met_before && !func_803114B0()) {
+        if (this->has_met_before && !gcdialog_hasCurrentTextId()) {
             player_setCarryObjectPoseInCylinder(this->position, 500.0f, 200.0f, ACTOR_2A9_ACORN, &this);
             if ((carriedObj_getActorId() == ACTOR_2A9_ACORN) && (ml_vec3f_distance(this->position, sp30) < 300.0f) && player_throwCarriedObject()) {
                 player_setThrowTargetPosition(D_8038F350);
@@ -149,7 +149,7 @@ void chnabnut_update(Actor *this) {
                 if (local->returned_acorn_count == 6) {
                     chnabnut_setState(this, NABNUT_STATE_2_WAIT);
                 } else if (item_getCount(ITEM_23_ACORNS) == 1) {
-                    gcdialog_showText(0xCCB, 0x20, this->position, NULL, NULL, NULL);
+                    gcdialog_showDialog(0xCCB, 0x20, this->position, NULL, NULL, NULL);
                 }
             }
         }

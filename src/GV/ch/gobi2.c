@@ -108,7 +108,7 @@ void chGobi2_setState(Actor *this, s32 next_state){
     }
 
     if(next_state == 8){
-        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
+        sfx_playFadeShorthandDefault(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
         skeletalAnim_set(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 
@@ -201,9 +201,9 @@ void chGobi2_update(Actor *this){
 
     if(this->state == 2){
         if(!this->has_met_before){
-            if(func_80329530(this, 0xFA) && !func_80329530(this, 0x50)){
+            if(subaddie_playerIsWithinSphereAndActive(this, 0xFA) && !subaddie_playerIsWithinSphereAndActive(this, 0x50)){
                 if(func_8028F2A0()){
-                    if(gcdialog_showText(ASSET_A75_DIALOG_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
+                    if(gcdialog_showDialog(ASSET_A75_DIALOG_GOBI2_MEET, 0, this->position, NULL, NULL, NULL))
                         this->has_met_before = TRUE;
                 }
             }

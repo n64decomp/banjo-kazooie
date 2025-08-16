@@ -24,7 +24,7 @@ typedef struct {
 
 void projectile_setRoll(u8 indx, f32 angle);
 f32 projectile_getRoll(u8 indx);
-void func_8033FB64(u8 arg0);
+void projectile_freeByIndex(u8 arg0);
 
 /* .bss */
 Struct_B8860_0s D_80385000[0x32];
@@ -74,7 +74,7 @@ void func_8033FA24(void){
     int i;
     for(i = 1; i < 0x32; i++){
         if(D_80385000[i].unk28_13){
-            func_8033FB64(i);
+            projectile_freeByIndex(i);
         }
     }
 }
@@ -104,10 +104,11 @@ u8 func_8033FA84(void){
     return 0;
 }
 
-void func_8033FB64(u8 indx){
-    if(D_80385000[indx].sprite_0){
+void projectile_freeByIndex(u8 indx) {
+    if (D_80385000[indx].sprite_0) {
         assetCache_free(D_80385000[indx].sprite_0);
     }
+
     D_80385000[indx].sprite_0 = NULL;
     D_80385000[indx].unk28_13 = 0;
 }

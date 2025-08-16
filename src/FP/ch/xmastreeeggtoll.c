@@ -61,7 +61,7 @@ void func_80390D58(f32 position[3]){
 
 void func_80390E78(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
-    FUNC_8030E8B4(SFX_96_HOTSAND_EEL_HISS, 1.0f, 32000, this->position, 1000, 2000);
+    sfx_playFadeShorthandDefault(SFX_96_HOTSAND_EEL_HISS, 1.0f, 32000, this->position, 1000, 2000);
 }
 
 void func_80390EB0(Actor *this){
@@ -71,7 +71,7 @@ void func_80390EB0(Actor *this){
         marker_setCollisionScripts(this->marker, func_80390E78, NULL, NULL);
     }
 
-    if(viewport_func_8024DB50(this->position, 150.0f) || func_80329530(this, 1200))
+    if(viewport_func_8024DB50(this->position, 150.0f) || subaddie_playerIsWithinSphereAndActive(this, 1200))
     {
         if( !(globalTimer_getTime() & 3) && randf() < 0.2){
             func_80390C70(this->position);

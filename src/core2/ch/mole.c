@@ -77,19 +77,19 @@ enum asset_e chmole_learnedAllLevelAbilitiesDialog(void){
     int learned_all_moves = chmole_learnedAllLevelAbilities(level_id);
     switch(level_id){
         case LEVEL_1_MUMBOS_MOUNTAIN:
-            return learned_all_moves ? ASSET_B4E_DIALOG_BOTTLES_ALL_MM_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_B4E_DIALOG_BOTTLES_ALL_MM_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         case LEVEL_2_TREASURE_TROVE_COVE:
-            return learned_all_moves ? ASSET_A27_DIALOG_BOTTLES_ALL_TTC_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_A27_DIALOG_BOTTLES_ALL_TTC_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         case LEVEL_3_CLANKERS_CAVERN:
-            return learned_all_moves ? ASSET_D37_DIALOG_BOTTLES_ALL_CC_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_D37_DIALOG_BOTTLES_ALL_CC_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         case LEVEL_4_BUBBLEGLOOP_SWAMP:
-            return learned_all_moves ? ASSET_C8A_DIALOG_BOTTLES_ALL_BGS_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C8A_DIALOG_BOTTLES_ALL_BGS_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         case LEVEL_5_FREEZEEZY_PEAK:
-            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         case LEVEL_7_GOBIS_VALLEY:
-            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return learned_all_moves ? ASSET_C2A_DIALOG_BOTTLES_ALL_FP_GV_MOVES_LEARNED : ASSET_D38_DIALOG_EMPTY;
         default:
-            return ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED;
+            return ASSET_D38_DIALOG_EMPTY;
 
     }
 }
@@ -122,15 +122,15 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 void func_802D9530(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
-    if(this->unk100 && other){
-        if(this->unk100->id == 0xB8)
+    if(this->partnerActor && other){
+        if(this->partnerActor->id == 0xB8)
             subaddie_set_state_with_direction(other, 3, 0.0001f, 1);
     }
     subaddie_set_state_with_direction(this, 4, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
-    func_8030DD14(this->unk44_31, 2);
+    sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
     sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
     sfxsource_setSampleRate(this->unk44_31, 26000);
     func_8028F918(0);
@@ -145,7 +145,7 @@ void func_802D9600(Actor * this){
 // func_802D9658
 void chmole_setStaticCamera(Actor *this){
     // Sets the camera to a static camera
-    timed_setStaticCameraToNode(0.0f, moleTable[this->unkF4_8-9].camera_node);
+    timed_setStaticCameraToNode(0.0f, moleTable[this->actorTypeSpecificField-9].camera_node);
 }
 
 // func_802D9698
@@ -154,13 +154,13 @@ void chmole_healthRefill(ActorMarker *marker, enum asset_e arg1, s32 arg2){
     // Also releases the camera
     Actor *actor = marker_getActor(marker);
 
-    if( arg1 == moleTable[actor->unkF4_8-9].teach_text_id
+    if( arg1 == moleTable[actor->actorTypeSpecificField-9].teach_text_id
         && item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)
     ){
-        gcdialog_showText(ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+        gcdialog_showDialog(ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH, 7, 0, actor->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     }//L802D9738
-    else if(arg1 == moleTable[actor->unkF4_8-9].teach_text_id || arg1 == ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH){
-        gcdialog_showText(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
+    else if(arg1 == moleTable[actor->actorTypeSpecificField-9].teach_text_id || arg1 == ASSET_D39_DIALOG_BOTTLES_REFILL_HEALTH){
+        gcdialog_showDialog(chmole_learnedAllGameAbilities()? 0xa87 : chmole_learnedAllLevelAbilitiesDialog(), 7, 0, actor->marker, chmole_healthRefill, NULL);
     }
     else{//L802D97BC
         if(actor->has_met_before){
@@ -222,33 +222,33 @@ int chmole_learnAbility(Actor *this){
     s32 sp2C;
     s32 sp28 = 0xe;
     // Known Ability: Refresher Dialog
-    if(ability_isUnlocked(moleTable[this->unkF4_8-9].ability)){
+    if(ability_isUnlocked(moleTable[this->actorTypeSpecificField-9].ability)){
         sp28 = 0xf;
-        sp2C = moleTable[this->unkF4_8-9].refresher_text_id;
+        sp2C = moleTable[this->actorTypeSpecificField-9].refresher_text_id;
     }//L802D99EC
     // New Ability: Learn Dialog & Misc Actions
     else{
         func_80347A14(0);
         this->has_met_before = TRUE;
-        sp2C = moleTable[this->unkF4_8-9].teach_text_id;
-        ability_unlock(moleTable[this->unkF4_8-9].ability);
-        switch(moleTable[this->unkF4_8-9].ability){
+        sp2C = moleTable[this->actorTypeSpecificField-9].teach_text_id;
+        ability_unlock(moleTable[this->actorTypeSpecificField-9].ability);
+        switch(moleTable[this->actorTypeSpecificField-9].ability){
             case ABILITY_9_FLIGHT:
             case ABILITY_D_SHOCK_JUMP:
-                func_8030E6A4(SFX_113_PAD_APPEARS, 0.9f, 32000);
+                gcsfx_playWithPitch(SFX_113_PAD_APPEARS, 0.9f, 32000);
                 break;
             case ABILITY_13_1ST_NOTEDOOR:
                 func_802FAD64(ITEM_C_NOTE);
                 break;
         }
     }//L802D9A9C
-    gcdialog_showText(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
+    gcdialog_showDialog(sp2C, sp28, this->position, this->marker, chmole_healthRefill, chmole_additionalAbilityLearnActions);
     return TRUE;
 }
 
 void func_802D9ADC(Actor *this){
     Actor *other = subaddie_getLinkedActor(this);
-    if(this->unk100 && other && this->unk100->id == 0xB8){
+    if(this->partnerActor && other && this->partnerActor->id == 0xB8){
         subaddie_set_state_with_direction(other, 2, 0.0001f, 1);
     }
     this->marker->propPtr->unk8_3 = 1;
@@ -257,7 +257,7 @@ void func_802D9ADC(Actor *this){
     actor_playAnimationOnce(this);
     this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, SFX_3F9_UNKNOWN);
-    func_8030DD14(this->unk44_31, 2);
+    sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
     sfxsource_playSfxAtVolume(this->unk44_31, 1.4f);
     sfxsource_setSampleRate(this->unk44_31, 26000);
     chmole_setStaticCamera(this);
@@ -287,7 +287,7 @@ void chmole_spawnMolehill(ActorMarker *marker){
     Actor *other = spawn_child_actor(ACTOR_12C_MOLEHILL, &actor);
     f32 pad[1];
 
-    actor->unk100 = other->marker;
+    actor->partnerActor = other->marker;
     if(marker);
 }
 
@@ -302,11 +302,11 @@ void func_802D9C90(Actor *this){
 void chmole_startingDialog(Actor *this){
     // If the player knows the ability, use refresher function
     // Otherwise, set player's position and spawn mole
-    if(ability_isUnlocked(moleTable[this->unkF4_8 - 9].ability)){
+    if(ability_isUnlocked(moleTable[this->actorTypeSpecificField - 9].ability)){
         chmole_Refresher(this);
     }
     else{
-        if(func_80329530(this, 150)){
+        if(subaddie_playerIsWithinSphereAndActive(this, 150)){
             if(this->unk38_0 == 0)
                 func_8028F45C(9, this->position);
             else
@@ -328,7 +328,7 @@ void chmole_update(Actor *this){
 
     // Checks the actor's selector value is between 0x8 and 0x13
     // Anything lower is a Spiral Mountain ability, and should use a different actor id
-    if(this->unkF4_8 < 8 || this->unkF4_8 >= 0x13)
+    if(this->actorTypeSpecificField < 8 || this->actorTypeSpecificField >= 0x13)
         return;
     
     if(!this->volatile_initialized){
@@ -336,10 +336,10 @@ void chmole_update(Actor *this){
         marker_setFreeMethod(this->marker, func_802D9C90);
         if(this->initialized){
             other = actorArray_findClosestActorFromActorId(this->position, ACTOR_12C_MOLEHILL, -1, &sp4C);
-            this->unk100 = (other) ? other->marker : NULL;
-            if(this->unk100){
+            this->partnerActor = (other) ? other->marker : NULL;
+            if(this->partnerActor){
                 other = subaddie_getLinkedActor(this);
-                if(other && this->unk100->id == 0xB8){
+                if(other && this->partnerActor->id == 0xB8){
                     subaddie_set_state(other, 1);
                 }
             }
@@ -362,7 +362,7 @@ void chmole_update(Actor *this){
         this->marker->propPtr->unk8_3 = FALSE;
         this->marker->collidable = FALSE;
         this->initialized = TRUE;
-        if(this->unkF4_8 == 0x12){
+        if(this->actorTypeSpecificField == 0x12){
             node_prop = nodeprop_findByActorIdAndActorPosition(0x349, this);
             if(node_prop == NULL){
                 this->velocity[0] = this->position[0];
@@ -382,8 +382,8 @@ void chmole_update(Actor *this){
             this->yaw_ideal = func_80329784(this);
             func_80328FB0(this, 4.0f);
             if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
-                if( this->unkF4_8 == 0x12 
-                    && !ability_isUnlocked(moleTable[this->unkF4_8-9].ability)
+                if( this->actorTypeSpecificField == 0x12 
+                    && !ability_isUnlocked(moleTable[this->actorTypeSpecificField-9].ability)
                     && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)
                 ){
                     player_getPosition(sp34);
@@ -393,7 +393,7 @@ void chmole_update(Actor *this){
                 }
                 else{//L802DA054
                     if( !player_movementGroup() 
-                        && func_80329530(this, 0xFA)
+                        && subaddie_playerIsWithinSphereAndActive(this, 0xFA)
                         && func_8028EFC8()
                         && sp50[FACE_BUTTON(BUTTON_B)] == 1
                     ){
@@ -409,7 +409,7 @@ void chmole_update(Actor *this){
             if( 0.0 < anctrl_getAnimTimer(this->anctrl)
                 && anctrl_getAnimTimer(this->anctrl) < 0.16
             ){
-                func_8030E2C4(this->unk44_31);
+                sfxSource_func_8030E2C4(this->unk44_31);
             }//L802DA128
             if(actor_animationIsAt(this, 0.9999f)){
                 chmole_setFacingDirection(this);
@@ -417,13 +417,13 @@ void chmole_update(Actor *this){
                 this->unk44_31 = 0;
             }
             else if(actor_animationIsAt(this, 0.14f)){//L802DA154
-                FUNC_8030E8B4(SFX_C6_SHAKING_MOUTH, 1.2f, 24000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_C6_SHAKING_MOUTH, 1.2f, 24000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.4f)){//L802DA188
-                FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.2f, 24000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_2C_PULLING_NOISE, 1.2f, 24000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.75f)){//L802DA1BC
-                FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
             }
             else if(actor_animationIsAt(this, 0.35f)){//L802DA1EC
                 chmole_learnAbility(this);
@@ -462,7 +462,7 @@ void chmole_update(Actor *this){
             if( 0.35 < anctrl_getAnimTimer(this->anctrl) 
                 &&  anctrl_getAnimTimer(this->anctrl) < 0.9
             ){
-                func_8030E2C4(this->unk44_31);
+                sfxSource_func_8030E2C4(this->unk44_31);
             }
             else if(actor_animationIsAt(this, 0.9999f)){//L802DA45C
                 func_802D9600(this);

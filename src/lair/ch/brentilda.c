@@ -24,15 +24,15 @@ void func_8038BA30(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 
     this = marker_getActor(marker);
     phi_v1 = this->unk10_12*2;
-    volatileFlag_getN(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE + this->unkF4_8*6 + phi_v1, 2);
+    volatileFlag_getN(VOLATILE_FLAG_20_BEGIN_CHARACTER_PARADE + this->actorTypeSpecificField*6 + phi_v1, 2);
 }
 
-void lair_func_8038BA88(ActorMarker *marker, enum asset_e text_id, s32 arg2){
+void healDuoToFull(ActorMarker *marker, enum asset_e textId_unused, s32 arg2){
     Actor *this;
 
     this = marker_getActor(marker);
     item_set(ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL));
-    fileProgressFlag_set(this->unkF4_8 - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1, TRUE);
+    fileProgressFlag_set(this->actorTypeSpecificField - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1, TRUE);
 }
 
 void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
@@ -40,13 +40,13 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 
     this = marker_getActor(marker);
     if (text_id == ((ActorLocal_lair_5640 *)&this->local)->unk0 + 2) {
-        if (!fileProgressFlag_get(this->unkF4_8 - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1)) {
+        if (!fileProgressFlag_get(this->actorTypeSpecificField - 1 + FILEPROG_E9_HEALED_BY_BRENTILDA_1)) {
             if (item_getCount(ITEM_14_HEALTH) < item_getCount(ITEM_15_HEALTH_TOTAL)) {
-                gcdialog_showText(ASSET_10A2_DIALOG_UNKNOWN, 0xF, this->position, this->marker, func_8038BADC, lair_func_8038BA88);
+                gcdialog_showDialog(ASSET_10A2_DIALOG_BRENTILDA_HEAL, 0xF, this->position, this->marker, func_8038BADC, healDuoToFull);
                 return;
             }
         }
-        gcdialog_showText(ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED, 0xC, this->position, this->marker, func_8038BADC, NULL);
+        gcdialog_showDialog(ASSET_D38_DIALOG_EMPTY, 0xC, this->position, this->marker, func_8038BADC, NULL);
         return;
     }
     subaddie_set_state(this, 1);
@@ -111,7 +111,7 @@ void chBrentilda_update(Actor *this) {
     }
 
     if (!this->volatile_initialized) {
-        local->unk0 = this->unkF4_8*3 + 0x1080;
+        local->unk0 = this->actorTypeSpecificField*3 + 0x1080;
         this->volatile_initialized = TRUE;
     }
 
@@ -178,9 +178,9 @@ void chBrentilda_update(Actor *this) {
         if( (phi_f2 < 300.0) 
             && (player_movementGroup() == BSGROUP_0_NONE) 
             && func_8028F20C()
-            && !func_803114B0()) {
+            && !gcdialog_hasCurrentTextId()) {
             if (!fileProgressFlag_get(FILEPROG_96_MET_BRENTILDA)) {
-                gcdialog_showText(ASSET_10A1_DIALOG_BRENTILDA_MEET, 0xA, this->position, this->marker, func_8038BADC, NULL);
+                gcdialog_showDialog(ASSET_10A1_DIALOG_BRENTILDA_MEET, 0xA, this->position, this->marker, func_8038BADC, NULL);
                 fileProgressFlag_set(FILEPROG_96_MET_BRENTILDA, TRUE);
                 subaddie_set_state(this, 2);
                 return;
@@ -188,7 +188,7 @@ void chBrentilda_update(Actor *this) {
             if (func_8028EFC8() && (sp78[FACE_BUTTON(BUTTON_B)] == 1)) {
                 this->unk10_12++;
                 this->unk10_12 %= 3;
-                func_80311174(local->unk0 + this->unk10_12, 0xB, this->position, this->marker, func_8038BADC, NULL, func_8038BA30);
+                gcdialog_showDialogConditional(local->unk0 + this->unk10_12, 0xB, this->position, this->marker, func_8038BADC, NULL, func_8038BA30);
                 subaddie_set_state(this, 2);
                 return;
             }

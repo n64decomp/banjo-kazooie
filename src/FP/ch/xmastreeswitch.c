@@ -40,7 +40,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
     if(this->state == 2){
         this->unk38_31++;
         if(this->unk38_31 < 4){
-            func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+            coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
         }
     }
 }

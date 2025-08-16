@@ -41,7 +41,7 @@ void chChoirTurtle_setState(Actor *this, s32 next_state) {
         timed_playSfx(0.8333333, SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
     }
     if (next_state == 3) {
-        func_8030E6A4(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
+        gcsfx_playWithPitch(SFX_86_TIPTUP_CHORUS_AH, local->unk8, 0x7FFF);
         skeletalAnim_set(this->unk148, ASSET_12F_ANIM_CHOIR_TURTLE_HURT, 0.1f, 1.75f);
         skeletalAnim_setCallback_1(this->unk148, 0.9f, (GenFunction_1)chChoirTurtle_returnState, (s32)this->marker);
         if (local->tiptup_marker != NULL) {

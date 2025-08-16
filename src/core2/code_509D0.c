@@ -7,7 +7,7 @@ void chLevelCollectible_update(Actor *this);
 extern void func_80329904(ActorMarker *, s32, f32*);
 extern ActorMarker *func_8028E86C(void);
 extern void timed_mapSpecificFlags_setTrue(f32, s32);
-extern void func_8035646C(s32);
+extern void progressDialog_showDialogMaskFour(s32);
 
 ActorAnimationInfo D_80367B50[] = {
     {0, 0.0f},
@@ -90,7 +90,7 @@ s32 __chLevelCollectible_dialogCallback(ActorMarker *marker, enum asset_e text_i
 
 
 void __chLevelCollectible_callDialog(enum asset_e text_id){
-    func_80311174(text_id, 0, NULL, NULL, NULL, NULL, __chLevelCollectible_dialogCallback);
+    gcdialog_showDialogConditional(text_id, 0, NULL, NULL, NULL, NULL, __chLevelCollectible_dialogCallback);
 }
 
 void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker) {
@@ -111,34 +111,34 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
                     return;
                 }
 
-                func_8035646C(FILEPROG_8_ORANGE_TEXT);
+                progressDialog_showDialogMaskFour(FILEPROG_8_ORANGE_TEXT);
                 func_8030E6D4(SFX_B3_ORANGE_TALKING);
                 dialog_id = 0;
                 break;
                 
             case MARKER_37_GOLD_BULLION:
-                func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
-                timedFunc_set_1(0.5f, func_8035646C, FILEPROG_9_GOLD_BULLION_TEXT);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
+                timedFunc_set_1(0.5f, progressDialog_showDialogMaskFour, FILEPROG_9_GOLD_BULLION_TEXT);
                 dialog_id = 0;
                 break;
 
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
                 levelSpecificFlags_set(LEVEL_FLAG_2A_FP_UNKNOWN, TRUE);
-                func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
                 dialog_id = ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE;
                 break;
 
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
                 levelSpecificFlags_set(LEVEL_FLAG_2B_FP_UNKNOWN, TRUE);
-                func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_712_SPRITE_SPARKLE_GREEN);
                 dialog_id = ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN;
                 break;
 
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
                 levelSpecificFlags_set(LEVEL_FLAG_2C_FP_UNKNOWN, TRUE);
-                func_8025A6EC(COMUSIC_2B_DING_B, 0x7FFF);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
                 dialog_id = ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED;
                 break;
@@ -207,7 +207,7 @@ void __chLevelCollectible_returnObj(Actor *this) {
 
     local = (s32*)&this->local;
     if( (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) 
-        || (this->unk78_13 == 0)
+        || (this->secondaryId == 0)
     ) {
         this->position[0] += this->velocity[0];
         this->position[1] += (this->velocity[1] -= 5.0);
@@ -220,16 +220,16 @@ void __chLevelCollectible_returnObj(Actor *this) {
     }
     if (this->position[1] < sp20) {
         if (this->modelCacheIndex == ACTOR_2A_GOLD_BULLION) {
-            func_8025A6EC(COMUSIC_2B_DING_B, 32000);
+            coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 32000);
             if (mapSpecificFlags_get(1)) {
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
+                coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
             }
         }
         this->position[1] = sp20;
         if (this->marker->id != MARKER_36_ORANGE_COLLECTIBLE) {
-            FUNC_8030E8B4(SFX_21_EGG_BOUNCE_1, 0.76f, 25000, this->position, 1000, 2000);
+            sfx_playFadeShorthandDefault(SFX_21_EGG_BOUNCE_1, 0.76f, 25000, this->position, 1000, 2000);
         } else {
-            FUNC_8030E8B4(SFX_B3_ORANGE_TALKING, 1.0f, 25000, this->position, 1000, 2000);
+            sfx_playFadeShorthandDefault(SFX_B3_ORANGE_TALKING, 1.0f, 25000, this->position, 1000, 2000);
         }
         if (this->state == 4) {
             switch (this->marker->id) {
@@ -237,18 +237,18 @@ void __chLevelCollectible_returnObj(Actor *this) {
                 break;
             case MARKER_36_ORANGE_COLLECTIBLE:
                 timed_mapSpecificFlags_setTrue(1.7f, MM_SPECIFIC_FLAG_2_ORANGE_HAS_BEEN_RETURNED);
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+                coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
                 break;
             case MARKER_1FD_BLUE_PRESENT_COLLECTIBLE:
-                func_8025A6EC(COMUSIC_2B_DING_B, 32000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(LEVEL_FLAG_11_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
-                func_8025A6EC(COMUSIC_2B_DING_B, 32000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(LEVEL_FLAG_12_FP_UNKNOWN, TRUE);
                 break;
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
-                func_8025A6EC(COMUSIC_2B_DING_B, 32000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 32000);
                 levelSpecificFlags_set(LEVEL_FLAG_13_FP_UNKNOWN, TRUE);
                 break;
             }
@@ -295,8 +295,8 @@ void func_802D83EC(Actor *this) {
     // temp_f20 = D_80376D70;
     for(var_s0 = 0; var_s0 < 10; var_s0++){
         if (randf() < 0.03) {
-            func_8033E73C(this->marker, var_s0 + 5, func_80329904);
-            func_8033E3F0(8, this->marker->unk14_21);
+            commonParticle_add(this->marker, var_s0 + 5, func_80329904);
+            commonParticle_new(8, this->marker->unk14_21);
         }
     }
     this->yaw = this->yaw + time_getDelta() * 25.0f;

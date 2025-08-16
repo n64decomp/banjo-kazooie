@@ -99,7 +99,7 @@ void func_8034B33C(s32 arg0) {
     func_802E412C(1, 0xB);
     func_802E40C4(7);
     D_80386114 = sp18;
-    D_80386124 = func_802C5A30();
+    D_80386124 = gameSelect_getGameNumber();
 }
 
 void func_8034B3A4(enum map_e map_id, s32 exit_id) {
@@ -107,7 +107,7 @@ void func_8034B3A4(enum map_e map_id, s32 exit_id) {
     func_802E412C(1, 8);
     func_802E40C4(8);
     D_80386114 = &D_80371F70;
-    D_80386124 = func_802C5A30();
+    D_80386124 = gameSelect_getGameNumber();
 }
 
 
@@ -123,7 +123,7 @@ void func_8034B3F0(s32 arg0) {
     }
     func_802E40C4(0xC);
     D_80386114 = temp_s0;
-    D_80386124 = func_802C5A30();
+    D_80386124 = gameSelect_getGameNumber();
 }
 
 
@@ -269,7 +269,7 @@ void func_8034BA7C(enum map_e map_id, s32 exit_id){
 
 void func_8034BA9C(void) {
     if (func_8034BAFC() != -1) {
-        func_802C5A3C(func_8034BAFC());
+        gameSelect_setGameNumber(func_8034BAFC());
         gameFile_load(func_8034BAFC());
         func_80347AA8();
     }

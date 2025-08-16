@@ -19,11 +19,11 @@ void func_802F4200(f32 arg0[3]){
 }
 
 void func_802F422C(void){
-    func_802F1190(D_80380AA0);
+    pem_free(D_80380AA0);
 }
 
 void func_802F4250(void){
-    D_80380AA0 = func_802F0F78(3);
+    D_80380AA0 = pem_newEmitter(3);
 }
 
 ParticleEmitter *func_802F4274(f32 arg0[3]) {
@@ -45,7 +45,7 @@ ParticleEmitter *func_802F4274(f32 arg0[3]) {
     sp2C[0] += sp44[0];
     sp2C[1] += sp44[1];
     sp2C[2] += sp44[2];
-    temp_v0 = func_802F0EF0(D_80380AA0);
+    temp_v0 = pem_getEmitterByIndex(D_80380AA0);
     if (sp20 != 0) {
         func_802EFAB0(temp_v0, sp20, sp2C[1]);
     }
