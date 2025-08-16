@@ -326,7 +326,7 @@ extern s32 func_802F9AA8(enum sfx_e);
 Actor * func_803055E0(enum actor_e id, s32 pos[3], s32 arg2, s32 arg3, s32 arg4);
 Actor * __actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 yaw);
 f32  mapModel_getFloorY(f32[3]);
-BKModelBin *func_8030A428(s32);
+BKModelBin *propModelList_getModel(s32);
 u8   sfxsource_createSfxsourceAndReturnIndex(void);
 void sfxsource_setSfxId(u8 indx, enum sfx_e uid);
 void sfxsource_playSfxAtVolume(u8, f32);

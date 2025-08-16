@@ -27,7 +27,7 @@ void func_8025357C(void){
     osSendMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
 }
 
-void func_802535A8(Gfx **arg0, Gfx **arg1, UNK_TYPE(s32) arg2, UNK_TYPE(s32) arg3) {
+void func_802535A8(Acmd *arg0, Acmd *arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3) {
     Struct_Core1_15B30 *sp1C;
 
     func_80253550();

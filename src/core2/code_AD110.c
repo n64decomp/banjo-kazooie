@@ -64,7 +64,7 @@ extern void warp_lairEnterCCWPuzzleFromPointingGruntyStatueRoom(s32, s32);
 extern void warp_lairEnterPointingGruntyStatueFromCCWPuzzleRoom(s32, s32);
 extern void warp_lairEnterRBBLobbyFromRBBPuzzleRoom(s32, s32);
 extern void warp_lairEnterRBBLobbyFromMMMPuzzleRoom(s32, s32);
-extern void func_80334430(s32, s32);
+extern void func_80334430(NodeProp *, ActorMarker  *);
 extern void func_80363388(s32, s32);
 extern void chOrangePad_handleOrangeCollision(s32, s32);
 extern void func_80388BEC(s32, s32);
@@ -289,17 +289,19 @@ extern void warp_gvEnterSNSChamper(s32, s32);
 extern void warp_gvExitSNSChamper(s32, s32);
 extern void warp_lairEnterLairFromSMLevel(s32, s32);
 
-extern void func_802C1674(s32, s32);
-extern void func_802C169C(s32, s32);
-extern void chTreasurehunt_checkStepProgress0(s32, s32);
-extern void chTreasurehunt_checkStepProgress1(s32, s32);
-extern void chTreasurehunt_checkStepProgress2(s32, s32);
-extern void chTreasurehunt_checkStepProgress3(s32, s32);
-extern void chTreasurehunt_checkStepProgress4(s32, s32);
-extern void chTreasurehunt_checkStepProgress5(s32, s32);
-extern void chMumbo_detransformWarn(s32, s32);
-extern void chMumbo_detransformTrigger(s32, s32);
+extern void func_802C1674(NodeProp *, ActorMarker *);
+extern void func_802C169C(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress0(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress1(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress2(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress3(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress4(NodeProp *, ActorMarker *);
+extern void chTreasurehunt_checkStepProgress5(NodeProp *, ActorMarker *);
+extern void chMumbo_detransformWarn(NodeProp *, ActorMarker *);
+extern void chMumbo_detransformTrigger(NodeProp *, ActorMarker *);
 extern void func_8033443C(NodeProp *arg0, ActorMarker *arg1);
+
+typedef void (*CodeAD110Callback)(NodeProp *arg0, ActorMarker *arg1);
 
 
 typedef struct {
@@ -310,10 +312,9 @@ typedef struct {
     u8 pad1D[3];
 }Struct_core2_AD110_0;
 
-typedef void (*CodeAD110Callback)(NodeProp *arg0, ActorMarker *arg1);
 
 /* .data */
-CodeAD110Callback sWarpFunctions[] = {
+void * sWarpFunctions[] = {
     func_80388BEC, func_80334430, chOrangePad_handleOrangeCollision, chOrangePad_handleOrangeCollision,
     chOrangePad_handleOrangeCollision, warp_gvEnterJinxy, warp_gvExitJinxy, func_8038F10C,
     func_8038F130, warp_bgsEnterMumbosHut, warp_bgsExitMumbosHut, warp_ttcExitNipper,
@@ -545,7 +546,7 @@ void func_803343F8(s32 indx){
 
 void func_80334428(void){}
 
-void func_80334430(s32 arg0, s32 arg1){}
+void func_80334430(NodeProp *arg0, ActorMarker *arg1){}
 
 void func_8033443C(NodeProp *arg0, ActorMarker *arg1){}
 
@@ -556,7 +557,7 @@ void func_80334448(NodeProp *arg0, ActorMarker *arg1) {
         case 3: // warp (L80334480)
             global_timer_time = globalTimer_getTime();
             if ((codeA5BC0_getNodePropUnkC(arg0) + 1) != global_timer_time) {
-                sWarpFunctions[codeA5BC0_getNodePropUnk8(arg0)](arg0, arg1);
+                ((CodeAD110Callback) sWarpFunctions[codeA5BC0_getNodePropUnk8(arg0)])(arg0, arg1);
             }
             codeA5BC0_setNodePropUnkC(arg0, global_timer_time);
             break;

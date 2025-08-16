@@ -10,10 +10,17 @@
 void spawnQueue_unlock(void);
 void spawnQueue_lock(void);
 
+extern Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 pos[3], s32 yaw);
+extern Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 yaw);
+extern Actor *bundle_spawn_s32(enum bundle_e bundle_id, s32 position[3]);
+extern Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]);
+
+
 Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
 Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
+
 
 extern ActorInfo gameSelect_banjoSleeping; //banjo.without_right_hand
 extern ActorInfo gameSelect_banjoGameboy; //banjo.playing_gameboy
@@ -417,7 +424,7 @@ void spawnQueue_free(void){
 void spawnQueue_func_802C39D4(void){
     func_803268B4();
     if(!levelSpecificFlags_validateCRC2()){
-        eeprom_writeBlocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, (void*)0x80749530, EEPROM_MAXBLOCKS);
     }
 }
 

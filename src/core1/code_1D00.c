@@ -40,10 +40,6 @@ typedef struct Struct_1D00_3_s{
     u32 unk10;
 } Struct_1D00_3;
 
-typedef struct{
-    u8 pad0[0x18];
-}Struct_core1_1D00_4;
-
 typedef struct struct_core1_1D00_5_s{
     struct struct_core1_1D00_5_s * next;
     u8 type;
@@ -154,7 +150,7 @@ s32  D_8027D004;
 OSMesgQueue D_8027D008;
 OSMesg D_8027D020[3000/FRAMERATE];
 OSIoMesg D_8027D0E8;
-Struct_core1_1D00_4 D_8027D100[3000/FRAMERATE];
+OSIoMesg D_8027D100[3000/FRAMERATE];
 struct {
     u8 unk0;
     Struct_1D00_3 *unk4;
@@ -474,9 +470,9 @@ s32 func_80240204(s32 addr, s32 len, void *state){
         return osVirtualToPhysical(D_8027D5B0.unk4);
     }
     D_8027D5B0.unk8 = phi_s0->unk0.next;
-    alUnlink(phi_s0);
+    alUnlink(&phi_s0->unk0);
     if (sp30 != NULL) {
-        alLink(phi_s0, sp30);
+        alLink(&phi_s0->unk0, &sp30->unk0);
     } else {
         phi_v0 = D_8027D5B0.unk4;
         if (phi_v0 != NULL) {
@@ -559,7 +555,7 @@ s32 func_80240204(s32 addr, s32 len, void *state){
 void *func_802403B8(void *state) {
     if (D_8027D5B0.unk0 == 0) {
         D_8027D5B0.unk4 = NULL;
-        D_8027D5B0.unk8 = &D_8027D5C0;
+        D_8027D5B0.unk8 = D_8027D5C0;
         D_8027D5B0.unk0 = 1;
     }
     *(void **)state = &D_8027D5B0;
@@ -591,9 +587,9 @@ void func_802403F0(void) {
         phi_s1 = (Struct_1D00_3 *)phi_s0_2->unk0.next;
         if (phi_s0_2->unkC + 1 < D_8027DCC8) {
             if (phi_s0_2 == D_8027D5B0.unk4) {
-                D_8027D5B0.unk4 = phi_s0_2->unk0.next;
+                D_8027D5B0.unk4 = (Struct_1D00_3 *)phi_s0_2->unk0.next;
             }
-            alUnlink(phi_s0_2);
+            alUnlink(&phi_s0_2->unk0);
             if (D_8027D5B0.unk8 != NULL) {
                 alLink(&phi_s0_2->unk0, &D_8027D5B0.unk8->unk0);
             } else {

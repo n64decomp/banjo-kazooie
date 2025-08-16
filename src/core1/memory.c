@@ -347,7 +347,7 @@ void *malloc(s32 size){
         D_80283234 = NULL;
         func_803306C8(2);
         if(!func_80254B84(0))
-            func_8030A850(2);
+            propModelList_flush(2);
 
         if(!func_80254B84(0))
             animCache_flushStale();
@@ -364,7 +364,7 @@ void *malloc(s32 size){
             func_803306C8(3); //modelCache
 
             if(!func_80254B84(0))
-                func_8030A850(3); //propModelCache
+                propModelList_flush(3); //propModelCache
             
             if(!func_80254B84(0))
                 func_8032AD7C(2); //actorArray

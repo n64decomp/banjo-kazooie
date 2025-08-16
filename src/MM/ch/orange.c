@@ -95,7 +95,7 @@ Actor *chorange_draw(ActorMarker *this, Gfx **dl, Mtx **mptr, Vtx **vtx) {
 
         modelRender_setAlpha((s32) MIN(255.0f, actorPtr->lifetime_value));
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-        modelRender_draw(dl, mptr, position, rotation, actorPtr->actor_specific_1_f, sp60, func_8030A428(0x18));
+        modelRender_draw(dl, mptr, position, rotation, actorPtr->actor_specific_1_f, sp60, propModelList_getModel(0x18));
         actorPtr->position_y -= 1.9;
 
         if (actorPtr->actor_specific_1_f < 2.428) {

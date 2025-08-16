@@ -159,7 +159,7 @@ void func_80334910(void) {
     cubeList_free();
     func_8031B710();
     mapModel_free();
-    func_8030A6B0();
+    propModelList_free();
     lighting_free();
     sky_free();
     func_8034C8D8();
@@ -233,7 +233,7 @@ void func_80334B20(enum map_e map, s32 arg1, s32 arg2) {
     pem_setAllInactive();
     pem_initDependencies();
     func_802F7D30();
-    func_8030A78C();
+    propModelList_init();
     lighting_init();
     sky_reset();
     func_803343D0();
@@ -337,7 +337,7 @@ s32 func_80334ECC(void) {
         func_803465E4();
         func_8031B790();
         func_8034C9D4();
-        func_8030A850(1);
+        propModelList_flush(1);
         sky_update();
         partEmitMgr_update();
         func_8034F918();

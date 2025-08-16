@@ -769,7 +769,7 @@ segments:
   # - [0xFD00C0, c, fx/airscore] #DONE
   # - [0xFD08E0, c, code_7AF80]
   # - [0xFD7960, c, mapModel] #DONE
-  # - [0xFD8CA0, c, code_83340] #DONE
+  # - [0xFD8CA0, c, propModelList] #DONE
   # - [0xFD96D0, c, gc/section] #DONE
   # - [0xFD9A30, c, gc/sky] #DONE
   # - [0xFD9DD0, c, gc/transition] #DONE
@@ -1045,7 +1045,7 @@ segments:
   # - [0x1039330, .data, fx/airscore]
   # - [0x1039380, .data, code_7AF80]
   # - [0x10395B0, .data, mapModel]
-  # - [0x103A1D0, .data, code_83340]
+  # - [0x103A1D0, .data, propModelList]
   # - [0x103A1E0, .data, gc/section]
   # - [0x103A710, .data, gc/sky]
   # - [0x103AB20, .data, gc/transition]
@@ -1293,7 +1293,7 @@ segments:
   # - [0x1045E60, .rodata, fx/airscore]
   # - [0x1045E80, .rodata, code_7AF80]
   # - [0x1045F40, .rodata, mapModel]
-  # - [0x1046100, .rodata, code_83340]
+  # - [0x1046100, .rodata, propModelList]
   # - [0x1046110, .rodata, gc/section]
   # - [0x1046E10, .rodata, gc/sky]
   # - [0x1046E20, .rodata, gc/transition]
@@ -1560,7 +1560,7 @@ segments:
   # - [0x0106C980, .bss, fx/airscore]
   # - [0x0106C980, .bss, code_7AF80]
   # - [0x0106C980, .bss, mapModel]
-  # - [0x0106C980, .bss, code_83340]
+  # - [0x0106C980, .bss, propModelList]
   # - [0x0106C980, .bss, gc/section]
   # - [0x0106C980, .bss, gc/sky]
   # - [0x0106C980, .bss, gc/transition]

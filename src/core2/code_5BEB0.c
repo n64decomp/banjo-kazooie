@@ -57,7 +57,7 @@ void mapSavestate_save(enum map_e map)
   valPtr = (u32 *) D_8037E650[map];
   *valPtr = mapSpecificFlags_getAll();
   iBit = 0x20;
-  func_80308230(1);
+  cubeList_sort(1);
   func_803083B0(-1);
   for (reg_s4 = func_803083B0(-2); reg_s4 != (-1); reg_s4 = func_803083B0(-2))
   {
@@ -96,7 +96,7 @@ void mapSavestate_apply(enum map_e map_id) {
     flag_ptr = reinterpret_cast(u32*, D_8037E650[map_id]);
     mapSpecificFlags_setAll(*flag_ptr);
     iBit += 8 * sizeof(u32);
-    func_80308230(1);
+    cubeList_sort(1);
     func_803083B0(-1);
 
     while (
@@ -105,7 +105,7 @@ void mapSavestate_apply(enum map_e map_id) {
     ) {
         iBit++;
     }
-    func_80308230(0);
+    cubeList_sort(0);
 
     actor_list_ptr = (ActorListSaveState *)D_8037E650[map_id] + (((iBit + (0x80 - 1)) >> 7) * 4);
     func_8032A09C(D_8037E650[map_id], actor_list_ptr);

@@ -11,9 +11,6 @@ extern BKModel *mapModel_getModel(s32);
 extern u8 gCompletedBottleBonusGames[7];
 
 /* .h */
-static void __maCastle_resetSecretCheatCodeProgress(void);
-static u32 __maCastle_scrambleAddressForSecretCheatCode();
-
 typedef struct
 {
     u8 *code;
@@ -43,7 +40,12 @@ typedef struct
     s16 maxId;
 } BannedCheatCodeRange;
 
+
+static void __maCastle_resetSecretCheatCodeProgress(void);
+static u32 __maCastle_scrambleAddressForSecretCheatCode();
 static s32 __maCastle_getNumberOfBannedCheatCodesEntered();
+static bool __maCastle_isFloorTileValidForSecretCheatCode(LetterFloorTile *floor_tile);
+static bool __maCastle_isCurrentSecretCheatCodeCharacter0();
 
 /* .data */
 static s32 sSecretCheatCodeRelatedValue = NULL;

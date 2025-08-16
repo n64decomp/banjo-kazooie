@@ -349,7 +349,7 @@ bool func_8032C850(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3, bool nonactor)
     func_80320ED8(actor->marker, temp_f0 / 2, 2);
     actor->marker->collidable = stored_collidability;
     for (var_v1 = func_8032F528(); var_v1 != NULL; var_v1 = func_8032F528()) {
-        if (nonactor || (var_v1->markerFlag && (var_v1->actorProp.marker->id == actor->marker->id))) {
+        if (nonactor || (var_v1->is_actor && (var_v1->actorProp.marker->id == actor->marker->id))) {
             D_803833D0 = var_v1;
             actor->position[0] = (f32) arg1[0];
             actor->position[1] = (f32) arg1[1];

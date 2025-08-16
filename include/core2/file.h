@@ -43,7 +43,7 @@ void file_getShort(File *file, s16 *dst);
 void file_getNShorts(File *file, s16 *dst, s32 cnt);
 bool file_isNextByteExpected(File *file, s32 expected);
 bool file_getByte_ifExpected(File *file, s32 expected, u8 *dst);
-bool file_getNBytes_ifExpected(File *file, s32 expected, u8 *dst, s32 cnt);
+bool file_getNBytes_ifExpected(File *file, s32 expected, void *dst, s32 cnt);
 bool file_getFloat_ifExpected(File *file, s32 expected, f32 *dst);
 bool file_getNFloats_ifExpected(File *file, s32 expected, f32 *dst, s32 cnt);
 bool file_getWord_ifExpected(File *file, s32 expected, s32 *dst);

@@ -201,17 +201,17 @@ Struct68s * func_8035126C(f32 position[3], f32 arg1[3], f32 arg2, s32 arg3, enum
 void func_803513EC(ModelProp *arg0, s32 arg1) {
     f32 sp3C[3];
     s32 pad30;
-    f32 sp2C[3];
+    f32 rotation[3];
 
     arg0->unkB_5 = TRUE;
     arg0->unkB_4 = FALSE;
-    sp3C[0] = (f32) arg0->unk4[0];
-    sp3C[1] = (f32) arg0->unk4[1];
-    sp3C[2] = (f32) arg0->unk4[2];
-    sp2C[0] = 0.0f;
-    sp2C[1] = (f32) (arg0->unk0_15 * 2);
-    sp2C[2] = (f32) (arg0->unk0_7 * 2);
-    func_8035126C(sp3C, sp2C, (f32) (arg0->unkA / 100.0), arg1, arg0->unk0_31 + 0x2D1);
+    sp3C[0] = (f32) arg0->position[0];
+    sp3C[1] = (f32) arg0->position[1];
+    sp3C[2] = (f32) arg0->position[2];
+    rotation[0] = 0.0f;
+    rotation[1] = (f32) (arg0->yaw * 2);
+    rotation[2] = (f32) (arg0->roll * 2);
+    func_8035126C(sp3C, rotation, (f32) (arg0->scale / 100.0), arg1, arg0->model_index + 0x2D1);
 }
 
 

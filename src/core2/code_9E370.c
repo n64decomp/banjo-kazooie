@@ -1055,7 +1055,7 @@ static void __actor_free(ActorMarker *arg0, Actor *arg1){
     marker_free(arg0);
 }
 
-Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 (* pos)[3], s32 rot){
+Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 rot){
     return __actor_spawnWithYaw_s32(id, pos, rot);
 }
 
@@ -1095,12 +1095,12 @@ Actor *func_80328230(enum actor_e id, f32 pos[3], f32 rot[3]){
     return actor;
 }
 
-Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 (* pos)[3], s32 yaw){
+Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 pos[3], s32 yaw){
     s32 sp24[3];
     int i;
 
     for(i = 0; i< 3; i++){
-        sp24[i] = (*pos)[i];
+        sp24[i] = pos[i];
     }
 
     return __actor_spawnWithYaw_s32(id, &sp24, yaw);

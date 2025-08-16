@@ -820,9 +820,9 @@ void __baMarker_resolveCollision(Prop *other_prop){
             func_8032B258(actor, obj_collision_type);
         }
     }
-    else if(other_prop->unk8_1)//L8028D0B0 //ModelProp
+    else if(other_prop->is_3d)//L8028D0B0 //ModelProp
     {
-        tmp2 = other_prop->modelProp.unk0_31 + 0x2D1;
+        tmp2 = other_prop->modelProp.model_index + 0x2D1;
         switch (tmp2)
         {
         case 0x2E8:
@@ -837,7 +837,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
         }
     }
     else{//L8028D10C //SpriteProp
-        tmp3 = other_prop->spriteProp.unk0_31 + 0x572;
+        tmp3 = other_prop->spriteProp.sprite_index + 0x572;
         switch (tmp3)
         {
         case 0x6D6: //L8028D144
@@ -927,7 +927,7 @@ void baMarker_update(void){
             func_80320ED8(playerMarker, temp_s0_2[i], 1);
             while(other_prop = func_8032F528()){//L8028D480
                 if(!other_prop->unk8_2){
-                    if(!D_8037BF8C && other_prop->markerFlag && other_prop->unk8_1){
+                    if(!D_8037BF8C && other_prop->is_actor && other_prop->is_3d){
                         D_8037BF8C = other_prop->actorProp.marker;
                     }
                     __baMarker_resolveCollision(other_prop);
