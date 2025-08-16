@@ -73,8 +73,8 @@ void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
 
     func_8030AFD8(0);
     func_80321854();
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     func_803216D0(map_get());
     func_8030AFA0(map_get());
     volatileFlag_set(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE, 1);

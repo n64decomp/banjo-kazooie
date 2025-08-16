@@ -54,7 +54,7 @@ void chbat_exitRoost(Actor *this){
         subaddie_set_state_with_direction(this, CH_BAT_STATE_EXIT_ROOST, 0.01f, 1);
         actor_playAnimationOnce(this);
         this->actor_specific_1_f = 5.0f;
-        FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
+        sfx_playFadeShorthandDefault(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 0x4e2, 0x9c4);
     }
 }
 
@@ -166,13 +166,13 @@ bool chbat_nearPlayer(Actor *this) {
     }
 
     if (this->unk38_31 != 0) {
-        if (func_80329530(this, 0) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
+        if (subaddie_playerIsWithinSphereAndActive(this, 0) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
             return TRUE;
         }
         this->unk38_31--;
         return FALSE;
     }
-    if (func_80329530(this, 800) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
+    if (subaddie_playerIsWithinSphereAndActive(this, 800) && (sp24[1] <= (this->unk1C[1] - 40.0f))) {
         return TRUE;
     }
 
@@ -381,7 +381,7 @@ void chBat_dieCollision(ActorMarker *this_marker, ActorMarker *other_marker){
     chBat_fall(this);
     local->cooldown = 0.0f;
     this->marker->collidable = FALSE;
-    FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.3f, 26000, this->position, 1250, 2500);
+    sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 1.3f, 26000, this->position, 1250, 2500);
 }
 
 void chBat_attackCollision(ActorMarker *this_marker, ActorMarker *other_marker){
@@ -436,7 +436,7 @@ void chbat_update(Actor *this){
             else{
                 if(!(globalTimer_getTime() & 0xf)){
                     if(randf() < 0.35){
-                        FUNC_8030E8B4(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 1250, 2500);
+                        sfx_playFadeShorthandDefault(SFX_419_UNKNOWN, 1.0f, 28000, this->position, 1250, 2500);
                     }
                 }
             }//L80360A40
@@ -484,7 +484,7 @@ void chbat_update(Actor *this){
                 this->position_y =  mapModel_getFloorY(this->position);
                 subaddie_set_state_with_direction(this, CH_BAT_STATE_DIE, 0.01f, 1);
                 actor_playAnimationOnce(this);
-                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
+                gcsfx_playWithPitch(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200);
             }
             else{//L80360CC4
                 this->position_y += this->velocity_x * sp34;

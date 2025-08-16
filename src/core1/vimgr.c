@@ -226,7 +226,7 @@ void viMgr_entry(void *arg0){
         D_802808D8++;
         if(D_802808D8 == 420){
 #if VERSION == VERSION_USA_1_0
-            func_802485BC();
+            gcdebugText_isThreadLocked();
 #endif
         }
         osSendMesg(&sMesgQueue3, NULL, OS_MESG_NOBLOCK);

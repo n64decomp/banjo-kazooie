@@ -136,8 +136,8 @@ void chbossjinjo_func_8038C79C(Actor *this) {
 
     for (i = 0; i < 4; i++) {
         if (randf() < 0.3) {
-            func_8033E73C(this->marker, i + 5, func_80329904);
-            func_8033E3F0(8, this->marker->unk14_21);
+            commonParticle_add(this->marker, i + 5, func_80329904);
+            commonParticle_new(8, this->marker->unk14_21);
         }
     }
 }
@@ -226,30 +226,30 @@ void chBossJinjo_update(Actor *this){
                 
                 if (actor_animationIsAt(this, 0.1f)) {
                     this->unk44_31 = func_8030ED2C(0x18, 3);
-                    func_8030E2C4(this->unk44_31);
-                    func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7fff);
-                    FUNC_8030E8B4(SFX_C7_SHWOOP, 0.8f, 32750, this->position, 300, 2000);
+                    sfxSource_func_8030E2C4(this->unk44_31);
+                    coMusicPlayer_playMusic(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7fff);
+                    sfx_playFadeShorthandDefault(SFX_C7_SHWOOP, 0.8f, 32750, this->position, 300, 2000);
                 }
 
                 if (actor_animationIsAt(this, 0.434f)) {
-                    FUNC_8030E8B4(SFX_C7_SHWOOP, 0.9f, 32750, this->position, 300, 2000);
+                    sfx_playFadeShorthandDefault(SFX_C7_SHWOOP, 0.9f, 32750, this->position, 300, 2000);
                 }
 
                 if (actor_animationIsAt(this, 0.811f)) {
-                    FUNC_8030E8B4(SFX_C7_SHWOOP, 1.0f, 32750, this->position, 300, 2000);
+                    sfx_playFadeShorthandDefault(SFX_C7_SHWOOP, 1.0f, 32750, this->position, 300, 2000);
                 }
             } else {
                 if (actor_animationIsAt(this, 0.214f)) {
-                    FUNC_8030E8B4(SFX_C7_SHWOOP, 1.1f, 32750, this->position, 300, 2000);
+                    sfx_playFadeShorthandDefault(SFX_C7_SHWOOP, 1.1f, 32750, this->position, 300, 2000);
                 }
 
                 if (actor_animationIsAt(this, 0.55f)) {
-                    FUNC_8030E8B4(SFX_53_BANJO_HUIII, 1.5f, 32750, this->position, 300, 2000);
+                    sfx_playFadeShorthandDefault(SFX_53_BANJO_HUIII, 1.5f, 32750, this->position, 300, 2000);
                 }
                 
                 if (actor_animationIsAt(this, 0.85f)) {
                     if(func_8030E3FC(this->unk44_31)) {
-                        func_8030E394(this->unk44_31);
+                        sfxSource_triggerCallbackByIndex(this->unk44_31);
                     }
 
                     sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
@@ -266,7 +266,7 @@ void chBossJinjo_update(Actor *this){
                 if (actor_animationIsAt(this, 0.9f)) {
                     anctrl_setSmoothTransition(this->anctrl, FALSE);
                     subaddie_set_state_with_direction(this, BOSSJINJO_STATE_5_HIT, 0.001f, 1);
-                    FUNC_8030E8B4(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
+                    sfx_playFadeShorthandDefault(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
                     func_8034A174(this->marker->unk44, 0x1f, this->position);
 
@@ -342,7 +342,7 @@ void chBossJinjo_update2(Actor *this) {
             }
 
             if (0.98 < this->unk48) {
-                func_8030E6A4(0x3ee, randf2(1.0f, 1.15f), 32000);
+                gcsfx_playWithPitch(0x3ee, randf2(1.0f, 1.15f), 32000);
                 timed_playSfx(0.1f, 0x416, 0.6f, 32000);
                 marker_despawn(this->marker);
 
@@ -379,7 +379,7 @@ void chbossjinjo_attack(ActorMarker *marker) {
     Actor *actor_bossjinjo = marker_getActor(marker);
 
     chbossjinjo_spawnAttackParticles(actor_bossjinjo);
-    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor_bossjinjo->position, 1000, 6500);
+    sfx_playFadeShorthandDefault(SFX_1B_EXPLOSION_1, 1.0f, 32000, actor_bossjinjo->position, 1000, 6500);
     marker_despawn(actor_bossjinjo->marker);
 }
 

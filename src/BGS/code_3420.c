@@ -221,7 +221,7 @@ void func_80389C58(ActorMarker *marker) {
     this = marker_getActor(marker);
     local = (ActorLocal_BGS_3420 *)&this->local;
     BGS_func_80389850(this, 0);
-    gcdialog_showText(D_80390984[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389BF8, NULL);
+    gcdialog_showDialog(D_80390984[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389BF8, NULL);
 }
 
 void BGS_func_80389CD8(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -241,9 +241,9 @@ void func_80389D20(ActorMarker *marker) {
     local = (ActorLocal_BGS_3420 *)&this->local;
     BGS_func_80389850(this, 0);
     if (local->unkC == local->unkD) {
-        gcdialog_showText(D_803909A4[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
+        gcdialog_showDialog(D_803909A4[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     } else {
-        gcdialog_showText(D_803909C0[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
+        gcdialog_showDialog(D_803909C0[local->unkC], 0xF, chVile_getPostion(local->vile_marker), this->marker, BGS_func_80389CD8, NULL);
     }
     func_80347A14(0);
 }
@@ -265,7 +265,7 @@ void func_80389E40(ActorMarker *marker) {
     local = (ActorLocal_BGS_3420 *)&this->local;
 
     BGS_func_80389850(this, 1);
-    gcdialog_showText(0xC6B, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389DF8, NULL);
+    gcdialog_showDialog(0xC6B, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389DF8, NULL);
 }
 
 void func_80389EAC(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -293,7 +293,7 @@ void func_80389F08(ActorMarker *marker) {
     var_s2 = actorArray_actorCount(ACTOR_49_EXTRA_LIFE);
     vile = marker_getActor(local->vile_marker);
     if (var_s2 > 0) {
-        func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
+        coMusicPlayer_playMusic(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
     }
     for(i = 0; i < 3; i++){
         if (var_s2 < 3) {
@@ -305,7 +305,7 @@ void func_80389F08(ActorMarker *marker) {
             item_inc(ITEM_16_LIFE);
         }
     }
-    gcdialog_showText(0xC98, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389EAC, NULL);
+    gcdialog_showDialog(0xC98, 0xF, chVile_getPostion(local->vile_marker), this->marker, func_80389EAC, NULL);
 }
 
 
@@ -327,22 +327,22 @@ void func_8038A068(Actor *this, s32 next_state) {
         func_8038C3B0(local->vile_marker);
         if (local->unkC == 3) {
             if (local->unkD >= 4) {
-                gcdialog_showText(0xC91, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+                gcdialog_showDialog(0xC91, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
             } else {
-                gcdialog_showText((local->unkC == local->unkD) ? 0xC8D : 0xC90, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+                gcdialog_showDialog((local->unkC == local->unkD) ? 0xC8D : 0xC90, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
             }
         } else {
-            gcdialog_showText((local->unkC == local->unkD) ? 0xC63 : 0xC6C, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
+            gcdialog_showDialog((local->unkC == local->unkD) ? 0xC63 : 0xC6C, 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389B48, NULL);
         }
     }
     if (next_state == 3) {
-        gcdialog_showText(D_803909DC[local->unkC], 4, chVile_getPostion(local->vile_marker), this->marker, func_80389B98, NULL);
+        gcdialog_showDialog(D_803909DC[local->unkC], 4, chVile_getPostion(local->vile_marker), this->marker, func_80389B98, NULL);
     }
     if (next_state == 4) {
         if (local->unkC == local->unkD) {
-            gcdialog_showText(BGS_D_803909F8[local->unkC], 0xE | ((BGS_D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
+            gcdialog_showDialog(BGS_D_803909F8[local->unkC], 0xE | ((BGS_D_803909F8[local->unkC] == 0xC8E) ? 1 : 0) | 0xE, chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
         } else {
-            gcdialog_showText(D_80390A18[local->unkC], 0xF , chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
+            gcdialog_showDialog(D_80390A18[local->unkC], 0xF , chVile_getPostion(local->vile_marker), this->marker, func_80389BC8, NULL);
         }
         func_80347A14(0);
     }
@@ -367,7 +367,7 @@ void func_8038A068(Actor *this, s32 next_state) {
             mapSpecificFlags_set(6, TRUE);
             func_8038C3DC(local->vile_marker);
             func_8025A58C(0, 4000);
-            timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_55_BGS_MR_VILE, 28000);
+            timedFunc_set_2(1.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_55_BGS_MR_VILE, 28000);
         }
     }
     if (this->state == 5) {
@@ -383,28 +383,28 @@ void func_8038A068(Actor *this, s32 next_state) {
     if (next_state == 6) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3C_MINIGAME_LOSS, 28000);
+        timedFunc_set_2(1.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_3C_MINIGAME_LOSS, 28000);
         timedFunc_set_0(4.0f, (GenFunction_0)func_8038A044);
         timedFunc_set_1(4.0f, (GenFunction_1)func_80389C58, (s32) this->marker);
     }
     if (next_state == 8) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_2(1.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_3B_MINIGAME_VICTORY, 28000);
         timedFunc_set_0(3.0f, (GenFunction_0)func_8038A044);
         timedFunc_set_1(3.0f, (GenFunction_1)func_80389D20, (s32) this->marker);
     }
     if (next_state == 9) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.0f, 3);
-        timedFunc_set_2(1.0f, (GenFunction_2)func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_2(1.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_3B_MINIGAME_VICTORY, 28000);
         timedFunc_set_0(3.0f, (GenFunction_0)func_8038A044);
         timedFunc_set_1(3.0f, (GenFunction_1)func_80389E40, (s32) this->marker);
     }
     if (next_state == 0xA) {
         func_8038C3B0(local->vile_marker);
         func_80324E38(0.5f, 3);
-        timedFunc_set_2(1.0f, (GenFunction_2) func_8025A6EC, COMUSIC_3B_MINIGAME_VICTORY, 28000);
+        timedFunc_set_2(1.0f, (GenFunction_2) coMusicPlayer_playMusic, COMUSIC_3B_MINIGAME_VICTORY, 28000);
         timedFunc_set_1(3.0f, (GenFunction_1) func_80389F08, (s32) this->marker);
     }
     if (next_state == 7) {
@@ -434,7 +434,7 @@ void chvilegame_player_consume_piece(Actor *this) {
                     local->player_score++;
                     if (local->player_score == 35) {
                         item_inc(ITEM_16_LIFE);
-                        func_8025A6EC(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
+                        coMusicPlayer_playMusic(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FF8);
                     }
                     timedFunc_set_1(0.0f, (GenFunction_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);
                     timedFunc_set_1(0.5f, (GenFunction_1)func_802FDCB8, ITEM_1A_PLAYER_VILE_SCORE);

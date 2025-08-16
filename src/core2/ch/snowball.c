@@ -32,8 +32,8 @@ Actor *chSnowball_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     this = actor_draw(marker, gfx, mtx, vtx);
     if (marker->unk14_21 && this->state != 2) {
-        func_8033E73C(marker, 5, func_80329904);
-        func_8033E3F0(0xD, marker->unk14_21);
+        commonParticle_add(marker, 5, func_80329904);
+        commonParticle_new(0xD, marker->unk14_21);
     }
     return this;
 }
@@ -97,8 +97,8 @@ void chSnowball_update(Actor *this) {
     s32 phi_a1;
     s32 i;
 
-    if(this->unk38_31 == 0 && func_80329530(this, 500)){
-        FUNC_8030E8B4(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.85f, 32000, this->position, 1250, 2500);
+    if(this->unk38_31 == 0 && subaddie_playerIsWithinSphereAndActive(this, 500)){
+        sfx_playFadeShorthandDefault(SFX_C_TAKING_FLIGHT_LIFTOFF, 0.85f, 32000, this->position, 1250, 2500);
         this->unk38_31 = 1;
     }
 

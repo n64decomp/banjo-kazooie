@@ -112,12 +112,12 @@ void func_803891B0(void* marker) {
     func_8030DD90(actor->unk44_31, 0);
     sfxsource_setSampleRate(actor->unk44_31, 0x2AF8);
     sfxsource_playSfxAtVolume(actor->unk44_31, 0.3f);
-    func_8030E2C4(actor->unk44_31);
+    sfxSource_func_8030E2C4(actor->unk44_31);
 }
 
 void func_8038921C(void* marker) {
     Actor* actor = marker_getActor(reinterpret_cast(ActorMarker*, marker));
-    func_8030E394(actor->unk44_31);
+    sfxSource_triggerCallbackByIndex(actor->unk44_31);
     sfxsource_freeSfxsourceByIndex(actor->unk44_31);
     actor->unk44_31 = 0U;
     FUNC_8030E624(SFX_6C_LOCKUP_CLOSING, 1.0f, 25000);

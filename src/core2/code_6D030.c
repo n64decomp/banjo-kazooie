@@ -24,11 +24,11 @@ void func_802F3FE4(f32 pos[3]){
 }
 
 void func_802F404C(void){
-    func_802F1190(D_80380A90);
+    pem_free(D_80380A90);
 }
 
 void func_802F4070(void){
-    D_80380A90 = func_802F0F78(0x1e);
+    D_80380A90 = pem_newEmitter(0x1e);
 }
 
 ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
@@ -36,7 +36,7 @@ ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1){
     static s32 D_80368DD0[3] = {0xff, 0xff, 0xfe};
 
 
-    pCtrl = func_802F0EF0(D_80380A90);
+    pCtrl = pem_getEmitterByIndex(D_80380A90);
     particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE_2);
     particleEmitter_setAlpha(pCtrl, 180);
     particleEmitter_setAccelerationRange(pCtrl,

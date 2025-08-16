@@ -215,7 +215,7 @@ void func_8038E4DC(Actor *this){
     else{
         if(!mapSpecificFlags_get(4)){
             mapSpecificFlags_set(4, TRUE);
-            func_802BAFE4(1);
+            gcStaticCamera_activate(1);
         }
     }
 }
@@ -228,7 +228,7 @@ void func_8038E648(Actor *this){
         case 1: //L8038E690
             this->pitch = 0.0f;
             if(mapSpecificFlags_get(5)){
-                func_802BAFE4(2);
+                gcStaticCamera_activate(2);
                 subaddie_set_state(this, 6);
                 this->unk38_31 = 600;
                 core1_7090_initSfxSource(0, 0x6A, 0x7ff8, 0.3f);
@@ -242,7 +242,7 @@ void func_8038E648(Actor *this){
             if(90.0f <= this->pitch){
                 subaddie_set_state(this, 7);
                 this->pitch = 90.0f;
-                func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
+                gcsfx_play(SFX_7F_HEAVYDOOR_SLAM);
                 core1_7090_freeSfxSource(0);
             }
             break;
@@ -260,10 +260,10 @@ void func_8038E648(Actor *this){
             if(this->pitch <= 0.0f){
                 subaddie_set_state(this, 1);
                 this->pitch = 0.0f;
-                func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
+                gcsfx_play(SFX_7F_HEAVYDOOR_SLAM);
                 mapSpecificFlags_set(5, FALSE);
                 core1_7090_freeSfxSource(0);
-                volatileFlag_setAndTriggerDialog_0(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED);
+                progressDialog_setAndTriggerDialog_0(VOLATILE_FLAG_AC_GV_TRAPDOOR_MISSED);
             }
             break;
     }//L8038E904:
@@ -315,7 +315,7 @@ void func_8038E97C(Actor *this){
         if(this->unk38_31 == 0){
             subaddie_set_state(this, 1);
             core1_7090_freeSfxSource(1);
-            func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
+            gcsfx_play(SFX_7F_HEAVYDOOR_SLAM);
         }
 
     }
@@ -327,8 +327,8 @@ void chKazooieDoor_update(Actor *this){
     switch(this->state){
         case 1: //L8038EB98
             if(mapSpecificFlags_get(6)){
-                func_8025A6EC(COMUSIC_2B_DING_B, -1);
-                func_802BAFE4(3);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, -1);
+                gcStaticCamera_activate(3);
                 subaddie_set_state(this, 6);
                 core1_7090_initSfxSource(1, 0x6a, 0x7ff8, 0.3f);
                 this->unk1C[1] = this->position_y + 210.0f;
@@ -341,7 +341,7 @@ void chKazooieDoor_update(Actor *this){
             this->position_z -= 1.3319999999999999;
             if(this->unk1C[1] <= this->position_y){
                 subaddie_set_state(this, 7);
-                func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
+                gcsfx_play(SFX_7F_HEAVYDOOR_SLAM);
                 core1_7090_freeSfxSource(1);
                 this->unk38_31 = 450;
             }
@@ -361,7 +361,7 @@ void chKazooieDoor_update(Actor *this){
             if(this->position_y <= this->unk1C[0]){
                 this->position_y = this->unk1C[0];
                 subaddie_set_state(this, 1);
-                func_8030E540(SFX_7F_HEAVYDOOR_SLAM);
+                gcsfx_play(SFX_7F_HEAVYDOOR_SLAM);
                 core1_7090_freeSfxSource(1);
                 mapSpecificFlags_set(6, FALSE);
             }
@@ -435,7 +435,7 @@ void chKazooieTarget_update(Actor *this){
 }
 
 void func_8038F004(void){
-    func_8025A6EC(SFX_2D_KABOING, 0x7fff);
+    coMusicPlayer_playMusic(SFX_2D_KABOING, 0x7fff);
 }
 
 void func_8038F028(UNK_TYPE(s32) arg0, ActorMarker *arg1, s32 arg2, s32 arg3){
@@ -449,7 +449,7 @@ void func_8038F028(UNK_TYPE(s32) arg0, ActorMarker *arg1, s32 arg2, s32 arg3){
         sp24[1] = (f32)arg1->propPtr->y;
         sp24[2] = (f32)arg1->propPtr->z;
         __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x4e, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
-        func_8025A6EC(COMUSIC_2B_DING_B, 22000);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 22000);
         if(mapSpecificFlags_get(arg3)){
             timedFunc_set_0(2.0f, func_8038F004);
         }

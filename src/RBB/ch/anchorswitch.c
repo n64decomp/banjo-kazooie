@@ -23,7 +23,7 @@ void __chAnchorSwitch_setState(Actor *this, s32 arg1){
             levelSpecificFlags_set(LEVEL_FLAG_30_RBB_UNKNOWN, TRUE);
             volatileFlag_set(VOLATILE_FLAG_E, 1);
             timedFunc_set_0(1.0f, func_803228D8);
-            timedFunc_set_3(1.0f, (GenFunction_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
+            timedFunc_set_3(1.0f, (GenFunction_3)transitionToMap, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }
     }
     this->state = arg1;

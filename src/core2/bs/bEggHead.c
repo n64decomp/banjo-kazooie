@@ -2,7 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
+#include "core2/commonParticle.h"
 
 void yaw_setVelocityBounded(f32, f32);
 void anctrl_start(AnimCtrl *, char*, s32);
@@ -47,9 +50,9 @@ void bsegghead_update(void) {
             func_8030E760(SFX_57_KAZOOIE_HEGH, 1.0f, 0x7fff);
 
         if (anctrl_isAt(aCtrl, 0.4704f)){
-            func_8033E3F0(COMMON_PARTICLE_1_EGG_HEAD, 1);
+            commonParticle_new(COMMON_PARTICLE_1_EGG_HEAD, 1);
             item_dec(ITEM_D_EGGS);
-            ability_use(7);
+            ability_use(ABILITY_USED_EGG);
         }
         if ((anctrl_isAt(aCtrl,  0.5919f)) &&  (D_8037D2F1 < D_8037D2F0)) {
             anctrl_setStart(aCtrl, 0.3878f);

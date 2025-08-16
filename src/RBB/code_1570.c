@@ -206,7 +206,7 @@ void func_803881E8(Actor *this, s32 arg1){
     if(this->state == 2){
         RBB_func_80387960(0.05f);
         timedFunc_set_2(0.05f, (GenFunction_2)func_80387BEC, 0x19f, 0x1f4);
-        timedFunc_set_2(0.1f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+        timedFunc_set_2(0.1f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
         timed_setStaticCameraToNode(1.1f, 7);
         timedFunc_set_1(1.6f, (GenFunction_1)func_80388154, (s32)this->marker);

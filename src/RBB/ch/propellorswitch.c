@@ -49,7 +49,7 @@ void __chPropellorSwitch_setState(Actor *this, s32 arg1){
             levelSpecificFlags_set(local->unk0->unk8, 1);
             func_803228D8();
             timedFunc_set_1(1.1f, (GenFunction_1)func_8028F9DC, 2);
-            timedFunc_set_3(1.1f, (GenFunction_3)func_802E4078, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
+            timedFunc_set_3(1.1f, (GenFunction_3)transitionToMap, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }else{
             levelSpecificFlags_set(local->unk0->unkA, 1);
         }
@@ -98,7 +98,7 @@ void chPropellorSwitch_update(Actor *this){
         this->marker->propPtr->unk8_3 = 1;
         this->marker->actorFreeFunc = chPropellorSwitch_free;
         this->volatile_initialized = TRUE;
-        local->unk0 = &D_80390720[((this->unk78_13 == 2) ? 0:1)];
+        local->unk0 = &D_80390720[((this->secondaryId == 2) ? 0:1)];
         if(local->unk0->unk6 == 0)
             local->unk4 = NULL;
         else

@@ -49,7 +49,7 @@ void func_8038B988(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     subaddie_set_state_with_direction(this, 5, 0.01f, 1);
     actor_loopAnimation(this);
-    func_802BAFE4(0x13);
+    gcStaticCamera_activate(0x13);
     FUNC_8030E624(SFX_8D_BOGGY_OHWW, 0.9f, 32000);
     timedFunc_set_0(2.5f, func_8038B960);
     D_80391A80 = this->state;
@@ -58,12 +58,12 @@ void func_8038B988(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 void func_8038BA08(Actor *this){
     subaddie_set_state_with_direction(this, 6, 0.01f, 1);
     actor_loopAnimation(this);
-    this->unk100 = NULL;
+    this->partnerActor = NULL;
     D_80391A80 = 3;
     if(player_movementGroup() == BSGROUP_6_TURBO_TALON_TRAINERS)
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 0.0f);
 
-    gcdialog_showText(ASSET_A79_DIALOG_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
+    gcdialog_showDialog(ASSET_A79_DIALOG_GRABBA_DEFEAT, 0xf, this->position, this->marker, func_8038B988, NULL);
     comusic_8025AB44(COMUSIC_57_TURBO_TRAINERS, 7000, 700);
 }
 
@@ -84,7 +84,7 @@ s32 func_8038BAA4(Actor *jiggy){
 }
 
 int func_8038BB24(Actor *this){
-    if(func_80329530(this, 1560) && !func_80329530(this, 1380)){
+    if(subaddie_playerIsWithinSphereAndActive(this, 1560) && !subaddie_playerIsWithinSphereAndActive(this, 1380)){
         return TRUE;
     }
     else{
@@ -100,8 +100,8 @@ void func_8038BB6C(Actor *jiggy, ActorMarker * grabba_marker)
     grabba = marker_getActor(tmp);
     grabba_local = (ActorLocal_Grabba *)&grabba->local;
 
-    grabba->unk100 = jiggy->marker;
-    grabba_local->unk0 = grabba->unk100->unk5C;
+    grabba->partnerActor = jiggy->marker;
+    grabba_local->unk0 = grabba->partnerActor->unk5C;
     jiggy->unk10_1 = TRUE;
     grabba->unk1C[2] = (f32)func_8038BAA4(jiggy);
     if(jiggyscore_isCollected((s32)grabba->unk1C[2])){
@@ -174,13 +174,13 @@ void GV_func_8038BEA0(Actor *this){
         if(this->unk44_31 == 0){
             this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
-            func_8030DD14(this->unk44_31, 2);
+            sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
             sfxsource_playSfxAtVolume(this->unk44_31, 0.1f);
             sfxsource_setSampleRate(this->unk44_31, 32000);
         }
-        if(this->unk100 == NULL){
-            this->unk100 = func_8032B16C(JIGGY_3E_GV_GRABBA);
-            local->unk0 =  this->unk100 != NULL ? this->unk100->unk5C : NULL;
+        if(this->partnerActor == NULL){
+            this->partnerActor = func_8032B16C(JIGGY_3E_GV_GRABBA);
+            local->unk0 =  this->partnerActor != NULL ? this->partnerActor->unk5C : NULL;
         }
         subaddie_set_state_with_direction(this, this->state, 0.01f, 1);
         this->unk58_0 = FALSE;
@@ -211,13 +211,13 @@ void GV_func_8038BEA0(Actor *this){
                     subaddie_set_state_with_direction(this, 3, 0.01f, 1);
                     actor_loopAnimation(this);
                     D_80391A80 = this->state;
-                    if(this->unk100){
-                        this->unk100->collidable = TRUE;
+                    if(this->partnerActor){
+                        this->partnerActor->collidable = TRUE;
                     }
                 }
                 else{
                     if(anctrl_getAnimTimer(this->anctrl) < 0.55){
-                        func_8030E2C4(this->unk44_31);
+                        sfxSource_func_8030E2C4(this->unk44_31);
                         if(randf() < 0.6){
                             func_8038BC7C(this->position, 0xA);
                         }
@@ -226,7 +226,7 @@ void GV_func_8038BEA0(Actor *this){
                 break;
 
             case 3: //L8038C1CC
-                if(this->unk100 && this->unk100->unk5C != local->unk0){
+                if(this->partnerActor && this->partnerActor->unk5C != local->unk0){
                     func_8038BA08(this);
                 }
                 else if(this->unk38_31 >= 0xC){
@@ -235,7 +235,7 @@ void GV_func_8038BEA0(Actor *this){
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 12.0f, 0.92f);
                 }
-                else if(func_80329530(this, 600)){
+                else if(subaddie_playerIsWithinSphereAndActive(this, 600)){
                     if(player_movementGroup() == BSGROUP_6_TURBO_TALON_TRAINERS){
                         this->unk38_31++;
                     }
@@ -245,7 +245,7 @@ void GV_func_8038BEA0(Actor *this){
                 }
                 else{
                     if(!this->has_met_before){
-                        if(gcdialog_showText(ASSET_A78_DIALOG_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
+                        if(gcdialog_showDialog(ASSET_A78_DIALOG_GRABBA_MEET, 0, NULL, NULL, NULL, NULL)){
                             this->has_met_before = TRUE;
                         }
                     }
@@ -253,7 +253,7 @@ void GV_func_8038BEA0(Actor *this){
                 break;
 
             case 4: //L8038C304
-                if(this->unk100 && this->unk100->unk5C != local->unk0){
+                if(this->partnerActor && this->partnerActor->unk5C != local->unk0){
                     func_8038BA08(this);
                 }
                 else if(actor_animationIsAt(this, 0.89f)){
@@ -263,20 +263,20 @@ void GV_func_8038BEA0(Actor *this){
                 }
                 else{
                     if(0.35 < anctrl_getAnimTimer(this->anctrl)){
-                        func_8030E2C4(this->unk44_31);
+                        sfxSource_func_8030E2C4(this->unk44_31);
                         if(randf() < 0.6){
                             func_8038BC7C(this->position, 5);
                         }
                     }
 
                     if(actor_animationIsAt(this, 0.4f)){
-                        if(this->unk100){
-                            this->unk100->collidable = FALSE;
+                        if(this->partnerActor){
+                            this->partnerActor->collidable = FALSE;
                             func_8030E878(SFX_3F5_UNKNOWN, randf2(0.95f, 1.05f), 32000, this->position, 1250.0f, 2500.0f);
                         }
 
                         if(!this->unk138_23){
-                            if(gcdialog_showText(ASSET_A7A_DIALOG_GRABBA_TOO_FAST, 0, NULL, NULL, NULL, NULL)){
+                            if(gcdialog_showDialog(ASSET_A7A_DIALOG_GRABBA_TOO_FAST, 0, NULL, NULL, NULL, NULL)){
                                 this->unk138_23 = TRUE;
                             }
                         }
@@ -291,7 +291,7 @@ void GV_func_8038BEA0(Actor *this){
                     func_8038C748();
                 }
                 else{
-                    func_8030E2C4(this->unk44_31);
+                    sfxSource_func_8030E2C4(this->unk44_31);
                     this->position_y -= 7.0;
                     if(globalTimer_getTime() & 1){
                         sp38[0] = this->position_x;
@@ -304,7 +304,7 @@ void GV_func_8038BEA0(Actor *this){
                 break;
 
         }//L8038C528
-        if(this->unk100 && this->unk100->unk5C == local->unk0){
+        if(this->partnerActor && this->partnerActor->unk5C == local->unk0){
             Actor *tmp_v0;
             tmp_v0 = subaddie_getLinkedActor(this);
             if(this->marker->unk14_21){

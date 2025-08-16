@@ -84,7 +84,7 @@ void chPinkEgg_collision(ActorMarker *this, ActorMarker *other_marker){
     
     thisActor = marker_getActor(this);
     this->propPtr->unk8_3 = 0;
-    sfxsource_play(SFX_AA_BGS_EGG_BREAKING_1, 28000);
+    gcsfx_playAtSampleRate(SFX_AA_BGS_EGG_BREAKING_1, 28000);
     subaddie_set_state(thisActor, 3);
     actor_playAnimationOnce(thisActor);
     this->collidable = FALSE;
@@ -93,7 +93,7 @@ void chPinkEgg_collision(ActorMarker *this, ActorMarker *other_marker){
         __spawnQueue_add_2(chPinkEgg_spawnNext, thisActor->marker, tmp->unk0);
     } else {
         jiggy_spawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
-        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     }
 }
 

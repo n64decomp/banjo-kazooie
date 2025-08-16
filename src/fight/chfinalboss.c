@@ -577,7 +577,7 @@ void chfinalboss_setPhase(ActorMarker *this, enum ch_finalboss_phase_e phase_id)
             {
                 actor->unk44_31 = (u8)sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(actor->unk44_31, SFX_152_MOTOR_BREAKDOWN_01);
-                func_8030DD14(actor->unk44_31, 3);
+                sfxSource_setunk43_7ByIndex(actor->unk44_31, 3);
                 sfxsource_playSfxAtVolume(actor->unk44_31, 1.0f);
                 sfxsource_setSampleRate(actor->unk44_31, 32000);
             }
@@ -589,7 +589,7 @@ void chfinalboss_setPhase(ActorMarker *this, enum ch_finalboss_phase_e phase_id)
             actor->unk1C_x = D_803927D0[(local->unk5)][0];
             actor->unk1C_y = D_803927D0[(local->unk5)][1];
             actor->unk1C_z = D_803927D0[(local->unk5)][2];
-            gcdialog_showText(randi2(0, 5) + 0x1106, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x1106, 4, NULL, NULL, NULL, NULL);
             return;
 
             
@@ -760,7 +760,7 @@ void chfinalboss_func_80388110(ActorMarker *marker, enum asset_e text_id, s32 ar
     actor = marker_getActor(marker);
     actorLocal = (ActorLocal_FinalBoss *)&actor->local;
     ncStaticCamera_exit();
-    gcdialog_showText(randi2(0, 5) + 0x1101, 4, NULL, actor->marker, chfinalboss_func_803880E0, NULL);
+    gcdialog_showDialog(randi2(0, 5) + 0x1101, 4, NULL, actor->marker, chfinalboss_func_803880E0, NULL);
     actorLocal->unk9 = (u8)1;
 }
 
@@ -779,7 +779,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
     chfinalboss_func_80386600(this->marker, 0);
     if (next_state != 9) {
         if (func_8030E3FC(this->unk44_31)) {
-            func_8030E394(this->unk44_31);
+            sfxSource_triggerCallbackByIndex(this->unk44_31);
             FUNC_8030E624(SFX_162_MOTOR_RUCKUS, 1.0f, 32000);
 
         }
@@ -826,7 +826,7 @@ void chfinalboss_phase1_setState(Actor *this, s32 next_state) {
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
         break;
     case 12:
-        func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 30000);
+        coMusicPlayer_playMusic(SFX_GRUNTY_SPELL_POWERUP, 30000);
         break;
     case 13:
         func_8030E878(SFX_131_GRUNTY_WEEEGH, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
@@ -858,18 +858,18 @@ void chfinalboss_func_803885DC(Actor *this) {
     s32 sp24 = globalTimer_getTime();
     
     if (func_8030E3FC(this->unk44_31) == 0) {
-        func_8030E2C4(this->unk44_31);
+        sfxSource_func_8030E2C4(this->unk44_31);
     }
     if (((sp24 & 7) == 0) && (randf() < 0.5)) {
         chfinalboss_func_8038856C(this, D_80391728);
     }
     if ((actor_animationIsAt(this, 0.30f) != 0) || (actor_animationIsAt(this, 0.78f) != 0)) {
-        FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
-        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.0f, 25000, this->position, 2000, 10000);
+        sfx_playFadeShorthandDefault(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
+        sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 1.0f, 25000, this->position, 2000, 10000);
     }
     if ((actor_animationIsAt(this, 0.40f) != 0) || (actor_animationIsAt(this, 0.88f) != 0)) {
-        FUNC_8030E8B4(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
-        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 0.9f, 25000, this->position, 2000, 10000);
+        sfx_playFadeShorthandDefault(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 25000, this->position, 2000, 10000);
+        sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 0.9f, 25000, this->position, 2000, 10000);
 
     }
 }
@@ -955,7 +955,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         func_80328FB0(this, 30.0f * sp54);
         if ((local->unkA == 0) && (local->unk20 < (local->unk14 * 0.65))) {
             local->unkA = 1U;
-            FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 28000, this->position, 2000, 10000);
+            sfx_playFadeShorthandDefault(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 28000, this->position, 2000, 10000);
         }
         if ((local->unk14 * 0.75) < local->unk20) {
             chfinalboss_func_80386B54(sp40, 0);
@@ -1080,19 +1080,19 @@ void chfinalboss_phase2_setState(Actor *this, s32 arg1){
         break;
     case 19:
         if (sp28 & 1) {
-            FUNC_8030E8B4(SFX_132_GRUNTY_YOW, 1.0f, 32000, this->position, 7000, 12000);
+            sfx_playFadeShorthandDefault(SFX_132_GRUNTY_YOW, 1.0f, 32000, this->position, 7000, 12000);
         }
         else{
-            FUNC_8030E8B4(SFX_133_GRUNTY_OHW, 1.0f, 32000, this->position, 7000, 12000);
+            sfx_playFadeShorthandDefault(SFX_133_GRUNTY_OHW, 1.0f, 32000, this->position, 7000, 12000);
         }
         break;
     case 20:
-        FUNC_8030E8B4(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
+        sfx_playFadeShorthandDefault(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
 
         local->unkA = 0;
         break;
     case 17:
-        func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 30000);
+        coMusicPlayer_playMusic(SFX_GRUNTY_SPELL_POWERUP, 30000);
         break;
     }
 }
@@ -1166,8 +1166,8 @@ void chfinalboss_phase2_update(ActorMarker *marker) {
         case 20:
             if (actor_animationIsAt(this, 0.9999f)) {
                 if (local->hits >= 4) {
-                    gcdialog_showText(randi2(0, 5) + 0x1115, 0x20, NULL, NULL, NULL, NULL);
-                    gcdialog_showText(randi2(0, 3) + 0x111A, 4, NULL, this->marker, NULL, chfinalboss_phase2_endTextCallback);
+                    gcdialog_showDialog(randi2(0, 5) + 0x1115, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(randi2(0, 3) + 0x111A, 4, NULL, this->marker, NULL, chfinalboss_phase2_endTextCallback);
                     chfinalboss_phase2_setState(this, 0x11);
                 }
                 else{
@@ -1214,7 +1214,7 @@ void __chfinalboss_spawnStatue(enum ch_bossjinjo_e statue_id) {
         break;
     }
     sp1C->lifetime_value = (statue_id == BOSSJINJO_5_JINJONATOR) ? 5.25f : 1.54f;
-    sp1C->unkF4_8 = statue_id;
+    sp1C->actorTypeSpecificField = statue_id;
 }
 
 void chfinalboss_spawnStatue(s32 statue_id) {
@@ -1225,7 +1225,7 @@ void __chfinalboss_spawnSpellBarrier(ActorMarker *marker) {
     Actor *actor;
 
     actor = marker_getActor(marker);
-    actor->unk100 = spawn_child_actor(ACTOR_3AB_GRUNTY_SPELL_BARRIER, &actor)->marker;
+    actor->partnerActor = spawn_child_actor(ACTOR_3AB_GRUNTY_SPELL_BARRIER, &actor)->marker;
     __chFinalBossSpellBarrierActive = TRUE;
 }
 
@@ -1267,12 +1267,12 @@ void chfinalboss_phase3_setState(Actor *this, s32 arg1) {
         local->unk3 = 0;
         break;
     case 25:
-        FUNC_8030E8B4(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
+        sfx_playFadeShorthandDefault(SFX_131_GRUNTY_WEEEGH, 1.0f, 32000, this->position, 5000, 12000);
         break;
     case 26:
         chfinalboss_func_80386CF8(this);
         func_80324E38(0.0f, 1);
-        gcdialog_showText(randi2(0, 5) + 0x112C, 0xA8, NULL, this->marker, chfinalboss_phase3_endTextCallback, NULL);
+        gcdialog_showDialog(randi2(0, 5) + 0x112C, 0xA8, NULL, this->marker, chfinalboss_phase3_endTextCallback, NULL);
         break;
     }
 }
@@ -1328,7 +1328,7 @@ void chfinalboss_phase3_update(ActorMarker *marker) {
         }
         break;
     case 23:
-        if (chfinalboss_func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+        if (chfinalboss_func_80386BEC(this, 9.0f) && (bsiFrame_getState() != 3)) {
             chfinalboss_phase3_setState(this, 0x18);
         }
         break;
@@ -1413,7 +1413,7 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         if ((local->unk3 == 2) && (local->unkA == 0)) {
             iter.D_803928C4_ptr = &D_803928C4;
             chFinalBossJinjoSpawned = TRUE;
-            gcdialog_showText(randi2(0, 5) + 0x1136, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x1136, 4, NULL, NULL, NULL, NULL);
             if ( !fileProgressFlag_get(FILEPROG_D2_HAS_SPAWNED_A_JINJO_STATUE_IN_FINAL_FIGHT) ) {
                 local->unkA = 1U;
                 sFinalBossJinjoStatueActivated = 1;
@@ -1475,13 +1475,13 @@ void chfinalboss_phase4_setState(Actor *this, s32 arg1) {
         break;
     case 34:
         actor_playAnimationOnce(this);
-        gcdialog_showText(randi2(0, 5) + 0x1145, 0x20, NULL, NULL, NULL, NULL);
-        func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
-        func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
+        gcdialog_showDialog(randi2(0, 5) + 0x1145, 0x20, NULL, NULL, NULL, NULL);
+        gcsfx_playWithPitch(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
+        gcsfx_playWithPitch(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
         this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
         D_803927C0 = 1.0f;
         sfxsource_setSfxId(this->unk44_31, SFX_2C_PULLING_NOISE);
-        func_8030DD14(this->unk44_31, 2);
+        sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
         sfxsource_playSfxAtVolume(this->unk44_31, D_803927C0);
         sfxsource_setSampleRate(this->unk44_31, 26000);
         for(iter.i = 0; iter.i < 4; iter.i+=1){
@@ -1549,7 +1549,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             func_80324E38(1.0f, 0);
         }
         if (local->hits == 0) {
-            gcdialog_showText(randi2(0, 5) + 0x1140, 0x20, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x1140, 0x20, NULL, NULL, NULL, NULL);
         }
         if ((local->hits + 1) < 4) {
             local->hits++;
@@ -1575,7 +1575,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 29:
-            if ((chfinalboss_func_80386BEC(this, 9.0f)) && (func_80297C6C() != 3) && (sFinalBossJinjoStatueActivated == 0)) {
+            if ((chfinalboss_func_80386BEC(this, 9.0f)) && (bsiFrame_getState() != 3) && (sFinalBossJinjoStatueActivated == 0)) {
                 chfinalboss_phase4_setState(this, 0x1E);
             }
             break;
@@ -1623,8 +1623,8 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
                 this->position[2] = sp5C[2];
                 this->position[1] = temp_f2;
                 chfinalboss_phase4_setState(this, 0x22);
-                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
-                func_8030E6A4(SFX_132_GRUNTY_YOW, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_132_GRUNTY_YOW, randf2(0.95f, 1.05f), 32000);
             }
             else{
                 this->position[0] = sp5C[0];
@@ -1637,19 +1637,19 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
         case 34:
             sp58 = anctrl_getAnimTimer(this->anctrl);
             if (actor_animationIsAt(this, 0.17f) != 0) {
-                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
-                func_8030E6A4(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_133_GRUNTY_OHW, randf2(0.95f, 1.05f), 32000);
             }
             if (actor_animationIsAt(this, 0.1f) != 0) {
-                func_8030E6A4(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
-                func_8030E6A4(SFX_12A_GRUNTY_AH, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_1F_HITTING_AN_ENEMY_3, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_12A_GRUNTY_AH, randf2(0.95f, 1.05f), 32000);
             }
             if ((sp58 >= 0.4) && (sp58 <= 0.65)) {
                 sfxsource_playSfxAtVolume(this->unk44_31, ((D_803927C0 += 0.005) > 1.99) ? 1.99 : (D_803927C0 += 0.005));
-                func_8030E2C4(this->unk44_31);
+                sfxSource_func_8030E2C4(this->unk44_31);
             }
             if (actor_animationIsAt(this, 0.56f)) {
-                func_8030E6A4(SFX_C5_TWINKLY_POP, randf2(0.95f, 1.05f), 32000);
+                gcsfx_playWithPitch(SFX_C5_TWINKLY_POP, randf2(0.95f, 1.05f), 32000);
             }
             else if (actor_animationIsAt(this, 0.9999f)) {
                 timed_exitStaticCamera(0.0f);
@@ -1680,7 +1680,7 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
     subaddie_set_state_with_direction(this, next_state, 0.0001f, 1);
     switch (next_state) {
         case 35:
-            gcdialog_showText(randi2(0, 5) + 0x114F, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x114F, 4, NULL, NULL, NULL, NULL);
             if (local->mirror_phase5) {
                 sp28 = 0x13;
             }
@@ -1705,7 +1705,7 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
             if (this->unk44_31 == 0) {
                 this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
-                func_8030DD14(this->unk44_31, 2);
+                sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
                 sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
                 sfxsource_setSampleRate(this->unk44_31, 0x4268);
             }
@@ -1716,10 +1716,10 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
             if (this->unk44_31 == 0) {
                 this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
                 sfxsource_setSfxId(this->unk44_31, SFX_134_FREEZING_SHIVER);
-                func_8030DD14(this->unk44_31, 3);
+                sfxSource_setunk43_7ByIndex(this->unk44_31, 3);
                 sfxsource_playSfxAtVolume(this->unk44_31, 1.0f);
                 sfxsource_setSampleRate(this->unk44_31, 0x4268);
-                func_8030E2C4(this->unk44_31);
+                sfxSource_func_8030E2C4(this->unk44_31);
             }
             break;
 
@@ -1733,7 +1733,7 @@ void chfinalboss_phase5_setState(Actor *this, s32 next_state) {
             break;
 
         case 38:
-            func_8025A6EC(SFX_GRUNTY_SPELL_POWERUP, 30000);
+            coMusicPlayer_playMusic(SFX_GRUNTY_SPELL_POWERUP, 30000);
             break;
 
         case 43:
@@ -1748,7 +1748,7 @@ void chfinalboss_func_8038AF84(ActorMarker *arg0) {
 }
 
 void chfinalboss_func_8038AFB0(void) {
-    func_802E4078(MAP_87_CS_SPIRAL_MOUNTAIN_5, 0, 1);
+    transitionToMap(MAP_87_CS_SPIRAL_MOUNTAIN_5, 0, 1);
 }
 
 void chfinalboss_phase5_update(ActorMarker *marker) {
@@ -1793,7 +1793,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                 func_802BB3DC(0, 63.0f, 0.9f);
                 chjinjonator_finalAttack(jinjonator_marker);
                 func_8030E6D4(SFX_HEAVY_THUNDERSTORM_01);
-                func_8025A6EC(COMUSIC_A3_JINJONATOR_HITS_GRUNTY_J, 20000);
+                coMusicPlayer_playMusic(COMUSIC_A3_JINJONATOR_HITS_GRUNTY_J, 20000);
                 chfinalboss_phase5_setState(this, 0x2B);
                 timed_exitStaticCamera(0.0f);
                 timed_setStaticCameraToNode(0.0f, sp38 + 0xD);
@@ -1804,7 +1804,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                 player_setIdealRotation(D_803928C8);
             }
             if (__chFinalBossJinjonatorHits == 3) {
-                gcdialog_showText(randi2(0, 5) + 0x1159, 0x20, NULL, NULL, NULL, NULL);
+                gcdialog_showDialog(randi2(0, 5) + 0x1159, 0x20, NULL, NULL, NULL, NULL);
             }
         }
     }
@@ -1814,14 +1814,14 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             break;
 
         case 36:
-            if (chfinalboss_func_80386BEC(this, 9.0f) && (func_80297C6C() != 3)) {
+            if (chfinalboss_func_80386BEC(this, 9.0f) && (bsiFrame_getState() != 3)) {
                 chfinalboss_phase5_setState(this, 0x25);
             }
             break;
 
         case 37:
             chfinalboss_func_80386BEC(this, 3.0f);
-            if (func_80297C6C() == 3) {
+            if (bsiFrame_getState() == 3) {
                 chfinalboss_phase5_setState(this, 0x24);
                 break;
             }
@@ -1865,10 +1865,10 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
 
         case 40:
             if (actor_animationIsAt(this, 0.21f)) {
-                FUNC_8030E8B4(SFX_163_GRUNTY_WILD_SCREAM, 1.0f, 32000, this->position, 5000, 12000);
+                sfx_playFadeShorthandDefault(SFX_163_GRUNTY_WILD_SCREAM, 1.0f, 32000, this->position, 5000, 12000);
             }
             if ((0.56 < sp34) && (sp34 < 0.99)) {
-                func_8030E2C4(this->unk44_31);
+                sfxSource_func_8030E2C4(this->unk44_31);
             }
             if (actor_animationIsAt(this, 0.9999f)) {
                 chfinalboss_phase5_setState(this, 0x27);
@@ -1885,7 +1885,7 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
                     func_802BB3DC(0, 12.0f, 1.0f);
                     v0 = this->unk44_31;
                     if (v0 != 0) {
-                        func_8030E394(v0);
+                        sfxSource_triggerCallbackByIndex(v0);
                         sfxsource_freeSfxsourceByIndex(this->unk44_31);
                         this->unk44_31 = 0;
                     }
@@ -1954,10 +1954,10 @@ void chfinalboss_func_8038B780(ActorMarker *marker) {
     sp24 = marker_getActor(marker);
     if (!fileProgressFlag_get(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT)) {
         fileProgressFlag_set(FILEPROG_CF_HAS_ENTERED_FINAL_FIGHT, TRUE);
-        gcdialog_showText(ASSET_10E7_DIALOG_UNKNOWN, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
+        gcdialog_showDialog(ASSET_10E7_DIALOG_FINALBOSS_ENTERING_1, 0x2A, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
     }
     else{
-        gcdialog_showText(randi2(0, 5) + 0x10E8, 0x2B, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
+        gcdialog_showDialog(randi2(0, 5) + 0x10E8, 0x2B, sp24->position, sp24->marker, chfinalboss_phase0_endTextCallback, NULL);
     }
 }
 
@@ -2018,7 +2018,7 @@ void chfinalboss_collisionPassive(ActorMarker *marker, ActorMarker *other_marker
     switch (local->phase) {
     case 1:
         if (local->hits == 0) {
-            gcdialog_showText(randi2(0, 5) + 0x10F7, 0x20, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x10F7, 0x20, NULL, NULL, NULL, NULL);
         }
         if ((local->hits + 1) < 5) {
             local->hits++;
@@ -2032,7 +2032,7 @@ void chfinalboss_collisionPassive(ActorMarker *marker, ActorMarker *other_marker
             if ((local->unk2 + 1) >= 3) {
                 local->unk2 = 0;
                 if (local->hits == 0) {
-                    gcdialog_showText(randi2(0, 5) + 0x1110, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(randi2(0, 5) + 0x1110, 0x20, NULL, NULL, NULL, NULL);
                 }
                 if ((local->hits + 1) < 5) {
                     local->hits++;
@@ -2046,7 +2046,7 @@ void chfinalboss_collisionPassive(ActorMarker *marker, ActorMarker *other_marker
         break;
     case 3:
         if (local->hits == 0) {
-            gcdialog_showText(randi2(0, 5) + 0x1127, 0x20, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + 0x1127, 0x20, NULL, NULL, NULL, NULL);
         }
         if ((local->hits + 1) < 5) {
             local->hits++;
@@ -2067,7 +2067,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
         func_8030E878(SFX_EA_GRUNTY_LAUGH_1, randf2(0.95f, 1.05f), 32000, this->position, 5000.0f, 12000.0f);
 
         if (local->player_hit_in_phase1 == 0) {
-            if (gcdialog_showText(randi2(0, 5) + ASSET_10ED_DIALOG_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
+            if (gcdialog_showDialog(randi2(0, 5) + ASSET_10ED_DIALOG_FINALBOSS_PHASE_1_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL)) {
                 local->player_hit_in_phase1++;
             }
         }
@@ -2076,7 +2076,7 @@ void chfinalboss_collisionActive(ActorMarker *marker, ActorMarker *other_marker)
     if (local->phase == FINALBOSS_PHASE_3_FLIGHT) {
         if ((local->player_hit_in_phase3 == 0) && (this->state != 0x1A)) {
             local->player_hit_in_phase3++;
-            gcdialog_showText(randi2(0, 5) + ASSET_111D_DIALOG_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(randi2(0, 5) + ASSET_111D_DIALOG_FINALBOSS_PHASE_2_HIT_PLAYER_OPTION_1, 0, NULL, NULL, NULL, NULL);
         }
     }
 }
@@ -2173,8 +2173,8 @@ void chfinalboss_update(Actor *this){
     chFinalBossPosition[1] = this->position[1];
     chFinalBossPosition[2] = this->position[2];
 
-    if(this->unk100 != NULL && __chFinalBossSpellBarrierActive){
-        fight_setPositionWithDisplacement(this->unk100, this->position);
+    if(this->partnerActor != NULL && __chFinalBossSpellBarrierActive){
+        fight_setPositionWithDisplacement(this->partnerActor, this->position);
     }
 
     if(__chFinalBossShadowMarker != NULL){

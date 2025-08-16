@@ -53,7 +53,7 @@ void func_803889A0(ActorMarker *this, s32 arg1){
     actorPtr = marker_getActor(this);
     subaddie_set_state_with_direction(actorPtr, 5, 0.0f, 1);
     actor_playAnimationOnce(actorPtr);
-    FUNC_8030E8B4(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actorPtr->position, 1250, 2500);
+    sfx_playFadeShorthandDefault(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actorPtr->position, 1250, 2500);
 
     actor_collisionOff(actorPtr);
 }
@@ -82,10 +82,10 @@ void func_80388A80(Actor *this) {
     func_802DB5A0(this);
     if (this->state == 5) {
         if (actor_animationIsAt(this, 0.18f)) {
-            FUNC_8030E8B4(SFX_2_CLAW_SWIPE, 1.0f, 28000, this->position, 1250, 2500);
+            sfx_playFadeShorthandDefault(SFX_2_CLAW_SWIPE, 1.0f, 28000, this->position, 1250, 2500);
         }
         if (actor_animationIsAt(this, 0.7f)) {
-            FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 28000, this->position, 1250, 2500);
+            sfx_playFadeShorthandDefault(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 28000, this->position, 1250, 2500);
         }
     }
 }

@@ -394,10 +394,10 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
 
 #if VERSION == VERSION_USA_1_0
     if(sp30 == -1){
-        func_80247F24(2, 0x7d2);
-        func_80247F9C(prev_info->frameSamples);
-        func_80247F9C(info->frameSamples);
-        func_802483D8();
+        gcdebugText_showLargeValue(2, 0x7d2);
+        gcdebugText_showValue(prev_info->frameSamples);
+        gcdebugText_showValue(info->frameSamples);
+        gcdebugText_pauseThread();
     }    
 #endif
 
@@ -419,10 +419,10 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
 
 #if VERSION == VERSION_USA_1_0
     if(D_8027DD80 < sp34){
-        func_80247F24(2, 2000);
-        func_80247F9C(sp34);
-        func_80247F9C(D_8027DD80);
-        func_802483D8();
+        gcdebugText_showLargeValue(2, 2000);
+        gcdebugText_showValue(sp34);
+        gcdebugText_showValue(D_8027DD80);
+        gcdebugText_pauseThread();
     }
 #endif
 
@@ -469,8 +469,8 @@ s32 func_80240204(s32 addr, s32 len, void *state){
     }
     phi_s0 = D_8027D5B0.unk8;
     if (phi_s0 == NULL) {
-        func_80247F24(2, 0x7D1);
-        func_802483D8();
+        gcdebugText_showLargeValue(2, 0x7D1);
+        gcdebugText_pauseThread();
         return osVirtualToPhysical(D_8027D5B0.unk4);
     }
     D_8027D5B0.unk8 = phi_s0->unk0.next;
@@ -577,10 +577,10 @@ void func_802403F0(void) {
 
 #if VERSION == VERSION_USA_1_0
         if (osRecvMesg(&D_8027D008, &sp40, 0) == -1) {
-            func_80247F24(2, 0x7D5);
-            func_80247F9C(D_8027DCCC);
-            func_80247F9C(phi_s0);
-            func_802483D8();
+            gcdebugText_showLargeValue(2, 0x7D5);
+            gcdebugText_showValue(D_8027DCCC);
+            gcdebugText_showValue(phi_s0);
+            gcdebugText_pauseThread();
         }
 #else
         osRecvMesg(&D_8027D008, &sp40, 0);

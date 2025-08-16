@@ -44,7 +44,7 @@ void func_802B60D0(void){}
 void func_802B60D8(void) {
     if (bs_getInterruptType() == BS_INTR_D_SURF) {
         D_8037D560 = 1;
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
         return;
     }
     func_80296608();

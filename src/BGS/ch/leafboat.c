@@ -41,7 +41,7 @@ Actor *chLeafBoat_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
 }
 
 void func_8038FD88(ActorMarker *this, ActorMarker *other){
-    this->unk3E_1 = 1;
+    this->isBanjoOnTop = 1;
 }
 
 void chLeafBoat_update(Actor *this){
@@ -155,7 +155,7 @@ void chLeafBoat_update(Actor *this){
     _player_getPosition(player_position);
     if( func_80294660() == 0x100
         && func_8028F20C()
-        && this->marker->unk3E_1
+        && this->marker->isBanjoOnTop
     ){
         sp44 = local->unk54[0] - player_position[0];
         sp40 = local->unk54[2] - player_position[2];
@@ -184,7 +184,7 @@ void chLeafBoat_update(Actor *this){
         }
         this->unk10_12 = 0;
     }
-    this->marker->unk3E_1 = 0;
+    this->marker->isBanjoOnTop = 0;
 
     local->unk18[1] = 10 * sinf((((this->lifetime_value * local->unk6C) / 180.0) * BAD_PI));
     this->unk1C[0] =   4.5  * cosf((((this->lifetime_value * local->unk6C) / 180.0) * BAD_PI));

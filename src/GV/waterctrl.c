@@ -40,7 +40,7 @@ void __waterCtrl_setState(s32 arg0){
         levelSpecificFlags_set(LEVEL_FLAG_6_GV_UNKNOWN, TRUE);
         func_803228D8();
         volatileFlag_set(VOLATILE_FLAG_E, 1);
-        func_802E4078(MAP_12_GV_GOBIS_VALLEY, 0, 0);
+        transitionToMap(MAP_12_GV_GOBIS_VALLEY, 0, 0);
     }
 }
 

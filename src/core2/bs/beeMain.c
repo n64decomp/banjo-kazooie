@@ -360,7 +360,7 @@ void func_802A1A50(void){
 }
 
 void func_802A1B28(void){
-    func_80297CA8();
+    bsiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();
@@ -520,7 +520,7 @@ void func_802A2098(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A2FC(0, 0xFA0);
-    func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
+    coMusicPlayer_playMusic(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
     baMarker_collisionOff();
     batimer_set(0, 3.0f);

@@ -140,7 +140,7 @@ void MMM_func_8038A54C(Struct_MMM_3D50_0 *arg0, s32 arg1){
     arg0->unk3 = arg1;
     arg0->unk4 = 0.0f;
     if(arg1 == 1 && v0 != arg1){
-        func_8025A6EC(COMUSIC_2C_BUZZER, 32000);
+        coMusicPlayer_playMusic(COMUSIC_2C_BUZZER, 32000);
     }
 }
 
@@ -194,10 +194,10 @@ void func_8038A82C(Struct_MMM_3D50_0 * arg0){
             if( iPtr->unk0[iPtr->unk4] == 0){
                 func_8038A140(5);
                 chTumblar_congratulate(MMM_D_8038C510.unkC, MMM_D_8038C510.unk10);
-                func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
+                coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
             }
             else{
-                func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
             }
         }
     }

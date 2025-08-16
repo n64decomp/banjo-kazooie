@@ -45,14 +45,14 @@ void func_80389FA0(f32 position[3]){
 }
 
 void GV_func_8038A084(Actor *this){
-    if(this->unkF4_8 == 6 && !this->volatile_initialized){
+    if(this->actorTypeSpecificField == 6 && !this->volatile_initialized){
         this->volatile_initialized = TRUE;
         if( jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) && this->yaw == 1.0f){
             this->unk38_31 = TRUE;
         }
     }
 
-    if(this->unkF4_8 == 6
+    if(this->actorTypeSpecificField == 6
         && viewport_func_8024DB50(this->position, 50.0f)
         && !this->unk38_31
         && randf() < 0.2

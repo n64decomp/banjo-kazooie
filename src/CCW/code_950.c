@@ -43,13 +43,13 @@ void chwasp_setState(Actor *this, s32 next_state) {
         }
     }
     if (next_state == 3) {
-        FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
+        sfx_playFadeShorthandDefault(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
         func_80324D54(randf2(0.1f, 0.4f), 0x3FC, randf2(0.95f, 1.1f), 32000, this->position, 500.0f, 3000.0f);
         actor_collisionOff(this);
     }
     if (next_state == 4) {
         skeletalAnim_set(this->unk148, ASSET_171_ANIM_ZUBBA_DIE, 0.1f, 0.2f);
-        FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
+        sfx_playFadeShorthandDefault(SFX_1F_HITTING_AN_ENEMY_3, 1.2f, 32200, this->position, 500, 3000);
         func_80324D54(0.1f, 0x66, randf2(1.6f, 1.7f), 32000, this->position, 500.0f, 3000.0f);
         func_803867C8(local->unk4);
         actor_collisionOff(this);
@@ -117,7 +117,7 @@ void chwasp_update(Actor *this) {
         local->unk4 = 0;
         local->unk14 = 1000.0f;
         sfxsource_setSfxId(local->sfxsourceIdx, 0x3FA);
-        func_8030DD14(local->sfxsourceIdx, 2);
+        sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 2);
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.9f);
         sfxsource_setSampleRate(local->sfxsourceIdx, 0);
         marker_setCollisionScripts(this->marker, func_80387124, NULL, CCW_func_80387150);
@@ -210,6 +210,6 @@ void chwasp_update(Actor *this) {
     }
     sfxsource_set_fade_distances(local->sfxsourceIdx, 500.0f, 1500.0f);
     sfxsource_set_position(local->sfxsourceIdx, this->position);
-    func_8030E2C4(local->sfxsourceIdx);
+    sfxSource_func_8030E2C4(local->sfxsourceIdx);
     sfxsource_setSampleRate(local->sfxsourceIdx, (s32) ((local->unk18 / local->unk14) * 10000.0f));
 }

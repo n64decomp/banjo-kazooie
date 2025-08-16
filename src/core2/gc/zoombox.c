@@ -342,7 +342,7 @@ gczoomboxPortraitInfo D_8036C6C0[] = {
           {SFX_A5_EYRIE_CRY, 20000, 1.0f}
      }},
      {ASSET_7FA_SPRITE_WARP_CAULDRON, 0xED, 0x07, {
-          {SFX_3ED, 20000, 0.8f}
+          {SFX_3ED_BUBBLE_POP, 20000, 0.8f}
      }},
      {ASSET_82E_SPRITE_BRENTILDA, 0xED, 0x05, {
           {SFX_14C_BRENTILDA_TALKING, 16000, 1.2f}
@@ -400,7 +400,7 @@ gczoomboxPortraitInfo D_8036C6C0[] = {
           {SFX_E9_TOOTY_TALKING_2, 20000, 1.1f},
           {SFX_122_TOOTY_TALKING_3, 22000, 1.0f}}},
      {ASSET_833_SPRITE_DINGPOT, 0xEF, 0x06, {
-          {SFX_3ED, 20000, 0.8f}
+          {SFX_3ED_BUBBLE_POP, 20000, 0.8f}
      }},
      {ASSET_7E7_SPRITE_CROC_BANJO, 0xF0, 0x0A, {
           {SFX_95_BANJO_TALKING, 20000, 1.2f}
@@ -549,7 +549,7 @@ void func_803155C8(GcZoombox *this){
         if(this->sfx_count){
             for(i = 0; i < 5; i++){
                 if(func_8030E3FC(this->unk108[i])){
-                    func_8030E394(this->unk108[i]);
+                    sfxSource_triggerCallbackByIndex(this->unk108[i]);
                 }
             }
         }
@@ -712,7 +712,7 @@ void func_80315C90(GcZoombox *this, s32 arg1) {
             
             for(phi_s1 = 0; phi_s1 < 5; phi_s1++){
                 if (func_8030E3FC(this->unk108[phi_s1])) {
-                    func_8030E394(this->unk108[phi_s1]);
+                    sfxSource_triggerCallbackByIndex(this->unk108[phi_s1]);
                 }
             }
             if (this->sfx_count != 1) {
@@ -757,7 +757,7 @@ void func_80315C90(GcZoombox *this, s32 arg1) {
             phi_a0 = (this->unk124[current_sfx] - phi_s1_3 < 0)? 0 : this->unk124[current_sfx] - phi_s1_3;
             phi_a1 = (this->unk124[current_sfx] - phi_s2 < 0)  ? 0 : this->unk124[current_sfx] - phi_s2;
             sfxsource_setSampleRate(this->unk108[current_sfx], randi2(phi_a0, phi_a1));
-            func_8030E2C4(this->unk108[current_sfx]);
+            sfxSource_func_8030E2C4(this->unk108[current_sfx]);
         }
     }
 }
@@ -878,7 +878,7 @@ void func_80316764(GcZoombox *this, s32 arg1) {
 
     if (!this->unk1A4_10 ) {
         controller_copyFaceButtons(0, sp38);
-        func_8024E60C(0, sp2C);
+        controller_copySideButtons(0, sp2C);
         phi_f0 = time_getDelta();
     } else {
         pfsManager_getFirstControllerFaceButtonState(0, sp38);
@@ -1064,7 +1064,7 @@ void gczoombox_update(GcZoombox *this){
 
      if( !this->unk1A4_10 ){
           controller_copyFaceButtons(0, sp58);
-          func_8024E60C(0, sp4C);
+          controller_copySideButtons(0, sp4C);
           tmp_f0 = time_getDelta();
      }
      else{
@@ -1254,7 +1254,7 @@ void gczoombox_update(GcZoombox *this){
                     }
                }
                if(this->unk1A4_11 && anctrl_isAt(this->anim_ctrl, 0.9f)){
-                    func_8030E6A4(SFX_CD_PAUSEMENU_LEAVE_SUBMENU, 1.1f, this->unk12E);
+                    gcsfx_playWithPitch(SFX_CD_PAUSEMENU_LEAVE_SUBMENU, 1.1f, this->unk12E);
                }
                if(this->unk1A4_16 && anctrl_isStopped(this->anim_ctrl)){
                     if(this->unk1A4_14){

@@ -181,7 +181,7 @@ segments:
   - [0xF54BE0, c, ucode]
   - [0xF54CE0, c, lookup]
   - [0xF54D20, c, ml]
-  - [0xF58860, c, code_1BE90]
+  - [0xF58860, c, musicplayer]
   - [0xF59F60, c, stub_1D590]
   - [0xF59F90, hasm, code_1D5C0]
   - [0xF59FA0, c, code_1D5D0]
@@ -385,7 +385,7 @@ segments:
   - [0xF75640, .data, memory]
   - [0xF75670, .data, lookup]
   - [0xF75D60, .data, ml]
-  - [0xF75EE0, .data, code_1BE90]
+  - [0xF75EE0, .data, musicplayer]
   - [0xF75EF0, .data, code_1D5D0]
   - [0xF75F10, .data, sns]
   - [0xF75F20, .data, data_1E820]
@@ -423,7 +423,7 @@ segments:
   - [0xF77230, .rodata, overlaymanager]
   - [0xF772B0, .rodata, mlmtx]
   - [0xF772D0, .rodata, ml]
-  - [0xF773D0, .rodata, code_1BE90]
+  - [0xF773D0, .rodata, musicplayer]
   - [0xF77400, .rodata, code_1D5D0]
   - [0xF77460, .rodata, audio/n_synthesizer]
   - [0xF77470, .rodata, audio/n_csplayer]
@@ -543,7 +543,7 @@ segments:
   # - [0xF647A0, c, code_EE40] #DONE
   # - [0xF648B0, c, code_EF50] #DONE
   # - [0xF656C0, c, ba/physics] #DONE
-  # - [0xF66630, c, code_10CD0] #DONE
+  # - [0xF66630, c, bs/iFrame] #DONE
   # - [0xF66700, c, pitch]      #DONE
   # - [0xF669A0, c, code_11040] #DONE
   # - [0xF66BB0, c, climb] #DONE
@@ -563,7 +563,7 @@ segments:
   # - [0xF69920, c, bastick] #DONE
   # - [0xF69D80, c, code_14420] #DONE
   # - [0xF6B880, c, code_15F20]  #DONE
-  # - [0xF6B970, c, code_16010]  #DONE
+  # - [0xF6B970, c, hazards]  #DONE
   # - [0xF6C5C0, c, code_16C60]  #DONE
   # - [0xF6CB50, c, batimer]  #DONE
   # - [0xF6CDB0, c, bs/ant]      #DONE
@@ -651,7 +651,7 @@ segments:
   # - [0xF914E0, c, spawnqueue] #DONE
   # - [0xF92D30, c, ch/gameSelect] #DONE
   # - [0xF94430, c, code_3EAD0] #DONE
-  # - [0xF94590, c, code_3EC30] #DONE
+  # - [0xF94590, c, ch/explosionripple] #DONE
   # - [0xF94640, c, ch/bubble] #DONE
   # - [0xF94850, c, ch/bigbutt] #DONE
   # - [0xF95A50, c, code_400F0] #DONE
@@ -685,7 +685,7 @@ segments:
   # - [0xFA5DF0, c, code_50490] #DONE
   # - [0xFA60B0, c, ch/climbBase] #DONE
   # - [0xFA6330, c, code_509D0] #DONE
-  # - [0xFA7100, c, code_517A0] #DONE
+  # - [0xFA7100, c, ch/piranhaWaterParticles] #DONE
   # - [0xFA72B0, c, code_51950] #DONE
   # - [0xFA75F0, c, ch/collectible] #DONE
   # - [0xFA7BF0, c, ch/mole]     #DONE
@@ -730,9 +730,9 @@ segments:
   # - [0xFBC6F0, c, code_66D90] #DONE
   # - [0xFBC910, c, code_66FB0] #DONE
   # - [0xFBCDF0, c, gc/bound]   #DONE
-  # - [0xFBCFB0, c, code_67650] #DONE
+  # - [0xFBCFB0, c, dustemitter] #DONE
   # - [0xFBD300, c, particle] #DONE
-  # - [0xFBF8C0, c, code_69F60] #DONE
+  # - [0xFBF8C0, c, particleemittermanager] #DONE
   # - [0xFBFE10, c, code_6A4B0]
   # - [0xFC0850, c, code_6AEF0] #DONE
   # - [0xFC0990, c, code_6B030] #DONE
@@ -823,7 +823,7 @@ segments:
   # - [0x100C030, c, string]     #DONE
   # - [0x100C5C0, c, code_B6C60] #DONE
   # - [0x100C640, c, time] #DONE
-  # - [0x100C800, c, code_B6EA0] #DONE
+  # - [0x100C800, c, commonParticle] #DONE
   # - [0x100D480, c, coords] #DONE
   # - [0x100D8A0, c, code_B7F40] #DONE
   # - [0x100D980, c, code_B8020] #DONE
@@ -865,7 +865,7 @@ segments:
   # - [0x101F860, c, code_C9F00] #DONE
   # - [0x10209B0, c, code_CB050] #DONE
   # - [0x1020F70, c, code_CB610] #DONE
-  # - [0x1021200, c, code_CB8A0] #DONE
+  # - [0x1021200, c, commonParticleTypeMap] #DONE
   # - [0x1021550, c, code_CBBF0] #DONE
   # - [0x1021670, c, code_CBD10] #DONE
   # - [0x1021B40, c, code_CC1E0] #DONE
@@ -874,7 +874,7 @@ segments:
   # - [0x1023040, c, code_CD6E0] #DONE
   # - [0x1024630, c, code_CECD0] #DONE
   # - [0x10249F0, c, code_CF090] #DONE
-  # - [0x1024D40, c, code_CF3E0] #DONE
+  # - [0x1024D40, c, progressDialog] #DONE
   # - [0x1024F50, c, code_CF5F0] #DONE
   # - [0x1025140, c, ch/clankerwhipcrack] #DONE
   # - [0x10253C0, c, ch/code_CFA60] #DONE
@@ -950,7 +950,7 @@ segments:
   # - [0x1034790, .data, spawnqueue]
   # - [0x10347A0, .data, ch/gameSelect]
   # - [0x1034900, .data, code_3EAD0]
-  # - [0x1034980, .data, code_3EC30]
+  # - [0x1034980, .data, ch/explosionripple]
   # - [0x10349B0, .data, ch/bubble]
   # - [0x10349E0, .data, ch/bigbutt]
   # - [0x1034AC0, .data, code_400F0]
@@ -984,7 +984,7 @@ segments:
   # - [0x1036450, .data, code_50490]
   # - [0x10364F0, .data, ch/climbBase]
   # - [0x1036520, .data, code_509D0]
-  # - [0x1036630, .data, code_517A0]
+  # - [0x1036630, .data, ch/piranhaWaterParticles]
   # - [0x1036660, .data, code_51950]
   # - [0x10366D0, .data, ch/collectible]
   # - [0x1036740, .data, ch/mole]
@@ -1014,7 +1014,7 @@ segments:
   # - [0x1037220, .data, code_66D90]
   # - [0x1037230, .data, code_66FB0]
   # - [0x10372B0, .data, gc/bound]
-  # - [0x1037300, .data, code_67650]
+  # - [0x1037300, .data, dustemitter]
   # - [0x1037310, .data, particle]
   # - [0x10373A0, .data, code_6A4B0]
   # - [0x1037470, .data, code_6AEF0]
@@ -1078,7 +1078,7 @@ segments:
   # - [0x103F3F0, .data, code_B5040]
   # - [0x103F490, .data, code_B62B0]
   # - [0x10407F0, .data, time]
-  # - [0x1040800, .data, code_B6EA0]
+  # - [0x1040800, .data, commonParticle]
   # - [0x1040830, .data, code_B7F40]
   # - [0x1040840, .data, code_B9770]
   # - [0x1040890, .data, code_BD100]
@@ -1096,7 +1096,7 @@ segments:
   # - [0x1041090, .data, code_CD6E0]
   # - [0x10410C0, .data, code_CECD0]
   # - [0x10410D0, .data, code_CF090]
-  # - [0x1041100, .data, code_CF3E0]
+  # - [0x1041100, .data, progressDialog]
   # - [0x10411C0, .data, code_CF5F0]
   # - [0x10411E0, .data, ch/clankerwhipcrack]
   # - [0x1041210, .data, ch/code_CFA60]
@@ -1144,7 +1144,7 @@ segments:
   # - [0x1043180, .rodata, abilityprogress]
   # - [0x10431B0, .rodata, code_EF50]
   # - [0x1043350, .rodata, ba/physics]
-  # - [0x10433B0, .rodata, code_10CD0]
+  # - [0x10433B0, .rodata, bs/iFrame]
   # - [0x10433C0, .rodata, pitch]
   # - [0x10433F0, .rodata, code_11040]
   # - [0x1043400, .rodata, climb]
@@ -1157,7 +1157,7 @@ segments:
   # - [0x10436C0, .rodata, code_12F30]
   # - [0x10436E0, .rodata, bastick]
   # - [0x10436F0, .rodata, code_14420]
-  # - [0x1043770, .rodata, code_16010]
+  # - [0x1043770, .rodata, hazards]
   # - [0x1043BD0, .rodata, code_16C60]
   # - [0x1043C70, .rodata, bs/ant]
   # - [0x1043CA0, .rodata, bs/bBarge]
@@ -1247,7 +1247,7 @@ segments:
   # - [0x1045710, .rodata, ch/badShad]
   # - [0x1045720, .rodata, code_50490]
   # - [0x1045730, .rodata, code_509D0]
-  # - [0x1045770, .rodata, code_517A0]
+  # - [0x1045770, .rodata, ch/piranhaWaterParticles]
   # - [0x1045780, .rodata, code_51950]
   # - [0x1045790, .rodata, ch/mole]
   # - [0x1045830, .rodata, code_53C10]
@@ -1269,7 +1269,7 @@ segments:
   # - [0x1045AE0, .rodata, code_5C870]
   # - [0x1045B50, .rodata, code_5FD90]
   # - [0x1045B60, .rodata, code_66FB0]
-  # - [0x1045B70, .rodata, code_67650]
+  # - [0x1045B70, .rodata, dustemitter]
   # - [0x1045B80, .rodata, particle]
   # - [0x1045BA0, .rodata, code_6A4B0]
   # - [0x1045BB0, .rodata, code_6B030]
@@ -1407,7 +1407,7 @@ segments:
   # - [0x0106C980, .bss, code_EE40]
   # - [0x0106C980, .bss, code_EF50]
   # - [0x0106C980, .bss, ba/physics]
-  # - [0x0106C980, .bss, code_10CD0]
+  # - [0x0106C980, .bss, bs/iFrame]
   # - [0x0106C980, .bss, pitch]
   # - [0x0106C980, .bss, code_11040]
   # - [0x0106C980, .bss, climb]
@@ -1427,7 +1427,7 @@ segments:
   # - [0x0106C980, .bss, bastick]
   # - [0x0106C980, .bss, code_14420]
   # - [0x0106C980, .bss, code_15F20]
-  # - [0x0106C980, .bss, code_16010]
+  # - [0x0106C980, .bss, hazards]
   # - [0x0106C980, .bss, code_16C60]
   # - [0x0106C980, .bss, batimer]
   # - [0x0106C980, .bss, bs/ant]
@@ -1530,9 +1530,9 @@ segments:
   # - [0x0106C980, .bss, code_654C0]
   # - [0x0106C980, .bss, code_66D90]
   # - [0x0106C980, .bss, gc/bound]
-  # - [0x0106C980, .bss, code_67650]
+  # - [0x0106C980, .bss, dustemitter]
   # - [0x0106C980, .bss, particle]
-  # - [0x0106C980, .bss, code_69F60]
+  # - [0x0106C980, .bss, particleemittermanager]
   # - [0x0106C980, .bss, code_6AEF0]
   # - [0x0106C980, .bss, code_6B030]
   # - [0x0106C980, .bss, fx/ripple]
@@ -1606,7 +1606,7 @@ segments:
   # - [0x0106C980, .bss, code_B62B0]
   # - [0x0106C980, .bss, code_B6C60]
   # - [0x0106C980, .bss, time]
-  # - [0x0106C980, .bss, code_B6EA0]
+  # - [0x0106C980, .bss, commonParticle]
   # - [0x0106C980, .bss, code_B8020]
   # - [0x0106C980, .bss, code_B8860]
   # - [0x0106C980, .bss, code_B9770]
@@ -1624,7 +1624,7 @@ segments:
   # - [0x0106C980, .bss, code_C97F0]
   # - [0x0106C980, .bss, code_C9E70]
   # - [0x0106C980, .bss, code_C9F00]
-  # - [0x0106C980, .bss, code_CB8A0]
+  # - [0x0106C980, .bss, commonParticleTypeMap]
   # - [0x0106C980, .bss, code_CBBF0]
   # - [0x0106C980, .bss, code_CD0A0]
   # - [0x0106C980, .bss, code_CD6E0]
@@ -1913,7 +1913,7 @@ segments:
 #   # - [0x106EAA0, c, ch/frogminigame] #DONE
 #   # - [0x106F160, c, ch/yellowflibbit] #DONE
 #   # - [0x10709B0, c, ch/mudhut] #DONE
-#   # - [0x1070DD0, c, ch/code_8A60] #DONE
+#   # - [0x1070DD0, c, ch/swampswitch] #DONE
 #   # - [0x1071160, c, code_8DF0] #DONE
 #   # - [0x10713F0, c, ch/tanktup]
 #   # - [0x1071AC0, c, code_9750] #DONE
@@ -1931,7 +1931,7 @@ segments:
 #   # - [0x1072A60, .data, ch/yellowflibbit]
 #   # - [0x1072AA0, .data, crc]
 #   # - [0x1072AB0, .data, ch/mudhut]
-#   # - [0x1072B10, .data, ch/code_8A60]
+#   # - [0x1072B10, .data, ch/swampswitch]
 #   # - [0x1072BA0, .data, ch/tanktup]
 #   # - [0x1072BD0, .data, code_9750]
 #   # - [0x1072CF0, .data, ch/bigalligator]
@@ -1946,7 +1946,7 @@ segments:
 #   # - [0x1073010, .rodata, ch/frogminigame]
 #   # - [0x1073020, .rodata, ch/yellowflibbit]
 #   # - [0x1073110, .rodata, ch/mudhut]
-#   # - [0x1073120, .rodata, ch/code_8A60]
+#   # - [0x1073120, .rodata, ch/swampswitch]
 #   # - [0x1073130, .rodata, ch/tanktup]
 #   # - [0x1073140, .rodata, code_9750]
 #   # - [0x1073150, .rodata, ch/leafboat]
@@ -2194,7 +2194,7 @@ segments:
 #   # - [0x109C310, c, ch/cauldron] #DONE
 #   # - [0x109D6B0, c, ch/brentilda] #DONE
 #   # - [0x109DF40, c, code_5ED0] #DONE
-#   # - [0x10A0760, c, code_86F0] #DONE
+#   # - [0x10A0760, c, jigsawpicture] #DONE
 #   # - [0x10A1CB0, c, code_9C40] #DONE
 #   # - [0x10A21E0, c, code_A170] #DONE
 #   # - [0x10A24A0, c, code_A430] #DONE
@@ -2208,7 +2208,7 @@ segments:
 #   # - [0x10A51A0, .data, ch/cauldron]
 #   # - [0x10A5390, .data, ch/brentilda]
 #   # - [0x10A53E0, .data, code_5ED0]
-#   # - [0x10A6430, .data, code_86F0]
+#   # - [0x10A6430, .data, jigsawpicture]
 #   # - [0x10A64E0, .data, code_9C40]
 #   # - [0x10A6560, .data, code_A170]
 #   # - [0x10A6600, .data, code_A430]
@@ -2222,7 +2222,7 @@ segments:
 #   # - [0x10A6C80, .rodata, ch/cauldron]
 #   # - [0x10A6D10, .rodata, ch/brentilda]
 #   # - [0x10A6D40, .rodata, code_5ED0]
-#   # - [0x10A6E50, .rodata, code_86F0]
+#   # - [0x10A6E50, .rodata, jigsawpicture]
 #   # - [0x10A6EC0, .rodata, code_9C40]
 #   # - [0x10A6EF0, .rodata, code_A4A0]
 #   # - [0x10A6F30, .rodata, code_A810]

@@ -33,8 +33,8 @@ static void __chAttackTutorial_spawnEnemyActorForMarker(ActorMarker* marker, enu
     s32 pad;
     Actor *other = spawn_child_actor(enemy_id, &actor);
 
-    actor->unk100 = other->marker;
-    other->unk100 = actor->marker;
+    actor->partnerActor = other->marker;
+    other->partnerActor = actor->marker;
     if (actor->unk10_12 == 3 && actor->unk38_31 == 1) {
         other->unk38_31 = 1;
     } else {
@@ -89,10 +89,10 @@ static void __chAttackTutorial_setState(Actor* this, enum ch_attack_tutorial_sta
         case CH_ATTACK_TUTORIAL_STATE_5_SHOW_LEARN_MOVE_DIALOG:
             if (this->unk10_12 == 0) {
                 ability_unlock(ABILITY_4_CLAW_SWIPE);
-                gcdialog_showText(ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnAbilityBasedOnDialog, __chAttackTutorial_advanceMarkToState2);
+                gcdialog_showDialog(ASSET_DFF_DIALOG_BOTTLES_CLAW_SWIPE_LEARN, 0xE, this->unk1C, this->marker, __chAttackTutorial_learnAbilityBasedOnDialog, __chAttackTutorial_advanceMarkToState2);
             }
             else{
-                gcdialog_showText(
+                gcdialog_showDialog(
                     (this->unk10_12 == VEGETABLE_1_TOPPER) ? ASSET_E15_DIALOG_ATTACK_TUTORIAL_FORWARD_ROLL : ASSET_E17_DIALOG_ATTACK_TUTORIAL_RATATAT_RAP,
                     0xE, this->unk1C, this->marker, __chAttackTutorial_learnAbilityBasedOnDialog, NULL
                 );
@@ -248,6 +248,6 @@ static void __chAttackTutorial_showDialogText(ActorMarker* marker) {
         timed_setStaticCameraToNode(0.0f, 6);
     }
 
-    gcdialog_showText(dialog_text, dialog_flag, actor->unk1C, actor->marker, __chAttackTutorial_handleDialog, NULL);
+    gcdialog_showDialog(dialog_text, dialog_flag, actor->unk1C, actor->marker, __chAttackTutorial_handleDialog, NULL);
     actor->unk38_31++;
 }

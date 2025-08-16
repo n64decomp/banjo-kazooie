@@ -59,8 +59,8 @@ void func_8038DEB8(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if(this->state != 1 && this->state != 5){
         func_8038DE78(this);
-        FUNC_8030E8B4(SFX_87_TANKTUP_OOOHW, 1.6f, 32000, this->position, 1250, 2500);
-        FUNC_8030E8B4(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1250, 2500);
+        sfx_playFadeShorthandDefault(SFX_87_TANKTUP_OOOHW, 1.6f, 32000, this->position, 1250, 2500);
+        sfx_playFadeShorthandDefault(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1250, 2500);
     }
 }
 
@@ -108,10 +108,10 @@ void func_8038E094(Actor *this){
         this->marker->propPtr->unk8_3 = TRUE;
         anctrl_setAnimTimer(this->anctrl, 0.99999f);
         this->lifetime_value = 0.0f;
-        if(this->unkF4_8 == 1){
+        if(this->actorTypeSpecificField == 1){
             func_8038DDC8(this);
         }
-        if(this->unkF4_8 == 2){
+        if(this->actorTypeSpecificField == 2){
             if(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -2){
                 func_8038DDC8(this);
             }
@@ -121,13 +121,13 @@ void func_8038E094(Actor *this){
             }
         }
     }//L8038E180
-    if(this->unk100){
-        sp38 = marker_getActor(this->unk100);
+    if(this->partnerActor){
+        sp38 = marker_getActor(this->partnerActor);
         if(sp38->unk1C[1] == 1.0f){
-            if(this->unkF4_8 == 1 && !fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
+            if(this->actorTypeSpecificField == 1 && !fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 if(this->state != 6 && this->state != 7 && 0.0f == this->velocity[0]){
                     timed_setStaticCameraToNode(0.5f, 0xd);
-                    gcdialog_showText(ASSET_C15_DIALOG_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
+                    gcdialog_showDialog(ASSET_C15_DIALOG_TWINKLIE_MINIGAME_LOST, 0x2b, this->position, this->marker, func_8038E040, NULL);
                     this->velocity[0] = 1.0f;
                     subaddie_set_state_with_direction(this, 6, 0.03f, 1);
                     actor_loopAnimation(this);
@@ -173,10 +173,10 @@ void func_8038E094(Actor *this){
             }
             
             if(actor_animationIsAt(this, 0.15f))
-                FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_C5_TWINKLY_POP, 1.0f, 32000, this->position, 1250, 2500);
 
             if(actor_animationIsAt(this, 0.35f))
-                FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 1.2f, 32000, this->position, 1250, 2500);
+                sfx_playFadeShorthandDefault(SFX_C4_TWINKLY_MUNCHER_GRR, 1.2f, 32000, this->position, 1250, 2500);
 
             if(actor_animationIsAt(this, 0.97f))
                 func_8038DE08(this);
@@ -197,11 +197,11 @@ void func_8038E094(Actor *this){
             if(sp38 && sp38->marker->id == this->unk38_31){
                 if(actor_animationIsAt(this, 0.23)){
                     func_8038C398(sp38->position, sp38->marker->id);
-                    FUNC_8030E8B4(SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250, 2500);
-                    FUNC_8030E8B4(SFX_27_JINJO_HI, 1.6f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_27_JINJO_HI, 1.6f, 32000, this->position, 1250, 2500);
                     func_80324D54(0.35f, SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250.0f, 2500.0f);
                     marker_despawn(sp38->marker);
-                    if( !mapSpecificFlags_get(0xa) && gcdialog_showText(0xc16, 0, NULL, NULL, NULL, NULL)){
+                    if( !mapSpecificFlags_get(0xa) && gcdialog_showDialog(0xc16, 0, NULL, NULL, NULL, NULL)){
                         mapSpecificFlags_set(0xa, TRUE);
                     }
                 }

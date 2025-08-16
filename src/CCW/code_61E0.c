@@ -43,7 +43,7 @@ void CCW_func_8038C6A0(Actor *this, s32 next_state) {
         local->unk18 = 0.0f;
     }
     if (next_state == 4) {
-        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
         marker_despawn(this->marker);
     }
     if (next_state == 5) {
@@ -75,7 +75,7 @@ void func_8038C7A8(Actor *this) {
         player_getPosition(sp38);
         if (ml_vec3f_distance(this->position, sp38) < 50.0f) {
             func_8028F030(0x2A9);
-            FUNC_8030E8B4(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 500, 2500);
+            sfx_playFadeShorthandDefault(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 500, 2500);
             CCW_func_8038C6A0(this, 5);
         }
     }

@@ -62,7 +62,7 @@ void func_803219F4(s32 arg0){
         case 2: //L80321B28
             core1_ce60_incOrDecCounter(FALSE);
             func_8025A55C(0, 4000, 7);
-            func_8025A6EC(COMUSIC_58_WADING_BOOTS, -1);
+            coMusicPlayer_playMusic(COMUSIC_58_WADING_BOOTS, -1);
             func_8025A8B8(COMUSIC_58_WADING_BOOTS, 1);
             break;
         case 4: //L80321B60
@@ -76,14 +76,14 @@ void func_803219F4(s32 arg0){
             if(D_80383314 == COMUSIC_57_TURBO_TRAINERS){
                 func_8025A55C(0, 4000, 7);
             }
-            func_8025A6EC(D_80383314, -1);
+            coMusicPlayer_playMusic(D_80383314, -1);
             func_8025A8B8(D_80383314, 1);
             break;
         case 3: //L80321BDC
             func_803228D8();
             core1_ce60_incOrDecCounter(FALSE);
             func_8025A55C(0, 4000, 7);
-            func_8025A6EC(COMUSIC_95_BBONUS_A, -1);
+            coMusicPlayer_playMusic(COMUSIC_95_BBONUS_A, -1);
             func_8025A8B8(COMUSIC_95_BBONUS_A, 1);
             break;
         case 5: //L80321C1C

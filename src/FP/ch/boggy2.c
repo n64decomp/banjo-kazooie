@@ -124,10 +124,10 @@ void func_80388A50(Actor *this){
 void func_80388A94(Actor *this){
     func_80388A50(this);
     if(mapSpecificFlags_get(6)){
-        gcdialog_showText(ASSET_C0A_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showDialog(ASSET_C0A_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
     else{
-        gcdialog_showText(ASSET_C09_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
+        gcdialog_showDialog(ASSET_C09_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
 }
 
@@ -136,15 +136,15 @@ void func_80388B18(Actor *this, u8 arg1){
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             func_80388A50(this);
             if(mapSpecificFlags_get(5)){
-                gcdialog_showText(ASSET_C05_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showDialog(ASSET_C05_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
             else{
-                gcdialog_showText(ASSET_C02_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                gcdialog_showDialog(ASSET_C02_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
         }
         else{//L80388BB8
             if(!volatileFlag_get(VOLATILE_FLAG_B3)){
-                if(gcdialog_showText(ASSET_C01_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showDialog(ASSET_C01_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B3, TRUE);
                     func_80388A50(this);
                 }
@@ -154,7 +154,7 @@ void func_80388B18(Actor *this, u8 arg1){
     else{//L80388C08
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             if(!volatileFlag_get(VOLATILE_FLAG_B4)){
-                if(gcdialog_showText(ASSET_C08_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
+                if(gcdialog_showDialog(ASSET_C08_DIALOG_UNKNOWN, 0xe, this->position, this->marker, func_80388D70, NULL)){
                     volatileFlag_set(VOLATILE_FLAG_B4, TRUE);
                     func_80388A50(this);
                 }
@@ -180,12 +180,12 @@ bool FP_func_80388CA0(Actor *this){
     if(player_movementGroup() != BSGROUP_0_NONE && player_movementGroup() != BSGROUP_8_TROT)
         return FALSE;
 
-    if( !func_80329530(this, 1100) ){
+    if( !subaddie_playerIsWithinSphereAndActive(this, 1100) ){
         local->unk18 = TRUE;
     }
 
     sp20 = this->unk10_12;
-    this->unk10_12 = func_80329530(this, 0x1C2);
+    this->unk10_12 = subaddie_playerIsWithinSphereAndActive(this, 0x1C2);
     return (sp20 == 0 && this->unk10_12 && local->unk18);
 }
 
@@ -199,7 +199,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         case 0xc06:
         case 0xc28:
         case 0xc29://L80388DC4
-            func_8025A6EC(COMUSIC_3A_FP_BOGGY_RACE, 25000);
+            coMusicPlayer_playMusic(COMUSIC_3A_FP_BOGGY_RACE, 25000);
             func_8025A58C(0, 4000);
             core1_ce60_incOrDecCounter(FALSE);
             func_802BE720();
@@ -262,7 +262,7 @@ void func_80388F90(Actor *this){
 
     func_8030DB04(this->unk44_31, 32000, this->position, 1000.0f, 4000.0f);
     sfxsource_playSfxAtVolume(this->unk44_31, local->unk8);
-    func_8030E2C4(this->unk44_31);
+    sfxSource_func_8030E2C4(this->unk44_31);
 }
 
 bool func_80388FE8(Actor *this, f32 arg1, f32 arg2){
@@ -467,24 +467,24 @@ void func_803896FC(Actor *this){
             else if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) && player_movementGroup() == BSGROUP_C_WALRUS_SLED){
                 FP_func_803888E4(this);
             }
-            else if( func_80329530(this, 0x1C2)
+            else if( subaddie_playerIsWithinSphereAndActive(this, 0x1C2)
                 && player_movementGroup() == BSGROUP_0_NONE
                 && func_8028F20C()
                 && func_8028EFC8()
                 && sp3C[FACE_BUTTON(BUTTON_B)] == 1
-                && !func_803114B0()
+                && !gcdialog_hasCurrentTextId()
             ){
                 if( local->unk19 == 1 
                     && player_getTransformation() != TRANSFORM_4_WALRUS
                     && volatileFlag_get(VOLATILE_FLAG_B3)
                 ){
-                    gcdialog_showText(ASSET_C01_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                    gcdialog_showDialog(ASSET_C01_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                 }
                 else if( local->unk19 == 2){
                     if( player_getTransformation() == TRANSFORM_4_WALRUS
                         && volatileFlag_get(VOLATILE_FLAG_B4)
                     ){
-                        gcdialog_showText(ASSET_C08_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
+                        gcdialog_showDialog(ASSET_C08_DIALOG_UNKNOWN, 0xf, this->position, this->marker, func_80388D70, NULL);
                     }
                     else if( player_getTransformation() != TRANSFORM_4_WALRUS){
                         func_80388A94(this);

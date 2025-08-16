@@ -32,7 +32,7 @@ void func_80390000(s32 arg0){
     if(GV_D_80391AD0 == 2){
         levelSpecificFlags_set(LEVEL_FLAG_6_GV_UNKNOWN, FALSE);
         func_803228D8();
-        func_802E4078(MAP_15_GV_WATER_PYRAMID, 1, 0);
+        transitionToMap(MAP_15_GV_WATER_PYRAMID, 1, 0);
     }
 }
 

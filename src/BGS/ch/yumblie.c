@@ -74,7 +74,7 @@ void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
         skeletalAnim_set(this->unk148, (s0->unk4)? ASSET_12A_ANIM_GRUMBLIE_IDLE : ASSET_127_ANIM_YUMBLIE_IDLE, 0.1f, randf2(0.5f, 1.0f));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         if(s0->unk4){
-            func_8030E6A4(SFX_C4_TWINKLY_MUNCHER_GRR,randf2(1.0f, 1.2), 30000);
+            gcsfx_playWithPitch(SFX_C4_TWINKLY_MUNCHER_GRR,randf2(1.0f, 1.2), 30000);
         }else{
             func_8030E878(SFX_C3_HEGH,randf2(1.0f, 1.2), 30000, this->position, 500.0f, 3000.0f);
         }

@@ -150,7 +150,7 @@ void func_8038756C(Actor *this, s32 arg1){
             func_8034DDF0(temp_v0, sp50, sp44, 0.1f, 1);
         
         timedFunc_set_2(0.1f, (GenFunction_2)func_8038711C, 0x19d, 0x1f4);
-        timedFunc_set_2(0.1f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+        timedFunc_set_2(0.1f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
         timedFunc_set_1(1.1f, (GenFunction_1)func_8038718C, (s32)this->marker);
     }//L80387704

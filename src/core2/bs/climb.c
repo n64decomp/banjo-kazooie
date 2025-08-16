@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
@@ -78,7 +81,7 @@ void bsclimb_idle_init(void){
         yaw_setIdeal(angle_towards_pole);
         yaw_applyIdeal();
     }
-    ability_use(4);
+    ability_use(ABILITY_USED_CLIMB);
     baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
@@ -222,6 +225,6 @@ void func_802ABD60(void){
         func_80296608();
         return;
     }
-    func_8029A86C(1);
+    bs_setInterruptResponse(1);
     bs_setState(next_state);
 }

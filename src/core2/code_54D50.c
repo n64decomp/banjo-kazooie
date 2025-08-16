@@ -58,7 +58,7 @@ void func_802DBCE0(ParticleEmitter *pCtrl, f32 arg1[3]){
         particleEmitter_setPosition(other, arg1);
         particleEmitter_setParticleVelocityRange(other, -230.0f, 30.0f, -230.0f, 230.0f, 110.0f, 230.0f);
         func_802EFC28(other, &D_80367F60);
-        FUNC_8030E8B4(SFX_7_BANJO_LANDING_03, 1.0f, 22000, arg1, 1500, 4500);
+        sfx_playFadeShorthandDefault(SFX_7_BANJO_LANDING_03, 1.0f, 22000, arg1, 1500, 4500);
     }//L802DBE8C
 }
 

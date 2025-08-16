@@ -15,16 +15,16 @@ Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
 Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
 
-extern ActorInfo D_80365E58; //banjo.without_right_hand
-extern ActorInfo D_80365EAC; //banjo.playing_gameboy
-extern ActorInfo D_80365F00; //banjo.cooking
+extern ActorInfo gameSelect_banjoSleeping; //banjo.without_right_hand
+extern ActorInfo gameSelect_banjoGameboy; //banjo.playing_gameboy
+extern ActorInfo gameSelect_banjoCooking; //banjo.cooking
 extern ActorInfo D_80365F60;
 extern ActorInfo D_80365F84; //turbotrainers
-extern ActorInfo D_80365FB0; //shrapnel
+extern ActorInfo chExplosionRipple;
 extern ActorInfo chBubble;
 extern ActorInfo D_80366090; //bigbutt
 extern ActorInfo D_803660B4; //brownbull
-extern ActorInfo D_803662A8; //jiggy
+extern ActorInfo chJiggy; //jiggy
 extern ActorInfo chJigsawDance; //jigdance
 extern ActorInfo D_80366340;
 extern ActorInfo D_80366364;
@@ -33,7 +33,7 @@ extern ActorInfo D_803663AC;
 extern ActorInfo D_803663D0;
 extern ActorInfo D_803663F4;
 extern ActorInfo chExtraLife; //extralife
-extern ActorInfo D_80366C50; //music_note
+extern ActorInfo sumusicNote; //music_note
 extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
 extern ActorInfo chTrainers;
@@ -90,7 +90,7 @@ extern ActorInfo D_80367BA4; //gold_bullion
 extern ActorInfo D_80367BC8;
 extern ActorInfo D_80367BEC;
 extern ActorInfo D_80367C10;
-extern ActorInfo D_80367C60;
+extern ActorInfo chPiranhaWaterParticles;
 extern ActorInfo D_80367C90; //spent_redfeather
 extern ActorInfo D_80367CB4; //spent_goldfeather
 extern ActorInfo D_80367D00; //egg
@@ -223,13 +223,13 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&chJinjoBlue, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chJinjoPink, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chJinjoGreen, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&D_803662A8, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_21);
+    spawnableActorList_add(&chJiggy, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_21);
     spawnableActorList_add(&chJigsawDance, actor_new, ACTOR_FLAG_UNKNOWN_2);
-    spawnableActorList_add(&D_80367C60, actor_new, ACTOR_FLAG_UNKNOWN_2);
+    spawnableActorList_add(&chPiranhaWaterParticles, actor_new, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&D_80367A20, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_80366C80, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_21); //chhoneycarrier
     spawnableActorList_add(&D_80366CA4, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_21); //chhoney
-    spawnableActorList_add(&D_80366C50, actor_new, ACTOR_FLAG_UNKNOWN_21); //music_note
+    spawnableActorList_add(&sumusicNote, actor_new, ACTOR_FLAG_UNKNOWN_21); //music_note
     spawnableActorList_add(&D_80367D00, actor_new, ACTOR_FLAG_UNKNOWN_21); //egg
     spawnableActorList_add(&D_80366340, func_802C8A54, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&D_80366364, func_802C8AA8, ACTOR_FLAG_UNKNOWN_2);
@@ -245,7 +245,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80365F84, actor_new, ACTOR_FLAG_UNKNOWN_2); //turbotrainers
     spawnableActorList_add(&D_80367184, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chExtraLife, actor_new, ACTOR_FLAG_UNKNOWN_21); //extralife
-    spawnableActorList_add(&D_80365FB0, actor_new, ACTOR_FLAG_UNKNOWN_2); //shrapnel
+    spawnableActorList_add(&chExplosionRipple, actor_new, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&chBadShad, actor_new, ACTOR_FLAG_UNKNOWN_2); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, ACTOR_FLAG_UNKNOWN_6); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, ACTOR_FLAG_UNKNOWN_10);
@@ -281,9 +281,9 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367838, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //level_entry_disk
     spawnableActorList_add(&D_80367760, actor_new, ACTOR_FLAG_UNKNOWN_12);
     spawnableActorList_add(&D_80367784, actor_new, ACTOR_FLAG_UNKNOWN_12);
-    spawnableActorList_add(&D_80365E58, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.without_right_hand
-    spawnableActorList_add(&D_80365EAC, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.playing_gameboy
-    spawnableActorList_add(&D_80365F00, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.cooking
+    spawnableActorList_add(&gameSelect_banjoSleeping, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.without_right_hand
+    spawnableActorList_add(&gameSelect_banjoGameboy, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.playing_gameboy
+    spawnableActorList_add(&gameSelect_banjoCooking, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.cooking
     spawnableActorList_add(&D_803677CC, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);//mumbo_transform_pad
     spawnableActorList_add(&D_803677F0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
     spawnableActorList_add(&D_803731B0, actor_new, ACTOR_FLAG_NONE);

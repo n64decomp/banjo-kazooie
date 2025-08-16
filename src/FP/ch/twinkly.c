@@ -106,7 +106,7 @@ void func_8038C260(f32 position[3], s32 count, enum asset_e model_id){
     particleEmitter_setFade(pCtrl, 0.0f, 0.3f);
     particleEmitter_func_802EF9F8(pCtrl, 0.6f);
     particleEmitter_func_802EFA18(pCtrl, 0);
-    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    particleEmitter_func_802EFA20(pCtrl, 1.0f, 1.3f);
     particleEmitter_setSfx(pCtrl, SFX_7B_ICE_BREAKING_1, 8000);
     particleEmitter_emitN(pCtrl, count);
 }
@@ -232,10 +232,10 @@ void func_8038C8F0(ActorMarker *marker){
     s32 pad;
 
     this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
-    other = marker_getActor(this->unk100);
+    other = marker_getActor(this->partnerActor);
     muncher = actor_spawnWithYaw_f32(ACTOR_337_TWINKLY_MUNCHER, D_80392070, 170);
-    muncher->unk100 = other->marker;
-    muncher->unkF4_8 = 1;
+    muncher->partnerActor = other->marker;
+    muncher->actorTypeSpecificField = 1;
 
     if(pad);
 }
@@ -255,7 +255,7 @@ void func_8038C9A0(Actor *this){
     if(this->marker->id == 0x200){
         sp30 = func_8034C2C4(this->marker, 0x190);
     }
-    other = marker_getActor(this->unk100);
+    other = marker_getActor(this->partnerActor);
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
@@ -279,7 +279,7 @@ void func_8038C9A0(Actor *this){
 
     if(1.0f == other->unk1C[1]){
         func_8038C398(this->position, this->marker->id);
-        FUNC_8030E8B4(SFX_7B_ICE_BREAKING_1, 1.0f, 32000, this->position, 0x6d6, 0xdac);\
+        sfx_playFadeShorthandDefault(SFX_7B_ICE_BREAKING_1, 1.0f, 32000, this->position, 0x6d6, 0xdac);\
         marker_despawn(this->marker);
         return;
     }
@@ -326,7 +326,7 @@ void func_8038C9A0(Actor *this){
                 if(other->unk38_31 != 0){
                     other->unk38_31--;
                 }
-                func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
                 marker_despawn(this->marker);
             }
             break;
@@ -336,11 +336,11 @@ void func_8038C9A0(Actor *this){
             if(this->unk1C[1] <= this->position_y){
                 this->position_y = this->unk1C[1];
                 if(!fileProgressFlag_get(FILEPROG_82_MET_TWINKLIES)){
-                    gcdialog_showText(0xc12, 0x2a, this->position, this->marker, func_8038C94C, NULL);
+                    gcdialog_showDialog(0xc12, 0x2a, this->position, this->marker, func_8038C94C, NULL);
                     fileProgressFlag_set(FILEPROG_82_MET_TWINKLIES, TRUE);
                 }
                 else{
-                    gcdialog_showText(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);
+                    gcdialog_showDialog(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);
                 }
                 subaddie_set_state(this, 5);
                 this->pitch -= 3.0f;

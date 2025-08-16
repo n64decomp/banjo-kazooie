@@ -194,10 +194,10 @@ void fxhealthscore_update(enum item_e item_id, struct8s *arg1) {
                     gHealth =gHealth + 1.0;
                 }
                 if (item_getCount(ITEM_14_HEALTH) < gHealth) {
-                    func_8025A6EC(COMUSIC_2B_DING_B, 22000);
+                    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 22000);
                 }
                 if (gHealth < (f32) item_getCount(ITEM_14_HEALTH)) {
-                    func_8025A6EC(COMUSIC_2C_BUZZER, 22000);
+                    coMusicPlayer_playMusic(COMUSIC_2C_BUZZER, 22000);
                 }
                 item_set(ITEM_14_HEALTH, (s32) gHealth);
                 D_80381EF0 = 0;

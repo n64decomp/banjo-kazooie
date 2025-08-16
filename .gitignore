@@ -65,6 +65,7 @@ ctx.c
 nonmatchings/
 undefined_syms_auto*
 undefined_funcs_auto*
+.DS_STORE
 
 #progress reports
 *.csv

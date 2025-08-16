@@ -757,7 +757,7 @@ void func_802B9880(void) {
 
 void func_802B98C0(void) {
     if (bs_getInterruptType() == BS_INTR_2B) {
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
         bs_setState(BS_67_WALRUS_IDLE);
         return;
     }

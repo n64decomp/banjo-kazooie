@@ -53,12 +53,12 @@ void func_8034F774(void){
         sp44[1] = (sp38[1] + sp2C[1])/2;
         sp44[2] = (sp38[2] + sp2C[2])/2;
         sfxsource_setSfxId(D_803720A0.sfxsourceIdx, 0x3EC);
-        func_8030DD14(D_803720A0.sfxsourceIdx, 3);
+        sfxSource_setunk43_7ByIndex(D_803720A0.sfxsourceIdx, 3);
         func_8030DFF0(D_803720A0.sfxsourceIdx, 1);
         sfxsource_set_position(D_803720A0.sfxsourceIdx, sp44);
         sfxsource_set_fade_distances(D_803720A0.sfxsourceIdx, 400.0f, 3200.0f);
         func_8030DE44(D_803720A0.sfxsourceIdx, 2, 0.5f);
-        func_8030E2C4(D_803720A0.sfxsourceIdx);
+        sfxSource_func_8030E2C4(D_803720A0.sfxsourceIdx);
     }
 }
 

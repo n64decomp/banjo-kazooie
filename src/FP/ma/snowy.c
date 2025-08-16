@@ -58,7 +58,7 @@ void maSnowy_update(void){
         case MA_SNOWY_STATE_2_WIN:
             if(Me.delay >= 75){
                 if(Me.jiggySpawnerExists){
-                    func_802BAFE4(0x12);
+                    gcStaticCamera_activate(0x12);
                     jiggy_spawn(JIGGY_31_FP_SIR_SLUSH, Me.spawn_pos);
                     __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM,
                         reinterpret_cast(s32, Me.spawn_pos[0]),

@@ -16,7 +16,7 @@ void func_8034F434(Struct76s *arg0, s32 arg1) {
         arg0->unk4 = (s32) (arg0->unk4 + 1);
          arg0->unk14 = arg0->unk10 = randf2(0.08f, 0.12f);
         if ((arg0->unk4 == 1) && func_8034C4CC()) {
-            func_8030E6A4(SFX_B5_THUNDERBOLT,  randf2(0.9f, 1.1f), randi2(10000, 20000));
+            gcsfx_playWithPitch(SFX_B5_THUNDERBOLT,  randf2(0.9f, 1.1f), randi2(10000, 20000));
         }
     }
     if (arg1 == 0) {

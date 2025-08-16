@@ -36,7 +36,7 @@ void __ncFirstPersonCamera_getPositionAndRotation_entering(f32 arg0[3], f32 arg1
         ncFirstPersonCamera_setState(FIRSTPERSON_STATE_2_IDLE);
     }
     if (__ncFirstPersonCamera_fullyZoomedIn() && func_8028F150()) {
-        func_8028FCC8(0);
+        player_setModelVisible(0);
     }
     ml_vec3f_copy(arg0, D_8037DC60.position);
     ml_vec3f_copy(arg1, D_8037DC60.rotation);
@@ -55,7 +55,7 @@ void __ncFirstPersonCamera_getPositionAndRotation_exiting(f32 arg0[3], f32 arg1[
         ncFirstPersonCamera_setState(FIRSTPERSON_STATE_4_DONE);
     }
     if (!__ncFirstPersonCamera_fullyZoomedIn() && !func_8028F150()) {
-        func_8028FCC8(1);
+        player_setModelVisible(1);
     }
     ml_vec3f_copy(arg0, D_8037DC60.position);
     ml_vec3f_copy(arg1, D_8037DC60.rotation);

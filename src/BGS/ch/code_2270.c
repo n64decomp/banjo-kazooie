@@ -65,11 +65,11 @@ void chTiptup_activateTimer(ActorMarker *this){
 }
 
 void chTiptup_sfxCorrectHit(void){
-    func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
 }
 
 void chTiptup_sfxIncorrectHit(void){
-    func_8025A6EC(COMUSIC_2C_BUZZER, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2C_BUZZER, 28000);
 }
 
 void chTiptup_textEvent(ActorMarker *this, enum asset_e text_id, s32 arg2){
@@ -147,14 +147,14 @@ void chTiptup_setState(Actor *this, s32 arg1){
             this->has_met_before = TRUE;
 
             if (unqPtr->unkA == 0) {
-                gcdialog_showText(ASSET_C72_DIALOG_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showDialog(ASSET_C72_DIALOG_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
             }
             else {
-                gcdialog_showText(ASSET_C74_DIALOG_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showDialog(ASSET_C74_DIALOG_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
             }
         }
         else {
-            gcdialog_showText(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, chTiptup_textEvent, 0);
+            gcdialog_showDialog(D_80390854[unqPtr->unkA], 0xf, this->position, this->marker, chTiptup_textEvent, 0);
         }
     }
     if(this->state == 3){
@@ -206,7 +206,7 @@ void chTiptup_setState(Actor *this, s32 arg1){
     }//L80388D8C
     if(this->state == 6){
         if(unqPtr->unkA == 3){
-            func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+            coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
         func_80324E38(0.5f, 3);
         timed_setStaticCameraToNode(1.5f, 1);
@@ -235,7 +235,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     unqPtr = (ActorLocal_Tiptup *)&thisActor->local;
     if((s32)unqPtr->unk0 >= (s32) vector_size(unqPtr->unk4)){
-        if(!mapSpecificFlags_get(0) && gcdialog_showText(ASSET_C76_DIALOG_UNKNOWN, 0, 0, 0, 0, 0))
+        if(!mapSpecificFlags_get(0) && gcdialog_showDialog(ASSET_C76_DIALOG_UNKNOWN, 0, 0, 0, 0, 0))
             mapSpecificFlags_set(0,1);
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
@@ -245,7 +245,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
         else{
             func_8028F55C(1, thisActor->marker);
             timedFunc_set_0(0.5f, chTiptup_sfxIncorrectHit);
-           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && gcdialog_showText(0xc75, 0, NULL, NULL, NULL, NULL))
+           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && gcdialog_showDialog(0xc75, 0, NULL, NULL, NULL, NULL))
                mapSpecificFlags_set(1,TRUE);
         }
     }
@@ -342,7 +342,7 @@ void chTiptup_update(Actor *this){
         if(this->state == 6){
             if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
-                gcdialog_showText(0xc7d, 4, 0, 0, 0, 0);
+                gcdialog_showDialog(0xc7d, 4, 0, 0, 0, 0);
             }
         }
     }

@@ -63,7 +63,7 @@ void func_80388EB8(Actor *this, s32 arg1){
     s32 sp30;
 
     if(this->state == 2)
-        FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 1000, 2300);
+        sfx_playFadeShorthandDefault(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 1000, 2300);
 
     this->state = arg1;
     local->unk24 = 0.0f;
@@ -90,7 +90,7 @@ void func_80388EB8(Actor *this, s32 arg1){
         local->unk10[2] = this->roll + 360.0f;
 
         local->unk1C = 0.0f;
-        FUNC_8030E8B4(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 900, 1800);
+        sfx_playFadeShorthandDefault(SFX_7F_HEAVYDOOR_SLAM, 0.8f, 32000, this->position, 900, 1800);
     }//L803890A8
 }
 

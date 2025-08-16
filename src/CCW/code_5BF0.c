@@ -116,7 +116,7 @@ void func_8038C41C(Actor *this) {
         player_getPosition(sp2C);
         if (!this->has_met_before && (ml_vec3f_distance(this->position, sp2C) < 400.0f)) {
             this->has_met_before = TRUE;
-            gcdialog_showText(0xCCD, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(0xCCD, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

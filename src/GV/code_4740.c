@@ -167,7 +167,7 @@ void func_8038B124(Actor *this){
         if(this->unk44_31 == 0){
             this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
             sfxsource_setSfxId(this->unk44_31, SFX_3EC_CCW_DOOR_OPENING);
-            func_8030DD14(this->unk44_31, 2);
+            sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
             sfxsource_playSfxAtVolume(this->unk44_31, 0.1f);
             sfxsource_setSampleRate(this->unk44_31, 32000);
         }
@@ -184,7 +184,7 @@ void func_8038B124(Actor *this){
             }//L8038B33C
 
             if( this->unk1C[1] == 0.0 
-                && func_80329530(this, 0x320)
+                && subaddie_playerIsWithinSphereAndActive(this, 0x320)
                 && func_803292E0(this)
             ){
                 anctrl_setSmoothTransition(this->anctrl, 0);
@@ -207,7 +207,7 @@ void func_8038B124(Actor *this){
             break;
 
         case 2: //L8038B430
-            func_8030E2C4(this->unk44_31);
+            sfxSource_func_8030E2C4(this->unk44_31);
             if(0.98 < anctrl_getAnimTimer(this->anctrl)){
                 func_8038AF10(this);
             }
@@ -218,13 +218,13 @@ void func_8038B124(Actor *this){
             break;
 
         case 3: //L8038B494
-            func_8030E2C4(this->unk44_31);
-            if(func_80329530(this, 175)){
+            sfxSource_func_8030E2C4(this->unk44_31);
+            if(subaddie_playerIsWithinSphereAndActive(this, 175)){
                 subaddie_set_state_with_direction(this, 4, 0.00001f, 1);
                 actor_loopAnimation(this);
                 this->unk1C[0] = 1.0f;
             }
-            else if(!func_80329530(this, 1100) || !func_8038AF78(this, 8.0f, 16.0f)){
+            else if(!subaddie_playerIsWithinSphereAndActive(this, 1100) || !func_8038AF78(this, 8.0f, 16.0f)){
                 subaddie_set_state_with_direction(this, 8, 0.00001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk1C[0] = 1.0f;

@@ -80,7 +80,7 @@ static void __chsnacker_start_dialog(Actor *this) {
             text_index = mapSpecificFlags_getN(8, 3);
             if( !this->has_met_before ) {
                 if(text_index < 4) {
-                    if(gcdialog_showText(0xA1B + text_index, 0, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showDialog(0xA1B + text_index, 0, NULL, NULL, NULL, NULL)){
                         text_index++;
                         mapSpecificFlags_setN(8, text_index, 3);
                         this->has_met_before = TRUE;
@@ -129,7 +129,7 @@ static void __chsnacker_die(ActorMarker *marker, ActorMarker *other){
 
     this = marker_getActor(marker);
     actor_collisionOff(this);
-    FUNC_8030E8B4(SFX_179_GRUNTY_DAMAGE, 0.6f, 32750, this->position, 300, 3000);
+    sfx_playFadeShorthandDefault(SFX_179_GRUNTY_DAMAGE, 0.6f, 32750, this->position, 300, 3000);
     subaddie_set_state_with_direction(this, CH_SNACKER_STATE_9_DEAD, 0.0f, 1);
     actor_playAnimationOnce(this);
 }
@@ -156,7 +156,7 @@ static void __chsnacker_ow(ActorMarker *marker, ActorMarker *other){
 
     this = marker_getActor(marker);
     if(level_get() == LEVEL_2_TREASURE_TROVE_COVE && !player_isDead()){
-        gcdialog_showText(0xA29, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(0xA29, 0, NULL, NULL, NULL, NULL);
     }//L802E10A4
 
     if(this->state == 4){
@@ -250,7 +250,7 @@ void chsnacker_update(Actor *this) {
 
         case CH_SNACKER_STATE_5_EATING: //802E14F8
             if (actor_animationIsAt(this, 0.25f)) {
-                FUNC_8030E8B4(SFX_6D_CROC_BITE, 1.0f, 28000, this->position, 300, 3000);
+                sfx_playFadeShorthandDefault(SFX_6D_CROC_BITE, 1.0f, 28000, this->position, 300, 3000);
             }
             if (actor_animationIsAt(this, 0.99f)) {
                 func_802E0CD0(this);
@@ -374,7 +374,7 @@ void chSnacker_spawn(void) {
     if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) == 0) {
         func_8032BB88(snacker, 5000, 750);
         core1_ce60_incOrDecCounter(FALSE);
-        func_8025A6EC(COMUSIC_34_SNACKER_DANGER, 0);
+        coMusicPlayer_playMusic(COMUSIC_34_SNACKER_DANGER, 0);
         comusic_8025AB44(COMUSIC_34_SNACKER_DANGER, 0x7FFF, 750);
         core1_ce60_incOrDecCounter(TRUE);
     }

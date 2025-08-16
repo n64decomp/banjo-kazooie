@@ -215,7 +215,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
     }
 
     if (next_state == 5) {
-        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = mapModel_getFloorY(this->position);
@@ -224,7 +224,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
 
     if (next_state == 6) {
         skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
-        FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         local->unk14 = 1000.0f;
@@ -232,7 +232,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
     if (next_state == 7) {
         skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 8) {
         func_80326310(this);

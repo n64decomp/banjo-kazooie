@@ -78,7 +78,7 @@ void func_802DAA14(Actor *this){
                 tmp = ASSET_F67_DIALOG_UNKNOWN;
             text_id = tmp;
         }
-        gcdialog_showText(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
+        gcdialog_showDialog(text_id, 4, NULL, this->marker, func_802DA9A0, NULL);
         this->has_met_before = TRUE;
     }
 }

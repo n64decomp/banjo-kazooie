@@ -148,23 +148,23 @@ void gcparade_setState(enum parade_state_e next_state);
 
 /* .code */
 void gcparade_8031ABA0(void) {
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     if (D_803830F0.unk8 != -1) {
-        func_802C5A3C(D_803830F0.unk8);
+        gameSelect_setGameNumber(D_803830F0.unk8);
         gameFile_load(D_803830F0.unk8);
         func_80347AA8();
     }
 }
 
 void gcparade_8031ABF8(void) {
-    D_803830F0.unk8 = func_802C5A30();
+    D_803830F0.unk8 = gameSelect_getGameNumber();
     func_8030AFD8(1);
     mapSavestate_free_all();
     levelSpecificFlags_clear();
     func_80347A7C();
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 1);
     if (D_803830F0.parade_id == PARADE_1_POST_GRUNTY_BATTLE) {
         volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);

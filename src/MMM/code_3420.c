@@ -178,8 +178,8 @@ void func_803898EC() {
 }
 
 void func_80389910() {
-    gcdialog_showText(ASSET_AD5_DIALOG_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
-    timedFunc_set_2(0.0f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+    gcdialog_showDialog(ASSET_AD5_DIALOG_UNKNOWN, 0xE, NULL, NULL, MMM_func_80389810, NULL);
+    timedFunc_set_2(0.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     timed_setStaticCameraToNode(2.0f, 0);
     timedFunc_set_0(2.1f, MMM_func_803898A0);
     timedFunc_set_0(6.0f, func_803898EC);
@@ -189,7 +189,7 @@ void func_80389910() {
 
 void func_803899BC(void){
     func_80324E38(0.0f, 3);
-    timedFunc_set_2(0.0f, (GenFunction_2)func_8025A6EC, COMUSIC_38_MOTZAND_BEATEN, 0x7fff);
+    timedFunc_set_2(0.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_38_MOTZAND_BEATEN, 0x7fff);
     timedFunc_set_0(2.25f, func_80389910);
 }
 
@@ -199,10 +199,10 @@ void organMinigame_setState(s32 next_state){
     if (next_state == 2) {
         if (Me.pattern == 0) {
             Me.pattern = 1;
-            gcdialog_showText(ASSET_AD3_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showDialog(ASSET_AD3_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
         else {//L80389A84
-            gcdialog_showText(ASSET_AD6_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+            gcdialog_showDialog(ASSET_AD6_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         }
     }//L80389A9C
 
@@ -219,13 +219,13 @@ void organMinigame_setState(s32 next_state){
     }//L80389AF4
 
     if(next_state == 4){
-        gcdialog_showText(ASSET_ADD_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showDialog(ASSET_ADD_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(Me.motzhand_marker);
     }
 
     if(next_state == 5){
         Me.pattern++;
-        gcdialog_showText(ASSET_AD4_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
+        gcdialog_showDialog(ASSET_AD4_DIALOG_UNKNOWN, 4, NULL, NULL, MMM_func_80389810, NULL);
         func_80387720(Me.motzhand_marker);
     }
 

@@ -48,7 +48,7 @@ static void __chTreasure_updateFunc(Actor *this){
 
     if(!this->initialized){
         this->initialized = TRUE;
-        if(this->unkF4_8 == 1 && !volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
+        if(this->actorTypeSpecificField == 1 && !volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
             marker_despawn(this->marker);
             return;
         }

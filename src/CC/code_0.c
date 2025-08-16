@@ -97,7 +97,7 @@ void func_803864D4(Actor *this){
     {//L80386734
         sp2C = local->unk8/1.0;
         if(local->unkC && 0.6 < sp2C){
-            FUNC_8030E8B4(SFX_91_METALLIC_SOUND, 1.0, 32000, this->position, 100, 6000);
+            sfx_playFadeShorthandDefault(SFX_91_METALLIC_SOUND, 1.0, 32000, this->position, 100, 6000);
             local->unkC = 0;
         }//L80386798
         sin_result = sinf(((sp2C*90.0)/180.0)*BAD_PI);

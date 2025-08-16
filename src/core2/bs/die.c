@@ -109,14 +109,14 @@ void bsdie_update(void){
         func_8029B890();
 
     if( batimer_get(0) != 0.0f 
-        && func_80294574() 
+        && floor_isCurrentFloorunk59() 
         && ( D_8037D414
              || ( anctrl_isStopped(aCtrl) 
-                  && ( player_getYPosition() < (func_80294500() - 150.0f)) 
+                  && ( player_getYPosition() < (floor_getCurrentFloorYPosition() - 150.0f)) 
                 )
            )
         && player_inWater()
-        && 100.0f < (func_80294500() - func_80294438())
+        && 100.0f < (floor_getCurrentFloorYPosition() - func_80294438())
     ){
         sp28 = BS_54_SWIM_DIE;
     }

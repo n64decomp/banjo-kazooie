@@ -26,7 +26,7 @@ Actor *func_80390290(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(this->unk38_31) return this;
 
-    if(func_803114C4() == 0xC1F || func_803114C4() == 0xC1E){
+    if(gcdialog_getCurrentTextId() == 0xC1F || gcdialog_getCurrentTextId() == 0xC1E){
         sp18 = 1;
     }
     func_8033A45C(1, 0);
@@ -73,18 +73,18 @@ void func_80390388(Actor *this){
         this->has_met_before = TRUE;
     }
 
-    if( func_80329530(this, 0xFA) 
+    if( subaddie_playerIsWithinSphereAndActive(this, 0xFA)
         && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)
     ){
         if(0.0f == this->unk1C[0] && func_80390334()){
-            if(gcdialog_showText(ASSET_C1F_DIALOG_UNKNOWN, 0xb, this->position, NULL, NULL, NULL)){
+            if(gcdialog_showDialog(ASSET_C1F_DIALOG_BOGGY_NEEDS_SLEEP, 0xb, this->position, NULL, NULL, NULL)){
                 this->has_met_before = TRUE;
                 this->unk1C[0] = 1.0f;
             }
         }
         else{
             if( !this->has_met_before ){
-                if(gcdialog_showText(ASSET_C1E_DIALOG_UNKNOWN, 0x2b, this->position, NULL, NULL, NULL)){
+                if(gcdialog_showDialog(ASSET_C1E_DIALOG_BOGGY_LOOK_FOR_PRESENTS, 0x2b, this->position, NULL, NULL, NULL)){
                     this->has_met_before = TRUE;
                 }
             }

@@ -115,7 +115,7 @@ s32 exit_get(){
 }
 
 void func_803348D8(s32 arg0) {
-    func_802E4078(D_803835D0.map_4, arg0, 1);
+    transitionToMap(D_803835D0.map_4, arg0, 1);
 }
 
 s32 func_80334904(){
@@ -143,15 +143,15 @@ void func_80334910(void) {
     func_802F53D0();
     func_802FAC3C();
     bundle_free();
-    func_8033E184();
+    commonParticle_freeAllParticles();
     func_8033FA24();
     func_80344C80();
     animsprite_terminate();
     animBinCache_free();
     func_802BC10C();
     ncCameraNodeList_free();
-    func_802F1388();
-    func_802F10A4();
+    pem_freeDependencies();
+    pem_freeAll();
     partEmitMgr_free();
     func_802F7CE0();
     func_8031F9E0();
@@ -189,9 +189,9 @@ void func_80334910(void) {
     animCache_flushAll();
 }
 
-void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
+void func_80334B20(enum map_e map, s32 arg1, s32 arg2) {
     D_803835D0.unk0 = 3;
-    D_803835D0.map_4 = arg0;
+    D_803835D0.map_4 = map;
     D_803835D0.unk8 = arg1;
     overlay_init();
     func_80335110(1);
@@ -230,8 +230,8 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     ncCameraNodeList_init();
     func_802BC044();
     partEmitMgr_init();
-    func_802F1104();
-    func_802F13E0();
+    pem_setAllInactive();
+    pem_initDependencies();
     func_802F7D30();
     func_8030A78C();
     lighting_init();
@@ -239,9 +239,9 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     func_803343D0();
     cubeList_init();
     func_802FA69C();
-    func_8033DEA0();
+    commonParticle_init();
     if (arg2 == 0) {
-        func_80335140(arg0);
+        func_80335140(map);
     }
     func_80305990(0);
     func_8030C740();
@@ -266,7 +266,7 @@ void func_80334B20(enum map_e arg0, s32 arg1, s32 arg2) {
     if (func_802E4A08() == 0) {
         func_802F5188();
     }
-    if (arg0 != MAP_1F_CS_START_RAREWARE) {
+    if (map != MAP_1F_CS_START_RAREWARE) {
         func_8024F150();
     }
 }
@@ -291,7 +291,7 @@ void func_80334E1C(s32 arg0) {
     func_803225B0(D_803835D0.unk0, arg0);
     func_80323098(D_803835D0.unk0, arg0);
     func_802F0E80(D_803835D0.unk0, arg0);
-    func_8033EA78(D_803835D0.unk0, arg0);
+    commonParticle_setActive(D_803835D0.unk0, arg0);
     D_803835D0.unk0 = arg0;
 }
 
@@ -327,8 +327,8 @@ s32 func_80334ECC(void) {
                 }
             }
         }
-        func_8033E1E0();
-        func_802F11E8();
+        commonParticle_update();
+        pem_updateAll();
         animCache_update();
         animBinCache_update();
         ncCamera_update();
@@ -399,8 +399,8 @@ void func_80335140(enum map_e map_id) {
             lightingVectorList_fromFile(fp);
         }
     }
+
     file_close(fp); //file close
 }
 
-void func_8033520C(s32 arg0){
-}
+void func_8033520C(s32 arg0) { }

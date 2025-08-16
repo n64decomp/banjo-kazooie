@@ -11,7 +11,7 @@ typedef struct struct_B_s{
     f32 unk10;
 } structBs;
 
-typedef struct music_track_s{
+typedef struct music_track_s {
     s16 unk0;
     u8  unk2;
     u8  unk3;
@@ -25,10 +25,9 @@ typedef struct music_track_s{
     u8 unk192[0xE];
 } MusicTrack;
 
-typedef struct music_track_meta_s{
+typedef struct music_track_meta_s {
     char *name;
-    u16  unk4;
-    // u8 pad6[2];
-}MusicTrackMeta;
+    u16  volume;
+} MusicTrackMeta;
 
 #endif

@@ -46,7 +46,7 @@ void __chJinjo_802CDBA8(ActorMarker *this, ActorMarker *other){
 
     if(actorPtr->state < 5){
         if(!fileProgressFlag_get(FILEPROG_E_JINJO_TEXT)){
-            gcdialog_showText(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
+            gcdialog_showDialog(__chJinjo_getMeetDialogId(actorPtr->marker->id), 4, 0, 0, 0, 0);
             fileProgressFlag_set(FILEPROG_E_JINJO_TEXT, 1);
         }
         subaddie_set_state_with_direction(actorPtr, 6, 0.0f , -1);
@@ -176,9 +176,9 @@ void chJinjo_update(Actor * this){
                 core1_ce60_incOrDecCounter(FALSE);
                 func_8032BB88(this, 0, 4000);
                 if(local->unk4){
-                    func_8025A6EC(COMUSIC_30_5TH_JINJO_COLLECTED, 28000);
+                    coMusicPlayer_playMusic(COMUSIC_30_5TH_JINJO_COLLECTED, 28000);
                 }else{
-                    func_8025A6EC(COMUSIC_A_JINJO_COLLECTED, 28000);
+                    coMusicPlayer_playMusic(COMUSIC_A_JINJO_COLLECTED, 28000);
                 }
             }//L802CE114
             break;
@@ -206,8 +206,8 @@ void chJinjo_update(Actor * this){
                 if(sp50 || anctrl_getAnimTimer(this->anctrl) < 0.8){
                     for(i = 0; i < 4; i++){
                         if(randf() < 0.3){
-                            func_8033E73C(this->marker, i + 5, func_80329904);
-                            func_8033E3F0(8, this->marker->unk14_21);
+                            commonParticle_add(this->marker, i + 5, func_80329904);
+                            commonParticle_new(8, this->marker->unk14_21);
                         } //L802CE2C4
                     }
                 }//L802CE2D0
@@ -222,7 +222,7 @@ void chJinjo_update(Actor * this){
                     func_802F9EC4(local->unkC, sp30, 500, 2000);
                     func_802F9F80(local->unkC, 0.0f, 9e+09, 0.0f);
                     func_802FA0B0(local->unkC, 0);
-                    func_8025A6EC(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
+                    coMusicPlayer_playMusic(COMUSIC_43_ENTER_LEVEL_GLITTER, 0x7FFF);
                     func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
                     func_8030E9C4(SFX_C7_SHWOOP, 0.8f, 0x7FFF, sp30, 300.0f, 2000.0f);
                 }//L802CE3C4
@@ -279,14 +279,14 @@ void chJinjo_update(Actor * this){
         subaddie_set_state_with_direction(this, 4, 0.0f, -1);
         actor_playAnimationOnce(this);
     }//L802CE630
-    if(!func_803114B0()){
+    if(!gcdialog_hasCurrentTextId()){
         switch(chJinjoAnimations[this->state].index){
             case ASSET_31_ANIM_JINJO_JUMP: 
                 if(actor_animationIsAt(this, 0.6f)){
                     if(local->unk8){
                         func_8030E988(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120.0f, 1200.0f);
                     }else{
-                        FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120, 1200);
+                        sfx_playFadeShorthandDefault(SFX_8_BANJO_LANDING_04, 1.8f, 18000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -295,7 +295,7 @@ void chJinjo_update(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        FUNC_8030E8B4(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120, 1200);
+                        sfx_playFadeShorthandDefault(SFX_17_JINJO_WHISTLE, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;
@@ -304,7 +304,7 @@ void chJinjo_update(Actor * this){
                     if(local->unk8){
                         func_8030E988(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120.0f, 1200.0f);
                     }else{
-                        FUNC_8030E8B4(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120, 1200);
+                        sfx_playFadeShorthandDefault(SFX_27_JINJO_HI, 1.0f, 22000, sp30, 120, 1200);
                     }
                 }
                 break;

@@ -10,11 +10,11 @@ u8 D_80380A00;
 
 /* .code */
 void func_802F1E80(void){
-    func_802F1190(D_80380A00);
+    pem_free(D_80380A00);
 }
 
 void func_802F1EA4(void){
-    D_80380A00 = func_802F0F78(0x10);
+    D_80380A00 = pem_newEmitter(0x10);
 }
 
 ParticleEmitter *func_802F1EC8(f32 *position) {
@@ -22,7 +22,7 @@ ParticleEmitter *func_802F1EC8(f32 *position) {
 
     ParticleEmitter *p_emitter;
 
-    p_emitter = func_802F0EF0(D_80380A00);
+    p_emitter = pem_getEmitterByIndex(D_80380A00);
     particleEmitter_setPosition(p_emitter, position);
     particleEmitter_setSprite(p_emitter, ASSET_700_SPRITE_DUST);
     particleEmitter_setParticleVelocityRange(p_emitter, -10.0f, 10.0f, -10.0f, 10.0f, 240.0f, 10.0f);

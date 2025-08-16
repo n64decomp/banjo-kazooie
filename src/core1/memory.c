@@ -371,7 +371,7 @@ void *malloc(s32 size){
 
             if(!(v1 = func_80254B84(0))){
                 if(!func_80254B84(0))
-                    func_802F1294(); //particleEmitters
+                    pem_freeEmitters(); //particleEmitters
                 
                 if(!func_80254B84(0))
                     animBinCache_flushStale(1); //persistent anim
@@ -462,7 +462,7 @@ void _heap_sortEmptyBlock(EmptyHeapBlock * arg0){
     }
 }
 
-void free(void * ptr){
+void free(void * ptr) {
     HeapHeader *sPtr; //stack_ptr
     
     if(ptr){

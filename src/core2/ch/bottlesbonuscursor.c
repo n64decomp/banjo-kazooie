@@ -132,7 +132,7 @@ bool chBottlesBonusCursor_checkPuzzleCompletion(void) {
     if (D_8037E5C0.is_completed) {
         item_set(ITEM_6_HOURGLASS, FALSE);
         timedFunc_set_3(0.25f, (GenFunction_3)comusic_8025AB44, COMUSIC_94_BBONUS, 0, 2000);
-        timedFunc_set_2(0.3f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 22000);
+        timedFunc_set_2(0.3f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 22000);
         timedFunc_set_0(1.5f, (GenFunction_0)chBottlesBonusCursor_func_802DF99C);
         timedFunc_set_0(1.0f, (GenFunction_0)chBottlesBonus_completedPuzzle);
     }
@@ -189,10 +189,10 @@ void chBottlesBonusCursor_func_802DF99C(void){
 }
 
 void chBottlesBonusCursor_freeMethod(Actor *this) {
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     if (func_8034BAFC() != -1) {
-        func_802C5A3C(func_8034BAFC());
+        gameSelect_setGameNumber(func_8034BAFC());
         gameFile_load(func_8034BAFC());
         func_80347AA8();
     }
@@ -224,7 +224,7 @@ void chBottlesBonusCursor_update(Actor *this) {
         D_8037E5B8 = -1;
         D_8037E5C0.prev_button = sp5C->button;
         D_8037E5C0.is_completed = 0;
-        timedFunc_set_2(3.0f, (GenFunction_2)func_8025A6EC, COMUSIC_94_BBONUS, 0x5DC0);
+        timedFunc_set_2(3.0f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_94_BBONUS, 0x5DC0);
         timedFunc_set_1(3.0f, (GenFunction_1)func_8025AABC, COMUSIC_94_BBONUS);
         for(i = 0; i < 20; i++){
             bzero(&D_8037E248[i], sizeof(Struct_core2_584D0_0));
@@ -301,7 +301,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                         held_piece->rotation = 0.0f; 
                         chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
                         chBottlesBonusCursor_func_802DF928(D_8037E5C0.unk0);
-                        func_8025A6EC(COMUSIC_96_BBONUS_PICKUP_PIECE, -1);
+                        coMusicPlayer_playMusic(COMUSIC_96_BBONUS_PICKUP_PIECE, -1);
                         subaddie_set_state_with_direction(this, 2, 0.0f, 1);
                     }
                 }
@@ -330,7 +330,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                 if((sp5C->button & B_BUTTON) && !(D_8037E5C0.prev_button & B_BUTTON)){
                     held_piece->state = 0;
                     subaddie_set_state_with_direction(this, 5, 0.0f, 1);
-                    func_8025A6EC(COMUISC_97_BBONUS_DROP_PIECE, -1);
+                    coMusicPlayer_playMusic(COMUISC_97_BBONUS_DROP_PIECE, -1);
                     chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
                     D_8037E5C0.unk0 = -1;
                     break;
@@ -356,7 +356,7 @@ void chBottlesBonusCursor_update(Actor *this) {
                             actor_playAnimationOnce(this);
                         }
 
-                        timedFunc_set_2(0.25f, (GenFunction_2)func_8025A6EC, sp44, 26000);
+                        timedFunc_set_2(0.25f, (GenFunction_2)coMusicPlayer_playMusic, sp44, 26000);
                         chBottlesBonus_func_802DEA50(D_8037E5C0.unk0);
                         D_8037E5C0.unk0 = -1;
                     }

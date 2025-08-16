@@ -30,11 +30,11 @@ void chspellbarrier_collisionPassive(ActorMarker *this, ActorMarker *other) {
     local->unk4 = 0;
 
     if (func_8030E3FC(local->sfxsourceIdx) == 0) {
-        func_8030E2C4(local->sfxsourceIdx);
+        sfxSource_func_8030E2C4(local->sfxsourceIdx);
     }
 
     if (func_8030E3FC(actor_spellbarrier->unk44_31) == 0) {
-        func_8030E2C4(actor_spellbarrier->unk44_31);
+        sfxSource_func_8030E2C4(actor_spellbarrier->unk44_31);
     }
 }
 
@@ -73,7 +73,7 @@ void chspellbarrier_update(Actor *this) {
         local->sfxsourceIdx = func_8030ED2C(0x415, 3);
         func_8030DB04(local->sfxsourceIdx, 32000, this->position, 4000.0f, 12000.0f);
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, 1.0f);
-        FUNC_8030E8B4(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
+        sfx_playFadeShorthandDefault(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
     }
 
     jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);

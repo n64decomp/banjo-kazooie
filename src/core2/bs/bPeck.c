@@ -1,7 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
 #include "core2/yaw.h"
+#include "core2/abilityprogress.h"
 
 #include "core2/ba/physics.h"
 
@@ -131,7 +133,7 @@ void bsbpeck_update(void){
 
 void bsbpeck_end(void){
     D_8037D376 = 0;
-    ability_use(0xa);
+    ability_use(ABILITY_USED_PECK);
     baModel_80292048(1, 0.0f, 0.0f, 0.0f);
     baModel_80292048(0, 0.0f, 0.0f, 0.0f);
     baMarker_8028D638(0, 0);

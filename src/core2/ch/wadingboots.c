@@ -35,7 +35,7 @@ Actor *chwadingboots_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 void chwadingboots_update(Actor *this){
     s32 sp2C = levelSpecificFlags_get(LEVEL_FLAG_1A_UNKNOWN);
 
-    if (sp2C && this->unkF4_8 != 1) {
+    if (sp2C && this->actorTypeSpecificField != 1) {
         return;
     }
 
@@ -62,15 +62,15 @@ void chwadingboots_update(Actor *this){
                     FUNC_8030E624(SFX_3F2_UNKNOWN,  1.4f, 23000);
                 }
                 else{
-                    FUNC_8030E8B4(SFX_3F2_UNKNOWN,  1.4f, 23000, this->position, 600, 1500);
+                    sfx_playFadeShorthandDefault(SFX_3F2_UNKNOWN,  1.4f, 23000, this->position, 600, 1500);
                 }
             }
 
             if(volatileFlag_get(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS))  break;
-            if(!func_80329530(this, 250)) break;
+            if(!subaddie_playerIsWithinSphereAndActive(this, 250)) break;
             if(player_getTransformation() != TRANSFORM_1_BANJO) break;
             
-            if(gcdialog_showText(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
+            if(gcdialog_showDialog(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
                 volatileFlag_set(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS, TRUE);
             }
 

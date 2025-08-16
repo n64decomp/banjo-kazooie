@@ -47,8 +47,8 @@ void func_8038FF54(Actor *this){
 
     this->marker->propPtr->unk8_3 = FALSE;
     actor_collisionOff(this);
-    if(this->unk100){
-        other = marker_getActor(this->unk100);
+    if(this->partnerActor){
+        other = marker_getActor(this->partnerActor);
         if(this->state != 9){
             if(other->state == 9){
                 subaddie_set_state_with_direction(this, 9, 0.01f, 1);

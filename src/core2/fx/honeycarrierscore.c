@@ -210,7 +210,7 @@ void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
                         if(6.0f <= D_803815D4 && D_80381610 && D_803815E8 == 0xFF){
                             D_803815C0 = 1;
                             D_803815DC = 20.0f;
-                            func_8025A6EC(COMUSIC_18_HEALTH_UPGRADE, 28000);
+                            coMusicPlayer_playMusic(COMUSIC_18_HEALTH_UPGRADE, 28000);
                         }else{
                             if(1.0f < D_803815D4 &&  !D_80381610){
                                 D_803815D8 += _76D90_MAX((((D_803815D4 - 1.0f) * 60.0 - D_803815D8) * sp24 * 3.0), 2.0);
@@ -230,10 +230,10 @@ void fxhoneycarrierscore_update(s32 arg0, struct8s *arg1){
                         D_803815E4 = 0;
                         D_803815E0 = 0.9999f;
                         item_adjustByDiffWithHud(ITEM_13_EMPTY_HONEYCOMB, -6);
-                        timedFunc_set_2(0.25f, (GenFunction_2)func_8025A6EC, COMUSIC_2B_DING_B, 28000);
+                        timedFunc_set_2(0.25f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2B_DING_B, 28000);
                         item_adjustByDiffWithHud(ITEM_14_HEALTH, 0);
                         timedFunc_set_1(1.25f, (GenFunction_1)item_inc, ITEM_15_HEALTH_TOTAL);
-                        timedFunc_set_1(1.25f, (GenFunction_1)sfxsource_playHighPriority, SFX_3EA_UNKNOWN);
+                        timedFunc_set_1(1.25f, (GenFunction_1)sfxsource_playHighPriority, SFX_3EA_BANJO_GUH_HUH);
                         timedFunc_set_2(1.25f, (GenFunction_2)item_set, ITEM_14_HEALTH, item_getCount(ITEM_15_HEALTH_TOTAL)+1);
                         timedFunc_set_1(1.5f, (GenFunction_1)gcpausemenu_80314AC8, 1);
                     }

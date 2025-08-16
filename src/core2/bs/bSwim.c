@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/model.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
@@ -64,12 +66,12 @@ bool func_802A73BC(void) {
     f32 sp1C;
 
     sp1C = (map_get() == MAP_46_CCW_WINTER) ? 90.0f : 130.0f;
-    return func_80294574() && player_getYPosition() > (func_80294500() - sp1C);
+    return floor_isCurrentFloorunk59() && player_getYPosition() > (floor_getCurrentFloorYPosition() - sp1C);
 }
 
 void func_802A744C(void) {
     if (player_isInRBB() && bs_getState() != BS_4C_LANDING_IN_WATER) {
-        func_8035644C(FILEPROG_AC_DIVE_OILY_WATER);
+        progressDialog_showDialogMaskZero(FILEPROG_AC_DIVE_OILY_WATER);
     }
     roll_setAngularVelocity(30.0f, 0.9f);
     baphysics_set_gravity(0.0f);
@@ -323,14 +325,14 @@ void func_802A7CA8(void) {
 
 
 void func_802A7D74(void) {
-    func_80297CA8();
+    bsiFrame_start();
     baMarker_collisionOn();
     baeyes_open();
     func_802A75B0();
 }
 
 void bsSwim_dive_init(void) {
-    ability_use(ABILITY_3_CAMERA_CONTROL);
+    ability_use(ABILITY_USED_SWIM);
     baanim_playForDuration_once(ASSET_3C_ANIM_BSSWIM_DIVE_ENTER, 1.0f);
     func_802A7140();
     yaw_setVelocityBounded(500.0f, 5.0f);

@@ -35,6 +35,6 @@ void func_8039195C(void){
 void func_80391994(void){
     if(map_get() == MAP_7F_FP_WOZZAS_CAVE){
         func_8030DB04(Me.sound, 22000, Me.position, 400.0f, 1200.0f);
-        func_8030E2C4(Me.sound);
+        sfxSource_func_8030E2C4(Me.sound);
     }
 }

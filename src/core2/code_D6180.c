@@ -70,7 +70,7 @@ void func_8035D1F0(ActorMarker *arg0, s32 arg1) {
     func_802DAD08(partEmitMgr_newEmitter(1), this, ASSET_4CA_MODEL_MUMMUM_HEAD);
     func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
     func_8035D110(partEmitMgr_newEmitter(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
-    FUNC_8030E8B4(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
+    sfx_playFadeShorthandDefault(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
     __spawnQueue_add_4((GenFunction_4) spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     marker_despawn(arg0);
 }
@@ -133,7 +133,7 @@ void func_8035D490(ActorMarker *marker){
     if (map_get() == MAP_13_GV_MEMORY_GAME) {
         sp1C = marker_getActor(marker);
 
-        if (func_80329530(sp1C, 250) != 0) {
+        if (subaddie_playerIsWithinSphereAndActive(sp1C, 250) != 0) {
             __bundle_spawnFromFirstActor(BUNDLE_1C__HONEYCOMB, sp1C);
             func_8035D2C0(marker, 0);
         }

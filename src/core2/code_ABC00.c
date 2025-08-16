@@ -247,7 +247,7 @@ void jiggy_spawn(enum jiggy_e jiggy_id, f32 pos[3]) {
         if (!jiggyscore_isCollected(jiggy_id) && (jiggy_id != JIGGY_3E_GV_GRABBA) && (jiggy_id != JIGGY_0B_TTC_JINJO)) {
             core1_ce60_incOrDecCounter(FALSE);
             func_8025A55C(0, 4000, 5);
-            func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
+            coMusicPlayer_playMusic(COMUSIC_3D_JIGGY_SPAWN, 0x7FFF);
             timedFunc_set_0(3.5f, func_80332BB0);
         }
     }

@@ -41,7 +41,7 @@ void func_802CD8C0(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        if(this->unkF4_8 != 0x32 && func_8028E4A4() != this->unkF4_8){
+        if(this->actorTypeSpecificField != 0x32 && func_8028E4A4() != this->actorTypeSpecificField){
             marker_despawn(this->marker);
             return;
         }

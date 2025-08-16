@@ -54,16 +54,16 @@ void __anSeq_func_80289F4(s32 arg0) {
     s32 phi_a3;
 
     phi_a3 = arg0 >> 0x10;
-    if( !(phi_a3 == 0xF2 && map_get() == MAP_91_FILE_SELECT && func_802C5A30() != 0) 
-        && !((phi_a3 == 0x21 || phi_a3 == 0x3ED) && map_get() == MAP_91_FILE_SELECT && (func_802C5A30() == 1))
+    if( !(phi_a3 == 0xF2 && map_get() == MAP_91_FILE_SELECT && gameSelect_getGameNumber() != 0) 
+        && !((phi_a3 == 0x21 || phi_a3 == 0x3ED) && map_get() == MAP_91_FILE_SELECT && (gameSelect_getGameNumber() == 1))
     ){
-        func_8030E6A4(phi_a3, (f32) ((f64) ((arg0 >> 8) & 0xFF) * 0.0078125), (s32) ((f64) (arg0 & 0xFF) * 128.0));
+        gcsfx_playWithPitch(phi_a3, (f32) ((f64) ((arg0 >> 8) & 0xFF) * 0.0078125), (s32) ((f64) (arg0 & 0xFF) * 128.0));
     }
 }
 
 
 void __anSeq_func_8028AE0(s32 arg0){
-    func_8025A6EC((u16) (arg0 >> 16), (u16)arg0 - 1);
+    coMusicPlayer_playMusic((u16) (arg0 >> 16), (u16)arg0 - 1);
 }
 
 void __anSeq_func_8028B14(enum sfx_e arg0){

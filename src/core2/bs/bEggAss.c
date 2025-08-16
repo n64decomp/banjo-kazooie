@@ -2,7 +2,10 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
+#include "core2/commonParticle.h"
 
 /* .bss */
 u8 D_8037D2E0;
@@ -39,9 +42,9 @@ void bseggass_update(void) {
     if (has_eggs) {
         if (anctrl_isAt(plyr_mvmt, 0.3837f)) {
             func_8030E760(SFX_3E_POOP_NOISE, 1.4f, 28000);
-            func_8033E3F0(COMMON_PARTICLE_4_EGG_ASS, 1);
+            commonParticle_new(COMMON_PARTICLE_4_EGG_ASS, 1);
             item_dec(ITEM_D_EGGS);
-            ability_use(7);
+            ability_use(ABILITY_USED_EGG);
         }
         if ((anctrl_isAt(plyr_mvmt,  0.4885f)) &&  (D_8037D2E1 < D_8037D2E0)) {
             anctrl_setStart(plyr_mvmt, 0.349f);

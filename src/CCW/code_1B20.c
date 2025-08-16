@@ -53,7 +53,7 @@ void func_80387F64(Actor *this, s32 next_state){
     }
     if (next_state == 2) {
         if (map_get() == MAP_43_CCW_SPRING) {
-            func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+            coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
         }
         fileProgressFlag_set(local->unk0->unk8, TRUE);
         skeletalAnim_set(this->unk148, local->unk0->unk4, 0.0f, 6.0f);
@@ -91,7 +91,7 @@ bool func_80388260(ActorMarker *marker, s32 arg1){
 }
 
 void CCW_func_80388278(ActorMarker *marker, ActorMarker *other_marker) {
-    func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
 }
 
 void func_803882A4(ActorMarker* marker, ActorMarker *other_marker) {
