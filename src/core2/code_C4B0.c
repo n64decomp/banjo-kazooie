@@ -145,7 +145,7 @@ void func_80293668(void) {
         temp_f0 = ((D_8037C1F8[1] * 2) - 4.0f);
         if ((sp380[0]*sp380[0] + sp380[1]*sp380[1] + sp380[2]*sp380[2]) > (temp_f0 * temp_f0)) {
             sp38C = sp88->unk0[1];
-            sp88->unk40 = func_80244E54(sp88->unkC, sp88->unk0, sp88->unk44, temp_v0 | 0x1E0000, D_8037C1F8[1] - 1.0f, D_8037C1F8[0]);
+            sp88->unk40 = func_80244E54(sp88->unkC, sp88->unk0, (f32*)sp88->unk44, temp_v0 | 0x1E0000, D_8037C1F8[1] - 1.0f, D_8037C1F8[0]);
             if (sp88->unk40 != 0) {
                 ml_vec3f_normalize(sp380);
                 temp_f0 = sp380[0]*sp88->unk44[0][0] + sp380[1]*sp88->unk44[0][1] +  sp380[2]*sp88->unk44[0][2];
@@ -397,7 +397,7 @@ void func_80294384(s32 arg0){
 void func_80294390(void) {
     void *sp1C;
 
-    sp1C = func_8029463C();
+    sp1C = (void *)func_8029463C();
     if (sp1C != 0) {
         if (func_803246B4(map_get(), ((s32*)sp1C)[2]) == 3) {
             func_80294384(4);

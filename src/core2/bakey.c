@@ -44,7 +44,6 @@ void bakey_update(void){
     }
 }
 
-
 int bakey_heldCount(s32 button_indx){
     return bakey.pressed_count[button_indx];
 }
@@ -80,3 +79,10 @@ void bakey_disableAll(s32 arg0){
         bakey_getAndSetState(i, arg0);
     }
 }
+
+
+#if VERSION != VERSION_USA_1_0
+void func_8029542C(s32 arg0) {
+    bakey.pressed_count[arg0] = 1;
+}
+#endif

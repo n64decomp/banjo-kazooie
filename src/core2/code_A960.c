@@ -27,7 +27,7 @@ void codeA960_forceLoadzone(s32 arg0){
         }
     }
 }
-
+ 
 void func_802919A0(void){
     if(isLoadzoneFlagSet() && batimer_decrement(5)){
         func_8029B890();
