@@ -4,7 +4,7 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-
+extern BKModelBin *func_8031C5DC(struct0 *);
 extern int        func_80258424(f32 vec[3], f32 minX, f32 minY, f32 minZ, f32 maxX, f32 maxY, f32 maxZ);
 extern f32        floor_getXPosition(struct0*);
 extern void       func_8031C5AC(struct0 *, f32 *);
@@ -13,12 +13,13 @@ extern void       func_8031C5FC(struct0 *, f32);
 extern void       func_80244FC0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5);
 extern s32        func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
 extern BKCollisionTri *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
-extern s32        func_8029463C(void);
 extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
-
+extern BKCollisionTri *func_8031C5F4(struct0 *);
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
 void func_80294390(void);
+
+BKCollisionTri *func_8029463C(void);
 
 typedef struct {
     f32 unk0[3];
@@ -480,7 +481,7 @@ u32 func_80294610(u32 mask){
      return func_8031C59C(D_8037C200) & mask;
 }
 
-s32 func_8029463C(void){
+BKCollisionTri *func_8029463C(void){
      return func_8031C5F4(D_8037C200);
 }
 
@@ -492,8 +493,8 @@ void func_80294684(void){
      func_8031C5A4(D_8037C200);
 }
 
-void func_802946A8(void){
-     func_8031C5DC(D_8037C200);
+BKModelBin *func_802946A8(void){
+    return func_8031C5DC(D_8037C200);
 }
 
 void func_802946CC(void){

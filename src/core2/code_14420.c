@@ -261,9 +261,9 @@ f32 func_8029B56C(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     phi_f0 = arg2;
     phi_f2 = 0.0f;
     while ((phi_f0 > 0.0f) || (arg1 < arg0)) {
-            phi_f2 += 0.0166666675f;
-            arg0 += phi_f0 * 0.0166666675f;
-            phi_f0 += arg3 * 0.0166666675f;
+            phi_f2 += (1.0f/FRAMERATE);
+            arg0 += phi_f0 * (1.0f/FRAMERATE);
+            phi_f0 += arg3 * (1.0f/FRAMERATE);
     }
     return phi_f2;
 }
@@ -341,7 +341,7 @@ void func_8029B890(void){
             func_8029B62C();
             return;
         }
-        gcdialog_showDialog(0xf81, 7, NULL, NULL, func_8029B85C, NULL);
+        gcdialog_showDialog(VER_SELECT(0xf81, 0xae7, 0, 0), 7, NULL, NULL, func_8029B85C, NULL);
         fileProgressFlag_set(FILEPROG_A8_HAS_DIED, TRUE);
     }
     else{

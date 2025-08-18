@@ -3,6 +3,8 @@
 #include "variables.h"
 
 extern f32 func_80294404(void);
+extern BKCollisionTri *func_8029463C(void);
+extern BKModelBin *func_802946A8(void);
 
 /* .data */
 s16 D_80364580[] = {

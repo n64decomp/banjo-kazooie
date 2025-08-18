@@ -6,7 +6,8 @@
 extern void func_802F494C(void *, f32);
 extern void func_802F4884(void *, s32, f32);
 extern f32  floor_getCurrentFloorYPosition(void);
-
+extern Struct5Ds *func_802F47D0(void);
+extern Struct5Ds *func_802F499C(Struct5Ds *);
 
 void func_8029AE74(s32 arg0);
 void func_8029AEE4(s32 arg0);

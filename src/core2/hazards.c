@@ -6,6 +6,8 @@
 #include "core2/statetimer.h"
 #include "ba/iFrame.h"
 
+extern BKCollisionTri *func_8029463C(void);
+
 /* .bss */
 u8 hazardSfxId;
 u8 frozenEffectsState;
