@@ -32,7 +32,7 @@ void func_80298890(void){
     if(D_8037C670){
         D_8037C670--;
         if(D_8037C670 == 0){
-            bsiFrame_startWithValue(1.2f);
+            baiFrame_startWithValue(1.2f);
             D_8037C671 = 0;
         }
     }

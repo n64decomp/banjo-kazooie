@@ -360,7 +360,7 @@ void func_802A1A50(void){
 }
 
 void func_802A1B28(void){
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

@@ -679,7 +679,7 @@ void func_802A4C34(s32 arg0) {
 void func_802A4C88(s32 arg0) {
     baphysics_reset();
     baMarker_collisionOn();
-    bsiFrame_start();
+    baiFrame_start();
     func_8029E070(0);
     func_80291548();
     func_802A34C8();

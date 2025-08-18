@@ -337,7 +337,7 @@ static void __bsant_recoil_update(void){
 }
 
 static void __bsant_recoil_end(void){
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

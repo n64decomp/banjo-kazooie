@@ -394,7 +394,7 @@ void __bspumpkin_bounce_update(void) {
 }
 
 void __bspumpkin_bounce_end(void) {
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

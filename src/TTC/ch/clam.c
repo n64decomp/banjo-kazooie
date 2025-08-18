@@ -242,7 +242,7 @@ static void __chClam_playerDropsItem(enum bundle_e bundle_id, enum item_e item_i
 
 static void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_marker){
     
-    if(bsiFrame_getState() == 3) return;
+    if(baiFrame_getState() == 3) return;
 
     if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showDialog(ASSET_A14_DIALOG_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN, TRUE);

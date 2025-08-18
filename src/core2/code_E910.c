@@ -58,7 +58,7 @@ bsMap D_80363824[] ={
     {BS_ROLL,       bstwirl_init,   bstwirl_update, bstwirl_end, func_802B5350},
     {BS_SLIDE,      bsslide_init,   bsslide_update, bsslide_end, func_802B5350},
     {0x33,          func_802B9ACC, func_802B9B14, func_802B9AAC, func_802B9D00},
-    {BS_34_JIG_NOTEDOOR, bsjig_notedoor_init, bsjig_notedoor_update, bsjig_notedoor_end, func_80296590},
+    {BS_34_JIG_NOTEDOOR, bsjig_notedoor_init, bsjig_notedoor_update, bsjig_notedoor_end, VER_SELECT(func_80296590, 0x802b0cfc, 0, 0)},
     {BS_35_ANT_IDLE,   bsant_idle_init, bsant_idle_update, bsant_idle_end, func_802B5350},
     {BS_ANT_WALK,   bsant_walk_init, bsant_walk_update, bsant_walk_end, func_802B5350},
     {BS_ANT_JUMP,   bsant_jump_init, bsant_jump_update, bsant_jump_end, func_802B5350},
@@ -202,7 +202,7 @@ void func_80295914(void){
     func_80295DD0();
     func_80296C30();
     baphysics_init();
-    bsiFrame_reset();
+    baiFrame_reset();
     pitch_reset();
     climbClear();
     func_8029887C();
@@ -309,7 +309,7 @@ void func_80295C14(void){
     snackerctl_update();
     func_8028B71C();
     hazards_update();
-    bsiFrame_update();
+    baiFrame_update();
     func_80294E60();
     cameraMode_update();
     func_802919A0();

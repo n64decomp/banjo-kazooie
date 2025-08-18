@@ -1328,7 +1328,7 @@ void chfinalboss_phase3_update(ActorMarker *marker) {
         }
         break;
     case 23:
-        if (chfinalboss_func_80386BEC(this, 9.0f) && (bsiFrame_getState() != 3)) {
+        if (chfinalboss_func_80386BEC(this, 9.0f) && (baiFrame_getState() != 3)) {
             chfinalboss_phase3_setState(this, 0x18);
         }
         break;
@@ -1575,7 +1575,7 @@ void chfinalboss_phase4_update(ActorMarker *marker) {
             break;
 
         case 29:
-            if ((chfinalboss_func_80386BEC(this, 9.0f)) && (bsiFrame_getState() != 3) && (sFinalBossJinjoStatueActivated == 0)) {
+            if ((chfinalboss_func_80386BEC(this, 9.0f)) && (baiFrame_getState() != 3) && (sFinalBossJinjoStatueActivated == 0)) {
                 chfinalboss_phase4_setState(this, 0x1E);
             }
             break;
@@ -1814,14 +1814,14 @@ void chfinalboss_phase5_update(ActorMarker *marker) {
             break;
 
         case 36:
-            if (chfinalboss_func_80386BEC(this, 9.0f) && (bsiFrame_getState() != 3)) {
+            if (chfinalboss_func_80386BEC(this, 9.0f) && (baiFrame_getState() != 3)) {
                 chfinalboss_phase5_setState(this, 0x25);
             }
             break;
 
         case 37:
             chfinalboss_func_80386BEC(this, 3.0f);
-            if (bsiFrame_getState() == 3) {
+            if (baiFrame_getState() == 3) {
                 chfinalboss_phase5_setState(this, 0x24);
                 break;
             }

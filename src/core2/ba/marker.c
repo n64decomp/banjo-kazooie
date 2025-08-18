@@ -808,7 +808,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                     obj_collision_type = MARKER_COLLISION_FUNC_1;
                 break;
         }//L8028D034
-        if(bsiFrame_getState() == 3){
+        if(baiFrame_getState() == 3){
             plyr_collision_type = MARKER_COLLISION_FUNC_0;
         }
         if(obj_collision_type){
@@ -1030,7 +1030,7 @@ void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
     if(func_8033D5A4(collision_flags))
         baflag_set(BA_FLAG_8);
 
-    if((bsiFrame_getState() != 3 && func_8028F1E0()) || !sp20){
+    if((baiFrame_getState() != 3 && func_8028F1E0()) || !sp20){
         if(!func_8028F25C()){
             sp24 = func_8033D564(collision_flags);
             if(0 < sp24 && sp24 < 6){

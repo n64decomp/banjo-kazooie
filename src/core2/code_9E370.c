@@ -2254,7 +2254,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     sp6C = func_8033D584(arg2);
     sp68 = func_8033D5A4(arg2);
     sp64 = func_8033D574(arg2);
-    if (((bsiFrame_getState() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
+    if (((baiFrame_getState() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
         if (sp64 == 0) {
             if ((sp68 != 0) || (arg1->id == 0)) {
                 if (sp68 <= 0) {

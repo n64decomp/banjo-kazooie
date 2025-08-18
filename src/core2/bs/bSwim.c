@@ -325,7 +325,7 @@ void func_802A7CA8(void) {
 
 
 void func_802A7D74(void) {
-    bsiFrame_start();
+    baiFrame_start();
     baMarker_collisionOn();
     baeyes_open();
     func_802A75B0();

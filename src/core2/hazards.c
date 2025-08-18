@@ -4,7 +4,7 @@
 
 #include "core2/ba/timer.h"
 #include "core2/statetimer.h"
-#include "bs/iFrame.h"
+#include "ba/iFrame.h"
 
 /* .bss */
 u8 hazardSfxId;
@@ -243,7 +243,7 @@ bool canTakeGroundDamage(void) {
                 && bs_state != BS_25_LONGLEG_ENTER
                 && player_getWaterState() != BSWATERGROUP_2_UNDERWATER
                 && func_8028EC04() < 1U
-                && bsiFrame_getState() != IFRAME_INVICIBLE
+                && baiFrame_getState() != IFRAME_INVICIBLE
                 && bs_getState() != BS_3D_FALL_TUMBLING
                 && player_isDead() < 1U;
     }

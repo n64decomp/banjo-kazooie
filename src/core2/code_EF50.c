@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "version.h"
 #include "core2/ba/physics.h"
 
 extern f32 player_getYaw(void);
@@ -266,10 +266,15 @@ void func_80296590(void){
         case 0x13 : //L802965C8
         case 0x26 : //L802965C8
         case 0x2a : //L802965C8
-        case 0x2c : //L802965C8
         case 0x30 : //L802965C8
+#if VERSION == VERSION_USA_1_0
+        case 0x2c :
+#endif
             func_80296404(temp_a0);
             break;
+#if VERSION == VERSION_PAL
+        case 0x2c :
+#endif
         case 0x31 : //L802965D8
         case 0x32 : //L802965D8
         case 0x33 : //L802965D8
@@ -382,7 +387,7 @@ void func_80296608(void){
             sp2C = 2;
             break;
         case BS_INTR_1F_HAZARD: //L80296868
-            if(bsiFrame_getState() != 3 && baMarker_isCollidable()){
+            if(baiFrame_getState() != 3 && baMarker_isCollidable()){
         case BS_INTR_31: //L8029688C
                 func_802960C4(2);
                 item_dec(ITEM_14_HEALTH);
@@ -391,7 +396,7 @@ void func_80296608(void){
             }
             break;
         case BS_INTR_21: //L802968B4
-            if(bsiFrame_getState() != 3){
+            if(baiFrame_getState() != 3){
         case BS_INTR_33: //L802968C8
                 func_802960C4(0);
                 item_dec(ITEM_14_HEALTH);
@@ -400,7 +405,7 @@ void func_80296608(void){
             }
             break;
         case BS_INTR_20: //L802968F0
-            if(bsiFrame_getState() != 3){
+            if(baiFrame_getState() != 3){
                 func_802960C4(1);
                 item_dec(ITEM_14_HEALTH);
                 next_state = func_802962BC(0);

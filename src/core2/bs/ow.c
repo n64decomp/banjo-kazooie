@@ -66,7 +66,7 @@ void bsow_update(void) {
 void bsow_end(void){
     func_802B35DC();
     func_802B1FD0(0);
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

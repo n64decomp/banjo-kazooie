@@ -749,7 +749,7 @@ void bsbtrot_ow_update(void){
 }
 
 void bsbtrot_ow_end(void){
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

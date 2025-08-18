@@ -257,7 +257,7 @@ void func_80294980(f32 arg0[3]);
 f32  get_slope_timer(void);
 f32  get_turbo_duration(void);
 void func_80295C08(void (* arg0)(void));
-void bsiFrame_startWithValue(f32);
+void baiFrame_startWithValue(f32);
 f32  pitch_getIdeal(void);
 void pitch_setAngVel(f32, f32);
 void func_80298528(f32);

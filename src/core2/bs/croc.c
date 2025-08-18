@@ -384,7 +384,7 @@ static void __bscroc_recoil_update(void){
 }
 
 void __bscroc_recoil_end(void){
-    bsiFrame_start();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();

@@ -85,5 +85,5 @@ void bssplat_update(void){
 
 void bssplat_end(void){
     baMarker_collisionOn();
-    bsiFrame_start();
+    baiFrame_start();
 }

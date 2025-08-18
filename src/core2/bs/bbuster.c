@@ -155,8 +155,8 @@ void bsbbuster_update(void){
             break;
         case 3://802A00F0
             D_8037D2B7 = 0;
-            if(bsiFrame_getState() == 1){
-                bsiFrame_startWithValue(0.9f);
+            if(baiFrame_getState() == 1){
+                baiFrame_startWithValue(0.9f);
             }
             
             D_8037D2B0 -= time_getDelta();

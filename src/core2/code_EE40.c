@@ -26,8 +26,6 @@ void func_80295DD0(void){
     D_8037C3C0.unk0[1] += 1000.0f;
     D_8037C3C0.unk0[2] += 400.0f;
     D_8037C3C0.unk18 = 0;
-
-
 }
 
 void func_80295E74(void){
