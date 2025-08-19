@@ -19,7 +19,7 @@ u8  D_8037D2A5;
 u8  D_8037D2A6;
 
 /* .code */
-s32 func_8029F4E0(Actor * arg0){
+int func_8029F4E0(Actor * arg0){
     return arg0->unk138_31 == 0;
 }
 

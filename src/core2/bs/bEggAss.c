@@ -26,7 +26,7 @@ void bseggass_update(void) {
     s32 next_state;
     AnimCtrl *plyr_mvmt;
     s32 has_eggs;
-    s32 sp28;
+    enum bs_e sp28;
     s32 fill1;
     s32 fill2;
 

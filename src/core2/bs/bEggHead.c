@@ -29,7 +29,7 @@ void bsegghead_update(void) {
     s32 next_state;
     AnimCtrl *aCtrl;
     s32 has_eggs;
-    s32 sp28;
+    enum bs_e sp28;
     s32 fill1;
     s32 fill2;
 
