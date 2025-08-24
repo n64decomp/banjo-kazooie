@@ -181,7 +181,7 @@ void func_8036247C(f32 arg0[3]) {
 
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    particleEmitter_setRGB(pCtrl, &D_80373634);
+    particleEmitter_setRGB(pCtrl, D_80373634);
     particleEmitter_setAlpha(pCtrl, 0x64);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_80373670);
@@ -261,7 +261,7 @@ void func_80362770(f32 arg0[3]) {
 
     particleEmitter_setSprite(pCtrl, ASSET_714_SPRITE_UNKNOWN);
     particleEmitter_setStartingFrameRange(pCtrl, 7, 8);
-    particleEmitter_setRGB(pCtrl, &D_803737B4);
+    particleEmitter_setRGB(pCtrl, D_803737B4);
     particleEmitter_setPosition(pCtrl, arg0);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_803737F0);
     func_802EFC28(pCtrl, &D_803737C0);

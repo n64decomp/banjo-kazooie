@@ -2,11 +2,12 @@
 #include "functions.h"
 #include "variables.h"
 
-BKCollisionTri *func_80309B48(f32 *, f32 *, f32 *, u32);
+BKCollisionTri *func_80309B48(f32 startPoint[3], f32 endPoint[3], f32 arg2[3], s32 flagFilter);
 void func_8031C608(struct0 *this);
 void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, BKCollisionTri *);
-
+void *func_803209EC(void);
 void func_8031BE98(struct0*, f32, BKCollisionTri *);
+extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], u32);
 
 
 /* .data */
@@ -65,9 +66,9 @@ BKCollisionTri *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, struct86s
     ml_vec3f_copy(sp28, arg0);
     sp28[1] = sp28[1] + arg2;
     if (arg3 == 0xF800FF0F) {
-        sp24 = func_80309B48(&sp34, &sp28, arg4->unk0, arg3);
+        sp24 = func_80309B48(sp34, sp28, arg4->unk0, arg3);
     } else {
-        sp24 = func_80320B98(&sp34, &sp28, arg4->unk0, arg3);
+        sp24 = func_80320B98(sp34, sp28, arg4->unk0, arg3);
     }
     if (sp24 != 0) {
         arg4->flags = (s32) sp24->flags;
@@ -143,7 +144,7 @@ void func_8031BE0C(struct0 *this, struct86s *arg1, BKCollisionTri *arg2) {
 }
 
 void func_8031BE58(struct0 *this){
-    func_8031BD98(this, -9000.0f, 0, 0, &D_8036DDC0, 0, 0);
+    func_8031BD98(this, -9000.0f, 0, 0, D_8036DDC0, 0, 0);
 }
 
 void func_8031BE98(struct0 *this, f32 arg1, BKCollisionTri * arg2){
@@ -167,14 +168,14 @@ void func_8031BF08(struct0 *arg0) {
 
 
     sp30 = 0;
-    ml_vec3f_copy(&sp38, arg0->unk1C);
+    ml_vec3f_copy(sp38, arg0->unk1C);
     sp64 = arg0->posZ;
     temp_v0 = func_8031BBA0(sp38, ml_max_f(arg0->unk28[1] - arg0->unk1C[1], 150.0f) + 10.0f, -5.0f, 0xF800FF0F, &sp48);
     if (temp_v0 != NULL) {
         func_8031BE98(arg0, sp48.unkC, temp_v0);
         sp30 = 1;
     }
-    temp_v0 = func_8031BBA0(&sp38, sp64, -1300.0f, arg0->unk54, &sp48);
+    temp_v0 = func_8031BBA0(sp38, sp64, -1300.0f, arg0->unk54, &sp48);
     if (temp_v0 == NULL) {
         func_8031BE58(arg0);
         if (!sp30) {
@@ -227,12 +228,12 @@ void func_8031C1A4(struct0 *arg0) {
     f32 temp_f0;
 
     ml_vec3f_copy(sp30, arg0->unk1C);
-    temp_v0 = func_8031BBA0(&sp30, 100.0f, -1300.0f, arg0->unk54 | 0x1E0000, &sp44);
+    temp_v0 = func_8031BBA0(sp30, 100.0f, -1300.0f, arg0->unk54 | 0x1E0000, &sp44);
     if ((temp_v0 != 0) && (sp44.unk0[1] >= 0.0f)) {
         func_8031BE0C(arg0, &sp44, temp_v0);
     }
     temp_f0 = arg0->posY - sp30[1];
-    temp_v0 = func_8031BBA0(&sp30, temp_f0 + 50.0f, temp_f0 - 50.0f, 0xF800FF0F, &sp44);
+    temp_v0 = func_8031BBA0(sp30, temp_f0 + 50.0f, temp_f0 - 50.0f, 0xF800FF0F, &sp44);
     if (temp_v0 != 0) {
         func_8031BE98(arg0, sp44.unkC, temp_v0);
     }
@@ -257,7 +258,7 @@ void func_8031C29C(struct0 *arg0) {
     sp40 = globalTimer_getTimeMasked(1);
     if ((sp48 == 0) || (sp40 != 0)) {
         arg0->unk59 = arg0->unk5B;
-        temp_v0 = func_8031BBA0(&sp30, 60.0f, -390.0f, arg0->unk54 | 0x1E0000, &sp4C);
+        temp_v0 = func_8031BBA0(sp30, 60.0f, -390.0f, arg0->unk54 | 0x1E0000, &sp4C);
         if (temp_v0 != NULL) {
             if (sp4C.unk0[1] >= 0.0f) {
                 func_8031BE0C(arg0, &sp4C, temp_v0);

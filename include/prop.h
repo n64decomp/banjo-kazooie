@@ -147,6 +147,26 @@ typedef struct ch_sm_4070{
     s32 dialog_id;
 }ActorLocal_SM_4070;
 
+typedef struct struct_24_s{
+    s32 unk0;
+    BKModelBin *model_bin;
+    f32 unk8[3];
+    f32 unk14[3];
+    f32 unk20[3];
+    f32 unk2C;
+    f32 unk30[3];
+    s32 unk3C;
+    s32 unk40[4];
+    f32 unk50;
+} Struct24s;
+
+typedef struct struct_25_s{
+    Struct24s *begin;
+    Struct24s *current;
+    Struct24s *end;
+    Struct24s data[];
+} Struct25s;
+
 typedef struct actor_s{
     ActorMarker* marker;
     TUPLE(f32,position);

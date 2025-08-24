@@ -17,6 +17,7 @@ void func_80347E60(Struct81s*);
 void func_80347FA4(Struct81s *, Gfx**, Mtx **, Vtx **);
 void func_80347FB8(Struct81s*);
 
+extern Actor **actorArray_findJiggyActors(void);
 
 typedef struct {
     void (*init)(Struct81s *);

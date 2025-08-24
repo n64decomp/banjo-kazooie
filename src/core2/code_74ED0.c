@@ -157,10 +157,10 @@ void func_802FC0D8(void) {
 }
 
 bool func_802FC390(void){
-    s32 *phi_v1 = D_80381560[0];
+    struct8s *phi_v1 = D_80381560[0];
     if (D_80369884 == 0)
         return FALSE; 
-    return *phi_v1 == 2;
+    return phi_v1->unk0 == 2;
 }
 
 bool func_802FC3C4(void){

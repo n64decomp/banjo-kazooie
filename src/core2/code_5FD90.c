@@ -736,7 +736,7 @@ BKCollisionTri *func_802E8E88(BKCollisionList *collision_list, BKVertexList *vtx
     return phi_s5->tri_ptr;
 }
 
-BKCollisionTri *func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], s32 arg3, f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 flagFilter) {
+BKCollisionTri *func_802E9118(BKCollisionList * collision_list, BKVertexList *vtx_list, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 flagFilter) {
     f32 sp4C[3];
     f32 sp40[3];
     BKCollisionTri *sp3C;

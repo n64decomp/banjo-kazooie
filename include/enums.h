@@ -3693,6 +3693,9 @@ enum asset_e
     // Unused
     // Unused
     // Unused
+
+    ASSET_SPRITE_START = 0x572,
+
     // 572 Palm Tree (2D)
     // Unused
     // Unused
@@ -4040,7 +4043,8 @@ enum asset_e
 
     ASSET_6D1_SPRITE_GOLDFEATHTER = 0x6d1,
 
-    ASSET_6D6_MODEL_MUSIC_NOTE = 0x6d6,
+    ASSET_6D6_SPRITE_MUSIC_NOTE = 0x6d6,
+    ASSET_6D7_SPRITE_EGG,
 
     ASSET_6D9_SPRITE_PROPELLOR_TIMER = 0x6d9,
     ASSET_6DA_SPRITE_HOURGLASS,

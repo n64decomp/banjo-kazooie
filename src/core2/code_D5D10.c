@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802DB4E0(s32, s32);
+extern void func_802DB4E0(ActorMarker *, s32);
 extern void func_802DABA0(ParticleEmitter *pCtrl, f32 position[3], f32 scale, enum asset_e model_id);
 
 typedef struct {
@@ -26,8 +26,8 @@ typedef struct {
     s16 unk28;
     s16 unk2A;
     f32 unk2C;
-    void (*unk30)(s32, s32);
-    void (*unk34)(s32, s32);
+    void (*unk30)(ActorMarker* marker, s32);
+    void (*unk34)(ActorMarker* marker, s32);
 }ActorLocal_Skeleton;
 
 void chskeleton_update(Actor *this);

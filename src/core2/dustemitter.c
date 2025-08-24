@@ -3,7 +3,7 @@
 #include "variables.h"
 
 #include "core2/particle.h"
-
+#include "core2/particleemittermanager.h"
 #include "core2/dustemitter.h"
 
 s16 emitterAssets[EMITTER_COUNT] = {
@@ -18,7 +18,7 @@ s32 dustEmitter_returnGiven(s32 value) {
     return value;
 }
 
-void dustEmitter_empty(ParticleEmitter *this) {
+void dustEmitter_empty(s32 arg0) {
     return;
 }
 

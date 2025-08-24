@@ -11,7 +11,7 @@ typedef struct {
     s16 unk2; // enum file_progress_e
 }Struct_B5040;
 
-void savedata_clear(u8 *savedata);
+void savedata_clear(SaveData *savedata);
 s32 savedata_verify(s32 arg0, SaveData *savedata);
 
 /* .data */
@@ -70,12 +70,12 @@ s32 endOffset;
 u8 D_80383D18[8];
 
 /* .code */
-void savedata_update_crc(s32 buffer, s32 size){
+void savedata_update_crc(void *buffer, u32 size){
     u32 sp20[2];
     u32 sum;
-    glcrc_calc_checksum(buffer, buffer + size - 4, sp20);
+    glcrc_calc_checksum(buffer, (void*)((u32)buffer + size - 4), sp20);
     sum = sp20[0] ^ sp20[1];
-    *(u32*)(buffer + size - 4) = sum;
+    *(u32*)((u32)buffer + size - 4) = sum;
 }
 
 int _savedata_verify(SaveData *savedata, s32 size){
@@ -118,8 +118,8 @@ void savedata_init(void){ //savedata_init
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
-    baseOffset = 0;
-    jiggyOffset = baseOffset + 2;
+    baseOffset = offsetof(SaveData, magic);
+    jiggyOffset = baseOffset + (offsetof(SaveData, data) - offsetof(SaveData, magic));
     honeycombOffset = jiggyOffset + jiggy_size;
     mumbotokenOffset = honeycombOffset + honeycomb_size;
     notescoresOffset = mumbotokenOffset + mumbotoken_size;
@@ -130,189 +130,189 @@ void savedata_init(void){ //savedata_init
     endOffset = abilitiesOffset + abilities_size;
 }
 
-void __savedata_load_jiggyScore(u8 *savedata){
+void __savedata_load_jiggyScore(SaveData *savedata){
     s32 jiggy_size;
     u8 *jiggy_addr;
     int i;
     
     jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
     for(i = jiggyOffset; i < jiggyOffset + jiggy_size; i++){
-        jiggy_addr[i - jiggyOffset] = savedata[i];
+        jiggy_addr[i - jiggyOffset] = ((u8*)savedata)[i];
     }
     func_8034798C();
 }
 
-void __savedata_load_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
+void __savedata_load_honeycombScore(SaveData *savedata){ //savedata_save_honeycomb
     s32 honeycomb_size;
     u8 *honeycomb_addr;
     int i;
     
     honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
     for(i = honeycombOffset; i < honeycombOffset + honeycomb_size; i++){
-        honeycomb_addr[i - honeycombOffset] = savedata[i];
+        honeycomb_addr[i - honeycombOffset] = ((u8*)savedata)[i];
     }
     func_80347958();
 }
 
-void __savedata_load_mumboScore(u8 *savedata){
+void __savedata_load_mumboScore(SaveData *savedata){
     s32 mumbotoken_size;
     u8 *mumbotoken_addr;
     int i;
     
     mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
     for(i = mumbotokenOffset; i < mumbotokenOffset + mumbotoken_size; i++){
-        mumbotoken_addr[i - mumbotokenOffset] = savedata[i];
+        mumbotoken_addr[i - mumbotokenOffset] = ((u8*)savedata)[i];
     }
     func_80347984();
 }
 
-void __savedata_load_highNoteScores(u8 *savedata){
+void __savedata_load_highNoteScores(SaveData *savedata){
     s32 notescores_size;
     u8 *notescores_addr;
     int i;
     
     notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
     for(i = notescoresOffset; i < notescoresOffset + notescores_size; i++){
-        notescores_addr[i - notescoresOffset] = savedata[i];
+        notescores_addr[i - notescoresOffset] = ((u8*)savedata)[i];
     }
     itemscore_highNoteScores_fromSaveData(notescores_addr);
 }
 
-void __savedata_load_timeScores(u8 *savedata){
+void __savedata_load_timeScores(SaveData *savedata){
     s32 timescores_size;
     u8 *timescores_addr;
     int i;
     
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
     for(i = timescoresOffset; i < timescoresOffset + timescores_size; i++){
-        timescores_addr[i - timescoresOffset] = savedata[i];
+        timescores_addr[i - timescoresOffset] = ((u8*)savedata)[i];
     }
     itemscore_timeScores_fromSaveData(timescores_addr);
 }
 
-void func_8033C460(u8 *savedata){ //global_progress
+void func_8033C460(SaveData *savedata){ //global_progress
     s32 progressflags_size;
     u8 *progressflags_addr;
     int i;
     
     fileProgressFlag_getSizeAndPtr(&progressflags_size, &progressflags_addr);
     for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
-        progressflags_addr[i - progressflagsOffset] = savedata[i];
+        progressflags_addr[i - progressflagsOffset] = ((u8*)savedata)[i];
     }
 }
 
-void func_8033C4E4(u8 *savedata){ //saveddata_load_collectibles
+void func_8033C4E4(SaveData *savedata){ //saveddata_load_collectibles
     s32 saved_item_size;
     u8 *saved_item_addr;
     int i;
     
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
     for(i = savedItemsOffset; i < savedItemsOffset + saved_item_size; i++){
-        saved_item_addr[i - savedItemsOffset] = savedata[i];
+        saved_item_addr[i - savedItemsOffset] = ((u8*)savedata)[i];
     }
     func_803479C0(saved_item_addr);
 }
 
-void __savedata_load_abilities(u8 *savedata){ //savedata_load_abilities
+void __savedata_load_abilities(SaveData *savedata){ //savedata_load_abilities
     s32 abilities_size;
     u8 *abilities_addr;
     int i;
     
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
     for(i = abilitiesOffset; i < abilitiesOffset + abilities_size; i++){
-        abilities_addr[i - abilitiesOffset] = savedata[i];
+        abilities_addr[i - abilitiesOffset] = ((u8*)savedata)[i];
     }
 }
 
-void __savedata_save_magic(u8 *savedata){
-    savedata[baseOffset] = 0x11;
+void __savedata_save_magic(SaveData *savedata){
+    ((u8*)savedata)[baseOffset] = 0x11;
 }
 
-void __savedata_save_jiggyScore(u8 *savedata){ //savedata_save_jiggies
+void __savedata_save_jiggyScore(SaveData *savedata){ //savedata_save_jiggies
     s32 jiggy_size;
     u8 *jiggy_addr;
     int i;
     
     jiggyscore_getSizeAndPtr(&jiggy_size, &jiggy_addr);
     for(i = jiggyOffset; i < jiggyOffset + jiggy_size; i++){
-        savedata[i] = jiggy_addr[i - jiggyOffset];
+        ((u8*)savedata)[i] = jiggy_addr[i - jiggyOffset];
     }
 }
 
-void __savedata_save_honeycombScore(u8 *savedata){ //savedata_save_honeycomb
+void __savedata_save_honeycombScore(SaveData *savedata){ //savedata_save_honeycomb
     s32 honeycomb_size;
     u8 *honeycomb_addr;
     int i;
     
     honeycombscore_getSizeAndPtr(&honeycomb_size, &honeycomb_addr);
     for(i = honeycombOffset; i < honeycombOffset + honeycomb_size; i++){
-        savedata[i] = honeycomb_addr[i - honeycombOffset];
+        ((u8*)savedata)[i] = honeycomb_addr[i - honeycombOffset];
     }
 }
 
-void __savedata_save_mumboScore(u8 *savedata){
+void __savedata_save_mumboScore(SaveData *savedata){
     s32 mumbotoken_size;
     u8 *mumbotoken_addr;
     int i;
     
     mumboscore_getSizeAndPtr(&mumbotoken_size, &mumbotoken_addr);
     for(i = mumbotokenOffset; i < mumbotokenOffset + mumbotoken_size; i++){
-        savedata[i] = mumbotoken_addr[i - mumbotokenOffset];
+        ((u8*)savedata)[i] = mumbotoken_addr[i - mumbotokenOffset];
     }
 }
 
-void __savedata_save_highNoteScores(u8 *savedata){
+void __savedata_save_highNoteScores(SaveData *savedata){
     s32 notescores_size;
     u8 *notescores_addr;
     int i;
     
     notescore_getSizeAndPtr(&notescores_size, &notescores_addr);
     for(i = notescoresOffset; i < notescoresOffset + notescores_size; i++){
-        savedata[i] = notescores_addr[i - notescoresOffset];
+        ((u8*)savedata)[i] = notescores_addr[i - notescoresOffset];
     }
 }
 
-void __savedata_save_timeScores(u8 *savedata){
+void __savedata_save_timeScores(SaveData *savedata){
     s32 timescores_size;
     u8 *timescores_addr;
     int i;
     
     timeScores_getSizeAndPtr(&timescores_size, &timescores_addr);
     for(i = timescoresOffset; i < timescoresOffset + timescores_size; i++){
-        savedata[i] = timescores_addr[i - timescoresOffset];
+        ((u8*)savedata)[i] = timescores_addr[i - timescoresOffset];
     }
 }
 
-void __savedata_8033C8A0(u8 *savedata){ //global_progress
+void __savedata_8033C8A0(SaveData *savedata){ //global_progress
     s32 progressflags_size;
     u8 *progressflags_addr;
     int i;
     
     fileProgressFlag_getSizeAndPtr(&progressflags_size, &progressflags_addr);
     for(i = progressflagsOffset; i < progressflagsOffset + progressflags_size; i++){
-        savedata[i] = progressflags_addr[i - progressflagsOffset];
+        ((u8*)savedata)[i] = progressflags_addr[i - progressflagsOffset];
     }
 }
 
-void __savedata_8033CA2C(u8 *savedata){ //saveddata_save_collectibles
+void __savedata_8033CA2C(SaveData *savedata){ //saveddata_save_collectibles
     s32 saved_item_size;
     u8 *saved_item_addr;
     int i;
     
     saveditem_getSizeAndPtr(&saved_item_size, &saved_item_addr);
     for(i = savedItemsOffset; i < savedItemsOffset + saved_item_size; i++){
-        savedata[i] = saved_item_addr[i - savedItemsOffset];
+        ((u8*)savedata)[i] = saved_item_addr[i - savedItemsOffset];
     }
 }
 
-void __savedata_save_abilities(u8 *savedata){ //savedata_save_abilities
+void __savedata_save_abilities(SaveData *savedata){ //savedata_save_abilities
     s32 abilities_size;
     u8 *abilities_addr;
     int i;
     
     ability_getSizeAndPtr(&abilities_size, &abilities_addr);
     for(i = abilitiesOffset; i < abilitiesOffset + abilities_size; i++){
-        savedata[i] = abilities_addr[i - abilitiesOffset];
+        ((u8*)savedata)[i] = abilities_addr[i - abilitiesOffset];
     }
 }
 
@@ -411,9 +411,9 @@ int savedata_8033CE40(u8 *buffer){
     return out;
 }
 
-void savedata_clear(u8 *savedata){
+void savedata_clear(SaveData *savedata){
     int i;
     for(i = 0; i < sizeof(SaveData); i++){
-        savedata[i] = 0;
+        ((u8*)savedata)[i] = 0;
     }
 }

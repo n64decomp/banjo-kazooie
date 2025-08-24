@@ -4,26 +4,6 @@
 
 #include "core2/dustemitter.h"
 
-typedef struct struct_24_s{
-    s32 unk0;
-    BKModelBin *model_bin;
-    f32 unk8[3];
-    f32 unk14[3];
-    f32 unk20[3];
-    f32 unk2C;
-    f32 unk30[3];
-    ParticleEmitter *unk3C;
-    s32 unk40[4];
-    f32 unk50;
-} Struct24s;
-
-typedef struct struct_25_s{
-    Struct24s *begin;
-    Struct24s *current;
-    Struct24s *end;
-    Struct24s data[];
-} Struct25s;
-
 Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802C8C5C(Actor *this);
 
@@ -40,7 +20,10 @@ ActorInfo D_80366388 = { 0x56,   0xD,   0x0, 0x2, 0x0, func_802C8C5C, actor_upda
 ActorInfo D_803663AC = { 0x56, 0x11F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
 ActorInfo D_803663D0 = { 0x56, 0x14F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
 ActorInfo D_803663F4 = { 0x56, 0x3AD,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-s32 D_80366418[3] = {0,0,0};
+typedef struct {
+    f32 vals[3];
+} TestStruct;
+TestStruct D_80366418 = {{0,0,0}};
 
 /* .bss */
 s32 D_8037DD90;
@@ -168,7 +151,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         sp68[2] = (f32)position[2];
 
         sp68[0] += s0->unk30[0]*3.0f;
-        s0->unk50 = mapModel_getFloorY(&sp68);
+        s0->unk50 = mapModel_getFloorY(sp68);
 
         s0->unk14[2] = 0.0f;
         s0->unk14[1] = 0.0f;
@@ -178,12 +161,12 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         s0->unk20[1] = randf2(0.05f, 0.4f);
         s0->unk20[2] = randf2(0.05f, 0.4f);
 
-        ml_vec3f_yaw_rotate_copy(&s0->unk8, &s0->unk8, f24);
+        ml_vec3f_yaw_rotate_copy(s0->unk8, s0->unk8, f24);
         s0->unk8[0] += actor->position_x;
         s0->unk8[1] += actor->position_y;
         s0->unk8[2] += actor->position_z;
 
-        ml_vec3f_yaw_rotate_copy(&s0->unk30, &s0->unk30, randf2(15.0f, 90.0f) + f24);
+        ml_vec3f_yaw_rotate_copy(s0->unk30, s0->unk30, randf2(15.0f, 90.0f) + f24);
     }//L802C8A08
     actor->unk40 = s1;
     marker_setFreeMethod(actor->marker, func_802C83F0);
@@ -256,7 +239,7 @@ void func_802C8C5C(Actor *actor) {
     f32 sp84[3];
     Struct25s *temp_s2 = actor->unk40;
     Struct24s *phi_s0;
-    s32 sp70[3] = D_80366418;
+    TestStruct sp70 = D_80366418;
 
     for(phi_s0 = temp_s2->begin; phi_s0 < temp_s2->current; phi_s0++){
         if (phi_s0->unk0 == 2) {
@@ -282,7 +265,7 @@ void func_802C8C5C(Actor *actor) {
                 phi_s0->unk0 = 1;
                 phi_s0->unk3C = dustEmitter_returnGiven(1);
                 if (phi_s0->unk3C != 0) {
-                    dustEmitter_emit(phi_s0->unk8, sp70, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, DUST_EMITTER_TYPE_BREAK_DUST);
+                    dustEmitter_emit(phi_s0->unk8, sp70.vals, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, DUST_EMITTER_TYPE_BREAK_DUST);
                 }
             }
         }

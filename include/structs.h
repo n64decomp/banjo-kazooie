@@ -565,12 +565,7 @@ typedef struct struct_63_s{
     void (*unk4)(vector(AnSeqElement) **, struct actorMarker_s *);
 } Struct63s;
 
-typedef struct struct_64_s{
-    struct struct_65_s *unk0;
-    s32 unk4;
-} Struct64s;
-
-typedef struct struct_65_s{
+typedef struct {
     f32 unk0[3];
     struct actorMarker_s *unkC;
     s32 (*unk10)(f32[3], f32, struct actorMarker_s *);
@@ -584,12 +579,19 @@ typedef struct struct_65_s{
     u8 unk25;
     u8 unk26;
     u8 unk27;
-}Struct65s;
+} Struct65s;
 
+typedef struct {
+    Struct65s *unk0;
+    s32 unk4;
+} Struct64s;
 
+struct struct_68_s;
 typedef void  (*Struct68DrawMethod)(void *, struct struct_68_s *, f32[3], f32[3], f32, BKModelBin*, Gfx**, Mtx**, Vtx**);
 
-typedef struct struct_68_s{
+struct actor_s;
+struct actorMarker_s;
+typedef struct struct_68_s {
     u8 unk0; // sfxsource index
     // u8 pad1[0x3];
     struct actorMarker_s *unk4;
@@ -617,7 +619,7 @@ typedef struct {
 typedef struct{
     BKCollisionTri * (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
     BKCollisionTri *(* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
-    BKCollisionTri *(* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
+    BKCollisionTri *(* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], u32);
     s32 (* unkC)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
 } Struct6Cs;
 

@@ -3,6 +3,7 @@
 #include "variables.h"
 
 extern void func_80355C60(f32[3], f32);
+extern Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]);
 
 void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, s32 uls, s32 ult, s32 cms, s32 cmt, s32 *width, s32 *height, s32 *frame_width, s32 *frame_height, s32 *texture_x, s32 *texture_y, s32 *textureCount);
 
@@ -51,8 +52,8 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 }
 
 /* .bss */
-s32 D_80386070;
-s32 D_80386074;
+BKSpriteFrame *D_80386070;
+BKSpriteFrame *D_80386074;
 s32 D_80386078;
 s32 D_8038607C;
 s32 D_80386080;
@@ -149,7 +150,7 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         gDPLoadTLUT_pal16((*gfx)++, 0, palette_addr);
         spriteRenderHasPalette = TRUE;
         spriteRender1PrimMode = FALSE;
-        D_80386074 = 0; 
+        D_80386074 = NULL; 
         texture_block = (BKSpriteTextureBlock *)(palette_addr + 0x20);
         D_80386098 = D_8038607C = 0;
     } else if (sprite->type & SPRITE_TYPE_CI8) {
@@ -161,7 +162,7 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
         texture_block = (BKSpriteTextureBlock *)(palette_addr + 0x200);
         D_80386098 = 0;
         for(var_a0 = 0; var_a0 < chunk_count; var_a0++) {
-            texture_block = (s32)texture_block + (texture_block->w * texture_block->h) + sizeof(BKSpriteTextureBlock);
+            texture_block = (BKSpriteTextureBlock *)((s32)texture_block + (texture_block->w * texture_block->h) + sizeof(BKSpriteTextureBlock));
         }
         *texture_x = texture_block->x;
         *texture_y = texture_block->y;
@@ -284,7 +285,7 @@ void func_80348044(Gfx **gfx, BKSprite* sprite, s32 frame, s32 tmem, s32 rtile, 
 }
 
 void func_80349AD0(void){
-    D_80386074 = D_80386070 = 0;
+    D_80386074 = D_80386070 = NULL;
     D_80386098 = D_8038607C = 0;
     D_80386094 = D_80386078 = -1;
     spriteRenderHasPalette = FALSE;

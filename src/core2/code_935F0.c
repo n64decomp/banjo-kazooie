@@ -3,6 +3,7 @@
 #include "variables.h"
 
 extern void func_8028F918(s32);
+extern Struct70s *func_8034C528(s32 arg0);
 
 void chMinigame_update(Actor *this);
 
@@ -67,7 +68,7 @@ void func_8031A678(Actor *this){
     Struct6Ds *sp2C;
     f32 sp20[3];
 
-    sp2C = func_8034C528(0x190);
+    sp2C = &func_8034C528(0x190)->type_6D;
     switch (this->unk10_12) {
         case MINIGAME_0_BOSS_BOOM_BOX:
             sp20[0] = -2000.0f;
@@ -86,12 +87,12 @@ void func_8031A678(Actor *this){
             break;
 
         case MINIGAME_5_SANDCASTLE:
-            sp2C = func_8034C528(0x191); //lower water
+            sp2C = &func_8034C528(0x191)->type_6D; //lower water
             func_8034DEB4(sp2C, -1000.0f);
             break;
 
         case MINIGAME_2_GV_MATCHING:
-            sp2C = func_8034C528(0x1E7);
+            sp2C = &func_8034C528(0x1E7)->type_6D;
             func_8034DEB4(sp2C, -1000.0f);
             break;
 

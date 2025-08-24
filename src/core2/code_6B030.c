@@ -215,7 +215,7 @@ void func_802F283C(Struct65s *arg0) {
     arg0->unk26 += ((f32) (arg0->unk27 * 4) * sp1C);
 }
 
-void *func_802F2AEC(void) {
+Struct64s *func_802F2AEC(void) {
     u32 var_s1;
     Struct64s *temp_v0;
 

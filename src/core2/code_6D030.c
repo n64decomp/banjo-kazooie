@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/particle.h"
+#include "core2/particleemittermanager.h"
 
 ParticleEmitter *func_802F4094(f32 pos[3], f32 arg1);
 

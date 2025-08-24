@@ -2,7 +2,7 @@
 #include "core1/core1.h"
 
 // transform seed (in mips3 file)
-u32 func_8025C29C(u32 *seed); // TODO: This function does not exist in source code, why does it work?
+u32 func_8025C29C(u64 *seed);
 
 void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]) {
     u8 *p;

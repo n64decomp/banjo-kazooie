@@ -24,7 +24,7 @@ void func_8034D240(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3) {
     dst->v.cn[3] = (arg3->unk50[3] + temp_f0 * (arg3->unk60[3] - arg3->unk50[3])) * src->v.v.cn[3];
 }
 
-void func_8034D554(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
+void func_8034D554(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     f32 temp_f0;
     f32 sp18[3];
 
@@ -36,7 +36,7 @@ void func_8034D554(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     dst->v.ob[2] = (s16)(src->v.v.ob[2] + sp18[2]);
 }
 
-void func_8034D634(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
+void func_8034D634(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     f32 temp_f0;
     f32 sp18[3];
 
@@ -47,11 +47,11 @@ void func_8034D634(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     dst->v.ob[2] = (s16)(src->v.v.ob[2] + sp18[2]);
 }
 
-void func_8034D700(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
+void func_8034D700(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     dst->v.ob[1] = src->v.v.ob[1] + (u16)(s32)(arg3->unk4 + ((arg3->unk44 / arg3->unk48) * (arg3->unk8 - arg3->unk4)));
 }
 
-void func_8034D740(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
+void func_8034D740(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     f32 temp_f0;
     f32 temp_f12;
     f32 temp_f14;
@@ -65,14 +65,14 @@ void func_8034D740(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3){
     dst->v.cn[3] = (((arg3->unk94 - arg3->unk84) * temp_f0) + arg3->unk84);
 }
 
-void func_8034D9C8(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3) {
+void func_8034D9C8(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3) {
     f32 temp_f0;
 
     temp_f0 = arg3->unk98 / arg3->unk9C;
     dst->v.cn[3] = (((arg3->unk94 - arg3->unk84) * temp_f0) + arg3->unk84);
 }
 
-void func_8034DA7C(s32 *mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3)  {
+void func_8034DA7C(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct6Ds *arg3)  {
     f32 sp24[3];
     f32 sp18[3];
 

@@ -367,7 +367,7 @@ void func_802ED180(BKVertexList *self, f32 arg1[3], f32 arg2[3], f32 arg3, f32 a
 void vtxList_getNthCoord(BKVertexList *self, s32 indx, f32 dst[3]){
     Vtx *vtx;
 
-    vtx = (s32)(self + 1) + (indx * sizeof(Vtx));
+    vtx = (Vtx*)((s32)(self + 1) + (indx * sizeof(Vtx)));
     dst[0] = (f32) vtx->v.ob[0];
     dst[1] = (f32) vtx->v.ob[1];
     dst[2] = (f32) vtx->v.ob[2];
@@ -377,7 +377,7 @@ void vtxList_setNthCoord(BKVertexList *self, s32 indx, f32 arg2[3]){
     Vtx *vtx;
     s32 i;
 
-    vtx = (s32)(self + 1) + (indx * sizeof(Vtx));
+    vtx = (Vtx*)((s32)(self + 1) + (indx * sizeof(Vtx)));
     for(i = 0; i < 3; i++){
         vtx->v.ob[i] = (arg2[i] >= 0.0) ? arg2[i] + 0.5 :  arg2[i] - 0.5;
     }

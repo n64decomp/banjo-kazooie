@@ -14,18 +14,18 @@ ActorInfo D_80373DC0= {
 
 /* .code */
 void func_80363440(void){
-    func_8034DEB4(func_8034C528(0x1F1), -5000.0f);
+    func_8034DEB4(&func_8034C528(0x1F1)->type_6D, -5000.0f);
 }
 
 void func_80363470(void){
-    func_8034DEB4(func_8034C528(0x1F2), -5000.0f);
-    func_8034DEB4(func_8034C528(0x1F3), 0.0f);
+    func_8034DEB4(&func_8034C528(0x1F2)->type_6D, -5000.0f);
+    func_8034DEB4(&func_8034C528(0x1F3)->type_6D, 0.0f);
     func_80363440();
 }
 
 void func_803634BC(void){
-    func_8034DEB4(func_8034C528(0x1F3), -5000.0f);
-    func_8034DEB4(func_8034C528(0x1F2), 0.0f);
+    func_8034DEB4(&func_8034C528(0x1F3)->type_6D, -5000.0f);
+    func_8034DEB4(&func_8034C528(0x1F2)->type_6D, 0.0f);
 }
 
 void func_80363500(Actor *this){

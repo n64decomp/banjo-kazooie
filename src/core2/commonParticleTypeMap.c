@@ -5,6 +5,7 @@
 
 extern GenFunction_0 commonParticleType_getFreeMethod(enum common_particle_e);
 extern GenFunction_0 commonParticleType_getUpdateMethod(enum common_particle_e);
+extern GenFunction_0 commonParticleType_getInitMethod(enum common_particle_e id);
 
 typedef struct {
     u8 prevParticleType;
@@ -56,7 +57,7 @@ void commonParticleTypeMap_freeByIndex(u8 index) {
 }
 
 void commonParticleTypeMap_advanceParticleType(u8 index, enum common_particle_e nextType) {
-    void (*funcPtr)(void);
+    GenFunction_0 funcPtr;
 
     if (!nextType) {
        return; 

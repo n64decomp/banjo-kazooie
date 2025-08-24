@@ -16,4 +16,8 @@ extern struct Overlay gOverlayTable[];
 
 extern f32  climbPoleBottom[3];
 extern f32  climbPoleTop[3];
+
+#define offsetof(st, m) \
+    ((u32)&(((st *)0)->m))
+
 #endif

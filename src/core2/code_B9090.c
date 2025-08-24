@@ -42,7 +42,7 @@ bool func_80340020(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 
     return TRUE;
 }
 
-void func_80340200(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 arg4[3], s16 arg5[3], BKVertexList *arg6, f32 arg7[3]) {
+void func_80340200(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 arg4[3], BKCollisionTri *arg5, BKVertexList *arg6, f32 arg7[3]) {
     f32 spAC[3];
     f32 spA0[3];
     f32 sp94[3];
@@ -67,7 +67,7 @@ void func_80340200(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 
     func_80252CC4(position, arg2, arg3, arg4);
     mlMtx_apply_vec3f(sp94, arg7);
     for(j = 0; j < 3; j++){
-        self->unk14[j] = arg5[j];
+        self->unk14[j] = arg5->unk0[j];
     }
 
     for(j = 0; j < 3; j++){

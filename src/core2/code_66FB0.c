@@ -40,7 +40,7 @@ s32 D_8036889C[] = {
 };
 
 /* .code */
-void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, f32 arg6[3], f32 arg7[3]){
+void func_802EDF40(f32 pos[3], s32 arg1, s32 cnt, f32 arg3, f32 arg4, f32 arg5, s32 arg6[3], f32 arg7[3]){
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     f32 tmp_f0;
     if(arg1 < 0x3e7){
@@ -116,7 +116,7 @@ void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5,
     func_802EDF40(sp2C, arg1, cnt, arg4, arg5, arg6, NULL, 0);
 }
 
-void func_802EE354(Actor* arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7[3], s32 arg8, f32 arg9[3]){
+void func_802EE354(Actor* arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5, f32 arg6, s32 arg7[3], s32 arg8, f32 arg9[3]){
     f32 sp2C[3];
 
     if(arg8){
