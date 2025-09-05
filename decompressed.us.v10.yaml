@@ -5,15 +5,10 @@ options:
   compiler: "IDO"
   platform: n64
   asm_end_label: "endlabel"
-  cpp_args:
-    - "-Iinclude"
-    - "-Iinclude/2.0L"
-    - "-D_LANGUAGE_C"
   generated_c_preamble: |
     #include <ultra64.h>
     #include "functions.h"
     #include "variables.h"
-  undefined_syms_path: undefined_syms.us.v10.txt
   symbol_addrs_path:   symbol_addrs.us.v10.txt
   create_undefined_funcs_auto: no
   create_undefined_syms_auto: no
@@ -23,6 +18,10 @@ options:
   build_path: build/us.v10
   libultra_symbols: True
   hardware_regs: True
+  ld_sections_allowlist:
+    - .shstrtab
+    - .mdebug
+    - .mdebug.abi32
 segments:
 - name:  header
   type:  header
@@ -357,9 +356,9 @@ segments:
   - [0xF4DCD0, c, io/epirawread]
   - [0xF4DD20, c, os/setglobalintmask]
   - [0xF4DD70, c, os/yieldthread]
-  - [0xF4DDC0, bin, n_aspMain_text]
-  - [0xF4EA20, bin, gSPF3DEX_fifo_text]
-  - [0xF4FE50, bin, gSPL3DEX_fifo_text]
+  - [0xF4DDC0, textbin, us.v10/n_aspMain]
+  - [0xF4EA20, textbin, us.v10/gSPF3DEX_fifo]
+  - [0xF4FE50, textbin, us.v10/gSPL3DEX_fifo]
   - [0xF50E40, linker_offset, DATA_START] #data Section
   - [0xF50E40, .data, code_0]
   - [0xF50EA0, .data, code_660]
@@ -450,9 +449,9 @@ segments:
   - [0xF54600, .rodata, io/devmgr]
   - [0xF54620, .rodata, audio/env]
   - [0xF54670, .rodata, audio/resample]
-  - [0xF546B0, bin, n_aspMain_data]
-  - [0xF54960, bin, gSPF3DEX_fifo_data]
-  - [0xF55160, bin, gSPL3DEX_fifo_data]
+  - [0xF546B0, rodatabin, us.v10/n_aspMain]
+  - [0xF54960, rodatabin, us.v10/gSPF3DEX_fifo]
+  - [0xF55160, rodatabin, us.v10/gSPL3DEX_fifo]
   - [0xF55960, .bss, code_0]
   - [0xF55960, .bss, code_660]
   - [0xF55960, .bss, inflate]

@@ -373,6 +373,7 @@ clean:
 	@$(RM) -rf $(NONMATCHING_DIR)
 	@$(RM) -rf $(ASM_ROOT)/*.s
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
+	@$(RM) -rf $(ASM_ROOT)/data
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
 	@$(RM) -rf $(ASM_ROOT)/core1/os
 	@$(RM) -f *.ld

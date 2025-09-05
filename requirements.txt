@@ -11,3 +11,4 @@ python-Levenshtein
 python-ranges
 pyyaml
 watchdog
+spimdisasm==1.35.0

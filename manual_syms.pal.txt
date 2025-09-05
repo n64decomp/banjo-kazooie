@@ -1,16 +1,16 @@
-/* Microcode renames to match ucode.h names */
-n_aspMainTextStart = _binary_bin_core1_n_aspMain_text_bin_start;
-n_aspMainTextEnd = _binary_bin_core1_n_aspMain_text_bin_end;
-gSPF3DEX_fifoTextStart = _binary_bin_core1_gSPF3DEX_fifo_text_bin_start;
-gSPF3DEX_fifoTextEnd = _binary_bin_core1_gSPF3DEX_fifo_text_bin_end;
-gSPL3DEX_fifoTextStart = _binary_bin_core1_gSPL3DEX_fifo_text_bin_start;
-gSPL3DEX_fifoTextEnd = _binary_bin_core1_gSPL3DEX_fifo_text_bin_end;
-n_aspMainDataStart = _binary_bin_core1_n_aspMain_data_bin_start;
-n_aspMainDataEnd = _binary_bin_core1_n_aspMain_data_bin_end;
-gSPF3DEX_fifoDataStart = _binary_bin_core1_gSPF3DEX_fifo_data_bin_start;
-gSPF3DEX_fifoDataEnd = _binary_bin_core1_gSPF3DEX_fifo_data_bin_end;
-gSPL3DEX_fifoDataStart = _binary_bin_core1_gSPL3DEX_fifo_data_bin_start;
-gSPL3DEX_fifoDataEnd = _binary_bin_core1_gSPL3DEX_fifo_data_bin_end;
+/* Microcode renames to remove boot_ prefix */
+n_aspMainTextStart = boot_n_aspMainTextStart;
+n_aspMainTextEnd = boot_n_aspMainTextEnd;
+gSPF3DEX_fifoTextStart = boot_gSPF3DEX_fifoTextStart;
+gSPF3DEX_fifoTextEnd = boot_gSPF3DEX_fifoTextEnd;
+gSPL3DEX_fifoTextStart = boot_gSPL3DEX_fifoTextStart;
+gSPL3DEX_fifoTextEnd = boot_gSPL3DEX_fifoTextEnd;
+n_aspMainDataStart = boot_n_aspMainDataStart;
+n_aspMainDataEnd = boot_n_aspMainDataEnd;
+gSPF3DEX_fifoDataStart = boot_gSPF3DEX_fifoDataStart;
+gSPF3DEX_fifoDataEnd = boot_gSPF3DEX_fifoDataEnd;
+gSPL3DEX_fifoDataStart = boot_gSPL3DEX_fifoDataStart;
+gSPL3DEX_fifoDataEnd = boot_gSPL3DEX_fifoDataEnd;
 
 /* Fixed-address buffers */
 D_8000E800      = 0x8000E800;

@@ -6,6 +6,7 @@ baseroms/*
 
 #compiled or ripped asm
 asm/nonmatchings
+asm/data
 asm/*.s
 asm/*/*.s
 asm/core1/os
