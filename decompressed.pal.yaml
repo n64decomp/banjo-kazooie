@@ -5,15 +5,10 @@ options:
   compiler: "IDO"
   platform: n64
   asm_end_label: "endlabel"
-  cpp_args:
-    - "-Iinclude"
-    - "-Iinclude/2.0L"
-    - "-D_LANGUAGE_C"
   generated_c_preamble: |
     #include <ultra64.h>
     #include "functions.h"
     #include "variables.h"
-  undefined_syms_path: undefined_syms.pal.txt
   symbol_addrs_path:   symbol_addrs.pal.txt
   create_undefined_funcs_auto: yes
   create_undefined_syms_auto: yes
@@ -23,6 +18,10 @@ options:
   build_path: build/pal
   libultra_symbols: True
   hardware_regs: True
+  ld_sections_allowlist:
+    - .shstrtab
+    - .mdebug
+    - .mdebug.abi32
 segments:
 - name:  header
   type:  header
@@ -357,9 +356,9 @@ segments:
   - [0xF71660, c, io/epirawread]
   - [0xF716B0, c, os/setglobalintmask]
   - [0xF71700, c, os/yieldthread]
-  - [0xF71750, bin, n_aspMain_text]
-  - [0xF723B0, bin, gSPF3DEX_fifo_text]
-  - [0xF737E0, bin, gSPL3DEX_fifo_text]
+  - [0xF71750, textbin, pal/n_aspMain]
+  - [0xF723B0, textbin, pal/gSPF3DEX_fifo]
+  - [0xF737E0, textbin, pal/gSPL3DEX_fifo]
   - [0xF747D0, linker_offset, DATA_START] #data Section
   - [0xF747D0, .data, code_0]
   - [0xF74830, .data, code_660]
@@ -449,9 +448,9 @@ segments:
   - [0xF77E70, .rodata, io/devmgr]
   - [0xF77E90, .rodata, audio/env]
   - [0xF77EE0, .rodata, audio/resample]
-  - [0xF77F20, bin, n_aspMain_data]
-  - [0xF781D0, bin, gSPF3DEX_fifo_data]
-  - [0xF789D0, bin, gSPL3DEX_fifo_data]
+  - [0xF77F20, rodatabin, pal/n_aspMain]
+  - [0xF781D0, rodatabin, pal/gSPF3DEX_fifo]
+  - [0xF789D0, rodatabin, pal/gSPL3DEX_fifo]
   - [0xF791D0, .bss, code_0]
   - [0xF791D0, .bss, code_660]
   - [0xF791D0, .bss, inflate]
@@ -574,7 +573,7 @@ segments:
   - [0xF943D0, c, bs/bEggAss]
   - [0xF94640, c, bs/bEggHead]
   - [0xF948F0, c, bs/bFlap]
-  - [0xF94FC0, bin, core2_untouched_text]
+  - [0xF94FC0, textbin, core2_untouched]
   # - [0xF71730, c, bs/bFlip]    #DONE
   # - [0xF71D20, c, bs/bFly]     #DONE
   # - [0xF73BA0, c, bs/bLongLeg] #DONE
@@ -1166,7 +1165,7 @@ segments:
   - [0x1067D90, .rodata, bs/bEggAss]
   - [0x1067DB0, .rodata, bs/bEggHead]
   - [0x1067DD0, .rodata, bs/bFlap]
-  - [0x1067E40, bin, core2_untouched_rodata]
+  - [0x1067E40, rodatabin, core2_untouched]
   # - [0x1043E70, .rodata, bs/bFlip]
   # - [0x1043EC0, .rodata, bs/bFly]
   # - [0x1043F20, .rodata, bs/bLongLeg]
