@@ -119,17 +119,17 @@ void bsjig_jiggy_end(void){
         if( jiggyscore_total() == 2
             && map_get() == MAP_2_MM_MUMBOS_MOUNTAIN
         ){
-            sp2C = 0xb51;
+            sp2C = VER_SELECT(0xb51, 0x96f, 0, 0);
             sp28 = 0xe;
         }
         else{//L802B0E34
             switch(sp24){
                 case 0x13:
-                    sp2C = 0xa16;
+                    sp2C = VER_SELECT(0xa16, 0x916, 0, 0);
                     break;
                 case 0x17:
                     if(!levelSpecificFlags_get(LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN) || !levelSpecificFlags_get(LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN))
-                        sp2C = 0xd2d;
+                        sp2C = VER_SELECT(0xd2d, 0xa00, 0, 0);
                     break;
             }
         }//L802B0E88
@@ -141,8 +141,14 @@ void bsjig_jiggy_end(void){
 }
 
 void bsjig_jiggy_interrupt(void){
-    if(bs_getInterruptType() == BS_INTR_26)
+    if(bs_getInterruptType() == BS_INTR_26) {
         func_80296608();
+    }
+#if VERSION != VERSION_USA_1_0
+    else {
+        func_80296590();
+    }
+#endif
 }
 
 void bsjig_notedoor_end(void){
@@ -169,7 +175,7 @@ void bsjig_notedoor_init(void){
     anctrl_setIndex(aCtrl, ASSET_282_ANIM_BSJIG_NOTEDOOR);
     anctrl_setDuration(aCtrl, 3.6f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
-    anctrl_start(aCtrl, "bsjig.c", 0x14d);
+    anctrl_start(aCtrl, "bsjig.c", VER_SELECT(0x14d, 0x14f, 0, 0));
     yaw_setIdeal(func_8029B41C());
     func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);

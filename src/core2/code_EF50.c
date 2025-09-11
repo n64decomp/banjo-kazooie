@@ -299,7 +299,7 @@ void func_80296608(void){
     current_state = bs_getState();
     switch(bs_getInterruptType()){
         case BS_INTR_18_CROC_ATE_WRONG: //L80296654
-            func_802AD318();
+            bscroc_set_ate_wrong_thing();
             sp2C = 2;
             break;
         case BS_INTR_A:  //L8029666C

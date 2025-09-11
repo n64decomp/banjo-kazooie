@@ -139,7 +139,7 @@ bsMap D_80363824[] ={
     {BS_BEE_DIE, bsbeemain_die_init, func_802A1DD8, func_802A1F2C, func_80296590},
     {0x0000008B, func_802A0590, func_802A0630, func_802A0704, func_802B5350},
     {BS_BEE_FLY, bsbeefly_enter, bsbeefly_update, bsbeefly_end, func_802B5350},
-    {BS_8D_CROC_LOCKED, func_802AD56C, func_802AD5C0, func_802AD614, func_802B5350},
+    {BS_8D_CROC_LOCKED, bscroc_locked_enter, bscroc_locked_update, bscroc_locked_end, func_802B5350},
     {0x0000008E, func_8029F398, func_8029F3F4, func_8029F440, func_802B5350},
     {BS_8F_PUMPKIN_LOCKED, func_802B34A0, func_802B34F8, func_802B353C, func_802B5350},
     {BS_FLY_OW, func_802A4D30, func_802A4D50, func_802A4D70, func_802A505C},

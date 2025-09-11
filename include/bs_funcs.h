@@ -577,9 +577,9 @@ void bsbeefly_update(void);
 void bsbeefly_end(void);
 
 //0x0000008D
-void func_802AD56C(void);
-void func_802AD5C0(void);
-void func_802AD614(void);
+void bscroc_locked_enter(void);
+void bscroc_locked_update(void);
+void bscroc_locked_end(void);
 
 //0x0000008E
 void func_8029F398(void);

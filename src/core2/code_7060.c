@@ -494,7 +494,7 @@ enum bsgroup_e player_movementGroup(void) {
 
         case BS_6E_CROC_BITE://L8028EE38
         case BS_70_CROC_EAT_GOOD://L8028EE38
-            if(func_802AD3A0())
+            if(bscroc_ate_wrong_thing())
                 return BSGROUP_0_NONE;
             return BSGROUP_7_CROC_ATTACK;
 
