@@ -11,7 +11,7 @@ f32  bastick_distance(void);
 f32 bastick_getAngleRelativeToBanjo(void);
 
 void baModel_setYDisplacement(f32);
-void ncDynamicCam4_func_802BFE50(f32, f32, f32);
+void ncbafly_func_802BFE50(f32, f32, f32);
 void yaw_setVelocityBounded(f32, f32);
 f32 bastick_getX(void);
 f32 bastick_getY(void);
@@ -121,7 +121,7 @@ void _bsBeeFly_updateYaw(void){
     f32 sp30;
     f32 stickX;
     stickX = bastick_getX();
-    ncDynamicCam4_func_802BFE50(2.0f, 2000.0f, 350.0f);
+    ncbafly_func_802BFE50(2.0f, 2000.0f, 350.0f);
     if(bakey_held(BUTTON_R)){
         yaw_setVelocityBounded(500.0f, 30.0f);
         sp34 = 6.0f;

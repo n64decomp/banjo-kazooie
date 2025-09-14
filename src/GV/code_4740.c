@@ -37,7 +37,7 @@ f32 GV_D_80391A70[3];
 
 /* .code */
 void func_8038AB30(ParticleEmitter *pCtrl, f32 position[3], s32 cnt){
-    if(map_get() != MAP_1A_GV_INSIDE_JINXY)
+    if(gsworld_get_map() != MAP_1A_GV_INSIDE_JINXY)
         particleEmitter_setRGB(pCtrl, D_803910BC);
     else
         particleEmitter_setRGB(pCtrl, D_803910C8);

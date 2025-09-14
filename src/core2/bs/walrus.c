@@ -6,6 +6,7 @@
 #include "core2/ba/timer.h"
 
 extern void func_8029AD68(f32, s32);
+extern ParticleEmitter *func_802F1EC8(f32 *);
 
 int bswalrus_inSet(enum bs_e state);
 
@@ -371,7 +372,7 @@ static void __bswalrus_recoil_init(s32 damage){
     f32 sp30[3];
     f32 sp24[3];
 
-    func_80298760(func_80296560());
+    barebound_set_active(func_80296560());
     baanim_playForDuration_onceSmooth(0x19c, 1.0f);
     if(damage == 1)
         func_8030E58C(SFX_38_BANJO_AYE_1, 1.8f);
@@ -383,12 +384,12 @@ static void __bswalrus_recoil_init(s32 damage){
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));
     yaw_applyIdeal();
-    baphysics_set_target_horizontal_velocity(func_802987D4());
+    baphysics_set_target_horizontal_velocity(barebound_get_horizontal_velocity());
     baphysics_set_target_yaw(sp3C);
     baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
     func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
-    baphysics_set_vertical_velocity(func_802987C4());
-    baphysics_set_gravity(func_802987E4());
+    baphysics_set_vertical_velocity(barebound_get_vertical_velocity());
+    baphysics_set_gravity(barebound_get_gravity());
     baMarker_collisionOff();
     baeyes_close();
     func_802B8110();
@@ -465,7 +466,7 @@ void bswalrus_die_init(void){
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xd);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8025AB00();
     func_8025A2FC(0, 0xfa0);
     comusic_playTrack(0x1A);
@@ -544,7 +545,7 @@ void func_802B9130(void){
     func_802B3A50();
     func_80299628(0);
     func_8029C6D0();
-    if(!func_80298850())
+    if(!balookat_getState())
         next_state = BS_7D_WALRUS_SLED;
 
     bs_setState(next_state);
@@ -729,7 +730,7 @@ void bswalrus_timeout_init(void) {
     func_8029C7F4(1, 1, 3, BA_PHYSICS_FREEZE);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802914CC(0xD);
-    ncDynamicCamD_func_802BF2C0(60.0f);
+    ncbadie_func_802BF2C0(60.0f);
     func_8025A58C(0, 4000);
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     core1_ce60_incOrDecCounter(FALSE);

@@ -31,7 +31,7 @@ void func_8038953C() {
 void func_80389544(void){
     MMM_D_8038C4E0.unk0 = 0;
     MMM_D_8038C4E0.unk2 = 0;
-    if(map_get() == MAP_26_MMM_NAPPERS_ROOM){
+    if(gsworld_get_map() == MAP_26_MMM_NAPPERS_ROOM){
         if(jiggyscore_isCollected(JIGGY_5D_MMM_NAPPER)){
             MMM_D_8038C4E0.unk1 = 2;
         }

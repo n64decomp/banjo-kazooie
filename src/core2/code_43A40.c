@@ -72,7 +72,7 @@ void chFlightPad_update(Actor *this){
         actor_setOpacity(this, 0x5a);
     }
 
-    if(map_get() == MAP_12_GV_GOBIS_VALLEY){
+    if(gsworld_get_map() == MAP_12_GV_GOBIS_VALLEY){
         this->unk6C = 352.0f;
         this->pitch = 352.0f;
         this->yaw_ideal = 90.0f;

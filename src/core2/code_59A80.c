@@ -40,7 +40,7 @@ enum mumbotoken_e func_802E0A90(Actor *this){
     s32 id;
     s32 pos[3];
 
-    map_get();
+    gsworld_get_map();
     pos[0] = (s32)this->position[0];
     pos[1] = (s32)this->position[1];
     pos[2] = (s32)this->position[2];

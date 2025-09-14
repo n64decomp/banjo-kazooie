@@ -455,7 +455,7 @@ void bspumpkin_die_init(void) {
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xD);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
     baMarker_collisionOff();
     baeyes_close();
@@ -546,7 +546,7 @@ void func_802B34F8(void) {
     next_state = 0;
     func_802B3A50();
     func_8029C6D0();
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         next_state = BS_48_PUMPKIN_IDLE;
     }
     bs_setState(next_state);

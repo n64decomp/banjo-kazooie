@@ -115,7 +115,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     }
 
     D_80363690 = 0;
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
                 baflag_set(BA_FLAG_16_FLYING);
@@ -185,7 +185,7 @@ void func_8028E4B0(void) {
     D_8037BFBA = TRUE;
     D_8037BFB9 = FALSE;
     func_80295914();
-    sp20 = exit_get();
+    sp20 = gsworld_get_exit();
     D_8037BFB8 = 0;
     player_setPosition(D_803636C0);
     if (volatileFlag_get(VOLATILE_FLAG_E) || func_802D686C() || (sp20 == 0x65)){
@@ -357,7 +357,7 @@ void func_8028E9C4(s32 arg0, f32 arg1[3]) {
             _player_getPosition(arg1);
             switch(bsStoredState_getTransformation()){
                 case TRANSFORM_3_PUMPKIN: //L8028EA68
-                    if(map_get() == MAP_1B_MMM_MAD_MONSTER_MANSION){
+                    if(gsworld_get_map() == MAP_1B_MMM_MAD_MONSTER_MANSION){
                         arg1[1] += 100.0f;
                     }
                     else{
@@ -417,7 +417,7 @@ f32 player_getPitch(void){
 }
 
 int func_8028EC04(void){
-    return func_80298850();
+    return balookat_getState();
 }
 
 void player_getRotation(f32 *dst){
@@ -839,16 +839,16 @@ void func_8028F8F8(s32 arg0, bool arg1){
 
 void func_8028F918(s32 arg0){
     if(arg0 == 0){
-        func_80298890();
+        balookat_pop();
     }
     else{
-        func_802988DC(arg0);
+        balookat_push(arg0);
     }
 }
 
 void func_8028F94C(s32 arg0, f32 arg1[3]){
-    func_802988DC(arg0);
-    func_8029892C(arg1);
+    balookat_push(arg0);
+    balookat_set_position(arg1);
 }
 
 void func_8028F974(void){
@@ -858,7 +858,7 @@ void func_8028F974(void){
 void func_8028F994(void){
     D_803636B0 = 1;
     player_getPosition(D_803636B4);
-    transitionToMap(map_get(), 0, 0);
+    transitionToMap(gsworld_get_map(), 0, 0);
 }
 
 void func_8028F9DC(s32 arg0){
@@ -942,7 +942,7 @@ bool player_throwCarriedObject(void){
 }
 
 void func_8028FC8C(f32 arg0[3]){
-    func_8029892C(arg0);
+    balookat_set_position(arg0);
 }
 
 void func_8028FCAC(void){

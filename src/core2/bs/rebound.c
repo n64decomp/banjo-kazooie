@@ -54,15 +54,15 @@ void func_802B360C(void) {
         batimer_set(6, sp24);
     } else {
         func_802B35D0(0);
-        func_80298760(sp1C);
+        barebound_set_active(sp1C);
         yaw_setIdeal(mlNormalizeAngle(sp28 + 180.0f));
-        baphysics_set_target_horizontal_velocity(func_802987D4());
+        baphysics_set_target_horizontal_velocity(barebound_get_horizontal_velocity());
         baphysics_set_target_yaw(sp28);
         baphysics_set_horizontal_velocity(sp28, baphysics_get_target_horizontal_velocity());
-        baphysics_set_vertical_velocity(func_802987C4());
-        baphysics_set_gravity(func_802987E4());
+        baphysics_set_vertical_velocity(barebound_get_vertical_velocity());
+        baphysics_set_gravity(barebound_get_gravity());
         func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
-        if (func_802987B4() == 2) {
+        if (barebound_802987B4() == 2) {
             baphysics_set_type(BA_PHYSICS_AIRBORN);
         }
     }
@@ -80,7 +80,7 @@ void func_802B37DC(void) {
             baphysics_set_velocity(velocity);
             baphysics_set_target_horizontal_velocity(0.0f);
         }
-    } else if (func_802987B4() == 2) {
+    } else if (barebound_802987B4() == 2) {
         func_802B6FA8();
     }
 }
@@ -115,7 +115,7 @@ void func_802B3954(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    if (batimer_decrement(0) && map_get() == MAP_93_GL_DINGPOT) {
+    if (batimer_decrement(0) && gsworld_get_map() == MAP_93_GL_DINGPOT) {
         baMarker_collisionOn();
     }
     func_802B37DC();

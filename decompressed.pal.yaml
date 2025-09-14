@@ -538,7 +538,7 @@ segments:
   - [0xF875E0, c, bakey]
   - [0xF87870, c, abilityprogress]
   - [0xF87B00, c, code_E910]
-  - [0xF88030, c, code_EE40]
+  - [0xF88030, c, babounds]
   - [0xF88140, c, code_EF50]
   - [0xF88F50, c, ba/physics]
   - [0xF89EC0, c, ba/iFrame]
@@ -548,7 +548,7 @@ segments:
   - [0xF8A650, c, code_11460]
   - [0xF8A850, c, code_11660]
   - [0xF8A9C0, c, code_117D0]
-  - [0xF8AA60, c, code_11870]
+  - [0xF8AA60, c, balookat]
   - [0xF8AD30, c, roll]
   - [0xF8AFD0, c, yaw]
   - [0xF8B550, c, code_12360]
@@ -599,21 +599,21 @@ segments:
   - [0xFA4440, c, bs/pumpkin]
   - [0xFA5840, c, bs/rebound]
   - [0xFA5CC0, c, bs/rest]
-  - [0xFA6190, textbin, core2_untouched]
-  # - [0xF828F0, c, bs/sled]     #DONE
-  # - [0xF82AA0, c, bs/slide]    #DONE
-  # - [0xF82F40, c, bs/splat]    #DONE
-  # - [0xF83240, c, bs/stand]    #DONE
-  # - [0xF83E50, c, bs/swim]     #DONE
-  # - [0xF849A0, c, bs/surf]     #DONE
-  # - [0xF84B00, c, bs/talk] #DONE
-  # - [0xF84C40, c, bs/timeout]  #DONE
-  # - [0xF84F10, c, bs/throw]    #DONE
-  # - [0xF85130, c, bs/turn]     #DONE
-  # - [0xF85410, c, bs/twirl]    #DONE
-  # - [0xF856D0, c, bs/walk]     #DONE
-  # - [0xF867D0, c, bs/walrus]   #DONE
-  # - [0xF88350, c, bs/washy]   #DONE
+  - [0xFA6190, c, bs/sled]
+  - [0xFA6360, c, bs/slide]
+  - [0xFA6800, c, bs/splat]
+  - [0xFA6B00, c, bs/stand]
+  - [0xFA7710, c, bs/swim]
+  - [0xFA8260, c, bs/surf]
+  - [0xFA83C0, c, bs/talk]
+  - [0xFA8500, c, bs/timeout]
+  - [0xFA87D0, c, bs/throw]
+  - [0xFA89F0, c, bs/turn]
+  - [0xFA8CD0, c, bs/twirl]
+  - [0xFA8F90, c, bs/walk]
+  - [0xFAA090, c, bs/walrus]
+  - [0xFABC10, c, bs/washy]
+  - [0xFABFD0, textbin, core2_untouched]
   # - [0xF88710, c, nc/cameranodelist] #DONE
   # - [0xF88BB0, c, code_33250] #DONE
   # - [0xF88BB0, c, code_33310] #DONE
@@ -630,11 +630,11 @@ segments:
   # - [0xF8D630, c, nc/randomCamera] #DONE
   # - [0xF8D7B0, c, code_37E50] #DONE
   # - [0xF8DAB0, c, nc/dynamicCam10] #DONE
-  # - [0xF8DC40, c, nc/dynamicCamD] #DONE
+  # - [0xF8DC40, c, nc/ba/die] #DONE
   # - [0xF8DDC0, c, nc/dynamicCam5] #DONE
   # - [0xF8DF90, c, nc/dynamicCam11] #DONE
   # - [0xF8E240, c, nc/dynamicCam8] #DONE
-  # - [0xF8E430, c, nc/dynamicCam4] #DONE
+  # - [0xF8E430, c, nc/ba/fly] #DONE
   # - [0xF8E8A0, c, nc/dynamicCamC] #DONE
   # - [0xF8EAF0, c, code_F8EAF0] #DONE
   # - [0xF8ED40, c, nc/dynamicCamB] #DONE
@@ -646,7 +646,7 @@ segments:
   # - [0xF90770, c, nc/dynamicCamA] #DONE
   # - [0xF90C20, c, code_3B2C0] #DONE
   # - [0xF90E30, c, nc/dynamicCamF] #DONE
-  # - [0xF90F20, c, nc/firstpersoncamera] #DONE
+  # - [0xF90F20, c, nc/ba/1p] #DONE
   # - [0xF914E0, c, spawnqueue] #DONE
   # - [0xF92D30, c, ch/gameSelect] #DONE
   # - [0xF94430, c, code_3EAD0] #DONE
@@ -766,7 +766,7 @@ segments:
   # - [0xFCF190, c, fx/common3score] #DONE
   # - [0xFCF5E0, c, fx/healthscore] #DONE
   # - [0xFD00C0, c, fx/airscore] #DONE
-  # - [0xFD08E0, c, code_7AF80]
+  # - [0xFD08E0, c, gccube]
   # - [0xFD7960, c, mapModel] #DONE
   # - [0xFD8CA0, c, propModelList] #DONE
   # - [0xFD96D0, c, gc/section] #DONE
@@ -806,9 +806,9 @@ segments:
   # - [0xFFA660, c, code_A4D00] #DONE
   # - [0xFFB520, c, code_A5BC0]
   # - [0x1001560, c, code_ABC00] #DONE
-  # - [0x1001E80, c, code_AC520] #DONE
+  # - [0x1001E80, c, gclights] #DONE
   # - [0x1002A70, c, code_AD110] #DONE
-  # - [0x1002F10, c, code_AD5B0] #DONE
+  # - [0x1002F10, c, gsworld] #DONE
   # - [0x1003BF0, c, code_AE290] #DONE
   # - [0x1003F30, c, skeletalanim] #DONE
   # - [0x1004700, c, code_AEDA0]
@@ -933,18 +933,18 @@ segments:
   - [0x1057440, .data, bs/dronexform]
   - [0x1057560, .data, bs/jump]
   - [0x1057580, .data, bs/pumpkin]
-  - [0x10575B0, bin, core2_untouched_data]
-  # - [0x10336F0, .data, bs/stand]
-  # - [0x1033710, .data, bs/swim]
-  # - [0x1033740, .data, bs/walk]
-  # - [0x1033790, .data, bs/walrus]
+  - [0x10575B0, .data, bs/stand]
+  - [0x10575D0, .data, bs/swim]
+  - [0x1057600, .data, bs/walk]
+  - [0x1057650, .data, bs/walrus]
+  - [0x1057690, bin, core2_untouched_data]
   # - [0x10337D0, .data, code_33F90]
   # - [0x1034160, .data, code_34310]
   # - [0x10341B0, .data, code_34790]
   # - [0x1034200, .data, code_35520]
   # - [0x10346A0, .data, nc/dynamicCamera]
   # - [0x1034730, .data, code_37E50]
-  # - [0x1034760, .data, nc/dynamicCamD]
+  # - [0x1034760, .data, nc/ba/die]
   # - [0x1034770, .data, nc/dynamicCamA]
   # - [0x1034790, .data, spawnqueue]
   # - [0x10347A0, .data, ch/gameSelect]
@@ -1042,7 +1042,7 @@ segments:
   # - [0x1038C80, .data, fx/common3score]
   # - [0x10392E0, .data, fx/healthscore]
   # - [0x1039330, .data, fx/airscore]
-  # - [0x1039380, .data, code_7AF80]
+  # - [0x1039380, .data, gccube]
   # - [0x10395B0, .data, mapModel]
   # - [0x103A1D0, .data, propModelList]
   # - [0x103A1E0, .data, gc/section]
@@ -1068,9 +1068,9 @@ segments:
   # - [0x103D180, .data, code_A5BC0] #(file needs to be broken?)
   # - [0x103D1D0, .data, code_A5BC0]
   # - [0x103D200, .data, code_ABC00]
-  # - [0x103E340, .data, code_AC520]
+  # - [0x103E340, .data, gclights]
   # - [0x103E350, .data, code_AD110]
-  # - [0x103EC20, .data, code_AD5B0]
+  # - [0x103EC20, .data, gsworld]
   # - [0x103EC30, .data, code_AEDA0]
   # - [0x103ED10, .data, modelRender]
   # - [0x103F3B0, .data, code_B3A80]
@@ -1147,7 +1147,7 @@ segments:
   - [0x10673C0, .rodata, code_11040]
   - [0x10673D0, .rodata, climb]
   - [0x10673E0, .rodata, code_11660]
-  - [0x10675A0, .rodata, code_11870]
+  - [0x10675A0, .rodata, balookat]
   - [0x10675B0, .rodata, roll]
   - [0x10675D0, .rodata, yaw]
   - [0x1067630, .rodata, code_12360]
@@ -1190,19 +1190,19 @@ segments:
   - [0x1068360, .rodata, bs/pumpkin]
   - [0x10683E0, .rodata, bs/rebound]
   - [0x10683F0, .rodata, bs/rest]
-  - [0x1068400, rodatabin, core2_untouched]
-  # - [0x1044430, .rodata, bs/slide]
-  # - [0x1044440, .rodata, bs/stand]
-  # - [0x1044470, .rodata, bs/swim]
-  # - [0x10444C0, .rodata, bs/surf]
-  # - [0x10444D0, .rodata, bs/talk]
-  # - [0x10444E0, .rodata, bs/timeout]
-  # - [0x10444F0, .rodata, bs/throw]
-  # - [0x1044500, .rodata, bs/turn]
-  # - [0x1044520, .rodata, bs/twirl]
-  # - [0x1044540, .rodata, bs/walk]
-  # - [0x10445D0, .rodata, bs/walrus]
-  # - [0x1044630, .rodata, bs/washy]
+  - [0x1068400, .rodata, bs/slide]
+  - [0x1068410, .rodata, bs/stand]
+  - [0x1068440, .rodata, bs/swim]
+  - [0x1068490, .rodata, bs/surf]
+  - [0x10684A0, .rodata, bs/talk]
+  - [0x10684B0, .rodata, bs/timeout]
+  - [0x10684C0, .rodata, bs/throw]
+  - [0x10684D0, .rodata, bs/turn]
+  - [0x10684F0, .rodata, bs/twirl]
+  - [0x1068510, .rodata, bs/walk]
+  - [0x10685A0, .rodata, bs/walrus]
+  - [0x1068600, .rodata, bs/washy]
+  - [0x1068660, rodatabin, core2_untouched]
   # - [0x1044690, .rodata, nc/cameranodelist]
   # - [0x10446E0, .rodata, code_33F90]
   # - [0x1044700, .rodata, code_34310]
@@ -1210,9 +1210,9 @@ segments:
   # - [0x1044740, .rodata, nc/dynamicCamera]
   # - [0x1044890, .rodata, code_37E50]
   # - [0x10448B0, .rodata, nc/dynamicCam10]
-  # - [0x10448C0, .rodata, nc/dynamicCamD]
+  # - [0x10448C0, .rodata, nc/ba/die]
   # - [0x10448D0, .rodata, nc/dynamicCam5]
-  # - [0x10448E0, .rodata, nc/dynamicCam4]
+  # - [0x10448E0, .rodata, nc/ba/fly]
   # - [0x10448F0, .rodata, nc/dynamicCamC]
   # - [0x1044900, .rodata, code_F8EAF0]
   # - [0x1044910, .rodata, nc/dynamicCamB]
@@ -1290,7 +1290,7 @@ segments:
   # - [0x1045E30, .rodata, fx/common3score]
   # - [0x1045E50, .rodata, fx/healthscore]
   # - [0x1045E60, .rodata, fx/airscore]
-  # - [0x1045E80, .rodata, code_7AF80]
+  # - [0x1045E80, .rodata, gccube]
   # - [0x1045F40, .rodata, mapModel]
   # - [0x1046100, .rodata, propModelList]
   # - [0x1046110, .rodata, gc/section]
@@ -1403,7 +1403,7 @@ segments:
   - [0x0106C980, .bss, bakey]
   - [0x0106C980, .bss, abilityprogress]
   - [0x0106C980, .bss, code_E910]
-  - [0x0106C980, .bss, code_EE40]
+  - [0x0106C980, .bss, babounds]
   - [0x0106C980, .bss, code_EF50]
   - [0x0106C980, .bss, ba/physics]
   - [0x0106C980, .bss, ba/iFrame]
@@ -1413,7 +1413,7 @@ segments:
   - [0x0106C980, .bss, code_11460]
   - [0x0106C980, .bss, code_11660]
   - [0x0106C980, .bss, code_117D0]
-  - [0x0106C980, .bss, code_11870]
+  - [0x0106C980, .bss, balookat]
   - [0x0106C980, .bss, roll]
   - [0x0106C980, .bss, yaw]
   - [0x0106C980, .bss, code_12360]
@@ -1459,19 +1459,19 @@ segments:
   - [0x0106C980, .bss, bs/ow]
   - [0x0106C980, .bss, bs/pumpkin]
   - [0x0106C980, .bss, bs/rebound]
-  # - [0x0106C980, .bss, bs/sled]
-  # - [0x0106C980, .bss, bs/slide]
-  # - [0x0106C980, .bss, bs/splat]
-  # - [0x0106C980, .bss, bs/stand]
-  # - [0x0106C980, .bss, bs/swim]
-  # - [0x0106C980, .bss, bs/surf]
-  # - [0x0106C980, .bss, bs/talk]
-  # - [0x0106C980, .bss, bs/throw]
-  # - [0x0106C980, .bss, bs/turn]
-  # - [0x0106C980, .bss, bs/twirl]
-  # - [0x0106C980, .bss, bs/walk]
-  # - [0x0106C980, .bss, bs/walrus]
-  # - [0x0106C980, .bss, bs/washy]
+  - [0x0106C980, .bss, bs/sled]
+  - [0x0106C980, .bss, bs/slide]
+  - [0x0106C980, .bss, bs/splat]
+  - [0x0106C980, .bss, bs/stand]
+  - [0x0106C980, .bss, bs/swim]
+  - [0x0106C980, .bss, bs/surf]
+  - [0x0106C980, .bss, bs/talk]
+  - [0x0106C980, .bss, bs/throw]
+  - [0x0106C980, .bss, bs/turn]
+  - [0x0106C980, .bss, bs/twirl]
+  - [0x0106C980, .bss, bs/walk]
+  - [0x0106C980, .bss, bs/walrus]
+  - [0x0106C980, .bss, bs/washy]
   # - [0x0106C980, .bss, nc/cameranodelist]
   # - [0x0106C980, .bss, code_33C30]
   # - [0x0106C980, .bss, nc/staticCamera]
@@ -1486,7 +1486,7 @@ segments:
   # - [0x0106C980, .bss, nc/dynamicCam5]
   # - [0x0106C980, .bss, nc/dynamicCam11]
   # - [0x0106C980, .bss, nc/dynamicCam8]
-  # - [0x0106C980, .bss, nc/dynamicCam4]
+  # - [0x0106C980, .bss, nc/ba/fly]
   # - [0x0106C980, .bss, nc/dynamicCamC]
   # - [0x0106C980, .bss, code_F8EAF0]
   # - [0x0106C980, .bss, nc/dynamicCamB]
@@ -1496,7 +1496,7 @@ segments:
   # - [0x0106C980, .bss, nc/dynamicCam3]
   # - [0x0106C980, .bss, code_3B2C0]
   # - [0x0106C980, .bss, nc/dynamicCamF]
-  # - [0x0106C980, .bss, nc/firstpersoncamera]
+  # - [0x0106C980, .bss, nc/ba/1p]
   # - [0x0106C980, .bss, ch/gameSelect]
   # - [0x0106C980, .bss, code_41460]
   # - [0x0106C980, .bss, code_41FB0]
@@ -1557,7 +1557,7 @@ segments:
   # - [0x0106C980, .bss, fx/lifescore]
   # - [0x0106C980, .bss, fx/healthscore]
   # - [0x0106C980, .bss, fx/airscore]
-  # - [0x0106C980, .bss, code_7AF80]
+  # - [0x0106C980, .bss, gccube]
   # - [0x0106C980, .bss, mapModel]
   # - [0x0106C980, .bss, propModelList]
   # - [0x0106C980, .bss, gc/section]
@@ -1593,9 +1593,9 @@ segments:
   # - [0x0106C980, .bss, code_A4D00]
   # - [0x0106C980, .bss, code_A5BC0]
   # - [0x0106C980, .bss, code_ABC00]
-  # - [0x0106C980, .bss, code_AC520]
+  # - [0x0106C980, .bss, gclights]
   # - [0x0106C980, .bss, code_AD110]
-  # - [0x0106C980, .bss, code_AD5B0]
+  # - [0x0106C980, .bss, gsworld]
   # - [0x0106C980, .bss, code_AE290]
   # - [0x0106C980, .bss, code_AEDA0]
   # - [0x0106C980, .bss, modelRender]

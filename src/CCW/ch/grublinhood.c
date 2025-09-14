@@ -133,7 +133,7 @@ void __chgrublinhood_initialize(Actor *this){
 }
 
 enum ccw_season_e __get_current_season(Actor *this){
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_43_CCW_SPRING: //// 8038E930
         case MAP_4A_CCW_SPRING_MUMBOS_SKULL:// 8038E930
         case MAP_5B_CCW_SPRING_ZUBBA_HIVE:// 8038E930

@@ -109,7 +109,7 @@ int func_80290E8C(void){
 
     ncDynamicCamera_setState(3);
     func_80291488(0xB);
-    if( map_get() == MAP_B_CC_CLANKERS_CAVERN
+    if( gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN
         && player_getYPosition() < 1201.0f
     ){
         func_802C1B20(1100.0f);
@@ -118,7 +118,7 @@ int func_80290E8C(void){
 }
 
 void func_80290F14(void){
-    if( !func_80298850() 
+    if( !balookat_getState() 
         && player_movementGroup() != BSGROUP_4_LOOK
         && batimer_get(7) == 0.0f
         && bainput_should_zoom_out_camera()
@@ -152,7 +152,7 @@ void func_8029103C(void){
 }
 
 int func_8029105C(s32 arg0){
-    if(func_80298850())
+    if(balookat_getState())
         return FALSE;
 
     if(bainput_should_rotate_camera_left() && ncDynamicCamA_func_802C1DB0(-45.0f)){

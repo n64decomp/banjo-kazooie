@@ -112,7 +112,7 @@ void func_8038D85C(Actor *this) {
             levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
         }
 
-        if ((levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) && (map_get() != MAP_43_CCW_SPRING)) {
+        if ((levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) && (gsworld_get_map() != MAP_43_CCW_SPRING)) {
             marker_despawn(this->marker);
         }
         return;

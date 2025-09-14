@@ -137,7 +137,7 @@ void func_802BBA84(void) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }
-    if (map_get() == MAP_91_FILE_SELECT) {
+    if (gsworld_get_map() == MAP_91_FILE_SELECT) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }
@@ -245,7 +245,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     return func_802BBD48();
 }
 
-void func_802BC044(void) {
+void nccamera_init(void) {
     s32 i;
 
     D_8037D8C4 = 0;

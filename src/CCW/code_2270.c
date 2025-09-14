@@ -55,7 +55,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
         skeletalAnim_set(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
         skeletalAnim_setBehavior(local->unk4, 2);
         func_80324E38(0.0f, 3);
-        timed_setStaticCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
+        timed_setStaticCameraToNode(0.0f, (gsworld_get_map() == MAP_44_CCW_SUMMER) ? 1 : 2);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
@@ -145,13 +145,13 @@ void chGobiCCW_update(Actor *this) {
             fileProgressFlag_set(FILEPROG_E5_CCW_FLOWER_AUTUMN, FALSE);
         }
         local->unk0 = &D_8038ECD0[0];
-        while((local->unk0->map_id != 0) && (map_get() != local->unk0->map_id)) {
+        while((local->unk0->map_id != 0) && (gsworld_get_map() != local->unk0->map_id)) {
             local->unk0++;
         }
 
-        if( (map_get() == MAP_44_CCW_SUMMER) && fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && !fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER)) {
+        if( (gsworld_get_map() == MAP_44_CCW_SUMMER) && fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && !fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER)) {
             CCW_func_8038868C(this, 1);
-        } else if( (map_get() == MAP_45_CCW_AUTUMN) && fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER) && !fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN) ) {
+        } else if( (gsworld_get_map() == MAP_45_CCW_AUTUMN) && fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER) && !fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN) ) {
             CCW_func_8038868C(this, 1);
         } else{
             marker_despawn(this->marker);
@@ -176,7 +176,7 @@ void chGobiCCW_update(Actor *this) {
 
     if(this->state == 3){
         if (!func_80388438()) {
-            if (map_get() == MAP_44_CCW_SUMMER) {
+            if (gsworld_get_map() == MAP_44_CCW_SUMMER) {
                 CCW_func_8038868C(this, 4);
             } else {
                 CCW_func_8038868C(this, 5);

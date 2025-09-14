@@ -51,8 +51,8 @@ bsMap D_80363824[] ={
     {BS_BOMB,       func_802A3F9C, func_802A411C, func_802A4404, func_802A505C},
     {BS_2B_DIVE_IDLE,  func_802A762C, func_802A7674, func_802A7718, func_80296608},
     {BS_2C_DIVE_B,     func_802A7738, func_802A7838, func_802A7A2C, func_80296608},
-    {BS_2D_SWIM_IDLE,  func_802B5774, func_802B5950, func_802B5AF8, func_80296608},
-    {BS_2E_SWIM,       func_802B5B18, func_802B5C40, func_802B5E10, func_80296608},
+    {BS_2D_SWIM_IDLE,  bsswim_idle_init, bsswim_idle_update, bsswim_idle_end, func_80296608},
+    {BS_2E_SWIM,       bsswim_swim_init, bsswim_swim_update, bsswim_swim_end, func_80296608},
     {BS_2F_FALL,       bsjump_fall_init, bsjump_fall_update, bsjump_fall_end, func_80296608},
     {BS_30_DIVE_ENTER, bsSwim_dive_init, func_802A7E2C, func_802A7F4C, func_80296608},
     {BS_ROLL,       bstwirl_init,   bstwirl_update, bstwirl_end, func_802B5350},
@@ -119,8 +119,8 @@ bsMap D_80363824[] ={
     {0x00000074, func_802B3E2C, func_802B3E64, func_802B3EF4, func_80296608},
     {0x00000075, func_802B3D8C, func_802B3DBC, func_802B3E0C, func_80296608},
     {0x00000076, func_802A4F74, func_802A4FC8, func_802A503C, func_80296608},
-    {0x00000077, func_802B5E8C, func_802B5EFC, func_802B5F38, func_80296608},
-    {0x00000078, func_802A83C0, func_802A8410, func_802A844C, func_80296608},
+    {BS_77_SWIM_LOOKAT_DRONE, bsswim_lookat_init, bsswim_lookat_update, bsswim_lookat_end, func_80296608},
+    {BS_78_DIVE_LOOKAT_DRONE, bsbswim_lookat_init, bsbswim_lookat_update, bsbswim_lookat_end, func_80296608},
     {0x00000079, bsbtrot_unk79_init, bsbtrot_unk79_update, bsbtrot_unk79_end, func_80296608},
     {BS_WALK_MUD, bswalk_mud_init, bswalk_mud_update, NULL,          func_80296608},
     {BS_BTROT_OW, bsbtrot_ow_init, bsbtrot_ow_update, bsbtrot_ow_end, func_80296590},
@@ -147,8 +147,8 @@ bsMap D_80363824[] ={
     {BS_93_PUMPKIN_DRONE, bspumpkin_drone_init, bspumpkin_drone_update, bspumpkin_drone_end, bsdrone_interrupt},
     {BS_94_CROC_DRONE, bscroc_drone_init, bscroc_drone_update, bscroc_drone_end, bsdrone_interrupt},
     {BS_95_WALRUS_DRONE, bswalrus_drone_init, bswalrus_drone_update, bswalrus_drone_end, bsdrone_interrupt},
-    {BS_96_SWIM_LOCKED, func_802B5F58, func_802B5F80, func_802B5FA0, bsdrone_interrupt},
-    {BS_97_DIVE_LOCKED, func_802A874C, func_802A8774, func_802A8794, bsdrone_interrupt},
+    {BS_96_SWIM_DRONE, bsswim_drone_init, bsswim_drone_update, bsswim_drone_end, bsdrone_interrupt},
+    {BS_97_DIVE_DRONE, bsbswim_drone_init, bsbswim_drone_update, bsbswim_drone_end, bsdrone_interrupt},
     {BS_98_WALK_DRONE, bswalk_drone_init, bswalk_drone_update, bswalk_drone_end, bsdrone_interrupt},
     {0x00000099, func_802A50B0, func_802A50D8, func_802A50F8, bsdrone_interrupt},
     {BS_9A_BTROT_DRONE, bsbtrot_drone_init, bsbtrot_drone_update, bsbtrot_drone_end, bsdrone_interrupt},
@@ -199,13 +199,13 @@ void func_80295914(void){
     bainput_reset();
     bsList_clearAll();
     bs_clearState();
-    func_80295DD0();
+    babounds_init();
     func_80296C30();
     baphysics_init();
     baiFrame_reset();
     pitch_reset();
     climbClear();
-    func_8029887C();
+    balookat_init();
     roll_reset();
     func_802992F0();
     func_80294DD8();
@@ -279,7 +279,7 @@ void func_80295C08(void (* arg0)(void)){
 
 void func_80295C14(void){
     func_802964B8();
-    func_80298A84();
+    balookat_update();
     stateTimer_update();
     func_8029E100();
     pfsManager_update();//controller_update
@@ -318,7 +318,7 @@ void func_80295C14(void){
         D_8037C3B0 = NULL;
     }
     basfx_update();
-    func_80295E74();//voidOut_update
+    babounds_update();//voidOut_update
 }
 
 void func_80295D74(void){

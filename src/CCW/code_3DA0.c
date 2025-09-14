@@ -97,7 +97,7 @@ void chcaterpillar_update(Actor *this){
             chcaterpillar_setState(this, 2);
         }
         else{//L8038A408
-            map_id = map_get();
+            map_id = gsworld_get_map();
             if ( !fileProgressFlag_get(FILEPROG_E6_SPRING_EYRIE_HATCHED)
                  || ( map_id == MAP_45_CCW_AUTUMN && !fileProgressFlag_get(FILEPROG_E7_SUMMER_EYRIE_FED))
             ) {

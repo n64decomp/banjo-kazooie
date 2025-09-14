@@ -186,7 +186,7 @@ void __chSnowman_deathCallback(ActorMarker *marker, ActorMarker *other_marker){
     sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
     __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnHat, (s32)actor->marker);
-    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK)
+    if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK)
         maSnowy_decRemaining();
     __chSnowman_spawnSnowballParticles(actor->position, 0xC);
     marker_despawn(actor->marker);
@@ -195,7 +195,7 @@ void __chSnowman_deathCallback(ActorMarker *marker, ActorMarker *other_marker){
 int __chSnowman_CCW_playerInProtectedZone(void){
     static f32 ccw_no_attack_zone[3] = {350.0f, 600.0f, 65.0f};
     f32 player_position[3];
-    if(map_get() == MAP_46_CCW_WINTER){
+    if(gsworld_get_map() == MAP_46_CCW_WINTER){
         player_getPosition(player_position);
         if(ml_vec3f_within_horizontal_distance(player_position, ccw_no_attack_zone, 900.0f))
             return 1;
@@ -222,12 +222,12 @@ void chSnowman_update(Actor *this){
         anctrl_setTransitionDuration(this->anctrl, 0.8f);
         anctrl_setAnimTimer(this->anctrl, randf());
         func_8032BC18(this);
-        if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+        if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
             local->unk0 = actorArray_findActorFromActorId(0x336)->marker;
             maSnowy_incTotal();
         }
     }//L802E21D8
-    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive() || func_8038DD14()){
             actor_collisionOff(this);
             this->unk58_0 = 0;
@@ -254,7 +254,7 @@ void chSnowman_update(Actor *this){
                 __chSnowman_enterDeath(this);
             }
             else if( 
-                map_get() != MAP_27_FP_FREEZEEZY_PEAK
+                gsworld_get_map() != MAP_27_FP_FREEZEEZY_PEAK
                 || func_8038DD34(local->unk0) == 0
                 || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)
             ){//L802E2318

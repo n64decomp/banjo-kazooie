@@ -73,7 +73,7 @@ void CCW_func_80387A40(Actor *this) {
         this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = CCW_func_80387A20;
         local->unk4 = &D_8038EC00[0];
-        while((local->unk4->unk0 != 0) && (map_get() != local->unk4->unk0)) {
+        while((local->unk4->unk0 != 0) && (gsworld_get_map() != local->unk4->unk0)) {
             local->unk4++;
         }
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();

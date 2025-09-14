@@ -267,17 +267,17 @@ $(GLOBAL_ASM_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 $(BOOT_C_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(MIPSBIT) -o $@ $<
-	mips-linux-gnu-strip $@ -N asdasdasasdasd
-	$(OBJCOPY) --prefix-symbols=boot_ $@
-	$(OBJCOPY) --strip-unneeded $@
+	@mips-linux-gnu-strip $@ -N asdasdasasdasd
+	@$(OBJCOPY) --prefix-symbols=boot_ $@
+	@$(OBJCOPY) --strip-unneeded $@
 
 # .c -> .o (mips3, boot)
 $(BOOT_MIPS3_OBJS) : $(BUILD_DIR)/%.c.o : %.c | $(C_BUILD_DIRS)
 	$(call print2,Compiling:,$<,$@)
 	@$(CC) -c -32 $(CFLAGS) $(CPPFLAGS) $(INCLUDE_CFLAGS) $(OPT_FLAGS) $(LOOP_UNROLL) $(MIPSBIT) -o $@ $<
 	@tools/set_o32abi_bit.py $@
-	$(OBJCOPY) --prefix-symbols=boot_ $@
-	$(OBJCOPY) --strip-unneeded $@
+	@$(OBJCOPY) --prefix-symbols=boot_ $@
+	@$(OBJCOPY) --strip-unneeded $@
 
 # Split baserom
 $(BUILD_DIR)/SPLAT_TIMESTAMP: decompressed.$(VERSION).yaml $(SYMBOL_ADDRS) $(DECOMPRESSED_BASEROM) | $(BUILD_DIR)

@@ -442,7 +442,7 @@ void bsdronexform_end(void){
     func_8031B990(0xff,0xff,0xff);
     func_802AFADC();
     func_802B014C();
-    func_80298A64();
+    balookat_end();
     baflag_clear(BA_FLAG_1B_TRANSFORMING);
 }
 

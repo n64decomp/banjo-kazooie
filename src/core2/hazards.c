@@ -75,7 +75,7 @@ void triggerSwampHazardEffects(void) {
 }
 
 void triggerHazardEffects(void) {
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_12_GV_GOBIS_VALLEY:
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
         case MAP_3C_RBB_KITCHEN:
@@ -166,7 +166,7 @@ void updateSwampEffects(void) {
 }
 
 void updateHazardEffects(void) {
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_12_GV_GOBIS_VALLEY:
         case MAP_31_RBB_RUSTY_BUCKET_BAY:
         case MAP_3C_RBB_KITCHEN:
@@ -190,7 +190,7 @@ void updateHazardEffects(void) {
 bool isPlayerInHazard(void) {
     f32 player_position[3];
 
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_D_BGS_BUBBLEGLOOP_SWAMP:
         case MAP_12_GV_GOBIS_VALLEY:
         case MAP_1B_MMM_MAD_MONSTER_MANSION:
@@ -221,7 +221,7 @@ bool canTakeGroundDamage(void) {
 
     bs_state = bs_getState();
 
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_D_BGS_BUBBLEGLOOP_SWAMP:
         case MAP_12_GV_GOBIS_VALLEY:
         case MAP_1B_MMM_MAD_MONSTER_MANSION:
@@ -261,7 +261,7 @@ void hazards_update(void) {
     
     updateHazardEffects();
 
-    if (map_get() == MAP_12_GV_GOBIS_VALLEY) {
+    if (gsworld_get_map() == MAP_12_GV_GOBIS_VALLEY) {
         sp18 = 0;
         sp1C = 0;
 
@@ -287,7 +287,7 @@ void hazards_update(void) {
     batimer_decrement(BA_TIMER_HAZARDS);
 
     if (can_take_ground_damage) {
-        if (map_get() == MAP_8E_GL_FURNACE_FUN) {
+        if (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) {
             if (bs_checkInterrupt(BS_INTR_13_FF_DEATH_SQUARE)) {
                 triggerHazardEffects();
             }
@@ -306,7 +306,7 @@ void hazards_update(void) {
                 }
             }
 
-            switch (map_get()) { // Show dialog associated with touching a hazard for the first time
+            switch (gsworld_get_map()) { // Show dialog associated with touching a hazard for the first time
                 case MAP_43_CCW_SPRING:
                 case MAP_44_CCW_SUMMER:
                 case MAP_45_CCW_AUTUMN:

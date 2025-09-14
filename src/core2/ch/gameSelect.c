@@ -690,13 +690,13 @@ void gameSelect_initAndUpdate(Actor * this){
 
 void gameSelect_saveAndExit(void) {
     s32 level_id = level_get();
-    s32 is_map_game_over = map_get() == MAP_83_CS_GAME_OVER_MACHINE_ROOM;
+    s32 is_map_game_over = gsworld_get_map() == MAP_83_CS_GAME_OVER_MACHINE_ROOM;
 
     // Within bounds of levels. 0xD is 1 more than the amount of levels in the game.
     s32 is_level_id_valid = (0 < level_id && level_id < 0xD);
 
     if ((is_level_id_valid || is_map_game_over)
-        && (gameNumber != -1 && !func_802E4A08() && map_get() != MAP_91_FILE_SELECT)) {
+        && (gameNumber != -1 && !func_802E4A08() && gsworld_get_map() != MAP_91_FILE_SELECT)) {
 
         gameFile_save(gameNumber);
         gameFile_8033CFD4(gameNumber);

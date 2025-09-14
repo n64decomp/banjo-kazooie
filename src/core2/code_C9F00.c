@@ -247,7 +247,7 @@ bool func_803515EC(NodeProp *arg0) {
     } else {
         for(phi_s0 = D_803725C0; phi_s0->unk0 != 0; phi_s0++){
             if( (arg0->unk8 == phi_s0->unk0) 
-                && ((phi_s0->unk3 == 0) || (map_get() == phi_s0->unk3))
+                && ((phi_s0->unk3 == 0) || (gsworld_get_map() == phi_s0->unk3))
             ){
                 sp48[0] = (s32) arg0->x;
                 sp48[1] = (s32) arg0->y;

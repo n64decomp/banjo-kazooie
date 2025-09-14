@@ -36,7 +36,7 @@ enum honeycomb_e func_802C9C40(Actor *this){
     s32 tmp_a0;
     s32 sp18[3];
 
-    if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
+    if(gsworld_get_map() == MAP_2_MM_MUMBOS_MOUNTAIN){
         if (2500.0f < this->position_y) 
             return HONEYCOMB_2_MM_JUJU;
         else
@@ -134,7 +134,7 @@ void chHoneycomb_update(Actor *this){
         }
     }//L802CA098
 
-    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive()){
             this->unk58_0 = FALSE;
             actor_collisionOff(this);

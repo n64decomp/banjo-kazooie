@@ -433,7 +433,7 @@ void playMusic(enum comusic_e comusic_id, s32 volume, s32 forceReInit) {
     if (track->track_id < 0 || forceReInit) {
         switch (comusic_id) {
             case COMUSIC_15_EXTRA_LIFE_COLLECTED:
-                if (map_get() == MAP_10_BGS_MR_VILE) {
+                if (gsworld_get_map() == MAP_10_BGS_MR_VILE) {
                     break;
                 }
             case COMUSIC_3B_MINIGAME_VICTORY:

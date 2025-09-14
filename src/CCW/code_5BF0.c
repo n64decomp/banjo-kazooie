@@ -98,7 +98,7 @@ void func_8038C41C(Actor *this) {
     }
 
     if (this->state == 0) {
-        if( map_get() == MAP_60_CCW_AUTUMN_NABNUTS_HOUSE
+        if( gsworld_get_map() == MAP_60_CCW_AUTUMN_NABNUTS_HOUSE
             && !jiggyscore_isSpawned(JIGGY_4A_CCW_NABNUT) 
             && (this->marker->id == 0x1C6 || this->marker->id == 0x1CA)
         ){

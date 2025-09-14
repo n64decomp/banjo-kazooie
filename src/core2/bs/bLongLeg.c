@@ -478,7 +478,7 @@ void func_802A63F0(void){
     func_8029C6D0();
     func_80299628(1);
     
-    if(func_80298850() == 0)
+    if(balookat_getState() == 0)
         next_state = BS_26_LONGLEG_IDLE;
     
     if(func_802A51D0())

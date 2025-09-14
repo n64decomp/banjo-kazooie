@@ -76,7 +76,7 @@ bool cutscene_skipBeachCutsceneCheck(void){
 
 //checks is a cutscene can be inturrupted and performs take me there
 void cutscenetrigger_check(s32 cs_map, s32 arg1, s32 return_map, s32 return_exit, bool (* condFunc)(void)){
-    if(map_get() != cs_map)
+    if(gsworld_get_map() != cs_map)
         return;
 
     if((condFunc && condFunc()) || mapSpecificFlags_get(arg1)){
@@ -111,7 +111,7 @@ s32 cutscenetrigger_update(void){
     cutscenetrigger_check(MAP_7C_CS_INTRO_BANJOS_HOUSE_1,   0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, cutscene_skipIntroCutsceneCheck);
     cutscenetrigger_check(MAP_86_CS_SPIRAL_MOUNTAIN_4,      0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, cutscene_skipIntroCutsceneCheck);
     cutscenetrigger_check(MAP_89_CS_INTRO_BANJOS_HOUSE_2,   0xC, MAP_1_SM_SPIRAL_MOUNTAIN,      0x12, cutscene_skipIntroCutsceneCheck);
-    if(map_get() == MAP_95_CS_END_ALL_100 && mapSpecificFlags_get(1)){
+    if(gsworld_get_map() == MAP_95_CS_END_ALL_100 && mapSpecificFlags_get(1)){
         func_8034B9E4();
         mapSpecificFlags_set(1, 0);
     }
@@ -122,7 +122,7 @@ void func_8031CB50(enum map_e map_id, s32 exit_id, s32 arg2) {
     s32 sp1C;
 
     if ((D_80383190 == 0) && (getGameMode() != GAME_MODE_8_BOTTLES_BONUS) && (getGameMode() != GAME_MODE_7_ATTRACT_DEMO)) {
-        sp1C = func_803226E8(map_get());
+        sp1C = func_803226E8(gsworld_get_map());
         if ((func_803226E8(map_id) != sp1C) && (func_80322914() == 0)) {
             func_8025A388(0, 0x4E2);
             func_8025AB00();

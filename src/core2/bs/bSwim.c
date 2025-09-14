@@ -65,7 +65,7 @@ void func_802A7304() {
 bool func_802A73BC(void) {
     f32 sp1C;
 
-    sp1C = (map_get() == MAP_46_CCW_WINTER) ? 90.0f : 130.0f;
+    sp1C = (gsworld_get_map() == MAP_46_CCW_WINTER) ? 90.0f : 130.0f;
     return floor_isCurrentFloorunk59() && player_getYPosition() > (floor_getCurrentFloorYPosition() - sp1C);
 }
 
@@ -90,10 +90,10 @@ bool bsbswim_inSet(enum bs_e move_id){
         || move_id == BS_2C_DIVE_B
         || move_id == BS_39_DIVE_A
         || move_id == BS_30_DIVE_ENTER
-        || move_id == BS_78_DIVE_LOCKED
+        || move_id == BS_78_DIVE_LOOKAT_DRONE
         || move_id == BS_7F_DIVE_OW
         || move_id == BS_54_SWIM_DIE
-        || move_id == BS_97_DIVE_LOCKED
+        || move_id == BS_97_DIVE_DRONE
         ;
 }
 
@@ -286,7 +286,7 @@ void func_802A7BD0(void) {
     f32 sp30[3];
     f32 sp24[3];
 
-    func_80298760(func_80296560());
+    barebound_set_active(func_80296560());
     baanim_playForDuration_onceSmooth(0x1A0, 1.4f);
     basfx_playOwSfx(1.0f);
     _player_getPosition(sp30);
@@ -294,7 +294,7 @@ void func_802A7BD0(void) {
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C));
     yaw_applyIdeal();
-    baphysics_set_target_horizontal_velocity(func_802987D4());
+    baphysics_set_target_horizontal_velocity(barebound_get_horizontal_velocity());
     baphysics_set_target_yaw(sp3C);
     baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
     func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
@@ -387,7 +387,7 @@ void func_802A7F4C(void){
 void func_802A7F6C(void) {
     D_8037D394 = BOOL(bs_getPrevState() == BS_41_DIE);
 
-    if (D_8037D394 || level_get() == LEVEL_9_RUSTY_BUCKET_BAY || map_get() == MAP_46_CCW_WINTER) {
+    if (D_8037D394 || level_get() == LEVEL_9_RUSTY_BUCKET_BAY || gsworld_get_map() == MAP_46_CCW_WINTER) {
         D_8037D395 = 0;
     } else {
         D_8037D395 = 1;
@@ -444,7 +444,7 @@ void func_802A8098(void) {
         }
         if (batimer_isAt(1, 1.9f)) {
             func_802914CC(0xD);
-            ncDynamicCamD_func_802BF2C0(80.0f);
+            ncbadie_func_802BF2C0(80.0f);
             if (D_8037D394) {
                 batimer_set(0, 0.5f);
             } else {
@@ -473,12 +473,12 @@ void func_802A82D4(void) {
     func_802A75B0();
 }
 
-void func_802A8330(void) {
+void __bsbswim_update_rotation(void) {
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
 
-    if (func_80298850() && func_80298800(sp2C)) {
+    if (balookat_getState() && balookat_try_get_position(sp2C)) {
         _player_getPosition(sp44);
         func_8025727C(sp44[0], sp44[1], sp44[2], sp2C[0], sp2C[1], sp2C[2], &sp38[0], &sp38[1]);
         pitch_setIdeal(sp38[0]);
@@ -487,28 +487,27 @@ void func_802A8330(void) {
     }
 }
 
-void func_802A83C0(void) {
+void bsbswim_lookat_init(void) {
     baanim_playForDuration_loopSmooth(0x70, 2.0f);
     func_802A7140();
     baphysics_set_target_velocity(0);
     baphysics_set_acceleration(0.4f);
     func_802A744C();
-    func_802A8330();
+    __bsbswim_update_rotation();
 }
 
-void func_802A8410(void) {
+void bsbswim_lookat_update(void) {
     s32 next_state;
 
     next_state = 0;
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         next_state = BS_2B_DIVE_IDLE;
     }
-    func_802A8330();
+    __bsbswim_update_rotation();
     bs_setState(next_state);
 }
 
-
-void func_802A844C(void){
+void bsbswim_lookat_end(void){
     func_802A75B0();
 }
 
@@ -575,16 +574,16 @@ void func_802A872C(void){
     func_802A75B0();
 }
 
-void func_802A874C(void){
+void bsbswim_drone_init(void){
     func_802A744C();
     bsdrone_init();
 }
 
-void func_802A8774(void){
+void bsbswim_drone_update(void){
     bsdrone_update();
 }
 
-void func_802A8794(void){
+void bsbswim_drone_end(void){
     bsdrone_end();
     func_802A75B0();
 }

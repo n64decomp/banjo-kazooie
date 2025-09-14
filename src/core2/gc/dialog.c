@@ -753,7 +753,7 @@ void func_80310B1C(s32 text_id, s32 arg1, ActorMarker *marker, void(*callback)(A
     loadAndCreateDialogs(text_id, arg1, marker, callback, arg4, arg5);
 
     // Is the player at the final boss and is the text not an entering quote?
-    if (map_get() == MAP_90_GL_BATTLEMENTS && ASSET_10EC_DIALOG_FINALBOSS_ENTERING_6 < text_id) {
+    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS && ASSET_10EC_DIALOG_FINALBOSS_ENTERING_6 < text_id) {
         func_80310A5C(3, 4, 0x1e, arg1 & 2, arg1 & 0x80);
 		return;
     }

@@ -11,7 +11,7 @@
 #define SNACKER_BB_DIALOG_0 VER_SELECT(0xe26, 0xa68, 0, 0)
 #define SNACKER_BB_DIALOG_1 VER_SELECT(0xe33, 0xa75, 0, 0)
 
-void ncFirstPersonCamera_getZoomedInRotation(f32 *);
+void ncba1p_getZoomedInRotation(f32 *);
 
 extern u8  D_8037DCCA;
 extern u8  D_8037DCCB;
@@ -101,7 +101,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
                 D_8037DCCC = 1;
             }//L8028A764
             else if(jiggyscore_isCollected(0x10)){
-                ncFirstPersonCamera_getZoomedInRotation(sp30);
+                ncba1p_getZoomedInRotation(sp30);
                 if( (((D_8036361C[0] <= sp30[0])? (sp30[0] - D_8036361C[0]) : -(sp30[0] - D_8036361C[0])) < 4.0f)
                     && (((D_8036361C[1] <= sp30[1])? (sp30[1] - D_8036361C[1]) : -(sp30[1] - D_8036361C[1])) < 20.0f)
                 ){
@@ -127,7 +127,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
 }
 
 void snackerctl_update(void){
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             s_snackerctl_state = __snackerctl_update_ttc();
             break;

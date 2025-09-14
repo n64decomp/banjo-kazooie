@@ -618,7 +618,7 @@ void lair_func_8038CF18(void)
 
     struct FF_StorageStruct_48_sub *ptr;
 
-    if (map_get() != MAP_8E_GL_FURNACE_FUN)
+    if (gsworld_get_map() != MAP_8E_GL_FURNACE_FUN)
         return;
 
     D_8037DCB8->unk0 = mapModel_getModel(0);
@@ -1150,7 +1150,7 @@ void lair_func_8038E0B0(void) {
     s32 sp38;
     s32 sp28;
 
-    if( (map_get() == MAP_8E_GL_FURNACE_FUN) 
+    if( (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) 
         && (D_8037DCB8 != NULL) 
         && (D_8037DCB8->unk0 != NULL)
     ){
@@ -1322,7 +1322,7 @@ void lair_func_8038E0B0(void) {
 
 void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
 {
-    if (map_get() != MAP_8E_GL_FURNACE_FUN)
+    if (gsworld_get_map() != MAP_8E_GL_FURNACE_FUN)
         return;
 
     gcquiz_draw(dl, m, v);

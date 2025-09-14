@@ -319,7 +319,7 @@ void code3420_handleOrganGame(s32 arg0, s32 arg1) {
     func_80250170(0, 0x6A, 0);
     Me.state = 0;
 
-    if ((map_get() == MAP_1C_MMM_CHURCH) && (arg1 == 2)) {
+    if ((gsworld_get_map() == MAP_1C_MMM_CHURCH) && (arg1 == 2)) {
         Me.motzhand_marker = NULL;
         Me.pattern = 0;
 

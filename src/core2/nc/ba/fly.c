@@ -6,8 +6,8 @@ extern f32 player_getYaw(void);
 extern f32 player_getPitch(void);
 extern void func_802BD870(f32, f32, f32, f32);
 
-void ncDynamicCam4_func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
-void ncDynamicCam4_func_802BFE74(bool);
+void ncbafly_func_802BFE50(f32 arg0, f32 arg1, f32 arg2);
+void ncbafly_func_802BFE74(bool);
 
 /* .bss */
 f32 D_8037DB10;
@@ -17,19 +17,19 @@ f32 D_8037DB1C;
 f32 D_8037DB20;
 
 /* .code */
-void ncDynamicCam4_init(void) {
+void ncbafly_init(void) {
     func_802BD870(10.0f, 20.0f, 120.0f, 200.0f);
-    if (map_get() == MAP_90_GL_BATTLEMENTS) {
-        ncDynamicCam4_func_802BFE50(10.0f, 800.0f, 1350.0f);
+    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
+        ncbafly_func_802BFE50(10.0f, 800.0f, 1350.0f);
     } else {
-        ncDynamicCam4_func_802BFE50(2.0f, 800.0f, 350.0f);
+        ncbafly_func_802BFE50(2.0f, 800.0f, 350.0f);
     }
-    ncDynamicCam4_func_802BFE74(0);
+    ncbafly_func_802BFE74(0);
 }
 
-void ncDynamicCam4_end(void){}
+void ncbafly_end(void){}
 
-void ncDynamicCam4_update(void) {
+void ncbafly_update(void) {
     f32 sp84[3];
     f32 sp78[3];
     f32 sp6C[3];
@@ -81,13 +81,13 @@ void ncDynamicCam4_update(void) {
     func_802BD720(sp54);
 }
 
-void ncDynamicCam4_func_802BFE50(f32 arg0, f32 arg1, f32 arg2){
+void ncbafly_func_802BFE50(f32 arg0, f32 arg1, f32 arg2){
     D_8037DB10 = arg0;
     D_8037DB14 = arg1;
     D_8037DB18 = arg2;
 }
 
-void ncDynamicCam4_func_802BFE74(bool arg0) {
+void ncbafly_func_802BFE74(bool arg0) {
     if (arg0) {
         D_8037DB1C = 6.0f;
         D_8037DB20 = 270.0f;

@@ -24,7 +24,7 @@ static struct {
 
 /* .code */
 void maSnowButton_init(void){
-    if( map_get() != MAP_27_FP_FREEZEEZY_PEAK
+    if( gsworld_get_map() != MAP_27_FP_FREEZEEZY_PEAK
         || jiggyscore_isCollected(JIGGY_2D_FP_SNOWMAN_BUTTONS)
         || jiggyscore_isSpawned(JIGGY_2D_FP_SNOWMAN_BUTTONS)
     ){

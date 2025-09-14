@@ -24,12 +24,12 @@ void bsDroneLook_init(void) {
     baphysics_set_velocity(0);
     ncDynamicCamera_enterFirstPerson();
     __bsDroneLook_getEyePos(eye_position);
-    ncFirstPersonCamera_setZoomedOutPosition(eye_position);
+    ncba1p_setZoomedOutPosition(eye_position);
     player_getRotation(eye_rotation);
     eye_rotation[0] = 0.0f;
     eye_rotation[1] += 180.0f;
     eye_rotation[2] = 0.0f;
-    ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
+    ncba1p_setZoomedOutRotation(eye_rotation);
     baflag_set(BA_FLAG_17_FIRST_PERSON_VIEW);
 }
 
@@ -42,14 +42,14 @@ void bsDroneLook_update(void) {
 
     next_state = 0;
     dt = time_getDelta();
-    if (ncFirstPersonCamera_getState() == FIRSTPERSON_STATE_2_IDLE) {
+    if (ncba1p_getState() == FIRSTPERSON_STATE_2_IDLE) {
         //camera is in "idle" state
-        ncFirstPersonCamera_getZoomedInRotation(eye_rotation);
+        ncba1p_getZoomedInRotation(eye_rotation);
         eye_rotation[0] -= bastick_getY() * 90.0f * dt;
         eye_rotation[1] -= bastick_getX() * 90.0f * dt;
         eye_rotation[2] = 0.0f;
         eye_rotation[0] = (eye_rotation[0] > 180.0f) ? ml_max_f(305.0f, eye_rotation[0]) : ml_min_f(70.0f, eye_rotation[0]);
-        ncFirstPersonCamera_setZoomedOutRotation(eye_rotation);
+        ncba1p_setZoomedOutRotation(eye_rotation);
         yaw_setIdeal(eye_rotation[1] + 180.0f);
 
         exit_first_person = FALSE;
@@ -70,12 +70,12 @@ void bsDroneLook_update(void) {
         }
     }
     __bsDroneLook_getEyePos(eye_position);
-    ncFirstPersonCamera_setZoomedOutPosition(eye_position);
+    ncba1p_setZoomedOutPosition(eye_position);
     bs_setState(next_state);
 }
 
 void bsDroneLook_end(void) {
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         basfx_80299D2C(SFX_12E_CAMERA_ZOOM_MEDIUM, 1.2f, 12000);
     }
     ncDynamicCamera_exitFirstPerson();

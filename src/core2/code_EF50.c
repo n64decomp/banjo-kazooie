@@ -8,6 +8,8 @@ extern f32 player_getYaw(void);
 extern void chJigsawDance_setState(Actor *, s32);
 extern void bsjig_setJiggyMarkerPtr(ActorMarker *);
 
+
+
 typedef struct{
     f32 unk0;
     f32 unk4;
@@ -251,7 +253,7 @@ ActorMarker *func_80296554(void){
     return D_8037C3E0.unk14;
 }
 
-s32 func_80296560(void){
+enum ba_rebound_id func_80296560(void){
     return D_8037C3E0.unk18;
 }
 
@@ -444,7 +446,7 @@ void func_80296608(void){
             sp1C = player_getTransformation();
             sp1C = !((sp1C == TRANSFORM_1_BANJO) || (sp1C == TRANSFORM_7_WISHWASHY));
             if( 
-                !func_80298850() 
+                !balookat_getState() 
                 && !sp1C 
                 && !baflag_isTrue(BA_FLAG_F)
                 && !player_isStable()

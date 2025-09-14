@@ -54,8 +54,8 @@ void __anSeq_func_80289F4(s32 arg0) {
     s32 phi_a3;
 
     phi_a3 = arg0 >> 0x10;
-    if( !(phi_a3 == 0xF2 && map_get() == MAP_91_FILE_SELECT && gameSelect_getGameNumber() != 0) 
-        && !((phi_a3 == 0x21 || phi_a3 == 0x3ED) && map_get() == MAP_91_FILE_SELECT && (gameSelect_getGameNumber() == 1))
+    if( !(phi_a3 == 0xF2 && gsworld_get_map() == MAP_91_FILE_SELECT && gameSelect_getGameNumber() != 0) 
+        && !((phi_a3 == 0x21 || phi_a3 == 0x3ED) && gsworld_get_map() == MAP_91_FILE_SELECT && (gameSelect_getGameNumber() == 1))
     ){
         gcsfx_playWithPitch(phi_a3, (f32) ((f64) ((arg0 >> 8) & 0xFF) * 0.0078125), (s32) ((f64) (arg0 & 0xFF) * 128.0));
     }

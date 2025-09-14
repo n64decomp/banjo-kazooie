@@ -182,7 +182,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
     marker->collidable = FALSE;
     this->unk138_27 = 1;
     marker_despawn(marker);
-    if( map_get() == MAP_B_CC_CLANKERS_CAVERN
+    if( gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN
         && ml_vec3f_point_within_horizontal_distance(this->position, 13778.0f, 0.0f, 3000.0f)
     ) {
         this->depth_mode =  MODEL_RENDER_DEPTH_COMPARE;
@@ -240,7 +240,7 @@ void chCrab_update(Actor *this) {
         this->has_met_before = FALSE;
         this->volatile_initialized = TRUE;
         anctrl_setTransitionDuration(this->anctrl, 0.25f);
-        if (map_get() == MAP_A_TTC_SANDCASTLE) {
+        if (gsworld_get_map() == MAP_A_TTC_SANDCASTLE) {
             if (!jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)) {
                 mapSpecificFlags_set(1, 0);
             }
@@ -260,7 +260,7 @@ void chCrab_update(Actor *this) {
         func_80328FB0(this, 4.0f);
         return;
     }
-    if( (map_get() == MAP_B_CC_CLANKERS_CAVERN) 
+    if( (gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN) 
         && !mapSpecificFlags_get(0) 
         && is_mutant_snippet
         && !jiggyscore_isCollected(JIGGY_16_CC_SNIPPETS)
@@ -274,7 +274,7 @@ void chCrab_update(Actor *this) {
             this->has_met_before = TRUE;
         }
     }
-    if (map_get() == MAP_A_TTC_SANDCASTLE) {
+    if (gsworld_get_map() == MAP_A_TTC_SANDCASTLE) {
         if( !mapSpecificFlags_get(0)
             && levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)
             && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)

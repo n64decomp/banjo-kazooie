@@ -74,7 +74,7 @@ s32 func_802F4420(Struct5Ds *this){
         return 4;
     }
 
-    return func_803246B4(map_get(), this->unk0);
+    return func_803246B4(gsworld_get_map(), this->unk0);
 }
 
 void func_802F44AC(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4){

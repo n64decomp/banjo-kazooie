@@ -280,7 +280,7 @@ void gcparade_print(s32 index){
 void gcparade_update(void) {
     s32 sp34;
 
-    if ((map_get() == MAP_96_CS_END_BEACH_1) && mapSpecificFlags_get(4)) {
+    if ((gsworld_get_map() == MAP_96_CS_END_BEACH_1) && mapSpecificFlags_get(4)) {
         mapSpecificFlags_set(4, FALSE);
         gcparade_beginFinalParade();
         return;
@@ -290,7 +290,7 @@ void gcparade_update(void) {
         switch (D_803830F0.state) {
             case PARADE_STATE_3_WARP:
                 if (D_803830F0.unk5 == 0) {
-                    if (map_get() == D_803830F0.parade_element->map) {
+                    if (gsworld_get_map() == D_803830F0.parade_element->map) {
                         if (D_803830F0.parade_id == 0) {
                             sp34 = 0xA0;
                             if (D_803830F0.parade_element->exit >= 0) 

@@ -186,7 +186,7 @@ void jiggylist_map_actors(void) {
 void func_80332D98(enum map_e map_id, enum jiggy_e jiggy_id, enum file_progress_e flag_id, s32 arg3) {
     f32 sp1C[3];
 
-    if ((map_get() == map_id) 
+    if ((gsworld_get_map() == map_id) 
         && fileProgressFlag_get(flag_id)
         && !jiggyscore_isSpawned(jiggy_id)
         && nodeProp_findPositionFromActorId(arg3, sp1C)

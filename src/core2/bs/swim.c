@@ -31,7 +31,7 @@ s16 bsSwimAnimations[10] = {
 u32 bsSwimCurrentAnimation;
 
 /* .code */
-void func_802B5480(void) {
+void __bsswim_createBubble(void) {
     f32 bubble_spawn_position[3];
     ParticleEmitter *bubble_emitter;
 
@@ -47,7 +47,7 @@ void func_802B5480(void) {
     }
 }
 
-void func_802B5538(AnimCtrl *arg0) {
+void __bsswim_updateIdleAnimation(AnimCtrl *arg0) {
     enum asset_e sp24;
 
     sp24 = bsSwimAnimations[bsSwimCurrentAnimation];
@@ -62,7 +62,7 @@ void func_802B5538(AnimCtrl *arg0) {
     }
 }
 
-void func_802B55DC(void) {
+void __bsswim_updateVelocity(void) {
     f32 sp1C;
 
     sp1C = bastick_getZonePosition();
@@ -73,10 +73,10 @@ void func_802B55DC(void) {
     baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp1C, bsSwimHorzVelocityMin, bsSwimHorzVelocityMax));
 }
 
-void swim_enteredWater(void) {
+void __bsswim_enteredWater(void) {
     if (level_get() == LEVEL_9_RUSTY_BUCKET_BAY) {
         progressDialog_showDialogMaskZero(FILEPROG_AB_SWIM_OILY_WATER);
-    } else if (map_get() == MAP_46_CCW_WINTER) {
+    } else if (gsworld_get_map() == MAP_46_CCW_WINTER) {
         progressDialog_showDialogMaskZero(FILEPROG_DD_HAS_TOUCHED_CCW_ICY_WATER);
     }
     baphysics_set_gravity(100.0f);
@@ -87,7 +87,7 @@ void swim_enteredWater(void) {
 }
 
 
-void func_802B56D4(void) {
+void __bsswim_end(void) {
     if (!bsswim_inset(bs_getNextState())) {
         baphysics_reset_terminal_velocity();
         baphysics_reset_gravity();
@@ -100,12 +100,12 @@ bool bsswim_inset(enum bs_e state_id){
     return state_id == BS_2D_SWIM_IDLE
         || state_id == BS_2E_SWIM
         || state_id == BS_4C_LANDING_IN_WATER
-        || state_id == BS_77_SWIM_LOCKED
-        || state_id == BS_96_SWIM_LOCKED
+        || state_id == BS_77_SWIM_LOOKAT_DRONE
+        || state_id == BS_96_SWIM_DRONE
         ;
 }
 
-void func_802B5774(void) {
+void bsswim_idle_init(void) {
     AnimCtrl *anim_ctrl;
     s32 prev_state;
     f32 transition_duration;
@@ -121,7 +121,7 @@ void func_802B5774(void) {
         if (prev_state == BS_54_SWIM_DIE) {
             basfx_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, 30000);
         } else {
-            basfx_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, (s32) ml_map_f(item_getCount(ITEM_17_AIR), 3600.0f, 0.0f, 8000.0f, 30000.0f));
+            basfx_80299CF4(SFX_AF_BANJO_CATCHING_BREATH, 1.0f, (s32) ml_map_f(item_getCount(ITEM_17_AIR), (60.0f * FRAMERATE), 0.0f, 8000.0f, 30000.0f));
         }
         bainput_setDiveCooldown(4, 0.7f);
     }
@@ -142,11 +142,12 @@ void func_802B5774(void) {
     func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
-    swim_enteredWater();
+    __bsswim_enteredWater();
     bsSwimCurrentAnimation = 0;
 }
+// #endif
 
-void func_802B5950(void) {
+void bsswim_idle_update(void) {
     s32 next_state;
     AnimCtrl *anim_ctrl;
 
@@ -156,13 +157,13 @@ void func_802B5950(void) {
         func_8029C304(1);
     }
     if ((globalTimer_getTimeMasked(7) == 0) && ((f64) randf() < 0.5)) {
-        func_802B5480();
+        __bsswim_createBubble();
     }
     if (anctrl_isAt(anim_ctrl, 0.01f) != 0) {
         func_8030EC20(SFX_DC_IDLE_PADDLING, 0.85f, 1.15f, 16000, 16000);
     }
     if (anctrl_isAt(anim_ctrl, 0.4348f) != 0) {
-        func_802B5538(anim_ctrl);
+        __bsswim_updateIdleAnimation(anim_ctrl);
     }
     if (bastick_getZone() == 1) {
         next_state = BS_2E_SWIM;
@@ -185,11 +186,11 @@ void func_802B5950(void) {
     bs_setState(next_state);
 }
 
-void func_802B5AF8(void){
-    func_802B56D4();
+void bsswim_idle_end(void){
+    __bsswim_end();
 }
 
-void func_802B5B18(void) {
+void bsswim_swim_init(void) {
     AnimCtrl *anim_ctrl;
     f32 anim_duration;
 
@@ -216,7 +217,7 @@ void func_802B5B18(void) {
     baphysics_set_type(BA_PHYSICS_NORMAL);
 }
 
-void func_802B5C40(void) {
+void bsswim_swim_update(void) {
     s32 next_state;
     AnimCtrl *anim_ctrl;
     f32 sp1C[3];
@@ -235,7 +236,7 @@ void func_802B5C40(void) {
     if (anctrl_isAt(anim_ctrl, 0.7f)) {
         func_8030EB88(SFX_12_WATER_PADDLING_1, 0.9f, 1.1f);
     }
-    func_802B55DC();
+    __bsswim_updateVelocity();
     if (bastick_getZone() == 0) {
         next_state = BS_2D_SWIM_IDLE;
     }
@@ -262,57 +263,57 @@ void func_802B5C40(void) {
     bs_setState(next_state);
 }
 
-void func_802B5E10(void){
-    func_802B56D4();
+void bsswim_swim_end(void){
+    __bsswim_end();
 }
 
-void func_802B5E30(void) {
-    f32 sp34;
+void __bsswim_update_rotation(void) {
+    f32 rotation;
     f32 plyr_pos[3];
-    f32 sp1C[3];
+    f32 target_pos[3];
 
-    if (func_80298850() != 0) {
+    if (balookat_getState() != 0) {
         _player_getPosition(plyr_pos);
-        if (func_80298800(sp1C) && func_80257F18(plyr_pos, sp1C, &sp34)) {
-            yaw_setIdeal(sp34);
+        if (balookat_try_get_position(target_pos) && func_80257F18(plyr_pos, target_pos, &rotation)) {
+            yaw_setIdeal(rotation);
         }
     }
 }
 
-void func_802B5E8C(void) {
-    baanim_playForDuration_loopSmooth(0x57, 1.2f);
+void bsswim_lookat_init(void) {
+    baanim_playForDuration_loopSmooth(ASSET_57_ANIM_BSSWIM_IDLE, 1.2f);
     func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
-    swim_enteredWater();
-    func_802B5E30();
+    __bsswim_enteredWater();
+    __bsswim_update_rotation();
 }
 
-void func_802B5EFC(void) {
+void bsswim_lookat_update(void) {
     enum bs_e next_state;
 
     next_state = 0;
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         next_state = BS_2D_SWIM_IDLE;
     }
-    func_802B5E30();
+    __bsswim_update_rotation();
     bs_setState(next_state);
 }
 
-void func_802B5F38(void){
-    func_802B56D4();
+void bsswim_lookat_end(void){
+    __bsswim_end();
 }
 
-void func_802B5F58(void){
-    swim_enteredWater();
+void bsswim_drone_init(void){
+    __bsswim_enteredWater();
     bsdrone_init();
 }
 
-void func_802B5F80(void){
+void bsswim_drone_update(void){
     bsdrone_update();
 }
 
-void func_802B5FA0(void){
+void bsswim_drone_end(void){
     bsdrone_end();
-    func_802B56D4();
+    __bsswim_end();
 }

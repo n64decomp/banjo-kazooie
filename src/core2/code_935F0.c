@@ -32,7 +32,7 @@ ActorInfo chMinigame = {
 
 /* .code */
 enum minigame_e __chminigame_getCurrentMapId(void){
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:
             return MINIGAME_0_BOSS_BOOM_BOX;
         case MAP_10_BGS_MR_VILE:
@@ -77,7 +77,7 @@ void func_8031A678(Actor *this){
             return;
 
         case MINIGAME_3_ZUBBAS:
-            if (map_get() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
+            if (gsworld_get_map() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
                 sp20[0] = 0.0f;
                 sp20[1] = 0.0f;
                 sp20[2] = -1000.0f;

@@ -94,7 +94,7 @@ void chlmonkey_update(Actor *this) {
     actor_collisionOff(this);
     this->marker->propPtr->unk8_3 = 1;
 
-    if (map_get() != MAP_2_MM_MUMBOS_MOUNTAIN) {
+    if (gsworld_get_map() != MAP_2_MM_MUMBOS_MOUNTAIN) {
         func_80343DEC(this);
     }
     else {//L80388630

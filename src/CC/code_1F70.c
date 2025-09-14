@@ -263,7 +263,7 @@ void func_80388CB4(void){
 
 void func_80388D54(void){
     D_80389FA0.unk21 = 0;
-    if(map_get() == MAP_B_CC_CLANKERS_CAVERN){
+    if(gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN){
         D_80389FA0.unk0 = skeletalAnim_new();
         D_80389FA0.sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         D_80389FA0.unk8 = 1.0f;

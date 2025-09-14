@@ -21,7 +21,7 @@ void func_8029A990(void){
     f32 plyr_pos[3];
     ParticleEmitter *pCtrl;
 
-    if(map_get() == MAP_2C_MMM_BATHROOM)
+    if(gsworld_get_map() == MAP_2C_MMM_BATHROOM)
         func_8029C304(0);
     else
         func_8029C304(1);
@@ -40,7 +40,7 @@ void func_8029AA3C(void){
     f32 sp34[3];
     f32 sp30;
     ParticleEmitter *pCtrl;
-    if(map_get() == MAP_2C_MMM_BATHROOM)
+    if(gsworld_get_map() == MAP_2C_MMM_BATHROOM)
         func_8029C304(0);
     else
         func_8029C304(2);

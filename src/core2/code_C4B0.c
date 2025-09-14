@@ -298,7 +298,7 @@ void func_80293F0C(void){
     f32 sp2C[3];
     
     _player_getPosition(sp44);
-    if(map_get() == MAP_34_RBB_ENGINE_ROOM && ml_vec3f_inside_box_f(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
+    if(gsworld_get_map() == MAP_34_RBB_ENGINE_ROOM && ml_vec3f_inside_box_f(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
         func_8031C5FC(D_8037C200, 150.0f);
     } else{
         func_8031C608(D_8037C200);
@@ -400,7 +400,7 @@ void func_80294390(void) {
 
     sp1C = (void *)func_8029463C();
     if (sp1C != 0) {
-        if (func_803246B4(map_get(), ((s32*)sp1C)[2]) == 3) {
+        if (func_803246B4(gsworld_get_map(), ((s32*)sp1C)[2]) == 3) {
             func_80294384(4);
         }
         else{

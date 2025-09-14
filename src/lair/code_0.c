@@ -1005,7 +1005,7 @@ void func_80388524(Actor *this) {
     Actor *sp28;
 
     sp34 = func_802D677C(-1) 
-             && (func_802D677C(-1) == map_get())
+             && (func_802D677C(-1) == gsworld_get_map())
              && (func_802D67AC(-1) >= 8)
              && (func_802D67AC(-1) < 0x12)
              && (func_802D67DC(-1) == this->modelCacheIndex)

@@ -205,7 +205,7 @@ void func_8038687C(Actor *this) {
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 1800 - 1);
             func_803865F4(this, 3);
-        } else if ((local->unk0 != NULL) && (map_get() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
+        } else if ((local->unk0 != NULL) && (gsworld_get_map() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
             player_getPosition(sp40);
             if ((ml_vec3f_distance(this->position, sp40) < 300.0f) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
                 func_803865F4(this, 2);

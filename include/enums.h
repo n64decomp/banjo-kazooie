@@ -2411,8 +2411,8 @@ enum bs_e {
     BS_74_UNKNOWN = 0x74, // locked jiggypad, xform, bottles
     BS_75_UNKNOWN = 0x75, // locked bottles
     BS_76_BFLY_LOCKED = 0x76,
-    BS_77_SWIM_LOCKED = 0x77,
-    BS_78_DIVE_LOCKED = 0x78,
+    BS_77_SWIM_LOOKAT_DRONE = 0x77,
+    BS_78_DIVE_LOOKAT_DRONE = 0x78,
     BS_79_BTROT_LOCKED = 0x79,
     BS_WALK_MUD = 0x7A,
     BS_BTROT_OW = 0x7B,
@@ -2442,8 +2442,8 @@ enum bs_e {
     BS_93_PUMPKIN_DRONE = 0x93,
     BS_94_CROC_DRONE = 0x94,
     BS_95_WALRUS_DRONE = 0x95,
-    BS_96_SWIM_LOCKED = 0x96,
-    BS_97_DIVE_LOCKED = 0x97,
+    BS_96_SWIM_DRONE = 0x96,
+    BS_97_DIVE_DRONE = 0x97,
     BS_98_WALK_DRONE = 0x98,
     BS_99_BFLY_DRONE = 0x99,
     BS_9A_BTROT_DRONE = 0x9A,
@@ -5483,6 +5483,26 @@ enum static_camera_id_e {
 
 enum ba_timer_id {
     BA_TIMER_HAZARDS = 4
+};
+
+enum ba_rebound_id{
+    BA_REBOUND_0_NONE,
+    BA_REBOUND_1_UNK,
+    BA_REBOUND_2_UNK,
+    BA_REBOUND_3_UNK,
+    BA_REBOUND_4_UNK,
+    BA_REBOUND_5_UNK,
+    BA_REBOUND_6_UNK,
+    BA_REBOUND_7_UNK,
+    BA_REBOUND_8_UNK,
+    BA_REBOUND_9_UNK,
+    BA_REBOUND_A_UNK,
+    BA_REBOUND_B_UNK,
+    BA_REBOUND_C_UNK,
+    BA_REBOUND_D_UNK,
+    BA_REBOUND_E_UNK,
+    BA_REBOUND_F_UNK,
+    BA_REBOUND_10_UNK
 };
 
 #endif

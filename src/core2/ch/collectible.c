@@ -147,7 +147,7 @@ void chCollectible_update(Actor *this) {
             func_8032AA58(this, 0.56f);
         }
         this->unk10_12 = -1;
-        this->unk38_0 = (map_get() == MAP_90_GL_BATTLEMENTS);
+        this->unk38_0 = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS);
         this->actor_specific_1_f = this->unk38_0 ? 0.0f : 255.0f;
         this->initialized = TRUE;
     }

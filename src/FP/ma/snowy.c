@@ -23,7 +23,7 @@ static struct {
 
 /* .code */
 void maSnowy_init(void){
-    if( map_get() != MAP_27_FP_FREEZEEZY_PEAK
+    if( gsworld_get_map() != MAP_27_FP_FREEZEEZY_PEAK
         || jiggyscore_isCollected(JIGGY_31_FP_SIR_SLUSH)
         || jiggyscore_isSpawned(JIGGY_31_FP_SIR_SLUSH)
     ){

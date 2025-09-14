@@ -85,7 +85,7 @@ void core1_ce60_func_8024AAB0(void) {
     if (0 <= sTrackId[1])
         sTrackId[3] = gcMusic_getDefaultVolumeForTrack(sTrackId[1]);
 
-    switch (map_get()) {
+    switch (gsworld_get_map()) {
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             sTrackId[2] = ml_map_f(4700 - sPlayerPosition[1], 0.0f, 900.0f, 0.0f, sTrackId[2]);
             sTrackId[3] = ml_map_f(4700 - sPlayerPosition[1], 0.0f, 900.0f, sTrackId[3], 0.0f);
@@ -200,7 +200,7 @@ void core1_ce60_func_8024AF48(void) {
     player_getPosition_s32(sPlayerPosition);
     core1_ce60_func_8024AAB0();
 
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_2_MM_MUMBOS_MOUNTAIN:
             if (core1_ce60_isPlayerInRange(-4450, 4550, 1900) || core1_ce60_isPlayerInRange(-6007, 6176, 620)) {
                 core1_ce60_setChanMask(0x1cc0);

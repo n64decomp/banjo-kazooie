@@ -130,7 +130,7 @@ void func_80294BDC(void) {
     sp28 = time_getDelta();
     sp2C = func_802944A8();
     sp24 = func_80294660();
-    if ((map_get() == MAP_34_RBB_ENGINE_ROOM) && ((sp24 * 0x10) < 0)) {
+    if ((gsworld_get_map() == MAP_34_RBB_ENGINE_ROOM) && ((sp24 * 0x10) < 0)) {
         D_8037C2ED = 1;
     }
     if (D_8037C2ED != 0) {
@@ -145,7 +145,7 @@ void func_80294BDC(void) {
                 }
             }
         }
-        if (map_get() == MAP_C_MM_TICKERS_TOWER) {
+        if (gsworld_get_map() == MAP_C_MM_TICKERS_TOWER) {
             sp28 *= 2.0;
         }
         if ((sp24 & 0x50) && !player_inWater()) {

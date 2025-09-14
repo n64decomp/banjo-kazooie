@@ -11,7 +11,7 @@
 
 extern void baModel_setYDisplacement(f32);
 extern f32 bastick_getX(void);
-extern void ncDynamicCam4_func_802BFE50(f32, f32, f32);
+extern void ncbafly_func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
 extern BKCollisionTri *func_8029463C(void);
 
@@ -336,7 +336,7 @@ void func_802A3F9C(void){
     pitch_setIdeal(sp1C[0]);
     func_8029E070(1);
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE74(1);
+    ncbafly_func_802BFE74(1);
     func_802A3430();
     FUNC_8030E624(SFX_52_BANJO_YAH_OH, 1.0f, 28000);
     D_8037D345 = 0;
@@ -579,7 +579,7 @@ void func_802A48B4(void) {
             if (item_getCount(ITEM_14_HEALTH) == 0) {
                 func_8029C984();
                 func_8029151C(0xD);
-                ncDynamicCamD_func_802BF2C0(30.0f);
+                ncbadie_func_802BF2C0(30.0f);
                 func_8029B930();
                 batimer_set(0, 2.5f);
                 D_8037D344 = 2;
@@ -648,7 +648,7 @@ void func_802A4A78(s32 arg0) {
     baphysics_set_target_horizontal_velocity(velocity);
     baphysics_set_target_yaw(sp28);
     baphysics_set_horizontal_velocity(sp28, baphysics_get_target_horizontal_velocity());
-    if ((arg0 == 1) && (map_get() == MAP_90_GL_BATTLEMENTS)) {
+    if ((arg0 == 1) && (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)) {
         yaw_setIdeal(mlNormalizeAngle(sp28));
         yaw_applyIdeal();
     }
@@ -658,7 +658,7 @@ void func_802A4A78(s32 arg0) {
     baphysics_set_terminal_velocity(-4000.0f);
     func_8029E070(1);
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
     baMarker_collisionOff();
     func_802A3430();
 }
@@ -725,7 +725,7 @@ void func_802A4D90(void) {
     baphysics_set_target_horizontal_velocity(1300.0f);
     baphysics_set_target_yaw(sp34);
     baphysics_set_horizontal_velocity(sp34, baphysics_get_target_horizontal_velocity());
-    if (map_get() == MAP_90_GL_BATTLEMENTS) {
+    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
         yaw_setIdeal(mlNormalizeAngle(sp34));
         yaw_applyIdeal();
     }
@@ -734,7 +734,7 @@ void func_802A4D90(void) {
     baphysics_set_gravity(-1800.0f);
     baMarker_collisionOff();
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
 }
 
 void func_802A4EC8(void) {
@@ -774,7 +774,7 @@ void func_802A4FC8(void) {
     if (anctrl_isAt(baanim_getAnimCtrlPtr(), 0.1358f) != 0) {
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 10000, 12000);
     }
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         next_state = BS_24_FLY;
     }
     bs_setState(next_state);

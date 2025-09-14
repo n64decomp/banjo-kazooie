@@ -93,7 +93,7 @@ void func_8038CC4C(Actor *this) {
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
         local->unk0 = &D_8038F490[0];
-        while(local->unk0->map_id != 0 && map_get() != local->unk0->map_id){
+        while(local->unk0->map_id != 0 && gsworld_get_map() != local->unk0->map_id){
             local->unk0++;
         }
         func_8038CB40(this, 1);

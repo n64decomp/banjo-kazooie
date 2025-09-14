@@ -51,16 +51,16 @@ u32 func_802B4870(u32 arg0){
 s32 func_802B488C(s32 arg0){
     s32 retVal = arg0;
     switch(bastick_getZone()){
-        case 1: //L802B48CC
+        case 1:
             retVal = BS_WALK_CREEP;
             break;
-        case 2: //L802B48D4
+        case 2:
             retVal = BS_2_WALK_SLOW;
             break;
-        case 3: //L802B48D4
+        case 3:
             retVal = BS_WALK;
             break;
-        case 4: //L802B48D4
+        case 4:
             retVal = BS_4_WALK_FAST;
             break;
     }
@@ -278,13 +278,11 @@ void bsstand_end(void){
     baeyes_open();
 }
 
-//bsStand_Land_init
 void bsstand_landing_init(void){
     func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
 }
 
-//bsStand_Land_update
 void bsstand_landing_update(void){
     s32 sp1C = 0;
     AnimCtrl * sp18 = baanim_getAnimCtrlPtr();

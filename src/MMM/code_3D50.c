@@ -219,7 +219,7 @@ void func_8038A9B4(void){
     
     MMM_D_8038C510.unk8 = 0;
     
-    if(map_get() == MAP_24_MMM_TUMBLARS_SHED){
+    if(gsworld_get_map() == MAP_24_MMM_TUMBLARS_SHED){
         MMM_D_8038C510.unkC = NULL;
         MMM_D_8038C510.unk0 = mapModel_getModel(0);
         MMM_D_8038C510.unk4 = NULL;

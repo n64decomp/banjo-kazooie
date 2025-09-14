@@ -56,7 +56,7 @@ void func_8038D368(Actor *this) {
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
         local->unk0 = D_8038F600;
-        while (local->unk0->map != 0 && map_get() != local->unk0->map) {
+        while (local->unk0->map != 0 && gsworld_get_map() != local->unk0->map) {
             local->unk0++;
         }
 

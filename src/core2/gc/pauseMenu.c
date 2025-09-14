@@ -36,7 +36,7 @@ void func_802DC5B8(void);
 void func_802DC560(s32, s32);
 s32 controller_getStartButton(s32 controller_index);
 bool fileProgressFlag_get(enum file_progress_e);
-enum map_e map_get(void);
+enum map_e gsworld_get_map(void);
 bool func_802FD2D4(void);
 bool func_802FC3C4(void);
 extern void func_8025A2B0(void);
@@ -1063,7 +1063,7 @@ s32 gcPauseMenu_update(void) {
                 case PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR://L80313908 //return to lair
                     volatileFlag_set(VOLATILE_FLAG_16, 1);
 
-                    if (map_get() == MAP_8E_GL_FURNACE_FUN) {
+                    if (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) {
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
                         transitionToMap(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }

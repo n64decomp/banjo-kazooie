@@ -21,7 +21,7 @@ void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
     else{
-        if(map_get() == MAP_69_GL_MM_LOBBY)
+        if(gsworld_get_map() == MAP_69_GL_MM_LOBBY)
             tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
         else
             tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
@@ -45,7 +45,7 @@ void func_802DAA14(Actor *this){
         flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
     else{
-        if(map_get() == MAP_69_GL_MM_LOBBY)
+        if(gsworld_get_map() == MAP_69_GL_MM_LOBBY)
             tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
         else
             tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
@@ -72,7 +72,7 @@ void func_802DAA14(Actor *this){
             text_id = ASSET_ADC_DIALOG_UNKNOWN;
         }
         else{
-            if(map_get() == MAP_69_GL_MM_LOBBY)
+            if(gsworld_get_map() == MAP_69_GL_MM_LOBBY)
                 tmp = ASSET_F66_DIALOG_UNKNOWN;
             else
                 tmp = ASSET_F67_DIALOG_UNKNOWN;

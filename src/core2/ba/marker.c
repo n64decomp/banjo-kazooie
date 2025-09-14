@@ -111,10 +111,10 @@ void __baMarker_8028B7F4(void){
 
 void __baMarker_8028B848(void){
     s32 s0 = 0;
-    if(map_get() == MAP_69_GL_MM_LOBBY){
+    if(gsworld_get_map() == MAP_69_GL_MM_LOBBY){
         s0 = ASSET_E57_DIALOG_FIRST_JIGGY;
     }
-    else if(map_get() == MAP_2_MM_MUMBOS_MOUNTAIN){
+    else if(gsworld_get_map() == MAP_2_MM_MUMBOS_MOUNTAIN){
         s0 = ASSET_B45_DIALOG_JIGGY_COLLECT_10;
     }
 
@@ -596,7 +596,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 if(__baMarker_8028BC20(marker))
                     return;
                 
-                if( map_get() == MAP_8E_GL_FURNACE_FUN
+                if( gsworld_get_map() == MAP_8E_GL_FURNACE_FUN
                     && volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){
@@ -613,7 +613,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case MARKER_169_SNS_EGG: //L8028C908
                 { //ONLY THIS CASE DOESN'T MATCH
-                    switch (map_get())
+                    switch (gsworld_get_map())
                     {
                     case MAP_1D_MMM_CELLAR: //L8028C95C
                         sns_set_item_and_update_payload(SNS_ITEM_EGG_CYAN, 0, 1);
@@ -708,7 +708,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case MARKER_61_EXTRA_LIFE: //L8028CD50
                 if(__baMarker_8028BC20(marker))
                     return;
-                if( map_get() == MAP_8E_GL_FURNACE_FUN
+                if( gsworld_get_map() == MAP_8E_GL_FURNACE_FUN
                     && volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)
                     && !fileProgressFlag_get(FILEPROG_A6_FURNACE_FUN_COMPLETE)
                 ){

@@ -389,7 +389,7 @@ void chBeeSwarm_update(Actor *this) {
             D_8037DCBC = 0;
         }
     }
-    if (map_get() == MAP_27_FP_FREEZEEZY_PEAK) {
+    if (gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK) {
         if (maSlalom_isActive()) {
             this->unk58_0 = FALSE;
             return;
@@ -419,7 +419,7 @@ void chBeeSwarm_update(Actor *this) {
         }
         chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->actor_specific_1_f, 100.0f, 0, &spA0);
     }
-    if (map_get() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
+    if (gsworld_get_map() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
         if (this->unk38_31++ == 0x1E) {
             this->unk38_31 = 0;
             next_position[0] = this->position[0];

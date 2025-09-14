@@ -445,7 +445,7 @@ void bscroc_die_init(void){
     baMarker_collisionOff();
     baeyes_close();
     func_802914CC(0xd);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     batimer_set(0, 2.9f);
@@ -682,7 +682,7 @@ void bscroc_locked_update(void){
     func_802B3A50();
     func_80299628(0);
     func_8029C6D0();
-    if(!func_80298850()){
+    if(!balookat_getState()){
         next_state = BS_5E_CROC_IDLE;
     }
     

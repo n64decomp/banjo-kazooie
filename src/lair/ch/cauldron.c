@@ -248,14 +248,14 @@ void chWarpCauldron_update(Actor *this) {
                   && (func_802D67AC(-1) == MAP_16_GV_RUBEES_CHAMBER) 
                   && (func_802D680C(-1) == this->actorTypeSpecificField)
                 ) 
-                || (exit_get() == D_80393620[this->actorTypeSpecificField - 1].unk2)
+                || (gsworld_get_exit() == D_80393620[this->actorTypeSpecificField - 1].unk2)
             ) {
                 func_8028F85C(this->position);
                 this->unk10_12 = 1;
                 func_8038AB90(this, 5, 1, 0, 0.0f);
             }
             if (!fileProgressFlag_get(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET) && fileProgressFlag_get(chWarpCauldron_getPairedFileProgressFlagIndex(this))) {
-                if (func_802D677C(-1) != map_get()) {
+                if (func_802D677C(-1) != gsworld_get_map()) {
                     gcdialog_showDialog(ASSET_F7A_DIALOG_UNKNOWN, 4, NULL, NULL, NULL, NULL);
                     fileProgressFlag_set(FILEPROG_F5_COMPLETED_A_WARP_CAULDRON_SET, 1);
                 }

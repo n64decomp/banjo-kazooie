@@ -144,7 +144,7 @@ void bsclimb_move_update(void){
 
     bafalldamage_start();
     func_802AB5C0();
-    map = map_get();
+    map = gsworld_get_map();
 
     if( map == MAP_B_CC_CLANKERS_CAVERN
         || map == MAP_1B_MMM_MAD_MONSTER_MANSION
@@ -204,7 +204,7 @@ void func_802ABCCC(void){
 //bsclimb_unknown_9E_update
 void func_802ABD0C(void){
     s32 next_state = 0;
-    if(!func_80298850())
+    if(!balookat_getState())
         next_state = BS_4F_CLIMB_IDLE;
 
     bs_setState(next_state);

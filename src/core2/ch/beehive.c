@@ -46,7 +46,7 @@ void chBeehive_update(Actor *this){
         this->volatile_initialized = TRUE;
         this->unk38_0 = volatileFlag_get(VOLATILE_FLAG_1)| volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
     }//L802CE960
-    if(map_get() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive()){
             this->unk58_0 = 0;
             return;

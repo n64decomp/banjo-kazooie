@@ -118,7 +118,7 @@ void gv_matchingGame_reset(void){
 void gv_matchingGame_init(void){
     Actor *actor;
     matchingGame.state = 0;
-    if(map_get() == MAP_13_GV_MEMORY_GAME){
+    if(gsworld_get_map() == MAP_13_GV_MEMORY_GAME){
         if( !jiggyscore_isSpawned(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
             ||  volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)                      //in FF minigame
         ){
