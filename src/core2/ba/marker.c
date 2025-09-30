@@ -873,7 +873,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
 void baMarker_init(void){
     f32 sp1C[3];
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     playerMarker = func_8032FBE4(sp1C, baModel_80291AAC, 1, 0);
     playerMarker->unk2C_1 = 1;
     marker_setCollisionScripts(playerMarker, NULL, func_80291634, func_80291610);
@@ -916,7 +916,7 @@ void baMarker_update(void){
         temp_s0_2 = __baMarker_8028B750();
         baflag_clear(BA_FLAG_1_ON_FLIGHT_PAD);
         baflag_clear(BA_FLAG_2_ON_SPRING_PAD);
-        _player_getPosition(sp168);
+        playerPosition_get(sp168);
         func_8032F64C(sp168, playerMarker);
         for(D_8037BF8C = NULL, i = 0, temp_s2 = 0; i < 2;i++){//L8028D3DC
             D_8037BF90 = i;

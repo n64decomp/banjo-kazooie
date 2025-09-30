@@ -110,7 +110,7 @@ int func_80290E8C(void){
     ncDynamicCamera_setState(3);
     func_80291488(0xB);
     if( gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN
-        && player_getYPosition() < 1201.0f
+        && playerPosition_getY() < 1201.0f
     ){
         func_802C1B20(1100.0f);
     }

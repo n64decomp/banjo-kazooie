@@ -348,7 +348,7 @@ void bsblongleg_jump_update(void){
     if(bakey_released(BUTTON_A) && 0.0f < sp34[1])
         baphysics_reset_gravity();
 
-    sp30 = player_getYPosition() - func_80294438();
+    sp30 = playerPosition_getY() - func_80294438();
     switch(D_8037D360){
         case 0://L802A5F24
             if((sp34[1] < 100.0f) || sp30 < 10.0f)

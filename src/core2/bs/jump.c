@@ -119,7 +119,7 @@ void bsjump_update(void){
             }
             break;
         case 1://L802B14B4
-            if( 500.0f < (player_getYPosition() - func_80294438())){
+            if( 500.0f < (playerPosition_getY() - func_80294438())){
                 sp34 = BS_2F_FALL;
             }
             if(D_8037D4C2){

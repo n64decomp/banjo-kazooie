@@ -318,7 +318,7 @@ void func_802A18E8(s32 arg0){
     }else{
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     }
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -408,7 +408,7 @@ void bsbeemain_die_init(void){
     anctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     anctrl_start(sp3C, "bsbeemain.c", 0x2ef);
     func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));

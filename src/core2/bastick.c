@@ -139,7 +139,7 @@ void bastick_setZoneMax(s32 zone_id, f32 value){
 f32 bastick_getAngleRelativeToBanjo(void){
     f32 sp1C[3];
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     return viewport_adjustAngleToRight(sp1C, bastick_getAngle());
 }
 

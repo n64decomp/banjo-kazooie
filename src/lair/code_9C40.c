@@ -93,7 +93,7 @@ void func_803902B8(Actor *this) {
         this->has_met_before = volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         this->initialized = TRUE;
     }
-    _player_getPosition(sp5C);
+    playerPosition_get(sp5C);
     sp58 = ml_vec3f_within_distance(this->position, sp5C, 1750.0f) && !this->has_met_before;
     if (sp58 && !this->unk38_0) {
         func_8032BB88(this, 0, 0x1F4);

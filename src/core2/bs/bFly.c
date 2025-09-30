@@ -113,7 +113,7 @@ void func_802A3648(void){
 void func_802A36D0(void){
     f32 plyr_pos[3];
 
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     plyr_pos[0] += randf2(-30.0f, 30.0f);
     plyr_pos[1] += 50.0f + randf2(0.0f, 30.0f);
     plyr_pos[2] += randf2(-30.0f, 30.0f);
@@ -340,7 +340,7 @@ void func_802A3F9C(void){
     func_802A3430();
     FUNC_8030E624(SFX_52_BANJO_YAH_OH, 1.0f, 28000);
     D_8037D345 = 0;
-    _player_getPosition(D_8037D328);
+    playerPosition_get(D_8037D328);
     D_8037D344 = 0;
     func_802D8BE4(0);
 }
@@ -348,7 +348,7 @@ void func_802A3F9C(void){
 void func_802A4078(void){
     f32 plyr_pos[3];
 
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     plyr_pos[0] += D_8037D338[0];
     plyr_pos[1] += D_8037D338[1];
     plyr_pos[2] += D_8037D338[2];
@@ -427,7 +427,7 @@ void func_802A411C(void) {
                 next_state = BS_58_BEAKBOMB_CRASH;
             }
         }
-        _player_getPosition(sp48);
+        playerPosition_get(sp48);
         ml_vec3f_diff(sp48, D_8037D328);
         if (sp48[0]*sp48[0] + sp48[1]*sp48[1] + sp48[2]*sp48[2] > 16000000.0f) {
             next_state = BS_57_BOMB_END;
@@ -640,7 +640,7 @@ void func_802A4A78(s32 arg0) {
     baanim_playForDuration_onceSmooth(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
     basfx_playOwSfx(1.0f);
     baMotor_80250D94(1.0f, 0.5f, 0.5f);
-    _player_getPosition(sp3C);
+    playerPosition_get(sp3C);
     func_80294980(sp30);
     func_80257F18(sp30, sp3C, &sp28);
     yaw_setIdeal(mlNormalizeAngle(sp28 + 180.0f));
@@ -717,7 +717,7 @@ void func_802A4D90(void) {
     func_802BB3DC(2, 100.0f, 0.85f);
     baanim_playForDuration_onceSmooth(0x10D, 1.0f);
     func_8030E58C(SFX_56_BANJO_HUI, 1.0f);
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     func_80294980(sp1C);
     func_80257F18(sp1C, player_position, &sp34);
     yaw_setIdeal(mlNormalizeAngle(sp34 + 180.0f));

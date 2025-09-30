@@ -141,7 +141,7 @@ bool dummy_player_withinIdealYaw(void) {
     f32 position[3];
     f32 ideal_yaw;
 
-    _player_getPosition(position);
+    playerPosition_get(position);
     ideal_yaw = yaw_getIdeal();
     right_angle = viewport_adjustAngleToRight(position, 90.0f);
     left_angle = viewport_adjustAngleToRight(position, 270.0f);
@@ -161,7 +161,7 @@ bool func_8028AED4(f32 arg0[3], f32 arg1) {
     s32 temp_v1;
     s32 phi_a0;
 
-    _player_getPosition(position);
+    playerPosition_get(position);
     func_80257F18(arg0, position, &sp28);
     sp26 = (u16) (sp28 * 182.044444);
     sp24 = (u16) (player_getYaw() * 182.044444);
@@ -172,12 +172,12 @@ bool func_8028AED4(f32 arg0[3], f32 arg1) {
 }
 
 int player_shouldFall(void){
-    return (60.0f < player_getYPosition() - func_80294438());
+    return (60.0f < playerPosition_getY() - func_80294438());
 }
 
 int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
     f32 sp1C[3];
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     return ml_vec3f_point_within_horizontal_distance(sp1C, arg0[0], arg0[2], arg1);
 }
 
@@ -194,7 +194,7 @@ bool player_isInRBB(void){
 bool player_isInVerticalRange(f32 position[3], f32 range) {
     f32 plyr_pos[3];
 
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     return (((position[1] - range) <= plyr_pos[1]) && (plyr_pos[1] <= (position[1] + range)));
 }
 
@@ -204,7 +204,7 @@ int player_shouldSlideTrot(void){
 }
 
 bool func_8028B254(s32 arg0) {
-    return (player_isStable() || (baphysics_get_vertical_velocity() < 0.0f && (player_getYPosition() - func_80294438()) < (f32) arg0));
+    return (player_isStable() || (baphysics_get_vertical_velocity() < 0.0f && (playerPosition_getY() - func_80294438()) < (f32) arg0));
 }
 
 int player_isStable(void){
@@ -290,9 +290,9 @@ void func_8028B59C(void) {
 
     sp24 = D_8037BF61;
     if (D_8037BF61) {
-        D_8037BF61 = (func_80294554() && player_getYPosition() < ((floor_getCurrentFloorYPosition() - 50.0f) + 2.0f));
+        D_8037BF61 = (func_80294554() && playerPosition_getY() < ((floor_getCurrentFloorYPosition() - 50.0f) + 2.0f));
     } else {
-        D_8037BF61 = (func_80294554() && player_getYPosition() < ((floor_getCurrentFloorYPosition() - 50.0f) - 2.0f));
+        D_8037BF61 = (func_80294554() && playerPosition_getY() < ((floor_getCurrentFloorYPosition() - 50.0f) - 2.0f));
     }
     if (gsworld_get_map() == MAP_6_TTC_NIPPERS_SHELL) {
         D_8037BF61 = FALSE;

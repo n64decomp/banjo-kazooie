@@ -146,7 +146,7 @@ void func_8029622C(void){
     f32 sp34[3];
     f32 sp28[3];
 
-    _player_getPosition(sp28);
+    playerPosition_get(sp28);
     func_80256E24(sp34, 0.0f, yaw_get(), 0.0f, 0.0f, 100.0f);
     sp28[0] += sp34[0];
     sp28[1] += sp34[1];

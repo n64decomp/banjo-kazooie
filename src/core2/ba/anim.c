@@ -209,7 +209,7 @@ void baanim_setUpdateType(enum baanim_update_type_e arg0){
 void baanim_80289F30(void){
     f32 sp1C[3];
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     anctrl_drawSetup(playerAnimCtrl, sp1C, 1);
 }
 

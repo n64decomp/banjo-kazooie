@@ -30,7 +30,7 @@ int bsBeeFly_inSet(s32);
 void func_802A04F0(void){
     f32 player_position[3];
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     player_position[0] += randf2(-30.0f, 30.0f);
     player_position[1] += 30.0f + randf2(0.0f, 30.0f);
     player_position[2] += randf2(-30.0f, 30.0f);
@@ -185,7 +185,7 @@ void bsbeefly_update(void){
     _bsBeeFly_updateYaw();
     _bsBeeFly_updatePitch();
     pitch_get(); //return value never used
-    if(bakey_pressed(BUTTON_A) && (player_getYPosition() < 7500.0)){
+    if(bakey_pressed(BUTTON_A) && (playerPosition_getY() < 7500.0)){
         baflap_add(1.0f);
     }
     if((baflap_getCount() == 0) && player_inWater()){
