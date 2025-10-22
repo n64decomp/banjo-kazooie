@@ -32,7 +32,8 @@ Works with Ubuntu 18.04 or higher.
 sudo apt-get update && sudo apt-get install -y $(cat packages.txt)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 git submodule update --init --recursive
-python3 -m pip install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/python3 -m pip install -r requirements.txt
 ```
 
 ### 2. Add baserom
