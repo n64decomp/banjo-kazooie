@@ -613,12 +613,12 @@ segments:
   - [0xFA8F90, c, bs/walk]
   - [0xFAA090, c, bs/walrus]
   - [0xFABC10, c, bs/washy]
-  - [0xFABFD0, textbin, core2_untouched]
-  # - [0xF88710, c, nc/cameranodelist] #DONE
-  # - [0xF88BB0, c, code_33250] #DONE
-  # - [0xF88BB0, c, code_33310] #DONE
-  # - [0xF89050, c, code_336F0] #DONE
-  # - [0xF89410, c, code_33AB0] #DONE
+  - [0xFABFD0, c, nc/cameranodelist]
+  - [0xFAC720, c, code_33250] # address / size incorrect
+  - [0xFAC720, c, code_33310]
+  - [0xFACBC0, c, code_336F0]
+  - [0xFACD40, c, code_33AB0]
+  - [0xFACE50, textbin, core2_untouched]
   # - [0xF89590, c, code_33C30] #DONE
   # - [0xF896A0, c, nc/staticCamera] #DONE
   # - [0xF898F0, c, code_33F90] #DONE
@@ -1202,8 +1202,8 @@ segments:
   - [0x1068510, .rodata, bs/walk]
   - [0x10685A0, .rodata, bs/walrus]
   - [0x1068600, .rodata, bs/washy]
-  - [0x1068660, rodatabin, core2_untouched]
-  # - [0x1044690, .rodata, nc/cameranodelist]
+  - [0x1068660, .rodata, nc/cameranodelist]
+  - [0x10686B0, rodatabin, core2_untouched]
   # - [0x10446E0, .rodata, code_33F90]
   # - [0x1044700, .rodata, code_34310]
   # - [0x1044710, .rodata, code_34790]
@@ -1472,7 +1472,7 @@ segments:
   - [0x0106C980, .bss, bs/walk]
   - [0x0106C980, .bss, bs/walrus]
   - [0x0106C980, .bss, bs/washy]
-  # - [0x0106C980, .bss, nc/cameranodelist]
+  - [0x0106C980, .bss, nc/cameranodelist]
   # - [0x0106C980, .bss, code_33C30]
   # - [0x0106C980, .bss, nc/staticCamera]
   # - [0x0106C980, .bss, code_34310]
