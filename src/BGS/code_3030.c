@@ -13,12 +13,12 @@ void chChoirTurtle_update(Actor *this);
 Actor *chChoirTurtle_draw(ActorMarker *marker, Gfx **, Mtx **, Vtx**);
 
 /* .data */
-ActorInfo chChoirTurtleYellow = { MARKER_19B_CHOIR_TURTLE_YELLOW, ACTOR_27B_CHOIR_TURTLE_YELLOW, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
-ActorInfo chChoirTurtleCyan = { MARKER_19C_CHOIR_TURTLE_CYAN,   ACTOR_27C_CHOIR_TURTLE_CYAN,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
-ActorInfo chChoirTurtleBlue = { MARKER_19D_CHOIR_TURTLE_BLUE,   ACTOR_27D_CHOIR_TURTLE_BLUE,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
-ActorInfo chChoirTurtleRed = { MARKER_19E_CHOIR_TURTLE_RED,    ACTOR_27E_CHOIR_TURTLE_RED,    ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
-ActorInfo chChoirTurtlePink = { MARKER_19F_CHOIR_TURTLE_PINK,   ACTOR_27F_CHOIR_TURTLE_PINK,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
-ActorInfo chChoirTurtlePurple = { MARKER_1A0_CHOIR_TURTLE_PURPLE, ACTOR_280_CHOIR_TURTLE_PURPLE, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtleYellow = { MARKER_19B_CHOIR_TURTLE_YELLOW, ACTOR_27B_CHOIR_TURTLE_YELLOW, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtleCyan = { MARKER_19C_CHOIR_TURTLE_CYAN,   ACTOR_27C_CHOIR_TURTLE_CYAN,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtleBlue = { MARKER_19D_CHOIR_TURTLE_BLUE,   ACTOR_27D_CHOIR_TURTLE_BLUE,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtleRed = { MARKER_19E_CHOIR_TURTLE_RED,    ACTOR_27E_CHOIR_TURTLE_RED,    ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtlePink = { MARKER_19F_CHOIR_TURTLE_PINK,   ACTOR_27F_CHOIR_TURTLE_PINK,   ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
+ActorInfo gChChoirTurtlePurple = { MARKER_1A0_CHOIR_TURTLE_PURPLE, ACTOR_280_CHOIR_TURTLE_PURPLE, ASSET_3F9_MODEL_CHOIR_TURTLE, 0, NULL, chChoirTurtle_update, NULL, chChoirTurtle_draw, 0, 0, 1.5f, 0};
 
 /* .code */
 void chChoirTurtle_returnState(ActorMarker *marker) {

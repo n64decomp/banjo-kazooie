@@ -22,14 +22,14 @@ typedef struct ch_bgs_2270_s{
 void chTiptup_update(Actor *this);
 Actor *actor_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
 
-ActorInfo chTiptup = {
+ActorInfo gChTiptup = {
     MARKER_19A_TIPTUP, ACTOR_27A_TIPTUP, ASSET_3F8_MODEL_TIPTUP,
     0, NULL,
     chTiptup_update, NULL, actor_draw,
     0, 0, 2.5f, 0
 };
-s16 D_80390854[] = {0, 0xC78, 0xC7A, 0xC7C}; //see again texts
-s16 D_8039085C[] = {0, 0xC77, 0xC79, 0xC7B}; //success texts
+s16 D_80390854[] = {0, ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT, ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT, ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT}; //see again texts
+s16 D_8039085C[] = {0, ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE, ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE, ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE}; //success texts
 u8  D_80390864[] = {3, 3, 5, 7};              //chchoirgame_sequence_length
 f32 D_80390868[3] = {0.0f, 100.0f, -1020.0f}; //chchoirgame_jiggy_position
 
@@ -77,21 +77,21 @@ void chTiptup_textEvent(ActorMarker *this, enum asset_e text_id, s32 arg2){
 
     thisActor = marker_getActor(this);
     switch(text_id){
-        case 0xc72:
-        case 0xc74:
+        case ASSET_C72_DIALOG_TIPTUP_MEET_1:
+        case ASSET_C74_DIALOG_TIPTUP_MEET_3:
             chTiptup_setState(thisActor, 3);
             break;
-        case 0xc78:
-        case 0xc7a:
-        case 0xc7c:
+        case ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT:
+        case ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT:
+        case ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT:
             chTiptup_setState(thisActor, 4);
             break;
-        case 0xc77:
-        case 0xc79:
+        case ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE:
+        case ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE:
             func_80324E38(0.0f, 0);
             chTiptup_setState(thisActor, 3);
             break;
-        case 0xc7b:
+        case ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE:
             timedFunc_set_0(0.0f, chTiptup_jiggySpawn);
             timed_exitStaticCamera(2.5f);
             func_80324E38(2.5f, 0);
@@ -147,10 +147,10 @@ void chTiptup_setState(Actor *this, s32 arg1){
             this->has_met_before = TRUE;
 
             if (unqPtr->unkA == 0) {
-                gcdialog_showDialog(ASSET_C72_DIALOG_UNKNOWN, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showDialog(ASSET_C72_DIALOG_TIPTUP_MEET_1, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
             }
             else {
-                gcdialog_showDialog(ASSET_C74_DIALOG_UNKNOWN, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
+                gcdialog_showDialog(ASSET_C74_DIALOG_TIPTUP_MEET_3, 0xf, this->position, this->marker, chTiptup_textEvent, 0);
             }
         }
         else {
@@ -176,7 +176,7 @@ void chTiptup_setState(Actor *this, s32 arg1){
         
         timed_exitStaticCamera(tmpf += 2.5);
         if(!unqPtr->unkA && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
-            func_80324DBC(tmpf + 0.5, 0xc73, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
+            func_80324DBC(tmpf + 0.5, ASSET_C73_DIALOG_TIPTUP_MEET_2, 0xe, this->position, this->marker, chTiptup_textEvent, 0);
             unqPtr->unkA = 1;
         }
         func_80324E38(sp54 = tmpf + 0.6, 0);
@@ -235,7 +235,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
     thisActor = marker_getActor(this);
     unqPtr = (ActorLocal_Tiptup *)&thisActor->local;
     if((s32)unqPtr->unk0 >= (s32) vector_size(unqPtr->unk4)){
-        if(!mapSpecificFlags_get(0) && gcdialog_showDialog(ASSET_C76_DIALOG_UNKNOWN, 0, 0, 0, 0, 0))
+        if(!mapSpecificFlags_get(0) && gcdialog_showDialog(ASSET_C76_DIALOG_CHOIR_MEMBER_HIT_AFTER_JIGGY, 0, 0, 0, 0, 0))
             mapSpecificFlags_set(0,1);
     }else{
         tmp = (Struct_BGS_2270_0s *)vector_at(unqPtr->unk4, unqPtr->unk0);
@@ -245,7 +245,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
         else{
             func_8028F55C(1, thisActor->marker);
             timedFunc_set_0(0.5f, chTiptup_sfxIncorrectHit);
-           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && gcdialog_showDialog(0xc75, 0, NULL, NULL, NULL, NULL))
+           if(!mapSpecificFlags_get(1) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && gcdialog_showDialog(ASSET_C75_DIALOG_TIPTUP_MISS, 0, NULL, NULL, NULL, NULL))
                mapSpecificFlags_set(1,TRUE);
         }
     }
@@ -342,7 +342,7 @@ void chTiptup_update(Actor *this){
         if(this->state == 6){
             if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
-                gcdialog_showDialog(0xc7d, 4, 0, 0, 0, 0);
+                gcdialog_showDialog(ASSET_C7D_DIALOG_TIPTUP_MEET_AFTER_JIGGY, 4, 0, 0, 0, 0);
             }
         }
     }

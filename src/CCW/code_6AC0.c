@@ -61,7 +61,7 @@ void func_8038CEB0(Actor *this, s32 next_state) {
         this->marker->propPtr->unk8_3 = FALSE;
         skeletalAnim_set(this->unk148, 0x1A7, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        gcdialog_showDialog(0xCD0, 0x24, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(ASSET_CD0_DIALOG_GNAWTY_COMPLETE_SUMMER, 0x24, NULL, NULL, NULL, NULL);
     }
     if (next_state == 3) {
         skeletalAnim_set(this->unk148, 0x1A8, 0.2f, 0.5f);

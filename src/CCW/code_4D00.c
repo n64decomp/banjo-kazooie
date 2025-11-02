@@ -90,7 +90,7 @@ void func_8038B19C(Actor *this) {
     }
     if (!this->has_met_before && func_803292E0(this)) {
         this->has_met_before = TRUE;
-        gcdialog_showDialog(0xCC8, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(ASSET_CC8_DIALOG_NABNUT_MEET_SPRING, 0, NULL, NULL, NULL, NULL);
     }
     func_8028E668(this->position, 300.0f, -50.0f, 120.0f);
 }

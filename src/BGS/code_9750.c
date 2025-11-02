@@ -7,53 +7,53 @@ void timed_exitStaticCamera(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 void func_8028E668(f32[3], f32, f32, f32);
 
-void func_8038FBF8(Actor *);
+void chTanktupLeg_update(Actor *);
 
 
-ActorAnimationInfo D_80390C70[3] = {
+ActorAnimationInfo chTanktupLegFrontLeftAnimations[3] = {
     {0, 0.0f},
     {0x103, 8000000.0f},
     {0x103, 0.75f}
 };
 
-ActorInfo D_80390C88 = {MARKER_6D_TANKTUP_LEG, ACTOR_E9_TANKTUP_LEG_FL, ASSET_3EF_MODEL_TANKTUP_LEG_FL, 0x01, D_80390C70,
-    func_8038FBF8, actor_update_func_80326224, actor_draw,
+ActorInfo gChTanktupLegFrontLeft = {MARKER_6D_TANKTUP_LEG, ACTOR_E9_TANKTUP_LEG_FL, ASSET_3EF_MODEL_TANKTUP_LEG_FL, 0x01, chTanktupLegFrontLeftAnimations,
+    chTanktupLeg_update, actor_update_func_80326224, actor_draw,
     0, 0x166, 0.0f, 0
 };
 u8 pad_80390CCC[4] = {0};
 
-ActorAnimationInfo BGS_D_80390CB0[3] = {
+ActorAnimationInfo chTanktupLegBackLeftAnimations[3] = {
     {0, 0.0f},
     {0x104, 8000000.0f},
     {0x104, 0.75f}
 };
 
-ActorInfo D_80390CC8 = {MARKER_6D_TANKTUP_LEG, ACTOR_EA_TANKTUP_LEG_BL, ASSET_3F0_MODEL_TANKTUP_LEG_BL, 0x01, BGS_D_80390CB0,
-    func_8038FBF8, actor_update_func_80326224, actor_draw,
+ActorInfo gChTanktupLegBackLeft = {MARKER_6D_TANKTUP_LEG, ACTOR_EA_TANKTUP_LEG_BL, ASSET_3F0_MODEL_TANKTUP_LEG_BL, 0x01, chTanktupLegBackLeftAnimations,
+    chTanktupLeg_update, actor_update_func_80326224, actor_draw,
     0, 0x166, 0.0f, 0
 };
 u8 pad_80390CEC[4] = {0};
 
-ActorAnimationInfo BGS_D_80390CF0[3] = {
+ActorAnimationInfo chTanktupLegFrontRightAnimations[3] = {
     {0, 0.0f},
     {0x105, 8000000.0f},
     {0x105, 0.75f}
 };
 
-ActorInfo D_80390D08 = {MARKER_6D_TANKTUP_LEG, ACTOR_EB_TANKTUP_LEG_FR, ASSET_3F1_MODEL_TANKTUP_LEG_FR, 0x01, BGS_D_80390CF0,
-    func_8038FBF8, actor_update_func_80326224, actor_draw,
+ActorInfo gChTanktupLegFrontRight = {MARKER_6D_TANKTUP_LEG, ACTOR_EB_TANKTUP_LEG_FR, ASSET_3F1_MODEL_TANKTUP_LEG_FR, 0x01, chTanktupLegFrontRightAnimations,
+    chTanktupLeg_update, actor_update_func_80326224, actor_draw,
     0, 0x166, 0.0f, 0
 };
 u8 pad_80390C2C[4] = {0};
 
-ActorAnimationInfo D_80390C30[3] = {
+ActorAnimationInfo chTanktupLegBackRightAnimations[3] = {
     {0, 0.0f},
     {0x106, 8000000.0f},
     {0x106, 0.75f}
 };
 
-ActorInfo D_80390D48 = {MARKER_6D_TANKTUP_LEG, ACTOR_EC_TANKTUP_LEG_BR, ASSET_3F2_MODEL_TANKTUP_LEG_BR, 0x01, D_80390C30,
-    func_8038FBF8, actor_update_func_80326224, actor_draw,
+ActorInfo gChTanktupLegBackRight = {MARKER_6D_TANKTUP_LEG, ACTOR_EC_TANKTUP_LEG_BR, ASSET_3F2_MODEL_TANKTUP_LEG_BR, 0x01, chTanktupLegBackRightAnimations,
+    chTanktupLeg_update, actor_update_func_80326224, actor_draw,
     0, 0x166, 0.0f, 0
 };
 
@@ -77,7 +77,7 @@ void BGS_func_8038FB84(ActorMarker *this, ActorMarker *other_marker){
     this->collidable = FALSE;
 }
 
-void func_8038FBF8(Actor *this){
+void chTanktupLeg_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;

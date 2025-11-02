@@ -46,7 +46,7 @@ void func_8038BADC(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
                 return;
             }
         }
-        gcdialog_showDialog(ASSET_D38_DIALOG_EMPTY, 0xC, this->position, this->marker, func_8038BADC, NULL);
+        gcdialog_showDialog(ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED, 0xC, this->position, this->marker, func_8038BADC, NULL);
         return;
     }
     subaddie_set_state(this, 1);

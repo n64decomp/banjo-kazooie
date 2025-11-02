@@ -251,7 +251,7 @@ void __chSmBottles_textCallback(ActorMarker *marker, enum asset_e text_id, s32 a
         }
 
         switch (text_id) {
-            case ASSET_D38_DIALOG_EMPTY:
+            case ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED:
                 break;
 
             case ASSET_DF3_DIALOG_BOTTLES_INTRODUCTION: /* 2FB8 803893A8 3C188039 */
@@ -279,7 +279,7 @@ void __chSmBottles_textCallback(ActorMarker *marker, enum asset_e text_id, s32 a
 
             default:
                 if (actor->state != SM_BOTTLES_STATE_5_UNKNOWN) {
-                    gcdialog_showDialog(ASSET_D38_DIALOG_EMPTY, 0x4, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(ASSET_D38_DIALOG_BOTTLES_ALL_MOVES_LEARNED, 0x4, NULL, NULL, NULL, NULL);
                 }
 
                 __chSmBottles_setState(actor, actor->state == SM_BOTTLES_STATE_5_UNKNOWN ? SM_BOTTLES_STATE_1_UNKNOWN : SM_BOTTLES_STATE_4_UNKNOWN);

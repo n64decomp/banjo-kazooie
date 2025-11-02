@@ -125,11 +125,11 @@ void bsjig_jiggy_end(void){
         else{//L802B0E34
             switch(sp24){
                 case 0x13:
-                    sp2C = VER_SELECT(0xa16, 0x916, 0, 0);
+                    sp2C = VER_SELECT(ASSET_A16_DIALOG_LOCKUP_GRUNTY_RESPONSE, 0x916, 0, 0);
                     break;
                 case 0x17:
                     if(!levelSpecificFlags_get(LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN) || !levelSpecificFlags_get(LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN))
-                        sp2C = VER_SELECT(0xd2d, 0xa00, 0, 0);
+                        sp2C = VER_SELECT(ASSET_D2D_DIALOG_CLANKER_COLLECT_JIGGY, 0xa00, 0, 0);
                     break;
             }
         }//L802B0E88

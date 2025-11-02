@@ -69,14 +69,14 @@ void func_80390630(Actor *this){
         if (subaddie_playerIsWithinSphereAndActive(this, 350)) {
             if (player_getTransformation() == TRANSFORM_4_WALRUS) {
                 if (!levelSpecificFlags_get(LEVEL_FLAG_31_FP_UNKNOWN)) {
-                    if (gcdialog_showDialog(ASSET_C27_DIALOG_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                    if (gcdialog_showDialog(ASSET_C27_DIALOG_WOZZA_CAVE_MEET_AS_WALRUS, 0x23, NULL, NULL, NULL, NULL)) {
                         levelSpecificFlags_set(LEVEL_FLAG_31_FP_UNKNOWN, TRUE);
                     }
                 }
             }
             else {
                 if (!levelSpecificFlags_get(LEVEL_FLAG_32_FP_UNKNOWN)) {
-                    if (gcdialog_showDialog(ASSET_C26_DIALOG_UNKNOWN, 0x23, NULL, NULL, NULL, NULL)) {
+                    if (gcdialog_showDialog(ASSET_C26_DIALOG_WOZZA_CAVE_MEET_AS_BEAR, 0x23, NULL, NULL, NULL, NULL)) {
                         levelSpecificFlags_set(LEVEL_FLAG_32_FP_UNKNOWN, TRUE);
                     }
                 }

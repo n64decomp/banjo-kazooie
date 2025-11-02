@@ -322,7 +322,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
         }
         else{//L8038CEFC
             timedFunc_set_3(2.4f, (GenFunction_3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 0x1f40, 0x12C);
-            func_80324DBC(2.4f, 0xb9e, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
+            func_80324DBC(2.4f, ASSET_B9E_DIALOG_BOSS_BOOM_BOX_MEET, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
         }
     }//L8038CF60
 
@@ -367,7 +367,7 @@ void RBB_func_8038CC9C(Actor *this, s32 new_state){
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
-                    gcdialog_showDialog(ASSET_B9F_DIALOG_UNKNOWN, 4, 0, 0, 0, 0);
+                    gcdialog_showDialog(ASSET_B9F_DIALOG_BOSS_BOOM_BOX_COMPLETE, 4, 0, 0, 0, 0);
                 }
             }//L8038D278
         }

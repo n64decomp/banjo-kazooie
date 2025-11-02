@@ -33,7 +33,7 @@ enum bundle_e D_80390B50[6] = {
     BUNDLE_C_BGS_HUT_JIGGY
 };
 
-ActorInfo chMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, chMudHutAnimations,
+ActorInfo gChMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_MM_HUT_TOP, 0x01, chMudHutAnimations,
     chMudHut_update, actor_update_func_80326224, chMudHut_draw,
     0, 0, 0.0f, 0
 };

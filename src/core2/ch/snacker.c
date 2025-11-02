@@ -80,7 +80,7 @@ static void __chsnacker_start_dialog(Actor *this) {
             text_index = mapSpecificFlags_getN(8, 3);
             if( !this->has_met_before ) {
                 if(text_index < 4) {
-                    if(gcdialog_showDialog(0xA1B + text_index, 0, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showDialog(ASSET_A1B_DIALOG_SNACKER_SPAWNED_1 + text_index, 0, NULL, NULL, NULL, NULL)){
                         text_index++;
                         mapSpecificFlags_setN(8, text_index, 3);
                         this->has_met_before = TRUE;
@@ -156,7 +156,7 @@ static void __chsnacker_ow(ActorMarker *marker, ActorMarker *other){
 
     this = marker_getActor(marker);
     if(level_get() == LEVEL_2_TREASURE_TROVE_COVE && !player_isDead()){
-        gcdialog_showDialog(0xA29, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(ASSET_A29_DIALOG_SNACKER_BITE, 0, NULL, NULL, NULL, NULL);
     }//L802E10A4
 
     if(this->state == 4){

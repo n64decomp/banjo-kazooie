@@ -19,10 +19,10 @@ ActorAnimationInfo chSwampSwitchAnimations[] = {
     { ASSET_D5_ANIM_SWITCH_UP, 1e+8f }
 };
 
-ActorInfo chLongSwampSwitch = { 
+ActorInfo gChLongSwampSwitch = { 
     MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH, ACTOR_14E_BGS_ELEVATED_WALKWAY_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 
     1, chSwampSwitchAnimations, chLongSwampSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0 }; 
-ActorInfo chShortSwampSwitch = { MARKER_FD_BGS_MAZE_SWITCH, ACTOR_1FB_BGS_MAZE_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 
+ActorInfo gChShortSwampSwitch = { MARKER_FD_BGS_MAZE_SWITCH, ACTOR_1FB_BGS_MAZE_SWITCH, ASSET_3F5_BGS_JIGGY_SWITCH, 
     1, chSwampSwitchAnimations, chShortSwampSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
 
 void chLongSwampSwitch_jiggySpawn(void) {

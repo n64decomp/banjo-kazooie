@@ -63,7 +63,7 @@ static void __chBlubber_showTextCallback(ActorMarker *caller, enum asset_e text_
     Actor *this = marker_getActor(caller);
     ActorLocal_Blubber *local =  (ActorLocal_Blubber*)&this->local;
 
-    if(text_id == ASSET_A0D_DIALOG_BLUBBER_COMPLETE || text_id == ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED){
+    if(text_id == ASSET_A0D_DIALOG_BLUBBER_COMPLETE || text_id == ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED){
         local->unk24 = 0;
     }
     else{
@@ -89,7 +89,7 @@ static void __chBlubber_showJiggySpawnedText(ActorMarker *marker){
     this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_DIALOG_BLUBBER_COMPLETE;
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_DIALOG_BLUBBER_COMPLETE;
         gcdialog_showDialog(text_id, 0xf, this->position, this->marker, __chBlubber_showTextCallback, __chBlubber_showTextCallback2);
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN, TRUE);
     }
