@@ -431,6 +431,13 @@ progressDialog_showDialogMaskZero               = 0x803568ac;
 progressDialog_showDialogMaskFour               = 0x803568cc;
 progressDialog_setAndTriggerDialog_4 = 0x803569a0;
 
+/* core2/file.c */
+file_getByte_ifExpected = 0x8034B490;
+file_isNextByteExpected = 0x8034B3E8;
+file_getShort_ifExpected = 0x8034B670;
+file_getFloat = 0x8034B170;
+file_getWord_ifExpected = 0x8034B5A0;
+file_getNFloats_ifExpected = 0x8034B558;
 
 core2_TEXT_END              = 0x80363a00;
 
