@@ -27,27 +27,27 @@ ActorAnimationInfo chPinkEggAnimations[4] = {
     {0x10B, 2.0f}
 };
 
-ActorInfo chPinkEggLargest = {MARKER_6E_PINK_EGG_LARGEST, ACTOR_5B_PINK_EGG_LARGEST, ASSET_380_MODEL_PINK_EGG_LARGEST, 0x01, chPinkEggAnimations,
+ActorInfo gChPinkEggLargest = {MARKER_6E_PINK_EGG_LARGEST, ACTOR_5B_PINK_EGG_LARGEST, ASSET_380_MODEL_PINK_EGG_LARGEST, 0x01, chPinkEggAnimations,
     chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 6.0f, 0
 };
 
-ActorInfo chPinkEggLarge = {MARKER_D6_PINK_EGG_LARGE, ACTOR_ED_PINK_EGG_LARGE, ASSET_381_MODEL_PINK_EGG_LARGE, 0x01, chPinkEggAnimations,
+ActorInfo gChPinkEggLarge = {MARKER_D6_PINK_EGG_LARGE, ACTOR_ED_PINK_EGG_LARGE, ASSET_381_MODEL_PINK_EGG_LARGE, 0x01, chPinkEggAnimations,
     chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 5.0f, 0
 };
 
-ActorInfo chPinkEggMedium = {MARKER_D7_PINK_EGG_MEDIUM, ACTOR_EE_PINK_EGG_MEDIUM, ASSET_382_MODEL_PINK_EGG_MEDIUM, 0x01, chPinkEggAnimations,
+ActorInfo gChPinkEggMedium = {MARKER_D7_PINK_EGG_MEDIUM, ACTOR_EE_PINK_EGG_MEDIUM, ASSET_382_MODEL_PINK_EGG_MEDIUM, 0x01, chPinkEggAnimations,
     chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 4.0f, 0
 };
 
-ActorInfo chPinkEggSmall = {MARKER_D8_PINK_EGG_SMALL, ACTOR_EF_PINK_EGG_SMALL, ASSET_383_MODEL_PINK_EGG_SMALL, 0x01, chPinkEggAnimations,
+ActorInfo gChPinkEggSmall = {MARKER_D8_PINK_EGG_SMALL, ACTOR_EF_PINK_EGG_SMALL, ASSET_383_MODEL_PINK_EGG_SMALL, 0x01, chPinkEggAnimations,
     chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 3.0f, 0
 };
 
-ActorInfo chPinkEggSmallest = {MARKER_D9_PINK_EGG_SMALLEST, ACTOR_F0_PINK_EGG_SMALLEST, ASSET_384_MODEL_PINK_EGG_SMALLEST, 0x01, chPinkEggAnimations,
+ActorInfo gChPinkEggSmallest = {MARKER_D9_PINK_EGG_SMALLEST, ACTOR_F0_PINK_EGG_SMALLEST, ASSET_384_MODEL_PINK_EGG_SMALLEST, 0x01, chPinkEggAnimations,
     chPinkEgg_update, actor_update_func_80326224, chPinkEgg_draw,
     0, 0x2CC, 2.0f, 0
 };

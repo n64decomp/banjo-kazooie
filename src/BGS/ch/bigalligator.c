@@ -9,7 +9,7 @@
 void chLargeCrocodile_init(Actor *);
 
 /* .data */
-ActorInfo chLargeCrocodile = {MARKER_DC_BIG_ALLIGATOR, ACTOR_F6_BIG_ALLIGATOR, ASSET_397_MODEL_BIG_ALLIGATOR, 0x01, NULL,
+ActorInfo gChLargeCrocodile = {MARKER_DC_BIG_ALLIGATOR, ACTOR_F6_BIG_ALLIGATOR, ASSET_397_MODEL_BIG_ALLIGATOR, 0x01, NULL,
     chLargeCrocodile_init, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };

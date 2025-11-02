@@ -35,7 +35,7 @@ void func_8038A068(Actor *this, s32 next_state);
 void chvilegame_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390960 = {
+ActorInfo gChVileGame = {
     MARKER_C6_VILE_GAME_CTRL, ACTOR_138_VILE_GAME_CTRL, 0,
     0, NULL,
     chvilegame_update, NULL, func_80325340,

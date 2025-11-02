@@ -127,7 +127,7 @@ void func_803870F8(Actor *this){
     else if(this->state == 2 && 1.0f <= local->unk8){
         flagCnt = levelSpecificFlags_get(LEVEL_FLAG_0_CC_TOKEN_TOOTH_OPEN) + levelSpecificFlags_get(LEVEL_FLAG_1_CC_JIGGY_TOOTH_OPEN);
         if(!jiggyscore_isCollected(JIGGY_1B_CC_TOOTH)){
-            gcdialog_showDialog((local->unk0 == 1)? ((flagCnt == 0)? 0xd30 : 0xd31) : ((flagCnt == 0)? 0xd2e : 0xd2f), 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog((local->unk0 == 1)? ((flagCnt == 0)? ASSET_D30_DIALOG_CLANKER_RIGHT_TOOTH_FIRST : ASSET_D31_DIALOG_CLANKER_RIGHT_TOOTH_SECOND) : ((flagCnt == 0)? ASSET_D2E_DIALOG_CLANKER_LEFT_TOOTH_FIRST : ASSET_D2F_DIALOG_CLANKER_LEFT_TOOTH_SECOND), 4, NULL, NULL, NULL, NULL);
         }
         CC_func_80386FE0(this, 3);
     }//L80387474

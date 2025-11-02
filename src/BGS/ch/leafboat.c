@@ -22,7 +22,7 @@ Actor *chLeafBoat_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **Vtx);
 /* .data section */
 u8 D_80390DA0[6] = {0, 0, 0, 1, 1, 1};
 
-ActorInfo chLeafBoat = {MARKER_DA_LEAF_BOAT, ACTOR_F1_LEAF_BOAT, ASSET_30D_MODEL_LEAF_BOAT, 
+ActorInfo gChLeafBoat = {MARKER_DA_LEAF_BOAT, ACTOR_F1_LEAF_BOAT, ASSET_30D_MODEL_LEAF_BOAT, 
     0x01, NULL,
     chLeafBoat_update, chLeafBoat_update, chLeafBoat_draw,
     0, 0, 0.0f, 0

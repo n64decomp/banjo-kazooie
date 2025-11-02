@@ -29,14 +29,14 @@ void func_80389A20(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void func_80389A60(Actor *this){
-    gcdialog_showDialog(ASSET_A70_DIALOG_CHARMER_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
+    gcdialog_showDialog(ASSET_A70_DIALOG_RUBEE_HELPED, 4, NULL, this->marker, func_80389A20, NULL);
     this->has_met_before = TRUE;
     subaddie_set_state(this, 5);
 }
 
 void func_80389ABC(Actor *this){
     if(this->unk138_23){
-        func_80389A20(this->marker, ASSET_A70_DIALOG_CHARMER_HELPED, -1);
+        func_80389A20(this->marker, ASSET_A70_DIALOG_RUBEE_HELPED, -1);
     }
     else{
         this->unk138_23 = TRUE;
@@ -63,7 +63,7 @@ void func_80389B1C(Actor *this){
 
     if(this->state == 1 || this->state == 2){
         if(! this->has_met_before && subaddie_playerIsWithinSphereAndActive(this, 250) && !subaddie_playerIsWithinSphereAndActive(this, 0x50)){
-            gcdialog_showDialog(ASSET_A6F_DIALOG_CHARMER_MEET, 0xe, this->position, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_A6F_DIALOG_RUBEE_MEET, 0xe, this->position, NULL, NULL, NULL);
             this->has_met_before = TRUE;
             mapSpecificFlags_set(0, TRUE);
         }

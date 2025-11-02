@@ -14,13 +14,13 @@ extern void gcStaticCamera_activate(s32 arg0);
 
 
 void func_80387D18(ActorMarker *, u32);
-Actor *func_8038860C(ActorMarker *, Gfx**, Mtx **, Vtx**);
-void func_80387FD4(Actor *this);
+Actor *chCroctus_draw(ActorMarker *, Gfx**, Mtx **, Vtx**);
+void chCroctus_updat(Actor *this);
 
 /* .data */
 s16 D_803907B0[4] = {0x15, 0x16, 0x17, 0x18};
 ActorMarker *bgs_D_803907B8[5] = {NULL};
-ActorAnimationInfo D_803907CC[] = {
+ActorAnimationInfo chCroctusAnimations[] = {
     {0x000, 0.0f},
     {0x14B, 3.3e+7f},
     {0x14B, 1.4f},
@@ -29,9 +29,9 @@ ActorAnimationInfo D_803907CC[] = {
     {0x14B, 2.0f},
     {0x14B, 2.0f}
 };
-ActorInfo D_80390804 ={MARKER_FC_CROCTUS, ACTOR_1FA_CROCTUS, ASSET_425_MODEL_CROCTUS,
-    1, D_803907CC,
-    func_80387FD4, actor_update_func_80326224, func_8038860C,
+ActorInfo gChCroctus ={MARKER_FC_CROCTUS, ACTOR_1FA_CROCTUS, ASSET_425_MODEL_CROCTUS,
+    1, chCroctusAnimations,
+    chCroctus_updat, actor_update_func_80326224, chCroctus_draw,
     0, 0, 0.0f, 0
 };
 
@@ -53,7 +53,7 @@ void func_80387D18(ActorMarker * arg0, u32 arg1){
     if(arg0);
 }
 
-void *func_80387D90(ActorMarker * arg0){
+void *chCroctus_jiggySpawn(ActorMarker * arg0){
     ActorMarker *marker;
     Actor* this;
     f32 spawnPos[3];
@@ -64,7 +64,7 @@ void *func_80387D90(ActorMarker * arg0){
     spawnPos[1] = this->position_y;
     spawnPos[2] = this->position_z;
     marker->propPtr->unk8_3 = 0;
-    gcStaticCamera_activate(0x19);
+    gcStaticCamera_activate(0x19); //related to temporary switch to fixed camera
     jiggy_spawn(JIGGY_22_CROCTUS, spawnPos);
     coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 }
@@ -86,7 +86,7 @@ void func_80387E40(ActorMarker * arg0){
 void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this;
 
-    if(text_id == 0xC86){
+    if(text_id == ASSET_C86_DIALOG_CROCTUS_FIRST_SUCCESS){
         this = marker_getActor(caller);
         timed_playSfx(0.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000);
         timed_playSfx(1.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000);
@@ -97,7 +97,7 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
         bgs_D_803907B8[this->actorTypeSpecificField]->propPtr->unk8_4 = TRUE;
         timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->actorTypeSpecificField]));
         timed_setStaticCameraToNode(0.8f, 9);
-        func_80324DBC(3.4f, 0xC87, 0xE, NULL, NULL, func_80387E68, NULL);
+        func_80324DBC(3.4f, ASSET_C87_DIALOG_CROCTUS_SECOND_SPAWN, 0xE, NULL, NULL, func_80387E68, NULL);
         __spawnQueue_add_2((GenFunction_2) func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
     }
     else{
@@ -106,7 +106,7 @@ void func_80387E68(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     }
 }
 
-void func_80387FD4(Actor *this){
+void chCroctus_updat(Actor *this){
     int j;
 
     if(!this->volatile_initialized){
@@ -143,7 +143,7 @@ void func_80387FD4(Actor *this){
             coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
             if (this->actorTypeSpecificField == 1) {
                 func_8028F94C(2, this->position);
-                gcdialog_showDialog(ASSET_C86_DIALOG_UNKNOWN, 0xE, this->position, this->marker, func_80387E68, NULL);
+                gcdialog_showDialog(ASSET_C86_DIALOG_CROCTUS_FIRST_SUCCESS, 0xE, this->position, this->marker, func_80387E68, NULL);
                 subaddie_set_state_with_direction(this, 6, 0.79f, 1);
             } else {
                 timed_playSfx(0.4f, SFX_C9_PAUSEMENU_ENTER, 1.0f, 32000); //0.4f
@@ -161,7 +161,7 @@ void func_80387FD4(Actor *this){
                     timedFunc_set_1(1.1f, (GenFunction_1)func_80387E00, reinterpret_cast(s32, bgs_D_803907B8[this->actorTypeSpecificField]));
                     gcStaticCamera_activate(D_803907B0[this->actorTypeSpecificField-1]);
                 } else {
-                    timedFunc_set_1(0.8f, (GenFunction_1)func_80387D90, (s32) this->marker);
+                    timedFunc_set_1(0.8f, (GenFunction_1)chCroctus_jiggySpawn, (s32) this->marker);
                 }
                 __spawnQueue_add_2((GenFunction_2)func_80387D18, reinterpret_cast(s32, this->marker), 0x46);
             }
@@ -224,7 +224,7 @@ void BGS_func_803885DC(void){
         bgs_D_803907B8[i] = 0;
 }
 
-Actor *func_8038860C(ActorMarker *this, Gfx** gdl, Mtx ** mptr, Vtx **vtx){
+Actor *chCroctus_draw(ActorMarker *this, Gfx** gdl, Mtx ** mptr, Vtx **vtx){
     Actor *thisActor; 
     thisActor = marker_getActor(this);
     func_8033A45C(1, thisActor->actorTypeSpecificField);

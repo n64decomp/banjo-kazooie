@@ -24,13 +24,13 @@ typedef struct chyumblie_s{
     ActorMarker *game_marker;
 } ActorLocal_Yumblie;
 
-void chyumblie_set_state(Actor*, enum chyumblie_state_e);
-void chyumblie_update(Actor *);
-Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
+void chYumblie_setState(Actor*, enum chyumblie_state_e);
+void chYumblie_update(Actor *);
+Actor *chYumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390A40 = {MARKER_C7_YUMBLIE, ACTOR_139_YUMBLIE, ASSET_3F6_MODEL_YUMBLIE, 0x00, NULL,
-    chyumblie_update, NULL, chyumblie_draw,
+ActorInfo gChYumblie = {MARKER_C7_YUMBLIE, ACTOR_139_YUMBLIE, ASSET_3F6_MODEL_YUMBLIE, 0x00, NULL,
+    chYumblie_update, NULL, chYumblie_draw,
     0, 0, 0.0f, 0
 };
 
@@ -53,7 +53,7 @@ bool func_8038B160(Actor *this){
     return BOOL(randf() >= 0.5);
 }
 
-void chyumblie_set_state(Actor* this, enum chyumblie_state_e next_state){
+void chYumblie_setState(Actor* this, enum chyumblie_state_e next_state){
 
     ActorLocal_Yumblie *s0;
     s0 = (ActorLocal_Yumblie *)&this->local;
@@ -100,7 +100,7 @@ bool chyumblie_is_edible(ActorMarker * arg0){
     return (actPtr->state >= 2) && (actPtr->state < 5);
 }
 
-Actor *chyumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
+Actor *chYumblie_draw(ActorMarker *this, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     Actor *thisActor;
     ActorLocal_Yumblie *sp40;
     f32 sp44[3];
@@ -134,14 +134,14 @@ bool func_8038B684(ActorMarker * arg0){
     Actor* actPtr = marker_getActor(arg0);
 
     if( actPtr->state < 5){
-        chyumblie_set_state(actPtr, YUMBLIE_STATE_5_BEING_EATEN);
+        chYumblie_setState(actPtr, YUMBLIE_STATE_5_BEING_EATEN);
         return TRUE;
     }
 
     return FALSE;
 }
 
-void chyumblie_update(Actor *this){
+void chYumblie_update(Actor *this){
     ActorLocal_Yumblie *s0;
     f32 sp50;
     f32 sp4C;
@@ -156,7 +156,7 @@ void chyumblie_update(Actor *this){
         s0->unk0 = 0.0f;
         s0->unk4 = 0;
         s0->game_marker = NULL;
-        chyumblie_set_state(this, YUMBLIE_STATE_1_UNDER_GROUND);
+        chYumblie_setState(this, YUMBLIE_STATE_1_UNDER_GROUND);
         return;
     }
 
@@ -167,10 +167,10 @@ void chyumblie_update(Actor *this){
     if(this->state == YUMBLIE_STATE_1_UNDER_GROUND){
         if(ml_timer_update(&s0->unk8, sp4C)){
             if(mapSpecificFlags_get(6) && (12 > chvilegame_get_piece_count(s0->game_marker))){
-                chyumblie_set_state(this, YUMBLIE_STATE_2_APPEAR);
+                chYumblie_setState(this, YUMBLIE_STATE_2_APPEAR);
             }
             else{
-                chyumblie_set_state(this, YUMBLIE_STATE_1_UNDER_GROUND);
+                chYumblie_setState(this, YUMBLIE_STATE_1_UNDER_GROUND);
             }
         }
     }
@@ -192,13 +192,13 @@ void chyumblie_update(Actor *this){
 
         if( 0 < skeletalAnim_getLoopCount(this->unk148)){
             s0->unk0 = 1.0f;
-            chyumblie_set_state(this,YUMBLIE_STATE_3_ABOVE_GROUND);
+            chYumblie_setState(this,YUMBLIE_STATE_3_ABOVE_GROUND);
         }
 
     }
     if(this->state == YUMBLIE_STATE_3_ABOVE_GROUND){
         if( ml_timer_update(&s0->unk8,sp4C) || !mapSpecificFlags_get(6) ){
-            chyumblie_set_state(this,YUMBLIE_STATE_4_DISAPPEAR);
+            chYumblie_setState(this,YUMBLIE_STATE_4_DISAPPEAR);
         }
     }
 
@@ -208,13 +208,13 @@ void chyumblie_update(Actor *this){
         
         if(0.0f >= s0->unk0){
             s0->unk0 = 0.0f;
-            chyumblie_set_state(this,YUMBLIE_STATE_1_UNDER_GROUND);
+            chYumblie_setState(this,YUMBLIE_STATE_1_UNDER_GROUND);
         }   
     }
 
     if(this->state == YUMBLIE_STATE_5_BEING_EATEN){
         if( ml_timer_update(&s0->unk8,sp4C)){
-            chyumblie_set_state(this,YUMBLIE_STATE_1_UNDER_GROUND);
+            chYumblie_setState(this,YUMBLIE_STATE_1_UNDER_GROUND);
         }
     }
 }

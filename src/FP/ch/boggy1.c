@@ -85,8 +85,8 @@ void func_803877A8(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 void func_80387828(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
 
-    if (text_id == 0xc00) {
-        gcdialog_showDialog(ASSET_C2B_DIALOG_UNKNOWN, 0xf, NULL, this->marker, NULL, func_803877A8);
+    if (text_id == ASSET_C00_DIALOG_BOGGY_SAVED) {
+        gcdialog_showDialog(ASSET_C2B_DIALOG_BOGGY_SAVED_2, 0xf, NULL, this->marker, NULL, func_803877A8);
     }
 }
 
@@ -142,14 +142,14 @@ void func_8038794C(Actor *this){
             if(mapSpecificFlags_get(0x1)){
                 func_8028F94C(1, this->position);
                 timed_setStaticCameraToNode(0.0f, 0x12);
-                func_80324DBC(1.0f, 0xc00, 0xe, NULL, this->marker, func_80387828, func_803877A8);
+                func_80324DBC(1.0f, ASSET_C00_DIALOG_BOGGY_SAVED, 0xe, NULL, this->marker, func_80387828, func_803877A8);
                 func_803876A4(this);
                 break;
             }//L80387B38
 
             if(!this->has_met_before && subaddie_playerIsWithinSphereAndActive(this, 0x1f4)){
                 if(!player_movementGroup() || player_movementGroup() == BSGROUP_8_TROT){
-                    if (gcdialog_showDialog(ASSET_BFF_DIALOG_UNKNOWN, 0x2a, this->position, NULL, NULL, NULL)) {
+                    if (gcdialog_showDialog(ASSET_BFF_DIALOG_BOGGY_MEET, 0x2a, this->position, NULL, NULL, NULL)) {
                         for (i = 0; i < 5; i++) {
                             timedFunc_set_1(D_80391BEC[i], (GenFunction_1) func_8038787C, (s32) this->marker);
                         }

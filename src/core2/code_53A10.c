@@ -69,7 +69,7 @@ void func_802DAA14(Actor *this){
 
     if(!this->has_met_before){
         if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
-            text_id = ASSET_ADC_DIALOG_UNKNOWN;
+            text_id = ASSET_ADC_DIALOG_GRUNTY_ENTER_SHED;
         }
         else{
             if(gsworld_get_map() == MAP_69_GL_MM_LOBBY)

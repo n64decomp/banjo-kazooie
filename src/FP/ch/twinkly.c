@@ -336,11 +336,11 @@ void func_8038C9A0(Actor *this){
             if(this->unk1C[1] <= this->position_y){
                 this->position_y = this->unk1C[1];
                 if(!fileProgressFlag_get(FILEPROG_82_MET_TWINKLIES)){
-                    gcdialog_showDialog(0xc12, 0x2a, this->position, this->marker, func_8038C94C, NULL);
+                    gcdialog_showDialog(ASSET_C12_DIALOG_TWINKLIE_MINIGAME_START, 0x2a, this->position, this->marker, func_8038C94C, NULL);
                     fileProgressFlag_set(FILEPROG_82_MET_TWINKLIES, TRUE);
                 }
                 else{
-                    gcdialog_showDialog(0xc25, 0x2b, this->position, this->marker, func_8038C94C, NULL);
+                    gcdialog_showDialog(ASSET_C25_DIALOG_TWINKLIE_MINIGAME_RETRY, 0x2b, this->position, this->marker, func_8038C94C, NULL);
                 }
                 subaddie_set_state(this, 5);
                 this->pitch -= 3.0f;

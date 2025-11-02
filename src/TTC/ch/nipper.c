@@ -144,7 +144,7 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
         comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 0, 300);
         func_8025AABC(COMUSIC_12_TTC_NIPPER);
         func_8032BB88(this, -1, 300);
-        gcStaticCamera_activate(0x1C);
+        gcStaticCamera_activate(0x1C); //camera
         return;
     }
     
@@ -156,7 +156,7 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
 
     __chNipper_playDeathAnimation(this);
     this->lifetime_value = 80.0f;
-    gcdialog_showDialog(ASSET_A10_DIALOG_TTC_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showDialog(ASSET_A10_DIALOG_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -177,7 +177,7 @@ static void __chNipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_mar
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN)
             && this->has_met_before
-            && gcdialog_showDialog(0xa0f, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showDialog(ASSET_A0F_DIALOG_NIPPER_HIT_BY_EGG, 0, NULL, NULL, NULL, NULL)
         ){
             mapSpecificFlags_set(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN, TRUE);
         }
@@ -188,7 +188,7 @@ static void __chNipper_owFunc(ActorMarker * this_marker, ActorMarker *other_mark
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
         && this->has_met_before
-        && gcdialog_showDialog(0xa11, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showDialog(ASSET_A11_DIALOG_NIPPER_ATTACK, 0, NULL, NULL, NULL, NULL)
     ){
         this->unk138_23 = TRUE;
     }

@@ -59,7 +59,7 @@ void ability_use(enum ability_used ability) {
             play_ding = FALSE;
             if (!ability_isUnlocked(ABILITY_10_TALON_TROT)) {
                 if (gsworld_get_map() == MAP_2_MM_MUMBOS_MOUNTAIN) {
-                    dialog_id = ASSET_B4D_DIALOG_BOTTLES_SLIPPERY;
+                    dialog_id = ASSET_B4D_DIALOG_BOTTLES_MM_SLIP_ON_HILL;
                 } else {
                     return;
                 }

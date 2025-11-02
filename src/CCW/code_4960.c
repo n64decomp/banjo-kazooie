@@ -28,7 +28,7 @@ Struct_CCW_4960_0 D_8038F254[] = {
 /* .code */
 void func_8038AD50(Actor *this, s32 next_state) {
     if (next_state == 2) {
-        gcdialog_showDialog(0xCDD, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(ASSET_CDD_DIALOG_ADULT_EYRIE_COMPLETE_WINTER, 0, NULL, NULL, NULL, NULL);
         if (this->state == 1) {
             mapSpecificFlags_set(6, 0);
             timed_setStaticCameraToNode(0.0f, 1);

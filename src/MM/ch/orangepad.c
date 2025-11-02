@@ -112,7 +112,7 @@ void chOrangePad_update(Actor *this) {
         && !mapSpecificFlags_get(MM_SPECIFIC_FLAG_CONGA_WARNED_BLOCKS)
         && conga->state != CONGA_STATE_MOPEY) {
 
-        if (gcdialog_showDialog(ASSET_B3D_DIALOG_CONGA_DONT_TOUCH_BLOCKS, 0, NULL, NULL, NULL, NULL)) {
+        if (gcdialog_showDialog(ASSET_B3D_DIALOG_CONGA_TOUCH_PAD, 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(MM_SPECIFIC_FLAG_CONGA_WARNED_BLOCKS, TRUE);
         }
     }

@@ -45,9 +45,9 @@ void func_803865F4(Actor *this, s32 next_state) {
     local->unkC = 0.0f;
     if (next_state == 2) {
         if (!volatileFlag_getAndSet(VOLATILE_FLAG_B5, 1)) {
-            gcdialog_showDialog(0xCE2, 4, NULL, this->marker, func_803865C4, NULL);
+            gcdialog_showDialog(ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 4, NULL, this->marker, func_803865C4, NULL);
         } else {
-            gcdialog_showDialog(0xCE3, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CE3_DIALOG_ZUBBA_RETURN, 4, NULL, NULL, NULL, NULL);
             func_803865F4(this, 3);
             return;
         }
@@ -65,7 +65,7 @@ void func_803865F4(Actor *this, s32 next_state) {
             volatileFlag_set(VOLATILE_FLAG_3, 0);
             volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
         } else {
-            gcdialog_showDialog(0xCE4, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CE4_DIALOG_ZUBBA_COMPLETE, 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
             comusic_8025AB44(COMUSIC_4B_CCW_ZUBBA_FIGHT, 0, 400);
             func_8025AABC(COMUSIC_4B_CCW_ZUBBA_FIGHT);

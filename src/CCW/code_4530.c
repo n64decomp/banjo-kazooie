@@ -44,7 +44,7 @@ void func_8038A950(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, 0x199, 0.0f, 6.5f);
     }
     if (next_state == 2) {
-        gcdialog_showDialog(0xCDC, 0xA, this->position, this->marker, func_8038A920, NULL);
+        gcdialog_showDialog(ASSET_CDC_DIALOG_ADULT_EYRIE_MEET_WINTER, 0xA, this->position, this->marker, func_8038A920, NULL);
     }
     if (next_state == 3) {
         skeletalAnim_set(this->unk148, 0x19A, 0.0f, 7.0f);

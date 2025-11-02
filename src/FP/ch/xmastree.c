@@ -128,7 +128,7 @@ void chXmasTree_update(Actor *this){
             this->lifetime_value = 2.0f;
             coMusicPlayer_playMusic(COMUSIC_61_XMAS_TREE_LIGHTS_UP, 28000);
             gcStaticCamera_activate(0x1A);
-            gcdialog_showDialog(0xC14, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_C14_DIALOG_TWINKLIE_MINIGAME_LIGHT_TREE, 0, NULL, NULL, NULL, NULL);
             break;
 
         case 3: // L803872F0

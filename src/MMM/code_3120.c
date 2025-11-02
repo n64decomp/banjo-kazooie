@@ -54,7 +54,7 @@ void func_803895B0(s32 arg0) {
 }
 
 void func_803895D8(ActorMarker *caller, enum asset_e text_id, s32 arg2) {
-    if (text_id == 0xAD7) {
+    if (text_id == ASSET_AD7_DIALOG_NAPPER_AWAKE) {
         timed_playSfx(0.1f, SFX_3F5_UNKNOWN, 1.0f, 30000);
         timed_exitStaticCamera(1.5f);
         func_80324E38(1.5f, 0);
@@ -81,7 +81,7 @@ void func_8038966C(void){
         MMM_D_8038C4E0.unk2 = TRUE;
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.2f, 1);
-        func_80324DBC(0.2f, 0xad9, 6, NULL, NULL, func_803895D8, NULL);
+        func_80324DBC(0.2f, ASSET_AD9_DIALOG_NAPPER_COMPLETE, 6, NULL, NULL, func_803895D8, NULL);
     }//L80389700
 
     if(MMM_D_8038C4E0.unk1 != 1) 
@@ -108,7 +108,7 @@ void func_8038966C(void){
             if (!levelSpecificFlags_get(LEVEL_FLAG_1B_MMM_UNKNOWN)) {
                 func_80324E38(0.0f, 3);
                 timed_setStaticCameraToNode(0.0f, 0);
-                func_80324DBC(0.0f, 0xad7, 6, NULL, NULL, func_803895D8, NULL);
+                func_80324DBC(0.0f, ASSET_AD7_DIALOG_NAPPER_AWAKE, 6, NULL, NULL, func_803895D8, NULL);
                 levelSpecificFlags_set(LEVEL_FLAG_1B_MMM_UNKNOWN, TRUE);
             }
         }

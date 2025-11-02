@@ -90,8 +90,8 @@ Struct_CCW_3310_1 D_8038F060[] = {
 
 Struct_CCW_3310_0 D_8038F080[] = {
     {MAP_43_CCW_SPRING, 0,                                FILEPROG_E6_SPRING_EYRIE_HATCHED,     0,       NULL, 3,     0,       NULL, 0x18F, D_8038EFC0, 0x190, D_8038F030, 0,   0,     0,     0},
-    {MAP_44_CCW_SUMMER, FILEPROG_E6_SPRING_EYRIE_HATCHED, FILEPROG_E7_SUMMER_EYRIE_FED,     0x191, D_8038EEA0, 2, 0x192, D_8038EF20, 0x193, D_8038EFC0, 0x194, D_8038F030, 2,   5, 0x21A, 0xCD7},
-    {MAP_45_CCW_AUTUMN, FILEPROG_E7_SUMMER_EYRIE_FED,     FILEPROG_E8_AUTMN_EYRIE_FED,      0x195, D_8038EEA0, 2, 0x196, D_8038EF20, 0x197, D_8038EFC0, 0x198, D_8038F030, 4, 0xA, 0x21B, 0xCDA},
+    {MAP_44_CCW_SUMMER, FILEPROG_E6_SPRING_EYRIE_HATCHED, FILEPROG_E7_SUMMER_EYRIE_FED,     0x191, D_8038EEA0, 2, 0x192, D_8038EF20, 0x193, D_8038EFC0, 0x194, D_8038F030, 2,   5, 0x21A, ASSET_CD7_DIALOG_BABY_EYRIE_MEET_SUMMER},
+    {MAP_45_CCW_AUTUMN, FILEPROG_E7_SUMMER_EYRIE_FED,     FILEPROG_E8_AUTMN_EYRIE_FED,      0x195, D_8038EEA0, 2, 0x196, D_8038EF20, 0x197, D_8038EFC0, 0x198, D_8038F030, 4, 0xA, 0x21B, ASSET_CDA_DIALOG_BABY_EYRIE_MEET_FALL},
     0
 };
 
@@ -153,14 +153,14 @@ void func_803897B8(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, local->unk0->unk14, 0.5f, 8.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if (local->unk0->map_id == MAP_43_CCW_SPRING) {
-            gcdialog_showDialog(0xCD6, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CD6_DIALOG_BABY_EYRIE_HATCH, 4, NULL, NULL, NULL, NULL);
             skeletalAnim_setCallback_0(this->unk148, 0.65f, &func_80389798);
         }
         if (local->unk0->map_id == MAP_44_CCW_SUMMER) {
-            gcdialog_showDialog(0xCD9, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CD9_DIALOG_BABY_EYRIE_COMPLETE_SUMMER, 4, NULL, NULL, NULL, NULL);
         }
         if (local->unk0->map_id == MAP_45_CCW_AUTUMN) {
-            gcdialog_showDialog(0xCDB, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CDB_DIALOG_BABY_EYRIE_COMPLETE_FALL, 4, NULL, NULL, NULL, NULL);
         }
         local->unk8 = local->unk0->unk18;
     }
@@ -274,7 +274,7 @@ void CCW_func_80389BFC(Actor *this) {
             if ((local->unk0->unkE != 0) && (carriedObj_getActorId() == ACTOR_2A2_CATERPILLAR) && (ml_vec3f_distance(this->position, sp4C) < 1010.0f) && (player_throwCarriedObject() != 0)) {
                 player_setThrowTargetPosition(D_8038FDE0);
                 if ((local->unk0->map_id == MAP_44_CCW_SUMMER) && (local->unk4 == 0)) {
-                    gcdialog_showDialog(0xCD8, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(ASSET_CD8_DIALOG_BABY_EYRIE_CHECK_SUMMER, 4, NULL, NULL, NULL, NULL);
                 }
                 local->unk4++;
                 if (local->unk4 < local->unk0->unk25) {
