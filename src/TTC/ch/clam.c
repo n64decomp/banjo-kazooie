@@ -298,7 +298,7 @@ static void __chClam_updateFunc(Actor *this){
                 subaddie_set_state_with_direction(this, 2, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 anctrl_setDuration(this->anctrl, 1.0f);
-                __chClam_playSfx(SFX_3F2_UNKNOWN, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
+                __chClam_playSfx(SFX_3F2_BOING, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
             }
             else{
                 anctrl_setDuration(this->anctrl, 2.0f);

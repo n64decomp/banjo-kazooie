@@ -63,7 +63,7 @@ s32 func_8038D2F4(Actor *this, f32 *arg1, bool arg2) {
     local->unkA[1] = (s16) (s32) mapModel_getFloorY(arg1);
     skeletalAnim_set(this->unk148, ASSET_DB_ANIM_FLIBBIT_HOP, 0.2f, (arg2) ? randf2(0.7f, 0.8f) : randf2(0.7f, 0.8f));
     skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-    func_80324D54(0.2f, SFX_3F2_UNKNOWN, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
+    func_80324D54(0.2f, SFX_3F2_BOING, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
     return TRUE;
 }
 

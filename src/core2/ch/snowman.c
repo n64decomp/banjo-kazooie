@@ -255,7 +255,7 @@ void chSnowman_update(Actor *this){
             }
             else if( 
                 gsworld_get_map() != MAP_27_FP_FREEZEEZY_PEAK
-                || func_8038DD34(local->unk0) == 0
+                || preventSnowmanAttack(local->unk0) == 0
                 || fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)
             ){//L802E2318
                 if(0.0 < local->unk4){

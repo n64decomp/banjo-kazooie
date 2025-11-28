@@ -30,7 +30,7 @@ ActorAnimationInfo D_80392520[] ={
     {0x1AE, 0.55f}
 };
 
-ActorInfo D_80392588 = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
+ActorInfo gChWozza = { MARKER_20B_WOZZA, ACTOR_1F3_WOZZA, ASSET_494_MODEL_WOZZA, 
     0x1, D_80392520,
     FP_func_8038F7AC, actor_update_func_80326224, func_8038F210,
     0, 0, 1.6f, 0
@@ -136,7 +136,7 @@ bool func_8038F5D4(Actor *this, f32 arg1[3], f32 arg2, f32 arg3, s32 arg4){
     this->yaw_ideal = (f32) func_803297C8(this, arg1);
     func_80328FB0(this, arg3);
     if(actor_animationIsAt(this, 0.9f)){
-        sfx_playFadeShorthandDefault(SFX_3F2_UNKNOWN, 0.8f, 24000, this->position, 500, 2000);
+        sfx_playFadeShorthandDefault(SFX_3F2_BOING, 0.8f, 24000, this->position, 500, 2000);
     }
     this->actor_specific_1_f = (1.0f- sp24)*arg2;
     func_80329054(this, 2);

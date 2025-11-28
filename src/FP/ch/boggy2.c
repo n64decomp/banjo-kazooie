@@ -46,7 +46,7 @@ ActorAnimationInfo D_80391C80[] = {
     {0x150, 0.6f}
 };
 
-ActorInfo D_80391CE8 = { MARKER_97_BOGGY_2, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
+ActorInfo gChBoggySled = { MARKER_97_BOGGY_2, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_BOGGY_1, 
     0x1, D_80391C80, 
     FP_func_80388F4C, func_803896FC, func_80388740, 
     0, 0, 1.4f, 0
@@ -93,7 +93,7 @@ void FP_func_803888E4(Actor *this){
     static f32 D_80391D18[3] = {1463.0f, 635.0f, 5193.0f};
     subaddie_set_state_with_direction(this, 0xC, 0.0001f, 1);
     if(!jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
-        if(mapSpecificFlags_get(5)){
+        if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_5_WALRUS_RACE_FAILED)){
             func_80324DBC(0.1f, ASSET_C06_DIALOG_BOGGY_SLED_WALRUS_SECOND_START, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
         }
         else{//L80388964
@@ -102,14 +102,14 @@ void FP_func_803888E4(Actor *this){
     }
     else{//L803889A0
         func_8028F490(D_80391D0C);
-        if(mapSpecificFlags_get(6)){
+        if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_6_BANJO_RACE_FAILED)){
             func_80324DBC(0.1f, ASSET_C29_DIALOG_BOGGY_SLED_BEAR_SECOND_START, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
         }
         else{
             func_80324DBC(0.1f, ASSET_C28_DIALOG_BOGGY_SLED_BEAR_START, 0x2a, D_80391D18, this->marker, func_80388D70, NULL);
         }
     }//L80388A30
-    mapSpecificFlags_set(5, TRUE);
+    mapSpecificFlags_set(FP_SPECIFIC_FLAG_5_WALRUS_RACE_FAILED, TRUE);
     maSlalom_start();
 }
 
@@ -123,7 +123,7 @@ void func_80388A50(Actor *this){
 
 void func_80388A94(Actor *this){
     func_80388A50(this);
-    if(mapSpecificFlags_get(6)){
+    if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_6_BANJO_RACE_FAILED)){
         gcdialog_showDialog(ASSET_C0A_DIALOG_BOGGY_SLED_BEAR_MISS_RETRY, 0xe, this->position, this->marker, func_80388D70, NULL);
     }
     else{
@@ -135,7 +135,7 @@ void func_80388B18(Actor *this, u8 arg1){
     if(arg1 == TRUE){
         if(player_getTransformation() == TRANSFORM_4_WALRUS){
             func_80388A50(this);
-            if(mapSpecificFlags_get(5)){
+            if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_5_WALRUS_RACE_FAILED)){
                 gcdialog_showDialog(ASSET_C05_DIALOG_BOGGY_SLED_WALRUS_MISS_RETRY, 0xf, this->position, this->marker, func_80388D70, NULL);
             }
             else{
@@ -215,7 +215,7 @@ void func_80388D70(ActorMarker *caller, enum asset_e text_id, s32 arg2){
             switch(arg2){
                 case 1:
                     FP_func_803888E4(this);
-                    mapSpecificFlags_set(6, TRUE);
+                    mapSpecificFlags_set(FP_SPECIFIC_FLAG_6_BANJO_RACE_FAILED, TRUE);
                     break;
                 case 0:
                     subaddie_set_state_with_direction(this, 1, 0.0001f, 1);

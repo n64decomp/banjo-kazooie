@@ -490,7 +490,7 @@ static void __chVegetables_update(Actor* this) {
         func_80328FB0(this, 2.0f);
         
         if (local->vegetable_type != CH_VEGETABLE_3_COLLIWOBBLE && actor_animationIsAt(this, 0.3f))
-            sfx_playFadeShorthandDefault(SFX_3F2_UNKNOWN, 1.0f, 22000, this->position, 1000, 2000);
+            sfx_playFadeShorthandDefault(SFX_3F2_BOING, 1.0f, 22000, this->position, 1000, 2000);
         
         if (local->vegetable_type == CH_VEGETABLE_3_COLLIWOBBLE && actor_animationIsAt(this, 0.4f))
             sfx_playFadeShorthandDefault(SFX_2_CLAW_SWIPE, 0.9f, 8000, this->position, 1000, 2000);

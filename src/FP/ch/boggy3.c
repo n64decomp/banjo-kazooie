@@ -11,7 +11,7 @@ ActorAnimationInfo D_80392680[] = {
     {0x222, 2.0f}
 };
 
-ActorInfo D_80392690 = { 0x20D, 0x33D, 0x38A,
+ActorInfo gChBoggyHome = { 0x20D, 0x33D, 0x38A,
     0x1, D_80392680,
     func_80390388, actor_update_func_80326224, func_80390290,
     2500, 0, 1.0f, 0

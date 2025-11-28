@@ -771,7 +771,7 @@ void func_802D4D3C(enum actor_e arg0, enum actor_e arg1) {
 void func_802D5000(enum map_e map_id){
     if(map_getLevel(map_id) != level_get())
         func_802E4A70();
-    func_803228D8();
+    musicKeepsPlaying();
     transitionToMap(D_80367684, 0x65, 0);
 }
 
@@ -1130,7 +1130,7 @@ void func_802D6114(void){
         }//L802D6194
         volatileFlag_set(VOLATILE_FLAG_21, 1);
         if(sp24 != 0x1C || !func_8025ADBC(COMUSIC_23_MMM_INSIDE_CHURCH)){
-            func_803228D8();
+            musicKeepsPlaying();
         }
         transitionToMap(sp24, sp20, 0);
     }
@@ -1143,7 +1143,7 @@ void func_802D6114(void){
 void func_802D61FC(enum map_e arg0){
     if( map_getLevel(arg0) != map_getLevel(gsworld_get_map()))
         func_802E4A70();
-    func_803228D8();
+    musicKeepsPlaying();
     transitionToMap(D_80367684, 0, 0);
     func_802D6750();
 }

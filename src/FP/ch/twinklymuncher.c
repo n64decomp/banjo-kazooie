@@ -4,8 +4,8 @@
 
 extern ActorProp *func_80320EB0(ActorMarker *, f32, s32);
 
-Actor *func_8038DD70(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038E094(Actor *this);
+Actor *chTwinklyMuncher_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chTwinklyMuncher_update(Actor *this);
 
 /* .data */
 extern ActorAnimationInfo D_80392390[] ={
@@ -19,46 +19,46 @@ extern ActorAnimationInfo D_80392390[] ={
     {ASSET_1AF_ANIM_TWINKLY_MUNCHER_APPEAR, 0.667f}
 };
 
-extern ActorInfo D_803923D0 = { MARKER_205_TWINKLY_MUNCHER, ACTOR_337_TWINKLY_MUNCHER, ASSET_496_MODEL_TWINKLY_MUNCHER, 
+extern ActorInfo gChTwinklyMuncher = { MARKER_205_TWINKLY_MUNCHER, ACTOR_337_TWINKLY_MUNCHER, ASSET_496_MODEL_TWINKLY_MUNCHER, 
     0x1, D_80392390,
-    func_8038E094, actor_update_func_80326224, func_8038DD70,
+    chTwinklyMuncher_update, actor_update_func_80326224, chTwinklyMuncher_draw,
     2500, 0, 1.0f, 0
 };
 
 /* .code */
-Actor *func_8038DD70(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chTwinklyMuncher_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(this->state == 1)
         return this;
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void func_8038DDC8(Actor *this){
+void chTwinklyMuncher_setSpawnState(Actor *this){
     actor_collisionOn(this);
     subaddie_set_state_with_direction(this, 2, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
-void func_8038DE08(Actor *this){
+void chTwinklyMuncher_setPostFirstAttackState(Actor *this){
     subaddie_set_state_with_direction(this, 3, 0.03f, 1);
     actor_loopAnimation(this);
 }
 
-void func_8038DE40(Actor *this){
+void chTwinklyMuncher_setFirstAttackState(Actor *this){
     subaddie_set_state_with_direction(this, 4, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
-void func_8038DE78(Actor *this){
+void chTwinklyMuncher_setDespawnState(Actor *this){
     actor_collisionOff(this);
     subaddie_set_state_with_direction(this, 5, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
-void func_8038DEB8(ActorMarker *this_marker, ActorMarker *other_marker){
+void chTwinklyMuncher_hit(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     if(this->state != 1 && this->state != 5){
-        func_8038DE78(this);
+        chTwinklyMuncher_setDespawnState(this);
         sfx_playFadeShorthandDefault(SFX_87_TANKTUP_OOOHW, 1.6f, 32000, this->position, 1250, 2500);
         sfx_playFadeShorthandDefault(SFX_1D_HITTING_AN_ENEMY_1, 1.0f, 26000, this->position, 1250, 2500);
     }
@@ -90,30 +90,30 @@ Actor *func_8038DF34(Actor *this){
     return NULL;
 }
 
-void func_8038E040(ActorMarker *caller, enum asset_e text_id, s32 arg2){
+void chTwinklyMuncher_failMinigameExit(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     timed_exitStaticCamera(0.5f);
     subaddie_set_state_with_direction(this, 7, 0.03f, 1);
     actor_playAnimationOnce(this);
 }
 
-void func_8038E094(Actor *this){
+void chTwinklyMuncher_update(Actor *this){
     s32 sp3C;
     Actor *sp38;
     f32 sp34 = time_getDelta();
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        marker_setCollisionScripts(this->marker, NULL, func_8038DEB8, NULL);
+        marker_setCollisionScripts(this->marker, NULL, chTwinklyMuncher_hit, NULL);
         this->marker->propPtr->unk8_3 = TRUE;
         anctrl_setAnimTimer(this->anctrl, 0.99999f);
         this->lifetime_value = 0.0f;
         if(this->actorTypeSpecificField == 1){
-            func_8038DDC8(this);
+            chTwinklyMuncher_setSpawnState(this);
         }
         if(this->actorTypeSpecificField == 2){
             if(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && gcparade_8031B4F4() == -2){
-                func_8038DDC8(this);
+                chTwinklyMuncher_setSpawnState(this);
             }
             else{
                 marker_despawn(this->marker);
@@ -127,7 +127,7 @@ void func_8038E094(Actor *this){
             if(this->actorTypeSpecificField == 1 && !fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
                 if(this->state != 6 && this->state != 7 && 0.0f == this->velocity[0]){
                     timed_setStaticCameraToNode(0.5f, 0xd);
-                    gcdialog_showDialog(ASSET_C15_DIALOG_TWINKLIE_MINIGAME_MISS, 0x2b, this->position, this->marker, func_8038E040, NULL);
+                    gcdialog_showDialog(ASSET_C15_DIALOG_TWINKLIE_MINIGAME_MISS, 0x2b, this->position, this->marker, chTwinklyMuncher_failMinigameExit, NULL);
                     this->velocity[0] = 1.0f;
                     subaddie_set_state_with_direction(this, 6, 0.03f, 1);
                     actor_loopAnimation(this);
@@ -138,7 +138,7 @@ void func_8038E094(Actor *this){
                     marker_despawn(this->marker);
                 }
                 else if( this->state != 1 && this->state != 5){
-                    func_8038DE78(this);
+                    chTwinklyMuncher_setDespawnState(this);
                 }
             }
         }
@@ -155,7 +155,7 @@ void func_8038E094(Actor *this){
                 if(10.0 <= this->lifetime_value || randf() < this->lifetime_value/10.0){
                     if(!func_8038DF34(this)){
                         this->lifetime_value = 0.0f;
-                        func_8038DDC8(this);
+                        chTwinklyMuncher_setSpawnState(this);
                         break;
                     }
                 }
@@ -167,7 +167,7 @@ void func_8038E094(Actor *this){
             this->marker->propPtr->unk8_3 = TRUE;
             sp38 = func_8038DF34(this);
             if(sp38){
-                func_8038DE40(this);
+                chTwinklyMuncher_setFirstAttackState(this);
                 this->unk38_31 = sp38->marker->id;
                 break;
             }
@@ -179,14 +179,14 @@ void func_8038E094(Actor *this){
                 sfx_playFadeShorthandDefault(SFX_C4_TWINKLY_MUNCHER_GRR, 1.2f, 32000, this->position, 1250, 2500);
 
             if(actor_animationIsAt(this, 0.97f))
-                func_8038DE08(this);
+                chTwinklyMuncher_setPostFirstAttackState(this);
             break;
 
         case 3: //L8038E498
             this->marker->propPtr->unk8_3 = TRUE;
             sp38 = func_8038DF34(this);
             if(sp38){
-                func_8038DE40(this);
+                chTwinklyMuncher_setFirstAttackState(this);
                 this->unk38_31 = sp38->marker->id;
             }
             break;
@@ -196,18 +196,18 @@ void func_8038E094(Actor *this){
             sp38 = func_8038DF34(this);
             if(sp38 && sp38->marker->id == this->unk38_31){
                 if(actor_animationIsAt(this, 0.23)){
-                    func_8038C398(sp38->position, sp38->marker->id);
+                    chTwinkly_decideShatterColor(sp38->position, sp38->marker->id);
                     sfx_playFadeShorthandDefault(SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250, 2500);
                     sfx_playFadeShorthandDefault(SFX_27_JINJO_HI, 1.6f, 32000, this->position, 1250, 2500);
                     func_80324D54(0.35f, SFX_110_TWINKLY_DEATH, 1.0f, 32000, this->position, 1250.0f, 2500.0f);
                     marker_despawn(sp38->marker);
-                    if( !mapSpecificFlags_get(0xa) && gcdialog_showDialog(0xc16, 0, NULL, NULL, NULL, NULL)){
-                        mapSpecificFlags_set(0xa, TRUE);
+                    if( !mapSpecificFlags_get(FP_SPECIFIC_FLAG_A_FIRST_TWINKLY_EATEN) && gcdialog_showDialog(ASSET_C16_DIALOG_TWINKLIE_MINIGAME_EATEN, 0, NULL, NULL, NULL, NULL)){
+                        mapSpecificFlags_set(FP_SPECIFIC_FLAG_A_FIRST_TWINKLY_EATEN, TRUE);
                     }
                 }
             }//L8038E620
             if(actor_animationIsAt(this, 0.97f)){
-                func_8038DE08(this);
+                chTwinklyMuncher_setPostFirstAttackState(this);
             }
             break;
 

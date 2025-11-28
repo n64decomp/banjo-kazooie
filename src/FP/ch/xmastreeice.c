@@ -2,25 +2,25 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80390BDC(Actor *this);
+Actor *chXmasTreeIce_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chXmasTreeIce_update(Actor *this);
 
 /* .data */
-ActorInfo D_80392730 = { 0x210, 0x340, 0x4D2,
+ActorInfo gXmasTreeIce = { MARKER_210_XMAS_TREE_ICE, ACTOR_340_XMAS_TREE_ICE, ASSET_4D2_MODEL_XMAS_TREE_ICE,
     0x0, NULL,
-    func_80390BDC, actor_update_func_80326224, func_803908F0,
+    chXmasTreeIce_update, actor_update_func_80326224, chXmasTreeIce_draw,
     0, 0, 1.0f, 0
 };
 
 /* .code */
-Actor *func_803908F0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chXmasTreeIce_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(this->unk38_31 != 0) return this;
     
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
+void chXmasTreeIce_shatterEffect(f32 position[3], s32 cnt, enum asset_e model_id){
     static ParticleScaleAndLifetimeRanges D_80392754 = {{0.2f, 0.4f}, {-1.0f, -1.0f}, {0.0f, 0.02f}, {2.2f, 2.2f}, 0.0f, 0.3f};
     static ParticleSettingsVelocityAccelerationPosition D_8039277C = {
         {{-300.0f,   350.0f, -300.0f}, {300.0f,   600.0f, 300.0f}}, /*position*/
@@ -43,7 +43,7 @@ void func_80390944(f32 position[3], s32 cnt, enum asset_e model_id){
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void func_80390A30(f32 position[3], s32 cnt, enum asset_e sprite_id){
+void chXmasTreeIce_emitDust(f32 position[3], s32 cnt, enum asset_e sprite_id){
     static ParticleScaleAndLifetimeRanges D_803927C4 = {{0.6f, 0.8f}, {1.0f, 1.4f}, {0.0f, 0.01f}, {1.2f, 1.8f}, 0.0f, 0.01f};
     static ParticleSettingsVelocityAccelerationPosition D_803927EC = {
         {{-200.0f,   0.0f, -200.0f}, {200.0f, 200.0f, 200.0f}}, /*position*/
@@ -60,30 +60,30 @@ void func_80390A30(f32 position[3], s32 cnt, enum asset_e sprite_id){
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void func_80390ABC(ActorMarker *marker){
+void chXmasTreeIce_shatterIce(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
-    func_80390944(this->position, 0xA, 0x4D3);
-    func_80390A30(this->position, 6, ASSET_700_SPRITE_DUST);
+    chXmasTreeIce_shatterEffect(this->position, 0xA, ASSET_4D4_MODEL_XMAS_ICE_FRAGMENT);
+    chXmasTreeIce_emitDust(this->position, 6, ASSET_700_SPRITE_DUST);
     func_8030E6D4(SFX_B6_GLASS_BREAKING_1);
     coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     this->unk38_31 = 1;
 }
 
-void func_80390B2C(ActorMarker *marker){
+void chXmasTreeIce_returnCameraToBanjo(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
-    func_803228D8();
+    musicKeepsPlaying();
     transitionToMap(MAP_27_FP_FREEZEEZY_PEAK, 0xd, 0);
     marker_despawn(this->marker);
 }
 
-void func_80390B70(Actor *this){
+void chXmasTreeIce_initiateShatter(Actor *this){
     func_80324E38(0.0f, 3);
     timed_setStaticCameraToNode(0.0f, 0);
-    timedFunc_set_1(0.6f, (GenFunction_1)func_80390ABC, reinterpret_cast(s32, this->marker));
-    timedFunc_set_1(2.5f, (GenFunction_1)func_80390B2C, reinterpret_cast(s32, this->marker));
+    timedFunc_set_1(0.6f, (GenFunction_1)chXmasTreeIce_shatterIce, reinterpret_cast(s32, this->marker));
+    timedFunc_set_1(2.5f, (GenFunction_1)chXmasTreeIce_returnCameraToBanjo, reinterpret_cast(s32, this->marker));
 }
 
-void func_80390BDC(Actor *this) {
+void chXmasTreeIce_update(Actor *this) {
     this->marker->propPtr->unk8_3 = TRUE;
     actor_collisionOff(this);
 
@@ -93,8 +93,8 @@ void func_80390BDC(Actor *this) {
         if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE)) {
             marker_despawn(this->marker);
         }
-        else if (levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
-            func_80390B70(this);
+        else if (levelSpecificFlags_get(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE)) {
+            chXmasTreeIce_initiateShatter(this);
         }
     }
 }
