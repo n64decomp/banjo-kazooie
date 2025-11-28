@@ -79,12 +79,12 @@ static void __chTreasure_updateFunc(Actor *this){
                 subaddie_set_state_forward(this, 2);
                 this->marker->propPtr->unk8_3 = 1;
                 actor_collisionOn(this);
-                func_8030E878(SFX_3F2_UNKNOWN, randf2(1.2f, 1.3f), 20000, this->position, 200.0f, 1500.0f);
+                func_8030E878(SFX_3F2_BOING, randf2(1.2f, 1.3f), 20000, this->position, 200.0f, 1500.0f);
             }
             break;
         case 2://L8038C344
             if(actor_animationIsAt(this, 0.99f)){
-                func_8030E878(SFX_3F2_UNKNOWN, randf2(1.2f, 1.3f), 20000, this->position, 200.0f, 1500.0f);
+                func_8030E878(SFX_3F2_BOING, randf2(1.2f, 1.3f), 20000, this->position, 200.0f, 1500.0f);
 
             }
             break;

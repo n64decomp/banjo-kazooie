@@ -185,7 +185,7 @@ gczoomboxPortraitInfo D_8036C6C0[] = {
           {SFX_40B_MUMBO_TALKING_5, 28000, 1.4f}
      }},
      {ASSET_81E_SPRITE_LIVE_BLUE_EGG, 0xF2, 0x06, {
-          {SFX_3F2_UNKNOWN, 32000, 1.1f}
+          {SFX_3F2_BOING, 32000, 1.1f}
      }},
      {ASSET_820_SPRITE_LIVE_RED_FEATHER, 0xEE, 0x06, {
           {SFX_AC_GOLDFEATHER_TALKING, 15000, -2.0f}

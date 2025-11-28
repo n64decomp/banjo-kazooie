@@ -47,7 +47,7 @@ void __chPropellorSwitch_setState(Actor *this, s32 arg1){
         this->position_y -= 40.0f;
         if(this->state == 1){
             levelSpecificFlags_set(local->unk0->unk8, 1);
-            func_803228D8();
+            musicKeepsPlaying();
             timedFunc_set_1(1.1f, (GenFunction_1)func_8028F9DC, 2);
             timedFunc_set_3(1.1f, (GenFunction_3)transitionToMap, MAP_31_RBB_RUSTY_BUCKET_BAY, 0, 0);
         }else{

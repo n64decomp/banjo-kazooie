@@ -169,13 +169,13 @@ void gcparade_8031ABF8(void) {
     if (D_803830F0.parade_id == PARADE_1_POST_GRUNTY_BATTLE) {
         volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
     }
-    func_803228D8();
+    musicKeepsPlaying();
     func_802E4A70();
 }
 
 void gcparade_8031AC8C(void) {
 
-    func_803228D8();
+    musicKeepsPlaying();
     if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
         func_802E4A70();
     }
@@ -214,7 +214,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             gcparade_8031AC8C();
             break;
         case PARADE_STATE_3_WARP:
-            func_803228D8();
+            musicKeepsPlaying();
             if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
                 func_802E4A70();
             }

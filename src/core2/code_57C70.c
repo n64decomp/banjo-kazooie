@@ -150,7 +150,7 @@ void func_802DEE1C(Actor *this) {
         case 5:
             break;
     }
-    func_803228D8();
+    musicKeepsPlaying();
 }
 
 void func_802DF04C(void){

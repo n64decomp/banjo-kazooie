@@ -18,7 +18,7 @@ ActorInfo D_8038F460 = { 0x1BC, 0x2A9, 0x48E, 0x0, NULL, func_8038C7A8, NULL, ac
 /* .code */
 void CCW_func_8038C5D0(ActorMarker* marker) {
     Actor* actor = marker_getActor(marker);
-    func_8030E878(SFX_3F2_UNKNOWN, randf2(0.95f, 1.05f), 26000, actor->position, 500.0f, 1000.0f);
+    func_8030E878(SFX_3F2_BOING, randf2(0.95f, 1.05f), 26000, actor->position, 500.0f, 1000.0f);
 }
 
 void CCW_func_8038C638(ActorMarker* marker) {

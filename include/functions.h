@@ -452,7 +452,7 @@ void func_8030DB04(u8, s32, f32 position[3], f32, f32);
 
 void transitionToMap(enum map_e map, s32 exit, s32 transition);
 void levelSpecificFlags_set(s32, s32);
-void func_803228D8(void);
+void musicKeepsPlaying(void);
 
 void actor_predrawMethod(Actor *);
 void mapSpecificFlags_set(s32, s32);

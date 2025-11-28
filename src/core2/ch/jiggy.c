@@ -196,7 +196,7 @@ void chjiggy_update(Actor *this) {
                     break;
 
                 case JIGGY_2F_FP_XMAS_TREE:
-                    if (levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
+                    if (levelSpecificFlags_get(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE)) {
                         actor_collisionOn(this);
                     } else {
                         actor_collisionOff(this);

@@ -38,7 +38,7 @@ void __waterCtrl_setState(s32 arg0){
 
     if(GV_D_80391B00.state == 3){
         levelSpecificFlags_set(LEVEL_FLAG_6_GV_UNKNOWN, TRUE);
-        func_803228D8();
+        musicKeepsPlaying();
         volatileFlag_set(VOLATILE_FLAG_E, 1);
         transitionToMap(MAP_12_GV_GOBIS_VALLEY, 0, 0);
     }

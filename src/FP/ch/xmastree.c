@@ -22,7 +22,7 @@ Actor *chXmasTree_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void __chXmasTree_free(Actor *this){
+void chXmasTree_free(Actor *this){
     u8 tmp_a0;
 
     item_set(ITEM_6_HOURGLASS, FALSE);
@@ -33,30 +33,29 @@ void __chXmasTree_free(Actor *this){
     }
 }
 
-void __chXmasTree_80386EF4(Actor *this, int arg1){
+void chXmasTree_setState(Actor *this, int arg1){
     this->unk38_31 = arg1;
-    mapSpecificFlags_set(0, this->unk38_31);
-
+    mapSpecificFlags_set(FP_SPECIFIC_FLAG_0_XMAS_TREE_LIGHTS_ON, this->unk38_31);
 }
 
-void __chXmasTree_80386F3C(void){
-    levelSpecificFlags_set(LEVEL_FLAG_29_FP_UNKNOWN, TRUE);
-    func_803228D8();
+void chXmasTree_swapCameraToIce(void){
+    levelSpecificFlags_set(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE, TRUE);
+    musicKeepsPlaying();
     volatileFlag_set(VOLATILE_FLAG_E, 1);
     transitionToMap(MAP_53_FP_CHRISTMAS_TREE, 1, 0);
 }
 
-void __chXmasTree_80386F84(Actor * this){
+void chXmasTree_setLightsOn(Actor * this){
     subaddie_set_state(this, 2);
-    __chXmasTree_80386EF4(this, 0);
+    chXmasTree_setState(this, 0);
 }
 
-void __chXmasTree_spawnSwitch(void){
+void chXmasTree_spawnSwitch(void){
     static s32 chXmasTree_switch_spawn_position[3] = {-0x1220, 0x6A, 0x1945};
     actor_spawnWithYaw_s32(ACTOR_338_XMAS_TREE_SWITCH, chXmasTree_switch_spawn_position, 350);
 }
 
-void __chXmasTree_spawnStar(void *marker){
+void chXmasTree_spawnStar(void *marker){
     Actor *this = marker_getActor(reinterpret_cast(ActorMarker *, marker));
     Actor *child = spawn_child_actor(0x339, &this);
     s32 pad;
@@ -65,22 +64,22 @@ void __chXmasTree_spawnStar(void *marker){
     child->position_z += 25.0f;
 }
 
-void __chXmasTree_80387038(Actor *this){
+void chXmasTree_lightsDeactivatedSounds(Actor *this){
     if(func_8030E3FC(this->unk44_31))
         sfxSource_triggerCallbackByIndex(this->unk44_31);
     sfxsource_playSfxAtVolume(this->unk44_31, randf2(0.9f, 1.1f));
     sfxSource_func_8030E2C4(this->unk44_31);
 }
 
-void __chXmasTree_8038709C(Actor *this){
+void chXmasTree_setLightsOff(Actor *this){
     if(this->state == 5){
-        if(!mapSpecificFlags_get(0)) 
-            __chXmasTree_80387038(this);
+        if(!mapSpecificFlags_get(FP_SPECIFIC_FLAG_0_XMAS_TREE_LIGHTS_ON)) 
+            chXmasTree_lightsDeactivatedSounds(this);
         return;
     }
 
-    if(mapSpecificFlags_get(0) && !func_8030E3FC(this->unk44_31))
-        __chXmasTree_80387038(this);
+    if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_0_XMAS_TREE_LIGHTS_ON) && !func_8030E3FC(this->unk44_31))
+        chXmasTree_lightsDeactivatedSounds(this);
 }
 
 void chXmasTree_update(Actor *this){
@@ -91,38 +90,38 @@ void chXmasTree_update(Actor *this){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
-        marker_setFreeMethod(this->marker, __chXmasTree_free);
+        marker_setFreeMethod(this->marker, chXmasTree_free);
         if(this->unk44_31 == 0){
             this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
-            sfxsource_setSfxId(this->unk44_31, SFX_415_UNKNOWN);
+            sfxsource_setSfxId(this->unk44_31, SFX_415_XMAS_LIGHTS_FLICKERING);
             sfxSource_setunk43_7ByIndex(this->unk44_31, 3);
             sfxsource_setSampleRate(this->unk44_31, 28000);
         }
-        __spawnQueue_add_0(__chXmasTree_spawnSwitch);
-        __spawnQueue_add_1((GenFunction_1)__chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
+        __spawnQueue_add_0(chXmasTree_spawnSwitch);
+        __spawnQueue_add_1((GenFunction_1)chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
         if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
-            __chXmasTree_80386F84(this);
-            mapSpecificFlags_set(2, FALSE);
+            chXmasTree_setLightsOn(this);
+            mapSpecificFlags_set(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH, FALSE);
         }
     }
 
     this->depth_mode = 1;
 
-    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
-        __chXmasTree_80386EF4(this, 1);
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE)) {
+        chXmasTree_setState(this, 1);
         return;
     }
 
     switch(this->state){
         case 1: // L80387268
-            __chXmasTree_80386EF4(this, 0);
+            chXmasTree_setState(this, 0);
             if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
-                __chXmasTree_80386F84(this);
+                chXmasTree_setLightsOn(this);
             }
             break;
 
         case 2: // L80387294
-            if(!mapSpecificFlags_get(2)) break;
+            if(!mapSpecificFlags_get(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH)) break;
 
             subaddie_set_state(this, 3);
             this->lifetime_value = 2.0f;
@@ -134,15 +133,15 @@ void chXmasTree_update(Actor *this){
         case 3: // L803872F0
             if(0.0 <= this->lifetime_value){
                 if( 1.8 < this->lifetime_value){
-                    __chXmasTree_80386EF4(this, 0);
+                    chXmasTree_setState(this, 0);
                 }
                 else if(this->lifetime_value < 0.2){//L80387340
-                    __chXmasTree_80386EF4(this, 1);
+                    chXmasTree_setState(this, 1);
                 }
                 else{
                     if(randf() < 0.2){
-                        __chXmasTree_80386EF4(this, this->unk38_31 ^ 1);
-                        __chXmasTree_8038709C(this);
+                        chXmasTree_setState(this, this->unk38_31 ^ 1);
+                        chXmasTree_setLightsOff(this);
                     }
                 }//L803873AC
                 this->lifetime_value -= sp2C;
@@ -150,7 +149,7 @@ void chXmasTree_update(Actor *this){
             else{//L803873BC
                 if(func_802BB270()){
                     subaddie_set_state(this, 4);
-                    __chXmasTree_80386EF4(this, 1);
+                    chXmasTree_setState(this, 1);
                     item_set(ITEM_0_HOURGLASS_TIMER, 3600 - 1);
                     item_set(ITEM_6_HOURGLASS, TRUE);
 
@@ -159,9 +158,9 @@ void chXmasTree_update(Actor *this){
             break;
 
         case 4: // L80387400
-            if(mapSpecificFlags_get(3)){
+            if(mapSpecificFlags_get(FP_SPECIFIC_FLAG_3_XMAS_TREE_STAR_COMPLETE)){
                 subaddie_set_state(this, 6);
-                __chXmasTree_80386EF4(this, 1);
+                chXmasTree_setState(this, 1);
                 item_set(ITEM_6_HOURGLASS, FALSE);
                 tmp_a0 = this->unk44_31;
                 if(tmp_a0){
@@ -169,12 +168,12 @@ void chXmasTree_update(Actor *this){
                     this->unk44_31 = 0;
                 }
                 func_80324E38(0.0f, 3);
-                timedFunc_set_0(0.5f, __chXmasTree_80386F3C);
+                timedFunc_set_0(0.5f, chXmasTree_swapCameraToIce);
             }
             else{//L80387470
                 if(item_empty(ITEM_6_HOURGLASS)){
                     subaddie_set_state(this, 5);
-                    mapSpecificFlags_set(2, FALSE);
+                    mapSpecificFlags_set(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH, FALSE);
                     this->lifetime_value = 0.1f;
                     if(!maSlalom_isActive()){
                         if(!mapSpecificFlags_get(9) || mapSpecificFlags_get(1)){
@@ -190,21 +189,21 @@ void chXmasTree_update(Actor *this){
         case 5: // L803874EC
             if(0.0 <= this->lifetime_value){
                 if( 1.8 < this->lifetime_value){
-                    __chXmasTree_80386EF4(this, 1);
+                    chXmasTree_setState(this, 1);
                 }
                 else if(this->lifetime_value < 0.2){
-                    __chXmasTree_80386EF4(this, 0);
+                    chXmasTree_setState(this, 0);
                 }
                 else{
                     if(randf() < 0.2){
-                        __chXmasTree_80386EF4(this, this->unk38_31 ^ 1);
-                        __chXmasTree_8038709C(this);
+                        chXmasTree_setState(this, this->unk38_31 ^ 1);
+                        chXmasTree_setLightsOff(this);
                     }
                 }
                 this->lifetime_value -= sp2C;
             }
             else{
-                __chXmasTree_80386F84(this);
+                chXmasTree_setLightsOn(this);
             }
             break;
     }

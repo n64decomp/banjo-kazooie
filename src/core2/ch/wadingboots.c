@@ -59,10 +59,10 @@ void chwadingboots_update(Actor *this){
 
             if(actor_animationIsAt(this, 0.25f)){
                 if(sp2C){
-                    FUNC_8030E624(SFX_3F2_UNKNOWN,  1.4f, 23000);
+                    FUNC_8030E624(SFX_3F2_BOING,  1.4f, 23000);
                 }
                 else{
-                    sfx_playFadeShorthandDefault(SFX_3F2_UNKNOWN,  1.4f, 23000, this->position, 600, 1500);
+                    sfx_playFadeShorthandDefault(SFX_3F2_BOING,  1.4f, 23000, this->position, 600, 1500);
                 }
             }
 

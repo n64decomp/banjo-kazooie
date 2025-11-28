@@ -184,7 +184,7 @@ void chBottlesBonusCursor_func_802DF928(s32 indx) {
 }
 
 void chBottlesBonusCursor_func_802DF99C(void){
-    func_803228D8();
+    musicKeepsPlaying();
     func_8025A55C(-1, 2000, 7);
 }
 

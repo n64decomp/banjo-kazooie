@@ -2,8 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_8038E720(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038E940(Actor *this);
+Actor *chXmasTreeSwitch_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chXmasTreeSwitch_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_80392400[] = {
@@ -13,28 +13,28 @@ ActorAnimationInfo D_80392400[] = {
     {0x143, 1.0f},
 };
 
-ActorInfo D_80392420 = { 0x206, 0x338, 0x486, 
+ActorInfo gXmasTreeSwitch = { MARKER_206_XMAS_TREE_SWITCH, ACTOR_338_XMAS_TREE_SWITCH, ASSET_486_MODEL_XMAS_TREE_SWITCH, 
     0x1, D_80392400, 
-    func_8038E940, actor_update_func_80326224, func_8038E720, 
+    chXmasTreeSwitch_update, actor_update_func_80326224, chXmasTreeSwitch_draw, 
     4500, 0, 0.0f, 0
 };
 
 /* .code */
-Actor *func_8038E720(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chXmasTreeSwitch_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(1, 0);
     func_8033A45C(2, 1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
 
-void func_8038E774(Actor *this){
+void chXmasTreeSwitch_moveSwitch(Actor *this){
     subaddie_set_state_with_direction(this, 2, 0.05f, 1);
     actor_playAnimationOnce(this);
     this->marker->collidable = TRUE;
     this->unk38_31 = 0;
 }
 
-void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
+void chXmasTreeSwitch_hitSwitch(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
     
     if(this->state == 2){
@@ -45,7 +45,7 @@ void func_8038E7CC(ActorMarker *this_marker, ActorMarker *other_marker){
     }
 }
 
-void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
+void chXmasTreeSwitch_emitSparkles(f32 position[3], s32 cnt, enum asset_e sprite_id){
     static ParticleScaleAndLifetimeRanges D_80392444 = {{0.4f, 0.6f}, {0.8f, 1.8f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 0.0f, 0.01f};
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
     particleEmitter_setSprite(pCtrl, sprite_id);
@@ -66,8 +66,8 @@ void func_8038E840(f32 position[3], s32 cnt, enum asset_e sprite_id){
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void func_8038E940(Actor *this){
-    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_UNKNOWN)) {
+void chXmasTreeSwitch_update(Actor *this){
+    if (jiggyscore_isCollected(JIGGY_2F_FP_XMAS_TREE) || levelSpecificFlags_get(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE)) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
         subaddie_set_state_with_direction(this, 3, 0.95f, 0);
@@ -78,7 +78,7 @@ void func_8038E940(Actor *this){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
         this->marker->collidable = FALSE;
-        marker_setCollisionScripts(this->marker, NULL, func_8038E7CC, NULL);
+        marker_setCollisionScripts(this->marker, NULL, chXmasTreeSwitch_hitSwitch, NULL);
         subaddie_set_state_with_direction(this, 1, 0.05f, 1);
         this->unk38_31 = 0;
         this->lifetime_value = 0.0f;
@@ -88,31 +88,31 @@ void func_8038E940(Actor *this){
     
     switch(this->state){
         case 1: //L8038EA98
-            if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !mapSpecificFlags_get(2))
-                func_8038E774(this);
+            if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !mapSpecificFlags_get(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH))
+                chXmasTreeSwitch_moveSwitch(this);
             break;
         case 2: //L8038EAC8
             if(actor_animationIsAt(this, 0.2f))
-                func_8038E840(this->position, 0x20, ASSET_717_SPRITE_SPARKLE_YELLOW_2);
+                chXmasTreeSwitch_emitSparkles(this->position, 0x20, ASSET_717_SPRITE_SPARKLE_YELLOW_2);
             
             if(this->unk38_31 < 3)
                 break;
 
             subaddie_set_state_with_direction(this, 3, 0.05f, 1);
             actor_playAnimationOnce(this);
-            FUNC_8030E624(SFX_416, 0.8f, 32000);
+            FUNC_8030E624(SFX_416_ELECTRIC_ZAP, 0.8f, 32000);
             this->marker->collidable = FALSE;
             this->lifetime_value = 0.0f;
             break;
         case 3: //L8038EB44
             if(this->lifetime_value == 0.0f && actor_animationIsAt(this, 0.95f)){
                 this->lifetime_value = 1.0f;
-                mapSpecificFlags_set(2, TRUE);
+                mapSpecificFlags_set(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH, TRUE);
                 break;
             }
 
-            if(this->lifetime_value != 0.0f && !mapSpecificFlags_get(2)){
-                func_8038E774(this);
+            if(this->lifetime_value != 0.0f && !mapSpecificFlags_get(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH)){
+                chXmasTreeSwitch_moveSwitch(this);
             }
             break;
     }//L8038EBC0

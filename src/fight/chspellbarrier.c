@@ -73,7 +73,7 @@ void chspellbarrier_update(Actor *this) {
         local->sfxsourceIdx = func_8030ED2C(0x415, 3);
         func_8030DB04(local->sfxsourceIdx, 32000, this->position, 4000.0f, 12000.0f);
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, 1.0f);
-        sfx_playFadeShorthandDefault(SFX_416, 0.8f, 32000, this->position, 10000, 25000);
+        sfx_playFadeShorthandDefault(SFX_416_ELECTRIC_ZAP, 0.8f, 32000, this->position, 10000, 25000);
     }
 
     jinjo_marker = chfinalboss_findCollidingJinjo(this, 600.0f);

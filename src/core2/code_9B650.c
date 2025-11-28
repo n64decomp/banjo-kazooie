@@ -251,7 +251,7 @@ void func_8032278C(s32 arg0, s32 arg1) {
 }
 
 
-void func_803228D8(void){
+void musicKeepsPlaying(void){
     if(!D_80383348){
         core1_ce60_incOrDecCounter(FALSE);
         D_80383348 = TRUE;

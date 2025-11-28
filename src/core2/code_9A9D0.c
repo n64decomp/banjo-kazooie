@@ -80,14 +80,14 @@ void func_803219F4(s32 arg0){
             func_8025A8B8(D_80383314, 1);
             break;
         case 3: //L80321BDC
-            func_803228D8();
+            musicKeepsPlaying();
             core1_ce60_incOrDecCounter(FALSE);
             func_8025A55C(0, 4000, 7);
             coMusicPlayer_playMusic(COMUSIC_95_BBONUS_A, -1);
             func_8025A8B8(COMUSIC_95_BBONUS_A, 1);
             break;
         case 5: //L80321C1C
-            func_803228D8();
+            musicKeepsPlaying();
             break;
         case 1: //L80321C24
             break;
