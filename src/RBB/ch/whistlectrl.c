@@ -32,16 +32,16 @@ void __chWhistleCtrl_soundWhistle(void){
 }
 
 void __chWhistleCtrl_correct(void){
-    func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
 }
 
 void __chWhistleCtrl_wrong(ActorMarker *marker){
-    func_8025A6EC(COMUSIC_2C_BUZZER, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2C_BUZZER, 28000);
     func_8028F530(0xD);
 }
 
 void __chWhistleCtrl_complete(void){
-    func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
     func_80324E38(1.0f, 3);
     timed_setStaticCameraToNode(2.0f, 10);
     timedFunc_set_0(2.2f, __chWhistleCtrl_soundWhistle);

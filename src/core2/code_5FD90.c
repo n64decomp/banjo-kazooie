@@ -405,18 +405,18 @@ BKCollisionTri *func_802E76B0(BKCollisionList *collisionList, BKVertexList *vert
     return result_collision;
 }
 
-BKCollisionTri *func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
+BKCollisionTri *func_802E805C(BKCollisionList *collision_list, BKVertexList *vtxList, f32 arg2[3], f32 rotation[3], f32 scale, s32 arg5, s32 arg6, s32 arg7, s32 arg8){
     f32 sp44[3];
     f32 sp38[3];
     int sp34;
     int i;
 
-    if(!func_802E74A0(arg2, vtxList->global_norm*arg4, arg5, arg6)){
+    if(!func_802E74A0(arg2, vtxList->global_norm*scale, arg5, arg6)){
         return 0;
     }
     else{
         mlMtxIdent();
-        func_80252CC4(arg2, arg3, arg4, 0);
+        func_80252CC4(arg2, rotation, scale, 0);
         mlMtx_apply_vec3f(sp44, arg5);
         mlMtx_apply_vec3f(sp38, arg6);
         sp34 = func_802E76B0(collision_list, vtxList, sp44, sp38, arg7, arg8);
@@ -425,15 +425,15 @@ BKCollisionTri *func_802E805C(BKCollisionList *collision_list, BKVertexList *vtx
         }
         else{
             mlMtxIdent();
-            func_80252C08(arg2, arg3, arg4, NULL);
+            func_80252C08(arg2, rotation, scale, NULL);
             mlMtx_apply_vec3f(arg6, sp38);
 
             mlMtxIdent();
-            func_80252C08(NULL, arg3, 1.0f, 0);
+            func_80252C08(NULL, rotation, 1.0f, 0);
             mlMtx_apply_vec3f(arg7, arg7);
 
             mlMtxIdent();
-            func_80252C08(arg2, arg3, arg4, 0);
+            func_80252C08(arg2, rotation, scale, 0);
 
             for(i = 0; i < 3; i++){
                 mlMtx_apply_vec3f(D_8037EAA8[i], D_8037EAA8[i]);

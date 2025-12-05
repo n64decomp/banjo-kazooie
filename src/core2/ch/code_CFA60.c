@@ -99,7 +99,7 @@ void func_80356CCC(Actor *this){
     sp58 = ml_vec3f_distance(this->position, sp5C);
     if( this->state == 1){
         if( sp58 < this->scale*400.0f
-            && (map_get() != MAP_3C_RBB_KITCHEN || this->position_z < sp5C[2])
+            && (gsworld_get_map() != MAP_3C_RBB_KITCHEN || this->position_z < sp5C[2])
         ){
             func_803569F0(this, 2);
         }

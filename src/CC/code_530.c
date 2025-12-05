@@ -37,20 +37,20 @@ void CC_func_80386920(Actor *this, s32 next_state){
 
     local->unk14 = 0.0f;
     if(this->state == 2 || this->state == 3 || this->state == 4){
-        func_8030E394(local->sfxsourceIdx);
+        sfxSource_triggerCallbackByIndex(local->sfxsourceIdx);
     }
 
     if(next_state == 2 || next_state == 3 || next_state == 4){
         func_8030DD90(local->sfxsourceIdx, 1);
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.3f);
         sfxsource_setSfxId(local->sfxsourceIdx, 0x3ec);
-        func_8030DD14(local->sfxsourceIdx, 3);
+        sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 3);
         sfxsource_setSampleRate(local->sfxsourceIdx, 28000);
-        func_8030E2C4(local->sfxsourceIdx);
+        sfxSource_func_8030E2C4(local->sfxsourceIdx);
     }
     
     if(next_state == 2 || next_state == 4){
-        func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7fff);
         player_getPosition(sp28);
         TUPLE_COPY(sp20, sp28);
         fxSparkle_giantGoldFeather(&sp20);
@@ -58,7 +58,7 @@ void CC_func_80386920(Actor *this, s32 next_state){
 
     if(next_state == 4){
         CC_func_8038868C();
-        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
+        coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     }
 
     if(this->state == 4)

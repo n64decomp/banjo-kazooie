@@ -22,7 +22,7 @@ ActorAnimationInfo D_803925C0[] = {
     {0x1AE, 0.55f}
 };
 
-ActorInfo D_80392628 = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
+ActorInfo gWozzaJiggy = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
     0x1, D_803925C0,
     func_8038FF54, actor_update_func_80326224, func_8038FF00,
     0, 0, 0.0f, 0
@@ -47,8 +47,8 @@ void func_8038FF54(Actor *this){
 
     this->marker->propPtr->unk8_3 = FALSE;
     actor_collisionOff(this);
-    if(this->unk100){
-        other = marker_getActor(this->unk100);
+    if(this->partnerActor){
+        other = marker_getActor(this->partnerActor);
         if(this->state != 9){
             if(other->state == 9){
                 subaddie_set_state_with_direction(this, 9, 0.01f, 1);

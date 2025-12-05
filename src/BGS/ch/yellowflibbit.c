@@ -17,14 +17,14 @@ typedef struct {
     f32 unk28;
 }ActorLocal_Yellow_Flibbit;
 
-Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx** vtx);
-void BGS_func_8038E034(Actor *this);
+Actor *chYellowFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx** vtx);
+void chYellowFlibbit_update(Actor *this);
 
 /* .data */
-ActorInfo BGS_D_80390AE0 = {
+ActorInfo gChYellowFlibbit = {
     MARKER_C5_FLIBBIT_YELLOW, ACTOR_137_FLIBBIT_YELLOW, ASSET_385_MODEL_FLIBBIT_YELLOW,
     0, NULL, 
-    BGS_func_8038E034, NULL, func_8038DE5C,
+    chYellowFlibbit_update, NULL, chYellowFlibbit_draw,
     0, 0, 1.0f, 0
 };
 s32 D_80390B04[3] = {0xFF, 0xB3, 0};
@@ -45,7 +45,7 @@ void func_8038D1E0(Actor *this) {
     particleEmitter_setParticleVelocityRange(temp_s0, -70.0f, 50.0f, -70.0f, 70.0f, 100.0f, 70.0f);
     particleEmitter_setParticleLifeTimeRange(temp_s0, 3.0f, 4.0f);
     particleEmitter_emitN(temp_s0, 4);
-    FUNC_8030E8B4(SFX_30_MAGIC_POOF, 1.0f, 25000, this->position, 500, 2500);
+    sfx_playFadeShorthandDefault(SFX_30_MAGIC_POOF, 1.0f, 25000, this->position, 500, 2500);
 }
 
 s32 func_8038D2F4(Actor *this, f32 *arg1, bool arg2) {
@@ -63,7 +63,7 @@ s32 func_8038D2F4(Actor *this, f32 *arg1, bool arg2) {
     local->unkA[1] = (s16) (s32) mapModel_getFloorY(arg1);
     skeletalAnim_set(this->unk148, ASSET_DB_ANIM_FLIBBIT_HOP, 0.2f, (arg2) ? randf2(0.7f, 0.8f) : randf2(0.7f, 0.8f));
     skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-    func_80324D54(0.2f, SFX_3F2_UNKNOWN, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
+    func_80324D54(0.2f, SFX_3F2_BOING, randf2(0.7f, 1.3f), randi2(25000, 27000), this->position, 500.0f, 2500.0f);
     return TRUE;
 }
 
@@ -184,7 +184,7 @@ bool func_8038D930(Actor *this) {
     return var_v1;
 }
 
-void func_8038D9D0(Actor *this, s32 next_state) {
+void chYellowFlibbit_setState(Actor *this, s32 next_state) {
     ActorLocal_Yellow_Flibbit *local;
 
     local = (ActorLocal_Yellow_Flibbit *)&this->local;
@@ -215,12 +215,12 @@ void func_8038D9D0(Actor *this, s32 next_state) {
     }
     if (next_state == 5) {
         if (mapSpecificFlags_get(0x10)) {
-            func_8038D9D0(this, 4);
+            chYellowFlibbit_setState(this, 4);
             return;
         }
         if (!func_8038D930(this)){
             if ((this->state != 6)) {
-                func_8038D9D0(this, 6);
+                chYellowFlibbit_setState(this, 6);
             }
             return;
         }
@@ -239,7 +239,7 @@ void func_8038D9D0(Actor *this, s32 next_state) {
         local->unk1C = 1.0f;
     }
     if (next_state == 8) {
-        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = mapModel_getFloorY(this->position);
@@ -247,7 +247,7 @@ void func_8038D9D0(Actor *this, s32 next_state) {
     }
     if (next_state == 9) {
         skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
-        FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         func_8038CEA0();
@@ -256,7 +256,7 @@ void func_8038D9D0(Actor *this, s32 next_state) {
     if (next_state == 0xA) {
         skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 0xB) {
         func_80326310(this);
@@ -269,7 +269,7 @@ void func_8038DD9C(ActorMarker *marker, ActorMarker *other_marker){
 
     this = marker_getActor(marker);
     if(this->state < 9){
-        func_8038D9D0(this, 7);
+        chYellowFlibbit_setState(this, 7);
     }
 }
 
@@ -278,7 +278,7 @@ void func_8038DDDC(ActorMarker *marker, ActorMarker *other_marker){
 
     this = marker_getActor(marker);
     if(this->state < 9){
-        func_8038D9D0(this, 8);
+        chYellowFlibbit_setState(this, 8);
     }
 }
 
@@ -287,11 +287,11 @@ void func_8038DE1C(ActorMarker *marker, ActorMarker *other_marker){
 
     this = marker_getActor(marker);
     if(this->state < 9){
-        func_8038D9D0(this, 9);
+        chYellowFlibbit_setState(this, 9);
     }
 }
 
-Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chYellowFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_Yellow_Flibbit *local;
     s32 var_s0;
@@ -325,7 +325,7 @@ Actor *func_8038DE5C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-void BGS_func_8038E034(Actor *this) {
+void chYellowFlibbit_update(Actor *this) {
     f32 spB4[3];
     f32 spA8[3];
     f32 spA4;
@@ -357,7 +357,7 @@ void BGS_func_8038E034(Actor *this) {
         local->unk10[0] = (s16) (s32) this->position[0];
         local->unk10[1] = (s16) (s32) this->position[1];
         local->unk10[2] = (s16) (s32) this->position[2];
-        func_8038D9D0(this, 1);
+        chYellowFlibbit_setState(this, 1);
         if (jiggyscore_isSpawned(JIGGY_24_BGS_FLIBBITS) != 0) {
             marker_despawn(this->marker);
         }
@@ -384,7 +384,7 @@ void BGS_func_8038E034(Actor *this) {
 
     if(this->state == 1){
         if(mapSpecificFlags_getClear(0x12)){
-            func_8038D9D0(this, 2);
+            chYellowFlibbit_setState(this, 2);
             return;
         }
 
@@ -396,22 +396,22 @@ void BGS_func_8038E034(Actor *this) {
 
     if(this->state == 2){
         if(ml_timer_update(&local->unk1C, sp9C)){
-            func_8038D9D0(this, 3);
+            chYellowFlibbit_setState(this, 3);
         }
     }
 
     if(this->state == 3){
          if (func_80329210(this, spB4)) {
-                func_8038D9D0(this, 5);
+                chYellowFlibbit_setState(this, 5);
             } else {
-                func_8038D9D0(this, 1);
+                chYellowFlibbit_setState(this, 1);
             }
     }
 
 
     if(this->state == 4){
         if(!mapSpecificFlags_get(0x10))
-            func_8038D9D0(this, 5);
+            chYellowFlibbit_setState(this, 5);
     }
 
     if (this->state == 5) {
@@ -424,9 +424,9 @@ void BGS_func_8038E034(Actor *this) {
             sp7C[1] = (f32) local->unk10[1];
             sp7C[2] = (f32) local->unk10[2];
             if (ml_vec3f_distance(this->position, sp7C) < 30.0f) {
-                func_8038D9D0(this, 1);
+                chYellowFlibbit_setState(this, 1);
             } else {
-                func_8038D9D0(this, 5);
+                chYellowFlibbit_setState(this, 5);
             }
         } else {
 
@@ -456,16 +456,16 @@ void BGS_func_8038E034(Actor *this) {
         func_80258A4C(this->position, this->yaw - 90.0f, spB4, &sp5C, &sp58, &sp54);
         this->yaw += sp54 * 90.0f * sp9C;
         if ((-0.4 <= sp54) && (sp54 <= 0.4) && ((f64) randf() > 0.5)) {
-            func_8038D9D0(this, 5);
+            chYellowFlibbit_setState(this, 5);
         }
         if ((sp58 < 0.0f) && (randf() > 0.5)) {
-            func_8038D9D0(this, 5);
+            chYellowFlibbit_setState(this, 5);
         }
     }
 
     if(this->state == 7 || this->state == 8){
         if(ml_timer_update(&local->unk1C, sp9C)){
-            func_8038D9D0(this, 6);
+            chYellowFlibbit_setState(this, 6);
         }
     }
 
@@ -484,13 +484,13 @@ void BGS_func_8038E034(Actor *this) {
         local->unk18 -= 3000.0f*sp9C;
         if(this->position_y  < mapModel_getFloorY(this->position)){
             this->position_y  = mapModel_getFloorY(this->position);
-            func_8038D9D0(this, 10);
+            chYellowFlibbit_setState(this, 10);
         }
     }
 
     if(this->state == 10){
         if(skeletalAnim_getLoopCount(this->unk148) > 0){
-            func_8038D9D0(this, 11);
+            chYellowFlibbit_setState(this, 11);
         }
     }
 }

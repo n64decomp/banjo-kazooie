@@ -78,7 +78,7 @@ bool func_802BEF64(void){
 void func_802BEF70(void){}
 
 void func_802BEF78(void){
-    D_8037DA80.unk0 = func_802BEDE0(map_get());
+    D_8037DA80.unk0 = func_802BEDE0(gsworld_get_map());
     D_8037DA80.unk8 = 0;
     D_8037DA80.unkC = 0;
 }

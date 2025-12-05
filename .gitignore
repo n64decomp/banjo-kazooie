@@ -6,6 +6,7 @@ baseroms/*
 
 #compiled or ripped asm
 asm/nonmatchings
+asm/data
 asm/*.s
 asm/*/*.s
 asm/core1/os
@@ -65,6 +66,7 @@ ctx.c
 nonmatchings/
 undefined_syms_auto*
 undefined_funcs_auto*
+.DS_STORE
 
 #progress reports
 *.csv
@@ -72,3 +74,5 @@ undefined_funcs_auto*
 #secret folder
 tmp/
 tmp/*
+
+.venv

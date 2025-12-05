@@ -148,34 +148,34 @@ void gcparade_setState(enum parade_state_e next_state);
 
 /* .code */
 void gcparade_8031ABA0(void) {
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     if (D_803830F0.unk8 != -1) {
-        func_802C5A3C(D_803830F0.unk8);
+        gameSelect_setGameNumber(D_803830F0.unk8);
         gameFile_load(D_803830F0.unk8);
         func_80347AA8();
     }
 }
 
 void gcparade_8031ABF8(void) {
-    D_803830F0.unk8 = func_802C5A30();
+    D_803830F0.unk8 = gameSelect_getGameNumber();
     func_8030AFD8(1);
     mapSavestate_free_all();
     levelSpecificFlags_clear();
     func_80347A7C();
-    func_8031FBF8();
-    func_8031FBA0();
+    debugScoreStates();
+    clearScoreStates();
     volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 1);
     if (D_803830F0.parade_id == PARADE_1_POST_GRUNTY_BATTLE) {
         volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
     }
-    func_803228D8();
+    musicKeepsPlaying();
     func_802E4A70();
 }
 
 void gcparade_8031AC8C(void) {
 
-    func_803228D8();
+    musicKeepsPlaying();
     if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
         func_802E4A70();
     }
@@ -214,7 +214,7 @@ void gcparade_setState(enum parade_state_e next_state) {
             gcparade_8031AC8C();
             break;
         case PARADE_STATE_3_WARP:
-            func_803228D8();
+            musicKeepsPlaying();
             if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
                 func_802E4A70();
             }
@@ -280,7 +280,7 @@ void gcparade_print(s32 index){
 void gcparade_update(void) {
     s32 sp34;
 
-    if ((map_get() == MAP_96_CS_END_BEACH_1) && mapSpecificFlags_get(4)) {
+    if ((gsworld_get_map() == MAP_96_CS_END_BEACH_1) && mapSpecificFlags_get(4)) {
         mapSpecificFlags_set(4, FALSE);
         gcparade_beginFinalParade();
         return;
@@ -290,7 +290,7 @@ void gcparade_update(void) {
         switch (D_803830F0.state) {
             case PARADE_STATE_3_WARP:
                 if (D_803830F0.unk5 == 0) {
-                    if (map_get() == D_803830F0.parade_element->map) {
+                    if (gsworld_get_map() == D_803830F0.parade_element->map) {
                         if (D_803830F0.parade_id == 0) {
                             sp34 = 0xA0;
                             if (D_803830F0.parade_element->exit >= 0) 

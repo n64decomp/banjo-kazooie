@@ -72,7 +72,7 @@ void chGobi3_setState(Actor *this, s32 next_state){
 
     if(next_state == 5){
         skeletalAnim_set(this->unk148, 0xd9, 0.5f, 4.0f);
-        gcdialog_showText(ASSET_A77_DIALOG_GOBI3_DONE, 0xe, this->position, this->marker, __chGobi3_runaway, NULL);
+        gcdialog_showDialog(ASSET_A77_DIALOG_GOBI3_DONE, 0xe, this->position, this->marker, __chGobi3_runaway, NULL);
     }
 
     if(next_state == 4){
@@ -85,7 +85,7 @@ void chGobi3_setState(Actor *this, s32 next_state){
     }
 
     if(next_state == 7){
-        FUNC_8030E8B4(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
+        sfx_playFadeShorthandDefault(SFX_84_GOBI_CRYING, 0.9f, 20000, this->position, 1500, 2500);
         skeletalAnim_set(this->unk148, ASSET_242_ANIM_GOBI_RELAXING, 0.2f, 0.5f);
     }
 

@@ -13,7 +13,7 @@ ActorAnimationInfo FP_D_80391A90[] ={
     {ASSET_143_ANIM_SNOWMAN_BUTTON, 800000.0f}
 };
 
-ActorInfo FP_D_80391AB0 = { 
+ActorInfo gSnowmanButton = { 
     MARKER_B9_FP_SNOWMAN_BUTTON, ACTOR_116_FP_SNOWMAN_BUTTON, ASSET_421_MODEL_FP_SNOWMAN_BUTTON, 
     0x1, FP_D_80391A90, 
     FP_func_80386CF8, actor_update_func_80326224, func_80386B80, 
@@ -52,7 +52,7 @@ void FP_func_80386BEC(Actor *this){
     player_getPosition(plyr_pos);
     subaddie_set_state_with_direction(this, 2, 0.01f, 1);
     actor_collisionOff(this);
-    func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
     FUNC_8030E624(SFX_90_SWITCH_PRESS, 1.0f, 32000);
     maSnowButton_decRemaining();
     particleEmitter_setRGB(pCtrl, D_80391B44);
@@ -78,7 +78,7 @@ void FP_func_80386CF8(Actor *this){
     
     if(!this->initialized){
         this->initialized = TRUE;
-        this->pitch += (f32)(this->unkF4_8 - 1);
+        this->pitch += (f32)(this->actorTypeSpecificField - 1);
     }
     
     if(!this->volatile_initialized){

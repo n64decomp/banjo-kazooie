@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8025A6CC(enum comusic_e arg0, s32 arg1);
+extern void coMusicPlayer_playMusicWeak(enum comusic_e arg0, s32 arg1);
 extern void chBottlesBonusCursor_func_802DF99C(void);
 extern f32 *chBottlesBonusCursor_func_802E05AC(s32);
 extern f32  func_802E4B38(void);
@@ -399,7 +399,7 @@ void chBottlesBonus_lose(u8 *arg0, enum asset_e text_id) {
 
     actor = marker_getActor(chBottlesBonusMarker);
     chBottlesBonusCursor_lose();
-    func_8025A6CC(COMUSIC_3C_MINIGAME_LOSS, 28000);
+    coMusicPlayer_playMusicWeak(COMUSIC_3C_MINIGAME_LOSS, 28000);
     actor->state = 5;
     item_set(ITEM_6_HOURGLASS, FALSE);
     func_802FAD64(0);
@@ -407,7 +407,7 @@ void chBottlesBonus_lose(u8 *arg0, enum asset_e text_id) {
         *arg0 = 1;
         timedFunc_set_0(2.0f, chBottlesBonusCursor_func_802DF99C);
         func_80311714(0);
-        gcdialog_showText(text_id, 0x86, actor->position, chBottlesBonusMarker, chBottlesBonus_func_802DE224, NULL);
+        gcdialog_showDialog(text_id, 0x86, actor->position, chBottlesBonusMarker, chBottlesBonus_func_802DE224, NULL);
         func_80311714(1);
     }
     else{
@@ -426,7 +426,7 @@ void chBottlesBonus_completedPuzzle(void) {
     actor = marker_getActor(chBottlesBonusMarker);
     gCompletedBottleBonusGames[chBottleBonusPuzzleIndex] = TRUE;
     func_80311714(0);
-    gcdialog_showText(D_803681A0[chBottleBonusPuzzleIndex + 1].text_id, 0x86, actor->position, chBottlesBonusMarker, chBottlesBonus_IncrementPuzzle, NULL);
+    gcdialog_showDialog(D_803681A0[chBottleBonusPuzzleIndex + 1].text_id, 0x86, actor->position, chBottlesBonusMarker, chBottlesBonus_IncrementPuzzle, NULL);
     func_80311714(1);
 }
 
@@ -510,7 +510,7 @@ void chBottlesBonus_update(Actor *this) {
         case 1:
             if ((this->lifetime_value > 2.0) && gctransition_done()) {
                 this->lifetime_value = 0.0f;
-                func_8025A6EC(COMUSIC_98_BBONUS_PIECES_SHUFFLE, -1);
+                coMusicPlayer_playMusic(COMUSIC_98_BBONUS_PIECES_SHUFFLE, -1);
                 comusic_8025AB44(COMUSIC_95_BBONUS_A, 0, 2000);
                 func_8025AABC(COMUSIC_95_BBONUS_A);
                 subaddie_set_state_with_direction(this, 2, 0.0f, 1);
@@ -523,7 +523,7 @@ void chBottlesBonus_update(Actor *this) {
                 func_8025A7DC(COMUSIC_98_BBONUS_PIECES_SHUFFLE);
                 if (D_8037DCC7 == 0) {
                     func_80311714(0);
-                    gcdialog_showText(ASSET_E24_DIALOG_UNKNOWN, 0x87, this->position, chBottlesBonusMarker, chBottlesBonus_startTimer, NULL);
+                    gcdialog_showDialog(ASSET_E24_DIALOG_UNKNOWN, 0x87, this->position, chBottlesBonusMarker, chBottlesBonus_startTimer, NULL);
                     func_80311714(1);
                     D_8037DCC7 = 1;
                 }
@@ -599,7 +599,7 @@ Actor *chBottlesBonus_new(s32 position[3], s32 yaw, ActorInfo *actor_info, u32 f
     return actor_new(position, yaw, actor_info, flags);
 }
 
-void chBottlesBonus_func_802DEB80(void) {
+void chBottlesBonus_resetCompleted(void) {
     int i;
     for(i = 0; i < 7; i++){
         gCompletedBottleBonusGames[i] = 0;

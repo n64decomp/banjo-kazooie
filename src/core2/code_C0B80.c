@@ -22,9 +22,9 @@ void func_80347B80(Struct81s *arg0) {
     sp1C = marker_getActor(arg0->marker);
     if (sp1C->unk54 > 0.0) {
         if (randf() < ((sp1C->unk54 / 3.0) * 2)) {
-            func_8033E73C(arg0->marker, 5, func_80329904);
-            func_8033E3F0(0xF, ((ActorMarker *)arg0->marker)->unk14_21);
-            // func_8033E3F0(0xF, arg0->marker->unk14_21);
+            commonParticle_add(arg0->marker, 5, func_80329904);
+            commonParticle_new(0xF, ((ActorMarker *)arg0->marker)->unk14_21);
+            // commonParticle_new(0xF, arg0->marker->unk14_21);
         }
         sp1C->unk54 -= time_getDelta();
     }

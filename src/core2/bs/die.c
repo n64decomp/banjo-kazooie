@@ -55,7 +55,7 @@ void bsdie_init(void){
     pitch_setAngVel(1000.0f, 12.0f);
     func_8029E070(1);
     func_8029151C(0xd);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
     batimer_set(0,2.9f);
     D_8037D414 = 0;
@@ -109,14 +109,14 @@ void bsdie_update(void){
         func_8029B890();
 
     if( batimer_get(0) != 0.0f 
-        && func_80294574() 
+        && floor_isCurrentFloorunk59() 
         && ( D_8037D414
              || ( anctrl_isStopped(aCtrl) 
-                  && ( player_getYPosition() < (func_80294500() - 150.0f)) 
+                  && ( player_getYPosition() < (floor_getCurrentFloorYPosition() - 150.0f)) 
                 )
            )
         && player_inWater()
-        && 100.0f < (func_80294500() - func_80294438())
+        && 100.0f < (floor_getCurrentFloorYPosition() - func_80294438())
     ){
         sp28 = BS_54_SWIM_DIE;
     }

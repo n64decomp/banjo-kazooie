@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/model.h"
 #include "core2/ba/anim.h"
 
@@ -161,12 +163,14 @@ void bsjump_update(void){
     bs_setState(sp34);
 }
 
-void bsjump_end(void){
-    if(ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER))
-        ability_use(0);
+void bsjump_end(void) {
+    if (ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER)) {
+        ability_use(ABILITY_USED_JUMP);
+    }
 
-    if(bs_getNextState() != BS_11_BPECK)
+    if (bs_getNextState() != BS_11_BPECK) {
         baphysics_reset_gravity();
+    }
 }
 
 void bsjump_fall_init(void){

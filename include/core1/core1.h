@@ -100,7 +100,7 @@ extern u16 gFramebuffers[2][DEFAULT_FRAMEBUFFER_WIDTH * DEFAULT_FRAMEBUFFER_HEIG
 
 void func_80253550(void);
 void func_8025357C(void);
-void func_802535A8(Gfx **arg0, Gfx **arg1, UNK_TYPE(s32) arg2, UNK_TYPE(s32) arg3);
+void func_802535A8(Acmd *arg0, Acmd*arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3);
 void func_80253640(Gfx ** gdl, void *arg1);
 void scissorBox_SetForGameMode(Gfx **gdl, s32 framebuffer_idx);
 void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address);

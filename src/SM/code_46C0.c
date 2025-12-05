@@ -5,13 +5,12 @@
 #define US_1_0 0
 #define PAL 1
 
-u8 D_8038BFC2;
-
 
 #if VERSION == US_1_0
 int func_8038AAB0(void){return 0;}
 
 #elif VERSION == PAL
+// u8 D_8038BFC2;
 // void func_8038AAB0(s32 arg0, s32 arg1){
 //     if(arg1 < 0){
 //         func_8031A844();

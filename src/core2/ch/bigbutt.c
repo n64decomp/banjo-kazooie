@@ -51,14 +51,14 @@ void func_802C5EB8(Actor *this){
         this->unk38_31--; 
     }
     else{
-        if(func_80329530(this, 1200) && func_803292E0(this)){
+        if(subaddie_playerIsWithinSphereAndActive(this, 1200) && func_803292E0(this)){
             subaddie_set_state(this, 8);
         }
     }
 }
 
 void func_802C5F44(Actor *this){
-    if(!func_80329530(this, 1200) || !func_803292E0(this)){
+    if(!subaddie_playerIsWithinSphereAndActive(this, 1200) || !func_803292E0(this)){
         subaddie_set_state_with_direction(this, 1, 0.16f, 1);
     }
 }
@@ -105,8 +105,8 @@ void func_802C61C0(ActorMarker *marker, ActorMarker *other_marker){
         && actor->state != 0xf
     ){
         subaddie_set_state_forward(actor, 0xd);
-        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
-        FUNC_8030E8B4(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
+        sfx_playFadeShorthandDefault(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
+        sfx_playFadeShorthandDefault(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
     }
 }
 
@@ -210,7 +210,7 @@ void func_802C6240(Actor *this){
             if(!func_80329078(this, (s32)this->yaw, 20))
                 func_802C5F94(this);
 
-            if(this->unk10_12 == 0 || (this->unk10_12 < 3 && func_80329530(this, 300))){
+            if(this->unk10_12 == 0 || (this->unk10_12 < 3 && subaddie_playerIsWithinSphereAndActive(this, 300))){
                 subaddie_set_state(this, 9);
                 this->actor_specific_1_f = 13.0f;
             }
@@ -230,7 +230,7 @@ void func_802C6240(Actor *this){
             if(!func_80329030(this, 0))
                 func_802C5F94(this);
 
-            if(func_80329530(this, 320)){
+            if(subaddie_playerIsWithinSphereAndActive(this, 320)){
                 if(func_80329078(this, (s32)this->yaw_ideal,200)){
                     anctrl_setPlaybackType(this->anctrl, ANIMCTRL_ONCE);
                     subaddie_set_state(this, 4);
@@ -241,9 +241,9 @@ void func_802C6240(Actor *this){
                         tmp_a0 = this->unk44_31;
                     }
                     sfxsource_setSfxId(tmp_a0, SFX_18_BIGBUTT_SLIDE);
-                    func_8030DD14(this->unk44_31, 2);
+                    sfxSource_setunk43_7ByIndex(this->unk44_31, 2);
                     sfxsource_playSfxAtVolume(this->unk44_31, (randf()*0.1 - 0.05) + 1.0);
-                    func_8030E2C4(this->unk44_31);
+                    sfxSource_func_8030E2C4(this->unk44_31);
                 }
                 else{//L802C69FC
                     func_802C5F94(this);
@@ -257,9 +257,9 @@ void func_802C6240(Actor *this){
                 func_80328FB0(this, 1.0f);
             }
             func_80329030(this, 0);
-            func_8030E2C4(this->unk44_31);
+            sfxSource_func_8030E2C4(this->unk44_31);
             if(0.99 <= anctrl_getAnimTimer(this->anctrl)){
-                func_80329878(this, func_80329530(this, 250)? 0.8: 1.2);
+                func_80329878(this, subaddie_playerIsWithinSphereAndActive(this, 250)? 0.8: 1.2);
                 if (0.0f == this->actor_specific_1_f) {
                     anctrl_setPlaybackType(this->anctrl, ANIMCTRL_LOOP);
                     subaddie_set_state_with_direction(this, 1, 0.65f, 1);

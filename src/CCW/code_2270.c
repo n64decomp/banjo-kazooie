@@ -21,8 +21,8 @@ void chGobiCCW_update(Actor *this);
 
 /* .data */
 Struct_CCW_2270_0 D_8038ECD0[] = {
-    {MAP_44_CCW_SUMMER, 0xCDE, 0xCDF, 0x000},
-    {MAP_45_CCW_AUTUMN, 0x000, 0x000, 0xCE0},
+    {MAP_44_CCW_SUMMER, ASSET_CDE_DIALOG_CCW_GOBI_MEET_SUMMER, ASSET_CDF_DIALOG_CCW_GOBI_COMPLETE_SUMMER, 0x000},
+    {MAP_45_CCW_AUTUMN, 0x000, 0x000, ASSET_CE0_DIALOG_CCW_GOBI_COMPLETE_FALL},
     0
 };
 
@@ -48,14 +48,14 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     }
     if (next_state == 2) {
         if (local->unk0->unk4 != 0) {
-            gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
         }
         skeletalAnim_set(this->unk148, ASSET_FC_ANIM_GOBI_SPITTING, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         skeletalAnim_set(local->unk4, ASSET_100_ANIM_GOBI_SPIT, 0.0f, 3.0f);
         skeletalAnim_setBehavior(local->unk4, 2);
         func_80324E38(0.0f, 3);
-        timed_setStaticCameraToNode(0.0f, (map_get() == MAP_44_CCW_SUMMER) ? 1 : 2);
+        timed_setStaticCameraToNode(0.0f, (gsworld_get_map() == MAP_44_CCW_SUMMER) ? 1 : 2);
         timed_playSfx(0.05f, SFX_84_GOBI_CRYING, 1.1f, 32000);
         timed_playSfx(0.8f, SFX_4B_GULPING, 0.8f, 28000);
         timed_playSfx(1.4f, SFX_4B_GULPING, 0.8f, 28000);
@@ -73,7 +73,7 @@ void CCW_func_8038868C(Actor *this, s32 next_state) {
     }
     if (next_state == 5) {
         if (local->unk0->unk6 != 0) {
-            gcdialog_showText((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog((s32) local->unk0->unk6, 4, NULL, NULL, NULL, NULL);
         }
         skeletalAnim_set(this->unk148, ASSET_FD_ANIM_GOBI2_GETTING_UP, 0.23f, 0.5f);
         timed_setStaticCameraToNode(0.0f, 3);
@@ -145,13 +145,13 @@ void chGobiCCW_update(Actor *this) {
             fileProgressFlag_set(FILEPROG_E5_CCW_FLOWER_AUTUMN, FALSE);
         }
         local->unk0 = &D_8038ECD0[0];
-        while((local->unk0->map_id != 0) && (map_get() != local->unk0->map_id)) {
+        while((local->unk0->map_id != 0) && (gsworld_get_map() != local->unk0->map_id)) {
             local->unk0++;
         }
 
-        if( (map_get() == MAP_44_CCW_SUMMER) && fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && !fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER)) {
+        if( (gsworld_get_map() == MAP_44_CCW_SUMMER) && fileProgressFlag_get(FILEPROG_E3_CCW_FLOWER_SPRING) && !fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER)) {
             CCW_func_8038868C(this, 1);
-        } else if( (map_get() == MAP_45_CCW_AUTUMN) && fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER) && !fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN) ) {
+        } else if( (gsworld_get_map() == MAP_45_CCW_AUTUMN) && fileProgressFlag_get(FILEPROG_E4_CCW_FLOWER_SUMMER) && !fileProgressFlag_get(FILEPROG_E5_CCW_FLOWER_AUTUMN) ) {
             CCW_func_8038868C(this, 1);
         } else{
             marker_despawn(this->marker);
@@ -163,7 +163,7 @@ void chGobiCCW_update(Actor *this) {
             player_getPosition(sp48);
             if (ml_vec3f_distance(this->position, sp48) < 600.0f) {
                 if (local->unk0->unk2 != 0) {
-                    gcdialog_showText((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog((s32) local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
                 }
                 this->has_met_before = TRUE;
             }
@@ -176,7 +176,7 @@ void chGobiCCW_update(Actor *this) {
 
     if(this->state == 3){
         if (!func_80388438()) {
-            if (map_get() == MAP_44_CCW_SUMMER) {
+            if (gsworld_get_map() == MAP_44_CCW_SUMMER) {
                 CCW_func_8038868C(this, 4);
             } else {
                 CCW_func_8038868C(this, 5);
@@ -192,10 +192,10 @@ void chGobiCCW_update(Actor *this) {
         if (skeletalAnim_getAnimId(this->unk148) == ASSET_177_ANIM_GOBI_SLEEP) {
             skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
             if ((sp44 < 0.1) && (0.1 <= (f64) sp40)) {
-                FUNC_8030E8B4(SFX_5E_BANJO_PHEWWW, 0.8f, 15000, this->position, 500, 1500);
+                sfx_playFadeShorthandDefault(SFX_5E_BANJO_PHEWWW, 0.8f, 15000, this->position, 500, 1500);
             }
             if ((sp44 < 0.8) && (0.8 <= (f64) sp40)) {
-                FUNC_8030E8B4(SFX_5D_BANJO_RAAOWW, 0.8f, 15000, this->position, 500, 1500);
+                sfx_playFadeShorthandDefault(SFX_5D_BANJO_RAAOWW, 0.8f, 15000, this->position, 500, 1500);
 
             }
         }

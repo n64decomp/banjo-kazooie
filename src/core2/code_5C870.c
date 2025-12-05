@@ -17,7 +17,7 @@ extern void func_8034BB90(void);
 extern void func_8030C27C(void);
 extern void func_80321C34(void);
 extern void func_8030ED0C(void);
-extern void comusicPlayer_update(void);
+extern void coMusicPlayer_update(void);
 
 enum transition_e {
     TRANSITION_0_NONE
@@ -98,15 +98,15 @@ void func_802E38E8(enum map_e map, s32 exit, s32 reset_on_load){
         func_8030AFA0(map);
     }
     func_802FA508();
-    func_80334B20(map, exit, 0);
+    gsworld_set(map, exit, 0);
     func_802E3800();
     func_8033DC10();
 }
 
 void func_802E398C(s32 arg0) {
-    func_80334910();
+    gsworld_free();
     func_8030ED0C();
-    comusicPlayer_update();
+    coMusicPlayer_update();
     if (arg0 != 0) {
         func_802E3854();
     }
@@ -118,7 +118,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 framebuffer_idx, s32 a
 
     scissorBox_SetForGameMode(gdl, framebuffer_idx);
     D_8037E8E0.unkC = FALSE;
-    func_80334540(gdl, mptr, vptr);
+    gsworld_draw(gdl, mptr, vptr);
     if(!arg4){
         func_802E67AC();
         func_802E3BD0(getActiveFramebuffer());
@@ -262,9 +262,9 @@ void func_802E3E7C(enum game_mode_e mode){
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
     game_setMode(GAME_MODE_2_UNKNOWN, 0);
-    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(map_get()) == map_getLevel(D_8037E8E0.map)){
+    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(gsworld_get_map()) == map_getLevel(D_8037E8E0.map)){
         if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
-            mapSavestate_save(map_get());
+            mapSavestate_save(gsworld_get_map());
     }
     func_802E398C(1);
     func_802E38E8(map, sp28, sp34);
@@ -317,7 +317,7 @@ void func_802E4048(s32 map, s32 exit, s32 transition){
 }
 
 //take me there
-void func_802E4078(enum map_e map, s32 exit, s32 transition){
+void transitionToMap(enum map_e map, s32 exit, s32 transition){
     func_802E40D0(map, exit);
     func_802E40E8(transition);
     func_802E40C4(1);
@@ -369,9 +369,9 @@ void func_802E4170(void){
     func_802E398C(0);
     func_8030AFD8(0);
     func_80321854();
-    func_8031FBF8();
+    debugScoreStates();
     animCache_free();
-    comusicPlayer_free();
+    coMusicPlayer_free();
     func_8030D8DC();
 }
 
@@ -385,7 +385,7 @@ void func_802E4214(enum map_e map_id){
     savedata_init();
     sns_save_and_update_global_data();
     func_8030D86C();
-    comusicPlayer_init();
+    coMusicPlayer_init();
     func_80322764();
     timedFuncQueue_init();
     func_802F9CD8();
@@ -404,7 +404,7 @@ void func_802E4214(enum map_e map_id){
     func_80253FE8();
     time_reset();
     func_8033DC04();
-    func_8031FBA0();
+    clearScoreStates();
     D_8037E8E0.game_mode = GAME_MODE_2_UNKNOWN;
     D_8037E8E0.unk8 = 0.0f;
     time_setDeltaReal_sec(0.0f);
@@ -515,10 +515,10 @@ bool func_802E4424(void) {
         game_setMode(D_8037E8E0.unk1A - 1, D_8037E8E0.unk1B);
         D_8037E8E0.unk1A = 0;
     }
-    sp1C = func_80334ECC();
+    sp1C = gsworld_update();
     func_80321C34();
     func_8030ED0C();
-    comusicPlayer_update();
+    coMusicPlayer_update();
     switch (D_8037E8E0.game_mode) {
         case GAME_MODE_8_BOTTLES_BONUS:
         case GAME_MODE_A_SNS_PICTURE:
@@ -587,7 +587,7 @@ s32 game_defrag(void){
     
     glspline_defrag();
     animCache_defrag();
-    func_802F1320();
+    pem_defragAll();
     ncCameraNodeList_defrag();
     modelRender_defrag();
     func_8028FB68();

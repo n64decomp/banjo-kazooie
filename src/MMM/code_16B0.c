@@ -73,8 +73,8 @@ void chChompa_setState(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, 0x23e, 0.0f, 2.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
 
-        if (this->unk100) {
-            chPortrait_break(this->unk100, tmp + 0.55);
+        if (this->partnerActor) {
+            chPortrait_break(this->partnerActor, tmp + 0.55);
         }
 
         FUNC_8030E624(SFX_3EF, 1.1f, 25000);
@@ -104,7 +104,7 @@ void __chChompa_spwanPortrait(ActorMarker *marker) {
     enum asset_e portrait_id;
     Actor *portrait;
 
-    switch (this->unkF4_8) {
+    switch (this->actorTypeSpecificField) {
         case 0x32:
             portrait_id = ACTOR_382_PORTRAIT_OF_GRUNTY;
             break;
@@ -130,7 +130,7 @@ void __chChompa_spwanPortrait(ActorMarker *marker) {
 
     portrait = spawn_child_actor(portrait_id, &this);
     portrait->yaw = this->yaw;
-    this->unk100 = portrait->marker;
+    this->partnerActor = portrait->marker;
     portrait->unk10_1 = FALSE;
 }
 
@@ -167,7 +167,7 @@ void __chChompa_emitBones(f32 position[3], s32 count, enum asset_e model_id) {
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_func_802EF9F8(pCtrl, 0.4f);
     particleEmitter_func_802EFA18(pCtrl, 3);
-    func_802EFA20(pCtrl, 1.0f, 1.3f);
+    particleEmitter_func_802EFA20(pCtrl, 1.0f, 1.3f);
     particleEmitter_setSfx(pCtrl, SFX_2F_ORANGE_SPLAT, 16000);
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038BB70);
@@ -256,7 +256,7 @@ void chChompa_update(Actor *this) {
             (anim_prev_progress < 0.32 && 0.32 <= anim_progress) ||
             (anim_prev_progress < 0.53 && 0.53 <= anim_progress)
         ) {
-            func_8030E6A4(SFX_6D_CROC_BITE, randf2(0.95f, 1.05f), 32000);
+            gcsfx_playWithPitch(SFX_6D_CROC_BITE, randf2(0.95f, 1.05f), 32000);
         }
 
         if (anim_prev_progress < 0.9 && 0.9 <= anim_progress) {

@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 
 /* .bss */
@@ -116,8 +118,10 @@ void bsslide_update(void){
     bs_setState(sp3C);
 }
 
-void bsslide_end(void){
-    if(level_get() != 6)
-        ability_use(6);
+void bsslide_end(void) {
+    if (level_get() != 6) {
+        ability_use(ABILITY_USED_SLIDE);
+    }
+
     pitch_setIdeal(0.0f);
 }

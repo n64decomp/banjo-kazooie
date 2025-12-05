@@ -50,7 +50,7 @@ void ncDynamicCamC_update(void) {
     sp3C[1] += sp30[1];
     sp3C[2] += sp30[2];
     func_802BE190(sp3C);
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_B_CC_CLANKERS_CAVERN:
         case MAP_14_GV_SANDYBUTTS_MAZE:
         case MAP_27_FP_FREEZEEZY_PEAK:

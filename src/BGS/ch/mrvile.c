@@ -5,8 +5,8 @@
 #include "prop.h"
 #include "core2/modelRender.h"
 
-Actor *chvile_draw(ActorMarker*, Gfx **, Mtx **, Vtx **);
-void chvile_update(Actor *);
+Actor *chVile_draw(ActorMarker*, Gfx **, Mtx **, Vtx **);
+void chVile_update(Actor *);
 void func_8038BB40(ActorMarker *);
 extern bool func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
 
@@ -27,8 +27,8 @@ typedef struct chmrvile_s{
 } ActorLocal_MrVile;
 
 /* .data */
-ActorInfo D_80390A70 = {MARKER_C8_MR_VILE, ACTOR_13A_MR_VILE, ASSET_373_MODEL_MR_VILE, 0x00, NULL,
-    chvile_update, NULL, chvile_draw,
+ActorInfo gChVile = {MARKER_C8_MR_VILE, ACTOR_13A_MR_VILE, ASSET_373_MODEL_MR_VILE, 0x00, NULL,
+    chVile_update, NULL, chVile_draw,
     0, 0, 0.0f, 0
 };
 
@@ -193,7 +193,7 @@ void func_8038BDD4(Actor *this) {
     }
 }
 
-void func_8038C0C8(Actor * this, s32 next_state){
+void chVile_setState(Actor * this, s32 next_state){
     ActorLocal_MrVile *local;
 
     local = (ActorLocal_MrVile *)&this->local;
@@ -223,7 +223,7 @@ void func_8038C0C8(Actor * this, s32 next_state){
     this->state = next_state; 
 }
 
-Actor *chvile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
+Actor *chVile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_MrVile *local;
     f32 position[3];
@@ -273,7 +273,7 @@ bool BGS_func_8038C338(ActorMarker *marker){
     return this->state == 1;
 }
 
-void chvile_free(Actor *this){
+void chVile_free(Actor *this){
     ActorLocal_MrVile *local;
 
     local = (ActorLocal_MrVile *)&this->local;
@@ -285,42 +285,42 @@ void func_8038C384(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8038C0C8(this, 4);
+    chVile_setState(this, 4);
 }
 
 void func_8038C3B0(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8038C0C8(this, 2);
+    chVile_setState(this, 2);
 }
 
 void func_8038C3DC(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8038C0C8(this, 3);
+    chVile_setState(this, 3);
 }
 
 void func_8038C408(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8038C0C8(this, 5);
+    chVile_setState(this, 5);
 }
 
 void BGS_func_8038C434(ActorMarker *marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8038C0C8(this, 6);
+    chVile_setState(this, 6);
 }
 
 void BGS_func_8038C460(ActorMarker *arg0){
-    func_8038C0C8(marker_getActor(arg0), 1);
+    chVile_setState(marker_getActor(arg0), 1);
 }
 
-void chvile_update(Actor *this) {
+void chVile_update(Actor *this) {
     f32 player_position[3];
     f32 sp90;
     f32 temp_a0;
@@ -339,12 +339,12 @@ void chvile_update(Actor *this) {
     local = (ActorLocal_MrVile *)&this->local;
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
-        this->marker->actorFreeFunc = chvile_free;
+        this->marker->actorFreeFunc = chVile_free;
         local->unk0 = 0;
         local->unk4 = assetcache_get(0x3F6);
         local->game_marker = NULL;
         func_8038BD84(this);
-        func_8038C0C8(this, 1);
+        chVile_setState(this, 1);
         return;
     }
     if (local->game_marker == NULL) {
@@ -362,7 +362,7 @@ void chvile_update(Actor *this) {
         if (((sp84 > 50.0f) && (0.05 < sp7C)) || (sp7C < -0.05)) {
             this->yaw += sp7C * 20.0f;
         } else {
-            func_8038C0C8(this, 1);
+            chVile_setState(this, 1);
         }
     }
     if (this->state == 3) {
@@ -415,7 +415,7 @@ void chvile_update(Actor *this) {
             BGS_func_8038BBA0(this, 103);
         }
         if ((local->unkC == 103) && (skeletalAnim_getLoopCount(this->unk148) >= 2)) {
-            func_8038C0C8(this, 1);
+            chVile_setState(this, 1);
         }
     }
     if (this->state == 5) {

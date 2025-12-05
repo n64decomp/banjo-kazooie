@@ -15,9 +15,9 @@ void lighting_init();
 /* .bss */
 struct {
     vector(Lighting) *vector_ptr;
-    Lighting *unk4[NUM_LIGHTING_ELEM];
-    Lighting **unk44;
-    Lighting **unk48; // copy of unk44
+    Lighting *reference[NUM_LIGHTING_ELEM];
+    Lighting **end_ptr;
+    Lighting **capacity_ptr; // copy of end_ptr
 } sLightingVectorList;
 
 //.code
@@ -30,15 +30,15 @@ static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32 arg
     end_ptr = (Lighting *)vector_getEnd(sLightingVectorList.vector_ptr);
     mlMtxIdent();
     func_80252CC4(position, rotation, scale, arg3);
-    sLightingVectorList.unk44 = sLightingVectorList.unk4;
+    sLightingVectorList.end_ptr = sLightingVectorList.reference;
     iPtr = start_ptr;
-    for(; iPtr < end_ptr && sLightingVectorList.unk44 < sLightingVectorList.unk48; iPtr++) {
-        if(iPtr->unk34 && ml_vec3f_distance(position, iPtr->position) < iPtr->unk1C + global_norm) {
+    for(; iPtr < end_ptr && sLightingVectorList.end_ptr < sLightingVectorList.capacity_ptr; iPtr++) {
+        if(iPtr->active && ml_vec3f_distance(position, iPtr->position) < iPtr->fade_radius_max_unscaled + global_norm) {
             mlMtx_apply_vec3f(iPtr->positionCopy, iPtr->position);
-            iPtr->unk20 = iPtr->unk18/scale;
-            iPtr->unk24 = iPtr->unk1C/scale;
-            *sLightingVectorList.unk44 = iPtr;
-            sLightingVectorList.unk44++;
+            iPtr->fade_radius_min = iPtr->fade_radius_min_unscaled/scale;
+            iPtr->fade_radius_max = iPtr->fade_radius_max_unscaled/scale;
+            *sLightingVectorList.end_ptr = iPtr;
+            sLightingVectorList.end_ptr++;
         }
     }
 }
@@ -55,7 +55,7 @@ s32 __codeAC520_pad_func_8033361C() {
     Lighting *iPtr;
 
     for(iPtr = startPtr; iPtr < endPtr; iPtr++) {
-        if(iPtr->unk34) {
+        if(iPtr->active) {
             return (iPtr-startPtr) + 1;
         }
     }
@@ -69,7 +69,7 @@ s32 __codeAC520_pad_func_80333698(s32 index) {
     Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
     
     for(++iPtr; iPtr < endPtr; iPtr++) {
-        if(iPtr->unk34) {
+        if(iPtr->active) {
             return (iPtr-startPtr) + 1;
         }
     }
@@ -77,20 +77,20 @@ s32 __codeAC520_pad_func_80333698(s32 index) {
     return NULL;
 }
 
-void __codeAC520_pad_func_80333734(s32 index, f32 *arg1) {
+void gclights_getPosition(s32 index, f32 position[3]) {
     Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
-    TUPLE_COPY(arg1, v0->position)
+    TUPLE_COPY(position, v0->position)
 }
 
-void __codeAC520_pad_func_80333784(s32 index, f32 *arg1) {
+void gclights_getRadii(s32 index, f32 *arg1) {
     Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
-    arg1[0] = v0->unk18;
-    arg1[1] = v0->unk1C;
+    arg1[0] = v0->fade_radius_min_unscaled;
+    arg1[1] = v0->fade_radius_max_unscaled;
 }
 
-void __codeAC520_pad_func_803337C8(s32 index, s32 *arg1) {
+void gclights_getRgb(s32 index, s32 pRgb[3]) {
     Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
-    TUPLE_COPY(arg1, v0->rgb)
+    TUPLE_COPY(pRgb, v0->rgb)
 }
 
 s32 __codeAC520_pad_func_80333818() {
@@ -103,21 +103,21 @@ static s32 __lighting_create() {
     Lighting *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
-        if(!iPtr->unk34)
+        if(!iPtr->active)
             break;
     }
     if(iPtr == endPtr)
         iPtr = vector_pushBackNew(&sLightingVectorList.vector_ptr);
 
-    iPtr->unk34 = 1;
+    iPtr->active = 1;
     iPtr->rgb[0] = 0xff;
     iPtr->rgb[1] = 0xff;
     iPtr->rgb[2] = 0xff;
     iPtr->position[2] = 0.0f;
     iPtr->position[1] = 0.0f;
     iPtr->position[0] = 0.0f;
-    iPtr->unk18 = 150.0f;
-    iPtr->unk1C = 300.0f;
+    iPtr->fade_radius_min_unscaled = 150.0f;
+    iPtr->fade_radius_max_unscaled = 300.0f;
     return (iPtr - (Lighting *)vector_getBegin(sLightingVectorList.vector_ptr)) + 1;
 }
 
@@ -127,13 +127,13 @@ void lighting_free() {
 }
 
 void lighting_init() {
-    sLightingVectorList.vector_ptr = vector_new(sizeof(Lighting), 0x10);
-    sLightingVectorList.unk48 = &sLightingVectorList.unk4[NUM_LIGHTING_ELEM];
+    sLightingVectorList.vector_ptr = vector_new(sizeof(Lighting), NUM_LIGHTING_ELEM);
+    sLightingVectorList.capacity_ptr = &sLightingVectorList.reference[NUM_LIGHTING_ELEM];
 }
 
 void func_80333974(s32 index) {
     Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
-    v0->unk34 = 0;
+    v0->active = 0;
 }
 
 s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
@@ -143,7 +143,7 @@ s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
     Lighting *tmp_s0 = NULL;
     
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
-        if(iPtr->unk34) {
+        if(iPtr->active) {
             if(tmp_s0 == NULL || ml_vec3f_distance(arg0, iPtr->position) < ml_vec3f_distance(arg0, tmp_s0->position)) {
                 tmp_s0 = iPtr;
             }
@@ -158,10 +158,10 @@ static void __lighting_setPosition(s32 index , f32 *position) {
     TUPLE_COPY(v0->position, position)
 }
 
-static void __lighting_setUnk18AndUnk1C(s32 index , f32 *unk18_and_unk1c) {
+static void __lighting_setFadeRadii(s32 index , f32 *fade_radii) {
     Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
-    v0->unk18 = unk18_and_unk1c[0];
-    v0->unk1C = unk18_and_unk1c[1];
+    v0->fade_radius_min_unscaled = fade_radii[0];
+    v0->fade_radius_max_unscaled = fade_radii[1];
 }
 
 static void __lighting_setRgb(s32 index , s32 *rgb) {
@@ -171,19 +171,19 @@ static void __lighting_setRgb(s32 index , s32 *rgb) {
 
 void lightingVectorList_fromFile(File *file_ptr) {
     f32 position[3];
-    f32 unk18_and_unk1c[2];
+    f32 fade_radii[2];
     s32 rgb[3];
     s32 lighting_ptr;
     __lighting_freeAndInit();
     while(!file_isNextByteExpected(file_ptr, 0)) {
         if( file_isNextByteExpected(file_ptr, 1)
             && file_getNFloats_ifExpected(file_ptr, 2, position, 3)
-            && file_getNFloats_ifExpected(file_ptr, 3, unk18_and_unk1c, 2)
+            && file_getNFloats_ifExpected(file_ptr, 3, fade_radii, 2)
             && file_getNWords_ifExpected(file_ptr, 4, rgb, 3)
         ) {
             lighting_ptr = __lighting_create();
             __lighting_setPosition(lighting_ptr, position);
-            __lighting_setUnk18AndUnk1C(lighting_ptr, unk18_and_unk1c);
+            __lighting_setFadeRadii(lighting_ptr, fade_radii);
             __lighting_setRgb(lighting_ptr, rgb);
         }
     }
@@ -195,10 +195,10 @@ s32 __codeAC520_pad_func_80333C78(File *arg0) {
     Lighting *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
-        if(iPtr->unk34) {
+        if(iPtr->active) {
             file_isNextByteExpected(arg0, 1);
             file_getNFloats_ifExpected(arg0, 2, iPtr->position, 3);
-            file_getNFloats_ifExpected(arg0, 3, &iPtr->unk18, 2);
+            file_getNFloats_ifExpected(arg0, 3, &iPtr->fade_radius_min_unscaled, 2);
             file_getNWords_ifExpected(arg0, 4, iPtr->rgb, 3);
         }
     }
@@ -206,19 +206,19 @@ s32 __codeAC520_pad_func_80333C78(File *arg0) {
     return file_isNextByteExpected(arg0, 0);
 }
 
-void codeAC520_func_80333D48(BKVertexList *vertex_list, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *ref_vertex_list) {
+void gclights_recolor_vertices(BKVertexList *vertex_list, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *ref_vertex_list) {
     static s32 sBlackRgb[3] = {0, 0, 0};
     Vtx *i_ptr;
     Vtx *end_ptr;
     Vtx *ref_ptr;
-    Lighting **struct_ptr_ptr;
+    Lighting **pp_light;
     f32 vtx_position[3];
     f32 rgb_modifier[3];
-    Lighting *struct_ptr;
+    Lighting *p_light;
     f32 distance_between_vtx_and_lighting_node;
 
     __lighting_init(position, rotation, scale, arg4, vtxList_getGlobalNorm(vertex_list));
-    if (sLightingVectorList.unk44 == (&sLightingVectorList.unk4[0])) {
+    if (sLightingVectorList.end_ptr == (&sLightingVectorList.reference[0])) {
         vtxList_recolor(vertex_list, &sBlackRgb);
         return;
     }
@@ -229,19 +229,19 @@ void codeAC520_func_80333D48(BKVertexList *vertex_list, f32 position[3], f32 rot
         rgb_modifier[0] = rgb_modifier[1] = rgb_modifier[2] = 0.0f;
         TUPLE_COPY(vtx_position, ref_ptr->v.ob);
 
-        for(struct_ptr_ptr = &sLightingVectorList.unk4[0]; struct_ptr_ptr < sLightingVectorList.unk44;struct_ptr_ptr++) {
-            struct_ptr = *struct_ptr_ptr;
-            distance_between_vtx_and_lighting_node = ml_vec3f_distance(struct_ptr->positionCopy, vtx_position);
-            if (!(struct_ptr->unk24 <= distance_between_vtx_and_lighting_node)) {
-                if (distance_between_vtx_and_lighting_node <= struct_ptr->unk20) {
-                    rgb_modifier[0] = rgb_modifier[0] + struct_ptr->rgb[0];
-                    rgb_modifier[1] = rgb_modifier[1] + struct_ptr->rgb[1];
-                    rgb_modifier[2] = rgb_modifier[2] + struct_ptr->rgb[2];
+        for(pp_light = &sLightingVectorList.reference[0]; pp_light < sLightingVectorList.end_ptr;pp_light++) {
+            p_light = *pp_light;
+            distance_between_vtx_and_lighting_node = ml_vec3f_distance(p_light->positionCopy, vtx_position);
+            if (!(p_light->fade_radius_max <= distance_between_vtx_and_lighting_node)) {
+                if (distance_between_vtx_and_lighting_node <= p_light->fade_radius_min) {
+                    rgb_modifier[0] = rgb_modifier[0] + p_light->rgb[0];
+                    rgb_modifier[1] = rgb_modifier[1] + p_light->rgb[1];
+                    rgb_modifier[2] = rgb_modifier[2] + p_light->rgb[2];
                 } else {
-                    distance_between_vtx_and_lighting_node = 1.0f - ((distance_between_vtx_and_lighting_node - struct_ptr->unk20) / (struct_ptr->unk24 - struct_ptr->unk20));
-                    rgb_modifier[0] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[0];
-                    rgb_modifier[1] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[1];
-                    rgb_modifier[2] += distance_between_vtx_and_lighting_node * struct_ptr->rgb[2];
+                    distance_between_vtx_and_lighting_node = 1.0f - ((distance_between_vtx_and_lighting_node - p_light->fade_radius_min) / (p_light->fade_radius_max - p_light->fade_radius_min));
+                    rgb_modifier[0] += distance_between_vtx_and_lighting_node * p_light->rgb[0];
+                    rgb_modifier[1] += distance_between_vtx_and_lighting_node * p_light->rgb[1];
+                    rgb_modifier[2] += distance_between_vtx_and_lighting_node * p_light->rgb[2];
                 }
             }
         }

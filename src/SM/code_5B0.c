@@ -100,18 +100,18 @@ void func_80386C2C(ParticleEmitter *p_ctrl, f32 *arg1, s32 arg2, f32 arg3) {
 }
 
 void SM_func_80386D68(Actor *this){
-    FUNC_8030E8B4(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
+    sfx_playFadeShorthandDefault(SFX_9B_BOULDER_BREAKING_1, 1.0f, 32000, this->position, 1000, 2000);
 
     this->unk44_31 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(this->unk44_31, 0x3F9);
-    func_8030DD14(this->unk44_31, 3);
+    sfxSource_setunk43_7ByIndex(this->unk44_31, 3);
     sfxsource_setSampleRate(this->unk44_31, 32000);
     sfxsource_playSfxAtVolume(this->unk44_31, (0.01 < (2.0 - this->scale))? (2.0 - this->scale): 0.01);
-    func_8030E2C4(this->unk44_31);
+    sfxSource_func_8030E2C4(this->unk44_31);
     func_80386B04(partEmitMgr_newEmitter(0xA), this->position, 0xA, this->scale);
     func_80386C2C(partEmitMgr_newEmitter(0x10), this->position, 0x10, this->scale);
 
-    if (this->unk100 && codeBF0_shouldSpawnQuarrieHoneyComb(this->unk100)) {
+    if (this->partnerActor && codeBF0_shouldSpawnQuarrieHoneyComb(this->partnerActor)) {
         func_802CA1CC(HONEYCOMB_18_SM_QUARRIES);
         __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, BUNDLE_1F_SM_EMPTY_HONEYCOMB, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
     }
@@ -142,9 +142,9 @@ void SM_func_80386EF4(Actor *this) {
         if ((temp_t3) == 0) {
             other = actorArray_findActorFromActorId(0x16E);
             if (other != NULL) {
-                this->unk100 = other->marker;
+                this->partnerActor = other->marker;
             } else {
-                this->unk100 = NULL;
+                this->partnerActor = NULL;
             }
             subaddie_set_state(this, 2);
         }

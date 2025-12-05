@@ -98,7 +98,7 @@ void func_8038C41C(Actor *this) {
     }
 
     if (this->state == 0) {
-        if( map_get() == MAP_60_CCW_AUTUMN_NABNUTS_HOUSE
+        if( gsworld_get_map() == MAP_60_CCW_AUTUMN_NABNUTS_HOUSE
             && !jiggyscore_isSpawned(JIGGY_4A_CCW_NABNUT) 
             && (this->marker->id == 0x1C6 || this->marker->id == 0x1CA)
         ){
@@ -116,7 +116,7 @@ void func_8038C41C(Actor *this) {
         player_getPosition(sp2C);
         if (!this->has_met_before && (ml_vec3f_distance(this->position, sp2C) < 400.0f)) {
             this->has_met_before = TRUE;
-            gcdialog_showText(0xCCD, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CCD_DIALOG_NABNUT_MEET_WINTER, 0, NULL, NULL, NULL, NULL);
         }
     }
 }

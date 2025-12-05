@@ -2,8 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
-extern void func_802EE5E8(void *);
+#include "core2/dustemitter.h"
 
 typedef struct{
     s32 unk0;
@@ -18,7 +17,7 @@ f32 D_80367A84 = 30.0f;
 f32 D_80367A88 = 150.0f;
 f32 D_80367A8C = 25.0f;
 s32 D_80367A90[4] = {250, 250, 250, 120};
-s32 D_80367AA0 = 0;
+enum dust_emitter_type_e D_80367AA0 = DUST_EMITTER_TYPE_DUST;
 f32 D_80367AA4[3] = {0.0f, 0.0f, 0.0f};
 
 ActorInfo D_80367AB0 = {
@@ -45,7 +44,7 @@ void func_802D7420(Actor *this){
     ActorLocal_core2_50490 * local = (ActorLocal_core2_50490 *)&this->local;
 
     if(local->unk0 != NULL){
-        func_802EE5E8(local->unk0);
+        dustEmitter_empty(local->unk0);
     }
     local->unk0 = NULL;
 }
@@ -59,9 +58,9 @@ Actor *func_802D7484(s32 position[3], s32 yaw, ActorInfo *arg2, u32 arg3) {
     ActorLocal_core2_50490 * local;
     Actor *sp34;
 
-    sp3C = func_802EE5E0(D_80367AA0);
+    sp3C = dustEmitter_returnGiven(D_80367AA0);
     sp34 = actor_new(position, yaw, arg2, arg3);
-    func_802EE6CC(sp34->position, D_80367AA4, D_80367A90, 0, D_80367A80, D_80367A84, D_80367A88, D_80367A8C, D_80367AA0);
+    dustEmitter_emit(sp34->position, D_80367AA4, D_80367A90, 0, D_80367A80, D_80367A84, D_80367A88, D_80367A8C, D_80367AA0);
     local = (ActorLocal_core2_50490 *)&sp34->local;
     local->unk0 = sp3C;
     sp34->marker->collidable = FALSE;
@@ -98,7 +97,7 @@ void func_802D766C(Actor *this) {
         marker_setFreeMethod(this->marker, func_802D7420);
         this->initialized = TRUE;
     }
-    if (func_802EE5F0(local->unk0) == 0) {
+    if (dustEmitter_isActive(local->unk0) == 0) {
         func_802D7420(this);
         marker_despawn(this->marker);
     }

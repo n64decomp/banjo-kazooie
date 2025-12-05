@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "core2/particle.h"
 
-extern ParticleEmitter *func_802F0EF0(u8);
+extern ParticleEmitter *pem_getEmitterByIndex(u8);
 
 /* .data */
 s16 D_80368D80[] = {
@@ -23,17 +23,17 @@ u8 D_80380A70;
 
 /* .code */
 void func_802F3CB0(void){
-    func_802F1190(D_80380A70);
+    pem_free(D_80380A70);
 }
 
 void func_802F3CD4(void){
-    D_80380A70 = func_802F0F78(0xC);
+    D_80380A70 = pem_newEmitter(0xC);
 }
 
 void func_802F3CF8(f32 arg0[3], s32 arg1, s32 arg2){
     ParticleEmitter *pCtrl;
     if(arg2 < 3){
-        pCtrl = func_802F0EF0(D_80380A70);
+        pCtrl = pem_getEmitterByIndex(D_80380A70);
         particleEmitter_setSprite(pCtrl, D_80368D80[arg2]);
         particleEmitter_setFade(pCtrl, 0.4f, 0.8f);
         particleEmitter_setPosition(pCtrl, arg0);

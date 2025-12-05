@@ -74,7 +74,7 @@ void func_8038DF6C(Actor* this){
     }
     if(ml_timer_update(&local->unk24[1], sp68)){
         local->unk24[1] = randf2(1.5f, 2.5f);
-        FUNC_8030E8B4(SFX_40E_UNKNOWN, 1.5f, 20000, this->position, 500, 1500);
+        sfx_playFadeShorthandDefault(SFX_40E_UNKNOWN, 1.5f, 20000, this->position, 500, 1500);
     }//L8038E118
 
     if(ml_timer_update(&local->unk24[2], sp68)){

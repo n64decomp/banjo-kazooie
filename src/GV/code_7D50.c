@@ -11,7 +11,7 @@ struct {
 /* .code */
 void func_8038E140(void){
     GV_D_80391AB0.unk0++;
-    func_8025A6EC(COMUSIC_2B_DING_B, 26000);
+    coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 26000);
 }
 
 s32 func_8038E178(void){

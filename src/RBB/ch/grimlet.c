@@ -133,7 +133,7 @@ void func_80388620(Actor *this){
         func_80258A4C(this->position, (this->yaw + -90.0f) + local->unk0, plyr_pos, &sp60, &sp5C, &sp58);
         local->unk0 += (sp58*200.0f)*sp50;
         if(1.0f < local->unk14 && (sp58 < -0.1 || 0.1 < sp58)){
-                func_8030E6A4(SFX_D0_GRIMLET_SQUEAK, mlAbsF(sp58) * 0.1 + 0.9, 0x4e20);
+                gcsfx_playWithPitch(SFX_D0_GRIMLET_SQUEAK, mlAbsF(sp58) * 0.1 + 0.9, 0x4e20);
                 local->unk14 = 0.0f;
         }
     }
@@ -174,7 +174,7 @@ void func_80388620(Actor *this){
             && 0.55 <= sp48
             && !local->unk5
         ){
-            FUNC_8030E8B4(SFX_20_METAL_CLANK_1, 1.0f, 32000, this->position, 500, 2500);
+            sfx_playFadeShorthandDefault(SFX_20_METAL_CLANK_1, 1.0f, 32000, this->position, 500, 2500);
         }
 
         if(skeletalAnim_getLoopCount(this->unk148) > 0)

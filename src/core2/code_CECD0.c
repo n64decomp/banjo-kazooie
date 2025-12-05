@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "code_B6EA0.h"
+#include "core2/commonParticle.h"
 #include "core2/anim/sprite.h"
 
 typedef struct {
@@ -17,15 +17,15 @@ extern Struct_Core2_CECD0_0 D_803726F0 = {0x3, 0x32};
 void func_80355C60(f32 arg0[3], f32 arg1){
     u8 sp2F;
     u8 sp2E;
-    ParticleStruct0s *sp28;
+    CommonParticle *sp28;
     f32 sp1C[3];
 
-    if(func_8033E3F0(0x10, 1) < 0)
+    if(commonParticle_new(0x10, 1) < 0)
         return;
 
-    sp2E = func_8033E8D0();
+    sp2E = commonParticle_getCurrentProjectileIndex();
     sp2F = func_8033E93C();
-    sp28 = func_8033E960();
+    sp28 = commonParticle_getCurrentParticle();
 
     sp1C[0] = arg0[0] + randf2(-30.0f, 30.0f);
     sp1C[1] = arg0[1] + randf2(0.0f, 30.0f) + 25.0f;
@@ -39,15 +39,15 @@ void func_80355C60(f32 arg0[3], f32 arg1){
 void func_80355D50(void){}
 
 void func_80355D58(void){
-    ParticleStruct0s * sp3C;
+    CommonParticle * sp3C;
     u8 projectile_indx;
     AnimSprite *sp34;
     u8 temp_s0;
     f32 sp24[3];
 
-    sp3C = func_8033E960();
-    projectile_indx = func_8033E8D0();
-    sp34 = func_8033E8F4();
+    sp3C = commonParticle_getCurrentParticle();
+    projectile_indx = commonParticle_getCurrentProjectileIndex();
+    sp34 = commonParticle_getCurrentAnimSprite();
     temp_s0 = func_8033E93C();
     sp3C->unk20 = D_803726F0.unk4;
     projectile_setSprite(projectile_indx, D_803726F0.unk0 + ASSET_710_SPRITE_SPARKLE_PURPLE);
@@ -67,15 +67,15 @@ void func_80355D58(void){
 }
 
 void func_80355E80(void){
-    ParticleStruct0s *sp44;
+    CommonParticle *sp44;
     u8 projectile_indx;
     f32 f22;
     f32 f20;
     s32 temp_a1;
     f32 sp30;
 
-    sp44 = func_8033E960();
-    projectile_indx = func_8033E8D0();
+    sp44 = commonParticle_getCurrentParticle();
+    projectile_indx = commonParticle_getCurrentProjectileIndex();
     f20 = sp44->unk0;\
     f22 = sp44->unk4;\
     sp30 = (f32)sp44->unk20;
@@ -95,6 +95,6 @@ void func_80355E80(void){
     f20 += time_getDelta();
     sp44->unk0 = f20;
     if(f22 < sp44->unk0){
-        func_8033E984();
+        commonParticle_setCurrentInUseFalse();
     }
 }

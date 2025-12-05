@@ -35,7 +35,7 @@ void func_802DABA0(ParticleEmitter *pCtrl, f32 position[3], f32 scale, enum asse
     particleEmitter_setDrawMode(pCtrl, 2);
     particleEmitter_func_802EF9F8(pCtrl, 0.7f);
     particleEmitter_func_802EFA18(pCtrl, 5);
-    func_802EFA20(pCtrl, 0.8f, 1.0f);
+    particleEmitter_func_802EFA20(pCtrl, 0.8f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 6000);
     particleEmitter_setStartingScaleRange(pCtrl, scale, scale);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
@@ -153,13 +153,13 @@ bool func_802DAFBC(Actor *this) {
 }
 
 void func_802DB220(Actor *this) {
-    if (func_80329530(this, 900) && func_803292E0(this)) {
+    if (subaddie_playerIsWithinSphereAndActive(this, 900) && func_803292E0(this)) {
         subaddie_set_state(this, 6);
     }
 }
 
 void func_802DB264(Actor *this) {
-    if (!func_80329530(this, 900) || !func_803292E0(this)) {
+    if (!subaddie_playerIsWithinSphereAndActive(this, 900) || !func_803292E0(this)) {
         subaddie_set_state(this, 1);
     }
 }
@@ -194,10 +194,10 @@ void func_802DB3B0(Actor *this) {
 
     local = (ActorLocal_core2_53C10 *)&this->local;
     if (local->unkC_28 && actor_animationIsAt(this, 0.0f)) {
-        FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.8f, 8000, this->position, 500, 1500);
+        sfx_playFadeShorthandDefault(SFX_8_BANJO_LANDING_04, 1.8f, 8000, this->position, 500, 1500);
     }
     if (local->unkC_28 && actor_animationIsAt(this, 0.5f)) {
-        FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.8f, 8000, this->position, 500, 1500);
+        sfx_playFadeShorthandDefault(SFX_8_BANJO_LANDING_04, 1.8f, 8000, this->position, 500, 1500);
     }
 }
 
@@ -209,7 +209,7 @@ void func_802DB440(ActorMarker *marker, ActorMarker *other_marker) {
         && this->actor_specific_1_f >= 3.0
         && func_803294F0(this, 0x50, func_80329784(this))
     ) {
-        FUNC_8030E8B4(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 20000, this->position, 1250, 2500);
+        sfx_playFadeShorthandDefault(SFX_1F_HITTING_AN_ENEMY_3, 1.0f, 20000, this->position, 1250, 2500);
 
         func_802DAE40(this);
     }
@@ -336,7 +336,7 @@ void func_802DB5A0(Actor *this) {
                 }
             }
             if( (this->unk10_12 == 0) 
-                || (this->unk10_12 < local->unkC_31 && func_80329530(this, 0xFA))
+                || (this->unk10_12 < local->unkC_31 && subaddie_playerIsWithinSphereAndActive(this, 0xFA))
             ) {
                 subaddie_set_state(this, 7);
                 this->actor_specific_1_f = (f32) local->unkA;

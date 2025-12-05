@@ -55,7 +55,7 @@ void func_8038C760(Actor *this, s32 arg1){
         func_80324E38(6.5f, 0);
     }
     else{
-        timedFunc_set_2(3.5f, (GenFunction_2)func_8025A6EC, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
+        timedFunc_set_2(3.5f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
         timedFunc_set_3(3.5f, (GenFunction_3)fileProgressFlag_setN, FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, arg1, 2);
         timed_exitStaticCamera(6.0f);
         func_80324E38(6.0f, 0);
@@ -79,10 +79,10 @@ void func_8038C8A0(Actor *this, s32 next_state){
     if(next_state == 4 || next_state == 5){
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(local->sfxsourceIdx, SFX_3EC_CCW_DOOR_OPENING);
-        func_8030DD14(local->sfxsourceIdx, 3);
+        sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 3);
         sfxsource_playSfxAtVolume(local->sfxsourceIdx, 0.8f);
         sfxsource_setSampleRate(local->sfxsourceIdx, 0);
-        func_8030E2C4(local->sfxsourceIdx);
+        sfxSource_func_8030E2C4(local->sfxsourceIdx);
     }//L8038C9B8
 
     if(next_state == 2){
@@ -111,13 +111,13 @@ void func_8038C8A0(Actor *this, s32 next_state){
         skeletalAnim_setProgress(this->unk148, 0.99f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if(next_state == 4 || next_state == 5)
-            FUNC_8030E8B4(SFX_DE_WOOD_SQUEAK, 1.0f, 32675, this->position, 500, 1500);
+            sfx_playFadeShorthandDefault(SFX_DE_WOOD_SQUEAK, 1.0f, 32675, this->position, 500, 1500);
     }//L8038CB20
 
     if(next_state == 6){
         func_80324E38(0.0f, 3);
         skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.0f, 3.0f);
-        func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
     }
 
     if(next_state == 7){
@@ -288,7 +288,7 @@ void func_8038CC98(Actor *this){
                 func_8038C8A0(this, 6);
             }
             else{
-                func_8025A6EC(COMUSIC_2B_DING_B, 28000);
+                coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
             }
         }
     }

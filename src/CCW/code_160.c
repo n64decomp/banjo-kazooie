@@ -31,7 +31,7 @@ void CCW_func_80386550(ActorMarker *marker){
     if (local->unk0 != NULL) {
         actor_collisionOn(marker_getActor(local->unk0));
     }
-    func_8025A6EC(COMUSIC_3D_JIGGY_SPAWN, 28000);
+    coMusicPlayer_playMusic(COMUSIC_3D_JIGGY_SPAWN, 28000);
 }
 
 void func_803865C4(ActorMarker* marker, enum asset_e text_id, s32 arg2) {
@@ -45,9 +45,9 @@ void func_803865F4(Actor *this, s32 next_state) {
     local->unkC = 0.0f;
     if (next_state == 2) {
         if (!volatileFlag_getAndSet(VOLATILE_FLAG_B5, 1)) {
-            gcdialog_showText(0xCE2, 4, NULL, this->marker, func_803865C4, NULL);
+            gcdialog_showDialog(ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 4, NULL, this->marker, func_803865C4, NULL);
         } else {
-            gcdialog_showText(0xCE3, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CE3_DIALOG_ZUBBA_RETURN, 4, NULL, NULL, NULL, NULL);
             func_803865F4(this, 3);
             return;
         }
@@ -56,7 +56,7 @@ void func_803865F4(Actor *this, s32 next_state) {
     if (next_state == 3) {
         local->unkC = 0.1f;
         func_8025A58C(0, 4000);
-        func_8025A6EC(COMUSIC_4B_CCW_ZUBBA_FIGHT, 30000);
+        coMusicPlayer_playMusic(COMUSIC_4B_CCW_ZUBBA_FIGHT, 30000);
     }
 
     if (next_state == 4) {
@@ -65,11 +65,11 @@ void func_803865F4(Actor *this, s32 next_state) {
             volatileFlag_set(VOLATILE_FLAG_3, 0);
             volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
         } else {
-            gcdialog_showText(0xCE4, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(ASSET_CE4_DIALOG_ZUBBA_COMPLETE, 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
             comusic_8025AB44(COMUSIC_4B_CCW_ZUBBA_FIGHT, 0, 400);
             func_8025AABC(COMUSIC_4B_CCW_ZUBBA_FIGHT);
-            func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+            coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(2.0f, 4);
             timedFunc_set_1(2.0f, (GenFunction_1)CCW_func_80386550, (s32) this->marker);
@@ -205,7 +205,7 @@ void func_8038687C(Actor *this) {
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 1800 - 1);
             func_803865F4(this, 3);
-        } else if ((local->unk0 != NULL) && (map_get() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
+        } else if ((local->unk0 != NULL) && (gsworld_get_map() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
             player_getPosition(sp40);
             if ((ml_vec3f_distance(this->position, sp40) < 300.0f) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
                 func_803865F4(this, 2);

@@ -1,12 +1,14 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
+#include "version.h"
 #include "core2/ba/physics.h"
 
 extern f32 player_getYaw(void);
 extern void chJigsawDance_setState(Actor *, s32);
 extern void bsjig_setJiggyMarkerPtr(ActorMarker *);
+
+
 
 typedef struct{
     f32 unk0;
@@ -251,7 +253,7 @@ ActorMarker *func_80296554(void){
     return D_8037C3E0.unk14;
 }
 
-s32 func_80296560(void){
+enum ba_rebound_id func_80296560(void){
     return D_8037C3E0.unk18;
 }
 
@@ -266,10 +268,15 @@ void func_80296590(void){
         case 0x13 : //L802965C8
         case 0x26 : //L802965C8
         case 0x2a : //L802965C8
-        case 0x2c : //L802965C8
         case 0x30 : //L802965C8
+#if VERSION == VERSION_USA_1_0
+        case 0x2c :
+#endif
             func_80296404(temp_a0);
             break;
+#if VERSION == VERSION_PAL
+        case 0x2c :
+#endif
         case 0x31 : //L802965D8
         case 0x32 : //L802965D8
         case 0x33 : //L802965D8
@@ -279,7 +286,7 @@ void func_80296590(void){
             
             break;
     }
-    func_8029A86C(1);
+    bs_setInterruptResponse(1);
     bs_setState(0);
 }
 
@@ -294,7 +301,7 @@ void func_80296608(void){
     current_state = bs_getState();
     switch(bs_getInterruptType()){
         case BS_INTR_18_CROC_ATE_WRONG: //L80296654
-            func_802AD318();
+            bscroc_set_ate_wrong_thing();
             sp2C = 2;
             break;
         case BS_INTR_A:  //L8029666C
@@ -381,8 +388,8 @@ void func_80296608(void){
             next_state = func_8029B504();
             sp2C = 2;
             break;
-        case BS_INTR_1F: //L80296868
-            if(func_80297C6C() != 3 && baMarker_isCollidable()){
+        case BS_INTR_1F_HAZARD: //L80296868
+            if(baiFrame_getState() != 3 && baMarker_isCollidable()){
         case BS_INTR_31: //L8029688C
                 func_802960C4(2);
                 item_dec(ITEM_14_HEALTH);
@@ -391,7 +398,7 @@ void func_80296608(void){
             }
             break;
         case BS_INTR_21: //L802968B4
-            if(func_80297C6C() != 3){
+            if(baiFrame_getState() != 3){
         case BS_INTR_33: //L802968C8
                 func_802960C4(0);
                 item_dec(ITEM_14_HEALTH);
@@ -400,7 +407,7 @@ void func_80296608(void){
             }
             break;
         case BS_INTR_20: //L802968F0
-            if(func_80297C6C() != 3){
+            if(baiFrame_getState() != 3){
                 func_802960C4(1);
                 item_dec(ITEM_14_HEALTH);
                 next_state = func_802962BC(0);
@@ -439,7 +446,7 @@ void func_80296608(void){
             sp1C = player_getTransformation();
             sp1C = !((sp1C == TRANSFORM_1_BANJO) || (sp1C == TRANSFORM_7_WISHWASHY));
             if( 
-                !func_80298850() 
+                !balookat_getState() 
                 && !sp1C 
                 && !baflag_isTrue(BA_FLAG_F)
                 && !player_isStable()
@@ -523,7 +530,7 @@ void func_80296608(void){
             }
             break;
     }//L80296C0C
-    func_8029A86C(sp2C);
+    bs_setInterruptResponse(sp2C);
     bs_setState(next_state);
 }
 

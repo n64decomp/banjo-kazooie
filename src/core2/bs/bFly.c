@@ -2,15 +2,18 @@
 #include "core1/core1.h"
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/physics.h"
 #include "core2/ba/flap.h"
 #include "core2/ba/timer.h"
 
 extern void baModel_setYDisplacement(f32);
 extern f32 bastick_getX(void);
-extern void ncDynamicCam4_func_802BFE50(f32, f32, f32);
+extern void ncbafly_func_802BFE50(f32, f32, f32);
 extern void func_80354030(f32[3], f32);
-
+extern BKCollisionTri *func_8029463C(void);
 
 /* .data */
 
@@ -174,8 +177,8 @@ void bsbfly_enter_update(void){
     bs_setState(sp1C);
 }
 
-void bsbfly_enter_end(void){
-    ability_use(8);
+void bsbfly_enter_end(void) {
+    ability_use(ABILITY_USED_FLY);
     func_8029E070(0);
 }
 
@@ -333,7 +336,7 @@ void func_802A3F9C(void){
     pitch_setIdeal(sp1C[0]);
     func_8029E070(1);
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE74(1);
+    ncbafly_func_802BFE74(1);
     func_802A3430();
     FUNC_8030E624(SFX_52_BANJO_YAH_OH, 1.0f, 28000);
     D_8037D345 = 0;
@@ -474,8 +477,8 @@ void func_802A4430(void){
 
 void func_802A4548(void){
     s32 next_state = 0;
-    f32 sp20[3];
-    baphysics_get_velocity(sp20);
+    f32 velocity[3];
+    baphysics_get_velocity(velocity);
     switch(D_8037D344){
         case 0://L802A457C
             if(func_8028B254(0x5A)){
@@ -514,7 +517,7 @@ void func_802A4664(void){
     basfx_80299E90();
     next_state = bs_getNextState();
     if(next_state == BS_20_LANDING || next_state == BS_24_FLY || next_state == BS_2D_SWIM_IDLE){
-        sfxsource_playHighPriority(SFX_3EA_UNKNOWN);
+        sfxsource_playHighPriority(SFX_3EA_BANJO_GUH_HUH);
     }
     func_802A34C8();
     func_8029E070(0);
@@ -564,36 +567,36 @@ void func_802A47E0(void) {
 
 void func_802A48B4(void) {
     s32 next_state;
-    AnimCtrl *sp18;
+    AnimCtrl *p_anim;
 
     next_state = 0;
-    sp18 = baanim_getAnimCtrlPtr();
+    p_anim = baanim_getAnimCtrlPtr();
     func_80299628(0);
     switch (D_8037D344) {
     case 0:
         func_802A47E0();
-        if (anctrl_isAt(sp18, 0.2f) != 0) {
+        if (anctrl_isAt(p_anim, 0.2f) != 0) {
             if (item_getCount(ITEM_14_HEALTH) == 0) {
                 func_8029C984();
                 func_8029151C(0xD);
-                ncDynamicCamD_func_802BF2C0(30.0f);
+                ncbadie_func_802BF2C0(30.0f);
                 func_8029B930();
                 batimer_set(0, 2.5f);
                 D_8037D344 = 2;
             }
-        } else if (anctrl_isAt(sp18, 0.92f)) {
+        } else if (anctrl_isAt(p_anim, 0.92f)) {
             baanim_playForDuration_once(ASSET_D2_ANIM_BSSPLAT, 2.25f);
             D_8037D344 = 1;
         }
         break;
     case 1:
-        if (anctrl_isAt(sp18, 0.219f)) {
+        if (anctrl_isAt(p_anim, 0.219f)) {
             basfx_80299CF4(SFX_36_BANJO_DOH, 1.0f, 16000);
         }
-        if (anctrl_isAt(sp18, 0.63f)) {
+        if (anctrl_isAt(p_anim, 0.63f)) {
             next_state = BS_20_LANDING;
         }
-        if (anctrl_isStopped(sp18)) {
+        if (anctrl_isStopped(p_anim)) {
             next_state = BS_1_IDLE;
         }
         if (player_shouldFall()) {
@@ -621,17 +624,17 @@ void func_802A4A40(void) {
 void func_802A4A78(s32 arg0) {
     f32 sp3C[3];
     f32 sp30[3];
-    f32 sp2C;
+    f32 gravity;
     f32 sp28;
     f32 pad24;
-    f32 sp20;
+    f32 velocity;
 
     if (arg0 == 0) {
-        sp2C = -2200.0f;
-        sp20 = 800.0f;
+        gravity = -2200.0f;
+        velocity = 800.0f;
     } else {
-        sp2C = -1200.0f;
-        sp20 = 400.0f;
+        gravity = -1200.0f;
+        velocity = 400.0f;
     }
     func_802BB3DC(2, 100.0f, 0.85f);
     baanim_playForDuration_onceSmooth(ASSET_D3_ANIM_BSBFLY_BEAKBOMB_REBOUND, 1.2f);
@@ -642,20 +645,20 @@ void func_802A4A78(s32 arg0) {
     func_80257F18(sp30, sp3C, &sp28);
     yaw_setIdeal(mlNormalizeAngle(sp28 + 180.0f));
     yaw_applyIdeal();
-    baphysics_set_target_horizontal_velocity(sp20);
+    baphysics_set_target_horizontal_velocity(velocity);
     baphysics_set_target_yaw(sp28);
     baphysics_set_horizontal_velocity(sp28, baphysics_get_target_horizontal_velocity());
-    if ((arg0 == 1) && (map_get() == MAP_90_GL_BATTLEMENTS)) {
+    if ((arg0 == 1) && (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)) {
         yaw_setIdeal(mlNormalizeAngle(sp28));
         yaw_applyIdeal();
     }
     func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(800.0f);
-    baphysics_set_gravity(sp2C);
+    baphysics_set_gravity(gravity);
     baphysics_set_terminal_velocity(-4000.0f);
     func_8029E070(1);
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
     baMarker_collisionOff();
     func_802A3430();
 }
@@ -676,7 +679,7 @@ void func_802A4C34(s32 arg0) {
 void func_802A4C88(s32 arg0) {
     baphysics_reset();
     baMarker_collisionOn();
-    func_80297CA8();
+    baiFrame_start();
     func_8029E070(0);
     func_80291548();
     func_802A34C8();
@@ -722,7 +725,7 @@ void func_802A4D90(void) {
     baphysics_set_target_horizontal_velocity(1300.0f);
     baphysics_set_target_yaw(sp34);
     baphysics_set_horizontal_velocity(sp34, baphysics_get_target_horizontal_velocity());
-    if (map_get() == MAP_90_GL_BATTLEMENTS) {
+    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
         yaw_setIdeal(mlNormalizeAngle(sp34));
         yaw_applyIdeal();
     }
@@ -731,19 +734,19 @@ void func_802A4D90(void) {
     baphysics_set_gravity(-1800.0f);
     baMarker_collisionOff();
     func_802914CC(4);
-    ncDynamicCam4_func_802BFE50(12.0f, 10000.0f, 800.0f);
+    ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
 }
 
 void func_802A4EC8(void) {
     s32 next_state;
-    AnimCtrl *sp18;
+    AnimCtrl *p_anim;
 
     next_state = 0;
-    sp18 = baanim_getAnimCtrlPtr();
+    p_anim = baanim_getAnimCtrlPtr();
     if (player_isStable()) {
         next_state = BS_20_LANDING;
     }
-    if (anctrl_isStopped(sp18) && (player_shouldFall() || func_80294530())) {
+    if (anctrl_isStopped(p_anim) && (player_shouldFall() || func_80294530())) {
         D_8037D346 = 1;
         next_state = BS_24_FLY;
     }
@@ -771,7 +774,7 @@ void func_802A4FC8(void) {
     if (anctrl_isAt(baanim_getAnimCtrlPtr(), 0.1358f) != 0) {
         func_8030EBC8(SFX_2_CLAW_SWIPE, 0.6f, 0.7f, 10000, 12000);
     }
-    if (func_80298850() == 0) {
+    if (balookat_getState() == 0) {
         next_state = BS_24_FLY;
     }
     bs_setState(next_state);
@@ -783,7 +786,7 @@ void func_802A503C(void){
 
 void func_802A505C(void){
     if(bs_getInterruptType() == BS_INTR_9){
-        func_8029A86C(2);
+        bs_setInterruptResponse(2);
         baflag_set(BA_FLAG_7_TOUCHING_JIGGY);
         func_8029CCC4();
     }else{

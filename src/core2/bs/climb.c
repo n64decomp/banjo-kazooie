@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
@@ -78,7 +81,7 @@ void bsclimb_idle_init(void){
         yaw_setIdeal(angle_towards_pole);
         yaw_applyIdeal();
     }
-    ability_use(4);
+    ability_use(ABILITY_USED_CLIMB);
     baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
@@ -141,7 +144,7 @@ void bsclimb_move_update(void){
 
     bafalldamage_start();
     func_802AB5C0();
-    map = map_get();
+    map = gsworld_get_map();
 
     if( map == MAP_B_CC_CLANKERS_CAVERN
         || map == MAP_1B_MMM_MAD_MONSTER_MANSION
@@ -201,7 +204,7 @@ void func_802ABCCC(void){
 //bsclimb_unknown_9E_update
 void func_802ABD0C(void){
     s32 next_state = 0;
-    if(!func_80298850())
+    if(!balookat_getState())
         next_state = BS_4F_CLIMB_IDLE;
 
     bs_setState(next_state);
@@ -222,6 +225,6 @@ void func_802ABD60(void){
         func_80296608();
         return;
     }
-    func_8029A86C(1);
+    bs_setInterruptResponse(1);
     bs_setState(next_state);
 }

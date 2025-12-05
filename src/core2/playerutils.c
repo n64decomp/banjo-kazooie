@@ -42,8 +42,8 @@ s32 can_climb(void){
 
 int can_dive(void){
     return ability_hasLearned(ABILITY_F_DIVE) 
-        && !func_8029D66C() 
-        && 100.0f < func_80294500() - func_80294438();
+        && !isPlayerInHazard() 
+        && 100.0f < floor_getCurrentFloorYPosition() - func_80294438();
 }
 
 s32 can_egg(void){ 
@@ -107,11 +107,11 @@ s32 can_wonderwing(void){
 }
 
 int can_view_first_person(void){
-    if( map_get() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
+    if( gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
         return 0;
     }
 
-    if(ncFirstPersonCamera_getState() == FIRSTPERSON_STATE_3_EXIT)
+    if(ncba1p_getState() == FIRSTPERSON_STATE_3_EXIT)
         return 0;
 
     if(!player_isStable() && !player_inWater())
@@ -128,7 +128,7 @@ int dummy_player_is_pumpkin(void){
 }
 
 int func_8028ADB4(void){
-    return func_8032190C() && map_get() != MAP_1_SM_SPIRAL_MOUNTAIN;
+    return func_8032190C() && gsworld_get_map() != MAP_1_SM_SPIRAL_MOUNTAIN;
 }
 
 int wishyWashyFlag_get(void){
@@ -290,11 +290,11 @@ void func_8028B59C(void) {
 
     sp24 = D_8037BF61;
     if (D_8037BF61) {
-        D_8037BF61 = (func_80294554() && player_getYPosition() < ((func_80294500() - 50.0f) + 2.0f));
+        D_8037BF61 = (func_80294554() && player_getYPosition() < ((floor_getCurrentFloorYPosition() - 50.0f) + 2.0f));
     } else {
-        D_8037BF61 = (func_80294554() && player_getYPosition() < ((func_80294500() - 50.0f) - 2.0f));
+        D_8037BF61 = (func_80294554() && player_getYPosition() < ((floor_getCurrentFloorYPosition() - 50.0f) - 2.0f));
     }
-    if (map_get() == MAP_6_TTC_NIPPERS_SHELL) {
+    if (gsworld_get_map() == MAP_6_TTC_NIPPERS_SHELL) {
         D_8037BF61 = FALSE;
     }
     if (!sp24 && D_8037BF61 && (baphysics_get_vertical_velocity() < -40.0)) {

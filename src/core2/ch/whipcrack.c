@@ -24,7 +24,7 @@ void __chwhipcrack_spawnPieces(Actor *this, enum asset_e model_id, s32 cnt){
     );
     particleEmitter_func_802EF9F8(pCtrl, 0.7f);
     particleEmitter_func_802EFA18(pCtrl, 3);
-    func_802EFA20(pCtrl, 0.5f, 1.0f);
+    particleEmitter_func_802EFA20(pCtrl, 0.5f, 1.0f);
     particleEmitter_setSfx(pCtrl, SFX_1F_HITTING_AN_ENEMY_3, 10000);
     particleEmitter_setModel(pCtrl, model_id);
     particleEmitter_setSpawnPositionRange(pCtrl,
@@ -79,7 +79,7 @@ void __chwhipcrack_setState(Actor *this, s32 next_state){
         __chwhipcrack_spawnPieces(this, ASSET_4FF_MODEL_WHIPCRACK_PART_2, 4);
         __chwhipcrack_spawnPieces(this, ASSET_500_MODEL_WHIPCRACK_PART_3, 4);
         __chwhipcrack_spawnSmoke(this, 6);
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
         marker_despawn(this->marker);
     }
 

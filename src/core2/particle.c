@@ -320,7 +320,7 @@ ParticleEmitter * particleEmitter_new(u32 capacity){
     func_802EFA34(this, 100000.0f);
     particleEmitter_setParticleCallback(this, 0);
     particleEmitter_func_802EFA18(this, 0);
-    func_802EFA20(this, 1.0f, 1.0f);
+    particleEmitter_func_802EFA20(this, 1.0f, 1.0f);
     particleEmitter_setStartingFrameRange(this, 0, 0);
     particleEmitter_setParticleFramerateRange(this, 0.0f, 0.0f);
     particleEmitter_setStartingScaleRange(this, 1.0f, 1.0f);
@@ -382,7 +382,7 @@ void particleEmitter_func_802EFA18(ParticleEmitter *this, s32 arg1){
     this->unk64 = arg1;
 }
 
-void func_802EFA20(ParticleEmitter *this, f32 arg1, f32 arg2){
+void particleEmitter_func_802EFA20(ParticleEmitter *this, f32 arg1, f32 arg2){
     this->unk6C = arg1;
     this->unk70 = arg2;
 }
@@ -545,13 +545,13 @@ void particleEmitter_setParticleLifeTimeRange(ParticleEmitter *this, f32 min, f3
     this->particleLifeTimeRange[1] = max;
 }
 
-void particleEmitter_setParticleVelocityRange(ParticleEmitter *this, f32 x_min, f32 x_max, f32 y_min, f32 y_max, f32 z_min, f32 z_max){
+void particleEmitter_setParticleVelocityRange(ParticleEmitter *this, f32 x_min, f32 y_min, f32 z_min, f32 x_max, f32 y_max, f32 z_max) {
     this->sphericalParticleVelocity_48 = FALSE;
     this->particleVelocityRange_E4.cartisian_min_x = x_min;
-    this->particleVelocityRange_E4.cartisian_min_y = x_max;
-    this->particleVelocityRange_E4.cartisian_min_z = y_min;
-    this->particleVelocityRange_E4.cartisian_max_x = y_max;
-    this->particleVelocityRange_E4.cartisian_max_y = z_min;
+    this->particleVelocityRange_E4.cartisian_min_y = y_min;
+    this->particleVelocityRange_E4.cartisian_min_z = z_min;
+    this->particleVelocityRange_E4.cartisian_max_x = x_max;
+    this->particleVelocityRange_E4.cartisian_max_y = y_max;
     this->particleVelocityRange_E4.cartisian_max_z = z_max;
 }
 
@@ -668,7 +668,7 @@ void particleEmitter_update(ParticleEmitter *this){
                                     sp68 = 1.0f;
                                 }//L802F0324
                                 if(particleSfxTimer == 0.0f){
-                                    func_8030E6A4(this->sfx_id, randf2(this->unk6C, this->unk70), (s32)((f32)this->unk7C*sp68));
+                                    gcsfx_playWithPitch(this->sfx_id, randf2(this->unk6C, this->unk70), (s32)((f32)this->unk7C*sp68));
                                     particleSfxTimer = 0.25f;
                                 }
                             }//L802F0384

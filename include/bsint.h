@@ -39,7 +39,7 @@ enum bs_interrupt_e {
     BS_INTR_1C,
     BS_INTR_1D,
     BS_INTR_1E,
-    BS_INTR_1F,
+    BS_INTR_1F_HAZARD,
     BS_INTR_20,
     BS_INTR_21,
     BS_INTR_22,

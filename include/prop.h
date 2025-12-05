@@ -9,43 +9,41 @@
 #include "core2/skeletalanim.h"
 
 typedef struct sprite_prop_s{
-    u32 unk0_31:0xC;
+    u32 sprite_index:0xC;
     u32 unk0_19:0x1;
-    u32 unk0_18:0x3;
-    u32 unk0_15:0x3;
-    u32 unk0_12:0x3;
-    u32 unk0_9:0x8;
-    u32 unk0_1:0x1;
-    u32 unk0_0:0x1;
+    u32 r:0x3;
+    u32 b:0x3;
+    u32 g:0x3;
+    u32 scale:0x8;
+    u32 mirrored:0x1;
     s16 unk4[3];
-    u16 unk8_15: 5;
+    u16 frame: 5;
     u16 unk8_10: 5;
     u16 unk8_5: 1;
     u16 unk8_4: 1;
     u16 unk8_3: 1;
     u16 unk8_2: 1;
-    u16 unk8_1:1;
-    u16 unk8_0:1;
+    u16 is_3d:1;
+    u16 is_actor:1;
 } SpriteProp;
 
 typedef struct model_prop_s{
     union{
         u16 unk0;
         struct{    
-            u16 unk0_31:12;
+            u16 model_index:12;
             u16 pad0_19:4;
         };
     };
-    u8 unk0_15;
-    u8 unk0_7;
-    s16 unk4[3];
-    u8 unkA;
+    u8 yaw;
+    u8 roll;
+    s16 position[3];
+    u8 scale;
     u8 padB_7 :2;
     u8 unkB_5 :1;
     u8 unkB_4 :1;
     u8 padB_3 :4;
 } ModelProp;
-
 
 typedef struct actor_prop_s{
     union {
@@ -60,8 +58,8 @@ typedef struct actor_prop_s{
             u16 unk8_4:1;
             u16 unk8_3:1;
             u16 unk8_2:1;
-            u16 unk8_1:1;
-            u16 unk8_0:1;
+            u16 is_3d:1;
+            u16 is_actor:1;
         };
         s32 words[3];
     };
@@ -87,7 +85,7 @@ typedef struct actorMarker_s{
     MarkerCollisionFunc dieFunc;
     s32         unk20;
     ActorUpdateFunc actorUpdateFunc;
-    s32         unk28;
+    s32         commonParticleIndex;
     u32         actrArrayIdx:11; //unk2C
     u32         pitch:9;
     u32         roll:9;
@@ -99,7 +97,7 @@ typedef struct actorMarker_s{
     s16         unk38[3];
     u16         pad3E_15:1;
     u16         modelId:13;
-    u16         unk3E_1:1;
+    u16         isBanjoOnTop: TRUE;
     u16         unk3E_0:1; //scaled
     u32         unk40_31:4;
     u32         unk40_27:4;
@@ -200,7 +198,7 @@ typedef struct actor_s{
     f32 unk74;
     u32 unk78_31:9;
     u32 unk78_22:9;
-    u32 unk78_13:12; //default_spawn_yaw?
+    u32 secondaryId:12; //default_spawn_yaw? This seems to be a different ID to differentiate actors that are the same- IE orange switches or tolls
     u32 stored_anctrl_forwards:1; //animCtrlDirection
     u32 stored_anctrl_smoothTransistion:1; //animCtrlSmoothTransition
     union
@@ -230,12 +228,13 @@ typedef struct actor_s{
     u32 unkF4_22:1;
     u32 initialized:1; //unkF4_21;
     u32 unkF4_20:12;
-    u32 unkF4_8:9; /* jinjo id in final fight.
+    u32 actorTypeSpecificField:9; /* jinjo id in final fight.
                     *  Is used to determine file progress related stuff, can also be a file_progress_e
+                    *  Also related to jigsaw pictures, as an id for each
                     */
     f32 stored_anctrl_subrangeMin; //animCtrl_SubRangeStart
     f32 stored_anctrl_subrangeMax; //animCtrl_SubRangeEnd
-    ActorMarker *unk100; // child actor marker ?
+    ActorMarker *partnerActor; // child actor marker ? Calling this "partner" since it seems to relate to actors that are "paired" and not necessarily parent/child
     ActorMarker *unk104;
     Struct62s *unk108;
     // void ( *unk108)(struct actorMarker_s *, s32); //saved from marker->collisionFunc
@@ -334,8 +333,8 @@ typedef union prop_s
         u16 unk8_4: 1;
         u16 unk8_3: 1;
         u16 unk8_2: 1;
-        u16 unk8_1: 1;
-        u16 markerFlag: 1;
+        u16 is_3d: 1;
+        u16 is_actor: 1;
     };
 } Prop;
 

@@ -36,17 +36,17 @@ void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){
     case 0x170:
         item_setMaxCount(ITEM_D_EGGS);
         fxSparkle_giantBlueEgg(&marker->propPtr->x);
-        func_8025A6EC(SFX_EGG_REFILL, -1);
+        coMusicPlayer_playMusic(SFX_EGG_REFILL, -1);
         break;
     case 0x171:
         item_setMaxCount(ITEM_F_RED_FEATHER);
         fxSparkle_giantRedFeather(&marker->propPtr->x);
-        func_8025A6EC(SFX_RED_FEATHER_REFILL, -1);
+        coMusicPlayer_playMusic(SFX_RED_FEATHER_REFILL, -1);
         break;
     case 0x172:
         item_setMaxCount(ITEM_10_GOLD_FEATHER);
         fxSparkle_giantGoldFeather(&marker->propPtr->x);
-        func_8025A6EC(SFX_GOLD_FEATHER_REFILL, -1);
+        coMusicPlayer_playMusic(SFX_GOLD_FEATHER_REFILL, -1);
         break;
     }
     marker->collidable = FALSE;
@@ -81,8 +81,8 @@ void func_803906A0(Actor *this) {
         }
         for(phi_s0 = 0; phi_s0 < phi_s2; phi_s0++){
             if (randf() < ((1.0 / (f64) phi_s2) / 15.0)) {
-                func_8033E73C(this->marker, phi_s0 + 5, &func_80329904);
-                func_8033E3F0(phi_s4, 1);
+                commonParticle_add(this->marker, phi_s0 + 5, &func_80329904);
+                commonParticle_new(phi_s4, 1);
             }
         }
     }

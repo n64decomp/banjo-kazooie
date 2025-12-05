@@ -177,7 +177,7 @@ void func_80350BC8(void){
 }
 
 void func_80350BFC(void) {
-    D_80386170.unk4 = func_803507CC(map_get());
+    D_80386170.unk4 = func_803507CC(gsworld_get_map());
     if (D_80386170.unk4 != NULL) {
         D_80386170.unk0 = func_80350780(D_80386170.unk4->unk10);
         D_80386170.unk8 = assetcache_get(0x882);

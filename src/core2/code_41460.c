@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802EE6CC(f32[3], f32[3], s32[4], s32, f32, f32, s32, s32, s32);
+#include "core2/dustemitter.h"
 
 typedef struct struct_24_s{
     s32 unk0;
@@ -26,6 +26,8 @@ typedef struct struct_25_s{
 
 Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802C8C5C(Actor *this);
+
+// These seem to be related to assets like bricks, pipes, planks, when destroying objects
 
 /* .data */
 f32 D_80366330 = 0.5f;
@@ -59,7 +61,7 @@ void func_802C83F0(Actor *actor) {
             assetcache_release(phi_s0->model_bin);
         }
         if (phi_s0->unk3C != 0) {
-            func_802EE5E8(phi_s0->unk3C);
+            dustEmitter_empty(phi_s0->unk3C);
         }
         phi_s0->unk3C = NULL;
     }
@@ -278,14 +280,14 @@ void func_802C8C5C(Actor *actor) {
 
             if (phi_s0->unk8[1] <= phi_s0->unk50) {
                 phi_s0->unk0 = 1;
-                phi_s0->unk3C = func_802EE5E0(1);
+                phi_s0->unk3C = dustEmitter_returnGiven(1);
                 if (phi_s0->unk3C != 0) {
-                    func_802EE6CC(phi_s0->unk8, sp70, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, 1);
+                    dustEmitter_emit(phi_s0->unk8, sp70, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, DUST_EMITTER_TYPE_BREAK_DUST);
                 }
             }
         }
         if (phi_s0->unk0 == 1) {
-            if (!func_802EE5F0(phi_s0->unk3C)) {
+            if (!dustEmitter_isActive(phi_s0->unk3C)) {
                 phi_s0->unk0 = 0;
             }
             phi_s0->unk8[1] -= 2.0f;

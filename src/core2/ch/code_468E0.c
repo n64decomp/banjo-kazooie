@@ -41,11 +41,11 @@ void func_802CD8C0(Actor *this){
             marker_despawn(this->marker);
             return;
         }
-        if(this->unkF4_8 != 0x32 && func_8028E4A4() != this->unkF4_8){
+        if(this->actorTypeSpecificField != 0x32 && func_8028E4A4() != this->actorTypeSpecificField){
             marker_despawn(this->marker);
             return;
         }
-        if(map_get() == MAP_26_MMM_NAPPERS_ROOM){
+        if(gsworld_get_map() == MAP_26_MMM_NAPPERS_ROOM){
             if(fileProgressFlag_get(FILEPROG_1D_MMM_DINNING_ROOM_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
@@ -56,7 +56,7 @@ void func_802CD8C0(Actor *this){
             }
         }
         //L802CD9C4
-        if(map_get() == MAP_8E_GL_FURNACE_FUN){
+        if(gsworld_get_map() == MAP_8E_GL_FURNACE_FUN){
             if(fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE)){
                 marker_despawn(this->marker);
                 return;
@@ -73,7 +73,7 @@ void func_802CD8C0(Actor *this){
             this->marker->unk2C_2 = 0;
             if(*(s32*)this->unkBC)
                 func_8028F918(0);
-            if(map_get() == MAP_8E_GL_FURNACE_FUN){
+            if(gsworld_get_map() == MAP_8E_GL_FURNACE_FUN){
                 mapSpecificFlags_set(4, TRUE);
             }
             else{

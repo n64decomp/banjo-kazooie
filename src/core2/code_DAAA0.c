@@ -83,7 +83,7 @@ Struct62s D_803731E0[0x20] = {
 /* .code */
 void func_80361A30(f32 arg0[3], s32 arg1){
     if(viewport_isPointOutsideFrustum_vec3f(arg0)){
-        func_8030E6A4(arg1 >> 16, ((arg1 >> 8) & 0xff)*0.0078125, (arg1 & 0xff)*128.0);
+        gcsfx_playWithPitch(arg1 >> 16, ((arg1 >> 8) & 0xff)*0.0078125, (arg1 & 0xff)*128.0);
     }
 }
 

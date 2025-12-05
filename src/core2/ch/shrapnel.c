@@ -34,7 +34,7 @@ void chShrapnel_func_802D0A38(Actor *this){
         this->unk38_31--;
     }
     else{
-        if(func_80329530(this, 600) && func_803292E0(this)){
+        if(subaddie_playerIsWithinSphereAndActive(this, 600) && func_803292E0(this)){
             this->actor_specific_1_f = 0.0f;
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
         }
@@ -50,7 +50,7 @@ void chShrapnel_func_802D0AB8(Actor *this) {
 
 void chShrapnel_spawnExplodeActor(s32 arg0){
     Actor *this = reinterpret_cast(Actor *, arg0);
-    actor_spawnWithYaw_f32(0xF3, this->unk1C, 0);
+    actor_spawnWithYaw_f32(ACTOR_F3_EXPLOSION_RIPPLE, this->unk1C, 0);
 }
 
 void chShrapnel_emitExplosion(Actor *this) {
@@ -111,7 +111,7 @@ void chShrapnel_explode(ActorMarker *marker, ActorMarker *other_marker) {
     Actor *this;
 
     this = marker_getActor(marker);
-    FUNC_8030E8B4(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
+    sfx_playFadeShorthandDefault(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
     __spawnQueue_add_1((GenFunction_1)chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
     chShrapnel_emitExplosion(this);
     chShrapnel_emitSmoke(this);
@@ -127,10 +127,10 @@ void chShrapnel_func_802D0FC8(Actor *this) {
         *(s32 *)(&this->local) = NOT(*(s32 *)(&this->local));
         this->unk4C = 0.0f;
         if (*(s32 *)(&this->local)) {
-            FUNC_8030E8B4(SFX_2A_CLOCK_TIC_1, 0.5f, 12000, this->position, 1250, 2500);
+            sfx_playFadeShorthandDefault(SFX_2A_CLOCK_TIC_1, 0.5f, 12000, this->position, 1250, 2500);
         }
         else{
-            FUNC_8030E8B4(SFX_51_CLOCK_TIC_2, 0.5f, 12000, this->position, 1250, 2500);
+            sfx_playFadeShorthandDefault(SFX_51_CLOCK_TIC_2, 0.5f, 12000, this->position, 1250, 2500);
         }
     }
 }
@@ -169,7 +169,7 @@ void chshrapnel_update(Actor *this) {
                 if (250.0 > ABS(player_position[1] - this->unk1C[1])) {
                     subaddie_set_state(this, 3);
                     actor_loopAnimation(this);
-                    FUNC_8030E8B4(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 32750, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 32750, this->position, 1250, 2500);
                     this->actor_specific_1_f = 4.0f;
                 }
             }

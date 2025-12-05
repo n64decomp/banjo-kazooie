@@ -18,14 +18,14 @@ typedef struct{
 
 extern f32 mapModel_getFloorY(f32 *);
 
-void chflibbit_update(Actor *this);
-Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chFlibbit_update(Actor *this);
+Actor *chFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-ActorInfo D_80390690 = {
+ActorInfo gChFlibbit = {
     MARKER_C1_FLIBBIT_RED, ACTOR_133_FLIBBIT_RED, ASSET_375_MODEL_FLIBBIT_RED,
     0, NULL, 
-    chflibbit_update, NULL, chflibbit_draw,
+    chFlibbit_update, NULL, chFlibbit_draw,
     0, 0, 1.0f, 0
 };
 
@@ -171,7 +171,7 @@ bool func_80386A34(Actor * this){
     return out;
 }
 
-void func_80386AEC(Actor *this, s32 next_state) {
+void chFlibbit_setState(Actor *this, s32 next_state) {
     ActorLocal_Flibbit *local;
 
     local = (ActorLocal_Flibbit *) &this->local;
@@ -193,7 +193,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
         if(!func_80386A34(this)) {
             if (this->state != 3) {
                 next_state = 3;
-                func_80386AEC(this, next_state);
+                chFlibbit_setState(this, next_state);
             }
             return;
         }
@@ -215,7 +215,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
     }
 
     if (next_state == 5) {
-        FUNC_8030E8B4(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = mapModel_getFloorY(this->position);
@@ -224,7 +224,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
 
     if (next_state == 6) {
         skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
-        FUNC_8030E8B4(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
         this->unk10_1 = FALSE;
         local->unk14 = 1000.0f;
@@ -232,7 +232,7 @@ void func_80386AEC(Actor *this, s32 next_state) {
     if (next_state == 7) {
         skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        FUNC_8030E8B4(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
+        sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
     if (next_state == 8) {
         func_80326310(this);
@@ -244,25 +244,25 @@ void func_80386AEC(Actor *this, s32 next_state) {
 void BGS_func_80386E30(ActorMarker *this, ActorMarker *other){
     Actor *thisActor = marker_getActor(this);
     if(thisActor->state < 6){
-        func_80386AEC(thisActor, 4);
+        chFlibbit_setState(thisActor, 4);
     }
 }
 
 void func_80386E70(ActorMarker *this, ActorMarker *other){
     Actor *thisActor = marker_getActor(this);
     if(thisActor->state < 6){
-        func_80386AEC(thisActor, 5);
+        chFlibbit_setState(thisActor, 5);
     }
 }
 
 void func_80386EB0(ActorMarker *this, ActorMarker *other){
     Actor *thisActor = marker_getActor(this);
     if(thisActor->state < 6){
-        func_80386AEC(thisActor, 6);
+        chFlibbit_setState(thisActor, 6);
     }
 }
 
-Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     ActorLocal_Flibbit *local;
     BoneTransformList *temp_a0;
@@ -299,7 +299,7 @@ Actor *chflibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void chflibbit_update(Actor *this){
+void chFlibbit_update(Actor *this){
     f32 player_position[3];
     f32 spB0[3];
     f32 player_distance;
@@ -333,7 +333,7 @@ void chflibbit_update(Actor *this){
         local->unkE[2] = (s16) this->position_z;
         
         local->unkE[1] = mapModel_getFloorY(this->position);
-        func_80386AEC(this, 1);
+        chFlibbit_setState(this, 1);
     }
     player_getPosition(player_position);
 
@@ -353,7 +353,7 @@ void chflibbit_update(Actor *this){
 
     if(this->state == 1){
         if(func_80329210(this, player_position)){
-            func_80386AEC(this, 2);
+            chFlibbit_setState(this, 2);
             return;
         }
 
@@ -373,10 +373,10 @@ void chflibbit_update(Actor *this){
             sp84[1]  = (f32)local->unkE[1];
             sp84[2]  = (f32)local->unkE[2];
             if(ml_vec3f_distance(this->position, sp84) < 30.0f){
-                func_80386AEC(this, 1);
+                chFlibbit_setState(this, 1);
             }
             else{
-                func_80386AEC(this, 2);
+                chFlibbit_setState(this, 2);
 
             }
         }
@@ -409,17 +409,17 @@ void chflibbit_update(Actor *this){
         func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp60, &sp5C, &sp58);
         this->yaw += sp58 * 90.0f * spA4;
         if ((-0.4 <= sp58) && (sp58 <= 0.4) && ((f64) randf() > 0.5)) {
-            func_80386AEC(this, 2);
+            chFlibbit_setState(this, 2);
         }
         if ((sp5C < 0.0f) && (randf() > 0.5)) {
-            func_80386AEC(this, 2);
+            chFlibbit_setState(this, 2);
         }
     }
 
 
     if(this->state == 4 || this->state == 5){
         if(ml_timer_update(&local->unk18, spA4)){
-            func_80386AEC(this, 3);
+            chFlibbit_setState(this, 3);
         }
     }
 
@@ -434,12 +434,12 @@ void chflibbit_update(Actor *this){
         local->unk14 -= 3000.0f*spA4;
         if(this->position_y  < mapModel_getFloorY(this->position)){
             this->position_y  = mapModel_getFloorY(this->position);
-            func_80386AEC(this, 7);
+            chFlibbit_setState(this, 7);
         }
     }
 
     if(this->state == 7){
         if(skeletalAnim_getLoopCount(this->unk148) > 0)
-            func_80386AEC(this, 8);
+            chFlibbit_setState(this, 8);
     }
 }

@@ -21,19 +21,19 @@ ActorAnimationInfo D_80391DF0[] = {
     {ASSET_17D_ANIM_POLAR_BEAR_CUB_HAPPY, 2.5f}
 };
 
-ActorInfo D_80391E08 = { MARKER_1FA_POLAR_BEAR_CUB_BLUE, ACTOR_1EA_POLAR_BEAR_CUB_BLUE, ASSET_44C_MODEL_POLAR_BEAR_CUB_BLUE, 
+ActorInfo gChCubMoggy = { MARKER_1FA_POLAR_BEAR_CUB_BLUE, ACTOR_1EA_POLAR_BEAR_CUB_BLUE, ASSET_44C_MODEL_POLAR_BEAR_CUB_BLUE, 
     0x1, D_80391DF0, 
     func_8038A384, actor_update_func_80326224, actor_draw, 
     2500, 0, 1.2f, 0
 };
 
-ActorInfo FP_D_80391E2C = { MARKER_1FB_POLAR_BEAR_CUB_GREEN, ACTOR_1EB_POLAR_BEAR_CUB_GREEN, ASSET_44D_MODEL_POLAR_BEAR_CUB_GREEN, 
+ActorInfo gChCubSoggy = { MARKER_1FB_POLAR_BEAR_CUB_GREEN, ACTOR_1EB_POLAR_BEAR_CUB_GREEN, ASSET_44D_MODEL_POLAR_BEAR_CUB_GREEN, 
     0x1, D_80391DF0, 
     func_8038A384, actor_update_func_80326224, actor_draw, 
     2500, 0, 1.2f, 0
 };
 
-ActorInfo D_80391E50 = { MARKER_1FC_POLAR_BEAR_CUB_RED, ACTOR_1EC_POLAR_BEAR_CUB_RED, ASSET_44E_MODEL_POLAR_BEAR_CUB_RED, 
+ActorInfo gChCubGroggy = { MARKER_1FC_POLAR_BEAR_CUB_RED, ACTOR_1EC_POLAR_BEAR_CUB_RED, ASSET_44E_MODEL_POLAR_BEAR_CUB_RED, 
     0x1, D_80391DF0, 
     func_8038A384, actor_update_func_80326224, actor_draw, 
     2500, 0, 1.2f, 0
@@ -50,7 +50,7 @@ Struct_FP_3E00 D_80391E80[] ={
 void func_8038A1F0(Actor **this_ptr, enum marker_e carried_obj_marker_id, enum actor_e actor_id, enum actor_e arg3){
     player_setCarryObjectPoseInHorizontalRadius((*this_ptr)->position, 600.0f, actor_id, this_ptr);
 
-    if (!func_80329530(*this_ptr, 400)) {
+    if (!subaddie_playerIsWithinSphereAndActive(*this_ptr, 400)) {
         return;
     }
 
@@ -79,10 +79,10 @@ void func_8038A274(Actor *this){
 
 void func_8038A318(ActorMarker *caller, enum asset_e text_id, s32 arg1){
     if(text_id == 0xc19){
-        func_802BAFE4(0x25);
+        gcStaticCamera_activate(0x25);
         jiggy_spawn(JIGGY_2E_FP_PRESENTS, FP_D_80391E74);
-        func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
-        func_8025A6EC(COMUSIC_5B_FP_IGLOO_HAPPY, 25000);
+        coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 32000);
+        coMusicPlayer_playMusic(COMUSIC_5B_FP_IGLOO_HAPPY, 25000);
         func_8025A58C(0, 4000);
         core1_ce60_incOrDecCounter(FALSE);
     }
@@ -124,9 +124,9 @@ void func_8038A384(Actor *this){
     }//L8038A4E4
 
     sp34 = levelSpecificFlags_get(LEVEL_FLAG_11_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_12_FP_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_13_FP_UNKNOWN);
-    sp38 = (sp34 == 1) ? ASSET_C17_DIALOG_UNKNOWN
-         : (sp34 == 2) ? ASSET_C18_DIALOG_UNKNOWN
-         : ASSET_C19_DIALOG_UNKNOWN;
+    sp38 = (sp34 == 1) ? ASSET_C17_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_1
+         : (sp34 == 2) ? ASSET_C18_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_2
+         : ASSET_C19_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_3;
 
     this->yaw_ideal = (f32)func_80329784(this);
     func_80328FB0(this, 2.0f);
@@ -134,13 +134,13 @@ void func_8038A384(Actor *this){
 
     switch(this->state){
         case 1://L8038A5B0
-            if(!levelSpecificFlags_get(LEVEL_FLAG_19_FP_UNKNOWN) && func_80329530(this, 0xfa)){
+            if(!levelSpecificFlags_get(LEVEL_FLAG_19_FP_UNKNOWN) && subaddie_playerIsWithinSphereAndActive(this, 0xfa)){
                 if(player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT){
                     if(sp34 == 0
                         && !jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3)
                         && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)
                     ){
-                        if (gcdialog_showText(ASSET_C1A_DIALOG_UNKNOWN, 0x2a, NULL, NULL, NULL, NULL)) {
+                        if (gcdialog_showDialog(ASSET_C1A_DIALOG_BOGGY_KIDS_MEET, 0x2a, NULL, NULL, NULL, NULL)) {
                             levelSpecificFlags_set(LEVEL_FLAG_19_FP_UNKNOWN, TRUE);
                         }
                     }
@@ -163,24 +163,24 @@ void func_8038A384(Actor *this){
             }
             if(levelSpecificFlags_get(D_80391E80[sp3C].unk0)){
                 subaddie_set_state_with_direction(this, 2, 0.001f, 1);
-                if (sp38 == ASSET_C19_DIALOG_UNKNOWN) {
-                    gcdialog_showText(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
+                if (sp38 == ASSET_C19_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_3) {
+                    gcdialog_showDialog(sp38, 0x2f, this->position, this->marker, func_8038A318, NULL);
                 }
                 else {
-                    gcdialog_showText(sp38, 0x3, this->position, this->marker, func_8038A318, NULL);
+                    gcdialog_showDialog(sp38, 0x3, this->position, this->marker, func_8038A318, NULL);
                 }
             }
             else{//L8038A73C
                 func_8038A1F0(&this, D_80391E80[sp3C].unk4, D_80391E80[sp3C].unk8, D_80391E80[sp3C].unkC);
                 if( actor_animationIsAt(this, 0.45f)
-                    && !func_803114B0()
+                    && !gcdialog_hasCurrentTextId()
                 ){
                     func_8030E878(SFX_B1_BOGGY_KID_CRYING, randf2(0.9f, 1.1f), 32000, this->position, 150.0f, 700.0f);
                 }
             }//L8038A7DC
             break;
         case 2://L8038A7C0
-            if(!func_803114B0()){
+            if(!gcdialog_hasCurrentTextId()){
                 func_8038A274(this);
             }
             break;

@@ -59,8 +59,8 @@ void chgloop_update(Actor *this){
                 subaddie_set_state(this, 4);
             
             if( !mapSpecificFlags_get(2) 
-                && func_80329530(this, 350)
-                && gcdialog_showText(ASSET_D34_DIALOG_GLOOP_MEET, 0, NULL, NULL, NULL, NULL)
+                && subaddie_playerIsWithinSphereAndActive(this, 350)
+                && gcdialog_showDialog(ASSET_D34_DIALOG_GLOOP_MEET, 0, NULL, NULL, NULL, NULL)
             ){
                 mapSpecificFlags_set(2, TRUE);
             }
@@ -82,11 +82,11 @@ void chgloop_update(Actor *this){
                     sp34[1] = this->position[1];
                     sp34[2] = this->position[2];
                 }
-                if(func_80329530(this, 1900)){
+                if(subaddie_playerIsWithinSphereAndActive(this, 1900)){
                     __spawnQueue_add_4(chgloop_spawnBubble, reinterpret_cast(s32, sp34[0]), reinterpret_cast(s32, sp34[1]), reinterpret_cast(s32, sp34[2]), reinterpret_cast(s32, this->yaw));
                 }
 
-                func_8030E9C4(SFX_3ED, randf()/2 + 0.6, 32000, this->position, 100.0f, 3000.0f);
+                func_8030E9C4(SFX_3ED_BUBBLE_POP, randf()/2 + 0.6, 32000, this->position, 100.0f, 3000.0f);
             }
             break;
     }//L802D1670

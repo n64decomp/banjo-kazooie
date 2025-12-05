@@ -6,7 +6,7 @@
 extern bool func_8024549C(f32[3], f32);
 extern void func_802EFAB0(ParticleEmitter *, s32, f32);
 extern void func_802F0EAC(ParticleEmitter *, f32);
-extern ParticleEmitter *func_802F0EF0(u8);
+extern ParticleEmitter *pem_getEmitterByIndex(u8);
 
 typedef union range_f32_u {
     f32 raw[2];
@@ -69,7 +69,7 @@ ParticleEmitter *__fxRipple_create(s32 arg0, f32 position[3], bool arg2){
         return NULL;
     }
     spawn_position[1] += 3.0f;
-    p_emitter = func_802F0EF0(D_80380A60);
+    p_emitter = pem_getEmitterByIndex(D_80380A60);
     particleEmitter_setSprite(p_emitter, ASSET_70C_SPRITE_RIPPLE);
     particleEmitter_setDrawMode(p_emitter, PART_EMIT_ROTATABLE);
     if(sp44){
@@ -107,11 +107,11 @@ void fxRipple_802F3584(s32 arg0, f32 position[3], s32 arg2){
 }
 
 void fxRipple_free(void){
-    func_802F1190(D_80380A60);
+    pem_free(D_80380A60);
 }
 
 void fxRipple_init(void){
-    D_80380A60 = func_802F0F78(0x19);
+    D_80380A60 = pem_newEmitter(0x19);
 }
 
 ParticleEmitter *fxRipple_802F35FC(s32 arg0, f32 position[3]){
@@ -123,6 +123,6 @@ ParticleEmitter *fxRipple_802F361C(s32 arg0, f32 position[3], s32 arg2){
 }
 
 void fxRipple_802F363C(f32 arg0){
-    func_802F0EAC(func_802F0EF0(D_80380A60), arg0);
+    func_802F0EAC(pem_getEmitterByIndex(D_80380A60), arg0);
 }
 

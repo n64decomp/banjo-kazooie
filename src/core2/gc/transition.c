@@ -373,7 +373,7 @@ void gctransition_draw(Gfx **gdl, Mtx **mptr, Vtx **vptr){
 void gctransition_8030BD4C(void){
     MapTransitionInfo *tmp_10s;
     TransitionInfo *tmp_a1;
-    tmp_10s = _gctranstion_get_map_transition_info(map_get());
+    tmp_10s = _gctranstion_get_map_transition_info(gsworld_get_map());
     tmp_a1 = _gctranstion_8030B400(tmp_10s->in_index);
    _gctranstion_changeState(tmp_a1->state, tmp_a1);
 }
@@ -404,7 +404,7 @@ void gctransition_8030BE3C(void){
 
 void gctransition_8030BE60(void){
     TransitionInfo *tmp_a1;
-    tmp_a1 = _gctranstion_8030B400(_gctranstion_get_map_transition_info(map_get())->out_index);
+    tmp_a1 = _gctranstion_8030B400(_gctranstion_get_map_transition_info(gsworld_get_map())->out_index);
    func_8030C180();
    _gctranstion_changeState(tmp_a1->state, tmp_a1);
 }
@@ -491,7 +491,7 @@ void gctransition_update(void){
             func_8030C180();
 
         if(s_current_transition.anctrl != NULL)
-            func_80334ECC();
+            gsworld_update();
     }
     s_current_transition.substate++;
 }

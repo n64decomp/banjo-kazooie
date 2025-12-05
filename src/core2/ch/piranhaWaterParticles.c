@@ -4,20 +4,20 @@
 #include "variables.h"
 
 extern f32 func_8028EF88(void);
-void func_802D8730(Actor *this);
+void chPiranhaWaterParticles_update(Actor *this);
 
 /* .data */
-ActorInfo D_80367C60 = { 
-    0x15E, 0x188, 0x0, 
+ActorInfo chPiranhaWaterParticles = { 
+    0x15E, ACTOR_188_PIRANHA_WATER_PARTICLES, 0x0, 
     0, NULL, 
-    func_802D8730, actor_update_func_80326224, func_80325340,
+    chPiranhaWaterParticles_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
 
-s32 D_80367C84[3] = {255, 100, 100};
+s32 PIRANHA_PARTICLES_SVG[3] = { 255, 100, 100 };
 
 /* .code */
-void func_802D8730(Actor *this) {
+void chPiranhaWaterParticles_update(Actor *this) {
     f32 dt;
     f32 sp38;
     ParticleEmitter *pCtrl;
@@ -47,7 +47,7 @@ void func_802D8730(Actor *this) {
         pCtrl = func_802F4094(this->position, 40.0f);
         particleEmitter_setStartingScaleRange(pCtrl, 0.05f, 0.06f);
         particleEmitter_setAccelerationRange(pCtrl, 0.0f, -3400.0f, 0.0f, 0.0f, -3400.0f, 0.0f);
-        particleEmitter_setRGB(pCtrl, D_80367C84);
+        particleEmitter_setRGB(pCtrl, PIRANHA_PARTICLES_SVG);
         particleEmitter_setParticleVelocityRange(pCtrl, -180.0f, 200.0f, -180.0f, 180.0f, 400.0f, 180.0f);
         particleEmitter_emitN(pCtrl, 9);
     }

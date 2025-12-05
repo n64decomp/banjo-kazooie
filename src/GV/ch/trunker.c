@@ -48,7 +48,7 @@ Actor *chTrucker_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     sp2C[1] = this->yaw + 220.0f;
     sp2C[2] = this->roll;
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
-    modelRender_draw(gfx, mtx, sp38, sp2C, 1.0f, NULL, func_8030A428(3));
+    modelRender_draw(gfx, mtx, sp38, sp2C, 1.0f, NULL, propModelList_getModel(3));
     return this;
 }
 
@@ -70,11 +70,11 @@ void chTrucker_update(Actor *this){
     }//L803891D8
     if( this->state == 1
         && !this->has_met_before
-        && func_80329530(this, 250)
-        && !func_80329530(this, 80)
+        && subaddie_playerIsWithinSphereAndActive(this, 250)
+        && !subaddie_playerIsWithinSphereAndActive(this, 80)
         && func_8028F2A0()
     ){
-        gcdialog_showText(ASSET_A71_DIALOG_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
+        gcdialog_showDialog(ASSET_A71_DIALOG_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
         this->has_met_before = TRUE;
     }//L80389254
 

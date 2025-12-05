@@ -30,7 +30,7 @@ void __bsDroneEnter_setSubstate(enum bsdroneenter_state_e arg0) {
         batimer_set(0, 0.2f);
         break;
     case 2:
-        func_8025A6CC(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
+        coMusicPlayer_playMusicWeak(COMUSIC_43_ENTER_LEVEL_GLITTER, 32000);
         func_8025AABC(COMUSIC_43_ENTER_LEVEL_GLITTER);
         batimer_set(0, 0.4f);
         baModel_setEnvAlpha(0);

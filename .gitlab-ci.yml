@@ -63,6 +63,10 @@ build-test-us10:
     - echo "Expected SHA1   - $BASEROM_US10_SHA1"
     - if [ "${FILE_SHA1}" != "${BASEROM_US10_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
   script:
+    # Create venv
+    - python3 -m venv .venv
+    # Install deps
+    - .venv/bin/python3 -m pip install -r requirements.txt
     # Compile the code
     - make
     # Check if the resulting ROM is the same as the expected one
@@ -85,6 +89,10 @@ build-test-pal:
     - echo "Expected SHA1   - $BASEROM_PAL_SHA1"
     - if [ "${FILE_SHA1}" != "${BASEROM_PAL_SHA1}" ]; then echo "Checksum verification failed"; exit 1; else echo "Checksum verification passed"; fi
   script:
+    # Create venv
+    - python3 -m venv .venv
+    # Install deps
+    - .venv/bin/python3 -m pip install -r requirements.txt
     # Compile the code
     - make VERSION=pal
     # Check if the resulting decompressed ROM is the same as the expected one

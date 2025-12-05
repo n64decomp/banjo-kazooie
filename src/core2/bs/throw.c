@@ -70,7 +70,7 @@ void bsthrow_interrupt(void){
             bacarriedobj_spawn(baMarker_getCarriedObjectActorId());
         }
         else{
-            func_8029A86C(1);
+            bs_setInterruptResponse(1);
         }
     }
     else{ //L802B6748

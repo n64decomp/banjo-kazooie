@@ -226,7 +226,7 @@ void func_802F7A2C(s32 arg0);
 enum asset_e func_802F49C0(void){
     s32 i;
     for(i = 0; D_8036907C[i].mapID != 0 ; i++){
-        if(map_get() == D_8036907C[i].mapID){
+        if(gsworld_get_map() == D_8036907C[i].mapID){
             return D_8036907C[i].assetId;
         }
     }

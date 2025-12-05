@@ -271,7 +271,7 @@ void func_8030AFD8(s32 arg0){
     s32 sp1C = level_get();
     func_80321918(0);
     if(arg0){
-        func_802C5994();
+        gameSelect_saveAndExit();
     }
     if(sp1C > 0 && sp1C < 0xC){
         func_8033301C();

@@ -201,7 +201,7 @@ bool file_getByte_ifExpected(File *file, s32 expected, u8 *dst) {
     }
 }
 
-bool file_getNBytes_ifExpected(File *file, s32 expected, u8 *dst, s32 cnt) {
+bool file_getNBytes_ifExpected(File *file, s32 expected, void *dst, s32 cnt) {
     if (!file_isNextByteExpected(file, expected)) {
         return FALSE;
     } else {

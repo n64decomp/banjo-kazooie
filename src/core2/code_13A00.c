@@ -5,8 +5,9 @@
 
 extern void func_802F494C(void *, f32);
 extern void func_802F4884(void *, s32, f32);
-extern f32  func_80294500(void);
-
+extern f32  floor_getCurrentFloorYPosition(void);
+extern Struct5Ds *func_802F47D0(void);
+extern Struct5Ds *func_802F499C(Struct5Ds *);
 
 void func_8029AE74(s32 arg0);
 void func_8029AEE4(s32 arg0);
@@ -20,13 +21,13 @@ void func_8029A990(void){
     f32 plyr_pos[3];
     ParticleEmitter *pCtrl;
 
-    if(map_get() == MAP_2C_MMM_BATHROOM)
+    if(gsworld_get_map() == MAP_2C_MMM_BATHROOM)
         func_8029C304(0);
     else
         func_8029C304(1);
 
     _player_getPosition(plyr_pos);
-    plyr_pos[1] = func_80294500();
+    plyr_pos[1] = floor_getCurrentFloorYPosition();
     pCtrl = func_802F4094(plyr_pos, 25.0f);
     particleEmitter_setParticleVelocityRange(pCtrl,
         -350.0f, 300.0f, -350.0f,
@@ -39,14 +40,14 @@ void func_8029AA3C(void){
     f32 sp34[3];
     f32 sp30;
     ParticleEmitter *pCtrl;
-    if(map_get() == MAP_2C_MMM_BATHROOM)
+    if(gsworld_get_map() == MAP_2C_MMM_BATHROOM)
         func_8029C304(0);
     else
         func_8029C304(2);
     
     sp30 = ml_map_f(baphysics_get_horizontal_velocity(), 0.0f, 500.0f, 70.0f, 250.0f);
     func_8028E9C4(D_8037D194, sp34);
-    sp34[1] = func_80294500();
+    sp34[1] = floor_getCurrentFloorYPosition();
     pCtrl = func_802F4094(sp34, 8.0f);
     particleEmitter_setParticleVelocityRange(pCtrl,
         -sp30, 300.0f, -sp30,
@@ -116,7 +117,7 @@ void func_8029ACD4(void){
 
     _player_getPosition(plyr_pos);
     func_802F4894(D_8037D190, plyr_pos);
-    func_802F4884( D_8037D190, func_80294660(), func_80294500());
+    func_802F4884( D_8037D190, func_80294660(), floor_getCurrentFloorYPosition());
 }
 
 void func_8029AD28(f32 arg0, s32 arg1){

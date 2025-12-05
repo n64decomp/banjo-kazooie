@@ -41,7 +41,7 @@ LocalStruct_1 D_80368DF0[] = {
     {0x9,  SFX_98_DEAF_THUD,        1.0f,  1.1f,  0.05f, 21000},
     {0xA,  SFX_99_METALLIC_THUD,    1.0f,  1.1f,  0.05f, 21000},
     {0xC,  SFX_123_BANJO_LANDING_10, 0.85f, 0.89f, 0.05f, 21000},
-    {0xD,  SFX_3F2_UNKNOWN,         0.96f, 1.04f, 0.02f, 10000},
+    {0xD,  SFX_3F2_BOING,           0.96f, 1.04f, 0.02f, 10000},
     {0xE,  SFX_10_BANJO_LANDING_07, 1.2f,  1.35f, 0.05f, 13000},
     {0xF,  SFX_DC_IDLE_PADDLING,    0.95f, 1.1f,  0.05f, 16000},
     {0}
@@ -74,7 +74,7 @@ s32 func_802F4420(Struct5Ds *this){
         return 4;
     }
 
-    return func_803246B4(map_get(), this->unk0);
+    return func_803246B4(gsworld_get_map(), this->unk0);
 }
 
 void func_802F44AC(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 arg4){
@@ -87,7 +87,7 @@ void func_802F44AC(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, s32 a
     f0 = arg3*0.5;
     sfxsource_playSfxAtVolume(sfxsourceIdx, randf2(arg2 - f0, arg2 + f0));
     sfxsource_setSampleRate(sfxsourceIdx, arg4);
-    func_8030E2C4(sfxsourceIdx);
+    sfxSource_func_8030E2C4(sfxsourceIdx);
     this->unk1E ^= 1;
 }
 
@@ -109,7 +109,7 @@ void func_802F4554(Struct5Ds *this, enum sfx_e sfx_id, f32 arg2, f32 arg3, f32 a
     range = arg4*0.5;
     sfxsource_playSfxAtVolume(sp20, randf2(sp24 - range, sp24 + range));
     sfxsource_setSampleRate(sp20, arg5);
-    func_8030E2C4(sp20);
+    sfxSource_func_8030E2C4(sp20);
     this->unk1E ^= 1;
 
 }
@@ -166,11 +166,11 @@ Struct5Ds *func_802F47D0(void){
     this->unk1F = 1;
     
     this->unk1C = sfxsource_createSfxsourceAndReturnIndex();
-    func_8030DD14(this->unk1C, 3);
+    sfxSource_setunk43_7ByIndex(this->unk1C, 3);
     func_8030DD90(this->unk1C, 0);
     
     this->unk1D = sfxsource_createSfxsourceAndReturnIndex();
-    func_8030DD14(this->unk1D, 3);
+    sfxSource_setunk43_7ByIndex(this->unk1D, 3);
     func_8030DD90(this->unk1D, 0);
 
     ml_vec3f_clear(this->unk4);

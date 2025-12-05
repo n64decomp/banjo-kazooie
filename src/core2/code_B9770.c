@@ -781,7 +781,7 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
 
             case 2:
                 D_803858A0[arg1->t0.unk10.common.bit7] = arg1->t0.unk4.common.bit31;
-                func_8025A6EC(lookup_getCoMusicId(arg1->t0.unk4.common.bit31), arg1->t0.unk4.common.bit15 * 8);
+                coMusicPlayer_playMusic(lookup_getCoMusicId(arg1->t0.unk4.common.bit31), arg1->t0.unk4.common.bit15 * 8);
                 break;
 
             case 3:
@@ -797,13 +797,13 @@ s32 func_803422D4(Actor *arg0, Union_glspline *arg1, SplineList *arg2){
                     sfxsource_setSfxId(sfxsourceIdx, lookup_getSfxId(sp78));
                     sfxsource_playSfxAtVolume(sfxsourceIdx, sp7C);
                     sfxsource_setSampleRate(sfxsourceIdx, sp74);
-                    func_8030E2C4(sfxsourceIdx);
+                    sfxSource_func_8030E2C4(sfxsourceIdx);
                     if (D_803858A0[sp70] != 0){
                         sfxsource_freeSfxsourceByIndex(D_803858A0[sp70]);
                     }
                     D_803858A0[sp70] = sfxsourceIdx;
                 } else {
-                    func_8030E6A4(lookup_getSfxId(sp78), sp7C, sp74);
+                    gcsfx_playWithPitch(lookup_getSfxId(sp78), sp7C, sp74);
                 }
                 break;
 
@@ -1270,14 +1270,14 @@ void func_80343E20(s32 arg0, s32 arg1, f32 arg2, s32 arg3) {
             sfxsource_setSfxId(temp_v0, lookup_getSfxId(arg0));
             sfxsource_playSfxAtVolume(temp_v0, arg2);
             sfxsource_setSampleRate(temp_v0, arg1);
-            func_8030E2C4(temp_v0);
+            sfxSource_func_8030E2C4(temp_v0);
             if (D_803858A0[arg3] != 0) {
                 sfxsource_freeSfxsourceByIndex(D_803858A0[arg3]);
             }
             D_803858A0[arg3] = temp_v0;
         }
     } else {
-        func_8030E6A4(lookup_getSfxId(arg0), arg2, arg1);
+        gcsfx_playWithPitch(lookup_getSfxId(arg0), arg2, arg1);
     }
 }
 

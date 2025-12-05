@@ -86,7 +86,7 @@ void func_80357264(Actor *this, s32 next_state){
         else
             skeletalAnim_set(this->unk148, ASSET_185_ANIM_CLUCKER_ATTACK_LONG, 0.0f, randf2( 2.3f, 2.7f));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        func_8030E6A4(SFX_4A_CLUCKER_AHH, randf2(0.85f, 0.95f), 32000);
+        gcsfx_playWithPitch(SFX_4A_CLUCKER_AHH, randf2(0.85f, 0.95f), 32000);
     }
 
     if(next_state == 5){
@@ -186,7 +186,7 @@ void func_8035765C(Actor *this){
                 || (sp4C < 0.32 && 0.32 <= sp48)
                 || (sp4C < 0.53 && 0.53 <= sp48)
             ){
-                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
+                gcsfx_playWithPitch(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
             }
             if(sp4C < 0.9 && 0.9 <= sp48){
                 func_8030E6D4(SFX_2_CLAW_SWIPE);
@@ -200,7 +200,7 @@ void func_8035765C(Actor *this){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, 0.9f, 32000);
             }
             if(sp4C < 0.5 && 0.5 <= sp48){
-                func_8030E6A4(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
+                gcsfx_playWithPitch(SFX_80_YUMYUM_CLACK, randf2(0.75f, 0.95f), 32700);
             }
             if(sp4C < 0.9 && 0.9 <= sp48){
                 func_8030E6D4(SFX_2_CLAW_SWIPE);
@@ -214,7 +214,7 @@ void func_8035765C(Actor *this){
     if(this->state == 5){
         skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if(sp44 < 0.1 && 0.1 <= sp40){
-            func_8030E6A4(SFX_68_CLUCKER_AAEEGHH, randf2(1.0f, 1.1f), 32000);
+            gcsfx_playWithPitch(SFX_68_CLUCKER_AAEEGHH, randf2(1.0f, 1.1f), 32000);
         }
 
         if(sp44 < 0.7 && 0.7 <= sp40){

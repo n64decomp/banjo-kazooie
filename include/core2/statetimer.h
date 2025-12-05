@@ -9,7 +9,7 @@ enum state_timer_e{
     STATE_TIMER_1_THROW = 1,
     STATE_TIMER_2_LONGLEG,
     STATE_TIMER_3_TURBO_TALON,
-    STATE_TIMER_4_UNKNOWN,
+    STATE_TIMER_4_IFRAME,
     STATE_TIMER_5_UNKNOWN, //slide timer
     STATE_TIMER_6_UNKNOWN  //trot slide timer
 };

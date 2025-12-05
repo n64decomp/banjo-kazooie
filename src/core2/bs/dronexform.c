@@ -306,7 +306,7 @@ static void __bsdronexform_setState(int next_state){
 
         case 8: // 802B03FC
             if(D_8037D470.room_transformation == TRANSFORM_1_BANJO && D_8037D470.player_transformation == TRANSFORM_1_BANJO){
-                func_8025A6EC(COMUSIC_3C_MINIGAME_LOSS, 28000);
+                coMusicPlayer_playMusic(COMUSIC_3C_MINIGAME_LOSS, 28000);
             }
             batimer_set(0, 1.0f);
             break;
@@ -442,7 +442,7 @@ void bsdronexform_end(void){
     func_8031B990(0xff,0xff,0xff);
     func_802AFADC();
     func_802B014C();
-    func_80298A64();
+    balookat_end();
     baflag_clear(BA_FLAG_1B_TRANSFORMING);
 }
 

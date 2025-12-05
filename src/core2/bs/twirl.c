@@ -1,6 +1,9 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
+
+#include "core2/abilityprogress.h"
+
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
@@ -81,7 +84,7 @@ void bstwirl_update(void){
     bs_setState(sp1C);
 }
 
-void bstwirl_end(void){
-    ability_use(0xC);
+void bstwirl_end(void) {
+    ability_use(ABILITY_USED_TWIRL);
     _bstwirlHitboxActive = FALSE;
 }

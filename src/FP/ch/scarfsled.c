@@ -58,7 +58,7 @@ void __chScarfSled_func_8038655C(Actor *this){
     this->unk10_12 = FALSE;
     if(!tmp_bool){
         if(tmp != 0){
-            func_8030E6A4(SFX_19_BANJO_LANDING_08, func_8030E200(this->unk44_31), 0x55f0);
+            gcsfx_playWithPitch(SFX_19_BANJO_LANDING_08, func_8030E200(this->unk44_31), 0x55f0);
         }
     }
     else{
@@ -67,7 +67,7 @@ void __chScarfSled_func_8038655C(Actor *this){
             func_8030E0FC(this->unk44_31, 0.9f, 1.5f, 1.2f);
         }
         this->unk10_12 = TRUE;
-        func_8030E2C4(*((u8*)this + 0x44));
+        sfxSource_func_8030E2C4(*((u8*)this + 0x44));
     }
 }
 

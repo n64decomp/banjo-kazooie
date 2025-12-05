@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-#include "code_B6EA0.h"
+#include "core2/commonParticle.h"
 #include "core2/anim/sprite.h"
 
 /* .data */
@@ -37,16 +37,16 @@ void func_80356020(u8 arg0, f32 arg1[4]){
 }
 
 void func_80356074(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3){
-    ParticleStruct0s *sp1C;
+    CommonParticle *sp1C;
     u8 sp1B;
     u8 sp1A;
 
-    if(func_8033E3F0(6, 1) < 0)
+    if(commonParticle_new(6, 1) < 0)
         return;
     
-    sp1A = func_8033E8D0();
+    sp1A = commonParticle_getCurrentProjectileIndex();
     sp1B = func_8033E93C();
-    sp1C = func_8033E960();
+    sp1C = commonParticle_getCurrentParticle();
     sp1C->unk0 = arg2;
     sp1C->unk4 = (arg3 - sp1C->unk0)/20.0f;
     projectile_setPosition(sp1A, arg0);
@@ -59,15 +59,15 @@ void func_8035611C(void){
     u8 projectile_indx;
     AnimSprite *sp58;
     u8 sp57;
-    ParticleStruct0s *sp54;
+    CommonParticle *sp54;
     f32 plyr_pos[3];
     f32 sp38[3];
     f32 sp2C[3];
 
-    projectile_indx = (u8)func_8033E8D0();
-    sp58 = func_8033E8F4();
+    projectile_indx = (u8)commonParticle_getCurrentProjectileIndex();
+    sp58 = commonParticle_getCurrentAnimSprite();
     sp57 = func_8033E93C();
-    sp54 = func_8033E960();
+    sp54 = commonParticle_getCurrentParticle();
     player_getPosition(plyr_pos);
     sp54->unk0 = 10.0f;
     sp54->unk4 = 8.0f;
@@ -97,15 +97,15 @@ void func_8035611C(void){
 }
 
 void func_803562E8(void){
-    ParticleStruct0s *sp24;
+    CommonParticle *sp24;
     AnimSprite *sp20;
     u8 sp1F;
     
-    sp24 = func_8033E960();
-    sp20 = func_8033E8F4();
-    sp1F = func_8033E8D0();
+    sp24 = commonParticle_getCurrentParticle();
+    sp20 = commonParticle_getCurrentAnimSprite();
+    sp1F = commonParticle_getCurrentProjectileIndex();
     if(animsprite_is_stopped(sp20)){
-        func_8033E984();
+        commonParticle_setCurrentInUseFalse();
     }
     else{
         sp24->unk0 += sp24->unk4;

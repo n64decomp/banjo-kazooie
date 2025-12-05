@@ -94,7 +94,7 @@ void __matchingGame_setState(s32 next_state){
             volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
         }
         else{
-            func_8025A6EC(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
+            coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
             if(matchingGame.mummy_marker){
                 func_8035D490(matchingGame.mummy_marker);
             }
@@ -118,7 +118,7 @@ void gv_matchingGame_reset(void){
 void gv_matchingGame_init(void){
     Actor *actor;
     matchingGame.state = 0;
-    if(map_get() == MAP_13_GV_MEMORY_GAME){
+    if(gsworld_get_map() == MAP_13_GV_MEMORY_GAME){
         if( !jiggyscore_isSpawned(JIGGY_40_GV_MATCHING_GAME) //jiggy is collected
             ||  volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)                      //in FF minigame
         ){
@@ -187,7 +187,7 @@ void gv_matchingGame_update(void){
         if( func_8034DC78(matchingGame.tile_a->unk4) == 1 && func_8034DC78(matchingGame.tile_b->unk4) == 1){
             if(0.0f < matchingGame.unkC){
                 if(0.6 < matchingGame.unkC && matchingGame.unkC - dt <= 0.6){
-                    func_8025A6EC(COMUSIC_2C_BUZZER, 0x7fff);
+                    coMusicPlayer_playMusic(COMUSIC_2C_BUZZER, 0x7fff);
                 }//L803906AC
                 matchingGame.unkC -= dt;
                 if(matchingGame.unkC <= 0.0f){
@@ -210,7 +210,7 @@ void gv_matchingGame_update(void){
                         __matchingGame_setState(4); //end game state
                     }
                     else{
-                        func_8025A6EC(COMUSIC_2B_DING_B, 0x7fff);
+                        coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7fff);
                     }
                     matchingGame.tile_a = matchingGame.tile_b = NULL;
                 }//L803907E4

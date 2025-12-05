@@ -97,5 +97,5 @@ void chPortrait_break(ActorMarker *marker, f32 anim_duration) {
     actor_playAnimationOnce(this);
     anctrl_setDuration(this->anctrl, anim_duration);
     this->unk38_31 = 1;
-    FUNC_8030E8B4(SFX_129_SWOOSH, 1.0f, 32000, this->position, 1000, 2000);
+    sfx_playFadeShorthandDefault(SFX_129_SWOOSH, 1.0f, 32000, this->position, 1000, 2000);
 }

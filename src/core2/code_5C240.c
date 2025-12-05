@@ -6,7 +6,7 @@
 #include "time.h"
 
 extern void func_8023DFF0(s32);
-extern void comusicPlayer_update(void);
+extern void coMusicPlayer_update(void);
 extern void func_802F1A10(void *, f32);
 extern void func_8033DC10(void);
 extern void func_8033DC18(void);
@@ -73,7 +73,7 @@ void func_802E3460(s32 arg0) {
     if (D_8037E8C0.unk14 == 0) {
         D_8037E8C0.unk8 = 0xFF;
         D_8037E8C0.unk0 = 0.0f;
-        func_8025A6EC(COMUSIC_31_GAME_OVER, -1);
+        coMusicPlayer_playMusic(COMUSIC_31_GAME_OVER, -1);
         func_8033DC04();
     }
     else if (D_8037E8C0.unk14 == 1) {
@@ -103,7 +103,7 @@ void func_802E3580(void) {
     assetcache_release(D_8037E8C0.unkC);
     func_802F1884(D_8037E8C0.unk10);
     func_802E5F68();
-    comusicPlayer_free();
+    coMusicPlayer_free();
     depthBuffer_stub();
     viMgr_func_8024BF94(2);
 }
@@ -158,7 +158,7 @@ void func_802E35D8(void ) {
             return;
         }
     }
-    comusicPlayer_update();
+    coMusicPlayer_update();
     if (D_8037E8C0.unk14 == 0) {
         gcbound_alpha(D_8037E8C0.unk8);
     }

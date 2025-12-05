@@ -10,21 +10,28 @@
 void spawnQueue_unlock(void);
 void spawnQueue_lock(void);
 
+extern Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 pos[3], s32 yaw);
+extern Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 yaw);
+extern Actor *bundle_spawn_s32(enum bundle_e bundle_id, s32 position[3]);
+extern Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]);
+
+
 Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
 Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
 
-extern ActorInfo D_80365E58; //banjo.without_right_hand
-extern ActorInfo D_80365EAC; //banjo.playing_gameboy
-extern ActorInfo D_80365F00; //banjo.cooking
+
+extern ActorInfo gameSelect_banjoSleeping; //banjo.without_right_hand
+extern ActorInfo gameSelect_banjoGameboy; //banjo.playing_gameboy
+extern ActorInfo gameSelect_banjoCooking; //banjo.cooking
 extern ActorInfo D_80365F60;
 extern ActorInfo D_80365F84; //turbotrainers
-extern ActorInfo D_80365FB0; //shrapnel
+extern ActorInfo chExplosionRipple;
 extern ActorInfo chBubble;
 extern ActorInfo D_80366090; //bigbutt
 extern ActorInfo D_803660B4; //brownbull
-extern ActorInfo D_803662A8; //jiggy
+extern ActorInfo chJiggy; //jiggy
 extern ActorInfo chJigsawDance; //jigdance
 extern ActorInfo D_80366340;
 extern ActorInfo D_80366364;
@@ -33,7 +40,7 @@ extern ActorInfo D_803663AC;
 extern ActorInfo D_803663D0;
 extern ActorInfo D_803663F4;
 extern ActorInfo chExtraLife; //extralife
-extern ActorInfo D_80366C50; //music_note
+extern ActorInfo sumusicNote; //music_note
 extern ActorInfo D_80366C80; //chhoneycarrier
 extern ActorInfo D_80366CA4; //chhoney
 extern ActorInfo chTrainers;
@@ -90,7 +97,7 @@ extern ActorInfo D_80367BA4; //gold_bullion
 extern ActorInfo D_80367BC8;
 extern ActorInfo D_80367BEC;
 extern ActorInfo D_80367C10;
-extern ActorInfo D_80367C60;
+extern ActorInfo chPiranhaWaterParticles;
 extern ActorInfo D_80367C90; //spent_redfeather
 extern ActorInfo D_80367CB4; //spent_goldfeather
 extern ActorInfo D_80367D00; //egg
@@ -178,7 +185,7 @@ FunctionQueue *spawnQueue = NULL;
 
 /* .code */
 void spawnQueue_malloc(void){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 50: 15;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 50: 15;
     spawnQueue = (FunctionQueue *) malloc(tmp * sizeof(FunctionQueue));
 }
 
@@ -223,13 +230,13 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&chJinjoBlue, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chJinjoPink, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chJinjoGreen, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&D_803662A8, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_21);
+    spawnableActorList_add(&chJiggy, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_21);
     spawnableActorList_add(&chJigsawDance, actor_new, ACTOR_FLAG_UNKNOWN_2);
-    spawnableActorList_add(&D_80367C60, actor_new, ACTOR_FLAG_UNKNOWN_2);
+    spawnableActorList_add(&chPiranhaWaterParticles, actor_new, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&D_80367A20, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_80366C80, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_21); //chhoneycarrier
     spawnableActorList_add(&D_80366CA4, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_21); //chhoney
-    spawnableActorList_add(&D_80366C50, actor_new, ACTOR_FLAG_UNKNOWN_21); //music_note
+    spawnableActorList_add(&sumusicNote, actor_new, ACTOR_FLAG_UNKNOWN_21); //music_note
     spawnableActorList_add(&D_80367D00, actor_new, ACTOR_FLAG_UNKNOWN_21); //egg
     spawnableActorList_add(&D_80366340, func_802C8A54, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&D_80366364, func_802C8AA8, ACTOR_FLAG_UNKNOWN_2);
@@ -245,7 +252,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80365F84, actor_new, ACTOR_FLAG_UNKNOWN_2); //turbotrainers
     spawnableActorList_add(&D_80367184, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chExtraLife, actor_new, ACTOR_FLAG_UNKNOWN_21); //extralife
-    spawnableActorList_add(&D_80365FB0, actor_new, ACTOR_FLAG_UNKNOWN_2); //shrapnel
+    spawnableActorList_add(&chExplosionRipple, actor_new, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&chBadShad, actor_new, ACTOR_FLAG_UNKNOWN_2); //chbadshad
     spawnableActorList_add(&D_803685A0, actor_new, ACTOR_FLAG_UNKNOWN_6); //mumbotoken
     spawnableActorList_add(&D_80367F30, actor_new, ACTOR_FLAG_UNKNOWN_10);
@@ -281,9 +288,9 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367838, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //level_entry_disk
     spawnableActorList_add(&D_80367760, actor_new, ACTOR_FLAG_UNKNOWN_12);
     spawnableActorList_add(&D_80367784, actor_new, ACTOR_FLAG_UNKNOWN_12);
-    spawnableActorList_add(&D_80365E58, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.without_right_hand
-    spawnableActorList_add(&D_80365EAC, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.playing_gameboy
-    spawnableActorList_add(&D_80365F00, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.cooking
+    spawnableActorList_add(&gameSelect_banjoSleeping, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.without_right_hand
+    spawnableActorList_add(&gameSelect_banjoGameboy, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.playing_gameboy
+    spawnableActorList_add(&gameSelect_banjoCooking, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.cooking
     spawnableActorList_add(&D_803677CC, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);//mumbo_transform_pad
     spawnableActorList_add(&D_803677F0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
     spawnableActorList_add(&D_803731B0, actor_new, ACTOR_FLAG_NONE);
@@ -417,7 +424,7 @@ void spawnQueue_free(void){
 void spawnQueue_func_802C39D4(void){
     func_803268B4();
     if(!levelSpecificFlags_validateCRC2()){
-        eeprom_writeBlocks(0, 0, 0x80749530, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, (void*)0x80749530, EEPROM_MAXBLOCKS);
     }
 }
 
@@ -466,7 +473,7 @@ void spawnQueue_lock(void){
 }
 
 void __spawnQueue_add_0(void (* arg0)(void)){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = arg0;
         spawnQueue[spawnQueueLength].arg_cnt = 0;
@@ -475,7 +482,7 @@ void __spawnQueue_add_0(void (* arg0)(void)){
 }
 
 void __spawnQueue_add_1(GenFunction_1 arg0, s32 arg1){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
         spawnQueue[spawnQueueLength].arg[0] = arg1;
@@ -485,7 +492,7 @@ void __spawnQueue_add_1(GenFunction_1 arg0, s32 arg1){
 }
 
 void __spawnQueue_add_2(void (* arg0)(void), s32 arg1, s32 arg2){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = arg0;
         spawnQueue[spawnQueueLength].arg[0] = arg1;
@@ -496,7 +503,7 @@ void __spawnQueue_add_2(void (* arg0)(void), s32 arg1, s32 arg2){
 }
 
 void __spawnQueue_add_3(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = arg0;
         spawnQueue[spawnQueueLength].arg[0] = arg1;
@@ -508,7 +515,7 @@ void __spawnQueue_add_3(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
 }
 
 void __spawnQueue_add_4(GenFunction_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
         spawnQueue[spawnQueueLength].arg[0] = arg1;
@@ -521,7 +528,7 @@ void __spawnQueue_add_4(GenFunction_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 ar
 }
 
 void __spawnQueue_add_5(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5){
-    u32 tmp = (map_get() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
+    u32 tmp = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
     if(tmp != spawnQueueLength){
         spawnQueue[spawnQueueLength].func0 = arg0;
         spawnQueue[spawnQueueLength].arg[0] = arg1;

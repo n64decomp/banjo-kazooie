@@ -15,7 +15,7 @@ Actor *chhut_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void chhut_update(Actor *);
 
 /* .bss */
-extern s32 mm_hut_smash_count; //mm_hut_smash_count
+extern s32 mmhut_smashCount; //mmhut_smashCount
 
 /* .data */
 enum chhut_state_e {
@@ -94,14 +94,14 @@ void chhut_update(Actor *this) {
                 __spawnQueue_add_1((GenFunction_1) __chhut_spawnExplosion, (s32) this->marker);
                 bundle_setYaw(this->yaw);
 
-                if (mm_hut_smash_count < 5) {
-                    __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_803898D8[mm_hut_smash_count], *(s32 * )(&diff_pos[0]), *(s32 * )(&diff_pos[1]), *(s32 * )(&diff_pos[2]));
+                if (mmhut_smashCount < 5) {
+                    __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_803898D8[mmhut_smashCount], *(s32 * )(&diff_pos[0]), *(s32 * )(&diff_pos[1]), *(s32 * )(&diff_pos[2]));
                 }
                 else {
                     jiggy_spawn(JIGGY_5_MM_HUTS, diff_pos);
                 }
 
-                mm_hut_smash_count = (mm_hut_smash_count + 1) % 6;
+                mmhut_smashCount = (mmhut_smashCount + 1) % 6;
             }
             break;
 
@@ -119,7 +119,7 @@ void chhut_update(Actor *this) {
 }
 
 void mm_resetHuts(void) {
-    mm_hut_smash_count = 0;
+    mmhut_smashCount = 0;
 }
 
 ActorInfo chhutInfo = {

@@ -9,5 +9,4 @@ void baflap_reset(void);
 void baflap_activate(bool active);
 void baflap_update(void);
 
-
 #endif // __BA_FLAP_H__

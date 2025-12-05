@@ -142,12 +142,12 @@ void itemPrint_update(void) {
                     itemPrintValues[i] += (sign * _73640_MIN(time_getDelta() * _73640_MAX(diff, 8.0f), 1.0));
                 }
                 if ((D_80381168[i] != 0) && ((globalTimer_getTime() & 7) == 0)) {
-                    func_8025A6EC(D_80381168[i], 32000);
+                    coMusicPlayer_playMusic(D_80381168[i], 32000);
                 }
                 if (D_80381378[i] != 0) {
                     if ((D_80381478[i] != 0) && ((s32) diff != D_80381478[i])) {
                         if (itemPrintValues[i] > 9.0f) {
-                            func_8030E6A4(D_80381378[i], D_80381218[i], 0x7D00);
+                            gcsfx_playWithPitch(D_80381378[i], D_80381218[i], 0x7D00);
                              D_80381218[i] = _73640_MIN(D_80381218[i] + 0.1, 2.0);
                         }
                     }
@@ -161,7 +161,7 @@ void itemPrint_update(void) {
                 if (item_getCount(i) == (s32) (itemPrintValues[i] + 0.01)) {
                     do{
                         if (D_803812C8[i] != 0) { 
-                            func_8025A6EC(D_803812C8[i], 0x7D00);
+                            coMusicPlayer_playMusic(D_803812C8[i], 0x7D00);
                         }
                         
                         D_80381378[i] = 0;

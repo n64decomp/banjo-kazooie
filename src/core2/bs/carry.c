@@ -97,7 +97,7 @@ void bscarry_interrupt(void){
             bacarry_set_marker(baMarker_8028D688());
             break;
         case 8:
-            func_8029A86C(2);
+            bs_setInterruptResponse(2);
             bs_setState(BS_3C_TALK);
             break;
         case 0x12:
@@ -106,10 +106,10 @@ void bscarry_interrupt(void){
         case BS_INTR_16_THROW_CARRIED_OBJ:
             if(stateTimer_isDone(STATE_TIMER_1_THROW)){
                 bs_setState(BS_CARRY_THROW);
-                func_8029A86C(2);
+                bs_setInterruptResponse(2);
             }
             else{
-                func_8029A86C(1);
+                bs_setInterruptResponse(1);
             }
             break;
         default://L802AB260

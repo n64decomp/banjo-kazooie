@@ -36,7 +36,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2);
 void controller_copyFaceButtons(s32 controller_index, s32 dst[6]);
 void pfsManager_getFirstControllerFaceButtonState(s32 controller_index, s32 dst[6]);
 s32 func_8024E5E8(s32 arg0, s32 arg1);
-s32 func_8024E60C(s32 controller_index, s32 dst[3]);
+s32 controller_copySideButtons(s32 controller_index, s32 dst[3]);
 s32 func_8024E640(s32 controller_index, s32 dst[3]);
 f32 func_8024E668(s32 controller_index);
 s32 controller_getStartButton(s32 controller_index);

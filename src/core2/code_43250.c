@@ -165,7 +165,7 @@ void func_802CA1E0(Actor *this){
         phi_a0 = tmp_v0->unk0;
         tmp_f4 = tmp_v0->unk2*0.0078125;
         phi_a2 = tmp_v0->unk3*128.0;
-        func_8030E6A4(phi_a0, tmp_f4, phi_a2);
+        gcsfx_playWithPitch(phi_a0, tmp_f4, phi_a2);
         reinterpret_cast(s32, this->unkBC[0])++;
         if(reinterpret_cast(s32, this->unkBC[0]) == reinterpret_cast(s32, this->unkBC[4]))
             this->unk154 = 0;

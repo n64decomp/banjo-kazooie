@@ -36,7 +36,7 @@ struct {
 
 /* .code */
 bool __is_flying_in_FP(void){
-    return (map_get() == MAP_27_FP_FREEZEEZY_PEAK) && (player_movementGroup() == BSGROUP_A_FLYING);
+    return (gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK) && (player_movementGroup() == BSGROUP_A_FLYING);
 }
 
 struct56s *func_802C0EC0(void){

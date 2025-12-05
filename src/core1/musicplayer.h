@@ -1,0 +1,1 @@
+#define MAX_MUSIC_STRUCT_COUNT 6

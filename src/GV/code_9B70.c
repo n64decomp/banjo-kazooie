@@ -7,7 +7,7 @@ void func_8038FF60(void){}
 
 void func_8038FF68(void){
     
-    if(map_get() != MAP_12_GV_GOBIS_VALLEY) return;
+    if(gsworld_get_map() != MAP_12_GV_GOBIS_VALLEY) return;
 
     if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
         func_8034DE60(&func_8034C528(0x190)->type_6D, 0.0f, 270.0f, 0.0f, 1);

@@ -133,7 +133,7 @@ struct_core2_35520_1 *func_802BC4B0(s32 arg0) {
     s32 map_id;
     s32 i;
 
-    map_id = map_get();
+    map_id = gsworld_get_map();
     for( i = 0; D_8037D930[i].map_id != 0; i++){
         if(map_id == D_8037D930[i].map_id && (arg0 == D_8037D930[i].unk2)){
             return &D_8037D930[i];

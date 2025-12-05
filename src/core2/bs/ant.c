@@ -337,7 +337,7 @@ static void __bsant_recoil_update(void){
 }
 
 static void __bsant_recoil_end(void){
-    func_80297CA8();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();
@@ -397,7 +397,7 @@ void bsant_die_init(void){
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     func_802914CC(0xd);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
     bsant_substate = 0;
     baMarker_collisionOff();
@@ -463,7 +463,7 @@ void func_8029F3F4(void){
     func_802B3A50();
     func_80299628(0);
     func_8029C6D0();
-    if(!func_80298850())
+    if(!balookat_getState())
        sp1C = BS_35_ANT_IDLE;
 
     bs_setState(sp1C);

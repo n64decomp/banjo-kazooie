@@ -25,7 +25,7 @@ void func_80323170(void){
 
 void func_80323190(void){
     D_80383370 = sfxsource_createSfxsourceAndReturnIndex();
-    func_8030DD14(D_80383370, 3);
+    sfxSource_setunk43_7ByIndex(D_80383370, 3);
     sfxsource_setSfxId(D_80383370, SFX_21_EGG_BOUNCE_1);
     sfxsource_setSampleRate(D_80383370, 12000);
 }
@@ -35,7 +35,7 @@ void func_803231E8(void){
 }
 
 void func_8032320C(void){
-    func_8030E2C4(D_80383370);
+    sfxSource_func_8030E2C4(D_80383370);
 }
 
 void func_80323230(void){}

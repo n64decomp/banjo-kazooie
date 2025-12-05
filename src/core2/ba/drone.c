@@ -32,10 +32,10 @@ enum bs_e badrone_enter(void){
     return func_8029BD90();
 }
 
-enum bs_e badrone_goto(f32 position[3], f32 duration, void (*arg2)(ActorMarker *), ActorMarker *arg3){
+enum bs_e badrone_goto(f32 position[3], f32 duration, void (*callback)(ActorMarker *), ActorMarker *arg3){
     ml_vec3f_copy(badrone.position, position);
     badrone.duration = duration;
-    badrone.unk14 = arg2;
+    badrone.unk14 = callback;
     badrone.unk18 = arg3;
     badrone_set_type(BA_DRONE_GOTO);
     return func_8029BD90();

@@ -11,7 +11,7 @@
 #define SNACKER_BB_DIALOG_0 VER_SELECT(0xe26, 0xa68, 0, 0)
 #define SNACKER_BB_DIALOG_1 VER_SELECT(0xe33, 0xa75, 0, 0)
 
-void ncFirstPersonCamera_getZoomedInRotation(f32 *);
+void ncba1p_getZoomedInRotation(f32 *);
 
 extern u8  D_8037DCCA;
 extern u8  D_8037DCCB;
@@ -82,7 +82,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
         return 0;
 
     if(func_8034BB48() && chBottlesBonus_getPuzzleIndex() != 7){
-        gcdialog_showText(SNACKER_BB_DIALOG_0 + (chBottlesBonus_getPuzzleIndex() << 1), 6, D_80363610, NULL, NULL, NULL);
+        gcdialog_showDialog(SNACKER_BB_DIALOG_0 + (chBottlesBonus_getPuzzleIndex() << 1), 6, D_80363610, NULL, NULL, NULL);
     }
     if(!func_8028F25C() && func_80321960() == 3)
         func_803219F4(1);
@@ -92,22 +92,22 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
             if(chBottlesBonus_getPuzzleIndex() == 6){
                 if(!D_8037DCCC){
                     func_8028F94C(4, &D_80363610);
-                    gcdialog_showText(SNACKER_BB_DIALOG_1, 0x6, D_80363610, NULL, func_8028A584, NULL);
+                    gcdialog_showDialog(SNACKER_BB_DIALOG_1, 0x6, D_80363610, NULL, func_8028A584, NULL);
                 }
             }//L8028A70C
             else if(chBottlesBonus_getPuzzleIndex() == 7){
                 func_8028F94C(4, &D_80363610);
-                gcdialog_showText(ASSET_E35_DIALOG_BOTTLES_BONUS_REMINDER, 0x6, D_80363610, NULL, func_8028A558, NULL);
+                gcdialog_showDialog(ASSET_E35_DIALOG_BOTTLES_BONUS_REMINDER, 0x6, D_80363610, NULL, func_8028A558, NULL);
                 D_8037DCCC = 1;
             }//L8028A764
             else if(jiggyscore_isCollected(0x10)){
-                ncFirstPersonCamera_getZoomedInRotation(sp30);
+                ncba1p_getZoomedInRotation(sp30);
                 if( (((D_8036361C[0] <= sp30[0])? (sp30[0] - D_8036361C[0]) : -(sp30[0] - D_8036361C[0])) < 4.0f)
                     && (((D_8036361C[1] <= sp30[1])? (sp30[1] - D_8036361C[1]) : -(sp30[1] - D_8036361C[1])) < 20.0f)
                 ){
                     if(!D_8037DCCA){
                         func_8028F94C(4, &D_80363610);
-                        gcdialog_showText(ASSET_E21_DIALOG_BOTTLES_BONUS_DISCOVERED, 6, D_80363610, 0, func_8028A584, NULL);
+                        gcdialog_showDialog(ASSET_E21_DIALOG_BOTTLES_BONUS_DISCOVERED, 6, D_80363610, 0, func_8028A584, NULL);
                         D_8037DCCA = 1;
                     }else{
                         func_8028A584(0,0,0);
@@ -117,7 +117,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
             else{
                 if(!D_8037DCCB){
                     func_8028F94C(4, &D_80363610);
-                    gcdialog_showText(ASSET_E20_DIALOG_BOTTLES_BONUS_NOT_READY, 6, D_80363610, 0, func_8028A558, NULL);
+                    gcdialog_showDialog(ASSET_E20_DIALOG_BOTTLES_BONUS_NOT_READY, 6, D_80363610, 0, func_8028A558, NULL);
                     D_8037DCCB = 1;
                 }
             }
@@ -127,7 +127,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
 }
 
 void snackerctl_update(void){
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             s_snackerctl_state = __snackerctl_update_ttc();
             break;

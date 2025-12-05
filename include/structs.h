@@ -252,7 +252,7 @@ typedef struct struct_8_s{
 typedef struct struct_11_s{
     f32 unk0;
     f32 unk4;
-    s32 unk8;
+    s32 volume;
     s32 unkC;
     s16 track_id; //trackId
     s16 unk12;
@@ -268,10 +268,10 @@ typedef struct struct_12_s{
     s32 unk1;
 } struct12s;
 
-typedef struct struct_13_s{
+typedef struct dialog_s {
     s32 cmd;
     u8* str;
-}struct13s;
+} BKDialog;
 
 typedef struct struct_14_s{
     s16 unk0;
@@ -472,11 +472,6 @@ typedef struct{
     u8 unk3F;
 }struct4Es;
 
-typedef struct{
-    u8 unk0;
-    u8 unk1;
-    f32 unk4[3];
-}struct50s;
 
 typedef struct{
     s16 unk0;

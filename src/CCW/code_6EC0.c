@@ -17,8 +17,8 @@ Actor *func_8038D30C(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx);
 
 /* .data */
 Struct_CCW_6EC0_0 D_8038F600[] = {
-    {MAP_45_CCW_AUTUMN, 0xCD2,     0},
-    {MAP_46_CCW_WINTER, 0xCD4, 0xCD5},
+    {MAP_45_CCW_AUTUMN, ASSET_CD2_DIALOG_GNAWTY_MEET_FALL_INSIDE,     0},
+    {MAP_46_CCW_WINTER, ASSET_CD4_DIALOG_GNAWTY_MEET_WINTER_INSIDE_JIGGY, ASSET_CD5_DIALOG_GNAWTY_MEET_WINTER_INSIDE_AFTER_JIGGY},
     0
 };
 
@@ -56,7 +56,7 @@ void func_8038D368(Actor *this) {
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
         local->unk0 = D_8038F600;
-        while (local->unk0->map != 0 && map_get() != local->unk0->map) {
+        while (local->unk0->map != 0 && gsworld_get_map() != local->unk0->map) {
             local->unk0++;
         }
 
@@ -71,10 +71,10 @@ void func_8038D368(Actor *this) {
         player_getPosition(plyr_pos);
         if (ml_vec3f_distance(this->position, plyr_pos) < 600.0f) {
             if (!jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-                gcdialog_showText(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showDialog(local->unk0->unk2, 4, NULL, NULL, NULL, NULL);
             } else {
                 if (local->unk0->unk4) {
-                    gcdialog_showText(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
                 }
             }
             this->has_met_before = TRUE;

@@ -26,7 +26,7 @@ u8 D_8037D361;
 
 /* .code */
 int func_802A51D0(void){
-    if(func_8029D66C())
+    if(isPlayerInHazard())
         return 0;
     return player_inWater();
 }
@@ -103,7 +103,7 @@ void __bsblongleg_enterFromTrot(void){
     anctrl_start(aCtrl, "bsblongleg.c", 0xe1);
     stateTimer_set(STATE_TIMER_2_LONGLEG, D_8037D35C);
     func_803219F4(2);
-    func_8030E2C4(D_8037D361);
+    sfxSource_func_8030E2C4(D_8037D361);
     D_8037D360 = 1;
 }
 
@@ -289,7 +289,7 @@ void bsblongleg_exit_update(void){
     switch(D_8037D360){
         case 0://L802A5C7C
             if(anctrl_isAt(aCtrl, 0.68f))
-                func_8030E2C4(D_8037D361);
+                sfxSource_func_8030E2C4(D_8037D361);
             
             if(anctrl_isStopped(aCtrl))
                 func_802A5B34();
@@ -478,7 +478,7 @@ void func_802A63F0(void){
     func_8029C6D0();
     func_80299628(1);
     
-    if(func_80298850() == 0)
+    if(balookat_getState() == 0)
         next_state = BS_26_LONGLEG_IDLE;
     
     if(func_802A51D0())

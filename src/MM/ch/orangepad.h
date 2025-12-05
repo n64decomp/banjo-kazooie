@@ -1,0 +1,13 @@
+#define ORANGE_PARTICLE_COUNT 30
+#define CONGA_WARN_DISTANCE 0x28
+#define ORANGE_PAD_HIT_LIFETIME 255.0
+#define ORANGE_PAD_LIFETIME_INCREMENT 7.0
+
+enum orange_pad_state_e {
+    ORANGE_PAD_STATE_HIT = 1
+};
+
+enum orange_pad_ids {
+    ORANGE_PAD_LEFT = 0x76,
+    ORANGE_PAD_RIGHT = 0x106
+};

@@ -34,7 +34,7 @@ void func_80351FE0(Struct_core2_CB050_0 *arg0, Struct68s *arg1) {
     func_80351814(arg1, arg0->unk58);
     arg0->unk64 = 0.0f;
     arg0->unk6C = 0;
-    if (map_get() == MAP_22_CC_INSIDE_CLANKER) {
+    if (gsworld_get_map() == MAP_22_CC_INSIDE_CLANKER) {
         sp3C[0] = arg0->unk4C[0];
         sp3C[1] = arg0->unk4C[1] + 1000.0f;
         sp3C[2] = arg0->unk4C[2];
@@ -96,7 +96,7 @@ void func_80352114(Struct_core2_CB050_0 *arg0, s32 arg1, f32 arg2) {
     arg0->unk28[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 10.0f;
     arg0->unk4[0] = cosf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 4.5;
     arg0->unk4[1] = sinf(((arg0->unk64 * arg0->unk0) / 180.0) * BAD_PI) * 2;
-    if (map_get() == MAP_22_CC_INSIDE_CLANKER) {
+    if (gsworld_get_map() == MAP_22_CC_INSIDE_CLANKER) {
         sp40[0] = arg0->unk4C[0];
         sp40[1] = arg0->unk4C[1] + 1000.0f;
         sp40[2] = arg0->unk4C[2];

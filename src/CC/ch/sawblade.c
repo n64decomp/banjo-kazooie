@@ -142,7 +142,7 @@ void chSawblade_update(Actor *this){
         local->unk0 = &D_80389C30[(this->modelCacheIndex < 0x43) ? this->modelCacheIndex - 0x3D : this->modelCacheIndex - 0x28A];
         local->unk4 = 0;
         func_80256C60(this->position, 100);
-        if(map_get() == MAP_21_CC_WITCH_SWITCH_ROOM){
+        if(gsworld_get_map() == MAP_21_CC_WITCH_SWITCH_ROOM){
             this->position_z += 64.0f;
         }
     }//L80389660

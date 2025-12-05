@@ -32,7 +32,7 @@ ActorInfo chMinigame = {
 
 /* .code */
 enum minigame_e __chminigame_getCurrentMapId(void){
-    switch(map_get()){
+    switch(gsworld_get_map()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:
             return MINIGAME_0_BOSS_BOOM_BOX;
         case MAP_10_BGS_MR_VILE:
@@ -77,7 +77,7 @@ void func_8031A678(Actor *this){
             return;
 
         case MINIGAME_3_ZUBBAS:
-            if (map_get() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
+            if (gsworld_get_map() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
                 sp20[0] = 0.0f;
                 sp20[1] = 0.0f;
                 sp20[2] = -1000.0f;
@@ -139,7 +139,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             comusic_playTrack((volatileFlag_get(VOLATILE_FLAG_5_FF_MINIGAME_WON)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
             func_802E4A70();
             volatileFlag_set(VOLATILE_FLAG_21, TRUE);
-            timedFunc_set_3(2.0f, (GenFunction_3)func_802E4078, MAP_8E_GL_FURNACE_FUN, 1, 1);
+            timedFunc_set_3(2.0f, (GenFunction_3)transitionToMap, MAP_8E_GL_FURNACE_FUN, 1, 1);
             break;
     }
     subaddie_set_state(this, arg1);

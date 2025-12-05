@@ -38,8 +38,8 @@ int func_8038D920(Actor *this, f32 arg1){
     f32 sp20[3];
     f32 sp1C;
 
-    this->unkF4_8 = 20;
-    sp1C = (f32)(this->unkF4_8 + 25);
+    this->actorTypeSpecificField = 20;
+    sp1C = (f32)(this->actorTypeSpecificField + 25);
     player_getPosition(sp20);
     ml_vec3f_diff_copy(sp2C, this->position, sp20);
     return this->position_y < sp20[1] && sp20[1] <= arg1 && sp2C[0]*sp2C[0] + sp2C[2]*sp2C[2] < sp1C*sp1C;
@@ -62,7 +62,7 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         sp38[1] = this->position_y;
     }
     if(func_8038D920(this, sp38[1])){
-        player_setClimbParams(sp2C, sp38, (f32)this->unkF4_8, 2);
+        player_setClimbParams(sp2C, sp38, (f32)this->actorTypeSpecificField, 2);
     }
 
     return this;
@@ -96,7 +96,7 @@ void func_8038DB88(Actor *this){
     tmp = this->unk44_31;
     if(tmp){
         if(func_8030E3FC(tmp)){
-            func_8030E394(this->unk44_31);
+            sfxSource_triggerCallbackByIndex(this->unk44_31);
         }
         sfxsource_freeSfxsourceByIndex(this->unk44_31);
         this->unk44_31 = 0;
@@ -148,11 +148,11 @@ void func_8038DBDC(Actor *this){
                 if(actor_animationIsAt(this, 0.2f) && this->unk44_31 == 0){
                     this->unk44_31 = func_8030ED2C(0x3F7, 3);
                     this->unk1C[1] = 1.0f;
-                    func_8030E2C4(this->unk44_31);
+                    sfxSource_func_8030E2C4(this->unk44_31);
                 }//L8038DE08
                 if(actor_animationIsAt(this, 0.7f)){
                     func_8038DB88(this);
-                    FUNC_8030E8B4(SFX_3F8_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_3F8_UNKNOWN, 1.0f, 32000, this->position, 1250, 2500);
                 }
             }
             break;
@@ -177,16 +177,16 @@ void func_8038DBDC(Actor *this){
             }
             else{
                 if(actor_animationIsAt(this, 0.04f))
-                    FUNC_8030E8B4(SFX_7C_CHEBOOF, 1.0f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_7C_CHEBOOF, 1.0f, 32000, this->position, 1250, 2500);
                 
                 if(actor_animationIsAt(this, 0.04f))
-                    FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.0f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_2C_PULLING_NOISE, 1.0f, 32000, this->position, 1250, 2500);
                 
                 if(actor_animationIsAt(this, 0.33f))
-                    FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.2f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_2C_PULLING_NOISE, 1.2f, 32000, this->position, 1250, 2500);
 
                 if(actor_animationIsAt(this, 0.66f))
-                    FUNC_8030E8B4(SFX_2C_PULLING_NOISE, 1.4f, 32000, this->position, 1250, 2500);
+                    sfx_playFadeShorthandDefault(SFX_2C_PULLING_NOISE, 1.4f, 32000, this->position, 1250, 2500);
             }
             break;
         case 5: //8038DFC8
@@ -202,7 +202,7 @@ void func_8038DBDC(Actor *this){
                 if(!this->unk44_31){
                     this->unk44_31 = func_8030ED2C(SFX_2C_PULLING_NOISE, 3);
                     this->unk1C[1] = 1.9f;
-                    func_8030E2C4(this->unk44_31);
+                    sfxSource_func_8030E2C4(this->unk44_31);
                 }
             }
             else{//L8038E070
@@ -216,7 +216,7 @@ void func_8038DBDC(Actor *this){
             }
             else{ 
                 if(actor_animationIsAt(this, 0.42f))
-                    sfxsource_play(SFX_7C_CHEBOOF, 32000);
+                    gcsfx_playAtSampleRate(SFX_7C_CHEBOOF, 32000);
                 tmp = this->unk44_31;
                 if(tmp && func_8030E3FC(tmp)){
                     if(1.0 < this->unk1C[1]){

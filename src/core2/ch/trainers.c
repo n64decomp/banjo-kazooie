@@ -45,7 +45,7 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
         if(arg1)
             FUNC_8030E624(SFX_8_BANJO_LANDING_04, 1.6f, 7000);
         else
-            FUNC_8030E8B4(SFX_8_BANJO_LANDING_04, 1.6f, 7000, this->position, 600, 1500);
+            sfx_playFadeShorthandDefault(SFX_8_BANJO_LANDING_04, 1.6f, 7000, this->position, 600, 1500);
     }
 
     func_802589E4(sp24, this->velocity[1], 40.0f);
@@ -58,7 +58,7 @@ void _chtrainers_802CA378(Actor *this, bool arg1){
 void chtrainers_update(Actor *this){
     s32 sp2C = levelSpecificFlags_get(LEVEL_FLAG_1A_UNKNOWN);
 
-    if (sp2C && this->unkF4_8 != 1) {
+    if (sp2C && this->actorTypeSpecificField != 1) {
         return;
     }
 
@@ -78,11 +78,11 @@ void chtrainers_update(Actor *this){
     switch(this->state){
         case 0://L802CA5A8
             if(func_803296D8(this, 2000) || sp2C){
-                if( func_80329530(this, 0xfa)
+                if( subaddie_playerIsWithinSphereAndActive(this, 0xfa)
                     && !volatileFlag_get(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES)
                     && player_getTransformation() == TRANSFORM_1_BANJO
                 ){
-                    if(gcdialog_showText(0xda4, 0, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showDialog(0xda4, 0, NULL, NULL, NULL, NULL)){
                         volatileFlag_set(VOLATILE_FLAG_F_HAS_MEET_TURBO_SHOES, TRUE);
                     }
                 }//L802CA620

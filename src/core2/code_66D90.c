@@ -6,7 +6,7 @@ extern void func_802EFA34(ParticleEmitter *, f32);
 extern void func_802EFF5C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF7C(ParticleEmitter *, f32, f32, f32);
 extern void func_802EFF9C(ParticleEmitter *, f32);
-extern ParticleEmitter *func_802F0EF0(u8);
+extern ParticleEmitter *pem_getEmitterByIndex(u8);
 
 /* .data */
 s32 D_80368850[3] = {0xFF, 0xFF, 0xFE};
@@ -16,11 +16,11 @@ u8 D_803808F0;
 
 /* .code */
 void func_802EDD20(void){
-    func_802F1190(D_803808F0);
+    pem_free(D_803808F0);
 }
 
 void func_802EDD44(void){
-    D_803808F0 = func_802F0F78(0x1e);
+    D_803808F0 = pem_newEmitter(0x1e);
 }
 
 void func_802EDD68(ParticleEmitter *caller, f32 pos[3]){
@@ -28,7 +28,7 @@ void func_802EDD68(ParticleEmitter *caller, f32 pos[3]){
 }
 
 ParticleEmitter *func_802EDD8C(f32 pos[3], f32 xz_range, f32 arg2){
-    ParticleEmitter *pCtrl = func_802F0EF0(D_803808F0);
+    ParticleEmitter *pCtrl = pem_getEmitterByIndex(D_803808F0);
     particleEmitter_setSprite(pCtrl, ASSET_70A_SPRITE_BUBBLE_1);
     particleEmitter_setDrawMode(pCtrl, 4);
     particleEmitter_setAlpha(pCtrl, 0xff);

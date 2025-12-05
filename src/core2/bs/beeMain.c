@@ -8,7 +8,7 @@
 f32 func_8029B41C(void);
 void func_80299628(s32);
 void yaw_applyIdeal(void);
-void ncDynamicCamD_func_802BF2C0(f32);
+void ncbadie_func_802BF2C0(f32);
 
 f32 baanim_getTimer(void);
 void baanim_setEndAndDuration(f32, f32);
@@ -360,7 +360,7 @@ void func_802A1A50(void){
 }
 
 void func_802A1B28(void){
-    func_80297CA8();
+    baiFrame_start();
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();
@@ -423,7 +423,7 @@ void bsbeemain_die_init(void){
     baMarker_collisionOff();
     baeyes_close();
     func_802914CC(0xd);
-    ncDynamicCamD_func_802BF2C0(30.0f);
+    ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
     batimer_set(0, 2.9f);
@@ -491,7 +491,7 @@ void func_802A1FC8(void){
     func_802B3A50();
     func_80299628(0);
     func_8029C6D0();
-    if(!func_80298850()){
+    if(!balookat_getState()){
         sp1C = BS_85_BEE_IDLE;
     }
     bs_setState(sp1C);
@@ -509,7 +509,7 @@ void func_802A2054(void){
     func_8025A2FC(-1, 0xFA0);
     core1_ce60_incOrDecCounter(TRUE);
     func_80291548();
-    func_80298A64();
+    balookat_end();
 }
 
 void func_802A2098(void){
@@ -520,7 +520,7 @@ void func_802A2098(void){
     baphysics_set_target_horizontal_velocity(0.0f);
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A2FC(0, 0xFA0);
-    func_8025A6EC(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
+    coMusicPlayer_playMusic(COMUSIC_42_NOTEDOOR_OPENING_FANFARE, -1);
     func_8029151C(0xC);
     baMarker_collisionOff();
     batimer_set(0, 3.0f);
