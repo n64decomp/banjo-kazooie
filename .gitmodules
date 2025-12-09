@@ -16,3 +16,6 @@
 [submodule "tools/bk_rom_compressor"]
 	path = tools/bk_rom_compressor
 	url = https://github.com/MittenzHugg/bk_rom_compressor.git
+[submodule "lib/ultralib"]
+	path = lib/ultralib
+	url = https://github.com/decompals/ultralib.git

@@ -116,8 +116,8 @@ BIN_OBJS             := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS             := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
 SYMBOL_ADDRS         := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES    := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/ll_cvt.c.o
-BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/boot/ultra/ll.c.o
+MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/ultra/libc/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/ultra/libc/llcvt.c.o
+BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/boot/ultra/libc/ll.c.o
 BOOT_C_OBJS          := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
 COMPRESSED_SYMBOLS   := $(BUILD_DIR)/compressed_symbols.txt
 
@@ -374,55 +374,46 @@ clean:
 	@$(RM) -rf $(ASM_ROOT)/*.s
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
 	@$(RM) -rf $(ASM_ROOT)/data
-	@$(RM) -rf $(ASM_ROOT)/boot/*.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/libc/bzero.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/getsr.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/interrupt.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/invalicache.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/maptlbrdb.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/probetlb.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/setfpccsr.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/setsr.s
+	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/writebackdcache.s
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
-	@$(RM) -rf $(ASM_ROOT)/core1/os
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/libc/bcopy.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/libc/bzero.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/getcount.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/getsr.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/interrupt.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invaldcache.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invalicache.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/probetlb.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setcompare.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setfpccsr.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setsr.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/writebackdcache.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/writebackdcacheall.s
 	@$(RM) -f *.ld
 
 # Per-file flag definitions
-build/$(VERSION)/src/core1/io/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/gu/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/audio/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/core1/ll_cvt.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ll_cvt.c.o: MIPSBIT := -mips3 -o32
+build/$(VERSION)/src/core1/ultra/audio/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/ultra/debug/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/core1/ultra/gu/%.c.o: OPT_FLAGS := -O3
+build/$(VERSION)/src/core1/ultra/io/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/core1/ultra/libc/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/core1/ultra/libc/ll.c.o: MIPSBIT := -mips3 -o32
+build/$(VERSION)/src/core1/ultra/libc/llcvt.c.o: MIPSBIT := -mips3 -o32
+build/$(VERSION)/src/core1/ultra/os/%.c.o: OPT_FLAGS := -O1
 
-build/$(VERSION)/src/boot/ultra/destroythread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/pirawdma.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/thread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/pimgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/getthreadid.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/setthreadpri.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/createthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/yieldthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/setglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/recvmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/startthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/devmgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/sendmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/pigetstat.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/si.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/resetglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/epirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/epirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/createmesgqueue.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/leodiskinit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/virtualtophysical.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/boot/ultra/sirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/sirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/initialize.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/pirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/seteventmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/siacs.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/cartrominit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/leointerrupt.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/epirawdma.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/boot/ultra/debug/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/boot/ultra/io/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/boot/ultra/libc/%.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/boot/ultra/libc/%.c.o: MIPSBIT := -mips3 -o32
+build/$(VERSION)/src/boot/ultra/os/%.c.o: OPT_FLAGS := -O1
 
 # Disable implicit rules
 MAKEFLAGS += -r
