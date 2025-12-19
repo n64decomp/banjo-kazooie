@@ -1,8 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-extern OSThread *__osRunningThread;//_osRunningThread;
+#include "osint.h"
 
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags)
 {

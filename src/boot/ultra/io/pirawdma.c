@@ -1,11 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-#define WAIT_ON_IOBUSY(stat)                                \
-    stat = IO_READ(PI_STATUS_REG);                          \
-    while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY)) \
-        stat = IO_READ(PI_STATUS_REG);
+#include "piint.h"
 
 s32 osPiRawStartDma(s32 direction, u32 devAddr, void *dramAddr, u32 size)
 {

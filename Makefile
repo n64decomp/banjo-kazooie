@@ -391,6 +391,7 @@ clean:
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/interrupt.s
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invaldcache.s
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invalicache.s
+	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/maptlbrdb.s
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/probetlb.s
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setcompare.s
 	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setfpccsr.s

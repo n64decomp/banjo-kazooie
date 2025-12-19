@@ -16,7 +16,6 @@ void osCreateThread(OSThread *t, OSId id, void (*entry)(void *), void *arg, void
     t->context.a0 = (u64)arg;
     t->context.sp = (u64)sp - 16;
     t->context.ra = (u64)__osCleanupThread;
-    // t->context.ra = (u64)func_8026ABE0;
     mask = OS_IM_ALL;
     t->context.sr = SR_IMASK | SR_EXL | SR_IE;
     t->context.rcp = (mask & RCP_IMASK) >> RCP_IMASKSHIFT;

@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-#define __osCleanupThread __osCleanupThread
-
 void __osCleanupThread(void);
 extern OSThread *__osActiveQueue;
 void osCreateThread(OSThread *t, OSId id, void (*entry)(void *), void *arg, void *sp, OSPri p)

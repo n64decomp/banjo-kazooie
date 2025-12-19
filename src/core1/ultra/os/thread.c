@@ -23,4 +23,3 @@ void __osDequeueThread(OSThread **queue, OSThread *t)
       succ = pred->next;
    }
 }
-

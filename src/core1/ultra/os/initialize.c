@@ -11,10 +11,10 @@ typedef struct
    /* 0x8 */ unsigned int inst3;
    /* 0xC */ unsigned int inst4;
 } __osExceptionVector;
-// extern __osExceptionVector __osExceptionPreamble;
+//extern __osExceptionVector __osExceptionPreamble;
 // extern __osExceptionVector D_8026A2E0;
 
-extern void (*func_8026A2E0)(void);
+extern void (*__osExceptionPreamble)(void);
 
 OSTime osClockRate = OS_CLOCK_RATE;
 s32 osViClock = VI_NTSC_CLOCK;
@@ -39,10 +39,10 @@ void __osInitialize_common()
    {
       ; //todo: magic contant
    }
-   *(__osExceptionVector *)UT_VEC =  *(__osExceptionVector *)&func_8026A2E0; //__osExceptionPreamble;
-   *(__osExceptionVector *)XUT_VEC = *(__osExceptionVector *)&func_8026A2E0; //__osExceptionPreamble;
-   *(__osExceptionVector *)ECC_VEC = *(__osExceptionVector *)&func_8026A2E0; //__osExceptionPreamble;
-   *(__osExceptionVector *)E_VEC =   *(__osExceptionVector *)&func_8026A2E0; //__osExceptionPreamble;
+   *(__osExceptionVector *)UT_VEC =  *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)XUT_VEC = *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)ECC_VEC = *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)E_VEC =   *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
    osWritebackDCache((void *)UT_VEC, E_VEC - UT_VEC + sizeof(__osExceptionVector));
    osInvalICache((void *)UT_VEC, E_VEC - UT_VEC + sizeof(__osExceptionVector));
    osMapTLBRdb();

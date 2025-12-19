@@ -1,10 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-extern OSThread *__osRunningThread;
-extern OSThread *__osActiveQueue;
-extern void __osDispatchThread(void);
+#include "osint.h"
 
 void osDestroyThread(OSThread *t)
 {
@@ -30,7 +25,8 @@ void osDestroyThread(OSThread *t)
     else
     {
         pred = __osActiveQueue;
-        while (succ = pred->tlnext)
+        succ = pred->tlnext;
+        while (succ)
         {
             if (succ == t)
             {
@@ -38,6 +34,7 @@ void osDestroyThread(OSThread *t)
                 break;
             }
             pred = succ;
+            succ = pred->tlnext;
         }
     }
     if (t == __osRunningThread)

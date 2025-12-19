@@ -2,12 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-OSTime osClockRate = OS_CLOCK_RATE;
-s32 osViClock = VI_NTSC_CLOCK;
-u32 __osShutdown = 0;
-u32 __OSGlobalIntMask = OS_IM_ALL;
 
-u32 __osFinalrom;
 
 typedef struct
 {
@@ -16,9 +11,18 @@ typedef struct
    /* 0x8 */ unsigned int inst3;
    /* 0xC */ unsigned int inst4;
 } __osExceptionVector;
-extern __osExceptionVector __osExceptionPreamble;
+//extern __osExceptionVector __osExceptionPreamble;
+// extern __osExceptionVector D_8026A2E0;
 
-// osInitialize
+extern void (*__osExceptionPreamble)(void);
+
+OSTime osClockRate = OS_CLOCK_RATE;
+s32 osViClock = VI_NTSC_CLOCK;
+u32 __osShutdown = 0;
+u32 __OSGlobalIntMask = OS_IM_ALL;
+/* .bss */
+u32 __osFinalrom;
+
 void __osInitialize_common()
 {
    u32 pifdata;
@@ -35,10 +39,10 @@ void __osInitialize_common()
    {
       ; //todo: magic contant
    }
-   *(__osExceptionVector *)UT_VEC = __osExceptionPreamble;
-   *(__osExceptionVector *)XUT_VEC = __osExceptionPreamble;
-   *(__osExceptionVector *)ECC_VEC = __osExceptionPreamble;
-   *(__osExceptionVector *)E_VEC = __osExceptionPreamble;
+   *(__osExceptionVector *)UT_VEC =  *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)XUT_VEC = *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)ECC_VEC = *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
+   *(__osExceptionVector *)E_VEC =   *(__osExceptionVector *)&__osExceptionPreamble; //__osExceptionPreamble;
    osWritebackDCache((void *)UT_VEC, E_VEC - UT_VEC + sizeof(__osExceptionVector));
    osInvalICache((void *)UT_VEC, E_VEC - UT_VEC + sizeof(__osExceptionVector));
    osMapTLBRdb();

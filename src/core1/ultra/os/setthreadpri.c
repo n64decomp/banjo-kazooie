@@ -1,9 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-extern OSThread *__osRunningThread;
-extern OSThread *__osRunQueue;
+#include "osint.h"
 
 void osSetThreadPri(OSThread *t, OSPri pri)
 {

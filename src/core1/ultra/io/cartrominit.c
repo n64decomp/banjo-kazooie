@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern OSPiHandle *__osPiTable;
-
 OSPiHandle CartRomHandle;
 OSPiHandle *osCartRomInit(void)
 {
@@ -25,7 +23,7 @@ OSPiHandle *osCartRomInit(void)
 	CartRomHandle.domain = PI_DOMAIN1;
 	CartRomHandle.speed = 0;
 
-    bzero(&CartRomHandle.transferInfo, sizeof(__OSTranxInfo));
+	bzero(&CartRomHandle.transferInfo, sizeof(__OSTranxInfo));
 
 	saveMask = __osDisableInt();
 	CartRomHandle.next = __osPiTable;
@@ -33,4 +31,4 @@ OSPiHandle *osCartRomInit(void)
 	__osRestoreInt(saveMask);
 	
 	return &CartRomHandle;
-}//*/
+}

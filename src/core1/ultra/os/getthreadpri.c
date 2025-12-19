@@ -1,8 +1,7 @@
 #include <ultra64.h>
 #include "functions.h"
 #include "variables.h"
-
-extern OSThread *__osRunningThread;
+#include "osint.h"
 
 OSPri osGetThreadPri(OSThread *thread)
 {

@@ -2,11 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern struct __osThreadTail
-{
-    OSThread *next;
-    OSPri priority;
-} __osThreadTail;
+extern OSThread __osThreadTail;
 
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 msgCount)
 {

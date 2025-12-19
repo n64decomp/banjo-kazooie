@@ -2,7 +2,7 @@
 
 #define PI_Q_BUF_LEN 1
 u32 __osPiAccessQueueEnabled = 0;
-OSMesg piAccessBuf[PI_Q_BUF_LEN]; // todo bss
+static OSMesg piAccessBuf[PI_Q_BUF_LEN];
 OSMesgQueue __osPiAccessQueue;
 void __osPiCreateAccessQueue(void)
 {

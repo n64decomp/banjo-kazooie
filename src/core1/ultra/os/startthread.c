@@ -1,10 +1,5 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
-
-extern OSThread * __osRunQueue;
-extern OSThread * __osRunningThread;
+#include "osint.h"
 
 void osStartThread(OSThread *t)
 {
