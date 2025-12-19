@@ -712,32 +712,3 @@ glabel __osCleanupThread
 /* F4641C 8026ABEC 00000000 */  nop
 endlabel __osCleanupThread
 .size __osCleanupThread, . - __osCleanupThread
-
-# Handwritten function
-glabel osMapTLBRdb
-/* F46420 8026ABF0 40085000 */  mfc0       $t0, $10
-/* F46424 8026ABF4 2409001F */  addiu      $t1, $zero, 0x1F
-/* F46428 8026ABF8 40890000 */  mtc0       $t1, $0
-/* F4642C 8026ABFC 40802800 */  mtc0       $zero, $5
-/* F46430 8026AC00 240A0017 */  addiu      $t2, $zero, 0x17
-/* F46434 8026AC04 3C09C000 */  lui        $t1, (0xC0000000 >> 16)
-/* F46438 8026AC08 40895000 */  mtc0       $t1, $10
-/* F4643C 8026AC0C 3C098000 */  lui        $t1, (0x80000000 >> 16)
-/* F46440 8026AC10 00095982 */  srl        $t3, $t1, 6
-/* F46444 8026AC14 016A5825 */  or         $t3, $t3, $t2
-/* F46448 8026AC18 408B1000 */  mtc0       $t3, $2
-/* F4644C 8026AC1C 24090001 */  addiu      $t1, $zero, 0x1
-/* F46450 8026AC20 40891800 */  mtc0       $t1, $3
-/* F46454 8026AC24 00000000 */  nop
-/* F46458 8026AC28 42000002 */  tlbwi
-/* F4645C 8026AC2C 00000000 */  nop
-/* F46460 8026AC30 00000000 */  nop
-/* F46464 8026AC34 00000000 */  nop
-/* F46468 8026AC38 00000000 */  nop
-/* F4646C 8026AC3C 40885000 */  mtc0       $t0, $10
-/* F46470 8026AC40 03E00008 */  jr         $ra
-/* F46474 8026AC44 00000000 */   nop
-/* F46478 8026AC48 00000000 */  nop
-/* F4647C 8026AC4C 00000000 */  nop
-endlabel osMapTLBRdb
-.size osMapTLBRdb, . - osMapTLBRdb

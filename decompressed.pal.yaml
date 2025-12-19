@@ -301,6 +301,7 @@ segments:
   - [0xF69140, c, ultra/io/sirawread]
   - [0xF69190, c, ultra/io/sirawwrite]
   - [0xF691E0, hasm, ultra/os/exceptasm]
+  - [0xF69AF0, hasm, ultra/os/maptlbrdb]
   - [0xF69B50, c, ultra/io/pirawread]
   - [0xF69BB0, c, ultra/libc/ll]
   - [0xF69E70, hasm, ultra/os/interrupt]
