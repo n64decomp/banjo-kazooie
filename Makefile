@@ -158,9 +158,9 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DNDEBUG -DBUILD_VERSION=VERSION_I
 CFLAGS         += -woff 649,654,838,807
-CPPFLAGS       := -D_FINALROM -DN_MICRO
+CPPFLAGS       := -D_FINALROM -DN_MICRO -DNDEBUG -DBUILD_VERSION=VERSION_I
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/2.0L/PRinternal -I include/2.0L/compiler/ido -I src/core1/ultra/audio
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2

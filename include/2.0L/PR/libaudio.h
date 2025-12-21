@@ -435,7 +435,7 @@ enum ALMsg {
     AL_CSP_NOTEOFF_EVT,
     AL_TREM_OSC_EVT,
     AL_VIB_OSC_EVT,
-    AL_UNK18_EVT
+    AL_UNK18_EVT // BK_SPECIFIC
 };
 
 /*
@@ -592,12 +592,12 @@ typedef struct {
 typedef struct {
     float       unk0;
     float       unk4;
-} ALUnk18Event;
+} ALUnk18Event;  // BK_SPECIFIC
 
 typedef struct {
     struct struct_81_s * unk0;
     s32       unk4;
-} ALUnk_Core1_3A70_Event;
+} ALUnk_Core1_3A70_Event; // BK_SPECIFIC
 
 typedef struct {
     ALVoice     voice;     
@@ -608,7 +608,7 @@ typedef struct {
     s16         vol;            /* volume - combined with volume from bank   */
     ALPan       pan;            /* pan - 0 = left, 127 = right               */
     u8          fxMix;          /* wet/dry mix - 0 = dry, 127 = wet          */
-} ALSoundState;
+} ALSoundState;  // BK_SPECIFIC
 
 typedef struct {
     s16                 	type;
@@ -624,8 +624,8 @@ typedef struct {
 	    ALSeqpSeqEvent		spseq;
 	    ALSeqpBankEvent		spbank;
         ALOscEvent      	osc;
-        ALUnk18Event        unk18;
-        ALUnk_Core1_3A70_Event unk3A70;
+        ALUnk18Event        unk18; // BK_SPECIFIC
+        ALUnk_Core1_3A70_Event unk3A70; // BK_SPECIFIC
     } msg;
 } ALEvent;
 
@@ -682,7 +682,7 @@ typedef struct {
     ALPan               pan;            /* overall pan for this chan        */
     u8                  priority;       /* priority for this chan           */
     u8                  vol;            /* current volume for this chan     */
-    u8                  unkA;
+    u8                  unkA;  // BK_SPECIFIC
     u8                  fxmix;          /* current fx mix for this chan     */
     u8                  sustain;        /* current sustain pedal state      */
     f32                 pitchBend;      /* current pitch bend val in cents  */

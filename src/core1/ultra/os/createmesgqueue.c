@@ -1,13 +1,18 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "PR/os_internal.h"
+#include "PR/ultraerror.h"
+#include "PRinternal/osint.h"
 
-extern OSThread __osThreadTail;
+void osCreateMesgQueue(OSMesgQueue* mq, OSMesg* msg, s32 msgCount) {
 
-void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 msgCount)
-{
-    mq->mtqueue = (OSThread *)&__osThreadTail;
-    mq->fullqueue = (OSThread *)&__osThreadTail;
+#ifdef _DEBUG
+    if (msgCount <= 0) {
+        __osError(ERR_OSCREATEMESGQUEUE, 1, msgCount);
+        return;
+    }
+#endif
+
+    mq->mtqueue = (OSThread*)&__osThreadTail.next;
+    mq->fullqueue = (OSThread*)&__osThreadTail.next;
     mq->validCount = 0;
     mq->first = 0;
     mq->msgCount = msgCount;

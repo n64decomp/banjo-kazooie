@@ -1,16 +1,17 @@
-#include <os_internal.h>
-#include "controller.h"
-#include "siint.h"
+#include "PR/os_internal.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
-s32 osPfsInit(OSMesgQueue *queue, OSPfs *pfs, int channel)
-{
-    s32 ret;
-    ret = 0;
+s32 osPfsInit(OSMesgQueue* queue, OSPfs* pfs, int channel) {
+    s32 ret = 0;
+
     __osSiGetAccess();
     ret = __osPfsGetStatus(queue, channel);
     __osSiRelAccess();
-    if (ret != 0)
+
+    if (ret != 0) {
         return ret;
+    }
 
     pfs->queue = queue;
     pfs->channel = channel;

@@ -1,9 +1,9 @@
-#include <os_internal.h>
-#include <R4300.h>
+#include "PR/os_internal.h"
 
-void __osSetGlobalIntMask(OSHWIntr mask)
-{
+void __osSetGlobalIntMask(OSHWIntr mask) {
     register u32 saveMask = __osDisableInt();
+
     __OSGlobalIntMask |= mask;
+
     __osRestoreInt(saveMask);
 }

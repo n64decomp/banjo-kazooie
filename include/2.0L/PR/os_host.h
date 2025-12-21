@@ -35,6 +35,7 @@ extern "C" {
 #endif
 
 #include <PR/ultratypes.h>
+#include <PR/os_version.h>
 
 #if defined(_LANGUAGE_C) || defined(_LANGUAGE_C_PLUS_PLUS)
 
@@ -125,6 +126,10 @@ extern void __osInitialize_emu(void);
 #endif
 
 #endif  /* _FINAL_ROM */
+
+#if BUILD_VERSION < VERSION_K
+#undef osInitialize
+#endif
 
 /**************************************************************************
  *

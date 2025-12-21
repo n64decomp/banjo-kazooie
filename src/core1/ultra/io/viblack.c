@@ -1,14 +1,17 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-#include "viint.h"
+#include "PR/os_internal.h"
+#include "PRinternal/viint.h"
 
-void osViBlack(u8 active)
-{
+// TODO: this comes from a header
+#ident "$Revision: 1.17 $"
+
+void osViBlack(u8 active) {
     register u32 saveMask = __osDisableInt();
-    if (active)
+
+    if (active) {
         __osViNext->state |= VI_STATE_BLACK;
-    else
+    } else {
         __osViNext->state &= ~VI_STATE_BLACK;
+    }
+
     __osRestoreInt(saveMask);
 }

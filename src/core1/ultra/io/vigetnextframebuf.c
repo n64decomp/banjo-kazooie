@@ -1,12 +1,18 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-#include "viint.h"
+#include "PR/os_internal.h"
+#include "PR/ultraerror.h"
+#include "PRinternal/viint.h"
 
-void *osViGetNextFramebuffer(void)
-{
+void* osViGetNextFramebuffer(void) {
     register u32 saveMask;
-    void *framep;
+    void* framep;
+
+#ifdef _DEBUG
+    if (!__osViDevMgr.active) {
+        __osError(ERR_OSVIGETNEXTFRAMEBUFFER, 0);
+        return NULL;
+    }
+#endif
+
     saveMask = __osDisableInt();
     framep = __osViNext->framep;
     __osRestoreInt(saveMask);

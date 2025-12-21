@@ -1,7 +1,9 @@
-#include <os_internal.h>
-#include <rcp.h>
+#include "PR/os_internal.h"
+#include "PR/rcp.h"
 
-u32 __osSpGetStatus()
-{
+// TODO: this comes from a header
+#ident "$Revision: 1.17 $"
+
+u32 __osSpGetStatus(void) {
     return IO_READ(SP_STATUS_REG);
 }

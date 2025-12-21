@@ -24,6 +24,7 @@
 #include <PR/mbi.h>
 #include <PR/ultratypes.h>
 #include <PR/sptask.h>
+#include <PR/os_version.h>
 
 #ifndef MAX
 #define MAX(a,b) (((a)>(b))?(a):(b))
@@ -37,7 +38,7 @@
 
 #define	FTOFIX32(x)	(long)((x) * (float)0x00010000)
 #define	FIX32TOF(x)	((float)(x) * (1.0f / (float)0x00010000))
-#define	FTOFRAC8(x)	((int) MIN(((x) * (128.0)), 127.0) & 0xff)
+#define	FTOFRAC8(x)	((int) MIN(((x) * (128.0)), 127.0) & 0xff) // BK_SPECIFIC
 
 #define  FILTER_WRAP 0
 #define  FILTER_CLAMP 1
@@ -192,7 +193,7 @@ extern float cosf(float angle);
 extern signed short sins (unsigned short angle);
 extern signed short coss (unsigned short angle);
 extern float sqrtf(float value);
-#ifdef __sgi
+#if defined(__sgi)  // BK_SPECIFIC
 #pragma intrinsic(sqrtf);
 #endif
 

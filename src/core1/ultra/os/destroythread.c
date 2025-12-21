@@ -1,45 +1,49 @@
-#include <ultra64.h>
-#include "osint.h"
+#include "PR/os_internal.h"
+#include "PRinternal/osint.h"
 
-void osDestroyThread(OSThread *t)
-{
+void osDestroyThread(OSThread* t) {
     register u32 saveMask;
-    register OSThread *pred;
-    register OSThread *succ;
+    register OSThread* pred;
+    register OSThread* succ;
+
     saveMask = __osDisableInt();
-    if (t == NULL)
-    {
+
+    if (t == NULL) {
         t = __osRunningThread;
+    } else if (t->state != OS_STATE_STOPPED) {
+        __osDequeueThread(t->queue, t);
     }
-    else
-    {
-        if (t->state != OS_STATE_STOPPED)
-        {
-            __osDequeueThread(t->queue, t);
-        }
-    }
-    if (__osActiveQueue == t)
-    {
+
+    if (__osActiveQueue == t) {
         __osActiveQueue = __osActiveQueue->tlnext;
-    }
-    else
-    {
+    } else {
+#if 0 // BK specific
+        pred = __osActiveQueue;
+        while (pred->priority != -1) {
+            succ = pred->tlnext;
+            if (succ == t) {
+                pred->tlnext = t->tlnext;
+                break;
+            }
+            pred = succ;
+        }
+#else
         pred = __osActiveQueue;
         succ = pred->tlnext;
-        while (succ)
-        {
-            if (succ == t)
-            {
+        while (succ != NULL) {
+            if (succ == t) {
                 pred->tlnext = t->tlnext;
                 break;
             }
             pred = succ;
             succ = pred->tlnext;
         }
+#endif
     }
-    if (t == __osRunningThread)
-    {
+
+    if (t == __osRunningThread) {
         __osDispatchThread();
     }
+
     __osRestoreInt(saveMask);
 }

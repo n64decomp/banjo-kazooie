@@ -99,11 +99,27 @@ extern OSPiHandle LeoDiskHandle;
 extern OSMesgQueue __osPiAccessQueue;
 extern u32 __osPiAccessQueueEnabled;
 
+// These symbols were all renamed in 2.0J.
+#if BUILD_VERSION < VERSION_J
+#define __osEPiRawStartDma osEPiRawStartDma
+#define __osEPiRawReadIo osEPiRawReadIo
+#define __osEPiRawWriteIo osEPiRawWriteIo
+#define __osPiRawStartDma osPiRawStartDma
+#define __osPiRawWriteIo osPiRawWriteIo
+#define __osPiRawReadIo osPiRawReadIo
+#endif
+
 int __osPiDeviceBusy(void);
 void __osDevMgrMain(void *);
 void __osPiCreateAccessQueue(void);
 void __osPiRelAccess(void);
 void __osPiGetAccess(void);
+s32 __osPiRawStartDma(s32, u32 , void *, u32 );
+s32 __osPiRawWriteIo(u32, u32);
+s32 __osPiRawReadIo(u32, u32 *);
+s32 __osEPiRawWriteIo(OSPiHandle *, u32 , u32);
+s32 __osEPiRawReadIo(OSPiHandle *, u32 , u32 *);
+s32 __osEPiRawStartDma(OSPiHandle *, s32 , u32 , void *, u32 );
 OSMesgQueue *osPiGetCmdQueue(void);
 
 #define OS_RAMROM_STACKSIZE 1024

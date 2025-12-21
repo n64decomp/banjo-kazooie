@@ -1,11 +1,10 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "PR/os_internal.h"
+#include "PRinternal/piint.h"
 
-extern OSDevMgr __osPiDevMgr;
-
-OSMesgQueue *osPiGetCmdQueue(void){
-    if (!__osPiDevMgr.active)
+OSMesgQueue* osPiGetCmdQueue(void) {
+    if (!__osPiDevMgr.active) {
         return NULL;
-    return __osPiDevMgr.cmdQueue;
+    } else {
+        return __osPiDevMgr.cmdQueue;
+    }
 }
