@@ -16,10 +16,10 @@
  * ====================================================================
  *
  * Module: fsin.c
- * $Revision: 1.2 $
- * $Date: 1995/07/12 17:48:01 $
- * $Author: jeffd $
- * $Source: /disk6/Master/cvsmdev2/PR/libultra/gu/sinf.c,v $
+ * $Revision: 1.3 $
+ * $Date: 1998/10/09 06:14:51 $
+ * $Author: has $
+ * $Source: /exdisk2/cvs/N64OS/Master/cvsmdev2/PR/libultra/monegi/gu/sinf.c,v $
  *
  * Revision history:
  *  09-Jun-93 - Original Version
@@ -67,7 +67,7 @@ static const fu	zero = {0x00000000};
  */
 
 float
-sinf( float x )
+fsin( float x )
 {
 double	dx, xsq, poly;
 double	dn;

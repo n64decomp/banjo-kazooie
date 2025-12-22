@@ -1,16 +1,32 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
-
+/*====================================================================
+ * reverb.c
+ *
+ * Copyright 1993, Silicon Graphics, Inc.
+ * All Rights Reserved.
+ *
+ * This is UNPUBLISHED PROPRIETARY SOURCE CODE of Silicon Graphics,
+ * Inc.; the contents of this file may not be disclosed to third
+ * parties, copied or duplicated in any form, in whole or in part,
+ * without the prior written permission of Silicon Graphics, Inc.
+ * RESTRICTED RIGHTS LEGEND:
+ * Use, duplication or disclosure by the Government is subject to
+ * restrictions as set forth in subdivision (c)(1)(ii) of the Rights
+ * in Technical Data and Computer Software clause at DFARS
+ * 252.227-7013, and/or in similar or successor clauses in the FAR,
+ * DOD or NASA FAR Supplement. Unpublished - rights reserved under the
+ * Copyright Laws of the United States.
+ *====================================================================*/
+#include <libaudio.h>
+#include <ultraerror.h>
 #include "synthInternals.h"
+#include <os.h>
+#include <os_internal.h>
+#include <stdio.h>
+#include <assert.h>
 #include "initfx.h"
-
-#ifndef assert
-#define assert(s) 
-#endif
-
-
-
+// TODO: these come from headers
+#ident "$Revision: 1.49 $"
+#ident "$Revision: 1.17 $"
 #define RANGE 2.0
 extern ALGlobals *alGlobals;
 
@@ -28,7 +44,6 @@ extern u32 load_num, load_cnt, load_max, load_min, save_num, save_cnt, save_max,
      out = in;		\
      in = t;		\
 }
-
 
 
 Acmd *_loadOutputBuffer(ALFx *r, ALDelay *d, s32 buff, s32 incount, Acmd *p);
@@ -55,8 +70,11 @@ Acmd *alFxPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
+#if BUILD_VERSION < VERSION_J
+#line 74
+#endif
     assert(source);
+
     /*
      * pull channels going into this effect first
      */
@@ -429,3 +447,6 @@ f32 _doModFunc(ALDelay *d, s32 count)
 
   return(d->rsgain * val);
 }
+
+
+

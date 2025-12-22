@@ -24,6 +24,7 @@
 #define __audioInternals__
 
 #include <libaudio.h>
+#include <PR/os_version.h>
 
 /*
  * filter message ids
@@ -317,11 +318,9 @@ typedef struct PVoice_s {
     ALFilter            *channelKnob;
     ALLoadFilter        decoder;
     ALResampler         resampler;
-    ALEnvMixer          envmixer;
+    ALEnvMixer		envmixer;
     s32                 offset;
 } PVoice;
-
-
 
 /*
  * prototypes for private driver functions
@@ -331,10 +330,15 @@ void            __freeParam(ALParam *param);
 void            _freePVoice(ALSynth *drvr, PVoice *pvoice);
 void            _collectPVoices(ALSynth *drvr);
 
-s32             _timeToSamples(ALSynth *drvr, s32 micros);
+s32             _timeToSamples(ALSynth *ALSynth, s32 micros);
 ALMicroTime     _samplesToTime(ALSynth *synth, s32 samples);
 
+// This was renamed to have a leading underscore in 2.0J
+#if BUILD_VERSION < VERSION_J
+#define _init_lpfilter init_lpfilter
+#endif
 
+void            _init_lpfilter(ALLowPass *lp);
 
 #endif
 

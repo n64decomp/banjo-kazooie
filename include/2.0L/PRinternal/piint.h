@@ -1,7 +1,8 @@
-#ifndef _PIINT_H
-#define _PIINT_H
-#include <os_internal.h>
-#include <rcp.h>
+#ifndef _PIINT_H_
+#define _PIINT_H_
+
+#include "PR/os_internal.h"
+#include "PR/rcp.h"
 
 //https://github.com/LuigiBlood/64dd/wiki/Memory-Map
 
@@ -93,7 +94,7 @@
 #define LEO_ERROR_29 29 //
 
 extern OSDevMgr __osPiDevMgr;
-extern OSPiHandle *__osCurrentHandle[2];
+extern OSPiHandle *__osCurrentHandle[];
 extern OSPiHandle CartRomHandle;
 extern OSPiHandle LeoDiskHandle;
 extern OSMesgQueue __osPiAccessQueue;
@@ -122,20 +123,53 @@ s32 __osEPiRawReadIo(OSPiHandle *, u32 , u32 *);
 s32 __osEPiRawStartDma(OSPiHandle *, s32 , u32 , void *, u32 );
 OSMesgQueue *osPiGetCmdQueue(void);
 
-#define OS_RAMROM_STACKSIZE 1024
+#define WAIT_ON_IOBUSY(stat)                                                                \
+    {                                                                                       \
+        stat = IO_READ(PI_STATUS_REG);                                                      \
+        while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY))                             \
+            stat = IO_READ(PI_STATUS_REG);                                                  \
+    } (void)0
 
-#define WAIT_ON_IOBUSY(stat)                                \
-    stat = IO_READ(PI_STATUS_REG);                          \
-    while (stat & (PI_STATUS_IO_BUSY | PI_STATUS_DMA_BUSY)) \
-        stat = IO_READ(PI_STATUS_REG);
-
-#define UPDATE_REG(reg, var)           \
+#define UPDATE_REG(pihandle, reg, var) \
     if (cHandle->var != pihandle->var) \
-        IO_WRITE(reg, pihandle->var);
+        IO_WRITE(reg, pihandle->var)
+
+#if BUILD_VERSION >= VERSION_J
+
+#define EPI_SYNC(pihandle, stat, domain)                             \
+                                                                     \
+    WAIT_ON_IOBUSY(stat);                                            \
+                                                                     \
+    domain = pihandle->domain;                                       \
+    if (__osCurrentHandle[domain]->type != pihandle->type)           \
+    {                                                                \
+        OSPiHandle *cHandle = __osCurrentHandle[domain];             \
+        if (domain == PI_DOMAIN1)                                    \
+        {                                                            \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_LAT_REG, latency);      \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_PGS_REG, pageSize);     \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_RLS_REG, relDuration);  \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_PWD_REG, pulse);        \
+        }                                                            \
+        else                                                         \
+        {                                                            \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_LAT_REG, latency);      \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_PGS_REG, pageSize);     \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_RLS_REG, relDuration);  \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_PWD_REG, pulse);        \
+        }                                                            \
+        cHandle->type = pihandle->type;                              \
+        cHandle->latency = pihandle->latency;                        \
+        cHandle->pageSize = pihandle->pageSize;                      \
+        cHandle->relDuration = pihandle->relDuration;                \
+        cHandle->pulse = pihandle->pulse;                            \
+    }(void)0
+
+#else
 
 #define EPI_SYNC(pihandle, stat, domain)                  \
                                                           \
-    WAIT_ON_IOBUSY(stat)                                  \
+    WAIT_ON_IOBUSY(stat);                                 \
                                                           \
     domain = pihandle->domain;                            \
     if (__osCurrentHandle[domain] != pihandle)            \
@@ -143,19 +177,21 @@ OSMesgQueue *osPiGetCmdQueue(void);
         OSPiHandle *cHandle = __osCurrentHandle[domain];  \
         if (domain == PI_DOMAIN1)                         \
         {                                                 \
-            UPDATE_REG(PI_BSD_DOM1_LAT_REG, latency);     \
-            UPDATE_REG(PI_BSD_DOM1_PGS_REG, pageSize);    \
-            UPDATE_REG(PI_BSD_DOM1_RLS_REG, relDuration); \
-            UPDATE_REG(PI_BSD_DOM1_PWD_REG, pulse);       \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_LAT_REG, latency);     \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_PGS_REG, pageSize);    \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_RLS_REG, relDuration); \
+            UPDATE_REG(pihandle, PI_BSD_DOM1_PWD_REG, pulse);       \
         }                                                 \
         else                                              \
         {                                                 \
-            UPDATE_REG(PI_BSD_DOM2_LAT_REG, latency);     \
-            UPDATE_REG(PI_BSD_DOM2_PGS_REG, pageSize);    \
-            UPDATE_REG(PI_BSD_DOM2_RLS_REG, relDuration); \
-            UPDATE_REG(PI_BSD_DOM2_PWD_REG, pulse);       \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_LAT_REG, latency);     \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_PGS_REG, pageSize);    \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_RLS_REG, relDuration); \
+            UPDATE_REG(pihandle, PI_BSD_DOM2_PWD_REG, pulse);       \
         }                                                 \
         __osCurrentHandle[domain] = pihandle;             \
-    }
+    }(void)0
+
+#endif
 
 #endif

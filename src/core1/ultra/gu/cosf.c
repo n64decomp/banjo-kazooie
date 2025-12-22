@@ -16,10 +16,10 @@
  * ====================================================================
  *
  * Module: fcos.c
- * $Revision: 1.2 $
- * $Date: 1995/07/12 17:47:57 $
- * $Author: jeffd $
- * $Source: /disk6/Master/cvsmdev2/PR/libultra/gu/cosf.c,v $
+ * $Revision: 1.3 $
+ * $Date: 1998/10/09 06:10:53 $
+ * $Author: has $
+ * $Source: /exdisk2/cvs/N64OS/Master/cvsmdev2/PR/libultra/monegi/gu/cosf.c,v $
  *
  * Revision history:
  *  09-Jun-93 - Original Version

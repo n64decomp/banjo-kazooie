@@ -1,95 +1,113 @@
-#include <os_internal.h>
-#include <rcp.h>
-#include "controller.h"
-#include "siint.h"
+#include "PRinternal/macros.h"
+#include "PR/os_internal.h"
+#include "PRinternal/controller.h"
+#include "PRinternal/siint.h"
 
-#define HALF_A_SECOND OS_USEC_TO_CYCLES(500000)
-
-u32 __osContinitialized = 0;
 OSPifRam __osContPifRam;
 u8 __osContLastCmd;
 u8 __osMaxControllers;
+
 OSTimer __osEepromTimer;
-OSMesgQueue __osEepromTimerQ;
+OSMesgQueue __osEepromTimerQ ALIGNED(0x8);
 OSMesg __osEepromTimerMsg;
-s32 osContInit(OSMesgQueue *mq, u8 *bitpattern, OSContStatus *data)
-{
+
+s32 __osContinitialized = FALSE;
+
+s32 osContInit(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
     OSMesg dummy;
-    s32 ret;
+    s32 ret = 0;
     OSTime t;
     OSTimer mytimer;
     OSMesgQueue timerMesgQueue;
 
-    ret = 0;
-    if (__osContinitialized)
-        return ret;
+    if (__osContinitialized) {
+        return 0;
+    }
+
     __osContinitialized = TRUE;
+
     t = osGetTime();
-    if (500000 * osClockRate / 1000000 > t)
-    {
+#ifdef BKDIFFS
+    if (500000 * osClockRate / 1000000 > t) {
         osCreateMesgQueue(&timerMesgQueue, &dummy, 1);
         osSetTimer(&mytimer, 500000 * osClockRate / 1000000 - t, 0, &timerMesgQueue, &dummy);
         osRecvMesg(&timerMesgQueue, &dummy, OS_MESG_BLOCK);
     }
-    __osMaxControllers = MAXCONTROLLERS;
+#else
+    if (t < OS_USEC_TO_CYCLES(500000)) {
+        osCreateMesgQueue(&timerMesgQueue, &dummy, 1);
+        osSetTimer(&mytimer, OS_USEC_TO_CYCLES(500000) - t, 0, &timerMesgQueue, &dummy);
+        osRecvMesg(&timerMesgQueue, &dummy, OS_MESG_BLOCK);
+    }
+#endif
+
+    __osMaxControllers = 4;
+
     __osPackRequestData(CONT_CMD_REQUEST_STATUS);
 
-    ret = __osSiRawStartDma(OS_WRITE, &__osContPifRam);
+    ret = __osSiRawStartDma(OS_WRITE, __osContPifRam.ramarray);
     osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
 
-    ret = __osSiRawStartDma(OS_READ, &__osContPifRam);
+    ret = __osSiRawStartDma(OS_READ, __osContPifRam.ramarray);
     osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
+
     __osContGetInitData(bitpattern, data);
     __osContLastCmd = CONT_CMD_REQUEST_STATUS;
     __osSiCreateAccessQueue();
     osCreateMesgQueue(&__osEepromTimerQ, &__osEepromTimerMsg, 1);
+
     return ret;
 }
-void __osContGetInitData(u8 *pattern, OSContStatus *data)
-{
-    u8 *ptr;
-    __OSContRequesFormat requestformat;
+
+void __osContGetInitData(u8* pattern, OSContStatus* data) {
+    u8* ptr;
+    __OSContRequesFormat requestHeader;
     int i;
-    u8 bits;
-    bits = 0;
-    ptr = (u8 *)&__osContPifRam;
-    for (i = 0; i < __osMaxControllers; i++, ptr += sizeof(__OSContRequesFormat), data++)
-    {
-        requestformat = *(__OSContRequesFormat *)ptr;
-        data->errno = CHNL_ERR(requestformat);
-        if (data->errno == 0)
-        {
-            data->type = (requestformat.typel << 8) | requestformat.typeh;
-            data->status = requestformat.status;
-            bits |= 1 << i;
+    u8 bits = 0;
+
+    ptr = (u8*)__osContPifRam.ramarray;
+    for (i = 0; i < __osMaxControllers; i++, ptr += sizeof(requestHeader), data++) {
+        requestHeader = *(__OSContRequesFormat*)ptr;
+        data->errno = CHNL_ERR(requestHeader);
+
+        if (data->errno != 0) {
+            continue;
         }
+
+        data->type = requestHeader.typel << 8 | requestHeader.typeh;
+        data->status = requestHeader.status;
+        bits |= 1 << i;
     }
     *pattern = bits;
 }
-void __osPackRequestData(u8 cmd)
-{
-    u8 *ptr;
-    __OSContRequesFormat requestformat;
-    int i;
-    for (i = 0; i < ARRLEN(__osContPifRam.ramarray) + 1; i++)
-    {
+
+void __osPackRequestData(u8 cmd) {
+    u8* ptr;
+    __OSContRequesFormat requestHeader;
+    s32 i;
+
+#if BKDIFFS
+    for (i = 0; i < ARRLEN(__osContPifRam.ramarray) + 1; i++) {
+#else
+    for (i = 0; i < ARRLEN(__osContPifRam.ramarray); i++) {
+#endif
         __osContPifRam.ramarray[i] = 0;
     }
-    __osContPifRam.pifstatus = CONT_CMD_EXE;
-    ptr = (u8 *)&__osContPifRam.ramarray;
-    requestformat.dummy = CONT_CMD_NOP;
-    requestformat.txsize = CONT_CMD_REQUEST_STATUS_TX;
-    requestformat.rxsize = CONT_CMD_REQUEST_STATUS_RX;
-    requestformat.cmd = cmd;
-    requestformat.typeh = CONT_CMD_NOP;
-    requestformat.typel = CONT_CMD_NOP;
-    requestformat.status = CONT_CMD_NOP;
-    requestformat.dummy1 = CONT_CMD_NOP;
 
-    for (i = 0; i < __osMaxControllers; i++)
-    {
-        *(__OSContRequesFormat *)ptr = requestformat;
-        ptr += sizeof(__OSContRequesFormat);
+    __osContPifRam.pifstatus = CONT_CMD_EXE;
+    ptr = (u8*)__osContPifRam.ramarray;
+    requestHeader.dummy = CONT_CMD_NOP;
+    requestHeader.txsize = CONT_CMD_RESET_TX;
+    requestHeader.rxsize = CONT_CMD_RESET_RX;
+    requestHeader.cmd = cmd;
+    requestHeader.typeh = CONT_CMD_NOP;
+    requestHeader.typel = CONT_CMD_NOP;
+    requestHeader.status = CONT_CMD_NOP;
+    requestHeader.dummy1 = CONT_CMD_NOP;
+
+    for (i = 0; i < __osMaxControllers; i++) {
+        *(__OSContRequesFormat*)ptr = requestHeader;
+        ptr += sizeof(requestHeader);
     }
-    ptr[0] = CONT_CMD_END;
+    *ptr = CONT_CMD_END;
 }

@@ -1,3 +1,13 @@
+/*
+ * alCents2Ratio()
+ *
+ * Calculates the pitch shift ratio from the number of cents according to
+ *      ratio = 2^(cents/1200)
+ *
+ * This is accurate to within one cent for ratios up and octave and down
+ * two ocataves.
+ */
+
 #include <libaudio.h>
 
 f32 alCents2Ratio(s32 cents) 

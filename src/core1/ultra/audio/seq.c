@@ -1,9 +1,28 @@
-#include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+/*====================================================================
+ * seq.c
+ *
+ * Copyright 1993, Silicon Graphics, Inc.
+ * All Rights Reserved.
+ *
+ * This is UNPUBLISHED PROPRIETARY SOURCE CODE of Silicon Graphics,
+ * Inc.; the contents of this file may not be disclosed to third
+ * parties, copied or duplicated in any form, in whole or in part,
+ * without the prior written permission of Silicon Graphics, Inc.
+ *
+ * RESTRICTED RIGHTS LEGEND:
+ * Use, duplication or disclosure by the Government is subject to
+ * restrictions as set forth in subdivision (c)(1)(ii) of the Rights
+ * in Technical Data and Computer Software clause at DFARS
+ * 252.227-7013, and/or in similar or successor clauses in the FAR,
+ * DOD or NASA FAR Supplement. Unpublished - rights reserved under the
+ * Copyright Laws of the United States.
+ *====================================================================*/
 
-extern f64 D_80278D50;
-extern f64 D_80278D58;
+#include <libaudio.h>
+#include <os_internal.h>
+#include <ultraerror.h>
+#include "seq.h"
+
 
 #define IFF_FILE_HDR    0x4d546864	/* 'MThd' */
 #define IFF_TRACK_HDR   0x4d54726b	/* 'MTrk' */
@@ -12,6 +31,7 @@ static s32 readVarLen(ALSeq *s);
 static u8  read8(ALSeq *s);
 static s16 read16(ALSeq *s);
 static s32 read32(ALSeq *s);
+
 
 void alSeqNew(ALSeq *seq, u8 *ptr, s32 len)
 {
@@ -68,6 +88,7 @@ void alSeqNew(ALSeq *seq, u8 *ptr, s32 len)
 
     seq->trackStart = seq->curPtr;
 }
+
 
 void alSeqNextEvent(ALSeq *seq, ALEvent *event)
 {
@@ -164,6 +185,7 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
   
   If the curPtr is at or beyond the end of the sequence, then return FALSE
   to indicate no next event.
+
   sct 11/6/95
 */
 char __alSeqNextDelta (ALSeq *seq, s32 *pDeltaTicks)
@@ -180,6 +202,7 @@ char __alSeqNextDelta (ALSeq *seq, s32 *pDeltaTicks)
 
   return TRUE;
 }  
+
 
 f32 alSeqTicksToSec(ALSeq *seq, s32 ticks, u32 tempo)
 {
@@ -236,7 +259,7 @@ void alSeqNewMarker(ALSeq *seq, ALSeqMarker *m, u32 ticks)
         m->curPtr     = lastPtr;
         m->lastStatus = lastStatus;
         m->lastTicks  = lastTicks;
-        m->curTicks = seq->lastTicks;	/* Used by test loop condition. */
+	m->curTicks = seq->lastTicks;	/* Used by test loop condition. */
     
         seq->curPtr     = savePtr;
         seq->lastStatus = saveStatus;
@@ -245,17 +268,20 @@ void alSeqNewMarker(ALSeq *seq, ALSeqMarker *m, u32 ticks)
     }    
 }
 
-s32 alSeqGetTicks(ALSeq *seq){
+s32 alSeqGetTicks(ALSeq *seq)
+{
     return seq->lastTicks;
 }
 
-void alSeqSetLoc(ALSeq *seq, ALSeqMarker *m){
+void alSeqSetLoc(ALSeq *seq, ALSeqMarker *m)
+{
     seq->curPtr     = m->curPtr;
     seq->lastStatus = m->lastStatus;
     seq->lastTicks  = m->lastTicks;
 }
 
-void alSeqGetLoc(ALSeq *seq, ALSeqMarker *m){
+void alSeqGetLoc(ALSeq *seq, ALSeqMarker *m)
+{
     m->curPtr = seq->curPtr;
     m->lastStatus = seq->lastStatus;
     m->lastTicks = seq->lastTicks;
@@ -305,5 +331,13 @@ static s32 readVarLen(ALSeq *seq)
     }
     return (value);
 }
+
+
+
+
+
+
+
+
 
 

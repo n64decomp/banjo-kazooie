@@ -38,7 +38,11 @@
 
 #define	FTOFIX32(x)	(long)((x) * (float)0x00010000)
 #define	FIX32TOF(x)	((float)(x) * (1.0f / (float)0x00010000))
-#define	FTOFRAC8(x)	((int) MIN(((x) * (128.0)), 127.0) & 0xff) // BK_SPECIFIC
+#ifndef BKDIFFS
+#define	FTOFRAC8(x)	((int) MIN(((x) * (128.0f)), 127.0f) & 0xff)
+#else
+#define	FTOFRAC8(x)	((int) MIN(((x) * (128.0)), 127.0) & 0xff)
+#endif
 
 #define  FILTER_WRAP 0
 #define  FILTER_CLAMP 1
@@ -193,7 +197,7 @@ extern float cosf(float angle);
 extern signed short sins (unsigned short angle);
 extern signed short coss (unsigned short angle);
 extern float sqrtf(float value);
-#if defined(__sgi)  // BK_SPECIFIC
+#if (defined(__sgi) && BUILD_VERSION >= VERSION_K) || defined(BKDIFFS)
 #pragma intrinsic(sqrtf);
 #endif
 
