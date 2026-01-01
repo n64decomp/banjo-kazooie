@@ -402,6 +402,7 @@ clean:
 
 # Per-file flag definitions
 build/$(VERSION)/src/core1/ultra/audio/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/n_audio/%.c.o: OPT_FLAGS = -O3
 build/$(VERSION)/src/core1/ultra/debug/%.c.o: OPT_FLAGS := -O1
 build/$(VERSION)/src/core1/ultra/gu/%.c.o: OPT_FLAGS := -O3
 build/$(VERSION)/src/core1/ultra/io/%.c.o: OPT_FLAGS := -O1
