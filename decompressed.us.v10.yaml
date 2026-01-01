@@ -828,7 +828,7 @@ segments:
   - [0x100D480, c, coords]
   - [0x100D8A0, c, code_B7F40]
   - [0x100D980, c, code_B8020]
-  - [0x100D9D0, c, code_B8070]
+  - [0x100D9D0, c, ultra/debug/assert]
   - [0x100D9E0, c, code_B8080]
   - [0x100E1C0, c, code_B8860]
   - [0x100E9F0, c, code_B9090]

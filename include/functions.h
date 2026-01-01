@@ -5,7 +5,7 @@
 
 #include "enums.h"
 #include "structs.h"
-#include "string.h"
+#include "core2/string.h"
 #include "rand.h"
 
 #include "prop.h"

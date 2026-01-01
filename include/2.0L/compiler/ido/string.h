@@ -20,7 +20,7 @@ size_t strcspn(const char *,const char *);
 char *strdup(const char *);
 char *strerror(int);
 int  stricmp(const char *,const char *);
-int strlen(const char *);
+size_t strlen(const char *);
 char *strlwr(char *);
 char *strncat(char *,const char *,size_t);
 int  strncmp(const char *,const char *,size_t);
@@ -35,13 +35,6 @@ size_t strspn(const char *,const char *);
 char *strstr(const char *,const char *);
 char *strtok(char *,const char *);
 char *strupr(char *);
-
-void strcatc(char *dst, char src);
-void strFToA(char *dst, f32 val);
-void _strFToA(char *dst, f32 val, s32 decPlaces);
-void strIToA(char *str, s32 num);
-void _strIToA(char *str, s32 num, char base);
-
 
 #define strcmpi(s1,s2)		stricmp(s1,s2)
 #define strncmpi(s1,s2,n)	strnicmp(s1,s2,n)

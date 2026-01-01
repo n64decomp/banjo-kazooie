@@ -1,10 +1,7 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "core2/string.h"
 
-#include "string.h"
-
-char *strcat(char *dst, const char *src){
+void strcat(char *dst, const char *src){
     while(*(dst) != '\0'){
         dst++;
     }
@@ -105,7 +102,7 @@ int strcmp(const char *str1, const char *str2){
         return 1;
 }
 
-char *strcpy(char *dst, const char *src){
+void *strcpy(char *dst, const char *src){
      while(*(src) != '\0'){
         *(dst++) = *(src++);
     }
