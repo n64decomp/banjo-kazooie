@@ -558,7 +558,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                             __baMarker_8028B8DC();
                         }
 
-                        __spawnQueue_add_4((GenFunction_4)__baMarker_8028B904, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z), jiggy_id);
+                        __spawnQueue_add_4((GenFunction_4)__baMarker_8028B904,
+                            reinterpret_cast(u32, other_prop->actorProp.position_x),
+                            reinterpret_cast(u32, other_prop->actorProp.position_y),
+                            reinterpret_cast(u32, other_prop->actorProp.position_z), jiggy_id);
                         marker_despawn(marker);
                     }
                 }
@@ -579,7 +582,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                         if(!(item_getCount(ITEM_13_EMPTY_HONEYCOMB) < 6)){
                             gcpausemenu_80314AC8(0);
                         }
-                        fxSparkle_emptyHoneycomb(&other_prop->actorProp.x);
+                        fxSparkle_emptyHoneycomb(&other_prop->actorProp.position_x);
                         marker_despawn(marker);
                     }
                 }
@@ -588,7 +591,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
             case 0x54: //L8028C820
                 coMusicPlayer_playMusic(COMUSIC_19_LOW_PITCH_FLUTES, 28000);
                 func_803012F8();
-                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E,
+                    reinterpret_cast(u32, other_prop->actorProp.position_x),
+                    reinterpret_cast(u32, other_prop->actorProp.position_y),
+                    reinterpret_cast(u32, other_prop->actorProp.position_z));
                 marker_despawn(marker);
                 break;
 
@@ -607,7 +613,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 coMusicPlayer_playMusic(COMUSIC_16_HONEYCOMB_COLLECTED, 28000);
                 timedFunc_set_1(0.75f, progressDialog_showDialogMaskZero, FILEPROG_A_HONEYCOMB_TEXT);
                 item_inc(ITEM_14_HEALTH);
-                fxSparkle_honeycomb(&other_prop->actorProp.x);
+                fxSparkle_honeycomb(&other_prop->actorProp.position_x);
                 marker_despawn(marker);
                 break;
 
@@ -717,7 +723,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 coMusicPlayer_playMusic(COMUSIC_15_EXTRA_LIFE_COLLECTED, 0x7FFF);
                 timedFunc_set_1(1.5f, progressDialog_showDialogMaskFour, FILEPROG_C_EXTRA_LIFE_TEXT);
-                fxSparkle_extraLife(&other_prop->actorProp.x);
+                fxSparkle_extraLife(&other_prop->actorProp.position_x);
                 item_inc(ITEM_16_LIFE);
                 marker_despawn(marker);
                 break;
@@ -761,7 +767,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 baflag_set(BA_FLAG_E_TOUCHING_WADING_BOOTS);
                 func_802A6388(chwadingboots_802D6E4C(actor));
                 bs_checkInterrupt(BS_INTR_1B);
-                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E,
+                    reinterpret_cast(u32, other_prop->actorProp.position_x),
+                    reinterpret_cast(u32, other_prop->actorProp.position_y),
+                    reinterpret_cast(u32, other_prop->actorProp.position_z));
                 chwadingboots_802D6E54(actor);
                 break;
 
@@ -785,7 +794,10 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 baflag_set(BA_FLAG_10_TOUCHING_TURBO_TRAINERS);
                 set_turbo_duration(chtrainers_getDuration(actor));
                 bs_checkInterrupt(BS_INTR_1A);
-                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E, reinterpret_cast(u32, other_prop->actorProp.x), reinterpret_cast(u32, other_prop->actorProp.y), reinterpret_cast(u32, other_prop->actorProp.z));
+                __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s16, 0x4E,
+                    reinterpret_cast(u32, other_prop->actorProp.position_x),
+                    reinterpret_cast(u32, other_prop->actorProp.position_y),
+                    reinterpret_cast(u32, other_prop->actorProp.position_z));
                 chtrainers_pickup(actor);
                 break;
 
@@ -820,9 +832,9 @@ void __baMarker_resolveCollision(Prop *other_prop){
             func_8032B258(actor, obj_collision_type);
         }
     }
-    else if(other_prop->is_3d)//L8028D0B0 //ModelProp
+    else if(other_prop->isModelProp)//L8028D0B0 //ModelProp
     {
-        tmp2 = other_prop->modelProp.model_index + 0x2D1;
+        tmp2 = other_prop->modelProp.modelId + MODEL_ASSET_OFFSET;
         switch (tmp2)
         {
         case 0x2E8:
@@ -927,7 +939,7 @@ void baMarker_update(void){
             func_80320ED8(playerMarker, temp_s0_2[i], 1);
             while(other_prop = func_8032F528()){//L8028D480
                 if(!other_prop->unk8_2){
-                    if(!D_8037BF8C && other_prop->is_actor && other_prop->is_3d){
+                    if(!D_8037BF8C && other_prop->isActorProp && other_prop->isModelProp){
                         D_8037BF8C = other_prop->actorProp.marker;
                     }
                     __baMarker_resolveCollision(other_prop);

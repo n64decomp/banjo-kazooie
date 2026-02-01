@@ -17,7 +17,15 @@ typedef struct sprite_prop_s{
     u32 scale:8;
     u32 isMirrored:1;
     u32 pad0_0: 1;
-    s16 position[3];
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
     u16 frame: 5;
     u16 unk8_10: 5;
     u16 unk8_5: 1; // other structs use this to determine whether it's mirrored, however for sprites another bit address is used
@@ -34,35 +42,54 @@ typedef struct model_prop_s{
     union{
         u16 unk0;
         struct{    
-            u16 model_index:12;
+            u16 modelId:12;
             u16 pad0_19:4;
         };
     };
     u8 yaw;
     u8 roll;
-    s16 position[3];
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
     u8 scale;
-    u8 padB_7 :2;
-    u8 unkB_5 :1;
-    u8 unkB_4 :1;
-    u8 padB_3 :4;
+    u8 padB_7:2;
+    u8 unkB_5:1;
+    u8 unkB_4:1;
+    u8 unk8_3:1; // is initialized?
+    u8 isCollisionResolved:1;
+    u8 isModelProp:1; // always true for this struct
+    u8 isActorProp:1; // always false for this struct
 } ModelProp;
+
+#define MODEL_ASSET_OFFSET 0x2D1
 
 typedef struct actor_prop_s{
     union {
         struct {
             struct actorMarker_s* marker;
-            s16 x;
-            s16 y;
-            s16 z;
-            u16 unk8_15:5;
+            union
+            {
+                s16 position[3]; // position_
+                struct {
+                    s16 position_x;
+                    s16 position_y;
+                    s16 position_z;
+                };
+            };
+            u16 frame:5;
             u16 unk8_10:5;
-            u16 unk8_5:1;
-            u16 unk8_4:1;
-            u16 unk8_3:1;
-            u16 unk8_2:1;
-            u16 is_3d:1;
-            u16 is_actor:1;
+            u16 isMirrored:1;
+            u16 isNotFeatherEggOrNote:1;
+            u16 unk8_3:1; // is initialized?
+            u16 isCollisionResolved:1;
+            u16 isModelProp:1; // always false for this struct
+            u16 isActorProp:1; // always true for this struct
         };
         s32 words[3];
     };
@@ -336,8 +363,8 @@ typedef union prop_s
         u16 unk8_4: 1;
         u16 unk8_3: 1;
         u16 unk8_2: 1;
-        u16 is_3d: 1;
-        u16 is_actor: 1;
+        u16 isModelProp: 1;
+        u16 isActorProp: 1;
     };
 } Prop;
 

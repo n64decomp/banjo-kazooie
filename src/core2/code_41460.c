@@ -147,7 +147,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
             break; 
         case 0: // 802C883C
             if(0.5 < randf())
-                s0->model_bin = (BKModelBin *) assetcache_get(0x2d1);
+                s0->model_bin = (BKModelBin *) assetcache_get(MODEL_ASSET_OFFSET);
             else
                 s0->model_bin = (BKModelBin *) assetcache_get(0x2e5);
 

@@ -64,7 +64,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
     projectile_getPosition(projectile_indx, egg_position);
     marker->unk38[1] = 0x1E;
     prop = func_80320EB0(marker, 30.0f, 1);
-    if(prop != NULL && prop->is_actor){
+    if(prop != NULL && prop->isActorProp){
         other_marker = prop->marker;
         sp34 =other_marker->id;
         if(!func_8033D410(marker, other_marker)){
@@ -241,9 +241,9 @@ void fxegg_head_update(void){
     if(ml_isZero_vec3f(sp88)){
         s0 = func_8033E840();
         projectile_getPosition(projectile_indx, sp60);
-        sp54[0] = (f32)s0->propPtr->x;
-        sp54[1] = (f32)s0->propPtr->y;
-        sp54[2] = (f32)s0->propPtr->z;
+        sp54[0] = (f32)s0->propPtr->position_x;
+        sp54[1] = (f32)s0->propPtr->position_y;
+        sp54[2] = (f32)s0->propPtr->position_z;
         commonParticle_setCurrentInUseFalse();
         fxegg_shatter(projectile_indx);
     }//L803539D4

@@ -29,10 +29,10 @@ static propModelListSprite *sPropSpriteList;
 
 BKSpriteDisplayData *propModelList_getSpriteDisplayList(s32 arg0);
 
-void propModelList_drawModel(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 position[3], f32 rotation[3], f32 scale, s32 model_index, Cube* arg7){
+void propModelList_drawModel(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 position[3], f32 rotation[3], f32 scale, s32 modelId, Cube* arg7){
     BKModelBin * model;
     
-    model = propModelList_getModel(model_index);
+    model = propModelList_getModel(modelId);
     func_8033A244(3700.0f);
     func_8033A28C(1);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
@@ -65,7 +65,7 @@ void propModelList_drawSprite(
 
 BKModelBin *propModelList_getModel(s32 arg0){
     if(sPropModelList[arg0].model_bin == NULL){
-        sPropModelList[arg0].model_bin = assetcache_get(0x2d1 + arg0);
+        sPropModelList[arg0].model_bin = assetcache_get(MODEL_ASSET_OFFSET + arg0);
     }
     sPropModelList[arg0].timestamp = globalTimer_getTime();
     return sPropModelList[arg0].model_bin;
@@ -91,7 +91,7 @@ BKSprite *propModelList_getSprite(s32 arg0){
 }
 
 f32 propModelList_getScale(Prop *arg0){
-    if(arg0->is_3d){
+    if(arg0->isModelProp){
         ModelProp* ModelProp = &arg0->modelProp;
         return sPropModelList[arg0->spriteProp.spriteId].scale;
     }
@@ -102,7 +102,7 @@ f32 propModelList_getScale(Prop *arg0){
 }
 
 void propModelList_setScale(Prop *arg0, f32 arg1){
-    if(arg0->is_3d){
+    if(arg0->isModelProp){
         ModelProp* ModelProp = &arg0->modelProp;
         sPropModelList[arg0->spriteProp.spriteId].scale = (f32)ModelProp->scale*arg1/100.0f;
     }
@@ -227,7 +227,7 @@ void propModelList_refresh(void) {
         if(phi_s0_2->model_bin != NULL){
             model_list_index = phi_s0_2 - sPropModelList;
             assetcache_release(phi_s0_2->model_bin);
-            sPropModelList[model_list_index].model_bin = (BKModelBin *) assetcache_get(model_list_index + 0x2D1);
+            sPropModelList[model_list_index].model_bin = (BKModelBin *) assetcache_get(model_list_index + MODEL_ASSET_OFFSET);
 
         }
     }

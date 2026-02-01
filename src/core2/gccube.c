@@ -692,7 +692,7 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
     while (*arg4 != -1){
         phi_s0 = func_803322F0(cube, marker, arg2, arg3, arg4);
         if (phi_s0 != NULL) {
-            if (phi_s0->is_actor && phi_s0->marker->unk58 != NULL) {
+            if (phi_s0->isActorProp && phi_s0->marker->unk58 != NULL) {
                 if (phi_s0->marker->unk58(phi_s0->marker, marker) == 0) {
                     phi_s0 = NULL;
                 }
@@ -717,9 +717,9 @@ void func_80303D78(ActorMarker *marker, f32 arg1, UNK_TYPE(s32) arg2) {
 
 
     sp5C = 0;
-    sp50[0] = (f32) marker->propPtr->x;
-    sp50[1] = (f32) marker->propPtr->y;
-    sp50[2] = (f32) marker->propPtr->z;
+    sp50[0] = (f32) marker->propPtr->position_x;
+    sp50[1] = (f32) marker->propPtr->position_y;
+    sp50[2] = (f32) marker->propPtr->position_z;
     cube_positionToIndices(sp60, sp50);
     for(sp6C[2] = sp60[2] - 1; sp6C[2] <= sp60[2] + 1; sp6C[2]++){
         for(sp6C[1] = sp60[1] - 1; sp6C[1] <= sp60[1] + 1; sp6C[1]++){
@@ -2171,7 +2171,7 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
     bool var_a0;
 
     var_v0 = arg0->prop2Ptr + *arg1;
-    while ((var_v0->is_actor == 1) && (*arg1 < arg0->prop2Cnt)) {
+    while ((var_v0->isActorProp == 1) && (*arg1 < arg0->prop2Cnt)) {
         (*arg1)++;
         var_v0++;
     }

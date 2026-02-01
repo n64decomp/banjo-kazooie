@@ -35,17 +35,17 @@ void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){
     switch (marker->id) {
     case 0x170:
         item_setMaxCount(ITEM_D_EGGS);
-        fxSparkle_giantBlueEgg(&marker->propPtr->x);
+        fxSparkle_giantBlueEgg(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_EGG_REFILL, -1);
         break;
     case 0x171:
         item_setMaxCount(ITEM_F_RED_FEATHER);
-        fxSparkle_giantRedFeather(&marker->propPtr->x);
+        fxSparkle_giantRedFeather(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_RED_FEATHER_REFILL, -1);
         break;
     case 0x172:
         item_setMaxCount(ITEM_10_GOLD_FEATHER);
-        fxSparkle_giantGoldFeather(&marker->propPtr->x);
+        fxSparkle_giantGoldFeather(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_GOLD_FEATHER_REFILL, -1);
         break;
     }

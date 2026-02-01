@@ -247,7 +247,7 @@ Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
     func_80344C38(&func_803257A4, marker);
     func_80335D30(gfx);
-    func_80344138(sp3C, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, scale, gfx, mtx);
+    func_80344138(sp3C, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, scale, gfx, mtx);
     func_8033687C(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
@@ -285,7 +285,7 @@ Actor *func_80325AE0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     }
     func_80344C38(&func_803257A4, marker);
     func_80335D30(gfx);
-    func_80344720(sp40, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, rotation, &scale, gfx, mtx);
+    func_80344720(sp40, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, rotation, &scale, gfx, mtx);
     func_8033687C(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
@@ -322,7 +322,7 @@ Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
     }
     func_80344C38(&func_803257A4, marker);
     func_80335D30(gfx);
-    func_80344720(sp40, marker->propPtr->unk8_15, marker->propPtr->unk8_5, this->position, rotation, scale, gfx, mtx);
+    func_80344720(sp40, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, rotation, scale, gfx, mtx);
     
     func_8033687C(gfx);
     if (this->unk104 != NULL) {
@@ -535,7 +535,7 @@ void func_803268B4(void) {
             marker = actor->marker;
             anim_ctrl = actor->anctrl;
             temp_s1 = actor->actor_info->unk18;
-            if (marker->propPtr->unk8_4) {
+            if (marker->propPtr->isNotFeatherEggOrNote) {
                 if(sp54){
                     if (  actor->actor_info->unk20 && volatileFlag_get( actor->actor_info->unk20)) {
                         marker_despawn(marker);
@@ -1666,7 +1666,7 @@ void func_803299B4(Actor *arg0) {
     arg0->marker->actorFreeFunc = arg0->backupFreeFunc;
     arg0->marker->unk5C = arg0->unk16C_31;
     arg0->marker->propPtr->unk8_3 = arg0->unkF4_28;
-    arg0->marker->propPtr->unk8_2 = arg0->unkF4_27;
+    arg0->marker->propPtr->isCollisionResolved = arg0->unkF4_27;
     arg0->marker->unk2C_1 = arg0->unkF4_26;
     arg0->marker->collidable = arg0->stored_marker_collidable;
 
@@ -1761,7 +1761,7 @@ void *actors_appendToSavestate(void * begin, u32 end){
                 s0->unkF4_26 = s1->marker->unk2C_1;
                 s0->stored_marker_collidable = s1->marker->collidable;
                 s0->unkF4_28 = s1->marker->propPtr->unk8_3;
-                s0->unkF4_27 = s1->marker->propPtr->unk8_2;
+                s0->unkF4_27 = s1->marker->propPtr->isCollisionResolved;
                 //80329F94
                 if(s0->anctrl){
                     s0->stored_anctrl_index = anctrl_getIndex(s0->anctrl);
@@ -2272,7 +2272,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
             }
         }
         if (sp6C != 0) {
-            bundle_setYaw(func_80257204(arg0->propPtr->x, arg0->propPtr->z, arg1->propPtr->x, arg1->propPtr->z) + 90.0f);
+            bundle_setYaw(func_80257204(arg0->propPtr->position_x, arg0->propPtr->position_z, arg1->propPtr->position_x, arg1->propPtr->position_z) + 90.0f);
             D_8036E564 = sp6C;
             if (this->unk138_25) {
                 __bundle_spawnFromFirstActor(sp6C + BUNDLE_21__ICECUBE_B, this);

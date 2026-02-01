@@ -211,7 +211,7 @@ void func_803513EC(ModelProp *arg0, s32 arg1) {
     rotation[0] = 0.0f;
     rotation[1] = (f32) (arg0->yaw * 2);
     rotation[2] = (f32) (arg0->roll * 2);
-    func_8035126C(sp3C, rotation, (f32) (arg0->scale / 100.0), arg1, arg0->model_index + 0x2D1);
+    func_8035126C(sp3C, rotation, (f32) (arg0->scale / 100.0), arg1, arg0->modelId + MODEL_ASSET_OFFSET);
 }
 
 
@@ -273,8 +273,8 @@ bool func_80351724(void * arg0){
     ActorProp *a_prop;
     if (((*(u16*)((s32)arg0 + 0xA) << 0x1E) >> 0x1F) && ((*(u16*)((s32)arg0 + 0xA) << 0x1A) >> 0x1F)) {
         a_prop = (ActorProp *)arg0;
-        a_prop->unk8_5 = FALSE;
-        a_prop->unk8_4 = TRUE;
+        a_prop->isMirrored = FALSE;
+        a_prop->isNotFeatherEggOrNote = TRUE;
     }
     return TRUE;
 }

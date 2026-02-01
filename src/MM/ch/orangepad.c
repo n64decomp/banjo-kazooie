@@ -32,9 +32,9 @@ void handleOrangeCollision(ActorMarker *marker) {
     ParticleEmitter *p_ctrl;
     s32 camera_id;
 
-    position[0] = marker->propPtr->x;
-    position[1] = marker->propPtr->y;
-    position[2] = marker->propPtr->z;
+    position[0] = marker->propPtr->position_x;
+    position[1] = marker->propPtr->position_y;
+    position[2] = marker->propPtr->position_z;
 
     closest_orange_pad = actorArray_findClosestActorFromActorId(position, ACTOR_57_ORANGE_PAD, ORANGE_PAD_STATE_HIT, &distance_to_orange_pad);
 
