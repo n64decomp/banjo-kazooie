@@ -179,7 +179,7 @@ void __baMarker_resolveMusicNoteCollision(Prop *arg0) {
         coMusicPlayer_playMusic(COMUSIC_9_NOTE_COLLECTED, 16000);
         timedFunc_set_1(0.75f, progressDialog_showDialogMaskZero, FILEPROG_3_MUSIC_NOTE_TEXT);
     }
-    fxSparkle_musicNote(arg0->unk4);
+    fxSparkle_musicNote(arg0->position);
 }
 
 void __baMarker_8028BAB0(enum jiggy_e jiggy_id, s32 arg1, s32 arg2, s32 arg3){
@@ -938,12 +938,12 @@ void baMarker_update(void){
             playerMarker->unk38[2] = sp174[2] - sp168[2];
             func_80320ED8(playerMarker, temp_s0_2[i], 1);
             while(other_prop = func_8032F528()){//L8028D480
-                if(!other_prop->unk8_2){
+                if(!other_prop->isCollisionResolved){
                     if(!D_8037BF8C && other_prop->isActorProp && other_prop->isModelProp){
                         D_8037BF8C = other_prop->actorProp.marker;
                     }
                     __baMarker_resolveCollision(other_prop);
-                    other_prop->unk8_2 = 1;
+                    other_prop->isCollisionResolved = 1;
                     sp58[temp_s2] = other_prop;
                     temp_s2++;
                 }//L8028D4E0 
@@ -952,7 +952,7 @@ void baMarker_update(void){
         D_8037BF90 = 0xff;
 
         for(j = 0; j < temp_s2; j++){//L8028D55C
-            sp58[j]->unk8_2 = 0;
+            sp58[j]->isCollisionResolved = 0;
         }
     }
 }

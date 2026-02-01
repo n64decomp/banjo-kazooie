@@ -434,7 +434,7 @@ s32 func_8032D9C0(Cube *cube, Prop* prop){
     if(cube->prop2Cnt != 0){
         sp24 = prop->isModelProp; 
         if(func_80305D14()){
-            func_80305CD8(func_803058C0(prop->unk4[1]), -1);
+            func_80305CD8(func_803058C0(prop->position_y), -1);
         }
         if((prop - cube->prop2Ptr) < (cube->prop2Cnt - 1)){
             memcpy(prop, prop + 1, (s32)(&cube->prop2Ptr[cube->prop2Cnt-1]) - (s32)(prop));
@@ -512,10 +512,10 @@ ModelProp * func_8032DDD8(Cube *cube) {
     temp_v0 = __codeA5BC0_initProp2Ptr(cube);
     temp_v0->isActorProp = FALSE;
     temp_v0->isModelProp = TRUE;
-    temp_v0->unk8_5 = FALSE;
+    temp_v0->isMirrored = FALSE;
     temp_v0->unk8_3 = FALSE;
-    temp_v0->unk8_2 = FALSE;
-    temp_v0->unk8_4 = TRUE;
+    temp_v0->isCollisionResolved = FALSE;
+    temp_v0->isNotFeatherEggOrNote = TRUE;
     return (ModelProp *)temp_v0;
 }
 
@@ -605,9 +605,9 @@ void func_8032DFD8(NodeProp *node, s32 dst[3]){
 }
 
 void func_8032DFF4(Prop *prop, s32 src[3]){
-    prop->unk4[0] = src[0];
-    prop->unk4[1] = src[1];
-    prop->unk4[2] = src[2];
+    prop->position_x = src[0];
+    prop->position_y = src[1];
+    prop->position_z = src[2];
 }
 
 void codeA5BC0_getActorPosition(ActorProp *prop, s32 dst[3]){
@@ -914,15 +914,15 @@ void code7AF80_initCubeFromFile(File *file_ptr, Cube *cube) {
         cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
         file_getNBytes_ifExpected(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
         for(var_v1_2 = cube->prop2Ptr; var_v1_2 < cube->prop2Ptr + sp47; var_v1_2++){
-                var_v1_2->unk8_4 = 1;
+                var_v1_2->isNotFeatherEggOrNote = TRUE;
                 if (var_v1_2->isModelProp) {
-                    var_v1_2->unk8_5 = 0;
+                    var_v1_2->isMirrored = FALSE;
                 }
                 if (sp34) {
                     if (!(var_v1_2->isActorProp) && !(var_v1_2->isModelProp)){
                         temp_v0_5 = var_v1_2->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
                         if((temp_v0_5 == 0x580) || (temp_v0_5 == 0x6D1) || (temp_v0_5 == 0x6D6) || (temp_v0_5 == 0x6D7)){
-                            var_v1_2->unk8_4 = 0;
+                            var_v1_2->isNotFeatherEggOrNote = FALSE;
                         }
                     }
                 }
@@ -972,10 +972,18 @@ void func_8032EE80(Cube *cube) {
         var_a1 = cube->prop2Ptr;
         for(var_t0 = 0; var_t0 < cube->prop2Cnt; var_t0++, var_a1++){
             if (!var_a1->isActorProp) {
-                if (((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2])) < D_803833FC) {
+                if (
+                    ((var_a1->position_x - D_803833F0[0]) * (var_a1->position_x - D_803833F0[0])) +
+                    ((var_a1->position_y - D_803833F0[1]) * (var_a1->position_y - D_803833F0[1])) +
+                    ((var_a1->position_z - D_803833F0[2]) * (var_a1->position_z - D_803833F0[2]))
+                    < D_803833FC)
+                {
                     var_v0 = (var_a1->isModelProp) ? 2 : 1;
                     if (var_v0 == D_80383400) {
-                        D_803833FC = ((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2]));
+                        D_803833FC =
+                            ((var_a1->position_x - D_803833F0[0]) * (var_a1->position_x - D_803833F0[0])) +
+                            ((var_a1->position_y - D_803833F0[1]) * (var_a1->position_y - D_803833F0[1])) +
+                            ((var_a1->position_z - D_803833F0[2]) * (var_a1->position_z - D_803833F0[2]));
                         D_80383404 = cube;
                         D_80383408 = var_a1;
                         D_8038340C = D_80383400;
@@ -1710,7 +1718,7 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
     for(var_s1 = cube->prop2Ptr, var_s5 = cube->prop2Cnt; var_s5 > 0; var_s5--, var_s1++) {
         if(var_s1);
         
-        if (!var_s1->isActorProp && var_s1->isModelProp && var_s1->unk8_4) { //ModelProp
+        if (!var_s1->isActorProp && var_s1->isModelProp && var_s1->isNotFeatherEggOrNote) { //ModelProp
             var_s0 = propModelList_getModelIfActive(((u32)var_s1->modelProp.unk0 >> 0x4));
             if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = propModelList_getModel(((u32)var_s1->modelProp.unk0 >> 0x4))) != NULL))) {
                 temp_s2 = model_getCollisionList(var_s0);
@@ -1727,7 +1735,7 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
                     }
                 }
             }
-        } else if (var_s1->isActorProp && var_s1->unk8_3 && var_s1->unk8_4 && !func_80331158(var_s1->actorProp.marker, arg1, arg2)) {
+        } else if (var_s1->isActorProp && var_s1->unk8_3 && var_s1->isNotFeatherEggOrNote && !func_80331158(var_s1->actorProp.marker, arg1, arg2)) {
             if (!(var_s1->actorProp.marker->unk3E_0 && (marker_getActor(var_s1->actorProp.marker)->unk3C & 0x008000000))) {
                 var_a0 = func_80330DE4(var_s1->actorProp.marker);
             } else {
@@ -1804,7 +1812,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   new_var2 = sp8C;
   for (; var_s3 != 0; var_s0++, var_s3--)
   {
-    if (((!var_s0->isActorProp) && var_s0->isModelProp) && var_s0->unk8_4)
+    if (((!var_s0->isActorProp) && var_s0->isModelProp) && var_s0->isNotFeatherEggOrNote)
     {
       model_bin = propModelList_getModelIfActive(((u32) (*((u16 *) (&var_s0->modelProp)))) >> 4);
       if (model_bin == 0)
@@ -1833,7 +1841,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       }
     }
     else
-      if ((var_s0->isActorProp && var_s0->unk8_3) && var_s0->unk8_4)
+      if ((var_s0->isActorProp && var_s0->unk8_3) && var_s0->isNotFeatherEggOrNote)
     {
       model_collision_list = func_80330DE4(var_s0->actorProp.marker);
       pad9C = model_collision_list;
@@ -1905,7 +1913,7 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
     var_s7 = NULL;
     prop_ptr = cube->prop2Ptr;
     for (i = cube->prop2Cnt; i != 0; i--, prop_ptr++) {
-        if (((!prop_ptr->isActorProp) && prop_ptr->isModelProp) && prop_ptr->unk8_4) {
+        if (((!prop_ptr->isActorProp) && prop_ptr->isModelProp) && prop_ptr->isNotFeatherEggOrNote) {
             mProp = &prop_ptr->modelProp;
             new_var = propModelList_getModelIfActive(mProp->modelId); 
             if (1) { } if (1) { } if (1) { }
@@ -1927,7 +1935,7 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
             }
         } else {
             aProp = &prop_ptr->actorProp;
-            if ((prop_ptr->isActorProp && prop_ptr->unk8_3) && prop_ptr->unk8_4) {
+            if ((prop_ptr->isActorProp && prop_ptr->unk8_3) && prop_ptr->isNotFeatherEggOrNote) {
                 model_bin = func_80330DE4(aProp->marker);
                 if (model_bin != 0) {
                     new_var = model_getCollisionList(model_bin);
@@ -2033,7 +2041,7 @@ f32 func_80332050(Prop *prop, ActorMarker *marker, s32 arg2) {
     f32 phi_f2;
 
     phi_v0 =(prop->isActorProp) ? prop->actorProp.marker : NULL;
-    phi_f2 = prop->unk4[arg2] - (&marker->propPtr->position_x)[arg2] - marker->unk38[arg2];
+    phi_f2 = prop->position[arg2] - (&marker->propPtr->position_x)[arg2] - marker->unk38[arg2];
     if (phi_v0 != NULL) {
         phi_f2 += phi_v0->unk38[arg2];
     }
@@ -2095,7 +2103,7 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
     if (marker->collidable) {
         phi_s1 = &cube->prop2Ptr[(*arg4)++];
         for(phi_s3 = phi_s3; phi_s3 != 0; phi_s3--){
-            if (phi_s1->unk8_4) {
+            if (phi_s1->isNotFeatherEggOrNote) {
                 if( phi_s1->isActorProp &&  (!phi_s1->actorProp.marker->unk3E_0 || !marker_getActor(phi_s1->actorProp.marker)->despawn_flag)){
                     if (phi_s1->actorProp.marker->collidable && (marker != phi_s1->actorProp.marker)) {
                         if( (phi_s1->actorProp.marker->modelId) 

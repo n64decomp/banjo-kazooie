@@ -356,15 +356,22 @@ typedef union prop_s
     ModelProp    modelProp;
     struct{
         u32 pad0;
-        s16 unk4[3];
-        // s16 unk6;
-        s16 pad8_15: 10;
-        u16 unk8_5: 1;
-        u16 unk8_4: 1;
-        u16 unk8_3: 1;
-        u16 unk8_2: 1;
-        u16 isModelProp: 1;
-        u16 isActorProp: 1;
+        union
+        {
+            s16 position[3];
+            struct {
+                s16 position_x;
+                s16 position_y;
+                s16 position_z;
+            };
+        };
+        s16 pad8_15:10;
+        u16 isMirrored:1;
+        u16 isNotFeatherEggOrNote:1;
+        u16 unk8_3:1; // is initialized?
+        u16 isCollisionResolved:1;
+        u16 isModelProp:1;
+        u16 isActorProp:1;
     };
 } Prop;
 

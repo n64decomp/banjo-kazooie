@@ -2180,10 +2180,10 @@ bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
         *arg1 = 0;
         return FALSE;
     }
-    var_a0 = var_v0->unk8_4;
+    var_a0 = var_v0->isNotFeatherEggOrNote;
     (*arg1)++;
     if (arg2) {
-        var_v0->unk8_4 = arg3;
+        var_v0->isNotFeatherEggOrNote = arg3;
     }
     return var_a0;
 }

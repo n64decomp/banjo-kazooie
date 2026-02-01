@@ -372,9 +372,9 @@ bool func_8032C9C0(Actor *actor, f32 arg1[3], s32 arg2, s32 arg3) {
 
 void func_8032C9E0(f32 arg0[3]) {
     if (D_803833D0 != NULL) {
-        arg0[0] = (f32) D_803833D0->unk4[0];
-        arg0[1] = (f32) D_803833D0->unk4[1];
-        arg0[2] = (f32) D_803833D0->unk4[2];
+        arg0[0] = (f32) D_803833D0->position_x;
+        arg0[1] = (f32) D_803833D0->position_y;
+        arg0[2] = (f32) D_803833D0->position_z;
     }
 }
 
