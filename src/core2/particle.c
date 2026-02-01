@@ -180,8 +180,8 @@ void __particleEmitter_drawOnPass(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, V
             || this->rgb[2] != 0xff 
             || this->alpha != 0xff 
         ){
-            func_803382E4((this->draw_mode & PART_EMIT_NO_DEPTH)? 9: 0xf);
-            func_80338338(this->rgb[0], this->rgb[1], this->rgb[2]);
+            codeAEDA0_setSpriteDrawMode((this->draw_mode & PART_EMIT_NO_DEPTH)? 9: 0xf);
+            codeAEDA0_setPrimaryColorRGB(this->rgb[0], this->rgb[1], this->rgb[2]);
             func_803382B4(
                 (this->rgb[0] < 8)? 0 : this->rgb[0] - 8,
                 (this->rgb[1] < 8)? 0 : this->rgb[1] - 8,
@@ -189,7 +189,7 @@ void __particleEmitter_drawOnPass(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, V
                 (this->draw_mode & PART_EMIT_NO_OPA)? 0xff : this->alpha
             );
             func_80338370();
-            func_80335D30(gfx);
+            codeAEDA0_drawSprite(gfx);
         }
         else if(this->draw_mode & PART_EMIT_NO_DEPTH){//L802EF0C0
             gSPDisplayList((*gfx)++, D_80368978);
@@ -222,7 +222,7 @@ void __particleEmitter_drawOnPass(ParticleEmitter *this, Gfx **gfx, Mtx **mtx, V
         }//L802EF338
         if( this->rgb[0] != 0xff || this->rgb[1] != 0xff || this->rgb[2] != 0xff || this->alpha != 0xff 
         ){
-            func_8033687C(gfx);
+            codeAEDA0_postDrawSprite(gfx);
         }
     }
 }
@@ -344,7 +344,7 @@ void particleEmitter_setSprite(ParticleEmitter *this, enum asset_e sprite_id){
     if(sprite_id != this->assetId_0_15){
         this->assetId_0_15 = sprite_id;
         func_802EE930(this);
-        this->sprite_1C = func_8033B6C4(sprite_id, &this->unk34);
+        this->sprite_1C = codeB3A80_getSprite(sprite_id, &this->unk34);
     }
 }
 

@@ -32,11 +32,11 @@ void subaddie_set_state_with_direction(Actor * this, s32 arg1, f32 arg2, s32 arg
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  subaddie_playerIsWithinSphere(Actor *this, s32 dist);
 extern void func_8033A4A0(enum asset_e mode_id, f32, f32);
-extern void func_80338338(s32, s32, s32);
+extern void codeAEDA0_setPrimaryColorRGB(s32, s32, s32);
 extern void func_803382FC(s32);
-extern void func_803382E4(s32);
-extern void func_8033687C(Gfx **);
-extern void func_80335D30(Gfx **);
+extern void codeAEDA0_setSpriteDrawMode(s32);
+extern void codeAEDA0_postDrawSprite(Gfx **);
+extern void codeAEDA0_drawSprite(Gfx **);
 extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
 extern BKVertexList *vtxList_clone(BKVertexList *vtxList);
 
@@ -236,19 +236,19 @@ Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         this->position[1] -= D_8036E58C[1];
         this->position[2] -= D_8036E58C[2];
     }
-    func_80338338(0xFF, 0xFF, 0xFF);
+    codeAEDA0_setPrimaryColorRGB(0xFF, 0xFF, 0xFF);
     if (this->unk124_11 != 0) {
         func_803382FC(this->alpha_124_19);
-        func_803382E4(0xC);
-    } else if (func_80344C20(sp3C) & 0xB00) {
-        func_803382E4(0xB);
+        codeAEDA0_setSpriteDrawMode(0xC);
+    } else if (codeBD100_getSpriteType(sp3C) & 0xB00) {
+        codeAEDA0_setSpriteDrawMode(0xB);
     } else {
-        func_803382E4(0xE);
+        codeAEDA0_setSpriteDrawMode(0xE);
     }
     func_80344C38(&func_803257A4, marker);
-    func_80335D30(gfx);
+    codeAEDA0_drawSprite(gfx);
     func_80344138(sp3C, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, scale, gfx, mtx);
-    func_8033687C(gfx);
+    codeAEDA0_postDrawSprite(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
         this->position[1] = this->position[1] + D_8036E58C[1];
@@ -274,19 +274,19 @@ Actor *func_80325AE0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
         this->position[1] -= D_8036E58C[1];
         this->position[2] -= D_8036E58C[2];
     }
-    func_80338338(0xFF, 0xFF, 0xFF);
+    codeAEDA0_setPrimaryColorRGB(0xFF, 0xFF, 0xFF);
     if (this->unk124_11 != 0) {
         func_803382FC(this->alpha_124_19);
-        func_803382E4(0xC);
-    } else if (func_80344C20(sp40) & 0xB00) {
-        func_803382E4(0xB);
+        codeAEDA0_setSpriteDrawMode(0xC);
+    } else if (codeBD100_getSpriteType(sp40) & 0xB00) {
+        codeAEDA0_setSpriteDrawMode(0xB);
     } else {
-        func_803382E4(0xE);
+        codeAEDA0_setSpriteDrawMode(0xE);
     }
     func_80344C38(&func_803257A4, marker);
-    func_80335D30(gfx);
+    codeAEDA0_drawSprite(gfx);
     func_80344720(sp40, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, rotation, &scale, gfx, mtx);
-    func_8033687C(gfx);
+    codeAEDA0_postDrawSprite(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
         this->position[1] = this->position[1] + D_8036E58C[1];
@@ -311,20 +311,20 @@ Actor *func_80325CAC(ActorMarker *marker, Gfx **gfx, Gfx **mtx, Vtx **vtx) {
     }
     viewport_getRotation_vec3f(rotation);
     rotation[2] += this->roll;
-    func_80338338(0xFF, 0xFF, 0xFF);
+    codeAEDA0_setPrimaryColorRGB(0xFF, 0xFF, 0xFF);
     if (this->unk124_11 != 0) {
         func_803382FC(this->alpha_124_19);
-        func_803382E4(0xC);
-    } else if ((func_80344C20(sp40) & 0xB00) != 0) {
-        func_803382E4(0xB);
+        codeAEDA0_setSpriteDrawMode(0xC);
+    } else if ((codeBD100_getSpriteType(sp40) & 0xB00) != 0) {
+        codeAEDA0_setSpriteDrawMode(0xB);
     } else {
-        func_803382E4(0xE);
+        codeAEDA0_setSpriteDrawMode(0xE);
     }
     func_80344C38(&func_803257A4, marker);
-    func_80335D30(gfx);
+    codeAEDA0_drawSprite(gfx);
     func_80344720(sp40, marker->propPtr->frame, marker->propPtr->isMirrored, this->position, rotation, scale, gfx, mtx);
     
-    func_8033687C(gfx);
+    codeAEDA0_postDrawSprite(gfx);
     if (this->unk104 != NULL) {
         this->position[0] = this->position[0] + D_8036E58C[0];
         this->position[1] = this->position[1] + D_8036E58C[1];
@@ -1936,7 +1936,7 @@ void func_8032A82C(Actor *arg0, s32 arg1) {
     sp1C = &arg0->local;
     sp24 = nodeprop_findByActorIdAndActorPosition(arg1, arg0);
     if (sp24 != NULL) {
-        sp1C->unkC = nodeprop_getYaw(sp24);
+        sp1C->unkC = nodeProp_getYaw(sp24);
         nodeprop_getPosition(sp24, sp1C->unk0);
         sp1C->unkE = func_80341EC4(sp1C);
     }

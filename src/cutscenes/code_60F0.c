@@ -471,7 +471,7 @@ ActorInfo D_8038E470 =
 
 ActorInfo D_8038E494 = 
 {
-    0x143, 0x2FA, 0x46A, 
+    0x143, ACTOR_2FA_BANJOS_HOUSE_ROYSTEN, 0x46A, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0

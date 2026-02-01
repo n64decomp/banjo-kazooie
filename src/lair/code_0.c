@@ -980,7 +980,7 @@ void func_80388450(Actor *actor1, Actor *actor2)
     f32 vec1[3];
     f32 vec2[3];
     void *actor3 = nodeprop_findByActorIdAndActorPosition(0x22A, actor1);
-    s32 val = nodeprop_getYaw(actor3);
+    s32 val = nodeProp_getYaw(actor3);
 
     actor2->yaw = val;
     actor1->yaw = val;

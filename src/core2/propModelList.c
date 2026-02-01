@@ -52,15 +52,15 @@ void propModelList_drawSprite(
     scale_f3[0] = scale;
     scale_f3[1] = scale;
     scale_f3[2] = scale;
-    func_80338338(0xFF - (rgb_remove_red * 0x10), 0xFF - (rgb_remove_green * 0x10), 0xFF - (rgb_remove_blue * 0x10));
-    if (func_80344C20(sprite) & 0xB00) {
-        func_803382E4(0xB);
+    codeAEDA0_setPrimaryColorRGB(0xFF - (rgb_remove_red * 0x10), 0xFF - (rgb_remove_green * 0x10), 0xFF - (rgb_remove_blue * 0x10));
+    if (codeBD100_getSpriteType(sprite) & 0xB00) {
+        codeAEDA0_setSpriteDrawMode(0xB);
     } else {
-        func_803382E4(0xE);
+        codeAEDA0_setSpriteDrawMode(0xE);
     }
-    func_80335D30(gfx);
+    codeAEDA0_drawSprite(gfx);
     func_80344138(sprite, frame, mirrored, position, scale_f3, gfx, mtx);
-    func_8033687C(gfx);
+    codeAEDA0_postDrawSprite(gfx);
 }
 
 BKModelBin *propModelList_getModel(s32 arg0){
@@ -79,7 +79,7 @@ BKSpriteDisplayData *propModelList_getSpriteDisplayList(s32 arg0)
 {
     
     if (((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite == 0){
-        ((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite = func_8033B6C4(arg0 + SPRITE_ASSET_OFFSET, &((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->display);
+        ((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite = codeB3A80_getSprite(arg0 + SPRITE_ASSET_OFFSET, &((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->display);
     }
     sPropSpriteList[arg0].timestamp = globalTimer_getTime();
     return sPropSpriteList[arg0].display;
@@ -123,7 +123,7 @@ void propModelList_free(void){
     }
     for(jPtr = sPropSpriteList; jPtr < &sPropSpriteList[0x168]; jPtr++){
         if(jPtr->sprite){
-            func_8033B338(&jPtr->sprite, &jPtr->display);
+            codeB3A80_releaseSprite(&jPtr->sprite, &jPtr->display);
         }
     }
     free(sPropModelList);
@@ -179,7 +179,7 @@ void propModelList_flush(s32 level) {
     for(var_s0 = 0; (sPropSpriteList != NULL) && (var_s0 < ((level == 1) ? 0x28 : 0x167)); var_s0++, D_8036B808 = (D_8036B808 >= 0x167)? 0: D_8036B808 + 1){
         temp_a0_2 = (propModelListSprite*)((u32)sPropSpriteList + sizeof(propModelListSprite)*D_8036B808);
         if ((temp_a0_2->sprite != 0) && ((temp_a0_2->timestamp < oldest_active_time) || (level == 3))){
-            func_8033B338(&temp_a0_2->sprite, &temp_a0_2->display);
+            codeB3A80_releaseSprite(&temp_a0_2->sprite, &temp_a0_2->display);
             if( (level != 1) && (func_80254BC4(1))){
                 return;
             }
@@ -217,9 +217,9 @@ void propModelList_refresh(void) {
     for(phi_s0 = sPropSpriteList; phi_s0 < sPropSpriteList + 360; phi_s0++){
         if (phi_s0->sprite != NULL) {
             temp_t7 = phi_s0 - sPropSpriteList;
-            func_8033B338(&phi_s0->sprite, &phi_s0->display);
+            codeB3A80_releaseSprite(&phi_s0->sprite, &phi_s0->display);
             phi_s2 = temp_t7 *sizeof(propModelListSprite);
-            *(BKSprite **)((s32)sPropSpriteList + phi_s2) = func_8033B6C4(temp_t7 + SPRITE_ASSET_OFFSET,  (BKSpriteDisplayData **)((s32)sPropSpriteList + phi_s2 + 4));
+            *(BKSprite **)((s32)sPropSpriteList + phi_s2) = codeB3A80_getSprite(temp_t7 + SPRITE_ASSET_OFFSET,  (BKSpriteDisplayData **)((s32)sPropSpriteList + phi_s2 + 4));
         }
     }
     

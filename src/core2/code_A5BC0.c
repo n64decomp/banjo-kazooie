@@ -1463,7 +1463,7 @@ void func_803306C8(s32 arg0) {
                 if (!D_8036E7CC);
 
                 var_s0_2 = TRUE;
-                func_8033B338(&var_a2->unk4, &var_a2->unk8);
+                codeB3A80_releaseSprite(&var_a2->unk4, &var_a2->unk8);
             }
             if ((arg0 != 1) && (var_s0_2 == 1) && (func_80254BC4(1))) {
                 return;
@@ -1617,7 +1617,7 @@ BKSpriteDisplayData *func_80330E54(ActorMarker *marker, BKSprite **sprite_ptr) {
     }
     model_cache_ptr = &modelCache[marker_getActor(marker)->modelCacheIndex];
     if (model_cache_ptr->unk4 == 0) {
-        model_cache_ptr->unk4 = func_8033B6C4(marker->modelId, &model_cache_ptr->unk8);
+        model_cache_ptr->unk4 = codeB3A80_getSprite(marker->modelId, &model_cache_ptr->unk8);
     }
     model_cache_ptr->unk10 = globalTimer_getTime();
     if (sprite_ptr != NULL) {
@@ -1636,19 +1636,19 @@ BKSprite *func_80330F50(ActorMarker * marker){
     return sp1C;
 }
 
-s32 codeA5BC0_getNodePropUnkA(NodeProp *arg0){
+s32 codeA5BC0_getNodePropMarkerId(NodeProp *arg0){
     return arg0->markerId;
 }
 
-s32 codeA5BC0_getNodePropBit6(NodeProp *arg0){
+s32 codeA5BC0_getNodePropCategory(NodeProp *arg0){
     return arg0->category;
 }
 
-s32 codeA5BC0_getNodePropUnk8(NodeProp *arg0){
+s32 codeA5BC0_getNodePropActorId(NodeProp *arg0){
     return arg0->actorId;
 }
 
-s32 codeA5BC0_getPositionAndReturnRadius(NodeProp *arg0, s32 arg1[3]){
+s32 codeA5BC0_getPositionAndSelectorOrRadius(NodeProp *arg0, s32 arg1[3]){
     arg1[0] = arg0->position_x;
     arg1[1] = arg0->position_y;
     arg1[2] = arg0->position_z;

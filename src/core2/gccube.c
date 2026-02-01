@@ -1058,7 +1058,7 @@ void nodeprop_getPosition(NodeProp *nodeProp, f32 dst[3]) {
     TUPLE_ASSIGN(dst, nodeProp->position_x, nodeProp->position_y, nodeProp->position_z)
 }
 
-u32 nodeprop_getYaw(NodeProp *nodeProp) {
+u32 nodeProp_getYaw(NodeProp *nodeProp) {
     return nodeProp->yaw;
 }
 
@@ -2038,8 +2038,8 @@ void func_80307CA0(ActorMarker *marker) {
         for(i = 0; cubePtrList[i] != NULL; i++) {
             for(node_idx = 0; node_idx < cubePtrList[i]->unk0_4; node_idx++){
                 node = codeA5BC0_getPropNodeAtIndex(cubePtrList[i], node_idx);
-                if (codeA5BC0_getNodePropUnkA(node) == marker_bitfield) {
-                    node_radius = codeA5BC0_getPositionAndReturnRadius(node, node_position);
+                if (codeA5BC0_getNodePropMarkerId(node) == marker_bitfield) {
+                    node_radius = codeA5BC0_getPositionAndSelectorOrRadius(node, node_position);
                     if( ((node_position[0] - node_radius) < marker_position[0]) && (marker_position[0] < (node_position[0] + node_radius)) 
                         && ((node_position[1] - node_radius) < marker_position[1]) && (marker_position[1] < (node_position[1] + node_radius)) 
                         && ((node_position[2] - node_radius) < marker_position[2]) && (marker_position[2] < (node_position[2] + node_radius))

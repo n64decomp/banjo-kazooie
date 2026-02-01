@@ -12,7 +12,7 @@ typedef struct {
     u8 unk9;
     u8 unkA;
     u8 unkB;
-    u32 unkC_31:3;
+    u32 yaw:3;
     u32 unkC_28:1;
     u32 padC_27:28;
     s16 unk10;
@@ -88,7 +88,7 @@ static void _chskeleton_init(Actor *this) {
     local->unk9 = 8;
     local->unkA = 0xA;
     local->unkB = 7;
-    local->unkC_31 = 1;
+    local->yaw = 1;
     local->unk10 = 0x10C;
     local->unk12 = 20000;
     local->unk14 = 1.7f;
