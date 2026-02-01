@@ -2560,7 +2560,7 @@ enum mmm_specific_flags {
 
 enum lair_specific_flags {
     LAIR_SPECIFIC_FLAG_7_UKNOWN = 0x7,
-    LAIR_SPECIFIC_FLAG_9_UKNOWN = 0x9,
+    LAIR_SPECIFIC_FLAG_9_UKNOWN = 0x9
 };
 
 enum item_e
