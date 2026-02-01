@@ -242,16 +242,16 @@ bool func_803515EC(NodeProp *arg0) {
     s16 phi_v0;
 
 
-    if (arg0->bit6 != 6) {
+    if (arg0->category != 6) {
         return TRUE;
     } else {
         for(phi_s0 = D_803725C0; phi_s0->unk0 != 0; phi_s0++){
-            if( (arg0->unk8 == phi_s0->unk0) 
+            if( (arg0->actorId == phi_s0->unk0) 
                 && ((phi_s0->unk3 == 0) || (gsworld_get_map() == phi_s0->unk3))
             ){
-                sp48[0] = (s32) arg0->x;
-                sp48[1] = (s32) arg0->y;
-                sp48[2] = (s32) arg0->z;
+                sp48[0] = (s32) arg0->position_x;
+                sp48[1] = (s32) arg0->position_y;
+                sp48[2] = (s32) arg0->position_z;
                 if(func_803048E0(&sp48, &sp44, &sp40, 2, 0x1F4)){
                     func_803513EC(sp40, phi_s0->unk2);
                     break;

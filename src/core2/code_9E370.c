@@ -2197,7 +2197,7 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
 }
 
 bool func_8032B38C(NodeProp *node, s32 arg1){
-    return node->unk8 == 0xF7;
+    return node->actorId == 0xF7;
 }
 
 void func_8032B3A0(Actor *this, ActorMarker *arg1) {
@@ -2309,9 +2309,9 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
                         __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else if (this->unk16C_3 && func_803048E0(sp3C, &sp4C, &sp48, 3, (s32) (func_8033229C(arg0) * 4.0f))) {
-                        sp50[0] = (f32) sp48->x;
-                        sp50[1] = (f32) sp48->y;
-                        sp50[2] = (f32) sp48->z;
+                        sp50[0] = (f32) sp48->position_x;
+                        sp50[1] = (f32) sp48->position_y;
+                        sp50[2] = (f32) sp48->position_z;
                         __spawnQueue_add_5((GenFunction_5)spawnQueue_bundleWithYaw_f32, sp70 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp50[0]), reinterpret_cast(s32, sp50[1]), reinterpret_cast(s32, sp50[2]), reinterpret_cast(s32, player_yaw));
                     } else {
                         sp38 = this->position[1] + func_8033229C(arg0);

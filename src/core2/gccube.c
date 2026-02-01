@@ -925,7 +925,7 @@ void cubeList_fromFile(File *file_ptr) {
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
                         if (!iPtr->bit0) {
-                            bitfield_setBit(D_8036A9E0, iPtr->unkA, 1);
+                            bitfield_setBit(D_8036A9E0, iPtr->markerId, 1);
                         }
                     }
                 }
@@ -949,7 +949,7 @@ s32 func_80304984(s32 actor_id, u32 *arg1) {
     NodeProp *temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(actor_id, NULL);
 
     if (temp_v0 != 0) {
-        *arg1 = temp_v0->radius;
+        *arg1 = temp_v0->selector_or_radius;
         return 1;
     }
 
@@ -1047,15 +1047,15 @@ NodeProp *nodeprop_findByActorIdAndPosition_s16(enum actor_e actor_id, s16 *posi
 }
 
 s32 nodeprop_getRadius(NodeProp *arg0) {
-    return arg0->radius;
+    return arg0->selector_or_radius;
 }
 
 void nodeprop_getPosition_s32(NodeProp *nodeProp, s32 dst[3]) {
-    TUPLE_ASSIGN(dst, nodeProp->x, nodeProp->y, nodeProp->z)
+    TUPLE_ASSIGN(dst, nodeProp->position_x, nodeProp->position_y, nodeProp->position_z)
 }
 
 void nodeprop_getPosition(NodeProp *nodeProp, f32 dst[3]) {
-    TUPLE_ASSIGN(dst, nodeProp->x, nodeProp->y, nodeProp->z)
+    TUPLE_ASSIGN(dst, nodeProp->position_x, nodeProp->position_y, nodeProp->position_z)
 }
 
 u32 nodeprop_getYaw(NodeProp *nodeProp) {
@@ -1071,9 +1071,9 @@ bool nodeprop_findPositionFromActorId(enum actor_e actor_id, s32 *position) {
 
     node_prop = cubeList_findNodePropByActorIdAndPosition_s32(actor_id, NULL);
     if (node_prop != 0) {
-        position[0] = (s32) node_prop->x;
-        position[1] = (s32) node_prop->y;
-        position[2] = (s32) node_prop->z;
+        position[0] = (s32) node_prop->position_x;
+        position[1] = (s32) node_prop->position_y;
+        position[2] = (s32) node_prop->position_z;
         return TRUE;
     }
     return FALSE;
@@ -1114,7 +1114,10 @@ NodeProp *func_80304ED0(enum actor_e *arg0 , f32 arg1[3]) {
         return NULL;
     }
     for(i = 0; i < cnt; i++){
-            dist_sq = func_80304E9C(sp34[0] - sp4C[i]->x, sp34[1] - sp4C[i]->y, sp34[2] - sp4C[i]->z);
+            dist_sq = func_80304E9C(
+                sp34[0] - sp4C[i]->position_x,
+                sp34[1] - sp4C[i]->position_y,
+                sp34[2] - sp4C[i]->position_z);
             if (dist_sq < min_dist_sq) {
                 min_dist_sq = dist_sq;
                 closest_node_ptr = sp4C[i];
@@ -2098,9 +2101,9 @@ u32 func_80307EA8(s32 arg0, s32 position[3], s32 *arg2, s32 *arg3) {
             var_s4 =  temp_v0->prop1Ptr[D_803820B4].unk10_31;
             *arg2 =   temp_v0->prop1Ptr[D_803820B4].unk10_19;
             *arg3 =   temp_v0->prop1Ptr[D_803820B4].bit0;
-            position[0] = temp_v0->prop1Ptr[D_803820B4].x;
-            position[1] = temp_v0->prop1Ptr[D_803820B4].y;
-            position[2] = temp_v0->prop1Ptr[D_803820B4].z;
+            position[0] = temp_v0->prop1Ptr[D_803820B4].position_x;
+            position[1] = temp_v0->prop1Ptr[D_803820B4].position_y;
+            position[2] = temp_v0->prop1Ptr[D_803820B4].position_z;
             D_803820B4++;
         }
         if ((temp_v0 == NULL) || (D_803820B4 >= temp_v0->prop1Cnt)) {
@@ -2392,8 +2395,8 @@ static void __code7AF80_func_80308984(void) {
     // this iterates over the cubes and assumes that the cubes pointer is currently at index 0
     for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         for(iNode = iCube->prop1Ptr; iNode < iCube->prop1Ptr + iCube->prop1Cnt; iNode++){
-            if (iNode->bit6 == 6 && iNode->bit0 == FALSE){
-                u32 tmp = iNode->unk8;
+            if (iNode->category == 6 && iNode->bit0 == FALSE){
+                u32 tmp = iNode->actorId;
 
                 if(tmp >= unk8_range_min && tmp <= unk8_range_max) {
                     for(i = 0; D_8036ABAC[i] != tmp && D_8036ABAC[i] != -1; i++){
@@ -2406,7 +2409,7 @@ static void __code7AF80_func_80308984(void) {
 
                         for(jCube = sCubeList.cubes; jCube < sCubeList.cubes + sCubeList.cubeCnt; jCube++){
                             for(jNode = jCube->prop1Ptr; jNode < jCube->prop1Ptr + jCube->prop1Cnt; jNode++){
-                                if (jNode->bit6 == 6 && jNode->bit0 == FALSE && jNode->unk8 == D_8036ABC0[i]) {
+                                if (jNode->category == 6 && jNode->bit0 == FALSE && jNode->actorId == D_8036ABC0[i]) {
                                     __code7AF80_addCubeIndexToD_80382150(jCube - sCubeList.cubes);
                                     D_80382150[temp_s4 + 1]++;
                                     jNode = jCube->prop1Ptr + jCube->prop1Cnt;

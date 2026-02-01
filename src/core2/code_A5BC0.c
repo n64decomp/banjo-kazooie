@@ -593,15 +593,15 @@ void func_8032DFA0(SpriteProp *sprite_prop, bool arg1){
 }
 
 void func_8032DFBC(NodeProp *node, s32 src[3]){
-    node->x = src[0];
-    node->y = src[1];
-    node->z = src[2];
+    node->position_x = src[0];
+    node->position_y = src[1];
+    node->position_z = src[2];
 }
 
 void func_8032DFD8(NodeProp *node, s32 dst[3]){
-    dst[0] = node->x;
-    dst[1] = node->y;
-    dst[2] = node->z;
+    dst[0] = node->position_x;
+    dst[1] = node->position_y;
+    dst[2] = node->position_z;
 }
 
 void func_8032DFF4(Prop *prop, s32 src[3]){
@@ -659,10 +659,10 @@ bool __codeA5BC0_pad_func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
             if( ((node_ptr->bit0 == TRUE)
                     || ((node_ptr->bit0 == FALSE) && (node_ptr->unk10_6 == TRUE))
                 ) 
-                && (node_ptr->bit6 == 6) 
-                && (arg2 == node_ptr->unk8)
+                && (node_ptr->category == 6) 
+                && (arg2 == node_ptr->actorId)
             ) {
-                *arg1 = node_ptr->radius;
+                *arg1 = node_ptr->selector_or_radius;
                 return TRUE;
             }
             node_ptr++;
@@ -679,8 +679,8 @@ NodeProp *cube_findNodePropByActorId(Cube *cube, enum actor_e actor_id) {
             if( ( (i_ptr->bit0 == TRUE) 
                   || ( (i_ptr->bit0 == FALSE) && (i_ptr->unk10_6 == TRUE))
                 )
-                && (i_ptr->bit6 == 6) 
-                && (actor_id == i_ptr->unk8)
+                && (i_ptr->category == 6) 
+                && (actor_id == i_ptr->actorId)
             ) {
                 return i_ptr;
             }
@@ -700,12 +700,12 @@ bool func_8032E2D4(Cube *arg0, s32 arg1[3], s32 arg2) {
             if( ((var_v1->bit0 == TRUE)
                     || ((var_v1->bit0 == FALSE) && (var_v1->unk10_6 == TRUE))
                 ) 
-                && (var_v1->bit6 == 6) 
-                && (arg2 == var_v1->unk8)
+                && (var_v1->category == 6) 
+                && (arg2 == var_v1->actorId)
             ) {
-                arg1[0] = var_v1->x;
-                arg1[1] = var_v1->y;
-                arg1[2] = var_v1->z;
+                arg1[0] = var_v1->position_x;
+                arg1[1] = var_v1->position_y;
+                arg1[2] = var_v1->position_z;
                 return TRUE;
             }
             var_v1++;
@@ -759,10 +759,10 @@ s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list,
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (found_cnt < node_list_capacity)) {
-                if (((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))) && (i_node->bit6 == 6)) {
+                if (((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))) && (i_node->category == 6)) {
                     i_actor = actor_id_list;
                     for(i_actor = actor_id_list; *i_actor != -1; i_actor++){
-                        if (i_node->unk8 == *i_actor) {
+                        if (i_node->actorId == *i_actor) {
                             node_list[found_cnt++] = i_node;
                             break;
                         }
@@ -789,11 +789,11 @@ s32 func_8032E5A8(Cube *cube, s32 arg1, f32 (*arg2)[3], s32 capacity) {
                 if( ( (i_node->bit0 == TRUE) 
                       || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
                     ) 
-                    && (i_node->bit6 == 6) && (arg1 == i_node->unk8)
+                    && (i_node->category == 6) && (arg1 == i_node->actorId)
                 ) {
-                    arg2[count][0] = (f32) i_node->x;
-                    arg2[count][1] = (f32) i_node->y;
-                    arg2[count][2] = (f32) i_node->z;
+                    arg2[count][0] = (f32) i_node->position_x;
+                    arg2[count][1] = (f32) i_node->position_y;
+                    arg2[count][2] = (f32) i_node->position_z;
                     count++;
                 }
                 i_node++;
@@ -815,7 +815,7 @@ bool func_8032E6CC(Cube *cube, s32 *arg1, s32 arg2) {
                 if( ( (i_node->bit0 == TRUE) 
                       || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
                     ) 
-                    && (i_node->bit6 == 6) && (arg2 == i_node->unk8)
+                    && (i_node->category == 6) && (arg2 == i_node->actorId)
                 ) {
                     *arg1 = i_node->yaw;
                     return TRUE;
@@ -845,11 +845,11 @@ static void __codeA5BC0_initPropPointerForCube(NodeProp *node, Cube *cube, s32 c
     cube_ptr_idx = cnt - 1;
     for(i = 0; i < cnt; i++){
         iPtr = node + i;
-        if( (iPtr->bit6 == 6) 
-            || (iPtr->bit6 == 8)
-            || (iPtr->bit6 == 7) 
-            || (iPtr->bit6 == 9) 
-            || (iPtr->bit6 == 0xA) 
+        if( (iPtr->category == 6) 
+            || (iPtr->category == 8)
+            || (iPtr->category == 7) 
+            || (iPtr->category == 9) 
+            || (iPtr->category == 0xA) 
             || (iPtr->bit0 == 1)
         ){
             memcpy(&cube->prop1Ptr[cube_ptr_idx], &node[i], sizeof(NodeProp));
@@ -997,9 +997,17 @@ void func_8032EE80(Cube *cube) {
         if (D_80383400 == 3) {
             var_s0 = cube->prop1Ptr;
             for(var_s1 = 0; var_s1 < cube->prop1Cnt; var_s1++, var_s0++){
-                if (((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2])) < D_803833FC) {
+                if (
+                    ((var_s0->position_x - D_803833F0[0]) * (var_s0->position_x - D_803833F0[0])) +
+                    ((var_s0->position_y - D_803833F0[1]) * (var_s0->position_y - D_803833F0[1])) +
+                    ((var_s0->position_z - D_803833F0[2]) * (var_s0->position_z - D_803833F0[2]))
+                    < D_803833FC)
+                {
                     if (D_80383558 == NULL || D_80383558(var_s0, D_8038355C)) {
-                        D_803833FC = ((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2]));
+                        D_803833FC = 
+                            ((var_s0->position_x - D_803833F0[0]) * (var_s0->position_x - D_803833F0[0])) +
+                            ((var_s0->position_y - D_803833F0[1]) * (var_s0->position_y - D_803833F0[1])) +
+                            ((var_s0->position_z - D_803833F0[2]) * (var_s0->position_z - D_803833F0[2]));
                         D_80383404 = cube;
                         D_80383408 = (Prop*)var_s0;
                         D_8038340C = D_80383400;
@@ -1328,14 +1336,19 @@ void func_80330208(Cube *cube) {
         end_prop = cube->prop1Ptr + cube->prop1Cnt;
         func_80326C24(1);
         while(i_prop < end_prop){
-            if (i_prop->bit6 == 6) {
-                position[0] = (s32) i_prop->x;
-                position[1] = (s32) i_prop->y;
-                position[2] = (s32) i_prop->z;
-                actor = func_803055E0(i_prop->unk8, position, i_prop->yaw, i_prop->unk10_31, i_prop->unk10_19);
+            if (i_prop->category == 6) {
+                position[0] = (s32) i_prop->position_x;
+                position[1] = (s32) i_prop->position_y;
+                position[2] = (s32) i_prop->position_z;
+                actor = func_803055E0(
+                    i_prop->actorId,
+                    position,
+                    i_prop->yaw,
+                    i_prop->unk10_31,
+                    i_prop->unk10_19);
                 if (actor != NULL) {
                     actor->secondaryId = i_prop->unk10_31;
-                    actor->actorTypeSpecificField = i_prop->radius;
+                    actor->actorTypeSpecificField = i_prop->selector_or_radius;
                     func_8032AA58(actor, (i_prop->scale != 0) ? ((f32)i_prop->scale * 0.01) : 1.0);
                 }
             }
@@ -1355,21 +1368,33 @@ void func_803303B8(Cube *cube) {
         current_node_ptr = cube->prop1Ptr;
         last_node_prop_ptr = cube->prop1Ptr + cube->prop1Cnt;
         while (current_node_ptr < last_node_prop_ptr) {
-            if (current_node_ptr->bit6 == 7) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_803065E4(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_31, current_node_ptr->pad10_7);
-            } else if (current_node_ptr->bit6 == 9) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_8030688C(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_0);
-            } else if (current_node_ptr->bit6 == 0xA) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_80306AA8(current_node_ptr->unk8, position, current_node_ptr->radius);
+            if (current_node_ptr->category == 7) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_803065E4(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius,
+                    current_node_ptr->unk10_31,
+                    current_node_ptr->pad10_7);
+            } else if (current_node_ptr->category == 9) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_8030688C(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius,
+                    current_node_ptr->unk10_0);
+            } else if (current_node_ptr->category == 0xA) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_80306AA8(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius);
             }
             current_node_ptr++;
         }
@@ -1612,22 +1637,22 @@ BKSprite *func_80330F50(ActorMarker * marker){
 }
 
 s32 codeA5BC0_getNodePropUnkA(NodeProp *arg0){
-    return arg0->unkA; //marker_id
+    return arg0->markerId;
 }
 
 s32 codeA5BC0_getNodePropBit6(NodeProp *arg0){
-    return arg0->bit6;
+    return arg0->category;
 }
 
 s32 codeA5BC0_getNodePropUnk8(NodeProp *arg0){
-    return arg0->unk8;
+    return arg0->actorId;
 }
 
 s32 codeA5BC0_getPositionAndReturnRadius(NodeProp *arg0, s32 arg1[3]){
-    arg1[0] = arg0->x;
-    arg1[1] = arg0->y;
-    arg1[2] = arg0->z;
-    return arg0->radius;
+    arg1[0] = arg0->position_x;
+    arg1[1] = arg0->position_y;
+    arg1[2] = arg0->position_z;
+    return arg0->selector_or_radius;
 }
 
 // is used to set global timer time?

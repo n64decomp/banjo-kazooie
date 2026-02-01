@@ -376,23 +376,29 @@ typedef union prop_s
 } Prop;
 
 typedef struct {
-    s16 x;
-    s16 y;
-    s16 z;
-    u16 radius: 9; // selector / volume / diameter?
-    u16 bit6: 6; // category?
-    u16 bit0: 1;
-    u16 unk8;       //actor_id?
-    u8 unkA;        //marker_id
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
+    u16 selector_or_radius:9; // selector / volume / diameter?
+    u16 category:6;
+    u16 bit0:1;
+    u16 actorId;
+    u8 markerId;
     u8 padB;
-    u32 yaw: 9; // unkC_31
-    u32 scale: 23; // unkC_22
-    u32 unk10_31: 12; // unk10_31 and unk10_19 seem to be related
-    u32 unk10_19: 12; // unk10_31 and unk10_19 seem to be related
-    u32 pad10_7: 1;
-    u32 unk10_6: 1; // isInitialized flag?
-    u32 pad10_5: 4;
-    u32 unk10_0: 2; // is only for used in func_803303B8
+    u32 yaw:9;
+    u32 scale:23;
+    u32 unk10_31:12; // unk10_31 and unk10_19 seem to be related
+    u32 unk10_19:12; // unk10_31 and unk10_19 seem to be related
+    u32 pad10_7:1;
+    u32 unk10_6:1; // isInitialized flag?
+    u32 pad10_5:4;
+    u32 unk10_0:2; // is only for used in func_803303B8
 } NodeProp; // size = 20 (0x14) bytes
 
 typedef struct {

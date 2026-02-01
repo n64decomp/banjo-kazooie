@@ -153,9 +153,9 @@ void chTreasurehunt_checkStepProgress5(NodeProp *this, ActorMarker *arg1){
     static f32 particleTargetPosition[3];
 
     if(chtreasureHunt_puzzleCurrentStep == 5 && __chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
-        particleTargetPosition[0] = (f32)this->x;
-        particleTargetPosition[1] = (f32)this->y;
-        particleTargetPosition[2] = (f32)this->z;
+        particleTargetPosition[0] = (f32)this->position_x;
+        particleTargetPosition[1] = (f32)this->position_y;
+        particleTargetPosition[2] = (f32)this->position_z;
         particleTargetPosition[1] =  mapModel_getFloorY(particleTargetPosition);
         __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0xF4, reinterpret_cast(s32, particleTargetPosition[0]), reinterpret_cast(s32, particleTargetPosition[1]), reinterpret_cast(s32, particleTargetPosition[2]));
         particleEmitter = partEmitMgr_newEmitter(3);
