@@ -256,7 +256,7 @@ void func_8032CD60(Prop *prop) {
             prop->spriteProp.unk8_5 = sp3C;
         }
         else{
-            prop->spriteProp.mirrored = sp3C;
+            prop->spriteProp.isMirrored = sp3C;
         }
     }
 }
@@ -387,9 +387,9 @@ void func_8032D510(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 }
                 else{//L8032D72C
                     propModelList_drawSprite( gfx, mtx, vtx, 
-                        position, (f32)iProp->spriteProp.scale/100.0, iProp->spriteProp.sprite_index, cube, 
-                        iProp->spriteProp.r, iProp->spriteProp.b, iProp->spriteProp.g,
-                        iProp->spriteProp.mirrored, iProp->spriteProp.frame
+                        position, (f32)iProp->spriteProp.scale/100.0, iProp->spriteProp.spriteId, cube, 
+                        iProp->spriteProp.rgb_remove_red, iProp->spriteProp.rgb_remove_green, iProp->spriteProp.rgb_remove_blue,
+                        iProp->spriteProp.isMirrored, iProp->spriteProp.frame
                     );
                 }
             }//L8032D7C4
@@ -495,14 +495,14 @@ SpriteProp *func_8032DCB8(Cube *cube) {
     SpriteProp *sp1C;
 
     sp1C = (SpriteProp *)__codeA5BC0_initProp2Ptr(cube);
-    sp1C->is_actor = FALSE;
-    sp1C->is_3d = FALSE;
+    sp1C->isActorProp = FALSE;
+    sp1C->isModelProp = FALSE;
     sp1C->frame = 0;
-    sp1C->mirrored = 0;
+    sp1C->isMirrored = FALSE;
     sp1C->unk8_10 = randf() * 32.0f;
     sp1C->unk8_3 = FALSE;
-    sp1C->unk8_2 = FALSE;
-    sp1C->unk8_4 = TRUE;
+    sp1C->isCollisionResolved = FALSE;
+    sp1C->isNotFeatherEggOrNote = TRUE;
     return sp1C;
 }
 
@@ -529,25 +529,26 @@ void func_8032DE48(ModelProp *model_prop, enum asset_e *model_id_ptr){\
 }
 
 void func_8032DE5C(SpriteProp *sprite_prop, enum asset_e sprite_id){
-    sprite_prop->sprite_index = sprite_id - 0x572;
+    sprite_prop->spriteId = sprite_id - SPRITE_ASSET_OFFSET;
 }
 
 void func_8032DE78(SpriteProp *sprite_prop, enum asset_e *sprite_id_ptr){
-    *sprite_id_ptr = sprite_prop->sprite_index + 0x572;
+    *sprite_id_ptr = sprite_prop->spriteId + SPRITE_ASSET_OFFSET;
 }
 
 void func_8032DE8C(SpriteProp *sprite_prop, s32 *arg1){
     *arg1 = sprite_prop->scale;
 }
 
-void func_8032DEA0(SpriteProp *sprite_prop, s32 *r, s32 *b, s32 *g){
-    *r = sprite_prop->r;
-    *b = sprite_prop->b;
-    *g = sprite_prop->g;
+void func_8032DEA0(SpriteProp *sprite_prop,
+        s32 *rgb_remove_red, s32 *rgb_remove_green, s32 *rgb_remove_blue){
+    *rgb_remove_red = sprite_prop->rgb_remove_red;
+    *rgb_remove_green = sprite_prop->rgb_remove_green;
+    *rgb_remove_blue = sprite_prop->rgb_remove_blue;
 }
 
 void func_8032DECC(SpriteProp *sprite_prop, s32 *arg1){
-    *arg1 = sprite_prop->mirrored;
+    *arg1 = sprite_prop->isMirrored;
 }
 
 void func_8032DEE0(SpriteProp *sprite_prop, s32 arg1){
@@ -567,7 +568,7 @@ void func_8032DF10(SpriteProp *sprite_prop, bool *arg1){
 }
 
 void func_8032DF24(SpriteProp *sprite_prop, bool arg1){
-    sprite_prop->mirrored = arg1;
+    sprite_prop->isMirrored = arg1;
 }
 
 void func_8032DF40(ModelProp *prop_prop, s32 arg1, s32 arg2){
@@ -580,10 +581,11 @@ void func_8032DF4C(ModelProp *prop_prop, s32 *arg1, s32 *arg2){
     *arg2 = prop_prop->roll;
 }
 
-void func_8032DF60(SpriteProp *sprite_prop, s32 r, s32 b, s32 g){
-    sprite_prop->r = r;
-    sprite_prop->b = b;
-    sprite_prop->g = g;
+void func_8032DF60(SpriteProp *sprite_prop,
+        s32 rgb_remove_red, s32 rgb_remove_green, s32 rgb_remove_blue){
+    sprite_prop->rgb_remove_red = rgb_remove_red;
+    sprite_prop->rgb_remove_green = rgb_remove_green;
+    sprite_prop->rgb_remove_blue = rgb_remove_blue;
 }
 
 void func_8032DFA0(SpriteProp *sprite_prop, bool arg1){
@@ -918,7 +920,7 @@ void code7AF80_initCubeFromFile(File *file_ptr, Cube *cube) {
                 }
                 if (sp34) {
                     if (!(var_v1_2->is_actor) && !(var_v1_2->is_3d)){
-                        temp_v0_5 = var_v1_2->spriteProp.sprite_index + 0x572;
+                        temp_v0_5 = var_v1_2->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
                         if((temp_v0_5 == 0x580) || (temp_v0_5 == 0x6D1) || (temp_v0_5 == 0x6D6) || (temp_v0_5 == 0x6D7)){
                             var_v1_2->unk8_4 = 0;
                         }
@@ -1983,7 +1985,7 @@ f32 func_80331D20(BKSprite *sprite) {
 
 
 f32 func_80331E34(Prop *arg0){
-    return func_80331D20(propModelList_getSprite(arg0->spriteProp.sprite_index));
+    return func_80331D20(propModelList_getSprite(arg0->spriteProp.spriteId));
 }
 
 f32 func_80331E64(ActorMarker *marker) {
@@ -2140,7 +2142,7 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
                     }
                 }
                 else{
-                    if (func_803327A8(phi_s1->spriteProp.sprite_index + 0x572) & arg3) {
+                    if (func_803327A8(phi_s1->spriteProp.spriteId + SPRITE_ASSET_OFFSET) & arg3) {
                         phi_f24 = func_80332050(phi_s1, marker, 0);\
                         phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331E34);\
                         phi_f22 = func_80332050(phi_s1, marker, 2);

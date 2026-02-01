@@ -837,30 +837,30 @@ void __baMarker_resolveCollision(Prop *other_prop){
         }
     }
     else{//L8028D10C //SpriteProp
-        tmp3 = other_prop->spriteProp.sprite_index + 0x572;
+        tmp3 = other_prop->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
         switch (tmp3)
         {
         case 0x6D6: //L8028D144
             if(!__baMarker_8028BC60()){
-                other_prop->spriteProp.unk8_4 = 0;
+                other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 __baMarker_resolveMusicNoteCollision(other_prop);
             }
             break;
         case 0x6D7: //L8028D16C
             if(!__baMarker_8028BC60()){
-                other_prop->spriteProp.unk8_4 = 0;
+                other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectEgg(other_prop);
             }
             break;
         case 0x580: //L8028D194
             if(!__baMarker_8028BC60()){
-                other_prop->spriteProp.unk8_4 = 0;
+                other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectRedFeather(other_prop);
             }
             break;
         case 0x6D1: //L8028D1BC
             if(!__baMarker_8028BC60()){
-                other_prop->spriteProp.unk8_4 = 0;
+                other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectGoldFeather(other_prop);
             }
             break;

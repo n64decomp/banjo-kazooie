@@ -507,10 +507,10 @@ void func_8033831C(s32 *arg0, s32 *arg1){
     *arg1 = D_80383644;
 }
 
-void func_80338338(s32 r, s32 g, s32 b){
-    D_80383610 = r;
-    D_80383614 = g;
-    D_80383618 = b;
+void func_80338338(s32 rgb_red, s32 rgb_green, s32 rgb_blue){
+    D_80383610 = rgb_red;
+    D_80383614 = rgb_green;
+    D_80383618 = rgb_blue;
 }
 
 void func_80338354(s32 arg0){

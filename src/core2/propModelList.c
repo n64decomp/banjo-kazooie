@@ -40,15 +40,19 @@ void propModelList_drawModel(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 position[3], f
     modelRender_draw(gfx, mtx, position, rotation, scale, NULL, model);
 }
 
-void propModelList_drawSprite(Gfx **gfx, Mtx **mtx, Vtx **Vtx, f32 position[3], f32 scale, s32 sprite_index, Cube *arg6, s32 r, s32 b, s32 g, s32 mirrored, s32 frame) {
+void propModelList_drawSprite(
+        Gfx **gfx, Mtx **mtx, Vtx **Vtx,
+        f32 position[3], f32 scale, s32 spriteId, Cube *arg6,
+        s32 rgb_remove_red, s32 rgb_remove_green, s32 rgb_remove_blue,
+        s32 mirrored, s32 frame) {
     f32 scale_f3[3];
     BKSpriteDisplayData *sprite;
 
-    sprite = propModelList_getSpriteDisplayList(sprite_index);
+    sprite = propModelList_getSpriteDisplayList(spriteId);
     scale_f3[0] = scale;
     scale_f3[1] = scale;
     scale_f3[2] = scale;
-    func_80338338(0xFF - (r * 0x10), 0xFF - (b * 0x10), 0xFF - (g * 0x10));
+    func_80338338(0xFF - (rgb_remove_red * 0x10), 0xFF - (rgb_remove_green * 0x10), 0xFF - (rgb_remove_blue * 0x10));
     if (func_80344C20(sprite) & 0xB00) {
         func_803382E4(0xB);
     } else {
@@ -75,7 +79,7 @@ BKSpriteDisplayData *propModelList_getSpriteDisplayList(s32 arg0)
 {
     
     if (((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite == 0){
-        ((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite = func_8033B6C4(arg0 + 0x572, &((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->display);
+        ((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite = func_8033B6C4(arg0 + SPRITE_ASSET_OFFSET, &((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->display);
     }
     sPropSpriteList[arg0].timestamp = globalTimer_getTime();
     return sPropSpriteList[arg0].display;
@@ -89,22 +93,22 @@ BKSprite *propModelList_getSprite(s32 arg0){
 f32 propModelList_getScale(Prop *arg0){
     if(arg0->is_3d){
         ModelProp* ModelProp = &arg0->modelProp;
-        return sPropModelList[arg0->spriteProp.sprite_index].scale;
+        return sPropModelList[arg0->spriteProp.spriteId].scale;
     }
     else{//L8030A65C
         SpriteProp *spriteProp = &arg0->spriteProp;
-        return sPropSpriteList[spriteProp->sprite_index].scale;
+        return sPropSpriteList[spriteProp->spriteId].scale;
     }
 }
 
 void propModelList_setScale(Prop *arg0, f32 arg1){
     if(arg0->is_3d){
         ModelProp* ModelProp = &arg0->modelProp;
-        sPropModelList[arg0->spriteProp.sprite_index].scale = (f32)ModelProp->scale*arg1/100.0f;
+        sPropModelList[arg0->spriteProp.spriteId].scale = (f32)ModelProp->scale*arg1/100.0f;
     }
     else{//L8030A65C
         SpriteProp *spriteProp = &arg0->spriteProp;
-        sPropSpriteList[spriteProp->sprite_index].scale = (f32)spriteProp->scale*arg1/100.0f;
+        sPropSpriteList[spriteProp->spriteId].scale = (f32)spriteProp->scale*arg1/100.0f;
     }
 }
 
@@ -215,7 +219,7 @@ void propModelList_refresh(void) {
             temp_t7 = phi_s0 - sPropSpriteList;
             func_8033B338(&phi_s0->sprite, &phi_s0->display);
             phi_s2 = temp_t7 *sizeof(propModelListSprite);
-            *(BKSprite **)((s32)sPropSpriteList + phi_s2) = func_8033B6C4(temp_t7 + 0x572,  (BKSpriteDisplayData **)((s32)sPropSpriteList + phi_s2 + 4));
+            *(BKSprite **)((s32)sPropSpriteList + phi_s2) = func_8033B6C4(temp_t7 + SPRITE_ASSET_OFFSET,  (BKSpriteDisplayData **)((s32)sPropSpriteList + phi_s2 + 4));
         }
     }
     

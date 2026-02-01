@@ -9,23 +9,26 @@
 #include "core2/skeletalanim.h"
 
 typedef struct sprite_prop_s{
-    u32 sprite_index:0xC;
-    u32 unk0_19:0x1;
-    u32 r:0x3;
-    u32 b:0x3;
-    u32 g:0x3;
-    u32 scale:0x8;
-    u32 mirrored:0x1;
-    s16 unk4[3];
+    u32 spriteId:12;
+    u32 unk0_19:1;
+    u32 rgb_remove_red:3;
+    u32 rgb_remove_green:3;
+    u32 rgb_remove_blue:3;
+    u32 scale:8;
+    u32 isMirrored:1;
+    u32 pad0_0: 1;
+    s16 position[3];
     u16 frame: 5;
     u16 unk8_10: 5;
-    u16 unk8_5: 1;
-    u16 unk8_4: 1;
-    u16 unk8_3: 1;
-    u16 unk8_2: 1;
-    u16 is_3d:1;
-    u16 is_actor:1;
+    u16 unk8_5: 1; // other structs use this to determine whether it's mirrored, however for sprites another bit address is used
+    u16 isNotFeatherEggOrNote: 1;
+    u16 unk8_3: 1; // is initialized?
+    u16 isCollisionResolved: 1;
+    u16 isModelProp:1; // always false for this struct
+    u16 isActorProp:1; // always false for this struct
 } SpriteProp;
+
+#define SPRITE_ASSET_OFFSET 0x572
 
 typedef struct model_prop_s{
     union{
