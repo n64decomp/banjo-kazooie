@@ -80,7 +80,7 @@ extern ActorInfo D_80394980;
 extern ActorInfo D_80394C28;
 extern ActorInfo D_80394C4C;
 extern ActorInfo D_80394C70;
-extern ActorInfo D_80394D20;
+extern ActorInfo gChActorFurnaceFunPickPrice;
 extern ActorInfo D_80394CF0;
 extern ActorInfo D_80394C94;
 
@@ -1909,7 +1909,7 @@ void lair_func_8038A0C4(void)
     spawnableActorList_add(&D_80394C28, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_80394C4C, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_80394C70, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_80394D20, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gChActorFurnaceFunPickPrice, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&D_80394CF0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_19);
     spawnableActorList_add(&D_80394C94, actor_new, ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_80393354, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
