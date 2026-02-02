@@ -1039,7 +1039,7 @@ void func_80388524(Actor *this) {
                     }
                     break;
 
-                case ACTOR_211_TCC_ENTRANCE_CHEST_LID: //L803886F0
+                case ACTOR_211_TTC_ENTRANCE_CHEST_LID: //L803886F0
                     if (!fileProgressFlag_get(FILEPROG_32_TTC_OPEN) && jigsawPicture_isJigsawPictureComplete(2)) {
                         fileProgressFlag_set(FILEPROG_32_TTC_OPEN, TRUE);
                     }
@@ -1109,7 +1109,7 @@ void func_80388524(Actor *this) {
                 this->unk1C[1] = this->position[1] + 365.0f;
                 break;
                 
-            case ACTOR_211_TCC_ENTRANCE_CHEST_LID://L80388948
+            case ACTOR_211_TTC_ENTRANCE_CHEST_LID://L80388948
                 if(fileProgressFlag_get(FILEPROG_32_TTC_OPEN)){
                     this->pitch = 90.0f;
                 }
