@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#define PROP_MODEL_COUNT 0x2A2
+#define PROP_SPRITE_COUNT 0x168
 
 extern f32 func_8033A244(f32);
 
@@ -9,14 +11,14 @@ typedef struct{
     BKModelBin *model_bin;
     s32 timestamp;
     f32 scale;
-}propModelListModel;
+} PropModelData;
 
 typedef struct{
     BKSprite *sprite;
     BKSpriteDisplayData *display;
     s32 timestamp;
     f32 scale;
-}propModelListSprite;
+} PropSpriteData;
 
 BKModelBin *propModelList_getModel(s32 arg0);
 
@@ -24,8 +26,8 @@ BKModelBin *propModelList_getModel(s32 arg0);
 s32 D_8036B800 = 0;
 
 /* .bss */
-static propModelListModel *sPropModelList;
-static propModelListSprite *sPropSpriteList;
+static PropModelData *sPropModelList;
+static PropSpriteData *sPropSpriteList;
 
 BKSpriteDisplayData *propModelList_getSpriteDisplayList(s32 arg0);
 
@@ -78,8 +80,8 @@ BKModelBin *propModelList_getModelIfActive(s32 arg0){
 BKSpriteDisplayData *propModelList_getSpriteDisplayList(s32 arg0)
 {
     
-    if (((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite == 0){
-        ((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->sprite = codeB3A80_getSprite(arg0 + SPRITE_ASSET_OFFSET, &((propModelListSprite *)((s32)sPropSpriteList + arg0*sizeof(propModelListSprite)))->display);
+    if (((PropSpriteData *)((s32)sPropSpriteList + arg0*sizeof(PropSpriteData)))->sprite == 0){
+        ((PropSpriteData *)((s32)sPropSpriteList + arg0*sizeof(PropSpriteData)))->sprite = codeB3A80_getSprite(arg0 + SPRITE_ASSET_OFFSET, &((PropSpriteData *)((s32)sPropSpriteList + arg0*sizeof(PropSpriteData)))->display);
     }
     sPropSpriteList[arg0].timestamp = globalTimer_getTime();
     return sPropSpriteList[arg0].display;
@@ -113,15 +115,15 @@ void propModelList_setScale(Prop *arg0, f32 arg1){
 }
 
 void propModelList_free(void){
-    propModelListModel* iPtr;
-    propModelListSprite* jPtr;
+    PropModelData* iPtr;
+    PropSpriteData* jPtr;
 
-    for(iPtr = sPropModelList; iPtr < &sPropModelList[0x2A2]; iPtr++){
+    for(iPtr = sPropModelList; iPtr < &sPropModelList[PROP_MODEL_COUNT]; iPtr++){
         if(iPtr->model_bin){
             assetcache_release(iPtr->model_bin);
         }
     }
-    for(jPtr = sPropSpriteList; jPtr < &sPropSpriteList[0x168]; jPtr++){
+    for(jPtr = sPropSpriteList; jPtr < &sPropSpriteList[PROP_SPRITE_COUNT]; jPtr++){
         if(jPtr->sprite){
             codeB3A80_releaseSprite(&jPtr->sprite, &jPtr->display);
         }
@@ -133,17 +135,17 @@ void propModelList_free(void){
 }
 
 void propModelList_init(void){//init
-    propModelListModel* iPtr;
-    propModelListSprite* jPtr;
+    PropModelData* iPtr;
+    PropSpriteData* jPtr;
 
-    sPropModelList = (propModelListModel *)malloc(0x2A2 * sizeof(propModelListModel));
-    sPropSpriteList = (propModelListSprite *)malloc(0x168 * sizeof(propModelListSprite));
+    sPropModelList = (PropModelData *)malloc(PROP_MODEL_COUNT * sizeof(PropModelData));
+    sPropSpriteList = (PropSpriteData *)malloc(PROP_SPRITE_COUNT * sizeof(PropSpriteData));
     D_8036B800 = 0;
-    for(iPtr = sPropModelList; iPtr < &sPropModelList[0x2A2]; iPtr++){
+    for(iPtr = sPropModelList; iPtr < &sPropModelList[PROP_MODEL_COUNT]; iPtr++){
         iPtr->model_bin = NULL;
         iPtr->scale = 0.0f;
     }
-    for(jPtr = sPropSpriteList; jPtr < &sPropSpriteList[0x168]; jPtr++){
+    for(jPtr = sPropSpriteList; jPtr < &sPropSpriteList[PROP_SPRITE_COUNT]; jPtr++){
         jPtr->sprite = NULL;
         jPtr->scale = 0.0f;
     }
@@ -161,25 +163,34 @@ void propModelList_flush(s32 level) {
     static s32 D_8036B808 = 0;
     s32 oldest_active_time;
     s32 var_s0;
-    propModelListModel *sp3C;
-    propModelListSprite *temp_a0_2;
+    PropModelData *model_entry;
+    PropSpriteData *sprite_entry;
 
     oldest_active_time = globalTimer_getTime() - func_80255B08(level);
-    for(var_s0 = 0; (sPropModelList != NULL) && (var_s0 < ((level == 1) ? 0x28 : 0x2A1)); var_s0++, D_8036B804 = (D_8036B804 >= 0x2A1)? 0: D_8036B804 + 1){
-        sp3C = (propModelListModel*)((u32)sPropModelList + sizeof(propModelListModel)*D_8036B804);
-        if ((sp3C->model_bin != NULL) && ((sp3C->timestamp < oldest_active_time) || (level == 3))){
-            assetcache_release(sp3C->model_bin);
-            sp3C->model_bin = NULL;
+    for(var_s0 = 0;
+        (sPropModelList != NULL) && (var_s0 < ((level == 1) ? 0x28 : PROP_MODEL_COUNT - 1));
+        var_s0++, D_8036B804 = (D_8036B804 >= PROP_MODEL_COUNT - 1)? 0: D_8036B804 + 1)
+    {
+        model_entry = (PropModelData*)((u32)sPropModelList + sizeof(PropModelData)*D_8036B804);
+        if ((model_entry->model_bin != NULL) && ((model_entry->timestamp < oldest_active_time) || (level == 3))){
+            assetcache_release(model_entry->model_bin);
+            model_entry->model_bin = NULL;
             if( (level != 1) && (func_80254BC4(1))){
                 return;
             }
         }
     }
 
-    for(var_s0 = 0; (sPropSpriteList != NULL) && (var_s0 < ((level == 1) ? 0x28 : 0x167)); var_s0++, D_8036B808 = (D_8036B808 >= 0x167)? 0: D_8036B808 + 1){
-        temp_a0_2 = (propModelListSprite*)((u32)sPropSpriteList + sizeof(propModelListSprite)*D_8036B808);
-        if ((temp_a0_2->sprite != 0) && ((temp_a0_2->timestamp < oldest_active_time) || (level == 3))){
-            codeB3A80_releaseSprite(&temp_a0_2->sprite, &temp_a0_2->display);
+    for(var_s0 = 0;
+        (sPropSpriteList != NULL) && (var_s0 < ((level == 1) ? 0x28 : PROP_SPRITE_COUNT - 1));
+        var_s0++, D_8036B808 = (D_8036B808 >= PROP_SPRITE_COUNT - 1)? 0: D_8036B808 + 1)
+    {
+        sprite_entry = (PropSpriteData*)((u32)sPropSpriteList + sizeof(PropSpriteData)*D_8036B808);
+        if ((sprite_entry->sprite != 0) &&
+            ((sprite_entry->timestamp < oldest_active_time) ||
+            (level == 3)))
+        {
+            codeB3A80_releaseSprite(&sprite_entry->sprite, &sprite_entry->display);
             if( (level != 1) && (func_80254BC4(1))){
                 return;
             }
@@ -191,12 +202,12 @@ void propModelList_defrag(void) {
     BKModelBin *temp_a0;
     s32 phi_s2;
 
-    sPropSpriteList = (propModelListSprite *) defrag(sPropSpriteList);
-    sPropModelList = (propModelListModel *) defrag(sPropModelList);
+    sPropSpriteList = (PropSpriteData *) defrag(sPropSpriteList);
+    sPropModelList = (PropModelData *) defrag(sPropModelList);
     if (!func_802559A0() && !func_80255AE4() && sPropModelList != NULL) {
         for(phi_s2 = 0x14; (phi_s2 != 0) && !func_80255AE4(); phi_s2--){
             D_8036B800++;
-            if (D_8036B800 >= 0x2A2) {
+            if (D_8036B800 >= PROP_MODEL_COUNT) {
                 D_8036B800 = 0;
             }
             temp_a0 = sPropModelList[D_8036B800].model_bin;
@@ -210,25 +221,24 @@ void propModelList_defrag(void) {
 void propModelList_refresh(void) {
     s32 model_list_index;
     s32 temp_t7;
-    propModelListSprite *phi_s0;
+    PropSpriteData *sprite_entry;
     s32 phi_s2;
-    propModelListModel *phi_s0_2;
+    PropModelData *model_entry;
 
-    for(phi_s0 = sPropSpriteList; phi_s0 < sPropSpriteList + 360; phi_s0++){
-        if (phi_s0->sprite != NULL) {
-            temp_t7 = phi_s0 - sPropSpriteList;
-            codeB3A80_releaseSprite(&phi_s0->sprite, &phi_s0->display);
-            phi_s2 = temp_t7 *sizeof(propModelListSprite);
+    for(sprite_entry = sPropSpriteList; sprite_entry < sPropSpriteList + 360; sprite_entry++){
+        if (sprite_entry->sprite != NULL) {
+            temp_t7 = sprite_entry - sPropSpriteList;
+            codeB3A80_releaseSprite(&sprite_entry->sprite, &sprite_entry->display);
+            phi_s2 = temp_t7 *sizeof(PropSpriteData);
             *(BKSprite **)((s32)sPropSpriteList + phi_s2) = codeB3A80_getSprite(temp_t7 + SPRITE_ASSET_OFFSET,  (BKSpriteDisplayData **)((s32)sPropSpriteList + phi_s2 + 4));
         }
     }
     
-    for(phi_s0_2 = sPropModelList; phi_s0_2 < sPropModelList + 674; phi_s0_2++){
-        if(phi_s0_2->model_bin != NULL){
-            model_list_index = phi_s0_2 - sPropModelList;
-            assetcache_release(phi_s0_2->model_bin);
+    for(model_entry = sPropModelList; model_entry < sPropModelList + 674; model_entry++){
+        if(model_entry->model_bin != NULL){
+            model_list_index = model_entry - sPropModelList;
+            assetcache_release(model_entry->model_bin);
             sPropModelList[model_list_index].model_bin = (BKModelBin *) assetcache_get(model_list_index + MODEL_ASSET_OFFSET);
-
         }
     }
 }
