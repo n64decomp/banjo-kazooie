@@ -9,7 +9,6 @@
 
 extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
-extern void bitfield_setBit(u32*, s32, bool);
 extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
 extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
 extern BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
@@ -63,7 +62,7 @@ Struct_core2_7AF80_1 *D_8036A9D4 = NULL;
 Struct_core2_7AF80_1 *D_8036A9D8 = NULL;
 
 Cube *D_8036A9DC = NULL;
-s32 *D_8036A9E0 = NULL;
+struct bitfield_s *D_8036A9E0 = NULL;
 
 u8 sMarkerToBitfield[] = {
                                0,    9,    2,    3,    4,    5,    6,    7,   -1,    8,  0xA,  0xB, 
@@ -879,7 +878,7 @@ void cubeList_init(){
     }
 
     func_80320B24(__code7AF80_func_803036A0, __code7AF80_func_80303960, __code7AF80_func_80303AF0);
-    D_8036A9E0 = bitfield_new(0xF0);
+    D_8036A9E0 = bitfield_new(240);
     func_8032E070();
 }
 
@@ -917,7 +916,7 @@ void cubeList_fromFile(File *file_ptr) {
         }
     }
     file_isNextByteExpected(file_ptr, 0);
-    bitfield_setAll(D_8036A9E0, 0);
+    bitfield_setAll(D_8036A9E0, FALSE);
     for(cube_position[0] = cube_position_from[0]; cube_position[0] <= cube_position_to[0]; cube_position[0]++){
         for(cube_position[1] = cube_position_from[1]; cube_position[1] <= cube_position_to[1]; cube_position[1]++){
             for(cube_position[2] = cube_position_from[2]; cube_position[2] <= cube_position_to[2]; cube_position[2]++){
@@ -925,7 +924,7 @@ void cubeList_fromFile(File *file_ptr) {
                 if (cube->unk0_4) {
                     for(iPtr = cube->prop1Ptr; iPtr < &cube->prop1Ptr[cube->unk0_4] ;iPtr++){
                         if (!iPtr->bit0) {
-                            bitfield_setBit(D_8036A9E0, iPtr->unkA, 1);
+                            bitfield_setBit(D_8036A9E0, iPtr->unkA, TRUE);
                         }
                     }
                 }

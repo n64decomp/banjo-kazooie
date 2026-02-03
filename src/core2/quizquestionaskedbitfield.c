@@ -9,7 +9,7 @@ u8* quizQuestionAskedBitfield;
 
 /* .code */
 bool quizQuestionAskedBitfield_get(s32 index){
-    return bitfield_get_bit(quizQuestionAskedBitfield, index);
+    return bitfieldarray_getBit(quizQuestionAskedBitfield, index);
 }
 
 void quizQuestionAskedBitfield_free(void){
@@ -26,7 +26,7 @@ void quizQuestionAskedBitfield_init(void){
 }
 
 void quizQuestionAskedBitfield_set(s32 index, bool value){
-    bitfield_set_bit(quizQuestionAskedBitfield, index, value);
+    bitfieldarray_setBit(quizQuestionAskedBitfield, index, value);
 }
 
 void quizQuestionAskedBitfield_defrag(void){
