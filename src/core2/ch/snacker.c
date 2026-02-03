@@ -195,7 +195,7 @@ void chsnacker_update(Actor *this) {
         this->unk154 = 0x085E0000;
         marker_setCollisionScripts(this->marker, __chsnacker_ow, func_802E1010, __chsnacker_die);
     }
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     controller_state = snackerctl_get_state();
     
     if(func_802E0DC0(this->position) || ((controller_state != SNACKER_CTL_STATE_1_RBB) && (controller_state != SNACKER_CTL_STATE_2_TTC))) {
@@ -330,7 +330,7 @@ void chSnacker_spawn(void) {
     f32 sp20[3];
 
 
-    _player_getPosition(spawn_position);
+    playerPosition_get(spawn_position);
     if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) != 0) {
         nodeprop_getPosition(nodeprop_findByActorIdAndPosition_f32(ACTOR_3CB_UNKNOWN, spawn_position), spawn_position);
     }

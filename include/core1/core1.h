@@ -129,7 +129,7 @@ void dummy_func_80254464(void);
 
 /* src/core1/defragmanager.c */
 
-#define DEFRAGMANAGER_THREAD_STACK_SIZE        2048 // 0x800
+#define DEFRAGMANAGER_THREAD_STACK_SIZE        2048
 #define DEFRAGMANAGER_THREAD_ID                2
 #define DEFRAGMANAGER_THREAD_PRIORITY          10
 #define DEFRAGMANAGER_THREAD_PRIORITY_HIGH     30

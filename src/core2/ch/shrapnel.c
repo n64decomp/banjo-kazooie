@@ -156,7 +156,7 @@ void chshrapnel_update(Actor *this) {
     this->unk1C[2] = this->position[2];
     this->unk1C[1] = func_80309B24(this->position) - 15.0f;
     this->position[1] = this->unk1C[1] - (sinf(this->lifetime_value * 4.0f) * 10.0f);
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     switch (this->state) {
         case 1:
             chShrapnel_func_802D0A38(this);

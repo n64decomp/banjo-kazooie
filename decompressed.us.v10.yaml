@@ -546,7 +546,7 @@ segments:
   - [0xF66700, c, pitch]
   - [0xF669A0, c, code_11040]
   - [0xF66BB0, c, climb]
-  - [0xF66DC0, c, code_11460]
+  - [0xF66DC0, c, playerposition]
   - [0xF66FC0, c, code_11660]
   - [0xF67130, c, code_117D0]
   - [0xF671D0, c, balookat] # barest
@@ -1408,7 +1408,7 @@ segments:
   - [0x1048560, .bss, pitch]
   - [0x1048560, .bss, code_11040]
   - [0x1048560, .bss, climb]
-  - [0x1048560, .bss, code_11460]
+  - [0x1048560, .bss, playerposition]
   - [0x1048560, .bss, code_11660]
   - [0x1048560, .bss, code_117D0]
   - [0x1048560, .bss, balookat]

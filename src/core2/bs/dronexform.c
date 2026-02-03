@@ -6,7 +6,6 @@
 #include "core2/ba/timer.h"
 
 
-extern void player_setYPosition(f32);
 extern void yaw_applyIdeal(void);
 extern f32 cosf(f32);
 
@@ -255,7 +254,7 @@ static void __bsdronexform_setState(int next_state){
     switch(next_state){
         case 1:// 802B0230
             D_8037D470.unk1C = 1;
-            D_8037D470.unk2C = player_getYPosition();
+            D_8037D470.unk2C = playerPosition_getY();
             func_802AFB94(0.28f);
             func_802AFBA0(180.0f);
             func_802AFBAC(0.04f);
@@ -279,7 +278,7 @@ static void __bsdronexform_setState(int next_state){
             break;
 
         case 5:// 802B02F4
-            _player_getPosition(sp24);
+            playerPosition_get(sp24);
             sp24[1] += 30.0f;
             viewport_adjustPointDistance(sp24, 80.0f);
             func_802AFBB8(sp24);
@@ -352,7 +351,7 @@ void bsdronexform_update(void){
     switch(D_8037D470.state){
         case 1: 
             sp24 = batimer_decrement(0);
-            player_setYPosition(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D470.unk2C);
+            playerPosition_setY(func_802B051C(0, 2.8f, 0.0f, 90.0f) + D_8037D470.unk2C);
             func_802AFB94(func_802B051C(0, 2.8f, 0.28f, 1.0f));
             func_802AFBA0(func_802B051C(0, 2.8f, 180.0f, 55.0f));
             func_802AFBAC(func_802B051C(0, 2.8f, 0.04f, 0.35f));
@@ -428,7 +427,7 @@ void bsdronexform_update(void){
 
         case 9:
             sp24 = batimer_decrement(0);
-            player_setYPosition(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D470.unk2C);
+            playerPosition_setY(func_802B051C(0, 0.7f, 90.0f, 0.0f) + D_8037D470.unk2C);
             if(sp24)
                 bs_setState(bs_getIdleState());
             break;

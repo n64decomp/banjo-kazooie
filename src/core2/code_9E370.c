@@ -1470,14 +1470,14 @@ bool func_803292E0(Actor *this){
         return 1;
     }
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     return func_80307258(player_position, this->unk10_25 - 1, this->unk10_18 - 1) != -1;
 }
 
 bool func_80329354(Actor *this){
     f32 sp1C[3];
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     return func_80329260(this, sp1C);
 }
 
@@ -1487,7 +1487,7 @@ bool func_80329384(Actor *this, f32 arg1){
     if(this->unk10_25 == 0)
         return TRUE;
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
 
     return func_80307258(sp1C, this->unk10_25 - 1, this->unk10_18 - 1) != -1
         && (sp1C[1] < (this->position[1] + arg1))
@@ -1538,7 +1538,7 @@ bool subaddie_playerIsWithinSphere(Actor *this, s32 dist){
     f32 sp18[3];
 
     func_8028E964(sp24);
-    _player_getPosition(sp18);
+    playerPosition_get(sp18);
     sp24[1] = sp18[1];
     if( ( (this->position_x - sp24[0])*(this->position_x - sp24[0]) 
           + (this->position_y - sp24[1])*(this->position_y - sp24[1])
@@ -1580,7 +1580,7 @@ s32 func_8032970C(Actor *this){
     f32 plyr_pos[3];
 
     func_8028E964(sp24);
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     sp24[1] = plyr_pos[1];
     return (s32) DIST_SQ_VEC3F(this->position, sp24);
 }
@@ -1599,7 +1599,7 @@ s32 subaddie_getYawToPosition(Actor *arg0, f32 arg1[3]){
 void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
     f32 sp2C[3];
 
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_8025727C(
         arg0->position[0], arg0->position[1], arg0->position[2],
         sp2C[0], sp2C[1], sp2C[2],

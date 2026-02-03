@@ -297,7 +297,7 @@ void func_80293F0C(void){
     f32 sp38[3];
     f32 sp2C[3];
     
-    _player_getPosition(sp44);
+    playerPosition_get(sp44);
     if(gsworld_get_map() == MAP_34_RBB_ENGINE_ROOM && ml_vec3f_inside_box_f(sp44, -900.0f, -940.0f, 200.0f, 900.0f, 940.0f, 800.0f)){
         func_8031C5FC(D_8037C200, 150.0f);
     } else{
@@ -316,8 +316,8 @@ void func_80293F0C(void){
         case 1:
         case 3:
         case 4:
-            _player_getPosition(D_8037C218);
-            func_80298504(D_8037C228);
+            playerPosition_get(D_8037C218);
+            playerPosition_func_80298504(D_8037C228);
             ml_vec3f_diff_copy(D_8037C238, D_8037C218, D_8037C228);
             if ((D_8037C274 == 3) && func_8031C594(D_8037C200) && (D_8037C218[1] > (floor_getYPosition(D_8037C200) - 70.0f))) {
                 D_8037C218[1] = floor_getYPosition(D_8037C200) - 70.0f;
@@ -325,15 +325,15 @@ void func_80293F0C(void){
                 baphysics_set_vertical_velocity(1.0f);
             }
             func_80293668();
-            player_setPosition(D_8037C218);
+            playerPosition_set(D_8037C218);
             break;
 
         case 5:
-            _player_getPosition(D_8037C218);
-            func_80298504(D_8037C228);
+            playerPosition_get(D_8037C218);
+            playerPosition_func_80298504(D_8037C228);
             func_80293668();
             func_80293440();
-            player_setPosition(D_8037C218);
+            playerPosition_set(D_8037C218);
             break;
 
         case 2:
@@ -364,7 +364,7 @@ void func_80293F0C(void){
     }
 
     if (D_8037C27F) {
-        player_setPosition(sp44);
+        playerPosition_set(sp44);
     }
 
     D_8037C27A = 0;
@@ -374,8 +374,8 @@ void func_80293F0C(void){
     } else {
         D_8037C280 = 0;
     }
-    func_80298504(sp2C);
-    _player_getPosition(sp38);
+    playerPosition_func_80298504(sp2C);
+    playerPosition_get(sp38);
     ml_vec3f_diff_copy(D_8037C268, sp38, sp2C);
     if (D_8037C204) {
         collisionTri_copy(&D_8037C208, D_8037C204);
@@ -412,7 +412,7 @@ void func_80294390(void) {
 }
 
 f32 func_80294404(void){
-     return player_getYPosition() - floor_getXPosition(D_8037C200);
+     return playerPosition_getY() - floor_getXPosition(D_8037C200);
 }
 
 f32 func_80294438(void){

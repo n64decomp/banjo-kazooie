@@ -6,6 +6,7 @@
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 s32 subaddie_getYawToPosition(Actor*, f32*);
+s32 subaddie_getYawToPosition(Actor*, f32*);
 Actor *func_8032813C();
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();

@@ -379,7 +379,7 @@ static void __bswalrus_recoil_init(s32 damage){
     else
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
-    _player_getPosition(sp30);
+    playerPosition_get(sp30);
     func_80294980(sp24);
     func_80257F18(sp24, sp30, &sp3C);
     yaw_setIdeal(mlNormalizeAngle(sp3C + 180.0f));
@@ -452,7 +452,7 @@ void bswalrus_die_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bswalrus.c", 0x366);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D5C4 = 250.0f;

@@ -63,6 +63,7 @@ ActorAnimationInfo D_8038BBE0[] = {
 
 ActorInfo D_8038BC28 = {
     MARKER_9C_SHACK_DOOR, ACTOR_109_SHACK_DOOR, ASSET_3CD_MODEL_SHACK_DOOR,
+    MARKER_9C_SHACK_DOOR, ACTOR_109_SHACK_DOOR, ASSET_3CD_MODEL_SHACK_DOOR,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0

@@ -12,6 +12,8 @@ typedef struct {
 
 Actor *chWozza_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chWozza_update(Actor *this);
+Actor *chWozza_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chWozza_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo chWozzaAnimations[] ={
@@ -45,7 +47,6 @@ Actor *chWozza_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         return this;
     
     return actor_draw(marker, gfx, mtx, vtx);
-    
 }
 
 void chWozza_caveEntranceCollision(void){
@@ -81,7 +82,7 @@ void chWozza_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
 }
 
 void chWozza_setCompletion(void){
-    mapSpecificFlags_set(8, 1);
+    mapSpecificFlags_set(FP_SPECIFIC_FLAG_8_WOZZA_MET_WALRUS, 1);
 }
 
 void chWozza_checkCompletion(ActorMarker *caller, enum asset_e text_id, s32 arg2){
@@ -169,7 +170,6 @@ void chWozza_spawnJiggy(ActorMarker *marker){
     jiggy->yaw = this->yaw;
     this->partnerActor = jiggy->marker;
     jiggy->partnerActor = this->marker;
-
 }
 
 void chWozza_update(Actor *this){

@@ -186,7 +186,7 @@ void func_80295914(void){
     D_80363820 = 1;
     D_8037C3B0 = NULL;
     update_void_return_Location();
-    func_802983F0();
+    playerPosition_init();
     snackerctl_reset();
     func_80291910();
     badrone_init();
@@ -289,7 +289,7 @@ void func_80295C14(void){
     bainput_update(); //dive_cooldown_update
     bs_updateState();
     baphysics_update();
-    func_8029858C();
+    playerPosition_applyOffset();
     bafalldamage_update();
     func_80293F0C();
     pitch_update();
@@ -303,7 +303,7 @@ void func_80295C14(void){
     eggShatter_update();
     baeyes_update();
     baModel_update();
-    func_8029842C();
+    playerPosition_func_8029842C();
     baMarker_update();
     bacarry_update();
     snackerctl_update();

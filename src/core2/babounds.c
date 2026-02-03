@@ -29,7 +29,7 @@ void babounds_init(void){
 
 void babounds_update(void){
     f32 sp1C[3];
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     if(!ml_vec3f_inside_box_vec3f(sp1C, D_8037C3C0.min, D_8037C3C0.max)){
         if(D_8037C3C0.attempted_return == 0){
             D_8037C3C0.attempted_return = 1;
