@@ -25,7 +25,7 @@ void func_80390000(s32 arg0){
         
         tmp_v0_2 = &func_8034C528(0x190)->type_6D;
         if(tmp_v0_2){
-            func_8034DE60(tmp_v0_2, 0.0f, 270.0f, 0.0f, 1);
+            subaddie_positionMoveVertical(tmp_v0_2, 0.0f, 270.0f, 0.0f, 1);
         }
     }//L803900AC
 

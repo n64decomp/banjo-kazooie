@@ -166,7 +166,7 @@ void viMgr_func_8024BFD8(s32 arg0){
     
     osSetThreadPri(NULL, 0x7f);
     defragManager_setPriority(0x1E);
-    defragManager_80240874();
+    defragManager_resume();
     if(arg0){
         osRecvMesg(&sMesgQueue2, NULL, OS_MESG_BLOCK);
     }
@@ -187,7 +187,7 @@ void viMgr_func_8024BFD8(s32 arg0){
     }//L8024C178
     D_80280724 = D_802808D8;
     D_802808D8 = 0;
-    defragManager_802408B0();
+    defragManager_pause();
     osSetThreadPri(NULL, 0x14);
     defragManager_setPriority(0xA);
 }

@@ -17,14 +17,14 @@ s32 D_80365F30[] = {
 ActorInfo D_80365F60 = {
     0x58, 0x4E, ASSET_7DE_SPRITE_SHOE_SPARKLES,
     0, NULL,
-    func_802C5A60, actor_update_func_80326224, func_80325934,
+    func_802C5A60, actor_update_func_80326224, fxTouchSparkle_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80365F84 = {
     0x59, 0x4F, ASSET_7DE_SPRITE_SHOE_SPARKLES,
     0, NULL,
-    func_802C5A60, actor_update_func_80326224, func_80325934,
+    func_802C5A60, actor_update_func_80326224, fxTouchSparkle_draw,
     0, 0, 0.0f, 0
 };
 
@@ -35,10 +35,10 @@ void func_802C5A60(Actor *this){
     if(!this->initialized){
         switch(this->marker->id){
             case 0x58:
-                func_8032AA58(this, 0.35f);
+                suSetSpriteScale(this, 0.35f);
                 break;
             case 0x59:
-                func_8032AA58(this, 0.4f);
+                suSetSpriteScale(this, 0.4f);
                 break;
         }
         this->marker->propPtr->isMirrored = 0.5 < randf();

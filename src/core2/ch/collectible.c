@@ -26,7 +26,7 @@ extern ActorInfo D_80367D24 = {
 };
 
 extern ActorInfo D_80367D48 = {
-    MARKER_1E5_GOLD_FEATHER_COLLECTIBLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHTER,
+    MARKER_1E5_GOLD_FEATHER_COLLECTIBLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHER,
     0, NULL, 
     chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
@@ -131,7 +131,7 @@ Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3){
                 actor_setOpacity(thisActor, thisActor->actor_specific_1_f);
             }
         }
-        return func_80325934(this, gdl, mptr, arg3);
+        return fxTouchSparkle_draw(this, gdl, mptr, arg3);
     }
     return thisActor;
 }
@@ -144,7 +144,7 @@ void chCollectible_update(Actor *this) {
 
     if (!this->initialized) {
         if (this->marker->id != 0x60) {
-            func_8032AA58(this, 0.56f);
+            suSetSpriteScale(this, 0.56f);
         }
         this->unk10_12 = -1;
         this->unk38_0 = (gsworld_get_map() == MAP_90_GL_BATTLEMENTS);

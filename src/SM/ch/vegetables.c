@@ -400,7 +400,7 @@ static void __chVegetables_update(Actor* this) {
                         this->unk38_0 = 1;
                     }
                     if (func_803292E0(this)) {
-                        this->yaw_ideal = func_80329784(this);
+                        this->yaw_ideal = subaddie_getYawToPlayer(this);
                     }
                     else {
                         if (randf() < 0.02) {
@@ -409,7 +409,7 @@ static void __chVegetables_update(Actor* this) {
                     }
                 }
                 else {
-                    this->yaw_ideal = func_80329784(this);
+                    this->yaw_ideal = subaddie_getYawToPlayer(this);
                 }
             }
             else if (local->vegetable_type == CH_VEGETABLE_2_BAWL) {
@@ -419,7 +419,7 @@ static void __chVegetables_update(Actor* this) {
                     this->unk38_0 = 1;
                 }
                 if (mapSpecificFlags_get(SM_SPECIFIC_FLAG_C) || (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) && func_803292E0(this))) {
-                    this->yaw_ideal = func_80329784(this);
+                    this->yaw_ideal = subaddie_getYawToPlayer(this);
                 } else {
                     if (randf() < 0.02) {
                         func_80328CEC(this, (s32)this->yaw, 0x1E, 0x5A);
@@ -475,19 +475,19 @@ static void __chVegetables_update(Actor* this) {
                         this->unk1C_z = local->unk0_z + this->unk1C_z;
                     }
                     if (func_803292E0(this)) {
-                        this->yaw_ideal = func_80329784(this);
+                        this->yaw_ideal = subaddie_getYawToPlayer(this);
                     } else {
                         if (randf() < 0.01) {
                             func_80328CEC(this, (s32)this->yaw, 0x1e, 0x5A);
                         }
                     }
                 } else {
-                    this->yaw_ideal = func_80329784(this);
+                    this->yaw_ideal = subaddie_getYawToPlayer(this);
                 }
 
             }
         }
-        func_80328FB0(this, 2.0f);
+        subaddie_turnToYaw(this, 2.0f);
         
         if (local->vegetable_type != CH_VEGETABLE_3_COLLIWOBBLE && actor_animationIsAt(this, 0.3f))
             sfx_playFadeShorthandDefault(SFX_3F2_BOING, 1.0f, 22000, this->position, 1000, 2000);

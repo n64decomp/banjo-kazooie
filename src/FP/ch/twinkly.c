@@ -123,7 +123,7 @@ void chTwinkly_decideShatterColor(f32 position[3], enum marker_e marker_id){
             break;
         
         case MARKER_202_TWINKLY_ORANGE:
-            sp1C = ASSET_49A_MODLE_TWINKLY_SHARD_ORANGE;
+            sp1C = ASSET_49A_MODEL_TWINKLY_SHARD_ORANGE;
             break;
 
         case MARKER_203_TWINKLY_RED:
@@ -348,8 +348,8 @@ void chTwinkly_update(Actor *this){
             break;
 
         case 5:// 8038CE14
-            this->yaw_ideal = (f32)func_80329784(this);
-            func_80328FB0(this, 8.0f);
+            this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 8.0f);
             if(!chTwinkly_hopOutBox(this, this->unk1C[1])){
                 this->velocity[1] = randf2(14.0f, 20.0f);
             }

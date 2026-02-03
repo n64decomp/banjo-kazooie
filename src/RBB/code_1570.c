@@ -232,7 +232,7 @@ void RBB_func_803882F4(Actor *this){
         }
         else {
             marker_setCollisionScripts(this->marker, NULL, func_803882B4, NULL);
-            func_8032AA58(this, 1.1f);
+            suSetSpriteScale(this, 1.1f);
             func_803881E8(this, 1);
         }
     }

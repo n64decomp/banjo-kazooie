@@ -97,7 +97,7 @@ void chGreenBlast_update(Actor *this) {
 
     player_getPosition(target_position);
     target_position[1] += 50.0f;
-    chfinalboss_func_80387470(this, target_position, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
+    chfinalboss_flyTo(this, target_position, this->unk1C[0], this->unk1C[1], 0.0f, 1400.0f, 70.0f);
 
     if (func_8028F25C()) {
         chGreenBlast_collisionDie(this->marker, 0);

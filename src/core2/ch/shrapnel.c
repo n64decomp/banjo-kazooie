@@ -163,8 +163,8 @@ void chshrapnel_update(Actor *this) {
             break;
 
         case 2:
-            this->yaw_ideal = (f32) func_80329784(this);
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
                 if (250.0 > ABS(player_position[1] - this->unk1C[1])) {
                     subaddie_set_state(this, 3);
@@ -176,8 +176,8 @@ void chshrapnel_update(Actor *this) {
             break;
 
         case 3:
-            this->yaw_ideal = (f32) func_80329784(this);
-            func_80328FB0(this, this->actor_specific_1_f / 2);
+            this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, this->actor_specific_1_f / 2);
             this->actor_specific_1_f = MIN(50.0, (this->actor_specific_1_f + tick));
             if ((250.0 <= ABS(player_position[1] - this->unk1C[1])) || !func_80329054(this, 0)) {
                 chShrapnel_func_802D0AB8(this);

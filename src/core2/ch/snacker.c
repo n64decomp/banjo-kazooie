@@ -160,7 +160,7 @@ static void __chsnacker_ow(ActorMarker *marker, ActorMarker *other){
     }//L802E10A4
 
     if(this->state == 4){
-        if(func_803294F0(this, 80, func_80329784(this))){
+        if(func_803294F0(this, 80, subaddie_getYawToPlayer(this))){
             func_802E0E88(this);
         }
     }//L802E10E0
@@ -216,7 +216,7 @@ void chsnacker_update(Actor *this) {
             break;
 
         case 2: //802E130C
-            func_80328FB0(this, 3.0f);
+            subaddie_turnToYaw(this, 3.0f);
             func_80328FF0(this, 3.0f);
             func_8032CA80(this, (s_chSnacker_inRbb) ? 15 : 9);
             if (func_80329480(this) != 0) {
@@ -230,7 +230,7 @@ void chsnacker_update(Actor *this) {
             func_803297FC(this, &sp44, &sp40);
             this->yaw_ideal = sp40;
             this->unk6C = func_802E10F0(sp44);
-            func_80328FB0(this, 4.0f);
+            subaddie_turnToYaw(this, 4.0f);
             func_80328FF0(this, 3.0f);
             if (func_80329480(this)) {
                 subaddie_set_state_with_direction(this, 4, 0.0f, 1);
@@ -242,7 +242,7 @@ void chsnacker_update(Actor *this) {
             func_803297FC(this, &sp44, &sp40);
             this->yaw_ideal = sp40;
             this->unk6C = func_802E10F0(sp44);
-            func_80328FB0(this, this->actor_specific_1_f / 2);
+            subaddie_turnToYaw(this, this->actor_specific_1_f / 2);
             func_80328FF0(this, this->actor_specific_1_f / 2);
             this->actor_specific_1_f = MIN(50.0, this->actor_specific_1_f + dt);
             func_8032CA80(this, (s_chSnacker_inRbb) ? 15 : 9);

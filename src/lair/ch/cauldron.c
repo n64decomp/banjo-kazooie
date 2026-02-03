@@ -402,13 +402,13 @@ void chWarpCauldron_update(Actor *this) {
                 func_8038AB90(this, 7, 1, 0, 0.0f);
             }
             func_8038AC7C(this);
-            sp38 = func_80329784(this);
+            sp38 = subaddie_getYawToPlayer(this);
             if( lair_func_8038ADF0(sp38, (s32) this->velocity[0]) 
                 || lair_func_8038ADF0((s32) this->velocity[0], sp38)
             ) {
                 this->yaw_ideal = (f32) sp38;
             }
-            func_80328FB0(this, 3.0f);
+            subaddie_turnToYaw(this, 3.0f);
             if( actor_animationIsAt(this, 0.114f)
                 || actor_animationIsAt(this, 0.217f)
                 || actor_animationIsAt(this, 0.321f)

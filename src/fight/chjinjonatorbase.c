@@ -37,7 +37,7 @@ void chjinjonatorbase_func_8038E0D4(Actor *arg0, s32 arg1, f32 arg2, f32 arg3, f
     s32 temp_v0 = func_8034C2C4(arg0->marker, arg1);
 
     if (temp_v0) {
-        func_8034DE60(temp_v0, arg2, arg3, arg4, 1);
+        subaddie_positionMoveVertical(temp_v0, arg2, arg3, arg4, 1);
     }
 }
 
