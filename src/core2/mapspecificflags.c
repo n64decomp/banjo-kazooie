@@ -71,36 +71,36 @@ void mapSpecificFlags_setAll(u32 arg0){
     _mapSpecificFlags_updateCRCs();
 }
 
-s32 *bitfield_new(s32 arg0){
-    s32 *phi_v0;
+// Unclear, why the bitfield functions are in this file, while they are only used in gccube.c?
 
-    phi_v0 = (s32*)malloc( (((arg0 + 0x1F)>>5) + 1)*sizeof(s32));
-    *phi_v0 = arg0;
-    return phi_v0;
+struct bitfield_s *bitfield_new(s32 count) {
+    struct bitfield_s *bitfield = (struct bitfield_s*) malloc(sizeof(struct bitfield_s) + ((count + 31) >> 5) * sizeof(s32));
+    bitfield->count = count;
+    return bitfield;
 }
 
-void bitfield_free(s32 *arg0){
-    free(arg0);
+void bitfield_free(struct bitfield_s *this) {
+    free(this);
 }
 
-void bitfield_setBit(s32 *arg0, s32 arg1, bool arg2){
-    if(arg2){
-        arg0[(arg1 >> 5) + 1] |= 1 << (arg1 & (0x1F));
+void bitfield_setBit(struct bitfield_s *this, s32 index, bool value) {
+    if (value) {
+        this->data[index >> 5] |= 1 << (index & 0x1F);
     }
-    else{
-        arg0[(arg1 >> 5) + 1] -= arg0[(arg1 >> 5) + 1] & (1 << (arg1 & 0x1F));
+    else {
+        this->data[index >> 5] -= this->data[index >> 5] & (1 << (index & 0x1F));
     }
 }
 
-bool bitfield_isBitSet(s32 *arg0, s32 arg1) {
-    return BOOL(arg0[(arg1 >> 5) + 1] & (1 << (arg1 & 0x1F)));
+bool bitfield_isBitSet(struct bitfield_s *this, s32 index) {
+    return BOOL(this->data[index >> 5] & (1 << (index & 0x1F)));
 }
 
-void bitfield_setAll(s32 *arg0, bool arg1) {
+void bitfield_setAll(struct bitfield_s *this, bool value) {
     s32 i;
 
-    for(i = 0; i < *arg0; i++){
-        bitfield_setBit(arg0, i, arg1);
+    for (i = 0; i < this->count; i++) {
+        bitfield_setBit(this, i, value);
     }
 }
 
