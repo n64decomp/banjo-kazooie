@@ -1592,7 +1592,7 @@ s32 subaddie_getYawToPlayer(Actor *this){
     return (s32)func_80257204(this->position[0], this->position[2], sp1C[0], sp1C[2]);
 }
 
-s32 func_803297C8(Actor *arg0, f32 arg1[3]){
+s32 subaddie_getYawToPosition(Actor *arg0, f32 arg1[3]){
     return (s32)func_80257204(arg0->position[0], arg0->position[2], arg1[0], arg1[2]);
 }
 
@@ -1946,7 +1946,7 @@ void func_8032A88C(Actor *arg0) {
     Actorlocal_Core2_9E370 *sp20;
 
     sp20 = &arg0->local;
-    arg0->yaw_ideal = (f32) func_803297C8(arg0, sp20->unk0);
+    arg0->yaw_ideal = (f32) subaddie_getYawToPosition(arg0, sp20->unk0);
     subaddie_turnToYaw(arg0, 6.0f);
     func_80329030(arg0, 0);
     if ((((arg0->position[0] - sp20->unk0[0]) * (arg0->position[0] - sp20->unk0[0])) + ((arg0->position[2] - sp20->unk0[2]) * (arg0->position[2] - sp20->unk0[2]))) <= 144.0f) {

@@ -5,7 +5,7 @@
 
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
-s32 func_803297C8(Actor*, f32*);
+s32 subaddie_getYawToPosition(Actor*, f32*);
 Actor *func_8032813C();
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();
@@ -329,7 +329,7 @@ bool chfinalboss_func_80386C68(Actor *this, f32 arg1) {
     f32 sp2C[3];
 
     chjinjonator_8039129C(sp2C);
-    this->yaw_ideal = (f32) func_803297C8(this, sp2C);
+    this->yaw_ideal = (f32) subaddie_getYawToPosition(this, sp2C);
     subaddie_turnToYaw(this, arg1);
 
     if ((this->yaw_ideal < ( this->yaw + arg1)) && (( this->yaw - arg1) < this->yaw_ideal)) {
@@ -363,7 +363,7 @@ void chfinalboss_func_80386CF8(Actor *actor) {
 
 void __chfinalboss_dropHealth(ActorMarker *marker) {
     Actor *actor = marker_getActor(marker);
-    bundle_setYaw(func_803297C8(actor, D_803916F4));
+    bundle_setYaw(subaddie_getYawToPosition(actor, D_803916F4));
     bundle_spawn_f32(BUNDLE_14__HONEYCOMB, actor->position);
 }
 

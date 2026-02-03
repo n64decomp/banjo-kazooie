@@ -136,7 +136,7 @@ bool chWozza_retreatToCaveAnimation(Actor *this, f32 arg1[3], f32 arg2, f32 arg3
     f32 sp24;
 
     sp24 = anctrl_getAnimTimer(this->anctrl);
-    this->yaw_ideal = (f32) func_803297C8(this, arg1);
+    this->yaw_ideal = (f32) subaddie_getYawToPosition(this, arg1);
     subaddie_turnToYaw(this, arg3);
     if(actor_animationIsAt(this, 0.9f)){
         sfx_playFadeShorthandDefault(SFX_3F2_BOING, 0.8f, 24000, this->position, 500, 2000);
@@ -152,7 +152,7 @@ bool chWozza_retreatToCaveAnimation(Actor *this, f32 arg1[3], f32 arg2, f32 arg3
 bool chWozza_rotate(Actor *this, f32 arg1[3], f32 arg2){
     s32 dTheta;
 
-    subaddie_set_ideal_yaw(this, func_803297C8(this, arg1));
+    subaddie_set_ideal_yaw(this, subaddie_getYawToPosition(this, arg1));
     subaddie_turnToYaw(this, arg2);
     dTheta = this->yaw - this->yaw_ideal;
     if(-arg2 <= dTheta && dTheta <= arg2){
