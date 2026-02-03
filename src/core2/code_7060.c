@@ -227,7 +227,7 @@ void func_8028E644(void){
     D_8037BFBA = 0; //player_present
 }
 
-void func_8028E668(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3) {
+void func_8028E668(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3) { //something related to collision around Wozza in cave
     func_8029B73C(arg0, arg1, arg2, arg3, 1000.0f);
 }
 

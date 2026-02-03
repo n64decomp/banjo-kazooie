@@ -222,8 +222,8 @@ void chTwinklyMuncher_update(Actor *this){
 
         case 6: //L8038E698
             this->marker->propPtr->unk8_3 = FALSE;
-            this->yaw_ideal = (f32)func_80329784(this);
-            func_80328FB0(this, 12.0f);
+            this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 12.0f);
             break;
 
         case 7: //L8038E6D4

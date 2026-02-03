@@ -25,8 +25,8 @@ Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
 extern ActorInfo gameSelect_banjoSleeping; //banjo.without_right_hand
 extern ActorInfo gameSelect_banjoGameboy; //banjo.playing_gameboy
 extern ActorInfo gameSelect_banjoCooking; //banjo.cooking
-extern ActorInfo D_80365F60;
-extern ActorInfo D_80365F84; //turbotrainers
+extern ActorInfo fxWadingBootsTouchSparkle;
+extern ActorInfo fxTurboTrainersTouchSparkle; //turbotrainers
 extern ActorInfo chExplosionRipple;
 extern ActorInfo chBubble;
 extern ActorInfo D_80366090; //bigbutt
@@ -98,8 +98,8 @@ extern ActorInfo D_80367BC8;
 extern ActorInfo D_80367BEC;
 extern ActorInfo D_80367C10;
 extern ActorInfo chPiranhaWaterParticles;
-extern ActorInfo D_80367C90; //spent_redfeather
-extern ActorInfo D_80367CB4; //spent_goldfeather
+extern ActorInfo fxSpentRedFeather; //spent_redfeather
+extern ActorInfo fxSpentGoldFeather; //spent_goldfeather
 extern ActorInfo D_80367D00; //egg
 extern ActorInfo D_80367D24; //redfeather
 extern ActorInfo D_80367D48; //goldfeather 
@@ -248,8 +248,8 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_80367AD4, func_802D75B4, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&D_80367AF8, func_802D7610, ACTOR_FLAG_UNKNOWN_2);
     spawnableActorList_add(&chTrainers, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_80365F60, actor_new, ACTOR_FLAG_UNKNOWN_2);
-    spawnableActorList_add(&D_80365F84, actor_new, ACTOR_FLAG_UNKNOWN_2); //turbotrainers
+    spawnableActorList_add(&fxWadingBootsTouchSparkle, actor_new, ACTOR_FLAG_UNKNOWN_2);
+    spawnableActorList_add(&fxTurboTrainersTouchSparkle, actor_new, ACTOR_FLAG_UNKNOWN_2); //turbotrainers
     spawnableActorList_add(&D_80367184, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chExtraLife, actor_new, ACTOR_FLAG_UNKNOWN_21); //extralife
     spawnableActorList_add(&chExplosionRipple, actor_new, ACTOR_FLAG_UNKNOWN_2);
@@ -262,8 +262,8 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&chFlightPad, actor_new, ACTOR_FLAG_NONE); //flight_pad
     spawnableActorList_add(&D_80367D24, actor_new, ACTOR_FLAG_UNKNOWN_21); //redfeather
     spawnableActorList_add(&D_80367D48, actor_new, ACTOR_FLAG_UNKNOWN_21); //goldfeather 
-    spawnableActorList_add(&D_80367C90, actor_new, ACTOR_FLAG_UNKNOWN_2); //spent_redfeather
-    spawnableActorList_add(&D_80367CB4, actor_new, ACTOR_FLAG_UNKNOWN_2); //spent_goldfeather
+    spawnableActorList_add(&fxSpentRedFeather, actor_new, ACTOR_FLAG_UNKNOWN_2); //spent_redfeather
+    spawnableActorList_add(&fxSpentGoldFeather, actor_new, ACTOR_FLAG_UNKNOWN_2); //spent_goldfeather
     spawnableActorList_add(&gChMole, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8); //bottles
     spawnableActorList_add(&D_80367E20, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6); //chmolehill
     spawnableActorList_add(&D_80373DC0, actor_new, ACTOR_FLAG_UNKNOWN_19);

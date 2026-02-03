@@ -59,7 +59,7 @@ void func_8038A2C0(void *this_marker){
     Actor *shadow = spawn_child_actor(ACTOR_122_MAGIC_CARPET_SHADOW, &this);
     s32 pad;
 
-    func_8032AA58(shadow, this->scale);
+    suSetSpriteScale(shadow, this->scale);
     this->partnerActor = shadow->marker;
 }
 

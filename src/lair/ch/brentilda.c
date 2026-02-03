@@ -116,8 +116,8 @@ void chBrentilda_update(Actor *this) {
     }
 
     func_8028E668(this->position, 280.0f, -40.0f, 160.0f);
-    this->yaw_ideal = (f32) func_80329784(this);
-    func_80328FB0(this, 3.0f);
+    this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+    subaddie_turnToYaw(this, 3.0f);
     controller_copyFaceButtons(0, sp78);
     player_getPosition(sp64);
     temp_f0 = sp64[1] - this->position[1];

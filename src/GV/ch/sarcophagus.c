@@ -50,7 +50,7 @@ void func_80389518(Actor *this){
 int func_8038957C(Actor *this){
     f32 f0;
     
-    f0 = this->yaw - func_80329784(this);
+    f0 = this->yaw - subaddie_getYawToPlayer(this);
     if(180.0f <= f0)
         f0 -= 360;
     else if(f0 < -180.0f) 

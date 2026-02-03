@@ -32,7 +32,7 @@ void __waterCtrl_setState(s32 arg0){
             func_8030E760(SFX_3F6_RUBBING, 0.7f, 28000);
             func_8030E760(SFX_3F6_RUBBING, 0.9f, 29000);
             func_8030E760(SFX_3F6_RUBBING, 1.0f, 30000);
-            func_8034DE60(tmp_v0, 0.0f, 400.0f, 2.5f, 1);
+            subaddie_positionMoveVertical(tmp_v0, 0.0f, 400.0f, 2.5f, 1);
         }
     }
 
@@ -57,7 +57,7 @@ void gv_waterCtrl_init(void){
     if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
         tmp_v0 = func_8034C528(400);
         if(tmp_v0)
-            func_8034DE60(tmp_v0, 0.0f, 400.0f, 0.0f, 2);
+            subaddie_positionMoveVertical(tmp_v0, 0.0f, 400.0f, 0.0f, 2);
 
         tmp_v0_2 = func_8034C5AC(300);
         if(tmp_v0_2)

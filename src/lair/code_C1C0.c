@@ -80,7 +80,7 @@ void func_80392700(Actor *this) {
         actor_loopAnimation(this);
     }
     if (this->state == 5) {
-        func_80328FB0(this, 12.0f);
+        subaddie_turnToYaw(this, 12.0f);
         if (func_80329480(this) != 0) {
             subaddie_set_state_with_direction(this, 5, 0.0f, 1);
             this->marker->unk2C_2 = TRUE;

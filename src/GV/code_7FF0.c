@@ -323,7 +323,7 @@ void func_8038E97C(Actor *this){
 
 void chKazooieDoor_update(Actor *this){
     func_802D3D74(this);
-    func_8032AA58(this, 1.3f);
+    suSetSpriteScale(this, 1.3f);
     switch(this->state){
         case 1: //L8038EB98
             if(mapSpecificFlags_get(6)){

@@ -111,8 +111,8 @@ void func_8038AF10(Actor *this){
 
 int func_8038AF78(Actor *this, f32 arg1, f32 arg2){
     this->actor_specific_1_f = arg2;
-    this->yaw_ideal = (f32)func_80329784(this);
-    func_80328FB0(this, arg1);
+    this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
+    subaddie_turnToYaw(this, arg1);
     if(!func_80329030(this, 0) && func_80329480(this))
         return 0;
     return 1;
@@ -190,7 +190,7 @@ void func_8038B124(Actor *this){
                 anctrl_setSmoothTransition(this->anctrl, 0);
                 subaddie_set_state_with_direction(this, 2, 0.00001f, 1);
                 actor_playAnimationOnce(this);
-                this->yaw = (f32)func_80329784(this);
+                this->yaw = (f32)subaddie_getYawToPlayer(this);
                 this->actor_specific_1_f = 0.0f;
                 this->unk1C[0] = 1.0f;
                 func_802BB3DC(0, 14.0f, 0.92f);
@@ -198,7 +198,7 @@ void func_8038B124(Actor *this){
             }
             else{//L8038B3E0
                 this->yaw_ideal = func_80257204(this->position_x, this->position_z, this->velocity_x, this->velocity_z);
-                func_80328FB0(this, 18.0f);
+                subaddie_turnToYaw(this, 18.0f);
                 this->actor_specific_1_f = 18.0f;
                 func_80329030(this, 0);
                 anctrl_setAnimTimer(this->anctrl, 0.0f);
@@ -212,8 +212,8 @@ void func_8038B124(Actor *this){
                 func_8038AF10(this);
             }
             else{
-                this->yaw_ideal = func_80329784(this);
-                func_80328FB0(this, 8.0f);
+                this->yaw_ideal = subaddie_getYawToPlayer(this);
+                subaddie_turnToYaw(this, 8.0f);
             }
             break;
 
@@ -245,8 +245,8 @@ void func_8038B124(Actor *this){
             break;
 
         case 4: //L8038B5F0
-            this->yaw_ideal = func_80329784(this);
-            func_80328FB0(this, 8.0f);
+            this->yaw_ideal = subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 8.0f);
             if(this->unk38_31 >= 20){
                 subaddie_set_state_with_direction(this, 5, 0.00001f, 1);
                 actor_playAnimationOnce(this);

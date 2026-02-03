@@ -128,8 +128,8 @@ void func_8038A384(Actor *this){
          : (sp34 == 2) ? ASSET_C18_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_2
          : ASSET_C19_DIALOG_BOGGY_KIDS_PRESENT_RECEIVED_3;
 
-    this->yaw_ideal = (f32)func_80329784(this);
-    func_80328FB0(this, 2.0f);
+    this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
+    subaddie_turnToYaw(this, 2.0f);
     func_8028E668(this->position, 100.0f, -10.0f, 100.0f);
 
     switch(this->state){

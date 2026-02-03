@@ -98,7 +98,7 @@ void func_8035D8F0(ActorMarker *marker, ActorMarker *other_marker){
 
     this = marker_getActor(marker);
     if (this->state >= 5U) {
-        if (func_803294F0(this, 0x50, func_80329784(this))) {
+        if (func_803294F0(this, 0x50, subaddie_getYawToPlayer(this))) {
             func_8030E58C(SFX_6D_CROC_BITE, 1.3f);
             func_8035D6FC(this);
         }
@@ -148,7 +148,7 @@ void func_8035DA1C(Actor *this) {
     }
     switch(this->state){
         case 1://L8035DB78
-            func_80328FB0(this, 0.5f);
+            subaddie_turnToYaw(this, 0.5f);
             func_80328FF0(this, 0.5f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
             if (subaddie_maybe_set_state(this, 2, 0.05f) && !volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) {
@@ -158,7 +158,7 @@ void func_8035DA1C(Actor *this) {
             break;
 
         case 2://L8035DBE4
-            func_80328FB0(this, 0.5f);
+            subaddie_turnToYaw(this, 0.5f);
             func_80328FF0(this, 0.5f);
             if (func_80329480(this) && randf() < 0.01) {
                 subaddie_set_ideal_yaw(this, (s32)(this->yaw + randf2(-45.0f, 45.0f)));
@@ -180,7 +180,7 @@ void func_8035DA1C(Actor *this) {
             break;
 
         case 3://L8035DD54
-            func_80328FB0(this, 3.0f);
+            subaddie_turnToYaw(this, 3.0f);
             func_80328FF0(this, 3.0f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
             if (func_80329480(this) && func_8032944C(this)) {
@@ -193,7 +193,7 @@ void func_8035DA1C(Actor *this) {
             func_803297FC(this, &sp40, &sp44);
             subaddie_set_ideal_yaw(this, (s32) sp44);
             func_80328CA8(this, (s32) func_8035D590(sp40));
-            func_80328FB0(this, 10.0f);
+            subaddie_turnToYaw(this, 10.0f);
             func_80328FF0(this, 10.0f);
             func_8032CA80(this, LOCAL_D6600(this)->unk4);
             if (func_80329480(this) && func_8032944C(this)) {
@@ -211,7 +211,7 @@ void func_8035DA1C(Actor *this) {
             func_803297FC(this, &sp40, &sp44);
             subaddie_set_ideal_yaw(this, (s32) sp44);
             func_80328CA8(this, (s32) func_8035D590(sp40));
-            func_80328FB0(this, 10.0f);
+            subaddie_turnToYaw(this, 10.0f);
             func_80328FF0(this, 10.0f);
             sp38 = subaddie_playerIsWithinSphereAndActive(this, 0x12C);
             if ((this->state == 5) && sp38) {

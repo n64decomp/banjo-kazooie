@@ -112,7 +112,7 @@ void __chMazeCtrl_setState(Actor *this, s32 next_state){
         func_8030E6D4(SFX_52_BANJO_YAH_OH);
         tmp_v0 = func_8034C528(400);
         if(tmp_v0){
-            func_8034DE60(&tmp_v0->type_6D, 0.0f, -1700.0f, 1.0f, 1);
+            subaddie_positionMoveVertical(&tmp_v0->type_6D, 0.0f, -1700.0f, 1.0f, 1);
         }
     }//L8038F8C4
 

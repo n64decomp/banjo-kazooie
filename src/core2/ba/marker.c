@@ -359,7 +359,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 break;
 
-            case 0x15F: //L8028C070
+            case MARKER_15F_RBB_HONEYCOMB_SWITCH: //L8028C070
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0,1);
@@ -852,13 +852,13 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 chCollectible_collectEgg(other_prop);
             }
             break;
-        case 0x580: //L8028D194
+        case ASSET_580_SPRITE_RED_FEATHER: //L8028D194
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.unk8_4 = 0;
                 chCollectible_collectRedFeather(other_prop);
             }
             break;
-        case 0x6D1: //L8028D1BC
+        case ASSET_6D1_SPRITE_GOLDFEATHER: //L8028D1BC
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.unk8_4 = 0;
                 chCollectible_collectGoldFeather(other_prop);

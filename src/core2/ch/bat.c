@@ -244,7 +244,7 @@ bool func_80360198(Actor *this) {
     f64 d_yaw;
     f64 d_yaw_2;
 
-    func_80328FB0(this, 5.0f);
+    subaddie_turnToYaw(this, 5.0f);
     chbat_updateFlyingRoll(this);
     this->actor_specific_1_f += (this->velocity[1] * 0.45) - (0.001 * this->actor_specific_1_f);
     if (this->actor_specific_1_f > 13.0) {
@@ -316,7 +316,7 @@ f32 func_803603AC(Actor *this, s32 arg1, u8 arg2){
 
 int func_803604E8(Actor *this){
     f32 tmp_f0;
-    this->yaw_ideal = (f32) func_80329784(this);
+    this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
     tmp_f0 = func_803603AC(this, 170, 1);
     func_8035FFAC(this, tmp_f0);
     if(!func_80360198(this)){
@@ -336,7 +336,7 @@ bool chbat_updateRoam(Actor *this) {
         func_8035FFAC(this, func_803603AC(this, -110, 2));
     }
     else{
-        func_80328FB0(this, 5.0f); //update yaw
+        subaddie_turnToYaw(this, 5.0f); //update yaw
         chbat_updateFlyingRoll(this);
         if (func_80329480(this) != 0) {
             this->lifetime_value = 0.0f;
@@ -463,7 +463,7 @@ void chbat_update(Actor *this){
             } else if(chbat_nearHome(this, 1)){
                 chbat_enterRoost(this);
             } else{
-                func_80328FB0(this, 5.0f);
+                subaddie_turnToYaw(this, 5.0f);
                 chBat_updateHeight(this, this->unk1C_y, 2.0f);
                 chbat_updateRollTowardsZero(this);
             }

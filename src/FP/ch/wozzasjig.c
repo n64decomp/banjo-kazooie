@@ -2,11 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038FF54(Actor *this);
+Actor *chWozzaJiggy_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chWozzaJiggy_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_803925C0[] = {
+ActorAnimationInfo chWozzaJiggyAnimations[] = {
     {0x000, 0.0f},
     {0x1AC, 3.8f},
     {0x1AC, 3.8f},
@@ -23,20 +23,20 @@ ActorAnimationInfo D_803925C0[] = {
 };
 
 ActorInfo gWozzaJiggy = { MARKER_20C_WOZZAS_JIGGY, ACTOR_1F4_WOZZAS_JIGGY, ASSET_495_MODEL_WOZZAS_JIGGY,
-    0x1, D_803925C0,
-    func_8038FF54, actor_update_func_80326224, func_8038FF00,
+    0x1, chWozzaJiggyAnimations,
+    chWozzaJiggy_update, actor_update_func_80326224, chWozzaJiggy_draw,
     0, 0, 0.0f, 0
 };
 
 /* .code */
-Actor *func_8038FF00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chWozzaJiggy_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     if(maSlalom_isActive()) return this;
 
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void func_8038FF54(Actor *this){
+void chWozzaJiggy_update(Actor *this){
     static ParticleScaleAndLifetimeRanges D_8039264C = {{0.3f, 0.5f}, {0.5f, 0.7f}, {0.0f, 0.01f}, {0.3f, 0.4f}, 0.3f, 0.7f};
     Actor *other;
     f32 sp40[3];
@@ -76,7 +76,7 @@ void func_8038FF54(Actor *this){
             sp40[2] = (f32)(s32)sp40[2];
             bundle_setYaw(this->yaw + 90.0f);
             jiggy_spawn(JIGGY_32_FP_WOZZA, sp40);
-            levelSpecificFlags_set(LEVEL_FLAG_26_FP_UNKNOWN, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_26_FP_WALRUS_JIGGY_DROPPED, TRUE);
             marker_despawn(this->marker);
        }
        else if(this->marker->unk14_21){//L8039016C

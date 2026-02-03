@@ -4,7 +4,7 @@
 
 extern void particleEmitter_func_802EFA20(ParticleEmitter *, f32, f32);
 extern void subaddie_set_state_with_direction(Actor *, s32, f32, s32);
-extern void func_80328FB0(Actor *, f32);
+extern void subaddie_turnToYaw(Actor *, f32);
 extern void func_803300C0(ActorMarker *, void *);
 
 
@@ -143,8 +143,8 @@ void __chSnowman_enterDeath(Actor *this){
 }
 
 void __chSnowman_setYawTarget(Actor *this, f32 max_rotation){
-    this->yaw_ideal = func_80329784(this);
-    func_80328FB0(this, 6.0f);
+    this->yaw_ideal = subaddie_getYawToPlayer(this);
+    subaddie_turnToYaw(this, 6.0f);
 }
 
 bool __chSnowman_isYawNearYawTarget(Actor *this, s32 max_angle_degree){
