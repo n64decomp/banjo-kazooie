@@ -15,7 +15,7 @@ extern ActorInfo D_8038E8A8;
 /* .data */
 ActorInfo D_8038DC90 = 
 {
-    0x017, 0x08E, 0x355, 
+    MARKER_17_CONCERT_BANJO, ACTOR_8E_CONCERT_BANJO, ASSET_355_MODEL_CONCERT_BANJO, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 5.0f, 0
@@ -47,7 +47,7 @@ ActorInfo D_8038DCFC =
 
 ActorInfo D_8038DD20 = 
 {
-    0x01B, 0x092, 0x35A, 
+    MARKER_1B_CONCERT_TOOTY, ACTOR_92_CONCERT_TOOTY, ASSET_35A_MODEL_CONCERT_TOOTY,
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 3.0f, 0
@@ -55,7 +55,7 @@ ActorInfo D_8038DD20 =
 
 ActorInfo D_8038DD44 = 
 {
-    0x01C, 0x093, 0x3A6, 
+    MARKER_1C_INTRO_N64_CUBE, ACTOR_93_INTRO_N64_CUBE, ASSET_3A6_MODEL_INTRO_N64_CUBE, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -63,7 +63,7 @@ ActorInfo D_8038DD44 =
 
 ActorInfo D_8038DD68 = 
 {
-    0x01D, 0x094, 0x3A7, 
+    MARKER_1D_INTRO_RARE_LOGO, ACTOR_94_INTRO_RARE_LOGO, ASSET_3A7_MODEL_INTRO_RARE_LOGO, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -119,7 +119,7 @@ ActorInfo D_8038DE40 =
 
 ActorInfo D_8038DE64 = 
 {
-    0x024, 0x09B, 0x354, 
+    MARKER_24_CONCERT_BULL, ACTOR_9B_CONCERT_BULL, ASSET_354_MODEL_SMALL_BULL, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 3.0f, 0
@@ -127,7 +127,7 @@ ActorInfo D_8038DE64 =
 
 ActorInfo D_8038DE88 = 
 {
-    0x025, 0x09C, 0x369, 
+    MARKER_25_CONCERT_FROG, ACTOR_9C_CONCERT_FROG, ASSET_369_MODEL_CONCERT_FROG, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.4f, 0
@@ -135,7 +135,7 @@ ActorInfo D_8038DE88 =
 
 ActorInfo D_8038DEAC = 
 {
-    0x026, 0x09D, 0x353, 
+    MARKER_26_CONCERT_BIGBUTT, ACTOR_9D_CONCERT_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 4.0f, 0
@@ -143,7 +143,7 @@ ActorInfo D_8038DEAC =
 
 ActorInfo D_8038DED0 = 
 {
-    0x027, 0x09E, 0x53D, 
+    0x027, 0x09E, ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -159,7 +159,7 @@ ActorInfo D_8038DEF4 =
 
 ActorInfo D_8038DF18 = 
 {
-    0x070, 0x0A0, 0x34D, 
+    0x070, 0x0A0, ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -191,7 +191,7 @@ ActorInfo D_8038DF84 =
 
 ActorInfo D_8038DFA8 = 
 {
-    0x075, 0x0A5, 0x3ED, 
+    0x075, 0x0A5, ASSET_3ED_MODEL_BUZZBOMB, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -255,7 +255,7 @@ ActorInfo D_8038E0A4 =
 
 ActorInfo D_8038E0C8 = 
 {
-    0x07D, 0x0AD, 0x3CA, 
+    0x07D, 0x0AD, ASSET_3CA_MODEL_BAT, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -263,7 +263,7 @@ ActorInfo D_8038E0C8 =
 
 ActorInfo D_8038E0EC = 
 {
-    0x07E, 0x0AE, 0x450, 
+    0x07E, 0x0AE, ASSET_450_MODEL_DINGPOT, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -279,7 +279,7 @@ ActorInfo D_8038E110 =
 
 ActorInfo D_8038E134 = 
 {
-    0x080, 0x0B0, 0x387, 
+    0x080, 0x0B0, ASSET_387_MODEL_BOTTLES, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -287,7 +287,7 @@ ActorInfo D_8038E134 =
 
 ActorInfo D_8038E158 = 
 {
-    0x081, 0x0B1, 0x388, 
+    0x081, 0x0B1, ASSET_388_MODEL_MOLEHILL, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -391,7 +391,7 @@ ActorInfo D_8038E308 =
 
 ActorInfo D_8038E32C = 
 {
-    0x091, 0x0C1, 0x467, 
+    0x091, 0x0C1, ASSET_467_MODEL_TRANSITION_FALLING_JIGGIES, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -487,7 +487,7 @@ ActorInfo D_8038E4B8 =
 
 ActorInfo D_8038E4DC = 
 {
-    0x145, 0x2FC, 0x3C6, 
+    0x145, 0x2FC, ASSET_3C6_MODEL_MUMBO, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -495,7 +495,7 @@ ActorInfo D_8038E4DC =
 
 ActorInfo D_8038E500 = 
 {
-    0x146, 0x2FD, 0x3B0, 
+    0x146, 0x2FD, ASSET_3B0_SNACKER, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -527,7 +527,7 @@ ActorInfo D_8038E56C =
 
 ActorInfo D_8038E590 = 
 {
-    0x14A, 0x301, 0x370, 
+    0x14A, 0x301, ASSET_370_MODEL_BLUBBER, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
@@ -535,7 +535,7 @@ ActorInfo D_8038E590 =
 
 ActorInfo D_8038E5B4 = 
 {
-    0x14B, 0x302, 0x47B, 
+    0x14B, 0x302, ASSET_47B_MODEL_ROCK, 
     1, NULL, 
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0

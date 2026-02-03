@@ -37,7 +37,7 @@ void chBossJinjoBase_func_8038D3DC(Actor *this, s32 arg1, f32 arg2, f32 arg3, f3
     s32 tmp = func_8034C2C4(this->marker, arg1);
     
     if (tmp) {
-        func_8034DE60(tmp, arg2, arg3, arg4, 1);
+        subaddie_positionMoveVertical(tmp, arg2, arg3, arg4, 1);
     }
 }
 

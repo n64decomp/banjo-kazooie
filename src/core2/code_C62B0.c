@@ -163,7 +163,7 @@ void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4
     func_8034DBB8(arg0);
 }
 
-void func_8034DE60(Struct6Ds *arg0, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
+void subaddie_positionMoveVertical(Struct6Ds *arg0, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
     arg0->unk29 = 3;
     arg0->unk4 = arg1;
     arg0->unk44 = 0.0f;
@@ -175,12 +175,12 @@ void func_8034DE60(Struct6Ds *arg0, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
 }
 
 void func_8034DEB4(Struct6Ds *arg0, f32 arg1){
-    func_8034DE60(arg0, arg1, arg1, 0.0f, 1);
+    subaddie_positionMoveVertical(arg0, arg1, arg1, 0.0f, 1);
 }
 
 void func_8034DEE8(Struct6Ds *arg0, f32 arg1, f32 arg2, f32 arg3,s32 arg4){
     func_8034E174(arg0);
-    func_8034DE60(arg0, arg1, arg2, arg3, arg4);
+    subaddie_positionMoveVertical(arg0, arg1, arg2, arg3, arg4);
 }
 
 void func_8034DF30(Struct6Ds *arg0, f32 arg1[4], f32 arg2[4], f32 arg3) {

@@ -379,8 +379,8 @@ void chmole_update(Actor *this){
     controller_copyFaceButtons(0, sp50); // get face buttons press counters
     switch(this->state){
         case 1://L802D9F70
-            this->yaw_ideal = func_80329784(this);
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 4.0f);
             if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
                 if( this->actorTypeSpecificField == 0x12 
                     && !ability_isUnlocked(moleTable[this->actorTypeSpecificField-9].ability)
@@ -404,8 +404,8 @@ void chmole_update(Actor *this){
             break;
         case 2://L802DA0A0
             this->marker->propPtr->unk8_3 = TRUE;
-            this->yaw_ideal = func_80329784(this);
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 4.0f);
             if( 0.0 < anctrl_getAnimTimer(this->anctrl)
                 && anctrl_getAnimTimer(this->anctrl) < 0.16
             ){
@@ -430,8 +430,8 @@ void chmole_update(Actor *this){
             }
             break;
         case 3://L802DA210
-            this->yaw_ideal = func_80329784(this);
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 4.0f);
             if( ( actor_animationIsAt(this, 0.37f)
                   || actor_animationIsAt(this, 0.66f)
                   || actor_animationIsAt(this, 0.85f)

@@ -107,7 +107,7 @@ int func_8035B3E4(Actor *this){
 
 int func_8035B444(Actor *this, f32 arg1){
     int out;
-    func_80328FB0(this, arg1);
+    subaddie_turnToYaw(this, arg1);
 
     if(!func_80329054(this, 2) && func_80329480(this))
         return 0;
@@ -232,7 +232,7 @@ void func_8035B900(Actor *this){
                 }
                 break;
             case 2: //L8035BA98
-                this->yaw_ideal = func_80329784(this);
+                this->yaw_ideal = subaddie_getYawToPlayer(this);
                 func_8035B444(this, 4.0f);
                 if(actor_animationIsAt(this, 0.99f)){
                     func_8035B75C(this);
@@ -243,7 +243,7 @@ void func_8035B900(Actor *this){
                 if((sp30 & 0x3F) == 7 && randf() < 0.7){
                     func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
                 }//L8035BB6C
-                this->yaw_ideal = func_80329784(this);
+                this->yaw_ideal = subaddie_getYawToPlayer(this);
                 if(!func_8035B3E4(this) || !func_8035B444(this, 5.0f)){
                     func_8035B674(this);
                 }
@@ -262,7 +262,7 @@ void func_8035B900(Actor *this){
                 break;
             case 5: //L8035BC1C
                 func_8035B49C(this);
-                func_80328FB0(this, 3.0f);
+                subaddie_turnToYaw(this, 3.0f);
                 if(func_80329480(this)){
                     func_8035B674(this);
                 }

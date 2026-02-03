@@ -971,7 +971,7 @@ void func_802D5628(void){
                     sp7C = func_802F9AA8(0x3EC);
                     sp78 = func_8034C528(0x191);
                     if(sp78){
-                        func_8034DE60(sp78, -580.0f, 0.0f, 2.5f, 1);
+                        subaddie_positionMoveVertical(sp78, -580.0f, 0.0f, 2.5f, 1);
                     }
                     func_802FA060(sp7C, 20000, 20000, 0.0f);
                     func_802F9F80(sp7C, 0.0f, 2.2f, 0.7f);
@@ -984,7 +984,7 @@ void func_802D5628(void){
                     sp74 = func_802F9AA8(0x3EC);
                     sp70 = func_8034C528(0x191);
                      if(sp70){
-                        func_8034DE60(sp70, 0.0f, 1550.0f, 6.5f, 1);
+                        subaddie_positionMoveVertical(sp70, 0.0f, 1550.0f, 6.5f, 1);
                     }
                     func_802FA060(sp74, 20000, 20000, 0.0f);
                     func_802F9F80(sp74, 0.0f, 6.2f, 0.5f);
@@ -997,7 +997,7 @@ void func_802D5628(void){
                     sp6C = func_802F9AA8(0x3EC);
                     sp68 = func_8034C528(0x190);
                      if(sp68){
-                        func_8034DE60(sp68, 1200.0f, 1900.0f, 3.0f, 1);
+                        subaddie_positionMoveVertical(sp68, 1200.0f, 1900.0f, 3.0f, 1);
                     }
                     func_802FA060(sp6C, 20000, 20000, 0.0f);
                     func_802F9F80(sp6C, 0.0f, 2.7f, 0.5f);

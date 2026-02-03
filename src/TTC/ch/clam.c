@@ -357,5 +357,5 @@ static void __chClam_updateFunc(Actor *this){
             }
             break;
     }
-    func_80328FB0(this, 5.0f);
+    subaddie_turnToYaw(this, 5.0f);
 }

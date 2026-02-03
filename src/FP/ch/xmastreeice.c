@@ -62,7 +62,7 @@ void chXmasTreeIce_emitDust(f32 position[3], s32 cnt, enum asset_e sprite_id){
 
 void chXmasTreeIce_shatterIce(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
-    chXmasTreeIce_shatterEffect(this->position, 0xA, ASSET_4D4_MODEL_XMAS_ICE_FRAGMENT);
+    chXmasTreeIce_shatterEffect(this->position, 0xA, ASSET_4D3_MODEL_XMAS_ICE_FRAGMENT);
     chXmasTreeIce_emitDust(this->position, 6, ASSET_700_SPRITE_DUST);
     func_8030E6D4(SFX_B6_GLASS_BREAKING_1);
     coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);

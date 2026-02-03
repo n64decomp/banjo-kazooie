@@ -13,7 +13,7 @@ ActorInfo sumusicNote = {
     NULL,
     musicNote_update,
     actor_update_func_80326224,
-    func_80325934,
+    fxTouchSparkle_draw,
     0,
     0,
     0.6f,
