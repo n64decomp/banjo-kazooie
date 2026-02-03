@@ -15,7 +15,7 @@ void func_80290220(void){
     D_8037C010 = D_8037C014 = -1;
     D_8037C02C = 0;
     D_8037C018 = -1;
-    _player_getPosition(D_8037C020);
+    playerPosition_get(D_8037C020);
 }
 
 void func_8029026C(s32 arg0, s32 arg1){
@@ -36,7 +36,7 @@ void func_80290298(void) {
     sp30 = (func_8028B528() && !is_pumpkin) ? 6 : 1;
     sp24 = func_8028B528() && !is_pumpkin;
     if (D_8037C02C || player_isStable() || sp24 || player_movementGroup() == BSGROUP_5_CLIMB || bs_getState() == BS_B_UNKOWN) {
-        _player_getPosition(D_8037C020);
+        playerPosition_get(D_8037C020);
     }
 
     if (player_movementGroup() == BSGROUP_A_FLYING) {

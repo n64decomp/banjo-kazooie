@@ -101,7 +101,7 @@ void func_80294B00(int arg0){
 }
 
 void func_80294B0C(void){
-    f32 sp1C = player_getYPosition();
+    f32 sp1C = playerPosition_getY();
     enum bsgroup_e player_movement_group = player_movementGroup();
     if( player_isStable() 
         || player_inWater() 
@@ -167,12 +167,12 @@ void func_80294BDC(void) {
 void func_80294DD8(void){
     ml_vec3f_clear(D_8037C2A0);
     ml_vec3f_clear(D_8037C2B0);
-    _player_getPosition(D_8037C2D8);
+    playerPosition_get(D_8037C2D8);
     D_8037C2ED = 0;
     D_8037C2E4 = 0.0f;
     D_8037C2EC = 1;
     D_8037C2F0.unk8 = 0;
-    D_8037C2F0.unk4 = D_8037C2F0.unk0 = player_getYPosition();
+    D_8037C2F0.unk4 = D_8037C2F0.unk0 = playerPosition_getY();
 }
 
 void func_80294E54(int arg0){
@@ -181,7 +181,7 @@ void func_80294E54(int arg0){
 
 void func_80294E60(void){
     if(player_isStable()){
-        _player_getPosition(D_8037C2D8);
+        playerPosition_get(D_8037C2D8);
     }
 
     if(player_isStable() || bsclimb_inSet(bs_getState())){

@@ -37,7 +37,7 @@ void bsdie_init(void){
     anctrl_start(aCtrl, "bsdie.c", 0x7e);
     func_8029B930();
     func_8030E58C(SFX_36_BANJO_DOH, 1.0f);
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D410 = 250.0f;
@@ -112,7 +112,7 @@ void bsdie_update(void){
         && floor_isCurrentFloorunk59() 
         && ( D_8037D414
              || ( anctrl_isStopped(aCtrl) 
-                  && ( player_getYPosition() < (floor_getCurrentFloorYPosition() - 150.0f)) 
+                  && ( playerPosition_getY() < (floor_getCurrentFloorYPosition() - 150.0f)) 
                 )
            )
         && player_inWater()

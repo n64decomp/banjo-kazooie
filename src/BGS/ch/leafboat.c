@@ -152,7 +152,7 @@ void chLeafBoat_update(Actor *this){
     local->unk60[1] = this->yaw;
     local->unk60[2] = this->roll;
     this->lifetime_value += time_getDelta();
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     if( func_80294660() == 0x100
         && func_8028F20C()
         && this->marker->isBanjoOnTop

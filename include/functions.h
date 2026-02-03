@@ -59,7 +59,6 @@ u32 player_getTransformation(void);
 
 void func_8028E7EC(f32 arg0[3]);
 
-void _player_getPosition(f32 dst[3]);
 void player_getPosition(f32 dst[3]);
 void player_getRotation(f32 *dst);
 
@@ -69,7 +68,6 @@ u32 bakey_held(s32);
 
 void pitch_setIdeal(f32);
 f32 pitch_get(void);
-f32 player_getYPosition(void);
 
 void climbGetBottom(f32 dst[3]);
 
@@ -260,7 +258,6 @@ void func_80295C08(void (* arg0)(void));
 void baiFrame_startWithValue(f32);
 f32  pitch_getIdeal(void);
 void pitch_setAngVel(f32, f32);
-void func_80298528(f32);
 f32  barebound_get_vertical_velocity(void);
 f32  barebound_get_horizontal_velocity(void);
 f32  barebound_get_gravity(void);
@@ -418,7 +415,6 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 AnimCtrl *baanim_getAnimCtrlPtr(void);
-void player_setYPosition(f32);
 
 NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor_ptr);
 NodeProp *nodeprop_findByActorIdAndPosition_f32(enum actor_e actor_id, f32 position[3]);

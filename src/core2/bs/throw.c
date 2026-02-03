@@ -40,7 +40,7 @@ void bsthrow_update(void){
     if(D_8037D580 == 0 && sp20 != NULL)
         bacarry_set_marker(sp20);
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     get_throw_target_position(sp34);
     func_80257F18(player_position, sp34, &sp24);
     yaw_setIdeal(sp24);

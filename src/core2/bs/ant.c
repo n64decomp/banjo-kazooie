@@ -297,7 +297,7 @@ static void __bsant_recoil_init(int take_damage){
     else
         func_8030E58C(SFX_56_BANJO_HUI, 1.8f);
     
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     yaw_setIdeal(mlNormalizeAngle(sp38 + 180.0f));
@@ -383,7 +383,7 @@ void bsant_die_init(void){
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsant.c", 0x2f6);
     func_8030E58C(SFX_36_BANJO_DOH, 1.8f);
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
     D_8037D290 = 250.0f;

@@ -32,7 +32,7 @@ void snackerctl_reset(void){
 static s32 __snackerctl_player_within_distance(f32 x, f32 z, f32 dist){
     f32 player_position[3];
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     return ml_vec3f_point_within_horizontal_distance(player_position, x, z, dist);
 }
 
@@ -40,7 +40,7 @@ static SnackerCtlState __snackerctl_update_ttc(void){
     SnackerCtlState nextState = 0;
     f32 player_position[3];
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     if(player_isSwimming() || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){ //(swimming || ???)
         if(player_position[1] < 600.0f
             && !__snackerctl_player_within_distance(2478.0f, 4586.0f, 1750.0f) //within 1750 of sandcastle center
