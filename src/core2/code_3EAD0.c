@@ -14,15 +14,15 @@ s32 D_80365F30[] = {
     3, 4, 5, 6, 
     7, 7, 8, 8
 };
-ActorInfo D_80365F60 = {
-    0x58, 0x4E, ASSET_7DE_SPRITE_SHOE_SPARKLES,
+ActorInfo fxWadingBootsTouchSparkle = {
+    MARKER_58_WADING_BOOTS_TOUCH_SPARKLE, ACTOR_4E_WADING_BOOTS_TOUCH_SPARKLE, ASSET_7DE_SPRITE_SHOE_SPARKLES,
     0, NULL,
     func_802C5A60, actor_update_func_80326224, fxTouchSparkle_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80365F84 = {
-    0x59, 0x4F, ASSET_7DE_SPRITE_SHOE_SPARKLES,
+ActorInfo fxTurboTrainersTouchSparkle = {
+    MARKER_59_TURBO_TRAINERS_TOUCH_SPARKLE, ACTOR_4F_TURBO_TRAINERS_TOUCH_SPARKLE, ASSET_7DE_SPRITE_SHOE_SPARKLES,
     0, NULL,
     func_802C5A60, actor_update_func_80326224, fxTouchSparkle_draw,
     0, 0, 0.0f, 0

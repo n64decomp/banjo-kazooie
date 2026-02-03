@@ -3785,9 +3785,9 @@ enum asset_e
     ASSET_56B_MODEL_SANDYBUTT_PYRAMID = 0x56B,
     // 56c The End Sign
     ASSET_56D_MUMBOS_HAND_WITH_PICTURE = 0x56D, // Mumbo's Hand with SNS pictures
-    // 56e Hammerhead Beach Scenery
-    // Unused
-    // Unused
+    // 56E Hammerhead Beach Scenery
+    // 56F Unused
+    // 570 Unused
     // Unused
     // 572 Palm Tree (2D)
     // Unused

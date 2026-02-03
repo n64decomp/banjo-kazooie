@@ -359,7 +359,7 @@ void __baMarker_resolveCollision(Prop *other_prop){
                 }
                 break;
 
-            case 0x15F: //L8028C070
+            case MARKER_15F_RBB_HONEYCOMB_SWITCH: //L8028C070
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER){
                     if(!mapSpecificFlags_get(0)){
                         mapSpecificFlags_set(0,1);
@@ -852,25 +852,25 @@ void __baMarker_resolveCollision(Prop *other_prop){
         tmp3 = other_prop->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
         switch (tmp3)
         {
-        case 0x6D6: //L8028D144
+        case ASSET_6D6_SPRITE_MUSIC_NOTE: //L8028D144
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 __baMarker_resolveMusicNoteCollision(other_prop);
             }
             break;
-        case 0x6D7: //L8028D16C
+        case ASSET_6D7_SPRITE_BLUE_EGGS: //L8028D16C
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectEgg(other_prop);
             }
             break;
-        case 0x580: //L8028D194
+        case ASSET_580_SPRITE_RED_FEATHER: //L8028D194
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectRedFeather(other_prop);
             }
             break;
-        case 0x6D1: //L8028D1BC
+        case ASSET_6D1_SPRITE_GOLDFEATHER: //L8028D1BC
             if(!__baMarker_8028BC60()){
                 other_prop->spriteProp.isNotFeatherEggOrNote = 0;
                 chCollectible_collectGoldFeather(other_prop);
