@@ -1124,7 +1124,7 @@ void func_803431D0(Actor *arg0, s32 arg1, s32 arg2, s32 arg3) {
         }
     }
     func_803430B4(arg0);
-    func_80328FB0(arg0, (f32) arg2);
+    subaddie_turnToYaw(arg0, (f32) arg2);
     func_80328FF0(arg0, (f32) arg3);
 }
 

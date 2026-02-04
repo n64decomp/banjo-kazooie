@@ -202,7 +202,7 @@ void func_803878B0(Actor *this){
         this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = func_80387890;
         marker_setCollisionScripts(this->marker, NULL, func_80387850, NULL);
-        func_8032AA58(this, 1.1f);
+        suSetSpriteScale(this, 1.1f);
         func_8038756C(this, 1);
     }
 

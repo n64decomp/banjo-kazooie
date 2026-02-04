@@ -10,7 +10,7 @@ void func_802B3A50(void) {
     f32 sp1C[3];
 
     if (balookat_getState()) {
-        _player_getPosition(plyr_pos);
+        playerPosition_get(plyr_pos);
         if (balookat_try_get_position(sp1C) && func_80257F18(plyr_pos, sp1C, &sp34)) {
             yaw_setIdeal(sp34);
         }

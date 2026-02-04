@@ -114,7 +114,7 @@ void bafalldamage_set_start_position(f32 arg0[3]){
 }
 
 void bafalldamage_init(void){
-    _player_getPosition(bafalldamage_start_position);
+    playerPosition_get(bafalldamage_start_position);
     bafalldamage_state = 0;
     bafalldamage_set_state(1);
     D_8037C1C0.damage = 0;
@@ -134,6 +134,6 @@ void bafalldamage_update(void){
 void bafalldamage_start(void){
     f32 player_position[3];
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     bafalldamage_set_start_position(player_position);
 }

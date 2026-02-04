@@ -51,7 +51,7 @@ void func_8029F4F0(void){
 
 void func_8029F60C(void){
     f32 player_position[3];
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     func_8032728C(player_position, 50.0f, 2, func_8029F4E0);
 }
 

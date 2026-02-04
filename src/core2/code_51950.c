@@ -7,17 +7,17 @@ extern f32 player_getYaw(void);
 void func_802D88E0(Actor *this);
 
 /* .data */
-ActorInfo D_80367C90 = {
-    0x100, 0x1FF, 0x580,
+ActorInfo fxSpentRedFeather = {
+    MARKER_100_SPENT_RED_FEATHER, ACTOR_1FF_SPENT_RED_FEATHER, ASSET_580_SPRITE_RED_FEATHER,
     0x0, NULL,
-    func_802D88E0, actor_update_func_80326224, func_80325934, 
+    func_802D88E0, actor_update_func_80326224, fxTouchSparkle_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80367CB4 = {
-    0x101, 0x200, 0x6D1,
+ActorInfo fxSpentGoldFeather = {
+    MARKER_101_SPENT_GOLD_FEATHER, ACTOR_200_SPENT_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHER,
     0x0, NULL,
-    func_802D88E0, actor_update_func_80326224, func_80325934, 
+    func_802D88E0, actor_update_func_80326224, fxTouchSparkle_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -82,12 +82,12 @@ void func_802D8B20(enum actor_e actor_id){
     temp2 = player_getYaw();
     temp_v0 = (randf() > 0.5) ? 0x1E : -0x1E;
     feather = actor_spawnWithYaw_f32(actor_id, plyr_pos, (s32) (temp2 + temp_v0));
-    func_8032AA58(feather, 0.45f);
+    suSetSpriteScale(feather, 0.45f);
     feather->actor_specific_1_f = 22.0f;
     feather->unk1C[1] = 48.0f;
     feather->lifetime_value = 1.2f;
 }
 
 void func_802D8BE4(bool gold_feather){
-    __spawnQueue_add_1((GenFunction_1)func_802D8B20, (!gold_feather) ? 0x1FF : 0x200);
+    __spawnQueue_add_1((GenFunction_1)func_802D8B20, (!gold_feather) ? ACTOR_1FF_SPENT_RED_FEATHER : ACTOR_200_SPENT_GOLD_FEATHER);
 }

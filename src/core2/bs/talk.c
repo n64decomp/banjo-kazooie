@@ -20,7 +20,7 @@ void bstalk_init(void){
     func_8029C848(player_anim_ctrl);
     anctrl_setPlaybackType(player_anim_ctrl,  ANIMCTRL_LOOP);
     anctrl_start(player_anim_ctrl, "bstalk.c", 0x38);
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     get_talk_target_position(target_pos);
     func_80257F18(plyr_pos, target_pos, &yaw);
     yaw_setIdeal(yaw);

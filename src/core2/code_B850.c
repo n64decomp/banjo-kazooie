@@ -14,7 +14,7 @@ void func_802927E0(f32 arg0, f32 arg1){
     f32 sp18[3];
 
     arg1 *= 0.51;
-    _player_getPosition(sp18);
+    playerPosition_get(sp18);
     sp18[1] += 10.0f;
     func_802589E4(sp24, arg0, arg1);
     sp24[1] = 40.0f;
@@ -27,7 +27,7 @@ void func_80292864(f32 arg0, f32 arg1){
     f32 sp1C[3];
 
     ml_vec3f_assign(sp1C, 0.0f, 40.0f, 0.0f);
-    _player_getPosition(sp28);
+    playerPosition_get(sp28);
     func_802589E4(sp34, arg0, arg1);
     sp34[1] = 10.0f;
     sp28[0] += sp34[0]; sp28[1] += sp34[1]; sp28[2] += sp34[2];
@@ -39,7 +39,7 @@ void func_80292900(f32 arg0, f32 arg1){
     f32 sp18[3];
 
     arg1 *= 0.51;
-    _player_getPosition(sp18);
+    playerPosition_get(sp18);
     func_802589E4(sp24, arg0, arg1);
     sp24[1] = 40.0f;
     func_80352CF4(sp18, sp24, 10.0f, 150.0f);
@@ -49,7 +49,7 @@ void func_80292974(f32 arg0, f32 arg1, f32 arg2){
     f32 sp24[3];
     f32 sp18[3];
     arg1 *= 0.51;
-    _player_getPosition(sp18);
+    playerPosition_get(sp18);
     sp18[1] += 10.0f;
     func_802589E4(sp24, arg0, arg1);
     sp24[1] = arg2;

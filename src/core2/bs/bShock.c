@@ -40,7 +40,7 @@ void bsbshock_charge_init(void){
     sfxsource_setSfxId(D_8037D382, SFX_2C_PULLING_NOISE);
     func_8030E04C(D_8037D382, 1.4f, 0.4f, -1.2f);
     baModel_80292158(-50.0f);
-    func_80298528(-50.0f);
+    playerPosition_addY(-50.0f);
     D_8037D380 = 1;
     D_8037D381 = 0;
 }
@@ -109,7 +109,7 @@ void bsbshock_charge_update(void){
     if(anctrl_isAt(aCtrl, 0.5551f)){
         baphysics_set_vertical_velocity(180.0f);
         baModel_80292158(0.0f);
-        func_80298528(50.0f);
+        playerPosition_addY(50.0f);
     }
 
     if(sp1C[1] < 0.0f && player_inWater())
@@ -123,7 +123,7 @@ void bsbshock_charge_end(void){
     func_8029E070(0);
     if(baModel_80292230() != 0.0f){
         baModel_80292158(0.0f);
-        func_80298528(50.0f);
+        playerPosition_addY(50.0f);
     }
 }
 
@@ -152,7 +152,7 @@ void bsbshock_init(void){
     func_8029E070(1);
     ability_use(ABILITY_USED_SHOCK);
     baModel_80292158(-50.0f);
-    func_80298528(-50.0f);
+    playerPosition_addY(-50.0f);
     D_8037D381 = 0;
 }
 
@@ -196,5 +196,5 @@ void bsbshock_end(void){
     func_8029E064(0);
     func_8029E070(0);
     baModel_80292158(0.0f);
-    func_80298528(50.0f);
+    playerPosition_addY(50.0f);
 }

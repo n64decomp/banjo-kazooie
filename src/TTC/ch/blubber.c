@@ -99,7 +99,7 @@ static void __chBlubber_checkJiggySpawnedTextAndAdvanceState(Actor *this){
     if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_1_UNKNOWN) ) return;
     if(  mapSpecificFlags_get(TTC_SPECIFIC_FLAG_3_BLUBBER_SHOW_JIGGY_SPAWNED_TEXT_FLAG) ) return;
 
-    this->yaw_ideal = (f32) func_80329784(this);
+    this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
     mapSpecificFlags_set(TTC_SPECIFIC_FLAG_3_BLUBBER_SHOW_JIGGY_SPAWNED_TEXT_FLAG, TRUE);
     func_8028F918(2);
     timed_setStaticCameraToNode(0.0f, 4);
@@ -184,7 +184,7 @@ static void __chBlubber_updateFunc(Actor *this){
             if(subaddie_maybe_set_state_position_direction(this, CH_BLUBBER_STATE_2_UNKNOWN, 0.0f, 1, 0.007f))
                 break;
 
-            func_80328FB0(this, 3.0f);
+            subaddie_turnToYaw(this, 3.0f);
             __func_8038771C(this);
             __func_80387830(this, 0.14f, 0.68f);
             __chBlubber_checkJiggySpawnedTextAndAdvanceState(this);
@@ -219,7 +219,7 @@ static void __chBlubber_updateFunc(Actor *this){
         
         case CH_BLUBBER_STATE_4_UNKNOWN:
             {                
-                func_80328FB0(this, 3.0f);
+                subaddie_turnToYaw(this, 3.0f);
                 local =  (ActorLocal_Blubber*)&this->local;
                 if(actor_animationIsAt(this, 0.99f) && !local->unk24){
                     subaddie_set_state(this, CH_BLUBBER_STATE_5_UNKNOWN);

@@ -21,19 +21,19 @@ enum dust_emitter_type_e D_80367AA0 = DUST_EMITTER_TYPE_DUST;
 f32 D_80367AA4[3] = {0.0f, 0.0f, 0.0f};
 
 ActorInfo D_80367AB0 = {
-    0x57, 0x4C, 0x0, 
+    MARKER_57_STEAM, ACTOR_4C_STEAM, 0x0, 
     0, NULL, 
     func_802D766C, actor_update_func_80326224, func_802D745C,
     0, 0, 0.0f, 0
 };
 ActorInfo D_80367AD4 = {
-    0x57, 0x4D, 0x0, 
+    MARKER_57_STEAM, ACTOR_4D_STEAM_2, 0x0, 
     0, NULL, 
     func_802D766C, actor_update_func_80326224, func_802D745C,
     0, 0, 0.0f, 0
 };
 ActorInfo D_80367AF8 = {
-    0x57, 0x58, 0x0, 
+    MARKER_57_STEAM, ACTOR_58_STEAM_3, 0x0, 
     0, NULL, 
     func_802D766C, actor_update_func_80326224, func_802D745C,
     0, 0, 0.0f, 0

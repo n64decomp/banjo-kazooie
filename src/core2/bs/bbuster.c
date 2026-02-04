@@ -146,7 +146,7 @@ void bsbbuster_update(void){
                 D_8037D2B8 = 1;
                 D_8037D2B0 = 0.09f;
                 D_8037D2BA = 3;
-                _player_getPosition(player_position);
+                playerPosition_get(player_position);
                 func_8032728C(player_position, 150.0f, 2, func_8029FB20);
                 if(bafalldamage_get_damage(&sp3C)){
                     sp44 = BS_SPLAT;

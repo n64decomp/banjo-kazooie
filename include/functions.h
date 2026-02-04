@@ -59,7 +59,6 @@ u32 player_getTransformation(void);
 
 void func_8028E7EC(f32 arg0[3]);
 
-void _player_getPosition(f32 dst[3]);
 void player_getPosition(f32 dst[3]);
 void player_getRotation(f32 *dst);
 
@@ -69,7 +68,6 @@ u32 bakey_held(s32);
 
 void pitch_setIdeal(f32);
 f32 pitch_get(void);
-f32 player_getYPosition(void);
 
 void climbGetBottom(f32 dst[3]);
 
@@ -260,7 +258,6 @@ void func_80295C08(void (* arg0)(void));
 void baiFrame_startWithValue(f32);
 f32  pitch_getIdeal(void);
 void pitch_setAngVel(f32, f32);
-void func_80298528(f32);
 f32  barebound_get_vertical_velocity(void);
 f32  barebound_get_horizontal_velocity(void);
 f32  barebound_get_gravity(void);
@@ -363,7 +360,7 @@ u8 func_8030ED2C(enum sfx_e uid, s32 arg1);
 
 void fileProgressFlag_setN(enum file_progress_e, s32, s32);
 Actor *marker_getActorAndRotation(ActorMarker *marker, f32 rotation[3]);
-Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+Actor *fxTouchSparkle_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 void func_80326244(Actor *);
@@ -379,11 +376,11 @@ int  subaddie_maybe_set_state(Actor *, s32, f32);
 void subaddie_set_state_with_direction(Actor * this, s32 myAnimId, f32 anim_start_position, s32 direction);
 bool subaddie_maybe_set_state_position_direction(Actor *, s32, f32, s32, f32 );
 void func_80328CEC(Actor *, s32, s32, s32);
-void func_80328FB0(Actor *, f32);
+void subaddie_turnToYaw(Actor *, f32);
 int  func_80329030(Actor *, s32);
 int  func_80329078(Actor *, s32, s32);
 int  func_80329480(Actor *);
-s32  func_80329784(Actor *);
+s32  subaddie_getYawToPlayer(Actor *);
 void func_80329878(Actor *, f32);
 struct5Bs *func_80329934(void);
 Actor *func_8032A7AC(Actor *);
@@ -405,7 +402,7 @@ Struct70s *func_8034C528(s32);
 Struct70s *func_8034C5AC(s32);
 void func_8034DC08(Struct6Ds *, f32[3], f32[3], f32, s32);
 void func_8034DDF0(Struct6Ds *arg0, f32 arg1[3], f32 arg2[3], f32 arg3, s32 arg4);
-void func_8034DE60(Struct6Ds *, f32, f32, f32, s32);
+void subaddie_positionMoveVertical(Struct6Ds *, f32, f32, f32, s32);
 void func_8034DEB4(Struct6Ds *, f32);
 void func_8034DFB0(Struct6Ds *arg0, s32 arg1[4], s32 arg2[4], f32 arg3);
 void func_8034E1A4(Struct6Ds *arg0, enum sfx_e, f32, f32);
@@ -418,7 +415,6 @@ void func_80352CF4(f32 *, f32 *, f32, f32);
 
 
 AnimCtrl *baanim_getAnimCtrlPtr(void);
-void player_setYPosition(f32);
 
 NodeProp *nodeprop_findByActorIdAndActorPosition(enum actor_e actor_id, Actor *actor_ptr);
 NodeProp *nodeprop_findByActorIdAndPosition_f32(enum actor_e actor_id, f32 position[3]);
@@ -429,7 +425,7 @@ Actor *subaddie_getLinkedActor(Actor *);
 Actor *actor_draw(ActorMarker *, Gfx**, Mtx**, Vtx **);
 
 Actor *func_80325340(ActorMarker *, Gfx **, Mtx **, Vtx **);
-void func_8032AA58(Actor *, f32);
+void suSetSpriteScale(Actor *, f32);
 void func_80324E38(f32, s32);
 void timed_playSfx(f32, enum sfx_e, f32, s32);
 void timed_setStaticCameraToNode(f32, s32);
@@ -516,5 +512,7 @@ extern void baflag_clear(enum misc_flag_e arg0);
 extern void baflag_toggle(enum misc_flag_e arg0);
 
 extern void piMgr_read(void *vaddr, s32 devaddr, s32 size);
+
+s32 game_defrag(void);
 
 #endif

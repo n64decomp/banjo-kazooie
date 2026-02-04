@@ -1326,7 +1326,7 @@ void func_80330208(Cube *cube) {
                 if (actor != NULL) {
                     actor->secondaryId = i_prop->unk10_31;
                     actor->actorTypeSpecificField = i_prop->radius;
-                    func_8032AA58(actor, (i_prop->scale != 0) ? ((f32)i_prop->scale * 0.01) : 1.0);
+                    suSetSpriteScale(actor, (i_prop->scale != 0) ? ((f32)i_prop->scale * 0.01) : 1.0);
                 }
             }
             i_prop++;

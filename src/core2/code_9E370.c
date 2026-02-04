@@ -223,7 +223,7 @@ Actor *actor_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-Actor *func_80325934(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *fxTouchSparkle_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     f32 scale[3];
     BKSpriteDisplayData *sp3C;
@@ -1396,7 +1396,7 @@ f32 func_80328DCC(Actor *this, f32 angle, f32 angle_ideal, s32 arg3) {
     return var_f2;
 }
 
-void func_80328FB0(Actor *this, f32 arg1){
+void subaddie_turnToYaw(Actor *this, f32 arg1){
     this->yaw = func_80328DCC(this, this->yaw, this->yaw_ideal, (s32)arg1);
 }
 
@@ -1470,14 +1470,14 @@ bool func_803292E0(Actor *this){
         return 1;
     }
 
-    _player_getPosition(player_position);
+    playerPosition_get(player_position);
     return func_80307258(player_position, this->unk10_25 - 1, this->unk10_18 - 1) != -1;
 }
 
 bool func_80329354(Actor *this){
     f32 sp1C[3];
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
     return func_80329260(this, sp1C);
 }
 
@@ -1487,7 +1487,7 @@ bool func_80329384(Actor *this, f32 arg1){
     if(this->unk10_25 == 0)
         return TRUE;
 
-    _player_getPosition(sp1C);
+    playerPosition_get(sp1C);
 
     return func_80307258(sp1C, this->unk10_25 - 1, this->unk10_18 - 1) != -1
         && (sp1C[1] < (this->position[1] + arg1))
@@ -1538,7 +1538,7 @@ bool subaddie_playerIsWithinSphere(Actor *this, s32 dist){
     f32 sp18[3];
 
     func_8028E964(sp24);
-    _player_getPosition(sp18);
+    playerPosition_get(sp18);
     sp24[1] = sp18[1];
     if( ( (this->position_x - sp24[0])*(this->position_x - sp24[0]) 
           + (this->position_y - sp24[1])*(this->position_y - sp24[1])
@@ -1580,26 +1580,26 @@ s32 func_8032970C(Actor *this){
     f32 plyr_pos[3];
 
     func_8028E964(sp24);
-    _player_getPosition(plyr_pos);
+    playerPosition_get(plyr_pos);
     sp24[1] = plyr_pos[1];
     return (s32) DIST_SQ_VEC3F(this->position, sp24);
 }
 
-s32 func_80329784(Actor *this){
+s32 subaddie_getYawToPlayer(Actor *this){
     f32 sp1C[3];
 
     func_8028E964(sp1C);
     return (s32)func_80257204(this->position[0], this->position[2], sp1C[0], sp1C[2]);
 }
 
-s32 func_803297C8(Actor *arg0, f32 arg1[3]){
+s32 subaddie_getYawToPosition(Actor *arg0, f32 arg1[3]){
     return (s32)func_80257204(arg0->position[0], arg0->position[2], arg1[0], arg1[2]);
 }
 
 void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
     f32 sp2C[3];
 
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_8025727C(
         arg0->position[0], arg0->position[1], arg0->position[2],
         sp2C[0], sp2C[1], sp2C[2],
@@ -1946,8 +1946,8 @@ void func_8032A88C(Actor *arg0) {
     Actorlocal_Core2_9E370 *sp20;
 
     sp20 = &arg0->local;
-    arg0->yaw_ideal = (f32) func_803297C8(arg0, sp20->unk0);
-    func_80328FB0(arg0, 6.0f);
+    arg0->yaw_ideal = (f32) subaddie_getYawToPosition(arg0, sp20->unk0);
+    subaddie_turnToYaw(arg0, 6.0f);
     func_80329030(arg0, 0);
     if ((((arg0->position[0] - sp20->unk0[0]) * (arg0->position[0] - sp20->unk0[0])) + ((arg0->position[2] - sp20->unk0[2]) * (arg0->position[2] - sp20->unk0[2]))) <= 144.0f) {
         arg0->unk44_14 = sp20->unkE;
@@ -1974,7 +1974,7 @@ bool func_8032A9E4(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 //actor_setScale
-void func_8032AA58(Actor *this, f32 scale){
+void suSetSpriteScale(Actor *this, f32 scale){
     this->scale = scale;
     this->marker->unk14_10 = 0;
 }

@@ -82,7 +82,7 @@ BundleInfo gBundle_array[] = {
     {0x00A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 650.0f,   0.0f,  500.0f,   0.0f,   0.0f,   0.0f, 0.6f,   0.0f},
     {0x0021, ACTOR_46_JIGGY,            1, 0,                       0,     0,   0.0f,   0.0f,    0.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
     {0x0025, ACTOR_47_EMPTY_HONEYCOMB,  1, SFX_3E9_UNKNOWN,         1, 18000,   0.0f,   0.0f,  750.0f, 500.0f,   0.0f,   0.0f, 0.6f,   0.0f},
-    {0x0129, ACTOR_352_UNKOWN,          1, SFX_3F2_BOING,         1, 16000,   0.0f,   0.0f, 2500.0f,   0.0f,   0.0f,   0.0f, 0.4f,   0.0f},
+    {0x0129, ACTOR_352_UNKNOWN,          1, SFX_3F2_BOING,         1, 16000,   0.0f,   0.0f, 2500.0f,   0.0f,   0.0f,   0.0f, 0.4f,   0.0f},
     {0x0081, ACTOR_3A0_ICECUBE_B,       1, SFX_116_DEAF_RUSTLING,   1, 32000, 220.0f, 100.0f,  350.0f, 200.0f, 220.0f, 100.0f, 0.6f,   0.0f},
     {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 250.0f,   0.0f,  200.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},
     {0x02A1, ACTOR_50_HONEYCOMB,        1, SFX_8_BANJO_LANDING_04,  1, 20000, 350.0f,   0.0f,  350.0f,   0.0f,   0.0f,   0.0f, 0.0f,   0.0f},

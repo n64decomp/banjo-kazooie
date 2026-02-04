@@ -246,7 +246,7 @@ void bsswim_swim_update(void) {
     if ((func_80294530() != 0) && (can_dive() != 0)) {
         func_802944D0(sp1C);
         if (sp1C[1] < -0.7) {
-            if ((floor_getCurrentFloorYPosition() - player_getYPosition()) > 90.0f) {
+            if ((floor_getCurrentFloorYPosition() - playerPosition_getY()) > 90.0f) {
                 next_state = BS_30_DIVE_ENTER;
             }
         }
@@ -273,7 +273,7 @@ void __bsswim_update_rotation(void) {
     f32 target_pos[3];
 
     if (balookat_getState() != 0) {
-        _player_getPosition(plyr_pos);
+        playerPosition_get(plyr_pos);
         if (balookat_try_get_position(target_pos) && func_80257F18(plyr_pos, target_pos, &rotation)) {
             yaw_setIdeal(rotation);
         }

@@ -35,7 +35,7 @@ void func_802B360C(void) {
 
     sp1C = func_80296560();
     func_80294980(sp38);
-    _player_getPosition(sp2C);
+    playerPosition_get(sp2C);
     func_80257F18(sp38, sp2C, &sp28);
     if ((sp1C == 0xE) || (sp1C == 0x10)) {
         func_802B35D0(1);

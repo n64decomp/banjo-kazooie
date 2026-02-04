@@ -5,7 +5,7 @@
 
 extern void func_8028F4B8(f32[3], f32, f32);
 extern void func_80320ED8(ActorMarker *, f32, s32);
-s32 func_803297C8(Actor*, f32*);
+s32 subaddie_getYawToPosition(Actor*, f32*);
 Actor *func_8032813C();
 extern Actor* func_80329958(ActorMarker *this, s32 arg1);
 extern void func_803298D8();
@@ -306,8 +306,8 @@ void chfinalboss_func_80386B54(f32 *arg0, f32 arg1) {
 }
 
 bool chfinalboss_func_80386BEC(Actor *this, f32 arg1) {
-    this->yaw_ideal = (f32) func_80329784(this);
-    func_80328FB0(this, arg1);
+    this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+    subaddie_turnToYaw(this, arg1);
     if ((this->yaw_ideal < (this->yaw + arg1)) && ((this->yaw - arg1) < this->yaw_ideal)) {
         return TRUE;
     }
@@ -318,8 +318,8 @@ bool chfinalboss_func_80386C68(Actor *this, f32 arg1) {
     f32 sp2C[3];
 
     chjinjonator_8039129C(sp2C);
-    this->yaw_ideal = (f32) func_803297C8(this, sp2C);
-    func_80328FB0(this, arg1);
+    this->yaw_ideal = (f32) subaddie_getYawToPosition(this, sp2C);
+    subaddie_turnToYaw(this, arg1);
 
     if ((this->yaw_ideal < ( this->yaw + arg1)) && (( this->yaw - arg1) < this->yaw_ideal)) {
         return TRUE;
@@ -352,7 +352,7 @@ void chfinalboss_func_80386CF8(Actor *actor) {
 
 void __chfinalboss_dropHealth(ActorMarker *marker) {
     Actor *actor = marker_getActor(marker);
-    bundle_setYaw(func_803297C8(actor, D_803916F4));
+    bundle_setYaw(subaddie_getYawToPosition(actor, D_803916F4));
     bundle_spawn_f32(BUNDLE_14__HONEYCOMB, actor->position);
 }
 
@@ -938,7 +938,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         }
         local->unk20 += this->actor_specific_1_f * sp54;
         chfinalboss_func_80387BFC(this, 45.0f * sp54);
-        func_80328FB0(this, 30.0f * sp54);
+        subaddie_turnToYaw(this, 30.0f * sp54);
         if (this->lifetime_value > 1.0) {
             chfinalboss_phase1_setState(this, 6);
         }
@@ -952,7 +952,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         }
         local->unk20 -= this->actor_specific_1_f * sp54;
         chfinalboss_func_80387BFC(this, 180.0f * sp54);
-        func_80328FB0(this, 30.0f * sp54);
+        subaddie_turnToYaw(this, 30.0f * sp54);
         if ((local->unkA == 0) && (local->unk20 < (local->unk14 * 0.65))) {
             local->unkA = 1U;
             sfx_playFadeShorthandDefault(SFX_C4_TWINKLY_MUNCHER_GRR, 0.6f, 28000, this->position, 2000, 10000);
@@ -987,7 +987,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         this->actor_specific_1_f = this->actor_specific_1_f + local->unk28 * sp54;
         local->unk20 =  local->unk20 - this->actor_specific_1_f * sp54;
         chfinalboss_func_80387BFC(this, 180.0f * sp54);
-        func_80328FB0(this, 30.0f * sp54);
+        subaddie_turnToYaw(this, 30.0f * sp54);
         if (this->actor_specific_1_f < 0) {
             chfinalboss_phase1_setState(this, 4);
             chfinalboss_func_80386654(1.5f, fight_D_80391390, fight_D_80391380);
@@ -1000,7 +1000,7 @@ void chfinalboss_phase1_update(ActorMarker *marker) {
         local->unk20 = local->unk20 - this->actor_specific_1_f * sp54;
         chfinalboss_func_80387ACC(this, 60.0f * sp54);
         chfinalboss_func_80387D4C(this);
-        func_80328FB0(this, 30.0f * sp54);
+        subaddie_turnToYaw(this, 30.0f * sp54);
         if (this->actor_specific_1_f < 0) {
             chfinalboss_phase1_setState(this, 9);
             chfinalboss_func_80386654(2.0f, fight_D_80391390, fight_D_80391380);

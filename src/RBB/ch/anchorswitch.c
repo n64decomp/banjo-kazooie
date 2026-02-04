@@ -6,7 +6,7 @@ void chAnchorSwitch_update(Actor *this);
 
 /* .data */
 ActorInfo D_80390A80 = {
-    0x2F, 0x1C7, 0x41B, 0x0, NULL,
+    MARKER_2F_ANCHOR_SWITCH, ACTOR_1C7_ANCHOR_SWITCH, ASSET_41B_MODEL_ANCHOR_SWITCH, 0x0, NULL,
     chAnchorSwitch_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };

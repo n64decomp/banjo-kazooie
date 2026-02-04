@@ -17,7 +17,7 @@ void func_802B40D0(void){
     f32 sp2C[3];
     f32 sp28;
 
-    _player_getPosition(sp38);
+    playerPosition_get(sp38);
     sp38[1] += 20.0f;
     D_8037D524++;
     if(!(D_8037D524 < 3))

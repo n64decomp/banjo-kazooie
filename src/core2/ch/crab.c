@@ -65,7 +65,7 @@ void __chCrab_touch(ActorMarker *marker, ActorMarker *other){
     Actor *this;
 
     this = marker_getActor(marker);
-    if ((this->state == 4) && func_803294F0(this, 80, func_80329784(this))) {
+    if ((this->state == 4) && func_803294F0(this, 80, subaddie_getYawToPlayer(this))) {
         sfx_playFadeShorthandDefault(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 28000, this->position, 950, 1900);
         __chCrab_802CB140(this);
         subaddie_set_state(this, 1);
@@ -256,8 +256,8 @@ void chCrab_update(Actor *this) {
             marker_despawn(this->marker);
             return;
         }
-        this->yaw_ideal = (f32) func_80329784(this);
-        func_80328FB0(this, 4.0f);
+        this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+        subaddie_turnToYaw(this, 4.0f);
         return;
     }
     if( (gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN) 
@@ -310,7 +310,7 @@ void chCrab_update(Actor *this) {
             break;
 
         case 2: //L802CBE9C
-            func_80328FB0(this, 1.0f);
+            subaddie_turnToYaw(this, 1.0f);
             if( func_8032CA80(this, (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET)? 0xD: 0)
                 && func_80329480(this)
             ) {
@@ -321,8 +321,8 @@ void chCrab_update(Actor *this) {
             break;
 
         case 3: //L802CBF44
-            this->yaw_ideal = (f32) func_80329784(this);
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
+            subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 4);
                 this->actor_specific_1_f = 12.0f;
@@ -330,8 +330,8 @@ void chCrab_update(Actor *this) {
             break;
 
         case 8: //L802CBF9C
-            this->yaw_ideal = func_80329784(this) + 90.0;
-            func_80328FB0(this, 4.0f);
+            this->yaw_ideal = subaddie_getYawToPlayer(this) + 90.0;
+            subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
                 subaddie_set_state(this, 9);
                 this->actor_specific_1_f = 12.0f;
@@ -342,9 +342,9 @@ void chCrab_update(Actor *this) {
 
         case 4: //L802CC024
             if ((globalTimer_getTime() & 0xF) == 9) {
-                this->yaw_ideal = (f32) func_80329784(this);
+                this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
             }
-            func_80328FB0(this, 7.0f);
+            subaddie_turnToYaw(this, 7.0f);
             if (func_8032CA80(this, (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET)? 0xD : 0)) {
                 __chCrab_802CB140(this);
             }

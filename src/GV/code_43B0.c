@@ -60,7 +60,7 @@ void func_8038A8CC(ActorMarker *this_marker){
     shadow->position_y = mapModel_getFloorY(this->position);
     shadow->unk1C[0] = func_8038A860(shadow, this);
     shadow->yaw = this->yaw;
-    func_8032AA58(shadow, this->scale);
+    suSetSpriteScale(shadow, this->scale);
 }
 
 void func_8038A948(Actor *this){

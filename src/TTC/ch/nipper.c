@@ -115,7 +115,7 @@ static bool __func_80388088(Actor *this){
     f32 sp20[3];
     bool out;
 
-    sp2C = this->yaw - func_80329784(this);
+    sp2C = this->yaw - subaddie_getYawToPlayer(this);
     player_getPosition(sp20);
     if(sp20[0] < -5680.0f){
         return FALSE;
