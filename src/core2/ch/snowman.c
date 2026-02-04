@@ -171,7 +171,7 @@ int __chSnowman_isPlayerInAttackRange(Actor *this, s32 min_distance, s32 max_dis
 
 int __chSnowman_func_802E1F70(ActorMarker *marker, s32 arg1){
     if(marker->unk40_31 == 0xB){
-        marker->id = 0x287;
+        marker->id = 0x287; // check collision_table for clues?
     }
     else{
         marker->id = MARKER_B1_SIR_SLUSH;

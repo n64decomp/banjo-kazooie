@@ -16,7 +16,7 @@ ActorAnimationInfo D_80391C40[] = {
 };
 
 ActorInfo D_80391C58 = { 
-    0x126, 0x162, 0x38B, 
+    MARKER_126_BOGGY_RACE_FLAG, ACTOR_162_BOGGY_RACE_FLAG, ASSET_38B_MODEL_BOGGY_RACE_FLAG, 
     0x1, D_80391C40, 
     func_80388584, actor_update_func_80326224, func_803883E0, 
     0, 0, 0.35f, 0

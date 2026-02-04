@@ -21,7 +21,7 @@ extern void progressDialog_showDialogMaskFour(s32 arg0);
 extern void func_80291634(ActorMarker *, ActorMarker *);
 extern void func_80291610(ActorMarker *, ActorMarker *);
 extern Actor *baModel_80291AAC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-extern void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags);
+extern void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, CollisionParams *collision_flags);
 extern void func_80320ED8(ActorMarker *, f32, s32);
 extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e actor_id, s32 position[3]);
 
@@ -1032,32 +1032,32 @@ void baMarker_8028D71C(void){
     dustEmitter_emit(sp3C, 0, D_80363680, 1, 0.75f, 0.0f, 0x7d, 0xfa, DUST_EMITTER_TYPE_DUST);
 }
 
-void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, struct5Cs *collision_flags){
+void baMarker_8028D7B8(s32 arg0, ActorMarker *arg1, CollisionParams *collision_flags){
     s32 sp24;
-    s32 sp20 = func_8033D594(collision_flags);
+    s32 sp20 = collision_getDamageToPlayer(collision_flags);
     s32 sp1C = 0;
     Actor *actor = marker_getActor(arg1);
     s32 tmp_v0;
 
-    if(func_8033D5A4(collision_flags))
+    if(collision_getHitsToTrigger(collision_flags))
         baflag_set(BA_FLAG_8);
 
     if((baiFrame_getState() != 3 && func_8028F1E0()) || !sp20){
         if(!func_8028F25C()){
-            sp24 = func_8033D564(collision_flags);
+            sp24 = collision_getPlayerInteraction(collision_flags);
             if(0 < sp24 && sp24 < 6){
                 sp1C = 2;
                 sp20 = MAX(0, sp20 - 1);
             }//L8028D884
 
             if(6 < sp24 && sp24 < 0xC){
-                if(!(1 < func_8033D5A4(collision_flags)) || (func_8033D574(collision_flags) != -1 && actor->unk164[func_8033D574(collision_flags)])){
+                if(!(1 < collision_getHitsToTrigger(collision_flags)) || (collision_getNextState(collision_flags) != -1 && actor->unk164[collision_getNextState(collision_flags)])){
                     sp1C = 1;
                 }//L8028D8E8
             }//L8028D8E8
 
             if(sp20){
-                if(func_8033D594(collision_flags) == 3){
+                if(collision_getDamageToPlayer(collision_flags) == 3){
                     item_adjustByDiffWithHud(ITEM_14_HEALTH, -item_getCount(ITEM_14_HEALTH));
                 }
                 else{//L8028D92C

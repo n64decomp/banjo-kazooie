@@ -4,14 +4,25 @@
 
 void func_803864B8(Actor *this);
 
-ActorInfo D_8038EB50 = { 0x1AC, 0x298, 0x444, 0x0, NULL, func_803864B8, NULL, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_8038EB74 = { 0x1AC, 0x29A, 0x445, 0x0, NULL, func_803864B8, NULL, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_8038EB50 = {
+    MARKER_1AC_ZUBBA_DOOR, ACTOR_298_ZUBBA_DOOR, ASSET_444_MODEL_CCW_ZUBBA_DOOR,
+    0x0, NULL,
+    func_803864B8, NULL, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_8038EB74 = {
+    MARKER_1AC_ZUBBA_DOOR, ACTOR_29A_ZUBBA_DOOR, ASSET_445_MODEL_CCW_ZUBBA_DOOR,
+    0x0, NULL,
+    func_803864B8, NULL, actor_draw,
+    0, 0, 0.0f, 0
+};
 
 /* .code */
 void CCW_func_803863F0(Actor *this, s32 next_state){
     if(next_state == 2){
         sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 500, 3000);
-        levelSpecificFlags_set(LEVEL_FLAG_10_CCW_UNKNOWN, TRUE);
+        levelSpecificFlags_set(LEVEL_FLAG_10_CCW_BREAK_ZUBBA_DOOR, TRUE);
         marker_despawn(this->marker);
     }
     this->state = next_state;
@@ -31,7 +42,7 @@ void func_803864B8(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, NULL, func_80386468);
         CCW_func_803863F0(this, 1);
 
-        if (levelSpecificFlags_get(LEVEL_FLAG_10_CCW_UNKNOWN)) {
+        if (levelSpecificFlags_get(LEVEL_FLAG_10_CCW_BREAK_ZUBBA_DOOR)) {
             marker_despawn(this->marker);
         }
     }

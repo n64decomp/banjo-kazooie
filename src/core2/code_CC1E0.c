@@ -370,7 +370,7 @@ void fxegg_collide(s32 arg0, ActorMarker *marker, s32 arg2) {
     Actor *actor;
 
     actor = marker_getActor(marker);
-    if (func_8033D5A4(arg2) != 0) {
+    if (collision_getHitsToTrigger(arg2) != 0) {
         commonParticle_setCurrentInUseFalse();
         if (actor->modelCacheIndex != 0x29D) {
             fxegg_shatter(commonParticle_getCurrentProjectileIndex());

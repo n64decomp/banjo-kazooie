@@ -28,7 +28,13 @@ Struct_CCW_1B20_0 D_8038EC40[4] ={
     {0x183, 1, 1, 0x000, 0x000, 0x00, 0}
 };
 
-ActorInfo D_8038EC70 = { 0x1B0, 0x29D, 0x447, 0x0, NULL, func_80388478, NULL, CCW_func_803882F4, 0, 0, 1.0f, 0};
+ActorInfo D_8038EC70 = {
+    MARKER_1B0_CCW_BEANSTALK, ACTOR_29D_CCW_BEANSTALK, ASSET_447_MODEL_CCW_BEANSTALK,
+    0x0, NULL,
+    func_80388478, NULL, CCW_func_803882F4,
+    0, 0, 1.0f, 0
+};
+
 f32 D_8038EC94[3] = {200.0f,  2120.0f, -5570.0f};
 
 /* .code */

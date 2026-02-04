@@ -27,7 +27,7 @@ extern void __spawnQueue_add_5(GenFunction_5, s32, s32, s32, s32, s32);
 
 void func_8032A6A8(Actor *arg0);
 void func_8032ACA8(Actor *arg0);
-void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2);
+void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, CollisionParams *arg2);
 void subaddie_set_state_with_direction(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  subaddie_playerIsWithinSphere(Actor *this, s32 dist);
@@ -2234,7 +2234,7 @@ void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
     }
 }
 
-void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
+void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, CollisionParams *arg2) {
     Actor *this;
     s32 sp70;
     s32 sp6C;
@@ -2250,11 +2250,11 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, struct5Cs *arg2) {
     s32 pad;
 
     this = marker_getActor(arg0);
-    sp70 = func_8033D5B4(arg2);
-    sp6C = func_8033D584(arg2);
-    sp68 = func_8033D5A4(arg2);
-    sp64 = func_8033D574(arg2);
-    if (((baiFrame_getState() != 3) && func_8028F1E0()) || (func_8033D594(arg2) == 0)) {
+    sp70 = collision_getDropBundleNum(arg2);
+    sp6C = collision_getSoundEffect(arg2);
+    sp68 = collision_getHitsToTrigger(arg2);
+    sp64 = collision_getNextState(arg2);
+    if (((baiFrame_getState() != 3) && func_8028F1E0()) || (collision_getDamageToPlayer(arg2) == 0)) {
         if (sp64 == 0) {
             if ((sp68 != 0) || (arg1->id == 0)) {
                 if (sp68 <= 0) {

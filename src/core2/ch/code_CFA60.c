@@ -12,7 +12,7 @@ typedef struct{
 
 /* .data */
 ActorInfo D_80372840 = { 
-    0x29, ACTOR_1CC_GRILL_CHOMPA, ASSET_430_MODEL_GRILL_CHOMPA, 
+    MARKER_29_GRILLE_CHOMPA, ACTOR_1CC_GRILLE_CHOMPA, ASSET_430_MODEL_GRILLE_CHOMPA, 
     0, NULL,
     func_80356CCC, NULL, func_80356C50,
     0, 0, 0.0f, 0
@@ -22,7 +22,7 @@ ActorInfo D_80372840 = {
 void func_803569F0(Actor *this, s32 next_state){
     ActorLocal_Core2_CFA60 *local = (ActorLocal_Core2_CFA60 *)&this->local;
 
-    this->marker->id = 0x1cf;
+    this->marker->id = MARKER_1CF_GRILLE_CHOMPA_ATTACKING;
     actor_collisionOff(this);
     if(next_state == 1 || next_state == 2){
         skeletalAnim_set(this->unk148, ASSET_15A_ANIM_GRILL_CHOMPA_ATTACK, 0, 2.5f);
@@ -123,7 +123,7 @@ void func_80356CCC(Actor *this){
     if(this->state == 4){
         skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
         if(sp4C < 0.59 && 0.59 <= sp48){
-            this->marker->id = 0x1cf;
+            this->marker->id = MARKER_1CF_GRILLE_CHOMPA_ATTACKING;
         }
         if(sp4C < 0.5 && 0.5 <= sp48){
             func_8030E760(SFX_2_CLAW_SWIPE, 0.9f, 32000);
