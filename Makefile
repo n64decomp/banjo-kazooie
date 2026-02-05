@@ -325,9 +325,9 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 	@$(BK_ROM_DECOMPRESS) $< $@
 	
 # .o -> .elf (dummy symbols)
-$(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
+$(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.$(VERSION).txt -o $@
+	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.$(VERSION).txt $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
@@ -339,9 +339,9 @@ $(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) --symbols $(PRELIM_ELF) $(PRELIM_Z64) $@
 
 # .o -> .elf (game)
-$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
+$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) -o $@
+	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a -o $@
 
 # .elf -> .z64 (uncompressed)
 $(UNCOMPRESSED_Z64) : $(ELF)
@@ -351,6 +351,15 @@ $(UNCOMPRESSED_Z64) : $(ELF)
 # .z64 (uncompressed) + .elf -> .z64 (final)
 $(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) $(ELF) $(UNCOMPRESSED_Z64) $@
+
+# Libultra files
+$(BUILD_DIR)/libultra_rom.a:
+	@$(MAKE) -C lib/ultralib VERSION=I TARGET=libultra_rom COMPARE=0 MODERN_LD=1 setup
+	@$(MAKE) -C lib/ultralib VERSION=I TARGET=libultra_rom COMPARE=0 MODERN_LD=1
+	@$(CP) lib/ultralib/build/I/libultra_rom/libultra_rom.a $@
+
+$(BUILD_DIR)/libultra_rom_boot.a: $(BUILD_DIR)/libultra_rom.a
+	@$(OBJCOPY) --prefix-symbols=boot_ $< $@
 
 # TOOLS
 # Tool for spliting BK asset sections into and from ROM Bin and transforming certain file types
@@ -367,6 +376,7 @@ $(BK_ROM_DECOMPRESS): tools/bk_rom_compressor/Cargo.toml tools/bk_rom_compressor
 
 clean:
 	$(call print0,Cleaning build artifacts)
+	@$(MAKE) -C lib/ultralib clean
 	@$(RM) -rf $(BUILD_ROOT)
 	@$(RM) -rf $(DECOMPRESSED_BASEROM)
 	@$(RM) -rf $(BIN_ROOT)
@@ -374,48 +384,15 @@ clean:
 	@$(RM) -rf $(ASM_ROOT)/*.s
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
 	@$(RM) -rf $(ASM_ROOT)/data
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/libc/bzero.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/getsr.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/interrupt.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/invalicache.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/maptlbrdb.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/probetlb.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/setfpccsr.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/setsr.s
-	@$(RM) -rf $(ASM_ROOT)/boot/ultra/os/writebackdcache.s
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/libc/bcopy.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/libc/bzero.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/getcount.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/getsr.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/interrupt.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invaldcache.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/invalicache.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/maptlbrdb.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/probetlb.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setcompare.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setfpccsr.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/setsr.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/writebackdcache.s
-	@$(RM) -rf $(ASM_ROOT)/core1/ultra/os/writebackdcacheall.s
 	@$(RM) -f *.ld
 
 # Per-file flag definitions
 build/$(VERSION)/src/core1/ultra/audio/%.c.o: OPT_FLAGS = -O3
 build/$(VERSION)/src/core1/n_audio/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/ultra/debug/%.c.o: OPT_FLAGS := -O1
 build/$(VERSION)/src/core1/ultra/gu/%.c.o: OPT_FLAGS := -O3
 build/$(VERSION)/src/core1/ultra/io/%.c.o: OPT_FLAGS := -O1
 build/$(VERSION)/src/core1/ultra/libc/%.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ultra/libc/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/core1/ultra/libc/llcvt.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/core1/ultra/os/%.c.o: OPT_FLAGS := -O1
-
-build/$(VERSION)/src/boot/ultra/debug/%.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/io/%.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/libc/%.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/boot/ultra/libc/%.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/boot/ultra/os/%.c.o: OPT_FLAGS := -O1
 
 # Disable implicit rules
 MAKEFLAGS += -r

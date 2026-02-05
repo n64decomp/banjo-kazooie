@@ -9,15 +9,10 @@ asm/nonmatchings
 asm/data
 asm/*.s
 asm/*/*.s
-asm/boot/ultra/*/*.s
+asm/boot/
 !asm/boot/ultra/os/exceptasm.s
-!asm/boot/ultra/os/parameters.s
-!asm/boot/ultra/os/setintmask.s
-asm/core1/ultra/*/*.s
-!asm/core1/ultra/libm_vals.s
+asm/core1/
 !asm/core1/ultra/os/exceptasm.s
-!asm/core1/ultra/os/parameters.s
-!asm/core1/ultra/os/setintmask.s
 build/*
 build/
 

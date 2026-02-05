@@ -34,7 +34,7 @@ extern u8 core2_TEXT_START[];
 
 void core1_main(s32 arg0){ 
     bzero(&D_8027A130, core2_TEXT_START - (u8*)&D_8027A130);
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
     sns_find_and_parse_payload();
     osInitialize();
     initThread_create();

@@ -117,7 +117,7 @@ void drawPixel(s32 x, s32 y, s32 w, s32 h) {
         }
     }
 
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
 }
 
 // Sets the color and draws a square
@@ -223,7 +223,7 @@ void gcdebugText_clearText(void) {
             gFramebuffers[0][i] = 0;
             gFramebuffers[1][i] = 0;
         }
-        osWriteBackDCacheAll();
+        osWritebackDCacheAll();
     }
 }
 
