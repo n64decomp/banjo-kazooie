@@ -5,7 +5,8 @@
 void func_8038D3AC(Actor *this);
 
 /* .data */
-ActorInfo D_80391260 = { 0x1A5, 0x288, 0x402, 
+ActorInfo D_80391260 = {
+    MARKER_1A5_SANDYBUTT_EGG_TOLL, 0x288, ASSET_402_MODEL_EGG_TOLL,
     0, NULL, 
     func_8038D3AC, NULL, func_80325340, 
     0, 0, 0.0f, 0

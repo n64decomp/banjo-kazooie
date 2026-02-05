@@ -28,7 +28,8 @@ Struct_RBB_3CB0 D_80390720[2] = {
 };
 
 ActorInfo D_80390738 = {
-    0x186, 0x176, 0x404, 0x0, NULL,
+    MARKER_186_RBB_GREEN_PROPELLER_SWITCH, 0x176, ASSET_404_MODEL_RBB_GREEN_PROPELLER_SWITCH,
+    0x0, NULL,
     chPropellorSwitch_update, NULL, chPropellorSwitch_draw,
     0, 0, 0.0f, 0
 };
