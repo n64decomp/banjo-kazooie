@@ -96,7 +96,7 @@ ActorAnimationInfo chFinalBossAnimationInfo[] = {
 };
 
 ActorInfo chFinalBoss = {
-    MARKER_25E_GRUNTILDA_FINAL_BOSS, ACTOR_38B_GRUNTILDA_FINAL_BOSS, ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS,
+    MARKER_25E_GRUNTILDA_FINAL_BOSS_VULNERABLE, ACTOR_38B_GRUNTILDA_FINAL_BOSS, ASSET_53D_MODEL_GRUNTILDA_FINAL_BOSS,
     1, chFinalBossAnimationInfo,
     chfinalboss_update, actor_update_func_80326224, chfinalboss_draw,
     0, 0, 0.0f, 0
@@ -1987,35 +1987,35 @@ bool chfinalboss_func_8038B834(ActorMarker *marker, ActorMarker *other_marker) {
 
     switch (local->phase) {
         case FINALBOSS_PHASE_1_BROOMSTICK:
-            if ((this->state == 6) || (this->state == 7)) {
-                marker->id = 0x260;
+            if ((this->state == FINALBOSS_STATE_6_PHASE1_SWOOP_MID) || (this->state == FINALBOSS_STATE_7_PHASE1_SWOOP_END)) {
+                marker->id = MARKER_260_GRUNTY_PHASE_1_2_MOVING;
             } else {
-                marker->id = 0x25E;
+                marker->id = MARKER_25E_GRUNTILDA_FINAL_BOSS_VULNERABLE;
             }
             break;
 
         case FINALBOSS_PHASE_2_AIR:
             if (local->unkA == 0) {
-                marker->id = 0x260;
+                marker->id = MARKER_260_GRUNTY_PHASE_1_2_MOVING;
             } else {
-                marker->id = 0x281;
+                marker->id = MARKER_281_GRUNTY_PHASE_2_VULNERABLE;
             }
             break;
 
         case FINALBOSS_PHASE_3_FLIGHT:
-            marker->id = 0x282;
+            marker->id = MARKER_282_GRUNTY_PHASE_3_FLIGHT;
             break;
 
         case FINALBOSS_PHASE_4_JINJOS:
-            marker->id = 0x283;
+            marker->id = MARKER_283_GRUNTY_PHASE_4_5_INVULNERABLE;
             break;
 
         case FINALBOSS_PHASE_5_JINJONATOR:
-            marker->id = 0x283;
+            marker->id = MARKER_283_GRUNTY_PHASE_4_5_INVULNERABLE;
             break;
 
         default:
-            marker->id = MARKER_25E_GRUNTILDA_FINAL_BOSS;
+            marker->id = MARKER_25E_GRUNTILDA_FINAL_BOSS_VULNERABLE;
             break;
     }
 

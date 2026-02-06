@@ -503,7 +503,7 @@ typedef struct {
 typedef struct{
     u16 playerInteraction:4;
     u16 nextState:2;
-    u16 soundEffect:3;
+    u16 unkBit7:3;
     u16 damageToPlayer:2;
     u16 hitsToTrigger:3; // 1 / hitsToTrigger = % of health of enemy taken away
     u16 dropBundleNum:2;
