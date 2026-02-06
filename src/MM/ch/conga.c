@@ -193,7 +193,7 @@ void __chConga_sendOrangeProjectile(ActorMarker *congaMarker){
         orangePtr->velocity_y = (60.0)*((conga_state == 7) ? 0.5: 1.0);
         orangePtr->velocity_z = plyr.pos_z - orangePtr->position_z;
 
-        if(SQ(plyr.pos_z - m->propPtr->z) + SQ(plyr.pos_x - m->propPtr->x) < 40000.0f ){
+        if(SQ(plyr.pos_z - m->propPtr->position_z) + SQ(plyr.pos_x - m->propPtr->position_x) < 40000.0f ){
             temp_f20 = randf2(2.4f, 4.4f); temp_f22 = randf2(2.4f, 4.4f); //f22
             orangePtr->velocity[0] *= (randf() < 0.5)? temp_f20 : -temp_f20;
             orangePtr->velocity[1] = randf2(1.8f, 2.2f) * 60.0;

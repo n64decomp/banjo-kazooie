@@ -58,9 +58,9 @@ void func_80388BEC(NodeProp *node, ActorMarker *marker) {
     Actor *temp_v0;
     f32 position[3];
 
-    position[0] = (f32) node->x;
-    position[1] = (f32) node->y;
-    position[2] = (f32) node->z;
+    position[0] = (f32) node->position_x;
+    position[1] = (f32) node->position_y;
+    position[2] = (f32) node->position_z;
 
     closest_actor = actorArray_findClosestActorFromActorId(position, ACTOR_11_JUJU_CTRL, -1, &distance_to_closest_actor);
 

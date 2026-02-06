@@ -26,13 +26,15 @@ ActorAnimationInfo D_80366010[] ={
 };
 
 
-ActorInfo D_80366090 = {MARKER_3_BIGBUTT, ACTOR_4_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
+ActorInfo D_80366090 = {
+    MARKER_3_BIGBUTT, ACTOR_4_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
     1, D_80366010, 
     func_802C6240, actor_update_func_80326224, func_802C6E84,
     3200, 0, 0.0f, 0
 }; 
 
-ActorInfo D_803660B4 = {MARKER_9_SMALL_BULL, ACTOR_E_SMALL_BULL, ASSET_354_MODEL_SMALL_BULL, 
+ActorInfo D_803660B4 = {
+    MARKER_9_SMALL_BULL, ACTOR_E_SMALL_BULL, ASSET_354_MODEL_SMALL_BULL, 
     1, D_80366010, 
     func_802C6240, actor_update_func_80326224, func_802C6E84,
     3200, 0, 0.0f, 0
@@ -315,8 +317,8 @@ void func_802C6240(Actor *this){
             break;
    }//L802C6D1C
    if(this->state == 0xe){
-        if(this->marker->id != 0x29e)
-            this->marker->id = 0x29e;
+        if(this->marker->id != MARKER_29E_BIGBUTT_KNOCKED_DOWN)
+            this->marker->id = MARKER_29E_BIGBUTT_KNOCKED_DOWN;
    }else{//L802C6D60
         if(this->marker->id != 3)
             this->marker->id = 3;

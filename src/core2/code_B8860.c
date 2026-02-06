@@ -52,8 +52,8 @@ void func_8033F7F0(u8 indx, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_80252330(sp30[0], sp30[1], sp30[2]);
         mlMtxApply(*mtx);
         gSPMatrix((*gfx)++, OS_PHYSICAL_TO_K0((*mtx)++), G_MTX_PUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        func_803382E4(sp54->unk28_21);
-        func_80338338(sp54->color[0], sp54->color[1],sp54->color[2]);
+        codeAEDA0_setSpriteDrawMode(sp54->unk28_21);
+        codeAEDA0_setPrimaryColorRGB(sp54->color[0], sp54->color[1],sp54->color[2]);
         func_803382FC(sp54->unk27);
         func_80338308(sp54->unk20[0], sp54->unk20[1]);
         func_8033837C(1);

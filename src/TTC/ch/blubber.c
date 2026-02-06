@@ -45,7 +45,7 @@ ActorInfo gChBlubber = {
 };
 
 /* .code */
-static void __chBlubber_initiliaze(Actor *this){
+static void __chBlubber_initialize(Actor *this){
     ActorLocal_Blubber *local = (ActorLocal_Blubber *)&this->local;
 
     anctrl_setTransitionDuration(this->anctrl, 0.2f);
@@ -177,7 +177,7 @@ static void __chBlubber_updateFunc(Actor *this){
         case CH_BLUBBER_STATE_1_UNKNOWN:
             if(!this->initialized){
                 actor_collisionOff(this);
-                __chBlubber_initiliaze(this);
+                __chBlubber_initialize(this);
             }
             __func_80387774(&this);
             

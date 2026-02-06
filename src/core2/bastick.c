@@ -78,7 +78,7 @@ void bastick_reset(void) {
 }
 
 void bastick_update(void) {
-    controller_getJoystick(0, &bastick.value);
+    controller_getJoystick(0, (f32*)&bastick.value);
     if (bastick.locked_at_zero) {
         bastick.value[0] = bastick.value[1] = 0.0f;
     }

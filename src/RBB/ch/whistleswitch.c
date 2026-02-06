@@ -34,18 +34,21 @@ Struct_RBB_47D0 D_80390870[4] = {
 };
 
 extern ActorInfo D_803908C0 = {
-    0x195, 0x1BF, 0x413, 0x0, NULL,
+    MARKER_195_WHISTLE_SWITCH_1, 0x1BF, ASSET_413_MODEL_WHISTLE_SWITCH_1,
+    0x0, NULL,
     func_8038AEB8, NULL, func_8038AD9C,
     0, 0, 0.0f, 0
 };
 extern ActorInfo D_803908E4 = {
-    0x196, 0x1C0, 0x414, 0x0, NULL,
+    MARKER_196_WHISTLE_SWITCH_2, 0x1C0, ASSET_414_MODEL_WHISTLE_SWITCH_2,
+    0x0, NULL,
     func_8038AEB8, NULL, func_8038AD9C,
     0, 0, 0.0f, 0
 };
 
 extern ActorInfo D_80390908 = {
-    0x197, 0x1C1, 0x415, 0x0, NULL,
+    MARKER_197_WHISTLE_SWITCH_3, 0x1C1, ASSET_415_MODEL_WHISTLE_SWITCH_3,
+    0x0, NULL,
     func_8038AEB8, NULL, func_8038AD9C,
     0, 0, 0.0f, 0
 };
