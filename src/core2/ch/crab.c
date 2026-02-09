@@ -397,6 +397,24 @@ void chCrab_update(Actor *this) {
 }
 
 /* .data */
-ActorInfo D_803670B8 = { MARKER_13_SNIPPET,         ACTOR_67_SNIPPET,       ASSET_358_SNIPPET,             0x1, chCrabAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};
-ActorInfo D_803670DC = { MARKER_DD_BLACK_SNIPPET,   ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET, 0x1, chCrabAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};
-ActorInfo D_80367100 = { MARKER_13_SNIPPET,         ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET, 0x1, chCrabMutantAnimations, chCrab_update, actor_update_func_80326224, actor_draw, 1900, 0, 0.8f, 0};
+
+ActorInfo D_803670B8 = {
+    MARKER_13_SNIPPET, ACTOR_67_SNIPPET, ASSET_358_SNIPPET,
+    0x1, chCrabAnimations,
+    chCrab_update, actor_update_func_80326224, actor_draw,
+    1900, 0, 0.8f, 0
+};
+
+ActorInfo D_803670DC = {
+    MARKER_DD_BLACK_SNIPPET, ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET,
+    0x1, chCrabAnimations,
+    chCrab_update, actor_update_func_80326224, actor_draw,
+    1900, 0, 0.8f, 0
+};
+
+ActorInfo D_80367100 = {
+    MARKER_13_SNIPPET, ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET,
+    0x1, chCrabMutantAnimations,
+    chCrab_update, actor_update_func_80326224, actor_draw,
+    1900, 0, 0.8f, 0
+};

@@ -121,9 +121,9 @@ static void __cube_sort(Cube *cube, bool global) {
         //calculate prop distances
         new_var = var_v1 = cube->prop2Ptr;
         for(i = 0; i < cube->prop2Cnt; var_v1++, i++){
-            D_80383450[i] =  (var_v1->actorProp.x - ref_position[0])*(var_v1->actorProp.x - ref_position[0]) 
-                               +  (var_v1->actorProp.y - ref_position[1])* (var_v1->actorProp.y - ref_position[1])
-                               +  (var_v1->actorProp.z - ref_position[2])* (var_v1->actorProp.z - ref_position[2]);
+            D_80383450[i] =  (var_v1->actorProp.position_x - ref_position[0])*(var_v1->actorProp.position_x - ref_position[0]) 
+                               +  (var_v1->actorProp.position_y - ref_position[1])* (var_v1->actorProp.position_y - ref_position[1])
+                               +  (var_v1->actorProp.position_z - ref_position[2])* (var_v1->actorProp.position_z - ref_position[2]);
         }
 
         //sort prop list
@@ -256,7 +256,7 @@ void func_8032CD60(Prop *prop) {
             prop->spriteProp.unk8_5 = sp3C;
         }
         else{
-            prop->spriteProp.mirrored = sp3C;
+            prop->spriteProp.isMirrored = sp3C;
         }
     }
 }
@@ -376,20 +376,20 @@ void func_8032D510(Cube *cube, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                 position[0] = (f32)iProp->modelProp.position[0];
                 position[1] = (f32)iProp->modelProp.position[1];
                 position[2] = (f32)iProp->modelProp.position[2];
-                if(iProp->is_3d){
+                if(iProp->isModelProp){
                     rotation[0] = 0.0f;
                     rotation[1] = (f32)((s32)iProp->modelProp.yaw*2);
                     rotation[2] = (f32)((s32)iProp->modelProp.roll*2);
                     propModelList_drawModel(gfx, mtx, vtx, 
                         position, rotation, (f32)iProp->modelProp.scale/100.0,
-                        iProp->modelProp.model_index, cube
+                        iProp->modelProp.modelId, cube
                     );
                 }
                 else{//L8032D72C
                     propModelList_drawSprite( gfx, mtx, vtx, 
-                        position, (f32)iProp->spriteProp.scale/100.0, iProp->spriteProp.sprite_index, cube, 
-                        iProp->spriteProp.r, iProp->spriteProp.b, iProp->spriteProp.g,
-                        iProp->spriteProp.mirrored, iProp->spriteProp.frame
+                        position, (f32)iProp->spriteProp.scale/100.0, iProp->spriteProp.spriteId, cube, 
+                        iProp->spriteProp.rgb_remove_red, iProp->spriteProp.rgb_remove_green, iProp->spriteProp.rgb_remove_blue,
+                        iProp->spriteProp.isMirrored, iProp->spriteProp.frame
                     );
                 }
             }//L8032D7C4
@@ -409,7 +409,7 @@ Prop *__codeA5BC0_initProp2Ptr(Cube *cube) {
         cube->prop2Ptr = malloc(sizeof(Prop));
     }
     sp1C = &cube->prop2Ptr[cube->prop2Cnt-1];
-    sp1C->is_actor = FALSE;
+    sp1C->isActorProp = FALSE;
     code_A5BC0_initCubePropActorProp(cube);
     return sp1C;
 }
@@ -432,9 +432,9 @@ s32 func_8032D9C0(Cube *cube, Prop* prop){
 
     sp24 = 0;
     if(cube->prop2Cnt != 0){
-        sp24 = prop->is_3d; 
+        sp24 = prop->isModelProp; 
         if(func_80305D14()){
-            func_80305CD8(func_803058C0(prop->unk4[1]), -1);
+            func_80305CD8(func_803058C0(prop->position_y), -1);
         }
         if((prop - cube->prop2Ptr) < (cube->prop2Cnt - 1)){
             memcpy(prop, prop + 1, (s32)(&cube->prop2Ptr[cube->prop2Cnt-1]) - (s32)(prop));
@@ -495,14 +495,14 @@ SpriteProp *func_8032DCB8(Cube *cube) {
     SpriteProp *sp1C;
 
     sp1C = (SpriteProp *)__codeA5BC0_initProp2Ptr(cube);
-    sp1C->is_actor = FALSE;
-    sp1C->is_3d = FALSE;
+    sp1C->isActorProp = FALSE;
+    sp1C->isModelProp = FALSE;
     sp1C->frame = 0;
-    sp1C->mirrored = 0;
+    sp1C->isMirrored = FALSE;
     sp1C->unk8_10 = randf() * 32.0f;
     sp1C->unk8_3 = FALSE;
-    sp1C->unk8_2 = FALSE;
-    sp1C->unk8_4 = TRUE;
+    sp1C->isCollisionResolved = FALSE;
+    sp1C->isNotFeatherEggOrNote = TRUE;
     return sp1C;
 }
 
@@ -510,44 +510,45 @@ ModelProp * func_8032DDD8(Cube *cube) {
     Prop *temp_v0;
 
     temp_v0 = __codeA5BC0_initProp2Ptr(cube);
-    temp_v0->is_actor = FALSE;
-    temp_v0->is_3d = TRUE;
-    temp_v0->unk8_5 = FALSE;
+    temp_v0->isActorProp = FALSE;
+    temp_v0->isModelProp = TRUE;
+    temp_v0->isMirrored = FALSE;
     temp_v0->unk8_3 = FALSE;
-    temp_v0->unk8_2 = FALSE;
-    temp_v0->unk8_4 = TRUE;
+    temp_v0->isCollisionResolved = FALSE;
+    temp_v0->isNotFeatherEggOrNote = TRUE;
     return (ModelProp *)temp_v0;
 }
 
 
-void func_8032DE2C(ModelProp *model_prop, enum asset_e sprite_id){
-    model_prop->model_index = sprite_id - 0x2d1;
+void func_8032DE2C(ModelProp *model_prop, enum asset_e model_id){
+    model_prop->modelId = model_id - MODEL_ASSET_OFFSET;
 }
 
 void func_8032DE48(ModelProp *model_prop, enum asset_e *model_id_ptr){\
-    *model_id_ptr = ((*(u32*)model_prop) >> 0x14) + 0x2d1;
+    *model_id_ptr = ((*(u32*)model_prop) >> 0x14) + MODEL_ASSET_OFFSET;
 }
 
 void func_8032DE5C(SpriteProp *sprite_prop, enum asset_e sprite_id){
-    sprite_prop->sprite_index = sprite_id - 0x572;
+    sprite_prop->spriteId = sprite_id - SPRITE_ASSET_OFFSET;
 }
 
 void func_8032DE78(SpriteProp *sprite_prop, enum asset_e *sprite_id_ptr){
-    *sprite_id_ptr = sprite_prop->sprite_index + 0x572;
+    *sprite_id_ptr = sprite_prop->spriteId + SPRITE_ASSET_OFFSET;
 }
 
 void func_8032DE8C(SpriteProp *sprite_prop, s32 *arg1){
     *arg1 = sprite_prop->scale;
 }
 
-void func_8032DEA0(SpriteProp *sprite_prop, s32 *r, s32 *b, s32 *g){
-    *r = sprite_prop->r;
-    *b = sprite_prop->b;
-    *g = sprite_prop->g;
+void func_8032DEA0(SpriteProp *sprite_prop,
+        s32 *rgb_remove_red, s32 *rgb_remove_green, s32 *rgb_remove_blue){
+    *rgb_remove_red = sprite_prop->rgb_remove_red;
+    *rgb_remove_green = sprite_prop->rgb_remove_green;
+    *rgb_remove_blue = sprite_prop->rgb_remove_blue;
 }
 
 void func_8032DECC(SpriteProp *sprite_prop, s32 *arg1){
-    *arg1 = sprite_prop->mirrored;
+    *arg1 = sprite_prop->isMirrored;
 }
 
 void func_8032DEE0(SpriteProp *sprite_prop, s32 arg1){
@@ -567,7 +568,7 @@ void func_8032DF10(SpriteProp *sprite_prop, bool *arg1){
 }
 
 void func_8032DF24(SpriteProp *sprite_prop, bool arg1){
-    sprite_prop->mirrored = arg1;
+    sprite_prop->isMirrored = arg1;
 }
 
 void func_8032DF40(ModelProp *prop_prop, s32 arg1, s32 arg2){
@@ -580,10 +581,11 @@ void func_8032DF4C(ModelProp *prop_prop, s32 *arg1, s32 *arg2){
     *arg2 = prop_prop->roll;
 }
 
-void func_8032DF60(SpriteProp *sprite_prop, s32 r, s32 b, s32 g){
-    sprite_prop->r = r;
-    sprite_prop->b = b;
-    sprite_prop->g = g;
+void func_8032DF60(SpriteProp *sprite_prop,
+        s32 rgb_remove_red, s32 rgb_remove_green, s32 rgb_remove_blue){
+    sprite_prop->rgb_remove_red = rgb_remove_red;
+    sprite_prop->rgb_remove_green = rgb_remove_green;
+    sprite_prop->rgb_remove_blue = rgb_remove_blue;
 }
 
 void func_8032DFA0(SpriteProp *sprite_prop, bool arg1){
@@ -591,27 +593,27 @@ void func_8032DFA0(SpriteProp *sprite_prop, bool arg1){
 }
 
 void func_8032DFBC(NodeProp *node, s32 src[3]){
-    node->x = src[0];
-    node->y = src[1];
-    node->z = src[2];
+    node->position_x = src[0];
+    node->position_y = src[1];
+    node->position_z = src[2];
 }
 
 void func_8032DFD8(NodeProp *node, s32 dst[3]){
-    dst[0] = node->x;
-    dst[1] = node->y;
-    dst[2] = node->z;
+    dst[0] = node->position_x;
+    dst[1] = node->position_y;
+    dst[2] = node->position_z;
 }
 
 void func_8032DFF4(Prop *prop, s32 src[3]){
-    prop->unk4[0] = src[0];
-    prop->unk4[1] = src[1];
-    prop->unk4[2] = src[2];
+    prop->position_x = src[0];
+    prop->position_y = src[1];
+    prop->position_z = src[2];
 }
 
 void codeA5BC0_getActorPosition(ActorProp *prop, s32 dst[3]){
-    dst[0] = prop->x;
-    dst[1] = prop->y;
-    dst[2] = prop->z;
+    dst[0] = prop->position_x;
+    dst[1] = prop->position_y;
+    dst[2] = prop->position_z;
 }
 
 NodeProp *codeA5BC0_getPropNodeAtIndex(Cube *cube, s32 prop_index) {
@@ -630,7 +632,7 @@ void cube_free(Cube *cube){
 
     if(cube->prop2Ptr){
         for(iProp = cube->prop2Ptr; iProp < cube->prop2Ptr +cube->prop2Cnt; iProp++){
-            if(iProp->is_actor){
+            if(iProp->isActorProp){
                 func_80332B2C(iProp->actorProp.marker);
             }
         }
@@ -657,10 +659,10 @@ bool __codeA5BC0_pad_func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
             if( ((node_ptr->bit0 == TRUE)
                     || ((node_ptr->bit0 == FALSE) && (node_ptr->unk10_6 == TRUE))
                 ) 
-                && (node_ptr->bit6 == 6) 
-                && (arg2 == node_ptr->unk8)
+                && (node_ptr->category == 6) 
+                && (arg2 == node_ptr->actorId)
             ) {
-                *arg1 = node_ptr->radius;
+                *arg1 = node_ptr->selector_or_radius;
                 return TRUE;
             }
             node_ptr++;
@@ -677,8 +679,8 @@ NodeProp *cube_findNodePropByActorId(Cube *cube, enum actor_e actor_id) {
             if( ( (i_ptr->bit0 == TRUE) 
                   || ( (i_ptr->bit0 == FALSE) && (i_ptr->unk10_6 == TRUE))
                 )
-                && (i_ptr->bit6 == 6) 
-                && (actor_id == i_ptr->unk8)
+                && (i_ptr->category == 6) 
+                && (actor_id == i_ptr->actorId)
             ) {
                 return i_ptr;
             }
@@ -698,12 +700,12 @@ bool func_8032E2D4(Cube *arg0, s32 arg1[3], s32 arg2) {
             if( ((var_v1->bit0 == TRUE)
                     || ((var_v1->bit0 == FALSE) && (var_v1->unk10_6 == TRUE))
                 ) 
-                && (var_v1->bit6 == 6) 
-                && (arg2 == var_v1->unk8)
+                && (var_v1->category == 6) 
+                && (arg2 == var_v1->actorId)
             ) {
-                arg1[0] = var_v1->x;
-                arg1[1] = var_v1->y;
-                arg1[2] = var_v1->z;
+                arg1[0] = var_v1->position_x;
+                arg1[1] = var_v1->position_y;
+                arg1[2] = var_v1->position_z;
                 return TRUE;
             }
             var_v1++;
@@ -757,10 +759,10 @@ s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list,
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (found_cnt < node_list_capacity)) {
-                if (((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))) && (i_node->bit6 == 6)) {
+                if (((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))) && (i_node->category == 6)) {
                     i_actor = actor_id_list;
                     for(i_actor = actor_id_list; *i_actor != -1; i_actor++){
-                        if (i_node->unk8 == *i_actor) {
+                        if (i_node->actorId == *i_actor) {
                             node_list[found_cnt++] = i_node;
                             break;
                         }
@@ -787,11 +789,11 @@ s32 func_8032E5A8(Cube *cube, s32 arg1, f32 (*arg2)[3], s32 capacity) {
                 if( ( (i_node->bit0 == TRUE) 
                       || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
                     ) 
-                    && (i_node->bit6 == 6) && (arg1 == i_node->unk8)
+                    && (i_node->category == 6) && (arg1 == i_node->actorId)
                 ) {
-                    arg2[count][0] = (f32) i_node->x;
-                    arg2[count][1] = (f32) i_node->y;
-                    arg2[count][2] = (f32) i_node->z;
+                    arg2[count][0] = (f32) i_node->position_x;
+                    arg2[count][1] = (f32) i_node->position_y;
+                    arg2[count][2] = (f32) i_node->position_z;
                     count++;
                 }
                 i_node++;
@@ -813,7 +815,7 @@ bool func_8032E6CC(Cube *cube, s32 *arg1, s32 arg2) {
                 if( ( (i_node->bit0 == TRUE) 
                       || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
                     ) 
-                    && (i_node->bit6 == 6) && (arg2 == i_node->unk8)
+                    && (i_node->category == 6) && (arg2 == i_node->actorId)
                 ) {
                     *arg1 = i_node->yaw;
                     return TRUE;
@@ -843,11 +845,11 @@ static void __codeA5BC0_initPropPointerForCube(NodeProp *node, Cube *cube, s32 c
     cube_ptr_idx = cnt - 1;
     for(i = 0; i < cnt; i++){
         iPtr = node + i;
-        if( (iPtr->bit6 == 6) 
-            || (iPtr->bit6 == 8)
-            || (iPtr->bit6 == 7) 
-            || (iPtr->bit6 == 9) 
-            || (iPtr->bit6 == 0xA) 
+        if( (iPtr->category == 6) 
+            || (iPtr->category == 8)
+            || (iPtr->category == 7) 
+            || (iPtr->category == 9) 
+            || (iPtr->category == 0xA) 
             || (iPtr->bit0 == 1)
         ){
             memcpy(&cube->prop1Ptr[cube_ptr_idx], &node[i], sizeof(NodeProp));
@@ -912,15 +914,15 @@ void code7AF80_initCubeFromFile(File *file_ptr, Cube *cube) {
         cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
         file_getNBytes_ifExpected(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
         for(var_v1_2 = cube->prop2Ptr; var_v1_2 < cube->prop2Ptr + sp47; var_v1_2++){
-                var_v1_2->unk8_4 = 1;
-                if (var_v1_2->is_3d) {
-                    var_v1_2->unk8_5 = 0;
+                var_v1_2->isNotFeatherEggOrNote = TRUE;
+                if (var_v1_2->isModelProp) {
+                    var_v1_2->isMirrored = FALSE;
                 }
                 if (sp34) {
-                    if (!(var_v1_2->is_actor) && !(var_v1_2->is_3d)){
-                        temp_v0_5 = var_v1_2->spriteProp.sprite_index + 0x572;
+                    if (!(var_v1_2->isActorProp) && !(var_v1_2->isModelProp)){
+                        temp_v0_5 = var_v1_2->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
                         if((temp_v0_5 == 0x580) || (temp_v0_5 == 0x6D1) || (temp_v0_5 == 0x6D6) || (temp_v0_5 == 0x6D7)){
-                            var_v1_2->unk8_4 = 0;
+                            var_v1_2->isNotFeatherEggOrNote = FALSE;
                         }
                     }
                 }
@@ -969,11 +971,19 @@ void func_8032EE80(Cube *cube) {
     if ((cube->prop2Cnt != 0) && ((D_80383400 == 1) || (D_80383400 == 2))) {
         var_a1 = cube->prop2Ptr;
         for(var_t0 = 0; var_t0 < cube->prop2Cnt; var_t0++, var_a1++){
-            if (!var_a1->is_actor) {
-                if (((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2])) < D_803833FC) {
-                    var_v0 = (var_a1->is_3d) ? 2 : 1;
+            if (!var_a1->isActorProp) {
+                if (
+                    ((var_a1->position_x - D_803833F0[0]) * (var_a1->position_x - D_803833F0[0])) +
+                    ((var_a1->position_y - D_803833F0[1]) * (var_a1->position_y - D_803833F0[1])) +
+                    ((var_a1->position_z - D_803833F0[2]) * (var_a1->position_z - D_803833F0[2]))
+                    < D_803833FC)
+                {
+                    var_v0 = (var_a1->isModelProp) ? 2 : 1;
                     if (var_v0 == D_80383400) {
-                        D_803833FC = ((var_a1->unk4[0] - D_803833F0[0]) * (var_a1->unk4[0] - D_803833F0[0])) + ((var_a1->unk4[1] - D_803833F0[1]) * (var_a1->unk4[1] - D_803833F0[1])) + ((var_a1->unk4[2] - D_803833F0[2]) * (var_a1->unk4[2] - D_803833F0[2]));
+                        D_803833FC =
+                            ((var_a1->position_x - D_803833F0[0]) * (var_a1->position_x - D_803833F0[0])) +
+                            ((var_a1->position_y - D_803833F0[1]) * (var_a1->position_y - D_803833F0[1])) +
+                            ((var_a1->position_z - D_803833F0[2]) * (var_a1->position_z - D_803833F0[2]));
                         D_80383404 = cube;
                         D_80383408 = var_a1;
                         D_8038340C = D_80383400;
@@ -987,9 +997,17 @@ void func_8032EE80(Cube *cube) {
         if (D_80383400 == 3) {
             var_s0 = cube->prop1Ptr;
             for(var_s1 = 0; var_s1 < cube->prop1Cnt; var_s1++, var_s0++){
-                if (((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2])) < D_803833FC) {
+                if (
+                    ((var_s0->position_x - D_803833F0[0]) * (var_s0->position_x - D_803833F0[0])) +
+                    ((var_s0->position_y - D_803833F0[1]) * (var_s0->position_y - D_803833F0[1])) +
+                    ((var_s0->position_z - D_803833F0[2]) * (var_s0->position_z - D_803833F0[2]))
+                    < D_803833FC)
+                {
                     if (D_80383558 == NULL || D_80383558(var_s0, D_8038355C)) {
-                        D_803833FC = ((var_s0->x - D_803833F0[0]) * (var_s0->x - D_803833F0[0])) + ((var_s0->y - D_803833F0[1]) * (var_s0->y - D_803833F0[1])) + ((var_s0->z - D_803833F0[2]) * (var_s0->z - D_803833F0[2]));
+                        D_803833FC = 
+                            ((var_s0->position_x - D_803833F0[0]) * (var_s0->position_x - D_803833F0[0])) +
+                            ((var_s0->position_y - D_803833F0[1]) * (var_s0->position_y - D_803833F0[1])) +
+                            ((var_s0->position_z - D_803833F0[2]) * (var_s0->position_z - D_803833F0[2]));
                         D_80383404 = cube;
                         D_80383408 = (Prop*)var_s0;
                         D_8038340C = D_80383400;
@@ -1015,9 +1033,9 @@ void func_8032F194(ActorMarker *marker, s32 position[3], Cube *cube) {
 
     sp24.words[2] = propPtr->words[2];
 
-    v0->x = position[0];
-    v0->y = position[1];
-    v0->z = position[2];
+    v0->position_x = position[0];
+    v0->position_y = position[1];
+    v0->position_z = position[2];
 
     func_8032F21C(cube, position, marker, func_8032D9C0(marker->cubePtr, (Prop *)propPtr));
 
@@ -1030,19 +1048,19 @@ void func_8032F21C(Cube *cube, s32 position[3], ActorMarker *marker, bool arg3) 
     ActorProp *sp1C;
 
     sp1C = &__codeA5BC0_initProp2Ptr(cube)->actorProp;
-    sp1C->is_actor = TRUE;
-    sp1C->x = (s16) position[0];
-    sp1C->y = (s16) position[1];
-    sp1C->z = (s16) position[2];
+    sp1C->isActorProp = TRUE;
+    sp1C->position_x = (s16) position[0];
+    sp1C->position_y = (s16) position[1];
+    sp1C->position_z = (s16) position[2];
     sp1C->marker = marker;
-    sp1C->is_3d = arg3;
-    sp1C->unk8_15 = 0;
-    sp1C->unk8_5 = FALSE;
+    sp1C->isModelProp = arg3;
+    sp1C->frame = 0;
+    sp1C->isMirrored = FALSE;
 
     sp1C->unk8_10 = (func_802E4A08()) ? 0xF : (u8)(randf() * 32);
     sp1C->unk8_3 = FALSE;
-    sp1C->unk8_2 = FALSE;
-    sp1C->unk8_4 = TRUE;
+    sp1C->isCollisionResolved = FALSE;
+    sp1C->isNotFeatherEggOrNote = TRUE;
     marker->propPtr = sp1C;
     marker->cubePtr = cube;
     if (func_80305D14()) {
@@ -1069,9 +1087,9 @@ void func_8032F470(s32 *pos, ActorMarker *arg1){
     cubePtr = (arg1->unk40_23)? func_8030364C(): cubeList_GetCubeAtPosition_s32(pos);
 
     if(cubePtr == arg1->cubePtr){
-        arg1->propPtr->x = pos[0];
-        arg1->propPtr->y = pos[1];
-        arg1->propPtr->z = pos[2];
+        arg1->propPtr->position_x = pos[0];
+        arg1->propPtr->position_y = pos[1];
+        arg1->propPtr->position_z = pos[2];
     }
     else{
         func_8032F194(arg1, pos, cubePtr);
@@ -1297,7 +1315,7 @@ void code_A5BC0_initCubePropActorProp(Cube *cube) {
         prop_ptr = cube->prop2Ptr;
         prop_cnt = cube->prop2Cnt;
         while(prop_cnt != 0){
-            if(prop_ptr->is_actor == TRUE){
+            if(prop_ptr->isActorProp == TRUE){
                 prop_ptr->actorProp.marker->propPtr = &prop_ptr->actorProp;
                 prop_ptr->actorProp.marker->cubePtr = cube;
             }
@@ -1318,14 +1336,19 @@ void func_80330208(Cube *cube) {
         end_prop = cube->prop1Ptr + cube->prop1Cnt;
         func_80326C24(1);
         while(i_prop < end_prop){
-            if (i_prop->bit6 == 6) {
-                position[0] = (s32) i_prop->x;
-                position[1] = (s32) i_prop->y;
-                position[2] = (s32) i_prop->z;
-                actor = func_803055E0(i_prop->unk8, position, i_prop->yaw, i_prop->unk10_31, i_prop->unk10_19);
+            if (i_prop->category == 6) {
+                position[0] = (s32) i_prop->position_x;
+                position[1] = (s32) i_prop->position_y;
+                position[2] = (s32) i_prop->position_z;
+                actor = func_803055E0(
+                    i_prop->actorId,
+                    position,
+                    i_prop->yaw,
+                    i_prop->unk10_31,
+                    i_prop->unk10_19);
                 if (actor != NULL) {
                     actor->secondaryId = i_prop->unk10_31;
-                    actor->actorTypeSpecificField = i_prop->radius;
+                    actor->actorTypeSpecificField = i_prop->selector_or_radius;
                     suSetSpriteScale(actor, (i_prop->scale != 0) ? ((f32)i_prop->scale * 0.01) : 1.0);
                 }
             }
@@ -1345,21 +1368,33 @@ void func_803303B8(Cube *cube) {
         current_node_ptr = cube->prop1Ptr;
         last_node_prop_ptr = cube->prop1Ptr + cube->prop1Cnt;
         while (current_node_ptr < last_node_prop_ptr) {
-            if (current_node_ptr->bit6 == 7) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_803065E4(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_31, current_node_ptr->pad10_7);
-            } else if (current_node_ptr->bit6 == 9) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_8030688C(current_node_ptr->unk8, position, current_node_ptr->radius, current_node_ptr->unk10_0);
-            } else if (current_node_ptr->bit6 == 0xA) {
-                position[0] = (s32) current_node_ptr->x;
-                position[1] = (s32) current_node_ptr->y;
-                position[2] = (s32) current_node_ptr->z;
-                func_80306AA8(current_node_ptr->unk8, position, current_node_ptr->radius);
+            if (current_node_ptr->category == 7) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_803065E4(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius,
+                    current_node_ptr->unk10_31,
+                    current_node_ptr->pad10_7);
+            } else if (current_node_ptr->category == 9) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_8030688C(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius,
+                    current_node_ptr->unk10_0);
+            } else if (current_node_ptr->category == 0xA) {
+                position[0] = (s32) current_node_ptr->position_x;
+                position[1] = (s32) current_node_ptr->position_y;
+                position[2] = (s32) current_node_ptr->position_z;
+                func_80306AA8(
+                    current_node_ptr->actorId,
+                    position,
+                    current_node_ptr->selector_or_radius);
             }
             current_node_ptr++;
         }
@@ -1428,7 +1463,7 @@ void func_803306C8(s32 arg0) {
                 if (!D_8036E7CC);
 
                 var_s0_2 = TRUE;
-                func_8033B338(&var_a2->unk4, &var_a2->unk8);
+                codeB3A80_releaseSprite(&var_a2->unk4, &var_a2->unk8);
             }
             if ((arg0 != 1) && (var_s0_2 == 1) && (func_80254BC4(1))) {
                 return;
@@ -1479,9 +1514,9 @@ s32 func_80330974(ActorMarker *marker, s32 arg1, f32 arg2, s32 arg3) {
        return 0;
     }
     sp58 = func_8033A12C(model);
-    position[0] = (f32) marker->propPtr->x;
-    position[1] = (f32) marker->propPtr->y;
-    position[2] = (f32) marker->propPtr->z;
+    position[0] = (f32) marker->propPtr->position_x;
+    position[1] = (f32) marker->propPtr->position_y;
+    position[2] = (f32) marker->propPtr->position_z;
 
     rotation[0] = (f32)marker->pitch;
     rotation[1] = (f32)marker->yaw;
@@ -1518,7 +1553,7 @@ BKModelBin *marker_loadModelBin(ActorMarker *this){
         func_8032ACA8(thisActor);
     }
     func_8032AB84(thisActor);
-    if(!this->unk18 && this->propPtr->is_3d && modelInfo->modelPtr && func_8033A12C(modelInfo->modelPtr)){
+    if(!this->unk18 && this->propPtr->isModelProp && modelInfo->modelPtr && func_8033A12C(modelInfo->modelPtr)){
         this->unk18 = func_80330B10();
     }
     modelInfo->unk10 = globalTimer_getTime();
@@ -1582,7 +1617,7 @@ BKSpriteDisplayData *func_80330E54(ActorMarker *marker, BKSprite **sprite_ptr) {
     }
     model_cache_ptr = &modelCache[marker_getActor(marker)->modelCacheIndex];
     if (model_cache_ptr->unk4 == 0) {
-        model_cache_ptr->unk4 = func_8033B6C4(marker->modelId, &model_cache_ptr->unk8);
+        model_cache_ptr->unk4 = codeB3A80_getSprite(marker->modelId, &model_cache_ptr->unk8);
     }
     model_cache_ptr->unk10 = globalTimer_getTime();
     if (sprite_ptr != NULL) {
@@ -1601,23 +1636,23 @@ BKSprite *func_80330F50(ActorMarker * marker){
     return sp1C;
 }
 
-s32 codeA5BC0_getNodePropUnkA(NodeProp *arg0){
-    return arg0->unkA; //marker_id
+s32 codeA5BC0_getNodePropMarkerId(NodeProp *arg0){
+    return arg0->markerId;
 }
 
-s32 codeA5BC0_getNodePropBit6(NodeProp *arg0){
-    return arg0->bit6;
+s32 codeA5BC0_getNodePropCategory(NodeProp *arg0){
+    return arg0->category;
 }
 
-s32 codeA5BC0_getNodePropUnk8(NodeProp *arg0){
-    return arg0->unk8;
+s32 codeA5BC0_getNodePropActorId(NodeProp *arg0){
+    return arg0->actorId;
 }
 
-s32 codeA5BC0_getPositionAndReturnRadius(NodeProp *arg0, s32 arg1[3]){
-    arg1[0] = arg0->x;
-    arg1[1] = arg0->y;
-    arg1[2] = arg0->z;
-    return arg0->radius;
+s32 codeA5BC0_getPositionAndSelectorOrRadius(NodeProp *arg0, s32 arg1[3]){
+    arg1[0] = arg0->position_x;
+    arg1[1] = arg0->position_y;
+    arg1[2] = arg0->position_z;
+    return arg0->selector_or_radius;
 }
 
 // is used to set global timer time?
@@ -1633,9 +1668,9 @@ s32 codeA5BC0_getNodePropUnkC(NodeProp *arg0){
 }
 
 void func_80330FCC(ActorMarker *marker, s32 arg1[3]){
-    arg1[0] = marker->propPtr->x;
-    arg1[1] = marker->propPtr->y;
-    arg1[2] = marker->propPtr->z;
+    arg1[0] = marker->propPtr->position_x;
+    arg1[1] = marker->propPtr->position_y;
+    arg1[2] = marker->propPtr->position_z;
 }
 
 void func_80330FF4(void){
@@ -1708,7 +1743,7 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
     for(var_s1 = cube->prop2Ptr, var_s5 = cube->prop2Cnt; var_s5 > 0; var_s5--, var_s1++) {
         if(var_s1);
         
-        if (!var_s1->is_actor && var_s1->is_3d && var_s1->unk8_4) { //ModelProp
+        if (!var_s1->isActorProp && var_s1->isModelProp && var_s1->isNotFeatherEggOrNote) { //ModelProp
             var_s0 = propModelList_getModelIfActive(((u32)var_s1->modelProp.unk0 >> 0x4));
             if ((var_s0 != NULL) || (func_8028F280() && ((var_s0 = propModelList_getModel(((u32)var_s1->modelProp.unk0 >> 0x4))) != NULL))) {
                 temp_s2 = model_getCollisionList(var_s0);
@@ -1725,7 +1760,7 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
                     }
                 }
             }
-        } else if (var_s1->is_actor && var_s1->unk8_3 && var_s1->unk8_4 && !func_80331158(var_s1->actorProp.marker, arg1, arg2)) {
+        } else if (var_s1->isActorProp && var_s1->unk8_3 && var_s1->isNotFeatherEggOrNote && !func_80331158(var_s1->actorProp.marker, arg1, arg2)) {
             if (!(var_s1->actorProp.marker->unk3E_0 && (marker_getActor(var_s1->actorProp.marker)->unk3C & 0x008000000))) {
                 var_a0 = func_80330DE4(var_s1->actorProp.marker);
             } else {
@@ -1737,9 +1772,9 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
                 if (temp_s0 != 0) {
                     temp_s2_2 = marker_getActor(var_s1->actorProp.marker);
                     temp_a1 = func_80330C74(temp_s2_2);
-                    actor_position[0] = (f32) var_s1->actorProp.x;
-                    actor_position[1] = (f32) var_s1->actorProp.y;
-                    actor_position[2] = (f32) var_s1->actorProp.z;
+                    actor_position[0] = (f32) var_s1->actorProp.position_x;
+                    actor_position[1] = (f32) var_s1->actorProp.position_y;
+                    actor_position[2] = (f32) var_s1->actorProp.position_z;
                     actor_rotation[0] = (f32) var_s1->actorProp.marker->pitch;
                     actor_rotation[1] = (f32) var_s1->actorProp.marker->yaw;
                     actor_rotation[2] = (f32) var_s1->actorProp.marker->roll;
@@ -1762,7 +1797,7 @@ BKCollisionTri *func_803311D4(Cube *cube, f32 *arg1, f32 *arg2, f32 *arg3, u32 a
                     }
                 }
             }
-        } else if (var_s1->is_actor) {
+        } else if (var_s1->isActorProp) {
             if (var_s1->actorProp.marker->unk18 != NULL) {
                 if (var_s1->actorProp.marker->unk18->unk0 != NULL) {
                     var_v0 = var_s1->actorProp.marker->unk18->unk0(var_s1->actorProp.marker, arg1, arg2, arg3, arg4);
@@ -1802,7 +1837,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
   new_var2 = sp8C;
   for (; var_s3 != 0; var_s0++, var_s3--)
   {
-    if (((!var_s0->is_actor) && var_s0->is_3d) && var_s0->unk8_4)
+    if (((!var_s0->isActorProp) && var_s0->isModelProp) && var_s0->isNotFeatherEggOrNote)
     {
       model_bin = propModelList_getModelIfActive(((u32) (*((u16 *) (&var_s0->modelProp)))) >> 4);
       if (model_bin == 0)
@@ -1831,7 +1866,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       }
     }
     else
-      if ((var_s0->is_actor && var_s0->unk8_3) && var_s0->unk8_4)
+      if ((var_s0->isActorProp && var_s0->unk8_3) && var_s0->isNotFeatherEggOrNote)
     {
       model_collision_list = func_80330DE4(var_s0->actorProp.marker);
       pad9C = model_collision_list;
@@ -1847,9 +1882,9 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       temp_v0_6 = marker_getActor(var_s0->actorProp.marker);
       temp_a1 = func_80330C74(temp_v0_6);
       {
-        sp98[0] = (f32) var_s0->actorProp.x;
-        sp98[1] = (f32) var_s0->actorProp.y;
-        sp98[2] = (f32) var_s0->actorProp.z;
+        sp98[0] = (f32) var_s0->actorProp.position_x;
+        sp98[1] = (f32) var_s0->actorProp.position_y;
+        sp98[2] = (f32) var_s0->actorProp.position_z;
         sp8C[0] = (f32) var_s0->actorProp.marker->pitch;
         sp8C[1] = (f32) var_s0->actorProp.marker->yaw;
         sp8C[2] = (f32) var_s0->actorProp.marker->roll;
@@ -1861,7 +1896,7 @@ s32 func_80331638(Cube *cube, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s
       }
     }
     else
-      if (var_s0->is_actor)
+      if (var_s0->isActorProp)
     {
       temp_a0 = var_s0->actorProp.marker;
       temp_v0_7 = temp_a0->unk18;
@@ -1903,9 +1938,9 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
     var_s7 = NULL;
     prop_ptr = cube->prop2Ptr;
     for (i = cube->prop2Cnt; i != 0; i--, prop_ptr++) {
-        if (((!prop_ptr->is_actor) && prop_ptr->is_3d) && prop_ptr->unk8_4) {
+        if (((!prop_ptr->isActorProp) && prop_ptr->isModelProp) && prop_ptr->isNotFeatherEggOrNote) {
             mProp = &prop_ptr->modelProp;
-            new_var = propModelList_getModelIfActive(mProp->model_index); 
+            new_var = propModelList_getModelIfActive(mProp->modelId); 
             if (1) { } if (1) { } if (1) { }
             model_bin = new_var;
             if (model_bin != NULL){
@@ -1925,7 +1960,7 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
             }
         } else {
             aProp = &prop_ptr->actorProp;
-            if ((prop_ptr->is_actor && prop_ptr->unk8_3) && prop_ptr->unk8_4) {
+            if ((prop_ptr->isActorProp && prop_ptr->unk8_3) && prop_ptr->isNotFeatherEggOrNote) {
                 model_bin = func_80330DE4(aProp->marker);
                 if (model_bin != 0) {
                     new_var = model_getCollisionList(model_bin);
@@ -1934,9 +1969,9 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
                     
                         temp_v0_6 = marker_getActor(aProp->marker);
                         temp_a1 = func_80330C74(temp_v0_6);
-                        actor_position[0] = (f32) aProp->x;
-                        actor_position[1] = (f32) aProp->y;
-                        actor_position[2] = (f32) aProp->z;
+                        actor_position[0] = (f32) aProp->position_x;
+                        actor_position[1] = (f32) aProp->position_y;
+                        actor_position[2] = (f32) aProp->position_z;
                         actor_rotation[0] = aProp->marker->pitch;
                         actor_rotation[1] = aProp->marker->yaw;
                         actor_rotation[2] = aProp->marker->roll;
@@ -1947,7 +1982,7 @@ BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, s32 arg3,
                         }
                     }
                 }
-            } else if (prop_ptr->is_actor) {
+            } else if (prop_ptr->isActorProp) {
                 Struct6Cs *temp_v0_7;
                 temp_v0_7 = aProp->marker->unk18;
                 if (temp_v0_7 != 0) {
@@ -1983,7 +2018,7 @@ f32 func_80331D20(BKSprite *sprite) {
 
 
 f32 func_80331E34(Prop *arg0){
-    return func_80331D20(propModelList_getSprite(arg0->spriteProp.sprite_index));
+    return func_80331D20(propModelList_getSprite(arg0->spriteProp.spriteId));
 }
 
 f32 func_80331E64(ActorMarker *marker) {
@@ -2002,7 +2037,7 @@ f32 func_80331E64(ActorMarker *marker) {
 
 
 f32 func_80331F1C(Prop *arg0){
-    return vtxList_getGlobalNorm(model_getVtxList(propModelList_getModel(arg0->modelProp.model_index)));
+    return vtxList_getGlobalNorm(model_getVtxList(propModelList_getModel(arg0->modelProp.modelId)));
 }
 
 f32 func_80331F54(ActorMarker *marker) {
@@ -2030,8 +2065,8 @@ f32 func_80332050(Prop *prop, ActorMarker *marker, s32 arg2) {
     ActorMarker * phi_v0;
     f32 phi_f2;
 
-    phi_v0 =(prop->is_actor) ? prop->actorProp.marker : NULL;
-    phi_f2 = prop->unk4[arg2] - (&marker->propPtr->x)[arg2] - marker->unk38[arg2];
+    phi_v0 =(prop->isActorProp) ? prop->actorProp.marker : NULL;
+    phi_f2 = prop->position[arg2] - (&marker->propPtr->position_x)[arg2] - marker->unk38[arg2];
     if (phi_v0 != NULL) {
         phi_f2 += phi_v0->unk38[arg2];
     }
@@ -2069,7 +2104,7 @@ f32 func_8033229C(ActorMarker *marker) {
     ActorProp *prop;
 
     prop = marker->propPtr;
-    if (prop->is_3d) {
+    if (prop->isModelProp) {
         return func_803320BC(prop, func_80331F54);
     }
     else{
@@ -2093,27 +2128,27 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
     if (marker->collidable) {
         phi_s1 = &cube->prop2Ptr[(*arg4)++];
         for(phi_s3 = phi_s3; phi_s3 != 0; phi_s3--){
-            if (phi_s1->unk8_4) {
-                if( phi_s1->is_actor &&  (!phi_s1->actorProp.marker->unk3E_0 || !marker_getActor(phi_s1->actorProp.marker)->despawn_flag)){
+            if (phi_s1->isNotFeatherEggOrNote) {
+                if( phi_s1->isActorProp &&  (!phi_s1->actorProp.marker->unk3E_0 || !marker_getActor(phi_s1->actorProp.marker)->despawn_flag)){
                     if (phi_s1->actorProp.marker->collidable && (marker != phi_s1->actorProp.marker)) {
                         if( (phi_s1->actorProp.marker->modelId) 
                             && (func_803327A8(phi_s1->actorProp.marker->modelId) & arg3)
                         ) {
-                            if( phi_s1->actorProp.is_3d
+                            if( phi_s1->actorProp.isModelProp
                                 && (phi_s1->actorProp.marker->unk18 != NULL) 
                                 && (phi_s1->actorProp.marker->unk18->unkC != NULL)
                             ) {
                                 func_803320BC(&phi_s1->actorProp, &func_80331F54);
-                                sp68[0] = (f32) (marker->unk38[0] + marker->propPtr->x);
-                                sp68[1] = (f32) (marker->unk38[1] + marker->propPtr->y);
-                                sp68[2] = (f32) (marker->unk38[2] + marker->propPtr->z);
+                                sp68[0] = (f32) (marker->unk38[0] + marker->propPtr->position_x);
+                                sp68[1] = (f32) (marker->unk38[1] + marker->propPtr->position_y);
+                                sp68[2] = (f32) (marker->unk38[2] + marker->propPtr->position_z);
                                 if ((phi_s1->actorProp.marker->unk40_31 = phi_s1->actorProp.marker->unk18->unkC(phi_s1->actorProp.marker, sp68, arg2, sp74, 0)) != 0) {
                                     return phi_s1;
                                 }
                             } else{
                                 phi_f24 = func_80332050(phi_s1, marker, 0);
                                 phi_f22 = func_80332050(phi_s1, marker, 2);
-                                if (phi_s1->actorProp.is_3d) {
+                                if (phi_s1->actorProp.isModelProp) {
                                     phi_f20 = func_80332050(phi_s1, marker, 1);
                                     phi_f2 = func_803320BC(&phi_s1->actorProp, func_80331F54);
                                 } else {
@@ -2128,8 +2163,8 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
                         }
                     }
                 }
-                else if (phi_s1->is_3d) {//ModelProp
-                    if (func_803327A8(phi_s1->modelProp.model_index + 0x2D1) & arg3) {
+                else if (phi_s1->isModelProp) {//ModelProp
+                    if (func_803327A8(phi_s1->modelProp.modelId + MODEL_ASSET_OFFSET) & arg3) {
                         phi_f24 = func_80332050(phi_s1, marker, 0);
                         phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331F1C);
                         phi_f22 = func_80332050(phi_s1, marker, 2);
@@ -2140,7 +2175,7 @@ Prop *func_803322F0(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *ar
                     }
                 }
                 else{
-                    if (func_803327A8(phi_s1->spriteProp.sprite_index + 0x572) & arg3) {
+                    if (func_803327A8(phi_s1->spriteProp.spriteId + SPRITE_ASSET_OFFSET) & arg3) {
                         phi_f24 = func_80332050(phi_s1, marker, 0);\
                         phi_f20 = func_80332050(phi_s1, marker, 1) + func_80332220(phi_s1, &func_80331E34);\
                         phi_f22 = func_80332050(phi_s1, marker, 2);

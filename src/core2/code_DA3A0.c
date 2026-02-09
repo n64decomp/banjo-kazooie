@@ -14,14 +14,14 @@ void func_8036158C(Actor *this);
 u8 D_80373130[] = {0, 1, 0, 0};
 
 ActorInfo D_80373134 = { 
-    0x1a6, 0x289, 0x431, 
+    MARKER_1A6_BETA_VENT, ACTOR_289_BETA_VENT, ASSET_431_MODEL_BETA_VENT, 
     0x0, NULL, 
     func_8036158C, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80373158 = { 
-    0x1a6, 0x28f, 0x431, 
+    MARKER_1A6_BETA_VENT, ACTOR_28F_BETA_VENT, ASSET_431_MODEL_BETA_VENT, 
     0x0, NULL, 
     func_8036158C, NULL, actor_draw, 
     0, 0, 0.0f, 0

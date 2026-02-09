@@ -29,7 +29,7 @@ void func_8038A8F8(Actor *this){
     NodeProp *other;
     
     if(!this->volatile_initialized){
-        other = nodeprop_findByActorIdAndActorPosition(0x3be, this);
+        other = nodeprop_findByActorIdAndActorPosition(ACTOR_3BE_LAIR_UNKNOWN, this);
         if(!other){
             this->unk1C_x = this->position_x;
             this->unk1C_y = this->position_y;

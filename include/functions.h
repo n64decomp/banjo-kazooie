@@ -493,7 +493,7 @@ extern void spawnableActorList_addIfMapVisited(ActorInfo *arg0, Actor *(*arg1)(s
 extern void marker_setActorUpdateFunc(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_setActorUpdate2Func(ActorMarker *marker, ActorUpdateFunc method);
 extern void marker_callCollisionFunc(ActorMarker *, ActorMarker *, enum marker_collision_func_type_e);
-extern enum marker_collision_func_type_e func_8033D574(struct5Cs *arg0);
+extern enum marker_collision_func_type_e collision_getNextState(CollisionParams *arg0);
 extern s32  volatileFlag_get(enum volatile_flags_e);
 extern s32 volatileFlag_getN(enum volatile_flags_e index, s32 numBits);
 extern s32 volatileFlag_getAndSet(enum volatile_flags_e index, s32 arg1);

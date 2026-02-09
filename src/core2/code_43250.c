@@ -29,10 +29,10 @@ ActorInfo D_80366CD0 = {
 Struct_Core2_43250_1 D_80366CF4 [16]= { 
     {SFX_6B_LOCKUP_OPENING, 0x40, 0xFF},
     {SFX_6C_LOCKUP_CLOSING, 0x80, 0xFA},
-    {SFX_3F_CAULDRON_SQEAK_1, 0x99, 0x65},
-    {SFX_40_CAULDRON_SQEAK_2, 0x99, 0x65},
-    {SFX_3F_CAULDRON_SQEAK_1, 0x99, 0x65},
-    {SFX_40_CAULDRON_SQEAK_2, 0x99, 0x65},
+    {SFX_3F_CAULDRON_SQUEAK_1, 0x99, 0x65},
+    {SFX_40_CAULDRON_SQUEAK_2, 0x99, 0x65},
+    {SFX_3F_CAULDRON_SQUEAK_1, 0x99, 0x65},
+    {SFX_40_CAULDRON_SQUEAK_2, 0x99, 0x65},
     {SFX_AD_CATERPILLAR_SQUEAK, 0x80, 0x75},
     {SFX_AD_CATERPILLAR_SQUEAK, 0x8C, 0x94},
     {SFX_C5_TWINKLY_POP, 0x80, 0xFA},  
@@ -156,7 +156,7 @@ void func_802CA1E0(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         tmp_v1 = (s32)this->yaw;
-        this->unk154 = D_80366E64[tmp_v1].unk0;
+        this->unk154 = (u32)D_80366E64[tmp_v1].unk0;
         reinterpret_cast(s32, this->unkBC[4]) = D_80366E64[tmp_v1].unk4;
         reinterpret_cast(s32, this->unkBC[0]) = 0;
     }

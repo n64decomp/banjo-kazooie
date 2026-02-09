@@ -234,18 +234,17 @@ void func_8033B2A4(s32 arg0) {
     assetCacheLength += 1;
 }
 
-bool func_8033B338(void **sprite_ptr, BKSpriteDisplayData **arg1)
+bool codeB3A80_releaseSprite(BKSprite **sprite_ptr, BKSpriteDisplayData **sprite_gfx_ptr)
 {
-    void *new_var;
+    BKSprite *sprite;
     if ((*sprite_ptr) == NULL)
-    return 0;
+        return FALSE;
 
-    new_var = *sprite_ptr;
-    assetcache_release(new_var);
-    *sprite_ptr = 0;
-    *arg1 = 0;
-    return 1;
-    
+    sprite = *sprite_ptr;
+    assetcache_release(sprite);
+    *sprite_ptr = NULL;
+    *sprite_gfx_ptr = NULL;
+    return TRUE;
 }
 
 bool func_8033B388(BKSprite **sprite_ptr, BKSpriteDisplayData **arg1){
@@ -333,11 +332,11 @@ bool asset_isCompressed(enum asset_e arg0){ //asset_compressed?
 }
 
 //returns raw sprite(as saved in ROM) and points arg1 to a parsed sprite(?)
-BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1){
+BKSprite *codeB3A80_getSprite(enum asset_e sprite_id, BKSpriteDisplayData **arg1){
     BKSprite *s0;
     s0 = assetcache_get(sprite_id);
     if(D_80383CD4[assetCacheCurrentIndex] == NULL){
-        func_803382E4(-1);
+        codeAEDA0_setSpriteDrawMode(-1);
         func_80338308(sprite_getUnk8(s0), sprite_getUnkA(s0));
         D_80383CD4[assetCacheCurrentIndex] = func_80344A1C(s0);
     }

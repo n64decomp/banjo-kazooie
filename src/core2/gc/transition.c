@@ -49,7 +49,7 @@ typedef struct {
     u8 next_state;
     // u8 pad3[1];
     f32 duration;
-    s32 model_index;
+    s32 modelId;
     s32 anim_index;
     f32 scale;
 }TransitionInfo;
@@ -183,8 +183,8 @@ void _gctranstion_changeState(s32 state, TransitionInfo *desc){
         s_current_transition.model_ptr = assetcache_get(0x7D2); //scene transition black
     else if(state == TRANSITION_STATE_6_LOADING_WHITE)
         s_current_transition.model_ptr = assetcache_get(0x7D3);  //scene transition white
-    else if(desc != NULL && desc->model_index != 0)
-        s_current_transition.model_ptr = assetcache_get(desc->model_index);
+    else if(desc != NULL && desc->modelId != 0)
+        s_current_transition.model_ptr = assetcache_get(desc->modelId);
 
     //load transistion animation
     if(desc != NULL && desc->anim_index != NULL){

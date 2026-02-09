@@ -8,7 +8,7 @@ void musicNote_update(Actor* this);
 ActorInfo sumusicNote = { 
     MARKER_5F_MUSIC_NOTE, 
     ACTOR_51_MUSIC_NOTE,
-    ASSET_6D6_MODEL_MUSIC_NOTE,
+    ASSET_6D6_SPRITE_MUSIC_NOTE,
     0,
     NULL,
     musicNote_update,

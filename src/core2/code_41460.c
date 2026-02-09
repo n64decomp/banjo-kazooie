@@ -55,7 +55,7 @@ void func_802C83F0(Actor *actor) {
     Struct25s *phi_a1;
     Struct24s *phi_s0;
 
-    phi_a1 = actor->unk40;
+    phi_a1 = (Struct25s*)actor->unk40;
     for( phi_s0 = phi_a1->begin; phi_s0 < phi_a1->current; phi_s0++){
         if (phi_s0->model_bin != NULL) {
             assetcache_release(phi_s0->model_bin);
@@ -65,7 +65,7 @@ void func_802C83F0(Actor *actor) {
         }
         phi_s0->unk3C = NULL;
     }
-    free(actor->unk40);
+    free((s32*)actor->unk40);
 }
 
 Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
@@ -77,7 +77,7 @@ Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_s4;
 
     sp58 = marker_getActorAndRotation(marker, &sp5C);
-    temp_s1 = sp58->unk40;
+    temp_s1 = (Struct25s*)sp58->unk40;
     phi_s4 = FALSE;
     for(phi_s0 = temp_s1->begin; phi_s0 < temp_s1->current; phi_s0++){
         if ((phi_s0->unk0 != 0) && (phi_s0->model_bin != NULL)) {
@@ -147,7 +147,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
             break; 
         case 0: // 802C883C
             if(0.5 < randf())
-                s0->model_bin = (BKModelBin *) assetcache_get(0x2d1);
+                s0->model_bin = (BKModelBin *) assetcache_get(MODEL_ASSET_OFFSET);
             else
                 s0->model_bin = (BKModelBin *) assetcache_get(0x2e5);
 
@@ -168,7 +168,7 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         sp68[2] = (f32)position[2];
 
         sp68[0] += s0->unk30[0]*3.0f;
-        s0->unk50 = mapModel_getFloorY(&sp68);
+        s0->unk50 = mapModel_getFloorY((f32*)&sp68);
 
         s0->unk14[2] = 0.0f;
         s0->unk14[1] = 0.0f;
@@ -178,14 +178,14 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         s0->unk20[1] = randf2(0.05f, 0.4f);
         s0->unk20[2] = randf2(0.05f, 0.4f);
 
-        ml_vec3f_yaw_rotate_copy(&s0->unk8, &s0->unk8, f24);
+        ml_vec3f_yaw_rotate_copy((f32*)&s0->unk8, (f32*)&s0->unk8, f24);
         s0->unk8[0] += actor->position_x;
         s0->unk8[1] += actor->position_y;
         s0->unk8[2] += actor->position_z;
 
-        ml_vec3f_yaw_rotate_copy(&s0->unk30, &s0->unk30, randf2(15.0f, 90.0f) + f24);
+        ml_vec3f_yaw_rotate_copy((f32*)&s0->unk30, (f32*)&s0->unk30, randf2(15.0f, 90.0f) + f24);
     }//L802C8A08
-    actor->unk40 = s1;
+    actor->unk40 = (s32)s1;
     marker_setFreeMethod(actor->marker, func_802C83F0);
     return actor;
 }
@@ -254,7 +254,7 @@ void func_802C8C5C(Actor *actor) {
     f32 sp94[3];
     f32 temp_f0 = time_getDelta();
     f32 sp84[3];
-    Struct25s *temp_s2 = actor->unk40;
+    Struct25s *temp_s2 = (Struct25s*)actor->unk40;
     Struct24s *phi_s0;
     s32 sp70[3] = D_80366418;
 
@@ -280,9 +280,9 @@ void func_802C8C5C(Actor *actor) {
 
             if (phi_s0->unk8[1] <= phi_s0->unk50) {
                 phi_s0->unk0 = 1;
-                phi_s0->unk3C = dustEmitter_returnGiven(1);
+                phi_s0->unk3C = (ParticleEmitter*)dustEmitter_returnGiven(1);
                 if (phi_s0->unk3C != 0) {
-                    dustEmitter_emit(phi_s0->unk8, sp70, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, DUST_EMITTER_TYPE_BREAK_DUST);
+                    dustEmitter_emit(phi_s0->unk8, (f32*)sp70, phi_s0->unk40, 1, D_80366330, D_80366334, (s32)D_80366338, (s32)D_8036633C, DUST_EMITTER_TYPE_BREAK_DUST);
                 }
             }
         }

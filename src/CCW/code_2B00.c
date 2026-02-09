@@ -29,14 +29,61 @@ ActorAnimationInfo D_8038ED20[] = {
     {ASSET_D4_ANIM_SWITCH_DOWN, 100000000.0f}
 };
 
-ActorInfo D_8038ED50 = { 0x133, 0x1E3, 0x52E, 0x1,       NULL, func_80389268, actor_update_func_80326224, actor_drawFullDepth, 0, 0x4000, 0.0f, 0};
-ActorInfo D_8038ED74 = { 0x132, 0x1E2, 0x4F5, 0x5, D_8038ED20, func_80388FD4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_8038ED98 = { 0x131, 0x16D, 0x52E, 0x1,       NULL, func_80389268, actor_update_func_80326224, actor_drawFullDepth, 0, 0x4000, 0.0f, 0};
-ActorInfo D_8038EDBC = { 0x130, 0x16C, 0x4F6, 0x5, D_8038ED20, func_80388FD4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_8038EDE0 = { 0x12F, 0x16B, 0x52E, 0x1,       NULL, func_80389268, actor_update_func_80326224, actor_drawFullDepth, 0, 0x4000, 0.0f, 0};
-ActorInfo D_8038EE04 = { 0x12E, 0x16A, 0x4F7, 0x5, D_8038ED20, func_80388FD4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_8038EE28 = { 0x12D, 0x169, 0x52E, 0x1,       NULL, func_80389268, actor_update_func_80326224, actor_drawFullDepth, 0, 0x4000, 0.0f, 0};
-ActorInfo D_8038EE4C = { 0x12C, 0x168, 0x4F8, 0x5, D_8038ED20, func_80388FD4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_8038ED50 = {
+    MARKER_133_CCW_SPRING_SEASON_DOOR, ACTOR_1E3_CCW_SPRING_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
+    0x1, NULL,
+    func_80389268, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0x4000, 0.0f, 0
+};
+
+ActorInfo D_8038ED74 = {
+    MARKER_132_CCW_SPRING_SWITCH, ACTOR_1E2_CCW_SPRING_SWITCH, ASSET_4F5_MODEL_CCW_SPRING_SWITCH,
+    0x5, D_8038ED20,
+    func_80388FD4, actor_update_func_80326224, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_8038ED98 = {
+    MARKER_131_CCW_SUMMER_SEASON_DOOR, ACTOR_16D_CCW_SUMMER_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
+    0x1, NULL,
+    func_80389268, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0x4000, 0.0f, 0
+};
+
+ActorInfo D_8038EDBC = {
+    MARKER_130_CCW_SUMMER_SWITCH, ACTOR_16C_CCW_SUMMER_SWITCH, ASSET_4F6_MODEL_CCW_SUMMER_SWITCH,
+    0x5, D_8038ED20,
+    func_80388FD4, actor_update_func_80326224, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_8038EDE0 = {
+    MARKER_12F_CCW_AUTUMN_SEASON_DOOR, ACTOR_16B_CCW_AUTUMN_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
+    0x1, NULL,
+    func_80389268, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0x4000, 0.0f, 0
+};
+
+ActorInfo D_8038EE04 = {
+    MARKER_12E_CCW_AUTUMN_SWITCH, ACTOR_16A_CCW_AUTUMN_SWITCH, ASSET_4F7_MODEL_CCW_AUTUMN_SWITCH,
+    0x5, D_8038ED20,
+    func_80388FD4, actor_update_func_80326224, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_8038EE28 = {
+    MARKER_12D_CCW_WINTER_SEASON_DOOR, ACTOR_169_CCW_WINTER_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
+    0x1, NULL,
+    func_80389268, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0x4000, 0.0f, 0
+};
+
+ActorInfo D_8038EE4C = {
+    MARKER_12C_CCW_WINTER_SWITCH, ACTOR_168_CCW_WINTER_SWITCH, ASSET_4F8_MODEL_CCW_WINTER_SWITCH,
+    0x5, D_8038ED20,
+    func_80388FD4, actor_update_func_80326224, actor_draw,
+    0, 0, 0.0f, 0
+};
 
 /* .code */
 s32 func_80388EF0(Actor *this){

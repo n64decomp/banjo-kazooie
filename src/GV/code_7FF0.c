@@ -445,9 +445,9 @@ void func_8038F028(UNK_TYPE(s32) arg0, ActorMarker *arg1, s32 arg2, s32 arg3){
     if(mapSpecificFlags_get(arg2) == FALSE){
         mapSpecificFlags_set(arg2, 1);
 
-        sp24[0] = (f32)arg1->propPtr->x;
-        sp24[1] = (f32)arg1->propPtr->y;
-        sp24[2] = (f32)arg1->propPtr->z;
+        sp24[0] = (f32)arg1->propPtr->position_x;
+        sp24[1] = (f32)arg1->propPtr->position_y;
+        sp24[2] = (f32)arg1->propPtr->position_z;
         __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x4e, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
         coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 22000);
         if(mapSpecificFlags_get(arg3)){

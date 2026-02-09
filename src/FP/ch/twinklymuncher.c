@@ -76,7 +76,7 @@ Actor *func_8038DF34(Actor *this){
     this->marker->unk38[2] = sp18[2] - this->position[2];
     prop = func_80320EB0(this->marker, 75.0f, 1);
 
-    if(prop && prop->is_actor){
+    if(prop && prop->isActorProp){
         other = marker_getActor(prop->marker);
         marker_id = other->marker->id;
         if( marker_id == MARKER_200_TWINKLY_BLUE

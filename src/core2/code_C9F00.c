@@ -14,7 +14,7 @@ void func_80351AD0(Struct68s *arg0, enum asset_e model_id);
 typedef struct {
     s16 unk0;
     u8 unk2;
-    u8 unk3;
+    u8 mapId;
 }Struct_Core2_C9F00_1;
 
 typedef struct {
@@ -23,18 +23,18 @@ typedef struct {
 }Struct_Core2_C9F00_0;
 
 Struct_Core2_C9F00_1 D_803725C0[] = {
-    { 0x37, 0x1, 0x00}, 
-    { 0x38, 0x2, 0x24},  
-    { 0xF9, 0x5, 0x22}, 
-    { 0xFA, 0x6, 0x22},
-    { 0xFB, 0x7, 0x22}, 
-    { 0xFC, 0x8, 0x22},  
-    { 0xFD, 0x9, 0x22}, 
-    { 0xFE, 0xA, 0x22},
-    { 0xFF, 0xB, 0x22}, 
-    {0x100, 0xC, 0x22},  
-    {0x100, 0xC, 0x22}, 
-    { 0x13, 0xD, 0x00},
+    { 0x37, 0x1, NULL}, 
+    { 0x38, 0x2, MAP_24_MMM_TUMBLARS_SHED},  
+    { 0xF9, 0x5, MAP_22_CC_INSIDE_CLANKER}, 
+    { 0xFA, 0x6, MAP_22_CC_INSIDE_CLANKER},
+    { 0xFB, 0x7, MAP_22_CC_INSIDE_CLANKER}, 
+    { 0xFC, 0x8, MAP_22_CC_INSIDE_CLANKER},  
+    { 0xFD, 0x9, MAP_22_CC_INSIDE_CLANKER}, 
+    { 0xFE, 0xA, MAP_22_CC_INSIDE_CLANKER},
+    { 0xFF, 0xB, MAP_22_CC_INSIDE_CLANKER}, 
+    {0x100, 0xC, MAP_22_CC_INSIDE_CLANKER},  
+    {0x100, 0xC, MAP_22_CC_INSIDE_CLANKER}, 
+    { 0x13, 0xD, NULL},
     0
 };
 
@@ -199,19 +199,19 @@ Struct68s * func_8035126C(f32 position[3], f32 arg1[3], f32 arg2, s32 arg3, enum
 }
 
 void func_803513EC(ModelProp *arg0, s32 arg1) {
-    f32 sp3C[3];
+    f32 position[3];
     s32 pad30;
     f32 rotation[3];
 
     arg0->unkB_5 = TRUE;
     arg0->unkB_4 = FALSE;
-    sp3C[0] = (f32) arg0->position[0];
-    sp3C[1] = (f32) arg0->position[1];
-    sp3C[2] = (f32) arg0->position[2];
+    position[0] = (f32) arg0->position[0];
+    position[1] = (f32) arg0->position[1];
+    position[2] = (f32) arg0->position[2];
     rotation[0] = 0.0f;
     rotation[1] = (f32) (arg0->yaw * 2);
     rotation[2] = (f32) (arg0->roll * 2);
-    func_8035126C(sp3C, rotation, (f32) (arg0->scale / 100.0), arg1, arg0->model_index + 0x2D1);
+    func_8035126C(position, rotation, (f32) (arg0->scale / 100.0), arg1, arg0->modelId + MODEL_ASSET_OFFSET);
 }
 
 
@@ -242,16 +242,16 @@ bool func_803515EC(NodeProp *arg0) {
     s16 phi_v0;
 
 
-    if (arg0->bit6 != 6) {
+    if (arg0->category != 6) {
         return TRUE;
     } else {
         for(phi_s0 = D_803725C0; phi_s0->unk0 != 0; phi_s0++){
-            if( (arg0->unk8 == phi_s0->unk0) 
-                && ((phi_s0->unk3 == 0) || (gsworld_get_map() == phi_s0->unk3))
+            if( (arg0->actorId == phi_s0->unk0) 
+                && ((phi_s0->mapId == NULL) || (gsworld_get_map() == phi_s0->mapId))
             ){
-                sp48[0] = (s32) arg0->x;
-                sp48[1] = (s32) arg0->y;
-                sp48[2] = (s32) arg0->z;
+                sp48[0] = (s32) arg0->position_x;
+                sp48[1] = (s32) arg0->position_y;
+                sp48[2] = (s32) arg0->position_z;
                 if(func_803048E0(&sp48, &sp44, &sp40, 2, 0x1F4)){
                     func_803513EC(sp40, phi_s0->unk2);
                     break;
@@ -273,8 +273,8 @@ bool func_80351724(void * arg0){
     ActorProp *a_prop;
     if (((*(u16*)((s32)arg0 + 0xA) << 0x1E) >> 0x1F) && ((*(u16*)((s32)arg0 + 0xA) << 0x1A) >> 0x1F)) {
         a_prop = (ActorProp *)arg0;
-        a_prop->unk8_5 = FALSE;
-        a_prop->unk8_4 = TRUE;
+        a_prop->isMirrored = FALSE;
+        a_prop->isNotFeatherEggOrNote = TRUE;
     }
     return TRUE;
 }
