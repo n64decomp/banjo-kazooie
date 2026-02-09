@@ -8,23 +8,23 @@
 #include "core2/statetimer.h"
 
 /* .data */
-f32 D_80364A90 = 30.0f;
-f32 D_80364A94 = 700.0f;
-f32 D_80364A98 = 80.0f;
-f32 D_80364A9C = 1000.0f;
-f32 D_80364AA0 = 300.0f;
-f32 D_80364AA4 = 0.56f;
-f32 D_80364AA8 = 0.34f;
-f32 D_80364AAC = 0.51f;
-f32 D_80364AB0 = 0.29f;
-f32 D_80364AB4 = 0.8f;
-f32 D_80364AB8 = 0.7f;
-f32 D_80364ABC = 693.5f;
-f32 D_80364AC0 = -1200.0f;
+f32 gBsbTrotMinWalkVelocity = 30.0f;
+f32 gBsbTrotMaxWalkVelocity = 700.0f;
+f32 gBsbTrotMinTurboVelocity = 80.0f;
+f32 gBsbTrotMaxTurboVelocity = 1000.0f;
+f32 gBsbTrotMaxTrudgeVelocity = 300.0f; // max velocity on dangerous ground
+f32 gBsbTrotSlowestWalkDuration = 0.56f;
+f32 gBsbTrotFastestWalkDuration = 0.34f;
+f32 gBsbTrotSlowestTurboDuration = 0.51f;
+f32 gBsbTrotFastestTurboDuration = 0.29f;
+f32 gBsbTrotSlowestTrudgeDuration = 0.8f;
+f32 gBsbTrotFastestTrudgeDuration = 0.7f;
+f32 gBsbTrotInitialJumpVelocity = 693.5f;
+f32 gBsbTrotGravity = -1200.0f; // jump gravity
 
 /* .bss */
-f32 D_8037D3A0;
-u8  D_8037D3A4;
+f32 D_8037D3A0; /* timer for jumps while sliding? */
+u8  D_8037D3A4; /* jump state? */
 
 void func_802A87C0(void){
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
@@ -50,51 +50,51 @@ void func_802A8850(void){
 
 }
 
-f32 func_802A88B0(void){
+f32 bsbtrot_getMaxTargetVelocity(void){
     if(player_isOnDangerousGround())
-        return D_80364AA0;
+        return gBsbTrotMaxTrudgeVelocity;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
-        return D_80364A9C;
+        return gBsbTrotMaxTurboVelocity;
 
-    return D_80364A94;
+    return gBsbTrotMaxWalkVelocity;
 }
 
-f32 func_802A8900(void){
+f32 bsbtrot_getMinTargetVelocity(void){
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
-        return D_80364A98;
+        return gBsbTrotMinTurboVelocity;
 
-    return D_80364A90;
+    return gBsbTrotMinWalkVelocity;
 }
 
-f32 func_802A8934(void){
+f32 bsbtrot_getFastestDuration(void){
     if(player_isOnDangerousGround())
-        return D_80364AB8;
+        return gBsbTrotFastestTrudgeDuration;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
-        return D_80364AB0;
+        return gBsbTrotFastestTurboDuration;
 
-    return D_80364AA8;
+    return gBsbTrotFastestWalkDuration;
 }
 
-f32 func_802A8984(void){
+f32 bsbtrot_getSlowestDuration(void){
     if(player_isOnDangerousGround())
-        return D_80364AB4;
+        return gBsbTrotSlowestTrudgeDuration;
 
     if(stateTimer_isActive(STATE_TIMER_3_TURBO_TALON))
-        return D_80364AAC;
+        return gBsbTrotSlowestTurboDuration;
 
-    return D_80364AA4;
+    return gBsbTrotSlowestWalkDuration;
 }
 
-void func_802A89D4(void){
-    f32 sp24 = bastick_getZonePosition();
+void bsbtrot_walkUpdateTargetVelocity(void){
+    f32 zone_pos = bastick_getZonePosition();
     if(!bastick_getZone()){
         baphysics_set_target_horizontal_velocity(0.0f);
     }
     else{
-        baphysics_set_target_horizontal_velocity(ml_interpolate_f(sp24, func_802A8900(), func_802A88B0()));
+        baphysics_set_target_horizontal_velocity(ml_interpolate_f(zone_pos, bsbtrot_getMinTargetVelocity(), bsbtrot_getMaxTargetVelocity()));
     }
 
 }
@@ -271,7 +271,7 @@ enum asset_e func_802A9030(void){
 
 void func_802A9054(void){
     f32 tmp = 1.0f;
-    baanim_setVelocityMapRanges(func_802A8900(), func_802A88B0(), func_802A8984(), func_802A8934());
+    baanim_setVelocityMapRanges(bsbtrot_getMinTargetVelocity(), bsbtrot_getMaxTargetVelocity(), bsbtrot_getSlowestDuration(), bsbtrot_getFastestDuration());
     if(func_8028B394()){
         tmp = ml_map_f(baphysics_get_horizontal_velocity_percentage(), 0.0f, 1.0f, 0.6f, 0.9f);
         baanim_scaleDuration(tmp);
@@ -297,7 +297,7 @@ void bsbtrot_walk_update(void){
     func_802A8AD8();
     _bsbtrot_802A8C98(aCtrl, func_802A9030());
     func_80299628(1);
-    func_802A89D4();
+    bsbtrot_walkUpdateTargetVelocity();
     if(anctrl_isAt(aCtrl, 0.2781f))
         func_802A880C(1);
 
@@ -361,10 +361,10 @@ void bsbtrot_jump_init(void){
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
 
     baphysics_set_target_yaw(yaw_getIdeal());
-    func_802A89D4();
+    bsbtrot_walkUpdateTargetVelocity();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
-    baphysics_set_vertical_velocity(D_80364ABC);
-    baphysics_set_gravity(D_80364AC0);
+    baphysics_set_vertical_velocity(gBsbTrotInitialJumpVelocity);
+    baphysics_set_gravity(gBsbTrotGravity);
     sfxsource_playHighPriority(SFX_48_KAZOOIE_RUUH);
     D_8037D3A4 = 0;
 }
@@ -380,7 +380,7 @@ void bsbtrot_jump_update(void){
     if(baflag_isTrue(BA_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
-        func_802A89D4();
+        bsbtrot_walkUpdateTargetVelocity();
 
     baphysics_get_velocity(sp1C);
     if(bakey_released(BUTTON_A) && 0.0f < sp1C[1])
@@ -575,7 +575,7 @@ void bsbtrot_fall_init(void){
     func_802A8A40();
     func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
     baphysics_set_target_yaw(yaw_getIdeal());
-    func_802A89D4();
+    bsbtrot_walkUpdateTargetVelocity();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     D_8037D3A4 = 0;
 }
@@ -591,7 +591,7 @@ void bsbtrot_fall_update(void){
     if(baflag_isTrue(BA_FLAG_F))
         baphysics_reset_horizontal_velocity();
     else
-        func_802A89D4();
+        bsbtrot_walkUpdateTargetVelocity();
 
     baphysics_get_velocity(sp1C);
     switch (D_8037D3A4){

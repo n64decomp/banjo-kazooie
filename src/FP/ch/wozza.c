@@ -12,6 +12,8 @@ typedef struct {
 
 Actor *chWozza_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chWozza_update(Actor *this);
+Actor *chWozza_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chWozza_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo chWozzaAnimations[] ={
@@ -100,7 +102,10 @@ void chWozza_returnFromCave(Actor *this){
 }
 
 void chWozza_firstContact(Actor *this){
-    if(!mapSpecificFlags_get(FP_SPECIFIC_FLAG_7_WOZZA_FIRST_CONTACT) && player_movementGroup() != BSGROUP_A_FLYING && subaddie_playerIsWithinSphereAndActive(this, 1000) ){
+    if(!mapSpecificFlags_get(FP_SPECIFIC_FLAG_7_WOZZA_FIRST_CONTACT) &&
+        player_movementGroup() != BSGROUP_A_FLYING &&
+        subaddie_playerIsWithinSphereAndActive(this, 1000))
+    {
         mapSpecificFlags_set(FP_SPECIFIC_FLAG_7_WOZZA_FIRST_CONTACT, TRUE);
         subaddie_set_state(this, 2);
         actor_loopAnimation(this);

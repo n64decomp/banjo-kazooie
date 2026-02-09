@@ -72,7 +72,7 @@ void __chJigsawDance_update(Actor * this){
             anctrl_start(this->anctrl, "chjigsawdance.c", 0x6e);
             break;
         case 5:
-            this->marker->propPtr->unk8_4 = 0;
+            this->marker->propPtr->isNotFeatherEggOrNote = 0;
             break;
     }
 }
@@ -101,7 +101,7 @@ void chJigsawDance_setState(Actor * this, u32 arg1){
             break;
         case 5:
             subaddie_set_state(this, 5);
-            this->marker->propPtr->unk8_4 = 0;
+            this->marker->propPtr->isNotFeatherEggOrNote = 0;
             break;
     }
 }

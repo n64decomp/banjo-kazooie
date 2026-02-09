@@ -501,13 +501,13 @@ typedef struct {
 }struct5Bs;
 
 typedef struct{
-    u16 unk0_15 : 4;
-    u16 unk0_11 : 2;
-    u16 unk0_9  : 3;
-    u16 unk0_6  : 2;
-    u16 unk0_4  : 3;
-    u16 unk0_1  : 2;
-}struct5Cs;
+    u16 playerInteraction:4;
+    u16 nextState:2;
+    u16 unkBit7:3;
+    u16 damageToPlayer:2;
+    u16 hitsToTrigger:3; // 1 / hitsToTrigger = % of health of enemy taken away
+    u16 dropBundleNum:2;
+}CollisionParams;
 
 typedef struct struct_5d_s{
     s32 unk0;

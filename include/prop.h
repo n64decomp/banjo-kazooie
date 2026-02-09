@@ -9,57 +9,87 @@
 #include "core2/skeletalanim.h"
 
 typedef struct sprite_prop_s{
-    u32 sprite_index:0xC;
-    u32 unk0_19:0x1;
-    u32 r:0x3;
-    u32 b:0x3;
-    u32 g:0x3;
-    u32 scale:0x8;
-    u32 mirrored:0x1;
-    s16 unk4[3];
+    u32 spriteId:12;
+    u32 unk0_19:1;
+    u32 rgb_remove_red:3;
+    u32 rgb_remove_green:3;
+    u32 rgb_remove_blue:3;
+    u32 scale:8;
+    u32 isMirrored:1;
+    u32 pad0_0: 1;
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
     u16 frame: 5;
     u16 unk8_10: 5;
-    u16 unk8_5: 1;
-    u16 unk8_4: 1;
-    u16 unk8_3: 1;
-    u16 unk8_2: 1;
-    u16 is_3d:1;
-    u16 is_actor:1;
+    u16 unk8_5: 1; // other structs use this to determine whether it's mirrored, however for sprites another bit address is used
+    u16 isNotFeatherEggOrNote: 1;
+    u16 unk8_3: 1; // is initialized?
+    u16 isCollisionResolved: 1;
+    u16 isModelProp:1; // always false for this struct
+    u16 isActorProp:1; // always false for this struct
 } SpriteProp;
+
+#define SPRITE_ASSET_OFFSET 0x572
 
 typedef struct model_prop_s{
     union{
         u16 unk0;
         struct{    
-            u16 model_index:12;
+            u16 modelId:12;
             u16 pad0_19:4;
         };
     };
     u8 yaw;
     u8 roll;
-    s16 position[3];
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
     u8 scale;
-    u8 padB_7 :2;
-    u8 unkB_5 :1;
-    u8 unkB_4 :1;
-    u8 padB_3 :4;
+    u8 padB_7:2;
+    u8 unkB_5:1;
+    u8 unkB_4:1;
+    u8 unk8_3:1; // is initialized?
+    u8 isCollisionResolved:1;
+    u8 isModelProp:1; // always true for this struct
+    u8 isActorProp:1; // always false for this struct
 } ModelProp;
+
+#define MODEL_ASSET_OFFSET 0x2D1
 
 typedef struct actor_prop_s{
     union {
         struct {
             struct actorMarker_s* marker;
-            s16 x;
-            s16 y;
-            s16 z;
-            u16 unk8_15:5;
+            union
+            {
+                s16 position[3]; // position_
+                struct {
+                    s16 position_x;
+                    s16 position_y;
+                    s16 position_z;
+                };
+            };
+            u16 frame:5;
             u16 unk8_10:5;
-            u16 unk8_5:1;
-            u16 unk8_4:1;
-            u16 unk8_3:1;
-            u16 unk8_2:1;
-            u16 is_3d:1;
-            u16 is_actor:1;
+            u16 isMirrored:1;
+            u16 isNotFeatherEggOrNote:1;
+            u16 unk8_3:1; // is initialized?
+            u16 isCollisionResolved:1;
+            u16 isModelProp:1; // always false for this struct
+            u16 isActorProp:1; // always true for this struct
         };
         s32 words[3];
     };
@@ -326,36 +356,49 @@ typedef union prop_s
     ModelProp    modelProp;
     struct{
         u32 pad0;
-        s16 unk4[3];
-        // s16 unk6;
-        s16 pad8_15: 10;
-        u16 unk8_5: 1;
-        u16 unk8_4: 1;
-        u16 unk8_3: 1;
-        u16 unk8_2: 1;
-        u16 is_3d: 1;
-        u16 is_actor: 1;
+        union
+        {
+            s16 position[3];
+            struct {
+                s16 position_x;
+                s16 position_y;
+                s16 position_z;
+            };
+        };
+        s16 pad8_15:10;
+        u16 isMirrored:1;
+        u16 isNotFeatherEggOrNote:1;
+        u16 unk8_3:1; // is initialized?
+        u16 isCollisionResolved:1;
+        u16 isModelProp:1;
+        u16 isActorProp:1;
     };
 } Prop;
 
 typedef struct {
-    s16 x;
-    s16 y;
-    s16 z;
-    u16 radius: 9; // selector / volume / diameter?
-    u16 bit6: 6; // category?
-    u16 bit0: 1;
-    u16 unk8;       //actor_id?
-    u8 unkA;        //marker_id
+    union
+    {
+        s16 position[3];
+        struct {
+            s16 position_x;
+            s16 position_y;
+            s16 position_z;
+        };
+    };
+    u16 selector_or_radius:9; // selector / volume / diameter?
+    u16 category:6;
+    u16 bit0:1;
+    u16 actorId;
+    u8 markerId;
     u8 padB;
-    u32 yaw: 9; // unkC_31
-    u32 scale: 23; // unkC_22
-    u32 unk10_31: 12; // unk10_31 and unk10_19 seem to be related
-    u32 unk10_19: 12; // unk10_31 and unk10_19 seem to be related
-    u32 pad10_7: 1;
-    u32 unk10_6: 1; // isInitialized flag?
-    u32 pad10_5: 4;
-    u32 unk10_0: 2; // is only for used in func_803303B8
+    u32 yaw:9;
+    u32 scale:23;
+    u32 unk10_31:12; // unk10_31 and unk10_19 seem to be related
+    u32 unk10_19:12; // unk10_31 and unk10_19 seem to be related
+    u32 pad10_7:1;
+    u32 unk10_6:1; // isInitialized flag?
+    u32 pad10_5:4;
+    u32 unk10_0:2; // is only for used in func_803303B8
 } NodeProp; // size = 20 (0x14) bytes
 
 typedef struct {

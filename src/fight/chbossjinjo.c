@@ -282,7 +282,7 @@ void chBossJinjo_update(Actor *this){
         case BOSSJINJO_STATE_5_HIT:
             chfinalboss_getPosition(position_finalboss);
             position_finalboss[1] += 100.0f;
-            chfinalboss_func_80387470(this, position_finalboss, 1200.0f, 3840.0f, 200.0f, 2500.0f, 70.0f);
+            chfinalboss_flyTo(this, position_finalboss, 1200.0f, 3840.0f, 200.0f, 2500.0f, 70.0f);
             chbossjinjo_func_8038C79C(this);
             break;
     }

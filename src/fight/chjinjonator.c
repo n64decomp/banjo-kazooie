@@ -276,7 +276,7 @@ void chjinjonator_update(Actor *this){
             chjinjonator_spawnSparkleParticles(this);
             chfinalboss_getPosition(local->position_finalboss);
             local->position_finalboss[1] += 100.0f;
-            chfinalboss_func_80387470(this, local->position_finalboss, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
+            chfinalboss_flyTo(this, local->position_finalboss, sp50*2400.0f, sp50*2400.0f*4.2, 170.0f, sp50*2500.0f, 0.0f);
             break;
 
         case JINJONATOR_STATE_8:
@@ -355,7 +355,7 @@ void chjinjonator_update(Actor *this){
             chjinjonator_spawnSparkleParticles(this);
             chfinalboss_getPosition(local->position_finalboss);
             local->position_finalboss[1] += 100.0f; 
-            chfinalboss_func_80387470(this, local->position_finalboss, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
+            chfinalboss_flyTo(this, local->position_finalboss, sp48*2400.0f, sp48*2400.0f*4.2, 170.0f, sp48*2500.0f, 0.0f);
             break;
     }
 

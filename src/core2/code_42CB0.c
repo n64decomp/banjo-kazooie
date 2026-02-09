@@ -88,7 +88,7 @@ void func_802C9D80(void){
             }
         }
     }
-    fxSparkle_honeycomb(&s5->propPtr->x);
+    fxSparkle_honeycomb(&s5->propPtr->position_x);
     marker_despawn(s5);
 }
 

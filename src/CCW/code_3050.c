@@ -6,7 +6,12 @@ Actor *CCW_func_8038954C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_803895F4(Actor *this);
 
 /* .data */
-ActorInfo D_8038EE70 = { 0x1B3, 0x2A0, 0x483, 0x0, NULL, func_803895F4, NULL, CCW_func_8038954C, 0, 0, 0.0f, 0};
+ActorInfo D_8038EE70 = {
+    MARKER_1B3_EAGLE_EGG, ACTOR_2A0_EAGLE_EGG, ASSET_483_MODEL_EAGLE_EGG,
+    0x0, NULL,
+    func_803895F4, NULL, CCW_func_8038954C,
+    0, 0, 0.0f, 0
+};
 
 /* .code */
 void func_80389440(Actor *this, s32 next_state) {

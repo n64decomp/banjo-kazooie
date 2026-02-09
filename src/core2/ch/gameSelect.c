@@ -57,7 +57,12 @@ ActorAnimationInfo banjoSleepingAnimations[] = {
     { 0x24F, 0.6f },  
     { 0x24D, 2.0f }
 };
-ActorInfo gameSelect_banjoSleeping = { 0xE4, 0x195, 0x532, 0x1, banjoSleepingAnimations, gameSelect_initAndUpdate, actor_update_func_80326224, gameSelect_zoomboxDraw, 0, 0, 0.0f, 0 };
+ActorInfo gameSelect_banjoSleeping = {
+    MARKER_E4_CS_BK_SLEEPING, 0x195, ASSET_532_MODEL_BANJO_KAZOOIE_CUTSCENES,
+    0x1, banjoSleepingAnimations,
+    gameSelect_initAndUpdate, actor_update_func_80326224, gameSelect_zoomboxDraw,
+    0, 0, 0.0f, 0
+};
 
 ActorAnimationInfo banjoGameboyAnimations[] = {
     { 0x000, 0.0f }, 
@@ -67,7 +72,12 @@ ActorAnimationInfo banjoGameboyAnimations[] = {
     { 0x252, 0.67f }, 
     { 0x250, 4.5f }
 };
-ActorInfo gameSelect_banjoGameboy = { 0xE5, 0x196, 0x532, 0x1, banjoGameboyAnimations, gameSelect_update, actor_update_func_80326224, gameSelect_draw, 0, 0, 0.0f, 0 };
+ActorInfo gameSelect_banjoGameboy = {
+    MARKER_E5_CS_BK_GAMEBOY, 0x196, ASSET_532_MODEL_BANJO_KAZOOIE_CUTSCENES,
+    0x1, banjoGameboyAnimations,
+    gameSelect_update, actor_update_func_80326224, gameSelect_draw,
+    0, 0, 0.0f, 0
+};
 
 ActorAnimationInfo banjoCookingAnimations[] = {
     { 0x000, 0.0f },
@@ -77,7 +87,12 @@ ActorAnimationInfo banjoCookingAnimations[] = {
     { 0x24C, 1.0f },
     { 0x24A, 1.0f }
 };
-ActorInfo gameSelect_banjoCooking = { 0xE6, 0x197, 0x532, 0x1, banjoCookingAnimations, gameSelect_update, actor_update_func_80326224, gameSelect_draw, 0, 0, 0.0f, 0 };
+ActorInfo gameSelect_banjoCooking = {
+    MARKER_E6_CS_BK_COOKING, 0x197, ASSET_532_MODEL_BANJO_KAZOOIE_CUTSCENES,
+    0x1, banjoCookingAnimations,
+    gameSelect_update, actor_update_func_80326224, gameSelect_draw,
+    0, 0, 0.0f, 0
+};
 
 /* .bss */
 // Fun level specific things- why would the devs define these here?

@@ -235,7 +235,7 @@ void itemPrint_init(void){
         D_80381428[i] = assetcache_get(D_803692E0[i]);
     }
     for(i = 0; D_803692EC[i] != -1; i++){
-        D_80381450[i] = func_8033B6C4(D_803692EC[i], &sp40);
+        D_80381450[i] = codeB3A80_getSprite(D_803692EC[i], &sp40);
     }
 }
 

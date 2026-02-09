@@ -214,7 +214,7 @@ void func_802C1674(NodeProp *arg0, ActorMarker *arg1){
 }
 
 void func_802C169C(NodeProp *arg0, ActorMarker *arg1){
-    func_802C16CC(func_8033451C(arg0->unk8));
+    func_802C16CC(func_8033451C(arg0->actorId));
 }
 
 // sets up dynamic camera for cubes in "area" of arg0

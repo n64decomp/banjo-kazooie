@@ -23,7 +23,7 @@ typedef struct {
     u8 unk9;
     u8 unkA;
     u8 unkB;
-    u32 unkC_31:3;
+    u32 yaw:3;
     u32 unkC_28:1;
     u32 season:28;
     s16 unk10;
@@ -120,7 +120,7 @@ void __chgrublinhood_initialize(Actor *this){
     local->unk9 = 0xC;
     local->unkA = 0x10;
     local->unkB = 8;
-    local->unkC_31 = 1;
+    local->yaw = 1;
     local->unk10 = 0x29;
     local->unk12 = 25000;
     local->unkC_28 = 1;

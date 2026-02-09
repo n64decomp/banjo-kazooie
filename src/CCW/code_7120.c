@@ -10,7 +10,7 @@ void func_8038D85C(Actor *this);
 
 /* .data */
 ActorInfo D_8038F640 = {
-    0x1BF, 0x2AC, 0x490,
+    MARKER_1BF_GNAWTY_BOULDER, ACTOR_2AC_GNAWTY_BOULDER, ASSET_490_MODEL_GNAWTY_BOULDER,
     0x0, NULL,
     func_8038D85C, NULL, actor_draw,
     0, 0, 2.2f, 0

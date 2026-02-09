@@ -64,7 +64,7 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
     if (temp_v0 != NULL) {
         nodeprop_getPosition(temp_v0, arg1);
         *arg3 = nodeprop_getScale(temp_v0);
-        temp_f6 = (f32) nodeprop_getYaw(temp_v0) - 180.0f;
+        temp_f6 = (f32) nodeProp_getYaw(temp_v0) - 180.0f;
         arg2[0] = 0.0f;\
         arg2[1] = mlNormalizeAngle(temp_f6);\
         arg2[2] = 0.0f;

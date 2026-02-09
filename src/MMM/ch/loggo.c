@@ -102,12 +102,12 @@ void chLoggo_update(Actor *this) {
             }
 
             if (actor_animationIsAt(this, 0.6f)) {
-                func_8030E878(SFX_3F_CAULDRON_SQEAK_1, randf2(0.975f, 1.025f), MAX(0, 7000 - sp34), this->position, 400.0f, 1000.0f);
+                func_8030E878(SFX_3F_CAULDRON_SQUEAK_1, randf2(0.975f, 1.025f), MAX(0, 7000 - sp34), this->position, 400.0f, 1000.0f);
                 break;
             }
 
             if (actor_animationIsAt(this, 0.16f)) {
-                func_8030E878(SFX_40_CAULDRON_SQEAK_2, randf2(0.975f, 1.025f), MAX(0, 7000 - sp34), this->position, 400.0f, 1000.0f);
+                func_8030E878(SFX_40_CAULDRON_SQUEAK_2, randf2(0.975f, 1.025f), MAX(0, 7000 - sp34), this->position, 400.0f, 1000.0f);
                 break;
             }
             break;

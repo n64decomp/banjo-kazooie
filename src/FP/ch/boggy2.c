@@ -53,7 +53,7 @@ ActorInfo gChBoggySled = { MARKER_97_BOGGY_2, ACTOR_C8_BOGGY_2, ASSET_38A_MODEL_
 };
 
 /* .bss */
-s32 D_80392F20[3];
+s32 D_80392F20[3]; // last position of Boggy (in race)
 
 /* .code */
 Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -322,43 +322,46 @@ void func_803890DC(Actor *this, u8 arg1){
     }
 }
 
-void func_803893E4(Actor *this, f32 arg1, u8 arg2){
+void func_803893E4(Actor *this, f32 arg1, u8 gameNumber){
     ActorLocal_FP_2350 *local = (ActorLocal_FP_2350 *)&this->local;
-    f32 sp30;
-    f32 sp2C;
-    f32 sp28;
-    if((u8)arg2 != 2){
-        sp30 = 575.0f;
-        sp2C = 780.0f;
-        sp28 = 1.7f;
+    f32 min_velocity;
+    f32 max_velocity;
+    f32 rubberband_factor;
+    if((u8)gameNumber != 2){
+        min_velocity = 575.0f;
+        max_velocity = 780.0f;
+        rubberband_factor = 1.7f;
     }
     else{
-        sp30 = 700.0f;
-        sp2C = 1100.0f;
-        sp28 = 2.3f;
+        min_velocity = 700.0f;
+        max_velocity = 1100.0f;
+        rubberband_factor = 2.3f;
     }
 
     func_80343DEC(this);
     if(this->state == 7){
+        // Increase/decrease speed on downwards/upwards slopes
         this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.02;
     }
     else{
-        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.03 + sp28*maSlalom_compareBoggyToPlayer(this->position);
+        // Increase/decrease speed on downwards/upwards slopes + rubberbanding
+        this->unk4C += ((f32)D_80392F20[1] - this->position_y)*0.03 + rubberband_factor*maSlalom_compareBoggyToPlayer(this->position);
     }
 
-    if(this->unk4C < sp30){
-        this->unk4C = sp30;
+    if(this->unk4C < min_velocity){
+        this->unk4C = min_velocity;
     }
-    if(sp2C < this->unk4C){
-        this->unk4C = sp2C;
+    if(max_velocity < this->unk4C){
+        this->unk4C = max_velocity;
     }
 
-    if((u8)arg2 == 2 && player_movementGroup() != BSGROUP_6_TURBO_TALON_TRAINERS){
+    if((u8)gameNumber == 2 && player_movementGroup() != BSGROUP_6_TURBO_TALON_TRAINERS){
+        // Fixed high velocity if second minigame runs but player doesn't wear the turbo trainers.
         this->unk4C = 1200.0f;
     }
 
-    local->unk8 = ((this->unk4C - sp30)/(sp2C - sp30))*(0.6000000000000001) + 0.7;
-    func_803890DC(this, (u8)(arg2));
+    local->unk8 = ((this->unk4C - min_velocity)/(max_velocity - min_velocity))*(0.6000000000000001) + 0.7;
+    func_803890DC(this, (u8)(gameNumber));
 }
 
 void func_803895E0(void){
@@ -387,7 +390,7 @@ void func_803895E0(void){
             : cubeList_findNodePropByActorIdAndPosition_s32(D_80391DB8[i].unk0, D_80391DAC);
 
         nodeprop_getPosition(s0, sp64);
-        f20 = (f32)nodeprop_getYaw(s0);
+        f20 = (f32)nodeProp_getYaw(s0);
         f8 = (f32)nodeprop_getScale(s0);
         f22 = f8*0.01;
         actor = actor_spawnWithYaw_f32(D_80391DB8[i].actor_id, sp64, (s32)f20);

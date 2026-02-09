@@ -12,7 +12,7 @@ typedef struct {
     u8 unk9;
     u8 unkA;
     u8 unkB;
-    u32 unkC_31:3;
+    u32 yaw:3;
     u32 unkC_28:1;
     u32 padC_27:28;
     s16 unk10;
@@ -92,7 +92,7 @@ void func_8035D2FC(Actor *this) {
     local->unk9 = 6;
     local->unkA = 8;
     local->unkB = 4;
-    local->unkC_31 = 0;
+    local->yaw = 0;
     local->unk10 = 0x10C; //SFX_10C_MUMMY_TALKING
     local->unk12 = 20000;
     local->unk14 = 1.5f;

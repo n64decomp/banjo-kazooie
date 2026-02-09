@@ -20,9 +20,26 @@ ActorAnimationInfo D_80394900[] = {
     {0, 0.0f},
     {0x26A, 1.6f},
 };
-ActorInfo D_80394910 = { 0x170, 0x1D8, 0x547, 0x1, D_803948E0, func_803906A0, actor_update_func_80326224, func_80390560, 0, 0, 0.7f, 0};
-ActorInfo D_80394934 = { 0x171, 0x1D9, 0x548, 0x1, D_803948F0, func_803906A0, actor_update_func_80326224, func_80390560, 0, 0, 0.5f, 0};
-ActorInfo D_80394958 = { 0x172, 0x1DA, 0x549, 0x1, D_80394900, func_803906A0, actor_update_func_80326224, func_80390560, 0, 0, 0.5f, 0};
+ActorInfo D_80394910 = {
+    MARKER_170_BLUE_EGG_REFILL_PILLOW, 0x1D8, ASSET_547_MODEL_BLUE_EGG_REFILL_PILLOW,
+    0x1, D_803948E0,
+    func_803906A0, actor_update_func_80326224, func_80390560,
+    0, 0, 0.7f, 0
+};
+
+ActorInfo D_80394934 = {
+    MARKER_171_RED_FEATHER_REFILL_PILLOW, 0x1D9, ASSET_548_MODEL_RED_FEATHER_REFILL_PILLOW,
+    0x1, D_803948F0,
+    func_803906A0, actor_update_func_80326224, func_80390560,
+    0, 0, 0.5f, 0
+};
+
+ActorInfo D_80394958 = {
+    MARKER_172_GOLD_FEATHER_REFILL_PILLOW, 0x1DA, ASSET_549_MODEL_GOLD_FEATHER_REFILL_PILLOW,
+    0x1, D_80394900,
+    func_803906A0, actor_update_func_80326224, func_80390560,
+    0, 0, 0.5f, 0
+};
 
 /* .code */
 Actor *func_80390560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -35,17 +52,17 @@ void func_803905CC(ActorMarker *marker, ActorMarker *other_marker){
     switch (marker->id) {
     case 0x170:
         item_setMaxCount(ITEM_D_EGGS);
-        fxSparkle_giantBlueEgg(&marker->propPtr->x);
+        fxSparkle_giantBlueEgg(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_EGG_REFILL, -1);
         break;
     case 0x171:
         item_setMaxCount(ITEM_F_RED_FEATHER);
-        fxSparkle_giantRedFeather(&marker->propPtr->x);
+        fxSparkle_giantRedFeather(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_RED_FEATHER_REFILL, -1);
         break;
     case 0x172:
         item_setMaxCount(ITEM_10_GOLD_FEATHER);
-        fxSparkle_giantGoldFeather(&marker->propPtr->x);
+        fxSparkle_giantGoldFeather(&marker->propPtr->position_x);
         coMusicPlayer_playMusic(SFX_GOLD_FEATHER_REFILL, -1);
         break;
     }
