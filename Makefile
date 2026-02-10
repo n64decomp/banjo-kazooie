@@ -161,7 +161,7 @@ endef
 CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS
 CFLAGS         += -woff 649,654,838,807
 CPPFLAGS       := -D_FINALROM -DN_MICRO -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS
-INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR -I include/2.0L/PRinternal -I include/2.0L/compiler/ido -I src/core1/ultra/audio
+INCLUDE_CFLAGS := -I . -I include -I lib/ultralib/include -I lib/ultralib/include/PR -I lib/ultralib/include/PRinternal -I lib/ultralib/include/compiler/ido -I include/n_audio/PR -I lib/ultralib/src/audio
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
@@ -391,8 +391,6 @@ clean:
 build/$(VERSION)/src/core1/ultra/audio/%.c.o: OPT_FLAGS = -O3
 build/$(VERSION)/src/core1/n_audio/%.c.o: OPT_FLAGS = -O3
 build/$(VERSION)/src/core1/ultra/gu/%.c.o: OPT_FLAGS := -O3
-build/$(VERSION)/src/core1/ultra/io/%.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ultra/libc/%.c.o: OPT_FLAGS := -O1
 
 # Disable implicit rules
 MAKEFLAGS += -r

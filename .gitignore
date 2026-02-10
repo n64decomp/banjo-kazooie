@@ -10,9 +10,7 @@ asm/data
 asm/*.s
 asm/*/*.s
 asm/boot/
-!asm/boot/ultra/os/exceptasm.s
 asm/core1/
-!asm/core1/ultra/os/exceptasm.s
 build/*
 build/
 
