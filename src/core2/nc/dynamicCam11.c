@@ -38,7 +38,7 @@ void ncDynamicCam11_update(void) {
         ncDynamicCamera_getPosition(sp58);
         ml_vec3f_diff_copy(sp24, sp58, sp64);
         sp24[1] = 0.0f;
-        sp20 = gu_sqrtf( sp24[0]*sp24[0] + sp24[2]*sp24[2] );
+        sp20 = sqrtf( sp24[0]*sp24[0] + sp24[2]*sp24[2] );
         if (sp20 < D_8037DAE0) {
             sp20 = D_8037DAE0;
         }
@@ -47,7 +47,7 @@ void ncDynamicCam11_update(void) {
         }
         ml_vec3f_diff_copy(sp34, D_8037DAC0, sp64);
         sp34[1] = 0.0f;
-        sp30 = gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]);
+        sp30 = sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]);
         if (sp30 < sp20) {
             sp20 = sp30;
         }

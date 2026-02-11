@@ -181,7 +181,7 @@ void ml_vec3f_normalize_copy(f32 arg0[3], f32 arg1[3])
 
     if (length_squared != 0)
     {
-        inverse = 1.0 / gu_sqrtf(length_squared);
+        inverse = 1.0 / sqrtf(length_squared);
         ml_vec3f_scale_copy(arg0, arg1, inverse);
     }
     else
@@ -196,14 +196,14 @@ void ml_vec3f_normalize(f32 vec[3])
 
     if (length_squared != 0)
     {
-        f32 inverse = 1.0 / gu_sqrtf(length_squared);
+        f32 inverse = 1.0 / sqrtf(length_squared);
         TUPLE_SCALE(vec, inverse)
     }
 }
 
 void ml_vec2f_normalize(f32 vec[2])
 {
-    f32 length = gu_sqrtf(_SQ2(vec[0], vec[1]));
+    f32 length = sqrtf(_SQ2(vec[0], vec[1]));
 
     if (length != 0)
     {
@@ -214,7 +214,7 @@ void ml_vec2f_normalize(f32 vec[2])
 
 void ml_3f_normalize(f32 *x, f32 *y, f32 *z)
 {
-    f32 length = gu_sqrtf(_SQ3(*x, *y, *z));
+    f32 length = sqrtf(_SQ3(*x, *y, *z));
 
     if (length != 0)
     {
@@ -333,7 +333,7 @@ void ml_vec3f_set_length(f32 vec[3], f32 length) {
 //ml_f_sin_of_angle_between_points_2D
 f32 func_80256AB4(f32 x1, f32 y1, f32 x2, f32 y2)
 {
-    f32 val = gu_sqrtf(y1 * y1 + x1 * x1) * gu_sqrtf(x2 * x2 + y2 * y2);
+    f32 val = sqrtf(y1 * y1 + x1 * x1) * sqrtf(x2 * x2 + y2 * y2);
 
     if (val)
         return (y1 * x2 - x1 * y2) / val;
@@ -471,7 +471,7 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
     dz = z2 - z1;
     ft2 = (dx * dx) + (dz * dz);
 
-    horz_dist = gu_sqrtf(ft2);
+    horz_dist = sqrtf(ft2);
 
     if (horz_dist > 0.01)
     {
@@ -489,7 +489,7 @@ void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 
     }
 
 
-    dist = gu_sqrtf((dy * dy) + ft2);
+    dist = sqrtf((dy * dy) + ft2);
 
     if (dist > 0.01)
     {
@@ -788,7 +788,7 @@ int func_80257F18(f32 src[3], f32 target[3], f32 *yaw)
     *yaw = 0;
 
     TUPLE_DIFF_COPY(diff, target, src)
-    h = gu_sqrtf(_SQ2(diff[2], diff[0]));
+    h = sqrtf(_SQ2(diff[2], diff[0]));
 
     if (h < 0.01) // (f64) 0.01
         return 0;
@@ -813,7 +813,7 @@ int func_8025801C(f32 target[3], f32 *yaw)
     *yaw = 0;
 
     TUPLE_COPY(diff, target)
-    h = gu_sqrtf(_SQ2(diff[2], diff[0]));
+    h = sqrtf(_SQ2(diff[2], diff[0]));
 
     if (h < 0.01) // (f64) 0.01
         return 0;
@@ -836,7 +836,7 @@ int func_80258108(f32 vec[3], f32 *arg1, f32 *arg2)
     *arg1 = 0;
     *arg2 = 0;
 
-    horz_len = gu_sqrtf(_SQ2(vec[2], vec[0]));
+    horz_len = sqrtf(_SQ2(vec[2], vec[0]));
 
     if (horz_len < 0.01)
         return 0;
@@ -860,7 +860,7 @@ int func_80258210(f32 x, f32 y, f32 *dst)
 
     *dst = 0;
 
-    tmp = gu_sqrtf(_SQ2(y, x));
+    tmp = sqrtf(_SQ2(y, x));
 
     if (tmp < 0.01)
         return FALSE;
@@ -916,7 +916,7 @@ f32 ml_vec3f_horizontal_distance_zero_likely(f32 vec1[3], f32 vec2[3]) {
     f32 dZ = vec1[2] - vec2[2];
 
     if (dX != 0 || dZ != 0) {
-        return gu_sqrtf(_SQ2(dX, dZ));
+        return sqrtf(_SQ2(dX, dZ));
     }
 
     return 0;
@@ -942,7 +942,7 @@ f32 ml_vec3f_length(f32 vec1[3], f32 vec2[3])
     val = _SQ3(val, dY, dZ);
 
     if (val != 0)
-        return gu_sqrtf(val);
+        return sqrtf(val);
 
     return 0;
 }
@@ -1040,7 +1040,7 @@ void func_80258A4C(f32 vec1[3], f32 arg1, f32 vec2[3], f32 *arg3, f32 *arg4, f32
     TUPLE_DIFF_COPY(t1, vec2, vec1)
     t1[1] = 0;
 
-    *arg3 = gu_sqrtf(_SQ3(t1[0], t1[1], t1[2]));
+    *arg3 = sqrtf(_SQ3(t1[0], t1[1], t1[2]));
 
     t2[2] = 0;
     t2[1] = 0;

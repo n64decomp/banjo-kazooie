@@ -479,7 +479,7 @@ bool viewport_func_8024E030(f32 pos[3], f32 *arg1)
         return FALSE;
     }
 
-    temp_f2 = gu_sqrtf((delta[1] * delta[1]) + (delta[2] * delta[2])) * sinf(fovy_radians);
+    temp_f2 = sqrtf((delta[1] * delta[1]) + (delta[2] * delta[2])) * sinf(fovy_radians);
     temp_f2_2 = (((f32) gFramebufferWidth) / ((f32) gFramebufferHeight)) * temp_f2;
 
     arg1[0] = (f32) (((delta[0] / temp_f2_2) + 1) * (((f32) gFramebufferWidth) / 2));

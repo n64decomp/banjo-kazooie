@@ -102,7 +102,7 @@ void func_8035C080(Actor *this, s32 next_state){
         sp64[1] = sp54[1] - this->position_y;\
         sp64[2] = sp54[2] - this->position_z;
         sp64[1] = 0.0f;
-        sp60 = gu_sqrtf(sp64[0]*sp64[0] + sp64[1]*sp64[1] + sp64[2]*sp64[2]);
+        sp60 = sqrtf(sp64[0]*sp64[0] + sp64[1]*sp64[1] + sp64[2]*sp64[2]);
 
         if(next_state == 4 && sp60 <= 250.0f){
             local->unk1C[0] = sp54[0];\
@@ -275,7 +275,7 @@ void func_8035C8F4(Actor *this){
     sp40[0] = plyr_pos[0] - this->position_x;
     sp40[1] = plyr_pos[1] - this->position_y;
     sp40[2] = plyr_pos[2] - this->position_z;
-    sp3C = gu_sqrtf(sp40[0]*sp40[0] + sp40[1]*sp40[1] + sp40[2]*sp40[2]);
+    sp3C = sqrtf(sp40[0]*sp40[0] + sp40[1]*sp40[1] + sp40[2]*sp40[2]);
     if(local->pCtrl_8){
         particleEmitter_update(local->pCtrl_8);
     }

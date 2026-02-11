@@ -45,7 +45,7 @@ void * malloc(s32 size);
 void free(void*);
 void *realloc(void* ptr, s32 size);
 
-float gu_sqrtf(float val);
+
 
 bool  baanim_isAt(f32);
 void baanim_playForDuration_once(enum asset_e anim_id, f32 duration);

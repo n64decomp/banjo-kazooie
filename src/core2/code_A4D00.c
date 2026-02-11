@@ -205,7 +205,7 @@ bool func_8032BD88(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
         ml_vec3f_copy(arg0->position, arg1);
     }
     else if (var_fp != NULL) {
-        temp_f20 = gu_sqrtf((sp284[0] * sp284[0]) + (sp284[1] * sp284[1]) + (sp284[2] * sp284[2]));
+        temp_f20 = sqrtf((sp284[0] * sp284[0]) + (sp284[1] * sp284[1]) + (sp284[2] * sp284[2]));
         arg0->position[0] = var_fp->unk0[0];
         arg0->position[1] = var_fp->unk0[1];
         arg0->position[2] = var_fp->unk0[2];

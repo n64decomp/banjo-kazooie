@@ -515,7 +515,7 @@ bool chfinalboss_func_80387470(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f3
     this->velocity[1] += (diff[1] * dt);
     this->velocity[2] += (diff[2] * dt);
 
-    if (v_max < gu_sqrtf(LENGTH_SQ_VEC3F(this->velocity))) {
+    if (v_max < sqrtf(LENGTH_SQ_VEC3F(this->velocity))) {
         ml_vec3f_set_length(this->velocity, v_max);
     }  
 
@@ -640,7 +640,7 @@ void chfinalboss_func_80387B00(Actor *this) {
     this->velocity_z = this->position_z - sp28[2];
     this->velocity_y = 0;
     
-    local->unk14 = gu_sqrtf(
+    local->unk14 = sqrtf(
         (this->velocity_z * this->velocity_z) +
         ((this->velocity_x * this->velocity_x) +
         (this->velocity_y * (this->velocity_y)))

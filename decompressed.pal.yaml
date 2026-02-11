@@ -256,7 +256,7 @@ segments:
   - [0xF63E60, lib, libultra_rom, sendmesg, .text]
   - [0xF63FB0, lib, libultra_rom, setthreadpri, .text]
   - [0xF64090, lib, libultra_rom, mtxutil, .text]
-  - [0xF64300, c, ultra/gu/sqrtf]
+  - [0xF64300, lib, libultra_rom, sqrtf, .text]
   - [0xF64310, lib, libultra_rom, cosf, .text]
   - [0xF64480, lib, libultra_rom, setintmask, .text]
   - [0xF64520, lib, libultra_rom, dpsetstat, .text]

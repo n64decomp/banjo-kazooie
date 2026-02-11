@@ -51,7 +51,7 @@ void ncDynamicCam8_update(void) {
     ml_vec3f_diff_copy(sp50, sp5C, sp44);
     func_802BC434(sp38, sp5C, sp44);
     func_802BC434(sp2C, sp5C, sp20);
-    if (gu_sqrtf(sp50[0]*sp50[0] + sp50[2]*sp50[2]) < 100.0f) {
+    if (sqrtf(sp50[0]*sp50[0] + sp50[2]*sp50[2]) < 100.0f) {
         sp38[1] = sp2C[1];
     }
     func_802BD904(sp38);
