@@ -1037,7 +1037,7 @@ void func_802D5628(void){
         func_802D5178(LEVEL_FLAG_23_RBB_OPEN, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
         func_802D5178(LEVEL_FLAG_22_MMM_OPEN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
         func_802D5178(LEVEL_FLAG_24_CCW_OPEN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
-        func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
+        func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTRANCE_DOOR_LEFT,   0xA);
         func_802D5178(LEVEL_FLAG_3F_LAIR_GRUNTY_DOOR_OPEN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
         if(volatileFlag_get(VOLATILE_FLAG_18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
@@ -1252,9 +1252,9 @@ void func_802D6494(void){
                     coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
-            case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
+            case ACTOR_235_FP_ENTRANCE_DOOR_LEFT:// L802D6624
                 if(gsworld_get_map() == MAP_6F_GL_FP_LOBBY && !volatileFlag_get(VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP)){
-                    func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTRANCE_DOOR_LEFT), SFX_18_BIGBUTT_SLIDE, 0.5f);
                     coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
