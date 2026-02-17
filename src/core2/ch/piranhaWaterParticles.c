@@ -8,7 +8,7 @@ void chPiranhaWaterParticles_update(Actor *this);
 
 /* .data */
 ActorInfo chPiranhaWaterParticles = { 
-    0x15E, ACTOR_188_PIRANHA_WATER_PARTICLES, 0x0, 
+    MARKER_15E_PIRANHA_WATER_PARTICLES, ACTOR_188_PIRANHA_WATER_PARTICLES, 0x0, 
     0, NULL, 
     chPiranhaWaterParticles_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0

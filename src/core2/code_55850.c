@@ -11,7 +11,7 @@ void func_802DC900(Actor *this);
 /* .data */
 f32 D_803680A0[3] = {0.0f, 0.0f, 0.0f};
 ActorInfo D_803680AC = { 
-    0x175, 0x1DC, 0x54D, 
+    MARKER_175_BANJO_KAZOOIE_SIGN, ACTOR_1DC_BANJO_KAZOOIE_SIGN, ASSET_54D_MODEL_BANJO_KAZOOIE_SIGN, 
     0x1, NULL, 
     func_802DC900, actor_update_func_80326224, func_802DC7E0, 
     0, 0, 0.0f, 0

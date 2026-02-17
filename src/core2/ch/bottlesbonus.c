@@ -94,7 +94,7 @@ s32 D_803682B4[4] = {0xFF, 0x60, 0x50, 0xFF};
 f32 D_803682C4[3] = {0.0f, 0.0f, 0.0f};
 
 ActorInfo chBottlesBonusDescription = {
-    0x179, 0x1E0, 0x46C,
+    MARKER_179_JIGSAW_PUZZLE, ACTOR_1E0_JIGSAW_PUZZLE, ASSET_46C_MODEL_JIGSAW_PUZZLE,
     0x1, chBottlesBonusAnimations,
     chBottlesBonus_update, actor_update_func_80326224, chBottlesBonus_draw,
     0, 0, 0.0f, 0

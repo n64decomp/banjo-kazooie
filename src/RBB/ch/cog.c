@@ -11,19 +11,19 @@ void func_80388C20(Actor *this);
 
 /* .data */
 ActorInfo D_803903B0 = {
-    0x18B, 0x17B, 0x409, 0x0, NULL,
+    MARKER_18B_RBB_SMALL_COG, ACTOR_17B_RBB_SMALL_COG, ASSET_409_MODEL_RBB_SMALL_COG, 0x0, NULL,
     func_80388C20, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803903D4 = {
-    0x18C, 0x17C, 0x40A, 0x0, NULL,
+    MARKER_18C_RBB_MEDIUM_COG, ACTOR_17C_RBB_MEDIUM_COG, ASSET_40A_MODEL_RBB_MEDIUM_COG, 0x0, NULL,
     func_80388C20, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803903F8 = {
-    0x18D, 0x17D, 0x40B, 0x0, NULL,
+    MARKER_18D_RBB_LARGE_COG, ACTOR_17D_RBB_LARGE_COG, ASSET_40B_MODEL_RBB_LARGE_COG, 0x0, NULL,
     func_80388C20, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
