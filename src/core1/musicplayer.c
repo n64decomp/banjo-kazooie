@@ -669,8 +669,8 @@ int func_8025ADBC(enum comusic_e arg0) {
 }
 
 s32 func_8025ADD4(enum comusic_e id) {
-    CoMusic * ptr = findTrack(id);
-    return ptr - musicTracks;
+    CoMusic * trackPtr = findTrack(id);
+    return trackPtr - musicTracks;
 }
 
 void func_8025AE0C(s32 arg0, f32 arg1) {

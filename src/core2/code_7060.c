@@ -868,8 +868,8 @@ void func_8028F9DC(s32 arg0){
     player_getRotation(D_803636A4);
 }
 
-void func_8028FA14(enum map_e map_id, s32 exit_id){
-    func_8029C834(map_id, exit_id);
+void code_7060_setVoidOutLocation(enum map_e map_id, s32 exit_id){
+    code_14420_setVoidOutLocation(map_id, exit_id);
 }
 
 void func_8028FA34(enum actor_e arg0, Actor *arg1){

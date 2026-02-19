@@ -638,9 +638,9 @@ void updateJigsawPictureActor(Actor *this) {
                 this->unk38_0 = TRUE;
             }
 
-            func_802FACA4(0x2B);
+            code_73640_printItemCount(ITEM_2B_UNKNOWN);
         } else if (this->unk38_0) {
-            func_802FAD64(0x2B);
+            func_802FAD64(ITEM_2B_UNKNOWN);
             this->unk38_0 = FALSE;
         }
     }

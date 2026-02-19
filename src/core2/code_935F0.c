@@ -181,7 +181,7 @@ void chMinigame_update(Actor *this){
                     __chMinigame_setState(this, MINIGAME_STATE_2_IN_PROGESS);
                 break;
             case MINIGAME_STATE_2_IN_PROGESS://L8031AB50
-                func_8028FA14(MAP_8E_GL_FURNACE_FUN, 2);
+                code_7060_setVoidOutLocation(MAP_8E_GL_FURNACE_FUN, 2);
                 if(item_getCount(ITEM_14_HEALTH) == 0)
                     item_set(ITEM_6_HOURGLASS, 0);
                 if(!volatileFlag_get(VOLATILE_FLAG_3)){

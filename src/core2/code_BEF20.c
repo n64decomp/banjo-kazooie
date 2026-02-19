@@ -24,7 +24,7 @@ void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
         item_adjustByDiffWithHud(item, (s32)(-time_getDelta()*60.0f * 1.1));
     }else{
-        func_802FACA4(item);
+        code_73640_printItemCount(item);
     }
 }
 
@@ -105,9 +105,9 @@ s32 item_adjustByDiff(enum item_e item, s32 diff, s32 no_hud){
         D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
     if(!no_hud){
-        func_802FACA4(item); // displays item on HUD
+        code_73640_printItemCount(item); // displays item on HUD
         if(item == ITEM_14_HEALTH || item == ITEM_17_AIR)
-            func_802FACA4(ITEM_16_LIFE);
+            code_73640_printItemCount(ITEM_16_LIFE);
     }
 
     sp3C = item_empty(item);
@@ -254,7 +254,7 @@ void func_803465E4(void){
         if(gctransition_done() || volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)){
             if(D_80385FE4){
                 item_dec(ITEM_16_LIFE);
-                func_802FACA4(ITEM_14_HEALTH);
+                code_73640_printItemCount(ITEM_14_HEALTH);
             }
             D_80385FE4 = FALSE;
             sp50 = TRUE;

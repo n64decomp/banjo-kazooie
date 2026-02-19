@@ -8,6 +8,14 @@ extern ActorProp * func_80320EB0(ActorMarker *, f32, s32);
 static void __chClam_updateFunc(Actor *this);
 
 /* .data */
+
+enum clam_states
+{
+    CLAM_STATE_1_IDLE = 1,
+    CLAM_STATE_2_HOP,
+    CLAM_STATE_3_EAT,
+};
+
 ActorAnimationInfo gChClamAnimations[4] = {
     {NULL, NULL},
     {ASSET_AA_ANIM_CLAM_IDLE, 2.0f},
@@ -34,7 +42,7 @@ static void __chClam_playSfx(enum sfx_e sfx_id, f32 volume, s32 sampleRate, f32 
 }
 
 static void __chClam_func_80386454(Actor *this){
-    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
+    subaddie_set_state_with_direction(this, CLAM_STATE_1_IDLE, 0.01f, 1);
     actor_loopAnimation(this);
     anctrl_setDuration(this->anctrl, randf2(1.9f, 2.1f));
 }
@@ -273,7 +281,7 @@ static void __chClam_updateFunc(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, __chClam_attackOther, __chClam_takeDamage);
     }
 
-    if(this->state != 3){
+    if(this->state != CLAM_STATE_3_EAT){
         sp48 = mapModel_getFloorY(this->position);
         if(sp4C != NULL){
             sp44 = sp4C->marker->id;
@@ -283,7 +291,7 @@ static void __chClam_updateFunc(Actor *this){
             if(this->position_y <= sp48 + 15.0f && sp48 - 15.0f <= this->position_y){
                 this->position_y = sp48;
                 this->unk38_31 = sp44;
-                subaddie_set_state_with_direction(this, 3, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CLAM_STATE_3_EAT, 0.01f, 1);
                 actor_loopAnimation(this);
                 this->velocity_x = 0.0f;
                 anctrl_setDuration(this->anctrl, 0.6f);
@@ -293,9 +301,9 @@ static void __chClam_updateFunc(Actor *this){
     }
 
     switch(this->state){
-        case 1://L80387170
+        case CLAM_STATE_1_IDLE://L80387170
             if(__chClam_rotateTowardTarget(this, 140)){
-                subaddie_set_state_with_direction(this, 2, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CLAM_STATE_2_HOP, 0.01f, 1);
                 actor_playAnimationOnce(this);
                 anctrl_setDuration(this->anctrl, 1.0f);
                 __chClam_playSfx(SFX_3F2_BOING, randf2(1.0f, 1.1f), 22000, this->position, 1500.0f, 2000.0f);
@@ -305,7 +313,7 @@ static void __chClam_updateFunc(Actor *this){
             }
             break;
             
-        case 2://L8038720C
+        case CLAM_STATE_2_HOP://L8038720C
             this->position_y += this->velocity_y;
             this->velocity_y += -5.0f;
             if(actor_animationIsAt(this, 0.63f)){
@@ -325,7 +333,7 @@ static void __chClam_updateFunc(Actor *this){
             }
             break;
 
-        case 3://L803872F0
+        case CLAM_STATE_3_EAT://L803872F0
             if(actor_animationIsAt(this, 0.99f)){
                 this->velocity_x += 1.0f;
             }

@@ -78,7 +78,7 @@ void func_802E3854(void){
         mapSavestate_defrag_all();
         gctransition_defrag();
         printbuffer_defrag();
-        func_80350E00();
+        code_C9E70_defrag();
         func_802FA4E0();
         func_8033B5FC();
         timedFuncQueue_defrag();
@@ -606,7 +606,7 @@ s32 game_defrag(void){
             func_803894A0();
             break;
         case OVERLAY_D_WITCH:
-            func_80350E00();
+            code_C9E70_defrag();
             break;
     }
     return func_802555D0(); //returns defrag flag in memory.c

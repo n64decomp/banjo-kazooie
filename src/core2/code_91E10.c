@@ -562,7 +562,7 @@ void gcquiz_func_80319EA4(void) {
     }
 }
 
-bool gcquiz_func_8031A154(enum ff_question_type_e q_type, s32 q_index, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s8)) {
+bool gcquiz_showQuestion(enum ff_question_type_e q_type, s32 q_index, s32 arg2, s32 arg3, s32 arg4, void (*arg5)(s32, s8)) {
     if (__gcquiz_func_803192A4(q_type, q_index, arg2) != FALSE) {
         sD_803830E0->question_type = q_type;
         sD_803830E0->question_index = q_index;

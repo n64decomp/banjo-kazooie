@@ -2144,7 +2144,7 @@ void chfinalboss_update(Actor *this){
         chfinalboss_func_80386654(1.0f, fight_D_80391380, fight_D_80391390);
         func_8028F784(1);
         func_8028F4B8(D_80391804, 2000.0f, -2800.0f);
-        func_8028FA14(0x93, 2);
+        code_7060_setVoidOutLocation(MAP_93_GL_DINGPOT, 2);
         func_8034C9B0(0);
         chfinalboss_func_80386698(2.0f);
         tmp_s0 = func_802F9AA8(SFX_9A_MECHANICAL_CLOSING);

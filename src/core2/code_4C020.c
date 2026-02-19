@@ -775,10 +775,10 @@ void func_802D5000(enum map_e map_id){
     transitionToMap(D_80367684, 0x65, 0);
 }
 
-void func_802D5058(enum map_e map_id, s32 arg1, bool arg2) {
+void func_getCameraViewFromLevel(enum map_e map_id, s32 camera_id, bool arg2) {
     volatileFlag_set(VOLATILE_FLAG_1, 1);
     D_80367684 = map_id;
-    D_80367688 = arg1;
+    D_80367688 = camera_id;
     if (arg2) {
         D_8036768C = 0x2D;
     } else {

@@ -13,13 +13,17 @@ typedef struct {
 
 /* .data */
 s16 RBB_D_80390E30[2] = {0x177, 0x17F};
+
 ActorInfo D_80390E34 = {
-    0x1D2, 0x31B, 0x0, 0x0, NULL,
+    0x1D2, 0x31B, 0x0,
+    0x0, NULL,
     func_8038FC48, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
+
 ActorInfo D_80390E58 = {
-    0x1D3, 0x31C, 0x0, 0x0, NULL,
+    0x1D3, 0x31C, 0x0,
+    0x0, NULL,
     func_8038FC48, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
