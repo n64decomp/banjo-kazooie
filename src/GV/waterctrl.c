@@ -52,7 +52,7 @@ void gv_waterCtrl_init(void){
 
 
     GV_D_80391B00.state = 0;
-    if(gsworld_get_map() != MAP_15_GV_WATER_PYRAMID) return;
+    if(gsworld_getMap() != MAP_15_GV_WATER_PYRAMID) return;
 
     if(jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID)){
         tmp_v0 = func_8034C528(400);

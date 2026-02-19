@@ -106,7 +106,7 @@ void chMumMum_update(Actor *this) {
 void func_8035D490(ActorMarker *marker){
     Actor *sp1C;
 
-    if (gsworld_get_map() == MAP_13_GV_MEMORY_GAME) {
+    if (gsworld_getMap() == MAP_13_GV_MEMORY_GAME) {
         sp1C = marker_getActor(marker);
 
         if (subaddie_playerIsWithinSphereAndActive(sp1C, 250) != 0) {
@@ -119,7 +119,7 @@ void func_8035D490(ActorMarker *marker){
 void func_8035D4F0(ActorMarker *marker, s32 arg1){
     s32 pad;
     Actor *actor;
-    if(gsworld_get_map() == MAP_13_GV_MEMORY_GAME){
+    if(gsworld_getMap() == MAP_13_GV_MEMORY_GAME){
         actor = marker_getActor(marker);
         if(actor->state != CHHUMANOIDBADDIE_STATE_9_INVULNERABLE){
             if (func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1) {

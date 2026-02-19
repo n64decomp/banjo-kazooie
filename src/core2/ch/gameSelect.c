@@ -24,7 +24,6 @@ extern void func_802C71F0(Actor *);
 extern void func_802C74F4(Actor *, s32, f32 );
 extern void warp_lairEnterLairFromSMLevel(s32, s32);
 extern void warp_smExitBanjosHouse(s32, s32);
-extern void func_80335110(s32);
 extern void controller_getJoystick(s32, f32*);
 
 extern char *gcpausemenu_TimeToA(int);
@@ -500,7 +499,7 @@ void gameSelect_update(Actor *this) {
                             timedFunc_set_2(function_time, (GenFunction_2) warp_smExitBanjosHouse, 0, 0);
                         }
 
-                        timedFunc_set_1(function_time, (GenFunction_1) func_80335110, 1);
+                        timedFunc_set_1(function_time, (GenFunction_1) gsworld_setEnableUpdate, 1);
                     }
 
                     this->state = GAME_SELECT_DONE;
@@ -705,13 +704,13 @@ void gameSelect_initAndUpdate(Actor * this){
 
 void gameSelect_saveAndExit(void) {
     s32 level_id = level_get();
-    s32 is_map_game_over = gsworld_get_map() == MAP_83_CS_GAME_OVER_MACHINE_ROOM;
+    s32 is_map_game_over = gsworld_getMap() == MAP_83_CS_GAME_OVER_MACHINE_ROOM;
 
     // Within bounds of levels. 0xD is 1 more than the amount of levels in the game.
     s32 is_level_id_valid = (0 < level_id && level_id < 0xD);
 
     if ((is_level_id_valid || is_map_game_over)
-        && (gameNumber != -1 && !func_802E4A08() && gsworld_get_map() != MAP_91_FILE_SELECT)) {
+        && (gameNumber != -1 && !func_802E4A08() && gsworld_getMap() != MAP_91_FILE_SELECT)) {
 
         gameFile_save(gameNumber);
         gameFile_8033CFD4(gameNumber);

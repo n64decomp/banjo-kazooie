@@ -269,7 +269,7 @@ void chicecube_update(Actor *this){
     f32 sp3C = time_getDelta();
     f32 player_pos[3];
 
-    if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
+    if(gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive()){
             actor_collisionOff(this);
             this->unk58_0 = FALSE;

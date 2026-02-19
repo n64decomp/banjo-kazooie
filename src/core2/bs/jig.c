@@ -117,7 +117,7 @@ void bsjig_jiggy_end(void){
         transitionToMap(MAP_95_CS_END_ALL_100, 0, 1);
     } else {//L802B0DFC
         if( jiggyscore_total() == 2
-            && gsworld_get_map() == MAP_2_MM_MUMBOS_MOUNTAIN
+            && gsworld_getMap() == MAP_2_MM_MUMBOS_MOUNTAIN
         ){
             sp2C = VER_SELECT(0xb51, 0x96f, 0, 0);
             sp28 = 0xe;

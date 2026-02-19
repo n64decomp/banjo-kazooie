@@ -140,7 +140,7 @@ void chchumpfish_update(Actor *this) {
         this->initialized = TRUE;
         this->unk138_25 = TRUE;
         this->actor_specific_1_f = 4.0f;
-        LOCAL_D6600(this)->unk4 =(gsworld_get_map() == MAP_71_GL_STATUE_ROOM) ? 8 : 0xf;
+        LOCAL_D6600(this)->unk4 =(gsworld_getMap() == MAP_71_GL_STATUE_ROOM) ? 8 : 0xf;
         if (volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)) {
             this->actor_specific_1_f = 0.0f;
             subaddie_set_state_with_direction(this, CHUMPFISH_STATE_1_IDLE_UNK, 0.0f, 1);

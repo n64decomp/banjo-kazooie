@@ -222,7 +222,7 @@ void func_80350250(void) {
 
     
     temp_f22 = time_getDelta();
-    if ((D_80386150.unk0 != NULL) && (func_80334904() == 2)) {
+    if ((D_80386150.unk0 != NULL) && (gsworld_getUnk0() == 2)) {
         player_getPosition(sp7C);
         for(var_s0 = D_80386150.unk8; var_s0 < D_80386150.unkC; var_s0++) {
             var_s0->unk4 = (ml_vec3f_distance(var_s0->unkC, sp7C) < 2000.0f);

@@ -19,7 +19,7 @@ f32 D_8037DB20;
 /* .code */
 void ncbafly_init(void) {
     func_802BD870(10.0f, 20.0f, 120.0f, 200.0f);
-    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
+    if (gsworld_getMap() == MAP_90_GL_BATTLEMENTS) {
         ncbafly_func_802BFE50(10.0f, 800.0f, 1350.0f);
     } else {
         ncbafly_func_802BFE50(2.0f, 800.0f, 350.0f);

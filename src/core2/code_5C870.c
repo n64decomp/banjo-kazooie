@@ -9,10 +9,8 @@
 extern void func_802F5374(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
-extern void func_80335128(s32);
 extern void func_8025A2B0(void);
 extern void func_8025A430(s32, s32, s32);
-extern void func_80335110(s32);
 extern void func_8034BB90(void);
 extern void func_8030C27C(void);
 extern void func_80321C34(void);
@@ -138,7 +136,7 @@ void func_802E39D0(Gfx **gdl, Mtx **mptr, Vtx **vptr, s32 framebuffer_idx, s32 a
         func_8030C2D4(gdl, mptr, vptr);
     }
 
-    if(!game_is_frozen() && func_80335134()){
+    if(!game_is_frozen() && gsworld_getEnableDraw()){
         func_8032D474(gdl, mptr, vptr);
     }
 
@@ -202,11 +200,11 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
     D_8037E8E0.game_mode = next_mode;
 
     if(next_mode == 2){
-        func_80334E1C(3);
+        gsworld_setUnk0(3);
     }
     else if(next_mode == GAME_MODE_3_NORMAL || func_802E4A08()){
         if(prev_mode != GAME_MODE_4_PAUSED) {
-            func_80334E1C(2);
+            gsworld_setUnk0(2);
         }//L802E3D18
         if(arg1){
             sp20 = FALSE;
@@ -239,7 +237,7 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
         D_8037E8E0.unk10 = 0.0f; 
     }
     else if(next_mode == GAME_MODE_4_PAUSED){//L802E3E24
-        func_80335110(0);
+        gsworld_setEnableUpdate(FALSE);
         FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 1.1f, 32750);
         pfsManager_update();
         func_8025A430(0, 2000, 3);
@@ -262,9 +260,9 @@ void func_802E3E7C(enum game_mode_e mode){
     sp28 = D_8037E8E0.exit;
     prev_mode = D_8037E8E0.unk0;
     game_setMode(GAME_MODE_2_UNKNOWN, 0);
-    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(gsworld_get_map()) == map_getLevel(D_8037E8E0.map)){
+    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(gsworld_getMap()) == map_getLevel(D_8037E8E0.map)){
         if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
-            mapSavestate_save(gsworld_get_map());
+            mapSavestate_save(gsworld_getMap());
     }
     func_802E398C(1);
     func_802E38E8(map, sp28, sp34);
@@ -557,10 +555,10 @@ bool func_802E4424(void) {
         case GAME_MODE_4_PAUSED:                                     /* switch 2 */
             if (gcPauseMenu_update() || cutscenetrigger_update()) {
                 FUNC_8030E624(SFX_C9_PAUSEMENU_ENTER, 0.899316, 32736);
-                func_80335110(1);
+                gsworld_setEnableUpdate(TRUE);
                 func_8025A430(-1, 2000, 3);
                 func_8025A2B0();
-                func_80335128(1);
+                gsworld_setEnableDraw(TRUE);
                 game_setMode(GAME_MODE_3_NORMAL, 0U);
             }
             break;

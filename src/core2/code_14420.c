@@ -706,8 +706,8 @@ void update_void_return_Location(void) {
 
     level_id = level_get();
     if ((level_id == 0) || (level_id == LEVEL_6_LAIR)) {
-        map_id = gsworld_get_map();
-        exit_id = gsworld_get_exit();
+        map_id = gsworld_getMap();
+        exit_id = gsworld_getExit();
     } else {
         map_id = level_get_main_map(level_id);
         exit_id = level_get_main_exit(level_id);

@@ -175,7 +175,7 @@ void chTermite_update(Actor *this) {
         this->unk16C_0 = TRUE;
         this->volatile_initialized = TRUE;
     }
-    if( gsworld_get_map() == MAP_C_MM_TICKERS_TOWER 
+    if( gsworld_getMap() == MAP_C_MM_TICKERS_TOWER 
         && !mapSpecificFlags_get(0) 
         && subaddie_playerIsWithinSphereAndActive(this, 700)
         && !subaddie_playerIsWithinSphereAndActive(this, 150)

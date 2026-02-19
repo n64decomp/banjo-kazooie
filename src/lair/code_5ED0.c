@@ -685,7 +685,7 @@ void ff_init(void)
 
     struct FF_StorageStruct_48_sub *ptr;
 
-    if (gsworld_get_map() != MAP_8E_GL_FURNACE_FUN)
+    if (gsworld_getMap() != MAP_8E_GL_FURNACE_FUN)
         return;
 
     ffStorage->unk0 = mapModel_getModel(0);
@@ -1220,7 +1220,7 @@ void lair_func_8038E0B0(void) {
     s32 ff_tile_type;
     s32 ff_progress_flag;
 
-    if( (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) 
+    if( (gsworld_getMap() == MAP_8E_GL_FURNACE_FUN) 
         && (ffStorage != NULL) 
         && (ffStorage->unk0 != NULL)
     ){
@@ -1393,7 +1393,7 @@ void lair_func_8038E0B0(void) {
 
 void lair_func_8038E768(Gfx **dl, Mtx **m, Vtx **v)
 {
-    if (gsworld_get_map() != MAP_8E_GL_FURNACE_FUN)
+    if (gsworld_getMap() != MAP_8E_GL_FURNACE_FUN)
         return;
 
     gcquiz_draw(dl, m, v);

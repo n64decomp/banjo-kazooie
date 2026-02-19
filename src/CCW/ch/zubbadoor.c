@@ -30,7 +30,7 @@ void CCW_func_803863F0(Actor *this, s32 next_state){
 
 void chZubbaDoor_die(ActorMarker* marker, ActorMarker *arg1) {
     Actor* actor = marker_getActor(marker);
-    if (actor->state == 1 && gsworld_get_map() == MAP_44_CCW_SUMMER) {
+    if (actor->state == 1 && gsworld_getMap() == MAP_44_CCW_SUMMER) {
         CCW_func_803863F0(actor, 2);
     }
 }

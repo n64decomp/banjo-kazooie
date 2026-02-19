@@ -81,7 +81,7 @@ s32 func_8038BAA4(Actor *jiggy){
     s32 tmp_v0;
     s32 sp18[3];
 
-    gsworld_get_map();
+    gsworld_getMap();
     sp18[0] = (s32)jiggy->position_x;
     sp18[1] = (s32)jiggy->position_y;
     sp18[2] = (s32)jiggy->position_z;
