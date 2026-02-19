@@ -17,7 +17,8 @@ ActorAnimationInfo chBeehiveAnimations[] ={
     {ASSET_65_ANIM_BEEHIVE_DIE,     1000000.0f},
 };
 
-ActorInfo chBeehive = {MARKER_50_BEEHIVE, ACTOR_12_BEEHIVE, ASSET_364_MODEL_BEEHIVE, 
+ActorInfo chBeehive = {
+    MARKER_50_BEEHIVE, ACTOR_12_BEEHIVE, ASSET_364_MODEL_BEEHIVE, 
     1, chBeehiveAnimations, 
     chBeehive_update, actor_update_func_80326224, actor_draw,
     0, 0x333, 0.0f, 0

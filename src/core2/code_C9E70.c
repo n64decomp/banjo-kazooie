@@ -4,18 +4,18 @@
 
 #include "code_C9E70.h"
 
-extern struct FF_StorageStruct *D_8037DCB8;
+extern struct FF_StorageStruct *ffStorage;
 
-void func_80350E00(void){
+void code_C9E70_defrag(void){
     quizQuestionAskedBitfield_defrag();
     gcquiz_defrag();
-    if(D_8037DCB8 == NULL)
+    if(ffStorage == NULL)
         return;
     
-    if(D_8037DCB8->unk20){
-        gczoombox_defrag(D_8037DCB8->unk20);
-        D_8037DCB8->unk20 = (GcZoombox *)defrag(D_8037DCB8->unk20);
+    if(ffStorage->zoombox){
+        gczoombox_defrag(ffStorage->zoombox);
+        ffStorage->zoombox = (GcZoombox *)defrag(ffStorage->zoombox);
     }
-    D_8037DCB8->unk48 = (struct FF_StorageStruct_48 *)defrag(D_8037DCB8->unk48);
-    D_8037DCB8 = (struct FF_StorageStruct *) defrag(D_8037DCB8);
+    ffStorage->unk48 = (struct FF_StorageStruct_48 *)defrag(ffStorage->unk48);
+    ffStorage = (struct FF_StorageStruct *) defrag(ffStorage);
 }

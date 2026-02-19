@@ -14,7 +14,8 @@ ActorAnimationInfo D_80391290[] = {
     {0x145, 1.92f},
     {0x144, 32000000.0f}
 };
-ActorInfo D_803912B8 = { MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY, 
+ActorInfo D_803912B8 = {
+    MARKER_F9_JINXY, ACTOR_1F7_JINXY, ASSET_422_MODEL_JINXY, 
     0x1, D_80391290, 
     func_8038D47C, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0

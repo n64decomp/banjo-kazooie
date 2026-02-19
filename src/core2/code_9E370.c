@@ -11,7 +11,6 @@
 
 extern void func_802D7124(Actor *, f32);
 
-
 extern void func_8033A244(f32);
 
 f32 func_80257204(f32, f32, f32, f32);
@@ -23,7 +22,6 @@ extern void func_8032B3A0(Actor *, ActorMarker *);
 extern void func_8032EE0C(GenFunction_2, s32);
 extern void func_8032EE20(void);
 extern void __spawnQueue_add_5(GenFunction_5, s32, s32, s32, s32, s32);
-
 
 void func_8032A6A8(Actor *arg0);
 void func_8032ACA8(Actor *arg0);
@@ -59,13 +57,10 @@ f32 D_8036E580[3] = {0.0f, -8.0f, 0.0f};
 f32 D_8036E58C[3] = {0.0f, -16.0f, 0.0f};
 f32 D_8036E598[4] = {1000.f, 20.0f, 10.5f, 1.0f};
 
-
-
 /* .bss */
 Actor *suLastBaddie;
 s32 D_80383394;
 Actor *suBaddieJiggyArray[14]; //array of jiggy actor ptrs
-
 
 Actor * marker_getActorAndRotation(ActorMarker *marker,f32 rotation[3])
 {   Actor *actor = &suBaddieActorArray->data[marker->actrArrayIdx];
@@ -1308,12 +1303,12 @@ void subaddie_set_state_looped(Actor * this, u32 arg1){
 }
 
 /* actor - maybe plays actor's animation with set probability */
-int subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
+bool subaddie_maybe_set_state(Actor *this, s32 myAnimId, f32 chance){
     if(randf() < chance){
         subaddie_set_state(this, myAnimId);
-        return 1;
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 void subaddie_set_state_with_direction(Actor * this, s32 state, f32 anim_start_position, s32 direction){
@@ -1467,7 +1462,7 @@ bool func_80329260(Actor *this, f32 p1[3]){
 bool func_803292E0(Actor *this){
     f32 player_position[3];
     if(this->unk10_25 == 0){
-        return 1;
+        return TRUE;
     }
 
     playerPosition_get(player_position);
@@ -1597,12 +1592,12 @@ s32 subaddie_getYawToPosition(Actor *arg0, f32 arg1[3]){
 }
 
 void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
-    f32 sp2C[3];
+    f32 player_pos[3];
 
-    playerPosition_get(sp2C);
+    playerPosition_get(player_pos);
     func_8025727C(
         arg0->position[0], arg0->position[1], arg0->position[2],
-        sp2C[0], sp2C[1], sp2C[2],
+        player_pos[0], player_pos[1], player_pos[2],
         o1, o2
     );
     *o1 = 360.0f - *o1;

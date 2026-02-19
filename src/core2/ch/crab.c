@@ -3,30 +3,44 @@
 #include "variables.h"
 
 /* .data */
+
+enum crab_states
+{
+    CRAB_STATE_1_IDLE_UNK = 1,
+    CRAB_STATE_2_IDLE_UNK,
+    CRAB_STATE_3_TURN_TO_PLAYER,
+    CRAB_STATE_4_CHASE_PLAYER,
+    CRAB_STATE_5_UPSIDE_DOWN,
+    CRAB_STATE_6_FLIP_UPSIDE_DOWN,
+    CRAB_STATE_7_FLIP_UPRIGHT,
+    CRAB_STATE_8_MUTIES_FIRST_DIALOG,
+    CRAB_STATE_9_MUTIES_REVISIT
+};
+
 ActorAnimationInfo chCrabAnimations[] ={
     {    0, 0.0f},
-    { ASSET_1DA_ANIM_CRAB_IDLE, 0.8f},
-    { ASSET_2C_ANIM_CRAB_WALK, 2.0f},
-    { ASSET_2C_ANIM_CRAB_WALK, 1.4f},
-    { ASSET_2C_ANIM_CRAB_WALK, 0.7f},
-    { ASSET_96_ANIM_CRAB_UPSIDEDOWN, 0.5f},
+    { ASSET_1DA_ANIM_CRAB_IDLE,           0.8f},
+    { ASSET_2C_ANIM_CRAB_WALK,            2.0f},
+    { ASSET_2C_ANIM_CRAB_WALK,            1.4f},
+    { ASSET_2C_ANIM_CRAB_WALK,            0.7f},
+    { ASSET_96_ANIM_CRAB_UPSIDEDOWN,      0.5f},
     { ASSET_97_ANIM_CRAB_FLIP_UPSIDEDOWN, 0.8f},
-    { ASSET_155_ANIM_CRAB_FLIP_UPRIGHT, 0.55f},
-    { ASSET_2C_ANIM_CRAB_WALK, 1.4f},
-    { ASSET_2C_ANIM_CRAB_WALK, 4.0f}
+    { ASSET_155_ANIM_CRAB_FLIP_UPRIGHT,  0.55f},
+    { ASSET_2C_ANIM_CRAB_WALK,            1.4f},
+    { ASSET_2C_ANIM_CRAB_WALK,            4.0f}
 };
 
 ActorAnimationInfo chCrabMutantAnimations[] = {
     {0x000, 0.0f},
-    {ASSET_1DB_ANIM_MUTANT_CRAB_IDLE, 0.8f},
-    {ASSET_156_ANIM_MUTANT_CRAB_WALK, 2.0f},
-    {ASSET_156_ANIM_MUTANT_CRAB_WALK, 1.4f},
-    {ASSET_156_ANIM_MUTANT_CRAB_WALK, 0.7f},
-    {ASSET_158_ANIM_MUTANT_CRAB_UPSIDEDOWN, 0.5f},
+    {ASSET_1DB_ANIM_MUTANT_CRAB_IDLE,            0.8f},
+    {ASSET_156_ANIM_MUTANT_CRAB_WALK,            2.0f},
+    {ASSET_156_ANIM_MUTANT_CRAB_WALK,            1.4f},
+    {ASSET_156_ANIM_MUTANT_CRAB_WALK,            0.7f},
+    {ASSET_158_ANIM_MUTANT_CRAB_UPSIDEDOWN,      0.5f},
     {ASSET_157_ANIM_MUTANT_CRAB_FLIP_UPSIDEDOWN, 0.8f},
-    {ASSET_159_ANIM_MUTANT_CRAB_UPRIGHT, 0.55f},
-    {ASSET_156_ANIM_MUTANT_CRAB_WALK, 1.4f},
-    {ASSET_156_ANIM_MUTANT_CRAB_WALK, 2.0f}
+    {ASSET_159_ANIM_MUTANT_CRAB_UPRIGHT,        0.55f},
+    {ASSET_156_ANIM_MUTANT_CRAB_WALK,            1.4f},
+    {ASSET_156_ANIM_MUTANT_CRAB_WALK,            2.0f}
 };
 
 /* .code */
@@ -48,14 +62,14 @@ void __chCrab_802CB078(Actor *this) {
                 && ( (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET) || func_803292E0(this))
             ) {
                 this->actor_specific_1_f = 0.0f;
-                subaddie_set_state(this, 3U);
+                subaddie_set_state(this, CRAB_STATE_3_TURN_TO_PLAYER);
             }
         }
     }
 }
 
 void __chCrab_802CB140(Actor *this) {
-    subaddie_set_state(this, 2U);
+    subaddie_set_state(this, CRAB_STATE_2_IDLE_UNK);
     __chCrab_802CB040(this);
     func_80328CEC(this, (s32) this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
@@ -65,10 +79,10 @@ void __chCrab_touch(ActorMarker *marker, ActorMarker *other){
     Actor *this;
 
     this = marker_getActor(marker);
-    if ((this->state == 4) && func_803294F0(this, 80, subaddie_getYawToPlayer(this))) {
+    if ((this->state == CRAB_STATE_4_CHASE_PLAYER) && func_803294F0(this, 80, subaddie_getYawToPlayer(this))) {
         sfx_playFadeShorthandDefault(SFX_1E_HITTING_AN_ENEMY_2, 1.0f, 28000, this->position, 950, 1900);
         __chCrab_802CB140(this);
-        subaddie_set_state(this, 1);
+        subaddie_set_state(this, CRAB_STATE_1_IDLE_UNK);
     }
 }
 
@@ -77,7 +91,7 @@ void __chCrab_ow(ActorMarker *marker, ActorMarker *other) {
 
     this = marker_getActor(marker);
     this->lifetime_value = 3.0f;
-    subaddie_set_state(this, 6);
+    subaddie_set_state(this, CRAB_STATE_6_FLIP_UPSIDE_DOWN);
     actor_playAnimationOnce(this);
     if (marker->id == MARKER_13_SNIPPET) {
         sfx_playFadeShorthandDefault(SFX_6E_VILE_EGH, 2.0f, 26000, this->position, 950, 1900);
@@ -150,7 +164,7 @@ void __chCrab_mutantTextCallback(ActorMarker *caller, enum asset_e text_id, s32 
         func_80324E38(3.0f, 0);
         return;
     }
-    levelSpecificFlags_set(LEVEL_FLAG_E_CC_UNKNOWN, FALSE);
+    levelSpecificFlags_set(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS, FALSE);
 }
 
 bool __chCrab_802CB76C(ActorMarker *marker, ActorMarker *other) {
@@ -267,10 +281,10 @@ void chCrab_update(Actor *this) {
         && subaddie_playerIsWithinSphereAndActive(this, 500) && !subaddie_playerIsWithinSphereAndActive(this, 200)
         && !player_movementGroup()
     ) {
-        if ((this->state != 6) && (this->state != 5)) {
+        if ((this->state != CRAB_STATE_6_FLIP_UPSIDE_DOWN) && (this->state != CRAB_STATE_5_UPSIDE_DOWN)) {
             gcdialog_showDialog(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
-            levelSpecificFlags_set(LEVEL_FLAG_E_CC_UNKNOWN, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS, TRUE);
             this->has_met_before = TRUE;
         }
     }
@@ -288,59 +302,59 @@ void chCrab_update(Actor *this) {
             mapSpecificFlags_set(1, FALSE);
         }
     }
-    if (levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
-        if ((this->state != 8) && (this->state != 9)) {
-            subaddie_set_state_with_direction(this, (this->has_met_before) ? 8 : 9, 0.0f, 1);
+    if (levelSpecificFlags_get(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS)) {
+        if ((this->state != CRAB_STATE_8_MUTIES_FIRST_DIALOG) && (this->state != CRAB_STATE_9_MUTIES_REVISIT)) {
+            subaddie_set_state_with_direction(this, (this->has_met_before) ? CRAB_STATE_8_MUTIES_FIRST_DIALOG : CRAB_STATE_9_MUTIES_REVISIT, 0.0f, 1);
             this->has_met_before = FALSE;
         }
     }
 
     switch(this->state){
-        case 1: //L802CBE30
-            if (subaddie_maybe_set_state(this, 2, 0.03f)) {
+        case CRAB_STATE_1_IDLE_UNK: //L802CBE30
+            if (subaddie_maybe_set_state(this, CRAB_STATE_2_IDLE_UNK, 0.03f)) {
                 __chCrab_802CB040(this);
             }
             __chCrab_802CB078(this);
             break;
 
-        case 9: //L802CBE6C
-            if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
-                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
+        case CRAB_STATE_9_MUTIES_REVISIT: //L802CBE6C
+            if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS)) {
+                subaddie_set_state_with_direction(this, CRAB_STATE_3_TURN_TO_PLAYER, 0.0f, 1);
             }
             break;
 
-        case 2: //L802CBE9C
+        case CRAB_STATE_2_IDLE_UNK: //L802CBE9C
             subaddie_turnToYaw(this, 1.0f);
             if( func_8032CA80(this, (this->modelCacheIndex == ACTOR_F2_BLACK_SNIPPET)? 0xD: 0)
                 && func_80329480(this)
             ) {
                 func_80328CEC(this, (s32) this->yaw, 90, 150);
             }
-            subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.0075f);
+            subaddie_maybe_set_state_position_direction(this, CRAB_STATE_1_IDLE_UNK, 0.0f, 1, 0.0075f);
             __chCrab_802CB078(this);
             break;
 
-        case 3: //L802CBF44
+        case CRAB_STATE_3_TURN_TO_PLAYER: //L802CBF44
             this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
             subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
-                subaddie_set_state(this, 4);
+                subaddie_set_state(this, CRAB_STATE_4_CHASE_PLAYER);
                 this->actor_specific_1_f = 12.0f;
             }
             break;
 
-        case 8: //L802CBF9C
+        case CRAB_STATE_8_MUTIES_FIRST_DIALOG: //L802CBF9C
             this->yaw_ideal = subaddie_getYawToPlayer(this) + 90.0;
             subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
-                subaddie_set_state(this, 9);
+                subaddie_set_state(this, CRAB_STATE_9_MUTIES_REVISIT);
                 this->actor_specific_1_f = 12.0f;
-            } else if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_UNKNOWN)) {
-                subaddie_set_state_with_direction(this, 3, 0.0f, 1);
+            } else if (!levelSpecificFlags_get(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS)) {
+                subaddie_set_state_with_direction(this, CRAB_STATE_3_TURN_TO_PLAYER, 0.0f, 1);
             }
             break;
 
-        case 4: //L802CC024
+        case CRAB_STATE_4_CHASE_PLAYER: //L802CC024
             if ((globalTimer_getTime() & 0xF) == 9) {
                 this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
             }
@@ -350,40 +364,40 @@ void chCrab_update(Actor *this) {
             }
             break;
 
-        case 5: //L802CC0AC
+        case CRAB_STATE_5_UPSIDE_DOWN: //L802CC0AC
             this->lifetime_value = MAX(0.0, this->lifetime_value - sp30);
             if (this->lifetime_value == 0.0f) {
-                subaddie_set_state(this, 7);
+                subaddie_set_state(this, CRAB_STATE_7_FLIP_UPRIGHT);
                 actor_playAnimationOnce(this);
-                if (this->marker->id == 0x16B) {
+                if (this->marker->id == MARKER_16B_SNIPPET_UPSIDEDOWN) {
                     this->marker->id = MARKER_13_SNIPPET;
                 }
-                if (this->marker->id == 0xDE) {
+                if (this->marker->id == MARKER_DE_BLACK_SNIPPET_UPSIDEDOWN) {
                     this->marker->id = MARKER_DD_BLACK_SNIPPET;
                 }
             }
             break;
 
-        case 6: //L802CC18C
+        case CRAB_STATE_6_FLIP_UPSIDE_DOWN: //L802CC18C
             if (anctrl_isStopped(this->anctrl)) {
                 if (this->lifetime_value == 0.0f) {
                     func_80326310(this);
                 } else {
-                    subaddie_set_state(this, 5);
+                    subaddie_set_state(this, CRAB_STATE_5_UPSIDE_DOWN);
                     actor_loopAnimation(this);
                 }
             }
             break;
 
-        case 7: //L802CC1E8
+        case CRAB_STATE_7_FLIP_UPRIGHT: //L802CC1E8
             if (anctrl_isStopped(this->anctrl)) {
-                subaddie_set_state(this, 1);
+                subaddie_set_state(this, CRAB_STATE_1_IDLE_UNK);
                 actor_loopAnimation(this);
             }
             break;
     }
     
-    if ((this->state == 2) || (this->state == 3) || (this->state == 4)) {
+    if ((this->state == CRAB_STATE_2_IDLE_UNK) || (this->state == CRAB_STATE_3_TURN_TO_PLAYER) || (this->state == CRAB_STATE_4_CHASE_PLAYER)) {
         if (sp34 != D_803670B0) {
             D_803670B0 = sp34;
             D_803670B4 = 1;
@@ -398,21 +412,21 @@ void chCrab_update(Actor *this) {
 
 /* .data */
 
-ActorInfo D_803670B8 = {
+ActorInfo chSnippet = {
     MARKER_13_SNIPPET, ACTOR_67_SNIPPET, ASSET_358_SNIPPET,
     0x1, chCrabAnimations,
     chCrab_update, actor_update_func_80326224, actor_draw,
     1900, 0, 0.8f, 0
 };
 
-ActorInfo D_803670DC = {
+ActorInfo chBlackSnippet = {
     MARKER_DD_BLACK_SNIPPET, ACTOR_F2_BLACK_SNIPPET, ASSET_566_MODEL_BLACK_SNIPPET,
     0x1, chCrabAnimations,
     chCrab_update, actor_update_func_80326224, actor_draw,
     1900, 0, 0.8f, 0
 };
 
-ActorInfo D_80367100 = {
+ActorInfo chMutieSnippet = {
     MARKER_13_SNIPPET, ACTOR_F5_MUTIE_SNIPPET, ASSET_38F_MODEL_MUTIE_SNIPPET,
     0x1, chCrabMutantAnimations,
     chCrab_update, actor_update_func_80326224, actor_draw,

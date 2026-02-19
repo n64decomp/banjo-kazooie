@@ -240,7 +240,7 @@ void __overlay_lair_release(void){
 }
 
 void overlay_lair_init(void){
-    lair_func_8038CF18();
+    ff_init();
 }
 
 void __overlay_lair_update(void){

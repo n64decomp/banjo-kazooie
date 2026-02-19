@@ -11,7 +11,23 @@ Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 
 /* .data */
-ActorAnimationInfo D_80372B50[] = {
+
+enum icecube_states
+{
+    ICECUBE_STATE_UNK_1 = 1,
+    ICECUBE_STATE_2_ALERT,
+    ICECUBE_STATE_3_ATTACK,
+    ICECUBE_STATE_4_RETURN,
+    ICECUBE_STATE_5_DIE
+};
+
+enum icecube_specific_field
+{
+    ICECUBE_SPECIFIC_FIELD_1_LITTLE_CUBES = 1,
+    ICECUBE_SPECIFIC_FIELD_2_LARGE_CUBE
+};
+
+ActorAnimationInfo chIcecubeAnimations[] = {
     {0x000, 0.0f},
     {ASSET_233_ANIM_ICECUBE, 999999.0f},
     {ASSET_233_ANIM_ICECUBE, 1.2f},
@@ -20,16 +36,16 @@ ActorAnimationInfo D_80372B50[] = {
     {ASSET_233_ANIM_ICECUBE, 1.2f}
 };
 
-ActorInfo D_80372B80 = {
+ActorInfo chIcecubeA = {
     MARKER_250_ICECUBE_A, ACTOR_37D_ICECUBE_A, ASSET_504_MODEL_ICECUBE, 
-    1, D_80372B50, 
+    1, chIcecubeAnimations, 
     chicecube_update, actor_update_func_80326224, chicecube_draw,
     0, 0, 0.0f, 0
 }; 
 
-ActorInfo D_80372BA4 = {
+ActorInfo chIcecubeB = {
     MARKER_25F_ICECUBE_B, ACTOR_3A0_ICECUBE_B, ASSET_504_MODEL_ICECUBE, 
-    1, D_80372B50, 
+    1, chIcecubeAnimations, 
     chicecube_update, actor_update_func_80326224, chicecube_draw,
     0, 0, 0.0f, 0
 }; 
@@ -47,8 +63,8 @@ Actor *chicecube_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
 int func_80359DF4(Actor *this, s32 arg1){
     if(subaddie_playerIsWithinSphereAndActive(this, arg1) && func_803292E0(this))
-        return 1;
-    return 0;
+        return TRUE;
+    return FALSE;
 }
 
 int func_80359E38(Actor *this, s32 arg1, s32 arg2){
@@ -77,7 +93,7 @@ int func_80359EBC(Actor *this, s32 arg1, s32 arg2){
     return sp1C;
 }
 
-int func_80359F40(Actor *this, f32 arg1[3]){
+bool func_80359F40(Actor *this, f32 arg1[3]){
     f32 sp24;
     f32 sp20;
     
@@ -90,18 +106,18 @@ int func_80359F40(Actor *this, f32 arg1[3]){
     this->yaw = sp24;
     if(func_80329030(this, 0)){
         this->yaw = sp20;
-        return 1;
+        return TRUE;
     }
     else{
         this->yaw = sp20;
-        return 0;
+        return FALSE;
     }
 }
 
-int func_80359FEC(f32 arg0[3], f32 arg1[3], s32 arg2){
+bool func_80359FEC(f32 arg0[3], f32 arg1[3], s32 arg2){
     if(_HorzDist3v(arg0, arg1) < arg2*arg2)
-        return 1;
-    return 0;
+        return TRUE;
+    return FALSE;
 }
 
 void func_8035A04C(f32 position[3], s32 cnt, enum asset_e model_id, f32 scale){
@@ -202,7 +218,7 @@ void __chicecube_spawnHalfCubes(ActorMarker *marker){
     for(i = 0; i < 2; i++){//L8035A7FC
         bundle_setYaw((i & 1)? actor->yaw : actor->yaw + 180.0f);
         other = bundle_spawn_f32(BUNDLE_21__ICECUBE_B, sp54);
-        other->actorTypeSpecificField = 1; //don't spawn more
+        other->actorTypeSpecificField = ICECUBE_SPECIFIC_FIELD_1_LITTLE_CUBES;
         other->scale = randf2(0.5f, 0.6f)*actor->scale;
         actor->yaw = randi2(0, 359);
     }
@@ -224,34 +240,34 @@ void __chicecube_die(ActorMarker *marker, ActorMarker *other_marker){
     actor->velocity[1] = 0.0f;
     func_8035A04C(actor->position, 12, ASSET_505_MODEL_ICECUBE_CHUNK, actor->scale);
     func_8035A228(actor->position, 6, ASSET_700_SPRITE_DUST, actor->scale);
-    if(actor->actorTypeSpecificField != 1){
+    if(actor->actorTypeSpecificField != ICECUBE_SPECIFIC_FIELD_1_LITTLE_CUBES){
         __spawnQueue_add_1((GenFunction_1)__chicecube_spawnHalfCubes, reinterpret_cast(s32, actor->marker));
     }
     marker_despawn(actor->marker);
 }
 
 void func_8035A998(Actor *this){
-    subaddie_set_state_with_direction(this, 1, 0.0001f, 1);
+    subaddie_set_state_with_direction(this, ICECUBE_STATE_UNK_1, 0.0001f, 1);
     actor_playAnimationOnce(this);
     this->unk38_31 = 0;
 }
 
 void func_8035A9E0(Actor *this){
-    subaddie_set_state_with_direction(this, 3, anctrl_getAnimTimer(this->anctrl), 1);
+    subaddie_set_state_with_direction(this, ICECUBE_STATE_3_ATTACK, anctrl_getAnimTimer(this->anctrl), 1);
     actor_loopAnimation(this);
     this->unk38_31 = 1;
     this->actor_specific_1_f = 0.0f;
 }
 
 void func_8035AA40(Actor *this){
-    subaddie_set_state_with_direction(this, 5, 0.9999f, 0);
+    subaddie_set_state_with_direction(this, ICECUBE_STATE_5_DIE, 0.9999f, 0);
     actor_playAnimationOnce(this);
     this->unk38_31 = 1;
 }
 
 void chicecube_update(Actor *this){
     f32 sp3C = time_getDelta();
-    f32 sp30[3];
+    f32 player_pos[3];
 
     if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive()){
@@ -299,17 +315,17 @@ void chicecube_update(Actor *this){
         return; 
     }
     switch(this->state){
-        case 1: // L8035AC9C
+        case ICECUBE_STATE_UNK_1: // L8035AC9C
             anctrl_setAnimTimer(this->anctrl, 0.0f);
             if( func_80359DF4(this, 900)
-                || (this->actorTypeSpecificField == 2 && volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
+                || (this->actorTypeSpecificField == ICECUBE_SPECIFIC_FIELD_2_LARGE_CUBE && volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE))
             ){
-                subaddie_set_state_with_direction(this, 2, 0.0001f, 1);
+                subaddie_set_state_with_direction(this, ICECUBE_STATE_2_ALERT, 0.0001f, 1);
                 actor_playAnimationOnce(this);
                 this->unk38_31 = 0x1;
             }
             break; 
-        case 2: // L8035AD10
+        case ICECUBE_STATE_2_ALERT: // L8035AD10
             if(actor_animationIsAt(this, 0.1f)){
                 sfx_playFadeShorthandDefault(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
@@ -319,7 +335,7 @@ void chicecube_update(Actor *this){
                 func_8035A9E0(this);
             }
             break;
-        case 3: // L8035AD88
+        case ICECUBE_STATE_3_ATTACK: // L8035AD88
             anctrl_setAnimTimer(this->anctrl, 0.999f);
             if (this->actor_specific_1_f + 0.28 < 18.0) {
                 this->actor_specific_1_f = this->actor_specific_1_f + 0.28;
@@ -329,18 +345,18 @@ void chicecube_update(Actor *this){
             }
             func_8035A694(this);
             if(!func_80359DF4(this, 1300)){
-                subaddie_set_state_with_direction(this, 4, anctrl_getAnimTimer(this->anctrl), 1);
+                subaddie_set_state_with_direction(this, ICECUBE_STATE_4_RETURN, anctrl_getAnimTimer(this->anctrl), 1);
                 actor_loopAnimation(this);
                 this->unk38_31 = 1;
             }
             else{
-                player_getPosition(sp30);
-                if(!func_80359F40(this, sp30)){
+                player_getPosition(player_pos);
+                if(!func_80359F40(this, player_pos)){
                     func_8035A998(this);
                 }
             }
             break;
-        case 4: // L8035AE64
+        case ICECUBE_STATE_4_RETURN: // L8035AE64
             anctrl_setAnimTimer(this->anctrl, 0.999f);
 
             if (this->actor_specific_1_f - 0.28 > 8.0) {
@@ -365,7 +381,7 @@ void chicecube_update(Actor *this){
                 }
             }
             break;
-        case 5: // L8035AF58
+        case ICECUBE_STATE_5_DIE: // L8035AF58
             if(actor_animationIsAt(this, 0.25f)){
                 sfx_playFadeShorthandDefault(SFX_112_TINKER_ATTENTION, 1.3f, 23000, this->position, 1500, 4500);
             }
@@ -374,8 +390,6 @@ void chicecube_update(Actor *this){
             ){
                 func_8035A998(this);
             }
-
             break;
     }
-    
 }
