@@ -207,17 +207,17 @@ enum fonts_e print_sCurrentFont;
 enum fonts_e print_sPreviousFont;
 s32 print_sMonospacedModeEnabled;
 s32 print_sGradientModeEnabled;
-s32 D_80380AF8;
+s32 print_sGradient2ModeEnabled; // Related to print_dialog_gradient2(), but it just renders normally?
 s32 print_sBrokenFontModeEnabled; // Tries to use a non-existing font and crashes
 s32 print_sBackgroundModeEnabled;
-s32 D_80380B04;
+s32 print_sUnknownMode;
 bool print_sInFontFormatMode;
 s32 D_80380B0C;
 s32 print_sShakyModeEnabled;
 s32 print_sBilinearFilterModeEnabled;
 s32 print_sBoldLetterFontFreeTimer;
 s32 print_sCurrentBoldFontTexture;
-s8 D_80380B20[0x400];
+s8 D_80380B20[0x400]; // Some kind of framebuffer?
 s8 print_sBoldFontLetterToSpriteMap[0x80];
 
 
@@ -237,7 +237,7 @@ enum asset_e print_getCurrentMapBoldFontTexture(void){
 // this function reassigns the referenced font mask pixel 
 // using the texture @ pixel (x,y)
 void print_setBoldFontTexturePixel(BKSpriteTextureBlock *texture, u32 *font, s32 x, s32 y) {
-    u16 *var_v0;
+    u16 *pixel;
     s32 r5;
     s32 g5;
     s32 b5;
@@ -246,11 +246,11 @@ void print_setBoldFontTexturePixel(BKSpriteTextureBlock *texture, u32 *font, s32
     x = MIN(MAX(0, x), texture->w - 1);
     y = MIN(MAX(0, y), texture->h - 1);
     
-    var_v0 = ((u16*)(texture + 1)) + x + y * texture->w;
+    pixel = ((u16*)(texture + 1)) + x + y * texture->w;
 
-    r5 = ((*var_v0 >> 11) & 0x1F);
-    g5 = ((*var_v0 >> 6) & 0x1F);
-    b5 = ((*var_v0 >> 1) & 0x1F);
+    r5 = ((*pixel >> 11) & 0x1F);
+    g5 = ((*pixel >> 6) & 0x1F);
+    b5 = ((*pixel >> 1) & 0x1F);
     
     a8 = (*font >> 0) & 0xff;
     i8 = (*font >> 8) & 0xff;
@@ -427,10 +427,10 @@ void print_init(void){
     print_sPreviousFont = \
     print_sMonospacedModeEnabled = \
     print_sGradientModeEnabled = \
-    D_80380AF8 = \
+    print_sGradient2ModeEnabled = \
     print_sBrokenFontModeEnabled = \
     print_sInFontFormatMode = \
-    D_80380B04 = \
+    print_sUnknownMode = \
     print_sBackgroundModeEnabled = \
     print_sShakyModeEnabled = \
     print_sBilinearFilterModeEnabled = 0;
@@ -530,14 +530,12 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
 
     int i;
 
-
-
     valid_letter = 0;
     x = *xPtr;
     y = *yPtr;
     y_offset = 0;
 
-    if(!D_80380B04 && !letter){
+    if(!print_sUnknownMode && !letter){
         left_margin = 0.0f;
     }//L802F563C
 
@@ -565,10 +563,10 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
             break;
         case FONTS_2_UNUSED: //L802F5740
             letter_id = letter;
-            if(D_80380B04){
+            if(print_sUnknownMode){
                 valid_letter = 1;
-                letter_id += (D_80380B04 << 8) - 0x100;
-                D_80380B04 = 0;
+                letter_id += (print_sUnknownMode << 8) - 0x100;
+                print_sUnknownMode = 0;
             }
             else{//L802F5764
                 if(letter_id > 0 && letter_id < 0xfD)
@@ -647,8 +645,8 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                 break;
 
             case 'd': //L802F5A8C
-                D_80380AF8 ^= 1;
-                if(D_80380AF8){
+                print_sGradient2ModeEnabled ^= 1;
+                if(print_sGradient2ModeEnabled){
                     gDPPipeSync((*gfx)++);
                     gDPSetCycleType((*gfx)++, G_CYC_2CYCLE);
                     gDPSetRenderMode((*gfx)++, G_RM_PASS, G_RM_XLU_SURF2);
@@ -669,11 +667,11 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                 break;
 
             case 0xfe://L802F5BF4
-                D_80380B04 = 1;
+                print_sUnknownMode = 1;
                 break;
 
             case 0xff://L802F5BFC
-                D_80380B04 = 2;
+                print_sUnknownMode = 2;
                 break;
             default:
                 break;
@@ -711,7 +709,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
             gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_CI, G_IM_SIZ_8b, letter_sprite->w, letter_sprite->h, 0, 0, letter_sprite->x-1, letter_sprite->y-1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
         }//L802F6570
-        if (D_80380AF8 != 0) {
+        if (print_sGradient2ModeEnabled != 0) {
             s32 temp_t1;
             s32 phi_a0;
             temp_t1 = ((print_sCurrentPtr->topVertexAlpha - print_sCurrentPtr->y) - D_80380B0C) + 1;
@@ -768,39 +766,39 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
 }
 
 f32 print_calculateLetterXPos(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
-    s32 sp44;
+    s32 letter_id;
     s32 i;
-    bool var_v0;
-    f32 sp38;
-    s32 sp34;
-    f32 var_f2;
-    s32 sp2C;
+    bool valid_letter;
+    f32 x;
+    s32 x_offset;
+    f32 width;
+    s32 font_type;
 
-    sp38 = *xPtr;
-    var_v0 = FALSE;
-    sp34 = 0;
+    x = *xPtr;
+    valid_letter = FALSE;
+    x_offset = 0;
     if (print_sCurrentFont == FONTS_1_BOLD_NUMBERS) {
         if (letter < 0x80) {
             if (print_sBoldFontLetterToSpriteMap[letter] >= 0) {
                 for(i = 0; boldFontKernings[i].firstLetter != 0; i++) {
                     if ((boldFontKernings[i].secondLetter == letter) && (boldFontKernings[i].firstLetter == print_sPreviousBoldLetter)) {
-                        sp34 = boldFontKernings[i].xOffset;
+                        x_offset = boldFontKernings[i].xOffset;
                         break;
                     }
                 }
                 print_sPreviousBoldLetter = letter;
-                sp44 = print_sBoldFontLetterToSpriteMap[letter];
-                var_v0 = TRUE;
-                sp38 += sp34 * scale;
+                letter_id = print_sBoldFontLetterToSpriteMap[letter];
+                valid_letter = TRUE;
+                x += x_offset * scale;
             }
         }
     }
     else{
         return *xPtr;
     }
-    if (!var_v0 || print_sInFontFormatMode) {
+    if (!valid_letter || print_sInFontFormatMode) {
         if (letter == ' ') {
-            var_f2 = (print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFont] : 0.8*maxFontLetterWidths[print_sCurrentFont];
+            width = (print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFont] : 0.8*maxFontLetterWidths[print_sCurrentFont];
         }
         else{
             return *xPtr;
@@ -808,16 +806,16 @@ f32 print_calculateLetterXPos(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
     }
     else {
         if(print_sMonospacedModeEnabled){
-            var_f2 = maxFontLetterWidths[print_sCurrentFont];
+            width = maxFontLetterWidths[print_sCurrentFont];
         }
         else{
-            var_f2 = print_getBoldFontLetterSprite(sp44, &sp2C)->x;
+            width = print_getBoldFontLetterSprite(letter_id, &font_type)->x;
         }
     }
-    var_f2 += (sp34 - 4);
-    *xPtr += var_f2 * scale;
-    
-    return sp38;
+    width += (x_offset - 4);
+    *xPtr += width * scale;
+
+    return x;
 }
 
 void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
@@ -847,7 +845,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 gDPPipeSync((*gfx)++);
 
             }//L802F73E8
-            if ((D_80380AF8 == 0) && (print_sGradientModeEnabled == 0)) {
+            if ((print_sGradient2ModeEnabled == 0) && (print_sGradientModeEnabled == 0)) {
                 if (print_sCurrentFont != FONTS_0_DIALOG) {
                     gDPSetCombineMode((*gfx)++, G_CC_DECALRGBA, G_CC_DECALRGBA);
                     gDPSetPrimColor((*gfx)++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -866,7 +864,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                     j--;
                 }
             } else {
-                for(j = 0; (print_sCurrentPtr->string[j] != 0) || (D_80380B04 != 0); j++){
+                for(j = 0; (print_sCurrentPtr->string[j] != 0) || (print_sUnknownMode != 0); j++){
                     _printbuffer_draw_letter(print_sCurrentPtr->string[j], &_x, &_y, print_sCurrentPtr->scale, gfx, mtx, vtx);
                 }
             }
@@ -942,7 +940,7 @@ void print_dialog_gradient(s32 x, s32 y, u8* string, u8 topVertexAlpha, u8 botto
     }
 }
 
-void func_802F79D0(s32 x, s32 y, u8* string, s32 topVertexAlpha, s32 bottomVertexAlpha){
+void print_dialog_gradient2(s32 x, s32 y, u8* string, s32 topVertexAlpha, s32 bottomVertexAlpha){
     _printbuffer_push_new(x, y, string);
     if(print_sCurrentPtr){
         print_sCurrentPtr->topVertexAlpha = topVertexAlpha;
