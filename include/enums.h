@@ -5817,7 +5817,7 @@ enum font_sprite_assets_e {
 enum fonts_e {
     FONTS_0_DIALOG,
     FONTS_1_BOLD_NUMBERS,
-    FONTS_2_UNUSED, // ???
+    FONTS_2_UNUSED, // There are some references, but crashes the game
     FONTS_3_BOLD_LETTERS,
     FONTS_4_MAX
 };

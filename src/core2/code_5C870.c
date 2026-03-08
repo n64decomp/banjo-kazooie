@@ -6,7 +6,7 @@
 #include "gc/gctransition.h"
 #include "time.h"
 
-extern void func_802F5374(void);
+extern void print_updateBoldLetterFontDelayedFreeing(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
 extern void func_80335128(s32);
@@ -571,7 +571,7 @@ bool func_802E4424(void) {
     }
     gctransition_update();
     if (func_802E4A08() == 0) {
-        func_802F5374();
+        print_updateBoldLetterFontDelayedFreeing();
     }
     return TRUE;
 }

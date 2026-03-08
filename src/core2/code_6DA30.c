@@ -3,6 +3,8 @@
 #include "functions.h"
 #include "variables.h"
 
+#define PRINT_BUFFER_COUNT 0x20
+#define PRINT_BUFFER_STRING_MAX_LENGTH 0x20
 
 typedef struct{
     s8 pad0[0x20];
@@ -201,19 +203,19 @@ BKSprite *print_sFontSpriteAssets[FONT_SPRITE_ASSETS_5_MAX];
 FontLetter  *print_sFonts[FONTS_4_MAX];
 PrintBuffer *print_sPrintBuffer;
 PrintBuffer *print_sCurrentPtr;
-s32 print_sCurrentFontIndex;
-s32 print_sPreviousFontIndex;
+enum fonts_e print_sCurrentFont;
+enum fonts_e print_sPreviousFont;
 s32 print_sMonospacedModeEnabled;
 s32 print_sGradientModeEnabled;
 s32 D_80380AF8;
-s32 D_80380AFC;
+s32 print_sBrokenFontModeEnabled; // Tries to use a non-existing font and crashes
 s32 D_80380B00;
 s32 D_80380B04;
 bool print_sInFontFormatMode;
 s32 D_80380B0C;
 s32 print_sShakyModeEnabled;
 s32 print_sBilinearFilterModeEnabled;
-s32 D_80380B18;
+s32 print_sBoldLetterFontFreeTimer;
 s32 print_sCurrentBoldFontTexture;
 s8 D_80380B20[0x400];
 s8 print_sBoldFontLetterToSpriteMap[0x80];
@@ -364,7 +366,7 @@ void print_free(void){
     for(i = 0; i< 5; i++){
         assetcache_release(print_sFontSpriteAssets[i]);
         print_sFontSpriteAssets[i] = NULL;
-        if(i < 4){
+        if(i < FONTS_4_MAX){
             free(print_sFonts[i]);
             print_sFonts[i] = NULL;
         }
@@ -375,7 +377,7 @@ void print_free(void){
 
 void print_clearPrintBufferStrings(void){
     s32 i;
-    for(i = 0; i < 0x20; i++){
+    for(i = 0; i < PRINT_BUFFER_COUNT; i++){
         print_sPrintBuffer[i].string = NULL;
     }
 }
@@ -421,12 +423,12 @@ void print_init(void){
     int found;
 
     length = strlen(boldFontLetters);
-    print_sCurrentFontIndex = \
-    print_sPreviousFontIndex = \
+    print_sCurrentFont = \
+    print_sPreviousFont = \
     print_sMonospacedModeEnabled = \
     print_sGradientModeEnabled = \
     D_80380AF8 = \
-    D_80380AFC = \
+    print_sBrokenFontModeEnabled = \
     print_sInFontFormatMode = \
     D_80380B04 = \
     D_80380B00 = \
@@ -439,7 +441,7 @@ void print_init(void){
     print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = assetcache_get(print_getCurrentMapBoldFontTexture());
     print_sFonts[FONTS_0_DIALOG] =  print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_0_DIALOG_FONT_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
     print_sFonts[FONTS_1_BOLD_NUMBERS] =  print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
-    print_sPrintBuffer = malloc(0x20*sizeof(PrintBuffer));
+    print_sPrintBuffer = malloc(PRINT_BUFFER_COUNT * sizeof(PrintBuffer));
     print_clearPrintBufferStrings();
 
     for(i = 0; i < 0x80; i++){//L802F52EC
@@ -458,8 +460,8 @@ void print_init(void){
     print_sCurrentBoldFontTexture = print_getCurrentMapBoldFontTexture();
 }
 
-void func_802F5374(void){
-    if(D_80380B18 > 0 && --D_80380B18 == 0){
+void print_updateBoldLetterFontDelayedFreeing(void){
+    if(print_sBoldLetterFontFreeTimer > 0 && --print_sBoldLetterFontFreeTimer == 0){
         assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]);
         print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK] = 0;
         free(print_sFonts[FONTS_3_BOLD_LETTERS]);
@@ -476,7 +478,7 @@ void print_freeBoldLetterFont(void){
         free(print_sFonts[FONTS_3_BOLD_LETTERS]);
         print_sFonts[FONTS_3_BOLD_LETTERS] = NULL;
     }
-    D_80380B18 = 0;
+    print_sBoldLetterFontFreeTimer = 0;
 }
 
 void printbuffer_defrag(void){
@@ -490,9 +492,9 @@ void printbuffer_defrag(void){
 
 //returns the pixel data and type for a given letter
 BKSpriteTextureBlock *print_getBoldFontLetterSprite(s32 letterId, s32 *fontType){
-    if(print_sCurrentFontIndex != 1 || (print_sCurrentFontIndex == 1 && letterId < 0xA)){
-        *fontType = print_sFontSpriteAssets[print_sCurrentFontIndex]->type;
-        return print_sFonts[print_sCurrentFontIndex][letterId].sprite;
+    if(print_sCurrentFont != FONTS_1_BOLD_NUMBERS || (print_sCurrentFont == FONTS_1_BOLD_NUMBERS && letterId < 0xA)){
+        *fontType = print_sFontSpriteAssets[print_sCurrentFont]->type;
+        return print_sFonts[print_sCurrentFont][letterId].sprite;
     }
     else{//L802F5510
         if(!print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]){
@@ -502,7 +504,7 @@ BKSpriteTextureBlock *print_getBoldFontLetterSprite(s32 letterId, s32 *fontType)
             assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
             print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = NULL;
         }//L802F5568
-        D_80380B18 = 5;
+        print_sBoldLetterFontFreeTimer = 5;
         *fontType  = print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]->type;
         return print_sFonts[FONTS_3_BOLD_LETTERS][letterId-10].sprite;
     }
@@ -510,7 +512,7 @@ BKSpriteTextureBlock *print_getBoldFontLetterSprite(s32 letterId, s32 *fontType)
 
 //returns the letter's palette
 void *print_getCurrentFontPalette(u8 letterId){
-    return  print_sFonts[print_sCurrentFontIndex][letterId].palette;
+    return  print_sFonts[print_sCurrentFont][letterId].palette;
 }
 
 void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -539,14 +541,15 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
         D_80380FA0 = 0.0f;
     }//L802F563C
 
-    switch(print_sCurrentFontIndex){
-        case 0: //L802F5678
+    switch(print_sCurrentFont){
+        case FONTS_0_DIALOG: //L802F5678
             if(letter >= '\x21' && letter < '\x5f'){
                 letter_id = letter - '\x21';
                 valid_letter = 1;
             }
             break;
-        case 1: //L802F56A0
+        case FONTS_1_BOLD_NUMBERS: //L802F56A0
+            // This is also used with the bold letters font
             if(letter < '\x80' && print_sBoldFontLetterToSpriteMap[letter] >= 0){
                 for(i = 0; boldFontKernings[i].firstLetter != 0; i++){
                     if(letter == boldFontKernings[i].secondLetter && print_sPreviousBoldLetter == boldFontKernings[i].firstLetter){
@@ -560,7 +563,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                 y += (f32)y_offset*scale;
             }//L802F5738
             break;
-        case 2: //L802F5740
+        case FONTS_2_UNUSED: //L802F5740
             letter_id = letter;
             if(D_80380B04){
                 valid_letter = 1;
@@ -578,7 +581,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
         print_sInFontFormatMode = FALSE;
         switch(letter){
             case ' '://802F5818
-                *xPtr += ((print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFontIndex]: maxFontLetterWidths[print_sCurrentFontIndex]*0.8) * scale;
+                *xPtr += ((print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFont]: maxFontLetterWidths[print_sCurrentFont]*0.8) * scale;
                 break;
 
             case 'b': //L802F5890
@@ -587,7 +590,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                 break;
 
             case 'f': //L802F58A8
-                print_sPreviousFontIndex = print_sCurrentFontIndex = print_sCurrentFontIndex ^ 1;
+                print_sPreviousFont = print_sCurrentFont = print_sCurrentFont ^ 1;
                 break;
 
             case 'l': //L802F58BC
@@ -599,18 +602,17 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                 break;
 
             case 'j': //L802F58D4
-                if(D_80380AFC == 0){
-                    D_80380AFC = 1;
-                    print_sPreviousFontIndex = print_sCurrentFontIndex;
-                    print_sCurrentFontIndex = 2;
-                    // print_sCurrentFontIndex = 2;
+                if(print_sBrokenFontModeEnabled == 0){
+                    print_sBrokenFontModeEnabled = 1;
+                    print_sPreviousFont = print_sCurrentFont;
+                    print_sCurrentFont = FONTS_2_UNUSED;
                 }
                 break;
 
             case 'e': //L802F58FC
-                if(D_80380AFC){
-                    D_80380AFC = 0;
-                    print_sCurrentFontIndex = print_sPreviousFontIndex;
+                if(print_sBrokenFontModeEnabled){
+                    print_sBrokenFontModeEnabled = 0;
+                    print_sCurrentFont = print_sPreviousFont;
                 }
                 break;
 
@@ -683,7 +685,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
                x += randf2(-2.0f, 2.0f);
                y += randf2(-2.0f, 2.0f);
         }
-        letter_width = (print_sMonospacedModeEnabled != 0) ? maxFontLetterWidths[print_sCurrentFontIndex] : letter_sprite->x;
+        letter_width = (print_sMonospacedModeEnabled != 0) ? maxFontLetterWidths[print_sCurrentFont] : letter_sprite->x;
 
         // temp_f2 = D_80380FA0;
         // phi_f2 = temp_f2;
@@ -779,7 +781,7 @@ f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
     sp38 = *xPtr;
     var_v0 = FALSE;
     sp34 = 0;
-    if (print_sCurrentFontIndex == 1) {
+    if (print_sCurrentFont == FONTS_1_BOLD_NUMBERS) {
         if (letter < 0x80) {
             if (print_sBoldFontLetterToSpriteMap[letter] >= 0) {
                 for(i = 0; boldFontKernings[i].firstLetter != 0; i++) {
@@ -800,7 +802,7 @@ f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
     }
     if (!var_v0 || print_sInFontFormatMode) {
         if (letter == ' ') {
-            var_f2 = (print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFontIndex] : 0.8*maxFontLetterWidths[print_sCurrentFontIndex];
+            var_f2 = (print_sMonospacedModeEnabled) ? maxFontLetterWidths[print_sCurrentFont] : 0.8*maxFontLetterWidths[print_sCurrentFont];
         }
         else{
             return *xPtr;
@@ -808,7 +810,7 @@ f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
     }
     else {
         if(print_sMonospacedModeEnabled){
-            var_f2 = maxFontLetterWidths[print_sCurrentFontIndex];
+            var_f2 = maxFontLetterWidths[print_sCurrentFont];
         }
         else{
             var_f2 = print_getBoldFontLetterSprite(sp44, &sp2C)->x;
@@ -821,7 +823,7 @@ f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
 }
 
 void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    static f32 D_80380FA8[0x20];
+    static f32 letter_x_coords[PRINT_BUFFER_STRING_MAX_LENGTH];
 
     s32 j;
     f32 _x;
@@ -829,7 +831,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 width;
 
     gSPDisplayList((*gfx)++, D_80369238);
-    for(print_sCurrentPtr = print_sPrintBuffer; print_sCurrentPtr < print_sPrintBuffer + 0x20; print_sCurrentPtr++){
+    for(print_sCurrentPtr = print_sPrintBuffer; print_sCurrentPtr < print_sPrintBuffer + PRINT_BUFFER_COUNT; print_sCurrentPtr++){
         if (print_sCurrentPtr->string != 0) {
             _x = (f32) print_sCurrentPtr->x;
             _y = (f32) print_sCurrentPtr->y;
@@ -839,16 +841,16 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 _printbuffer_draw_letter(print_sCurrentPtr->fmtString[j], &_x, &_y, 1.0f, gfx, mtx, vtx);
             }
             if (D_80380B00 != 0) {
-                width = (strlen(print_sCurrentPtr->string) -1)*maxFontLetterWidths[print_sCurrentFontIndex];
+                width = (strlen(print_sCurrentPtr->string) -1)*maxFontLetterWidths[print_sCurrentFont];
                 gDPPipeSync((*gfx)++);
                 gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0x64);
                 gDPSetCombineMode((*gfx)++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
-                gDPScisFillRectangle((*gfx)++, _x - maxFontLetterWidths[print_sCurrentFontIndex]/2 - 1.0f, _y - maxFontLetterWidths[print_sCurrentFontIndex]/2 - 1.0f, _x + width + maxFontLetterWidths[print_sCurrentFontIndex]/2, _y + maxFontLetterWidths[print_sCurrentFontIndex]/2 + 1.0f);
+                gDPScisFillRectangle((*gfx)++, _x - maxFontLetterWidths[print_sCurrentFont]/2 - 1.0f, _y - maxFontLetterWidths[print_sCurrentFont]/2 - 1.0f, _x + width + maxFontLetterWidths[print_sCurrentFont]/2, _y + maxFontLetterWidths[print_sCurrentFont]/2 + 1.0f);
                 gDPPipeSync((*gfx)++);
 
             }//L802F73E8
             if ((D_80380AF8 == 0) && (print_sGradientModeEnabled == 0)) {
-                if (print_sCurrentFontIndex != 0) {
+                if (print_sCurrentFont != FONTS_0_DIALOG) {
                     gDPSetCombineMode((*gfx)++, G_CC_DECALRGBA, G_CC_DECALRGBA);
                     gDPSetPrimColor((*gfx)++, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
                 } else {
@@ -856,12 +858,12 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                     gDPSetPrimColor((*gfx)++, 0, 0, print_sCurrentPtr->rgba[0], print_sCurrentPtr->rgba[1], print_sCurrentPtr->rgba[2], print_sCurrentPtr->rgba[3]);
                 }
             }
-            if ((print_sCurrentFontIndex == 1) && ((f64) print_sCurrentPtr->scale < 0.0)) {
+            if ((print_sCurrentFont == FONTS_1_BOLD_NUMBERS) && ((f64) print_sCurrentPtr->scale < 0.0)) {
                 for(j = 0; print_sCurrentPtr->string[j]; j++){
-                    D_80380FA8[j] = func_802F6C90(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->scale);
+                    letter_x_coords[j] = func_802F6C90(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->scale);
                 }
                 while(j >= 0){
-                    _x = D_80380FA8[j];
+                    _x = letter_x_coords[j];
                     _printbuffer_draw_letter(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->scale, gfx, mtx, vtx);
                     j--;
                 }
@@ -887,9 +889,9 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
 //adds a new string to the print buffer and updates string buffer end ptr
 void _printbuffer_push_new(s32 x, s32 y, u8 * string) {
-    for(print_sCurrentPtr = print_sPrintBuffer; print_sCurrentPtr < print_sPrintBuffer + 0x20 && print_sCurrentPtr->string; print_sCurrentPtr++) {
+    for(print_sCurrentPtr = print_sPrintBuffer; print_sCurrentPtr < print_sPrintBuffer + PRINT_BUFFER_COUNT && print_sCurrentPtr->string; print_sCurrentPtr++) {
     }
-    if (print_sCurrentPtr == print_sPrintBuffer + 0x20) {
+    if (print_sCurrentPtr == print_sPrintBuffer + PRINT_BUFFER_COUNT) {
         print_sCurrentPtr = NULL;
         return;
     }
