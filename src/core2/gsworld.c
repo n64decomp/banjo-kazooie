@@ -140,7 +140,7 @@ void gsworld_free(void) {
     func_80322F5C();
     func_80341A54();
     spawnQueue_free();
-    func_802F53D0();
+    print_freeBoldLetterFont();
     func_802FAC3C();
     bundle_free();
     commonParticle_freeAllParticles();

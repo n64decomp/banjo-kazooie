@@ -694,7 +694,6 @@ enum map_e
     MAP_99_CS_END_SPIRAL_MOUNTAIN_2
 };
 
-
 enum comusic_e
 {
     COMUSIC_0_DING_A = 0x00,
@@ -1490,7 +1489,6 @@ enum sfx_e
     SFX_419_UNKNOWN = 0x419,
     SFX_41A_UNKNOWN = 0x41a
 };
-
 
 enum level_e
 {
@@ -5805,6 +5803,23 @@ enum ba_rebound_id{
     BA_REBOUND_E_UNK,
     BA_REBOUND_F_UNK,
     BA_REBOUND_10_UNK
+};
+
+enum font_sprite_assets_e {
+    FONT_SPRITE_ASSETS_0_DIALOG_FONT_ALPHAMASK,
+    FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK,
+    FONT_SPRITE_ASSETS_2_UNUSED, // ???
+    FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK,
+    FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE,
+    FONT_SPRITE_ASSETS_5_MAX
+};
+
+enum fonts_e {
+    FONTS_0_DIALOG,
+    FONTS_1_BOLD_NUMBERS,
+    FONTS_2_UNUSED, // ???
+    FONTS_3_BOLD_LETTERS,
+    FONTS_4_MAX
 };
 
 #endif

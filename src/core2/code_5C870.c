@@ -361,7 +361,7 @@ void func_802E4170(void){
     defragManager_free();
     func_802E5F68();
     if(!func_802E4A08())
-        func_802F4F64();
+        print_free();
     timedFuncQueue_free();
     func_802F9C48();
     modelRender_free();

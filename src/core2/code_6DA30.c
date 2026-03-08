@@ -196,9 +196,9 @@ Gfx D_80369238[] = {
 
 /* .bss */
 char print_sPreviousBoldLetter;
-BKSprite *print_sFontSpriteAssets[0x5];
+BKSprite *print_sFontSpriteAssets[FONT_SPRITE_ASSETS_5_MAX];
 
-FontLetter  *print_sFonts[4];
+FontLetter  *print_sFonts[FONTS_4_MAX];
 PrintBuffer *print_sPrintBuffer;
 PrintBuffer *print_sCurrentPtr;
 s32 print_sCurrentFontIndex;
@@ -359,7 +359,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
     return letters;
 }
 
-void func_802F4F64(void){
+void print_free(void){
     s32 i; 
     for(i = 0; i< 5; i++){
         assetcache_release(print_sFontSpriteAssets[i]);
@@ -382,31 +382,31 @@ void print_clearPrintBufferStrings(void){
 
 void print_setBoldFontTexture(s32 textureId){
     s32 tmp_a2;
-    tmp_a2 = func_802546E4(print_sFontSpriteAssets[1]);
+    tmp_a2 = func_802546E4(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK]);
     if(tmp_a2 & 0xF)
         tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-    if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, print_sFontSpriteAssets[1],tmp_a2)){
-        assetcache_release(print_sFontSpriteAssets[1]);
-        print_sFontSpriteAssets[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK],tmp_a2)){
+        assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK]);
+        print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
     }
-    if(print_sFontSpriteAssets[3]){
-        tmp_a2 = func_802546E4(print_sFontSpriteAssets[3]);
+    if(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]){
+        tmp_a2 = func_802546E4(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]);
         if(tmp_a2 & 0xF)
             tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-        if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, print_sFontSpriteAssets[3],tmp_a2)){
-            assetcache_release(print_sFontSpriteAssets[3]);
-            print_sFontSpriteAssets[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+        if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK],tmp_a2)){
+            assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]);
+            print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
         }
     }//L802F510C
-    print_sFontSpriteAssets[4] = assetcache_get(textureId);
-    free(print_sFonts[1]);
-    print_sFonts[1] = print_getLettersFromFont(print_sFontSpriteAssets[1], print_sFontSpriteAssets[4]);
-    if(print_sFontSpriteAssets[3]){
-        free(print_sFonts[3]);
-        print_sFonts[3] = print_getLettersFromFont(print_sFontSpriteAssets[3], print_sFontSpriteAssets[4]);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = assetcache_get(textureId);
+    free(print_sFonts[FONTS_1_BOLD_NUMBERS]);
+    print_sFonts[FONTS_1_BOLD_NUMBERS] = print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+    if(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]){
+        free(print_sFonts[FONTS_3_BOLD_LETTERS]);
+        print_sFonts[FONTS_3_BOLD_LETTERS] = print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
     }
-    assetcache_release(print_sFontSpriteAssets[4]);
-    print_sFontSpriteAssets[4] = NULL;
+    assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = NULL;
     print_sCurrentBoldFontTexture = textureId;
 }
 
@@ -434,11 +434,11 @@ void print_init(void){
     print_sBilinearFilterModeEnabled = 0;
     print_sPreviousBoldLetter = 0;
     func_802F7A2C(3);
-    print_sFontSpriteAssets[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
-    print_sFontSpriteAssets[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
-    print_sFontSpriteAssets[4] = assetcache_get(print_getCurrentMapBoldFontTexture());
-    print_sFonts[0] =  print_getLettersFromFont(print_sFontSpriteAssets[0], print_sFontSpriteAssets[4]);
-    print_sFonts[1] =  print_getLettersFromFont(print_sFontSpriteAssets[1], print_sFontSpriteAssets[4]);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_0_DIALOG_FONT_ALPHAMASK] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = assetcache_get(print_getCurrentMapBoldFontTexture());
+    print_sFonts[FONTS_0_DIALOG] =  print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_0_DIALOG_FONT_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+    print_sFonts[FONTS_1_BOLD_NUMBERS] =  print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_1_BOLD_FONT_NUMBERS_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
     print_sPrintBuffer = malloc(0x20*sizeof(PrintBuffer));
     print_clearPrintBufferStrings();
 
@@ -453,37 +453,37 @@ void print_init(void){
         if(!found)
             print_sBoldFontLetterToSpriteMap[i] = -1;
     }
-    assetcache_release(print_sFontSpriteAssets[4]);
-    print_sFontSpriteAssets[4] = NULL;
+    assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+    print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = NULL;
     print_sCurrentBoldFontTexture = print_getCurrentMapBoldFontTexture();
 }
 
 void func_802F5374(void){
     if(D_80380B18 > 0 && --D_80380B18 == 0){
-        assetcache_release(print_sFontSpriteAssets[3]);
-        print_sFontSpriteAssets[3] = 0;
-        free(print_sFonts[3]);
-        print_sFonts[3] = NULL;
+        assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]);
+        print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK] = 0;
+        free(print_sFonts[FONTS_3_BOLD_LETTERS]);
+        print_sFonts[FONTS_3_BOLD_LETTERS] = NULL;
     }
 }
 
-void func_802F53D0(void){
-    if(print_sFontSpriteAssets[3]){
-        assetcache_release(print_sFontSpriteAssets[3]);
-        print_sFontSpriteAssets[3] = NULL;
+void print_freeBoldLetterFont(void){
+    if(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]){
+        assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]);
+        print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK] = NULL;
     }
-    if(print_sFonts[3]){
-        free(print_sFonts[3]);
-        print_sFonts[3] = NULL;
+    if(print_sFonts[FONTS_3_BOLD_LETTERS]){
+        free(print_sFonts[FONTS_3_BOLD_LETTERS]);
+        print_sFonts[FONTS_3_BOLD_LETTERS] = NULL;
     }
     D_80380B18 = 0;
 }
 
 void printbuffer_defrag(void){
-    print_sFonts[0] = (FontLetter *)defrag(print_sFonts[0]);
-    print_sFonts[1] = (FontLetter *)defrag(print_sFonts[1]);
-    if(print_sFonts[3]){
-        print_sFonts[3] = (FontLetter *)defrag(print_sFonts[3]);
+    print_sFonts[FONTS_0_DIALOG] = (FontLetter *)defrag(print_sFonts[FONTS_0_DIALOG]);
+    print_sFonts[FONTS_1_BOLD_NUMBERS] = (FontLetter *)defrag(print_sFonts[FONTS_1_BOLD_NUMBERS]);
+    if(print_sFonts[FONTS_3_BOLD_LETTERS]){
+        print_sFonts[FONTS_3_BOLD_LETTERS] = (FontLetter *)defrag(print_sFonts[FONTS_3_BOLD_LETTERS]);
     }
     print_sPrintBuffer = (PrintBuffer *)defrag(print_sPrintBuffer);
 }
@@ -495,16 +495,16 @@ BKSpriteTextureBlock *func_802F5494(s32 letterId, s32 *fontType){
         return print_sFonts[print_sCurrentFontIndex][letterId].sprite;
     }
     else{//L802F5510
-        if(!print_sFontSpriteAssets[3]){
-            print_sFontSpriteAssets[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
-            print_sFontSpriteAssets[4] = assetcache_get(print_sCurrentBoldFontTexture);
-            print_sFonts[3] = print_getLettersFromFont(print_sFontSpriteAssets[3], print_sFontSpriteAssets[4]);
-            assetcache_release(print_sFontSpriteAssets[4]);
-            print_sFontSpriteAssets[4] = NULL;
+        if(!print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]){
+            print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+            print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = assetcache_get(print_sCurrentBoldFontTexture);
+            print_sFonts[FONTS_3_BOLD_LETTERS] = print_getLettersFromFont(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK], print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+            assetcache_release(print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE]);
+            print_sFontSpriteAssets[FONT_SPRITE_ASSETS_4_BOLD_FONT_TEXTURE] = NULL;
         }//L802F5568
         D_80380B18 = 5;
-        *fontType  = print_sFontSpriteAssets[3]->type;
-        return print_sFonts[3][letterId-10].sprite;
+        *fontType  = print_sFontSpriteAssets[FONT_SPRITE_ASSETS_3_BOLD_FONT_LETTERS_ALPHAMASK]->type;
+        return print_sFonts[FONTS_3_BOLD_LETTERS][letterId-10].sprite;
     }
 }
 
