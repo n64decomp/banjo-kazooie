@@ -694,7 +694,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx *
         
         x += (D_80380FA0 + (sp1F8 - sp214->x) * 0.5);
         y -= sp214->h*0.5;
-        sp210 = (sp214 + 1);
+        sp210 = (s32)(sp214 + 1);
         while(sp210 % 8){
             sp210++;
         }
