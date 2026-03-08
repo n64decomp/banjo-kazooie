@@ -209,7 +209,7 @@ s32 print_sMonospacedModeEnabled;
 s32 print_sGradientModeEnabled;
 s32 D_80380AF8;
 s32 print_sBrokenFontModeEnabled; // Tries to use a non-existing font and crashes
-s32 D_80380B00;
+s32 print_sBackgroundModeEnabled;
 s32 D_80380B04;
 bool print_sInFontFormatMode;
 s32 D_80380B0C;
@@ -431,7 +431,7 @@ void print_init(void){
     print_sBrokenFontModeEnabled = \
     print_sInFontFormatMode = \
     D_80380B04 = \
-    D_80380B00 = \
+    print_sBackgroundModeEnabled = \
     print_sShakyModeEnabled = \
     print_sBilinearFilterModeEnabled = 0;
     print_sPreviousBoldLetter = 0;
@@ -516,7 +516,7 @@ void *print_getCurrentFontPalette(u8 letterId){
 }
 
 void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    static f32 D_80380FA0;
+    static f32 left_margin;
 
     BKSpriteTextureBlock *letter_sprite;
     s32 sp210;
@@ -538,7 +538,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
     y_offset = 0;
 
     if(!D_80380B04 && !letter){
-        D_80380FA0 = 0.0f;
+        left_margin = 0.0f;
     }//L802F563C
 
     switch(print_sCurrentFont){
@@ -586,7 +586,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
 
             case 'b': //L802F5890
                 //toggle background
-                D_80380B00  = D_80380B00 ^ 1;
+                print_sBackgroundModeEnabled = print_sBackgroundModeEnabled ^ 1;
                 break;
 
             case 'f': //L802F58A8
@@ -687,13 +687,11 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
         }
         letter_width = (print_sMonospacedModeEnabled != 0) ? maxFontLetterWidths[print_sCurrentFont] : letter_sprite->x;
 
-        // temp_f2 = D_80380FA0;
-        // phi_f2 = temp_f2;
-        if (D_80380FA0 == 0.0f) {
-            D_80380FA0 = -letter_width * 0.5;
+        if (left_margin == 0.0f) {
+            left_margin = -letter_width * 0.5;
         }
-        
-        x += (D_80380FA0 + (letter_width - letter_sprite->x) * 0.5);
+
+        x += (left_margin + (letter_width - letter_sprite->x) * 0.5);
         y -= letter_sprite->h*0.5;
         sp210 = (s32)(letter_sprite + 1);
         while(sp210 % 8){
@@ -769,7 +767,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
     }
 }
 
-f32 func_802F6C90(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
+f32 print_calculateLetterXPos(u8 letter, f32* xPtr, f32 *yPtr, f32 scale){
     s32 sp44;
     s32 i;
     bool var_v0;
@@ -840,7 +838,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 _printbuffer_draw_letter(0xFD, &_x, &_y, 1.0f, gfx, mtx, vtx);
                 _printbuffer_draw_letter(print_sCurrentPtr->fmtString[j], &_x, &_y, 1.0f, gfx, mtx, vtx);
             }
-            if (D_80380B00 != 0) {
+            if (print_sBackgroundModeEnabled != 0) {
                 width = (strlen(print_sCurrentPtr->string) -1)*maxFontLetterWidths[print_sCurrentFont];
                 gDPPipeSync((*gfx)++);
                 gDPSetPrimColor((*gfx)++, 0, 0, 0x00, 0x00, 0x00, 0x64);
@@ -860,7 +858,7 @@ void printbuffer_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             }
             if ((print_sCurrentFont == FONTS_1_BOLD_NUMBERS) && ((f64) print_sCurrentPtr->scale < 0.0)) {
                 for(j = 0; print_sCurrentPtr->string[j]; j++){
-                    letter_x_coords[j] = func_802F6C90(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->scale);
+                    letter_x_coords[j] = print_calculateLetterXPos(print_sCurrentPtr->string[j], &_x, &_y, -print_sCurrentPtr->scale);
                 }
                 while(j >= 0){
                     _x = letter_x_coords[j];
