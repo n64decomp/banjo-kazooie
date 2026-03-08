@@ -234,7 +234,7 @@ enum asset_e print_getCurrentMapBoldFontTexture(void){
 
 // this function reassigns the referenced font mask pixel 
 // using the texture @ pixel (x,y)
-void func_802F4A24(BKSpriteTextureBlock *texture, u32 *font, s32 x, s32 y) {
+void print_setBoldFontTexturePixel(BKSpriteTextureBlock *texture, u32 *font, s32 x, s32 y) {
     u16 *var_v0;
     s32 r5;
     s32 g5;
@@ -261,7 +261,7 @@ void func_802F4A24(BKSpriteTextureBlock *texture, u32 *font, s32 x, s32 y) {
 }
 
 //this function applies the texture to the font alpha mask.
-void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *texture){
+void print_applyTextureToBoldFontLetter(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *texture){
     s32 y_min;
     s32 x_min;
     u32 *pxl;
@@ -274,7 +274,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
     
     for(y = y_min; y < alphaMask->h + y_min; y++){
         for(x = x_min; x < alphaMask->w + x_min; x++){
-            func_802F4A24(texture, pxl, x, y);
+            print_setBoldFontTexturePixel(texture, pxl, x, y);
             pxl++;
         }
     }
@@ -284,7 +284,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
 FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprite){
     BKSpriteFrame * font = sprite_getFramePtr(alphaMask, 0);
     BKSpriteTextureBlock *chunkPtr;
-    FontLetter * sp2C = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
+    FontLetter * letters = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
     u8* palDataPtr;
     u8* chunkDataPtr;
     s32 chunkSize;
@@ -308,8 +308,8 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
 
-                    sp2C[i].unk0 = chunkPtr;
-                    sp2C[i].unk4 = palDataPtr;
+                    letters[i].unk0 = chunkPtr;
+                    letters[i].unk4 = palDataPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkPtr = (BKSpriteTextureBlock *)(chunkDataPtr + chunkSize);
                 }
@@ -319,8 +319,8 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
             {
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    func_802F4B58(chunkPtr, (BKSpriteTextureBlock *)(sprite_getFramePtr(textureSprite, 0) + 1));
-                    sp2C[i].unk0 = chunkPtr;
+                    print_applyTextureToBoldFontLetter(chunkPtr, (BKSpriteTextureBlock *)(sprite_getFramePtr(textureSprite, 0) + 1));
+                    letters[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkDataPtr = (u8*)(chunkPtr + 1);
                     while((s32)chunkDataPtr % 8)
@@ -333,7 +333,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
             {
                 chunkPtr = (BKSpriteTextureBlock *) (font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    sp2C[i].unk0 = chunkPtr;
+                    letters[i].unk0 = chunkPtr;
                     chunkDataPtr = (u8*)(chunkPtr + 1);
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
@@ -347,7 +347,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
                     chunkDataPtr = (u8*)(chunkPtr + 1);
-                    sp2C[i].unk0 = chunkPtr;
+                    letters[i].unk0 = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
@@ -356,7 +356,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
             }
             break;
     };
-    return sp2C;
+    return letters;
 }
 
 void func_802F4F64(void){
