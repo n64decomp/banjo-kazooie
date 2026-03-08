@@ -43,7 +43,7 @@ extern void func_8025A2B0(void);
 extern void func_8025A430(s32, s32, s32);
 extern void func_802DC528(s32, s32);
 extern void print_setBoldFontTexture(enum asset_e);
-extern void func_802F5188(void);
+extern void print_resetBoldFontTexture(void);
 extern void func_802FACA4(enum item_e);
 extern void func_8033BD20(void *);
 
@@ -552,7 +552,7 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
 
         case PAUSE_STATE_B_TOTALS_DISPOSE:
             if (D_80383010.selection && D_80383010.selection == gcpausemenu_levelToMenuPage(level_get())) {
-                func_802F5188();
+                print_resetBoldFontTexture();
             }
 
             gcpausemenu_zoomboxes_free();
@@ -576,7 +576,7 @@ void gcPauseMenu_setState(enum gcpausemenu_state_e next_state) {
             D_80383010.unk3_5 = 1;
 
             if (D_80383010.selection && D_80383010.selection == gcpausemenu_levelToMenuPage(level_get())) {
-                func_802F5188();
+                print_resetBoldFontTexture();
             }
 
             D_80383010.selection = D_80383010.page;

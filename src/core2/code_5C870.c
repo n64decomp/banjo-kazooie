@@ -391,7 +391,7 @@ void func_802E4214(enum map_e map_id){
     func_802F9CD8();
     func_8031B62C();
     if(!func_802E4A08())
-        func_802F51B8();
+        print_init();
     func_802E5F38();
     defragManager_init();
     modelRender_init();

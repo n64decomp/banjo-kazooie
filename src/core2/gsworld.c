@@ -265,7 +265,7 @@ void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
     func_80255A04();
     func_802D6948();
     if (func_802E4A08() == 0) {
-        func_802F5188();
+        print_resetBoldFontTexture();
     }
     if (map != MAP_1F_CS_START_RAREWARE) {
         func_8024F150();

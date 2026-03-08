@@ -20,8 +20,8 @@ typedef struct{
 } PrintBuffer;
 
 typedef struct font_letter{
-    BKSpriteTextureBlock *unk0;//chunkPtr
-    void *unk4;//palPtr
+    BKSpriteTextureBlock *sprite;//chunkPtr
+    void *palette;//palPtr
 } FontLetter;
 
 typedef struct map_font_texture_map{
@@ -308,8 +308,8 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
 
-                    letters[i].unk0 = chunkPtr;
-                    letters[i].unk4 = palDataPtr;
+                    letters[i].sprite = chunkPtr;
+                    letters[i].palette = palDataPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkPtr = (BKSpriteTextureBlock *)(chunkDataPtr + chunkSize);
                 }
@@ -320,7 +320,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
                     print_applyTextureToBoldFontLetter(chunkPtr, (BKSpriteTextureBlock *)(sprite_getFramePtr(textureSprite, 0) + 1));
-                    letters[i].unk0 = chunkPtr;
+                    letters[i].sprite = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     chunkDataPtr = (u8*)(chunkPtr + 1);
                     while((s32)chunkDataPtr % 8)
@@ -333,7 +333,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
             {
                 chunkPtr = (BKSpriteTextureBlock *) (font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
-                    letters[i].unk0 = chunkPtr;
+                    letters[i].sprite = chunkPtr;
                     chunkDataPtr = (u8*)(chunkPtr + 1);
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
@@ -347,7 +347,7 @@ FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprit
                 chunkPtr = (BKSpriteTextureBlock *)(font + 1);
                 for( i = 0; i < font->chunkCnt; i++){
                     chunkDataPtr = (u8*)(chunkPtr + 1);
-                    letters[i].unk0 = chunkPtr;
+                    letters[i].sprite = chunkPtr;
                     chunkSize = chunkPtr->w*chunkPtr->h;
                     while((s32)chunkDataPtr % 8)
                         chunkDataPtr++;
@@ -373,7 +373,7 @@ void func_802F4F64(void){
     print_sPrintBuffer = NULL;
 }
 
-void func_802F5010(void){
+void print_clearPrintBufferStrings(void){
     s32 i;
     for(i = 0; i < 0x20; i++){
         print_sPrintBuffer[i].string = NULL;
@@ -410,12 +410,12 @@ void print_setBoldFontTexture(s32 textureId){
     print_sCurrentBoldFontTexture = textureId;
 }
 
-void func_802F5188(void){
+void print_resetBoldFontTexture(void){
     print_setBoldFontTexture(print_getCurrentMapBoldFontTexture());
-    func_802F5010();
+    print_clearPrintBufferStrings();
 }
 
-void func_802F51B8(void){
+void print_init(void){
     s32 i, j;
     s32 length;
     int found;
@@ -440,7 +440,7 @@ void func_802F51B8(void){
     print_sFonts[0] =  print_getLettersFromFont(print_sFontSpriteAssets[0], print_sFontSpriteAssets[4]);
     print_sFonts[1] =  print_getLettersFromFont(print_sFontSpriteAssets[1], print_sFontSpriteAssets[4]);
     print_sPrintBuffer = malloc(0x20*sizeof(PrintBuffer));
-    func_802F5010();
+    print_clearPrintBufferStrings();
 
     for(i = 0; i < 0x80; i++){//L802F52EC
         found = 0;
@@ -492,7 +492,7 @@ void printbuffer_defrag(void){
 BKSpriteTextureBlock *func_802F5494(s32 letterId, s32 *fontType){
     if(print_sCurrentFontIndex != 1 || (print_sCurrentFontIndex == 1 && letterId < 0xA)){
         *fontType = print_sFontSpriteAssets[print_sCurrentFontIndex]->type;
-        return print_sFonts[print_sCurrentFontIndex][letterId].unk0;
+        return print_sFonts[print_sCurrentFontIndex][letterId].sprite;
     }
     else{//L802F5510
         if(!print_sFontSpriteAssets[3]){
@@ -504,13 +504,13 @@ BKSpriteTextureBlock *func_802F5494(s32 letterId, s32 *fontType){
         }//L802F5568
         D_80380B18 = 5;
         *fontType  = print_sFontSpriteAssets[3]->type;
-        return print_sFonts[3][letterId-10].unk0;
+        return print_sFonts[3][letterId-10].sprite;
     }
 }
 
 //returns the letter's palette
-void *func_802F55A8(u8 arg0){
-    return  print_sFonts[print_sCurrentFontIndex][arg0].unk4;
+void *print_getCurrentFontPalette(u8 letterId){
+    return  print_sFonts[print_sCurrentFontIndex][letterId].palette;
 }
 
 void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -707,7 +707,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 arg3, Gfx *
         } else if (sp1F4 == SPRITE_TYPE_I4) {
             gDPLoadTextureTile_4b((*gfx)++, sp210, G_IM_FMT_I, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y-1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
         } else if (sp1F4 == SPRITE_TYPE_CI8) {
-            void * pal = func_802F55A8(sp20C);
+            void * pal = print_getCurrentFontPalette(sp20C);
             gDPLoadTLUT_pal256((*gfx)++, pal);
             gDPLoadTextureTile((*gfx)++, sp210, G_IM_FMT_CI, G_IM_SIZ_8b, sp214->w, sp214->h, 0, 0, sp214->x-1, sp214->y-1, NULL, G_TX_CLAMP, G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             gDPSetTextureLUT((*gfx)++, G_TT_RGBA16);
