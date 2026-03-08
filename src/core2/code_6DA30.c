@@ -27,7 +27,7 @@ typedef struct font_letter{
 typedef struct map_font_texture_map{
     s16 mapID;
     s16 assetId;
-} MapToBoldFontBackgroundSpriteMap;
+} MapToBoldFontTextureMap;
 
 typedef struct{
     u8 firstLetter;
@@ -75,103 +75,103 @@ struct {
     u8 a;
 } normalTextColor = {0xFF, 0xFF, 0xFF, 0XFF};
 
-MapToBoldFontBackgroundSpriteMap mapToBoldFontBackgroundSpriteMap[] ={
-    {MAP_1_SM_SPIRAL_MOUNTAIN,               SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_2_MM_MUMBOS_MOUNTAIN,               SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_3_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5_TTC_BLUBBERS_SHIP,                SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_6_TTC_NIPPERS_SHELL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_7_TTC_TREASURE_TROVE_COVE,          SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_8_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_9_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_A_TTC_SANDCASTLE,                   SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_B_CC_CLANKERS_CAVERN,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_C_MM_TICKERS_TOWER,                 SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_D_BGS_BUBBLEGLOOP_SWAMP,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_E_MM_MUMBOS_SKULL,                  SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_F_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_10_BGS_MR_VILE,                     SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_11_BGS_TIPTUP,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_12_GV_GOBIS_VALLEY,                 SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_13_GV_MEMORY_GAME,                  SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_14_GV_SANDYBUTTS_MAZE,              SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_15_GV_WATER_PYRAMID,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_16_GV_RUBEES_CHAMBER,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_17_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_18_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_19_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_1A_GV_INSIDE_JINXY,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_1B_MMM_MAD_MONSTER_MANSION,         SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_21_CC_WITCH_SWITCH_ROOM,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_22_CC_INSIDE_CLANKER,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_23_CC_GOLDFEATHER_ROOM,             SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_24_MMM_TUMBLARS_SHED,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_25_MMM_WELL,                        SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_26_MMM_NAPPERS_ROOM,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_28_MMM_EGG_ROOM,                    SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_29_MMM_NOTE_ROOM,                   SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2A_MMM_FEATHER_ROOM,                SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2B_MMM_SECRET_CHURCH_ROOM,          SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2C_MMM_BATHROOM,                    SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2D_MMM_BEDROOM,                     SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2E_MMM_HONEYCOMB_ROOM,              SPRITE_BOLD_FONT_ORANGE_SPHERE_BACKGROUND},
-    {MAP_2F_MMM_WATERDRAIN_BARREL,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_30_MMM_MUMBOS_SKULL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_31_RBB_RUSTY_BUCKET_BAY,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_32_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_33_UNUSED,                          SPRITE_BOLD_FONT_BLUE_SPHERE_BACKGROUND},
-    {MAP_34_RBB_ENGINE_ROOM,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_35_RBB_WAREHOUSE,                   SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_36_RBB_BOATHOUSE,                   SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_37_RBB_CONTAINER_1,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_38_RBB_CONTAINER_3,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_39_RBB_CREW_CABIN,                  SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3A_RBB_BOSS_BOOM_BOX,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3B_RBB_STORAGE_ROOM,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3C_RBB_KITCHEN,                     SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3D_RBB_NAVIGATION_ROOM,             SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3E_RBB_CONTAINER_2,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_3F_RBB_CAPTAINS_CABIN,              SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_41_FP_BOGGYS_IGLOO,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_42_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_43_CCW_SPRING,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_44_CCW_SUMMER,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_45_CCW_AUTUMN,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_46_CCW_WINTER,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_47_BGS_MUMBOS_SKULL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_48_FP_MUMBOS_SKULL,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_49_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4A_CCW_SPRING_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4B_CCW_SUMMER_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4C_CCW_AUTUMN_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4D_CCW_WINTER_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4E_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_4F_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_50_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_51_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_52_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_53_FP_CHRISTMAS_TREE,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_54_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_55_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_56_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_57_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_58_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_59_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5A_CCW_SUMMER_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5B_CCW_SPRING_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5C_CCW_AUTUMN_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5E_CCW_SPRING_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_5F_CCW_SUMMER_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_60_CCW_AUTUMN_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_61_CCW_WINTER_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_62_CCW_WINTER_HONEYCOMB_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_63_CCW_AUTUMN_NABNUTS_WATER_SUPPLY, SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_64_CCW_WINTER_NABNUTS_WATER_SUPPLY, SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_65_CCW_SPRING_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_66_CCW_SUMMER_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_67_CCW_AUTUMN_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
-    {MAP_68_CCW_WINTER_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_BACKGROUND},
+MapToBoldFontTextureMap mapToBoldFontTextureMap[] ={
+    {MAP_1_SM_SPIRAL_MOUNTAIN,               SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_2_MM_MUMBOS_MOUNTAIN,               SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_3_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5_TTC_BLUBBERS_SHIP,                SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_6_TTC_NIPPERS_SHELL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_7_TTC_TREASURE_TROVE_COVE,          SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_8_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_9_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_A_TTC_SANDCASTLE,                   SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_B_CC_CLANKERS_CAVERN,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_C_MM_TICKERS_TOWER,                 SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_D_BGS_BUBBLEGLOOP_SWAMP,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_E_MM_MUMBOS_SKULL,                  SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_F_UNUSED,                           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_10_BGS_MR_VILE,                     SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_11_BGS_TIPTUP,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_12_GV_GOBIS_VALLEY,                 SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_13_GV_MEMORY_GAME,                  SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_14_GV_SANDYBUTTS_MAZE,              SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_15_GV_WATER_PYRAMID,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_16_GV_RUBEES_CHAMBER,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_17_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_18_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_19_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_1A_GV_INSIDE_JINXY,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_1B_MMM_MAD_MONSTER_MANSION,         SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_21_CC_WITCH_SWITCH_ROOM,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_22_CC_INSIDE_CLANKER,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_23_CC_GOLDFEATHER_ROOM,             SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_24_MMM_TUMBLARS_SHED,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_25_MMM_WELL,                        SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_26_MMM_NAPPERS_ROOM,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_28_MMM_EGG_ROOM,                    SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_29_MMM_NOTE_ROOM,                   SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2A_MMM_FEATHER_ROOM,                SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2B_MMM_SECRET_CHURCH_ROOM,          SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2C_MMM_BATHROOM,                    SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2D_MMM_BEDROOM,                     SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2E_MMM_HONEYCOMB_ROOM,              SPRITE_BOLD_FONT_ORANGE_SPHERE_TEXTURE},
+    {MAP_2F_MMM_WATERDRAIN_BARREL,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_30_MMM_MUMBOS_SKULL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_31_RBB_RUSTY_BUCKET_BAY,            SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_32_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_33_UNUSED,                          SPRITE_BOLD_FONT_BLUE_SPHERE_TEXTURE},
+    {MAP_34_RBB_ENGINE_ROOM,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_35_RBB_WAREHOUSE,                   SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_36_RBB_BOATHOUSE,                   SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_37_RBB_CONTAINER_1,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_38_RBB_CONTAINER_3,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_39_RBB_CREW_CABIN,                  SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3A_RBB_BOSS_BOOM_BOX,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3B_RBB_STORAGE_ROOM,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3C_RBB_KITCHEN,                     SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3D_RBB_NAVIGATION_ROOM,             SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3E_RBB_CONTAINER_2,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_3F_RBB_CAPTAINS_CABIN,              SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_41_FP_BOGGYS_IGLOO,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_42_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_43_CCW_SPRING,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_44_CCW_SUMMER,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_45_CCW_AUTUMN,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_46_CCW_WINTER,                      SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_47_BGS_MUMBOS_SKULL,                SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_48_FP_MUMBOS_SKULL,                 SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_49_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4A_CCW_SPRING_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4B_CCW_SUMMER_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4C_CCW_AUTUMN_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4D_CCW_WINTER_MUMBOS_SKULL,         SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4E_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_4F_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_50_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_51_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_52_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_53_FP_CHRISTMAS_TREE,               SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_54_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_55_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_56_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_57_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_58_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_59_UNUSED,                          SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5A_CCW_SUMMER_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5B_CCW_SPRING_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5C_CCW_AUTUMN_ZUBBA_HIVE,           SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5E_CCW_SPRING_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_5F_CCW_SUMMER_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_60_CCW_AUTUMN_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_61_CCW_WINTER_NABNUTS_HOUSE,        SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_62_CCW_WINTER_HONEYCOMB_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_63_CCW_AUTUMN_NABNUTS_WATER_SUPPLY, SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_64_CCW_WINTER_NABNUTS_WATER_SUPPLY, SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_65_CCW_SPRING_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_66_CCW_SUMMER_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_67_CCW_AUTUMN_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
+    {MAP_68_CCW_WINTER_WHIPCRACK_ROOM,       SPRITE_BOLD_FONT_ORANGE_GRADIENT_TEXTURE},
     0
 };
 
@@ -196,7 +196,7 @@ Gfx D_80369238[] = {
 
 /* .bss */
 char print_sPreviousBoldLetter;
-BKSprite *D_80380AB8[0x5];
+BKSprite *print_sFontSpriteAssets[0x5];
 
 FontLetter  *print_sFonts[4];
 PrintBuffer *print_sPrintBuffer;
@@ -214,7 +214,7 @@ s32 D_80380B0C;
 s32 print_sShakyModeEnabled;
 s32 print_sBilinearFilterModeEnabled;
 s32 D_80380B18;
-s32 D_80380B1C;
+s32 print_sCurrentBoldFontTexture;
 s8 D_80380B20[0x400];
 s8 print_sBoldFontLetterToSpriteMap[0x80];
 
@@ -222,11 +222,11 @@ s8 print_sBoldFontLetterToSpriteMap[0x80];
 void func_802F7A2C(s32 arg0);
 
 //returns map texture assetID for current map;
-enum asset_e print_getCurrentMapBoldFontBackgroundSprite(void){
+enum asset_e print_getCurrentMapBoldFontTexture(void){
     s32 i;
-    for(i = 0; mapToBoldFontBackgroundSpriteMap[i].mapID != 0 ; i++){
-        if(gsworld_get_map() == mapToBoldFontBackgroundSpriteMap[i].mapID){
-            return mapToBoldFontBackgroundSpriteMap[i].assetId;
+    for(i = 0; mapToBoldFontTextureMap[i].mapID != 0 ; i++){
+        if(gsworld_get_map() == mapToBoldFontTextureMap[i].mapID){
+            return mapToBoldFontTextureMap[i].assetId;
         }
     }
     return ASSET_708_SPRITE_EGG_PROJECTILE;
@@ -281,7 +281,7 @@ void func_802F4B58(BKSpriteTextureBlock *alphaMask, BKSpriteTextureBlock *textur
 }
 
 //This functions seperates the fonts into letters
-FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
+FontLetter *print_getLettersFromFont(BKSprite *alphaMask, BKSprite *textureSprite){
     BKSpriteFrame * font = sprite_getFramePtr(alphaMask, 0);
     BKSpriteTextureBlock *chunkPtr;
     FontLetter * sp2C = malloc((font->chunkCnt + 1)*sizeof(FontLetter));
@@ -362,8 +362,8 @@ FontLetter *func_802F4C3C(BKSprite *alphaMask, BKSprite *textureSprite){
 void func_802F4F64(void){
     s32 i; 
     for(i = 0; i< 5; i++){
-        assetcache_release(D_80380AB8[i]);
-        D_80380AB8[i] = NULL;
+        assetcache_release(print_sFontSpriteAssets[i]);
+        print_sFontSpriteAssets[i] = NULL;
         if(i < 4){
             free(print_sFonts[i]);
             print_sFonts[i] = NULL;
@@ -380,38 +380,38 @@ void func_802F5010(void){
     }
 }
 
-void func_802F5060(s32 textureId){
+void print_setBoldFontTexture(s32 textureId){
     s32 tmp_a2;
-    tmp_a2 = func_802546E4(D_80380AB8[1]);
+    tmp_a2 = func_802546E4(print_sFontSpriteAssets[1]);
     if(tmp_a2 & 0xF)
         tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-    if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, D_80380AB8[1],tmp_a2)){
-        assetcache_release(D_80380AB8[1]);
-        D_80380AB8[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK, print_sFontSpriteAssets[1],tmp_a2)){
+        assetcache_release(print_sFontSpriteAssets[1]);
+        print_sFontSpriteAssets[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
     }
-    if(D_80380AB8[3]){
-        tmp_a2 = func_802546E4(D_80380AB8[3]);
+    if(print_sFontSpriteAssets[3]){
+        tmp_a2 = func_802546E4(print_sFontSpriteAssets[3]);
         if(tmp_a2 & 0xF)
             tmp_a2 += 0x10 - (tmp_a2 & 0xF);
-        if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, D_80380AB8[3],tmp_a2)){
-            assetcache_release(D_80380AB8[3]);
-            D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+        if(!code_B3A80_func_8033BDAC(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK, print_sFontSpriteAssets[3],tmp_a2)){
+            assetcache_release(print_sFontSpriteAssets[3]);
+            print_sFontSpriteAssets[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
         }
     }//L802F510C
-    D_80380AB8[4] = assetcache_get(textureId);
+    print_sFontSpriteAssets[4] = assetcache_get(textureId);
     free(print_sFonts[1]);
-    print_sFonts[1] = func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
-    if(D_80380AB8[3]){
+    print_sFonts[1] = print_getLettersFromFont(print_sFontSpriteAssets[1], print_sFontSpriteAssets[4]);
+    if(print_sFontSpriteAssets[3]){
         free(print_sFonts[3]);
-        print_sFonts[3] = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
+        print_sFonts[3] = print_getLettersFromFont(print_sFontSpriteAssets[3], print_sFontSpriteAssets[4]);
     }
-    assetcache_release(D_80380AB8[4]);
-    D_80380AB8[4] = NULL;
-    D_80380B1C = textureId;
+    assetcache_release(print_sFontSpriteAssets[4]);
+    print_sFontSpriteAssets[4] = NULL;
+    print_sCurrentBoldFontTexture = textureId;
 }
 
 void func_802F5188(void){
-    func_802F5060(print_getCurrentMapBoldFontBackgroundSprite());
+    print_setBoldFontTexture(print_getCurrentMapBoldFontTexture());
     func_802F5010();
 }
 
@@ -434,11 +434,11 @@ void func_802F51B8(void){
     print_sBilinearFilterModeEnabled = 0;
     print_sPreviousBoldLetter = 0;
     func_802F7A2C(3);
-    D_80380AB8[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
-    D_80380AB8[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
-    D_80380AB8[4] = assetcache_get(print_getCurrentMapBoldFontBackgroundSprite());
-    print_sFonts[0] =  func_802F4C3C(D_80380AB8[0], D_80380AB8[4]);
-    print_sFonts[1] =  func_802F4C3C(D_80380AB8[1], D_80380AB8[4]);
+    print_sFontSpriteAssets[0] = assetcache_get(SPRITE_DIALOG_FONT_ALPHAMASK);
+    print_sFontSpriteAssets[1] = assetcache_get(SPRITE_BOLD_FONT_NUMBERS_ALPHAMASK);
+    print_sFontSpriteAssets[4] = assetcache_get(print_getCurrentMapBoldFontTexture());
+    print_sFonts[0] =  print_getLettersFromFont(print_sFontSpriteAssets[0], print_sFontSpriteAssets[4]);
+    print_sFonts[1] =  print_getLettersFromFont(print_sFontSpriteAssets[1], print_sFontSpriteAssets[4]);
     print_sPrintBuffer = malloc(0x20*sizeof(PrintBuffer));
     func_802F5010();
 
@@ -453,24 +453,24 @@ void func_802F51B8(void){
         if(!found)
             print_sBoldFontLetterToSpriteMap[i] = -1;
     }
-    assetcache_release(D_80380AB8[4]);
-    D_80380AB8[4] = NULL;
-    D_80380B1C = print_getCurrentMapBoldFontBackgroundSprite();
+    assetcache_release(print_sFontSpriteAssets[4]);
+    print_sFontSpriteAssets[4] = NULL;
+    print_sCurrentBoldFontTexture = print_getCurrentMapBoldFontTexture();
 }
 
 void func_802F5374(void){
     if(D_80380B18 > 0 && --D_80380B18 == 0){
-        assetcache_release(D_80380AB8[3]);
-        D_80380AB8[3] = 0;
+        assetcache_release(print_sFontSpriteAssets[3]);
+        print_sFontSpriteAssets[3] = 0;
         free(print_sFonts[3]);
         print_sFonts[3] = NULL;
     }
 }
 
 void func_802F53D0(void){
-    if(D_80380AB8[3]){
-        assetcache_release(D_80380AB8[3]);
-        D_80380AB8[3] = NULL;
+    if(print_sFontSpriteAssets[3]){
+        assetcache_release(print_sFontSpriteAssets[3]);
+        print_sFontSpriteAssets[3] = NULL;
     }
     if(print_sFonts[3]){
         free(print_sFonts[3]);
@@ -491,19 +491,19 @@ void printbuffer_defrag(void){
 //returns the pixel data and type for a given letter
 BKSpriteTextureBlock *func_802F5494(s32 letterId, s32 *fontType){
     if(print_sCurrentFontIndex != 1 || (print_sCurrentFontIndex == 1 && letterId < 0xA)){
-        *fontType = D_80380AB8[print_sCurrentFontIndex]->type;
+        *fontType = print_sFontSpriteAssets[print_sCurrentFontIndex]->type;
         return print_sFonts[print_sCurrentFontIndex][letterId].unk0;
     }
     else{//L802F5510
-        if(!D_80380AB8[3]){
-            D_80380AB8[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
-            D_80380AB8[4] = assetcache_get(D_80380B1C);
-            print_sFonts[3] = func_802F4C3C(D_80380AB8[3], D_80380AB8[4]);
-            assetcache_release(D_80380AB8[4]);
-            D_80380AB8[4] = NULL;
+        if(!print_sFontSpriteAssets[3]){
+            print_sFontSpriteAssets[3] = assetcache_get(SPRITE_BOLD_FONT_LETTERS_ALPHAMASK);
+            print_sFontSpriteAssets[4] = assetcache_get(print_sCurrentBoldFontTexture);
+            print_sFonts[3] = print_getLettersFromFont(print_sFontSpriteAssets[3], print_sFontSpriteAssets[4]);
+            assetcache_release(print_sFontSpriteAssets[4]);
+            print_sFontSpriteAssets[4] = NULL;
         }//L802F5568
         D_80380B18 = 5;
-        *fontType  = D_80380AB8[3]->type;
+        *fontType  = print_sFontSpriteAssets[3]->type;
         return print_sFonts[3][letterId-10].unk0;
     }
 }
