@@ -1,6 +1,7 @@
 ### Configuration ###
 BASENAME := banjo
 VERSION  ?= us.v10
+DISABLE_PIRACY_CHECKS ?= 0
 
 ifeq ($(VERSION),us.v10)
 	C_VERSION=0
@@ -158,7 +159,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DDISABLE_PIRACY_CHECKS='$(DISABLE_PIRACY_CHECKS)'
 CFLAGS         += -woff 649,654,838,807
 CPPFLAGS       := -D_FINALROM -DN_MICRO
 INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR

@@ -26,6 +26,7 @@ s32 D_80372804 = 0;
 // bk_boot segment crc remaining words
 s32 D_80372808 = 0;
 
+#if !DISABLE_PIRACY_CHECKS
 // init bk_boot crc
 void func_80356580(void) {
     D_803727FC = (s32) boot_bk_boot_ROM_START;
@@ -74,14 +75,19 @@ s32 func_803565BC(void) {
     }
     return 1;
 }
+#endif
 
 void func_80356714(void) {
+#if !DISABLE_PIRACY_CHECKS
     func_80356580();
+#endif
 }
 
 void func_80356734(void) {
+#if !DISABLE_PIRACY_CHECKS
     func_803565BC();
     if (func_803565BC() == 0) {
         ability_setAllLearned(0x10);
     }
+#endif
 }

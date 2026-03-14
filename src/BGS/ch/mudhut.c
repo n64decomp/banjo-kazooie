@@ -39,18 +39,22 @@ ActorInfo gChMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_M
 };
 
 /* .code section */
+#if !DISABLE_PIRACY_CHECKS
 void func_8038EA30(void){
     if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(STATE_TIMER_2_LONGLEG)) ){
         player_stateTimer_set(STATE_TIMER_2_LONGLEG, 1.5);
     }
 }
+#endif
 
 void func_8038EA90(void){
+#if !DISABLE_PIRACY_CHECKS
     u32 sp1C;
     osPiReadIo(0xD10, &sp1C);
     if(sp1C = (u16)(sp1C-0x400)){
         func_8038EA30();
     }
+#endif
 }
 
 Actor *chMudHut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){

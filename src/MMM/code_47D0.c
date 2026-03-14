@@ -23,16 +23,20 @@ typedef struct {
 } Struct_MMM_47D0_0;
 
 /* .code */
+#if !DISABLE_PIRACY_CHECKS
 void MMM_func_8038ABC0(s32 arg0) {
     if (getGameMode() != GAME_MODE_7_ATTRACT_DEMO) {
         ability_setAllLearned(ability_getAllLearned() & ~arg0);
     }
 }
+#endif
 
 void func_8038AC04(void) {
+#if !DISABLE_PIRACY_CHECKS
     if ((*(u32 *) PHYS_TO_K1(0x1D0)) - 0x356BAAAE) {
         MMM_func_8038ABC0(0x820);
     }
+#endif
 }
 
 void chTumblar_draw(Struct_MMM_47D0_0 *arg0, struct struct_68_s *arg1, f32 position[3], f32 rotation[3], f32 scale, BKModelBin *model_bin, Gfx **gfx, Mtx **mtx, Vtx **vtx) {

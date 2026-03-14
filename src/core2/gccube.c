@@ -1295,7 +1295,8 @@ void func_8030578C(void){
     int i;
     u32 sp40;
     Cube *iCube;
-    
+
+#if !DISABLE_PIRACY_CHECKS
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         osPiReadIo(0xE38, &sp40);
         sp40 ^= 0x828A;
@@ -1312,6 +1313,8 @@ void func_8030578C(void){
             }
         }
     }//L80305850
+#endif
+
     for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         func_80330208(iCube);
     }

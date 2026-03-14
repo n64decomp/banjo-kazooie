@@ -144,6 +144,7 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
     }
 }
 
+#if !DISABLE_PIRACY_CHECKS
 void func_80387CC0(void){
     f32 sp1C[3];
     s32 tmp_v0;
@@ -160,10 +161,11 @@ void func_80387CC0(void){
         sp1C[2] -= 360.0f;
     }
     viewport_setRotation_vec3f(sp1C);
-
 }
+#endif
 
 void CC_func_80387D4C(void){
+#if !DISABLE_PIRACY_CHECKS
     u32 sp1C;
     u32 tmp_v0;
     osPiReadIo(0x504, &sp1C);
@@ -171,5 +173,5 @@ void CC_func_80387D4C(void){
     if(sp1C){
         func_80387CC0();
     }
+#endif
 }
-

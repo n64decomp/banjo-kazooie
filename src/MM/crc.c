@@ -11,6 +11,7 @@ u32 D_803899C8 = 0x0000D44F; //MM.data CRC1 (with this value = 0)
 
 void chmumbo_func_802D1724(void);
 
+#if !DISABLE_PIRACY_CHECKS
 void func_80387EC0(void) {
     u32 *temp_v0;
     u32 temp_a0;
@@ -26,8 +27,10 @@ void func_80387EC0(void) {
         osInvalICache((void *)temp_a0, 8);
     }
 }
+#endif
 
 void MM_func_80387F44(void) {
+#if !DISABLE_PIRACY_CHECKS
     s32 sp1C;
 
     osPiReadIo(0x578, (u32 *)&sp1C);
@@ -35,4 +38,5 @@ void MM_func_80387F44(void) {
     if (sp1C != 0x8965){
         func_80387EC0();
     }
+#endif
 }

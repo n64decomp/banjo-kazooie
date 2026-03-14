@@ -65,7 +65,9 @@ void codeF0_func_80386540(){
     u32 *learned_abilities_address;
     s32 sp28;
     u32 *addr;
+#if !DISABLE_PIRACY_CHECKS
     u32 sp20;
+#endif
     learned_abilities_address = __codeF0_getLearnedAbilitiesAddress();
     sp28 = *learned_abilities_address;
     *learned_abilities_address = 0;
@@ -78,16 +80,18 @@ void codeF0_func_80386540(){
     }
 
     *learned_abilities_address = sp28;
+
+#if !DISABLE_PIRACY_CHECKS
     osPiReadIo(0x574, &sp20);
     if((sp20 = (sp20 & 0xffff)) != 0x6c07)
         __codeF0_learnAbility(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
     if(!__codeF0_areCrcsValid())
         __codeF0_learnAbility(ABILITY_10_TALON_TROT);
-    
 
     if(!__codeF0_areRomCrcsCorrect())
         __codeF0_learnAbility(ABILITY_C_ROLL);
+#endif
 }
 
 void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
@@ -113,6 +117,7 @@ void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
 
 extern u8 crc_ROM_START[];
 
+#if !DISABLE_PIRACY_CHECKS
 static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 
@@ -137,6 +142,7 @@ static bool __codeF0_areCrcsValid(){
     }
     return FALSE;
 }
+#endif
 
 void SM_resetSpawnableActors()
 {
