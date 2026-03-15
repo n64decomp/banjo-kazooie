@@ -61,13 +61,13 @@ static void __codeF0_learnAbility(enum ability_e ability){
     }
 }
 
-void codeF0_func_80386540(){
+void codeF0_breakAbilitiesIfChecksumsFail(){
+#if !DISABLE_PIRACY_CHECKS
     u32 *learned_abilities_address;
     s32 sp28;
     u32 *addr;
-#if !DISABLE_PIRACY_CHECKS
-    u32 sp20;
-#endif
+    u32 rom_data;
+
     learned_abilities_address = __codeF0_getLearnedAbilitiesAddress();
     sp28 = *learned_abilities_address;
     *learned_abilities_address = 0;
@@ -81,9 +81,8 @@ void codeF0_func_80386540(){
 
     *learned_abilities_address = sp28;
 
-#if !DISABLE_PIRACY_CHECKS
-    osPiReadIo(0x574, &sp20);
-    if((sp20 = (sp20 & 0xffff)) != 0x6c07)
+    osPiReadIo(0x574, &rom_data);
+    if((rom_data = (rom_data & 0xffff)) != 0x6c07)
         __codeF0_learnAbility(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
     if(!__codeF0_areCrcsValid())
