@@ -15,19 +15,19 @@ u32 D_80390F38 = 0x0003031C; //GV.data CRC1 (with this value = 0)
 
 /* .code */
 #if !DISABLE_PIRACY_CHECKS
-void func_80389F00(void){
+void code3B10_makeRunningShoesRunOutInstantly(void){
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO && 2.0f < player_stateTimer_get(STATE_TIMER_3_TURBO_TALON)){
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 2.0f);
     }
 }
 #endif
 
-void func_80389F5C(void){
+void code3B10_checkGVChecksums(void){
 #if !DISABLE_PIRACY_CHECKS
-    u32 sp1C;
-    osPiReadIo(0x800, &sp1C);
-    sp1C <<= 0x10;
-    if(sp1C != 0x10000)
-        func_80389F00();
+    u32 rom_data;
+    osPiReadIo(0x800, &rom_data);
+    rom_data <<= 0x10;
+    if(rom_data != 0x10000)
+        code3B10_makeRunningShoesRunOutInstantly();
 #endif
 }

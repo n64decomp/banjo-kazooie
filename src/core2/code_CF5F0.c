@@ -28,7 +28,7 @@ s32 D_80372808 = 0;
 
 #if !DISABLE_PIRACY_CHECKS
 // init bk_boot crc
-void func_80356580(void) {
+void codeCF5F0_initChecksumsVars(void) {
     D_803727FC = (s32) boot_bk_boot_ROM_START;
     D_80372800 = 0;
     D_80372804 = -1;
@@ -36,7 +36,7 @@ void func_80356580(void) {
 }
 
 // advance bk_boot crc by one word
-s32 func_803565BC(void) {
+s32 codeCF5F0_areChecksumsValid(void) {
     u32 crc1;
     u32 crc2;
     u8 romBytes[4];
@@ -79,15 +79,15 @@ s32 func_803565BC(void) {
 
 void func_80356714(void) {
 #if !DISABLE_PIRACY_CHECKS
-    func_80356580();
+    codeCF5F0_initChecksumsVars();
 #endif
 }
 
-void func_80356734(void) {
+void codeCF5F0_forgetAllAbilitiesExceptClawSwipeIfChecksumsFail(void) {
 #if !DISABLE_PIRACY_CHECKS
-    func_803565BC();
-    if (func_803565BC() == 0) {
-        ability_setAllLearned(0x10);
+    codeCF5F0_areChecksumsValid();
+    if (codeCF5F0_areChecksumsValid() == 0) {
+        ability_setAllLearned(1 << ABILITY_4_CLAW_SWIPE);
     }
 #endif
 }

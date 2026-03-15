@@ -20,7 +20,7 @@ extern ActorInfo gChVegetablesBawlB;
 extern ActorInfo gChVegetablesCollywobbleB;
 extern ActorInfo gChBottles;
 extern ActorInfo gChJumpTutorial;
-extern ActorInfo gCode44D0;
+extern ActorInfo gSmBridgeChecksumTrigger;
 extern ActorInfo gBanjosBed;
 extern ActorInfo gBanjosChair;
 extern ActorInfo gBanjosStove;
@@ -157,7 +157,7 @@ void SM_resetSpawnableActors()
     spawnableActorList_add(&gChVegetablesCollywobbleB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gChBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChJumpTutorial,  actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&gCode44D0 ,  actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gSmBridgeChecksumTrigger ,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gBanjosBed,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gBanjosChair,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gBanjosStove,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);

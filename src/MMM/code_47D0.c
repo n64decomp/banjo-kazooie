@@ -24,17 +24,18 @@ typedef struct {
 
 /* .code */
 #if !DISABLE_PIRACY_CHECKS
-void MMM_func_8038ABC0(s32 arg0) {
+void chTumblar_makeBanjoForgetAbilities(s32 abilitiesMask) {
     if (getGameMode() != GAME_MODE_7_ATTRACT_DEMO) {
-        ability_setAllLearned(ability_getAllLearned() & ~arg0);
+        ability_setAllLearned(ability_getAllLearned() & ~abilitiesMask);
     }
 }
 #endif
 
-void func_8038AC04(void) {
+void chTumblar_checkMMMChecksums(void) {
 #if !DISABLE_PIRACY_CHECKS
     if ((*(u32 *) PHYS_TO_K1(0x1D0)) - 0x356BAAAE) {
-        MMM_func_8038ABC0(0x820);
+        // Forget Climb and Rat-a-tat Rap abilities
+        chTumblar_makeBanjoForgetAbilities((1 << ABILITY_5_CLIMB) | (1 << ABILITY_B_RATATAT_RAP));
     }
 #endif
 }

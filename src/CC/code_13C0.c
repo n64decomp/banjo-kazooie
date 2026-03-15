@@ -61,7 +61,7 @@ void func_803878F0(Struct_CC_13C0_1 *arg0, Struct68s *arg1, s32 arg2) {
     arg0->unk4 = 0;
     arg0->unk8 = 0;
     arg0 = arg0;
-    func_80351A14(arg1, (s32) func_803877B0);
+    func_80351A14(arg1, (Struct68DrawMethod) func_803877B0);
     func_803878AC(arg0, arg1, 0);
 }
 
@@ -145,33 +145,33 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
 }
 
 #if !DISABLE_PIRACY_CHECKS
-void func_80387CC0(void){
-    f32 sp1C[3];
-    s32 tmp_v0;
+void code13C0_makeCameraFlipAndTilt(void){
+    f32 rotation[3];
+    s32 timer;
     if(getGameMode() == GAME_MODE_7_ATTRACT_DEMO)
         return;
 
-    viewport_getRotation_vec3f(sp1C);
-    tmp_v0 = globalTimer_getTimeMasked(0x7F);
-    if(tmp_v0 >= 0x40){
-        tmp_v0 = 0x7F - tmp_v0;
+    viewport_getRotation_vec3f(rotation);
+    timer = globalTimer_getTimeMasked(0x7F);
+    if(timer >= 0x40){
+        timer = 0x7F - timer;
     }
-    sp1C[2] += tmp_v0 + 0x94;
-    if(360.0f <= sp1C[2]){
-        sp1C[2] -= 360.0f;
+    rotation[2] += timer + 0x94;
+    if(360.0f <= rotation[2]){
+        rotation[2] -= 360.0f;
     }
-    viewport_setRotation_vec3f(sp1C);
+    viewport_setRotation_vec3f(rotation);
 }
 #endif
 
-void CC_func_80387D4C(void){
+void code13C0_checkCCChecksums(void){
 #if !DISABLE_PIRACY_CHECKS
-    u32 sp1C;
-    u32 tmp_v0;
-    osPiReadIo(0x504, &sp1C);
-    sp1C = (sp1C & 0xffff) + 0xffff5BA0;
-    if(sp1C){
-        func_80387CC0();
+    u32 rom_data;
+    u32 unused;
+    osPiReadIo(0x504, &rom_data);
+    rom_data = (rom_data & 0xffff) + 0xffff5BA0;
+    if(rom_data){
+        code13C0_makeCameraFlipAndTilt();
     }
 #endif
 }

@@ -300,7 +300,7 @@ s32 gsworld_update(void) {
     s32 phi_v1;
     s32 phi_v0;
 
-    func_80356734();
+    codeCF5F0_forgetAllAbilitiesExceptClawSwipeIfChecksumsFail();
     func_802D5628();
     itemPrint_update();
     if (getGameMode() != GAME_MODE_4_PAUSED) {

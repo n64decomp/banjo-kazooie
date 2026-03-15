@@ -11,9 +11,9 @@
 
 extern struct {
     u8 pad0[4];
-    s32 unk4; 
+    s32 crc1; 
     u8 pad8[4];
-    s32 unkC; 
+    s32 crc2; 
 } D_80379B90;
 
 extern s32 D_803727F4;
@@ -58,7 +58,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
 
     phi_f2 = 0.0125f;
 #if !DISABLE_PIRACY_CHECKS
-    if ((D_80379B90.unk4 != D_803727F4) || (D_80379B90.unkC != D_80276574)) {
+    if ((D_80379B90.crc1 != D_803727F4) || (D_80379B90.crc2 != D_80276574)) {
         phi_f2 = 0.00625f;
     }
 #endif

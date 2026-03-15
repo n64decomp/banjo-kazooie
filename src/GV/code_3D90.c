@@ -78,9 +78,8 @@ void func_8038A31C(Actor *this){
         sp24 = subaddie_getLinkedActor(this);
 
     this->unk1C[1] = this->unk48;
-    ;
-    
-    switch(func_8038F4C0(this, 3))
+
+    switch(code7FF0_getMagicCarpetState(this, 3))
     {
     case 1: //L8038A3C0
         func_80343DEC(this);

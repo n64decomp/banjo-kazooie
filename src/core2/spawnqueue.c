@@ -76,7 +76,7 @@ extern ActorInfo D_803677A8; //ice_key
 extern ActorInfo D_803677CC; //mumbo_transform_pad
 extern ActorInfo D_803677F0;
 extern ActorInfo D_80367814; //SnS_egg
-extern ActorInfo D_80367838; //level_entry_disk
+extern ActorInfo gWorldExitPad; //level_entry_disk
 extern ActorInfo D_8036785C; //witch_switch.mm;
 extern ActorInfo D_80367880; //witch_switch.mmm
 extern ActorInfo D_803678A4; //witch_switch.ttc
@@ -285,7 +285,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&D_803677A8, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //ice_key
     spawnableActorList_add(&D_80367814, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //SnS_egg
     spawnableActorList_add(&gChFireFxInfo, actor_new, ACTOR_FLAG_NONE); //fire
-    spawnableActorList_add(&D_80367838, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //level_entry_disk
+    spawnableActorList_add(&gWorldExitPad, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15); //level_entry_disk
     spawnableActorList_add(&D_80367760, actor_new, ACTOR_FLAG_UNKNOWN_12);
     spawnableActorList_add(&D_80367784, actor_new, ACTOR_FLAG_UNKNOWN_12);
     spawnableActorList_add(&gameSelect_banjoSleeping, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_17); //banjo.without_right_hand
