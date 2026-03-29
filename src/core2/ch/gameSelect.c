@@ -194,13 +194,13 @@ void *calculateGameSelectCameraPosition(f32 from[3], f32 to[3], f32 deltaTime) {
     delta[2] = to[2] - from[2];
     dummy_index = dummy_index^1;
 
-    sqrt_totals = gu_sqrtf((delta[0] * delta[0]) + (delta[1] * delta[1]) + (delta[2] * delta[2]));
+    sqrt_totals = sqrtf((delta[0] * delta[0]) + (delta[1] * delta[1]) + (delta[2] * delta[2]));
 
     if (sqrt_totals < 10.0f) {
         sqrt_totals = 500.0f;
     }
 
-    bounciness = 1.0 + (9.0f / gu_sqrtf(sqrt_totals));
+    bounciness = 1.0 + (9.0f / sqrtf(sqrt_totals));
     sin_bounciness_half_pi = sinf(bounciness * 1.5707963267948966);
 
     for (i = 0; i < 3; i++) {

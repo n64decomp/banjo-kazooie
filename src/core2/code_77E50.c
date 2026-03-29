@@ -33,5 +33,5 @@ void func_802FEF48(BKModelBin *model_bin){
         }
     };
 
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
 }

@@ -38,7 +38,7 @@ void ncDynamicCam3_update(void) {
     sp30 = time_getDelta();
     if (sp30);
     ml_vec3f_diff_copy(sp40, sp64, sp7C);
-    sp3C = gu_sqrtf(sp40[0]*sp40[0] + sp40[2]*sp40[2]);
+    sp3C = sqrtf(sp40[0]*sp40[0] + sp40[2]*sp40[2]);
     sp3C += func_80259198(sp30*(sp34 - sp3C)*2 , sp30 * 800.0f);
     func_8025727C(sp7C[0], sp7C[1], sp7C[2], sp64[0], sp64[1], sp64[2], &sp4C[0], &sp4C[1]);
     sp40[1] = sp30 * 0.77 * mlDiffDegF(mlNormalizeAngle(player_getYaw() + 180.0f), sp4C[1]);

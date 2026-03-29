@@ -6,14 +6,6 @@
 #define M_TAU (2*M_PI)
 #define BAD_TAU 6.2831853
 
-
-struct Overlay {
-    void *start;
-    void *end;
-};
-
-extern struct Overlay gOverlayTable[];
-
 extern f32  climbPoleBottom[3];
 extern f32  climbPoleTop[3];
 #endif

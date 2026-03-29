@@ -1,7 +1,7 @@
 #ifndef _FILE_AND_LINE_H_
 #define _FILE_AND_LINE_H_
 #include <assert.h>
-extern void func_8033F000(const char *, const char *, int);
+extern void __assert(const char *, const char *, int);
 
 
 #ifdef NONMATCHING
@@ -17,9 +17,9 @@ extern void func_8033F000(const char *, const char *, int);
     #endif
 
     #ifdef __ANSI_CPP__
-        #define matching_assert(EX, F, L)  ((EX)?((void)0):func_8033F000( # EX , # F, L))
+        #define matching_assert(EX, F, L)  ((EX)?((void)0):__assert( # EX , # F, L))
     #else
-        #define matching_assert(EX, F , L)  ((EX)?((void)0):func_8033F000("EX", "F", L))
+        #define matching_assert(EX, F , L)  ((EX)?((void)0):__assert("EX", "F", L))
     #endif
 #endif
 

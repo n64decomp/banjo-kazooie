@@ -365,7 +365,7 @@ f32 baphysics_get_vertical_velocity(void){
 }
 
 f32 baphysics_get_horizontal_velocity(void){
-    return gu_sqrtf(s_player_velocity[0]*s_player_velocity[0] + s_player_velocity[2]*s_player_velocity[2]);
+    return sqrtf(s_player_velocity[0]*s_player_velocity[0] + s_player_velocity[2]*s_player_velocity[2]);
 }
 
 f32 baphysics_get_horizontal_velocity_percentage(void){

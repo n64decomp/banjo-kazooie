@@ -32,7 +32,7 @@ bool ncDynamicCamA_func_802C1DB0(f32 arg0) {
     ncDynamicCamera_getPosition(camera_position);
     func_802C02D4(sp28);
     ml_vec3f_diff_copy(sp34, camera_position, sp28);
-    D_80365DAC = gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]);
+    D_80365DAC = sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]);
     func_8025801C(sp34, &D_80365DA4);
     D_80365DA8 = 0.0f;
     D_80365DA0 = mlNormalizeAngle(D_80365DA4 + arg0);
@@ -96,7 +96,7 @@ void ncDynamicCamA_update(void) {
     func_802BDCE0(D_80365DA0, &D_80365DA4, &D_80365DA8, 50.0f, 3.0f);
     D_80365DB0 = (mlAbsF(D_80365DA0 - D_80365DA4) < 0.5);
     ml_vec3f_diff_copy(sp60, sp9C, spB4);
-    D_80365DAC = gu_sqrtf(sp60[0]*sp60[0] + sp60[2]*sp60[2]);
+    D_80365DAC = sqrtf(sp60[0]*sp60[0] + sp60[2]*sp60[2]);
     func_802BDE88(&D_80365DB4, &D_80365DAC, func_802BD8D4(), 0.01f, 0.008f);
     func_80256E24(sp90, 0.0f, D_80365DA4, 0.0f, 0.0f, D_80365DAC);
     ml_vec3f_add(spA8, spB4, sp90);
@@ -119,7 +119,7 @@ void ncDynamicCamA_update(void) {
     if (sp7C != 0) {
         ncDynamicCamera_getPosition(sp44);
         ml_vec3f_diff_copy(sp50, sp44, spB4);
-        D_80365DAC = gu_sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
+        D_80365DAC = sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
     }
     if (sp78 != 0) {
         D_80365DB0 = 1;

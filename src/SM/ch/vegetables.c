@@ -442,7 +442,7 @@ static void __chVegetables_update(Actor* this) {
                 this->velocity_x += sp6C[0]*sp78;
                 this->velocity_y += sp6C[1]*sp78;
                 this->velocity_z += sp6C[2]*sp78;
-                if (gu_sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f) {
+                if (sqrtf(this->velocity_z*this->velocity_z + (this->velocity_x*this->velocity_x + this->velocity_y*this->velocity_y)) > 50.0f) {
                     ml_vec3f_set_length(this->velocity, 50.0f);
                 }
                 if (ml_vec3f_distance(this->position, this->unk1C) < 20.0f) {

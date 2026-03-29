@@ -82,7 +82,7 @@ void bastick_update(void) {
     if (bastick.locked_at_zero) {
         bastick.value[0] = bastick.value[1] = 0.0f;
     }
-    bastick.distance = gu_sqrtf(bastick.value[0]*bastick.value[0] + bastick.value[1]*bastick.value[1]);
+    bastick.distance = sqrtf(bastick.value[0]*bastick.value[0] + bastick.value[1]*bastick.value[1]);
     if (bastick.distance != 0.0f) {
         bastick.zeroed_count = 0;
         bastick.nonzero_count = (s32) (bastick.nonzero_count + 1);

@@ -856,7 +856,7 @@ void func_80338B50(Gfx **gfx, Mtx **mtx, void *arg2){
     
     if(cmd->subgeo_offset_1C){
         mlMtx_apply_vec3f(D_80383C98, cmd->unk10);
-        dist = gu_sqrtf(D_80383C98[0]*D_80383C98[0] + D_80383C98[1]*D_80383C98[1] + D_80383C98[2]*D_80383C98[2]);
+        dist = sqrtf(D_80383C98[0]*D_80383C98[0] + D_80383C98[1]*D_80383C98[1] + D_80383C98[2]*D_80383C98[2]);
         if(cmd->min_C < dist && dist <= cmd->max_8){
             func_80339124(gfx, mtx, (BKGeoList*)((s32)cmd + cmd->subgeo_offset_1C));
         }
@@ -1087,7 +1087,7 @@ BKModelBin *modelRender_draw(Gfx **gfx, Mtx **mtx, f32 position[3], f32 rotation
         spD0 = D_803837C8.unk8;
         spD4 = D_803837C8.unk4;
     }
-    camera_focus_distance = gu_sqrtf(camera_focus[0]*camera_focus[0] + camera_focus[1]*camera_focus[1] + camera_focus[2]*camera_focus[2]);
+    camera_focus_distance = sqrtf(camera_focus[0]*camera_focus[0] + camera_focus[1]*camera_focus[1] + camera_focus[2]*camera_focus[2]);
     if( 4000.0f <= camera_focus_distance && spD4*scale*D_8038370C*50.0f < D_80383708){
         D_80383708 = spD4*scale*D_8038370C*50.0f;
     }

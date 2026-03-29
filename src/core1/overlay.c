@@ -24,7 +24,7 @@ void overlay_load(
     u32 sp2C;
     u32 *tmp;
 
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
     osInvalDCache(ram_start, ram_end - ram_start);
     osInvalICache(ram_start, ram_end - ram_start);
 
@@ -50,7 +50,7 @@ void overlay_load(
 
     if(bss_start){
         bzero(bss_start, bss_end - bss_start);
-        osWriteBackDCacheAll();
+        osWritebackDCacheAll();
         tmp = (u32*) bss_start;
         tmp[0] = sp2C;
         tmp[1] = sp30;
