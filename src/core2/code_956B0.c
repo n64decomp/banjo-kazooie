@@ -209,15 +209,15 @@ void func_8031CE70(f32 *arg0, enum map_e arg1, s32 arg2) {
         if (phi_s0 != NULL) {
             nodeprop_getPosition(phi_s0, sp38);
             phi_f2 = 500.0f;
-            if (phi_s0->unk8 == 0x186) {
+            if (phi_s0->actorId == 0x186) {
                 phi_f2 = 1000.0f;
             }
             if (ml_vec3f_distance(arg0, sp38) < phi_f2) {
-                if (phi_s0->unk8 == 0x184) {
+                if (phi_s0->actorId == 0x184) {
                     ncDynamicCamera_setUpdateEnabled(0);
                     func_8031CB50(arg1, arg2, 1);
                     player_walkToPosition(sp38, 1.0f, NULL, NULL);
-                } else if (phi_s0->unk8 == 0x185) {
+                } else if (phi_s0->actorId == 0x185) {
                     func_8031CD44(arg1, arg2, sp38[1], (f32) phi_s0->yaw, phi_s0->scale);
                 } else {
                     func_8031CD44(arg1, arg2, playerPos[1], (f32) phi_s0->yaw, phi_s0->scale);
@@ -735,8 +735,8 @@ void func_8031E204(NodeProp *node, s32 arg1, s32 arg2){
     f32 sp28[3];
     f32 sp1C[3];
 
-    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_154_UNKNOWN, &node->x), sp34);
-    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_155_UNKNOWN, &node->x), sp28);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_154_UNKNOWN, &node->position_x), sp34);
+    nodeprop_getPosition(nodeprop_findByActorIdAndPosition_s16(ACTOR_155_UNKNOWN, &node->position_x), sp28);
     player_getPosition(sp1C);
     if(sp28[1] < sp1C[1]){
         sp1C[1] = sp28[1];

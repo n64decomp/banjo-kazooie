@@ -1305,8 +1305,8 @@ void __gcpausemenu_drawSprite(Gfx **gdl, Mtx **mptr, Vtx **vptr, BKSprite *sprit
     _frame = sprite_getFramePtr(sprite, frame);
     sp2C = _frame->w;
     sp28 = _frame->h;
-    func_803382E4(5);
-    func_80338338(0xFF, 0xFF, 0xFF);
+    codeAEDA0_setSpriteDrawMode(5);
+    codeAEDA0_setPrimaryColorRGB(0xFF, 0xFF, 0xFF);
     func_803382FC(a);
     func_8033837C(0);
     viewport_getPosition_vec3f(sp50);

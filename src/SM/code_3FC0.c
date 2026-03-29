@@ -15,7 +15,7 @@ ActorAnimationInfo D_8038AFF0[3] = {
 };
 
 ActorInfo gBanjosBed = { 
-    MARKER_E1_BANJOS_BED, ACTOR_198_BANJOS_BED, ASSET_530_BANJOS_BED,
+    MARKER_E1_BANJOS_BED, ACTOR_198_BANJOS_BED, ASSET_530_MODEL_BANJOS_BED,
     2, D_8038AFF0,
     func_8038A3B0, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
@@ -28,7 +28,7 @@ ActorAnimationInfo D_8038B02C[3] = {
 };//chBanjosChairAnimations
 
 ActorInfo gBanjosChair ={
-    MARKER_E2_BANJOS_CHAIR, ACTOR_199_BANJOS_CHAIR, ASSET_52F_BANJOS_CHAIR,
+    MARKER_E2_BANJOS_CHAIR, ACTOR_199_BANJOS_CHAIR, ASSET_52F_MODEL_BANJOS_CHAIR,
     2, D_8038B02C,
     func_8038A3B0, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0

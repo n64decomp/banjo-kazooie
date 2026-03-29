@@ -212,7 +212,7 @@ void func_80391744(Actor *this, Actor* other){
       f32 tmp_f0;
 
       sp24 = nodeprop_findByActorIdAndActorPosition(0x22A, this);
-      tmp_f0 = (f32)nodeprop_getYaw(sp24);
+      tmp_f0 = (f32)nodeProp_getYaw(sp24);
       other->yaw = tmp_f0;
       this->yaw = tmp_f0;
       ml_vec3f_yaw_rotate_copy(sp28, sp34, tmp_f0);

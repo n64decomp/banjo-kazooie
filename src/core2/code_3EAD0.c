@@ -41,12 +41,12 @@ void func_802C5A60(Actor *this){
                 suSetSpriteScale(this, 0.4f);
                 break;
         }
-        this->marker->propPtr->unk8_5 = 0.5 < randf();
+        this->marker->propPtr->isMirrored = 0.5 < randf();
         this->position_y += 100.0*this->scale;
         actor_collisionOff(this);
         this->initialized = TRUE;
     }//L802C5B60
-    this->marker->propPtr->unk8_15 = D_80365F30[local->unk0];
+    this->marker->propPtr->frame = D_80365F30[local->unk0];
     local->unk0++;
     if(local->unk0 >= 0xC)
         marker_despawn(this->marker);

@@ -152,9 +152,9 @@ void chcaterpillar_update(Actor *this){
 
         if(ml_vec3f_distance(this->position, sp74) < 50.0f){
             func_8028F030(ACTOR_2A2_CATERPILLAR);
-            if(!volatileFlag_get(VOLATILE_FLAG_B2)){
+            if(!volatileFlag_get(VOLATILE_FLAG_B2_HAS_COLLECTED_CATERPILLAR)){
                 gcdialog_showDialog(ASSET_CC7_DIALOG_CATERPILLAR_COLLECT, 4, NULL, NULL, NULL, NULL);
-                volatileFlag_set(VOLATILE_FLAG_B2, TRUE);
+                volatileFlag_set(VOLATILE_FLAG_B2_HAS_COLLECTED_CATERPILLAR, TRUE);
             }
             sfx_playFadeShorthandDefault(SFX_C5_TWINKLY_POP, 1.0f, 25000, this->position, 0x1f4, 0x9c4);
             marker_despawn(this->marker);

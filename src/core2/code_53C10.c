@@ -9,7 +9,7 @@ typedef struct {
     u8 unk9;
     u8 unkA;
     u8 unkB;
-    u32 unkC_31:3;
+    u32 yaw:3;
     u32 unkC_28:1;
     u32 padC_27:28;
     s16 unk10; //sfx_id
@@ -305,7 +305,7 @@ void func_802DB5A0(Actor *this) {
             this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
             subaddie_turnToYaw(this, 4.0f);
             if (func_80329480(this)) {
-                this->unk10_12 = local->unkC_31;
+                this->unk10_12 = local->yaw;
                 subaddie_set_state(this, 4);
                 func_802DB2AC(this);
             }
@@ -322,8 +322,8 @@ void func_802DB5A0(Actor *this) {
             break;
             
         case 4://L802DB990
-            if (this->unk10_12 < local->unkC_31) {
-                anctrl_setDuration(this->anctrl, this->unk18[4].duration - ((local->unkC_31 - this->unk10_12) * 0.1));
+            if (this->unk10_12 < local->yaw) {
+                anctrl_setDuration(this->anctrl, this->unk18[4].duration - ((local->yaw - this->unk10_12) * 0.1));
             }
             this->yaw_ideal = (f32) subaddie_getYawToPlayer(this);
             if (!func_803294B4(this, 0x21)) {
@@ -336,7 +336,7 @@ void func_802DB5A0(Actor *this) {
                 }
             }
             if( (this->unk10_12 == 0) 
-                || (this->unk10_12 < local->unkC_31 && subaddie_playerIsWithinSphereAndActive(this, 0xFA))
+                || (this->unk10_12 < local->yaw && subaddie_playerIsWithinSphereAndActive(this, 0xFA))
             ) {
                 subaddie_set_state(this, 7);
                 this->actor_specific_1_f = (f32) local->unkA;

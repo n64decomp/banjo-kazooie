@@ -8,7 +8,7 @@
 #include "time.h"
 
 extern void func_80344090(BKSpriteDisplayData *self, s32 frame, Gfx **gfx);
-BKSprite *func_8033B6C4(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
+BKSprite *codeB3A80_getSprite(enum asset_e sprite_id, BKSpriteDisplayData **arg1);
 
 typedef struct struct_18_s{
     s16 sfx_id; /* enum sfx_e */
@@ -426,7 +426,7 @@ s32 D_8036D924[] = { 70, 35, 18, 9, 4, 2, 1};
 char D_803830B0[0x30];
 
 void sfxsource_freeSfxsourceByIndex(u8);
-void func_80338338(s32, s32, s32);
+void codeAEDA0_setPrimaryColorRGB(s32, s32, s32);
 void func_803382FC(u8);
 
 /* .code */
@@ -845,10 +845,10 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BK
     if (this->portrait_id == ZOOMBOX_SPRITE_46_TUMBLAR) {
         arg6 = 0.75f;
     }
-    func_80338338(0xFF, 0xFF, 0xFF);
+    codeAEDA0_setPrimaryColorRGB(0xFF, 0xFF, 0xFF);
     func_803382FC(this->unk168 * arg6);
-    func_803382E4(5);
-    func_80335D30(gfx);
+    codeAEDA0_setSpriteDrawMode(5);
+    codeAEDA0_drawSprite(gfx);
     viewport_setRenderViewportAndOrthoMatrix(gfx, mtx);
     mlMtxIdent();
     if (this->unk1A4_24) {
@@ -866,7 +866,7 @@ void func_803164B0(GcZoombox *this, Gfx **gfx, Mtx **mtx, s32 arg3, s32 arg4, BK
     gSPMatrix((*gfx)++, (*mtx)++, G_MTX_LOAD | G_MTX_MODELVIEW);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     func_80344090(arg5, this->unk186, gfx);
-    func_8033687C(gfx);
+    codeAEDA0_postDrawSprite(gfx);
     viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 }
 
@@ -1337,9 +1337,9 @@ void gczoombox_update(GcZoombox *this){
 }
 
 void __gczoombox_load_sprite(GcZoombox *this, GcZoomboxSprite portrait_id){
-     this->unkF8 = func_8033B6C4(D_8036C6C0[portrait_id].spite_id, &this->unkFC);
+     this->unkF8 = codeB3A80_getSprite(D_8036C6C0[portrait_id].spite_id, &this->unkFC);
      this->frame_count = this->unkF8->frameCnt;
-     func_803382E4(-1);
+     codeAEDA0_setSpriteDrawMode(-1);
      
      func_80338308(sprite_getUnk8(this->unkF8), sprite_getUnkA(this->unkF8));
 }

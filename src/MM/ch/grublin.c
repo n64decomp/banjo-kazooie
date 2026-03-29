@@ -10,7 +10,7 @@ typedef struct chgrublin_s{
     u8      unk9;
     u8      unkA;
     u8      unkB;
-    u32     unkC_31:3;
+    u32     yaw:3;
     u32     unkC_28:1;
     u32     padC_27:28;
     s16     unk10;
@@ -64,7 +64,7 @@ void func_80388A04(Actor *this){
     local->unk4 = 2.3f;
     local->unk8 = 5;
     local->unk9 = 7;
-    local->unkC_31 = 2;
+    local->yaw = 2;
     local->unkA = 9;
     local->unkB = 9;
     local->unk10 = 0x29;

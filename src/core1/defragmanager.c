@@ -52,5 +52,5 @@ static void defragThread_entry(void *args) {
             } while ((sDefragThreadPauseSyncQueue.validCount == 0) && defrag_flag);
         }
         osRecvMesg(&sDefragThreadPauseSyncQueue, NULL, OS_MESG_BLOCK);
-    } while(1);
+    } while(TRUE);
 }

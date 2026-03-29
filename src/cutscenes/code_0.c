@@ -803,10 +803,10 @@ void func_80388CE4(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
 void func_80388D30(vector(AnSeqElement) **arg0, ActorMarker *arg1) {
     anSeq_func_80288F78(arg0, 0.0257f, (SFX_6B_LOCKUP_OPENING   << 0x10) | (0x40 << 8) | 0xFF);
     anSeq_func_80288F78(arg0, 0.6287f, (SFX_6C_LOCKUP_CLOSING   << 0x10) | (0x80 << 8) | 0xFA);
-    anSeq_func_80288F78(arg0, 0.7126f, (SFX_3F_CAULDRON_SQEAK_1 << 0x10) | (0x99 << 8) | 0x65);
-    anSeq_func_80288F78(arg0, 0.77f,   (SFX_40_CAULDRON_SQEAK_2 << 0x10) | (0x99 << 8) | 0x65);
-    anSeq_func_80288F78(arg0, 0.8079f, (SFX_3F_CAULDRON_SQEAK_1 << 0x10) | (0x99 << 8) | 0x65);
-    anSeq_func_80288F78(arg0, 0.9142f, (SFX_40_CAULDRON_SQEAK_2 << 0x10) | (0x99 << 8) | 0x65);
+    anSeq_func_80288F78(arg0, 0.7126f, (SFX_3F_CAULDRON_SQUEAK_1 << 0x10) | (0x99 << 8) | 0x65);
+    anSeq_func_80288F78(arg0, 0.77f,   (SFX_40_CAULDRON_SQUEAK_2 << 0x10) | (0x99 << 8) | 0x65);
+    anSeq_func_80288F78(arg0, 0.8079f, (SFX_3F_CAULDRON_SQUEAK_1 << 0x10) | (0x99 << 8) | 0x65);
+    anSeq_func_80288F78(arg0, 0.9142f, (SFX_40_CAULDRON_SQUEAK_2 << 0x10) | (0x99 << 8) | 0x65);
 }
 
 void func_80388DE4(vector(AnSeqElement) **arg0, ActorMarker *arg1) {

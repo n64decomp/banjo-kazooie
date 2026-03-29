@@ -11,7 +11,7 @@ typedef struct {
     u8 unk9;
     u8 unkA;
     u8 unkB;
-    u32 unkC_31:3;
+    u32 yaw:3;
     u32 unkC_28:1;
     u32 padC_27:28;
     s16 unk10;
@@ -77,7 +77,7 @@ void func_8035CFC4(Actor *this) {
     local->unk9 = 0xA;
     local->unkA = 0xE;
     local->unkB = 9;
-    local->unkC_31 = 1;
+    local->yaw = 1;
     local->unk10 = 0x11A;
     local->unk12 = 25000;
     local->unk14 = 1.0f;

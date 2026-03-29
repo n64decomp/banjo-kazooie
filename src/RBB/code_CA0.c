@@ -9,7 +9,8 @@ void func_8038756C(Actor *this, s32 arg1);
 
 /* .data */
 ActorInfo D_80390200 = {
-    0x183, 0x173, 0x402, 0x0, NULL,
+    MARKER_183_RBB_EGG_TOLL, 0x173, ASSET_402_MODEL_EGG_TOLL,
+    0x0, NULL,
     func_803878B0, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
