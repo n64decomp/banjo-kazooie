@@ -920,7 +920,7 @@ int func_802BE60C(void){
     if(func_802BC428())
         return 0;
     
-    if(gsworld_get_map() == MAP_91_FILE_SELECT)
+    if(gsworld_getMap() == MAP_91_FILE_SELECT)
         return 0;
 
     ml_vec3f_copy(sp1C, cameraPosition);

@@ -2,11 +2,32 @@
 #include "functions.h"
 #include "variables.h"
 
+void chbull_update(Actor *);
+Actor *chbull_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
 
-void func_802C6240(Actor *);
-Actor *func_802C6E84(ActorMarker *, Gfx **, Mtx **, Vtx **);
+
 /*.data */
-ActorAnimationInfo D_80366010[] ={
+
+enum bigbutt_states
+{
+    BIGBUTT_STATE_1_EAT = 1,
+    BIGBUTT_STATE_2_WALK,
+    BIGBUTT_STATE_3_RUN,
+    BIGBUTT_STATE_4_SLIDE,
+    BIGBUTT_STATE_5_ATTACK,
+    BIGBUTT_STATE_6_ALERT,
+    BIGBUTT_STATE_7_DIE,
+    BIGBUTT_STATE_8_WALK,
+    BIGBUTT_STATE_9_RUN,
+    BIGBUTT_STATE_A_EAT,
+    BIGBUTT_STATE_B_WALK,
+    BIGBUTT_STATE_C_OW,
+    BIGBUTT_STATE_D_FALL,
+    BIGBUTT_STATE_E_FALL,
+    BIGBUTT_STATE_F_GET_UP
+};
+
+ActorAnimationInfo chBullAnimations[] ={
     {0x00, 0.0f},
     {ASSET_33_ANIM_BIGBUTT_EAT,     5.5f},
     {ASSET_36_ANIM_BIGBUTT_WALK,    0.7f},
@@ -25,18 +46,17 @@ ActorAnimationInfo D_80366010[] ={
     {ASSET_255_ANIM_BIGBUTT_GET_UP, 1.0f},
 };
 
-
-ActorInfo D_80366090 = {
+ActorInfo chBigbutt = {
     MARKER_3_BIGBUTT, ACTOR_4_BIGBUTT, ASSET_353_MODEL_BIGBUTT, 
-    1, D_80366010, 
-    func_802C6240, actor_update_func_80326224, func_802C6E84,
+    1, chBullAnimations,
+    chbull_update, actor_update_func_80326224, chbull_draw,
     3200, 0, 0.0f, 0
 }; 
 
-ActorInfo D_803660B4 = {
+ActorInfo chSmallBull = {
     MARKER_9_SMALL_BULL, ACTOR_E_SMALL_BULL, ASSET_354_MODEL_SMALL_BULL, 
-    1, D_80366010, 
-    func_802C6240, actor_update_func_80326224, func_802C6E84,
+    1, chBullAnimations,
+    chbull_update, actor_update_func_80326224, chbull_draw,
     3200, 0, 0.0f, 0
 }; 
 
@@ -54,19 +74,19 @@ void func_802C5EB8(Actor *this){
     }
     else{
         if(subaddie_playerIsWithinSphereAndActive(this, 1200) && func_803292E0(this)){
-            subaddie_set_state(this, 8);
+            subaddie_set_state(this, BIGBUTT_STATE_8_WALK);
         }
     }
 }
 
 void func_802C5F44(Actor *this){
     if(!subaddie_playerIsWithinSphereAndActive(this, 1200) || !func_803292E0(this)){
-        subaddie_set_state_with_direction(this, 1, 0.16f, 1);
+        subaddie_set_state_with_direction(this, BIGBUTT_STATE_1_EAT, 0.16f, 1);
     }
 }
 
 void func_802C5F94(Actor *this){
-    subaddie_set_state(this, 2);
+    subaddie_set_state(this, BIGBUTT_STATE_2_WALK);
     func_802C5E80(this);
     func_80328CEC(this, (s32)this->yaw_ideal, 135, 175);
     this->unk38_31 = 150;
@@ -84,43 +104,43 @@ void func_802C5FF8(Actor *this){
 
 void func_802C60AC(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    if( actor->state == 4 
+    if( actor->state == BIGBUTT_STATE_4_SLIDE 
         && 5.0 <= actor->actor_specific_1_f
         && func_803294F0(actor, 80, subaddie_getYawToPlayer(actor))
     ){
         anctrl_setPlaybackType(actor->anctrl, ANIMCTRL_ONCE);
-        subaddie_set_state(actor, 5);
+        subaddie_set_state(actor, BIGBUTT_STATE_5_ATTACK);
         func_8030E58C(SFX_1E_HITTING_AN_ENEMY_2, 1.0f);
     }
 }
 
 void func_802C6150(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    subaddie_set_state_forward(actor, 0xC);
+    subaddie_set_state_forward(actor, BIGBUTT_STATE_C_OW);
     func_8030E878(SFX_2B_BULL_MOO_1, randf2(1.28f, 1.37f), 32000, actor->position, 0.0f, 2000.0f);
 }
 
-void func_802C61C0(ActorMarker *marker, ActorMarker *other_marker){
+void chbigbutt_die(ActorMarker *marker, ActorMarker *other_marker){
     Actor *actor = marker_getActor(marker);
-    if( actor->state != 0xd
-        && actor->state != 0xe
-        && actor->state != 0xf
+    if( actor->state != BIGBUTT_STATE_D_FALL
+        && actor->state != BIGBUTT_STATE_E_FALL
+        && actor->state != BIGBUTT_STATE_F_GET_UP
     ){
-        subaddie_set_state_forward(actor, 0xd);
+        subaddie_set_state_forward(actor, BIGBUTT_STATE_D_FALL);
         sfx_playFadeShorthandDefault(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
         sfx_playFadeShorthandDefault(SFX_143_BULL_DAMAGE, 1.0f, 16000, actor->position, 0, 2000);
     }
 }
 
 //chBigbuttUpdate
-void func_802C6240(Actor *this){
+void chbull_update(Actor *this){
     s32 sp2C;
     u8  tmp_a0;
     f32 tmp_f0;
 
 
     if(!this->initialized){
-        this->marker->dieFunc = func_802C61C0;
+        this->marker->dieFunc = chbigbutt_die;
         this->marker->collisionFunc = func_802C60AC;
         this->marker->collision2Func = func_802C6150;
         this->has_met_before = FALSE;
@@ -129,7 +149,7 @@ void func_802C6240(Actor *this){
         return;
     }//L802C62BC
     switch(this->state){
-        case 0x1: //L802C62E4
+        case BIGBUTT_STATE_1_EAT: //L802C62E4
             this->unk10_12 = 3;
             sp2C = func_8032863C(this->anctrl, 0.16f, 0.55f);
             if(!this->unk138_28){
@@ -149,7 +169,7 @@ void func_802C6240(Actor *this){
             func_802C5FF8(this);
             if( func_8032863C(this->anctrl, 0.65f, 0.99f) >= 2 
                 && !func_80328A2C(this, 0.0f, -1, 0.45f)
-                && subaddie_maybe_set_state_position_direction(this, 2, 0.0f, -1, 0.58f)
+                && subaddie_maybe_set_state_position_direction(this, BIGBUTT_STATE_2_WALK, 0.0f, -1, 0.58f)
             ){
                 func_80328CEC(this, (s32)this->yaw, 10, 45);
                 func_802C5E80(this);
@@ -157,7 +177,7 @@ void func_802C6240(Actor *this){
             func_802C5EB8(this);
             break;
 
-        case 0x2: //L802C6494
+        case BIGBUTT_STATE_2_WALK: //L802C6494
             func_802C5FF8(this);
             subaddie_turnToYaw(this, 2.0f);
             if(!func_80329030(this, 0) && func_80329480(this)){
@@ -167,42 +187,42 @@ void func_802C6240(Actor *this){
                 func_80328CEC(this, (s32)this->yaw_ideal, 10, 20);
             
             if(!(globalTimer_getTime() & 0x7))
-                subaddie_maybe_set_state_position_direction(this, 1, 0.16f, 1, 0.02f);
+                subaddie_maybe_set_state_position_direction(this, BIGBUTT_STATE_1_EAT, 0.16f, 1, 0.02f);
             
             if( !(globalTimer_getTime() & 0xf)
                 && func_80329078(this, (s32)this->yaw_ideal, 150)
-                && subaddie_maybe_set_state(this, 3, 0.13f)
+                && subaddie_maybe_set_state(this, BIGBUTT_STATE_3_RUN, 0.13f)
             ){
                 this->actor_specific_1_f = randf2(7.1f, 8.4f);
             }
             func_802C5EB8(this);
             break;
 
-        case 0x8: //L802C65D0
+        case BIGBUTT_STATE_8_WALK: //L802C65D0
             func_802C5F44(this);
             this->yaw_ideal = subaddie_getYawToPlayer(this);
             subaddie_turnToYaw(this, 4.0f);
             if(func_80329480(this))
-                subaddie_set_state(this, 6);
+                subaddie_set_state(this, BIGBUTT_STATE_6_ALERT);
             break;
 
-        case 0x3: //L802C6620
+        case BIGBUTT_STATE_3_RUN: //L802C6620
             subaddie_turnToYaw(this, 3.0f);
             if(! func_80329030(this, 0) && func_80329480(this)){
                 func_80328CEC(this, (s32)this->yaw, 120, 180);
-                subaddie_set_state(this, 2);
+                subaddie_set_state(this, BIGBUTT_STATE_2_WALK);
                 func_802C5E80(this);
             }
-            if(!(globalTimer_getTime() & 0xf) && subaddie_maybe_set_state(this, 2, 0.08f))
+            if(!(globalTimer_getTime() & 0xf) && subaddie_maybe_set_state(this, BIGBUTT_STATE_2_WALK, 0.08f))
                 func_802C5E80(this);
             func_802C5EB8(this);
             break;
 
-        case 0x6: //L802C66D0
-            anctrl_setDuration(this->anctrl, D_80366010[6].duration - (3 - this->unk10_12)*0.1085);
+        case BIGBUTT_STATE_6_ALERT: //L802C66D0
+            anctrl_setDuration(this->anctrl, chBullAnimations[6].duration - (3 - this->unk10_12)*0.1085);
             this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
             if(!func_803294B4(this, 0x21)){
-                subaddie_set_state(this, 8);
+                subaddie_set_state(this, BIGBUTT_STATE_8_WALK);
             }
             func_802C5F44(this);
             if(actor_animationIsAt(this, 0.35f) && player_getWaterState() != BSWATERGROUP_2_UNDERWATER){
@@ -213,12 +233,12 @@ void func_802C6240(Actor *this){
                 func_802C5F94(this);
 
             if(this->unk10_12 == 0 || (this->unk10_12 < 3 && subaddie_playerIsWithinSphereAndActive(this, 300))){
-                subaddie_set_state(this, 9);
+                subaddie_set_state(this, BIGBUTT_STATE_9_RUN);
                 this->actor_specific_1_f = 13.0f;
             }
             break;
 
-        case 0x9: //L802C6878
+        case BIGBUTT_STATE_9_RUN: //L802C6878
             if(actor_animationIsAt(this, 0.35f))
                 func_8030E58C(SFX_2E_BIGBUTT_RUNNING, 1.0f);
             
@@ -235,7 +255,7 @@ void func_802C6240(Actor *this){
             if(subaddie_playerIsWithinSphereAndActive(this, 320)){
                 if(func_80329078(this, (s32)this->yaw_ideal,200)){
                     anctrl_setPlaybackType(this->anctrl, ANIMCTRL_ONCE);
-                    subaddie_set_state(this, 4);
+                    subaddie_set_state(this, BIGBUTT_STATE_4_SLIDE);
                     this->actor_specific_1_f += 5.7;
                     tmp_a0 = this->unk44_31;
                     if(this->unk44_31 == 0){
@@ -253,7 +273,7 @@ void func_802C6240(Actor *this){
             }//L802C6A08
             break;
 
-        case 0x4: //L802C6A14
+        case BIGBUTT_STATE_4_SLIDE: //L802C6A14
             if(anctrl_getAnimTimer(this->anctrl) < 0.99){
                 this->yaw_ideal = (f32)subaddie_getYawToPlayer(this);
                 subaddie_turnToYaw(this, 1.0f);
@@ -264,7 +284,7 @@ void func_802C6240(Actor *this){
                 func_80329878(this, subaddie_playerIsWithinSphereAndActive(this, 250)? 0.8: 1.2);
                 if (0.0f == this->actor_specific_1_f) {
                     anctrl_setPlaybackType(this->anctrl, ANIMCTRL_LOOP);
-                    subaddie_set_state_with_direction(this, 1, 0.65f, 1);
+                    subaddie_set_state_with_direction(this, BIGBUTT_STATE_1_EAT, 0.65f, 1);
                     sfxsource_freeSfxsourceByIndex(this->unk44_31);
                     this->unk44_31 = 0;
                     sfxsource_playHighPriority(SFX_19_BANJO_LANDING_08);
@@ -272,46 +292,46 @@ void func_802C6240(Actor *this){
             }//L802C6B1C
             break;
 
-        case 0x5: //L802C6B28
+        case BIGBUTT_STATE_5_ATTACK: //L802C6B28
             actor_playAnimationOnce(this);
             tmp_f0 = anctrl_getAnimTimer(this->anctrl);
-            anctrl_setDuration(this->anctrl, D_80366010[5].duration + ((0.65 < tmp_f0)? (tmp_f0 - 0.65)*16.0 : 0.0));
+            anctrl_setDuration(this->anctrl, chBullAnimations[5].duration + ((0.65 < tmp_f0)? (tmp_f0 - 0.65)*16.0 : 0.0));
             if(actor_animationIsAt(this, 0.95f)){
                 actor_loopAnimation(this);
                 func_802C5F94(this);
             }
             break;
 
-        case 0xc: //L802C6BDC
+        case BIGBUTT_STATE_C_OW: //L802C6BDC
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                subaddie_set_state_with_direction(this, 1, 0.65f, 1);
+                subaddie_set_state_with_direction(this, BIGBUTT_STATE_1_EAT, 0.65f, 1);
                 actor_loopAnimation(this);
             }
             break;
 
-        case 0xd: //L802C6C28
+        case BIGBUTT_STATE_D_FALL: //L802C6C28
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                subaddie_set_state_with_direction(this, 0xe, 0.99f, 1);
+                subaddie_set_state_with_direction(this, BIGBUTT_STATE_E_FALL, 0.99f, 1);
                 this->lifetime_value = 4.0f;
             }
             break;
 
-        case 0xe: //L802C6C7C
+        case BIGBUTT_STATE_E_FALL: //L802C6C7C
             actor_playAnimationOnce(this);
             this->lifetime_value -= time_getDelta();
             if(this->lifetime_value <= 0.0f){
                 this->unk166 = 0x63;
-                subaddie_set_state_forward(this, 0xF);
+                subaddie_set_state_forward(this, BIGBUTT_STATE_F_GET_UP);
             }
 
             break;
 
-        case 0xf: //L802C6CD4
+        case BIGBUTT_STATE_F_GET_UP: //L802C6CD4
             actor_playAnimationOnce(this);
             if(actor_animationIsAt(this, 0.95f)){
-                subaddie_set_state_with_direction(this, 1, 0.65f, 1);
+                subaddie_set_state_with_direction(this, BIGBUTT_STATE_1_EAT, 0.65f, 1);
                 actor_loopAnimation(this);
             }
             break;
@@ -320,8 +340,8 @@ void func_802C6240(Actor *this){
         if(this->marker->id != MARKER_29E_BIGBUTT_KNOCKED_DOWN)
             this->marker->id = MARKER_29E_BIGBUTT_KNOCKED_DOWN;
    }else{//L802C6D60
-        if(this->marker->id != 3)
-            this->marker->id = 3;
+        if(this->marker->id != MARKER_3_BIGBUTT)
+            this->marker->id = MARKER_3_BIGBUTT;
    }
 }
 
@@ -339,7 +359,7 @@ void func_802C6E3C(s32 arg0, f32 arg1[3]){
     func_80352CF4(sp1C, arg1, 170.0f, 50.0f);
 }
 
-Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chbull_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *actor; //sp4C
     f32 sp40[3];
     
@@ -352,13 +372,13 @@ Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
         ml_vec3f_yaw_rotate_copy(sp34, sp34, actor->yaw);
         switch(actor->state){
-            case 6:
+            case BIGBUTT_STATE_6_ALERT:
                 if(actor_animationIsAt(actor, 0.65f)){
                     func_8034A174(func_80329934(), 9, sp40);
                     func_80352CF4(sp40, sp34, 60.0f, 50.0f);
                 }
                 break;
-            case 4://L802C6F50
+            case BIGBUTT_STATE_4_SLIDE://L802C6F50
                 if((globalTimer_getTime() & 1) == 1){
                     if(ml_isViewportYawWithOffsetNormalized(actor->yaw)){
                         func_802C6E3C(0xb, sp34);
@@ -370,7 +390,7 @@ Actor *func_802C6E84(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
                     }
                 }
                 break;
-            case 1://L802C6FB4
+            case BIGBUTT_STATE_1_EAT://L802C6FB4
                 if(actor_animationIsAt(actor, 0.85f)
                     && (globalTimer_getTime()& 0xe) == 8
                     && randf() < 0.6

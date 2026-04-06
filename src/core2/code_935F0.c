@@ -32,7 +32,7 @@ ActorInfo chMinigame = {
 
 /* .code */
 enum minigame_e __chminigame_getCurrentMapId(void){
-    switch(gsworld_get_map()){
+    switch(gsworld_getMap()){
         case MAP_3A_RBB_BOSS_BOOM_BOX:
             return MINIGAME_0_BOSS_BOOM_BOX;
         case MAP_10_BGS_MR_VILE:
@@ -77,7 +77,7 @@ void func_8031A678(Actor *this){
             return;
 
         case MINIGAME_3_ZUBBAS:
-            if (gsworld_get_map() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
+            if (gsworld_getMap() != MAP_5B_CCW_SPRING_ZUBBA_HIVE) {
                 sp20[0] = 0.0f;
                 sp20[1] = 0.0f;
                 sp20[2] = -1000.0f;
@@ -181,7 +181,7 @@ void chMinigame_update(Actor *this){
                     __chMinigame_setState(this, MINIGAME_STATE_2_IN_PROGESS);
                 break;
             case MINIGAME_STATE_2_IN_PROGESS://L8031AB50
-                func_8028FA14(MAP_8E_GL_FURNACE_FUN, 2);
+                code_7060_setVoidOutLocation(MAP_8E_GL_FURNACE_FUN, 2);
                 if(item_getCount(ITEM_14_HEALTH) == 0)
                     item_set(ITEM_6_HOURGLASS, 0);
                 if(!volatileFlag_get(VOLATILE_FLAG_3)){

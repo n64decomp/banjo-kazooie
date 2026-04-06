@@ -706,8 +706,8 @@ void update_void_return_Location(void) {
 
     level_id = level_get();
     if ((level_id == 0) || (level_id == LEVEL_6_LAIR)) {
-        map_id = gsworld_get_map();
-        exit_id = gsworld_get_exit();
+        map_id = gsworld_getMap();
+        exit_id = gsworld_getExit();
     } else {
         map_id = level_get_main_map(level_id);
         exit_id = level_get_main_exit(level_id);
@@ -772,7 +772,7 @@ void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s
     baphysics_set_type(arg3);
 }
 
-void func_8029C834(enum map_e map_id, s32 exit_id){
+void code_14420_setVoidOutLocation(enum map_e map_id, s32 exit_id){
     gVoidOutReturnLocation[0] = map_id;
     gVoidOutReturnLocation[1] = exit_id;
 }

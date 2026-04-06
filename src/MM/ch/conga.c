@@ -59,7 +59,7 @@ bool __chConga_isPlayerNearCongaTree(Actor * this){
     f32 plyr_pos[3];
     f32 unused_tmpz;
 
-    if (gsworld_get_map() != MAP_2_MM_MUMBOS_MOUNTAIN) {
+    if (gsworld_getMap() != MAP_2_MM_MUMBOS_MOUNTAIN) {
         return FALSE;
     }
 

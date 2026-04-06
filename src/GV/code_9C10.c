@@ -47,7 +47,7 @@ void func_80390100(void){
 }
 
 void func_80390138(void){
-    if(GV_D_80391AD0 && func_80334904() == 2){
+    if(GV_D_80391AD0 && gsworld_getUnk0() == 2){
         if(GV_D_80391AD0 == 1 && timedFuncQueue_is_empty()){
             func_80390000(2);
         }

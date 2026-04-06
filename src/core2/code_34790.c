@@ -137,7 +137,7 @@ void func_802BBA84(void) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }
-    if (gsworld_get_map() == MAP_91_FILE_SELECT) {
+    if (gsworld_getMap() == MAP_91_FILE_SELECT) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }

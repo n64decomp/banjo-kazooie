@@ -5,7 +5,15 @@
 void chwhipcrack_update(Actor *this);
 
 /* .data */
-ActorInfo D_80373100 = { 
+
+enum whipcrack_states
+{
+    WHIPCRACK_STATE_1_IDLE = 1,
+    WHIPCRACK_STATE_2_ATTACK,
+    WHIPCRACK_STATE_3_DIE
+};
+
+ActorInfo chWhipcrack = { 
     MARKER_1C5_WHIPCRACK, ACTOR_30F_WHIPCRACK, ASSET_4FD_MODEL_WHIPCRACK, 
     0, NULL, 
     chwhipcrack_update, NULL, actor_draw, 
@@ -68,13 +76,13 @@ void __chwhipcrack_spawnSmoke(Actor *this, s32 cnt){
 }
 
 void __chwhipcrack_setState(Actor *this, s32 next_state){
-    if(next_state == 1)
+    if(next_state == WHIPCRACK_STATE_1_IDLE)
         skeletalAnim_set(this->unk148, ASSET_22A_ANIM_WHIPCRACK_IDLE, 0.5f, 1.0f);
     
-    if(next_state == 2)
+    if(next_state == WHIPCRACK_STATE_2_ATTACK)
         skeletalAnim_set(this->unk148, ASSET_229_ANIM_WHIPCRACK_ATTACK, 0.5f, 1.0f);
 
-    if(next_state == 3){
+    if(next_state == WHIPCRACK_STATE_3_DIE){
         __chwhipcrack_spawnPieces(this, ASSET_4FE_MODEL_WHIPCRACK_PART_1, 4);
         __chwhipcrack_spawnPieces(this, ASSET_4FF_MODEL_WHIPCRACK_PART_2, 4);
         __chwhipcrack_spawnPieces(this, ASSET_500_MODEL_WHIPCRACK_PART_3, 4);
@@ -88,7 +96,7 @@ void __chwhipcrack_setState(Actor *this, s32 next_state){
 
 void __chwhipcrack_die(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
-    __chwhipcrack_setState(this, 3);
+    __chwhipcrack_setState(this, WHIPCRACK_STATE_3_DIE);
 }
 
 void chwhipcrack_update(Actor *this){
@@ -102,17 +110,17 @@ void chwhipcrack_update(Actor *this){
         this->roll = this->yaw;
         this->yaw = 0.0f;
         marker_setCollisionScripts(this->marker, NULL, NULL, __chwhipcrack_die);
-        __chwhipcrack_setState(this, 1);
+        __chwhipcrack_setState(this, WHIPCRACK_STATE_1_IDLE);
     }
     player_getPosition(plyr_pos);
     plyr_dist = ml_vec3f_distance(plyr_pos, this->position);
-    if(this->state == 1){
+    if(this->state == WHIPCRACK_STATE_1_IDLE){
         if(plyr_dist < 700.0f){
-            __chwhipcrack_setState(this, 2);
+            __chwhipcrack_setState(this, WHIPCRACK_STATE_2_ATTACK);
         }
     }
 
-    if(this->state == 2){
+    if(this->state == WHIPCRACK_STATE_2_ATTACK){
         skeletalAnim_getProgressRange(this->unk148, &sp44, &sp40);
         if((sp44 < 0.13) && (0.13 <= sp40)){
             func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.05f, 1.1f), 15000, this->position, 500.0f, 1000.0f);
@@ -123,7 +131,7 @@ void chwhipcrack_update(Actor *this){
         }
 
         if(800.0f < plyr_dist){
-            __chwhipcrack_setState(this, 1);
+            __chwhipcrack_setState(this, WHIPCRACK_STATE_1_IDLE);
         }
     }
 }

@@ -30,7 +30,13 @@ Struct_CCW_14B0_0 D_8038EC00[] = {
     0
 };
 
-ActorInfo D_8038EC14 = { 0x1AF, 0x29C, 0x446, 0x0, NULL, CCW_func_80387A40, NULL, actor_draw, 0, 0, 1.0f, 0};
+// Zubba
+ActorInfo D_8038EC14 = {
+    0x1AF, 0x29C, 0x446,
+    0x0, NULL,
+    CCW_func_80387A40, NULL, actor_draw,
+    0, 0, 1.0f, 0
+};
 
 /* .code */
 void func_803878A0(Actor *this, s32 next_state) {
@@ -73,7 +79,7 @@ void CCW_func_80387A40(Actor *this) {
         this->volatile_initialized = TRUE;
         this->marker->actorFreeFunc = CCW_func_80387A20;
         local->unk4 = &D_8038EC00[0];
-        while((local->unk4->unk0 != 0) && (gsworld_get_map() != local->unk4->unk0)) {
+        while((local->unk4->unk0 != 0) && (gsworld_getMap() != local->unk4->unk0)) {
             local->unk4++;
         }
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();

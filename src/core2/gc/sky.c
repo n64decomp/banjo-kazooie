@@ -110,7 +110,7 @@ void sky_free(void){
 void sky_reset(void){
     int i;
 
-    gcSky.sky_info = sky_getMapSkyInfo(gsworld_get_map());
+    gcSky.sky_info = sky_getMapSkyInfo(gsworld_getMap());
     for(i = 0; i< 3; i++){
         gcSky.model[i] = NULL;
         gcSky.model_bins[i] = NULL;

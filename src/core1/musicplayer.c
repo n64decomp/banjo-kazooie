@@ -433,7 +433,7 @@ void playMusic(enum comusic_e comusic_id, s32 volume, s32 forceReInit) {
     if (track->track_id < 0 || forceReInit) {
         switch (comusic_id) {
             case COMUSIC_15_EXTRA_LIFE_COLLECTED:
-                if (gsworld_get_map() == MAP_10_BGS_MR_VILE) {
+                if (gsworld_getMap() == MAP_10_BGS_MR_VILE) {
                     break;
                 }
             case COMUSIC_3B_MINIGAME_VICTORY:
@@ -669,8 +669,8 @@ int func_8025ADBC(enum comusic_e arg0) {
 }
 
 s32 func_8025ADD4(enum comusic_e id) {
-    CoMusic * ptr = findTrack(id);
-    return ptr - musicTracks;
+    CoMusic * trackPtr = findTrack(id);
+    return trackPtr - musicTracks;
 }
 
 void func_8025AE0C(s32 arg0, f32 arg1) {

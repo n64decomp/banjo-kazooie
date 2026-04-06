@@ -4,7 +4,7 @@
 #include "actor.h"
 
 extern ActorInfo D_80389AA0;
-extern ActorInfo D_80389AD0;
+extern ActorInfo chClankerKey;
 extern ActorInfo D_80389B00;
 extern ActorInfo D_80389B24;
 extern ActorInfo D_80389B90;
@@ -32,7 +32,7 @@ void CC_func_80387DA0(void)
     spawnableActorList_add(&D_80389E44, actor_new, ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_7 );
     spawnableActorList_add(&D_80389E68, actor_new, ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_7 );
     spawnableActorList_add(&D_80389E8C, actor_new, ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_7 );
-    spawnableActorList_add(&D_80389AD0, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chClankerKey, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80389B00, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80389B24, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80389B90, actor_new, ACTOR_FLAG_UNKNOWN_7);

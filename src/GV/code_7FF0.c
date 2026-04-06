@@ -26,8 +26,8 @@ extern ActorInfo D_80390ED0;
 extern ActorInfo D_80390F00;
 extern ActorInfo D_80390FD0;
 extern ActorInfo D_80391010;
-extern ActorInfo D_80391098;
-extern ActorInfo D_80391158;
+extern ActorInfo chSlappa;
+extern ActorInfo chGrabba;
 extern ActorInfo D_803911C0;
 extern ActorInfo D_803911F4;
 extern ActorInfo D_80391218;
@@ -191,7 +191,7 @@ void func_8038E4DC(Actor *this){
     }
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        if(gsworld_get_exit() == 3){
+        if(gsworld_getExit() == 3){
             if(0.65 < this->unk48 && this->unk48 < 0.95){
                 func_80343E20(0x6a, 0x7ff8, 0.32842f, 0x34);
             }
@@ -291,7 +291,7 @@ void func_8038E97C(Actor *this){
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        if(gsworld_get_exit() == 7){
+        if(gsworld_getExit() == 7){
             this->position_z += 117.0;
             this->position_y += 130.0;
             this->unk38_31 = 30;
@@ -482,8 +482,8 @@ void GV_func_8038F154(void)
     spawnableActorList_add(&D_80390F00, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80390FD0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);
     spawnableActorList_add(&D_80391010, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);
-    spawnableActorList_add(&D_80391098, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_16);
-    spawnableActorList_add(&D_80391158, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6);
+    spawnableActorList_add(&chSlappa, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_16);
+    spawnableActorList_add(&chGrabba, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6);
     spawnableActorList_add(&D_803911C0, actor_new, ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&D_803911F4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
     spawnableActorList_add(&D_80391218, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);

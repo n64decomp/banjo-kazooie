@@ -115,7 +115,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     }
 
     D_80363690 = 0;
-    switch (gsworld_get_map()) {
+    switch (gsworld_getMap()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
             if (arg0 == 0xD) {
                 baflag_set(BA_FLAG_16_FLYING);
@@ -185,7 +185,7 @@ void func_8028E4B0(void) {
     D_8037BFBA = TRUE;
     D_8037BFB9 = FALSE;
     func_80295914();
-    sp20 = gsworld_get_exit();
+    sp20 = gsworld_getExit();
     D_8037BFB8 = 0;
     playerPosition_set(D_803636C0);
     if (volatileFlag_get(VOLATILE_FLAG_E) || func_802D686C() || (sp20 == 0x65)){
@@ -247,7 +247,7 @@ void func_8028E6EC(s32 arg0){
 }
 
 void func_8028E71C(void) {
-    if (D_8037BFB8 && !D_8037BFB9 && func_80334904() == 2) {
+    if (D_8037BFB8 && !D_8037BFB9 && gsworld_getUnk0() == 2) {
         func_80295C14();
     }
 }
@@ -358,7 +358,7 @@ void func_8028E9C4(s32 arg0, f32 arg1[3]) {
             playerPosition_get(arg1);
             switch(bsStoredState_getTransformation()){
                 case TRANSFORM_3_PUMPKIN: //L8028EA68
-                    if(gsworld_get_map() == MAP_1B_MMM_MAD_MONSTER_MANSION){
+                    if(gsworld_getMap() == MAP_1B_MMM_MAD_MONSTER_MANSION){
                         arg1[1] += 100.0f;
                     }
                     else{
@@ -859,7 +859,7 @@ void func_8028F974(void){
 void func_8028F994(void){
     D_803636B0 = 1;
     player_getPosition(D_803636B4);
-    transitionToMap(gsworld_get_map(), 0, 0);
+    transitionToMap(gsworld_getMap(), 0, 0);
 }
 
 void func_8028F9DC(s32 arg0){
@@ -868,8 +868,8 @@ void func_8028F9DC(s32 arg0){
     player_getRotation(D_803636A4);
 }
 
-void func_8028FA14(enum map_e map_id, s32 exit_id){
-    func_8029C834(map_id, exit_id);
+void code_7060_setVoidOutLocation(enum map_e map_id, s32 exit_id){
+    code_14420_setVoidOutLocation(map_id, exit_id);
 }
 
 void func_8028FA34(enum actor_e arg0, Actor *arg1){

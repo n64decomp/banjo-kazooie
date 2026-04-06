@@ -18,8 +18,16 @@ typedef struct {
 void func_80391B04(Actor *this);
 
 /* .data */
-ActorInfo D_80394AB0 = { 0x1EF, 0x3BB, 0x54B, 0x1, NULL, func_80391B04, actor_update_func_80326224, func_80325340, 0, 0, 0.0f, 0};
+// Furnace Fun Fireball?
+ActorInfo D_80394AB0 = {
+    0x1EF, 0x3BB, 0x54B,
+    0x1, NULL,
+    func_80391B04, actor_update_func_80326224, func_80325340,
+    0, 0, 0.0f, 0
+};
+
 s32 D_80394AD4[3] = {0xBA, 0xBA, 0xBA};
+
 ParticleScaleAndLifetimeRanges D_80394AE0 = {
     {0.1f, 0.2f},
     {3.6f, 4.6f},

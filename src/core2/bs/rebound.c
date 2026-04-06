@@ -115,7 +115,7 @@ void func_802B3954(void) {
 
     next_state = 0;
     anim_ctrl = baanim_getAnimCtrlPtr();
-    if (batimer_decrement(0) && gsworld_get_map() == MAP_93_GL_DINGPOT) {
+    if (batimer_decrement(0) && gsworld_getMap() == MAP_93_GL_DINGPOT) {
         baMarker_collisionOn();
     }
     func_802B37DC();
