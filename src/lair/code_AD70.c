@@ -173,9 +173,9 @@ void func_80391810(Actor *this, s32 next_state) {
     switch (next_state) {
     case 1:
         sp34 = (this->position[1] + this->actor_specific_1_f) - this->unk1C[1];
-        this->velocity[1] = gu_sqrtf(this->actor_specific_1_f * 2000.0);
+        this->velocity[1] = sqrtf(this->actor_specific_1_f * 2000.0);
         local->unk0 = -this->velocity[1] / -1000.0f;
-        local->unk0 += gu_sqrtf((sp34 * -2.0) / -1000.0);
+        local->unk0 += sqrtf((sp34 * -2.0) / -1000.0);
         this->velocity[0] = this->unk1C[0] - this->position[0];
         this->velocity[2] = this->unk1C[2] - this->position[2];
         this->velocity[0] /= local->unk0;

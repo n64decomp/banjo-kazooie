@@ -205,7 +205,7 @@ f32 func_80323A48(f32 arg0[3], s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
                     func_80341180(var_f24, arg1, 3, arg0, &spDC);
                     ml_vec3f_diff_copy(spC4, spDC, spE8);
                     func_80258CDC(spD0, spC4);
-                    var_f22 = var_f26 + gu_sqrtf(spD0[0]*spD0[0] + spD0[1]*spD0[1] + spD0[2]*spD0[2]);
+                    var_f22 = var_f26 + sqrtf(spD0[0]*spD0[0] + spD0[1]*spD0[1] + spD0[2]*spD0[2]);
                 }
             } else {
                 func_80341180(var_f24, arg1, 3, arg0, spDC);
@@ -231,7 +231,7 @@ f32 func_80323A48(f32 arg0[3], s32 arg1, f32 arg2, f32 arg3, f32 arg4) {
                 func_80341180((f32) var_f24, arg1, 3, arg0, &spDC);
                 ml_vec3f_diff_copy(&spC4, &spDC, &spE8);
                 func_80258CDC(&spD0, &spC4);
-                var_f22 = var_f26 + gu_sqrtf(spD0[0]*spD0[0] + spD0[1]*spD0[1] + spD0[2]*spD0[2]);
+                var_f22 = var_f26 + sqrtf(spD0[0]*spD0[0] + spD0[1]*spD0[1] + spD0[2]*spD0[2]);
             } else {
                 func_80341180(var_f24, arg1, 3, arg0, &spDC);
                 var_f22 = var_f26 + ml_vec3f_length(&spF4, &spDC);

@@ -44,7 +44,7 @@ bool core1_ce60_isPlayerInRange(s32 x, s32 z, s32 distance) {
 }
 
 f32 core1_ce60_getPlayerDistance(f32 x, f32 z) {
-    return gu_sqrtf((x - sPlayerPosition[0]) * (x - sPlayerPosition[0]) + (z - sPlayerPosition[2]) * (z - sPlayerPosition[2]));
+    return sqrtf((x - sPlayerPosition[0]) * (x - sPlayerPosition[0]) + (z - sPlayerPosition[2]) * (z - sPlayerPosition[2]));
 }
 
 bool core1_ce60_isPlayerInsideBoundingBox(s32 box_idx) {

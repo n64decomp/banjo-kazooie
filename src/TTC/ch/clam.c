@@ -78,7 +78,7 @@ static bool __chClam_updateFuncTarget(Actor *this, f32 arg1) {
             phi_f2 = egg_dist;
     }
     else if ((subaddie_playerIsWithinSphereAndActive(this, 1200) != 0) && (func_803292E0(this) != 0)) {
-        phi_f2 = gu_sqrtf((f32) func_8032970C(this));
+        phi_f2 = sqrtf((f32) func_8032970C(this));
         player_getPosition(target_position);
         sp38 = 1;
     }

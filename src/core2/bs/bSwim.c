@@ -26,7 +26,7 @@ void func_802A7140() {
 f32 func_802A716C() {
     f32 sp24[3];
     baphysics_get_velocity(sp24);
-    ml_map_f(gu_sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
+    ml_map_f(sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
 }
 
 void func_802A71D8(void) {

@@ -55,7 +55,7 @@ void __baanim_update_scaleToHorizontalVelocity(void) {
     
     scale = (baAnimScale.scalable_duration != 0) ? baAnimScale.duration_scale : 1.0f;
     baphysics_get_velocity(velocity);
-    temp_f12 = ml_mapRange_f(gu_sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
+    temp_f12 = ml_mapRange_f(sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
     anctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, baAnimMinDuration, baAnimMaxDuration));
     anctrl_update(playerAnimCtrl);
 }
