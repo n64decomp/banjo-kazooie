@@ -18,7 +18,8 @@ ActorAnimationInfo D_80390FA0[] = {
     {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
     {ASSET_C9_ANIM_MAGIC_CARPET, 2.0f},
 };
-ActorInfo D_80390FD0 = { MARKER_B0_MAGIC_CARPET_2, ACTOR_123_MAGIC_CARPET_2, ASSET_3DC_MODEL_MAGIC_CARPET, 
+ActorInfo D_80390FD0 = {
+    MARKER_B0_MAGIC_CARPET_2, ACTOR_123_MAGIC_CARPET_2, ASSET_3DC_MODEL_MAGIC_CARPET, 
     0x1, D_80390FA0, 
     func_8038A314, func_8038A31C, func_8038A180, 
     0, 0, 0.0f, 0
@@ -78,9 +79,8 @@ void func_8038A31C(Actor *this){
         sp24 = subaddie_getLinkedActor(this);
 
     this->unk1C[1] = this->unk48;
-    ;
-    
-    switch(func_8038F4C0(this, 3))
+
+    switch(code7FF0_getMagicCarpetState(this, 3))
     {
     case 1: //L8038A3C0
         func_80343DEC(this);

@@ -127,7 +127,7 @@ static SnackerCtlState _snackerctl_update_bottles_bonus(void){
 }
 
 void snackerctl_update(void){
-    switch(gsworld_get_map()){
+    switch(gsworld_getMap()){
         case MAP_7_TTC_TREASURE_TROVE_COVE:
             s_snackerctl_state = __snackerctl_update_ttc();
             break;

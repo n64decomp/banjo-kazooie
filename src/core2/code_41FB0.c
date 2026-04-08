@@ -326,7 +326,7 @@ void bundle_update(Actor *actor) {
                 }
 
                 ml_vec3f_scale(bundle->velocity, bundle_info->bounce_factor);
-                speed = gu_sqrtf((bundle->velocity[0] * bundle->velocity[0]) + (bundle->velocity[1] * bundle->velocity[1]) + (bundle->velocity[2] * bundle->velocity[2]));
+                speed = sqrtf((bundle->velocity[0] * bundle->velocity[0]) + (bundle->velocity[1] * bundle->velocity[1]) + (bundle->velocity[2] * bundle->velocity[2]));
 
                 if (((speed < 200.0f) && (sp40[1] > 0.75)) || (speed < 10.0f)) {
                     bundle->state = BUNDLE_STATE_2_YAWING;

@@ -13,7 +13,7 @@ void func_80253190(Gfx **gfx) {
 }
 
 void func_80253208(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, void *color_buffer){
-    if( sDepthBuffer.data != NULL && (getGameMode() != GAME_MODE_4_PAUSED || func_80335134())){
+    if( sDepthBuffer.data != NULL && (getGameMode() != GAME_MODE_4_PAUSED || gsworld_getEnableDraw())){
         //draw z_buffer
         gDPPipeSync((*gfx)++);
         gDPSetColorImage((*gfx)++, G_IM_FMT_RGBA, G_IM_SIZ_16b, gFramebufferWidth, OS_K0_TO_PHYSICAL(sDepthBuffer.data));

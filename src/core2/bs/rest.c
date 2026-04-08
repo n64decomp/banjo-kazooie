@@ -160,7 +160,7 @@ void func_802B3E64(void) {
     if (func_802B3BB0()) {
         next_state = bs_getIdleState();
     }
-    if (gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK && baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
+    if (gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK && baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
         next_state = func_8029CA94(next_state);
     }
     bs_setState(next_state);

@@ -227,7 +227,7 @@ void func_802F7A2C(s32 arg0);
 enum asset_e print_getCurrentMapBoldFontTexture(void){
     s32 i;
     for(i = 0; mapToBoldFontTextureMap[i].mapID != 0 ; i++){
-        if(gsworld_get_map() == mapToBoldFontTextureMap[i].mapID){
+        if(gsworld_getMap() == mapToBoldFontTextureMap[i].mapID){
             return mapToBoldFontTextureMap[i].assetId;
         }
     }

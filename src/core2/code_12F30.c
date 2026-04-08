@@ -186,8 +186,8 @@ void func_80299EC0(f32 arg0[3]) {
     spD4[1] = spA0[1] - sp48[1][1];
     spD4[2] = spA0[2] - sp48[1][2];
 
-    f2 = gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2])
-        / (gu_sqrtf(spB8[0]*spB8[0] + spB8[1]*spB8[1] + spB8[2]*spB8[2]) + 0.01);
+    f2 = sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2])
+        / (sqrtf(spB8[0]*spB8[0] + spB8[1]*spB8[1] + spB8[2]*spB8[2]) + 0.01);
     for(i = 0; i < 3; i++){
         arg0[i] = sp7C[1][i] + (sp7C[2][i] - sp7C[1][i]) * f2;
     }
@@ -196,8 +196,8 @@ void func_80299EC0(f32 arg0[3]) {
     spD4[1] = spA0[1] - sp48[0][1];
     spD4[2] = spA0[2] - sp48[0][2];
 
-    f2 = 1 - (gu_sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2])
-            / (gu_sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + 0.01));
+    f2 = 1 - (sqrtf(spE0[0]*spE0[0] + spE0[1]*spE0[1] + spE0[2]*spE0[2])
+            / (sqrtf(spD4[0]*spD4[0] + spD4[1]*spD4[1] + spD4[2]*spD4[2]) + 0.01));
     for(i = 0; i < 3; i++){
         arg0[i] = arg0[i] + (sp7C[0][i] - arg0[i]) * f2;
     }
@@ -225,7 +225,7 @@ void func_8029A47C(s32 arg0[3]){
 
 void func_8029A4D0(void){
     int i;
-    s32 map_id = gsworld_get_map();
+    s32 map_id = gsworld_getMap();
     D_8037C6F0.unk0 = 0;
     D_8037C6F0.unk4[0] = 255.0f;
     D_8037C6F0.unk4[1] = 255.0f;

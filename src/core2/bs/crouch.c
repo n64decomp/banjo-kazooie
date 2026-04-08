@@ -68,7 +68,7 @@ void bscrouch_init(void){
     batimer_set(0, 0.7f);
     batimer_set(1, 0.2f);
     baphysics_get_velocity(sp28);
-    D_8037D400 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
+    D_8037D400 = sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     if(140.0f < D_8037D400)
         basfx_80299AAC();
 

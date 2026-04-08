@@ -225,7 +225,7 @@ void musicInstruments_init(void){
     
     size = soundfont2ctl_ROM_END - soundfont2ctl_ROM_START;
     bnk_f = malloc(size);
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
     osPiStartDma(func_802405D0(), 0, 0, (u32)soundfont2ctl_ROM_START, bnk_f, size, func_802405C4());
     osRecvMesg(func_802405C4(), 0, 1); //osRecvMesg
     D_80282104 = 0xAD;

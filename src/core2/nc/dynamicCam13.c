@@ -31,7 +31,7 @@ void func_802C069C(void) {
     ncDynamicCamera_getPosition(sp34);
     func_802C02D4(sp1C);
     ml_vec3f_diff_copy(sp28, sp34, sp1C);
-    D_8037DBA0 = gu_sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
+    D_8037DBA0 = sqrtf(sp28[0]*sp28[0] + sp28[2]*sp28[2]);
     func_8025801C(sp28, &D_8037DBA8);
     D_8037DBAC = 0.0f;
 }
@@ -66,7 +66,7 @@ void ncDynamicCam13_update(void) {
     sp44 = time_getDelta();
     func_802BDB30(D_8037DBA4, &D_8037DBA8, &D_8037DBAC, 800.0f, 160.0f, 100.0f);
     ml_vec3f_diff_copy(sp6C, sp54, sp84);
-    sp40 = gu_sqrtf(sp6C[0] * sp6C[0] + sp6C[2]*sp6C[2]);
+    sp40 = sqrtf(sp6C[0] * sp6C[0] + sp6C[2]*sp6C[2]);
     sp40 = sp40 + (func_802BD8D4() - sp40)* sp44 * 2;
     func_80256E24(sp60, 0.0f, D_8037DBA8, 0.0f, 0.0f, sp40);
     ml_vec3f_add(sp78, sp84, sp60);

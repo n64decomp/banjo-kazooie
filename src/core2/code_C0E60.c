@@ -97,7 +97,7 @@ void func_80347E60(Struct81s *arg0) {
         } else {
             var_f12 = temp_f0;
         }
-        temp_f26 = gu_sqrtf(var_f12);
+        temp_f26 = sqrtf(var_f12);
         for(var_s0 = 0; var_s0 != 2; var_s0++){
             if (((randf() * 3.0f) / 2) < temp_f26) {
                 func_80355C60(actor->position, 1.0f);

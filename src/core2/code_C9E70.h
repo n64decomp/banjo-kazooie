@@ -7,15 +7,23 @@
 #include "gc/zoombox.h"
 
 typedef struct {
-    s16 unk0[4];
-    u8 unk8; //FF_TileType
+    union{
+        s16 adjacentTiles[4];
+        struct{
+            s16 tileBelow;
+            s16 tileLeft;
+            s16 tileAbove;
+            s16 tileRight;
+        };
+    };
+    u8 tileType;
     u8 unk9;
     s16 unkA;
     u8 unkC[3];
     // u8 padF[0x1];
     f32 unk10;
     u8 pad14[0xC];
-}Struct_lair_5ED0_0;
+}Furnace_Fun_Board;
 
 struct FF_StorageStruct_48_sub {
     f32 unk0[3];
@@ -47,12 +55,12 @@ struct FF_StorageStruct_48 {
 // FF: generic storage struct
 struct FF_StorageStruct {
     /* 00 */ BKModel *unk0;
-    /* 04 */ Struct_lair_5ED0_0 *unk4;
-    /* 08 */ s16   unk8;
+    /* 04 */ Furnace_Fun_Board *currentBoardTile;
+    /* 08 */ s16   currentTileId;
     /* 0A */ u8    currFfMode;
     /* 0B */ u8    ffQuestionType;
-    /* 0C */ u8    unkC;
-    /* 0D */ u8    unkD; //question_indx
+    /* 0C */ u8    questionTypeTableIndex; // Question Type Index
+    /* 0D */ u8    questionAssetIndex; // Question Asset Id
     /* 0E */ s8    unkE;
     /* 0F */ s8    unkF;
 
@@ -70,7 +78,7 @@ struct FF_StorageStruct {
 
     // holds moves involved with the FFM glitch
     /* 1C */ u32   unlockedMoves;
-    /* 20 */ GcZoombox *unk20;
+    /* 20 */ GcZoombox *zoombox;
     /* 24 */ f32   playerPosition[3];
     /* 30 */ f32   playerRotation[3];
 

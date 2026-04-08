@@ -26,7 +26,7 @@ void func_802F7EB0(struct3s *this){
     sp4C[1] = randf2(200.0f, 300.0f);
     sp4C[2] = -tmpf;
 
-    if(gu_sqrtf(this->unk10[0]*this->unk10[0] + this->unk10[1]*this->unk10[1] + this->unk10[2]*this->unk10[2]) < 5.0f){
+    if(sqrtf(this->unk10[0]*this->unk10[0] + this->unk10[1]*this->unk10[1] + this->unk10[2]*this->unk10[2]) < 5.0f){
         ml_vec3f_yaw_rotate_copy(sp4C, sp4C, randf2(0.0f, 360.0f));
     }
     else{

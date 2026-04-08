@@ -39,18 +39,22 @@ ActorInfo gChMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_M
 };
 
 /* .code section */
-void func_8038EA30(void){
+#if ANTI_TAMPER
+void chMudHut_makeWadingBootsRunOutInstantly(void){
     if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(STATE_TIMER_2_LONGLEG)) ){
         player_stateTimer_set(STATE_TIMER_2_LONGLEG, 1.5);
     }
 }
+#endif
 
-void func_8038EA90(void){
-    u32 sp1C;
-    osPiReadIo(0xD10, &sp1C);
-    if(sp1C = (u16)(sp1C-0x400)){
-        func_8038EA30();
+void chMudHut_checkBGSChecksums(void){
+#if ANTI_TAMPER
+    u32 rom_data;
+    osPiReadIo(0xD10, &rom_data);
+    if(rom_data = (u16)(rom_data-0x400)){
+        chMudHut_makeWadingBootsRunOutInstantly();
     }
+#endif
 }
 
 Actor *chMudHut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
@@ -79,7 +83,7 @@ void chMudHut_update(Actor *this){
     f32 plyrPos[3];
     s32 tmp;
 
-    if(func_80334904() == 2){
+    if(gsworld_getUnk0() == 2){
         if(!this->initialized){
             this->marker->collidable = FALSE;
             this->initialized = TRUE;

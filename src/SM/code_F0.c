@@ -20,13 +20,13 @@ extern ActorInfo gChVegetablesBawlB;
 extern ActorInfo gChVegetablesCollywobbleB;
 extern ActorInfo gChBottles;
 extern ActorInfo gChJumpTutorial;
-extern ActorInfo gCode44D0;
+extern ActorInfo gSmBridgeChecksumTrigger;
 extern ActorInfo gBanjosBed;
 extern ActorInfo gBanjosChair;
 extern ActorInfo gBanjosStove;
 extern ActorInfo gRockTrappingGrunty;
 
-extern u32 D_803FFE00[4];
+extern u32 gCore1CRCs[4];
 
 /* .data */
 s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
@@ -61,11 +61,13 @@ static void __codeF0_learnAbility(enum ability_e ability){
     }
 }
 
-void codeF0_func_80386540(){
+void codeF0_breakAbilitiesIfChecksumsFail(){
+#if ANTI_TAMPER
     u32 *learned_abilities_address;
     s32 sp28;
     u32 *addr;
-    u32 sp20;
+    u32 rom_data;
+
     learned_abilities_address = __codeF0_getLearnedAbilitiesAddress();
     sp28 = *learned_abilities_address;
     *learned_abilities_address = 0;
@@ -78,16 +80,17 @@ void codeF0_func_80386540(){
     }
 
     *learned_abilities_address = sp28;
-    osPiReadIo(0x574, &sp20);
-    if((sp20 = (sp20 & 0xffff)) != 0x6c07)
+
+    osPiReadIo(0x574, &rom_data);
+    if((rom_data = (rom_data & 0xffff)) != 0x6c07)
         __codeF0_learnAbility(ABILITY_A_HOLD_A_JUMP_HIGHER);
 
     if(!__codeF0_areCrcsValid())
         __codeF0_learnAbility(ABILITY_10_TALON_TROT);
-    
 
     if(!__codeF0_areRomCrcsCorrect())
         __codeF0_learnAbility(ABILITY_C_ROLL);
+#endif
 }
 
 void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
@@ -113,13 +116,14 @@ void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
 
 extern u8 crc_ROM_START[];
 
+#if ANTI_TAMPER
 static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 
-    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == D_803FFE00[0])
-        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == D_803FFE00[1])
-        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == D_803FFE00[2])
-        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == D_803FFE00[3])
+    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == gCore1CRCs[0])
+        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == gCore1CRCs[1])
+        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == gCore1CRCs[2])
+        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == gCore1CRCs[3])
     ){
         return TRUE;
     }
@@ -137,6 +141,7 @@ static bool __codeF0_areCrcsValid(){
     }
     return FALSE;
 }
+#endif
 
 void SM_resetSpawnableActors()
 {
@@ -151,7 +156,7 @@ void SM_resetSpawnableActors()
     spawnableActorList_add(&gChVegetablesCollywobbleB,  actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_21 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gChBottles,  actor_new, ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&gChJumpTutorial,  actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&gCode44D0 ,  actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&gSmBridgeChecksumTrigger ,  actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gBanjosBed,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gBanjosChair,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&gBanjosStove,  actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);

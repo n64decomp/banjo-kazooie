@@ -134,7 +134,7 @@ void func_802F1934(Struct_Core2_6A4B0_2 * arg0, s32 arg1){
         arg0->tmem_ptr = (u16*)((s32)arg0->tmem_ptr + 1);
     }
     func_80253010(arg0->tmem_ptr, gFramebuffers[arg1], gFramebufferWidth*gFramebufferHeight*sizeof(u16));
-    osWriteBackDCacheAll();
+    osWritebackDCacheAll();
 }
 
 void func_802F1A08(s32 arg0) { }

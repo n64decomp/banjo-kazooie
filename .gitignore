@@ -9,9 +9,8 @@ asm/nonmatchings
 asm/data
 asm/*.s
 asm/*/*.s
-asm/core1/os
-!asm/ultra
-!asm/core1/ultra
+asm/boot/
+asm/core1/
 build/*
 build/
 

@@ -15,7 +15,9 @@ ActorAnimationInfo D_80391190[] = {
     {0xE8, 0.8f}
 };
 
-ActorInfo D_803911C0 = { 0xAC, 0x11E, 0x3E5,
+// Grabba/Slappa Shadow?
+ActorInfo D_803911C0 = {
+    0xAC, 0x11E, 0x3E5,
     0, D_80391190,
     GV_func_8038C658, actor_update_func_80326224, GV_func_8038C5D0,
     0, 0, 0.0f, 0

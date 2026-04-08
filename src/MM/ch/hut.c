@@ -62,7 +62,7 @@ void chhut_update(Actor *this) {
     f32 diff_pos[3];
     f32 plyr_pos[3];
 
-    if (func_80334904() != 2) {
+    if (gsworld_getUnk0() != 2) {
         return;
     }
 

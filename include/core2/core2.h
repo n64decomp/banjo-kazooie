@@ -15,6 +15,25 @@ f32  func_80351830(Struct68s *arg0);
 
 extern void sfxsource_setSampleRate(u8, s32);
 
+void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx);
+void gsworld_stub1(s32 arg0, s32 arg1, s32 arg2);
+enum map_e gsworld_getMap(void);
+s32 gsworld_getExit();
+void gsworld_transitionToExit(s32 exit);
+s32 gsworld_getUnk0();
+void gsworld_free(void);
+void gsworld_set(enum map_e map, s32 exit, bool reload);
+void gsworld_reload(void);
+void gsworld_stub2(void);
+void gsworld_setUnk0(s32 value);
+s32 gsworld_update(void);
+void gsworld_setEnableUpdate(bool value);
+bool gsworld_getEnableUpdate();
+void gsworld_setEnableDraw(bool value);
+bool gsworld_getEnableDraw();
+void gsworld_load(enum map_e map_id);
+void gsworld_stub3(enum map_e map);
+
 s32 bitfieldarray_getBit(u8 *array, s32 index);
 s32 bitfieldarray_getNBits(u8 *array, s32 offset, s32 count);
 void bitfieldarray_setBit(u8 *array, s32 index, s32 set);

@@ -169,7 +169,7 @@ void func_80345A44(f32 arg0[4], MtxF* arg1) {
 
     temp_f0 = arg1->m[0][0] + arg1->m[1][1] + arg1->m[2][2];
     if (temp_f0 > 0.0) {
-        temp_f2 = gu_sqrtf(temp_f0 + 1.0);
+        temp_f2 = sqrtf(temp_f0 + 1.0);
         arg0[3] = temp_f2 * 0.5;
         temp_f2 = (0.5 / temp_f2);
         arg0[0] = (arg1->m[1][2] - arg1->m[2][1]) * temp_f2;
@@ -187,7 +187,7 @@ void func_80345A44(f32 arg0[4], MtxF* arg1) {
         temp_a0 = D_80371ED0[var_a0];
         temp_a2 = D_80371ED0[temp_a0];
 
-        temp_f2 = gu_sqrtf((arg1->m[var_a0][var_a0] - (arg1->m[temp_a0][temp_a0] + arg1->m[temp_a2][temp_a2])) + 1.0);
+        temp_f2 = sqrtf((arg1->m[var_a0][var_a0] - (arg1->m[temp_a0][temp_a0] + arg1->m[temp_a2][temp_a2])) + 1.0);
         arg0[var_a0] = temp_f2 * 0.5;
         temp_f2 = (0.5 / temp_f2);
         arg0[3] = (arg1->m[temp_a0][temp_a2] - arg1->m[temp_a2][temp_a0]) * temp_f2;

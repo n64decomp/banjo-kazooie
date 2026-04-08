@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "version.h"
-#include "2.0L/PR/sched.h"
+#include "PR/sched.h"
 #include "n_libaudio.h"
 
 #define AUDIO_HEAP_SIZE VER_SELECT(0x21000, 0x23A00, 0x21000, 0x21000)

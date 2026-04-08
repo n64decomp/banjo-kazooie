@@ -26,7 +26,7 @@ void func_802A7140() {
 f32 func_802A716C() {
     f32 sp24[3];
     baphysics_get_velocity(sp24);
-    ml_map_f(gu_sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
+    ml_map_f(sqrtf((sp24[0] * sp24[0]) + (sp24[1] * sp24[1]) + (sp24[2] * sp24[2])), 50.0f, 200.0f, 0.0f, 1.0f);
 }
 
 void func_802A71D8(void) {
@@ -65,7 +65,7 @@ void func_802A7304() {
 bool func_802A73BC(void) {
     f32 sp1C;
 
-    sp1C = (gsworld_get_map() == MAP_46_CCW_WINTER) ? 90.0f : 130.0f;
+    sp1C = (gsworld_getMap() == MAP_46_CCW_WINTER) ? 90.0f : 130.0f;
     return floor_isCurrentFloorunk59() && playerPosition_getY() > (floor_getCurrentFloorYPosition() - sp1C);
 }
 
@@ -387,7 +387,7 @@ void func_802A7F4C(void){
 void func_802A7F6C(void) {
     D_8037D394 = BOOL(bs_getPrevState() == BS_41_DIE);
 
-    if (D_8037D394 || level_get() == LEVEL_9_RUSTY_BUCKET_BAY || gsworld_get_map() == MAP_46_CCW_WINTER) {
+    if (D_8037D394 || level_get() == LEVEL_9_RUSTY_BUCKET_BAY || gsworld_getMap() == MAP_46_CCW_WINTER) {
         D_8037D395 = 0;
     } else {
         D_8037D395 = 1;

@@ -26,8 +26,9 @@ s32 D_80372804 = 0;
 // bk_boot segment crc remaining words
 s32 D_80372808 = 0;
 
+#if ANTI_TAMPER
 // init bk_boot crc
-void func_80356580(void) {
+void codeCF5F0_initChecksumsVars(void) {
     D_803727FC = (s32) boot_bk_boot_ROM_START;
     D_80372800 = 0;
     D_80372804 = -1;
@@ -35,7 +36,7 @@ void func_80356580(void) {
 }
 
 // advance bk_boot crc by one word
-s32 func_803565BC(void) {
+s32 codeCF5F0_areChecksumsValid(void) {
     u32 crc1;
     u32 crc2;
     u8 romBytes[4];
@@ -74,14 +75,19 @@ s32 func_803565BC(void) {
     }
     return 1;
 }
+#endif
 
 void func_80356714(void) {
-    func_80356580();
+#if ANTI_TAMPER
+    codeCF5F0_initChecksumsVars();
+#endif
 }
 
-void func_80356734(void) {
-    func_803565BC();
-    if (func_803565BC() == 0) {
-        ability_setAllLearned(0x10);
+void codeCF5F0_forgetAllAbilitiesExceptClawSwipeIfChecksumsFail(void) {
+#if ANTI_TAMPER
+    codeCF5F0_areChecksumsValid();
+    if (codeCF5F0_areChecksumsValid() == 0) {
+        ability_setAllLearned(1 << ABILITY_4_CLAW_SWIPE);
     }
+#endif
 }

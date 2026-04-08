@@ -24,7 +24,7 @@ void func_80345EB0(enum item_e item){
     if(func_802FAFE8(item)){
         item_adjustByDiffWithHud(item, (s32)(-time_getDelta()*60.0f * 1.1));
     }else{
-        func_802FACA4(item);
+        code_73640_printItemCount(item);
     }
 }
 
@@ -105,9 +105,9 @@ s32 item_adjustByDiff(enum item_e item, s32 diff, s32 no_hud){
         D_80385F30[item] = MIN(sp38, D_80385F30[item]);
     }
     if(!no_hud){
-        func_802FACA4(item); // displays item on HUD
+        code_73640_printItemCount(item); // displays item on HUD
         if(item == ITEM_14_HEALTH || item == ITEM_17_AIR)
-            func_802FACA4(ITEM_16_LIFE);
+            code_73640_printItemCount(ITEM_16_LIFE);
     }
 
     sp3C = item_empty(item);
@@ -238,12 +238,12 @@ void func_803465E4(void){
     int is_on_water_surface;
     int is_in_polluted_or_winter_water;
 
-    if(func_80334904() != 2) return;
+    if(gsworld_getUnk0() != 2) return;
     if(D_80385FE8){
         if( ncCamera_getType() != 3 // CAMERA_TYPE_3_STATIC
             && func_8028F070()
-            && gsworld_get_map() != MAP_33_UNUSED
-            && gsworld_get_map() != MAP_91_FILE_SELECT
+            && gsworld_getMap() != MAP_33_UNUSED
+            && gsworld_getMap() != MAP_91_FILE_SELECT
         ){
             D_80385FE0 = TRUE;
         }//L80346674
@@ -254,7 +254,7 @@ void func_803465E4(void){
         if(gctransition_done() || volatileFlag_get(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ)){
             if(D_80385FE4){
                 item_dec(ITEM_16_LIFE);
-                func_802FACA4(ITEM_14_HEALTH);
+                code_73640_printItemCount(ITEM_14_HEALTH);
             }
             D_80385FE4 = FALSE;
             sp50 = TRUE;
@@ -282,7 +282,7 @@ void func_803465E4(void){
         if(level_get() != LEVEL_2_TREASURE_TROVE_COVE || !levelSpecificFlags_get(LEVEL_FLAG_5_TTC_UNKNOWN)){
             is_underwater = (player_getWaterState() == BSWATERGROUP_2_UNDERWATER);
             is_on_water_surface = (player_getWaterState() == BSWATERGROUP_1_SURFACE);
-            is_in_polluted_or_winter_water = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (gsworld_get_map() == MAP_46_CCW_WINTER));
+            is_in_polluted_or_winter_water = ((level_get() == LEVEL_9_RUSTY_BUCKET_BAY) || (gsworld_getMap() == MAP_46_CCW_WINTER));
             if( is_in_polluted_or_winter_water && (is_underwater || is_on_water_surface)){ //L803467EC
                 D_80385FEC = 2.0f;
             }
@@ -319,7 +319,7 @@ void func_803465E4(void){
     ){
         if(sp4C == LEVEL_C_BOSS)
             sp4C = LEVEL_6_LAIR;
-        if(sp4C > 0  && sp4C < 0xC && gsworld_get_map() != MAP_91_FILE_SELECT){
+        if(sp4C > 0  && sp4C < 0xC && gsworld_getMap() != MAP_91_FILE_SELECT){
             D_80386000[sp4C] = MAX(1.0, MIN(65535.0, D_80386000[sp4C] + time_getDelta()));
         }
     }//L80346B6C

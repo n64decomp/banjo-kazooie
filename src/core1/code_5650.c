@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "n_libaudio.h"
-#include "n_synth.h"
+#include "n_audio/n_synth.h"
 
 void  func_802444C0(N_AL_Struct81s *arg0);
 void  func_80244050(ALEventQueue *arg0, N_AL_Struct81s *arg1, u16 arg2);

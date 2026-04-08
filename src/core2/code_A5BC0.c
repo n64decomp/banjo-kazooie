@@ -1678,7 +1678,7 @@ void func_80330FF4(void){
     f32 sp48[3];
     f32 scale[3];
 
-    if(func_80334904() == 1)
+    if(gsworld_getUnk0() == 1)
         return;
     
     if(D_8038341C != NULL){

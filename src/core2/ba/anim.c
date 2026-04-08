@@ -55,7 +55,7 @@ void __baanim_update_scaleToHorizontalVelocity(void) {
     
     scale = (baAnimScale.scalable_duration != 0) ? baAnimScale.duration_scale : 1.0f;
     baphysics_get_velocity(velocity);
-    temp_f12 = ml_mapRange_f(gu_sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
+    temp_f12 = ml_mapRange_f(sqrtf(velocity[0]*velocity[0] + velocity[2] * velocity[2]), baAnimScale.velocity_min, baAnimScale.velocity_max, baAnimScale.duration_min * scale, baAnimScale.duration_max * scale);
     anctrl_setDuration(playerAnimCtrl, ml_clamp_f(temp_f12, baAnimMinDuration, baAnimMaxDuration));
     anctrl_update(playerAnimCtrl);
 }
@@ -121,7 +121,7 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
         boneTransformList_setBoneScale(arg0, 0x64, scale);
         boneTransformList_setBoneScale(arg0, 0x67, scale);
     }
-    if (gsworld_get_map() == MAP_A_TTC_SANDCASTLE) {
+    if (gsworld_getMap() == MAP_A_TTC_SANDCASTLE) {
         if ((D_8037BF4C & BAANIM_WISHYWASHY) && (player_getTransformation() != TRANSFORM_7_WISHWASHY)) {
             func_8028FB88(TRANSFORM_7_WISHWASHY);
         }

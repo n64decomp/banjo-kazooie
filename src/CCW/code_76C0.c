@@ -44,7 +44,7 @@ extern ActorInfo D_8038F460;
 extern ActorInfo D_8038F4A8;
 extern ActorInfo D_8038F4D0;
 extern ActorInfo D_8038F614;
-extern ActorInfo D_8038F640;
+extern ActorInfo chGnawtyBoulder;
 extern ActorInfo D_8038F908;
 extern ActorInfo D_8038F8C0;
 extern ActorInfo D_8038F720;
@@ -202,7 +202,7 @@ void CCW_func_8038DB6C(void)
     spawnableActorList_add(&D_8038F4A8, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
     spawnableActorList_add(&D_8038F4D0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
     spawnableActorList_add(&D_8038F614, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F640, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chGnawtyBoulder, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_8038F908, actor_new, ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&D_8038F8C0, actor_new, ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&D_8038F720, actor_new, ACTOR_FLAG_NONE);
