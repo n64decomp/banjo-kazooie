@@ -392,7 +392,7 @@ void func_80389060(Actor *this){
 
 void func_803890B8(Actor *this) {
     func_802D3D54(this);
-    func_8038AC04();
+    chTumblar_checkMMMChecksums();
 }
 
 void MMM_func_803890E0(void){

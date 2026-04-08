@@ -41,7 +41,7 @@ void chLongSwampSwitch_jiggySpawn(void) {
 }
 
 void chLongSwampSwitch_update(Actor *this){
-    func_8038EA90();
+    chMudHut_checkBGSChecksums();
 
     // If the switch has been pressed, hitting it again resets the timer
     if (mapSpecificFlags_get(BGS_SPECIFIC_FLAG_7)) {
@@ -92,7 +92,7 @@ void chShortSwampSwitch_jiggySpawn(void){
 }
 
 void chShortSwampSwitch_update(Actor *this){
-    func_8038EA90();
+    chMudHut_checkBGSChecksums();
 
     if (mapSpecificFlags_get(BGS_SPECIFIC_FLAG_8)) {
         mapSpecificFlags_set(BGS_SPECIFIC_FLAG_8, 0);

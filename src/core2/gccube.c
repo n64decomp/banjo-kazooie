@@ -38,7 +38,7 @@ void __code7AF80_func_80308F0C(Cube *cube);
 void func_80308EC8(void);
 
 extern ActorInfo D_803675F0;
-extern ActorInfo D_80367838;
+extern ActorInfo gWorldExitPad;
 
 /* .data */
 s32 sSpawnableActorSize = 0; //0x8036A9B0
@@ -1295,15 +1295,17 @@ void func_8030578C(void){
     int i;
     u32 sp40;
     Cube *iCube;
-    
+
+#if ANTI_TAMPER
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         osPiReadIo(0xE38, &sp40);
         sp40 ^= 0x828A;
         if( (sp40 & 0xffff)
             && (sSpawnableActorList != NULL)
         ){
+            // Replace World Exit Pad with empty actor if checksum fails
             for(i = 0; i < sSpawnableActorSize - 1; i++){
-                if(sSpawnableActorList[i].infoPtr == &D_80367838){
+                if(sSpawnableActorList[i].infoPtr == &gWorldExitPad){
                     sSpawnableActorList[i].infoPtr = &D_803675F0;
                     sSpawnableActorList[i].spawnFunc = actor_new;
                     sSpawnableActorList[i].unk8 = 0;
@@ -1312,6 +1314,8 @@ void func_8030578C(void){
             }
         }
     }//L80305850
+#endif
+
     for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         func_80330208(iCube);
     }

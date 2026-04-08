@@ -270,7 +270,7 @@ void func_8038E648(Actor *this){
 }
 
 void func_8038E914(Actor *this){
-    func_80389F5C(this);
+    code3B10_checkGVChecksums(this);
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
@@ -510,13 +510,18 @@ void GV_func_8038F154(void)
     spawnableActorList_add(&D_80391590, actor_new, ACTOR_FLAG_UNKNOWN_10);
 }
 
-s32 func_8038F4C0(Actor *arg0, s32 arg1){
+s32 code7FF0_getMagicCarpetState(Actor *magicCarpetActor, s32 stateIfChecksumFails){
+#if ANTI_TAMPER
     if( getGameMode() != GAME_MODE_7_ATTRACT_DEMO 
         && (0xDBF4E829 + *(s32*)PHYS_TO_K1(0x284))
     ){
-        return arg1;
+        // The carpet remains always invisible
+        return stateIfChecksumFails;
     }
     else{
-        return arg0->state;
+        return magicCarpetActor->state;
     }
+#else
+    return magicCarpetActor->state;
+#endif
 }

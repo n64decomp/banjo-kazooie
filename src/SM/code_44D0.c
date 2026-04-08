@@ -10,8 +10,8 @@ void player_walkToPosition(f32 *, f32,  void(*)(ActorMarker *), ActorMarker *);
 void func_8038A8F8(Actor *this);
 
 /* .data */
-ActorInfo gCode44D0  = { 
-    MARKER_1F0_SM_UNKNOWN, ACTOR_3BD_SM_UNKNOWN, NULL, 
+ActorInfo gSmBridgeChecksumTrigger  = { 
+    MARKER_1F0_SM_BRIDGE_CHECKSUM_TRIGGER, ACTOR_3BD_SM_BRIDGE_CHECKSUM_TRIGGER, NULL, 
     0, NULL, func_8038A8F8, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 };
@@ -25,7 +25,7 @@ void func_8038A8C0(ActorMarker *arg0){
 }
 
 void func_8038A8F8(Actor *this){
-    f32 sp2C;
+    f32 distance;
     NodeProp *other;
     
     if(!this->volatile_initialized){
@@ -41,11 +41,11 @@ void func_8038A8F8(Actor *this){
         this->volatile_initialized = TRUE;
     }//L8038A968
     player_getPosition(this->velocity);
-    sp2C = ml_vec3f_distance(this->velocity, this->position);
-    if(sp2C < (f32) this->actorTypeSpecificField)
-        func_80388D48();
+    distance = ml_vec3f_distance(this->velocity, this->position);
+    if(distance < (f32) this->actorTypeSpecificField)
+        code2900_checkSMChecksums();
 
-    if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_10) && sp2C < (f32) this->actorTypeSpecificField && 1780.0f < func_8028E82C()){
+    if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_10) && distance < (f32) this->actorTypeSpecificField && 1780.0f < func_8028E82C()){
         if( !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)
             || (mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
         ){ //L8038AA54
@@ -55,4 +55,3 @@ void func_8038A8F8(Actor *this){
         }
     }
 }
-
