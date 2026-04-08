@@ -21,7 +21,7 @@ struct {
 } sD_8038D6F0;
 
 /* .code */
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 void __code3040_makeBanjoAlwaysSlippery(){
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         func_8029CF48(2, 1, 0.0f);
@@ -30,7 +30,7 @@ void __code3040_makeBanjoAlwaysSlippery(){
 #endif
 
 void code3040_checkTTCChecksums(void){
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     if(sD_8038D6F0.crc1 != D_8038C754 ||  sD_8038D6F0.crc2 != D_80276CB0){
         __code3040_makeBanjoAlwaysSlippery();
     }

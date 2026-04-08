@@ -144,7 +144,7 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
     }
 }
 
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 void code13C0_makeCameraFlipAndTilt(void){
     f32 rotation[3];
     s32 timer;
@@ -165,7 +165,7 @@ void code13C0_makeCameraFlipAndTilt(void){
 #endif
 
 void code13C0_checkCCChecksums(void){
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     u32 rom_data;
     u32 unused;
     osPiReadIo(0x504, &rom_data);

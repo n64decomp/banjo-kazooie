@@ -57,7 +57,7 @@ f32 func_8024E420(s32 arg0, s32 arg1, s32 arg2) {
     f32 phi_f2;
 
     phi_f2 = 0.0125f;
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     if ((D_80379B90.crc1 != D_803727F4) || (D_80379B90.crc2 != D_80276574)) {
         phi_f2 = 0.00625f;
     }

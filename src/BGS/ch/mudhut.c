@@ -39,7 +39,7 @@ ActorInfo gChMudHut = {MARKER_D5_BGS_MUD_HUT, ACTOR_C_MUD_HUT, ASSET_7D8_MODEL_M
 };
 
 /* .code section */
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 void chMudHut_makeWadingBootsRunOutInstantly(void){
     if((getGameMode() != GAME_MODE_7_ATTRACT_DEMO) && (1.5 < player_stateTimer_get(STATE_TIMER_2_LONGLEG)) ){
         player_stateTimer_set(STATE_TIMER_2_LONGLEG, 1.5);
@@ -48,7 +48,7 @@ void chMudHut_makeWadingBootsRunOutInstantly(void){
 #endif
 
 void chMudHut_checkBGSChecksums(void){
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     u32 rom_data;
     osPiReadIo(0xD10, &rom_data);
     if(rom_data = (u16)(rom_data-0x400)){

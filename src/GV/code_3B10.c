@@ -14,7 +14,7 @@ u32 D_80390F38 = 0x0003031C; //GV.data CRC1 (with this value = 0)
 
 
 /* .code */
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 void code3B10_makeRunningShoesRunOutInstantly(void){
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO && 2.0f < player_stateTimer_get(STATE_TIMER_3_TURBO_TALON)){
         player_stateTimer_set(STATE_TIMER_3_TURBO_TALON, 2.0f);
@@ -23,7 +23,7 @@ void code3B10_makeRunningShoesRunOutInstantly(void){
 #endif
 
 void code3B10_checkGVChecksums(void){
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     u32 rom_data;
     osPiReadIo(0x800, &rom_data);
     rom_data <<= 0x10;

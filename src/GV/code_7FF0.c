@@ -511,9 +511,7 @@ void GV_func_8038F154(void)
 }
 
 s32 code7FF0_getMagicCarpetState(Actor *magicCarpetActor, s32 stateIfChecksumFails){
-#if DISABLE_PIRACY_CHECKS
-    return magicCarpetActor->state;
-#else
+#if ANTI_TAMPER
     if( getGameMode() != GAME_MODE_7_ATTRACT_DEMO 
         && (0xDBF4E829 + *(s32*)PHYS_TO_K1(0x284))
     ){
@@ -523,5 +521,7 @@ s32 code7FF0_getMagicCarpetState(Actor *magicCarpetActor, s32 stateIfChecksumFai
     else{
         return magicCarpetActor->state;
     }
+#else
+    return magicCarpetActor->state;
 #endif
 }

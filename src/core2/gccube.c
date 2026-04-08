@@ -1296,7 +1296,7 @@ void func_8030578C(void){
     u32 sp40;
     Cube *iCube;
 
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         osPiReadIo(0xE38, &sp40);
         sp40 ^= 0x828A;

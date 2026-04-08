@@ -62,7 +62,7 @@ static void __codeF0_learnAbility(enum ability_e ability){
 }
 
 void codeF0_breakAbilitiesIfChecksumsFail(){
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     u32 *learned_abilities_address;
     s32 sp28;
     u32 *addr;
@@ -116,7 +116,7 @@ void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
 
 extern u8 crc_ROM_START[];
 
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 

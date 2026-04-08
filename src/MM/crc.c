@@ -11,7 +11,7 @@ u32 D_803899C8 = 0x0000D44F; //MM.data CRC1 (with this value = 0)
 
 void chmumbo_func_802D1724(void);
 
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
 void MM_makeMumboAlwaysTransformBanjoIntoTermite(void) {
     u32 *temp_v0;
     u32 temp_a0;
@@ -30,7 +30,7 @@ void MM_makeMumboAlwaysTransformBanjoIntoTermite(void) {
 #endif
 
 void MM_checkMMChecksums(void) {
-#if !DISABLE_PIRACY_CHECKS
+#if ANTI_TAMPER
     s32 rom_data;
 
     osPiReadIo(0x578, (u32 *)&rom_data);
