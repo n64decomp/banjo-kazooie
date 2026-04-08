@@ -26,7 +26,7 @@ f32 ncDynamicCam9_func_802C09E8(void) {
     d_pos[0] = D_8037DBB0[0] - player_position[0];
     d_pos[1] = 0.0f;
     d_pos[2] = D_8037DBB0[2] - player_position[2];
-    return ml_min_f(gu_sqrtf(d_pos[0]*d_pos[0] + d_pos[2]*d_pos[2]), D_8037DBBC) / D_8037DBBC;
+    return ml_min_f(sqrtf(d_pos[0]*d_pos[0] + d_pos[2]*d_pos[2]), D_8037DBBC) / D_8037DBBC;
 }
 
 void ncDynamicCam9_func_802C0A60(f32 arg0[3]) {

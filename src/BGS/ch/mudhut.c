@@ -83,7 +83,7 @@ void chMudHut_update(Actor *this){
     f32 plyrPos[3];
     s32 tmp;
 
-    if(func_80334904() == 2){
+    if(gsworld_getUnk0() == 2){
         if(!this->initialized){
             this->marker->collidable = FALSE;
             this->initialized = TRUE;

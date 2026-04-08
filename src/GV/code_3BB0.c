@@ -6,7 +6,8 @@
 void GV_func_8038A084(Actor *this);
 
 /* .data */
-ActorInfo D_80390F40 = { 0x24F, 0x37C, 0x0, 
+ActorInfo D_80390F40 = {
+    0x24F, 0x37C, 0x0, 
     0, NULL, 
     GV_func_8038A084, actor_update_func_80326224, func_80325340, 
     2000, 0, 0.0f, 0

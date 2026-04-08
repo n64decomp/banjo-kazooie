@@ -1,0 +1,49 @@
+#include <ultra64.h>
+#include "functions.h"
+#include "variables.h"
+
+void func_803864B8(Actor *this);
+
+ActorInfo D_8038EB50 = {
+    MARKER_1AC_ZUBBA_DOOR, ACTOR_298_ZUBBA_DOOR, ASSET_444_MODEL_CCW_ZUBBA_DOOR,
+    0x0, NULL,
+    func_803864B8, NULL, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_8038EB74 = {
+    MARKER_1AC_ZUBBA_DOOR, ACTOR_29A_ZUBBA_DOOR, ASSET_445_MODEL_CCW_ZUBBA_DOOR,
+    0x0, NULL,
+    func_803864B8, NULL, actor_draw,
+    0, 0, 0.0f, 0
+};
+
+/* .code */
+void CCW_func_803863F0(Actor *this, s32 next_state){
+    if(next_state == 2){
+        sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 1.0f, 32000, this->position, 500, 3000);
+        levelSpecificFlags_set(LEVEL_FLAG_10_CCW_BREAK_ZUBBA_DOOR, TRUE);
+        marker_despawn(this->marker);
+    }
+    this->state = next_state;
+}
+
+void chZubbaDoor_die(ActorMarker* marker, ActorMarker *arg1) {
+    Actor* actor = marker_getActor(marker);
+    if (actor->state == 1 && gsworld_getMap() == MAP_44_CCW_SUMMER) {
+        CCW_func_803863F0(actor, 2);
+    }
+}
+
+void func_803864B8(Actor *this){
+    if(!this->volatile_initialized){
+        this->volatile_initialized = TRUE;
+        this->marker->propPtr->unk8_3 = TRUE;
+        marker_setCollisionScripts(this->marker, NULL, NULL, chZubbaDoor_die);
+        CCW_func_803863F0(this, 1);
+
+        if (levelSpecificFlags_get(LEVEL_FLAG_10_CCW_BREAK_ZUBBA_DOOR)) {
+            marker_despawn(this->marker);
+        }
+    }
+}

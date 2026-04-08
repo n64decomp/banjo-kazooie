@@ -221,9 +221,9 @@ void func_8032278C(s32 arg0, s32 arg1) {
     static s32 D_8036E2B4 = 1;
 
 
-    D_80383340.unk4 = func_803226BC(gsworld_get_map());
-    D_80383340.unk0 = func_803226E8(gsworld_get_map());
-    D_80383340.unk2 = func_80322714(gsworld_get_map());
+    D_80383340.unk4 = func_803226BC(gsworld_getMap());
+    D_80383340.unk0 = func_803226E8(gsworld_getMap());
+    D_80383340.unk2 = func_80322714(gsworld_getMap());
     if (arg1 == 3) {
         D_8036E2B4 = 1;
         return;

@@ -76,7 +76,7 @@ void __bsswim_updateVelocity(void) {
 void __bsswim_enteredWater(void) {
     if (level_get() == LEVEL_9_RUSTY_BUCKET_BAY) {
         progressDialog_showDialogMaskZero(FILEPROG_AB_SWIM_OILY_WATER);
-    } else if (gsworld_get_map() == MAP_46_CCW_WINTER) {
+    } else if (gsworld_getMap() == MAP_46_CCW_WINTER) {
         progressDialog_showDialogMaskZero(FILEPROG_DD_HAS_TOUCHED_CCW_ICY_WATER);
     }
     baphysics_set_gravity(100.0f);

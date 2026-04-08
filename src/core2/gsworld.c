@@ -7,126 +7,120 @@
 #include <core2/file.h>
 #include "core2/particle.h"
 
-/* .data */
-extern u8 D_80370250 = 0;
-
-/* .bss */
-struct {
-    s32 unk0;
-    s32 map;
+struct gsworld_data_s {
+    s32 unk0; // probably game_mode_e
+    enum map_e map;
     s32 exit;
-}D_803835D0;
-s32 D_803835DC;
-u32 D_803835E0;
+};
 
-/* public */
-void func_80335110(s32);
-void func_80335128(s32);
-void gsworld_load(enum map_e);
-void func_8033520C(s32);
+static u8 sHackDetected = FALSE; // seems related to some sort of cheatcode hack detection
+struct gsworld_data_s sGsWorldData;
+static bool sEnableUpdate;
+static bool sEnableDraw;
 
-/* .code */
-void gsworld_draw(Gfx** gdl, Mtx **mptr, Vtx **vptr) {
-    f32 sp44;
-    f32 sp40;
+void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
+    f32 near, far;
 
-    if (D_803835E0 == 0) {
-        drawRectangle2D(gdl, 0, 0, gFramebufferWidth, gFramebufferHeight, 0, 0, 0);
-        func_802BBD2C(&sp44, &sp40);
-        viewport_setNearAndFar(sp44, sp40);
-        viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
+    if (!sEnableDraw) {
+        drawRectangle2D(gfx, 0, 0, gFramebufferWidth, gFramebufferHeight, 0, 0, 0);
+        func_802BBD2C(&near, &far);
+        viewport_setNearAndFar(near, far);
+        viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
         return;
     }
-    if (func_80320708() == 0) {
-        eeprom_writeBlocks(0, 0, 0x80BC7230, EEPROM_MAXBLOCKS);
+
+    if (!func_80320708()) {
+        eeprom_writeBlocks(0, 0, (void *) 0x80BC7230, EEPROM_MAXBLOCKS);
     }
+
     spawnQueue_unlock();
-    sky_draw(gdl, mptr, vptr);
-    func_802BBD2C(&sp44, &sp40);
-    viewport_setNearAndFar(sp44, sp40);
-    viewport_setRenderViewportAndPerspectiveMatrix(gdl, mptr);
-    if (mapModel_has_xlu_bin() != 0) {
-        mapModel_opa_draw(gdl, mptr, vptr);
-        if (game_is_frozen() == 0) {
-            func_80322E64(gdl, mptr, vptr);
+    sky_draw(gfx, mtx, vtx);
+    func_802BBD2C(&near, &far);
+    viewport_setNearAndFar(near, far);
+    viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
+
+    if (mapModel_has_xlu_bin()) {
+        mapModel_opa_draw(gfx, mtx, vtx);
+        if (!game_is_frozen()) {
+            func_80322E64(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            player_draw(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            player_draw(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            func_80302C94(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            func_80302C94(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            jiggylist_draw(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            jiggylist_draw(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            func_803500D8(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            func_803500D8(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            func_802F2ED0(func_8032994C(), gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            partEmitMgr_drawPass0(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            partEmitMgr_drawPass0(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            mapModel_xlu_draw(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            mapModel_xlu_draw(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            func_8032D3D8(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            func_8032D3D8(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            partEmitMgr_drawPass1(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            partEmitMgr_drawPass1(gfx, mtx, vtx);
         }
-        if (game_is_frozen() == 0) {
-            func_8034F6F0(gdl, mptr, vptr);
+        if (!game_is_frozen()) {
+            func_8034F6F0(gfx, mtx, vtx);
         }
-        func_802D520C(gdl, mptr, vptr);
+        func_802D520C(gfx, mtx, vtx);
     } else {
-        mapModel_opa_draw(gdl, mptr, vptr);
-        func_80322E64(gdl, mptr, vptr);
-        func_8034F6F0(gdl, mptr, vptr);
-        player_draw(gdl, mptr, vptr);
-        func_80302C94(gdl, mptr, vptr);
-        func_8032D3D8(gdl, mptr, vptr);
-        jiggylist_draw(gdl, mptr, vptr);
-        func_803500D8(gdl, mptr, vptr);
-        func_802F2ED0(func_8032994C(), gdl, mptr, vptr);
-        func_802D520C(gdl, mptr, vptr);
-        partEmitMgr_draw(gdl, mptr, vptr);
+        mapModel_opa_draw(gfx, mtx, vtx);
+        func_80322E64(gfx, mtx, vtx);
+        func_8034F6F0(gfx, mtx, vtx);
+        player_draw(gfx, mtx, vtx);
+        func_80302C94(gfx, mtx, vtx);
+        func_8032D3D8(gfx, mtx, vtx);
+        jiggylist_draw(gfx, mtx, vtx);
+        func_803500D8(gfx, mtx, vtx);
+        func_802F2ED0(func_8032994C(), gfx, mtx, vtx);
+        func_802D520C(gfx, mtx, vtx);
+        partEmitMgr_draw(gfx, mtx, vtx);
     }
-    if (game_is_frozen() == 0) {
-        func_80350818(gdl, mptr, vptr);
+
+    if (!game_is_frozen()) {
+        func_80350818(gfx, mtx, vtx);
     }
-    if (game_is_frozen() == 0) {
-        func_802BBD0C(gdl, mptr, vptr);
+
+    if (!game_is_frozen()) {
+        func_802BBD0C(gfx, mtx, vtx);
     }
+
     spawnQueue_lock();
 }
 
-void func_803348B0(s32 arg0, s32 arg1, s32 arg2){
+void gsworld_stub1(s32 arg0, s32 arg1, s32 arg2) {}
+
+enum map_e gsworld_getMap(void) {
+    return sGsWorldData.map;
 }
 
-enum map_e gsworld_get_map(void){
-    return D_803835D0.map;
+s32 gsworld_getExit() {
+    return sGsWorldData.exit;
 }
 
-s32 gsworld_get_exit(){
-    return D_803835D0.exit;
+void gsworld_transitionToExit(s32 exit) {
+    transitionToMap(sGsWorldData.map, exit, 1);
 }
 
-void func_803348D8(s32 arg0) {
-    transitionToMap(D_803835D0.map, arg0, 1);
+s32 gsworld_getUnk0() {
+    return sGsWorldData.unk0;
 }
-
-s32 func_80334904(){
-    return D_803835D0.unk0;
-}
-
-void func_80334E1C(s32);
 
 void gsworld_free(void) {
     func_80255A14();
-    func_80334E1C(3);
+    gsworld_setUnk0(3);
     func_8034F734();
     func_803500E8();
     func_80350BC8();
@@ -173,13 +167,13 @@ void gsworld_free(void) {
     func_802BAF20();
     code7AF80_freeTotalCounts();
     func_80332A38();
-    if (func_802E4A08() == 0) {
+    if (!func_802E4A08()) {
         itemPrint_free();
     }
     dialogBin_terminate();
     func_802986D0();
-    if (func_80322914() == 0) {
-        func_8024F7C4(func_803226E8(D_803835D0.map));
+    if (!func_80322914()) {
+        func_8024F7C4(func_803226E8(sGsWorldData.map));
     }
     core1_7090_release();
     AnimTextureListCache_free();
@@ -189,21 +183,20 @@ void gsworld_free(void) {
     animCache_flushAll();
 }
 
-//gsworldDll_entrypoint2
-void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
-    D_803835D0.unk0 = 3;
-    D_803835D0.map = map;
-    D_803835D0.exit = arg1;
+void gsworld_set(enum map_e map, s32 exit, bool reload) {
+    sGsWorldData.unk0 = 3;
+    sGsWorldData.map = map;
+    sGsWorldData.exit = exit;
     overlay_init();
-    func_80335110(1);
-    func_80335128(1);
+    gsworld_setEnableUpdate(TRUE);
+    gsworld_setEnableDraw(TRUE);
     func_802D2CB8();
     core1_7090_alloc();
-    if (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) {
+    if (gsworld_getMap() == MAP_8E_GL_FURNACE_FUN) {
         func_8038E7C4();
     }
-    if (func_80322914() == 0) {
-        func_8024F764(func_803226E8(D_803835D0.map));
+    if (!func_80322914()) {
+        func_8024F764(func_803226E8(sGsWorldData.map));
     }
     func_80320B84();
     AnimTextureListCache_init();
@@ -211,7 +204,7 @@ void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
     func_8030A078();
     func_8031B718();
     func_80298700();
-    if (func_802E4A08() == 0) {
+    if (!func_802E4A08()) {
         itemPrint_init();
     }
     dialogBin_initialize();
@@ -241,7 +234,7 @@ void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
     cubeList_init();
     func_802FA69C();
     commonParticle_init();
-    if (arg2 == 0) {
+    if (!reload) {
         gsworld_load(map);
     }
     func_80305990(0);
@@ -260,11 +253,11 @@ void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
     func_80350174();
     gcparade_init();
     func_80351998();
-    func_802BC2CC(D_803835D0.exit);
+    func_802BC2CC(sGsWorldData.exit);
     func_802D63D4();
     func_80255A04();
     func_802D6948();
-    if (func_802E4A08() == 0) {
+    if (!func_802E4A08()) {
         func_802F5188();
     }
     if (map != MAP_1F_CS_START_RAREWARE) {
@@ -272,33 +265,32 @@ void gsworld_set(enum map_e map, s32 arg1, s32 arg2) {
     }
 }
 
-void func_80334DC0(void) {
+void gsworld_reload(void) {
     gsworld_free();
-    gsworld_set(D_803835D0.map, D_803835D0.exit, 1);
+    gsworld_set(sGsWorldData.map, sGsWorldData.exit, TRUE);
 }
 
-void func_80334DF8(void) {
-    func_8033520C(D_803835D0.map);
+void gsworld_stub2(void) {
+    gsworld_stub3(sGsWorldData.map);
 }
 
-void func_80334E1C(s32 arg0) {
+void gsworld_setUnk0(s32 value) {
     func_80254008();
-    func_802BC21C(D_803835D0.unk0, arg0);
-    func_8028F7F4(D_803835D0.unk0, arg0);
-    func_8030D8A8(D_803835D0.unk0, arg0);
-    func_803045CC(D_803835D0.unk0, arg0);
-    func_80323140(D_803835D0.unk0, arg0);
-    func_80351A1C(D_803835D0.unk0, arg0);
-    func_803225B0(D_803835D0.unk0, arg0);
-    func_80323098(D_803835D0.unk0, arg0);
-    func_802F0E80(D_803835D0.unk0, arg0);
-    commonParticle_setActive(D_803835D0.unk0, arg0);
-    D_803835D0.unk0 = arg0;
+    func_802BC21C(sGsWorldData.unk0, value);
+    func_8028F7F4(sGsWorldData.unk0, value);
+    func_8030D8A8(sGsWorldData.unk0, value);
+    func_803045CC(sGsWorldData.unk0, value);
+    func_80323140(sGsWorldData.unk0, value);
+    func_80351A1C(sGsWorldData.unk0, value);
+    func_803225B0(sGsWorldData.unk0, value);
+    func_80323098(sGsWorldData.unk0, value);
+    func_802F0E80(sGsWorldData.unk0, value);
+    commonParticle_setActive(sGsWorldData.unk0, value);
+    sGsWorldData.unk0 = value;
 }
 
 s32 gsworld_update(void) {
-    s32 phi_v1;
-    s32 phi_v0;
+    u32 time_mask, time, delay;
 
     codeCF5F0_forgetAllAbilitiesExceptClawSwipeIfChecksumsFail();
     func_802D5628();
@@ -306,7 +298,7 @@ s32 gsworld_update(void) {
     if (getGameMode() != GAME_MODE_4_PAUSED) {
         func_802F7E54();
     }
-    if (D_803835DC == 0) {
+    if (!sEnableUpdate) {
         return 1;
     } else {
         func_802BAF40();
@@ -315,19 +307,17 @@ s32 gsworld_update(void) {
         func_80351C48();
         func_80330FF4();
         func_8028E71C();
-        phi_v0 = globalTimer_getTime();
-        if (D_80370250) {
-            phi_v1 = 0xF;
-        } else {
-            phi_v1 = 0x1F;
+
+        time = globalTimer_getTime();
+        time_mask = sHackDetected ? 0x0F : 0x1F;
+        if (((time_mask & time) == 3) &&
+            (overlayManagergetLoadedId() == OVERLAY_5_BEACH) &&
+            (!maCastle_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue() || sHackDetected))
+        {
+            sHackDetected = TRUE;
+            for (delay = 0; delay != 150000000; delay++);
         }
-        if (((phi_v1 & phi_v0) == 3) && (overlayManagergetLoadedId() == OVERLAY_5_BEACH)) {
-            if ((maCastle_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue() == FALSE) || (D_80370250 != 0)) {
-                D_80370250 = (u8)1;
-                for (phi_v0 = 0; phi_v0 != 0x8F0D180; phi_v0++){
-                }
-            }
-        }
+
         commonParticle_update();
         pem_updateAll();
         animCache_update();
@@ -343,7 +333,7 @@ s32 gsworld_update(void) {
         partEmitMgr_update();
         func_8034F918();
         func_80350250();
-        if (mapSpecificFlags_validateCRC1() == 0) {
+        if (!mapSpecificFlags_validateCRC1()) {
             func_8028FCBC();
         }
         AnimTextureListCache_update();
@@ -359,7 +349,7 @@ s32 gsworld_update(void) {
         func_803306C8(1);
         func_8032AD7C(1);
         func_80322490();
-        if (map_getLevel(D_803835D0.map) == LEVEL_D_CUTSCENE) {
+        if (map_getLevel(sGsWorldData.map) == LEVEL_D_CUTSCENE) {
             func_802C79C4();
         }
         func_8032AABC();
@@ -368,41 +358,42 @@ s32 gsworld_update(void) {
     }
 }
 
-void func_80335110(s32 arg0){
-    D_803835DC = arg0;
+void gsworld_setEnableUpdate(bool value) {
+    sEnableUpdate = value;
 }
 
-s32 func_8033511C(){
-    return D_803835DC;
+bool gsworld_getEnableUpdate() {
+    return sEnableUpdate;
 }
 
-void func_80335128(s32 arg0){
-    D_803835E0 = arg0;
+void gsworld_setEnableDraw(bool value) {
+    sEnableDraw = value;
 }
 
-s32 func_80335134(){
-    return D_803835E0;
+bool gsworld_getEnableDraw() {
+    return sEnableDraw;
 }
 
-//gsworldDll_entrypoint0
 void gsworld_load(enum map_e map_id) {
-    File *fp;
+    File *f;
 
     func_80254008();
-    fp = file_openMap(map_id); //LevelSetupFile_Open
-    while (file_isNextByteExpected(fp, 0) == 0) {
-        if (file_isNextByteExpected(fp, 2)) {
-            
-        } else if (file_isNextByteExpected(fp, 1)) {
-            cubeList_fromFile(fp);
-        } else if (file_isNextByteExpected(fp, 3)) {
-            ncCameraNodeList_fromFile(fp);
-        } else if (file_isNextByteExpected(fp, 4)) {
-            lightingVectorList_fromFile(fp);
+
+    f = file_openMap(map_id);
+
+    while (!file_isNextByteExpected(f, 0)) {
+        if (file_isNextByteExpected(f, 2)) {
+            /* NO OP */
+        } else if (file_isNextByteExpected(f, 1)) {
+            cubeList_fromFile(f);
+        } else if (file_isNextByteExpected(f, 3)) {
+            ncCameraNodeList_fromFile(f);
+        } else if (file_isNextByteExpected(f, 4)) {
+            lightingVectorList_fromFile(f);
         }
     }
 
-    file_close(fp); //file close
+    file_close(f);
 }
 
-void func_8033520C(s32 arg0) { }
+void gsworld_stub3(enum map_e map) {}

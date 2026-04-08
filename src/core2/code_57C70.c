@@ -97,7 +97,7 @@ void func_802DEE1C(Actor *this) {
         if (D_8037DFE8 == NULL) {
             D_8037DFE8 = assetcache_get(0x56E);
         }
-        sp4C = map_getLevel(gsworld_get_map());
+        sp4C = map_getLevel(gsworld_getMap());
         sp44 = sp4C == D_8037DFE4;
         if (sp44) {
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);

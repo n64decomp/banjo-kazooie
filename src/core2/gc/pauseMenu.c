@@ -36,7 +36,7 @@ void func_802DC5B8(void);
 void func_802DC560(s32, s32);
 s32 controller_getStartButton(s32 controller_index);
 bool fileProgressFlag_get(enum file_progress_e);
-enum map_e gsworld_get_map(void);
+enum map_e gsworld_getMap(void);
 bool func_802FD2D4(void);
 bool func_802FC3C4(void);
 extern void func_8025A2B0(void);
@@ -44,7 +44,7 @@ extern void func_8025A430(s32, s32, s32);
 extern void func_802DC528(s32, s32);
 extern void func_802F5060(enum asset_e);
 extern void func_802F5188(void);
-extern void func_802FACA4(enum item_e);
+extern void code_73640_printItemCount(enum item_e);
 extern void func_8033BD20(void *);
 
 enum gcpausemenu_state_e {
@@ -262,7 +262,7 @@ void gcpausemenu_80311A84(void) {
 
     itemPrint_reset();
     for (i = 0; i < 7; i++) {
-        func_802FACA4(D_8036C604[i]);
+        code_73640_printItemCount(D_8036C604[i]);
     }
 
     if (func_802FC3C4()) {
@@ -270,7 +270,7 @@ void gcpausemenu_80311A84(void) {
         func_802FAD64(ITEM_12_JINJOS);
     }
     else {
-        func_802FACA4(ITEM_12_JINJOS);
+        code_73640_printItemCount(ITEM_12_JINJOS);
     }
 
     if (func_802FD2D4()) {
@@ -278,7 +278,7 @@ void gcpausemenu_80311A84(void) {
         func_802FAD64(ITEM_16_LIFE);
     }
     else {
-        func_802FACA4(ITEM_16_LIFE);
+        code_73640_printItemCount(ITEM_16_LIFE);
     }
 }
 
@@ -964,12 +964,12 @@ s32 gcPauseMenu_update(void) {
 
         case PAUSE_STATE_2_MENU: //open
             if (D_80383010.unk70_31 && !func_802FC3C4()) {
-                func_802FACA4(ITEM_12_JINJOS);
+                code_73640_printItemCount(ITEM_12_JINJOS);
                 D_80383010.unk70_31 = 0;
             }//L8031350C
 
             if (D_80383010.unk70_30 && !func_802FD2D4()) {
-                func_802FACA4(ITEM_16_LIFE);
+                code_73640_printItemCount(ITEM_16_LIFE);
                 D_80383010.unk70_30 = 0;
             }
 
@@ -1063,7 +1063,7 @@ s32 gcPauseMenu_update(void) {
                 case PAUSE_SELECTION_1_EXIT_TO_WITCH_S_LAIR://L80313908 //return to lair
                     volatileFlag_set(VOLATILE_FLAG_16, 1);
 
-                    if (gsworld_get_map() == MAP_8E_GL_FURNACE_FUN) {
+                    if (gsworld_getMap() == MAP_8E_GL_FURNACE_FUN) {
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
                         transitionToMap(MAP_80_GL_FF_ENTRANCE, 2, 1);
                     }

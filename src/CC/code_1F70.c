@@ -263,7 +263,7 @@ void func_80388CB4(void){
 
 void func_80388D54(void){
     D_80389FA0.unk21 = 0;
-    if(gsworld_get_map() == MAP_B_CC_CLANKERS_CAVERN){
+    if(gsworld_getMap() == MAP_B_CC_CLANKERS_CAVERN){
         D_80389FA0.unk0 = skeletalAnim_new();
         D_80389FA0.sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         D_80389FA0.unk8 = 1.0f;
@@ -327,7 +327,7 @@ void CC_func_80388F4C(void){
     f32 pad[3];
 
     code13C0_checkCCChecksums();
-    if(D_80389FA0.unk21 != 0 && func_80334904() == 2){
+    if(D_80389FA0.unk21 != 0 && gsworld_getUnk0() == 2){
         player_getPosition(sp6C);
         D_80389FA0.unk20 = (ml_vec3f_distance(sp6C, D_80389FA0.unkC) < 200.0f);
 

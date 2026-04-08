@@ -131,7 +131,7 @@ s32 func_802BC84C(s32 arg0){
     ml_vec3f_diff_copy(d_target, player_position, camera_position);
     ml_vec3f_normalize_copy(target_direction, d_target);
     ml_vec3f_copy(sp44, player_position);
-    target_distance = gu_sqrtf(d_target[0]*d_target[0] + d_target[1]*d_target[1] + d_target[2]*d_target[2]);
+    target_distance = sqrtf(d_target[0]*d_target[0] + d_target[1]*d_target[1] + d_target[2]*d_target[2]);
     if (1500.0f < target_distance) {
         ml_vec3f_scale_copy(d_target, target_direction, 1500.0f);
         ml_vec3f_add(sp44, camera_position, d_target);
@@ -186,7 +186,7 @@ void func_802BCA58(void) {
     ml_vec3f_diff_copy(sp34, player_position, cameraPosition);
     sp4C = player_getYaw();
     sp48 = ml_map_f(mlAbsF((f32) (mlNormalizeAngle(cameraRotation[1] - sp4C) - 180.0)), 0.0f, 180.0f, D_8037D97C, D_8037D980);
-    func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(gu_sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
+    func_80256E24(D_8037D9A8, 0.0f, sp4C, 0.0f, 0.0f, ml_map_f(sqrtf(sp34[0]*sp34[0] + sp34[2]*sp34[2]), 300.0f, 450.0f, 0.0f, sp48));
     ml_vec3f_diff_copy(sp34, D_8037D9A8, D_8037D9B8);
     if (func_802BC428()) {
         ml_vec3f_copy(D_8037D9B8, D_8037D9A8);
@@ -920,7 +920,7 @@ int func_802BE60C(void){
     if(func_802BC428())
         return 0;
     
-    if(gsworld_get_map() == MAP_91_FILE_SELECT)
+    if(gsworld_getMap() == MAP_91_FILE_SELECT)
         return 0;
 
     ml_vec3f_copy(sp1C, cameraPosition);

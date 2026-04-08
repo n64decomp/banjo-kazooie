@@ -648,7 +648,7 @@ void func_802A4A78(s32 arg0) {
     baphysics_set_target_horizontal_velocity(velocity);
     baphysics_set_target_yaw(sp28);
     baphysics_set_horizontal_velocity(sp28, baphysics_get_target_horizontal_velocity());
-    if ((arg0 == 1) && (gsworld_get_map() == MAP_90_GL_BATTLEMENTS)) {
+    if ((arg0 == 1) && (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)) {
         yaw_setIdeal(mlNormalizeAngle(sp28));
         yaw_applyIdeal();
     }
@@ -725,7 +725,7 @@ void func_802A4D90(void) {
     baphysics_set_target_horizontal_velocity(1300.0f);
     baphysics_set_target_yaw(sp34);
     baphysics_set_horizontal_velocity(sp34, baphysics_get_target_horizontal_velocity());
-    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
+    if (gsworld_getMap() == MAP_90_GL_BATTLEMENTS) {
         yaw_setIdeal(mlNormalizeAngle(sp34));
         yaw_applyIdeal();
     }

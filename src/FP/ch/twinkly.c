@@ -154,7 +154,7 @@ void chTwinkly_hopToTree(Actor *arg0, f32 arg1[3], f32 arg2)
     sp7F = (arg2 == 0.0f) ? (0) : (1);
     var_f22 = arg1[0] - arg0->position[0];
     var_f24 = arg1[2] - arg0->position[2];
-    sp54 = gu_sqrtf((var_f22 * var_f22) + (var_f24 * var_f24));
+    sp54 = sqrtf((var_f22 * var_f22) + (var_f24 * var_f24));
     sp48[0] = var_f22 / sp54;
     sp48[2] = var_f24 / sp54;
     if (sp7F)
