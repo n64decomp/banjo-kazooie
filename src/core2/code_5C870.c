@@ -6,7 +6,7 @@
 #include "gc/gctransition.h"
 #include "time.h"
 
-extern void func_802F5374(void);
+extern void print_updateBoldLetterFontDelayedFreeing(void);
 extern void func_802FA0F8(void);
 extern void timedFuncQueue_update(void);
 extern void func_8025A2B0(void);
@@ -359,7 +359,7 @@ void func_802E4170(void){
     defragManager_free();
     func_802E5F68();
     if(!func_802E4A08())
-        func_802F4F64();
+        print_free();
     timedFuncQueue_free();
     func_802F9C48();
     modelRender_free();
@@ -389,7 +389,7 @@ void func_802E4214(enum map_e map_id){
     func_802F9CD8();
     func_8031B62C();
     if(!func_802E4A08())
-        func_802F51B8();
+        print_init();
     func_802E5F38();
     defragManager_init();
     modelRender_init();
@@ -569,7 +569,7 @@ bool func_802E4424(void) {
     }
     gctransition_update();
     if (func_802E4A08() == 0) {
-        func_802F5374();
+        print_updateBoldLetterFontDelayedFreeing();
     }
     return TRUE;
 }

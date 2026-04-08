@@ -134,7 +134,7 @@ void gsworld_free(void) {
     func_80322F5C();
     func_80341A54();
     spawnQueue_free();
-    func_802F53D0();
+    print_freeBoldLetterFont();
     func_802FAC3C();
     bundle_free();
     commonParticle_freeAllParticles();
@@ -258,7 +258,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     func_80255A04();
     func_802D6948();
     if (!func_802E4A08()) {
-        func_802F5188();
+        print_resetBoldFontTexture();
     }
     if (map != MAP_1F_CS_START_RAREWARE) {
         func_8024F150();
