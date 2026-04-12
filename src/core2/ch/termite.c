@@ -9,6 +9,17 @@ bool func_8034A6FC(f32, f32);
 void chTermite_update(Actor *this);
 
 /* .data */
+
+enum termite_states
+{
+    TERMITE_STATE_UNK_1 = 1,
+    TERMITE_STATE_UNK_2,
+    TERMITE_STATE_UNK_3,
+    TERMITE_STATE_UNK_4,
+    TERMITE_STATE_UNK_5,
+    TERMITE_STATE_UNK_6
+};
+
 ActorAnimationInfo chTermiteAnimations[] ={
     {0, 0.0f},
     {ASSET_5E_ANIM_BSANT_IDLE, 1.2f},
@@ -126,7 +137,7 @@ void __chTermite_ow(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    subaddie_set_state_forward(this, 6);
+    subaddie_set_state_forward(this, TERMITE_STATE_UNK_6);
 }
 
 void __chTermite_die(ActorMarker *marker, ActorMarker *other_marker){
@@ -164,7 +175,7 @@ void chTermite_update(Actor *this) {
         this->unk16C_0 = TRUE;
         this->volatile_initialized = TRUE;
     }
-    if( gsworld_get_map() == MAP_C_MM_TICKERS_TOWER 
+    if( gsworld_getMap() == MAP_C_MM_TICKERS_TOWER 
         && !mapSpecificFlags_get(0) 
         && subaddie_playerIsWithinSphereAndActive(this, 700)
         && !subaddie_playerIsWithinSphereAndActive(this, 150)
@@ -193,15 +204,15 @@ void chTermite_update(Actor *this) {
         }
     }
     switch (this->state) {
-    case 1:
-        if (subaddie_maybe_set_state_position_direction(this, 2, 0.0f, 1, 0.06f)) {
+    case TERMITE_STATE_UNK_1:
+        if (subaddie_maybe_set_state_position_direction(this, TERMITE_STATE_UNK_2, 0.0f, 1, 0.06f)) {
             __chTermite_updateRandomRotationSpeed(this);
             __chTermite_updateRandomSpeed(this);
             this->actor_specific_1_f = 0.0f;
             return;
         }
         return;
-    case 2:
+    case TERMITE_STATE_UNK_2:
         if (sp34 != D_80372F48) {
             D_80372F48 = sp34;
             D_80372F4C = 1;
@@ -229,11 +240,11 @@ void chTermite_update(Actor *this) {
         }
         __chTermite_updateAnimationSpeed(this);
         func_80329030(this, 0);
-        subaddie_maybe_set_state_position_direction(this, 1, 0.0f, 1, 0.047f);
+        subaddie_maybe_set_state_position_direction(this, TERMITE_STATE_UNK_1, 0.0f, 1, 0.047f);
         return;
-    case 6:
+    case TERMITE_STATE_UNK_6:
         if (actor_animationIsAt(this, 0.95f) != 0) {
-            subaddie_set_state_forward(this, 1);
+            subaddie_set_state_forward(this, TERMITE_STATE_UNK_1);
         }
         break;
     }

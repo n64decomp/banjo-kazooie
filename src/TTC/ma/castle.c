@@ -516,7 +516,7 @@ void maCastle_init(void)
     void *sp2C;
     void *sp28;
 
-    if( gsworld_get_map() == MAP_7_TTC_TREASURE_TROVE_COVE
+    if( gsworld_getMap() == MAP_7_TTC_TREASURE_TROVE_COVE
         && levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN)
     ){
         sp2C = func_8034C5AC(0x12C);
@@ -526,7 +526,7 @@ void maCastle_init(void)
         }
     }
     sMapState.model1 = 0;
-    if (gsworld_get_map() != MAP_A_TTC_SANDCASTLE)
+    if (gsworld_getMap() != MAP_A_TTC_SANDCASTLE)
     {
         __maCastle_setsecretCheatCodeRelatedValue();
     }

@@ -64,7 +64,7 @@
 }
 
 #define LENGTH_SQ_VEC3F(v) (v[0]*v[0] + v[1]*v[1] + v[2]*v[2])
-#define LENGTH_VEC3F(v) gu_sqrtf(LENGTH_SQ_VEC3F(v))
+#define LENGTH_VEC3F(v) sqrtf(LENGTH_SQ_VEC3F(v))
 
 #define TUPLE_DOT_PRODUCT(vec1, vec2) (vec1[0] * vec2[0] + vec1[1] * vec2[1] + vec1[2] * vec2[2])
 

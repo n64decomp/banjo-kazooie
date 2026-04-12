@@ -38,7 +38,7 @@ void __code7AF80_func_80308F0C(Cube *cube);
 void func_80308EC8(void);
 
 extern ActorInfo D_803675F0;
-extern ActorInfo D_80367838;
+extern ActorInfo gWorldExitPad;
 
 /* .data */
 s32 sSpawnableActorSize = 0; //0x8036A9B0
@@ -846,31 +846,31 @@ void cubeList_init(){
     sSpawnableActorSize = 0;
     sSpawnableActorList = NULL;
 
-    if(gsworld_get_map() == MAP_21_CC_WITCH_SWITCH_ROOM){
+    if(gsworld_getMap() == MAP_21_CC_WITCH_SWITCH_ROOM){
         sCubeList.margin = 500.0f;
     }
-    else if(gsworld_get_map() == MAP_12_GV_GOBIS_VALLEY){
+    else if(gsworld_getMap() == MAP_12_GV_GOBIS_VALLEY){
         sCubeList.margin = 500.0f;
     }
-    else if(gsworld_get_map() == MAP_7F_FP_WOZZAS_CAVE){
+    else if(gsworld_getMap() == MAP_7F_FP_WOZZAS_CAVE){
         sCubeList.margin = 500.0f;
     }
-    else if(gsworld_get_map() == MAP_D_BGS_BUBBLEGLOOP_SWAMP){
+    else if(gsworld_getMap() == MAP_D_BGS_BUBBLEGLOOP_SWAMP){
         sCubeList.margin = 700.0f;
     }
-    else if(gsworld_get_map() == MAP_7_TTC_TREASURE_TROVE_COVE){
+    else if(gsworld_getMap() == MAP_7_TTC_TREASURE_TROVE_COVE){
         sCubeList.margin = 400.0f;
     }
-    else if(gsworld_get_map() == MAP_16_GV_RUBEES_CHAMBER){
+    else if(gsworld_getMap() == MAP_16_GV_RUBEES_CHAMBER){
         sCubeList.margin = 400.0f;
     }
-    else if(gsworld_get_map() == MAP_2_MM_MUMBOS_MOUNTAIN){
+    else if(gsworld_getMap() == MAP_2_MM_MUMBOS_MOUNTAIN){
         sCubeList.margin = 250.0f;
     }
-    else if(gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK){
+    else if(gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK){
         sCubeList.margin = 250.0f;
     }
-    else if(gsworld_get_map() == MAP_92_GV_SNS_CHAMBER){
+    else if(gsworld_getMap() == MAP_92_GV_SNS_CHAMBER){
         sCubeList.margin = 300.0f;
     }
     else{
@@ -1295,15 +1295,17 @@ void func_8030578C(void){
     int i;
     u32 sp40;
     Cube *iCube;
-    
+
+#if ANTI_TAMPER
     if(getGameMode() != GAME_MODE_7_ATTRACT_DEMO){
         osPiReadIo(0xE38, &sp40);
         sp40 ^= 0x828A;
         if( (sp40 & 0xffff)
             && (sSpawnableActorList != NULL)
         ){
+            // Replace World Exit Pad with empty actor if checksum fails
             for(i = 0; i < sSpawnableActorSize - 1; i++){
-                if(sSpawnableActorList[i].infoPtr == &D_80367838){
+                if(sSpawnableActorList[i].infoPtr == &gWorldExitPad){
                     sSpawnableActorList[i].infoPtr = &D_803675F0;
                     sSpawnableActorList[i].spawnFunc = actor_new;
                     sSpawnableActorList[i].unk8 = 0;
@@ -1312,6 +1314,8 @@ void func_8030578C(void){
             }
         }
     }//L80305850
+#endif
+
     for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
         func_80330208(iCube);
     }

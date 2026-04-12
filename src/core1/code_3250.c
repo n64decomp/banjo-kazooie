@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "core1/core1.h"
 
-extern f32 gu_sqrtf(f32);
+extern f32 sqrtf(f32);
 
 static void __guMtxF2L(float mf[4][4], Mtx *m)
 {
@@ -56,7 +56,7 @@ void guLookAtReflectF(float mf[4][4], LookAt *l,
 	zLook = zAt - zEye;
 
 	/* Negate because positive Z is behind us: */
-	len = -1.0 / gu_sqrtf (xLook*xLook + yLook*yLook + zLook*zLook);
+	len = -1.0 / sqrtf (xLook*xLook + yLook*yLook + zLook*zLook);
 	xLook *= len;
 	yLook *= len;
 	zLook *= len;
@@ -66,7 +66,7 @@ void guLookAtReflectF(float mf[4][4], LookAt *l,
 	xRight = yUp * zLook - zUp * yLook;
 	yRight = zUp * xLook - xUp * zLook;
 	zRight = xUp * yLook - yUp * xLook;
-	len = 1.0 / gu_sqrtf (xRight*xRight + yRight*yRight + zRight*zRight);
+	len = 1.0 / sqrtf (xRight*xRight + yRight*yRight + zRight*zRight);
 	xRight *= len;
 	yRight *= len;
 	zRight *= len;
@@ -76,7 +76,7 @@ void guLookAtReflectF(float mf[4][4], LookAt *l,
 	xUp = yLook * zRight - zLook * yRight;
 	yUp = zLook * xRight - xLook * zRight;
 	zUp = xLook * yRight - yLook * xRight;
-	len = 1.0 / gu_sqrtf (xUp*xUp + yUp*yUp + zUp*zUp);
+	len = 1.0 / sqrtf (xUp*xUp + yUp*yUp + zUp*zUp);
 	xUp *= len;
 	yUp *= len;
 	zUp *= len;

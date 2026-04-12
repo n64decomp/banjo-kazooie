@@ -145,7 +145,7 @@ s32 func_802EAD5C(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
         sp34[0] = sp4C[0] - sp5C[0];
         sp34[1] = sp4C[1] - sp5C[1];
         sp34[2] = sp4C[2] - sp5C[2];
-        if (!( gu_sqrtf(sp34[0]*sp34[0] + sp34[1]*sp34[1] + sp34[2]*sp34[2]) >= ((arg6 / scale) + temp_f20))) {
+        if (!( sqrtf(sp34[0]*sp34[0] + sp34[1]*sp34[1] + sp34[2]*sp34[2]) >= ((arg6 / scale) + temp_f20))) {
             return i_ptr->unk8;
         }
     }
@@ -299,8 +299,8 @@ s32 func_802EB458(BKModelUnk14List *arg0, f32 position[3], f32 rotation[3], f32 
                 sp74[0] = arg6[0] - (sp98[0] + (sp80[0] * temp_f0));
                 sp74[1] = arg6[1] - (sp98[1] + (sp80[1] * temp_f0));
                 sp74[2] = arg6[2] - (sp98[2] + (sp80[2] * temp_f0));
-                temp_f20 = gu_sqrtf(((sp74[0] * sp74[0]) + (sp74[1] * sp74[1])) + (sp74[2] * sp74[2]));
-                if (!((temp_f20 - arg7) > gu_sqrtf(((sp68[0] * sp68[0]) + (sp68[1] * sp68[1])) + (sp68[2] * sp68[2]))))
+                temp_f20 = sqrtf(((sp74[0] * sp74[0]) + (sp74[1] * sp74[1])) + (sp74[2] * sp74[2]));
+                if (!((temp_f20 - arg7) > sqrtf(((sp68[0] * sp68[0]) + (sp68[1] * sp68[1])) + (sp68[2] * sp68[2]))))
                 {
                     return i_ptr->unkD;
                 }
@@ -344,7 +344,7 @@ s32 func_802EB8A0(BKModelUnk14List *arg0, f32 *position, f32 *rotation, f32 scal
         sp44[0] = sp5C[0] - sp68[0];
         sp44[1] = sp5C[1] - sp68[1];
         sp44[2] = sp5C[2] - sp68[2];
-        temp_f0 = gu_sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
+        temp_f0 = sqrtf(sp44[0]*sp44[0] + sp44[1]*sp44[1] + sp44[2]*sp44[2]);
         if ((arg7 + temp_f0 >= ml_vec3f_distance(sp68, sp74))) {
             return (s32) i_ptr->unk8;
         }

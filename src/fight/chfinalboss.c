@@ -527,7 +527,7 @@ bool chfinalboss_flyTo(Actor *this, f32 arg1[3], f32 v_max, f32 arg3, f32 arg4, 
     this->velocity[1] += (diff[1] * dt);
     this->velocity[2] += (diff[2] * dt);
 
-    if (v_max < gu_sqrtf(LENGTH_SQ_VEC3F(this->velocity))) {
+    if (v_max < sqrtf(LENGTH_SQ_VEC3F(this->velocity))) {
         ml_vec3f_set_length(this->velocity, v_max);
     }  
 
@@ -652,7 +652,7 @@ void chfinalboss_func_80387B00(Actor *this) {
     this->velocity_z = this->position_z - sp28[2];
     this->velocity_y = 0;
     
-    local->unk14 = gu_sqrtf(
+    local->unk14 = sqrtf(
         (this->velocity_z * this->velocity_z) +
         ((this->velocity_x * this->velocity_x) +
         (this->velocity_y * (this->velocity_y)))
@@ -2144,7 +2144,7 @@ void chfinalboss_update(Actor *this){
         chfinalboss_func_80386654(1.0f, fight_D_80391380, fight_D_80391390);
         func_8028F784(1);
         func_8028F4B8(D_80391804, 2000.0f, -2800.0f);
-        func_8028FA14(0x93, 2);
+        code_7060_setVoidOutLocation(MAP_93_GL_DINGPOT, 2);
         func_8034C9B0(0);
         chfinalboss_func_80386698(2.0f);
         tmp_s0 = func_802F9AA8(SFX_9A_MECHANICAL_CLOSING);

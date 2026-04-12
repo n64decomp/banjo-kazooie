@@ -73,9 +73,9 @@ extern ActorInfo D_803948B8;
 extern ActorInfo D_80394910;
 extern ActorInfo D_80394934;
 extern ActorInfo D_80394958;
-extern ActorInfo D_80394A08;
-extern ActorInfo D_80394A2C;
-extern ActorInfo D_80394A50;
+extern ActorInfo chGruntlingRed;
+extern ActorInfo chGruntlingBlue;
+extern ActorInfo chGruntlingBlack;
 extern ActorInfo D_80394980;
 extern ActorInfo D_80394C28;
 extern ActorInfo D_80394C4C;
@@ -477,10 +477,11 @@ s16 D_80393468[] = {
     NULL
 };
 
-s16 D_8039347C[] = {50, 180, 260, 350, 450, 640, 765, 810, 828, 846, 864, 882}; //notedoor_notes_required_to_open
+s16 note_door_cost_data[] = {50, 180, 260, 350, 450, 640, 765, 810, 828, 846, 864, 882}; //notedoor_notes_required_to_open
 
 s16 D_80393494[]  = {0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B}; 
 s32 D_803934A0[3] = {0x00, 0xFF, 0x00};
+
 ParticleScaleAndLifetimeRanges D_803934AC = {
     {1.0f, 2.0f},
     {2.4f, 5.0f},
@@ -488,10 +489,12 @@ ParticleScaleAndLifetimeRanges D_803934AC = {
     {3.8f, 5.0f},
     0.31f, 0.93f
 };
+
 ParticleSettingsVelocityPosition D_803934D4 = {
     {{-80.0f, 30.0f, -80.0f}, {80.0f, 270.0f, 80.0f}},
     {{40.0f, 0.0f, -50.0f}, {100.0f, 200.0f, 50.0f}},
 };
+
 s32 D_80393504[4] = {0x87, 0x87, 0x87, 0xB4};
 
 
@@ -967,9 +970,9 @@ void func_80387730(Actor *this) {
     if (!fileProgressFlag_get(this->actorTypeSpecificField + FILEPROG_39_CCW_OPEN) && ability_isUnlocked(ABILITY_13_1ST_NOTEDOOR)) {
         player_getPosition(spAC);
         if ((ml_vec3f_distance(spAC, this->position) < 500.0f) && (gcdialog_getCurrentTextId() != 0xF64)) {
-            func_802FACA4(0xC);
+            code_73640_printItemCount(ITEM_C_NOTE);
         }
-        if (itemscore_noteScores_getTotal() >= D_8039347C[this->actorTypeSpecificField - 1]) {
+        if (itemscore_noteScores_getTotal() >= note_door_cost_data[this->actorTypeSpecificField - 1]) {
             if (this->marker->unk14_21) {
                 func_8032BC60(this, 5, sp90);
                 func_8032BC60(this, 6, sp84);
@@ -1287,7 +1290,7 @@ void func_80388524(Actor *this) {
     Actor *sp28;
 
     sp34 = func_802D677C(-1) 
-             && (func_802D677C(-1) == gsworld_get_map())
+             && (func_802D677C(-1) == gsworld_getMap())
              && (func_802D67AC(-1) >= 8)
              && (func_802D67AC(-1) < 0x12)
              && (func_802D67DC(-1) == this->modelCacheIndex)
@@ -2184,9 +2187,9 @@ void lair_func_8038A0C4(void)
     spawnableActorList_add(&D_80394934, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80394958, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80392F1C, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_80394A08, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_80394A2C, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_80394A50, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&chGruntlingRed, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&chGruntlingBlue, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&chGruntlingBlack, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&D_80394980, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&D_80394C28, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_80394C4C, actor_new, ACTOR_FLAG_UNKNOWN_10);

@@ -795,10 +795,10 @@ void gczoombox_func_803160A8(GcZoombox *this) {
 }
 
 void func_803162B4(GcZoombox *this){
-     func_802F7B90(this->unk168, this->unk168, this->unk168);
+     text_setNormalTextColor(this->unk168, this->unk168, this->unk168);
      if(this->unk1A4_30){
           if(this->unk1A4_17){
-               func_802F79D0(this->unk16A, this->unk16C, this->unk0, this->unk166, -1);
+               print_dialog_gradient2(this->unk16A, this->unk16C, this->unk0, this->unk166, -1);
           }
           else if(this->unk1A4_15){
                print_bold_spaced(this->unk16A, this->unk16C, this->unk0);
@@ -813,7 +813,7 @@ void func_803162B4(GcZoombox *this){
                print_dialog(this->unk16A, this->unk16E, this->unk30);
           }
      }
-     func_802F7B90(0xff, 0xff, 0xff);
+     text_setNormalTextColor(0xff, 0xff, 0xff);
 }
 
 void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx) {

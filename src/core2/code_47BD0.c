@@ -202,7 +202,7 @@ void chBeeSwarm_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 ar
     arg6[0] = arg0[0] - arg1[0];
     arg6[1] = arg0[1] - arg1[1];
     arg6[2] = arg0[2] - arg1[2];
-    temp_f12 = gu_sqrtf(arg6[0]*arg6[0] + arg6[1]*arg6[1] + arg6[2]*arg6[2]);
+    temp_f12 = sqrtf(arg6[0]*arg6[0] + arg6[1]*arg6[1] + arg6[2]*arg6[2]);
     if (temp_f12 < (2 * arg4)) {
         chBeeSwarm_802CF174(arg6, temp_f12, 8 * arg3);
     } else {
@@ -215,7 +215,7 @@ void chBeeSwarm_802CF1C8(f32 arg0[3], f32 arg1[3], f32 arg2[3], f32 arg3, f32 ar
     arg2[0] += arg6[0] * sp4C;
     arg2[1] += arg6[1] * sp4C;
     arg2[2] += arg6[2] * sp4C;
-    temp_f12 = gu_sqrtf(arg2[0]*arg2[0] + arg2[1]*arg2[1] + arg2[2]*arg2[2]);
+    temp_f12 = sqrtf(arg2[0]*arg2[0] + arg2[1]*arg2[1] + arg2[2]*arg2[2]);
     if (arg3 < temp_f12) {
         chBeeSwarm_802CF174(arg2, temp_f12, arg3);
     }
@@ -389,7 +389,7 @@ void chBeeSwarm_update(Actor *this) {
             D_8037DCBC = 0;
         }
     }
-    if (gsworld_get_map() == MAP_27_FP_FREEZEEZY_PEAK) {
+    if (gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK) {
         if (maSlalom_isActive()) {
             this->unk58_0 = FALSE;
             return;
@@ -419,7 +419,7 @@ void chBeeSwarm_update(Actor *this) {
         }
         chBeeSwarm_802CF1C8(this->unk1C, this->position, this->velocity, this->actor_specific_1_f, 100.0f, 0, &spA0);
     }
-    if (gsworld_get_map() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
+    if (gsworld_getMap() == MAP_78_GL_RBB_AND_MMM_PUZZLE) {
         if (this->unk38_31++ == 0x1E) {
             this->unk38_31 = 0;
             next_position[0] = this->position[0];
@@ -546,7 +546,7 @@ void chBeeSwarm_update(Actor *this) {
             sfxsource_set_fade_distances(this->unk44_31, 500.0f, 1500.0f);
             sfxsource_set_position(this->unk44_31, this->position);
             sfxSource_func_8030E2C4(this->unk44_31);
-            sfxsource_setSampleRate(this->unk44_31, (s32)(((gu_sqrtf(this->velocity[0] * this->velocity[0] + this->velocity[1] * this->velocity[1] + this->velocity[2] * this->velocity[2]) / this->actor_specific_1_f) * 8000.0f) + 2000.0f));
+            sfxsource_setSampleRate(this->unk44_31, (s32)(((sqrtf(this->velocity[0] * this->velocity[0] + this->velocity[1] * this->velocity[1] + this->velocity[2] * this->velocity[2]) / this->actor_specific_1_f) * 8000.0f) + 2000.0f));
         }
     }
 }

@@ -1,0 +1,10 @@
+#ifndef __PRINT_H__
+#define __PRINT_H__
+
+    void print_bold_overlapping(s32 x, s32 y, f32 arg2, u8* string);
+    void print_bold_spaced(s32 x, s32 y, u8* string);
+    void print_dialog(s32 x, s32 y, u8* string);
+    void print_dialog_w_bg(s32 x, s32 y, u8* string);
+    void print_dialog_gradient(s32 x, s32 y, u8* string, u8 arg3, u8 arg4);
+    void print_dialog_gradient2(s32 x, s32 y, u8* string, s32 arg3, s32 arg4);
+#endif

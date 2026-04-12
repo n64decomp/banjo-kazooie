@@ -95,7 +95,7 @@ void func_80340200(Struct83s *self, f32 position[3], f32 arg2[3], f32 arg3, f32 
         sp58[1] /= 100000.0f;
         sp58[2] /= 100000.0f;
     }
-    if (gu_sqrtf(LENGTH_SQ_VEC3F(sp58)) < 0.001) {
+    if (sqrtf(LENGTH_SQ_VEC3F(sp58)) < 0.001) {
         self->unk1A = 0;
         return;
     }

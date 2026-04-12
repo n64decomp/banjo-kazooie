@@ -19,7 +19,7 @@ f32 D_8037DB20;
 /* .code */
 void ncbafly_init(void) {
     func_802BD870(10.0f, 20.0f, 120.0f, 200.0f);
-    if (gsworld_get_map() == MAP_90_GL_BATTLEMENTS) {
+    if (gsworld_getMap() == MAP_90_GL_BATTLEMENTS) {
         ncbafly_func_802BFE50(10.0f, 800.0f, 1350.0f);
     } else {
         ncbafly_func_802BFE50(2.0f, 800.0f, 350.0f);
@@ -55,7 +55,7 @@ void ncbafly_update(void) {
     }
     sp38 = time_getDelta();
     ml_vec3f_diff_copy(sp48, sp6C, sp84);
-    sp44 = gu_sqrtf(sp48[0]*sp48[0] + sp48[1]*sp48[1] +  sp48[2]*sp48[2]);
+    sp44 = sqrtf(sp48[0]*sp48[0] + sp48[1]*sp48[1] +  sp48[2]*sp48[2]);
     temp_f10 = (sp3C - sp44) * sp38;
     sp44 += func_80259198(temp_f10 * D_8037DB10, sp38 * D_8037DB14);
     func_8025727C(sp84[0], sp84[1], sp84[2], sp6C[0], sp6C[1], sp6C[2], &sp54[0], &sp54[1]);

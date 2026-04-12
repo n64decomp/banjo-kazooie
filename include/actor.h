@@ -31,4 +31,38 @@
 #define ACTOR_FLAG_UNKNOWN_26 (1 << 26) // 0x4000000
 #define ACTOR_FLAG_UNKNOWN_27 (1 << 27) // 0x4000000
 
+// Used for Gruntling, Grublin Hood, Seaman Grublin,
+// Mum-Mum, and Limbo.
+// Baddie Specific used for Gruntling & Grublin Hood.
+//  * Gruntling: Red=2, Blue=1, Black=0
+//  * Grublin Hood: Spring=0, Summer=1, Autumn=2, Winter=3
+// Invulnerable State only used for Mum-Mum & Limbo.
+typedef struct {
+    // unk0 thru unk9 used for random wandering?
+    f32 unk0; // Min Value For Rand Float?
+    f32 unk4; // Max Value For Rand Float?
+    u8  unk8; // Min Value For Rand Float?
+    u8  unk9; // Max Value For Rand Float?
+    u8  unkA;
+    u8  unkB;
+    u32 yaw:3;
+    u32 unkC_28:1; // Always Set To True?
+    u32 baddieSpecific:28;
+    s16 foundPlayerSfx;
+    s16 foundPlayerSampleRate;
+    f32 foundPlayerVolume;
+    f32 enterInvulnerableStateAnimationTimer; 
+    s16 enterInvulnerableStateSfx;
+    s16 enterInvulnerableStateSampleRate;
+    f32 enterInvulnerableStateVolume;
+    f32 exitInvulnerableStateAnimationTimer;
+    s16 exitInvulnerableStateSfx;
+    s16 exitInvulnerableStateSampleRate;
+    f32 exitInvulnerableStateVolume;
+    void (*hitFunction)(ActorMarker *, ActorMarker *);
+    void (*dieFunction)(ActorMarker *, ActorMarker *);
+    s32 globalTimer;
+    f32 damageVolume;
+} Humanoid_Baddies_Actor;
+
 #endif // ACTOR_H

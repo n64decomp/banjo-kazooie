@@ -1,6 +1,7 @@
 ### Configuration ###
 BASENAME := banjo
 VERSION  ?= us.v10
+ANTI_TAMPER ?= 1
 
 ifeq ($(VERSION),us.v10)
 	C_VERSION=0
@@ -67,7 +68,7 @@ BUILD_ROOT        := build
 BUILD_DIR         := $(BUILD_ROOT)/$(VERSION)
 ALL_ASSET_FILES   := $(shell find $(ASSET_ROOT) -type f -iname '*.*' 2> /dev/null)
 C_SRCS            := $(shell find $(SRC_ROOT) -type f -iname '*.c' 2> /dev/null)
-BOOT_C_SRCS       := $(wildcard $(SRC_ROOT)/done/*.c)
+BOOT_C_SRCS       := $(shell find $(SRC_ROOT)/boot -type f -iname '*.c' 2> /dev/null)
 ALL_ASM_SRCS      := $(filter-out $(ASM_ROOT)/$(NONMATCHINGS), $(shell find $(ASM_ROOT) -name $(NONMATCHINGS) -prune -o -iname '*.s' 2> /dev/null))
 ALL_BINS          := $(shell find $(BIN_ROOT) -type f -iname '*.bin' 2> /dev/null)
 # Files referenced in the splat file
@@ -116,8 +117,8 @@ BIN_OBJS             := $(filter-out $(ASSET_OBJS),$(BIN_OBJS))
 ALL_OBJS             := $(C_OBJS) $(ASM_OBJS) $(BIN_OBJS)
 SYMBOL_ADDRS         := symbol_addrs.$(VERSION).txt
 SYMBOL_ADDR_FILES    := $(filter-out $(SYMBOL_ADDRS), $(wildcard symbol_addrs.*.$(VERSION).txt))
-MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/ll_cvt.c.o
-BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/done/ll.c.o
+MIPS3_OBJS           := $(BUILD_DIR)/$(SRC_ROOT)/core1/ultra/libc/ll.c.o $(BUILD_DIR)/$(SRC_ROOT)/core1/ultra/libc/llcvt.c.o
+BOOT_MIPS3_OBJS      := $(BUILD_DIR)/$(SRC_ROOT)/boot/ultra/libc/ll.c.o
 BOOT_C_OBJS          := $(filter-out $(BOOT_MIPS3_OBJS),$(BOOT_C_OBJS))
 COMPRESSED_SYMBOLS   := $(BUILD_DIR)/compressed_symbols.txt
 
@@ -158,10 +159,10 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS -DANTI_TAMPER='$(ANTI_TAMPER)'
 CFLAGS         += -woff 649,654,838,807
-CPPFLAGS       := -D_FINALROM -DN_MICRO
-INCLUDE_CFLAGS := -I . -I include -I include/2.0L -I include/2.0L/PR
+CPPFLAGS       := -D_FINALROM -DN_MICRO -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS
+INCLUDE_CFLAGS := -I . -I include -I lib/ultralib/include -I lib/ultralib/include/PR -I lib/ultralib/include/PRinternal -I lib/ultralib/include/compiler/ido -I include/n_audio/PR -I lib/ultralib/src/audio
 OPT_FLAGS      := -O2 
 MIPSBIT        := -mips2
 ASFLAGS        := -EB -mtune=vr4300 -march=vr4300 -mabi=32 -I include
@@ -325,9 +326,9 @@ $(DECOMPRESSED_BASEROM): $(BASEROM) $(BK_ROM_DECOMPRESS)
 	@$(BK_ROM_DECOMPRESS) $< $@
 	
 # .o -> .elf (dummy symbols)
-$(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS)
+$(PRELIM_ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.$(VERSION).txt -o $@
+	@$(LD) $(LDFLAGS) -T rzip_dummy_addrs.$(VERSION).txt $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a -o $@
 
 # .elf -> .z64 (dummy symbols)
 $(PRELIM_Z64) : $(PRELIM_ELF)
@@ -339,9 +340,9 @@ $(COMPRESSED_SYMBOLS): $(PRELIM_ELF) $(PRELIM_Z64) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) --symbols $(PRELIM_ELF) $(PRELIM_Z64) $@
 
 # .o -> .elf (game)
-$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS)
+$(ELF): $(ALL_OBJS) $(LD_SCRIPT) $(ASSET_OBJS) $(COMPRESSED_SYMBOLS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a
 	$(call print1,Linking elf:,$@)
-	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) -o $@
+	@$(LD) $(LDFLAGS) -T $(COMPRESSED_SYMBOLS) $(BUILD_DIR)/libultra_rom.a $(BUILD_DIR)/libultra_rom_boot.a -o $@
 
 # .elf -> .z64 (uncompressed)
 $(UNCOMPRESSED_Z64) : $(ELF)
@@ -351,6 +352,15 @@ $(UNCOMPRESSED_Z64) : $(ELF)
 # .z64 (uncompressed) + .elf -> .z64 (final)
 $(FINAL_Z64) : $(UNCOMPRESSED_Z64) $(ELF) $(BK_ROM_COMPRESS)
 	@$(BK_ROM_COMPRESS) $(ELF) $(UNCOMPRESSED_Z64) $@
+
+# Libultra files
+$(BUILD_DIR)/libultra_rom.a:
+	@$(MAKE) -C lib/ultralib VERSION=I TARGET=libultra_rom COMPARE=0 MODERN_LD=1 setup
+	@$(MAKE) -C lib/ultralib VERSION=I TARGET=libultra_rom COMPARE=0 MODERN_LD=1
+	@$(CP) lib/ultralib/build/I/libultra_rom/libultra_rom.a $@
+
+$(BUILD_DIR)/libultra_rom_boot.a: $(BUILD_DIR)/libultra_rom.a
+	@$(OBJCOPY) --prefix-symbols=boot_ $< $@
 
 # TOOLS
 # Tool for spliting BK asset sections into and from ROM Bin and transforming certain file types
@@ -367,6 +377,7 @@ $(BK_ROM_DECOMPRESS): tools/bk_rom_compressor/Cargo.toml tools/bk_rom_compressor
 
 clean:
 	$(call print0,Cleaning build artifacts)
+	@$(MAKE) -C lib/ultralib clean
 	@$(RM) -rf $(BUILD_ROOT)
 	@$(RM) -rf $(DECOMPRESSED_BASEROM)
 	@$(RM) -rf $(BIN_ROOT)
@@ -375,54 +386,12 @@ clean:
 	@$(RM) -rf $(addprefix $(ASM_ROOT)/,$(filter-out core1,$(OVERLAYS)))
 	@$(RM) -rf $(ASM_ROOT)/data
 	@$(RM) -rf $(ASM_ROOT)/core1/*.s
-	@$(RM) -rf $(ASM_ROOT)/core1/os
 	@$(RM) -f *.ld
 
 # Per-file flag definitions
-build/$(VERSION)/src/core1/io/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/os/%.c.o: OPT_FLAGS = -O1
-build/$(VERSION)/src/core1/gu/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/gu/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/audio/%.c.o: OPT_FLAGS = -O3
-build/$(VERSION)/src/core1/audio/%.c.o: INCLUDE_CFLAGS = -I . -I include -I include/2.0L -I include/2.0L/PR
-build/$(VERSION)/src/core1/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/core1/ll_cvt.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/core1/ll_cvt.c.o: MIPSBIT := -mips3 -o32
-
-build/$(VERSION)/src/bk_boot_27F0.c.o: OPT_FLAGS = -O2
-build/$(VERSION)/src/done/destroythread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pirawdma.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/thread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pimgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/getthreadid.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/setthreadpri.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/createthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/yieldthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/setglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/recvmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/startthread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/devmgr.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/sendmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pigetstat.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/si.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/resetglobalintmask.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/createmesgqueue.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/leodiskinit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/virtualtophysical.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/ll.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/ll.c.o: MIPSBIT := -mips3 -o32
-build/$(VERSION)/src/done/sirawwrite.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/sirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/initialize.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/pirawread.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/seteventmesg.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/siacs.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/cartrominit.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/leointerrupt.c.o: OPT_FLAGS := -O1
-build/$(VERSION)/src/done/epirawdma.c.o: OPT_FLAGS := -O1
+build/$(VERSION)/src/core1/ultra/audio/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/n_audio/%.c.o: OPT_FLAGS = -O3
+build/$(VERSION)/src/core1/ultra/gu/%.c.o: OPT_FLAGS := -O3
 
 # Disable implicit rules
 MAKEFLAGS += -r

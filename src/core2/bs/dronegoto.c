@@ -70,7 +70,7 @@ void func_802AECE4(void){
         yaw_setIdeal(sp2C);
     }
 
-    if( 250.0f <= gu_sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])
+    if( 250.0f <= sqrtf(sp20[0]*sp20[0] + sp20[2]*sp20[2])
         && anctrl_getIndex(aCtrl) == ASSET_3_ANIM_BSWALK
     ){
         anctrl_reset(aCtrl);

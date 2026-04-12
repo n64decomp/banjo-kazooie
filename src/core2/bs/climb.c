@@ -144,7 +144,7 @@ void bsclimb_move_update(void){
 
     bafalldamage_start();
     func_802AB5C0();
-    map = gsworld_get_map();
+    map = gsworld_getMap();
 
     if( map == MAP_B_CC_CLANKERS_CAVERN
         || map == MAP_1B_MMM_MAD_MONSTER_MANSION

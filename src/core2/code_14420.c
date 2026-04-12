@@ -321,7 +321,7 @@ void func_8029B73C(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     temp_f20 = (sp30[0]*sp30[0] + sp30[1]*sp30[1] + sp30[2]*sp30[2]);
 
     if (!((arg3 * arg3) < temp_f20)) {
-        temp_f20 = gu_sqrtf(temp_f20);
+        temp_f20 = sqrtf(temp_f20);
         ml_vec3f_set_length_copy(sp30, sp30, ml_min_f(time_getDelta() * arg4, arg3 - temp_f20));
         ml_vec3f_add(sp3C, sp3C, sp30);
         func_8028FAB0(sp3C);
@@ -377,14 +377,14 @@ f32 func_8029B9FC(void){
     f32 sp1C[3];
 
     func_8029B984(sp1C);
-    return gu_sqrtf(sp1C[0]*sp1C[0] + sp1C[1]*sp1C[1] + sp1C[2]*sp1C[2]);
+    return sqrtf(sp1C[0]*sp1C[0] + sp1C[1]*sp1C[1] + sp1C[2]*sp1C[2]);
 }
 
 f32 func_8029BA44(void){
     f32 sp1C[3];
 
     func_8029B984(sp1C);
-    return gu_sqrtf(sp1C[0]*sp1C[0] + sp1C[2]*sp1C[2]);
+    return sqrtf(sp1C[0]*sp1C[0] + sp1C[2]*sp1C[2]);
 }
 
 enum bs_e func_8029BA80(void){
@@ -706,8 +706,8 @@ void update_void_return_Location(void) {
 
     level_id = level_get();
     if ((level_id == 0) || (level_id == LEVEL_6_LAIR)) {
-        map_id = gsworld_get_map();
-        exit_id = gsworld_get_exit();
+        map_id = gsworld_getMap();
+        exit_id = gsworld_getExit();
     } else {
         map_id = level_get_main_map(level_id);
         exit_id = level_get_main_exit(level_id);
@@ -772,7 +772,7 @@ void func_8029C7F4(enum baanim_update_type_e arg0, enum yaw_state_e yaw_state, s
     baphysics_set_type(arg3);
 }
 
-void func_8029C834(enum map_e map_id, s32 exit_id){
+void code_14420_setVoidOutLocation(enum map_e map_id, s32 exit_id){
     gVoidOutReturnLocation[0] = map_id;
     gVoidOutReturnLocation[1] = exit_id;
 }

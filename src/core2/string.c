@@ -1,10 +1,7 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "core2/string.h"
 
-#include "string.h"
-
-void strcat(char *dst, char *src){
+void strcat(char *dst, const char *src){
     while(*(dst) != '\0'){
         dst++;
     }
@@ -91,7 +88,7 @@ void _strIToA(char *str, s32 num, char prefix){
     *str = '\0';
 }
 
-s32 strcmp(const char *str1, const char *str2){
+int strcmp(const char *str1, const char *str2){
     while (*str1 && *str2 && *str1 == *str2) {
         str1++;
         str2++;
@@ -105,7 +102,7 @@ s32 strcmp(const char *str1, const char *str2){
         return 1;
 }
 
-void strcpy(char *dst, char *src){
+void *strcpy(char *dst, const char *src){
      while(*(src) != '\0'){
         *(dst++) = *(src++);
     }
@@ -113,9 +110,9 @@ void strcpy(char *dst, char *src){
 }
 
 
-s32 strlen(char *str){
+int strlen(const char *str){
     char v0;
-    s32 len;
+    int len;
 
     len = 0;
     v0 = *(str++);
@@ -156,7 +153,7 @@ void strcpyToTok(char *arg0, char *arg1, char *arg2){
     *arg1 = '\0';
 }
 
-void strToUpper(char *str){
+char *strupr(char *str){
     char *ret = str;
     while (*ret != '\0'){
         if ((*ret >= 0x61) && (*ret < 0x7B)){

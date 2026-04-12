@@ -84,7 +84,7 @@ bool func_802BB884(f32 arg0[3], f32 *arg1) {
     player_getPosition(sp24);
     sp24[1] += 50.0f;
     ml_vec3f_diff_copy(sp18, arg0, sp24);
-    *arg1 = gu_sqrtf(sp18[0]*sp18[0] + sp18[1]*sp18[1] + sp18[2]*sp18[2]);
+    *arg1 = sqrtf(sp18[0]*sp18[0] + sp18[1]*sp18[1] + sp18[2]*sp18[2]);
     return TRUE;
 }
 
@@ -137,7 +137,7 @@ void func_802BBA84(void) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }
-    if (gsworld_get_map() == MAP_91_FILE_SELECT) {
+    if (gsworld_getMap() == MAP_91_FILE_SELECT) {
         D_8037D8C8 = D_8037D8CC * 0.0078125;
         return;
     }

@@ -54,7 +54,7 @@ static void close(Actor *this) {
 }
 
 static void open(Actor *this) {
-    code3040_func_80389468();
+    code3040_checkTTCChecksums();
     subaddie_set_state_with_direction(this, CH_LOCKUP_STATE_OPENING, 0.2f, 1);
     this->unk38_31 = 1;
     sfx_playFadeShorthandDefault(SFX_6B_LOCKUP_OPENING, 1.0f, 32000, this->position, 1250, 2500);

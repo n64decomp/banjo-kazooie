@@ -24,7 +24,7 @@ void ncDynamicCamF_update(void){
 
     player_getPosition(player_position);
     ml_vec3f_diff_copy(d_position, __playerStartPosition, player_position);
-    if( !(gu_sqrtf(d_position[0]*d_position[0] + d_position[1]*d_position[1] + d_position[2]*d_position[2]) < 2.0f)){
+    if( !(sqrtf(d_position[0]*d_position[0] + d_position[1]*d_position[1] + d_position[2]*d_position[2]) < 2.0f)){
         func_80291488(2);
         ncDynamicCamera_setState(0xB);
         func_802BE720();

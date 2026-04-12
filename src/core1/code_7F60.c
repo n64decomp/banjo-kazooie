@@ -110,7 +110,7 @@ void guMtxCatF(f32 lmf[4][4], f32 rmf[4][4], f32 dst[4][4]) {
 static void _guNormalize(f32 *arg0, f32 *arg1, f32 *arg2) {
     f32 inv_len;
 
-    inv_len = 1.0f / gu_sqrtf((*arg0 * *arg0) + (*arg1 * *arg1) + (*arg2 * *arg2));
+    inv_len = 1.0f / sqrtf((*arg0 * *arg0) + (*arg1 * *arg1) + (*arg2 * *arg2));
     *arg0 *= inv_len;
     *arg1 *= inv_len;
     *arg2 *= inv_len;

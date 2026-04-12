@@ -67,7 +67,7 @@ void func_8034F950(Struct_core2_C89C0_0 *arg0) {
             arg0->unk24[i] = (arg0->unk24[i] < -100.0f) ? -100.0f : arg0->unk24[i];
         }
     }
-    temp_f0 = gu_sqrtf(sp7C[0]*sp7C[0] + sp7C[1]*sp7C[1] + sp7C[2]*sp7C[2]);
+    temp_f0 = sqrtf(sp7C[0]*sp7C[0] + sp7C[1]*sp7C[1] + sp7C[2]*sp7C[2]);
     arg0->unk34 = (temp_f0 > 200.0f) ? 1.0f : (f32)(temp_f0 / 200.0);
     sp70[0] = -1.0f;
     sp70[1] = 0.0f;
@@ -222,7 +222,7 @@ void func_80350250(void) {
 
     
     temp_f22 = time_getDelta();
-    if ((D_80386150.unk0 != NULL) && (func_80334904() == 2)) {
+    if ((D_80386150.unk0 != NULL) && (gsworld_getUnk0() == 2)) {
         player_getPosition(sp7C);
         for(var_s0 = D_80386150.unk8; var_s0 < D_80386150.unkC; var_s0++) {
             var_s0->unk4 = (ml_vec3f_distance(var_s0->unkC, sp7C) < 2000.0f);
