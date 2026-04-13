@@ -116,70 +116,70 @@ ActorAnimationInfo D_80392CB0[] = {
     {0x271, 1e+08f}
 };
 ActorInfo lair_D_80392D90 = {
-    0x270, 0x2D8, ASSET_3B2_MODEL_TWO_ICE_POLES_NEAR_CHEATO_3,
+    MARKER_270_TWO_ICE_POLES_NEAR_CHEATO_3, ACTOR_2D8_TWO_ICE_POLES_NEAR_CHEATO_3, ASSET_3B2_MODEL_TWO_ICE_POLES_NEAR_CHEATO_3,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392DB4 = {
-    0x110, 0x214, ASSET_4AB_MODEL_RAISE_GRATE_TO_BGS_PUZZLE_SWITCH,
+    MARKER_110_RAISE_GRATE_TO_BGS_PUZZLE_SWITCH, ACTOR_214_RAISE_GRATE_TO_BGS_PUZZLE_SWITCH, ASSET_4AB_MODEL_RAISE_GRATE_TO_BGS_PUZZLE_SWITCH,
     0x1, D_80392CB0,
     func_803896D4, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392DD8 = {
-    0x113, 0x217, ASSET_4A9_MODEL_RAISE_PIPE_TO_CC_ENTRANCE_SWITCH,
+    MARKER_113_RAISE_PIPE_TO_CC_ENTRANCE_SWITCH, ACTOR_217_RAISE_PIPE_TO_CC_ENTRANCE_SWITCH, ASSET_4A9_MODEL_RAISE_PIPE_TO_CC_ENTRANCE_SWITCH,
     0x1, D_80392CB0,
     func_803896F4, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392DFC = {
-    0x115, 0x219, ASSET_4AA_MODEL_RAISE_PIPE_TO_BRENTILDA_SWITCH,
+    MARKER_115_RAISE_PIPE_TO_BRENTILDA_SWITCH, ACTOR_219_RAISE_PIPE_TO_BRENTILDA_SWITCH, ASSET_4AA_MODEL_RAISE_PIPE_TO_BRENTILDA_SWITCH,
     0x1, D_80392CB0,
     func_80389714, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392E20 = {
-    0x11B, 0x221, ASSET_4B5_MODEL_LEVEL_1_WATER_SWITCH,
+    MARKER_11B_WATER_LEVEL_SWITCH_1, ACTOR_221_LEVEL_1_WATER_SWITCH, ASSET_4B5_MODEL_LEVEL_1_WATER_SWITCH,
     0x1, D_80392CB0,
     func_80389734, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392E44 = {
-    0x11C, 0x222, ASSET_4B2_MODEL_LEVEL_2_WATER_SWITCH,
+    MARKER_11C_WATER_LEVEL_SWITCH_2, ACTOR_222_LEVEL_2_WATER_SWITCH, ASSET_4B2_MODEL_LEVEL_2_WATER_SWITCH,
     0x1, D_80392CB0,
     func_8038975C, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392E68 = {
-    0x11D, 0x223, ASSET_4B0_MODEL_LEVEL_3_WATER_SWITCH,
+    MARKER_11D_WATER_LEVEL_SWITCH_3, ACTOR_223_LEVEL_3_WATER_SWITCH, ASSET_4B0_MODEL_LEVEL_3_WATER_SWITCH,
     0x1, D_80392CB0,
     func_80389784, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392E8C = {
-    0x232, 0x23C, ASSET_4B8_MODEL_CCW_PUZZLE_SWITCH,
+    MARKER_232_CCW_PUZZLE_SWITCH, ACTOR_23C_CCW_PUZZLE_SWITCH, ASSET_4B8_MODEL_CCW_PUZZLE_SWITCH,
     0x1, D_80392CB0,
     func_803897AC, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392EB0 = {
-    0x23F, 0x246, ASSET_534_MODEL_FLIGHT_PAD_SWITCH,
+    MARKER_23F_LAIR_FLIGHT_PAD_SWITCH, ACTOR_246_FLIGHT_PAD_SWITCH, ASSET_534_MODEL_FLIGHT_PAD_SWITCH,
     0x1, D_80392CB0,
     func_80386D20, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392ED4 = {
-    0x241, 0x248, ASSET_540_MODEL_SHOCK_JUMP_PAD_SWITCH,
+    MARKER_241_SHOCK_JUMP_PAD_SWITCH, ACTOR_248_SHOCK_JUMP_PAD_SWITCH, ASSET_540_MODEL_SHOCK_JUMP_PAD_SWITCH,
     0x1, D_80392CB0,
     func_80386780, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
@@ -193,7 +193,7 @@ ActorInfo D_80392EF8 = {
 };
 
 ActorInfo D_80392F1C = {
-    0x264, 0x2E5, ASSET_550_MODEL_LARGE_DOOR_TO_FINAL_BATTLE,
+    MARKER_264_LARGE_DOOR_TO_FINAL_BATTLE, ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE, ASSET_550_MODEL_LARGE_DOOR_TO_FINAL_BATTLE,
     0x19, D_80392CB0,
     func_80388524, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
@@ -214,112 +214,112 @@ ActorInfo D_80392F64 = {
 };
 
 ActorInfo D_80392F88 = {
-    0x111, 0x215, ASSET_4A4_MODEL_GL_CC_ENTRANCE_LONG_PIPE_GREEN,
+    MARKER_111_GL_CC_ENTRANCE_LONG_PIPE_GREEN, ACTOR_215_GL_CC_ENTRANCE_LONG_PIPE_GREEN, ASSET_4A4_MODEL_GL_CC_ENTRANCE_LONG_PIPE_GREEN,
     0x1, NULL,
     func_80388FC8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392FAC = {
-    0x112, 0x216, ASSET_4A5_MODEL_GL_CC_ENTRANCE_LONG_PIPE_BLUE,
+    MARKER_112_GL_CC_ENTRANCE_LONG_PIPE_BLUE, ACTOR_216_GL_CC_ENTRANCE_LONG_PIPE_BLUE, ASSET_4A5_MODEL_GL_CC_ENTRANCE_LONG_PIPE_BLUE,
     0x1, NULL,
     func_80388FC8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392FD0 = {
-    0x114, 0x218, ASSET_4A6_MODEL_GL_CC_ENTRANCE_SHORT_PIPE,
+    MARKER_114_GL_CC_ENTRANCE_SHORT_PIPE, ACTOR_218_GL_CC_ENTRANCE_SHORT_PIPE, ASSET_4A6_MODEL_GL_CC_ENTRANCE_SHORT_PIPE,
     0x1, NULL,
     lair_func_80389204, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80392FF4 = {
-    0x10D, 0x211, ASSET_4A3_MODEL_GL_TTC_ENTRANCE_CHEST_LID,
+    MARKER_10D_TTC_ENTRANCE_CHEST_LID, ACTOR_211_TTC_ENTRANCE_CHEST_LID, ASSET_4A3_MODEL_GL_TTC_ENTRANCE_CHEST_LID,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80393018 = {
-    0x22C, 0x23A, ASSET_4D9_MODEL_GL_ADVENT_CALENDAR_HATCH_DOOR,
+    MARKER_22C_GL_ADVENT_CALENDAR_HATCH_DOOR, ACTOR_23A_GL_ADVENT_CALENDAR_HATCH_DOOR, ASSET_4D9_MODEL_GL_ADVENT_CALENDAR_HATCH_DOOR,
     0x1, NULL,
     func_803882B0, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8039303C = {
-    MARKER_164_GL_GRUNTY_FLOOR_PICTURE_EYE_1, 0x259, ASSET_507_MODEL_GL_GRUNTY_FLOOR_PICTURE_EYE_1,
+    MARKER_164_GL_GRUNTY_FLOOR_PICTURE_EYE_1, ACTOR_259_GL_GRUNTY_FLOOR_PICTURE_EYE_1, ASSET_507_MODEL_GL_GRUNTY_FLOOR_PICTURE_EYE_1,
     0x1, NULL,
     func_803880BC, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80393060 = {
-    MARKER_165_GL_GRUNTY_FLOOR_PICTURE_EYE_2, 0x25A, ASSET_508_MODEL_GL_GRUNTY_FLOOR_PICTURE_EYE_2,
+    MARKER_165_GL_GRUNTY_FLOOR_PICTURE_EYE_2, ACTOR_25A_GL_GRUNTY_FLOOR_PICTURE_EYE_2, ASSET_508_MODEL_GL_GRUNTY_FLOOR_PICTURE_EYE_2,
     0x1, NULL,
     func_8038824C, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80393084 = {
-    MARKER_240_LAIR_SWITCH_FLIGHT_PAD, 0x247, ASSET_48A_MODEL_FLIGHT_PAD,
+    MARKER_240_LAIR_SWITCH_FLIGHT_PAD, ACTOR_247_LAIR_SWITCH_FLIGHT_PAD, ASSET_48A_MODEL_FLIGHT_PAD,
     0x1, NULL,
     func_80386D78, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803930A8 = {
-    0x242, 0x249, ASSET_2DD_MODEL_SHOCK_JUMP_PAD,
+    MARKER_242_LAIR_SWITCH_SHOCK_JUMP_PAD, ACTOR_249_LAIR_SWITCH_SHOCK_JUMP_PAD, ASSET_2DD_MODEL_SHOCK_JUMP_PAD,
     0x1, NULL,
     func_803867A8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803930CC = {
-    0x11F, 0x225, ASSET_4B3_MODEL_RAREWARE_BOX,
+    MARKER_11F_RAREWARE_BOX, ACTOR_225_RAREWARE_BOX, ASSET_4B3_MODEL_RAREWARE_BOX,
     0x1, NULL,
     func_8038A064, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803930F0 = {
-    0x10A, 0x20E, ASSET_4A2_MODEL_GL_MM_DOOR_ENTRANCE,
+    MARKER_10A_MM_ENTRANCE_DOOR, ACTOR_20E_MM_ENTRANCE_DOOR, ASSET_4A2_MODEL_GL_MM_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80393114 = {
-    MARKER_11A_GRATE_TO_RBB_PUZZLE, 0x220, ASSET_4B7_MODEL_GRATE_TO_RBB_PUZZLE,
+    MARKER_11A_GRATE_TO_RBB_PUZZLE, ACTOR_220_GRATE_TO_RBB_PUZZLE, ASSET_4B7_MODEL_GRATE_TO_RBB_PUZZLE,
     0x1, NULL,
     func_80389FF4, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x91
 };
 
 ActorInfo D_80393138 = {
-    MARKER_11E_ICE_BALL_TO_CHEATO, 0x224, ASSET_4AF_MODEL_ICE_BALL_TO_CHEATO,
+    MARKER_11E_ICE_BALL_TO_CHEATO, ACTOR_224_ICE_BALL_TO_CHEATO, ASSET_4AF_MODEL_ICE_BALL_TO_CHEATO,
     0x1, NULL,
     func_8038A014, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x83
 };
 
 ActorInfo D_8039315C = {
-    0x227, 0x234, ASSET_4D6_MODEL_GL_CCW_DOOR_ENTRANCE,
+    MARKER_227_CCW_ENTRANCE_DOOR, ACTOR_234_CCW_ENTRANCE_DOOR, ASSET_4D6_MODEL_GL_CCW_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x93
 };
 
 ActorInfo D_80393180 = {
-    0x228, 0x235, ASSET_4D7_MODEL_GL_FP_DOOR_ENTRANCE_LEFT,
+    MARKER_228_FP_ENTRANCE_DOOR_LEFT, ACTOR_235_FP_ENTRANCE_DOOR_LEFT, ASSET_4D7_MODEL_GL_FP_DOOR_ENTRANCE_LEFT,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x8B
 };
 
 ActorInfo D_803931A4 = {
-    0x229, 0x236, ASSET_4D8_MODEL_GL_FP_DOOR_ENTRANCE_LEFT,
+    MARKER_229_FP_ENTRANCE_DOOR_RIGHT, ACTOR_236_FP_ENTRANCE_DOOR_RIGHT, ASSET_4D8_MODEL_GL_FP_DOOR_ENTRANCE_LEFT,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x8B
@@ -333,105 +333,105 @@ ActorInfo D_803931C8 = {
 };
 
 ActorInfo D_803931EC = {
-    0x116, 0x21A, ASSET_4AC_MODEL_IRON_BARS_UNDER_GRUNTY_STATUE,
+    MARKER_116_IRON_BARS_UNDER_GRUNTY_STATUE, ACTOR_21A_IRON_BARS_UNDER_GRUNTY_STATUE, ASSET_4AC_MODEL_IRON_BARS_UNDER_GRUNTY_STATUE,
     0x1, NULL,
     func_803893B8, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x82
 };
 
 ActorInfo D_80393210 = {
-    0x117, 0x21B, ASSET_4AD_MODEL_GRUNTY_STATUE_BREAKABLE_HAT_TOP,
+    MARKER_117_GRUNTY_STATUE_BREAKABLE_HAT_TOP, ACTOR_21B_GRUNTY_STATUE_BREAKABLE_HAT_TOP, ASSET_4AD_MODEL_GRUNTY_STATUE_BREAKABLE_HAT_TOP,
     0x1, NULL,
     lair_func_803894B0, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x82
 };
 
 ActorInfo D_80393234 = {
-    0x10B, 0x20F, ASSET_4B4_MODEL_GL_RBB_DOOR_ENTRANCE,
+    MARKER_10B_RBB_ENTRANCE_DOOR, ACTOR_20F_RBB_ENTRANCE_DOOR, ASSET_4B4_MODEL_GL_RBB_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x90
 };
 
 ActorInfo D_80393258 = {
-    0x10C, 0x210, ASSET_4AE_MODEL_GL_BGS_DOOR_ENTRANCE,
+    MARKER_10C_BGS_ENTRANCE_DOOR, ACTOR_210_BGS_ENTRANCE_DOOR, ASSET_4AE_MODEL_GL_BGS_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x84
 };
 
 ActorInfo D_8039327C = {
-    0x10E, 0x212, ASSET_4A7_MODEL_GL_CC_IRON_BARS_ENTRANCE,
+    MARKER_10E_CC_ENTRANCE_DOOR, ACTOR_212_CC_ENTRANCE_BARS, ASSET_4A7_MODEL_GL_CC_IRON_BARS_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x7F
 };
 
 ActorInfo D_803932A0 = {
-    0x120, 0x226, ASSET_4BC_MODEL_GL_GV_DOOR_ENTRANCE,
+    MARKER_120_GV_ENTRANCE, ACTOR_226_GV_ENTRANCE, ASSET_4BC_MODEL_GL_GV_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x87
 };
 
 ActorInfo D_803932C4 = {
-    0x122, ACTOR_228_MMM_ENTRANCE_DOOR, ASSET_4BE_MODEL_GL_MMM_DOOR_ENTRANCE,
+    MARKER_122_MMM_ENTRANCE_DOOR, ACTOR_228_MMM_ENTRANCE_DOOR, ASSET_4BE_MODEL_GL_MMM_DOOR_ENTRANCE,
     0x1, NULL,
     func_80388524, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x8C
 };
 
 ActorInfo D_803932E8 = {
-    0x10F, 0x213, ASSET_4A8_MODEL_GL_BGS_PUZZLE_GRATE,
+    MARKER_10F_GL_BGS_PUZZLE_GRATE, ACTOR_213_GL_BGS_PUZZLE_GRATE, ASSET_4A8_MODEL_GL_BGS_PUZZLE_GRATE,
     0x1, NULL,
     func_803875F0, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x80
 };
 
 ActorInfo D_8039330C = {
-    MARKER_118_GRATE_TO_LEVEL_3_WATER_SWITCH, 0x21E, ASSET_4B1_MODEL_GRATE_TO_LEVEL_3_WATER_SWITCH,
+    MARKER_118_GRATE_TO_LEVEL_3_WATER_SWITCH, ACTOR_21E_GRATE_TO_LEVEL_3_WATER_SWITCH, ASSET_4B1_MODEL_GRATE_TO_LEVEL_3_WATER_SWITCH,
     0x1, NULL,
     lair_func_8038A084, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x8F
 };
 
 ActorInfo D_80393330 = {
-    MARKER_119_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES, 0x21F, ASSET_4B6_MODEL_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES,
+    MARKER_119_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES, ACTOR_21F_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES, ASSET_4B6_MODEL_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES,
     0x1, NULL,
     func_8038A0A4, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0x92
 };
 
 ActorInfo D_80393354 = {
-    0x266, 0x2E3, ASSET_563_MODEL_LEVEL_ENTRY_SIGNS,
+    MARKER_266_LEVEL_ENTRY_SIGNS, ACTOR_2E3_LEVEL_ENTRY_SIGNS, ASSET_563_MODEL_LEVEL_ENTRY_SIGNS,
     0x1, NULL,
     func_803870DC, actor_update_func_80326224, lair_func_80387560,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_80393378 = {
-    MARKER_17D_IRON_GATE_NO_LOCK, 0x1E1, ASSET_517_MODEL_IRON_GATE_NO_LOCK,
+    MARKER_17D_IRON_GATE_NO_LOCK, ACTOR_1E1_IRON_GATE_NO_LOCK, ASSET_517_MODEL_IRON_GATE_NO_LOCK,
     0x1, NULL,
     func_80389D08, actor_update_func_80326224, func_80389E10,
     0, 0, 0.0f, 0x8D
 };
 
 ActorInfo D_8039339C = {
-    0x234, 0x23E, ASSET_4E1_MODEL_GL_WOODEN_COFFIN_NO_LID,
+    MARKER_234_GL_WOODEN_COFFIN_NO_LID, ACTOR_23E_GL_WOODEN_COFFIN_NO_LID, ASSET_4E1_MODEL_GL_WOODEN_COFFIN_NO_LID,
     0x12, D_80392CB0,
     func_8038982C, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_803933C0 = {
-    MARKER_163_CRYPT_COFFIN_LID, 0x258, ASSET_511_MODEL_CRYPT_COFFIN_LID,
+    MARKER_163_CRYPT_COFFIN_LID, ACTOR_258_CRYPT_COFFIN_LID, ASSET_511_MODEL_CRYPT_COFFIN_LID,
     0x12, D_80392CB0,
     func_80389898, actor_update_func_80326224, func_8038664C,
     0, 0, 0.0f, 0x8E
 };
 
 ActorInfo D_803933E4 = {
-    MARKER_160_GL_SARCOPHAGUS, 0x255, ASSET_509_MODEL_GL_SARCOPHAGUS,
+    MARKER_160_GL_SARCOPHAGUS, ACTOR_255_GL_SARCOPHAGUS, ASSET_509_MODEL_GL_SARCOPHAGUS,
     0x15, D_80392CB0,
     func_80389934, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
@@ -1354,7 +1354,7 @@ void func_80388524(Actor *this) {
                     }
                     break;
 
-                case ACTOR_235_FP_ENTANCE_DOOR: //L803887E0
+                case ACTOR_235_FP_ENTRANCE_DOOR_LEFT: //L803887E0
                     if (!fileProgressFlag_get(FILEPROG_35_FP_OPEN) && jigsawPicture_isJigsawPictureComplete(5)) {
                         fileProgressFlag_set(FILEPROG_35_FP_OPEN, TRUE);
                     }
@@ -1428,7 +1428,7 @@ void func_80388524(Actor *this) {
                 this->unk1C[1] = this->position[1] + 270.0f;
                 break;
                 
-            case ACTOR_235_FP_ENTANCE_DOOR://L80388A24
+            case ACTOR_235_FP_ENTRANCE_DOOR_LEFT://L80388A24
                     sp30 = actorArray_findActorFromActorId(0x236);
                     if(fileProgressFlag_get(FILEPROG_35_FP_OPEN)){
                         marker_despawn(this->marker);
@@ -1449,7 +1449,7 @@ void func_80388524(Actor *this) {
         }
 
         switch(this->modelCacheIndex){
-            case 0x2E5:
+            case ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE:
                 switch (this->state) {
                     case 0x19: //L80388B34
                         subaddie_set_state_with_direction(this, 0x1A, 0.0f, 1);
@@ -1485,7 +1485,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x20e://L80388C7C
+            case ACTOR_20E_MM_ENTRANCE_DOOR://L80388C7C
                 this->yaw += 1.4;
                 if (this->yaw > 270.0f) {
                     this->yaw = 270.0f;
@@ -1493,7 +1493,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x226://L80388CDC
+            case ACTOR_226_GV_ENTRANCE://L80388CDC
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x36, SFX_6C_LOCKUP_CLOSING, 1.0f, 15000);
@@ -1502,7 +1502,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x212://L80388D34
+            case ACTOR_212_CC_ENTRANCE_BARS://L80388D34
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x33, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 17000);
@@ -1511,7 +1511,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x211://L80388D8C
+            case ACTOR_211_TTC_ENTRANCE_CHEST_LID://L80388D8C
                 this->pitch += 1.4;
                 if (this->pitch > 90.0f) {
                     this->pitch = 90.0f;
@@ -1519,7 +1519,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x210://L80388DDC
+            case ACTOR_210_BGS_ENTRANCE_DOOR://L80388DDC
                 this->yaw += 1.4;
                 if (this->yaw > 90.0f) {
                     this->yaw = 90.0f;
@@ -1527,7 +1527,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case 0x20f://L80388E2C
+            case ACTOR_20F_RBB_ENTRANCE_DOOR://L80388E2C
                 this->position[1] += 5.0f;
                 if (this->unk1C[1] < this->position[1]) {
                     func_80388404(0x38, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 17000);
@@ -1553,7 +1553,7 @@ void func_80388524(Actor *this) {
                 }
                 break;
 
-            case ACTOR_235_FP_ENTANCE_DOOR://L80388F34
+            case ACTOR_235_FP_ENTRANCE_DOOR_LEFT://L80388F34
                 {
                     sp28 = actorArray_findActorFromActorId(0x236);
                     this->unk1C[0] += 3.6;

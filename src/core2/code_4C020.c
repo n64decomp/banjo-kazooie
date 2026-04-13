@@ -82,7 +82,7 @@ ActorAnimationInfo D_803676B0[] = {
 ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
 ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
 ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
-ActorInfo D_803677CC = { 0x233, 0x23D, 0x4DD, 0x12, D_803676B0, func_802D4388, actor_update_func_80326224, func_802D4588, 0, 0, 0.0f, 0};
+ActorInfo D_803677CC = { MARKER_233_MUMBO_SWITCH, ACTOR_23D_MUMBO_SWITCH, ASSET_4DD_MODEL_MUMBO_SWITCH, 0x12, D_803676B0, func_802D4388, actor_update_func_80326224, func_802D4588, 0, 0, 0.0f, 0};
 ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, 0, 0, 0.0f, 0};
 ActorInfo D_80367814 = { MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, 0, 0, 0.0f, 0};
 ActorInfo gWorldExitPad = { MARKER_265_WORLD_EXIT_PAD, ACTOR_2E4_WORLD_EXIT_PAD, ASSET_55A_MODEL_WORLD_EXIT_PAD,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, 0, 0, 0.0f, 0};
@@ -1037,7 +1037,7 @@ void func_802D5628(void){
         func_802D5178(LEVEL_FLAG_23_RBB_OPEN, 0x2F, 0x35, MAP_77_GL_RBB_LOBBY, 0xD, 0x5, ACTOR_20F_RBB_ENTRANCE_DOOR, 0xA);
         func_802D5178(LEVEL_FLAG_22_MMM_OPEN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
         func_802D5178(LEVEL_FLAG_24_CCW_OPEN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
-        func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTANCE_DOOR,   0xA);
+        func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTRANCE_DOOR_LEFT,   0xA);
         func_802D5178(LEVEL_FLAG_3F_LAIR_GRUNTY_DOOR_OPEN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
         if(volatileFlag_get(VOLATILE_FLAG_18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
@@ -1252,9 +1252,9 @@ void func_802D6494(void){
                     coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;
-            case ACTOR_235_FP_ENTANCE_DOOR:// L802D6624
+            case ACTOR_235_FP_ENTRANCE_DOOR_LEFT:// L802D6624
                 if(gsworld_getMap() == MAP_6F_GL_FP_LOBBY && !volatileFlag_get(VOLATILE_FLAG_8B_SANDCASTLE_OPEN_FP)){
-                    func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTANCE_DOOR), SFX_18_BIGBUTT_SLIDE, 0.5f);
+                    func_802D4830(actorArray_findActorFromActorId(ACTOR_235_FP_ENTRANCE_DOOR_LEFT), SFX_18_BIGBUTT_SLIDE, 0.5f);
                     coMusicPlayer_playMusicWeak(COMUSIC_64_WORLD_OPENING_A, 32000);
                 }
                 break;

@@ -37,8 +37,8 @@ ActorInfo D_80394C70 = {
     func_8039217C, actor_update_func_80326224, actor_draw,
     0, 0, 3.0f, 0
 };
-ActorInfo D_80394C94 = {
-    MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35B_FF_PRIZE_TOOTY,
+ActorInfo D_80394C94 = { 
+    MARKER_29A_FF_PRIZE, ACTOR_3C8_FF_PRIZE_TOOTY, ASSET_35B_MODEL_TOOTY,
     0x5, D_80394BE0,
     func_8039217C, actor_update_func_80326224, func_80391FC0,
     0, 0, 1.0f, 0
