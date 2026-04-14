@@ -37,6 +37,16 @@ int func_8025AD7C(enum comusic_e arg0);
 int func_8025ADBC(enum comusic_e arg0);
 
 
+/* src/core1/code_8C50.c */
+
+void resetThread_create(void);
+void func_802476DC(void);
+void resetThread_finishDList(Gfx **gfx);
+s32 func_80247720(void);
+OSMesgQueue *func_8024772C(void);
+OSThread *resetThread_getThreadObject(void);
+
+
 /* src/core1/code_7090.c */
 
 void core1_7090_alloc(void);

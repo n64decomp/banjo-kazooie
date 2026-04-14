@@ -104,7 +104,7 @@ void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx){
 }
 
 void func_80253DC0(Gfx **gfx){
-    func_802476EC(gfx);
+    resetThread_finishDList(gfx);
 }
 
 void finishFrame(Gfx **gdl) {
@@ -174,7 +174,7 @@ void func_80254028(void){
     D_802831E8 = 0;
     osCreateMesgQueue(&D_802831F0, &D_80283208, 1);
     osSendMesg(&D_802831F0, NULL, 1);
-    func_80247560();
+    resetThread_create();
     scissorBox_setDefault();
 }
 

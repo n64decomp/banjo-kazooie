@@ -88,8 +88,8 @@ void sns_save_and_update_global_data(void)
 
         gSaveData.snsw = gSaveData.snsw << SNS_NUM_FLAGS >> SNS_NUM_FLAGS ^ gSaveData.snsw;
 
-        for (i = 0; i < sizeof(gSaveData.UNUSED); i++)
-            gSaveData.UNUSED[i] = 0;
+        for (i = 0; i < sizeof(gSaveData.padding); i++)
+            gSaveData.padding[i] = 0;
 
         sns_update_global_save_data_checksum();
     }
