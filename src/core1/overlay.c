@@ -36,7 +36,7 @@ void overlay_load(
     rom_end = D_803FFE10[overlay_id].unk4;
 
     if(overlay_id){
-        func_80254008();
+        core1_15B30_sendMesg3ToRenderThread();
         sp34 = &D_8000E800;
     }
     else{

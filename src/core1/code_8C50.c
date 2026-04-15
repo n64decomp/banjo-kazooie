@@ -57,13 +57,13 @@ OSMesg      sResetThreadSyncMesgBufer[10];
 
 struct ucode_task_data_s *sActiveAudioTaskDataPtr;
 
-s32 D_8027FC0C;
-bool D_8027FC10;
-s32 D_8027FC14;
-s32 D_8027FC18;
-s32 D_8027FC1C;
-s32 D_8027FC20;
-s32 D_8027FC24;
+s32 sUnkCounter5;
+bool sTask7Handled;
+s32 sUnkFlag2_Saved;
+s32 sUnkFlag2;
+s32 sUnkFlag1;
+s32 sUnkFlag1_Saved;
+s32 sGfxTaskYielded;
 
 STACK(sResetThreadStack, 2048);
 OSThread sResetThread;
@@ -125,7 +125,7 @@ void resetThread_startAudioTask(struct ucode_task_data_s *task_data) {
     sActiveAudioTaskDataPtr = task_data;
     osSpTaskLoad(&sAudTask);
     osSpTaskStartGo(&sAudTask);
-    D_8027FC1C = 4;
+    sUnkFlag1 = 4;
 }
 
 void resetThread_startF3DEXTask(struct ucode_task_data_s *task_data) {
@@ -138,10 +138,10 @@ void resetThread_startF3DEXTask(struct ucode_task_data_s *task_data) {
     osWritebackDCache(&sGfxTask, sizeof(OSTask));
     osSpTaskLoad(&sGfxTask);
     osSpTaskStartGo(&sGfxTask);
-    D_8027FC1C = task_data->unk4 | 0x8;
-    D_8027FC18 = task_data->unk4 | 0x1;
+    sUnkFlag1 = task_data->unk4 | 0x8;
+    sUnkFlag2 = task_data->unk4 | 0x1;
     if(!(osDpGetStatus() & DPC_STATUS_FREEZE)){
-        D_8027FC14 = D_8027FC18;
+        sUnkFlag2_Saved = sUnkFlag2;
         sUnkCounter3 = 30;
     }
 }
@@ -156,10 +156,10 @@ void resetThread_startL3DEXTask(struct ucode_task_data_s *task_data) {
     osWritebackDCache(&sGfxTask, sizeof(OSTask));
     osSpTaskLoad(&sGfxTask);
     osSpTaskStartGo(&sGfxTask);
-    D_8027FC1C = task_data->unk4 | 0x8;
-    D_8027FC18 = task_data->unk4 | 0x1;
+    sUnkFlag1 = task_data->unk4 | 0x8;
+    sUnkFlag2 = task_data->unk4 | 0x1;
     if(!(osDpGetStatus() & DPC_STATUS_FREEZE)){
-        D_8027FC14 = D_8027FC18;
+        sUnkFlag2_Saved = sUnkFlag2;
         sUnkCounter3 = 30;
     }
 }
@@ -182,7 +182,7 @@ void resetThread_handleAudioTaskMesg(struct ucode_task_data_s *task_data) {
 
 void resetThread_handleF3DEXTaskMesg(struct ucode_task_data_s *task_data) {
     resetThread_insertGfxTaskData(task_data);
-    if(D_8027FC1C == 0x10 && !D_8027FC10){
+    if(sUnkFlag1 == 0x10 && !sTask7Handled){
         resetThread_startF3DEXTask(sGfxTaskDataList[sActiveGfxTaskDataID]);
         sActiveGfxTaskDataID = (sActiveGfxTaskDataID + 1) % 0x14;
     }
@@ -190,48 +190,48 @@ void resetThread_handleF3DEXTaskMesg(struct ucode_task_data_s *task_data) {
 
 void resetThread_handleL3DEXTaskMesg(struct ucode_task_data_s *task_data) {
     resetThread_insertGfxTaskData(task_data);
-    if(D_8027FC1C == 0x10 && !D_8027FC10){
+    if(sUnkFlag1 == 0x10 && !sTask7Handled){
         resetThread_startL3DEXTask(sGfxTaskDataList[sActiveGfxTaskDataID]);
         sActiveGfxTaskDataID = (sActiveGfxTaskDataID + 1) % 0x14;
     }
 }
 
 void resetThread_handleMesg3(void){
-    if( D_8027FC1C == 0x10 
-        && D_8027FC14 == 2 
+    if( sUnkFlag1 == 0x10 
+        && sUnkFlag2_Saved == 2 
         && sActiveGfxTaskDataID == sSelectedGfxTaskDataID
         && !(osDpGetStatus() & DPC_STATUS_FREEZE)
     ){
         osSendMesg(&sResetThreadSyncMesgQueue, NULL, OS_MESG_NOBLOCK);
     }
     else{
-        D_8027FC0C++;
+        sUnkCounter5++;
     }
 }
 
 void resetThread_handleDPEvent(void){
-    if((D_8027FC14 << 1) < 0){
+    if((sUnkFlag2_Saved << 1) < 0){
         osDpSetStatus(DPC_SET_FREEZE);
         sCurrentFramebuffer = osViGetCurrentFramebuffer();
         viMgr_func_8024BFAC();
     }
-    D_8027FC14 = D_8027FC18 = 2;
+    sUnkFlag2_Saved = sUnkFlag2 = 2;
     sUnkCounter3 = 0;
-    if(D_8027FC1C == 0x10 && sActiveGfxTaskDataID != sSelectedGfxTaskDataID && !D_8027FC10){
+    if(sUnkFlag1 == 0x10 && sActiveGfxTaskDataID != sSelectedGfxTaskDataID && !sTask7Handled){
         resetThread_startGfxTask(sGfxTaskDataList[sActiveGfxTaskDataID]);
         sActiveGfxTaskDataID = (sActiveGfxTaskDataID + 1) % 0x14;
     }
     else{
-        if(D_8027FC0C && sActiveGfxTaskDataID == sSelectedGfxTaskDataID && !(osDpGetStatus() & DPC_STATUS_FREEZE)){
+        if(sUnkCounter5 && sActiveGfxTaskDataID == sSelectedGfxTaskDataID && !(osDpGetStatus() & DPC_STATUS_FREEZE)){
             osSendMesg(&sResetThreadSyncMesgQueue, NULL, OS_MESG_NOBLOCK);
-            D_8027FC0C--;
+            sUnkCounter5--;
         }
     }
 }
 
 void resetThread_handleMesg5(void){
     static s32 audiotimer_trigger = 0;
-    s32 sp2C = (D_8027FC0C != 0) && (sActiveGfxTaskDataID == sSelectedGfxTaskDataID) && (D_8027FC18 == 2) && (D_8027FC1C == 0x10);
+    s32 sp2C = (sUnkCounter5 != 0) && (sActiveGfxTaskDataID == sSelectedGfxTaskDataID) && (sUnkFlag2 == 2) && (sUnkFlag1 == 0x10);
     volatile bool sp30;
 
     sp30 = FALSE;
@@ -240,17 +240,17 @@ void resetThread_handleMesg5(void){
         if (osDpGetStatus() & DPC_STATUS_FREEZE) {
             osDpSetStatus(DPC_CLR_FREEZE);
 
-            D_8027FC14 = D_8027FC18;
+            sUnkFlag2_Saved = sUnkFlag2;
             dummy_func_8025AFB8();
 
-            if (D_8027FC14 & 1) {
+            if (sUnkFlag2_Saved & 1) {
                 sUnkCounter3 = 30;
             }
         }
 
         if (sp2C) {
             osSendMesg(&sResetThreadSyncMesgQueue, NULL, OS_MESG_NOBLOCK);
-            D_8027FC0C--;
+            sUnkCounter5--;
         }
     }
 
@@ -271,7 +271,7 @@ void resetThread_handleMesg5(void){
         }
     }
 
-    D_8027FC10 = 0;
+    sTask7Handled = FALSE;
 
     audiotimer_trigger++;
     if ((audiotimer_trigger & 1) == 0) {
@@ -290,47 +290,46 @@ void resetThread_handleMesg5(void){
 }
 
 void resetThread_handleSPEvent(void) {
-    struct ucode_task_data_s *sp1C;
+    struct ucode_task_data_s *active_audio_task;
     s32 temp_v1;
-    struct ucode_task_data_s *temp_v0;
 
-    temp_v1 = D_8027FC1C;
-    if (D_8027FC1C == 0x20) {
-        sp1C = sAudioTaskDataList[sActiveAudioTaskDataID];
+    temp_v1 = sUnkFlag1;
+    if (sUnkFlag1 == 0x20) {
+        active_audio_task = sAudioTaskDataList[sActiveAudioTaskDataID];
         sActiveAudioTaskDataID = (sActiveAudioTaskDataID + 1) % 20;
-        D_8027FC24 = (osSpTaskYielded(&sGfxTask) == 1);
-        resetThread_startAudioTask(sp1C);
+        sGfxTaskYielded = osSpTaskYielded(&sGfxTask) == OS_TASK_YIELDED;
+        resetThread_startAudioTask(active_audio_task);
         sUnkCounter4 = 0;
         return;
     }
 
-    if (D_8027FC1C == 4) {
+    if (sUnkFlag1 == 4) {
         osSendMesg(sActiveAudioTaskDataPtr->unk10, (OSMesg) sActiveAudioTaskDataPtr->unk14, OS_MESG_NOBLOCK);
     }
 
-    if ((D_8027FC1C == 4) && (D_8027FC24 != 0)) {
+    if ((sUnkFlag1 == 4) && sGfxTaskYielded) {
         osSpTaskLoad(&sGfxTask);
         osSpTaskStartGo(&sGfxTask);
-        D_8027FC1C = D_8027FC20;
-        D_8027FC24 = 0;
+        sUnkFlag1 = sUnkFlag1_Saved;
+        sGfxTaskYielded = FALSE;
         return;
     }
 
-    D_8027FC1C = 0x10;
-    if ((sActiveGfxTaskDataID != sSelectedGfxTaskDataID) && (D_8027FC10 == 0)) {
+    sUnkFlag1 = 0x10;
+    if ((sActiveGfxTaskDataID != sSelectedGfxTaskDataID) && (!sTask7Handled)) {
         resetThread_startGfxTask(sGfxTaskDataList[sActiveGfxTaskDataID]);
         sActiveGfxTaskDataID = (sActiveGfxTaskDataID + 1) % 20;
         return;
     }
     
-    if ((D_8027FC0C != 0) && (D_8027FC14 == 2) && !(osDpGetStatus() & 2)) {
+    if ((sUnkCounter5 != 0) && (sUnkFlag2_Saved == 2) && !(osDpGetStatus() & DPC_STATUS_FREEZE)) {
         osSendMesg(&sResetThreadSyncMesgQueue, NULL, OS_MESG_NOBLOCK);
-        D_8027FC0C -= 1;
+        sUnkCounter5--;
     }
 }
 
-void resetThread_handleTask7Mesg(OSMesg arg0){
-    D_8027FC10 = TRUE;
+void resetThread_handleTask7Mesg(struct ucode_task_data_s *task_data) {
+    sTask7Handled = TRUE;
 }
 
 void resetThread_handleAudioTimerEvent(void){
@@ -340,15 +339,15 @@ void resetThread_handleAudioTimerEvent(void){
 
 void func_80247224(void){
     struct ucode_task_data_s *ptr;
-    if((D_8027FC1C == 0x10) && (sActiveAudioTaskDataID != sSelectedAudioTaskDataID)){
+    if((sUnkFlag1 == 0x10) && (sActiveAudioTaskDataID != sSelectedAudioTaskDataID)){
         ptr = sAudioTaskDataList[sActiveAudioTaskDataID];
         sActiveAudioTaskDataID = (sActiveAudioTaskDataID + 1) % 0x14;
         resetThread_startAudioTask(ptr);
     }
-    else if((D_8027FC1C & 0x8) && (sActiveAudioTaskDataID != sSelectedAudioTaskDataID)){
+    else if((sUnkFlag1 & 0x8) && (sActiveAudioTaskDataID != sSelectedAudioTaskDataID)){
         osSpTaskYield();
-        D_8027FC20 = D_8027FC1C;
-        D_8027FC1C = 0x20;
+        sUnkFlag1_Saved = sUnkFlag1;
+        sUnkFlag1 = 0x20;
         sUnkCounter4 = 30;
     }
 }
@@ -500,11 +499,11 @@ void resetThread_create(void) {
     osSetEventMesg(OS_EVENT_FAULT, &sResetThreadMesgQueue, (OSMesg) RESETTHREAD_MESSAGE_EVENT_FAULT);
     osSetEventMesg(OS_EVENT_PRENMI, &sResetThreadMesgQueue, (OSMesg) RESETTHREAD_MESSAGE_EVENT_PRENMI);
     viMgr_registerSignalMesg(&sResetThreadMesgQueue, (OSMesg) RESETTHREAD_MESSAGE_FROM_VIMGR);
-    D_8027FC0C = 0;
-    D_8027FC10 = 0;
-    D_8027FC14 = D_8027FC18 = 2;
-    D_8027FC1C = D_8027FC20 = 0x10;
-    D_8027FC24 = 0;
+    sUnkCounter5 = 0;
+    sTask7Handled = FALSE;
+    sUnkFlag2_Saved = sUnkFlag2 = 2;
+    sUnkFlag1 = sUnkFlag1_Saved = 0x10;
+    sGfxTaskYielded = FALSE;
     sActiveGfxTaskDataID = 0;
     sSelectedGfxTaskDataID = 0;
     sActiveAudioTaskDataID = 0;
@@ -527,7 +526,7 @@ void resetThread_finishDList(Gfx **gfx) {
 }
 
 s32 func_80247720(void){
-    return D_8027FC1C;
+    return sUnkFlag1;
 }
 
 OSMesgQueue *resetThread_getMessageQueue(void) {

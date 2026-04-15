@@ -5,7 +5,7 @@
 #include "core2/ba/model.h"
 #include "core2/ba/physics.h"
 
-void func_80254008(void);
+void core1_15B30_sendMesg3ToRenderThread(void);
 void assetcache_release(void *); //assetcache_free
 void func_8033A280(f32);
 
@@ -199,7 +199,7 @@ void baModel_setEnvAlpha(s32 alpha){
 void baModel_set(enum asset_e asset_id){
     if(asset_id != baModelId){
         if(baModelBin){
-            func_80254008();
+            core1_15B30_sendMesg3ToRenderThread();
             assetcache_release(baModelBin);
             baModelBin = NULL;
         }

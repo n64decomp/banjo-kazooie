@@ -94,8 +94,7 @@ void *zBuffer_get(void);
 
 /* src/core1/code_15B30.c */
 
-struct ucode_task_data_s
-{
+struct ucode_task_data_s {
     s32 task_type; // 0 - audio task, 1 - f3dex task, 2 - l3dex task, 7 - probably to signal framebuffers swapped
     s32 unk4; // is only set for gfx tasks (0 or 0x40000000)
     u64 *data_ptr; // begin of dlist data
@@ -111,31 +110,31 @@ extern s32 gFramebufferWidth;
 extern s32 gFramebufferHeight;
 extern u16 gFramebuffers[2][DEFAULT_FRAMEBUFFER_WIDTH * DEFAULT_FRAMEBUFFER_HEIGHT];
 
-void func_80253550(void);
-void func_8025357C(void);
-void func_802535A8(Acmd *arg0, Acmd*arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3);
+void core1_15B30_requestLockForTaskDataID(void);
+void core1_15B30_requestReleaseForTaskDataID(void);
+void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queue, OSMesg msg);
 void func_80253640(Gfx ** gdl, void *arg1);
 void scissorBox_SetForGameMode(Gfx **gdl, s32 framebuffer_idx);
 void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address);
 void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx);
-void func_80253DC0(Gfx **gfx);
-void finishFrame(Gfx **gdl);
-void func_80253E14(Gfx *arg0, Gfx *arg1, s32 arg2);
-void func_80253EA4(Gfx *arg0, Gfx *arg1);
-void func_80253EC4(Gfx *arg0, Gfx *arg1);
-void func_80253EE4(Gfx **arg0, Gfx **arg1, s32 arg2);
-void func_80253F74(Gfx **arg0, Gfx **arg1);
-void func_80253F94(Gfx **arg0, Gfx **arg1);
+void core1_15B30_finishDList_renderThread(Gfx **gfx);
+void core1_15B30_finishDList(Gfx **gfx);
+void core1_15B30_addF3DEXTaskData(Gfx *start, Gfx *end, s32 flags);
+void core1_15B30_addF3DEXTaskData_0(Gfx *start, Gfx *end);
+void core1_15B30_addF3DEXTaskData_40000000(Gfx *start, Gfx *end);
+void core1_15B30_addL3DEXTaskData(Gfx *start, Gfx *end, s32 flags);
+void core1_15B30_addL3DEXTaskData_0(Gfx *start, Gfx *end);
+void core1_15B30_addL3DEXTaskData_40000000(Gfx *start, Gfx *end);
 void scissorBox_get(u32 *left, u32 *top, u32 *right, u32 *bottom);
 void func_80253FE8(void);
-void func_80254008(void);
-void func_80254028(void);
+void core1_15B30_sendMesg3ToRenderThread(void);
+void core1_15B30_init(void);
 void drawRectangle2D(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, s32 r, s32 g, s32 b);
 void graphicsCache_release(void);
 void graphicsCache_init(void);
 void scissorBox_set(s32 left, s32 top, s32 right, s32 bottom);
 void scissorBox_setDefault(void);
-void func_80254374(s32 arg0);
+void core1_15B30_addTask7TaskData(s32 framebuffer_id);
 void toggleTextureFilterPoint(void);
 void getGraphicsStacks(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void dummy_func_80254464(void);

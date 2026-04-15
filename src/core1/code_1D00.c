@@ -425,7 +425,7 @@ bool audioManager_handleFrameMsg(AudioInfo *info, AudioInfo *prev_info){
     if(sp34 == 0){
         return 0;
     }else{
-        func_802535A8(audioManager.ACMDList[D_8027DCD0], sp38, &audioManager.audioReplyMsgQ, &info->unk8);
+        core1_15B30_addAudioTaskData(audioManager.ACMDList[D_8027DCD0], sp38, &audioManager.audioReplyMsgQ, &info->unk8);
         func_80250650();
         D_8027DCD0 ^= 1;
         return 1;
