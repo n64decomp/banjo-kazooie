@@ -9,7 +9,7 @@ static Mtx *sMtxStack[2];
 static Vtx *sVtxStack[2];
 static s32 sStackSelector;
 s32  gTextureFilterPoint;
-Struct_Core1_15B30 D_80283008[20];
+struct ucode_task_data_s D_80283008[20];
 s32 D_802831E8;
 OSMesgQueue D_802831F0;
 OSMesg D_80283208;
@@ -28,18 +28,18 @@ void func_8025357C(void){
 }
 
 void func_802535A8(Acmd *arg0, Acmd *arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3) {
-    Struct_Core1_15B30 *sp1C;
+    struct ucode_task_data_s *sp1C;
 
     func_80253550();
     sp1C = &D_80283008[D_802831E8];
     D_802831E8 = (s32) (D_802831E8 + 1) % 20;
     func_8025357C();
-    sp1C->unk0 = 0;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
+    sp1C->task_type = 0;
+    sp1C->data_ptr = (u64 *) arg0;
+    sp1C->data_ptr_end = (u64 *) arg1;
     sp1C->unk10 = arg2;
     sp1C->unk14 = arg3;
-    func_80246670(sp1C);
+    resetThread_sendTaskToQueue(sp1C);
 }
 
 
@@ -113,16 +113,16 @@ void finishFrame(Gfx **gdl) {
 }
 
 void func_80253E14(Gfx *arg0, Gfx *arg1, s32 arg2){
-    Struct_Core1_15B30 *sp1C;
+    struct ucode_task_data_s *sp1C;
     func_80253550();
     sp1C = D_80283008 + D_802831E8;
     D_802831E8 = (D_802831E8 + 1) % 0x14;
     func_8025357C();
-    sp1C->unk0 = 1;
+    sp1C->task_type = 1;
     sp1C->unk4 = arg2;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
-    func_80246670((OSMesg) sp1C);
+    sp1C->data_ptr = (u64 *) arg0;
+    sp1C->data_ptr_end = (u64 *) arg1;
+    resetThread_sendTaskToQueue((OSMesg) sp1C);
 }
 
 void func_80253EA4(Gfx *arg0, Gfx *arg1){
@@ -134,17 +134,17 @@ void func_80253EC4(Gfx *arg0, Gfx *arg1){
 }
 
 void func_80253EE4(Gfx **arg0, Gfx **arg1, s32 arg2) {
-    Struct_Core1_15B30 *sp1C;
+    struct ucode_task_data_s *sp1C;
 
     func_80253550();
     sp1C = &D_80283008[D_802831E8];
     D_802831E8 = (s32) (D_802831E8 + 1) % 20;
     func_8025357C();
-    sp1C->unk0 = 2;
+    sp1C->task_type = 2;
     sp1C->unk4 = arg2;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
-    func_80246670(sp1C);
+    sp1C->data_ptr = (u64 *) arg0;
+    sp1C->data_ptr_end = (u64 *) arg1;
+    resetThread_sendTaskToQueue(sp1C);
 }
 
 void func_80253F74(Gfx **arg0, Gfx **arg1){
@@ -167,7 +167,7 @@ void func_80253FE8(void){
 }
 
 void func_80254008(void){
-    func_80246670(3);
+    resetThread_sendTaskToQueue(3);
 }
 
 void func_80254028(void){
@@ -229,15 +229,15 @@ void scissorBox_setDefault(void){
 }
 
 void func_80254374(s32 arg0) {
-    Struct_Core1_15B30 *sp1C;
+    struct ucode_task_data_s *sp1C;
 
     func_80253550();
     viMgr_setActiveFramebuffer(arg0);
     sp1C = &D_80283008[D_802831E8];
     D_802831E8 = (s32) (D_802831E8 + 1) % 20;
     func_8025357C();
-    sp1C->unk0 = 7;
-    func_80246670(sp1C);
+    sp1C->task_type = 7;
+    resetThread_sendTaskToQueue(sp1C);
 }
 
 void toggleTextureFilterPoint(void){

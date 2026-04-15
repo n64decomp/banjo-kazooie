@@ -1,16 +1,16 @@
 /* Microcode renames to remove boot_ prefix */
 n_aspMainTextStart = boot_n_aspMainTextStart;
 n_aspMainTextEnd = boot_n_aspMainTextEnd;
-gSPF3DEX_fifoTextStart = boot_gSPF3DEX_fifoTextStart;
-gSPF3DEX_fifoTextEnd = boot_gSPF3DEX_fifoTextEnd;
-gSPL3DEX_fifoTextStart = boot_gSPL3DEX_fifoTextStart;
-gSPL3DEX_fifoTextEnd = boot_gSPL3DEX_fifoTextEnd;
+gspF3DEX_fifoTextStart = boot_gspF3DEX_fifoTextStart;
+gspF3DEX_fifoTextEnd = boot_gspF3DEX_fifoTextEnd;
+gspL3DEX_fifoTextStart = boot_gspL3DEX_fifoTextStart;
+gspL3DEX_fifoTextEnd = boot_gspL3DEX_fifoTextEnd;
 n_aspMainDataStart = boot_n_aspMainDataStart;
 n_aspMainDataEnd = boot_n_aspMainDataEnd;
-gSPF3DEX_fifoDataStart = boot_gSPF3DEX_fifoDataStart;
-gSPF3DEX_fifoDataEnd = boot_gSPF3DEX_fifoDataEnd;
-gSPL3DEX_fifoDataStart = boot_gSPL3DEX_fifoDataStart;
-gSPL3DEX_fifoDataEnd = boot_gSPL3DEX_fifoDataEnd;
+gspF3DEX_fifoDataStart = boot_gspF3DEX_fifoDataStart;
+gspF3DEX_fifoDataEnd = boot_gspF3DEX_fifoDataEnd;
+gspL3DEX_fifoDataStart = boot_gspL3DEX_fifoDataStart;
+gspL3DEX_fifoDataEnd = boot_gspL3DEX_fifoDataEnd;
 
 /* Fixed-address buffers */
 D_8000E800      = 0x8000E800;

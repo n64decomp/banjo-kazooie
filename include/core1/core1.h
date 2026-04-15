@@ -36,14 +36,16 @@ void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3);
 int func_8025AD7C(enum comusic_e arg0);
 int func_8025ADBC(enum comusic_e arg0);
 
+OSMesgQueue * audioManager_getFrameMesgQueue(void);
+
 
 /* src/core1/code_8C50.c */
 
 void resetThread_create(void);
-void func_802476DC(void);
+void resetThread_enableControllerTimer(void);
 void resetThread_finishDList(Gfx **gfx);
 s32 func_80247720(void);
-OSMesgQueue *func_8024772C(void);
+OSMesgQueue *resetThread_getMessageQueue(void);
 OSThread *resetThread_getThreadObject(void);
 
 
@@ -92,14 +94,15 @@ void *zBuffer_get(void);
 
 /* src/core1/code_15B30.c */
 
-typedef struct {
-    s32 unk0;
-    s32 unk4;
-    Gfx *unk8;
-    Gfx *unkC;
-    s32 unk10;
-    s32 unk14;
-}Struct_Core1_15B30;
+struct ucode_task_data_s
+{
+    s32 task_type; // 0 - audio task, 1 - f3dex task, 2 - l3dex task, 7 - probably to signal framebuffers swapped
+    s32 unk4; // is only set for gfx tasks (0 or 0x40000000)
+    u64 *data_ptr; // begin of dlist data
+    u64 *data_ptr_end; // end of dlist data
+    OSMesgQueue *unk10; // only relevant for audio tasks
+    s32 unk14; // only relevant for audio tasks
+};
 
 #define DEFAULT_FRAMEBUFFER_WIDTH 292
 #define DEFAULT_FRAMEBUFFER_HEIGHT 216
