@@ -18,6 +18,7 @@
 #include "core1/rarezip.h"
 #include "core1/sns.h"
 #include "core1/sprite.h"
+#include "core1/thread5.h"
 #include "core1/ucode.h"
 #include "core1/viewport.h"
 #include "core1/vimgr.h"
@@ -37,16 +38,7 @@ int func_8025AD7C(enum comusic_e arg0);
 int func_8025ADBC(enum comusic_e arg0);
 
 OSMesgQueue * audioManager_getFrameMesgQueue(void);
-
-
-/* src/core1/code_8C50.c */
-
-void resetThread_create(void);
-void resetThread_enableControllerTimer(void);
-void resetThread_finishDList(Gfx **gfx);
-s32 func_80247720(void);
-OSMesgQueue *resetThread_getMessageQueue(void);
-OSThread *resetThread_getThreadObject(void);
+void piMgr_read(void *vaddr, s32 devaddr, s32 size);
 
 
 /* src/core1/code_7090.c */
@@ -93,6 +85,11 @@ void *zBuffer_get(void);
 
 
 /* src/core1/code_15B30.c */
+
+#define UCODE_TASK_TYPE_AUDIO 0
+#define UCODE_TASK_TYPE_F3DEX 1
+#define UCODE_TASK_TYPE_L3DEX 2
+#define UCODE_TASK_TYPE_FRAMEBUFFER_CHANGED 7
 
 struct ucode_task_data_s {
     s32 task_type; // 0 - audio task, 1 - f3dex task, 2 - l3dex task, 7 - probably to signal framebuffers swapped

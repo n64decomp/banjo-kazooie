@@ -511,8 +511,6 @@ extern void baflag_set(enum misc_flag_e arg0);
 extern void baflag_clear(enum misc_flag_e arg0);
 extern void baflag_toggle(enum misc_flag_e arg0);
 
-extern void piMgr_read(void *vaddr, s32 devaddr, s32 size);
-
 s32 game_defrag(void);
 
 #endif

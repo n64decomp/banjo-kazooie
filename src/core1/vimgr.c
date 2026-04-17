@@ -222,7 +222,7 @@ void viMgr_entry(void *arg0){
     OSMesg sp48;
     do{
         osRecvMesg(&sMesgQueue1, &sp48, OS_MESG_BLOCK);
-        resetThread_checkAndExecutePreNMI();
+        thread5_checkAndExecutePreNMI();
         D_802808D8++;
         if(D_802808D8 == 420){
 #if VERSION == VERSION_USA_1_0

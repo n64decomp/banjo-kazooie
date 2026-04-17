@@ -35,13 +35,13 @@ void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queu
     sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
     core1_15B30_requestReleaseForTaskDataID();
 
-    task_data->task_type = 0;
+    task_data->task_type = UCODE_TASK_TYPE_AUDIO;
     task_data->data_ptr = (u64 *) start;
     task_data->data_ptr_end = (u64 *) end;
     task_data->unk10 = mesg_queue;
     task_data->unk14 = (s32) msg;
 
-    resetThread_sendTaskToQueue((OSMesg) task_data);
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
 void func_80253640(Gfx ** gdl, void *arg1){
@@ -105,7 +105,7 @@ void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx){
 }
 
 void core1_15B30_finishDList_renderThread(Gfx **gfx) {
-    resetThread_finishDList(gfx);
+    thread5_finishDList(gfx);
 }
 
 void core1_15B30_finishDList(Gfx **gfx) {
@@ -121,12 +121,12 @@ void core1_15B30_addF3DEXTaskData(Gfx *start, Gfx *end, s32 flags) {
     sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
     core1_15B30_requestReleaseForTaskDataID();
 
-    task_data->task_type = 1;
+    task_data->task_type = UCODE_TASK_TYPE_F3DEX;
     task_data->unk4 = flags;
     task_data->data_ptr = (u64 *) start;
     task_data->data_ptr_end = (u64 *) end;
 
-    resetThread_sendTaskToQueue((OSMesg) task_data);
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
 void core1_15B30_addF3DEXTaskData_0(Gfx *start, Gfx *end) {
@@ -145,12 +145,12 @@ void core1_15B30_addL3DEXTaskData(Gfx *start, Gfx *end, s32 flags) {
     sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
     core1_15B30_requestReleaseForTaskDataID();
 
-    task_data->task_type = 2;
+    task_data->task_type = UCODE_TASK_TYPE_L3DEX;
     task_data->unk4 = flags;
     task_data->data_ptr = (u64 *) start;
     task_data->data_ptr_end = (u64 *) end;
 
-    resetThread_sendTaskToQueue((OSMesg) task_data);
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
 void core1_15B30_addL3DEXTaskData_0(Gfx *start, Gfx *end) {
@@ -173,14 +173,14 @@ void func_80253FE8(void){
 }
 
 void core1_15B30_sendMesg3ToRenderThread(void) {
-    resetThread_sendTaskToQueue((OSMesg) 3);
+    thread5_sendTaskToQueue((OSMesg) THREAD5_MESSAGE_3);
 }
 
 void core1_15B30_init(void) {
     sCurrentUcodeTaskDataID = 0;
     osCreateMesgQueue(&sTaskDataListLockMesgQueue, &sTaskDataListLockMesg, 1);
     osSendMesg(&sTaskDataListLockMesgQueue, NULL, 1);
-    resetThread_create();
+    thread5_create();
     scissorBox_setDefault();
 }
 
@@ -243,9 +243,9 @@ void core1_15B30_addTask7TaskData(s32 framebuffer_id) {
     sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
     core1_15B30_requestReleaseForTaskDataID();
 
-    task_data->task_type = 7;
+    task_data->task_type = UCODE_TASK_TYPE_FRAMEBUFFER_CHANGED;
 
-    resetThread_sendTaskToQueue((OSMesg) task_data);
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
 void toggleTextureFilterPoint(void){

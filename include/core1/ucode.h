@@ -1,6 +1,8 @@
 #ifndef BANJO_KAZOOIE_CORE1_UCODE_H
 #define BANJO_KAZOOIE_CORE1_UCODE_H
 
+#include <ultra64.h>
+
 void ucode_load(void);
 void ucode_stub1(void); // does nothing
 void ucode_stub2(void); // performs dummy read on PI
