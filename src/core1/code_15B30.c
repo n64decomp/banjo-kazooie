@@ -173,7 +173,7 @@ void func_80253FE8(void){
 }
 
 void core1_15B30_sendMesg3ToRenderThread(void) {
-    thread5_sendTaskToQueue((OSMesg) THREAD5_MESSAGE_3);
+    thread5_sendTaskToQueue((OSMesg) THREAD5_MESSAGE_EVENT_SYNC);
 }
 
 void core1_15B30_init(void) {
