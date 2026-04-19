@@ -600,6 +600,6 @@ Actor *spawnQueue_bundle_s32_2(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
 
 void spawnQueue_defrag(FunctionQueue *arg0) {
     if ((arg0 = spawnQueue) != NULL) {
-        spawnQueue = (FunctionQueue *) defrag();
+        spawnQueue = (FunctionQueue *) defrag(arg0);
     }
 }

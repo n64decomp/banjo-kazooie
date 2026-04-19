@@ -1703,171 +1703,170 @@ void actor_copy(Actor *dst, Actor *src){
     memcpy(src, dst, sizeof(Actor));
 }
 
-void *actors_appendToSavestate(void * begin, u32 end){
-    void *sp3C = begin;
-    Actor* s0;
-    Actor* s1;
-    u32 sp30; //SavedActorDataSize
-    u32 sp2C; //SavedActorDataOffset
+void *actors_appendToSavestate(void *savestate_begin_ptr, void *savestate_end_ptr) {
+    void *savestate_ptr = savestate_begin_ptr;
+    Actor *actor_savestate_ptr, *actor_ptr;
+    u32 num_actors;
+    u32 savestate_size;
    
-    if(suBaddieActorArray){
-        sp30 = 0;
-        for(s1 = suBaddieActorArray->data; s1 < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; s1++){
-            if( s1->marker
-                && s1->unk10_1 == 1
-                && s1->despawn_flag == 0
-                && s1->unk40 == 0
-            ){
-                sp30++;
+    if (suBaddieActorArray) {
+        num_actors = 0;
+
+        for (actor_ptr = suBaddieActorArray->data; actor_ptr < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; actor_ptr++) {
+            if (actor_ptr->marker && (actor_ptr->unk10_1 == 1) && (!actor_ptr->despawn_flag) && (actor_ptr->unk40 == 0)) {
+                num_actors++;
             }
         }
-        sp2C = end - (u32)sp3C;
-        sp3C = realloc(sp3C, sp2C + sizeof(u32) + sp30*sizeof(Actor));
 
-        end = (u32)sp3C + sp2C;
-        *(u32 *)end = sp30;
-        s0 = (Actor *)((u8*)end + sizeof(u32));
-        for(s1 = suBaddieActorArray->data; s1 < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; s1++){
-            if( s1->marker
-                && s1->unk10_1 == 1
-                && s1->despawn_flag == 0
-                && s1->unk40 == 0
-            ){
-                memcpy(s0, s1, sizeof(Actor));
-                s0->unk40 = 0;
-                s0->unk138_28 = 1;
-                s0->unk14C[0] =s0->unk14C[1] = NULL;
-                // s0->unk14C = NULL;
-                s0->unk148 = NULL;
-                s0->volatile_initialized = FALSE;
-                s0->unk44_31 = 0;
-                s0->unk104 = NULL;
-                s0->partnerActor = NULL;
-                s0->unk158[0] = NULL;
-                s0->unk158[1] = NULL;
-                s0->unk138_19 = s1->marker->id;
-                s0->unk108 = s1->marker->collisionFunc;
-                s0->unk10C = s1->marker->collision2Func;
-                s0->unk134 = s1->marker->dieFunc;
-                s0->unk160 = s1->marker->unk54;
-                s0->unk168 = s1->marker->unk58;
-                s0->backupFreeFunc = s1->marker->actorFreeFunc;
-                s0->unk16C_31 = s1->marker->unk5C;
-                s0->unkF4_26 = s1->marker->unk2C_1;
-                s0->stored_marker_collidable = s1->marker->collidable;
-                s0->unkF4_28 = s1->marker->propPtr->unk8_3;
-                s0->unkF4_27 = s1->marker->propPtr->isCollisionResolved;
-                //80329F94
-                if(s0->anctrl){
-                    s0->stored_anctrl_index = anctrl_getIndex(s0->anctrl);
-                    s0->stored_anctrl_playbackType_ = anctrl_getPlaybackType(s0->anctrl);
-                    s0->stored_anctrl_forwards = anctrl_isPlayedForwards(s0->anctrl);
-                    s0->stored_anctrl_smoothTransistion = anctrl_isSmoothTransistion(s0->anctrl);
-                    s0->stored_anctrl_duration = anctrl_getDuration(s0->anctrl);
-                    s0->stored_anctrl_timer = anctrl_getAnimTimer(s0->anctrl);
-                    anctrl_getSubRange(s0->anctrl, &s0->stored_anctrl_subrangeMin, &s0->stored_anctrl_subrangeMax);
+        savestate_size = (u8 *) savestate_end_ptr - (u8 *) savestate_begin_ptr;
+        savestate_ptr = realloc(savestate_ptr, savestate_size + sizeof(u32) + num_actors * sizeof(Actor));
+
+        savestate_end_ptr = (u8 *) savestate_ptr + savestate_size;
+        *(u32 *)savestate_end_ptr = num_actors;
+        actor_savestate_ptr = (Actor *) ((u8 *) savestate_end_ptr + sizeof(u32));
+
+        for(actor_ptr = suBaddieActorArray->data; actor_ptr < &suBaddieActorArray->data[(u32) suBaddieActorArray->cnt]; actor_ptr++) {
+            if (actor_ptr->marker && (actor_ptr->unk10_1 == 1) && (!actor_ptr->despawn_flag) && (actor_ptr->unk40 == 0)) {
+                memcpy(actor_savestate_ptr, actor_ptr, sizeof(Actor));
+                actor_savestate_ptr->unk40 = 0;
+                actor_savestate_ptr->unk138_28 = 1;
+                actor_savestate_ptr->unk14C[0] = actor_savestate_ptr->unk14C[1] = NULL;
+                actor_savestate_ptr->unk148 = NULL;
+                actor_savestate_ptr->volatile_initialized = FALSE;
+                actor_savestate_ptr->unk44_31 = 0;
+                actor_savestate_ptr->unk104 = NULL;
+                actor_savestate_ptr->partnerActor = NULL;
+                actor_savestate_ptr->unk158[0] = NULL;
+                actor_savestate_ptr->unk158[1] = NULL;
+                actor_savestate_ptr->unk138_19 = actor_ptr->marker->id;
+                actor_savestate_ptr->unk108 = actor_ptr->marker->collisionFunc;
+                actor_savestate_ptr->unk10C = actor_ptr->marker->collision2Func;
+                actor_savestate_ptr->unk134 = actor_ptr->marker->dieFunc;
+                actor_savestate_ptr->unk160 = actor_ptr->marker->unk54;
+                actor_savestate_ptr->unk168 = actor_ptr->marker->unk58;
+                actor_savestate_ptr->backupFreeFunc = actor_ptr->marker->actorFreeFunc;
+                actor_savestate_ptr->unk16C_31 = actor_ptr->marker->unk5C;
+                actor_savestate_ptr->unkF4_26 = actor_ptr->marker->unk2C_1;
+                actor_savestate_ptr->stored_marker_collidable = actor_ptr->marker->collidable;
+                actor_savestate_ptr->unkF4_28 = actor_ptr->marker->propPtr->unk8_3;
+                actor_savestate_ptr->unkF4_27 = actor_ptr->marker->propPtr->isCollisionResolved;
+
+                if (actor_savestate_ptr->anctrl) {
+                    actor_savestate_ptr->stored_anctrl_index = anctrl_getIndex(actor_savestate_ptr->anctrl);
+                    actor_savestate_ptr->stored_anctrl_playbackType_ = anctrl_getPlaybackType(actor_savestate_ptr->anctrl);
+                    actor_savestate_ptr->stored_anctrl_forwards = anctrl_isPlayedForwards(actor_savestate_ptr->anctrl);
+                    actor_savestate_ptr->stored_anctrl_smoothTransistion = anctrl_isSmoothTransistion(actor_savestate_ptr->anctrl);
+                    actor_savestate_ptr->stored_anctrl_duration = anctrl_getDuration(actor_savestate_ptr->anctrl);
+                    actor_savestate_ptr->stored_anctrl_timer = anctrl_getAnimTimer(actor_savestate_ptr->anctrl);
+                    anctrl_getSubRange(actor_savestate_ptr->anctrl, &actor_savestate_ptr->stored_anctrl_subrangeMin, &actor_savestate_ptr->stored_anctrl_subrangeMax);
                 }
-                s0->anctrl = NULL;
-                s0->marker = NULL;
-                s0++;
+
+                actor_savestate_ptr->anctrl = NULL;
+                actor_savestate_ptr->marker = NULL;
+                actor_savestate_ptr++;
             }
         }
     }
-    return sp3C;
+
+    return savestate_ptr;
 }
 
 
 
-void func_8032A09C(s32 arg0, ActorListSaveState *arg1) {
+void actors_applyFromSavestate(void *savestate_ptr, ActorListSaveState *savestate_actorlist_ptr) {
     Actor **temp_v1;
     s32 pad;
-    Actor *var_s0;
+    Actor *savestate_actor;
     Actor *temp_v0_6;
-    s32 var_s2;
+    int i;
     Actor **sp60;
     Actor **sp5C;
     s32 sp50[3];
     s32 var_s3;
     
     spawnQueue_lock();
+
     if (suBaddieActorArray != NULL) {
         func_803283BC();
+        
         var_s3 = 0;
-        var_s0 = arg1->actor_save_state;
-        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
-            if ((var_s0->secondaryId != 0) && (var_s3 < var_s0->secondaryId)) {
-                var_s3 = var_s0->secondaryId;
+        savestate_actor = savestate_actorlist_ptr->data;
+        for (i = savestate_actorlist_ptr->cnt; i != 0; i--) {
+            if ((savestate_actor->secondaryId != 0) && (var_s3 < savestate_actor->secondaryId)) {
+                var_s3 = savestate_actor->secondaryId;
             }
-            var_s0++;
+            savestate_actor++;
         }
-        for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
-            if ((var_s0->secondaryId != 0) && (var_s3 < var_s0->secondaryId)) {
-                var_s3 = var_s0->secondaryId;
+
+        for (savestate_actor = &suBaddieActorArray->data[0]; savestate_actor < &suBaddieActorArray->data[suBaddieActorArray->cnt]; savestate_actor++) {
+            if ((savestate_actor->secondaryId != 0) && (var_s3 < savestate_actor->secondaryId)) {
+                var_s3 = savestate_actor->secondaryId;
             }
         }
 
         var_s3++;
         
         sp60 = malloc(var_s3*sizeof(Actor *));
-        pad = sp5C + var_s2;
+        pad = sp5C + i;
         sp5C = malloc(var_s3*sizeof(Actor *));
-        for (var_s2 = 0; var_s2 < var_s3; var_s2++) {
-            *(u32*)&sp60[var_s2] = 0; 
-            *(u32*)&sp5C[var_s2] = 0;
+        for (i = 0; i < var_s3; i++) {
+            *(u32*)&sp60[i] = 0; 
+            *(u32*)&sp5C[i] = 0;
         }
 
-       
-        var_s0 = arg1->actor_save_state;
-        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--) {
-            if (var_s0->secondaryId != 0) {
-                sp5C[var_s0->secondaryId] = var_s0;
+        savestate_actor = savestate_actorlist_ptr->data;
+        for(i = savestate_actorlist_ptr->cnt; i != 0; i--) {
+            if (savestate_actor->secondaryId != 0) {
+                sp5C[savestate_actor->secondaryId] = savestate_actor;
             }
-            var_s0++;
+            savestate_actor++;
         }
-        for(var_s0 = &suBaddieActorArray->data[0]; var_s0 < &suBaddieActorArray->data[suBaddieActorArray->cnt]; var_s0++){
-            if ((var_s0->secondaryId != 0)) {
-                sp60[var_s0->secondaryId] = var_s0;
+        for(savestate_actor = &suBaddieActorArray->data[0]; savestate_actor < &suBaddieActorArray->data[suBaddieActorArray->cnt]; savestate_actor++){
+            if ((savestate_actor->secondaryId != 0)) {
+                sp60[savestate_actor->secondaryId] = savestate_actor;
             }
         }
 
-        for(var_s2 = 1; var_s2 < var_s3; var_s2++){
-            pad = sp5C + var_s2;       
-            temp_v1 = sp60 + var_s2;
+        for(i = 1; i < var_s3; i++){
+            pad = sp5C + i;       
+            temp_v1 = sp60 + i;
             if ((*temp_v1 != NULL) && (*(Actor **)pad != NULL) && !(*(Actor **)pad)->unkF4_22) {
-                var_s0 = *(Actor **)pad;
+                savestate_actor = *(Actor **)pad;
                 temp_v0_6 = *temp_v1;
-                actor_copy(var_s0, temp_v0_6);
+                actor_copy(savestate_actor, temp_v0_6);
                 func_80329B68(temp_v0_6);
                 func_803299B4(temp_v0_6);
             }
         }
-        for(var_s2 = 1; var_s2 < var_s3; var_s2++){
-            pad = sp5C + var_s2;       
-            temp_v1 = sp60 + var_s2;       
+        for(i = 1; i < var_s3; i++){
+            pad = sp5C + i;       
+            temp_v1 = sp60 + i;       
             if ((*temp_v1 != NULL) && !(*temp_v1)->unk58_1 && (*(Actor **)pad == NULL)) {
                 marker_despawn((*temp_v1)->marker);
                 *temp_v1 = NULL;
             }
         }
 
-        var_s0 = arg1->actor_save_state;
-        for(var_s2 = arg1->cnt; var_s2 != 0; var_s2--){
-            if (var_s0->secondaryId == 0) {
-                sp50[0] = (s32) var_s0->position[0];
-                sp50[1] = (s32) var_s0->position[1];
-                sp50[2] = (s32) var_s0->position[2];
-                pad = var_s0->yaw;
-                temp_v0_6 = actor_spawnWithYaw_s32(var_s0->modelCacheIndex, (sp50), pad);
-                actor_copy(var_s0, temp_v0_6);
+        savestate_actor = savestate_actorlist_ptr->data;
+        for(i = savestate_actorlist_ptr->cnt; i != 0; i--) {
+            if (savestate_actor->secondaryId == 0) {
+                sp50[0] = (s32) savestate_actor->position[0];
+                sp50[1] = (s32) savestate_actor->position[1];
+                sp50[2] = (s32) savestate_actor->position[2];
+                pad = savestate_actor->yaw;
+                temp_v0_6 = actor_spawnWithYaw_s32(savestate_actor->modelCacheIndex, (sp50), pad);
+                actor_copy(savestate_actor, temp_v0_6);
                 func_80329B68(temp_v0_6);
                 func_803299B4(temp_v0_6);
             }
-            var_s0++;
+            savestate_actor++;
         }
+
         func_803283D4();
         free(sp60);
         free(sp5C);
     }
+
     spawnQueue_unlock();
 }
 

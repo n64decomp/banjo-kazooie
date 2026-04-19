@@ -654,7 +654,6 @@ s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 u8 pad_80382138[4];
 s32 D_8038213C;
 
-extern Cube *D_80382144;
 BKCollisionTri* __code7AF80_func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
@@ -704,7 +703,6 @@ void func_80303C54(Cube *cube, ActorMarker *marker, f32 arg2, s32 arg3, s32 *arg
     };
 }
 
-Cube *D_80382144;
 s32 D_80382148;
 s16 D_80382150[0x48];
 u32 D_803821E0[0x5B];
@@ -2161,75 +2159,88 @@ Cube *func_80308224(void){
     return D_8036A9DC;
 }
 
-void cubeList_sort(s32 absolute_positon) {
-    Cube *iCube;
-    for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
-        if (absolute_positon == 0) {
-            cube_sortRelative(iCube); //sort cube props (dist from viewport)
+void cubeList_sort(bool absolute_positon) {
+    Cube *cube;
+    for(cube = sCubeList.cubes; cube < sCubeList.cubes + sCubeList.cubeCnt; cube++) {
+        if (!absolute_positon) {
+            cube_sortRelative(cube); //sort cube props (dist from viewport)
         } else {
-            cube_sortAbsolute(iCube); //sort cube props (dist from origin)
+            cube_sortAbsolute(cube); //sort cube props (dist from origin)
         }
     }
 }
 
-bool func_803082D8(Cube *arg0, s32 *arg1, bool arg2, bool arg3) {
-    Prop *var_v0;
-    bool var_a0;
+// Reads or writes the isNotFeatherEggOrNote flag of the given prop2 ID and advances ID
+// Returns the previous flag value
+bool cube_getOrSetProp2Flag(Cube *this, s32 *prop_id, bool set_flag, bool value) {
+    Prop *prop;
+    bool old_value;
 
-    var_v0 = arg0->prop2Ptr + *arg1;
-    while ((var_v0->isActorProp == 1) && (*arg1 < arg0->prop2Cnt)) {
-        (*arg1)++;
-        var_v0++;
+    prop = this->prop2Ptr + *prop_id;
+    
+    while ((prop->isActorProp == 1) && (*prop_id < this->prop2Cnt)) {
+        (*prop_id)++;
+        prop++;
     }
 
-    if (*arg1 >= arg0->prop2Cnt) {
-        *arg1 = 0;
+    if (*prop_id >= this->prop2Cnt) {
+        *prop_id = 0;
         return FALSE;
     }
-    var_a0 = var_v0->isNotFeatherEggOrNote;
-    (*arg1)++;
-    if (arg2) {
-        var_v0->isNotFeatherEggOrNote = arg3;
+
+    old_value = prop->isNotFeatherEggOrNote;
+    (*prop_id)++;
+
+    if (set_flag) {
+        prop->isNotFeatherEggOrNote = value;
     }
-    return var_a0;
+
+    return old_value;
 }
 
-s32 func_803083B0(s32 arg0) {
-    s32 var_v0;
-    Cube *var_s0;
-    static s32 D_80382140;
+// Iterates through the whole cube list and gets or sets the isNotFeatherEggOrNote flag of every prop
+// arg0: -2: read flag, -1: init, 0: clear flag, 1: set flag
+// return value: -1: end of props, 0: flag not set, 1: flag set
+s32 cubeList_getOrSetNextProp2Flags(s32 op) {
+    bool flag_value;
+    Cube *cube;
+    static s32 current_prop_id;
+    static Cube *next_cube;
 
-    if (arg0 == -1) {
-        var_s0 = sCubeList.cubes;
-        D_80382140 = 0;
-        D_80382144 = var_s0;
+    if (op == -1) {
+        // Reset counters
+        cube = sCubeList.cubes;
+        current_prop_id = 0;
+        next_cube = cube;
         return 0;
     }
    
-    var_s0 = *(Cube **)&D_80382144;
-    if (D_80382140 < var_s0->prop2Cnt) {
-        if (sCubeList.cubes && sCubeList.cubes && sCubeList.cubes );
-        var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
-        if (D_80382140 != 0) {
-            return var_v0;
+    cube = *(Cube **)&next_cube;
+
+    if (current_prop_id < cube->prop2Cnt) {
+        flag_value = cube_getOrSetProp2Flag(cube, &current_prop_id, op >= 0, op & 1);
+        if (current_prop_id != 0) {
+            return flag_value;
         }
     }
     
-    D_80382140 = 0;
-    while(D_80382140 == 0) {
-        do{
-            var_s0++;
-            if (var_s0 >= sCubeList.cubes + sCubeList.cubeCnt) {
-                D_80382144 = var_s0;
+    current_prop_id = 0;
+
+    while (current_prop_id == 0) {
+        do {
+            cube++;
+            if (cube >= sCubeList.cubes + sCubeList.cubeCnt) {
+                next_cube = cube;
                 return -1;
             }
-        }while (0 >= var_s0->prop2Cnt);
+        } while (0 >= cube->prop2Cnt);
 
-        var_v0 = func_803082D8(var_s0, &D_80382140, arg0 >= 0, arg0 & 1);
-
+        flag_value = cube_getOrSetProp2Flag(cube, &current_prop_id, op >= 0, op & 1);
     }
-    D_80382144 = var_s0;
-    return var_v0;
+
+    next_cube = cube;
+    
+    return flag_value;
 }
 
 enum actor_e func_803084F0(s32 arg0){

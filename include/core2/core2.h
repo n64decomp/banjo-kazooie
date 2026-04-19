@@ -6,6 +6,21 @@
 #include "core2/print.h"
 #include "core2/anctrl.h"
 
+//void *actors_appendToSavestate(void *savestate_begin_ptr, void *savestate_end_ptr);
+void actors_applyFromSavestate(void *savestate_ptr, ActorListSaveState *savestate_actorlist_ptr);
+
+s32 cubeList_getOrSetNextProp2Flags(s32 op);
+void cubeList_sort(bool absolute_positon);
+
+u32 mapSpecificFlags_getAll(void);
+void mapSpecificFlags_setAll(u32 flags);
+
+void mapSavestate_init(void);
+void mapSavestate_clearAll(void);
+void mapSavestate_defrag(void);
+void mapSavestate_save(enum map_e map);
+void mapSavestate_apply(enum map_e map);
+
 void func_80351A04(Struct68s *arg0, s32 arg1);
 void func_80351A14(Struct68s *arg0, Struct68DrawMethod arg1);
 void func_8035179C_copyPosition(Struct68s* arg0, f32 arg1[3]);

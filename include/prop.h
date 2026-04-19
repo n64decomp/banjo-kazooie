@@ -435,7 +435,7 @@ typedef struct actor_array{
 
 typedef struct {
     u32 cnt;
-    Actor *actor_save_state[];
+    Actor data[];
 }ActorListSaveState;
 
 #endif
