@@ -479,6 +479,7 @@ s16 D_80393468[] = {
 
 s16 note_door_cost_data[] = {50, 180, 260, 350, 450, 640, 765, 810, 828, 846, 864, 882}; //notedoor_notes_required_to_open
 
+
 s16 D_80393494[]  = {0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B}; 
 s32 D_803934A0[3] = {0x00, 0xFF, 0x00};
 
@@ -730,7 +731,7 @@ void func_80386D20(Actor *this)
 
 void func_80386D40(void)
 {
-    func_802D68F0(0xC);
+    code_4C020_setHourglassTimer(0xC);
     item_set(ITEM_6_HOURGLASS, TRUE);
     mapSpecificFlags_set(1, TRUE);
 }

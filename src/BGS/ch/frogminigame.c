@@ -8,39 +8,48 @@ void chFrogMinigame_setState(Actor * arg0, u32 next_state);
 void func_8025A58C(u32, u32);
 void timed_exitStaticCamera(f32);
 
-
-ActorInfo gChFrogMinigame = {MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 
+/* .data */
+ActorInfo gChFrogMinigame = {
+    MARKER_C4_YELLOW_FLIBBIT_CTRL, ACTOR_136_YELLOW_FLIBBIT_CONTROLLER, 0x00, 
     0x00, NULL,
     chFrogMinigame_update, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
 
+enum chFrogMinigameState {
+    CH_FROG_MINIGAME_STATE_1_IDLE = 1,
+    CH_FROG_MINIGAME_STATE_2_ENTER_BATTLE,
+    CH_FROG_MINIGAME_STATE_3_BATTLE,
+    CH_FROG_MINIGAME_STATE_4_COMPLETE,
+    CH_FROG_MINIGAME_STATE_5_SPAWN_JIGGY,
+    CH_FROG_MINIGAME_STATE_6_DESPAWN
+};
 
 /* .bss */
 u8 D_80391240[4];
 
 /* .code */
 static void __chFrogMinigame_spawnJiggy(void){
-    static f32 D_80390AD4[3] = {1985.0f, 200.0f, -1386.0f};
-    jiggy_spawn(JIGGY_24_BGS_FLIBBITS, D_80390AD4);
+    static f32 chFrogMinigameJiggyLocation[3] = {1985.0f, 200.0f, -1386.0f};
+    jiggy_spawn(JIGGY_24_BGS_FLIBBITS, chFrogMinigameJiggyLocation);
 }
 
 static void __chFrogMinigame_textCallback(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     Actor *actPtr = marker_getActor(marker);
-    mapSpecificFlags_set(0x10, 0);
-    if(actPtr->state == 4){
-        chFrogMinigame_setState(actPtr,5);
+    mapSpecificFlags_set(BGS_SPECIFIC_FLAG_10_FROG_MINIGAME_FIRST_MET, 0);
+    if(actPtr->state == CH_FROG_MINIGAME_STATE_4_COMPLETE){
+        chFrogMinigame_setState(actPtr, CH_FROG_MINIGAME_STATE_5_SPAWN_JIGGY);
     }
     else{
-        chFrogMinigame_setState(actPtr,3);
+        chFrogMinigame_setState(actPtr, CH_FROG_MINIGAME_STATE_3_BATTLE);
     }
 }
 
-void func_8038CBB4(Actor * arg0){
+void chFrogMinigame_stopFlibbitFightMusic(Actor * arg0){
     if(!arg0->bgs_6730.unk4)
         return;
     func_8025A58C(-1, 400);
-    comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT,0, 400);
+    comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT, 0, 400);
     func_8025AABC(MUSIC_BGS_FLIBBIT_FIGHT);
     
     arg0->bgs_6730.unk4 = 0;
@@ -50,10 +59,10 @@ void chFrogMinigame_setState(Actor * arg0, u32 next_state){
     ActorLocal_BGS_6730 *s0;
 
     s0 = &arg0->bgs_6730;
-    if(next_state == 2){
+    if(next_state == CH_FROG_MINIGAME_STATE_2_ENTER_BATTLE){
         func_8028F8F8(0x12, 1);
         func_8028F8F8(0x1F, 0);
-        mapSpecificFlags_set(0x10, 1);
+        mapSpecificFlags_set(BGS_SPECIFIC_FLAG_10_FROG_MINIGAME_FIRST_MET, 1);
         if(!fileProgressFlag_get(FILEPROG_1B_MET_YELLOW_FLIBBITS)){
             fileProgressFlag_set(FILEPROG_1B_MET_YELLOW_FLIBBITS, 1);
             gcdialog_showDialog(ASSET_C81_DIALOG_YELLOW_FLIBBITS_MEET, 0xf, arg0->position, arg0->marker, __chFrogMinigame_textCallback, 0);
@@ -67,7 +76,7 @@ void chFrogMinigame_setState(Actor * arg0, u32 next_state){
             }
         }
     }
-    if(next_state == 3){
+    if(next_state == CH_FROG_MINIGAME_STATE_3_BATTLE){
         s0->unk0 = 1;
         if(!s0->unk4){
             func_8025A58C(0, 400);
@@ -79,32 +88,32 @@ void chFrogMinigame_setState(Actor * arg0, u32 next_state){
         }
     }
 
-    if(arg0->state == 3){
+    if(arg0->state == CH_FROG_MINIGAME_STATE_3_BATTLE){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
-        if(next_state == 1){
+        if(next_state == CH_FROG_MINIGAME_STATE_1_IDLE){
             if(s0->unk4){
                 comusic_8025AB44(MUSIC_BGS_FLIBBIT_FIGHT, 18000, 100);
             }
         }
         else{
-            func_8038CBB4(arg0);
+            chFrogMinigame_stopFlibbitFightMusic(arg0);
         }
     }
 
-    if (next_state == 4) {
+    if (next_state == CH_FROG_MINIGAME_STATE_4_COMPLETE) {
         gcdialog_showDialog(ASSET_C82_DIALOG_YELLOW_FLIBBITS_COMPLETE, 0xf, arg0->position, arg0->marker, __chFrogMinigame_textCallback, 0);
     }
 
-    if(next_state == 5){
+    if(next_state == CH_FROG_MINIGAME_STATE_5_SPAWN_JIGGY){
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0x27);
         timedFunc_set_0(0.2f, __chFrogMinigame_spawnJiggy);
         timed_exitStaticCamera(3.0f);
         func_80324E38(3.0f, 0);
-        next_state = 6;
+        next_state = CH_FROG_MINIGAME_STATE_6_DESPAWN;
     }
-    if(next_state == 6){
+    if(next_state == CH_FROG_MINIGAME_STATE_6_DESPAWN){
         func_8028F8F8(0x12, 0);
         func_8028F8F8(0x1F, 1);
     }
@@ -129,7 +138,7 @@ void BGS_func_8038CED0(void){
 
 void chFrogMinigame_update(Actor *this){
     f32 player_position[3];
-    u32 sp28;
+    u32 player_within_range;
     ActorLocal_BGS_6730 *local;
 
     local = &this->bgs_6730;
@@ -143,63 +152,63 @@ void chFrogMinigame_update(Actor *this){
         D_80391240[1] = 0;
         D_80391240[2] = 0;
         D_80391240[3] = 0;
-        mapSpecificFlags_set(0x12, 0);
-        mapSpecificFlags_set(0x10, 0);
+        mapSpecificFlags_set(BGS_SPECIFIC_FLAG_12_FROG_MINIGAME_BATTLE_ACTIVE, 0);
+        mapSpecificFlags_set(BGS_SPECIFIC_FLAG_10_FROG_MINIGAME_FIRST_MET, 0);
         if(jiggyscore_isSpawned(JIGGY_24_BGS_FLIBBITS)){
-            chFrogMinigame_setState(this,6);
+            chFrogMinigame_setState(this, CH_FROG_MINIGAME_STATE_6_DESPAWN);
             return;
         }else{
-            chFrogMinigame_setState(this,1);
+            chFrogMinigame_setState(this, CH_FROG_MINIGAME_STATE_1_IDLE);
             return;
         }
     }
-    if(D_80391240[0]>0){
+    if(D_80391240[0] > 0){
         local->unk8 += D_80391240[0];
         local->unkC -= D_80391240[0];
         D_80391240[0] = 0;
     }
-    if(D_80391240[1]>0){
+    if(D_80391240[1] > 0){
         local->unk8 -= D_80391240[1];
         D_80391240[1] = 0;
     }
-    if(D_80391240[2]>0){
+    if(D_80391240[2] > 0){
         local->unk8 -= D_80391240[2];
         local->unkC += D_80391240[2];
         D_80391240[2] = 0;
     }
-    if(D_80391240[3]>0){
+    if(D_80391240[3] > 0){
         local->unkC += D_80391240[3];
         D_80391240[3] = 0;
     }
     player_getPosition(player_position);
-    sp28 = (player_position[1] < 500.0f) && (func_80329210(this, player_position) != 0);
-    if(this->state == 1){
-        if(sp28 && ((local->unk8 > 0) || (local->unkC > 0)) && !func_8028FB48(0xe000)){
-            chFrogMinigame_setState(this,2);
+    player_within_range = (player_position[1] < 500.0f) && (func_80329210(this, player_position) != 0);
+    if(this->state == CH_FROG_MINIGAME_STATE_1_IDLE){
+        if(player_within_range && ((local->unk8 > 0) || (local->unkC > 0)) && !func_8028FB48(0xe000)){
+            chFrogMinigame_setState(this, CH_FROG_MINIGAME_STATE_2_ENTER_BATTLE);
         }
         else{
             //L8038D0E0
             if(local->unk4 && !local->unk8){
-                func_8038CBB4(this);
+                chFrogMinigame_stopFlibbitFightMusic(this);
             }
         }
     }
-    if(this->state == 3){
-        if(!sp28){
-            chFrogMinigame_setState(this, 1);
+    if(this->state == CH_FROG_MINIGAME_STATE_3_BATTLE){
+        if(!player_within_range){
+            chFrogMinigame_setState(this, CH_FROG_MINIGAME_STATE_1_IDLE);
         }else{
             if(local->unk8 < 2 && local->unkC > 0){
-                mapSpecificFlags_set(0x12, 1);
+                mapSpecificFlags_set(BGS_SPECIFIC_FLAG_12_FROG_MINIGAME_BATTLE_ACTIVE, 1);
             }
         }
     }
-    if(this->state == 1 || this->state == 3){
+    if(this->state == CH_FROG_MINIGAME_STATE_1_IDLE || this->state == CH_FROG_MINIGAME_STATE_3_BATTLE){
         if( (local->unk0) 
           && !jiggyscore_isSpawned(JIGGY_24_BGS_FLIBBITS)
           && !local->unk8
           && !local->unkC
         ){
-                chFrogMinigame_setState(this, 4);
+            chFrogMinigame_setState(this, CH_FROG_MINIGAME_STATE_4_COMPLETE);
         }
     }
 }

@@ -158,22 +158,22 @@ void func_803229C0(s32 arg0, s32 arg1){
 }
 
 void __overlay_cc_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){ 
-    CC_func_80388760(gfx, mtx, vtx);
+    maClanker_draw(gfx, mtx, vtx);
 }
 
 void __overlay_cc_release(void){
-    func_80388CB4();
-    func_803880D4();
+    maClanker_release();
+    maClankerRings_release();
 }
 
 void overlay_cc_init(void){
-    func_80388D54();
-    func_80388104();
+    maClanker_init();
+    maClankerRings_init();
 }
 
 void __overlay_cc_update(void){
-    CC_func_80388F4C();
-    func_8038817C();
+    maClanker_update();
+    maClankerRings_update();
 }
 
 void func_80322A78(s32 arg0, s32 arg1){ return; }

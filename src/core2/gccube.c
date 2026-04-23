@@ -370,8 +370,10 @@ void func_80302C94(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 sp38[3];
     f32 temp_f18;
 
+    #if ANTI_TAMPER
     if (!mapSpecificFlags_validateCRC1())
         return;
+    #endif
 
     func_8032D3A8();
     viewport_getPosition_vec3f(vp_position);

@@ -30,84 +30,84 @@ Struct_CC_3130_0 D_80389C30[] = {
     { 240.0f, 0.8f}
 };
 
-ActorInfo D_80389C90 = {
+ActorInfo chSawblade1 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3D_CLANKER_SAWBLADE_PROPELLOR_1, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389CB4 = {
+ActorInfo chSawblade2 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3E_CLANKER_SAWBLADE_PROPELLOR_2, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389CD8 = {
+ActorInfo chSawblade3 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_3F_CLANKER_SAWBLADE_PROPELLOR_3, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389CFC = {
+ActorInfo chSawblade4 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_40_CLANKER_SAWBLADE_PROPELLOR_4, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389D20 = {
+ActorInfo chSawblade5 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_41_CLANKER_SAWBLADE_PROPELLOR_5, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389D44 = {
+ActorInfo chSawblade6 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_42_CLANKER_SAWBLADE_PROPELLOR_6, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389D68 = {
+ActorInfo chSawblade7 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_290_CLANKER_SAWBLADE_PROPELLOR_7, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389D8C = {
+ActorInfo chSawblade8 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_291_CLANKER_SAWBLADE_PROPELLOR_8, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389DB0 = {
+ActorInfo chSawblade9 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_292_CLANKER_SAWBLADE_PROPELLOR_9, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389DD4 = {
+ActorInfo chSawblade10 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_293_CLANKER_SAWBLADE_PROPELLOR_10, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389DF8 = {
+ActorInfo chSawblade11 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_294_CLANKER_SAWBLADE_PROPELLOR_11, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389E1C = {
+ActorInfo chSawblade12 = {
     MARKER_28_CLANKER_SAWBLADE, ACTOR_295_CLANKER_SAWBLADE_PROPELLOR_12, ASSET_43A_MODEL_CLANKER_SAWBLADE_PROPELLOR, 
     0, NULL, 
     chSawblade_update, NULL, actor_draw, 
@@ -119,7 +119,7 @@ void func_80389520(ActorMarker *marker, ActorMarker *otherMarker){
     FUNC_8030E624(SFX_65_METALLIC_SCRATCH, 1.0f, 30000);
 }
 
-void CC_func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
+void chSawblade_hitPlayer(ActorMarker *marker, ActorMarker *otherMarker){
     Actor *actor = marker_getActor(marker);
     ActorLocal_CC_3130 *local = (ActorLocal_CC_3130 *) &actor->local;
 
@@ -132,13 +132,13 @@ void CC_func_8038954C(ActorMarker *marker, ActorMarker *otherMarker){
 void chSawblade_update(Actor *this){
     ActorLocal_CC_3130 *local = (ActorLocal_CC_3130 *)&this->local;
     f32 tmp_f2;
-    f32 sp34 = time_getDelta();
+    f32 time_delta = time_getDelta();
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         this->roll = this->yaw;
         this->yaw =  0.0f;
-        marker_setCollisionScripts(this->marker, func_80389520, NULL, CC_func_8038954C);
+        marker_setCollisionScripts(this->marker, func_80389520, NULL, chSawblade_hitPlayer);
         local->unk0 = &D_80389C30[(this->modelCacheIndex < 0x43) ? this->modelCacheIndex - 0x3D : this->modelCacheIndex - 0x28A];
         local->unk4 = 0;
         func_80256C60(this->position, 100);
@@ -147,7 +147,7 @@ void chSawblade_update(Actor *this){
         }
     }//L80389660
     tmp_f2 = this->roll;
-    this->roll += local->unk0->unk0 * sp34;
+    this->roll += local->unk0->unk0 * time_delta;
     this->roll += (this->roll < 0.0f)? 360 : 0;
     this->roll -= (this->roll >= 360.0f)? 360 : 0;
     if( ( tmp_f2 < 90.0f && this->roll >= 90.0f )

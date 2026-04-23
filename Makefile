@@ -2,6 +2,7 @@
 BASENAME := banjo
 VERSION  ?= us.v10
 ANTI_TAMPER ?= 1
+ANTI_PIRACY ?= 1
 
 ifeq ($(VERSION),us.v10)
 	C_VERSION=0
@@ -159,7 +160,7 @@ endef
 ### Flags ###
 
 # Build tool flags
-CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS -DANTI_TAMPER='$(ANTI_TAMPER)'
+CFLAGS         := -c -Wab,-r4300_mul -non_shared -G 0 -Xcpluscomm $(OPT_FLAGS) $(MIPSBIT) -D_FINALROM -DF3DEX_GBI -DVERSION='$(C_VERSION)' -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS -DANTI_TAMPER='$(ANTI_TAMPER)' -DANTI_PIRACY='$(ANTI_PIRACY)'
 CFLAGS         += -woff 649,654,838,807
 CPPFLAGS       := -D_FINALROM -DN_MICRO -DNDEBUG -DBUILD_VERSION=VERSION_I -DBKDIFFS
 INCLUDE_CFLAGS := -I . -I include -I lib/ultralib/include -I lib/ultralib/include/PR -I lib/ultralib/include/PRinternal -I lib/ultralib/include/compiler/ido -I include/n_audio/PR -I lib/ultralib/src/audio

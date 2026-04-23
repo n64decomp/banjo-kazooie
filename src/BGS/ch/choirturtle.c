@@ -61,8 +61,8 @@ void chChoirTurtle_ow2(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(this->state != 3){
-        chChoirTurtle_setState(this, 3);
+    if(this->state != CHOIR_TURTLE_STATE_3_SQUISHED){
+        chChoirTurtle_setState(this, CHOIR_TURTLE_STATE_3_SQUISHED);
     }
 }
 
@@ -101,7 +101,7 @@ void chChoirTurtle_update(Actor *this) {
         }
     }
     if (this->state == CHOIR_TURTLE_STATE_1_IDLE) {
-        if (local->tiptup_marker != NULL && (func_80388E70(local->tiptup_marker) == local->unk0)) {
+        if (local->tiptup_marker != NULL && (chTiptup_getUnkB(local->tiptup_marker) == local->unk0)) {
             chChoirTurtle_setState(this, CHOIR_TURTLE_STATE_2_SING);
         }
     }

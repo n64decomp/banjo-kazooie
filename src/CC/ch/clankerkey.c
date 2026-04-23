@@ -4,7 +4,7 @@
 
 extern void func_8030E730(s32, f32, s32);
 
-void func_80388EA4(void);
+void maClanker_raiseClanker(void);
 
 
 typedef struct {
@@ -18,11 +18,11 @@ typedef struct {
     f32 unk14;
 } ActorLocal_CC_530;
 
-void chClankerKey_update(Actor* this);
+void maClankerKey_update(Actor* this);
 
 /* .data */
 
-enum chClankerKey_state_e {
+enum maClankerKey_state_e {
     CLANKER_KEY_STATE_1_IDLE = 1,
     CLANKER_KEY_STATE_2_TURN_SLIGHTLY,
     CLANKER_KEY_STATE_3_TURN_BACK,
@@ -30,10 +30,10 @@ enum chClankerKey_state_e {
     CLANKER_KEY_STATE_5_COMPLETED,
 };
 
-ActorInfo chClankerKey = {
+ActorInfo maClankerKey = {
     MARKER_4A_CC_KEY, ACTOR_3C_CC_KEY, ASSET_429_MODEL_CC_KEY,
     0, NULL,
-    chClankerKey_update, actor_update_func_80326224, actor_draw,
+    maClankerKey_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -75,7 +75,7 @@ void CC_func_80386920(Actor *this, s32 next_state){
     }
 
     if(next_state == CLANKER_KEY_STATE_4_FULL_ROTATION){
-        CC_func_8038868C();
+        maClanker_raiseClankerCutscene();
         coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
     }
 
@@ -98,7 +98,7 @@ void func_80386AF8(Actor *arg0) {
     sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
 }
 
-void chClankerKey_update(Actor *this){
+void maClankerKey_update(Actor *this){
     ActorMarker *marker = this->marker;
     f32 sp58[3];
     ActorLocal_CC_530 * local = (ActorLocal_CC_530 *)&this->local;
@@ -211,7 +211,7 @@ void chClankerKey_update(Actor *this){
             this->pitch = (f32)local->unk10 + 180.0f*(local->unk14/5.0f);
             if(5.0f <= local->unk14){
                 CC_func_80386920(this, CLANKER_KEY_STATE_5_COMPLETED);
-                func_80388EA4();
+                maClanker_raiseClanker();
             }
         }//L80386FC0
     }

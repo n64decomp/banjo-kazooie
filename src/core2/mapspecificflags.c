@@ -104,6 +104,8 @@ void bitfield_setAll(struct bitfield_s *this, bool value) {
     }
 }
 
+#if ANTI_TAMPER
 s32 mapSpecificFlags_validateCRC1(void){
     return _mapSpecificFlags_calcCRC1() == D_8037DDE0;
 }
+#endif

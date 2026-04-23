@@ -149,9 +149,11 @@ void mainLoop(void){
 
     baMotor_80250C08();
 
+    #if ANTI_TAMPER
     if(!mapSpecificFlags_validateCRC1()){
         eeprom_writeBlocks(0, 0, 0x80397AD0, 0x40);
     }
+    #endif
 
     switch(D_8027A130){
         case 4:

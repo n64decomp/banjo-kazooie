@@ -1032,27 +1032,30 @@ void func_802589E4(f32 dst[3], f32 yaw, f32 length)
     dst[2] = cosf(yaw) * length;
 }
 
-void func_80258A4C(f32 vec1[3], f32 arg1, f32 vec2[3], f32 *arg3, f32 *arg4, f32 *arg5)
+void func_80258A4C(
+    f32 this_position[3], f32 this_yaw, f32 target_position[3],
+    f32 *horizontal_distance, f32 *distance_in_front, f32 *side_angle_radian)
 {
-    f32 t1[3];
-    f32 t2[3];
+    f32 dst[3];
+    f32 direction[3];
 
-    TUPLE_DIFF_COPY(t1, vec2, vec1)
-    t1[1] = 0;
+    TUPLE_DIFF_COPY(dst, target_position, this_position)
+    dst[1] = 0;
 
-    *arg3 = sqrtf(_SQ3(t1[0], t1[1], t1[2]));
+    *horizontal_distance = sqrtf(_SQ3(dst[0], dst[1], dst[2]));
 
-    t2[2] = 0;
-    t2[1] = 0;
-    t2[0] = 100;
+    direction[2] = 0;
+    direction[1] = 0;
+    direction[0] = 100;
 
-    ml_vec3f_yaw_rotate_copy(t2, t2, arg1);
+    ml_vec3f_yaw_rotate_copy(direction, direction, this_yaw);
 
-    *arg4 = TUPLE_DOT_PRODUCT(t1, t2);
-    *arg5 = func_80256AB4(t2[0], t2[2], t1[0], t1[2]);
+    *distance_in_front = TUPLE_DOT_PRODUCT(dst, direction);
 
-    if (*arg4 < 0)
-        *arg5 = *arg5 < 0 ? -1 : 1;
+    *side_angle_radian = func_80256AB4(direction[0], direction[2], dst[0], dst[2]);
+
+    if (*distance_in_front < 0)
+        *side_angle_radian = *side_angle_radian < 0 ? -1 : 1;
 }
 
 void ml_vec3f_clear(f32 dst[3])

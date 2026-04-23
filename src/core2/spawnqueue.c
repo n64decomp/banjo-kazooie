@@ -387,7 +387,7 @@ void spawnQueue_reset(void){
             MM_func_803888B0();
             break;
         case OVERLAY_7_SWAMP:
-            BGS_func_8038F1E0();
+            bgs_updateSpawnableActors();
             break;
         case OVERLAY_8_SHIP:
             RBB_func_80386C48();
