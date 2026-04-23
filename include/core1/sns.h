@@ -89,7 +89,7 @@ struct GlobalSave {
         struct StopNSwop_Bitfield sns;
         u32                       snsw;
     };
-    u8  UNUSED[0x18];
+    u8  padding[0x18];
     u32 crc;
 };
 

@@ -296,7 +296,7 @@ void pfsManager_init(void) {
     osContInit(&pfsManagerContPollingMsqQ, &pfsManagerBitPattern, &pfsManagerContStatus);
     osContSetCh(1);
     func_8024F224();
-    func_802476DC();
+    thread5_enableControllerTimer();
     osStartThread(&sPfsManagerThread);
 }
 

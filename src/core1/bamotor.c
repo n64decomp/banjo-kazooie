@@ -126,7 +126,7 @@ void baMotor_init(void) {
         osCreateMesgQueue(&D_80282390, &D_802823A8, 1);
         osCreateThread(&sRumbleThread, 8, rumbleThread_entry, NULL, sRumbleThreadStack + RUMBLE_THREAD_STACK_SIZE, 25);
         osStartThread(&sRumbleThread);
-        viMgr_func_8024BDAC(&D_80282390, 0);
+        viMgr_registerSignalMesg(&D_80282390, 0);
     }
 }
 

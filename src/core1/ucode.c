@@ -1,25 +1,24 @@
 #include <ultra64.h>
 #include <PR/rcp.h>
 #include "core1/core1.h"
-#include "functions.h"
-#include "variables.h"
 
+#define IPL3FONT_ROM_ADDR 0x0B70
 #define UCODE_SIZE 256
 
 static u8 sUcodeData[UCODE_SIZE];
-static s32 D_80283380;
-static s32 D_80283384;
-static s32 D_80283388;
+static s32 sIMEMdword;
+static s32 sDMEMdword;
+static s32 sStatus;
 
 void ucode_load(void) {
-    D_80283384 = *(s32 *)PHYS_TO_K1(0x04000000) ^ -1;
-    D_80283388 = D_80283384 ? 0x01 : 0x00;
+    sDMEMdword = IO_READ(SP_DMEM_START) ^ 0xFFFFFFFF;
+    sStatus = sDMEMdword ? 0x01 : 0x00;
 
-    D_80283380 = *(s32 *)PHYS_TO_K1(0x04001000) ^ 0x17D7;
-    D_80283388 |= D_80283380 ? 0x02 : 0x00;
+    sIMEMdword = IO_READ(SP_IMEM_START) ^ 0x000017D7;
+    sStatus |= sIMEMdword ? 0x02 : 0x00;
 
-    if (D_80283388 == 0) {
-        piMgr_read(&sUcodeData, 0xB0000B70, UCODE_SIZE);
+    if (sStatus == 0) {
+        piMgr_read(sUcodeData, PHYS_TO_K1(PI_DOM1_ADDR2 + IPL3FONT_ROM_ADDR), UCODE_SIZE);
     }
 }
 
@@ -34,6 +33,6 @@ s32 ucode_stub3(void) {
 }
 
 void ucode_getPtrAndSize(void **ptr, u32 *size) {
-    *ptr = &sUcodeData;
+    *ptr = sUcodeData;
     *size = UCODE_SIZE;
 }

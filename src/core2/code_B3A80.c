@@ -306,7 +306,7 @@ void func_8033B5FC(void){
 }
 
 void func_8033B61C(void){
-    func_80254008();
+    core1_15B30_sendMesg3ToRenderThread();
     func_8033B1BC();
     func_8033B1BC();
 }

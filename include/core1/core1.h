@@ -18,6 +18,7 @@
 #include "core1/rarezip.h"
 #include "core1/sns.h"
 #include "core1/sprite.h"
+#include "core1/thread5.h"
 #include "core1/ucode.h"
 #include "core1/viewport.h"
 #include "core1/vimgr.h"
@@ -37,6 +38,9 @@ s32 func_8025A864(enum comusic_e track_id);
 void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3);
 int func_8025AD7C(enum comusic_e arg0);
 int func_8025ADBC(enum comusic_e arg0);
+
+OSMesgQueue * audioManager_getFrameMesgQueue(void);
+void piMgr_read(void *vaddr, s32 devaddr, s32 size);
 
 
 /* src/core1/code_7090.c */
@@ -84,14 +88,19 @@ void *zBuffer_get(void);
 
 /* src/core1/code_15B30.c */
 
-typedef struct {
-    s32 unk0;
-    s32 unk4;
-    Gfx *unk8;
-    Gfx *unkC;
-    s32 unk10;
-    s32 unk14;
-}Struct_Core1_15B30;
+#define UCODE_TASK_TYPE_AUDIO 0
+#define UCODE_TASK_TYPE_F3DEX 1
+#define UCODE_TASK_TYPE_L3DEX 2
+#define UCODE_TASK_TYPE_FRAMEBUFFER_CHANGED 7
+
+struct ucode_task_data_s {
+    s32 task_type; // 0 - audio task, 1 - f3dex task, 2 - l3dex task, 7 - probably to signal framebuffers swapped
+    s32 unk4; // is only set for gfx tasks (0 or 0x40000000)
+    u64 *data_ptr; // begin of dlist data
+    u64 *data_ptr_end; // end of dlist data
+    OSMesgQueue *unk10; // only relevant for audio tasks
+    s32 unk14; // only relevant for audio tasks
+};
 
 #define DEFAULT_FRAMEBUFFER_WIDTH 292
 #define DEFAULT_FRAMEBUFFER_HEIGHT 216
@@ -100,31 +109,31 @@ extern s32 gFramebufferWidth;
 extern s32 gFramebufferHeight;
 extern u16 gFramebuffers[2][DEFAULT_FRAMEBUFFER_WIDTH * DEFAULT_FRAMEBUFFER_HEIGHT];
 
-void func_80253550(void);
-void func_8025357C(void);
-void func_802535A8(Acmd *arg0, Acmd*arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3);
+void core1_15B30_requestLockForTaskDataID(void);
+void core1_15B30_requestReleaseForTaskDataID(void);
+void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queue, OSMesg msg);
 void func_80253640(Gfx ** gdl, void *arg1);
 void scissorBox_SetForGameMode(Gfx **gdl, s32 framebuffer_idx);
 void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address);
 void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx);
-void func_80253DC0(Gfx **gfx);
-void finishFrame(Gfx **gdl);
-void func_80253E14(Gfx *arg0, Gfx *arg1, s32 arg2);
-void func_80253EA4(Gfx *arg0, Gfx *arg1);
-void func_80253EC4(Gfx *arg0, Gfx *arg1);
-void func_80253EE4(Gfx **arg0, Gfx **arg1, s32 arg2);
-void func_80253F74(Gfx **arg0, Gfx **arg1);
-void func_80253F94(Gfx **arg0, Gfx **arg1);
+void core1_15B30_finishDList_renderThread(Gfx **gfx);
+void core1_15B30_finishDList(Gfx **gfx);
+void core1_15B30_addF3DEXTaskData(Gfx *start, Gfx *end, s32 flags);
+void core1_15B30_addF3DEXTaskData_0(Gfx *start, Gfx *end);
+void core1_15B30_addF3DEXTaskData_40000000(Gfx *start, Gfx *end);
+void core1_15B30_addL3DEXTaskData(Gfx *start, Gfx *end, s32 flags);
+void core1_15B30_addL3DEXTaskData_0(Gfx *start, Gfx *end);
+void core1_15B30_addL3DEXTaskData_40000000(Gfx *start, Gfx *end);
 void scissorBox_get(u32 *left, u32 *top, u32 *right, u32 *bottom);
 void func_80253FE8(void);
-void func_80254008(void);
-void func_80254028(void);
+void core1_15B30_sendMesg3ToRenderThread(void);
+void core1_15B30_init(void);
 void drawRectangle2D(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, s32 r, s32 g, s32 b);
 void graphicsCache_release(void);
 void graphicsCache_init(void);
 void scissorBox_set(s32 left, s32 top, s32 right, s32 bottom);
 void scissorBox_setDefault(void);
-void func_80254374(s32 arg0);
+void core1_15B30_addTask7TaskData(s32 framebuffer_id);
 void toggleTextureFilterPoint(void);
 void getGraphicsStacks(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void dummy_func_80254464(void);

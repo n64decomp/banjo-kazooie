@@ -98,7 +98,7 @@ s32 getActiveFramebuffer(void){
     return sActiveFramebuffer;
 }
 
-void viMgr_func_8024BDAC(OSMesgQueue *mq, OSMesg msg){
+void viMgr_registerSignalMesg(OSMesgQueue *mq, OSMesg msg){
     s32 i;
     for(i = 0; i < 8; i++){
         if(D_80280730[i].messageQueue == NULL){
@@ -201,7 +201,7 @@ void viMgr_func_8024C1DC(void){
     viMgr_func_8024BFD8(1);
 }
 
-void viMgr_func_8024C1FC(OSMesgQueue *mq, OSMesg msg) {
+void viMgr_unregisterSignalMesg(OSMesgQueue *mq, OSMesg msg) {
     s32 i;
 
     for (i = 0; i < 8; i++) {
@@ -222,7 +222,7 @@ void viMgr_entry(void *arg0){
     OSMesg sp48;
     do{
         osRecvMesg(&sMesgQueue1, &sp48, OS_MESG_BLOCK);
-        func_80247380();
+        thread5_checkAndExecutePreNMI();
         D_802808D8++;
         if(D_802808D8 == 420){
 #if VERSION == VERSION_USA_1_0

@@ -46,7 +46,7 @@ void func_8023DA74(void){
 }
 
 void func_8023DA9C(s32 arg0){
-    func_80254008();
+    core1_15B30_sendMesg3ToRenderThread();
     viMgr_clearFramebuffers();
     if (D_8027A130 == 4){
         func_802E3580();
@@ -106,7 +106,7 @@ void core1_init(void) {
     overlayManagerloadCore2();
     sDebugVar_8027BEF0 = sDebugVar_8027A538;
     heap_init();
-    func_80254028();
+    core1_15B30_init();
     dummy_func_8025AFB0();
     allocUnusedBlock();
     assetCache_init();

@@ -9,39 +9,40 @@ static Mtx *sMtxStack[2];
 static Vtx *sVtxStack[2];
 static s32 sStackSelector;
 s32  gTextureFilterPoint;
-Struct_Core1_15B30 D_80283008[20];
-s32 D_802831E8;
-OSMesgQueue D_802831F0;
-OSMesg D_80283208;
+struct ucode_task_data_s sUcodeTaskData[20];
+s32 sCurrentUcodeTaskDataID;
+OSMesgQueue sTaskDataListLockMesgQueue;
+OSMesg sTaskDataListLockMesg;
 u16  gScissorBoxLeft;
 u16  gScissorBoxRight;
 u16  gScissorBoxTop;
 u16  gScissorBoxBottom;
 Gfx *D_80283214;
 
-void func_80253550(void){
-    osRecvMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
+void core1_15B30_requestLockForTaskDataID(void) {
+    osRecvMesg(&sTaskDataListLockMesgQueue, NULL, OS_MESG_BLOCK);
 }
 
-void func_8025357C(void){
-    osSendMesg(&D_802831F0, NULL, OS_MESG_BLOCK);
+void core1_15B30_requestReleaseForTaskDataID(void) {
+    osSendMesg(&sTaskDataListLockMesgQueue, NULL, OS_MESG_BLOCK);
 }
 
-void func_802535A8(Acmd *arg0, Acmd *arg1, OSMesgQueue *arg2, UNK_TYPE(s32) arg3) {
-    Struct_Core1_15B30 *sp1C;
+void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queue, OSMesg msg) {
+    struct ucode_task_data_s *task_data;
 
-    func_80253550();
-    sp1C = &D_80283008[D_802831E8];
-    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
-    func_8025357C();
-    sp1C->unk0 = 0;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
-    sp1C->unk10 = arg2;
-    sp1C->unk14 = arg3;
-    func_80246670(sp1C);
+    core1_15B30_requestLockForTaskDataID();
+    task_data = &sUcodeTaskData[sCurrentUcodeTaskDataID];
+    sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
+    core1_15B30_requestReleaseForTaskDataID();
+
+    task_data->task_type = UCODE_TASK_TYPE_AUDIO;
+    task_data->data_ptr = (u64 *) start;
+    task_data->data_ptr_end = (u64 *) end;
+    task_data->unk10 = mesg_queue;
+    task_data->unk14 = (s32) msg;
+
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
-
 
 void func_80253640(Gfx ** gdl, void *arg1){
     D_80283214 = *gdl;
@@ -103,56 +104,61 @@ void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx){
     setupScissorBoxAndFramebuffer(gfx, gFramebuffers[framebuffer_idx]);
 }
 
-void func_80253DC0(Gfx **gfx){
-    func_802476EC(gfx);
+void core1_15B30_finishDList_renderThread(Gfx **gfx) {
+    thread5_finishDList(gfx);
 }
 
-void finishFrame(Gfx **gdl) {
-    gDPFullSync((*gdl)++);
-    gSPEndDisplayList((*gdl)++);
+void core1_15B30_finishDList(Gfx **gfx) {
+    gDPFullSync((*gfx)++);
+    gSPEndDisplayList((*gfx)++);
 }
 
-void func_80253E14(Gfx *arg0, Gfx *arg1, s32 arg2){
-    Struct_Core1_15B30 *sp1C;
-    func_80253550();
-    sp1C = D_80283008 + D_802831E8;
-    D_802831E8 = (D_802831E8 + 1) % 0x14;
-    func_8025357C();
-    sp1C->unk0 = 1;
-    sp1C->unk4 = arg2;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
-    func_80246670((OSMesg) sp1C);
+void core1_15B30_addF3DEXTaskData(Gfx *start, Gfx *end, s32 flags) {
+    struct ucode_task_data_s *task_data;
+
+    core1_15B30_requestLockForTaskDataID();
+    task_data = &sUcodeTaskData[sCurrentUcodeTaskDataID];
+    sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
+    core1_15B30_requestReleaseForTaskDataID();
+
+    task_data->task_type = UCODE_TASK_TYPE_F3DEX;
+    task_data->unk4 = flags;
+    task_data->data_ptr = (u64 *) start;
+    task_data->data_ptr_end = (u64 *) end;
+
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
-void func_80253EA4(Gfx *arg0, Gfx *arg1){
-    func_80253E14(arg0, arg1, 0);
+void core1_15B30_addF3DEXTaskData_0(Gfx *start, Gfx *end) {
+    core1_15B30_addF3DEXTaskData(start, end, 0);
 }
 
-void func_80253EC4(Gfx *arg0, Gfx *arg1){
-    func_80253E14(arg0, arg1, 0x40000000);
+void core1_15B30_addF3DEXTaskData_40000000(Gfx *start, Gfx *end) {
+    core1_15B30_addF3DEXTaskData(start, end, 0x40000000);
 }
 
-void func_80253EE4(Gfx **arg0, Gfx **arg1, s32 arg2) {
-    Struct_Core1_15B30 *sp1C;
+void core1_15B30_addL3DEXTaskData(Gfx *start, Gfx *end, s32 flags) {
+    struct ucode_task_data_s *task_data;
 
-    func_80253550();
-    sp1C = &D_80283008[D_802831E8];
-    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
-    func_8025357C();
-    sp1C->unk0 = 2;
-    sp1C->unk4 = arg2;
-    sp1C->unk8 = arg0;
-    sp1C->unkC = arg1;
-    func_80246670(sp1C);
+    core1_15B30_requestLockForTaskDataID();
+    task_data = &sUcodeTaskData[sCurrentUcodeTaskDataID];
+    sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
+    core1_15B30_requestReleaseForTaskDataID();
+
+    task_data->task_type = UCODE_TASK_TYPE_L3DEX;
+    task_data->unk4 = flags;
+    task_data->data_ptr = (u64 *) start;
+    task_data->data_ptr_end = (u64 *) end;
+
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
-void func_80253F74(Gfx **arg0, Gfx **arg1){
-    func_80253EE4(arg0, arg1, 0);
+void core1_15B30_addL3DEXTaskData_0(Gfx *start, Gfx *end) {
+    core1_15B30_addL3DEXTaskData(start, end, 0);
 }
 
-void func_80253F94(Gfx **arg0, Gfx **arg1){
-    func_80253EE4(arg0, arg1, 0x40000000);
+void core1_15B30_addL3DEXTaskData_40000000(Gfx *start, Gfx *end) {
+    core1_15B30_addL3DEXTaskData(start, end, 0x40000000);
 }
 
 void scissorBox_get(u32 *left, u32 *top, u32 *right, u32 *bottom){
@@ -166,15 +172,15 @@ void func_80253FE8(void){
     viMgr_func_8024BFAC();
 }
 
-void func_80254008(void){
-    func_80246670(3);
+void core1_15B30_sendMesg3ToRenderThread(void) {
+    thread5_sendTaskToQueue((OSMesg) THREAD5_MESSAGE_EVENT_SYNC);
 }
 
-void func_80254028(void){
-    D_802831E8 = 0;
-    osCreateMesgQueue(&D_802831F0, &D_80283208, 1);
-    osSendMesg(&D_802831F0, NULL, 1);
-    func_80247560();
+void core1_15B30_init(void) {
+    sCurrentUcodeTaskDataID = 0;
+    osCreateMesgQueue(&sTaskDataListLockMesgQueue, &sTaskDataListLockMesg, 1);
+    osSendMesg(&sTaskDataListLockMesgQueue, NULL, 1);
+    thread5_create();
     scissorBox_setDefault();
 }
 
@@ -228,16 +234,18 @@ void scissorBox_setDefault(void){
     scissorBox_set(0, 292, 0, 216);
 }
 
-void func_80254374(s32 arg0) {
-    Struct_Core1_15B30 *sp1C;
+void core1_15B30_addTask7TaskData(s32 framebuffer_id) {
+    struct ucode_task_data_s *task_data;
 
-    func_80253550();
-    viMgr_setActiveFramebuffer(arg0);
-    sp1C = &D_80283008[D_802831E8];
-    D_802831E8 = (s32) (D_802831E8 + 1) % 20;
-    func_8025357C();
-    sp1C->unk0 = 7;
-    func_80246670(sp1C);
+    core1_15B30_requestLockForTaskDataID();
+    viMgr_setActiveFramebuffer(framebuffer_id);
+    task_data = &sUcodeTaskData[sCurrentUcodeTaskDataID];
+    sCurrentUcodeTaskDataID = (sCurrentUcodeTaskDataID + 1) % 20;
+    core1_15B30_requestReleaseForTaskDataID();
+
+    task_data->task_type = UCODE_TASK_TYPE_FRAMEBUFFER_CHANGED;
+
+    thread5_sendTaskToQueue((OSMesg) task_data);
 }
 
 void toggleTextureFilterPoint(void){
