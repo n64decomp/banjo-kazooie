@@ -160,7 +160,7 @@ void gcparade_8031ABA0(void) {
 void gcparade_8031ABF8(void) {
     D_803830F0.unk8 = gameSelect_getGameNumber();
     func_8030AFD8(1);
-    mapSavestate_free_all();
+    mapSavestate_clearAll();
     levelSpecificFlags_clear();
     func_80347A7C();
     debugScoreStates();

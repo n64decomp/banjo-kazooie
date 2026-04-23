@@ -73,7 +73,7 @@ void func_802E3854(void){
     for(i = 0; i < 0xF; i++){
         func_802E6820(5);
         modelRender_defrag();
-        mapSavestate_defrag_all();
+        mapSavestate_defrag();
         gctransition_defrag();
         printbuffer_defrag();
         code_C9E70_defrag();

@@ -25,6 +25,8 @@
 
 /* need to sort out in individual header files */
 
+//void *defrag(void *);
+
 void glcrc_calc_checksum(void *start, void *end, u32 checksum[2]);
 
 void func_80250530(s32 arg0, u16 chan_mask, f32 arg2);

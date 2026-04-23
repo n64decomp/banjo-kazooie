@@ -712,7 +712,7 @@ segments:
   # - [0xFB0490, c, ch/snowman] #DONE
   # - [0xFB1000, c, ch/snowball] #DONE
   # - [0xFB16F0, c, ch/snowmanhat] #DONE
-  # - [0xFB1810, c, code_5BEB0]
+  # - [0xFB1810, c, mapsavestate]
   # - [0xFB1BA0, c, code_5C240] #DONE
   # - [0xFB21D0, c, code_5C870] #DONE
   # - [0xFB3520, c, code_5DBC0] #DONE
@@ -1522,7 +1522,7 @@ segments:
   # - [0x0106C980, .bss, code_59A80]
   # - [0x0106C980, .bss, ch/snacker]
   # - [0x0106C980, .bss, ch/snowball]
-  # - [0x0106C980, .bss, code_5BEB0]
+  # - [0x0106C980, .bss, mapsavestate]
   # - [0x0106C980, .bss, code_5C240]
   # - [0x0106C980, .bss, code_5C870]
   # - [0x0106C980, .bss, code_5DBC0]

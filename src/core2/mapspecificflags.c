@@ -62,12 +62,12 @@ void mapSpecificFlags_setN(s32 idx, s32 val, s32 n){
     }
 }
 
-u32 mapSpecificFlags_getAll(void){
+u32 mapSpecificFlags_getAll(void) {
     return D_80367000;
 }
 
-void mapSpecificFlags_setAll(u32 arg0){
-    D_80367000 = arg0;
+void mapSpecificFlags_setAll(u32 flags) {
+    D_80367000 = flags;
     _mapSpecificFlags_updateCRCs();
 }
 
