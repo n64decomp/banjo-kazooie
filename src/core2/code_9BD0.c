@@ -26,7 +26,7 @@ void func_80290B60(s32 arg0){
 }
 
 void func_80290B6C(void){
-    func_802BC5CC();
+    code35520_selectTable();
     func_80290220();
     D_8037C060 = 0;
     D_8037C062 = 0;
@@ -36,7 +36,7 @@ void func_80290B6C(void){
 }
 
 void func_80290BC0(s32 arg0){
-    func_802BC538(arg0, 
+    code35520_getDistanceVectors(arg0, 
         &D_8037C064,&D_8037C068,&D_8037C06C,
         &D_8037C070,&D_8037C074,&D_8037C078,
         &D_8037C07C,&D_8037C080,&D_8037C084

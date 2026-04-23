@@ -103,7 +103,7 @@ void core1_init(void) {
     setBootMap(getDefaultBootMap());
     rarezip_init(); //initialize decompressor's huft table
     viMgr_init();
-    overlayManagerloadCore2();
+    overlayManager_loadCore2();
     sDebugVar_8027BEF0 = sDebugVar_8027A538;
     heap_init();
     core1_15B30_init();

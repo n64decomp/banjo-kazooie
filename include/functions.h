@@ -513,4 +513,8 @@ extern void baflag_toggle(enum misc_flag_e arg0);
 
 s32 game_defrag(void);
 
+void bkmemcpy64(void *dest, void *src, s32 size); // handwritten assembly code that performs an optimized 8 byte memcpy
+void bkmemset64(void *dest, s32 value, s32 size); // handwritten assembly code that performs an optimized 8 byte memset
+u32 bkGetSR(void); // handwritten assembly code that replicates the __osGetSR function
+
 #endif

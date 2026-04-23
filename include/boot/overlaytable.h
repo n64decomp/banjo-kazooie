@@ -1,11 +1,11 @@
-#ifndef BANJO_KAZOOIE_BOOT_OVERLAYS_H
-#define BANJO_KAZOOIE_BOOT_OVERLAYS_H
+#ifndef BANJO_KAZOOIE_BOOT_OVERLAYTABLE_H
+#define BANJO_KAZOOIE_BOOT_OVERLAYTABLE_H
 
 #include <ultra64.h>
 
 struct Overlay {
-    void *start;
-    void *end;
+    u32 start;
+    u32 end;
 };
 
 #define MAKE_ROM_OVERLAY_VAR(name, _) \
@@ -34,5 +34,7 @@ MAKE_ROM_OVERLAY_VAR(lair, 13)
 MAKE_ROM_OVERLAY_VAR(fight, 14)
 
 extern struct Overlay gOverlayTable[];
+
+void overlaytable_init(void);
 
 #endif

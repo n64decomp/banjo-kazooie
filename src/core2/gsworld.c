@@ -42,7 +42,7 @@ void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
     if (mapModel_has_xlu_bin()) {
         mapModel_opa_draw(gfx, mtx, vtx);
         if (!game_is_frozen()) {
-            func_80322E64(gfx, mtx, vtx);
+            leveloverlay_drawCallback(gfx, mtx, vtx);
         }
         if (!game_is_frozen()) {
             player_draw(gfx, mtx, vtx);
@@ -77,7 +77,7 @@ void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
         func_802D520C(gfx, mtx, vtx);
     } else {
         mapModel_opa_draw(gfx, mtx, vtx);
-        func_80322E64(gfx, mtx, vtx);
+        leveloverlay_drawCallback(gfx, mtx, vtx);
         func_8034F6F0(gfx, mtx, vtx);
         player_draw(gfx, mtx, vtx);
         func_80302C94(gfx, mtx, vtx);
@@ -126,12 +126,12 @@ void gsworld_free(void) {
     func_80350BC8();
     func_8030F1D0();
     gcparade_free();//null
-    func_80322F7C();
+    leveloverlay_releaseCallback_OnlyFP();
     func_803518E8();
     func_802D48F0();
     func_803224FC();
     func_8028E644();
-    func_80322F5C();
+    leveloverlay_releaseCallback_NotFP();
     func_80341A54();
     spawnQueue_free();
     print_freeBoldLetterFont();
@@ -177,7 +177,7 @@ void gsworld_free(void) {
     }
     core1_7090_release();
     AnimTextureListCache_free();
-    func_80322FDC();
+    leveloverlay_debug();
     func_8033BD6C();
     func_80255198();//heap_flush_free_queue
     animCache_flushAll();
@@ -187,7 +187,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     sGsWorldData.unk0 = 3;
     sGsWorldData.map = map;
     sGsWorldData.exit = exit;
-    overlay_init();
+    leveloverlay_init();
     gsworld_setEnableUpdate(TRUE);
     gsworld_setEnableDraw(TRUE);
     func_802D2CB8();
@@ -243,9 +243,9 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     mapSpecificFlags_clearAll();
     func_803411B0();
     spawnQueue_reset();
-    func_80322FBC();
+    leveloverlay_initCallback_NotFP();
     func_8028E4B0();
-    func_80322F9C();
+    leveloverlay_initCallback_OnlyFP();
     func_80323120();
     func_803223AC();
     bundle_reset();
@@ -283,7 +283,7 @@ void gsworld_setUnk0(s32 value) {
     func_80323140(sGsWorldData.unk0, value);
     func_80351A1C(sGsWorldData.unk0, value);
     func_803225B0(sGsWorldData.unk0, value);
-    func_80323098(sGsWorldData.unk0, value);
+    leveloverlay_unk14Callback(sGsWorldData.unk0, value);
     func_802F0E80(sGsWorldData.unk0, value);
     commonParticle_setActive(sGsWorldData.unk0, value);
     sGsWorldData.unk0 = value;
@@ -311,7 +311,7 @@ s32 gsworld_update(void) {
         time = globalTimer_getTime();
         time_mask = sHackDetected ? 0x0F : 0x1F;
         if (((time_mask & time) == 3) &&
-            (overlayManagergetLoadedId() == OVERLAY_5_BEACH) &&
+            (overlayManager_getLoadedID() == OVERLAY_5_BEACH) &&
             (!maCastle_isSecretCheatCodeRelatedValueEqualToScrambledAddressValue() || sHackDetected))
         {
             sHackDetected = TRUE;
@@ -343,7 +343,7 @@ s32 gsworld_update(void) {
         dialogBin_update();
         func_80310D2C();
         gcparade_update();
-        overlay_update();
+        leveloverlay_updateCallback();
         func_80321924();
         func_80334428();
         cutscenetrigger_update();

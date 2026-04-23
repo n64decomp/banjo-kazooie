@@ -14,17 +14,15 @@ gspL3DEX_fifoDataEnd = boot_gspL3DEX_fifoDataEnd;
 
 /* Fixed-address buffers */
 D_8000E800      = 0x8000E800;
-D_8002D500      = 0x8002D500;
+gHeapBase      = 0x8002D500;
 D_8023DA00      = 0x8023E600; /* confirm */
-core1_main   = 0x8023E620;
 gGlobalHuffTable      = 0x803FBE00;
 gCore1CRCs      = 0x803FFE00;
-D_803FFE10      = 0x803FFE10;
 gOverlayTable   = 0x803FFE10;
 gFramebuffers      = 0x803A5D00; /* framebuffers */
 
 /* Renames for the boot segment */
-boot_D_8002D500 = D_8002D500;
+boot_gHeapBase = gHeapBase;
 boot_core1_VRAM = core1_VRAM;
 boot_gGlobalHuffTable = gGlobalHuffTable;
 boot_gCore1CRCs = gCore1CRCs;
@@ -139,8 +137,8 @@ func_802BB378               = 0x802bb1e8;
 func_802BB3AC               = 0x802bb21c;
 func_802BB3C4               = 0x802bb234;
 func_802BB3DC               = 0x802bb24c;
-func_802BC538                   = 0x802bc3a8;
-func_802BC5CC                   = 0x802bc43c;
+code35520_getDistanceVectors                   = 0x802bc3a8;
+code35520_selectTable                   = 0x802bc43c;
 ncDynamicCamera_getState        = 0x802bcf3c;
 ncDynamicCamera_setState        = 0x802bcf48;
 func_802BD8A4                   = 0x802bd718;

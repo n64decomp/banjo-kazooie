@@ -2,169 +2,161 @@
 #include "functions.h"
 #include "variables.h"
 
-typedef struct {
-    s16 map_id; //map_id
-    s16 unk2; //other_id
-    s16 unk4;
-    s16 unk6;
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    s16 unk12;
-    s16 unk14;
-}struct_core2_35520_1;
+// This file defines the distances for type-4 camera nodes (the normal 3rd person view camera?) for each map
 
-typedef struct {
-    s32 overlay_id; //overlay_id
-    struct_core2_35520_1 *unk4;
-}struct_core2_35520;
-
-/* .data */
-struct_core2_35520_1 D_80365830[] ={
-    {MAP_1_SM_SPIRAL_MOUNTAIN, 0x0001, 0x0320, 0x0352, 0x0177, 0x03B6, 0x03E8, 0x020D, 0x044C, 0x047E, 0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+struct camera_node_type4_vectors_s {
+    s16 map_id;
+    s16 entry_id;
+    s16 near[3];
+    s16 medium[3];
+    s16 far[3];
 };
 
-struct_core2_35520_1 D_8036585C[] ={
-    {MAP_2_MM_MUMBOS_MOUNTAIN, 0x0001, 0x0320, 0x0352, 0x0226, 0x03B6, 0x03E8, 0x02EE, 0x044C, 0x047E, 0x041A},
-    {MAP_2_MM_MUMBOS_MOUNTAIN, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+struct overlay_table_map_s {
+    enum overlay_e overlay_id;
+    struct camera_node_type4_vectors_s *table;
 };
 
-struct_core2_35520_1 D_803658A0[] = {
-    {MAP_8F_TTC_SHARKFOOD_ISLAND,   0x0000, 0x0177, 0x01A9, 0x00AF, 0x020D, 0x023F, 0x023F, 0x02A3, 0x02D5, 0x03CF},
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0x0004, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0x0003, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0x0002, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x01DB, 0x03B6, 0x03E8, 0x0307},
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0x0001, 0x02BC, 0x02EE, 0x01C2, 0x0352, 0x0384, 0x02EE, 0x03E8, 0x041A, 0x041A},
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_SM[] = {
+    { MAP_1_SM_SPIRAL_MOUNTAIN, 1, { 800, 850, 375 }, { 950, 1000, 525 }, { 1100, 1150, 675 } },
+    { MAP_0_UNKNOWN,            0, { 550, 600, 175 }, { 850,  900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_8036593C[] ={
-    {MAP_B_CC_CLANKERS_CAVERN, 0x0001, 0x028A, 0x02BC, 0x0113, 0x036B, 0x039D, 0x01DB, 0x044C, 0x047E,0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_MM[] = {
+    { MAP_2_MM_MUMBOS_MOUNTAIN, 1, { 800, 850, 550 }, { 950, 1000, 750 }, { 1100, 1150, 1050 } },
+    { MAP_2_MM_MUMBOS_MOUNTAIN, 0, { 550, 600, 175 }, { 850,  900, 375 }, { 1100, 1150,  675 } },
+    { MAP_0_UNKNOWN,            0, { 550, 600, 175 }, { 850,  900, 375 }, { 1100, 1150,  675 } }
 };
 
-struct_core2_35520_1 D_80365968[] = {
-    {MAP_D_BGS_BUBBLEGLOOP_SWAMP, 0x0005, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x01C2, 0x044C, 0x047E, 0x02EE},
-    {MAP_D_BGS_BUBBLEGLOOP_SWAMP, 0x0003, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {MAP_D_BGS_BUBBLEGLOOP_SWAMP, 0x0002, 0x0226, 0x0258, 0x00AF, 0x02EE, 0x0320, 0x01DB, 0x03B6, 0x03E8, 0x02EE},
-    {MAP_D_BGS_BUBBLEGLOOP_SWAMP, 0x0001, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x01A9, 0x044C, 0x047E, 0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_TTC[] = {
+    { MAP_8F_TTC_SHARKFOOD_ISLAND,   0, { 375, 425, 175 }, { 525, 575, 575 }, {  675,  725,  975 } },
+    { MAP_7_TTC_TREASURE_TROVE_COVE, 4, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } },
+    { MAP_7_TTC_TREASURE_TROVE_COVE, 3, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } },
+    { MAP_7_TTC_TREASURE_TROVE_COVE, 2, { 550, 600, 175 }, { 850, 900, 475 }, {  950, 1000,  775 } },
+    { MAP_7_TTC_TREASURE_TROVE_COVE, 1, { 700, 750, 450 }, { 850, 900, 750 }, { 1000, 1050, 1050 } },
+    { MAP_7_TTC_TREASURE_TROVE_COVE, 0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } },
+    { MAP_0_UNKNOWN,                 0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } }
 };
 
-struct_core2_35520_1 D_803659D8[] = {
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_CC[] = {
+    { MAP_B_CC_CLANKERS_CAVERN, 1, { 650, 700, 275 }, { 875, 925, 475 }, { 1100, 1150, 675 } },
+    { MAP_0_UNKNOWN,            0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_803659F0[] = {
-    {MAP_12_GV_GOBIS_VALLEY, 0x0004, 0x0226, 0x0258, 0x00AF, 0x02EE, 0x0320, 0x0177, 0x03B6, 0x03E8, 0x02A3},
-    {MAP_12_GV_GOBIS_VALLEY, 0x0003, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {MAP_12_GV_GOBIS_VALLEY, 0x0002, 0x0226, 0x0258, 0x00AF, 0x02D5, 0x0307, 0x01DB, 0x0384, 0x03B6, 0x0307},
-    {MAP_12_GV_GOBIS_VALLEY, 0x0001, 0x0226, 0x0258, 0x00AF, 0x02EE, 0x0320, 0x023F, 0x03B6, 0x03E8, 0x03CF},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_BGS[] = {
+    { MAP_D_BGS_BUBBLEGLOOP_SWAMP, 5, { 550, 600, 225 }, { 850, 900, 450 }, { 1100, 1150, 750 } },
+    { MAP_D_BGS_BUBBLEGLOOP_SWAMP, 3, { 550, 600, 225 }, { 850, 900, 375 }, { 1100, 1150, 675 } },
+    { MAP_D_BGS_BUBBLEGLOOP_SWAMP, 2, { 550, 600, 175 }, { 750, 800, 475 }, {  950, 1000, 750 } },
+    { MAP_D_BGS_BUBBLEGLOOP_SWAMP, 1, { 550, 600, 175 }, { 850, 900, 425 }, { 1100, 1150, 675 } },
+    { MAP_0_UNKNOWN,               0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_80365A60[] = {
-    {MAP_26_MMM_NAPPERS_ROOM,        0x0001, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x00E1, 0x044C, 0x047E, 0x0113},
-    {MAP_1B_MMM_MAD_MONSTER_MANSION, 0x0003, 0x0226, 0x0258, 0x00C8, 0x02EE, 0x0320, 0x0177, 0x03B6, 0x03E8, 0x02A3},
-    {MAP_1B_MMM_MAD_MONSTER_MANSION, 0x0002, 0x0226, 0x0258, 0x00C8, 0x02EE, 0x0320, 0x0145, 0x03B6, 0x03E8, 0x01C2},
-    {MAP_1B_MMM_MAD_MONSTER_MANSION, 0x0001, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3},
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_FP[] = {
+    { MAP_0_UNKNOWN, 0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_80365AD0[] = {
-    {MAP_34_RBB_ENGINE_ROOM,      0x0001, 0x0226, 0x0258, 0x00AF, 0x0307, 0x0339, 0x023F, 0x0384, 0x03B6, 0x03E8}, 
-    {MAP_34_RBB_ENGINE_ROOM,      0x0000, 0x0226, 0x0258, 0x00AF, 0x0307, 0x0339, 0x01DB, 0x0384, 0x03B6, 0x0307}, 
-    {MAP_31_RBB_RUSTY_BUCKET_BAY, 0x0003, 0x0226, 0x0258, 0x015E, 0x02A3, 0x02D5, 0x02D5, 0x0320, 0x0352, 0x044C}, 
-    {MAP_31_RBB_RUSTY_BUCKET_BAY, 0x0002, 0x0226, 0x0258, 0x00AF, 0x02EE, 0x0320, 0x020D, 0x03B6, 0x03E8, 0x036B}, 
-    {MAP_31_RBB_RUSTY_BUCKET_BAY, 0x0001, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}, 
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_GV[] = {
+    { MAP_12_GV_GOBIS_VALLEY, 4, { 550, 600, 175 }, { 750, 800, 375 }, {  950, 1000, 675 } },
+    { MAP_12_GV_GOBIS_VALLEY, 3, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } },
+    { MAP_12_GV_GOBIS_VALLEY, 2, { 550, 600, 175 }, { 725, 775, 475 }, {  900,  950, 775 } },
+    { MAP_12_GV_GOBIS_VALLEY, 1, { 550, 600, 175 }, { 750, 800, 575 }, {  950, 1000, 975 } },
+    { MAP_0_UNKNOWN,          0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_80365B54[] = {
-    {MAP_43_CCW_SPRING, 0x0002, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x01A9, 0x044C, 0x047E, 0x02A3},
-    {MAP_44_CCW_SUMMER, 0x0002, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x01A9, 0x044C, 0x047E, 0x02A3},
-    {MAP_45_CCW_AUTUMN, 0x0002, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x01A9, 0x044C, 0x047E, 0x02A3},
-    {MAP_46_CCW_WINTER, 0x0002, 0x0226, 0x0258, 0x00E1, 0x0352, 0x0384, 0x01A9, 0x044C, 0x047E, 0x02A3},
-    {MAP_43_CCW_SPRING, 0x0001, 0x0320, 0x0352, 0x0226, 0x03B6, 0x03E8, 0x0320, 0x044C, 0x047E, 0x041A}, 
-    {MAP_44_CCW_SUMMER, 0x0001, 0x0320, 0x0352, 0x0226, 0x03B6, 0x03E8, 0x0320, 0x044C, 0x047E, 0x041A}, 
-    {MAP_45_CCW_AUTUMN, 0x0001, 0x0320, 0x0352, 0x0226, 0x03B6, 0x03E8, 0x0320, 0x044C, 0x047E, 0x041A}, 
-    {MAP_46_CCW_WINTER, 0x0001, 0x0320, 0x0352, 0x0226, 0x03B6, 0x03E8, 0x0320, 0x044C, 0x047E, 0x041A}, 
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_MMM[] = {
+    { MAP_26_MMM_NAPPERS_ROOM,        1, { 550, 600, 175 }, { 850, 900, 225 }, { 1100, 1150, 275 } },
+    { MAP_1B_MMM_MAD_MONSTER_MANSION, 3, { 550, 600, 200 }, { 750, 800, 375 }, {  950, 1000, 675 } },
+    { MAP_1B_MMM_MAD_MONSTER_MANSION, 2, { 550, 600, 200 }, { 750, 800, 325 }, {  950, 1000, 450 } },
+    { MAP_1B_MMM_MAD_MONSTER_MANSION, 1, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } },
+    { MAP_0_UNKNOWN,                  0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520_1 D_80365C1C [] = {
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x0096, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_RBB[] = {
+    { MAP_34_RBB_ENGINE_ROOM,      1, { 550, 600, 175 }, { 775, 825, 575 }, {  900,  950, 1000 } }, 
+    { MAP_34_RBB_ENGINE_ROOM,      0, { 550, 600, 175 }, { 775, 825, 475 }, {  900,  950,  775 } }, 
+    { MAP_31_RBB_RUSTY_BUCKET_BAY, 3, { 550, 600, 350 }, { 675, 725, 725 }, {  800,  850, 1100 } }, 
+    { MAP_31_RBB_RUSTY_BUCKET_BAY, 2, { 550, 600, 175 }, { 750, 800, 525 }, {  950, 1000,  875 } }, 
+    { MAP_31_RBB_RUSTY_BUCKET_BAY, 1, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } }, 
+    { MAP_0_UNKNOWN,               0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150,  675 } }
 };
 
-struct_core2_35520_1 D_80365C34 [] ={
-    {MAP_90_GL_BATTLEMENTS, 0x0000, 0x0258, 0x028A, 0x00C8, 0x04B0, 0x0514, 0x0145, 0x0708, 0x076C, 0x01C2}
+static struct camera_node_type4_vectors_s sCode35520Table_CCW[] = {
+    { MAP_43_CCW_SPRING, 2, { 550, 600, 225 }, { 850,  900, 425 }, { 1100, 1150,  675 } },
+    { MAP_44_CCW_SUMMER, 2, { 550, 600, 225 }, { 850,  900, 425 }, { 1100, 1150,  675 } },
+    { MAP_45_CCW_AUTUMN, 2, { 550, 600, 225 }, { 850,  900, 425 }, { 1100, 1150,  675 } },
+    { MAP_46_CCW_WINTER, 2, { 550, 600, 225 }, { 850,  900, 425 }, { 1100, 1150,  675 } },
+    { MAP_43_CCW_SPRING, 1, { 800, 850, 550 }, { 950, 1000, 800 }, { 1100, 1150, 1050 } }, 
+    { MAP_44_CCW_SUMMER, 1, { 800, 850, 550 }, { 950, 1000, 800 }, { 1100, 1150, 1050 } }, 
+    { MAP_45_CCW_AUTUMN, 1, { 800, 850, 550 }, { 950, 1000, 800 }, { 1100, 1150, 1050 } }, 
+    { MAP_46_CCW_WINTER, 1, { 800, 850, 550 }, { 950, 1000, 800 }, { 1100, 1150, 1050 } }, 
+    { MAP_0_UNKNOWN,     0, { 550, 600, 175 }, { 850,  900, 375 }, { 1100, 1150,  675 } }
 };
 
-struct_core2_35520_1 D_80365C4C [] = {
-    {0x0000, 0x0000, 0x0226, 0x0258, 0x00AF, 0x0352, 0x0384, 0x0177, 0x044C, 0x047E, 0x02A3}
+static struct camera_node_type4_vectors_s sCode35520Table_Lair [] = {
+    { MAP_0_UNKNOWN, 0, { 550, 600, 150 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
 };
 
-struct_core2_35520 D_80365C64[] = {
-    {OVERLAY_6_JUNGLE,   D_8036585C},
-    {OVERLAY_5_BEACH,    D_803658A0},
-    {OVERLAY_2_WHALE,    D_8036593C},
-    {OVERLAY_7_SWAMP,    D_80365968},
-    {OVERLAY_9_SNOW,     D_803659D8},
-    {OVERLAY_D_WITCH,    D_80365C1C},
-    {OVERLAY_4_DESERT,   D_803659F0},
-    {OVERLAY_A_TREE,     D_80365B54},
-    {OVERLAY_8_SHIP,     D_80365AD0},
-    {OVERLAY_3_HAUNTED,  D_80365A60},
-    {OVERLAY_B_TRAINING, D_80365830},
-    {OVERLAY_E_BATTLE,   D_80365C34},
-    {0}
+static struct camera_node_type4_vectors_s sCode35520Table_Fight [] = {
+    { MAP_90_GL_BATTLEMENTS, 0, { 600, 650, 200 }, { 1200, 1300, 325 }, { 1800, 1900, 450 } }
 };
 
-/* .bss */
-struct_core2_35520_1 *D_8037D930;
+static struct camera_node_type4_vectors_s sCode35520Table_Default [] = {
+    { MAP_0_UNKNOWN, 0, { 550, 600, 175 }, { 850, 900, 375 }, { 1100, 1150, 675 } }
+};
 
-/* .code */
-struct_core2_35520_1 *func_802BC4B0(s32 arg0) {
-    s32 map_id;
+static struct overlay_table_map_s sCode35520_map[] = {
+    { OVERLAY_6_JUNGLE,   sCode35520Table_MM },
+    { OVERLAY_5_BEACH,    sCode35520Table_TTC },
+    { OVERLAY_2_WHALE,    sCode35520Table_CC },
+    { OVERLAY_7_SWAMP,    sCode35520Table_BGS },
+    { OVERLAY_9_SNOW,     sCode35520Table_FP },
+    { OVERLAY_D_WITCH,    sCode35520Table_Lair },
+    { OVERLAY_4_DESERT,   sCode35520Table_GV },
+    { OVERLAY_A_TREE,     sCode35520Table_CCW },
+    { OVERLAY_8_SHIP,     sCode35520Table_RBB },
+    { OVERLAY_3_HAUNTED,  sCode35520Table_MMM },
+    { OVERLAY_B_TRAINING, sCode35520Table_SM },
+    { OVERLAY_E_BATTLE,   sCode35520Table_Fight },
+    { 0 }
+};
+
+static struct camera_node_type4_vectors_s *sCode35520_activeTable;
+
+static struct camera_node_type4_vectors_s *code35520_findTableEntry(s32 id) {
+    s32 map_id = gsworld_getMap();
     s32 i;
 
-    map_id = gsworld_getMap();
-    for( i = 0; D_8037D930[i].map_id != 0; i++){
-        if(map_id == D_8037D930[i].map_id && (arg0 == D_8037D930[i].unk2)){
-            return &D_8037D930[i];
+    for (i = 0; sCode35520_activeTable[i].map_id != 0; i++) {
+        if (map_id == sCode35520_activeTable[i].map_id && id == sCode35520_activeTable[i].entry_id) {
+            return &sCode35520_activeTable[i];
         }
     }
-    return &D_8037D930[i];
+
+    return &sCode35520_activeTable[i];
 }
 
-void func_802BC538(s32 arg0, s32 *arg1, s32 *arg2, s32 *arg3, s32 *arg4, s32 *arg5, s32 *arg6, s32 *arg7, s32 *arg8, s32 *arg9) {
-    struct_core2_35520_1 *temp_v0;
-
-    temp_v0 = func_802BC4B0(arg0);
-    *arg1 = (s32) temp_v0->unk4;
-    *arg2 = (s32) temp_v0->unk6;
-    *arg3 = (s32) temp_v0->unk8;
-    *arg4 = (s32) temp_v0->unkA;
-    *arg5 = (s32) temp_v0->unkC;
-    *arg6 = (s32) temp_v0->unkE;
-    *arg7 = (s32) temp_v0->unk10;
-    *arg8 = (s32) temp_v0->unk12;
-    *arg9 = (s32) temp_v0->unk14;
+void code35520_getDistanceVectors(s32 id, s32 *vec11, s32 *vec12, s32 *vec13, s32 *vec21, s32 *vec22, s32 *vec23, s32 *vec31, s32 *vec32, s32 *vec33) {
+    struct camera_node_type4_vectors_s *entry = code35520_findTableEntry(id);
+    *vec11 = entry->near[0];
+    *vec12 = entry->near[1];
+    *vec13 = entry->near[2];
+    *vec21 = entry->medium[0];
+    *vec22 = entry->medium[1];
+    *vec23 = entry->medium[2];
+    *vec31 = entry->far[0];
+    *vec32 = entry->far[1];
+    *vec33 = entry->far[2];
 }
 
-void func_802BC5CC(void){
+void code35520_selectTable(void) {
     int i;
-    int overlay;
-    overlay = overlayManagergetLoadedId();
-    D_8037D930 = &D_80365C4C[0];
-    for(i = 0; D_80365C64[i].overlay_id; i++){
-        if(D_80365C64[i].overlay_id == overlay){
-            D_8037D930 = D_80365C64[i].unk4;
+    enum overlay_e overlay = overlayManager_getLoadedID();
+
+    sCode35520_activeTable = sCode35520Table_Default;
+
+    for (i = 0; sCode35520_map[i].overlay_id; i++) {
+        if (sCode35520_map[i].overlay_id == overlay) {
+            sCode35520_activeTable = sCode35520_map[i].table;
         }
     }
 }
