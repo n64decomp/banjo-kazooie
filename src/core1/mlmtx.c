@@ -66,7 +66,7 @@ void func_802514BC(MtxF *arg0) {
             prod[row][col] = sum;
         }
     }
-    func_80253010(s_mtx_stack, prod, sizeof(MtxF));
+    bkmemcpy64(s_mtx_stack, prod, sizeof(MtxF));
 }
 
 void func_802515D4(f32 arg0[3][3]) {

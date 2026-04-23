@@ -133,7 +133,7 @@ void func_802F1934(Struct_Core2_6A4B0_2 * arg0, s32 arg1){
     while(((s32)arg0->tmem_ptr & 0x10) == 0){
         arg0->tmem_ptr = (u16*)((s32)arg0->tmem_ptr + 1);
     }
-    func_80253010(arg0->tmem_ptr, gFramebuffers[arg1], gFramebufferWidth*gFramebufferHeight*sizeof(u16));
+    bkmemcpy64(arg0->tmem_ptr, gFramebuffers[arg1], gFramebufferWidth*gFramebufferHeight*sizeof(u16));
     osWritebackDCacheAll();
 }
 

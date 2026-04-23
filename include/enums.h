@@ -539,6 +539,7 @@ enum joystick_e{
 
 enum map_e
 {
+    MAP_0_UNKNOWN,
     MAP_1_SM_SPIRAL_MOUNTAIN = 0x01,
     MAP_2_MM_MUMBOS_MOUNTAIN,
     MAP_3_UNUSED,
@@ -5288,21 +5289,22 @@ enum asset_e
     ASSET_1515_MODEL_GL_BATTLEMENTS_XLU
 };
 
-enum overlay_e{
-    OVERLAY_1_COSHOW   = 0x1,
-    OVERLAY_2_WHALE    = 0x2,
-    OVERLAY_3_HAUNTED  = 0x3,
-    OVERLAY_4_DESERT   = 0x4,
-    OVERLAY_5_BEACH    = 0x5,
-    OVERLAY_6_JUNGLE   = 0x6,
-    OVERLAY_7_SWAMP    = 0x7,
-    OVERLAY_8_SHIP     = 0x8,
-    OVERLAY_9_SNOW     = 0x9,
-    OVERLAY_A_TREE     = 0xA,
-    OVERLAY_B_TRAINING = 0xB,
-    OVERLAY_C_INTRO    = 0xC,
-    OVERLAY_D_WITCH    = 0xD,
-    OVERLAY_E_BATTLE   = 0xE
+enum overlay_e {
+    OVERLAY_0_CORE2,
+    OVERLAY_1_COSHOW,
+    OVERLAY_2_WHALE,
+    OVERLAY_3_HAUNTED,
+    OVERLAY_4_DESERT,
+    OVERLAY_5_BEACH,
+    OVERLAY_6_JUNGLE,
+    OVERLAY_7_SWAMP,
+    OVERLAY_8_SHIP,
+    OVERLAY_9_SNOW,
+    OVERLAY_A_TREE,
+    OVERLAY_B_TRAINING,
+    OVERLAY_C_INTRO,
+    OVERLAY_D_WITCH,
+    OVERLAY_E_BATTLE
 };
 
 enum marker_e{

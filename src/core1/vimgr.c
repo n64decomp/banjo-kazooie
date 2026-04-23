@@ -244,7 +244,7 @@ void viMgr_setScreenBlack(s32 active) {
 }
 
 void viMgr_clearFramebuffers(void) {
-    func_80253034(&gFramebuffers, 0, (s32) ((f32)gFramebufferWidth*2*gFramebufferHeight*2)); // TODO: This function does not exist in source code, why does it work?
+    bkmemset64(&gFramebuffers, 0, (s32) ((f32)gFramebufferWidth*2*gFramebufferHeight*2));
     osWritebackDCache(&gFramebuffers, (s32) ((f32)gFramebufferWidth*2*gFramebufferHeight*2));
 }
 
