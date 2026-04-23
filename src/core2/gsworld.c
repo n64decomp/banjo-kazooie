@@ -333,9 +333,11 @@ s32 gsworld_update(void) {
         partEmitMgr_update();
         func_8034F918();
         func_80350250();
+        #if ANTI_TAMPER
         if (!mapSpecificFlags_validateCRC1()) {
             func_8028FCBC();
         }
+        #endif
         AnimTextureListCache_update();
         func_80350CA4();
         dialogBin_update();

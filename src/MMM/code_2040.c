@@ -322,7 +322,7 @@ void func_80388BDC(Actor *this) {
             this->yaw = 270.0f;
             gcsfx_play(0x7F);
             core1_7090_freeSfxSource(0);
-            func_802D68F0(0xE);
+            code_4C020_setHourglassTimer(0xE);
             item_set(6, 1);
         }
         break;

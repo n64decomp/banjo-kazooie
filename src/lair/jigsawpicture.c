@@ -50,6 +50,7 @@ JigsawPictureInfo PICTURE_INFO[0xB] ={
     {25, 0x5, FILEPROG_7A_DOG_PUZZLE_PIECES_PLACED },
     { 4, 0x3, FILEPROG_7F_DOUBLE_HEALTH_PUZZLE_PIECES_PLACED }
 };
+
 s32 D_80394824[3] = { 0xff, 0xff, 0 };
 ParticleScaleAndLifetimeRanges D_80394830 = {
     { 0.17f, 0.24f },

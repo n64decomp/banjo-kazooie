@@ -333,12 +333,12 @@ void __baMarker_resolveCollision(Prop *other_prop){
 
             case MARKER_F5_BGS_ELEVATED_WALKWAY_SWITCH: //L8028BFB0
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
-                    __baMarker_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, BGS_SPECIFIC_FLAG_1, BGS_SPECIFIC_FLAG_WALKWAY_JIGGY_TIMER_RUNNING, BGS_SPECIFIC_FLAG_7);
+                    __baMarker_8028BAB0(JIGGY_20_BGS_ELEVATED_WALKWAY, BGS_SPECIFIC_FLAG_1, BGS_SPECIFIC_FLAG_3_WALKWAY_JIGGY_TIMER_RUNNING, BGS_SPECIFIC_FLAG_7);
                 break;
                 
             case MARKER_FD_BGS_MAZE_SWITCH: //L8028BFD4
                 if(plyr_hitbox_type == HITBOX_1_BEAK_BUSTER)
-                    __baMarker_8028BAB0(JIGGY_25_BGS_MAZE, BGS_SPECIFIC_FLAG_A, BGS_SPECIFIC_FLAG_MAZE_JIGGY_TIMER_RUNNING, BGS_SPECIFIC_FLAG_8);
+                    __baMarker_8028BAB0(JIGGY_25_BGS_MAZE, BGS_SPECIFIC_FLAG_A, BGS_SPECIFIC_FLAG_C_MAZE_JIGGY_TIMER_RUNNING, BGS_SPECIFIC_FLAG_8);
                 break;
                 
             case MARKER_EC_GV_SUN_SWITCH: //L8028BFF8

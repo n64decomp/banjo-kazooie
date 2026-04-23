@@ -20,21 +20,21 @@ enum chCCGrates_state_e {
 
 u8 D_80389E40[] = {3, 3, 2, 0};
 
-ActorInfo D_80389E44 = { 
+ActorInfo chCCGrate1 = { 
     MARKER_1A9_CC_BREAKABLE_GRATES, 0x28C, ASSET_435_MODEL_CC_GREEN_GRATE,
     0, NULL, 
     chCCGrate_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389E68 = { 
+ActorInfo chCCGrate2 = { 
     MARKER_1A9_CC_BREAKABLE_GRATES, 0x28D, ASSET_436_MODEL_CC_TEAL_GRATE,
     0, NULL, 
     chCCGrate_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80389E8C = { 
+ActorInfo chCCGrate3 = { 
     MARKER_1A9_CC_BREAKABLE_GRATES, 0x28E, 0x437,
     0, NULL, 
     chCCGrate_update, NULL, actor_draw, 

@@ -31,7 +31,7 @@ void func_802D4C5C(Actor *this);
 void func_802D4C84(Actor *this);
 void func_802D4CAC(Actor *this);
 void func_802D4CD4(Actor *this);
-void func_802D68F0(s32 seconds);
+void code_4C020_setHourglassTimer(s32 seconds);
 
 typedef struct {
     s16 unk0;
@@ -841,7 +841,7 @@ void func_802D5260(void) {
         && !levelSpecificFlags_get(LEVEL_FLAG_3D_LAIR_UNKNOWN)
         && !levelSpecificFlags_get(LEVEL_FLAG_3C_LAIR_UNKNOWN)
     ) {
-        func_802D68F0(30);
+        code_4C020_setHourglassTimer(30);
         item_set(ITEM_6_HOURGLASS, TRUE);
         levelSpecificFlags_set(LEVEL_FLAG_3D_LAIR_UNKNOWN, TRUE);
     }
@@ -1343,8 +1343,8 @@ int func_802D68B4(void){
 //BREAK????
 
 //set_hourglass_timer_seconds
-void func_802D68F0(s32 seconds){
-    item_set(ITEM_0_HOURGLASS_TIMER, seconds*60 - 1);
+void code_4C020_setHourglassTimer(s32 seconds){
+    item_set(ITEM_0_HOURGLASS_TIMER, seconds * 60 - 1);
 }
 
 //hide_hourglass_timer

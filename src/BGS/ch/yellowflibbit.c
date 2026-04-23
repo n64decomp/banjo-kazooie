@@ -7,15 +7,15 @@ typedef struct {
     u8 unk1;
     u8 unk2;
     u8 pad3[1];
-    s16 unk4[3];
-    s16 unkA[3];
+    s16 unk4[3]; // current position
+    s16 unkA[3]; // target position
     s16 unk10[3];
     u8 pad16[0x2];
     f32 unk18;
     f32 unk1C;
     f32 unk20[2];
     f32 unk28;
-}ActorLocal_Yellow_Flibbit;
+} ActorLocal_Yellow_Flibbit;
 
 Actor *chYellowFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx** vtx);
 void chYellowFlibbit_update(Actor *this);
@@ -29,6 +29,21 @@ ActorInfo gChYellowFlibbit = {
 };
 s32 D_80390B04[3] = {0xFF, 0xB3, 0};
 f32 BGS_D_80390B10[3] = {0.0f, 0.0f, 0.0f};
+
+enum chYellowFlibbitState {
+    CH_YELLOW_FLIBBIT_STATE_0_NOT_INIT,
+    CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED,
+    CH_YELLOW_FLIBBIT_STATE_2_APPEARING,
+    CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST,
+    CH_YELLOW_FLIBBIT_STATE_4_UNK, // While jumping, check for first met dialog?
+    CH_YELLOW_FLIBBIT_STATE_5_JUMPING,
+    CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE,
+    CH_YELLOW_FLIBBIT_STATE_7_HIT_PLAYER, // Either damage player or player jumps on frog
+    CH_YELLOW_FLIBBIT_STATE_8_OW,
+    CH_YELLOW_FLIBBIT_STATE_9_DIE,
+    CH_YELLOW_FLIBBIT_STATE_A_DEAD,
+    CH_YELLOW_FLIBBIT_STATE_B_DESPAWN
+};
 
 /* .code */
 void func_8038D1E0(Actor *this) {
@@ -191,19 +206,19 @@ void chYellowFlibbit_setState(Actor *this, s32 next_state) {
     local->unk1 = 0;
     local->unk1C = 0.0f;
     local->unk28 = 0.0f;
-    if (next_state == 1) {
-        if (this->state != 0) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED) {
+        if (this->state != CH_YELLOW_FLIBBIT_STATE_0_NOT_INIT) {
             func_8038CEB8();
             func_8038D1E0(this);
         }
         actor_collisionOff(this);
     }
-    if (next_state == 2) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_2_APPEARING) {
         func_8038CE88();
         func_8038D1E0(this);
         local->unk1C = 0.5f;
     }
-    if (next_state == 3) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST) {
         skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
@@ -213,39 +228,39 @@ void chYellowFlibbit_setState(Actor *this, s32 next_state) {
         this->position[2] = (f32) local->unk10[2];
         local->unk28 = randf2(1.0f, 3.0f);
     }
-    if (next_state == 5) {
-        if (mapSpecificFlags_get(0x10)) {
-            chYellowFlibbit_setState(this, 4);
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_5_JUMPING) {
+        if (mapSpecificFlags_get(BGS_SPECIFIC_FLAG_10_FROG_MINIGAME_FIRST_MET)) {
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_4_UNK);
             return;
         }
         if (!func_8038D930(this)){
-            if ((this->state != 6)) {
-                chYellowFlibbit_setState(this, 6);
+            if ((this->state != CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE)) {
+                chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE);
             }
             return;
         }
     }
-    if (next_state == 6) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE) {
         skeletalAnim_set(this->unk148, ASSET_FB_ANIM_FLIBBIT_TURN, 0.2f, 1.0f);
         skeletalAnim_setProgress(this->unk148, randf2(0.0f, 1.0f));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         local->unk28 = randf2(1.0f, 3.0f);
     }
-    if (next_state == 7) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_7_HIT_PLAYER) {
         skeletalAnim_set(this->unk148, ASSET_FA_ANIM_FLIBBIT_IDLE, 0.2f, randf2(1.0f, 2.0f));
         skeletalAnim_setProgress(this->unk148, randf2(0.0f, 0.9));
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
         this->position[1] = mapModel_getFloorY(this->position);
         local->unk1C = 1.0f;
     }
-    if (next_state == 8) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_8_OW) {
         sfx_playFadeShorthandDefault(SFX_8E_GRUNTLING_DAMAGE, 1.5f, 32200, this->position, 500, 2500);
         skeletalAnim_set(this->unk148, ASSET_288_ANIM_FLIBBIT_OW, 0.1f, 0.65f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         this->position[1] = mapModel_getFloorY(this->position);
         local->unk1C = 1.0f;
     }
-    if (next_state == 9) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_9_DIE) {
         skeletalAnim_set(this->unk148, ASSET_112_ANIM_FLIBBIT_DIE, 0.2f, 0.4f);
         sfx_playFadeShorthandDefault(SFX_115_BUZZBOMB_DEATH, 1.0f, 32200, this->position, 500, 2500);
         this->marker->collidable = FALSE;
@@ -253,12 +268,12 @@ void chYellowFlibbit_setState(Actor *this, s32 next_state) {
         func_8038CEA0();
         local->unk18 = 1000.0f;
     }
-    if (next_state == 0xA) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_A_DEAD) {
         skeletalAnim_set(this->unk148, ASSET_113_ANIM_FLIBBIT_DEAD, 0.2f, 1.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 0.8f, 32200, this->position, 500, 2500);
     }
-    if (next_state == 0xB) {
+    if (next_state == CH_YELLOW_FLIBBIT_STATE_B_DESPAWN) {
         func_80326310(this);
     }
     this->state = next_state;
@@ -268,8 +283,8 @@ void func_8038DD9C(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(this->state < 9){
-        chYellowFlibbit_setState(this, 7);
+    if(this->state < CH_YELLOW_FLIBBIT_STATE_9_DIE){
+        chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_7_HIT_PLAYER);
     }
 }
 
@@ -277,8 +292,8 @@ void func_8038DDDC(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(this->state < 9){
-        chYellowFlibbit_setState(this, 8);
+    if(this->state < CH_YELLOW_FLIBBIT_STATE_9_DIE){
+        chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_8_OW);
     }
 }
 
@@ -286,8 +301,8 @@ void func_8038DE1C(ActorMarker *marker, ActorMarker *other_marker){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(this->state < 9){
-        chYellowFlibbit_setState(this, 9);
+    if(this->state < CH_YELLOW_FLIBBIT_STATE_9_DIE){
+        chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_9_DIE);
     }
 }
 
@@ -301,10 +316,10 @@ Actor *chYellowFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx
 
     this = marker_getActor(marker);
     local = (ActorLocal_Yellow_Flibbit *)&this->local;
-    if (this->state < 3) {
+    if (this->state < CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST) {
         return this;
     }
-    if (local->unk0 && ((this->state == 3) || (this->state == 6))) {
+    if (local->unk0 && ((this->state == CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST) || (this->state == CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE))) {
         temp_a0_2 = skeletalAnim_getBoneTransformList(this->unk148);
         for(var_s0 = 0; var_s0 < 2; var_s0++){
             if (0.1 <= local->unk20[var_s0]) {
@@ -326,7 +341,7 @@ Actor *chYellowFlibbit_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx
 }
 
 void chYellowFlibbit_update(Actor *this) {
-    f32 spB4[3];
+    f32 player_position[3];
     f32 spA8[3];
     f32 spA4;
     ActorLocal_Yellow_Flibbit *local = (ActorLocal_Yellow_Flibbit *)&this->local;
@@ -357,7 +372,7 @@ void chYellowFlibbit_update(Actor *this) {
         local->unk10[0] = (s16) (s32) this->position[0];
         local->unk10[1] = (s16) (s32) this->position[1];
         local->unk10[2] = (s16) (s32) this->position[2];
-        chYellowFlibbit_setState(this, 1);
+        chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED);
         if (jiggyscore_isSpawned(JIGGY_24_BGS_FLIBBITS) != 0) {
             marker_despawn(this->marker);
         }
@@ -367,10 +382,10 @@ void chYellowFlibbit_update(Actor *this) {
         local->unk2 = TRUE;
         BGS_func_8038CED0();
     }
-    player_getPosition(spB4);
-    spA8[0] = spB4[0] - this->position[0];
-    spA8[1] = spB4[1] - this->position[1];
-    spA8[2] = spB4[2] - this->position[2];
+    player_getPosition(player_position);
+    spA8[0] = player_position[0] - this->position[0];
+    spA8[1] = player_position[1] - this->position[1];
+    spA8[2] = player_position[2] - this->position[2];
     spA4 = LENGTH_VEC3F(spA8);
     if (ml_timer_update(&local->unk28, sp9C) != 0) {
         func_8030E878(0x3F0, randf2(0.9f, 1.1f), randi2(12000, 19000), this->position, 500.0f, 2500.0f);
@@ -382,39 +397,39 @@ void chYellowFlibbit_update(Actor *this) {
         local->unk20[1] += sp9C;
     local->unk20[1] = (0.2 < (f64) local->unk20[1]) ? randf2(-3.0f, -1.0f) : local->unk20[1];
 
-    if(this->state == 1){
-        if(mapSpecificFlags_getClear(0x12)){
-            chYellowFlibbit_setState(this, 2);
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED){
+        if(mapSpecificFlags_getClear(BGS_SPECIFIC_FLAG_12_FROG_MINIGAME_BATTLE_ACTIVE)){
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_2_APPEARING);
             return;
         }
 
         if(spA4 < 2000.0f){
-            func_80258A4C(this->position, this->yaw - 90.0f, spB4, &sp98, &sp94, &sp90);
+            func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp98, &sp94, &sp90);
             this->yaw += (sp90*90.0f) *sp9C; 
         }
     }
 
-    if(this->state == 2){
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_2_APPEARING){
         if(ml_timer_update(&local->unk1C, sp9C)){
-            chYellowFlibbit_setState(this, 3);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST);
         }
     }
 
-    if(this->state == 3){
-         if (func_80329210(this, spB4)) {
-                chYellowFlibbit_setState(this, 5);
-            } else {
-                chYellowFlibbit_setState(this, 1);
-            }
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_3_IDLE_EXIST){
+        if (func_80329210(this, player_position)) {
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_5_JUMPING);
+        } else {
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED);
+        }
     }
 
 
-    if(this->state == 4){
-        if(!mapSpecificFlags_get(0x10))
-            chYellowFlibbit_setState(this, 5);
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_4_UNK){
+        if(!mapSpecificFlags_get(BGS_SPECIFIC_FLAG_10_FROG_MINIGAME_FIRST_MET))
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_5_JUMPING);
     }
 
-    if (this->state == 5) {
+    if (this->state == CH_YELLOW_FLIBBIT_STATE_5_JUMPING) {
         skeletalAnim_getProgressRange(this->unk148, &sp8C, &sp88);
         if (sp8C < 0.8 && 0.8 <= sp88) {
             func_8030E878(SFX_8_BANJO_LANDING_04, randf2(0.8f, 0.9f), randi2(0x61A8, 0x6978), this->position, 100.0f, 1500.0f);
@@ -424,9 +439,9 @@ void chYellowFlibbit_update(Actor *this) {
             sp7C[1] = (f32) local->unk10[1];
             sp7C[2] = (f32) local->unk10[2];
             if (ml_vec3f_distance(this->position, sp7C) < 30.0f) {
-                chYellowFlibbit_setState(this, 1);
+                chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_1_IDLE_NOT_SPAWNED);
             } else {
-                chYellowFlibbit_setState(this, 5);
+                chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_5_JUMPING);
             }
         } else {
 
@@ -452,27 +467,27 @@ void chYellowFlibbit_update(Actor *this) {
         }
     }
 
-    if (this->state == 6) {
-        func_80258A4C(this->position, this->yaw - 90.0f, spB4, &sp5C, &sp58, &sp54);
+    if (this->state == CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE) {
+        func_80258A4C(this->position, this->yaw - 90.0f, player_position, &sp5C, &sp58, &sp54);
         this->yaw += sp54 * 90.0f * sp9C;
         if ((-0.4 <= sp54) && (sp54 <= 0.4) && ((f64) randf() > 0.5)) {
-            chYellowFlibbit_setState(this, 5);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_5_JUMPING);
         }
         if ((sp58 < 0.0f) && (randf() > 0.5)) {
-            chYellowFlibbit_setState(this, 5);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_5_JUMPING);
         }
     }
 
-    if(this->state == 7 || this->state == 8){
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_7_HIT_PLAYER || this->state == CH_YELLOW_FLIBBIT_STATE_8_OW){
         if(ml_timer_update(&local->unk1C, sp9C)){
-            chYellowFlibbit_setState(this, 6);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_6_TURN_IN_PLACE);
         }
     }
 
-    if(this->state == 9){
-        sp48[0] = this->position[0] - spB4[0];
-        sp48[1] = this->position[1] - spB4[1];
-        sp48[2] = this->position[2] - spB4[2];
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_9_DIE){
+        sp48[0] = this->position[0] - player_position[0];
+        sp48[1] = this->position[1] - player_position[1];
+        sp48[2] = this->position[2] - player_position[2];
         sp48[1] = 0.0f;
         ml_vec3f_set_length(sp48, 400.0f * sp9C);
 
@@ -484,13 +499,13 @@ void chYellowFlibbit_update(Actor *this) {
         local->unk18 -= 3000.0f*sp9C;
         if(this->position_y  < mapModel_getFloorY(this->position)){
             this->position_y  = mapModel_getFloorY(this->position);
-            chYellowFlibbit_setState(this, 10);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_A_DEAD);
         }
     }
 
-    if(this->state == 10){
+    if(this->state == CH_YELLOW_FLIBBIT_STATE_A_DEAD){
         if(skeletalAnim_getLoopCount(this->unk148) > 0){
-            chYellowFlibbit_setState(this, 11);
+            chYellowFlibbit_setState(this, CH_YELLOW_FLIBBIT_STATE_B_DESPAWN);
         }
     }
 }

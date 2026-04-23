@@ -35,6 +35,12 @@ ActorInfo gChTanktup = {
     0, 0x80, 0.0f, 0
 };
 
+enum chTanktupState {
+    CH_TANKTUP_STATE_1_UNK = 1,
+    CH_TANKTUP_STATE_2_UNK,
+    CH_TANKTUP_STATE_3_UNK,
+};
+
 /* .code */
 void func_8038F470(ActorMarker *this, s32 arg1, enum chtanktup_leg_e leg_id){
     Actor* thisActor;
@@ -68,9 +74,7 @@ s32 func_8038F570(s16 *arg0){
     pos[1] = (f32)arg0[1];
     pos[2] = (f32)arg0[2];
     spawnPtr = actorArray_findClosestActorFromActorId(pos, ACTOR_E8_TANKTUP, -1, 0);
-    return spawnPtr->state == 3;
-
-
+    return spawnPtr->state == CH_TANKTUP_STATE_3_UNK;
 }
 
 void func_8038F5E4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
@@ -96,136 +100,134 @@ void func_8028F918(s32);
 
 void chTanktup_update(Actor *this)
 {
-  ActorLocal_TanktupBody *local = (ActorLocal_TanktupBody *) (&this->local);
-  f32 sp48[3];
-  s32 sp44;
-  NodeProp *temp_v0;
-  if (!this->initialized)
-  {
-    temp_v0 = nodeprop_findByActorIdAndActorPosition(ACTOR_32B_UNKNOWN, this);
-    if (temp_v0 == 0)
+    ActorLocal_TanktupBody *local = (ActorLocal_TanktupBody *) (&this->local);
+    f32 sp48[3];
+    s32 sp44;
+    NodeProp *temp_v0;
+    if (!this->initialized)
     {
-      local->unk18[0] = 3672.0f;
-      local->unk18[1] = 100.0f;
-      local->unk18[2] = 987.0f;
-    }
-    else
-    {
-      nodeprop_getPosition(temp_v0, local->unk18);
-    }
-    this->has_met_before = FALSE;
-    this->initialized = TRUE;
-  }
-  if (!this->volatile_initialized)
-  {
-    this->volatile_initialized = TRUE;
-    this->marker->propPtr->unk8_3 = 1;
-    actor_collisionOff(this);
-    this->scale = 1.0f;
-    for (sp44 = 0; sp44 < 4; sp44++)
-    {
-      if (local->unk0[sp44] == 0)
-      {
-        __spawnQueue_add_3((GenFunction_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
-      }
-    }
-
-    if (local)
-    {
-      ;
-    }
-  }
-  switch (this->state)
-  {
-    case 1:
-      func_8038F610(this);
-      player_getPosition(sp48);
-      if (!this->has_met_before)
-    {
-      if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!player_movementGroup())) && (player_getTransformation() == TRANSFORM_1_BANJO))
-      {
-        gcdialog_showDialog(ASSET_C7E_DIALOG_TANKTUP_MEET, 0, 0, 0, 0, 0);
-        this->has_met_before = TRUE;
-      }
-    }
-      if (local->unk10)
-    {
-      subaddie_set_state_with_direction(this, 2, 0.0f, -1);
-      local->unk10 = 0;
-      sp44 = 0;
-        if(&sp44);
-      local->unk14 = 1;
-      for (; sp44 < 4; sp44++)
-      {
-        if (local->unk0[sp44] == 0)
+        temp_v0 = nodeprop_findByActorIdAndActorPosition(ACTOR_32B_UNKNOWN, this);
+        if (temp_v0 == 0)
         {
-          local->unk14 = 0;
+            local->unk18[0] = 3672.0f;
+            local->unk18[1] = 100.0f;
+            local->unk18[2] = 987.0f;
         }
-      }
-
-      if ((!this->unk138_23) && (!local->unk14))
-      {
-        if (gcdialog_showDialog(ASSET_C80_DIALOG_TANKTUP_HIT, 0, 0, 0, 0, 0))
+        else
         {
-          this->unk138_23 = 1;
+            nodeprop_getPosition(temp_v0, local->unk18);
         }
-      }
+        this->has_met_before = FALSE;
+        this->initialized = TRUE;
     }
-      break;
+    if (!this->volatile_initialized)
+    {
+        this->volatile_initialized = TRUE;
+        this->marker->propPtr->unk8_3 = 1;
+        actor_collisionOff(this);
+        this->scale = 1.0f;
+        for (sp44 = 0; sp44 < 4; sp44++)
+        {
+            if (local->unk0[sp44] == 0)
+            {
+                __spawnQueue_add_3((GenFunction_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
+            }
+        }
 
-    case 2:
-      func_8038F610(this);
-      if (actor_animationIsAt(this, 0.6f) && local->unk14)
-    {
-      coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
-      func_8028F94C(2, local->unk18);
+        if (local)
+        {
+            ;
+        }
     }
-      if (actor_animationIsAt(this, 0.99f))
+    switch (this->state)
     {
-      if (!local->unk14)
-      {
-        subaddie_set_state_with_direction(this, 1, 0.0f, -1);
-      }
-      else
-      {
-        subaddie_set_state_with_direction(this, 3, 0.0f, -1);
-        actor_playAnimationOnce(this);
-      }
-    }
-      break;
+        case CH_TANKTUP_STATE_1_UNK:
+            func_8038F610(this);
+            player_getPosition(sp48);
+            if (!this->has_met_before)
+            {
+                if ((((ml_vec3f_distance(local->unk18, sp48) < 250.0f) && (ml_vec3f_distance(local->unk18, sp48) > 80.0f)) && (!player_movementGroup())) && (player_getTransformation() == TRANSFORM_1_BANJO))
+                {
+                    gcdialog_showDialog(ASSET_C7E_DIALOG_TANKTUP_MEET, 0, 0, 0, 0, 0);
+                    this->has_met_before = TRUE;
+                }
+            }
+            if (local->unk10)
+            {
+                subaddie_set_state_with_direction(this, CH_TANKTUP_STATE_2_UNK, 0.0f, -1);
+                local->unk10 = 0;
+                sp44 = 0;
+                if(&sp44);
+                local->unk14 = 1;
+                for (; sp44 < 4; sp44++)
+                {
+                    if (local->unk0[sp44] == 0)
+                    {
+                        local->unk14 = 0;
+                    }
+                }
 
-    case 3:
-      if (actor_animationIsAt(this, 0.1f) != 0)
-    {
-      timed_setStaticCameraToNode(0.0f, 0xD);
-    }
-      if (actor_animationIsAt(this, 0.55f) != 0)
-    {
-      func_8030E624(0x797FF885U);
-    }
-      if (actor_animationIsAt(this, 0.4f) != 0)
-    {
-      f32 sp34[3];
-      func_8034A174(this->marker->unk44, 6, sp34);
-      bundle_setYaw(this->yaw);
-      sp34[1] -= 125.0f;
-      jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);
-    }
-      if (actor_animationIsAt(this, 0.9f) != 0)
-    {
-      func_8028F918(0);
-      if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0)
-      {
-        gcdialog_showDialog(ASSET_C7F_DIALOG_TANKTUP_COMPLETE, 0xF, this->position, this->marker, func_8038F5E4, 0);
-      }
-      else
-      {
-        func_8038F5E4(this->marker, ASSET_C7F_DIALOG_TANKTUP_COMPLETE, -1);
-      }
-    }
-      break;
+                if ((!this->unk138_23) && (!local->unk14))
+                {
+                    if (gcdialog_showDialog(ASSET_C80_DIALOG_TANKTUP_HIT, 0, 0, 0, 0, 0))
+                    {
+                        this->unk138_23 = 1;
+                    }
+                }
+            }
+            break;
 
-  }
+        case CH_TANKTUP_STATE_2_UNK:
+            func_8038F610(this);
+            if (actor_animationIsAt(this, 0.6f) && local->unk14)
+            {
+                coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
+                func_8028F94C(2, local->unk18);
+            }
+            if (actor_animationIsAt(this, 0.99f))
+            {
+                if (!local->unk14)
+                {
+                    subaddie_set_state_with_direction(this, CH_TANKTUP_STATE_1_UNK, 0.0f, -1);
+                }
+                else
+                {
+                    subaddie_set_state_with_direction(this, CH_TANKTUP_STATE_3_UNK, 0.0f, -1);
+                    actor_playAnimationOnce(this);
+                }
+            }
+            break;
 
+        case CH_TANKTUP_STATE_3_UNK:
+            if (actor_animationIsAt(this, 0.1f) != 0)
+            {
+                timed_setStaticCameraToNode(0.0f, 0xD);
+            }
+            if (actor_animationIsAt(this, 0.55f) != 0)
+            {
+                func_8030E624(0x797FF885U);
+            }
+            if (actor_animationIsAt(this, 0.4f) != 0)
+            {
+                f32 sp34[3];
+                func_8034A174(this->marker->unk44, 6, sp34);
+                bundle_setYaw(this->yaw);
+                sp34[1] -= 125.0f;
+                jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);
+            }
+            if (actor_animationIsAt(this, 0.9f) != 0)
+            {
+                func_8028F918(0);
+                if (jiggyscore_isCollected(JIGGY_26_BGS_TANKTUP) == 0)
+                {
+                    gcdialog_showDialog(ASSET_C7F_DIALOG_TANKTUP_COMPLETE, 0xF, this->position, this->marker, func_8038F5E4, 0);
+                }
+                else
+                {
+                    func_8038F5E4(this->marker, ASSET_C7F_DIALOG_TANKTUP_COMPLETE, -1);
+                }
+            }
+            break;
+    }
 }
 

@@ -99,14 +99,14 @@ void CC_func_80387A20(Struct_CC_13C0_1 *arg0, Struct68s *arg1) {
 
 void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
     s32 temp_v0;
-    f32 sp50[3];
+    f32 player_position[3];
     f32 sp44[3];
     f32 sp38[3];
     f32 sp2C[3];
     s32 sp28;
 
     arg0->unkC += arg2;
-    temp_v0 = func_80388010();
+    temp_v0 = maClankerRings_isMinigameActive();
     if (temp_v0 == 0) {
         func_803878AC(arg0, arg1, 3);
     } else {
@@ -129,15 +129,15 @@ void CC_func_80387A40(Struct_CC_13C0_1* arg0, Struct68s* arg1, f32 arg2) {
         mlMtxIdent();
         func_80252C08(NULL, sp2C, 1.0f, NULL);
         mlMtx_apply_vec3f(sp44, sp44);
-        player_getPosition(sp50);
-        sp50[1] += 50.0f;
-        sp50[0] -= sp38[0];
-        sp50[1] -= sp38[1];
-        sp50[2] -= sp38[2];
-        sp28 = ((sp50[0]*sp44[0] + sp50[1]*sp44[1] + sp50[2]*sp44[2]) >= 0.0f) ? 1 : -1;
+        player_getPosition(player_position);
+        player_position[1] += 50.0f;
+        player_position[0] -= sp38[0];
+        player_position[1] -= sp38[1];
+        player_position[2] -= sp38[2];
+        sp28 = ((player_position[0] * sp44[0] + player_position[1] * sp44[1] + player_position[2] * sp44[2]) >= 0.0f) ? 1 : -1;
         if (sp28 == -arg0->unk8) {
-            if (LENGTH_VEC3F(sp50) < (func_80351830(arg1) * 250.0f)) {
-                func_8038803C(arg0->unk0);
+            if (LENGTH_VEC3F(player_position) < (func_80351830(arg1) * 250.0f)) {
+                maClankerRings_passRing(arg0->unk0);
             }
         }
         arg0->unk8 = sp28;

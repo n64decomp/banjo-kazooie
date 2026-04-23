@@ -231,9 +231,11 @@ void baModel_setDirection(enum player_model_direction_e direction){
 }
 
 void baModel_setScale(f32 scale){
+    #if ANTI_PIRACY
     if(osCicId + -6103){
         scale = scale*0.25;
     }
+    #endif
     baModelScale = scale;
 }
 
