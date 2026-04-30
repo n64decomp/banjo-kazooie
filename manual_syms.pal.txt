@@ -123,9 +123,9 @@ func_80356074           = 0x80000000 | (0xd5935 << 2);
 
 
 
-ncCameraNodeList_getCameraNodeType4 = 0x802b9ca4;
-ncCameraNodeList_getCameraNodeType3 = 0x802b9cb8;
-ncCameraNodeList_getCameraNodeType1 = 0x802b9ccc;
+ncCameraNodeList_getRandomCameraNode = 0x802b9ca4;
+ncCameraNodeList_getZoomCameraNode = 0x802b9cb8;
+ncCameraNodeList_getPivotCameraNode = 0x802b9ccc;
 ncCameraNodeList_getNodeType        = 0x802b9cfc;
 ncCameraNodeList_nodeIsValid        = 0x802b9d18;
 code33250_func_802BA234         = 0x802ba0a4;
