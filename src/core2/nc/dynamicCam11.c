@@ -74,7 +74,7 @@ void func_802BF798(void) {
     f32 sp28;
     s32 temp_v0;
 
-    temp_v0 = ncCameraNodeList_getCameraNodeType3();
+    temp_v0 = ncCameraNodeList_getZoomCameraNode();
     D_8037DAE4 = code33310_func_802BA4F0(temp_v0);
     cameraNodeType3_getPositionWithPitchYawRoll(temp_v0, &D_8037DAD0);
     cameraNodeType3_getPosition(temp_v0, &D_8037DAC0);

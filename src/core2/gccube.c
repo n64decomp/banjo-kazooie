@@ -107,6 +107,12 @@ s16  D_8036ABC0[] = {0x268, 0x26A, 0x26C, 0x26E, 0x270, 0x272, 0x274, 0x276, 0x2
 // used to index D_80382150
 s16  D_8036ABD4 = 0;
 
+#define CUBE_DIMENSIONS_START_INDICATOR   0x01
+#define CUBE_UNK_INDICATOR                0x02
+#define CUBE_START_INDICATOR              0x03
+#define CUBE_SEPARATOR_INDICATOR          0x01
+#define CUBE_SECTION_END_INDICATOR        0x00
+
 /* .bss */
 struct {
     Cube *cubes;
@@ -886,19 +892,41 @@ void func_803045CC(s32 arg0, s32 arg1){}
 
 void func_803045D8(){}
 
+/*
+At this index in the file, we are looking at the start of a cube.
+
+0x01 (CUBE_SEPARATOR_INDICATOR)
+ - Indicates a seperator between cubes, so seeing one here means "empty cube".
+
+0x02 (CUBE_UNK_INDICATOR)
+ - Unknown ¯\_(ツ)_/¯
+
+0x03 (CUBE_START_INDICATOR)
+ - Indicates there are props within the cube and looks within the cube.
+*/
 static void __code7AF80_initCubeFromFile(Cube *cube, File* file_ptr) {
     s32 pad[3];
 
-    while(!file_isNextByteExpected(file_ptr, 1)) {
-        if (file_getNWords_ifExpected(file_ptr, 0, pad, 3)) {
+    while(!file_isNextByteExpected(file_ptr, CUBE_SEPARATOR_INDICATOR)) {
+        if (file_getNWords_ifExpected(file_ptr, CUBE_SECTION_END_INDICATOR, pad, 3))
+        {
             file_getNWords(file_ptr, pad, 3);
-        } else if (!file_getNWords_ifExpected(file_ptr, 2, &pad, 3) && file_isNextByteExpected(file_ptr, 3) 
-        ) {
+        }
+        else if (!file_getNWords_ifExpected(file_ptr, CUBE_UNK_INDICATOR, &pad, 3)
+                    && file_isNextByteExpected(file_ptr, CUBE_START_INDICATOR))
+        {
             code7AF80_initCubeFromFile(file_ptr, cube);
         }
     }
 }
 
+
+/*
+1) Gets the number of cubes in all directions (-x, -y, -z to x, y, z)
+2) Gets the list of props from all of the cubes
+3) Sets the initial bitfields of all of the cubes
+4) __code7AF80_func_80308984? ¯\_(ツ)_/¯
+*/
 void cubeList_fromFile(File *file_ptr) {
     s32 cube_position[3];
     s32 cube_position_from[3];
@@ -906,8 +934,11 @@ void cubeList_fromFile(File *file_ptr) {
     Cube *cube;
     NodeProp *iPtr;
 
-    file_getNWords_ifExpected(file_ptr, 1, cube_position_from, 3);
+    // Gets the dimensions of the cubes
+    file_getNWords_ifExpected(file_ptr, CUBE_DIMENSIONS_START_INDICATOR, cube_position_from, 3);
     file_getNWords(file_ptr, cube_position_to, 3);
+
+    // Gets the props within each of the cubes
     for(cube_position[0] = cube_position_from[0]; cube_position[0] <= cube_position_to[0]; cube_position[0]++){
         for(cube_position[1] = cube_position_from[1]; cube_position[1] <= cube_position_to[1]; cube_position[1]++){
             for(cube_position[2] = cube_position_from[2]; cube_position[2] <= cube_position_to[2]; cube_position[2]++){
@@ -915,7 +946,11 @@ void cubeList_fromFile(File *file_ptr) {
             }
         }
     }
-    file_isNextByteExpected(file_ptr, 0);
+
+    // Checks to make sure cube section ends correctly
+    file_isNextByteExpected(file_ptr, CUBE_SECTION_END_INDICATOR);
+
+    // Sets the bitfield of all of the cubes
     bitfield_setAll(D_8036A9E0, FALSE);
     for(cube_position[0] = cube_position_from[0]; cube_position[0] <= cube_position_to[0]; cube_position[0]++){
         for(cube_position[1] = cube_position_from[1]; cube_position[1] <= cube_position_to[1]; cube_position[1]++){
@@ -931,6 +966,8 @@ void cubeList_fromFile(File *file_ptr) {
             }
         }
     }
+
+    // ???
     __code7AF80_func_80308984();
 }
 
@@ -2172,31 +2209,32 @@ void cubeList_sort(bool absolute_positon) {
     }
 }
 
-// Reads or writes the isNotFeatherEggOrNote flag of the given prop2 ID and advances ID
-// Returns the previous flag value
-bool cube_getOrSetProp2Flag(Cube *this, s32 *prop_id, bool set_flag, bool value) {
+/*
+Reads or writes the isNotFeatherEggOrNote flag of the given prop2 ID and advances ID
+Returns the previous flag value
+*/
+bool cube_getOrSetProp2Flag(Cube *this_cube, s32 *prop2_index, bool set_flag, bool value) {
+    // Notes
+    // * set_flag is 'SOME_NUM >= 1'
+    // * value is 'SOME_NUM & 1'
     Prop *prop;
     bool old_value;
 
-    prop = this->prop2Ptr + *prop_id;
-    
-    while ((prop->isActorProp == 1) && (*prop_id < this->prop2Cnt)) {
-        (*prop_id)++;
+    prop = this_cube->prop2Ptr + *prop2_index;
+    while ((prop->isActorProp == 1) && (*prop2_index < this_cube->prop2Cnt)) {
+        (*prop2_index)++;
         prop++;
     }
 
-    if (*prop_id >= this->prop2Cnt) {
-        *prop_id = 0;
+    if (*prop2_index >= this_cube->prop2Cnt) {
+        *prop2_index = 0;
         return FALSE;
     }
-
     old_value = prop->isNotFeatherEggOrNote;
-    (*prop_id)++;
-
+    (*prop2_index)++;
     if (set_flag) {
         prop->isNotFeatherEggOrNote = value;
     }
-
     return old_value;
 }
 
@@ -2248,7 +2286,7 @@ s32 cubeList_getOrSetNextProp2Flags(s32 op) {
 enum actor_e func_803084F0(s32 arg0){
     s32 var_v1;
     switch (arg0) {
-        case 1: var_v1 = ACTOR_1_UNKNOWN; break;
+        case 0x1: var_v1 = ACTOR_1_UNKNOWN; break;
         case 0x2: var_v1 = ACTOR_2_UNKNOWN; break;
         case 0x3: var_v1 = ACTOR_15_UNKNOWN; break;
         case 0x4: var_v1 = ACTOR_76_UNKNOWN; break;

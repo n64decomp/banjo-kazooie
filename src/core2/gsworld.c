@@ -18,6 +18,14 @@ struct gsworld_data_s sGsWorldData;
 static bool sEnableUpdate;
 static bool sEnableDraw;
 
+enum gsWorldStartIndicators {
+    GS_WORLD_START_INDICATOR_0_END,
+    GS_WORLD_START_INDICATOR_1_CUBES,
+    GS_WORLD_START_INDICATOR_2_UNUSED,
+    GS_WORLD_START_INDICATOR_3_CAMERAS,
+    GS_WORLD_START_INDICATOR_4_LIGHTING
+};
+
 void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
     f32 near, far;
 
@@ -376,6 +384,26 @@ bool gsworld_getEnableDraw() {
     return sEnableDraw;
 }
 
+/*
+Opens the setup file and reads the contents.
+
+0x01 (GS_WORLD_START_INDICATOR_1_CUBES)
+ - This section contains the cube dimensions and list.
+ - Cubes are 1000 by 1000 sections of space that may have props inside.
+
+0x02 (GS_WORLD_START_INDICATOR_2_UNUSED)
+ - Unused
+
+0x03 (GS_WORLD_START_INDICATOR_3_CAMERAS)
+ - This section contains the cameras list.
+
+0x04 (GS_WORLD_START_INDICATOR_4_LIGHTING)
+ - This section contains environment lighting.
+ - It's only used in a handful of maps.
+
+0x00 (GS_WORLD_START_INDICATOR_0_END)
+ - Indicates the end of the file.
+*/
 void gsworld_load(enum map_e map_id) {
     File *f;
 
@@ -383,14 +411,14 @@ void gsworld_load(enum map_e map_id) {
 
     f = file_openMap(map_id);
 
-    while (!file_isNextByteExpected(f, 0)) {
-        if (file_isNextByteExpected(f, 2)) {
+    while (!file_isNextByteExpected(f, GS_WORLD_START_INDICATOR_0_END)) {
+        if (file_isNextByteExpected(f, GS_WORLD_START_INDICATOR_2_UNUSED)) {
             /* NO OP */
-        } else if (file_isNextByteExpected(f, 1)) {
+        } else if (file_isNextByteExpected(f, GS_WORLD_START_INDICATOR_1_CUBES)) {
             cubeList_fromFile(f);
-        } else if (file_isNextByteExpected(f, 3)) {
+        } else if (file_isNextByteExpected(f, GS_WORLD_START_INDICATOR_3_CAMERAS)) {
             ncCameraNodeList_fromFile(f);
-        } else if (file_isNextByteExpected(f, 4)) {
+        } else if (file_isNextByteExpected(f, GS_WORLD_START_INDICATOR_4_LIGHTING)) {
             lightingVectorList_fromFile(f);
         }
     }

@@ -10,7 +10,14 @@ static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32[3],
 
 void lighting_free();
 void lighting_init();
-#define NUM_LIGHTING_ELEM 0x10
+
+#define NUM_LIGHTING_ELEM            0x10
+
+#define LIGHTING_START_INDICATOR        1
+#define LIGHTING_POSITION_INDICATOR     2
+#define LIGHTING_FADE_RADII_INDICATOR   3
+#define LIGHTING_RGB_INDICATOR          4
+#define LIGHTING_LIST_END_INDICATOR     0
 
 /* .bss */
 struct {
@@ -121,7 +128,6 @@ static s32 __lighting_create() {
     return (iPtr - (Lighting *)vector_getBegin(sLightingVectorList.vector_ptr)) + 1;
 }
 
-
 void lighting_free() {
     vector_free(sLightingVectorList.vector_ptr);
 }
@@ -154,18 +160,18 @@ s32 __codeAC520_pad_func_803339A4(f32 arg0[3]) {
 }
 
 static void __lighting_setPosition(s32 index , f32 *position) {
-    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index - 1);
     TUPLE_COPY(v0->position, position)
 }
 
 static void __lighting_setFadeRadii(s32 index , f32 *fade_radii) {
-    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index - 1);
     v0->fade_radius_min_unscaled = fade_radii[0];
     v0->fade_radius_max_unscaled = fade_radii[1];
 }
 
 static void __lighting_setRgb(s32 index , s32 *rgb) {
-    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index-1);
+    Lighting *v0 = vector_at(sLightingVectorList.vector_ptr, index - 1);
     TUPLE_COPY(v0->rgb, rgb);
 }
 
@@ -175,11 +181,11 @@ void lightingVectorList_fromFile(File *file_ptr) {
     s32 rgb[3];
     s32 lighting_ptr;
     __lighting_freeAndInit();
-    while(!file_isNextByteExpected(file_ptr, 0)) {
-        if( file_isNextByteExpected(file_ptr, 1)
-            && file_getNFloats_ifExpected(file_ptr, 2, position, 3)
-            && file_getNFloats_ifExpected(file_ptr, 3, fade_radii, 2)
-            && file_getNWords_ifExpected(file_ptr, 4, rgb, 3)
+    while(!file_isNextByteExpected(file_ptr, LIGHTING_LIST_END_INDICATOR)) {
+        if( file_isNextByteExpected(file_ptr, LIGHTING_START_INDICATOR)
+            && file_getNFloats_ifExpected(file_ptr, LIGHTING_POSITION_INDICATOR, position, 3)
+            && file_getNFloats_ifExpected(file_ptr, LIGHTING_FADE_RADII_INDICATOR, fade_radii, 2)
+            && file_getNWords_ifExpected(file_ptr, LIGHTING_RGB_INDICATOR, rgb, 3)
         ) {
             lighting_ptr = __lighting_create();
             __lighting_setPosition(lighting_ptr, position);
@@ -189,21 +195,21 @@ void lightingVectorList_fromFile(File *file_ptr) {
     }
 }
 
-s32 __codeAC520_pad_func_80333C78(File *arg0) {
+s32 __gclights_unused_func_80333C78(File *arg0) {
     Lighting *beginPtr = vector_getBegin(sLightingVectorList.vector_ptr);
     Lighting *endPtr = vector_getEnd(sLightingVectorList.vector_ptr);
     Lighting *iPtr;
 
     for(iPtr = beginPtr; iPtr < endPtr; iPtr++) {
         if(iPtr->active) {
-            file_isNextByteExpected(arg0, 1);
-            file_getNFloats_ifExpected(arg0, 2, iPtr->position, 3);
-            file_getNFloats_ifExpected(arg0, 3, &iPtr->fade_radius_min_unscaled, 2);
-            file_getNWords_ifExpected(arg0, 4, iPtr->rgb, 3);
+            file_isNextByteExpected(arg0, LIGHTING_START_INDICATOR);
+            file_getNFloats_ifExpected(arg0, LIGHTING_POSITION_INDICATOR, iPtr->position, 3);
+            file_getNFloats_ifExpected(arg0, LIGHTING_FADE_RADII_INDICATOR, &iPtr->fade_radius_min_unscaled, 2);
+            file_getNWords_ifExpected(arg0, LIGHTING_RGB_INDICATOR, iPtr->rgb, 3);
         }
     }
 
-    return file_isNextByteExpected(arg0, 0);
+    return file_isNextByteExpected(arg0, LIGHTING_LIST_END_INDICATOR);
 }
 
 void gclights_recolor_vertices(BKVertexList *vertex_list, f32 position[3], f32 rotation[3], f32 scale, f32 arg4[3], BKVertexList *ref_vertex_list) {
@@ -247,8 +253,8 @@ void gclights_recolor_vertices(BKVertexList *vertex_list, f32 position[3], f32 r
         }
 
         //each of these lines needs to consume an extra t reg
-        i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0]*rgb_modifier[0])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
-        i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1]*rgb_modifier[1])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
-        i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]*rgb_modifier[2])/256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[0] = (s8)((ref_ptr->v.cn[0] * rgb_modifier[0]) / 256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[1] = (s8)((ref_ptr->v.cn[1] * rgb_modifier[1]) / 256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
+        i_ptr->v.cn[2] = (s8)((ref_ptr->v.cn[2]  *rgb_modifier[2]) / 256.0) & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF & 0xFF;
     }
 }

@@ -5,32 +5,35 @@
 #include <core2/camera.h>
 #include <core2/file.h>
 
-static void __code33250_func_802BA23C(CameraNodeType4 *this, s32 arg1);
+static void __code33250_func_802BA23C(RandomCameraNode *this, s32 arg1);
+
+#define RANDOM_CAMERA_UNK_1_INDICATOR    0x01
+#define RANDOM_CAMERA_END_INDICATOR      0x00
 
 /* .code */
-CameraNodeType4 *cameraNodeType4_init(){
-    CameraNodeType4 * this;
+RandomCameraNode *cameraNodeType4_init(){
+    RandomCameraNode * this;
     
-    this = malloc(sizeof(CameraNodeType4));
+    this = malloc(sizeof(RandomCameraNode));
     __code33250_func_802BA23C(this, 1);
     return this;
 }
 
-void cameraNodeType4_free(CameraNodeType4 *this){
+void cameraNodeType4_free(RandomCameraNode *this){
     free(this);
 }
 
-s32 code33250_func_802BA234(CameraNodeType4 *this){
+s32 code33250_func_802BA234(RandomCameraNode *this){
     return this->unknownFlag;
 }
 
-static void __code33250_func_802BA23C(CameraNodeType4 *this, s32 arg1){
+static void __code33250_func_802BA23C(RandomCameraNode *this, s32 arg1){
     this->unknownFlag = arg1;
 }
 
-void cameraNodeType4_fromFile(File *file_ptr, CameraNodeType4 *this){
-    while(!file_isNextByteExpected(file_ptr, 0)){
-        file_getWord_ifExpected(file_ptr, 1, &this->unknownFlag);
+void cameraNodeType4_fromFile(File *file_ptr, RandomCameraNode *this){
+    while(!file_isNextByteExpected(file_ptr, RANDOM_CAMERA_END_INDICATOR)){
+        file_getWord_ifExpected(file_ptr, RANDOM_CAMERA_UNK_1_INDICATOR, &this->unknownFlag);
     }
 }
 

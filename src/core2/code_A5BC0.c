@@ -75,6 +75,28 @@ ModelCache *modelCache = NULL; //D_8036E7C0 //model pointer array pointer
 u8 *D_8036E7C4 = NULL;
 ActorMarker *D_8036E7C8 = NULL;
 
+enum Prop1Category {
+    PROP_1_CATEGORY_0_UNK,
+    PROP_1_CATEGORY_1_UNK,
+    PROP_1_CATEGORY_2_WARP_OR_TRIGGER,
+    PROP_1_CATEGORY_3_CAMERA_CONTROLLER,
+    PROP_1_CATEGORY_4_UNK,
+    PROP_1_CATEGORY_5_UNK,
+    PROP_1_CATEGORY_6_ACTOR,
+    PROP_1_CATEGORY_7_ENEMY_BOUNDARY,
+    PROP_1_CATEGORY_8_PATH,
+    PROP_1_CATEGORY_9_CAMERA_TRIGGER,
+    PROP_1_CATEGORY_A_FLAG
+};
+
+#define CUBE_PROP_1_INDICATOR                     0x0A
+#define CUBE_PROP_1_OTHER_INDICATOR               0x06
+#define CUBE_DIVIDER_INDICATOR                    0x01
+#define CUBE_PROP_1_LIST_START_INDICATOR          0x0B
+#define CUBE_PROP_1_OTHER_LIST_START_INDICATOR    0x07
+#define CUBE_PROP_1_LIST_END_INDICATOR            0x08
+#define CUBE_PROP_2_LIST_START_INDICATOR          0x09
+
 /* .bss */
 s32 D_803833F0[3];
 s32 D_803833FC;
@@ -88,7 +110,7 @@ f32 D_80383410[3];
 ActorMarker *D_8038341C;
 s32 D_80383420;
 u8  D_80383428[0x1C];
-s32 D_80383444;
+s32 D_80383444; // model cache index
 int D_80383448;
 s32 D_80383450[0x40];
 vector(ActorMarker *) *D_80383550;
@@ -121,9 +143,10 @@ static void __cube_sort(Cube *cube, bool global) {
         //calculate prop distances
         new_var = var_v1 = cube->prop2Ptr;
         for(i = 0; i < cube->prop2Cnt; var_v1++, i++){
-            D_80383450[i] =  (var_v1->actorProp.position_x - ref_position[0])*(var_v1->actorProp.position_x - ref_position[0]) 
-                               +  (var_v1->actorProp.position_y - ref_position[1])* (var_v1->actorProp.position_y - ref_position[1])
-                               +  (var_v1->actorProp.position_z - ref_position[2])* (var_v1->actorProp.position_z - ref_position[2]);
+            D_80383450[i] =
+                (var_v1->actorProp.position_x - ref_position[0]) * (var_v1->actorProp.position_x - ref_position[0]) 
+                + (var_v1->actorProp.position_y - ref_position[1]) * (var_v1->actorProp.position_y - ref_position[1])
+                + (var_v1->actorProp.position_z - ref_position[2]) * (var_v1->actorProp.position_z - ref_position[2]);
         }
 
         //sort prop list
@@ -177,7 +200,7 @@ void func_8032CD60(Prop *prop) {
     s32 sp44;
     s32 sp40;
     bool sp3C;
-    s32 sp38;
+    s32 frame_count;
     bool sp34;
     bool sp30;
     s32 sp2C;
@@ -187,13 +210,13 @@ void func_8032CD60(Prop *prop) {
     var_v0 = ((u32)(((u16*)prop)[5]) & 1) ? func_80330F50(prop->actorProp.marker)
            : propModelList_getSprite((u32)(((u16*)prop)[0]) >> 4);
     if ((var_v0 != NULL) && ((var_v0->unkC.bit27 != 0))) {
-       sp48 = var_v0->unkC.bit31;
-       sp44 = var_v0->unkC.bit27;
-       sp40 = var_v0->unkC.bit24;
-       sp3C = var_v0->unkC.bit22;
-        sp38 =  var_v0->frameCnt;
+        sp48 = var_v0->unkC.bit31;
+        sp44 = var_v0->unkC.bit27;
+        sp40 = var_v0->unkC.bit24;
+        sp3C = var_v0->unkC.bit22;
+        frame_count =  var_v0->frameCnt;
         sp34 = (sp44 == 1) || (sp44 == 2U);
-        sp30 = (sp44 == 3) ? sp38 : (sp38 - sp34)*2;
+        sp30 = (sp44 == 3) ? frame_count : (frame_count - sp34) * 2;
 
         sp2C = (s32)((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) * sp30) / 32;
         var_v1 = (((globalTimer_getTime(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30; // TODO: globalTimer_getTime has no parameters, but if we remove them here (to forward declare them in include/core1/main.h, it doesn't match anymore)
@@ -215,13 +238,13 @@ void func_8032CD60(Prop *prop) {
 
         switch(sp44){
             case 4:
-                var_t5 = sp38 <= var_v1;
+                var_t5 = frame_count <= var_v1;
             case 1:
-                sp3C = sp38 <= var_v1;
+                sp3C = frame_count <= var_v1;
                 break;
             case 2:
                 
-                var_t5 = sp38 <= var_v1;
+                var_t5 = frame_count <= var_v1;
             
             default:
                 
@@ -250,7 +273,7 @@ void func_8032CD60(Prop *prop) {
         }
         
         var_v1 += (sp34) ? sp40 : -sp40;
-        var_v1 = (var_v1 < 0) ? var_v1 +sp38 : var_v1 % sp38;
+        var_v1 = (var_v1 < 0) ? var_v1 + frame_count : var_v1 % frame_count;
         prop->spriteProp.frame = var_v1;
         if (((u32)(((u16*)prop)[5]) & 1)) {
             prop->spriteProp.unk8_5 = sp3C;
@@ -659,7 +682,7 @@ bool __codeA5BC0_pad_func_8032E178(Cube *arg0, s32 *arg1, s32 arg2) {
             if( ((node_ptr->bit0 == TRUE)
                     || ((node_ptr->bit0 == FALSE) && (node_ptr->unk10_6 == TRUE))
                 ) 
-                && (node_ptr->category == 6) 
+                && (node_ptr->category == PROP_1_CATEGORY_6_ACTOR) 
                 && (arg2 == node_ptr->actorId)
             ) {
                 *arg1 = node_ptr->selector_or_radius;
@@ -679,7 +702,7 @@ NodeProp *cube_findNodePropByActorId(Cube *cube, enum actor_e actor_id) {
             if( ( (i_ptr->bit0 == TRUE) 
                   || ( (i_ptr->bit0 == FALSE) && (i_ptr->unk10_6 == TRUE))
                 )
-                && (i_ptr->category == 6) 
+                && (i_ptr->category == PROP_1_CATEGORY_6_ACTOR) 
                 && (actor_id == i_ptr->actorId)
             ) {
                 return i_ptr;
@@ -700,7 +723,7 @@ bool func_8032E2D4(Cube *arg0, s32 arg1[3], s32 arg2) {
             if( ((var_v1->bit0 == TRUE)
                     || ((var_v1->bit0 == FALSE) && (var_v1->unk10_6 == TRUE))
                 ) 
-                && (var_v1->category == 6) 
+                && (var_v1->category == PROP_1_CATEGORY_6_ACTOR) 
                 && (arg2 == var_v1->actorId)
             ) {
                 arg1[0] = var_v1->position_x;
@@ -759,7 +782,13 @@ s32 func_8032E49C(Cube *cube, enum actor_e *actor_id_list, NodeProp **node_list,
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (found_cnt < node_list_capacity)) {
-                if (((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))) && (i_node->category == 6)) {
+                if ((
+                        (i_node->bit0 == TRUE)
+                        || ((i_node->bit0 == FALSE)
+                        && (i_node->unk10_6 == TRUE))
+                    )
+                    && (i_node->category == PROP_1_CATEGORY_6_ACTOR))
+                {
                     i_actor = actor_id_list;
                     for(i_actor = actor_id_list; *i_actor != -1; i_actor++){
                         if (i_node->actorId == *i_actor) {
@@ -786,10 +815,12 @@ s32 func_8032E5A8(Cube *cube, s32 arg1, f32 (*arg2)[3], s32 capacity) {
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while((i_node < end_node) && (count < capacity)){
-                if( ( (i_node->bit0 == TRUE) 
-                      || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
+                if( ((i_node->bit0 == TRUE) 
+                    || ((i_node->bit0 == FALSE)
+                        && (i_node->unk10_6 == TRUE))
                     ) 
-                    && (i_node->category == 6) && (arg1 == i_node->actorId)
+                    && (i_node->category == PROP_1_CATEGORY_6_ACTOR)
+                    && (arg1 == i_node->actorId)
                 ) {
                     arg2[count][0] = (f32) i_node->position_x;
                     arg2[count][1] = (f32) i_node->position_y;
@@ -812,10 +843,9 @@ bool func_8032E6CC(Cube *cube, s32 *arg1, s32 arg2) {
             i_node = cube->prop1Ptr;
             end_node = cube->prop1Ptr + cube->prop1Cnt;
             while (i_node < end_node) {
-                if( ( (i_node->bit0 == TRUE) 
-                      || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE))
-                    ) 
-                    && (i_node->category == 6) && (arg2 == i_node->actorId)
+                if( ((i_node->bit0 == TRUE) || ((i_node->bit0 == FALSE) && (i_node->unk10_6 == TRUE)))
+                    && (i_node->category == PROP_1_CATEGORY_6_ACTOR)
+                    && (arg2 == i_node->actorId)
                 ) {
                     *arg1 = i_node->yaw;
                     return TRUE;
@@ -845,11 +875,11 @@ static void __codeA5BC0_initPropPointerForCube(NodeProp *node, Cube *cube, s32 c
     cube_ptr_idx = cnt - 1;
     for(i = 0; i < cnt; i++){
         iPtr = node + i;
-        if( (iPtr->category == 6) 
-            || (iPtr->category == 8)
-            || (iPtr->category == 7) 
-            || (iPtr->category == 9) 
-            || (iPtr->category == 0xA) 
+        if( (iPtr->category == PROP_1_CATEGORY_6_ACTOR) 
+            || (iPtr->category == PROP_1_CATEGORY_8_PATH)
+            || (iPtr->category == PROP_1_CATEGORY_7_ENEMY_BOUNDARY) 
+            || (iPtr->category == PROP_1_CATEGORY_9_CAMERA_TRIGGER) 
+            || (iPtr->category == PROP_1_CATEGORY_A_FLAG) 
             || (iPtr->bit0 == 1)
         ){
             memcpy(&cube->prop1Ptr[cube_ptr_idx], &node[i], sizeof(NodeProp));
@@ -870,28 +900,38 @@ static void __codeA5BC0_initPropPointerForCube(NodeProp *node, Cube *cube, s32 c
     }
 }
 
+/*
+After seeing 0x03 (CUBE_START_INDICATOR), we check which kind of cube it is.
+After we determine what kind of cube it is, 
+
+0x0A (CUBE_PROP_1_INDICATOR)
+ - Prop1
+
+0x06 (CUBE_PROP_1_OTHER_INDICATOR)
+ - Prop1
+*/
 void code7AF80_initCubeFromFile(File *file_ptr, Cube *cube) {
-    u8 sp47;
+    u8 prop2_count;
     u8 cube1_count;
     NodeProp *node_prop_ptr;
     OtherNode *other_prop_ptr;
-    Prop *var_v1_2;
-    s32 sp34;
-    s32 temp_v0_5;
+    Prop *this_prop2;
+    s32 is_in_furnace_fun;
+    s32 sprite_id;
 
     cube_free(cube);
-    if (file_getByte_ifExpected(file_ptr, 0xA, &cube1_count)) {
+    if (file_getByte_ifExpected(file_ptr, CUBE_PROP_1_INDICATOR, &cube1_count)) {
         __codeA5BC0_freeCube1Pointer(cube, cube1_count);
         cube->prop1Ptr = (NodeProp*) malloc(cube1_count * sizeof(NodeProp));
         node_prop_ptr = (NodeProp*) malloc(cube1_count * sizeof(NodeProp));
-        file_getNBytes_ifExpected(file_ptr, 0xB, node_prop_ptr, cube->prop1Cnt * sizeof(NodeProp));
+        file_getNBytes_ifExpected(file_ptr, CUBE_PROP_1_LIST_START_INDICATOR, node_prop_ptr, cube->prop1Cnt * sizeof(NodeProp));
         __codeA5BC0_initPropPointerForCube(node_prop_ptr, cube, cube1_count);
         
-    } else if (file_getByte_ifExpected(file_ptr, 6, &cube1_count)) {
+    } else if (file_getByte_ifExpected(file_ptr, CUBE_PROP_1_OTHER_INDICATOR, &cube1_count)) {
         __codeA5BC0_freeCube1Pointer(cube, cube1_count);
         cube->prop1Ptr = (NodeProp*) malloc(cube1_count * sizeof(OtherNode));
         node_prop_ptr = (NodeProp*) malloc(cube1_count * sizeof(OtherNode));
-        file_getNBytes_ifExpected(file_ptr, 7, node_prop_ptr, cube->prop1Cnt * sizeof(OtherNode));
+        file_getNBytes_ifExpected(file_ptr, CUBE_PROP_1_OTHER_LIST_START_INDICATOR, node_prop_ptr, cube->prop1Cnt * sizeof(OtherNode));
         for(other_prop_ptr = (OtherNode *)node_prop_ptr; other_prop_ptr < (OtherNode*)&node_prop_ptr[cube1_count]; other_prop_ptr++){
             if(other_prop_ptr->unk4_0 && !other_prop_ptr->unkC_0){
                 other_prop_ptr->unk4_17 = 0;
@@ -901,28 +941,34 @@ void code7AF80_initCubeFromFile(File *file_ptr, Cube *cube) {
         __codeA5BC0_initPropPointerForCube(node_prop_ptr, cube, cube1_count);
     }
 
-    if (file_getByte_ifExpected(file_ptr, 8, &sp47)) {
-        sp34 = volatileFlag_get(VOLATILE_FLAG_1) +  volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) + volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
+    if (file_getByte_ifExpected(file_ptr, CUBE_PROP_1_LIST_END_INDICATOR, &prop2_count)) {
+        is_in_furnace_fun = volatileFlag_get(VOLATILE_FLAG_1)
+                + volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
+                + volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE);
         
-        if ((sp34) && gcparade_8031B4CC()) {
-            sp34 = 0;
+        if ((is_in_furnace_fun) && gcparade_8031B4CC()) {
+            is_in_furnace_fun = 0;
         }
         if (cube->prop2Ptr != NULL) {
             free(cube->prop2Ptr);
         }
-        cube->prop2Cnt = sp47;
-        cube->prop2Ptr = (Prop *) malloc(sp47 * sizeof(Prop));
-        file_getNBytes_ifExpected(file_ptr, 9, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
-        for(var_v1_2 = cube->prop2Ptr; var_v1_2 < cube->prop2Ptr + sp47; var_v1_2++){
-                var_v1_2->isNotFeatherEggOrNote = TRUE;
-                if (var_v1_2->isModelProp) {
-                    var_v1_2->isMirrored = FALSE;
+        cube->prop2Cnt = prop2_count;
+        cube->prop2Ptr = (Prop *) malloc(prop2_count * sizeof(Prop));
+        file_getNBytes_ifExpected(file_ptr, CUBE_PROP_2_LIST_START_INDICATOR, cube->prop2Ptr, cube->prop2Cnt * sizeof(Prop));
+        for(this_prop2 = cube->prop2Ptr; this_prop2 < cube->prop2Ptr + prop2_count; this_prop2++){
+                this_prop2->isNotFeatherEggOrNote = TRUE;
+                if (this_prop2->isModelProp) {
+                    this_prop2->isMirrored = FALSE;
                 }
-                if (sp34) {
-                    if (!(var_v1_2->isActorProp) && !(var_v1_2->isModelProp)){
-                        temp_v0_5 = var_v1_2->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
-                        if((temp_v0_5 == 0x580) || (temp_v0_5 == 0x6D1) || (temp_v0_5 == 0x6D6) || (temp_v0_5 == 0x6D7)){
-                            var_v1_2->isNotFeatherEggOrNote = FALSE;
+                if (is_in_furnace_fun) {
+                    if (!(this_prop2->isActorProp) && !(this_prop2->isModelProp)){
+                        sprite_id = this_prop2->spriteProp.spriteId + SPRITE_ASSET_OFFSET;
+                        if((sprite_id == ASSET_580_SPRITE_RED_FEATHER)
+                            || (sprite_id == ASSET_6D1_SPRITE_GOLDFEATHER)
+                            || (sprite_id == ASSET_6D6_SPRITE_MUSIC_NOTE)
+                            || (sprite_id == ASSET_6D7_SPRITE_BLUE_EGGS))
+                        {
+                            this_prop2->isNotFeatherEggOrNote = FALSE;
                         }
                     }
                 }
@@ -1336,7 +1382,7 @@ void func_80330208(Cube *cube) {
         end_prop = cube->prop1Ptr + cube->prop1Cnt;
         func_80326C24(1);
         while(i_prop < end_prop){
-            if (i_prop->category == 6) {
+            if (i_prop->category == PROP_1_CATEGORY_6_ACTOR) {
                 position[0] = (s32) i_prop->position_x;
                 position[1] = (s32) i_prop->position_y;
                 position[2] = (s32) i_prop->position_z;
@@ -1368,7 +1414,7 @@ void func_803303B8(Cube *cube) {
         current_node_ptr = cube->prop1Ptr;
         last_node_prop_ptr = cube->prop1Ptr + cube->prop1Cnt;
         while (current_node_ptr < last_node_prop_ptr) {
-            if (current_node_ptr->category == 7) {
+            if (current_node_ptr->category == PROP_1_CATEGORY_7_ENEMY_BOUNDARY) {
                 position[0] = (s32) current_node_ptr->position_x;
                 position[1] = (s32) current_node_ptr->position_y;
                 position[2] = (s32) current_node_ptr->position_z;
@@ -1378,7 +1424,7 @@ void func_803303B8(Cube *cube) {
                     current_node_ptr->selector_or_radius,
                     current_node_ptr->unk10_31,
                     current_node_ptr->pad10_7);
-            } else if (current_node_ptr->category == 9) {
+            } else if (current_node_ptr->category == PROP_1_CATEGORY_9_CAMERA_TRIGGER) {
                 position[0] = (s32) current_node_ptr->position_x;
                 position[1] = (s32) current_node_ptr->position_y;
                 position[2] = (s32) current_node_ptr->position_z;
@@ -1387,7 +1433,7 @@ void func_803303B8(Cube *cube) {
                     position,
                     current_node_ptr->selector_or_radius,
                     current_node_ptr->unk10_0);
-            } else if (current_node_ptr->category == 0xA) {
+            } else if (current_node_ptr->category == PROP_1_CATEGORY_A_FLAG) {
                 position[0] = (s32) current_node_ptr->position_x;
                 position[1] = (s32) current_node_ptr->position_y;
                 position[2] = (s32) current_node_ptr->position_z;
@@ -1433,7 +1479,7 @@ void func_803305AC(void){
 }
 
 void func_803306C8(s32 arg0) {
-    static  s32 D_8036E7CC = 0;
+    static  s32 D_8036E7CC = 0; // Model Id?
     ModelCache *var_a2;
     s32 temp_a0;
     s32 sp54;
@@ -1444,7 +1490,7 @@ void func_803306C8(s32 arg0) {
     temp_fp = globalTimer_getTime() - func_80255B08(arg0);
     func_80254BD0(&sp54, 1);
     if(sp54 > 256000) return;
-    
+
     for(var_s1 = 0; var_s1 < ((arg0 == 1) ? 0x28 : 0x3D4); var_s1++, D_8036E7CC = (D_8036E7CC >= 0x3D4) ? 0 : D_8036E7CC + 1) {
         var_a2 = modelCache + D_8036E7CC;
         
