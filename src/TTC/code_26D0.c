@@ -169,7 +169,7 @@ static void __code26D0_sharkfoodIslandUpdateFunc(Actor *this){
             && (player_position[0] - 5542.0f)*(player_position[0] - 5542.0f) + (player_position[2] - 8687.0f)*(player_position[2] - 8687.0f) < 96100.0f
             && (player_position[0] - 6837.0f)*(player_position[0] - 6837.0f) + (player_position[2] - 12714.0f)*(player_position[2] - 12714.0f) < 17640000.0f
         ){
-            func_8031D04C(MAP_8F_TTC_SHARKFOOD_ISLAND, 1);
+            func_8031D04C(MAP_8F_TTC_SHARKFOOD_ISLAND, WARP_TCC_SHARKFOOD_ISLAND_1_ENTRANCE);
         }
     }
 }

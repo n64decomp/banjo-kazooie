@@ -42,7 +42,7 @@ void chXmasTree_swapCameraToIce(void){
     levelSpecificFlags_set(LEVEL_FLAG_29_FP_XMAS_TREE_COMPLETE, TRUE);
     musicKeepsPlaying();
     volatileFlag_set(VOLATILE_FLAG_E, 1);
-    transitionToMap(MAP_53_FP_CHRISTMAS_TREE, 1, 0);
+    transitionToMap(MAP_53_FP_CHRISTMAS_TREE, WARP_FP_CHRISTMAS_TREE_1_ENTRANCE, 0);
 }
 
 void chXmasTree_setLightsOn(Actor * this){

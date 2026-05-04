@@ -541,7 +541,7 @@ void maCastle_init(void)
             timed_exitStaticCamera(2.0f);
             func_80324E38(2.0f, 0);
             musicKeepsPlaying();
-            timedFunc_set_3(2.0f, (GenFunction_3)transitionToMap, MAP_7_TTC_TREASURE_TROVE_COVE, 1, 0);
+            timedFunc_set_3(2.0f, (GenFunction_3)transitionToMap, MAP_7_TTC_TREASURE_TROVE_COVE, WARP_TTC_1_LEAKY, 0);
         }
         else if (levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             func_8034E71C(sp2C, -500, 0.0f);
