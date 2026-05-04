@@ -284,7 +284,7 @@ s32 func_8034BAFC(void){
 void func_8034BB08(bool arg0) {
     D_80386120 = arg0;
     func_802E412C(1, 3);
-    func_802E40A8(MAP_8C_SM_BANJOS_HOUSE, 2);
+    func_802E40A8(MAP_8C_SM_BANJOS_HOUSE, WARP_SM_BANJOS_HOUSE_2_BOTTLES);
     func_802E40C4(1);
 }
 

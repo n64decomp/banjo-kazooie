@@ -72,7 +72,7 @@ void chXmasTreeIce_shatterIce(ActorMarker *marker){
 void chXmasTreeIce_returnCameraToBanjo(ActorMarker *marker){
     Actor *this = marker_getActor(marker);
     musicKeepsPlaying();
-    transitionToMap(MAP_27_FP_FREEZEEZY_PEAK, 0xd, 0);
+    transitionToMap(MAP_27_FP_FREEZEEZY_PEAK, WARP_FP_D_TREE_STAR, 0);
     marker_despawn(this->marker);
 }
 

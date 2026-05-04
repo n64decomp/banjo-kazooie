@@ -1065,7 +1065,7 @@ s32 gcPauseMenu_update(void) {
 
                     if (gsworld_getMap() == MAP_8E_GL_FURNACE_FUN) {
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);
-                        transitionToMap(MAP_80_GL_FF_ENTRANCE, 2, 1);
+                        transitionToMap(MAP_80_GL_FF_ENTRANCE, WARP_GL_FURNACE_FUN_2_ENTRANCE_PAD, 1);
                     }
                     else {
                         transitionToMap(D_8036C560[level - 1].map, D_8036C560[level - 1].exit, 1);

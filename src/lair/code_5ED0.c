@@ -1284,7 +1284,7 @@ void lair_func_8038E0B0(void) {
         ) {
             code_73640_printItemCount(ITEM_27_JOKER_CARD);
         }
-        code_7060_setVoidOutLocation(MAP_8E_GL_FURNACE_FUN, 2);
+        code_7060_setVoidOutLocation(MAP_8E_GL_FURNACE_FUN, WARP_GL_FURNACE_FUN_2_ENTRANCE_PAD);
         switch(ffStorage->currFfMode){
             case 1://L8038E388
                 if(ffStorage->currentTileId != 0){

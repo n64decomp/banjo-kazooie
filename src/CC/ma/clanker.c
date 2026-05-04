@@ -387,7 +387,7 @@ void maClanker_update(void){
         if(maClanker.currentState == MACLANKER_STATE_3_IDLE_RAISED){
             func_8034A174(maClanker.unk34, 6, sp48);
             if(ml_vec3f_distance(sp48, player_position) <= 130.0f && player_position[1] - sp48[1] < 50.0f){
-                func_8031D04C(MAP_21_CC_WITCH_SWITCH_ROOM, 1);
+                func_8031D04C(MAP_21_CC_WITCH_SWITCH_ROOM, WARP_CC_WITCH_SWITCH_1_TOP_ENTRANCE);
             }
         }//L80389260
 

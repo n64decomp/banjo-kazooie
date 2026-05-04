@@ -69,6 +69,6 @@ void chAnchorCtrl_update(Actor *this){
         timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
         timedFunc_set_0(0.0f, musicKeepsPlaying);
-        timedFunc_set_3(0.0f, (GenFunction_3)transitionToMap, MAP_8B_RBB_ANCHOR_ROOM, 2, 0);
+        timedFunc_set_3(0.0f, (GenFunction_3)transitionToMap, MAP_8B_RBB_ANCHOR_ROOM, WARP_RBB_ANCHOR_2_ENTRANCE, 0);
     }//L8038C2E4
 }
