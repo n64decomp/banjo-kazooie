@@ -495,7 +495,7 @@ Actor *chMumbo_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
             || actor_animationIsAt(out, 0.28f)
             || actor_animationIsAt(out, 0.36f)
          ){
-            func_8034A174(func_80329934(), 9, sp44);
+            vec3fArray_get_vec3f(func_80329934(), 9, sp44);
             dustEmitter_emit(sp44, sp38, D_8036751C, 0, 0.9f, 0.0f, 0x46, 0x14, DUST_EMITTER_TYPE_DUST);
         }
     }

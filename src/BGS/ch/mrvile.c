@@ -261,7 +261,7 @@ Actor *chMrVile_draw(ActorMarker *marker, Gfx **gfx, Mtx** mtx, Vtx **vtx){
         (local->eatingTimer > 0.0f) 
         && (this->marker->unk14_21)
     ) {
-        func_8034A174(func_80329934(), 5, position);
+        vec3fArray_get_vec3f(func_80329934(), 5, position);
         position[1] -= 30.0f;
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
         modelRender_draw(gfx, mtx, position, 0, local->eatingTimer, 0, local->yumblieModel);

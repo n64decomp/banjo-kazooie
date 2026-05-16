@@ -11,8 +11,8 @@ extern void mapModel_getCubeBounds(s32 min[3], s32 max[3]);
 extern f32 func_803243D0(struct56s *arg0, f32 arg1[3]);
 extern void func_8032D510(Cube *, Gfx **, Mtx **, Vtx **);
 extern ActorProp *func_803322F0(Cube *, ActorMarker *, f32, s32, s32 *);
-extern BKCollisionTri *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
-extern BKCollisionTri *func_80331638(Cube *cube, f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg2[3], s32, u32 flags);
+extern BKCollisionTriangle *func_803319C0(Cube *cube, f32 position[3], f32 radius, f32 arg2[3], u32 flags);
+extern BKCollisionTriangle *func_80331638(Cube *cube, f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg2[3], s32, u32 flags);
 
 typedef struct{
     s32 position[3];
@@ -577,12 +577,12 @@ void __code7AF80_pad_func_80303664(s32 arg0[3], s32 arg1[3]){
     arg1[2] = sCubeList.max[2];
 }
 
-static BKCollisionTri *__code7AF80_func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
+static BKCollisionTriangle *__code7AF80_func_803036A0(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    BKCollisionTri *temp_v0;
-    BKCollisionTri *var_s5;
+    BKCollisionTriangle *temp_v0;
+    BKCollisionTriangle *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, volume_p1, volume_p2, sCubeList.margin);
@@ -603,12 +603,12 @@ static BKCollisionTri *__code7AF80_func_803036A0(f32 volume_p1[3], f32 volume_p2
     return var_s5;
 }
 
-BKCollisionTri *func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
+BKCollisionTriangle *func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    BKCollisionTri *temp_v0;
-    BKCollisionTri *var_s5;
+    BKCollisionTriangle *temp_v0;
+    BKCollisionTriangle *var_s5;
 
     cube_volumeToIndices(min, max, volume_p1, volume_p2, sCubeList.margin);
     for(cube_indx[0] = min[0]; cube_indx[0] <= max[0]; cube_indx[0]++){
@@ -628,12 +628,12 @@ BKCollisionTri *func_80303800(f32 volume_p1[3], f32 volume_p2[3], f32 arg2[3], u
     return NULL;
 }
 
-static BKCollisionTri *__code7AF80_func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
+static BKCollisionTriangle *__code7AF80_func_80303960(f32 volume_p1[3], f32 volume_p2[3], f32 radius, f32 arg3[3], s32 arg4, u32 flags) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    BKCollisionTri *temp_v0;
-    BKCollisionTri *var_s5;
+    BKCollisionTriangle *temp_v0;
+    BKCollisionTriangle *var_s5;
     Cube *cube;
 
     var_s5 = NULL;
@@ -662,12 +662,12 @@ s32 D_803820B8[0x20]; //ActorProp *, (maybe Prop *)
 u8 pad_80382138[4];
 s32 D_8038213C;
 
-BKCollisionTri* __code7AF80_func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
+BKCollisionTriangle* __code7AF80_func_80303AF0(f32 position[3], f32 radius, f32 arg2[3], u32 arg3) {
     s32 cube_indx[3];
     s32 min[3];
     s32 max[3];
-    BKCollisionTri *temp_v0;
-    BKCollisionTri *var_s5;
+    BKCollisionTriangle *temp_v0;
+    BKCollisionTriangle *var_s5;
 
     var_s5 = NULL;
     cube_volumeToIndices(min, max, position, position, radius + sCubeList.margin);

@@ -4,19 +4,13 @@
 #include <ultra64.h>
 #include "model.h"
 #include "core2/vla.h"
+#include "core2/fla.h"
 #include "enums.h"
 #include "bool.h"
 
 #define MERGE(a, b) a ## b
 
 #define UNK_TYPE(t) t
-
-
-typedef struct{
-    f32 x;
-    f32 y;
-    f32 z;
-} vec3f;
 
 #define TUPLE(t, n) union{\
     struct{ t n##_x; t n##_y; t n##_z; };\
@@ -37,19 +31,6 @@ typedef struct{
 }
 
 #define KEY_VALUE_PAIR(T1, T2) struct { T1 key; T2 value; }
-
-typedef struct freelist_s{
-    s16 elem_size;
-    s16 elem_cnt;
-    u8 unk4[];
-}FLA;
-
-#define FREE_LIST(T) struct freelist_s
-//^defined to keep element type with sla
-
-typedef struct {
-    f32 m[4][4];
-} MtxF;
 
 typedef struct bk_sprite_s{
     s16 frameCnt;
@@ -120,8 +101,8 @@ typedef struct portrait_info_s{
 
 typedef struct struct_0_s{ //floor
     void *  model;
-    BKCollisionTri unk4;
-    BKCollisionTri unk10;
+    BKCollisionTriangle unk4;
+    BKCollisionTriangle unk10;
     f32     unk1C[3];
     f32     unk28[3];
     f32     normX;
@@ -495,10 +476,6 @@ typedef struct{
 
 
 
-typedef struct {
-    f32 (*unk0)[3];
-    f32 (*unk4)[3];
-}struct5Bs;
 
 typedef struct{
     u16 playerInteraction:4;
@@ -610,9 +587,9 @@ typedef struct {
 } Struct6Bs;
 
 typedef struct{
-    BKCollisionTri * (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
-    BKCollisionTri *(* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
-    BKCollisionTri *(* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
+    BKCollisionTriangle * (* unk0)(struct actorMarker_s *, f32[3], f32[3], f32[3], s32);
+    BKCollisionTriangle *(* unk4)(struct actorMarker_s *, f32[3], f32[3], f32, f32[3], s32, u32);
+    BKCollisionTriangle *(* unk8)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
     s32 (* unkC)(struct actorMarker_s *, f32[3], f32, f32[3], s32);
 } Struct6Cs;
 

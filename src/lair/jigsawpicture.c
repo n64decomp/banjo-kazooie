@@ -212,7 +212,7 @@ void stoodOnPodiumCallback(ActorMarker *marker) {
     Actor *this;
 
     this = marker_getActor(marker);
-    func_8034A174(func_803097A0(), getUnknownJigsawPictureIndex(this), camera_position);
+    vec3fArray_get_vec3f(func_803097A0(), getUnknownJigsawPictureIndex(this), camera_position);
 
     // Put Banjo into the idle animation
     func_8028E6EC(2);
@@ -323,7 +323,7 @@ void jigsawPicture_setState(Actor *this, s32 nextState) {
     s32 i;
 
     local = (JigsawPictureActorData*)&this->local;
-    func_8034A174(func_803097A0(), getUnknownJigsawPictureIndex(this), position);
+    vec3fArray_get_vec3f(func_803097A0(), getUnknownJigsawPictureIndex(this), position);
 
     switch (nextState) {
         case JIGSAW_PICTURE_LEAVE_PODIUM:

@@ -29,7 +29,7 @@ Actor *chgloop_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(!marker->unk14_21)
         return this;
 
-    func_8034A174(func_80329934(), 5, this->unk1C);
+    vec3fArray_get_vec3f(func_80329934(), 5, this->unk1C);
     return this;
 }
 

@@ -229,9 +229,9 @@ Actor *chAncientOne_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **v
     func_8033A45C(4, sp58);
     actor_draw(this_marker, gfx, mtx, vtx);
     if( !this->initialized && this_marker->unk14_21){
-        func_8034A1B4(func_80329934(), 5, sp4C);
-        func_8034A1B4(func_80329934(), 6, sp40);
-        func_8034A1B4(func_80329934(), 7, sp34);
+        vec3fArray_get_vec3i(func_80329934(), 5, sp4C);
+        vec3fArray_get_vec3i(func_80329934(), 6, sp40);
+        vec3fArray_get_vec3i(func_80329934(), 7, sp34);
         sp4C[1] += 1100;
         sp40[1] += 1100;
         sp34[1] += 1100;

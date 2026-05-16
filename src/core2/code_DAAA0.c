@@ -98,13 +98,13 @@ void func_80361AE0(s32 arg0, s32 arg1, s32 arg2){
     Actor *this;
     f32 sp20[3];
     ActorMarker *marker;
-    struct5Bs *tmp;
+    Vec3fArray *tmp;
 
     marker = reinterpret_cast(ActorMarker *,arg0);
     this = marker_getActor(marker);
     tmp = this->marker->unk44;
     if(tmp){
-        func_8034A174(tmp, arg1, sp20);
+        vec3fArray_get_vec3f(tmp, arg1, sp20);
         if(ml_isZero_vec3f(sp20)){
             ml_vec3f_copy(sp20, this->position);
         }

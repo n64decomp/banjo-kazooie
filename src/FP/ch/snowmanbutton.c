@@ -40,7 +40,7 @@ s32 D_80391B44[3] = {225, 225, 245};
 Actor *func_80386B80(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
     func_8033A45C(1, this->state == 3);
-    func_8033A45C(2, func_8033A0F0(1) ^ 1);
+    func_8033A45C(2, modelRender_func_8033A0F0(1) ^ 1);
     return actor_draw(marker, gfx, mtx, vtx);
 
 }

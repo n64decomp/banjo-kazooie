@@ -353,7 +353,7 @@ static void __chClam_updateFunc(Actor *this){
             if(!this->marker->unk14_21) break;
 
             __chClam_playSfx(SFX_4C_LIP_SMACK, 1.0f, 20000, this->position, 500.0f, 2000.0f);
-            func_8034A174(this->marker->unk44, 5, sp38);
+            vec3fArray_get_vec3f(this->marker->unk44, 5, sp38);
 
             switch(this->unk38_31){
                 case MARKER_60_BLUE_EGG_COLLECTIBLE:

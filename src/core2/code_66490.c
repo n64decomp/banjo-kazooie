@@ -1,40 +1,39 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "bool.h"
+#include "model.h"
 
+bool cameraAreaList_searchForEntryInBounds(BKCameraAreaList *this, u8 *id, u32 count) {
+    BKCameraArea *data_ptr = this->data;
 
-bool func_802ED420(BKModelUnk20List *arg0, u8 *arg1, u32 arg2) {
-    BKModelUnk20_0 *start_ptr;
-
-    start_ptr = (BKModelUnk20_0 *)(arg0 + 1);
-    while(arg2 != 0){
-        if (start_ptr[*arg1].unkC != 0) {
+    while (count != 0) {
+        if (data_ptr[*id].in_bounds) {
             return TRUE;
         }
-        arg2--; 
-        arg1++;
+        count--; 
+        id++;
     }
+
     return FALSE;
 }
 
-void func_802ED52C(BKModelUnk20List *arg0, f32 arg1[3], f32 arg2) {
-    BKModelUnk20_0 *start_ptr;
-    BKModelUnk20_0 *end_ptr;
-    BKModelUnk20_0 *i_ptr;
+void cameraAreaList_updateInBoundsFlag(BKCameraAreaList *this, f32 camera_position[3], f32 scale) {
+    BKCameraArea *start_ptr, *end_ptr, *data_ptr;
     s32 i;
-    s16 sp18[3];
+    s16 scaled_position[3];
 
-    start_ptr = ( BKModelUnk20_0 *)(arg0 + 1);
-    sp18[0] = (s16) (arg1[0] * (1.0 / arg2));
-    sp18[1] = (s16) (arg1[1] * (1.0 / arg2));
-    sp18[2] = (s16) (arg1[2] * (1.0 / arg2));
-    end_ptr = start_ptr + arg0->unk0;
-    for(i_ptr = start_ptr; i_ptr < end_ptr; i_ptr++){
-        for(i = 0; i < 3; i++){
-            if ((sp18[i] < i_ptr->unk0[i]) || (i_ptr->unk6[i] < sp18[i])) {
+    start_ptr = this->data;
+    scaled_position[0] = (s16) (camera_position[0] * (1.0 / scale));
+    scaled_position[1] = (s16) (camera_position[1] * (1.0 / scale));
+    scaled_position[2] = (s16) (camera_position[2] * (1.0 / scale));
+    end_ptr = start_ptr + this->count;
+
+    for (data_ptr = start_ptr; data_ptr < end_ptr; data_ptr++) {
+        for (i = 0; i < 3; i++) {
+            if ((data_ptr->min[i] > scaled_position[i]) || (data_ptr->max[i] < scaled_position[i])) {
                break;
             }
         }
-        i_ptr->unkC = (i == 3);
+
+        data_ptr->in_bounds = (i == 3);
     }
 }

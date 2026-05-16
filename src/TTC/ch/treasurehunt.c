@@ -239,7 +239,7 @@ static Actor *__chTreasurehunt_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mt
     sp40[2] = actor->position[2];
 
     suSetSpriteScale(actor, sp3C);
-    modelRender_preDraw(actor_predrawMethod, actor);
+    modelRender_setPreDrawCallback(actor_predrawMethod, actor);
     modelRender_draw(gfx, mtx, sp40, sp4C, sp3C, NULL, marker_loadModelBin(marker));
     return actor;
 }

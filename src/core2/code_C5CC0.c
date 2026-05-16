@@ -3,7 +3,7 @@
 #include "variables.h"
 
 /* .code */
-void func_8034CC50(s32 arg0, BKVtxRef *arg1, Vtx *arg2, Struct71s *arg3){
+void func_8034CC50(s32 arg0, BKModelVtxRef *arg1, Vtx *arg2, Struct71s *arg3){
     arg2->v.cn[3] = arg1->v.v.cn[3] * arg3->unk4;
 }
 
@@ -45,5 +45,5 @@ void func_8034CD8C(Struct71s *arg0, BKModel *arg1, s32 arg2) {
     if ((arg0->unk0 == 2) && ml_timer_update(&arg0->unkC, temp_f14)) {
         func_8034CD08(arg0, 1);
     }
-    BKModel_transformMesh(arg1, arg2, func_8034CC50, (s32) arg0);
+    model_transformMesh(arg1, arg2, func_8034CC50, (s32) arg0);
 }

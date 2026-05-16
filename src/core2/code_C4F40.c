@@ -77,39 +77,40 @@ void func_8034BF54(ActorMarker *marker) {
 }
 
 void func_8034BFF8(ActorMarker *marker) {
-    BKMeshList *sp2C;
-    BKMesh *phi_s1;
-    s32 phi_s2;
+    BKMeshList *mesh_list;
+    BKMesh *mesh;
+    int i;
 
     if (marker->unk48 != NULL) {
         marker->unk4C = vector_new(sizeof(Struct6Es), 0);
-        sp2C = (BKMeshList*)BKModel_getMeshList(marker->unk48);
-        phi_s1 = (BKMesh *)(sp2C + 1);
-        for(phi_s2 = 0; phi_s2 < sp2C->meshCount_0; phi_s2++){
-            if ((phi_s1->uid_0 >= 0x65) && (phi_s1->uid_0 < 0xC8)) {
-                func_8034BED0(marker, phi_s1->uid_0, 2, phi_s1->uid_0 - 0x64);
-            } else if ((phi_s1->uid_0 >= 0xC8) && (phi_s1->uid_0 < 0x12C)) {
+        mesh_list = model_getMeshList(marker->unk48);
+        mesh = mesh_list->data;
+        for (i = 0; i < mesh_list->count; i++) {
+            if ((mesh->uid >= 101) && (mesh->uid < 200)) {
+                func_8034BED0(marker, mesh->uid, 2, mesh->uid - 100);
+            } else if ((mesh->uid >= 200) && (mesh->uid < 300)) {
                 if (func_802E4A08()) {
-                    func_8034BED0(marker, phi_s1->uid_0, 1, phi_s1->uid_0 - 0xC8);
+                    func_8034BED0(marker, mesh->uid, 1, mesh->uid - 200);
                 } else {
-                    func_8034BED0(marker, phi_s1->uid_0, 0, phi_s1->uid_0 - 0xC8);
+                    func_8034BED0(marker, mesh->uid, 0, mesh->uid - 200);
                 }
-            } else if ((phi_s1->uid_0 >= 0x12C) && (phi_s1->uid_0 < 0x190)) {
-                func_8034BED0(marker, phi_s1->uid_0, 4, phi_s1->uid_0 - 0x12C);
-            } else if ((phi_s1->uid_0 >= 0x190) && (phi_s1->uid_0 < 0x1F4)) {
-                func_8034BED0(marker, phi_s1->uid_0, 3, phi_s1->uid_0 - 0x190);
-            } else if ((phi_s1->uid_0 >= 0x1F4) && (phi_s1->uid_0 < 0x258)) {
-                func_8034BED0(marker, phi_s1->uid_0, 5, phi_s1->uid_0 - 0x1F4);
-            } else if ((phi_s1->uid_0 >= 0x258) && (phi_s1->uid_0 < 0x2BC)) {
-                func_8034BED0(marker, phi_s1->uid_0, 3, phi_s1->uid_0 - 0x258);
-            } else if ((phi_s1->uid_0 >= 0x2BC) && (phi_s1->uid_0 < 0x320)) {
-                func_8034BED0(marker, phi_s1->uid_0, 6, phi_s1->uid_0 - 0x2BC);
-            } else if ((phi_s1->uid_0 >= 0x320) && (phi_s1->uid_0 < 0x384)) {
-                func_8034BED0(marker, phi_s1->uid_0, 7, phi_s1->uid_0 - 0x320);
-            } else if ((phi_s1->uid_0 >= 0x384) && (phi_s1->uid_0 < 0x3E8)) {
-                func_8034BED0(marker, phi_s1->uid_0, 8, phi_s1->uid_0 - 0x384);
+            } else if ((mesh->uid >= 300) && (mesh->uid < 400)) {
+                func_8034BED0(marker, mesh->uid, 4, mesh->uid - 300);
+            } else if ((mesh->uid >= 400) && (mesh->uid < 500)) {
+                func_8034BED0(marker, mesh->uid, 3, mesh->uid - 400);
+            } else if ((mesh->uid >= 500) && (mesh->uid < 600)) {
+                func_8034BED0(marker, mesh->uid, 5, mesh->uid - 500);
+            } else if ((mesh->uid >= 600) && (mesh->uid < 700)) {
+                func_8034BED0(marker, mesh->uid, 3, mesh->uid - 600);
+            } else if ((mesh->uid >= 700) && (mesh->uid < 800)) {
+                func_8034BED0(marker, mesh->uid, 6, mesh->uid - 700);
+            } else if ((mesh->uid >= 800) && (mesh->uid < 900)) {
+                func_8034BED0(marker, mesh->uid, 7, mesh->uid - 800);
+            } else if ((mesh->uid >= 900) && (mesh->uid < 1000)) {
+                func_8034BED0(marker, mesh->uid, 8, mesh->uid - 900);
             }
-            phi_s1 = (BKMesh *)((s32)phi_s1 + phi_s1->vtxCount_2*sizeof(s16) + sizeof(BKMesh));
+            
+            mesh = (BKMesh *) &mesh->vertices[mesh->vtx_count];
         }
     }
 }

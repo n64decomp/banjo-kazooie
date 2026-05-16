@@ -1,69 +1,65 @@
 #include <ultra64.h>
-#include "functions.h"
-#include "variables.h"
+#include "model.h"
 
-
-//textureList_getDataPtr
-u8 *func_802EA620(BKTextureList *this){
-    return (u8*)this + this->cnt_4*sizeof(BKTextureHeader) + sizeof(BKTextureList);
+void *textureList_getDataPtr(BKTextureList *this) {
+    return (void *) &this->texture_infos[this->count];
 }
 
-s32 texture_getPixelBitSize(BKTextureHeader *this){
-    if(this->type_4 & 1){
+s32 textureInfo_getBitDepth(BKTextureInfo *this) {
+    if (this->type & BK_TEXTURE_INFO_TYPE_CI4_BIT) {
         return 4;
     }
 
-    if(this->type_4 & 2){
+    if (this->type & BK_TEXTURE_INFO_TYPE_CI8_BIT) {
         return 8;
     }
 
-    if(this->type_4 & 4){
-        return 0x10;
+    if (this->type & BK_TEXTURE_INFO_TYPE_RGBA16_BIT) {
+        return 16;
     }
 
-    if(this->type_4 & 8){
-        return 0x20;
+    if (this->type & BK_TEXTURE_INFO_TYPE_RGBA32_BIT) {
+        return 32;
     }
+
     return 0;
 }
 
-s32 func_802EA684(BKTextureHeader *this){
-    return this->type_4;
+s32 textureInfo_getType(BKTextureInfo *this) {
+    return this->type;
 }
 
-s32 texture_getPaletteSize(BKTextureHeader *this){
-    if(this->type_4 & 1){
-        return 0x20;
+s32 textureInfo_getPaletteSize(BKTextureInfo *this) {
+    if (this->type & BK_TEXTURE_INFO_TYPE_CI4_BIT) {
+        return 32;
     }
 
-    if(this->type_4 & 2){
-        return 0x200;
+    if (this->type & BK_TEXTURE_INFO_TYPE_CI8_BIT) {
+        return 512;
     }
 
-    if(this->type_4 & 4){
+    if (this->type & BK_TEXTURE_INFO_TYPE_RGBA16_BIT) {
         return 0;
     }
 
-    if(this->type_4 & 8){
+    if (this->type & BK_TEXTURE_INFO_TYPE_RGBA32_BIT) {
         return 0;
     }
+
     return 0;
 }
 
-// texture_getOffset
-s32 func_802EA6DC(BKTextureHeader *this){
-    return this->offset_0;
+s32 textureInfo_getOffset(BKTextureInfo *this) {
+    return this->offset;
 }
 
-//texture_getSize
-s32 func_802EA6E4(BKTextureHeader *this){
-    s32 palette_size = texture_getPaletteSize(this);
-    s32 pixel_size = texture_getPixelBitSize(this);
+s32 textureInfo_getTextureSize(BKTextureInfo *this) {
+    s32 palette_size = textureInfo_getPaletteSize(this);
+    s32 pixel_size = textureInfo_getBitDepth(this);
 
-    return (s32)pixel_size*this->width_8*this->height_9/8  + palette_size;
+    return (s32) pixel_size * this->width * this->height / 8 + palette_size;
 }
 
-//textureList_getTexture
-BKTextureHeader *func_802EA748(BKTextureList *arg0, s32 indx){
-    return (BKTextureHeader *)(arg0 +1) + indx;
+BKTextureInfo *textureList_getTextureInfo(BKTextureList *this, s32 index) {
+    return &this->texture_infos[index];
 }

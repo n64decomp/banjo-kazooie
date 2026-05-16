@@ -53,7 +53,7 @@ void func_8038B900(Actor *this){
                      )
                 )
             ){//L8038BB24
-                func_8034A174(this->marker->unk44, 5, sp48);
+                vec3fArray_get_vec3f(this->marker->unk44, 5, sp48);
                 other = func_802EDD8C(sp48, 0.0f, -1300.0f);
                 particleEmitter_setStartingScaleRange(other, 0.04f, 0.04f);
                 particleEmitter_setFinalScaleRange(other, 0.18f, 0.18f);

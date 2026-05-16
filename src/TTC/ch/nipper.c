@@ -279,11 +279,11 @@ static void __chNipper_updateFunc(Actor *this){
 
         case CH_NIPPER_STATE_3_UNKNOWN:
             if(actor_animationIsAt(this, 0.5f) && this->marker->unk14_21){
-                func_8034A174(this->marker->unk44, 6, particlePosition);
+                vec3fArray_get_vec3f(this->marker->unk44, 6, particlePosition);
                 __chNipper_drawParticlesAtPosition(particlePosition, 2);
             }
             else if(actor_animationIsAt(this, 0.95f) && this->marker->unk14_21){//L80388800
-                func_8034A174(this->marker->unk44, 5, particlePosition);
+                vec3fArray_get_vec3f(this->marker->unk44, 5, particlePosition);
                 __chNipper_drawParticlesAtPosition(particlePosition, 2);
             }
 

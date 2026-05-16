@@ -536,7 +536,7 @@ void func_8028EF28(f32 arg0[3]){
     get_throw_target_position(arg0);
 }
 
-BKCollisionTri *func_8028EF48(void){
+BKCollisionTriangle *func_8028EF48(void){
     return func_802946F0();
 }
 

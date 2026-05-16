@@ -92,7 +92,7 @@ extern void func_8038CF50(Actor *this){
     if(this->marker->unk14_21){
         for(i = 5; i < 6; i++){
             if(randf() < 0.4){
-                func_8034A174(this->marker->unk44, i, sp40);
+                vec3fArray_get_vec3f(this->marker->unk44, i, sp40);
                 particleEmitter_setPosition(local->unk0, sp40);
                 particleEmitter_emitN(local->unk0, 1);
                 

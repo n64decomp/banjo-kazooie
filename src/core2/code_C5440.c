@@ -143,7 +143,7 @@ Struct70s *func_8034C630(s32 arg0){
 
     for(iPtr = vector_getBegin(D_80386140.unk4); iPtr < endPtr; iPtr++){
         if( (iPtr->xform_id == 3)
-            && meshList_meshContainsVtx(BKModel_getMeshList(iPtr->model), iPtr->unk4, arg0)
+            && meshList_meshContainsVtx(model_getMeshList(iPtr->model), iPtr->unk4, arg0)
         ){
             return &iPtr->unk8;
         }
@@ -152,41 +152,34 @@ Struct70s *func_8034C630(s32 arg0){
 }
 
 void func_8034C6DC(BKModel *arg0){
-    BKMeshList * sp2C = BKModel_getMeshList(arg0);
-    s32 i;
-    BKMesh * s1 = (sp2C + 1);
-    for(i = 0; i < sp2C->meshCount_0; i++){
-        if(s1->uid_0 >= 0x65 && s1->uid_0 < 0xC8){
-            func_8034C3D0(arg0, s1->uid_0, 1, s1->uid_0 - 0x64);
+    BKMeshList *mesh_list = model_getMeshList(arg0);
+    BKMesh *mesh = mesh_list->data;
+    int i;
+
+    for (i = 0; i < mesh_list->count; i++) {
+        if ((mesh->uid >= 101) && (mesh->uid < 200)) {
+            func_8034C3D0(arg0, mesh->uid, 1, mesh->uid - 100);
+        } else if ((mesh->uid >= 200) && (mesh->uid < 300)) {
+            func_8034C3D0(arg0, mesh->uid, 0, mesh->uid - 200);
+        } else if ((mesh->uid >= 300) && (mesh->uid < 400)) {
+            func_8034C3D0(arg0, mesh->uid, 3, mesh->uid - 300);
+        } else if ((mesh->uid >= 400) && (mesh->uid < 500)) {
+            func_8034C3D0(arg0, mesh->uid, 2, mesh->uid - 400);
+        } else if ((mesh->uid >= 500) && (mesh->uid < 600)) {
+            func_8034C3D0(arg0, mesh->uid, 4, mesh->uid - 500);
+        } else if ((mesh->uid >= 600) && (mesh->uid < 700)) {
+            func_8034C3D0(arg0, mesh->uid, 2, mesh->uid - 600);
+        } else if ((mesh->uid >= 700) && (mesh->uid < 800)) {
+            func_8034C3D0(arg0, mesh->uid, 5, mesh->uid - 700);
+        } else if ((mesh->uid >= 800) && (mesh->uid < 900)) {
+            func_8034C3D0(arg0, mesh->uid, 6, mesh->uid - 800);
+        } else if ((mesh->uid >= 900) && (mesh->uid < 1000)) {
+            func_8034C3D0(arg0, mesh->uid, 8, mesh->uid - 900);
+        } else if ((mesh->uid >= 1000) && (mesh->uid < 1100)) {
+            func_8034C3D0(arg0, mesh->uid, 7, mesh->uid - 1000);
         }
-        else if(s1->uid_0 >= 0xc8 && s1->uid_0 < 0x12c){
-            func_8034C3D0(arg0, s1->uid_0, 0, s1->uid_0 - 0xc8);
-        }
-        else if(s1->uid_0 >= 0x12c && s1->uid_0 < 0x190){
-            func_8034C3D0(arg0, s1->uid_0, 3, s1->uid_0 - 0x12c);
-        }
-        else if(s1->uid_0 >= 0x190 && s1->uid_0 < 0x1F4){
-            func_8034C3D0(arg0, s1->uid_0, 2, s1->uid_0 - 0x190);
-        }
-        else if(s1->uid_0 >= 0x1F4 && s1->uid_0 < 0x258){
-            func_8034C3D0(arg0, s1->uid_0, 4, s1->uid_0 - 0x1F4);
-        }
-        else if(s1->uid_0 >= 0x258 && s1->uid_0 < 0x2bc){
-            func_8034C3D0(arg0, s1->uid_0, 2, s1->uid_0 - 0x258);
-        }
-        else if(s1->uid_0 >= 0x2bc && s1->uid_0 < 0x320){
-            func_8034C3D0(arg0, s1->uid_0, 5, s1->uid_0 - 0x2bc);
-        }
-        else if(s1->uid_0 >= 0x320 && s1->uid_0 < 0x384){
-            func_8034C3D0(arg0, s1->uid_0, 6, s1->uid_0 - 0x320);
-        }
-        else if(s1->uid_0 >= 0x384 && s1->uid_0 < 0x3e8){
-            func_8034C3D0(arg0, s1->uid_0, 8, s1->uid_0 - 0x384);
-        }
-        else if(s1->uid_0 >= 0x3e8 && s1->uid_0 < 0x44c){
-            func_8034C3D0(arg0, s1->uid_0, 7, s1->uid_0 - 0x3e8);
-        }
-        s1 = &((s16*)(s1 + 1))[s1->vtxCount_2];
+
+        mesh = &mesh->vertices[mesh->vtx_count];
     }
 }
 

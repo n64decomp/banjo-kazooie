@@ -67,7 +67,7 @@ void func_802F8110(struct3s *this, Gfx **gdl, Mtx **mptr, u32 arg3){
     for(iPtr = startPtr; iPtr < endPtr; iPtr++){
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         modelRender_draw(gdl, mptr, iPtr, 0, 1.0f, 0, this->unk2C);
-        iPtr->unk18 = func_8033A170();
+        iPtr->unk18 = modelRender_func_8033A170();
     }
 }
 

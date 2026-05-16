@@ -3,7 +3,7 @@
 #include "variables.h"
 
 
-void func_8034F1C0(s32 arg0, BKVtxRef *ref, Vtx *dst, Struct75s *arg3) {
+void func_8034F1C0(s32 arg0, BKModelVtxRef *ref, Vtx *dst, Struct75s *arg3) {
     s32 temp_f4;
     s32 i;
 
@@ -28,5 +28,5 @@ void func_8034F268(Struct75s *arg0, BKModel *arg1, s32 arg2) {
     } else {
         arg0->unk0 = 0.0f;
     }
-    BKModel_transformMesh(arg1, arg2, func_8034F1C0, (s32) arg0);
+    model_transformMesh(arg1, arg2, func_8034F1C0, (s32) arg0);
 }

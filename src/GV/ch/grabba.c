@@ -318,7 +318,7 @@ void chGrabba_update(Actor *this){
             Actor *tmp_v0;
             tmp_v0 = subaddie_getLinkedActor(this);
             if(this->marker->unk14_21){
-                func_8034A174(this->marker->unk44, 5, tmp_v0->position);
+                vec3fArray_get_vec3f(this->marker->unk44, 5, tmp_v0->position);
             }
             else{
                 tmp_v0->position_x = this->position_x; 

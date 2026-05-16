@@ -5,15 +5,15 @@
 
 #include "core2/modelRender.h"
 
-extern BKCollisionTri *func_8028EF48(void);
+extern BKCollisionTriangle *func_8028EF48(void);
 extern void func_8030E9FC(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8030EA54(enum sfx_e uid, f32 arg1, f32 arg2, u32 arg3, f32 arg4[3], f32 arg5, f32 arg6);
 extern void func_8031CE28(s32, s32, f32);
 void timed_exitStaticCamera(f32);
-extern BKCollisionTri *func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
+extern BKCollisionTriangle *collisionList_func_802E805C(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, s32, s32);
 extern void func_80340200(s32, f32[3], s32, f32, s32, s32, BKVertexList *, s32);
 extern void func_802E9118(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, s32, f32, s32, s32, s32);
-extern BKCollisionTri *func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
+extern BKCollisionTriangle *func_802E9DD8(BKCollisionList *, BKVertexList *, f32[3], s32, f32, s32, f32, s32, s32);
 extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32[3]);
 
 extern void boneTransformList_getBoneScale(s32, s32, f32[3]);
@@ -44,7 +44,7 @@ struct {
     //u8 pad22[0x2];
     BKModelBin * model;
     f32 position[3];
-    struct5Bs *unk34;
+    Vec3fArray *unk34;
     f32 timeDelta;
     f32 unk3C; // raised sound timer?
     BKVertexList *vertexList1;
@@ -64,10 +64,10 @@ enum maClankerState_e {
     MACLANKER_STATE_3_IDLE_RAISED
 };
 
-BKCollisionTri *__maClanker_getClankerCollisionTris(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
-    BKCollisionTri *collision_tris;
+BKCollisionTriangle *__maClanker_getClankerCollisionTris(s32 arg0, s32 arg1, s32 arg2, s32 arg3){
+    BKCollisionTriangle *collision_tris;
 
-    collision_tris = func_802E805C(maClanker.collisionList, maClanker.vertexList1, maClanker.position, 0, 1.0f, arg0, arg1, arg2, arg3);
+    collision_tris = collisionList_func_802E805C(maClanker.collisionList, maClanker.vertexList1, maClanker.position, 0, 1.0f, arg0, arg1, arg2, arg3);
     if(collision_tris && func_8029453C()){
         func_80340200(maClanker.unk18, maClanker.position, 0, 1.0f, 0, collision_tris, maClanker.vertexList1, arg1);
     }
@@ -177,7 +177,7 @@ void maClanker_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     player_getPosition(player_position);
 
     for(i = 0; i < 2; i++){//L803888FC
-        func_8034A174(maClanker.unk34, (i == 0) ? 0x10 : 0xf, sp74);
+        vec3fArray_get_vec3f(maClanker.unk34, (i == 0) ? 0x10 : 0xf, sp74);
         sp68[0] = player_position[0] - sp74[0];
         sp68[1] = player_position[1] - sp74[1];
         sp68[2] = player_position[2] - sp74[2];
@@ -207,7 +207,7 @@ void maClanker_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
         func_8033A45C(3, tmp_s0);
     }
     modelRender_setBoneTransformList(bone_transform_list);
-    func_8033A450(maClanker.unk34);
+    modelRender_setRefPoints(maClanker.unk34);
     modelRender_setVertexList(maClanker.vertexList1);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     modelRender_draw(gfx, mtx, maClanker.position, NULL, 1.0f, NULL, maClanker.model);
@@ -218,17 +218,17 @@ void maClanker_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void func_80388B4C(s32 arg0) {
-    func_8034A174(maClanker.unk34, 5, arg0);
+    vec3fArray_get_vec3f(maClanker.unk34, 5, arg0);
 }
 
 void func_80388B78(f32 arg0[3], f32 arg1[3]){
-    func_8034A174(maClanker.unk34, 7, arg0);
-    func_8034A174(maClanker.unk34, 8, arg1);
+    vec3fArray_get_vec3f(maClanker.unk34, 7, arg0);
+    vec3fArray_get_vec3f(maClanker.unk34, 8, arg1);
 }
 
 void func_80388BBC(f32 arg0[3], f32 arg1[3]){
-    func_8034A174(maClanker.unk34, 9, arg0);
-    func_8034A174(maClanker.unk34, 10, arg1);
+    vec3fArray_get_vec3f(maClanker.unk34, 9, arg0);
+    vec3fArray_get_vec3f(maClanker.unk34, 10, arg1);
 }
 
 void func_80388C00(s32 arg0, s32 arg1){
@@ -256,10 +256,10 @@ void maClanker_release(void){
         skeletalAnim_free(maClanker.skeletonAnim);
         sfxsource_freeSfxsourceByIndex(maClanker.sfxsourceIdx);
         func_80340690(maClanker.unk18);
-        func_8034A2A8(maClanker.unk34);
-        if(model_getVtxList(maClanker.model) != maClanker.vertexList1)
+        vec3fArray_free(maClanker.unk34);
+        if(modelbin_getVtxList(maClanker.model) != maClanker.vertexList1)
             vtxList_free(maClanker.vertexList1);
-        if(model_getVtxList(maClanker.model) != maClanker.vertexList2)
+        if(modelbin_getVtxList(maClanker.model) != maClanker.vertexList2)
             vtxList_free(maClanker.vertexList2);
         assetcache_release((void *)maClanker.model);
         maClanker.unk34 = NULL;
@@ -277,10 +277,10 @@ void maClanker_init(void){
         maClanker.unk18 = func_803406B0();
         maClanker.currentState = MACLANKER_STATE_0_NOT_INITIALIZED;
         maClanker.model = assetcache_get(ASSET_88E_MODEL_CLANKER_CHAIN);
-        maClanker.collisionList = model_getCollisionList(maClanker.model);
-        maClanker.unk34 = func_8034A2C8();
+        maClanker.collisionList = modelbin_getCollisionList(maClanker.model);
+        maClanker.unk34 = vec3fArray_new();
         maClanker.unk3C = 1.0f;
-        maClanker.vertexList1 = model_getVtxList(maClanker.model);
+        maClanker.vertexList1 = modelbin_getVtxList(maClanker.model);
         maClanker.vertexList2 = vtxList_clone(maClanker.vertexList1);
         maClanker.hasMetPlayer = FALSE;
         maClanker.unk49 = 0;
@@ -313,7 +313,7 @@ void maClanker_raiseClanker(void){
 
 void maClanker_playScrewNoise(s32 arg0){
     f32 sp1C[3];
-    func_8034A174(maClanker.unk34, 5, sp1C);
+    vec3fArray_get_vec3f(maClanker.unk34, 5, sp1C);
     if(arg0 != 0){
         sfx_playFadeShorthandDefault(SFX_91_METALLIC_SOUND, 0.7f, 32675, sp1C, 100, 6000);
     }
@@ -330,7 +330,7 @@ void maClanker_update(void){
     f32 sp60;
     f32 sp54[3];
     f32 sp48[3];
-    BKCollisionTri *tmp_v0;
+    BKCollisionTriangle *tmp_v0;
     f32 pad[3];
 
     code13C0_checkCCChecksums();
@@ -343,7 +343,7 @@ void maClanker_update(void){
         skeletalAnim_update(maClanker.skeletonAnim, time_delta, 1);
         sp60 = skeletalAnim_getProgress(maClanker.skeletonAnim);
         if(maClanker.currentState == MACLANKER_STATE_3_IDLE_RAISED){
-            func_8034A174(maClanker.unk34, 5, sp54);
+            vec3fArray_get_vec3f(maClanker.unk34, 5, sp54);
             if(sp60 < sp64){
                 sfx_playFadeShorthandDefault(SFX_7E_CREAKY_DOOR_OPENING, 0.6f, 32300, sp54, 1000, 5000);
             }//L80389058
@@ -385,7 +385,7 @@ void maClanker_update(void){
         }//L803891F8
 
         if(maClanker.currentState == MACLANKER_STATE_3_IDLE_RAISED){
-            func_8034A174(maClanker.unk34, 6, sp48);
+            vec3fArray_get_vec3f(maClanker.unk34, 6, sp48);
             if(ml_vec3f_distance(sp48, player_position) <= 130.0f && player_position[1] - sp48[1] < 50.0f){
                 func_8031D04C(MAP_21_CC_WITCH_SWITCH_ROOM, WARP_CC_WITCH_SWITCH_1_TOP_ENTRANCE);
             }
@@ -436,7 +436,7 @@ void maClanker_update(void){
 
 void maClanker_defrag(void){
     if(maClanker.unk34)
-        maClanker.unk34 = func_8034A348(maClanker.unk34);
+        maClanker.unk34 = vec3fArray_defrag(maClanker.unk34);
     
     if(maClanker.skeletonAnim)
         maClanker.skeletonAnim =  defrag(maClanker.skeletonAnim);

@@ -90,8 +90,8 @@ Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
 
     this = marker_getActorAndRotation(marker, &sp34);
-    modelRender_preDraw( (GenFunction_1)func_802E0710, (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
+    modelRender_setPreDrawCallback( (GenFunction_1)func_802E0710, (s32)this);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp34, this->scale, NULL, marker_loadModelBin(marker));
     return this;
 }

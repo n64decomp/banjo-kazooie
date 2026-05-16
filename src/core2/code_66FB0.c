@@ -120,7 +120,7 @@ void func_802EE354(Actor* arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f32 arg5,
     f32 sp2C[3];
 
     if(arg8){
-        func_8034A174(func_80329934(), arg8, sp2C);
+        vec3fArray_get_vec3f(func_80329934(), arg8, sp2C);
         sp2C[1] += (f32)arg3;
     }
     else{

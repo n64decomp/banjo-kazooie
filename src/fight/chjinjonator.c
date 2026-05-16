@@ -74,7 +74,7 @@ void chjinjonator_spawnSparkleParticles(Actor *this) {
 
     for (i = 0; i < 4; i++) {
         if (randf() < 0.3) {
-            func_8034A174(this->marker->unk44, i + 5, position);
+            vec3fArray_get_vec3f(this->marker->unk44, i + 5, position);
             chjinjonator_createSpriteParticles(position, 1, ASSET_718_SPRITE_SPARKLE_WHITE_2);
         }
     }
@@ -259,7 +259,7 @@ void chjinjonator_update(Actor *this){
                         this->unk44_31 = 0;
                     }
                     func_80324D2C(0.0f, COMUSIC_8C_JINJONATOR_POWERUP);
-                    func_8034A174(this->marker->unk44, 0x1f, this->position);
+                    vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->position);
                     this->velocity[0] = (this->position[0] - this->unk1C[0]) / time_delta;
                     this->velocity[1] = (this->position[1] - this->unk1C[1]) / time_delta;
                     this->velocity[2] = (this->position[2] - this->unk1C[2]) / time_delta;
@@ -267,7 +267,7 @@ void chjinjonator_update(Actor *this){
                 
             }
             else{
-                func_8034A174(this->marker->unk44, 0x1f, this->unk1C);
+                vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->unk1C);
             }
             break;
 
@@ -284,7 +284,7 @@ void chjinjonator_update(Actor *this){
                 FUNC_8030E624(SFX_2_CLAW_SWIPE, 1.0f, 28000);
             
             if(actor_animationIsAt(this, 0.999f)){
-                func_8034A174(this->marker->unk44, 0x1f, this->position);
+                vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->position);
                 chjinjonator_803903C4(this);
                 sfx_playFadeShorthandDefault(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                 func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
@@ -337,7 +337,7 @@ void chjinjonator_update(Actor *this){
 
         case JINJONATOR_STATE_11_FINAL_ATTACK:
             if (actor_animationIsAt(this, 0.999f)) {
-                func_8034A174(this->marker->unk44, 0x1f, this->position);
+                vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->position);
                 FUNC_8030E624(SFX_17B_AIRPLANE_FALLING, 1.0f, 32000);
                 FUNC_8030E624(SFX_147_GRUNTY_SPELL_ATTACK_2, 1.0f, 32000);
                 anctrl_setSmoothTransition(this->anctrl, 0);
@@ -359,7 +359,7 @@ void chjinjonator_update(Actor *this){
             break;
     }
 
-    func_8034A174(this->marker->unk44, 0x1f, D_80392920);
+    vec3fArray_get_vec3f(this->marker->unk44, 0x1f, D_80392920);
 }
 
 void chjinjonator_attack(ActorMarker *marker, s32 hit_count, bool mirrored) {

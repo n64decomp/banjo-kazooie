@@ -5,7 +5,7 @@
 #define PROP_MODEL_COUNT 0x2A2
 #define PROP_SPRITE_COUNT 0x168
 
-extern f32 func_8033A244(f32);
+
 
 typedef struct{
     BKModelBin *model_bin;
@@ -35,10 +35,10 @@ void propModelList_drawModel(Gfx **gfx, Mtx **mtx, Vtx **vtx, f32 position[3], f
     BKModelBin * model;
     
     model = propModelList_getModel(modelId);
-    func_8033A244(3700.0f);
-    func_8033A28C(1);
+    modelRender_func_8033A244(3700.0f);
+    modelRender_func_8033A28C(1);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-    func_8033A1FC();
+    modelRender_func_8033A1FC();
     modelRender_draw(gfx, mtx, position, rotation, scale, NULL, model);
 }
 

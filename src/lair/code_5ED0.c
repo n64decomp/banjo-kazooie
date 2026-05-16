@@ -63,7 +63,7 @@ extern void code_7060_setVoidOutLocation(enum map_e, s32);
 extern void quizQuestionAskedBitfield_set(u32, int); // ff_isAsked_flag_set
 extern int quizQuestionAskedBitfield_get(u32); // ff_isAsked_flag_get
 
-extern void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
+extern void model_getMeshCenter(BKModel *model, s32 mesh_id, s16 [3]); //! $a2 type unk
 
 extern void ability_setAllLearned(s32);  // set unlocked moves bitfield
 extern s32  ability_getAllLearned(void); // get unlocked moves bitfield
@@ -476,7 +476,7 @@ bool ff_hasQuestionBeenAskedAlready(enum ff_question_type_e type, s32 questionId
 }
 
 // i love stupid shit like this. these 3 lines of C compile into 150 lines of asm for type handling
-void func_8038C3A0(u32 a0, BKVtxRef *a1, Vtx *a2, Furnace_Fun_Board *a3)
+void func_8038C3A0(u32 a0, BKModelVtxRef *a1, Vtx *a2, Furnace_Fun_Board *a3)
 {
     a2->v.cn[0] = a1->v.v.cn[0] * a3->unk10;
     a2->v.cn[1] = a1->v.v.cn[1] * a3->unk10;
@@ -544,11 +544,11 @@ void lair_func_8038C6BC(void)
             ff_board_ptr->unk10 = 0.45f;
         }
 
-        BKModel_getMeshCenter(ffStorage->unk0, s1, &ff_board_ptr->unkA);
+        model_getMeshCenter(ffStorage->unk0, s1, &ff_board_ptr->unkA);
     }
 }
 
-void func_8038C7A0(u32 a0, BKVtxRef *a1, Vtx *a2, Furnace_Fun_Board *a3)
+void func_8038C7A0(u32 a0, BKModelVtxRef *a1, Vtx *a2, Furnace_Fun_Board *a3)
 {
     a2->v.cn[0] = a1->v.v.cn[0] * ffStorage->unk14;
     a2->v.cn[1] = a1->v.v.cn[1] * ffStorage->unk14;
@@ -566,11 +566,11 @@ void func_8038C9D0(void) {
         } else if ((ff_board_ptr->unk9 != 0) && (ff_board_ptr->unk10 < 0.95)) {
             ff_board_ptr->unk10 = MIN(ff_board_ptr->unk10 + 0.05, 0.95);
         }
-        BKModel_transformMesh(ffStorage->unk0, current_tile_id, func_8038C3A0, (s32) ff_board_ptr);
+        model_transformMesh(ffStorage->unk0, current_tile_id, func_8038C3A0, (s32) ff_board_ptr);
         ff_board_ptr++;
     }
 
-    BKModel_transformMesh(ffStorage->unk0, 0x1F1, func_8038C7A0, (s32) ff_board_ptr);
+    model_transformMesh(ffStorage->unk0, 0x1F1, func_8038C7A0, (s32) ff_board_ptr);
     if ( !((ffStorage->currFfMode != FFA_3_TRIGGER_QUESTION) && (ffStorage->currFfMode != FFA_4_UNK)) 
          && (0.5 < ffStorage->unk14)
     ) {
@@ -1230,7 +1230,7 @@ void lair_func_8038E0B0(void) {
         controller_copySideButtons(0, joystick);
         if (ffStorage->currFfMode < 3) {
             player_getPosition(ffStorage->playerPosition);
-            ff_tile_id = func_8033F3E8(ffStorage->unk0, ffStorage->playerPosition, FF_QNF_START, FF_QNF_END);
+            ff_tile_id = model_func_8033F3E8(ffStorage->unk0, ffStorage->playerPosition, FF_QNF_START, FF_QNF_END);
             if ((ff_tile_id != ffStorage->currentTileId) && (ffStorage->currentTileId != 0)) {
                 if (ffStorage->currentBoardTile->unk9 == 2) {
                     ffStorage->currentBoardTile->unk9 = 0U;

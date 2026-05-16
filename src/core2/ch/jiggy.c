@@ -6,8 +6,8 @@
 #include "core2/commonParticle.h"
 
 extern void func_802BE720(void);
-extern f32 func_8033A244(f32);
-extern void func_8033A280(f32);
+
+extern void modelRender_func_8033A280(f32);
 extern void func_80329904(ActorMarker *, s32, f32 *);
 
 /* .data */
@@ -107,8 +107,8 @@ Actor *chjiggy_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **vtx) {
         jiggyId = chjiggy_getJiggyId(jiggy_actor);
 
         if ((jiggyId == JIGGY_1C_CC_RINGS) || (jiggyId == JIGGY_1D_CC_SLOW_SAWBLADES)) {
-            func_8033A280(10.0f);
-            func_8033A244(30000.0f);
+            modelRender_func_8033A280(10.0f);
+            modelRender_func_8033A244(30000.0f);
         }
 
         jiggy_actor = actor_draw(this, gdl, mptr, vtx);

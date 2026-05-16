@@ -113,7 +113,7 @@ void func_80391040(Actor *this){
                         sp2C = 0x711;
                         break;
             }
-            func_8034A174(this->marker->unk44, randi2(0,a1) + 5, sp34);
+            vec3fArray_get_vec3f(this->marker->unk44, randi2(0,a1) + 5, sp34);
             func_802DC110(sp34, sp2C);
       }
 }

@@ -75,7 +75,7 @@ Actor *CCW_func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     this = actor_draw(marker, gfx, mtx, vtx);
     local = (ActorLocal_CCW_6620 *)&this->local;
     if (this->marker->unk14_21) {
-        func_8034A174(func_80329934(), 5, local->unk4);
+        vec3fArray_get_vec3f(func_80329934(), 5, local->unk4);
     }
     return this;
 }

@@ -242,13 +242,13 @@ Actor*  chflotsam_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
 
     if(local->pCtrl_8){
-        func_8033A450(func_80329934());
+        modelRender_setRefPoints(func_80329934());
     }
     
     actor_draw(marker, gfx, mtx, vtx);
 
     if(local->pCtrl_8 && this->marker->unk14_21){
-        func_8034A174(func_80329934(), 5, sp28);
+        vec3fArray_get_vec3f(func_80329934(), 5, sp28);
         particleEmitter_setPosition(local->pCtrl_8, sp28);
         particleEmitter_draw(local->pCtrl_8, gfx, mtx, vtx);
     }

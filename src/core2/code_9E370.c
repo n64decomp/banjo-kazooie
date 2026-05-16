@@ -11,7 +11,7 @@
 
 extern void func_802D7124(Actor *, f32);
 
-extern void func_8033A244(f32);
+
 
 f32 func_80257204(f32, f32, f32, f32);
 extern Actor *spawnQueue_bundleWithYaw_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z, s32 yaw);
@@ -29,14 +29,14 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, CollisionParams *arg2);
 void subaddie_set_state_with_direction(Actor * this, s32 arg1, f32 arg2, s32 arg3);
 void func_8032BB88(Actor *this, s32 arg1, s32 arg2);
 int  subaddie_playerIsWithinSphere(Actor *this, s32 dist);
-extern void func_8033A4A0(enum asset_e mode_id, f32, f32);
+
 extern void codeAEDA0_setPrimaryColorRGB(s32, s32, s32);
 extern void func_803382FC(s32);
 extern void codeAEDA0_setSpriteDrawMode(s32);
 extern void codeAEDA0_postDrawSprite(Gfx **);
 extern void codeAEDA0_drawSprite(Gfx **);
 extern void func_80344138(s32, s32, s32, f32[3], f32[3], Gfx **, Mtx **);
-extern BKVertexList *vtxList_clone(BKVertexList *vtxList);
+
 
 typedef struct {
     f32 unk0[3];
@@ -47,7 +47,7 @@ typedef struct {
 /* .data */
 ActorArray *suBaddieActorArray = NULL; //actorArrayPtr
 s32 D_8036E564 = 0;
-struct5Bs *D_8036E568 = NULL;
+Vec3fArray *D_8036E568 = NULL;
 s32 D_8036E56C = 0;
 void *D_8036E570 = NULL;
 u8 D_8036E574 = 0;
@@ -72,7 +72,7 @@ Actor * marker_getActorAndRotation(ActorMarker *marker,f32 rotation[3])
 
 Actor *func_80325340(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     BKModelBin * model_bin =  func_80330DE4(marker);
-    if(model_bin && func_8033A12C(model_bin)){
+    if(model_bin && modelbin_getUnk14List(model_bin)){
         if(marker->collidable)
             marker_loadModelBin(marker);
     }
@@ -95,16 +95,16 @@ void actor_predrawMethod(Actor *this){
     if(this->marker->unk20 != NULL){
         sp44 = FALSE;
         if(this->unk148 != NULL){
-            animMtxList_setBoned(&this->marker->unk20, model_getAnimationList(sp48), skeletalAnim_getBoneTransformList(this->unk148));
+            animMtxList_setBoned(&this->marker->unk20, modelbin_getAnimationList(sp48), skeletalAnim_getBoneTransformList(this->unk148));
             sp44 = TRUE;
         }//L8032542C
-        else if(this->anctrl != NULL && model_getAnimationList(sp48)){
-            anim_802897D4(&this->marker->unk20, model_getAnimationList(sp48), anctrl_getAnimPtr(this->anctrl));
+        else if(this->anctrl != NULL && modelbin_getAnimationList(sp48)){
+            anim_802897D4(&this->marker->unk20, modelbin_getAnimationList(sp48), anctrl_getAnimPtr(this->anctrl));
             sp44 = TRUE;
         }//L80325474
 
         if(sp44){
-            func_8033A444(this->marker->unk20);
+            modelRender_func_8033A444(this->marker->unk20);
         }
     }//L8032548C
 
@@ -115,10 +115,10 @@ void actor_predrawMethod(Actor *this){
     modelRender_setDepthMode(this->depth_mode);
     if(this->marker->unk44 != 0){
         if((s32)this->marker->unk44 == 1){
-            func_8033A450(D_8036E568);
+            modelRender_setRefPoints(D_8036E568);
         }
         else{
-            func_8033A450(this->marker->unk44);
+            modelRender_setRefPoints(this->marker->unk44);
         }
     }
 
@@ -128,7 +128,7 @@ void actor_predrawMethod(Actor *this){
             sp34[0] = this->pitch;
             sp34[1] = this->yaw;
             sp34[2] = this->roll;
-            gclights_recolor_vertices(sp40, this->position, sp34, this->scale, 0, model_getVtxList(sp48));
+            gclights_recolor_vertices(sp40, this->position, sp34, this->scale, 0, modelbin_getVtxList(sp48));
         }//L80325560
         modelRender_setVertexList(sp40);
         this->unkF4_29 = NOT(this->unkF4_29);
@@ -197,12 +197,12 @@ BKModelBin *func_803257B4(ActorMarker *marker) {
     actor = marker_getActor(marker);
     if ((actor->unk174 == 0.0f) || (actor->unk178 == 0.0f)) {
         model_bin = (BKModelBin *) assetcache_get(marker->modelId);
-        vtx_list = (BKVertexList *)((s32)model_bin + model_bin->vtx_list_offset_10);
+        vtx_list = modelbin_getVtxList_MACRO(model_bin);
         actor->unk174 = (f32) vtx_list->local_norm * actor->scale;
         actor->unk178 = (f32) vtx_list->global_norm * actor->scale;
         assetcache_release(model_bin);
     }
-    func_8033A4A0(marker->modelId, actor->unk174, actor->unk178);
+    modelRender_setSecondaryModel(marker->modelId, actor->unk174, actor->unk178);
     return NULL;
 }
 
@@ -212,8 +212,8 @@ Actor *actor_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
 
     this = marker_getActorAndRotation(marker, sp3C);
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, sp3C, this->scale, (this->unk104 != NULL) ? D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
@@ -334,15 +334,15 @@ Actor *actor_drawFullDepth(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 
     this = marker_getActorAndRotation(marker, rotation);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, rotation, this->scale, (this->unk104 != NULL) ?  D_8036E580 : NULL, func_803257B4(marker));
     return this;
 }
 
 Actor *func_80325F2C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    func_8033A244(30000.0f);
-    func_8033A280(2.0f);
+    modelRender_func_8033A244(30000.0f);
+    modelRender_func_8033A280(2.0f);
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
@@ -350,7 +350,7 @@ void func_80325F84(Actor *this){}
 
 void func_80325F8C(void) {
     suBaddieActorArray = NULL;
-    D_8036E568 = func_8034A2C8();
+    D_8036E568 = vec3fArray_new();
     D_8036E56C = dustEmitter_returnGiven(0x10);
     D_8036E570 = func_802F2AEC();
     D_8036E574 = 0;
@@ -384,7 +384,7 @@ void func_80325FE8(Actor *this) {
     }
     if ((s32)marker->unk44 < 0) {
         commonParticle_freeParticleByActorMarker(marker);
-        func_8034A2A8(marker->unk44);
+        vec3fArray_free(marker->unk44);
        marker->unk44 = 0;
     }
     if (marker->unk4C != 0) {
@@ -420,7 +420,7 @@ void actorArray_free(void) {
         free(suBaddieActorArray);
         suBaddieActorArray = NULL;
     }
-    func_8034A2A8(D_8036E568);
+    vec3fArray_free(D_8036E568);
     D_8036E568 = NULL;
     dustEmitter_empty(D_8036E56C);
     D_8036E56C = NULL;
@@ -928,7 +928,7 @@ Actor *actor_new(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         suLastBaddie->marker->unk44 = 1;
     }
     else if(flags & ACTOR_FLAG_UNKNOWN_6){
-        suLastBaddie->marker->unk44 = func_8034A2C8();
+        suLastBaddie->marker->unk44 = vec3fArray_new();
     }
 
     if(flags & ACTOR_FLAG_UNKNOWN_12){
@@ -1622,11 +1622,11 @@ void actor_loopAnimation(Actor *this){
 }
 
 s32 func_80329904(ActorMarker *marker, s32 arg1, f32 *arg2) {
-    func_8034A174(marker->unk44, arg1, arg2);
+    vec3fArray_get_vec3f(marker->unk44, arg1, arg2);
     return marker->unk14_21;
 }
 
-struct5Bs *func_80329934(void){
+Vec3fArray *func_80329934(void){
     return D_8036E568;
 }
 
@@ -2012,11 +2012,11 @@ void func_8032AB84(Actor *arg0) {
             if (arg0->unk14C[var_s0] == NULL) {
                 switch (var_s0) {                       /* irregular */
                     case 0:
-                        arg0->unk14C[0] = vtxList_clone(model_getVtxList(func_80330DE4(marker)));
+                        arg0->unk14C[0] = vtxList_clone(modelbin_getVtxList(func_80330DE4(marker)));
                         break;
                     case 1:
-                        arg0->unk14C[1] = (arg0->unk17C_31) ? model_getVtxList(func_80330DE4(marker))
-                                        : vtxList_clone(model_getVtxList(func_80330DE4(marker)));
+                        arg0->unk14C[1] = (arg0->unk17C_31) ? modelbin_getVtxList(func_80330DE4(marker))
+                                        : vtxList_clone(modelbin_getVtxList(func_80330DE4(marker)));
                         break;
                 }
             }
@@ -2111,7 +2111,7 @@ void actorArray_defrag(void) {
             i_actor = &suBaddieActorArray->data[D_8036E5AC];
 
             if ((s32)i_actor->marker->unk44 < 0) {
-                i_actor->marker->unk44 = func_8034A348(i_actor->marker->unk44);
+                i_actor->marker->unk44 = vec3fArray_defrag(i_actor->marker->unk44);
             }
 
             if (i_actor->unk158[0] != NULL) {
@@ -2146,7 +2146,7 @@ void actorArray_defrag(void) {
     }
 
     if (D_8036E568 != 0) {
-        D_8036E568 = func_8034A348(D_8036E568);
+        D_8036E568 = vec3fArray_defrag(D_8036E568);
     }
 
     if (D_8036E570 != 0) {
@@ -2177,7 +2177,7 @@ void func_8032B258(Actor *this, enum collision_e arg1) {
     if ((arg1 == COLLISION_2_DIE) && this->unk138_27 != 0) {
         sp44 = player_getYaw();
         if ((s32)this->marker->unk44 < 0) {
-            func_8034A174( this->marker->unk44, 0x20, sp38);
+            vec3fArray_get_vec3f( this->marker->unk44, 0x20, sp38);
         }
         if (((s32)this->marker->unk44 < 0) && ((sp38[0] != 0.0f) || (sp38[1] != 0.0f) || (sp38[2] != 0.0f))) {
             __spawnQueue_add_5((GenFunction_5) spawnQueue_bundleWithYaw_f32, this->unk138_27 + BUNDLE_15__JIGGY, reinterpret_cast(s32, sp38[0]), reinterpret_cast(s32, sp38[1]), reinterpret_cast(s32, sp38[2]), reinterpret_cast(s32, sp44));
@@ -2218,7 +2218,7 @@ void func_8032B4DC(Actor *this, ActorMarker *arg1, s32 arg2) {
     static s32 D_8036E5C0[4] = {0xFF, 0xFF, 0xFF, 0xC8};
 
     if (arg1 != NULL) {
-        func_8034A174(this->marker->unk44, arg2, &sp3C);
+        vec3fArray_get_vec3f(this->marker->unk44, arg2, &sp3C);
         dustEmitter_emit(sp3C, NULL, D_8036E5C0, !this->unk16C_0, 0.75f, 0.0f, 125, 250, DUST_EMITTER_TYPE_DUST);
         func_802F3CF8(sp3C, !this->unk16C_0, 
             (arg1->id == 1) ? 1 
@@ -2299,7 +2299,7 @@ void func_8032B5C0(ActorMarker *arg0, ActorMarker *arg1, CollisionParams *arg2) 
                     sp3C[1] = (s32) this->position[1];
                     sp3C[2] = (s32) this->position[2];
                     if ((s32)arg0->unk44 < 0) {
-                        func_8034A174(arg0->unk44, 0x20, sp50);
+                        vec3fArray_get_vec3f(arg0->unk44, 0x20, sp50);
                     }
                     func_8032EE0C(func_8032B38C, this);
                     if (((s32)arg0->unk44 < 0) && ((sp50[0] != 0.0f) || (sp50[1] != 0.0f) || (sp50[2] != 0.0f))) {
@@ -2350,5 +2350,5 @@ void func_8032BC3C(Actor *this, f32 arg1){
 }
 
 void func_8032BC60(Actor *this, s32 arg1, f32 arg2[3]){
-    func_8034A174(this->marker->unk44, arg1, arg2);
+    vec3fArray_get_vec3f(this->marker->unk44, arg1, arg2);
 }

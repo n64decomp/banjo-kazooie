@@ -10,7 +10,7 @@ extern void func_802BEA4C(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEBE8(f32[3], f32[3], f32, f32[3]);
 extern void func_802BEAAC(f32[3], f32[3], f32, f32[3], f32[3], f32[3], f32[3]);
 extern NodeProp *cubeList_findNodePropByActorIdAndPosition_s32(enum actor_e, s32[3]);
-extern BKCollisionTri *func_80320B98(f32[3], f32[3], f32[3], s32);
+extern BKCollisionTriangle *func_80320B98(f32[3], f32[3], f32[3], s32);
 f32 func_802BB938(f32[3], f32[3]);
 f32 func_802BBD48(void);
 f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4);
@@ -205,7 +205,7 @@ f32 func_802BBEA4(f32 arg0[3], f32 arg1[3], f32 arg2, s32 arg3, s32 arg4) {
     f32 sp4C[3];
     f32 phi_f2;
     f32 sp3C[3];
-    BKCollisionTri *sp38;
+    BKCollisionTriangle *sp38;
     s32 i;
 
     if (arg3 == 0) {

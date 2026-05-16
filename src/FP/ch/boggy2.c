@@ -72,13 +72,13 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
         ){
             if(this->unk4C != 0.0f && (globalTimer_getTime() & 1)){
                 if(-2.0 < this->roll){
-                    func_8034A174(func_80329934(), 6, sp2C);
+                    vec3fArray_get_vec3f(func_80329934(), 6, sp2C);
                     particleEmitter_setPosition(local->unk0, sp2C);
                     particleEmitter_emitN(local->unk0, 1);
                 }
 
                 if(this->roll < 2.0){
-                    func_8034A174(func_80329934(), 7, sp2C);
+                    vec3fArray_get_vec3f(func_80329934(), 7, sp2C);
                     particleEmitter_setPosition(local->unk4, sp2C);
                     particleEmitter_emitN(local->unk4, 1);
                 }

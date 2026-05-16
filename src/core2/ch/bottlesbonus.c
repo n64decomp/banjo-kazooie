@@ -9,11 +9,8 @@ extern f32 *chBottlesBonusCursor_func_802E05AC(s32);
 extern f32  func_802E4B38(void);
 extern void func_8033A8F0(BoneTransformList *, s32, f32[4]);
 extern f32  time_func_8033DDB8(void);
-BKAnimationList *model_getAnimationList(BKModelBin *arg0);
 extern void func_8034BB08(s32);
 extern void func_803458E4(f32[4], f32[4], f32[4], f32);
-extern BKModel *func_8033F5F8(BKMeshList *, BKVertexList *);
-extern BKMeshList *func_8033A0B0(BKModelBin *);
 
 #define CH_BOTTLES_BONUS_PUZZLE_HEIGHT (4)
 #define CH_BOTTLES_BONUS_PUZZLE_WIDTH  (5)
@@ -178,8 +175,8 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp50));
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)sp6C);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod, (s32)sp6C);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
 
     modelRender_draw(gfx, mtx, sp60, NULL, D_80368250, sp54, marker_loadModelBin(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
@@ -224,15 +221,10 @@ void chBottlesBonus_func_802DD484(f32 dst[3], f32 arg1, f32 avg, f32 range) {
 }
 
 f32 *chBottlesBonus_func_802DD584(s32 arg0){
-    f64 temp_f0;
-    BKAnimation *temp_v1;
-
-    // temp_f0 = D_80376F48;
-    sizeof(BKAnimationList);
-    temp_v1 = (BKAnimation*)(model_getAnimationList(marker_loadModelBin(chBottlesBonusMarker)) + 1);
-    D_8037DF70[0] = temp_v1[5 + arg0].unk0[0] * 0.01;
-    D_8037DF70[1] = temp_v1[5 + arg0].unk0[1] * 0.01;
-    D_8037DF70[2] = temp_v1[5 + arg0].unk0[2] * 0.01;
+    BKAnimation *temp_v1 = &modelbin_getAnimationList(marker_loadModelBin(chBottlesBonusMarker))->animations[0];
+    D_8037DF70[0] = temp_v1[5 + arg0].translation[0] * 0.01;
+    D_8037DF70[1] = temp_v1[5 + arg0].translation[1] * 0.01;
+    D_8037DF70[2] = temp_v1[5 + arg0].translation[2] * 0.01;
     return D_8037DF70;
 }
 
@@ -469,7 +461,7 @@ void chBottlesBonus_update(Actor *this) {
             D_8037DEA8 = assetcache_get(0x471);
         }
         if (D_8037DEAC == NULL) {
-            D_8037DEAC = func_8033F5F8(func_8033A0B0(chBottleBonusBookselfModelBin), model_getVtxList(chBottleBonusBookselfModelBin));
+            D_8037DEAC = meshList_createModel(modelbin_getMeshList(chBottleBonusBookselfModelBin), modelbin_getVtxList(chBottleBonusBookselfModelBin));
             func_8034CF74(local, 0, D_8037DEAC, 0xF0);
         }
         func_8028746C(this->anctrl, (GenFunction_2)chBottlesBonus_func_802DD8AC);

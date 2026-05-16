@@ -59,7 +59,7 @@ Actor* func_8038CBCC(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(marker->unk14_21 && actor->state == 2){
         for(i = 5; i < 0xF; i++){
             if(randf() < 0.8){
-                func_8034A174(func_80329934(), i, sp3C);
+                vec3fArray_get_vec3f(func_80329934(), i, sp3C);
                 particleEmitter_setPosition(local->unk0, sp3C);
                 particleEmitter_emitN(local->unk0, 1);
             }

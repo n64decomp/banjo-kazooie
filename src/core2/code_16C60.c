@@ -60,7 +60,7 @@ void func_8029DBF0(void){
 void func_8029DD6C(void) {
     bool temp_s0;
 
-    func_8033A1FC();
+    modelRender_func_8033A1FC();
     switch (baModel_getModelId()) {
     case ASSET_34D_MODEL_BANJOKAZOOIE_LOW_POLY:
     case ASSET_34E_MODEL_BANJOKAZOOIE_HIGH_POLY:

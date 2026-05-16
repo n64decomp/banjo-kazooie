@@ -122,7 +122,7 @@ void func_8035D4F0(ActorMarker *marker, s32 arg1){
     if(gsworld_getMap() == MAP_13_GV_MEMORY_GAME){
         actor = marker_getActor(marker);
         if(actor->state != CHHUMANOIDBADDIE_STATE_9_INVULNERABLE){
-            if (func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1) {
+            if (model_func_8033F3E8(mapModel_getModel(0), actor->position, 0x190, 0x1A0) == arg1) {
                 __bundle_spawnFromFirstActor(BUNDLE_1C__HONEYCOMB, actor);
                 chMumMum_setInvulnerableState(marker, 0);
             }

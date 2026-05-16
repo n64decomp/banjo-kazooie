@@ -2,11 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-BKCollisionTri *func_80309B48(f32 *, f32 *, f32 *, u32);
+BKCollisionTriangle *func_80309B48(f32 *, f32 *, f32 *, u32);
 void func_8031C608(struct0 *this);
-void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, BKCollisionTri *);
+void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, BKCollisionTriangle *);
 
-void func_8031BE98(struct0*, f32, BKCollisionTri *);
+void func_8031BE98(struct0*, f32, BKCollisionTriangle *);
 
 
 /* .data */
@@ -55,10 +55,10 @@ void func_8031BA9C(struct0 *this){
     free(this);
 }
 
-BKCollisionTri *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
+BKCollisionTriangle *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
     f32 sp34[3];
     f32 sp28[3];
-    BKCollisionTri *sp24;
+    BKCollisionTriangle *sp24;
 
     ml_vec3f_copy(sp34, arg0);
     sp34[1] = sp34[1] + arg1;
@@ -81,8 +81,8 @@ BKCollisionTri *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, struct86s
     return sp24;
 }
 
-BKCollisionTri *func_8031BBA0(f32 *this, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
-    BKCollisionTri* phi_v1;
+BKCollisionTriangle *func_8031BBA0(f32 *this, f32 arg1, f32 arg2, u32 arg3, struct86s *arg4) {
+    BKCollisionTriangle* phi_v1;
 
     if (mlAbsF(arg2 - arg1) > 500.0f) {
         if (arg1 < arg2) {
@@ -126,7 +126,7 @@ s32 func_8031BCF4(struct0 *this) {
     return 3;
 }
 
-void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, void *model, BKCollisionTri *arg6){
+void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, void *model, BKCollisionTriangle *arg6){
     if(arg6){
         collisionTri_copy(&this->unk4, arg6);
     }
@@ -138,7 +138,7 @@ void func_8031BD98(struct0 *this, f32 arg1, s32 arg2, s32 arg3, f32 *normPtr, vo
     ml_vec3f_copy(&this->normX, normPtr);
 }
 
-void func_8031BE0C(struct0 *this, struct86s *arg1, BKCollisionTri *arg2) {
+void func_8031BE0C(struct0 *this, struct86s *arg1, BKCollisionTriangle *arg2) {
     func_8031BD98(this, arg1->unkC, arg1->flags, arg1->unk14, arg1->unk0, arg1->unk18, arg2);
 }
 
@@ -146,7 +146,7 @@ void func_8031BE58(struct0 *this){
     func_8031BD98(this, -9000.0f, 0, 0, &D_8036DDC0, 0, 0);
 }
 
-void func_8031BE98(struct0 *this, f32 arg1, BKCollisionTri * arg2){
+void func_8031BE98(struct0 *this, f32 arg1, BKCollisionTriangle * arg2){
     if(arg2 != NULL)
         collisionTri_copy(&this->unk10, arg2);
     this->unk59 = 1;
@@ -160,7 +160,7 @@ void func_8031BEE0(struct0 *this){
 void func_8031BF08(struct0 *arg0) {
     f32 sp64;
     struct86s sp48;
-    BKCollisionTri *temp_v0;
+    BKCollisionTriangle *temp_v0;
     f32 sp38[3];
     const u32 tmp = 0x1E0000;
     bool sp30;
@@ -221,7 +221,7 @@ void func_8031BF08(struct0 *arg0) {
 
 void func_8031C1A4(struct0 *arg0) {
     struct86s sp44;
-    BKCollisionTri *temp_v0;
+    BKCollisionTriangle *temp_v0;
     s32 temp_v0_3;
     f32 sp30[3];
     f32 temp_f0;
@@ -245,7 +245,7 @@ void func_8031C1A4(struct0 *arg0) {
 void func_8031C29C(struct0 *arg0) {
     struct86s sp4C;
     s32 sp48;
-    BKCollisionTri *temp_v0;
+    BKCollisionTriangle *temp_v0;
     s32 sp40;
     s32 temp_v0_4;
     f32 sp30[3];
@@ -288,7 +288,7 @@ void func_8031C444(struct0 * this){}
 
 void func_8031C44C(struct0 *arg0) {
     struct86s sp3C;
-    BKCollisionTri *sp38;
+    BKCollisionTriangle *sp38;
 
     arg0->unk5A = arg0->unk58;
     arg0->unk5B = arg0->unk59;
@@ -354,11 +354,11 @@ f32 floor_getYPosition(struct0 *this){
     return this->posY;
 }
 
-BKCollisionTri *func_8031C5EC(struct0* this){
+BKCollisionTriangle *func_8031C5EC(struct0* this){
     return &this->unk10;
 }
 
-BKCollisionTri *func_8031C5F4(struct0* this){
+BKCollisionTriangle *func_8031C5F4(struct0* this){
     return &this->unk4;
 }
 

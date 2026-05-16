@@ -141,7 +141,7 @@ static void chLockup_update(Actor *this) {
 
                 // Spawn smoke particles
                 for (i = 5; i < 0xE; i++) {
-                    func_8034A174(this->marker->unk44, i, this->unk1C);
+                    vec3fArray_get_vec3f(this->marker->unk44, i, this->unk1C);
                     dustEmitter_emit(this->unk1C, SMOKE_VELOCITY, SMOKE_COLOR, TRUE, 0.4f, 50.0f, 0xB4, 0xA0, DUST_EMITTER_TYPE_DUST);
                 }
             }

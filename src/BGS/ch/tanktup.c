@@ -84,11 +84,11 @@ void func_8038F5E4(ActorMarker *marker, enum asset_e text_id, s32 arg2){
 void func_8038F610(Actor *this) {
     f32 sp24[3];
 
-    func_8034A174(this->marker->unk44, 8, sp24);
+    vec3fArray_get_vec3f(this->marker->unk44, 8, sp24);
     if (ml_isNonzero_vec3f(sp24) != 0) {
         func_8028E668(sp24, 200.0f, -600.0f, 300.0f);
     }
-    func_8034A174(this->marker->unk44, 7, sp24);
+    vec3fArray_get_vec3f(this->marker->unk44, 7, sp24);
     if (ml_isNonzero_vec3f(sp24) != 0) {
         func_8028E668(sp24, 200.0f, -600.0f, 200.0f);
     }
@@ -210,7 +210,7 @@ void chTanktup_update(Actor *this)
             if (actor_animationIsAt(this, 0.4f) != 0)
             {
                 f32 sp34[3];
-                func_8034A174(this->marker->unk44, 6, sp34);
+                vec3fArray_get_vec3f(this->marker->unk44, 6, sp34);
                 bundle_setYaw(this->yaw);
                 sp34[1] -= 125.0f;
                 jiggy_spawn(JIGGY_26_BGS_TANKTUP, sp34);

@@ -70,7 +70,7 @@ Actor *func_8038DF34(Actor *this){
     s32 marker_id;
     f32 sp18[3];
 
-    func_8034A174(this->marker->unk44, 5, sp18);
+    vec3fArray_get_vec3f(this->marker->unk44, 5, sp18);
     this->marker->unk38[0] = sp18[0] - this->position[0];
     this->marker->unk38[1] = sp18[1] - this->position[1];
     this->marker->unk38[2] = sp18[2] - this->position[2];

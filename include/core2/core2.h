@@ -2,10 +2,16 @@
 #define __CORE_2_H__
 
 #include "bool.h"
+#include "core2/animmtxlist.h"
 #include "core2/timedfunc.h"
 #include "gc/gc.h"
 #include "core2/print.h"
 #include "core2/anctrl.h"
+#include "core2/modelRender.h"
+#include "core2/code_C31A0.h"
+#include "core2/animtexturecache.h"
+#include "core2/fla.h"
+#include "model.h"
 
 //void *actors_appendToSavestate(void *savestate_begin_ptr, void *savestate_end_ptr);
 void actors_applyFromSavestate(void *savestate_ptr, ActorListSaveState *savestate_actorlist_ptr);

@@ -57,7 +57,7 @@ Actor *func_8038DA18(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     sp2C[0] = this->position_x;
     sp2C[1] = this->position_y + 100.0f;
     sp2C[2] = this->position_z;
-    func_8034A174(func_80329934(), 5, sp38);
+    vec3fArray_get_vec3f(func_80329934(), 5, sp38);
     if(this->state == 1 || this->state == 2){
         sp38[1] = this->position_y;
     }
