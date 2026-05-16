@@ -150,12 +150,12 @@ struct
 } sMapState;
 
 /* .code */
-static void __maCastle_transformMeshCallbackOverlayUpdate(s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2)
+static void __maCastle_transformMeshCallbackOverlayUpdate(s32 arg0, BKModelVtxRef *vtx_ref, Vtx *vtx, s32 arg2)
 {
     vtx->v.ob[1] += 2;
 }
 
-static void __maCastle_transformMeshCallbackOverlayInit(s32 arg0, BKVtxRef *vtx_ref, Vtx *vtx, s32 arg2)
+static void __maCastle_transformMeshCallbackOverlayInit(s32 arg0, BKModelVtxRef *vtx_ref, Vtx *vtx, s32 arg2)
 {
     vtx->v.ob[1] += 0xf0;
 }
@@ -214,7 +214,7 @@ static void __maCastle_initFloorTiles(void)
     mapSpecificFlags_set(TTC_SPECIFIC_FLAG_1_UNKNOWN, FALSE);
 }
 
-static void __maCastle_meshCallbackFloorTileState_1(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3)
+static void __maCastle_meshCallbackFloorTileState_1(s32 arg0, BKModelVtxRef *ref, Vtx *dst, s32 arg3)
 {
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f2;
@@ -248,7 +248,7 @@ static void __maCastle_setLetterFloorTileState(LetterFloorTile *arg0, s32 arg1)
     }
 }
 
-static void __maCastle_meshCallbackFloorTileState_3(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3)
+static void __maCastle_meshCallbackFloorTileState_3(s32 arg0, BKModelVtxRef *ref, Vtx *dst, s32 arg3)
 {
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f12;
@@ -266,7 +266,7 @@ static void __maCastle_meshCallbackFloorTileState_3(s32 arg0, BKVtxRef *ref, Vtx
     }
 }
 
-static void __maCastle_meshCallbackFloorTileState_5(s32 arg0, BKVtxRef *ref, Vtx *dst, s32 arg3)
+static void __maCastle_meshCallbackFloorTileState_5(s32 arg0, BKModelVtxRef *ref, Vtx *dst, s32 arg3)
 {
     LetterFloorTile *ptr = (LetterFloorTile *)arg3;
     f32 temp_f2;
@@ -298,15 +298,15 @@ static void __maCastle_updateTimeDeltaSumForFloorTiles()
         floor_tile->timeDeltaSum += time_delta;
         if (floor_tile->state == 1)
         {
-            BKModel_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_1, (s32)floor_tile);
+            model_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_1, (s32)floor_tile);
         }
         else if (floor_tile->state == 3)
         {
-            BKModel_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_3, (s32)floor_tile);
+            model_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_3, (s32)floor_tile);
         }
         else if (floor_tile->state == 5)
         {
-            BKModel_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_5, (s32)floor_tile);
+            model_transformMesh(sMapState.model1, floor_tile->meshId, __maCastle_meshCallbackFloorTileState_5, (s32)floor_tile);
         }
     }
 }
@@ -571,7 +571,7 @@ void maCastle_init(void)
 
         if (jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE) && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         {
-            BKModel_transformMesh(sMapState.model2, 0x3C, __maCastle_transformMeshCallbackOverlayInit, 0);
+            model_transformMesh(sMapState.model2, 0x3C, __maCastle_transformMeshCallbackOverlayInit, 0);
             sMapState.banjoKazooieCodeEnteredState = 3;
         }
         __maCastle_setsecretCheatCodeRelatedValue();
@@ -618,7 +618,7 @@ void maCastle_update(void)
         {
             if ((levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_3)) && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) && func_8028F20C())
             {
-                mesh_id_closest_to_player = func_8033F3C0(sMapState.model1, player_position);
+                mesh_id_closest_to_player = model_func_8033F3C0(sMapState.model1, player_position);
                 if (mesh_id_closest_to_player != 0)
                 {
                     floor_tile = __maCastle_getFloorTileForMeshId(mesh_id_closest_to_player);
@@ -636,7 +636,7 @@ void maCastle_update(void)
         else if (sMapState.banjoKazooieCodeEnteredState == 2)
         {
             sMapState.unkC = (f32)(sMapState.unkC + time_delta);
-            BKModel_transformMesh(sMapState.model2, 0x3C, __maCastle_transformMeshCallbackOverlayUpdate, 0);
+            model_transformMesh(sMapState.model2, 0x3C, __maCastle_transformMeshCallbackOverlayUpdate, 0);
             if (sMapState.unkC > 4.0f)
             {
                 sMapState.banjoKazooieCodeEnteredState = 3;

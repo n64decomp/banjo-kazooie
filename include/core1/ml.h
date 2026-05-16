@@ -1,6 +1,12 @@
 #ifndef BANJO_KAZOOIE_CORE1_ML_H
 #define BANJO_KAZOOIE_CORE1_ML_H
 
+typedef struct vec3f_s {
+    f32 x;
+    f32 y;
+    f32 z;
+} Vec3f;
+
 f32 ml_acosf_deg(f32 x);
 void ml_vec3f_sub_and_rotate(f32 vec1[3], f32 rotation[3], f32 vec2[3], f32 dst[3]);
 f32 ml_vec3f_cos_between(f32 vec1[3], f32 vec2[3]);

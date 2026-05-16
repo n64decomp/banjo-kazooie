@@ -8,7 +8,7 @@ typedef struct {
     f32 unkC[3];
 }Struct_core2_72060_0;
 
-extern f32 vtxList_getGlobalNorm(BKVertexList *);
+
 
 struct4Cs *D_80369280 = NULL;
 
@@ -195,17 +195,17 @@ void func_802F962C(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if ((D_80369280 != NULL) && (D_80369284 != 0)) {
         viewport_getPosition_vec3f(D_80381050);
         viewport_getRotation_vec3f(D_80381060);
-        D_80381090 = (Gfx*)((s32)D_80369288 + D_80369288->gfx_list_offset_C + sizeof(BKGfxList));
-        temp_s3 = (BKVertexList *)((s32)D_80369288 + D_80369288->vtx_list_offset_10);
+        D_80381090 = modelbin_getGfxList_MACRO(D_80369288)->list;
+        temp_s3 = modelbin_getVtxList_MACRO(D_80369288);
         D_8038108C = vtxList_getGlobalNorm(temp_s3);
         func_80349AD0();
         gSPSegment((*gfx)++, 1, osVirtualToPhysical(temp_s3 + 1));
-        gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((void*)((s32)D_80369288 + D_80369288->texture_list_offset_8 + sizeof(BKTextureList) + sizeof(BKTextureHeader))));
+        gSPSegment((*gfx)++, 0x02, osVirtualToPhysical((u8 *) modelbin_getTextureList_MACRO(D_80369288) + sizeof(BKTextureList) + sizeof(BKTextureInfo)));
         gSPSetGeometryMode((*gfx)++, G_ZBUFFER);
         gSPDisplayList((*gfx)++, D_80369290);
         gSPSegment((*gfx)++, 0x03, osVirtualToPhysical(&D_803692B0));
 
-        D_80381094 = (Struct_core2_72060_0 *)((s32)D_80369288 + D_80369288->geo_list_offset_4);
+        D_80381094 = (Struct_core2_72060_0 *) modelbin_getGeoCmdList_MACRO(D_80369288);
         
         for(phi_s0 = D_80369280->unk1C; phi_s0 < D_80369280->unk1C + D_80369284; phi_s0++) {
             if ((func_802F989C(gfx, mtx, phi_s0) == 0) && (phi_s0->unk0[1] < D_8038104C)) {

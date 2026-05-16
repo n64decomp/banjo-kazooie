@@ -192,7 +192,7 @@ Actor *func_80389B24(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     }
     func_8033A45C(3, (this->state == 4) ? 2 : 1);
     actor_draw(marker, gfx, mtx, vtx);
-    func_8034A174(func_80329934(), 5, D_8038FDE0);
+    vec3fArray_get_vec3f(func_80329934(), 5, D_8038FDE0);
     return this;
 }
 

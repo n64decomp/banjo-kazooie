@@ -121,7 +121,7 @@ void func_8035D95C(ActorMarker *marker) {
     ParticleEmitter *pCtrl;
 
     if (marker->unk14_21) {
-        func_8034A174(marker->unk44, 5, sp34);
+        vec3fArray_get_vec3f(marker->unk44, 5, sp34);
         pCtrl = func_802EDD8C(sp34, 20.0f, func_80309B24(sp34));
         particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, -50.0f, -50.0f, 50.0f, 50.0f, 50.0f);
         particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.2f);

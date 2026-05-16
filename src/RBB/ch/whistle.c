@@ -114,10 +114,10 @@ Actor *func_8038B230(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3){
     sp3C[0] = actor->pitch;
     sp3C[1] = actor->yaw;
     sp3C[2] = actor->roll;
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)actor);
-    func_8033A450(func_80329934());
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod, (s32)actor);
+    modelRender_setRefPoints(func_80329934());
     modelRender_draw(gdl, mptr, actor->position, sp3C, actor->scale, NULL, marker_loadModelBin(marker));
-    func_8034A174(func_80329934(), 5, local->unk4);
+    vec3fArray_get_vec3f(func_80329934(), 5, local->unk4);
     local->unk4[0] -= 60.0f;
     return actor;
 }

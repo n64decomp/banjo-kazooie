@@ -182,8 +182,8 @@ void __chChompa_emitDeathEffects(Actor *this) {
         return;
     }
 
-    func_8034A174(this->marker->unk44, 5, sp2C);
-    func_8034A174(this->marker->unk44, 6, sp20);
+    vec3fArray_get_vec3f(this->marker->unk44, 5, sp2C);
+    vec3fArray_get_vec3f(this->marker->unk44, 6, sp20);
 
     __chChompa_emitBones(sp2C, 1, ASSET_523_MODEL_PORTRAIT_CHOMPA_TEETH);
     __chChompa_emitBones(sp2C, 1, ASSET_524_MODEL_PORTRAIT_CHOMPA_HEAD);

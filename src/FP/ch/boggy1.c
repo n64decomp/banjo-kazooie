@@ -41,7 +41,7 @@ Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     func_8033A45C(3, 1);
     this = actor_draw(marker, gfx, mtx, vtx);
     if(marker->unk14_21){
-        func_8034A174(func_80329934(), 5, this->velocity);
+        vec3fArray_get_vec3f(func_80329934(), 5, this->velocity);
     }
     return this;
 }

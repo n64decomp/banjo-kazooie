@@ -64,7 +64,7 @@ static void __chTreasure_updateFunc(Actor *this){
         marker_setCollisionScripts(this->marker, NULL, NULL, __chTreasure_die);
     }
     __chTreasure_updateFuncPosition(this);
-    func_8034A174(this->marker->unk44, 5, sp3C);
+    vec3fArray_get_vec3f(this->marker->unk44, 5, sp3C);
     sp34[0] = (s16)sp3C[0];
     sp34[1] = (s16)sp3C[1];
     sp34[2] = (s16)sp3C[2];

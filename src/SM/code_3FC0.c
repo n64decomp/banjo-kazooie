@@ -53,7 +53,7 @@ void func_8038A3B0(Actor *this){
     s32 sp24 = this->marker->id - 0xe1;
 
     if(this->marker->unk14_21)
-        func_8034A174(this->marker->unk44, 0x1f, INITIAL_CAMERA_TARGETS[sp24]);
+        vec3fArray_get_vec3f(this->marker->unk44, 0x1f, INITIAL_CAMERA_TARGETS[sp24]);
 
     actor_collisionOff(this);
     if(this->state == 2 && levelSpecificFlags_get(sp24 + 0x35)){

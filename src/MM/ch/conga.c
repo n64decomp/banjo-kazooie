@@ -397,7 +397,7 @@ void chConga_update(Actor *this) {
     if ((this->state == CONGA_STATE_TARGET_GROUND && actor_animationIsAt(this, 0.56f))
         || (this->state == CONGA_STATE_TARGET_BANJO && actor_animationIsAt(this, 0.468f))) {
 
-        func_8034A1B4(this->marker->unk44, 5, &this->local);
+        vec3fArray_get_vec3i(this->marker->unk44, 5, &this->local);
         __spawnQueue_add_1((GenFunction_1)__chConga_sendOrangeProjectile, (s32)this->marker); //spawn orange
     }
 }

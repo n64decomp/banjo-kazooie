@@ -102,7 +102,7 @@ void chSarcophagus_update(Actor *this){
             if(actor_animationIsAt(this, 0.9f) && this->marker->unk14_21){
                 i = 6;
                 do{
-                    func_8034A174((struct5Bs*)this->marker->unk44, i, this->unk1C);
+                    vec3fArray_get_vec3f((Vec3fArray*)this->marker->unk44, i, this->unk1C);
                     func_80389518(this);
                     i++;
                 }while(i < 17);

@@ -145,8 +145,8 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp3C;
 
     this = marker_getActorAndRotation(chBottlesBonusCursorMarker, rotation);
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod, (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusCursorMarker);
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod, (s32)this);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)chBottlesBonusCursorMarker);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     actor_setOpacity(this, 0xB9);
     viewport_func_8024E030(this->position, D_8037E5C0.unk18);

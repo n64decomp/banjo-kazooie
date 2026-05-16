@@ -6,7 +6,7 @@
 #include "core2/statetimer.h"
 #include "ba/iFrame.h"
 
-extern BKCollisionTri *func_8029463C(void);
+extern BKCollisionTriangle *func_8029463C(void);
 
 /* .bss */
 u8 hazardSfxId;
@@ -255,7 +255,7 @@ bool canTakeGroundDamage(void) {
 
 void hazards_update(void) {
     bool can_take_ground_damage;
-    BKCollisionTri *collision;
+    BKCollisionTriangle *collision;
     s32 sp1C;
     s32 sp18;
     

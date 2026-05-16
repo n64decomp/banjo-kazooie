@@ -158,7 +158,7 @@ void gv_matchingGame_update(void){
     if(matchingGame.tile_a == NULL || matchingGame.tile_b == NULL){
         if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && func_8028F20C()){
             player_getPosition(player_position);
-            sp4C = func_8033F3E8(mapModel_getModel(0), player_position, 0x190, 0x1a0);
+            sp4C = model_func_8033F3E8(mapModel_getModel(0), player_position, 0x190, 0x1a0);
             if(sp4C){
                 sp48 = &func_8034C528(sp4C)->type_6D;
                 if(matchingGame.state == 1){
@@ -196,7 +196,7 @@ void gv_matchingGame_update(void){
                     func_8034E120(matchingGame.tile_a->unk4, 180.0f, 0.0f, 0.5f, 2);
                     func_8034E120(matchingGame.tile_b->unk4, 180.0f, 0.0f, 0.5f, 2);
                     player_getPosition(sp38);
-                    sp48  = func_8033F3E8(mapModel_getModel(0), sp38, 0x190, 0x1a0);
+                    sp48  = model_func_8033F3E8(mapModel_getModel(0), sp38, 0x190, 0x1a0);
                     if(sp48 == matchingGame.tile_a->unk0 || sp48 == matchingGame.tile_b->unk0){
                         func_8028F66C(BS_INTR_14);
                     }

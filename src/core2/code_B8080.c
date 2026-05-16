@@ -2,71 +2,67 @@
 #include "functions.h"
 #include "variables.h"
 
-
-void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[3]);
-s32  func_8033F3E8(BKModel *model, f32 position[3], s32 min_id, s32 max_id);
-/* .code */
 //performs operation "fn" for every vtx in every mesh of a model
-void BKModel_transformMeshes(BKModel *model, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
-    s32 i;
-    BKMesh *iMesh;
-    BKVtxRef *iVtx;
-    BKVtxRef *start_vtx_ref;
-    BKVtxRef *end_vtx_ref;
+void model_transformMeshes(BKModel *this, bk_model_transform_func_s fn, s32 transform_func_arg) {
+    int i;
+    BKModelMesh *iMesh;
+    BKModelVtxRef *iVtx;
+    BKModelVtxRef *start_vtx_ref;
+    BKModelVtxRef *end_vtx_ref;
     Vtx *verts;
 
-    verts = vtxList_getVertices(model->vtxList_4);
-    iMesh = (BKMesh *)(model + 1);
-    for(i = 0; i < model->meshList_0->meshCount_0; i++){
-        start_vtx_ref = (BKVtxRef *)(iMesh + 1);
-        end_vtx_ref = start_vtx_ref + iMesh->vtxCount_2;
-        for(iVtx = start_vtx_ref; iVtx < end_vtx_ref; iVtx++){
-            fn(iMesh->uid_0, iVtx, &verts[iVtx->unk10], arg3);
+    verts = vtxList_getVertices(this->vtx_list);
+    iMesh = (BKModelMesh *) this->data;
+    for (i = 0; i < this->mesh_list->count; i++){
+        start_vtx_ref = (BKModelVtxRef *) iMesh->data;
+        end_vtx_ref = start_vtx_ref + iMesh->vtx_count;
+        for (iVtx = start_vtx_ref; iVtx < end_vtx_ref; iVtx++) {
+            fn(iMesh->uid, iVtx, &verts[iVtx->vtx_id], transform_func_arg);
         }
-        iMesh =  (BKMesh*) (((BKVtxRef *)(iMesh + 1)) + iMesh->vtxCount_2);
+        iMesh = (BKModelMesh *) ((BKModelVtxRef *) iMesh->data + iMesh->vtx_count);
     };
 }
 
 //performs operation "fn" for every vtx in a model's mesh
-void BKModel_transformMesh(BKModel *model, s32 mesh_id, void (*fn)(s32, BKVtxRef *, Vtx *, s32), s32 arg3) {
-    s32 i;
-    BKMesh *iMesh;
-    BKVtxRef *iVtx;
-    BKVtxRef *start_vtx_ref;
-    BKVtxRef *end_vtx_ref;
+void model_transformMesh(BKModel *this, s32 mesh_id, bk_model_transform_func_s fn, s32 transform_func_arg) {
+    int i;
+    BKModelMesh *iMesh;
+    BKModelVtxRef *iVtx;
+    BKModelVtxRef *start_vtx_ref;
+    BKModelVtxRef *end_vtx_ref;
     Vtx *verts;
 
-    verts = vtxList_getVertices(model->vtxList_4);
-    iMesh = (BKMesh *)(model + 1);
-    for(i = 0; i < model->meshList_0->meshCount_0; i++){
-        if (mesh_id == iMesh->uid_0) {
-            start_vtx_ref = (BKVtxRef *)(iMesh + 1);
-            end_vtx_ref = start_vtx_ref + iMesh->vtxCount_2;
-            for(iVtx = start_vtx_ref; iVtx < end_vtx_ref; iVtx++){
-                fn(iMesh->uid_0, iVtx, &verts[iVtx->unk10], arg3);
+    verts = vtxList_getVertices(this->vtx_list);
+    iMesh = (BKModelMesh *) this->data;
+    for (i = 0; i < this->mesh_list->count; i++) {
+        if (mesh_id == iMesh->uid) {
+            start_vtx_ref = (BKModelVtxRef *) iMesh->data;
+            end_vtx_ref = start_vtx_ref + iMesh->vtx_count;
+            for (iVtx = start_vtx_ref; iVtx < end_vtx_ref; iVtx++) {
+                fn(iMesh->uid, iVtx, &verts[iVtx->vtx_id], transform_func_arg);
             }
             return;
         }
-        iMesh =  (BKMesh*) (((BKVtxRef *)(iMesh + 1)) + iMesh->vtxCount_2);
+        iMesh = (BKModelMesh *) ((BKModelVtxRef *) iMesh->data + iMesh->vtx_count);
     };
 }
 
-void BKModel_getMeshCenter(BKModel *model, s32 mesh_id, s16 arg2[3]) {
+void model_getMeshCenter(BKModel *this, s32 mesh_id, s16 dst[3]) {
     s16 min[3];
     s16 max[3];
 
-    BKModel_getMeshCoordRange(model, mesh_id, min, max);
-    arg2[0] = (min[0] + max[0]) / 2;
-    arg2[1] = (min[1] + max[1]) / 2;
-    arg2[2] = (min[2] + max[2]) / 2;
+    model_getMeshCoordRange(this, mesh_id, min, max);
+    dst[0] = (min[0] + max[0]) / 2;
+    dst[1] = (min[1] + max[1]) / 2;
+    dst[2] = (min[2] + max[2]) / 2;
 }
 
 
-BKMeshList *BKModel_getMeshList(BKModel *arg0){
-    return arg0->meshList_0;
+BKMeshList *model_getMeshList(BKModel *this) {
+    return this->mesh_list;
 }
 
-void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[3]) {
+void model_getMeshCoordRange(BKModel *this, s32 mesh_id, s16 min[3], s16 max[3]) {
     s32 pad2C;
     s32 pad28;
     BKMesh *mesh;
@@ -77,12 +73,12 @@ void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[
     s16 *phi_t4;
     s32 i;
 
-    mesh = meshList_getMesh(model->meshList_0, mesh_id);
-    vtx_pool = vtxList_getVertices(model->vtxList_4);
+    mesh = meshList_getMesh(this->mesh_list, mesh_id);
+    vtx_pool = vtxList_getVertices(this->vtx_list);
     if (mesh == NULL) return;
     
-    mesh_begin = (s16*)(mesh + 1);
-    mesh_end = mesh_begin + (mesh->vtxCount_2);
+    mesh_begin = mesh->vertices;
+    mesh_end = mesh_begin + mesh->vtx_count;
     for(phi_t4 = mesh_begin; phi_t4 < mesh_end; phi_t4++){
         i_vtx = &vtx_pool[*phi_t4];
         for(i = 0; i < 3; i++){
@@ -97,11 +93,11 @@ void BKModel_getMeshCoordRange(BKModel *model, s32 mesh_id, s16 min[3], s16 max[
 }
 
 //return mesh id "position" is over/under
-s32 func_8033F3C0(BKModel *model, f32 position[3]){
-    return func_8033F3E8(model, position, 0, 100000);
+s32 model_func_8033F3C0(BKModel *this, f32 position[3]){
+    return model_func_8033F3E8(this, position, 0, 100000);
 }
 
-s32 func_8033F3E8(BKModel *arg0, f32 position[3], s32 min_id, s32 max_id) {
+s32 model_func_8033F3E8(BKModel *this, f32 position[3], s32 min_id, s32 max_id) {
     int i;
     int j;
     int k;
@@ -114,13 +110,13 @@ s32 func_8033F3E8(BKModel *arg0, f32 position[3], s32 min_id, s32 max_id) {
     Vtx *current_vertex;
     s16 *vertex_index_list;
 
-    vertex_pool = vtxList_getVertices(arg0->vtxList_4);
+    vertex_pool = vtxList_getVertices(this->vtx_list);
     position_s16[0] = (s16) position[0];
     position_s16[1] = (s16) position[1];
     position_s16[2] = (s16) position[2];
-    current_mesh = (BKMesh *)(arg0->meshList_0 + 1);
-    for(k = 0; k < arg0->meshList_0->meshCount_0; k++, current_mesh = (BKMesh *)(((s16 *)(current_mesh + 1)) + current_mesh->vtxCount_2)){
-        if ((min_id > current_mesh->uid_0 || current_mesh->uid_0 >= max_id))
+    current_mesh = this->mesh_list->data;
+    for(k = 0; k < this->mesh_list->count; k++, current_mesh = &current_mesh->vertices[current_mesh->vtx_count]){
+        if ((min_id > current_mesh->uid || current_mesh->uid >= max_id))
             continue;
 
         vertex_index_list = ((s16*)(current_mesh + 1));
@@ -130,7 +126,7 @@ s32 func_8033F3E8(BKModel *arg0, f32 position[3], s32 min_id, s32 max_id) {
         };
 
         
-        for(j = 1; j < current_mesh->vtxCount_2; j++){
+        for(j = 1; j < current_mesh->vtx_count; j++){
             current_vertex = vertex_pool + vertex_index_list[j];
             for(i = 0; i < 3; i++){\
                 temp_v1_3 = current_vertex->v.ob[i];
@@ -141,65 +137,69 @@ s32 func_8033F3E8(BKModel *arg0, f32 position[3], s32 min_id, s32 max_id) {
         if( (min[0] < position_s16[0] && position_s16[0] < max[0])
             && (min[2] < position_s16[2] && position_s16[2] < max[2])
         ){
-            return current_mesh->uid_0;
+            return current_mesh->uid;
         }
          
     }
     return 0;
 }
 
-void model_free(BKModel *model){
-    free(model);
+void model_free(BKModel *this) {
+    free(this);
 }
 
-BKModel *func_8033F5F8(BKMeshList *meshList, BKVertexList *vertexList) {
+BKModel *meshList_createModel(BKMeshList *this, BKVertexList *bk_vtx_list) {
     s32 temp_s1;
-    BKModel *sp40;
+    BKModel *model;
     void *temp_v0;
-    BKMesh *phi_s3;
-    BKMesh *phi_s5;
-    BKVtxRef *phi_s0;
+    BKMesh *in_mesh;
+    BKModelMesh *out_mesh;
+    BKModelVtxRef *vtx_ref;
     Vtx *new_var;
-    s32 phi_s1;
-    s32 phi_s6;
+    int j, i;
 
-    sp40 = (BKModel *)malloc((meshList_getVtxCount(meshList) * sizeof(BKVtxRef)) + (meshList->meshCount_0 * sizeof(BKMesh)) + sizeof(BKModel));
-    sp40->meshList_0 = meshList;
-    sp40->vtxList_4 = vertexList;
-    phi_s3 = (BKMesh *)(meshList + 1); 
-    phi_s5 = (BKMesh *)(sp40 + 1);
-    for(phi_s6 = 0; phi_s6 < meshList->meshCount_0; phi_s6++){
-            phi_s5->uid_0 = (s16) phi_s3->uid_0;
-            phi_s5->vtxCount_2 = (s16) phi_s3->vtxCount_2;
-            phi_s0 = ((BKVtxRef *)(phi_s5 + 1));
-            for(phi_s1 = 0; phi_s1 < phi_s3->vtxCount_2; phi_s1++){
-                phi_s0->unk10 = ((s16 *)(phi_s3 + 1))[phi_s1];
-                memcpy(phi_s0, ((Vtx *)(vertexList + 1)) + phi_s0->unk10, sizeof(Vtx));
-                phi_s0++;
+    model = (BKModel *) malloc(sizeof(BKModel) + (this->count * sizeof(BKModelMesh)) + (meshList_getVtxCount(this) * sizeof(BKModelVtxRef)));
+    model->mesh_list = this;
+    model->vtx_list = bk_vtx_list;
+
+    in_mesh = this->data; 
+    out_mesh = (BKModelMesh *) model->data;
+
+    for (i = 0; i < this->count; i++) {
+            out_mesh->uid = in_mesh->uid;
+            out_mesh->vtx_count = in_mesh->vtx_count;
+            vtx_ref = (BKModelVtxRef *) out_mesh->data;
+            
+            for (j = 0; j < in_mesh->vtx_count; j++) {
+                vtx_ref->vtx_id = in_mesh->vertices[j];
+                memcpy(&vtx_ref->v, &bk_vtx_list->vertices[vtx_ref->vtx_id], sizeof(Vtx));
+                vtx_ref++;
             }
-            phi_s3 = (BKMesh *)((s16 *)(phi_s3 + 1) + phi_s3->vtxCount_2);
-            phi_s5 = (BKMesh *)((BKVtxRef *)(phi_s5 + 1) + phi_s5->vtxCount_2);
+
+            in_mesh = (BKMesh *) &in_mesh->vertices[in_mesh->vtx_count];
+            out_mesh = (BKModelMesh *) ((BKModelVtxRef *) out_mesh->data + out_mesh->vtx_count);
     }
-    return sp40;
+
+    return model;
 }
 
-void func_8033F738(ActorMarker *arg0) {
-    BKModelBin *sp1C;
-    s32 sp18;
+void func_8033F738(ActorMarker *this) {
+    BKModelBin *model_bin;
+    BKMeshList *mesh_list;
 
-    sp1C = marker_loadModelBin(arg0);
-    sp18 = func_8033A0B0(sp1C);
-    arg0->unk48 = func_8033F5F8(sp18, model_getVtxList(sp1C));
+    model_bin = marker_loadModelBin(this);
+    mesh_list = modelbin_getMeshList(model_bin);
+    this->unk48 = meshList_createModel(mesh_list, modelbin_getVtxList(model_bin));
 }
 
 
-void func_8033F784(ActorMarker *arg0){
-    model_free(arg0->unk48);
+void func_8033F784(ActorMarker *this) {
+    model_free(this->unk48);
 }
 
-void func_8033F7A4(ActorMarker *arg0, BKVertexList *arg1) {
-    arg0->unk48->meshList_0 = func_8033A0B0(func_80330DE4(arg0));
-    arg0->unk48->vtxList_4  = arg1;
+void func_8033F7A4(ActorMarker *this, BKVertexList *bk_vtx_list) {
+    this->unk48->mesh_list = modelbin_getMeshList(func_80330DE4(this));
+    this->unk48->vtx_list  = bk_vtx_list;
 }
 
-void func_8033F7E8(s32 arg0){}
+void func_8033F7E8(ActorMarker *this) {}

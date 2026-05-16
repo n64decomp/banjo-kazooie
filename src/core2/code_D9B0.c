@@ -121,7 +121,7 @@ void func_80294B0C(void){
 }
 
 void func_80294BDC(void) {
-    BKCollisionTri *temp_v0;
+    BKCollisionTriangle *temp_v0;
     f32 sp30;
     f32 sp2C;
     f32 sp28;

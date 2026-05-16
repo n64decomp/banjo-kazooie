@@ -17,13 +17,6 @@ enum anctrl_playback_e{
     ANIMCTRL_SUBRANGE_LOOP = 4
 };
 
-typedef struct{
-    MtxF mtx_0;
-    s32 size_40;
-    s32 capacity_44;
-    MtxF data[];
-}AnimMtxList;
-
 typedef struct animation_s{
     GenFunction_2 matrices;
     s32     unk4;

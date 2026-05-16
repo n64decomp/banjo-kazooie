@@ -43,11 +43,11 @@ Actor *func_802DA560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     ActorLocal_MoleHill * local = (ActorLocal_MoleHill *) &actor->local;
     if(actor->volatile_initialized){
         actor = actor_draw(marker, gfx, mtx, vtx);
-        func_8034A174(actor->marker->unk44, 5, actor->velocity);
-        func_8034A174(actor->marker->unk44, 6, actor->unk1C);
-        func_8034A174(actor->marker->unk44, 7, local->unk4);
-        func_8034A174(actor->marker->unk44, 8, local->unk10);
-        func_8034A174(actor->marker->unk44, 9, local->unk1C);
+        vec3fArray_get_vec3f(actor->marker->unk44, 5, actor->velocity);
+        vec3fArray_get_vec3f(actor->marker->unk44, 6, actor->unk1C);
+        vec3fArray_get_vec3f(actor->marker->unk44, 7, local->unk4);
+        vec3fArray_get_vec3f(actor->marker->unk44, 8, local->unk10);
+        vec3fArray_get_vec3f(actor->marker->unk44, 9, local->unk1C);
         local->unk0 = 1;
     }
     return actor;

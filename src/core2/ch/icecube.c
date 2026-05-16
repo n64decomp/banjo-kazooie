@@ -197,7 +197,7 @@ void func_8035A694(Actor *this){
     if(360.0f < this->yaw)
         this->yaw -= 360.0f;
     if(this->marker->unk14_21 && !(tmp_v0 & 1)){
-        func_8034A174(this->marker->unk44, 5, sp28);
+        vec3fArray_get_vec3f(this->marker->unk44, 5, sp28);
         func_8035A3F8(sp28, 1, ASSET_70D_SPRITE_SMOKE_1, this->scale);
     }
     func_8035A594(this->position, this->yaw, sp3C);

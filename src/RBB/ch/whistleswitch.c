@@ -2,9 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-void vtxList_tint(BKVertexList *dst, s32 target_color[3], f32 amount, BKVertexList *src);
-BKVertexList *vtxList_clone(BKVertexList *);
-
 /* typedefs and declarations */
 typedef struct {
     s16 unk0;
@@ -73,7 +70,7 @@ void func_8038AC18(Actor *this, s32 new_state){
     local->unk8 = 0.0f;
     if(new_state == 2){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
-        local->unkC = vtxList_clone(model_getVtxList(marker_loadModelBin(this->marker)));
+        local->unkC = vtxList_clone(modelbin_getVtxList(marker_loadModelBin(this->marker)));
         
         mapSpecificFlags_set(local->unk4->unk10, TRUE);
         this->position_y -= 30.0f;
@@ -119,9 +116,9 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     ){
         temp_v0 = marker_loadModelBin(marker);
         sp1C = (local->unk0 == 2) ? D_80390938 : D_8039092C;
-        vtxList_tint(local->unkC, sp1C, 
+        vtxList_tintColorsFrom(local->unkC, sp1C, 
             (local->unk4->unk4[1] - actor->position_y)/30.0, 
-            model_getVtxList(temp_v0)
+            modelbin_getVtxList(temp_v0)
         );
         modelRender_setVertexList(local->unkC);
     }

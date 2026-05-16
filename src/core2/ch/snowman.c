@@ -62,7 +62,7 @@ void __chSnowman_spawnSnowball(ActorMarker *marker){
     actor = marker_getActor(m);
     other = spawn_child_actor(ACTOR_125_SNOWBALL, &actor);
     if(m->unk14_21){
-        func_8034A174(m->unk44, 5, player_position);
+        vec3fArray_get_vec3f(m->unk44, 5, player_position);
     }
     else{
         player_position[0] = actor->position[0];
@@ -85,7 +85,7 @@ void __chSnowman_spawnHat(ActorMarker *marker){
     actor = marker_getActor(m);
     other = spawn_child_actor(ACTOR_126_SIR_SLUSH_HAT, &actor);
 
-    func_8034A174(m->unk44, 6, sp2C);
+    vec3fArray_get_vec3f(m->unk44, 6, sp2C);
 
     other->position[0] = sp2C[0];
     other->position[1] = sp2C[1];

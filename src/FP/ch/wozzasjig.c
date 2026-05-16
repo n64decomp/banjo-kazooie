@@ -70,7 +70,7 @@ void chWozzaJiggy_update(Actor *this){
 
     if(this->state == 9){
        if(0.99999 <= anctrl_getAnimTimer(this->anctrl)){
-            func_8034A174(this->marker->unk44, 5, sp40);
+            vec3fArray_get_vec3f(this->marker->unk44, 5, sp40);
             sp40[0] = (f32)(s32)sp40[0];
             sp40[1] = (f32)(s32)sp40[1];
             sp40[2] = (f32)(s32)sp40[2];
@@ -81,7 +81,7 @@ void chWozzaJiggy_update(Actor *this){
        }
        else if(this->marker->unk14_21){//L8039016C
             sp3C = partEmitMgr_newEmitter(1);
-            func_8034A174(this->marker->unk44, 5, sp40);
+            vec3fArray_get_vec3f(this->marker->unk44, 5, sp40);
             particleEmitter_setSprite(sp3C, ASSET_713_SPRITE_SPARKLE_YELLOW);
             particleEmitter_setStartingFrameRange(sp3C, 1, 6);
             particleEmitter_setPosition(sp3C, sp40);

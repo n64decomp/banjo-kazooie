@@ -268,13 +268,13 @@ void chBossJinjo_update(Actor *this){
                     subaddie_set_state_with_direction(this, BOSSJINJO_STATE_5_HIT, 0.001f, 1);
                     sfx_playFadeShorthandDefault(SFX_135_CARTOONY_SPRING, 1.0f, 32000, this->position, 10000, 16000);
                     func_80324D54(0.1f, SFX_C1_BUZZBOMB_ATTACK, 0.85f, 32000, this->position, 5000.0f, 12000.0f);
-                    func_8034A174(this->marker->unk44, 0x1f, this->position);
+                    vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->position);
 
                     this->velocity_x = (this->position_x - this->unk1C[0])/ time_delta;
                     this->velocity_y = (this->position_y - this->unk1C[1])/ time_delta;
                     this->velocity_z = (this->position_z - this->unk1C[2])/ time_delta;
                 } else {
-                    func_8034A174(this->marker->unk44, 0x1f, this->unk1C);
+                    vec3fArray_get_vec3f(this->marker->unk44, 0x1f, this->unk1C);
                 }
             }
             break; 

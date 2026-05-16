@@ -2,13 +2,11 @@
 #include "functions.h"
 #include "variables.h"
 
-extern BKCollisionTri *func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7[3], s32 arg8);
-extern BKCollisionTri *func_802E9118(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 arg10);
-extern BKCollisionTri *func_802E9DD8(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8);
-extern s32 func_802EA760(BKModelUnk14List *, s32, f32[3], f32[3], f32, s32, f32*, f32*);
+extern BKCollisionTriangle *collisionList_func_802E805C(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7[3], s32 arg8);
+extern BKCollisionTriangle *func_802E9118(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6[3], f32 arg7, f32 arg8[3], s32 arg9, s32 arg10);
+extern BKCollisionTriangle *func_802E9DD8(BKCollisionList *arg0, BKVertexList *vtxList, f32 arg2[3], f32 arg3[3], f32 arg4, f32 arg5[3], f32 arg6, f32 arg7[3], s32 arg8);
+extern s32 bkmodelunk14list_func_802EA760(BKModelUnk14List *, s32, f32[3], f32[3], f32, s32, f32*, f32*);
 extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
-extern BKCollisionList *model_getCollisionList(BKModelBin *);
-extern BKModelUnk14List *func_8033A12C(BKModelBin *);
 void func_80351954(Struct68s *arg);
 void func_80351AD0(Struct68s *arg0, enum asset_e model_id);
 typedef struct {
@@ -115,8 +113,8 @@ Actor *func_80350E90(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return NULL;
 }
 
-BKCollisionTri * func_80350F7C(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3[3], s32 arg4) {
-    BKCollisionTri * sp4C;
+BKCollisionTriangle * func_80350F7C(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3[3], s32 arg4) {
+    BKCollisionTriangle * sp4C;
     Struct68s *temp_s0;
     BKVertexList *vtx_list;
     BKCollisionList *colision_list;
@@ -126,9 +124,9 @@ BKCollisionTri * func_80350F7C(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f3
         return 0;
     }
 
-    colision_list = model_getCollisionList(temp_s0->unkC);
-    vtx_list = model_getVtxList(temp_s0->unkC);
-    sp4C = func_802E805C(colision_list, vtx_list, temp_s0->position, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
+    colision_list = modelbin_getCollisionList(temp_s0->unkC);
+    vtx_list = modelbin_getVtxList(temp_s0->unkC);
+    sp4C = collisionList_func_802E805C(colision_list, vtx_list, temp_s0->position, temp_s0->unk20, temp_s0->unk2C, arg1, arg2, arg3, arg4);
     if (sp4C != 0) {
         if (func_8029453C()) {
             D_80386180.unk20[0] = (s32) arg2[0];
@@ -140,7 +138,7 @@ BKCollisionTri * func_80350F7C(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f3
     return sp4C;
 }
 
-BKCollisionTri *func_803510B4(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flagFliter) {
+BKCollisionTriangle *func_803510B4(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32 arg3, f32 arg4[3], s32 arg5, u32 flagFliter) {
     s32 pad44;
     Struct68s *sp40;
     BKVertexList *vertex_list;
@@ -150,12 +148,12 @@ BKCollisionTri *func_803510B4(ActorMarker *marker, f32 arg1[3], f32 arg2[3], f32
     if ((sp40->unkC == NULL) || (sp40->unk30 & 1)) {
         return 0;
     }
-    collision_list = model_getCollisionList(sp40->unkC);
-    vertex_list = model_getVtxList(sp40->unkC);
+    collision_list = modelbin_getCollisionList(sp40->unkC);
+    vertex_list = modelbin_getVtxList(sp40->unkC);
     return func_802E9118(collision_list, vertex_list, sp40->position, sp40->unk20, sp40->unk2C, arg1, arg2, arg3, arg4, arg5, flagFliter);
 }
 
-BKCollisionTri *func_80351198(ActorMarker *marker, f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4) {
+BKCollisionTriangle *func_80351198(ActorMarker *marker, f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4) {
     s32 pad3C;
     Struct68s *sp38;
     BKVertexList *vtx_list;
@@ -165,8 +163,8 @@ BKCollisionTri *func_80351198(ActorMarker *marker, f32 arg1[3], f32 arg2, f32 ar
     if ((sp38->unkC == NULL) || (sp38->unk30 & 1)) {
         return 0;
     }
-    collision_list = model_getCollisionList(sp38->unkC);
-    vtx_list = model_getVtxList(sp38->unkC);
+    collision_list = modelbin_getCollisionList(sp38->unkC);
+    vtx_list = modelbin_getVtxList(sp38->unkC);
     return func_802E9DD8(collision_list, vtx_list, sp38->position, sp38->unk20, sp38->unk2C, arg1, arg2, arg3, arg4);
 }
 
@@ -411,10 +409,10 @@ void func_80351B28(Struct68s *arg0, f32 arg1[3]) {
     BKModelUnk14List *sp34;
 
     if(arg0->unkC != NULL){
-        sp34 = func_8033A12C(arg0->unkC);
+        sp34 = modelbin_getUnk14List(arg0->unkC);
         if(sp34 != NULL){
-            if(func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, sp48, &sp38)){
-                func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, sp3C, &sp38);
+            if(bkmodelunk14list_func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, sp48, &sp38)){
+                bkmodelunk14list_func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, sp3C, &sp38);
                 if(func_80309DBC(sp48, sp3C, sp38, sp54, 3, 0)){
                     return;
                 }

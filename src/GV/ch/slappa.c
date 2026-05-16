@@ -274,9 +274,9 @@ void chSlappa_update(Actor *this){
 
         case SLAPPA_STATE_5_ATTACKING: //L8038B67C
             if(this->marker->unk14_21 && actor_animationIsAt(this, 0.79f)){
-                func_8034A174(this->marker->unk44, 5, GV_D_80391A70);
+                vec3fArray_get_vec3f(this->marker->unk44, 5, GV_D_80391A70);
                 func_8038ACEC(GV_D_80391A70, 2);
-                func_8034A174(this->marker->unk44, 6, GV_D_80391A70);
+                vec3fArray_get_vec3f(this->marker->unk44, 6, GV_D_80391A70);
                 func_8038ACEC(GV_D_80391A70, 3);
                 func_802BB3DC(0, 18.0f, 0.92f);
                 func_8030E878(SFX_3_DULL_CANNON_SHOT, 1.0f, 32000, this->position, 2250.0f, 4500.0f);
@@ -317,10 +317,10 @@ void chSlappa_update(Actor *this){
         case SLAPPA_STATE_9_DIE: //L8038B870
             subaddie_set_state(this, SLAPPA_STATE_A_DEAD);
             func_8038ACEC(this->position, 2);
-            func_8034A174(this->marker->unk44, 5, GV_D_80391A70);
+            vec3fArray_get_vec3f(this->marker->unk44, 5, GV_D_80391A70);
             func_8038ACEC(GV_D_80391A70, 2);
             func_8038ADFC(GV_D_80391A70, 3);
-            func_8034A174(this->marker->unk44, 6, GV_D_80391A70);
+            vec3fArray_get_vec3f(this->marker->unk44, 6, GV_D_80391A70);
             func_8038ACEC(GV_D_80391A70, 3);
             func_8038ADFC(GV_D_80391A70, 2);
             break;

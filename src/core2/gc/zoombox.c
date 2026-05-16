@@ -830,7 +830,7 @@ void func_803163A8(GcZoombox *this, Gfx **gfx, Mtx **mtx) {
     }
     sp38[0] = 0.0f; sp38[1] = 0.0f; sp38[2] = 0.0f;
     sp44[0] = 0.0f; sp44[1] = 0.0f; sp44[2] = 0.0f;
-    func_8033A308(sp44);
+    modelRender_func_8033A308(sp44);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
     if (this->anim_ctrl != NULL) {
         anctrl_drawSetup(this->anim_ctrl, sp50, 1);

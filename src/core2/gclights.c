@@ -5,7 +5,7 @@
 #include <core2/file.h>
 #include <core2/lighting.h>
 
-extern f32  vtxList_getGlobalNorm(BKVertexList *arg0);
+
 static void __lighting_init(f32 position[3], f32 rotation[3], f32 scale, f32[3], f32);
 
 void lighting_free();

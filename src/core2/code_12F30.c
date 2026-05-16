@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern f32 func_80294404(void);
-extern BKCollisionTri *func_8029463C(void);
+extern BKCollisionTriangle *func_8029463C(void);
 extern BKModelBin *func_802946A8(void);
 
 /* .data */
@@ -110,7 +110,7 @@ void func_80299EC0(f32 arg0[3]) {
     s32 sp78;
     s32 i;
     f32 sp70;
-    BKCollisionTri *sp6C; //floor_vtx_list
+    BKCollisionTriangle *sp6C; //floor_vtx_list
     f32 sp48[3][3]; //tri_vtx_coord
     Vtx *vtx_buffer;
     Vtx *temp_v1;
@@ -139,7 +139,7 @@ void func_80299EC0(f32 arg0[3]) {
     if (sp6C == NULL) return;
     if (sp6C->unk6 &2) return;
 
-    vtx_buffer = vtxList_getVertices(model_getVtxList(spC8));
+    vtx_buffer = vtxList_getVertices(modelbin_getVtxList(spC8));
 
     for(i = 0; i<3; i++){
         temp_v1 =  vtx_buffer + sp6C->unk0[i];

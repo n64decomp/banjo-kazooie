@@ -65,8 +65,8 @@ Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
     func_80253190(gfx);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp48));
-    modelRender_preDraw((GenFunction_1)actor_predrawMethod,  (s32)this);
-    modelRender_postDraw((GenFunction_1)actor_postdrawMethod, (s32)marker);
+    modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod,  (s32)this);
+    modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
     modelRender_draw(gfx, mtx, this->position, NULL, 4.5f, sp4C, marker_loadModelBin(marker));
     gDPSetTextureFilter((*gfx)++, G_TF_BILERP);
     gDPSetColorDither((*gfx)++, G_CD_MAGICSQ);

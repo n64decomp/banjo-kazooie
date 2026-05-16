@@ -10,7 +10,7 @@ typedef struct {
     f32 unkC;
 }Struct_core2_C61C0_0;
 
-void func_8034D150(s32 mesh_id, BKVtxRef *src, Vtx *dst, Struct_core2_C61C0_0 *arg3){
+void func_8034D150(s32 mesh_id, BKModelVtxRef *src, Vtx *dst, Struct_core2_C61C0_0 *arg3){
     dst->v.tc[1] = src->v.v.tc[1] + arg3->unk4;
 }
 
@@ -28,5 +28,5 @@ void func_8034D194(Struct_core2_C61C0_0 *arg0, BKModel *model, s32 mesh_id) {
         arg0->unk0 -= 16384.0f;
     }
     arg0->unk4 = (s16)arg0->unk0;
-    BKModel_transformMesh(model, mesh_id, func_8034D150, (s32) arg0);
+    model_transformMesh(model, mesh_id, func_8034D150, (s32) arg0);
 }

@@ -444,7 +444,7 @@ void gctransition_update(void){
                     gsworld_setEnableDraw(FALSE);
                     break;
                 case 3:
-                    func_802FEF48(s_current_transition.model_ptr); //framebuffer to model texture list
+                    model_copyFramebufferToTextures(s_current_transition.model_ptr); //framebuffer to model texture list
                     break;
                 case 4:
                     osViBlack(0);
@@ -464,7 +464,7 @@ void gctransition_update(void){
                     break;
                 case 2:
                     gsworld_setEnableDraw(FALSE); 
-                    func_802FEF48(s_current_transition.model_ptr); //framebuffer to model texture list
+                    model_copyFramebufferToTextures(s_current_transition.model_ptr); //framebuffer to model texture list
                     break;
                 
             }

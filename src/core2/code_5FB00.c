@@ -2,56 +2,54 @@
 #include "functions.h"
 #include "variables.h"
 
+void animVerticesList_setCoords(BKAnimVerticesList *this, BKVertexList *bk_vtx_list, s32 index, f32 coords[3]) {
+    Vtx *vtx, *vtx_list;
+    int i;
+    BKAnimVertices *anim_vertices;
 
-void func_802E6A90(BKModelUnk28List *arg0, BKVertexList *arg1, s32 arg2, f32 arg3[3]) {
-    Vtx *i_vtx;
-    Vtx *vtx_list;
-    s32 i;
-    s32 var_a2;
-    BKModelUnk28 *var_v1;
+    vtx_list = vtxList_getVertices(bk_vtx_list);
+    anim_vertices = this->data;
 
-    vtx_list = vtxList_getVertices(arg1);
-
-    var_v1 = (BKModelUnk28 *)(arg0 + 1);
-    for(arg2 = arg2; arg2 != 0; arg2--){
-        var_v1 = (BKModelUnk28 *)((s16*)(var_v1 + 1) + (var_v1->vtx_count - 1));
+    while (index != 0) {
+        anim_vertices = (BKAnimVertices *) ((s16*)(anim_vertices + 1) + (anim_vertices->vtx_count - 1)); // TODO: Remove this ugly pointer calculation
+        index--;
     }
 
-    for(i = 0; i < var_v1->vtx_count; i++){
-            i_vtx = &vtx_list[var_v1->vtx_list[i]];
-            i_vtx->v.ob[0] = (s16) (s32) arg3[0];
-            i_vtx->v.ob[1] = (s16) (s32) arg3[1];
-            i_vtx->v.ob[2] = (s16) (s32) arg3[2];
-
+    for (i = 0; i < anim_vertices->vtx_count; i++) {
+        vtx = &vtx_list[anim_vertices->vtx_list[i]];
+        vtx->v.ob[0] = coords[0];
+        vtx->v.ob[1] = coords[1];
+        vtx->v.ob[2] = coords[2];
     }
 }
 
-void func_802E6BD0(BKModelUnk28List *arg0, BKVertexList *arg1, AnimMtxList *mtx_list) {
-    Vtx *vtx;
-    Vtx *i_vtx;
-    s32 i;
-    BKModelUnk28 *i_ptr;
-    s16 sp50[3];
-    s32 temp_v0;
+void animVerticesList_transform(BKAnimVerticesList *this, BKVertexList *bk_vtx_list, AnimMtxList *mtx_list) {
+    Vtx *vtx, *vtx_list;
+    int j;
+    BKAnimVertices *anim_vertices;
+    s16 transformed_coords[3];
     s32 mtx_index;
-    s32 var_s4;
+    int i;
 
-    vtx = vtxList_getVertices(arg1);
-    i_ptr = (BKModelUnk28 *)(arg0 + 1);
+    vtx_list = vtxList_getVertices(bk_vtx_list);
+    anim_vertices = this->data;
     mtx_index = -2;
-    for(var_s4 = 0; var_s4 < arg0->count; var_s4++){ 
-        if (mtx_index != i_ptr->anim_index) {
-            mtx_index = i_ptr->anim_index;
+
+    for(i = 0; i < this->count; i++) { 
+        if (mtx_index != anim_vertices->anim_index) {
+            mtx_index = anim_vertices->anim_index;
             mlMtxSet(animMtxList_get(mtx_list, mtx_index));
         }
-        mlMtx_apply_vec3s(sp50, i_ptr->coord);
-        for(i = 0; i < i_ptr->vtx_count; i++){
-            i_vtx = &vtx[i_ptr->vtx_list[i]];
-            i_vtx->v.ob[0] = sp50[0];
-            i_vtx->v.ob[1] = sp50[1];
-            i_vtx->v.ob[2] = sp50[2];
+        mlMtx_apply_vec3s(transformed_coords, anim_vertices->coord);
+        for (j = 0; j < anim_vertices->vtx_count; j++) {
+            vtx = &vtx_list[anim_vertices->vtx_list[j]];
+            vtx->v.ob[0] = transformed_coords[0];
+            vtx->v.ob[1] = transformed_coords[1];
+            vtx->v.ob[2] = transformed_coords[2];
         }
-        i_ptr = (BKModelUnk28 *)((s16*)(i_ptr + 1) + (i_ptr->vtx_count - 1));
+
+        anim_vertices = (BKAnimVertices *) ((s16*)(anim_vertices + 1) + (anim_vertices->vtx_count - 1)); // TODO: Remove this ugly pointer calculation
     }
-    osWritebackDCache(vtx, vtxList_getVtxCount(arg1) * sizeof(Vtx));
+
+    osWritebackDCache(vtx_list, vtxList_getVtxCount(bk_vtx_list) * sizeof(Vtx));
 }

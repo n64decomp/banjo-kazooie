@@ -239,7 +239,7 @@ static Actor* __chVegetables_draw(ActorMarker* marker, Gfx **gdl, Mtx **mptr, Vt
     Actor* actor = marker_getActor(marker);
 
     if (actor->has_met_before)
-        func_8033A470(3, 7);
+        modelRender_func_8033A470(3, 7);
     else
         func_8033A45C(3, 0);
 

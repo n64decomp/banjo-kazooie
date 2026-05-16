@@ -27,7 +27,7 @@ extern void warp_smExitBanjosHouse(s32, s32);
 extern void controller_getJoystick(s32, f32*);
 
 extern char *gcpausemenu_TimeToA(int);
-extern struct5Bs *func_803097A0(void);
+extern Vec3fArray *func_803097A0(void);
 
 /* .data */
 f32 INITIAL_CAMERA_POSITIONS[3][3] = {
@@ -358,7 +358,7 @@ void gameSelect_update(Actor *this) {
     f32 joystick;
     f32 delta_time; 
     int i;
-    struct5Bs *sp48;
+    Vec3fArray *sp48;
     f32 function_time;
     s32 previous_game_number;
     f32 sp34[3];
@@ -632,7 +632,7 @@ void gameSelect_update(Actor *this) {
 
     if (this->marker->unk14_21) {
         for (i = 0; i < 3; i++) {
-            func_8034A174(sp48, i + 5, sp34);
+            vec3fArray_get_vec3f(sp48, i + 5, sp34);
             ml_vec3f_copy(INITIAL_CAMERA_POSITIONS[i], sp34);
         }
     }

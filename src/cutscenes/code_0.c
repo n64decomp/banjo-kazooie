@@ -177,7 +177,7 @@ void func_80386AC8(s32 arg0) {
 
     actor = marker_getActor(reinterpret_cast(ActorMarker *, arg0));
     pCtrl = partEmitMgr_newEmitter(10);
-    func_8034A174((struct5Bs *)actor->marker->unk44, 0xA, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)actor->marker->unk44, 0xA, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -198,7 +198,7 @@ void func_80386C34(s32 arg0) {
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(15);
-    func_8034A174((struct5Bs *)sp44->marker->unk44, 0xA, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)sp44->marker->unk44, 0xA, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -219,7 +219,7 @@ void func_80386DA0(s32 arg0) {
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(1);
-    func_8034A174((struct5Bs *) (struct5Bs *)sp44->marker->unk44, 0xA, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) (Vec3fArray *)sp44->marker->unk44, 0xA, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x47B);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -240,7 +240,7 @@ void func_80386EF8(s32 arg0) {
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(8U);
-    func_8034A174((struct5Bs *)sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x344);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
@@ -262,7 +262,7 @@ void func_8038702C(s32 arg0) {
     pCtrl = partEmitMgr_newEmitter(8U);
     particleEmitter_setSprite(pCtrl, ASSET_712_SPRITE_SPARKLE_GREEN);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_8034A174((struct5Bs *)sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -250.0f, 250.0f, -250.0f, 250.0f, 360.0f, 250.0f);
@@ -283,7 +283,7 @@ void func_80387170(s32 arg0) {
     pCtrl = partEmitMgr_newEmitter(8);
     particleEmitter_setSprite(pCtrl, ASSET_712_SPRITE_SPARKLE_GREEN);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
-    func_8034A174((struct5Bs *)sp44->marker->unk44, 6, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)sp44->marker->unk44, 6, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -250.0f, 250.0f, -250.0f, 250.0f, 360.0f, 250.0f);
@@ -309,7 +309,7 @@ void func_803872B4(s32 arg0) {
     particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setAlpha(pCtrl, 0x82);
-    func_8034A174((struct5Bs *)sp44->marker->unk44, 7, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *)sp44->marker->unk44, 7, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D470);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D440.scale_and_lifetime);
@@ -333,7 +333,7 @@ void func_80387364(s32 arg0) {
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setRGB(pCtrl, D_8038D4A0);
     particleEmitter_setAlpha(pCtrl, 0x82);
-    func_8034A174((struct5Bs *) sp34->marker->unk44, 8, sp24);
+    vec3fArray_get_vec3f((Vec3fArray *) sp34->marker->unk44, 8, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D4DC);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D4AC.scale_and_lifetime);
@@ -351,7 +351,7 @@ void func_80387424(s32 arg0) {
     particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
     particleEmitter_setStartingFrameRange(pCtrl, 1, 6);
     particleEmitter_setAlpha(pCtrl, 0x64);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
@@ -369,7 +369,7 @@ void cutscenes_func_80387560(s32 arg0) {
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(11);
     particleEmitter_setModel(pCtrl, 0x478);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
@@ -387,7 +387,7 @@ void func_80387680(s32 arg0) {
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(11);
     particleEmitter_setSprite(pCtrl, ASSET_70B_SPRITE_BUBBLE_2);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setAngularVelocityRange(pCtrl, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setParticleVelocityRange(pCtrl, -30.0f, 130.0f, -30.0f, 130.0f, 45.0f, 30.0f);
@@ -416,7 +416,7 @@ void func_803877A0(s32 arg0) {
     func_802EFF5C(pCtrl, 0.1f, 0.2f, 0.0f);
     func_802EFF7C(pCtrl, 0.0f, 0.25f, 0.0f);
     func_802EFF9C(pCtrl, 0.5f);
-    func_8034A174((struct5Bs *) sp34->marker->unk44, 6, sp24);
+    vec3fArray_get_vec3f((Vec3fArray *) sp34->marker->unk44, 6, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D5C0);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D590.scale_and_lifetime);
@@ -431,7 +431,7 @@ void func_803878A4(s32 arg0) {
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(1);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 8, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 8, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x47A);
     particleEmitter_setAngularVelocityRange(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
@@ -453,7 +453,7 @@ void cutscenes_func_803879E0(s32 arg0) {
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
     pCtrl = partEmitMgr_newEmitter(2);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 8, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 8, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setModel(pCtrl, 0x47A);
     particleEmitter_setAngularVelocityRange(pCtrl, -10.0f, -10.0f, -10.0f, 10.0f, 10.0f, 10.0f);
@@ -485,7 +485,7 @@ void func_80387B58(s32 arg0) {
     particleEmitter_setAlpha(pCtrl, 0x3C);
     particleEmitter_setAngularVelocityRange(pCtrl, -60.0f, -60.0f, -60.0f, 60.0f, 60.0f, 60.0f);
     particleEmitter_setAccelerationRange(pCtrl, 0.0f, -290.0f, 0.0f, 0.0f, -290.0f, 0.0f);
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     particleEmitter_setPosition(pCtrl, sp34);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D670);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D640.scale_and_lifetime);
@@ -506,7 +506,7 @@ void func_80387C64(s32 arg0) {
     f32 sp34[3];
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     if (ml_isZero_vec3f(sp34) == 0) {
         pCtrl = partEmitMgr_newEmitter(1);
         particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
@@ -533,7 +533,7 @@ void func_80387D88(s32 arg0) {
     f32 sp34[3];
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     if (ml_isZero_vec3f(sp34) == 0) {
         pCtrl = partEmitMgr_newEmitter(25);
         particleEmitter_setSprite(pCtrl, ASSET_713_SPRITE_SPARKLE_YELLOW);
@@ -560,7 +560,7 @@ void func_80387E9C(s32 arg0) {
     f32 sp34[3];
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     if (ml_isZero_vec3f(sp34) == 0) {
         pCtrl = partEmitMgr_newEmitter(1);
         particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
@@ -588,7 +588,7 @@ void func_80387FC0(s32 arg0) {
     f32 sp34[3];
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     if (ml_isZero_vec3f(sp34) == 0) {
         pCtrl = partEmitMgr_newEmitter(1);
         particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);
@@ -623,7 +623,7 @@ void func_803880C8(s32 arg0) {
     func_802EFF5C(pCtrl, 0.1f, 0.2f, 0);
     func_802EFF7C(pCtrl, 0, 0.25f, 0);
     func_802EFF9C(pCtrl, 0.5f);
-    func_8034A174((struct5Bs *) sp34->marker->unk44, 5, sp24);
+    vec3fArray_get_vec3f((Vec3fArray *) sp34->marker->unk44, 5, sp24);
     particleEmitter_setPosition(pCtrl, sp24);
     particleEmitter_setPositionAndVelocityRanges(pCtrl, &D_8038D874);
     particleEmitter_setScaleAndLifetimeRanges(pCtrl, &D_8038D844.scale_and_lifetime);
@@ -641,7 +641,7 @@ void func_803881CC(s32 arg0) {
     f32 sp34[3];
 
     sp44 = marker_getActor(reinterpret_cast(ActorMarker *,arg0));
-    func_8034A174((struct5Bs *) sp44->marker->unk44, 5, sp34);
+    vec3fArray_get_vec3f((Vec3fArray *) sp44->marker->unk44, 5, sp34);
     if (ml_isZero_vec3f(sp34) == 0) {
         pCtrl = partEmitMgr_newEmitter(2);
         particleEmitter_setSprite(pCtrl, ASSET_70D_SPRITE_SMOKE_1);

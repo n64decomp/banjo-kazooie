@@ -2,42 +2,44 @@
 #include "functions.h"
 #include "variables.h"
 
-s32 meshList_getVtxCount(BKMeshList *meshList){
-    s32 i;
-    s32 v1 = 0;
-    BKMesh *v0 = (BKMesh *)(meshList + 1);
+s32 meshList_getVtxCount(BKMeshList *this) {
+    int i;
+    s32 vertex_count = 0;
+    BKMesh *mesh = this->data;
 
-    for(i = 0; i < meshList->meshCount_0; ++i){
-        v1 += v0->vtxCount_2;
-        v0 = (BKMesh *)&((s16*)(v0 +1))[v0->vtxCount_2];
-        
+    for (i = 0; i < this->count; ++i) {
+        vertex_count += mesh->vtx_count;
+        mesh = (BKMesh *) &mesh->vertices[mesh->vtx_count];
     }
-    return v1;
+
+    return vertex_count;
 }
 
-BKMesh * meshList_getMesh(BKMeshList *meshList, s32 mesh_id){
-    s32 i;
-    BKMesh *v1 = (BKMesh *)(meshList + 1);
+BKMesh *meshList_getMesh(BKMeshList *this, s32 mesh_id) {
+    int i;
+    BKMesh *mesh = this->data;
 
-    for(i=0; i < meshList->meshCount_0; i++){
-        if(v1->uid_0 == mesh_id){
-            return v1;
+    for (i = 0; i < this->count; i++) {
+        if (mesh->uid == mesh_id) {
+            return mesh;
         }
-        v1 = (BKMesh *)&((s16*)(v1 +1 ))[v1->vtxCount_2];
+        mesh = (BKMesh *) &mesh->vertices[mesh->vtx_count];
     }
+
     return NULL;
 }
 
-bool meshList_meshContainsVtx(BKMeshList * meshList, s32 mesh_id, void *vtx_id){
-    s32 i;
-    BKMesh *v0 = meshList_getMesh(meshList, mesh_id);
+bool meshList_meshContainsVtx(BKMeshList *this, s32 mesh_id, s16 *vtx_id) {
+    int i;
+    BKMesh *mesh = meshList_getMesh(this, mesh_id);
 
-    if(v0){
-        for(i = 0; i < v0->vtxCount_2; i++){
-            if(((s16*)(v0 + 1))[i] == *(s16 *)vtx_id){
+    if (mesh) {
+        for (i = 0; i < mesh->vtx_count; i++) {
+            if (mesh->vertices[i] == *vtx_id) {
                 return TRUE;
             }
         }
     }
+
     return FALSE;
 }

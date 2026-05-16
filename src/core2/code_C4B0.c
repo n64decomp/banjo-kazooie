@@ -12,19 +12,19 @@ extern f32        floor_getYPosition(struct0*);
 extern void       func_8031C5FC(struct0 *, f32);
 extern void       func_80244FC0(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, s32 arg4, u32 arg5);
 extern s32        func_80244E54(f32[3], f32[3], f32 [3], u32, f32, f32);
-extern BKCollisionTri *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
-extern BKCollisionTri *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
-extern BKCollisionTri *func_8031C5F4(struct0 *);
+extern BKCollisionTriangle *func_802457C4(f32[3], f32[3], f32, f32, f32[3], s32, u32);
+extern BKCollisionTriangle *func_80320C94(f32[3], f32[3], f32, f32[3], s32, u32);
+extern BKCollisionTriangle *func_8031C5F4(struct0 *);
 void func_80294378(s32 arg0);
 void func_80294384(s32 arg0);
 void func_80294390(void);
 
-BKCollisionTri *func_8029463C(void);
+BKCollisionTriangle *func_8029463C(void);
 
 typedef struct {
     f32 unk0[3];
     f32 unkC[3];
-    BKCollisionTri *unk18;
+    BKCollisionTriangle *unk18;
     f32 unk1C[3];
     f32 unk28[3];
     f32 unk34[3];
@@ -38,8 +38,8 @@ typedef struct {
 f32 D_8037C1F0[2];
 f32 D_8037C1F8[2];
 struct0 * D_8037C200;
-BKCollisionTri * D_8037C204;
-BKCollisionTri D_8037C208;
+BKCollisionTriangle * D_8037C204;
+BKCollisionTriangle D_8037C208;
 f32 D_8037C218[3];
 f32 D_8037C228[3];
 f32 D_8037C238[3];
@@ -481,7 +481,7 @@ u32 func_80294610(u32 mask){
      return func_8031C59C(D_8037C200) & mask;
 }
 
-BKCollisionTri *func_8029463C(void){
+BKCollisionTriangle *func_8029463C(void){
      return func_8031C5F4(D_8037C200);
 }
 
@@ -501,7 +501,7 @@ void func_802946CC(void){
      func_8031C5EC(D_8037C200);
 }
 
-BKCollisionTri *func_802946F0(void){
+BKCollisionTriangle *func_802946F0(void){
      return D_8037C204;
 }
 
