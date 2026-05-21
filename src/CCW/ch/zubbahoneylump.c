@@ -6,25 +6,35 @@
 
 
 typedef struct{
-    ActorMarker *unk0;
-    s32 unk4;
-    s32 unk8;
-    f32 unkC;
+    ActorMarker *jiggyMarker;
+    s32 spawnedZubbaCount;
+    s32 zubbasDefeated;
+    f32 unkC; // time related
 }ActorLocal_CCW_160;
 
-void func_803865F4(Actor *this, s32 next_state);
-void func_8038687C(Actor *this);
+void chZubbaFight_setState(Actor *this, s32 next_state);
+void chZubbaFight_update(Actor *this);
 
 /* .data */
-ActorInfo D_8038EBA0 = {
-    0x1AD, 0x299, 0x443,
+ActorInfo chZubbaHoneyLump = {
+    MARKER_1AD_ZUBBA_HONEY_LUMP, ACTOR_299_ZUBBA_HONEY_LUMP, ASSET_443_MODEL_ZUBBA_HONEY_LUMP,
     0x0, NULL,
-    func_8038687C, NULL, actor_draw,
+    chZubbaFight_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
+enum chZubbaFight_State_e {
+    CH_ZUBBA_FIGHT_STATE_0_NOT_INIT,
+    CH_ZUBBA_FIGHT_STATE_1_IDLE,
+    CH_ZUBBA_FIGHT_STATE_2_DIALOG,
+    CH_ZUBBA_FIGHT_STATE_3_FIGHT,
+    CH_ZUBBA_FIGHT_STATE_4_FIGHT_COMPLETE
+};
+
+#define NUM_OF_ZUBBAS_TO_DEFEAT    10
+
 /* .code */
-void CCW_func_80386550(ActorMarker *marker){
+void chZubbaFight_jiggy(ActorMarker *marker){
     Actor *this;
     ActorLocal_CCW_160 *local;
 
@@ -33,38 +43,39 @@ void CCW_func_80386550(ActorMarker *marker){
     local = (ActorLocal_CCW_160 *)&this->local;
     this->unk124_11 = 2;
     this->alpha_124_19 = 0xFF;
-    if (local->unk0 != NULL) {
-        actor_collisionOn(marker_getActor(local->unk0));
+    if (local->jiggyMarker != NULL) {
+        actor_collisionOn(marker_getActor(local->jiggyMarker));
     }
     coMusicPlayer_playMusic(COMUSIC_3D_JIGGY_SPAWN, 28000);
 }
 
-void func_803865C4(ActorMarker* marker, enum asset_e text_id, s32 arg2) {
-    func_803865F4(marker_getActor(marker), 3);
+void chZubbaFight_startFightDialog(ActorMarker* marker, enum asset_e text_id, s32 arg2) {
+    chZubbaFight_setState(marker_getActor(marker), CH_ZUBBA_FIGHT_STATE_3_FIGHT);
 }
 
-void func_803865F4(Actor *this, s32 next_state) {
+void chZubbaFight_setState(Actor *this, s32 next_state) {
     ActorLocal_CCW_160 *local;
 
     local = (ActorLocal_CCW_160 *)&this->local;
     local->unkC = 0.0f;
-    if (next_state == 2) {
+    if (next_state == CH_ZUBBA_FIGHT_STATE_2_DIALOG) {
         if (!volatileFlag_getAndSet(VOLATILE_FLAG_B5, 1)) {
-            gcdialog_showDialog(ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 4, NULL, this->marker, func_803865C4, NULL);
+            gcdialog_showDialog(
+                ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 4, NULL, this->marker, chZubbaFight_startFightDialog, NULL);
         } else {
             gcdialog_showDialog(ASSET_CE3_DIALOG_ZUBBA_RETURN, 4, NULL, NULL, NULL, NULL);
-            func_803865F4(this, 3);
+            chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_3_FIGHT);
             return;
         }
     }
 
-    if (next_state == 3) {
+    if (next_state == CH_ZUBBA_FIGHT_STATE_3_FIGHT) {
         local->unkC = 0.1f;
         func_8025A58C(0, 4000);
         coMusicPlayer_playMusic(COMUSIC_4B_CCW_ZUBBA_FIGHT, 30000);
     }
 
-    if (next_state == 4) {
+    if (next_state == CH_ZUBBA_FIGHT_STATE_4_FIGHT_COMPLETE) {
         if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             item_set(ITEM_6_HOURGLASS, FALSE);
             volatileFlag_set(VOLATILE_FLAG_3, 0);
@@ -77,7 +88,7 @@ void func_803865F4(Actor *this, s32 next_state) {
             coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
             func_80324E38(0.0f, 3);
             timed_setStaticCameraToNode(2.0f, 4);
-            timedFunc_set_1(2.0f, (GenFunction_1)CCW_func_80386550, (s32) this->marker);
+            timedFunc_set_1(2.0f, (GenFunction_1)chZubbaFight_jiggy, (s32) this->marker);
             timed_exitStaticCamera(4.0f);
             func_80324E38(4.0f, 0);
         }
@@ -85,81 +96,81 @@ void func_803865F4(Actor *this, s32 next_state) {
     this->state = next_state;
 }
 
-void func_803867C8(ActorMarker *marker){
+void chZubbaFight_zubbaKilled(ActorMarker *marker){
     Actor *this;
     ActorLocal_CCW_160 *local;
 
     this = marker_getActor(marker);
     local = (ActorLocal_CCW_160 *)&this->local;
-    local->unk8++;
-    local->unk4--;
-    if(local->unk8 == 10){
-        func_803865F4(this, 4);
+    local->zubbasDefeated++;
+    local->spawnedZubbaCount--;
+    if(local->zubbasDefeated == NUM_OF_ZUBBAS_TO_DEFEAT){
+        chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_4_FIGHT_COMPLETE);
     }
 }
 
-void func_80386814(ActorMarker *marker){
+void chZubbaFight_zubbaDisappear(ActorMarker *marker){
     Actor *this;
     ActorLocal_CCW_160 *local;
 
     this = marker_getActor(marker);
     local = (ActorLocal_CCW_160 *)&this->local;
-    local->unk4--;
+    local->spawnedZubbaCount--;
 }
 
-void func_80386840(ActorMarker *marker, s32 *score, s32 *total){
+void chZubbaFight_zubbaScore(ActorMarker *marker, s32 *score, s32 *total){
     Actor *this;
     ActorLocal_CCW_160 *local;
 
     this = marker_getActor(marker);
     local = (ActorLocal_CCW_160 *)&this->local;
 
-    *score = local->unk8;
-    *total = 10;
+    *score = local->zubbasDefeated;
+    *total = NUM_OF_ZUBBAS_TO_DEFEAT;
 }
 
-void func_8038687C(Actor *this) {
+void chZubbaFight_update(Actor *this) {
     ActorLocal_CCW_160 *local;
-    f32 sp88;
-    Actor *other;
+    f32 time_delta;
+    Actor *jiggy_actor;
     f32 sp78[3];
     f32 sp6C[3];
     s32 pad68;
-    f32 sp5C[3];
+    f32 player_position_1[3];
     s32 phi_s0;
     f32 sp4C[3];
-    f32 sp40[3];
+    f32 player_position_2[3];
     s32 phi_v0;
     f32 tmp;
 
-    sp88 = time_getDelta();
+    time_delta = time_getDelta();
     local = (ActorLocal_CCW_160 *)&this->local;
     if(!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = TRUE;
-        reinterpret_cast(s32, local->unk0) = 1;
-        local->unk4 = 0;
-        local->unk8 = 0;
+        reinterpret_cast(s32, local->jiggyMarker) = 1;
+        local->spawnedZubbaCount = 0;
+        local->zubbasDefeated = 0;
         local->unkC = 0.0f;
         if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
             this->position_y -= 300.0f;
         }
-        func_803865F4(this, 1);
+        chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_1_IDLE);
         return;
     }
-    if ((s32)local->unk0 == 1) {
-        other = actorArray_findActorFromActorId(0x46);
+    if ((s32)local->jiggyMarker == 1) {
+        jiggy_actor = actorArray_findActorFromActorId(ACTOR_46_JIGGY);
         if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)) {
-            local->unk0 = NULL;
-            if (other != NULL) {
-                actor_collisionOff(other);
-                other->position[1] -= 300.0f;
+            local->jiggyMarker = NULL;
+            if (jiggy_actor != NULL) {
+                actor_collisionOff(jiggy_actor);
+                jiggy_actor->position[1] -= 300.0f;
             }
-        } else if (other != NULL) {
-            local->unk0 = other->marker;
-            actor_collisionOff(other);
+        } else if (jiggy_actor != NULL) {
+            local->jiggyMarker = jiggy_actor->marker;
+            actor_collisionOff(jiggy_actor);
             if (jiggyscore_isCollected(JIGGY_4C_CCW_ZUBBAS) != 0) {
-                marker_despawn(local->unk0);
+                marker_despawn(local->jiggyMarker);
                 marker_despawn(this->marker);
             }
         } else {
@@ -168,21 +179,21 @@ void func_8038687C(Actor *this) {
         return;
     }
     
-    if (local->unk0 != NULL) {
-        other = marker_getActor(local->unk0);
+    if (local->jiggyMarker != NULL) {
+        jiggy_actor = marker_getActor(local->jiggyMarker);
         viewport_getPosition_vec3f(sp78);
         sp6C[0] = this->position[0] - sp78[0];
         sp6C[1] = this->position[1] - sp78[1];
         sp6C[2] = this->position[2] - sp78[2];
         sp6C[1] = 0.0f;
         ml_vec3f_set_length(sp6C, 20.0f);
-        other->position[0] = this->position[0] + sp6C[0];
-        other->position[1] = this->position[1] + sp6C[1];
-        other->position[2] = this->position[2] + sp6C[2];
+        jiggy_actor->position[0] = this->position[0] + sp6C[0];
+        jiggy_actor->position[1] = this->position[1] + sp6C[1];
+        jiggy_actor->position[2] = this->position[2] + sp6C[2];
     }
-    if (ml_timer_update(&local->unkC, sp88)) {
-        if ((local->unk4 < 3) && ((local->unk8 + local->unk4) < 10)) {
-            player_getPosition(sp5C);
+    if (ml_timer_update(&local->unkC, time_delta)) {
+        if ((local->spawnedZubbaCount < 3) && ((local->zubbasDefeated + local->spawnedZubbaCount) < 10)) {
+            player_getPosition(player_position_1);
             for(phi_s0 = 0; phi_s0 < 20; phi_s0++){
                 sp4C[0] = randf2(-500.0f, 500.0f);
                 sp4C[1] = -100.0f;
@@ -191,7 +202,7 @@ void func_8038687C(Actor *this) {
                 if(ml_vec3f_distance(this->position, sp4C) < 400.0f)
                     continue;
                 
-                tmp = ml_vec3f_distance(sp5C, sp4C);
+                tmp = ml_vec3f_distance(player_position_1, sp4C);
                 phi_v0 = (phi_s0 < 0xA) ?  500 : 200;
                 if(tmp < (f32) phi_v0)
                     continue;
@@ -200,24 +211,31 @@ void func_8038687C(Actor *this) {
                     break;
 
             }
-            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x29B, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
-            local->unk4++;
+            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_29B_ZUBBA, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
+            local->spawnedZubbaCount++;
         }
-        local->unkC = randf2(0.5 - ((local->unk8 / 10) * 0.4), 1.0 - ((local->unk8 / 10) * 0.8));
+        local->unkC = randf2(0.5 - ((local->zubbasDefeated / 10) * 0.4), 1.0 - ((local->zubbasDefeated / 10) * 0.8));
     }
-    if (this->state == 1) {
-        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && volatileFlag_get(VOLATILE_FLAG_3)) {
+    if (this->state == CH_ZUBBA_FIGHT_STATE_1_IDLE) {
+        if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
+            && volatileFlag_get(VOLATILE_FLAG_3))
+        {
             item_set(ITEM_6_HOURGLASS, 1);
             item_set(ITEM_0_HOURGLASS_TIMER, 1800 - 1);
-            func_803865F4(this, 3);
-        } else if ((local->unk0 != NULL) && (gsworld_getMap() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
-            player_getPosition(sp40);
-            if ((ml_vec3f_distance(this->position, sp40) < 300.0f) && (player_getTransformation() == TRANSFORM_1_BANJO)) {
-                func_803865F4(this, 2);
+            chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_3_FIGHT);
+        } else if ((local->jiggyMarker != NULL) && (gsworld_getMap() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
+            player_getPosition(player_position_2);
+            if ((ml_vec3f_distance(this->position, player_position_2) < 300.0f)
+                && (player_getTransformation() == TRANSFORM_1_BANJO))
+            {
+                chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_2_DIALOG);
             }
         }
     }
-    if ((this->state == 3) && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME) && item_empty(ITEM_0_HOURGLASS_TIMER)) {
+    if ((this->state == CH_ZUBBA_FIGHT_STATE_3_FIGHT)
+        && volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
+        && item_empty(ITEM_0_HOURGLASS_TIMER))
+    {
         item_set(ITEM_6_HOURGLASS, 0);
         volatileFlag_set(VOLATILE_FLAG_3, 0);
         volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 0);

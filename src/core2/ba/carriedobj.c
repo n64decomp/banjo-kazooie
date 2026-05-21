@@ -9,7 +9,7 @@ bool player_setCarryObjectPose(enum actor_e actor_id, Actor **arg1){
     Actor *actor;
     
     m1 = (*arg1)->marker;
-    m2 = bacarry_get_marker();
+    m2 = bacarry_getMarker();
     if(m2){
         actor = marker_getActor(m2);
     }
@@ -40,7 +40,7 @@ void bacarriedobj_spawn(enum actor_e actor_id){
     ActorMarker *marker;
     Actor *actor;
     
-    marker = bacarry_get_marker();
+    marker = bacarry_getMarker();
     if(marker){
         actor = marker_getActor(marker);
     }
@@ -68,7 +68,7 @@ void bacarriedobj_dec(enum actor_e actor_id){
     ActorMarker *marker;
     Actor* actor;
 
-    marker = bacarry_get_marker();
+    marker = bacarry_getMarker();
     if(marker)
         actor = marker_getActor(marker);
 

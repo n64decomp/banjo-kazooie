@@ -346,6 +346,7 @@ Actor *func_80325F2C(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
+// CCW Unknown Update Function
 void func_80325F84(Actor *this){}
 
 void func_80325F8C(void) {

@@ -6,36 +6,40 @@ extern ParticleEmitter *func_802EDD8C(f32[3], f32, f32);
 
 typedef struct{
     s16 map_id;
-    s16 unk2;
-    s16 unk4;
-}Struct_CCW_6620_0;
+    s16 despawnIfJiggyCollected;
+    s16 dialog;
+} CH_GNAWTY_SWIMMING_DIALOG;
 
 typedef struct{
-    Struct_CCW_6620_0 *unk0;
+    CH_GNAWTY_SWIMMING_DIALOG *dialog;
     f32 unk4[3];
-}ActorLocal_CCW_6620;
+} ActorLocal_CCW_6620;
 
-Actor *CCW_func_8038CBF0(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038CC4C(Actor *this);
+Actor *chGnawtySwimming_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chGnawtySwimming_update(Actor *this);
 
 /* .data */
-Struct_CCW_6620_0 D_8038F490[] ={
-    {0x43, 0, ASSET_CCE_DIALOG_GNAWTY_MEET_SPRING},
-    {0x45, 1, ASSET_CD1_DIALOG_GNAWTY_MEET_FALL_OUTSIDE},
-    {0x46, 1, ASSET_CD3_DIALOG_GNAWTY_MEET_WINTER_OUTSIDE},
-    0
+CH_GNAWTY_SWIMMING_DIALOG chGnawtySwimmingDialogs[] ={
+    {MAP_43_CCW_SPRING, FALSE, ASSET_CCE_DIALOG_GNAWTY_MEET_SPRING},
+    {MAP_45_CCW_AUTUMN,  TRUE, ASSET_CD1_DIALOG_GNAWTY_MEET_FALL_OUTSIDE},
+    {MAP_46_CCW_WINTER,  TRUE, ASSET_CD3_DIALOG_GNAWTY_MEET_WINTER_OUTSIDE},
+    NULL
 };
 
-// Swimming Gnawty
-ActorInfo D_8038F4A8 = { 
-    0x1BD, 0x2AA, 0x48F,
+enum chGnawtySwimming_State_e {
+    CH_GNAWTY_SWIMMING_STATE_0_NOT_INIT,
+    CH_GNAWTY_SWIMMING_STATE_1_SWIMMING
+};
+
+ActorInfo chGnawtySwimming = { 
+    MARKER_1BD_GNAWTY_SWIMMING, ACTOR_2AA_GNAWTY_SWIMMING, ASSET_48F_MODEL_GNAWTY,
     0x0, NULL,
-    func_8038CC4C, NULL, CCW_func_8038CBF0,
+    chGnawtySwimming_update, NULL, chGnawtySwimming_draw,
     0, 0, 2.2f, 0
 };
 
 /* .code */
-void func_8038CA10(ActorMarker *marker) {
+void chGnawtySwimming_emitParticles(ActorMarker *marker) {
     Actor *this;
     ActorLocal_CCW_6620 *local;
     ParticleEmitter *pCtrl;
@@ -55,20 +59,20 @@ void func_8038CA10(ActorMarker *marker) {
     }
 }
 
-void func_8038CB40(Actor *this, s32 next_state) {
+void chGnawtySwimming_setState(Actor *this, s32 next_state) {
     int i;
 
-    if (next_state == 1) {
+    if (next_state == CH_GNAWTY_SWIMMING_STATE_1_SWIMMING) {
         skeletalAnim_set(this->unk148, 0x289, 0.2f, 1.1f);
         for(i = 0; i < 10; i++){
-            skeletalAnim_setCallback_1(this->unk148, randf(), (GenFunction_1)func_8038CA10, (s32)this->marker);
+            skeletalAnim_setCallback_1(this->unk148, randf(), (GenFunction_1)chGnawtySwimming_emitParticles, (s32)this->marker);
         }
     }
     this->state = next_state;
 }
 
 
-Actor *CCW_func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chGnawtySwimming_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_CCW_6620 *local;
 
@@ -80,48 +84,54 @@ Actor *CCW_func_8038CBF0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     return this;
 }
 
-void func_8038CC4C(Actor *this) {
+void chGnawtySwimming_update(Actor *this) {
     ActorLocal_CCW_6620 *local;
-    f32 sp50[3];
-    f32 sp4C;
-    f32 sp48;
-    f32 sp44;
-    f32 player_pos[3];
+    f32 player_pos_1[3];
+    f32 horizontal_distance;
+    f32 distance_in_front;
+    f32 side_angle_radian;
+    f32 player_pos_2[3];
 
     local = (ActorLocal_CCW_6620 *)&this->local;
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
-        local->unk0 = &D_8038F490[0];
-        while(local->unk0->map_id != 0 && gsworld_getMap() != local->unk0->map_id){
-            local->unk0++;
+        local->dialog = &chGnawtySwimmingDialogs[0];
+        while(local->dialog->map_id != 0 && gsworld_getMap() != local->dialog->map_id){
+            local->dialog++;
         }
-        func_8038CB40(this, 1);
+        chGnawtySwimming_setState(this, CH_GNAWTY_SWIMMING_STATE_1_SWIMMING);
 
         if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY)) {
-            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_GNAWTY_JIGGY_COLLECTED, TRUE);
         }
 
-        if ((local->unk0->unk2 != 0) && levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN)) {
+        if ((local->dialog->despawnIfJiggyCollected != FALSE)
+            && levelSpecificFlags_get(LEVEL_FLAG_25_CCW_GNAWTY_JIGGY_COLLECTED))
+        {
             marker_despawn(this->marker);
         }
 
         return;
     } 
 
-    if (this->state == 1 && this->marker->unk14_21) {
-        player_getPosition(sp50);
-        func_80258A4C(this->position, this->yaw - 90.0f, sp50, &sp4C, &sp48, &sp44);
-        if (sp4C > 100.0f) {
-            this->yaw += 30.0f * sp44;
+    if (this->state == CH_GNAWTY_SWIMMING_STATE_1_SWIMMING && this->marker->unk14_21) {
+        player_getPosition(player_pos_1);
+        func_80258A4C(
+            this->position, this->yaw - 90.0f, player_pos_1,
+            &horizontal_distance, &distance_in_front, &side_angle_radian);
+        if (horizontal_distance > 100.0f) {
+            this->yaw += 30.0f * side_angle_radian;
         }
     }
     if (!this->has_met_before) {
-        player_getPosition(player_pos);
-        if (ml_vec3f_distance(this->position, player_pos) < 900.0f) {
-            if (local->unk0->map_id != MAP_46_CCW_WINTER || func_8028F2FC()) {
-                gcdialog_showDialog(local->unk0->unk4, 4, NULL, NULL, NULL, NULL);
+        player_getPosition(player_pos_2);
+        if (ml_vec3f_distance(this->position, player_pos_2) < 900.0f) {
+            if (local->dialog->map_id != MAP_46_CCW_WINTER
+                || func_8028F2FC())
+            {
+                gcdialog_showDialog(local->dialog->dialog, 4, NULL, NULL, NULL, NULL);
                 this->has_met_before = TRUE;
             }
         }

@@ -9,142 +9,143 @@ extern void func_802D3D74(Actor *);
 extern void func_80325F84(Actor *);
 
 
-extern ActorInfo D_8038EB50;
-extern ActorInfo D_8038EB74;
-extern ActorInfo D_8038EBA0;
-extern ActorInfo D_8038EBD0;
-extern ActorInfo D_8038EC14;
-extern ActorInfo D_8038EC70;
-extern ActorInfo D_8038ECA0;
-extern ActorInfo D_8038ECE8;
-extern ActorInfo D_8038EE70;
-extern ActorInfo D_8038F130;
+extern ActorInfo chZubbaDoorSummer;
+extern ActorInfo chZubbaDoorAutumn;
+extern ActorInfo chZubbaHoneyLump;
+extern ActorInfo chZubba;
+extern ActorInfo chZubbaDocile;
+extern ActorInfo chCCWBeanstalk;
+extern ActorInfo chDeadBeanstalk;
+extern ActorInfo chCCWGobi;
+extern ActorInfo chEyrieEgg;
+extern ActorInfo chEyrieBaby;
 extern ActorInfo chCaterpillar;
-extern ActorInfo D_8038F190;
-extern ActorInfo D_8038F230;
-extern ActorInfo D_8038F6F0;
-extern ActorInfo D_8038ED50;
-extern ActorInfo D_8038ED98;
-extern ActorInfo D_8038EDE0;
-extern ActorInfo D_8038EE28;
-extern ActorInfo D_8038ED74;
-extern ActorInfo D_8038EDBC;
-extern ActorInfo D_8038EE04;
-extern ActorInfo D_8038EE4C;
-extern ActorInfo D_8038F270;
-extern ActorInfo D_8038F300;
-extern ActorInfo D_8038F35C;
-extern ActorInfo D_8038F380;
-extern ActorInfo D_8038F3A4;
-extern ActorInfo D_8038F3C8;
-extern ActorInfo D_8038F3EC;
-extern ActorInfo D_8038F410;
-extern ActorInfo D_8038F434;
-extern ActorInfo D_8038F460;
-extern ActorInfo D_8038F4A8;
-extern ActorInfo D_8038F4D0;
-extern ActorInfo D_8038F614;
+extern ActorInfo chEyrieAdult;
+extern ActorInfo chCutsceneAdultEyrie;
+extern ActorInfo chSnoreZ;
+extern ActorInfo chCCWSpringSwitchDoor;
+extern ActorInfo chCCWSummerSwitchDoor;
+extern ActorInfo chCCWAutumnSwitchDoor;
+extern ActorInfo chCCWWinterSwitchDoor;
+extern ActorInfo chCCWSpringSwitch;
+extern ActorInfo chCCWSummerSwitch;
+extern ActorInfo chCCWAutumnSwitch;
+extern ActorInfo chCCWWinterSwitch;
+extern ActorInfo chNabnutSpring;
+extern ActorInfo chNabnutBellyFull;
+extern ActorInfo chAutumnOutdoorNabnut;
+extern ActorInfo chMoundOfAcorns;
+extern ActorInfo chPinkSquirrel;
+extern ActorInfo chNabnutBedsheets;
+extern ActorInfo chNabnutBed;
+extern ActorInfo chNabnut;
+extern ActorInfo chNabnutAutumnEatingAcorns;
+extern ActorInfo chCarriedAcorn;
+extern ActorInfo chGnawtySwimming;
+extern ActorInfo chGnawtySummer;
+extern ActorInfo chIndoorsGnawty;
 extern ActorInfo chGnawtyBoulder;
-extern ActorInfo D_8038F908;
-extern ActorInfo D_8038F8C0;
-extern ActorInfo D_8038F720;
-extern ActorInfo D_8038F744;
-extern ActorInfo D_8038F768;
-extern ActorInfo D_8038F78C;
+extern ActorInfo chSnarebear;
+extern ActorInfo chDeadSnarebear;
+extern ActorInfo chNabnutWindowSpring;
+extern ActorInfo chNabnutWindowSummer;
+extern ActorInfo chNabnutWindowAutumn;
+extern ActorInfo chNabnutWindowWinter;
 extern ActorInfo chGrublinHood;
 extern ActorInfo gChVacationTextTrigger;
-extern ActorInfo D_8038F7D4;
-extern ActorInfo D_8038F7B0;
+extern ActorInfo chCCWWhipcrackRoomDoor;
+extern ActorInfo chNabnutDoor;
 extern ActorInfo D_8038F888;
-extern ActorInfo D_8038F7F8;
-extern ActorInfo D_8038F81C;
-extern ActorInfo D_8038F840;
-extern ActorInfo D_8038F864;
+extern ActorInfo chCCWMumbosHut;
+extern ActorInfo chGnawtysDen;
+extern ActorInfo chGnawtysBed;
+extern ActorInfo chGnawtysShelves;
 
-void CCW_func_8038DB0C(Actor *this);
-void func_8038DAB0(Actor *this);
+void code_76C0_ccwGnawtysStuffUpdate(Actor *this);
+void code_76C0_ccwWhipcrackRoomDoorUpdate(Actor *this);
 
 /* .data */
-ActorInfo D_8038F720 = {
-    MARKER_239_CCW_UNKNOWN_NABNUT_WINDOW, 0x25F, ASSET_4FC_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
+// Unused
+ActorInfo chNabnutWindowSpring = {
+    MARKER_239_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_25F_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4FC_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F744 = {
-    MARKER_236_CCW_UNKNOWN_NABNUT_WINDOW, 0x260, ASSET_4F9_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
+// Unused
+ActorInfo chNabnutWindowSummer = {
+    MARKER_236_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_260_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4F9_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F768 = {
-    MARKER_237_CCW_AUTUMN_NABNUT_WINDOW, 0x261, ASSET_4FA_MODEL_CCW_AUTUMN_NABNUT_WINDOW,
+ActorInfo chNabnutWindowAutumn = {
+    MARKER_237_CCW_AUTUMN_NABNUT_WINDOW, ACTOR_261_CCW_AUTUMN_NABNUT_WINDOW, ASSET_4FA_MODEL_CCW_AUTUMN_NABNUT_WINDOW,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F78C = {
-    MARKER_238_CCW_WINTER_NABNUT_WINDOW, 0x262, ASSET_4FB_MODEL_CCW_WINTER_NABNUT_WINDOW,
+ActorInfo chNabnutWindowWinter = {
+    MARKER_238_CCW_WINTER_NABNUT_WINDOW, ACTOR_262_CCW_WINTER_NABNUT_WINDOW, ASSET_4FB_MODEL_CCW_WINTER_NABNUT_WINDOW,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F7B0 = {
-    0x243, 0x2E6, 0x533,
+ActorInfo chNabnutDoor = {
+    MARKER_243_NABNUT_DOOR, ACTOR_2E6_NABNUT_DOOR, ASSET_533_MODEL_NABNUT_DOOR,
     0x1, NULL,
     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F7D4 = {
-    MARKER_263_CCW_WHIPCRACK_ROOM_DOOR, 0x2E7, ASSET_518_MODEL_CCW_WHIPCRACK_ROOM_DOOR,
+ActorInfo chCCWWhipcrackRoomDoor = {
+    MARKER_263_CCW_WHIPCRACK_ROOM_DOOR, ACTOR_2E7_WHIPCRACK_ROOM_DOOR, ASSET_518_MODEL_CCW_WHIPCRACK_ROOM_DOOR,
     0x1, NULL,
-    func_8038DAB0, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwWhipcrackRoomDoorUpdate, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F7F8 = {
-    0x21E, 0x233, 0x3B3,
+ActorInfo chCCWMumbosHut = {
+    MARKER_21E_CCW_MUMBOS_HUT, ACTOR_233_CCW_MUMBOS_HUT, ASSET_3B3_MODEL_CCW_MUMBOS_HUT,
     0x1, NULL,
     func_802D3D74, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F81C = {
-    0x26B, 0x2DE, 0x531,
+ActorInfo chGnawtysDen = {
+    MARKER_26B_GNAWTYS_DEN, ACTOR_2DE_GNAWTYS_DEN, ASSET_531_MODEL_GNAWTYS_DEN,
     0x1, NULL,
-    CCW_func_8038DB0C, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F840 = {
-    0x26C, 0x2DD, 0x53E,
+ActorInfo chGnawtysBed = {
+    MARKER_26C_GNAWTYS_BED, ACTOR_2DD_GNAWTYS_BED, ASSET_53E_MODEL_GNAWTY_BED,
     0x1, NULL,
-    CCW_func_8038DB0C, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038F864 = {
-    0x26D, 0x2DC, 0x53F,
+ActorInfo chGnawtysShelves = {
+    MARKER_26D_GNAWTYS_SHELVES, ACTOR_2DC_GNAWTYS_SHELVES, ASSET_53F_MODEL_GNAWTY_SHELVES,
     0x1, NULL,
-    CCW_func_8038DB0C, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo D_8038F888 = {
-    0x1CC, 0x318, 0x0,
+    MARKER_1CC_CCW_UNKNOWN, ACTOR_318_CCW_UNKNOWN, 0x0,
     0x0, NULL,
     func_80325F84, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
 
-
 /* .code */
-void func_8038DAB0(Actor *this){
+void code_76C0_ccwWhipcrackRoomDoorUpdate(Actor *this){
     if(!this->initialized){
         func_802D3CE8(this);
         this->initialized = TRUE;
@@ -155,10 +156,11 @@ void func_8038DAB0(Actor *this){
     }
 }
 
-void CCW_func_8038DB0C(Actor *this){
+void code_76C0_ccwGnawtysStuffUpdate(Actor *this){
     if(!this->initialized){
         func_802D3D74(this);
         this->initialized = TRUE;
+        // Position For Gnawty's Den
         this->position_x = 325.8f;
         this->position_y = 600.0f;
         this->position_z = 0.0f;
@@ -167,55 +169,55 @@ void CCW_func_8038DB0C(Actor *this){
 
 void CCW_func_8038DB6C(void)
 {
-    spawnableActorList_add(&D_8038EB50, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038EB74, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038EBA0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
-    spawnableActorList_add(&D_8038EBD0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_25);
-    spawnableActorList_add(&D_8038EC14, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038EC70, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_19);
-    spawnableActorList_add(&D_8038ECA0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_19);
-    spawnableActorList_add(&D_8038ECE8, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
-    spawnableActorList_add(&D_8038EE70, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F130, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chZubbaDoorSummer, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chZubbaDoorAutumn, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chZubbaHoneyLump, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&chZubba, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_25);
+    spawnableActorList_add(&chZubbaDocile, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chCCWBeanstalk, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chDeadBeanstalk, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chCCWGobi, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chEyrieEgg, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chEyrieBaby, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_19);
     spawnableActorList_add(&chCaterpillar, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F190, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
-    spawnableActorList_add(&D_8038F230, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F6F0, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038ED50, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038ED98, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038EDE0, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038EE28, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038ED74, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038EDBC, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038EE04, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038EE4C, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038F270, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F300, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F35C, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F380, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038F3A4, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F3C8, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F3EC, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038F410, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F434, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F460, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F4A8, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F4D0, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
-    spawnableActorList_add(&D_8038F614, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chEyrieAdult, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chCutsceneAdultEyrie, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chSnoreZ, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chCCWSpringSwitchDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWSummerSwitchDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWAutumnSwitchDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWWinterSwitchDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWSpringSwitch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chCCWSummerSwitch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chCCWAutumnSwitch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chCCWWinterSwitch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chNabnutSpring, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chNabnutBellyFull, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chAutumnOutdoorNabnut, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chMoundOfAcorns, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chPinkSquirrel, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chNabnutBedsheets, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chNabnutBed, actor_new, ACTOR_FLAG_UNKNOWN_7);
+    spawnableActorList_add(&chNabnut, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chNabnutAutumnEatingAcorns, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chCarriedAcorn, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chGnawtySwimming, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chGnawtySummer, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
+    spawnableActorList_add(&chIndoorsGnawty, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);
     spawnableActorList_add(&chGnawtyBoulder, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038F908, actor_new, ACTOR_FLAG_UNKNOWN_3);
-    spawnableActorList_add(&D_8038F8C0, actor_new, ACTOR_FLAG_UNKNOWN_3);
-    spawnableActorList_add(&D_8038F720, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038F744, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038F768, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038F78C, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chSnarebear, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&chDeadSnarebear, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&chNabnutWindowSpring, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chNabnutWindowSummer, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chNabnutWindowAutumn, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chNabnutWindowWinter, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chGrublinHood, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gChVacationTextTrigger, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038F7D4, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038F7B0, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWWhipcrackRoomDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chNabnutDoor, actor_new, ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&D_8038F888, actor_new, ACTOR_FLAG_UNKNOWN_7);
-    spawnableActorList_add(&D_8038F7F8, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038F81C, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038F840, actor_new, ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038F864, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chCCWMumbosHut, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chGnawtysDen, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chGnawtysBed, actor_new, ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chGnawtysShelves, actor_new, ACTOR_FLAG_UNKNOWN_10);
 }

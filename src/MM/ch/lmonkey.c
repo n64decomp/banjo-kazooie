@@ -44,7 +44,7 @@ void __chlmonkey_updateBringOrange(Actor **this_ptr) {
     player_setCarryObjectPoseInHorizontalRadius((*this_ptr)->position, 800.0f, ACTOR_29_ORANGE_COLLECTIBLE, this_ptr);
 
     if (subaddie_playerIsWithinSphereAndActive(*this_ptr, 345) &&
-        bacarry_get_markerId() == MARKER_36_ORANGE_COLLECTIBLE &&
+        bacarry_getMarkerId() == MARKER_36_ORANGE_COLLECTIBLE &&
         player_throwCarriedObject()) {
 
         func_8028FA34(0xc6, *this_ptr);

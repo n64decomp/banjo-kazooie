@@ -121,7 +121,7 @@ static void __func_80387774(Actor **this_ptr){
 
     player_setCarryObjectPoseInCylinder(local->throw_target_position, local->throw_target_radius, 100.0f, ACTOR_2A_GOLD_BULLION, this_ptr);
     if( subaddie_playerIsWithinSphereAndActive(*this_ptr, 200)
-        && bacarry_get_markerId() == MARKER_37_GOLD_BULLION
+        && bacarry_getMarkerId() == MARKER_37_GOLD_BULLION
         && player_throwCarriedObject()
     ) {
         func_8028FA34(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_0_BLUBBER_UNKNOWN) ? ACTOR_149_TTC_BLUBBER_UNKNOWN : ACTOR_14A_TTC_BLUBBER_UNKNOWN, *this_ptr);

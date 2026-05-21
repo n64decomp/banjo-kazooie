@@ -9,7 +9,7 @@ void bacarry_end(void);
 void bacarry_update(void);
 
 void bacarry_reset_marker(void);
-ActorMarker *bacarry_get_marker(void);
+ActorMarker *bacarry_getMarker(void);
 void bacarry_set_marker(ActorMarker *arg0);
 void bacarry_set_offsets(f32 height, f32 rotation);
 

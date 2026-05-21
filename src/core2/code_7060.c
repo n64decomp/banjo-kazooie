@@ -285,14 +285,14 @@ void func_8028E84C(f32 arg0[3]){
     func_80294480(arg0);
 }
 
-ActorMarker *func_8028E86C(void){
-    return bacarry_get_marker();
+ActorMarker *bacarry_getMarkerWithExtraSteps(void){
+    return bacarry_getMarker();
 }
 
-enum marker_e bacarry_get_markerId(void){
+enum marker_e bacarry_getMarkerId(void){
     ActorMarker *marker;
 
-    marker = bacarry_get_marker();
+    marker = bacarry_getMarker();
     if(marker){
         return marker->id;
     }
@@ -303,7 +303,7 @@ enum actor_e carriedObj_getActorId(void){
     ActorMarker *marker;
     Actor *actor;
 
-    marker = bacarry_get_marker();
+    marker = bacarry_getMarker();
     
     if(marker != NULL){
         actor = marker_getActor(marker);
@@ -935,7 +935,7 @@ bool func_8028FBD4(f32 arg0[3]) {
 }
 
 bool player_throwCarriedObject(void){
-    if (func_8028E86C() && bscarry_inSet(bs_getState())) {
+    if (bacarry_getMarkerWithExtraSteps() && bscarry_inSet(bs_getState())) {
         return bs_checkInterrupt(BS_INTR_16_THROW_CARRIED_OBJ) == 2;
     }
 

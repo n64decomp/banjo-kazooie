@@ -9,38 +9,47 @@ typedef struct {
     s16 unkA;
 }Struct_CCW_4960_0;
 
-Actor *func_8038AE64(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_8038AEBC(Actor *this);
+Actor *chCutsceneAdultEyrie_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chCutsceneAdultEyrie_update(Actor *this);
 
 /* .data */
-ActorInfo D_8038F230 = {
-    0x1C4, 0x30E, 0x487,
+// This is the flying Eyrie that poops the Jiggy
+ActorInfo chCutsceneAdultEyrie = {
+    MARKER_1C4_CUTSCENE_ADULT_EYRIE, ACTOR_30E_CUTSCENE_ADULT_EYRIE, ASSET_487_MODEL_EAGLE_ADULT,
     0x0, NULL,
-    func_8038AEBC, func_8038AEBC, func_8038AE64,
+    chCutsceneAdultEyrie_update, chCutsceneAdultEyrie_update, chCutsceneAdultEyrie_draw,
     0, 0, 0.0f, 0
 };
 
-Struct_CCW_4960_0 D_8038F254[] = {
+Struct_CCW_4960_0 chCutsceneAdultEyrieSFX[] = {
     {0.5f, 0.8f, SFX_2_CLAW_SWIPE, 20000},
     0
 };
 
+enum chCutsceneAdultEyrie_State_e {
+    CH_CUTSCENE_ADULT_EYRIE_STATE_0_NOT_INIT,
+    CH_CUTSCENE_ADULT_EYRIE_STATE_1_UNK,
+    CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK,
+    CH_CUTSCENE_ADULT_EYRIE_STATE_3_UNK,
+    CH_CUTSCENE_ADULT_EYRIE_STATE_4_UNK
+};
+
 /* .code */
-void func_8038AD50(Actor *this, s32 next_state) {
-    if (next_state == 2) {
+void chCutsceneAdultEyrie_setNextState(Actor *this, s32 next_state) {
+    if (next_state == CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK) {
         gcdialog_showDialog(ASSET_CDD_DIALOG_ADULT_EYRIE_COMPLETE_WINTER, 0, NULL, NULL, NULL, NULL);
-        if (this->state == 1) {
-            mapSpecificFlags_set(6, 0);
+        if (this->state == CH_CUTSCENE_ADULT_EYRIE_STATE_1_UNK) {
+            mapSpecificFlags_set(CCW_WINTER_SPECIFIC_FLAG_6_CUTSCENE_EEYRIE_ADULT, 0);
             timed_setStaticCameraToNode(0.0f, 1);
         }
-        skeletalAnim_set(this->unk148, 0x21D, 0.2f, 0.5f);
+        skeletalAnim_set(this->unk148, ASSET_21D_ANIM_ADULT_EYRIE_UNK, 0.2f, 0.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
-    if (next_state == 3) {
-        skeletalAnim_set(this->unk148, 0x21E, 0.2f, 2.0f);
+    if (next_state == CH_CUTSCENE_ADULT_EYRIE_STATE_3_UNK) {
+        skeletalAnim_set(this->unk148, ASSET_21E_ANIM_ADULT_EYRIE_UNK, 0.2f, 2.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
-    if (next_state == 4) {
+    if (next_state == CH_CUTSCENE_ADULT_EYRIE_STATE_4_UNK) {
         timed_exitStaticCamera(0.0f);
         func_80324E38(0.0f, 0);
         marker_despawn(this->marker);
@@ -48,16 +57,16 @@ void func_8038AD50(Actor *this, s32 next_state) {
     this->state = next_state;
 }
 
-Actor *func_8038AE64(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chCutsceneAdultEyrie_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
 
     this = marker_getActor(marker);
-    if(this->state < 2)
+    if(this->state < CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK)
         return this;
     return actor_draw(marker, gfx, mtx, vtx);
 }
 
-void func_8038AEBC(Actor *this) {
+void chCutsceneAdultEyrie_update(Actor *this) {
     Struct_CCW_4960_0 *iPtr;
     f32 sp38;
     f32 sp34;
@@ -66,39 +75,39 @@ void func_8038AEBC(Actor *this) {
 
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
-        func_8038AD50(this, 1);
+        chCutsceneAdultEyrie_setNextState(this, CH_CUTSCENE_ADULT_EYRIE_STATE_1_UNK);
         return;
     }
-    if (this->state == 1){
-        if(mapSpecificFlags_get(5)) {
-            mapSpecificFlags_set(5, FALSE);
-            func_8038AD50(this, 2);
+    if (this->state == CH_CUTSCENE_ADULT_EYRIE_STATE_1_UNK){
+        if(mapSpecificFlags_get(CCW_WINTER_SPECIFIC_FLAG_5_EEYRIE_ADULT)) {
+            mapSpecificFlags_set(CCW_WINTER_SPECIFIC_FLAG_5_EEYRIE_ADULT, FALSE);
+            chCutsceneAdultEyrie_setNextState(this, CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK);
         }
     }
-    if (this->state == 2) {
+    if (this->state == CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK) {
         actor_update_func_80326224(this);
         skeletalAnim_getProgressRange(this->unk148, &sp38, &sp34);
-        for(iPtr = &D_8038F254[0]; iPtr->unk0 > 0.0f; iPtr++){
+        for(iPtr = &chCutsceneAdultEyrieSFX[0]; iPtr->unk0 > 0.0f; iPtr++){
              if ((sp38 < iPtr->unk0) && (iPtr->unk0 <= sp34)) {
                 func_8030E878((s32) iPtr->unk8, iPtr->unk4, iPtr->unkA, this->position, 1500.0f, 4500.0f);
             }
         }
-        if (mapSpecificFlags_get(6)) {
-            mapSpecificFlags_set(6, FALSE);
-            func_8038AD50(this, 3);
+        if (mapSpecificFlags_get(CCW_WINTER_SPECIFIC_FLAG_6_CUTSCENE_EEYRIE_ADULT)) {
+            mapSpecificFlags_set(CCW_WINTER_SPECIFIC_FLAG_6_CUTSCENE_EEYRIE_ADULT, FALSE);
+            chCutsceneAdultEyrie_setNextState(this, CH_CUTSCENE_ADULT_EYRIE_STATE_3_UNK);
         }
         if (0.99 < this->unk48) {
-            func_8038AD50(this, 4);
+            chCutsceneAdultEyrie_setNextState(this, CH_CUTSCENE_ADULT_EYRIE_STATE_4_UNK);
         }
     }
-    if (this->state == 3) {
+    if (this->state == CH_CUTSCENE_ADULT_EYRIE_STATE_3_UNK) {
         actor_update_func_80326224(this);
         skeletalAnim_getProgressRange(this->unk148, &sp30, &sp2C);
         if ((sp30 <= 0.5) && (sp2C >= 0.5)) {
             jiggy_spawn(JIGGY_49_CCW_EYRIE, this->position);
         }
         if (skeletalAnim_getLoopCount(this->unk148) > 0) {
-            func_8038AD50(this, 2);
+            chCutsceneAdultEyrie_setNextState(this, CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK);
         }
     }
 }
