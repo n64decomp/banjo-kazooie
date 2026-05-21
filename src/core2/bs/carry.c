@@ -47,7 +47,7 @@ void bscarry_idle_update(void){
     if(bastick_getZone() > 0)
         sp1C = BS_3B_CARRY_WALK;
 
-    if(bacarry_get_marker() == NULL)
+    if(bacarry_getMarker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);
@@ -76,7 +76,7 @@ void bscarry_walk_update(void){
     if(bastick_getZone() == 0 && baphysics_is_slower_than(1.0f))
         sp1C = BS_3A_CARRY_IDLE;
 
-    if(bacarry_get_marker() == NULL)
+    if(bacarry_getMarker() == NULL)
         sp1C = BS_1_IDLE;
 
     bs_setState(sp1C);

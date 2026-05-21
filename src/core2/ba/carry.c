@@ -61,7 +61,7 @@ void bacarry_reset_marker(void){
     baCarry_marker = NULL;
 }
 
-ActorMarker *bacarry_get_marker(void){
+ActorMarker *bacarry_getMarker(void){
    return baCarry_marker; 
 }
 

@@ -5,7 +5,7 @@
 extern void func_8028F7D4(f32, f32);
 void chLevelCollectible_update(Actor *this);
 extern void func_80329904(ActorMarker *, s32, f32*);
-extern ActorMarker *func_8028E86C(void);
+extern ActorMarker *bacarry_getMarkerWithExtraSteps(void);
 extern void timed_mapSpecificFlags_setTrue(f32, s32);
 extern void progressDialog_showDialogMaskFour(s32);
 
@@ -277,7 +277,7 @@ void func_802D8374(Actor *this){
     s32 pad2C;
     f32 sp20[3];
 
-    if(func_8028E86C() != this->marker){
+    if(bacarry_getMarkerWithExtraSteps() != this->marker){
         func_8028F050(this->modelCacheIndex);
         marker_despawn(this->marker);
     }

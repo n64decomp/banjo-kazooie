@@ -76,7 +76,7 @@ ActorInfo gStairs1 = {
 };
 
 ActorInfo gStairs2 = {
-    MARKER_269_STAIRS_2, ACTOR_2E1_TTC_STAIRS_2, ASSET_3B7_MODEL_TTC_STAIRS_1,
+    MARKER_269_STAIRS_2, ACTOR_2E1_TTC_STAIRS_2, ASSET_3B7_MODEL_TTC_STAIRS_2,
     0x1, NULL, 
     __code26D0_genericUpdateFunc, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0

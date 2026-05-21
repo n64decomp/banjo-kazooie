@@ -2,18 +2,17 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8038B87C(Actor *this);
+void chNabnutBellyFull_update(Actor *this);
 
 /* .data */
-// Belly Full Nabnut
-ActorInfo D_8038F300 = {
-    0x1BA, 0x2A7, 0x503,
+ActorInfo chNabnutBellyFull = {
+    MARKER_1BA_NABNUT_FULL_BELLY, ACTOR_2A7_NABNUT_FULL_BELLY, ASSET_503_MODEL_NABNUT_BELLY_FULL,
     0x0, NULL,
-    func_8038B87C, NULL, actor_draw,
+    chNabnutBellyFull_update, NULL, actor_draw,
     0, 0, 2.0f, 0
 };
 
-s32 D_8038F324[] = {
+s32 chNabnutBellyFullSFX[] = {
     SFX_97_BLUBBER_BURPS,
     SFX_3E_POOP_NOISE,
     SFX_F6_BLUBBER_TALKING_2,
@@ -23,23 +22,39 @@ s32 D_8038F324[] = {
     0
 };
 
+enum ChNabnutBellyFull_State_e {
+    CH_NABNUT_BELLY_FULL_STATE_1_UNK = 1
+};
+
 /* .code */
 void func_8038B4C0(ActorMarker *marker) {
     Actor *this;
-    static s32 D_8038F340 = 0; 
+    static s32 chNabnutBellyFullSFXIndex = 0; 
 
     this = marker_getActor(marker);
-    func_8030E878(D_8038F324[D_8038F340], randf2(1.1f, 1.2f), (s32) randf2(31000.0f, 32000.0f), this->position, 500.0f, 2500.0f);
-    D_8038F340++;
-    if (D_8038F324[D_8038F340] == 0) {
-        D_8038F340 = 0;
+    func_8030E878(
+        chNabnutBellyFullSFX[chNabnutBellyFullSFXIndex],
+        randf2(1.1f, 1.2f),
+        (s32) randf2(31000.0f, 32000.0f),
+        this->position,
+        500.0f,
+        2500.0f);
+    chNabnutBellyFullSFXIndex++;
+    if (chNabnutBellyFullSFX[chNabnutBellyFullSFXIndex] == 0) {
+        chNabnutBellyFullSFXIndex = 0;
     }
 }
 
 void func_8038B58C(ActorMarker* marker) {
     Actor* actor = marker_getActor(marker);
     
-    func_8030E878(0x81, randf2(1.0f, 1.1f), (s32) randf2(31000.0f, 32000.0f), actor->position, 500.0f, 2500.0f);
+    func_8030E878(
+        SFX_81_UUU,
+        randf2(1.0f, 1.1f),
+        (s32) randf2(31000.0f, 32000.0f),
+        actor->position,
+        500.0f,
+        2500.0f);
 }
 
 void func_8038B610(ActorMarker* marker) {
@@ -77,19 +92,19 @@ void func_8038B6DC(ActorMarker *marker) {
     skeletalAnim_setCallback_1(this->unk148, 0.9f, (GenFunction_1)func_8038B6DC, (s32)this->marker);
 }
 
-void func_8038B814(Actor *this, s32 next_state) {
-    if (next_state == 1) {
+void chNabnutBellyFull_setNextState(Actor *this, s32 next_state) {
+    if (next_state == CH_NABNUT_BELLY_FULL_STATE_1_UNK) {
         skeletalAnim_set(this->unk148, 0x22B, 0.2f, 11.0f);
         func_8038B6DC(this->marker);
     }
     this->state = next_state;
 }
 
-void func_8038B87C(Actor *this) {
+void chNabnutBellyFull_update(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
-        func_8038B814(this, 1);
+        chNabnutBellyFull_setNextState(this, CH_NABNUT_BELLY_FULL_STATE_1_UNK);
     }
     if (!this->has_met_before && func_803292E0(this)) {
         this->has_met_before = TRUE;

@@ -5,7 +5,7 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 
-extern ActorMarker *bacarry_get_marker(void);
+extern ActorMarker *bacarry_getMarker(void);
 
 /* .bss */
 u8 D_8037D580;
@@ -35,7 +35,7 @@ void bsthrow_update(void){
     f32 sp34[3];
     f32 player_position[3];
     f32 sp24;
-    ActorMarker *sp20 = bacarry_get_marker();
+    ActorMarker *sp20 = bacarry_getMarker();
 
     if(D_8037D580 == 0 && sp20 != NULL)
         bacarry_set_marker(sp20);

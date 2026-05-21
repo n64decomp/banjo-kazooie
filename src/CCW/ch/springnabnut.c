@@ -3,29 +3,28 @@
 #include "variables.h"
 
 typedef struct {
-    f32 unk0;
+    f32 currSFXProgress;
 }ActorLocal_CCW_4D00;
 
 typedef struct {
-    f32 unk0;
-    f32 unk4;
-    s16 unk8;
-    s16 unkA;
-}Struct_CCW_4D00_0;
+    f32 sfxProgress;
+    f32 volume;
+    s16 sfxId;
+    s16 sampleRate;
+} CH_NABNUT_SPRING_SFX;
 
-void func_8038B19C(Actor *this);
+void chNabnutSpring_update(Actor *this);
 
 /* .data */
 
-// Spring nabnut?
-ActorInfo D_8038F270 = {
-    0x1B9, 0x2A6, 0x502,
+ActorInfo chNabnutSpring = {
+    MARKER_1B9_NABNUT_SPRING, ACTOR_2A6_NABNUT_SPRING, ASSET_502_MODEL_NABNUT,
     0x0, NULL,
-    func_8038B19C, NULL, actor_draw,
+    chNabnutSpring_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
-Struct_CCW_4D00_0 D_8038F294[] = {
+CH_NABNUT_SPRING_SFX chNabnutSpringSfx[] = {
     {0.12f, 1.6f,  SFX_A7_WOODEN_SWOSH,  8000},
     {0.21f, 1.7f,  SFX_A7_WOODEN_SWOSH,  8500},
     {0.3f , 1.6f,  SFX_A7_WOODEN_SWOSH,  8000},
@@ -36,27 +35,33 @@ Struct_CCW_4D00_0 D_8038F294[] = {
     0
 };
 
+enum chNabnutSpring_State_e {
+    CH_NABNUT_SPRING_STATE_0_NOT_INIT,
+    CH_NABNUT_SPRING_STATE_1_LOOKING_AROUND,
+    CH_NABNUT_SPRING_STATE_2_EATING
+};
+
 /* .code */
-void func_8038B0F0(Actor *this, s32 next_state) {
+void chNabnutSpring_setState(Actor *this, s32 next_state) {
     ActorLocal_CCW_4D00 *local = (ActorLocal_CCW_4D00 *)&this->local;
 
-    local->unk0 = 0.0f;
-    if (next_state == 1) {
-        skeletalAnim_swap(this->unk148, 0x1A3, 0.2f, 11.0f);
-        local->unk0 = randf2(3.0f, 10.0f);
+    local->currSFXProgress = 0.0f;
+    if (next_state == CH_NABNUT_SPRING_STATE_1_LOOKING_AROUND) {
+        skeletalAnim_swap(this->unk148, ASSET_1A3_ANIM_NABNUT_SPRING_LOOKING_AROUND, 0.2f, 11.0f);
+        local->currSFXProgress = randf2(3.0f, 10.0f);
     }
-    if (next_state == 2) {
-        skeletalAnim_set(this->unk148, 0x1A4, 0.2f, 3.0f);
+    if (next_state == CH_NABNUT_SPRING_STATE_2_EATING) {
+        skeletalAnim_set(this->unk148, ASSET_1A4_ANIM_NABNUT_SPRING_EATING, 0.2f, 3.0f);
     }
     this->state = next_state;
 }
 
-void func_8038B19C(Actor *this) {
+void chNabnutSpring_update(Actor *this) {
     ActorLocal_CCW_4D00 *local;
     f32 tick;
-    Struct_CCW_4D00_0 *iPtr;
-    f32 sp50;
-    f32 sp4C;
+    CH_NABNUT_SPRING_SFX *iPtr;
+    f32 prev_progress;
+    f32 curr_progress;
 
     local = (ActorLocal_CCW_4D00 *)&this->local;
     tick = time_getDelta();
@@ -64,22 +69,28 @@ void func_8038B19C(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
-        func_8038B0F0(this, 1);
+        chNabnutSpring_setState(this, CH_NABNUT_SPRING_STATE_1_LOOKING_AROUND);
     }
 
-    if ((this->state == 1) && ml_timer_update(&local->unk0, tick)) {
-        func_8038B0F0(this, 2);
+    if ((this->state == CH_NABNUT_SPRING_STATE_1_LOOKING_AROUND) && ml_timer_update(&local->currSFXProgress, tick)) {
+        chNabnutSpring_setState(this, CH_NABNUT_SPRING_STATE_2_EATING);
     }
 
-    if (this->state == 2) {
-        skeletalAnim_getProgressRange(this->unk148, &sp50, &sp4C);
-        for(iPtr = &D_8038F294[0]; iPtr->unk0 > 0.0f; iPtr++){
-            if ((sp50 < iPtr->unk0) && (iPtr->unk0 <= sp4C)) {
-                func_8030E878(iPtr->unk8, randf2(iPtr->unk4 - 0.05, iPtr->unk4 + 0.05), randi2(iPtr->unkA - 0x1F4, iPtr->unkA + 0x1F4), this->position, 500.0f, 2500.0f);
+    if (this->state == CH_NABNUT_SPRING_STATE_2_EATING) {
+        skeletalAnim_getProgressRange(this->unk148, &prev_progress, &curr_progress);
+        for(iPtr = &chNabnutSpringSfx[0]; iPtr->sfxProgress > 0.0f; iPtr++){
+            if ((prev_progress < iPtr->sfxProgress) && (iPtr->sfxProgress <= curr_progress)) {
+                func_8030E878(
+                    iPtr->sfxId,
+                    randf2(iPtr->volume - 0.05, iPtr->volume + 0.05),
+                    randi2(iPtr->sampleRate - 500, iPtr->sampleRate + 500),
+                    this->position,
+                    500.0f,
+                    2500.0f);
             }
         }
 
-        if ((sp50 < 0.97) && (0.97 <= sp4C)) {
+        if ((prev_progress < 0.97) && (0.97 <= curr_progress)) {
             if (randf() >= 0.5) {
                 func_8030E878(SFX_AE_YUMYUM_TALKING, randf2(1.8f, 1.85f), randi2(19000, 21000), this->position, 500.0f, 2500.0f);
             } else {
@@ -87,7 +98,7 @@ void func_8038B19C(Actor *this) {
             }
         }
         if (skeletalAnim_getLoopCount(this->unk148) > 0) {
-            func_8038B0F0(this, 1);
+            chNabnutSpring_setState(this, CH_NABNUT_SPRING_STATE_1_LOOKING_AROUND);
         }
     }
     if (!this->has_met_before && func_803292E0(this)) {

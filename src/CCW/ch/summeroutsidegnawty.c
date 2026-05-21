@@ -3,25 +3,24 @@
 #include "variables.h"
 
 typedef struct{
-    f32 unk0;
-    f32 unk4;
-    s16 unk8;
-    s16 unkA;
-}Struct_CCW_6AC0_0;
+    f32 sfxProgress;
+    f32 volume;
+    s16 sfxId;
+    s16 sampleRate;
+} CH_Gnawty_Summer_SFX;
 
-void func_8038CFB4(Actor *this);
+void chGnawtySummer_update(Actor *this);
 
 /* .data */
 
-// Gnawty
-ActorInfo D_8038F4D0 = { 
-    0x1BE, 0x2AB, 0x48F,
+ActorInfo chGnawtySummer = { 
+    MARKER_1BE_GNAWTY_SUMMER, ACTOR_2AB_GNAWTY_SUMMER, ASSET_48F_MODEL_GNAWTY,
     0x0, NULL,
-    func_8038CFB4, func_8038CFB4, actor_draw,
+    chGnawtySummer_update, chGnawtySummer_update, actor_draw,
     0, 0, 2.2f, 0
 };
 
-Struct_CCW_6AC0_0 D_8038F4F4[] = {
+CH_Gnawty_Summer_SFX chGnawtySummerIdleSfx[] = {
     {0.11f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
     {0.23f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
     {0.34f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
@@ -30,7 +29,7 @@ Struct_CCW_6AC0_0 D_8038F4F4[] = {
     0
 };
 
-Struct_CCW_6AC0_0 D_8038F53C[] = {
+CH_Gnawty_Summer_SFX chGnawtySummerCheeringSfx[] = {
     {0.07f, 1.6f, SFX_56_BANJO_HUI,        32000},
     {0.17f, 1.0f, SFX_10_BANJO_LANDING_07,  9000},
     {0.22f, 1.6f, SFX_55_BANJO_HOO_2,      32000},
@@ -46,99 +45,115 @@ Struct_CCW_6AC0_0 D_8038F53C[] = {
     0
 };
 
-Struct_CCW_6AC0_0 D_8038F5D8[] = {
+CH_Gnawty_Summer_SFX chGnawtySummerRunningSfx[] = {
     {0.01f, 1.0f, SFX_10_BANJO_LANDING_07, 9000},
     {0.5f,  1.0f, SFX_10_BANJO_LANDING_07, 9000},
     0
 };
 
+enum chGnawtySummer_State_e {
+    CH_GNAWTY_SUMMER_STATE_0_NOT_INIT,
+    CH_GNAWTY_SUMMER_STATE_1_IDLE,
+    CH_GNAWTY_SUMMER_STATE_2_CHEERING,
+    CH_GNAWTY_SUMMER_STATE_3_RUNNING,
+    CH_GNAWTY_SUMMER_STATE_4_DESPAWN
+};
+
 /* .code */
-void func_8038CEB0(Actor *this, s32 next_state) {
+void chGnawtySummer_setState(Actor *this, s32 next_state) {
     ActorProp *temp_v0;
 
-    if (next_state == 1) {
-        skeletalAnim_set(this->unk148, 0x1A6, 0.2f, 4.5f);
+    if (next_state == CH_GNAWTY_SUMMER_STATE_1_IDLE) {
+        skeletalAnim_set(this->unk148, ASSET_1A6_ANIM_GNAWTY_IDLE, 0.2f, 4.5f);
     }
-    if (next_state == 2) {
+    if (next_state == CH_GNAWTY_SUMMER_STATE_2_CHEERING) {
         this->marker->propPtr->unk8_3 = FALSE;
-        skeletalAnim_set(this->unk148, 0x1A7, 0.2f, 3.0f);
+        skeletalAnim_set(this->unk148, ASSET_1A7_ANIM_GNAWTY_CHEERING, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         gcdialog_showDialog(ASSET_CD0_DIALOG_GNAWTY_COMPLETE_SUMMER, 0x24, NULL, NULL, NULL, NULL);
     }
-    if (next_state == 3) {
-        skeletalAnim_set(this->unk148, 0x1A8, 0.2f, 0.5f);
+    if (next_state == CH_GNAWTY_SUMMER_STATE_3_RUNNING) {
+        skeletalAnim_set(this->unk148, ASSET_1A8_ANIM_GNAWTY_RUNNING, 0.2f, 0.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_1_LOOP);
     }
-    if (next_state == 4) {
+    if (next_state == CH_GNAWTY_SUMMER_STATE_4_DESPAWN) {
         marker_despawn(this->marker);
     }
     this->state = next_state;
 }
 
-void func_8038CFB4(Actor *this) {
-    Struct_CCW_6AC0_0 *phi_s0;
-    f32 sp70;
-    f32 sp6C;
-    f32 sp60[3];
+void chGnawtySummer_update(Actor *this) {
+    CH_Gnawty_Summer_SFX *sfx_list;
+    f32 prev_progress;
+    f32 curr_progress;
+    f32 player_position[3];
 
     if (!this->volatile_initialized) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->volatile_initialized = TRUE;
         this->has_met_before = FALSE;
-        func_8038CEB0(this, 1);
-        if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != 0) {
-            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_UNKNOWN, TRUE);
+        chGnawtySummer_setState(this, CH_GNAWTY_SUMMER_STATE_1_IDLE);
+        if (jiggyscore_isCollected(JIGGY_4B_CCW_GNAWTY) != FALSE) {
+            levelSpecificFlags_set(LEVEL_FLAG_25_CCW_GNAWTY_JIGGY_COLLECTED, TRUE);
         }
-        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) {
+        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_GNAWTY_JIGGY_COLLECTED) != FALSE) {
             marker_despawn(this->marker);
         }
         return;
     } 
 
-    if (this->state == 1) {
-        phi_s0 = D_8038F4F4;
-    } else if (this->state == 2) {
-        phi_s0 = D_8038F53C;
-    } else if (this->state == 3) {
-        phi_s0 = D_8038F5D8;
+    if (this->state == CH_GNAWTY_SUMMER_STATE_1_IDLE) {
+        sfx_list = chGnawtySummerIdleSfx;
+    } else if (this->state == CH_GNAWTY_SUMMER_STATE_2_CHEERING) {
+        sfx_list = chGnawtySummerCheeringSfx;
+    } else if (this->state == CH_GNAWTY_SUMMER_STATE_3_RUNNING) {
+        sfx_list = chGnawtySummerRunningSfx;
     } else{
-        phi_s0 = NULL;
+        sfx_list = NULL;
     }
 
-    if (phi_s0 != NULL) {
-        skeletalAnim_getProgressRange(this->unk148, &sp70, &sp6C);
-        while(phi_s0->unk0 > 0.0f){
-            if (((sp70 < phi_s0->unk0) || (sp6C < sp70)) && (phi_s0->unk0 <= sp6C)) {
-                func_8030E878(phi_s0->unk8, randf2(phi_s0->unk4 - 0.05, phi_s0->unk4 + 0.05), randi2(phi_s0->unkA - 200, phi_s0->unkA + 100), this->position, 500.0f, 1500.0f);
+    if (sfx_list != NULL) {
+        skeletalAnim_getProgressRange(this->unk148, &prev_progress, &curr_progress);
+        while(sfx_list->sfxProgress > 0.0f){
+            if (((prev_progress < sfx_list->sfxProgress) || (curr_progress < prev_progress))
+                && (sfx_list->sfxProgress <= curr_progress))
+            {
+                func_8030E878(
+                    sfx_list->sfxId,
+                    randf2(sfx_list->volume - 0.05, sfx_list->volume + 0.05),
+                    randi2(sfx_list->sampleRate - 200, sfx_list->sampleRate + 100),
+                    this->position,
+                    500.0f,
+                    1500.0f);
             }
-            phi_s0++;
+            sfx_list++;
         }
     }
 
-    if (this->state == 1) {
+    if (this->state == CH_GNAWTY_SUMMER_STATE_1_IDLE) {
         if (!this->has_met_before) {
-            player_getPosition(sp60);
-            if (ml_vec3f_distance(this->position, sp60) < 900.0f) {
-                gcdialog_showDialog(0xCCF, 4, NULL, NULL, NULL, NULL);
+            player_getPosition(player_position);
+            if (ml_vec3f_distance(this->position, player_position) < 900.0f) {
+                gcdialog_showDialog(ASSET_CCF_DIALOG_GNAWTY_MEET_SUMMER, 4, NULL, NULL, NULL, NULL);
                 this->has_met_before = TRUE;
             }
         }
 
-        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_UNKNOWN) != FALSE) {
-            func_8038CEB0(this, 2);
+        if (levelSpecificFlags_get(LEVEL_FLAG_25_CCW_GNAWTY_JIGGY_COLLECTED) != FALSE) {
+            chGnawtySummer_setState(this, CH_GNAWTY_SUMMER_STATE_2_CHEERING);
         }
     }
 
-    if (this->state == 2){
+    if (this->state == CH_GNAWTY_SUMMER_STATE_2_CHEERING){
         if((skeletalAnim_getLoopCount(this->unk148) > 0)) {
-            func_8038CEB0(this, 3);
+            chGnawtySummer_setState(this, CH_GNAWTY_SUMMER_STATE_3_RUNNING);
         }
     }
     
-    if (this->state == 3) {
+    if (this->state == CH_GNAWTY_SUMMER_STATE_3_RUNNING) {
         actor_update_func_80326224(this);
         if (0.99 < (f64) this->unk48) {
-            func_8038CEB0(this, 4);
+            chGnawtySummer_setState(this, CH_GNAWTY_SUMMER_STATE_4_DESPAWN);
         }
     }
 }
