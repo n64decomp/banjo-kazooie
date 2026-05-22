@@ -38,8 +38,8 @@ void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queu
     task_data->task_type = UCODE_TASK_TYPE_AUDIO;
     task_data->data_ptr = (u64 *) start;
     task_data->data_ptr_end = (u64 *) end;
-    task_data->unk10 = mesg_queue;
-    task_data->unk14 = (s32) msg;
+    task_data->audio_mesg_queue = mesg_queue;
+    task_data->audio_mesg = msg;
 
     thread5_sendTaskToQueue((OSMesg) task_data);
 }

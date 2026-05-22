@@ -226,8 +226,8 @@ void musicInstruments_init(void){
     size = soundfont2ctl_ROM_END - soundfont2ctl_ROM_START;
     bnk_f = malloc(size);
     osWritebackDCacheAll();
-    osPiStartDma(func_802405D0(), 0, 0, (u32)soundfont2ctl_ROM_START, bnk_f, size, func_802405C4());
-    osRecvMesg(func_802405C4(), 0, 1); //osRecvMesg
+    osPiStartDma(audioManager_getExtraDMAMesg(), OS_MESG_PRI_NORMAL, OS_READ, (u32)soundfont2ctl_ROM_START, bnk_f, size, audioManager_getDMANotifyMesgQueue());
+    osRecvMesg(audioManager_getDMANotifyMesgQueue(), NULL, OS_MESG_BLOCK);
     D_80282104 = 0xAD;
     D_802820E0 = (MusicTrack **) malloc(D_80282104 * sizeof(MusicTrack *));
     for(i = 0; i < D_80282104; i++){
@@ -236,11 +236,11 @@ void musicInstruments_init(void){
     D_802820E8.maxVoices = 0x18;
     D_802820E8.maxEvents = 0x55;
     D_802820E8.maxChannels = 0x10;
-    D_802820E8.heap = func_802405B8();
+    D_802820E8.heap = audioManager_getALHeapInfo();
     D_802820E8.initOsc = NULL;
     D_802820E8.updateOsc = NULL;
     D_802820E8.stopOsc = NULL;
-    func_8023FA64(&D_802820E8);
+    audioManager_setupSeqp(&D_802820E8);
     for(i = 0; i < 6; i++){
         n_alCSPNew(&D_80281720[i].cseqp, &D_802820E8);
     }

@@ -4,9 +4,6 @@
 #include "n_libaudio.h"
 
 extern ALBank *music_get_sound_bank(void);
-extern OSIoMesg *func_802405D0(void);
-extern OSMesgQueue *func_802405C4(void);
-extern ALHeap *func_802405B8(void);
 
 extern u8 soundfont1ctl_ROM_START[];
 extern u8 soundfont1ctl_ROM_END[];
@@ -32,8 +29,8 @@ void sfxInstruments_init(void){
     size = soundfont1ctl_ROM_END - soundfont1ctl_ROM_START;
     bnkf = (ALBankFile *)malloc(size);
     osWritebackDCache(bnkf, size);
-    osPiStartDma(func_802405D0(), 0, 0, (u32)soundfont1ctl_ROM_START, bnkf, size, func_802405C4());
-    osRecvMesg(func_802405C4(), NULL, 1);
+    osPiStartDma(audioManager_getExtraDMAMesg(), OS_MESG_PRI_NORMAL, OS_READ, (u32)soundfont1ctl_ROM_START, bnkf, size, audioManager_getDMANotifyMesgQueue());
+    osRecvMesg(audioManager_getDMANotifyMesgQueue(), NULL, OS_MESG_BLOCK);
     alBnkfNew(bnkf, soundfont1tbl_ROM_START);
     bnk = bnkf->bankArray[0];
     inst = bnk->instArray[0];
@@ -41,7 +38,7 @@ void sfxInstruments_init(void){
     D_803835F0.unk4 = 0x100;
     D_803835F0.unk10 = 0x40;
     D_803835F0.unk8 = 0x18;
-    D_803835F0.unkC = func_802405B8();
+    D_803835F0.unkC = audioManager_getALHeapInfo();
     func_80243070(&D_803835F0);
     sfx_sound_bank = bnk;
 }
