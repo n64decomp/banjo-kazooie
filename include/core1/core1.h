@@ -39,8 +39,17 @@ void func_8025ABB8(enum comusic_e comusic_id, s32 arg1, s32 arg2, s32 arg3);
 int func_8025AD7C(enum comusic_e arg0);
 int func_8025ADBC(enum comusic_e arg0);
 
-OSMesgQueue * audioManager_getFrameMesgQueue(void);
 void piMgr_read(void *vaddr, s32 devaddr, s32 size);
+
+
+/* src/core1/code_1D00.c */
+
+void audioManager_setupSeqp(ALSeqpConfig *config);
+void audioManager_init(void);
+ALHeap *audioManager_getALHeapInfo(void);
+OSMesgQueue *audioManager_getDMANotifyMesgQueue(void);
+OSIoMesg *audioManager_getExtraDMAMesg(void);
+OSMesgQueue *audioManager_getFrameMesgQueue(void);
 
 
 /* src/core1/overlay.c */
@@ -166,8 +175,8 @@ struct ucode_task_data_s {
     s32 unk4; // is only set for gfx tasks (0 or 0x40000000)
     u64 *data_ptr; // begin of dlist data
     u64 *data_ptr_end; // end of dlist data
-    OSMesgQueue *unk10; // only relevant for audio tasks
-    s32 unk14; // only relevant for audio tasks
+    OSMesgQueue *audio_mesg_queue; // only relevant for audio tasks
+    OSMesg audio_mesg; // only relevant for audio tasks
 };
 
 #define DEFAULT_FRAMEBUFFER_WIDTH 292

@@ -280,7 +280,7 @@ void thread5_handleSPEvent(void) {
     }
 
     if (sUnkFlag1 == UNKFLAG1_AUDIO_TASK) {
-        osSendMesg(sActiveAudioTaskDataPtr->unk10, (OSMesg) sActiveAudioTaskDataPtr->unk14, OS_MESG_NOBLOCK);
+        osSendMesg(sActiveAudioTaskDataPtr->audio_mesg_queue, sActiveAudioTaskDataPtr->audio_mesg, OS_MESG_NOBLOCK);
     }
 
     if ((sUnkFlag1 == UNKFLAG1_AUDIO_TASK) && sGfxTaskYielded) {
@@ -310,7 +310,7 @@ void thread5_handleTask7Mesg(struct ucode_task_data_s *task_data) {
 
 void thread5_handleAudioTimerEvent(void) {
     osSendMesg(audioManager_getFrameMesgQueue(), NULL, OS_MESG_NOBLOCK);
-   thread5_startNextAudioTask();
+    thread5_startNextAudioTask();
 }
 
 void thread5_startNextAudioTask(void) {
