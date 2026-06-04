@@ -5,118 +5,127 @@
 /* typedefs and declarations */
 typedef struct {
     f32 unk0;
-    ActorMarker *unk4;
-    f32 unk8[3];
-    f32 unk14[3];
+    ActorMarker *jinjoMarker;
+    f32 position[3];
+    f32 rotation[3];
     s32 unk20;
-    f32 unk24[3];
-}ActorLocal_7B20;
+    f32 timer[3];
+} ActorLocal_7B20;
 
-void func_8038DF6C(Actor* this);
+void chBellBuoy_update(Actor* this);
 
 
 /* .data */
-ActorInfo D_80390D20 = {
-    0x1AA, 0x296, 0x43B, 0x0, NULL,
-    func_8038DF6C, NULL, actor_draw,
+ActorInfo chBellBuoy = {
+    MARKER_1AA_BELL_BUOY, ACTOR_296_BELL_BUOY, ASSET_43B_MODEL_BELL_BUOY,
+    0x0, NULL,
+    chBellBuoy_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
+enum chbellbuoy_state_e {
+    CH_BELL_BUOY_STATE_0_NOT_INIT,
+    CH_BELL_BUOY_STATE_1_INIT
+};
 
 /*.code */
-void func_8038DF10(Actor *this, int arg1){
-    if(arg1 == 1){
-        skeletalAnim_set(this->unk148, 0x16a, 0, 1.2f);
+void chBellBuoy_setState(Actor *this, int next_state){
+    if(next_state == CH_BELL_BUOY_STATE_1_INIT){
+        skeletalAnim_set(this->unk148, ASSET_16A_ANIM_BELL_BUOY, 0, 1.2f);
     }
-    this->state = arg1;
+    this->state = next_state;
 }
 
-void func_8038DF6C(Actor* this){
-    f32 sp7C[3];
-    f32 sp70[3];
+void chBellBuoy_update(Actor* this){
+    f32 rotation_delta[3];
+    f32 position_delta[3];
     f32 sp6C;
-    f32 sp68 = time_getDelta();
-    f32 sp5C[3];
-    f32 sp58;
+    f32 time_delta = time_getDelta();
+    f32 new_rotation[3];
+    f32 distance;
     ActorLocal_7B20 *local = (ActorLocal_7B20 *)&this->local;
-    Actor* other;
-    int i;
+    Actor* jinjo;
+    int actor_id;
     
     if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
         this->volatile_initialized = TRUE;
         local->unk0 = randf2(80.0f, 100.0f);
-        local->unk4 = NULL;
+        local->jinjoMarker = NULL;
         local->unk20 = 0;
-        local->unk24[0] = 0.0f;
-        local->unk24[1] = 1.0f;
-        local->unk24[2] = 0.5f;
-        local->unk8[0] = this->position_x;
-        local->unk8[1] = this->position_y;
-        local->unk8[2] = this->position_z;
-        local->unk14[0] = this->pitch;
-        local->unk14[1] = this->yaw;
-        local->unk14[2] = this->roll;
-        func_8038DF10(this, 1);
+        local->timer[0] = 0.0f;
+        local->timer[1] = 1.0f;
+        local->timer[2] = 0.5f;
+        local->position[0] = this->position_x;
+        local->position[1] = this->position_y;
+        local->position[2] = this->position_z;
+        local->rotation[0] = this->pitch;
+        local->rotation[1] = this->yaw;
+        local->rotation[2] = this->roll;
+        chBellBuoy_setState(this, CH_BELL_BUOY_STATE_1_INIT);
     }//L8038E050
+
     if(++local->unk20 == 2){
-        for(i = 0x5e; i < 0x63; i++){
+        // Actor 0x5E through 0x62 are Jinjos
+        for(actor_id = 0x5E; actor_id < 0x63; actor_id++){
             
-            other = actorArray_findClosestActorFromActorId(this->position, i, -1, &sp58);
-            if(sp58 < 300.0f){
-                local->unk4 = other->marker;
-                other->position_x = this->position_x;
-                other->position_y = this->position_y;
-                other->position_z = this->position_z;
+            jinjo = actorArray_findClosestActorFromActorId(this->position, actor_id, -1, &distance);
+            if(distance < 300.0f){
+                local->jinjoMarker = jinjo->marker;
+                jinjo->position_x = this->position_x;
+                jinjo->position_y = this->position_y;
+                jinjo->position_z = this->position_z;
                 break;
             }
         }
     }
-    if(ml_timer_update(&local->unk24[1], sp68)){
-        local->unk24[1] = randf2(1.5f, 2.5f);
+
+    if(ml_timer_update(&local->timer[1], time_delta)){
+        local->timer[1] = randf2(1.5f, 2.5f);
         sfx_playFadeShorthandDefault(SFX_40E_UNKNOWN, 1.5f, 20000, this->position, 500, 1500);
     }//L8038E118
 
-    if(ml_timer_update(&local->unk24[2], sp68)){
-        local->unk24[2] = randf2(3.5f, 5.5f);
-        func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 0x55f0, this->position, 500.0f, 1500.0f);
+    if(ml_timer_update(&local->timer[2], time_delta)){
+        local->timer[2] = randf2(3.5f, 5.5f);
+        func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, this->position, 500.0f, 1500.0f);
     }//L8038E184
 
-    local->unk24[0] += sp68;
-    sp70[0] = 0.0f;
-    sp70[1] = sinf((local->unk24[0]*local->unk0)/ 180.0 * 3.141592654) * 10.0f;
-    sp70[2] = 0.0f;
+    local->timer[0] += time_delta;
+    position_delta[0] = 0.0f;
+    position_delta[1] = sinf((local->timer[0] * local->unk0) / 180.0 * BAD_PI) * 10.0f;
+    position_delta[2] = 0.0f;
 
-    sp7C[0] = cosf((local->unk24[0]*local->unk0)/ 180.0 * 3.141592654)*7.5;
-    sp7C[1] = sinf((local->unk24[0]*local->unk0)/ 180.0 * 3.141592654)*3.0;
-    sp7C[2] = 0.0f;
+    rotation_delta[0] = cosf((local->timer[0] * local->unk0) / 180.0 * BAD_PI) * 7.5;
+    rotation_delta[1] = sinf((local->timer[0] * local->unk0) / 180.0 * BAD_PI) * 3.0;
+    rotation_delta[2] = 0.0f;
 
-    this->position_x = local->unk8[0] + sp70[0];
-    this->position_y = local->unk8[1] + sp70[1];
-    this->position_z = local->unk8[2] + sp70[2];
+    this->position_x = local->position[0] + position_delta[0];
+    this->position_y = local->position[1] + position_delta[1];
+    this->position_z = local->position[2] + position_delta[2];
 
-    sp5C[0] = local->unk14[0] + sp7C[0];
-    sp5C[1] = local->unk14[1] + sp7C[1];
-    sp5C[2] = local->unk14[2] + sp7C[2];
+    new_rotation[0] = local->rotation[0] + rotation_delta[0];
+    new_rotation[1] = local->rotation[1] + rotation_delta[1];
+    new_rotation[2] = local->rotation[2] + rotation_delta[2];
 
-    this->pitch = sp5C[0];
-    this->yaw = sp5C[1];
-    this->roll = sp5C[2];
+    this->pitch = new_rotation[0];
+    this->yaw = new_rotation[1];
+    this->roll = new_rotation[2];
 
-    if(local->unk4){
-        other = marker_getActor(local->unk4);
-        if(!(other->state < 7)){
-            local->unk4 = NULL;
+    if(local->jinjoMarker){
+        jinjo = marker_getActor(local->jinjoMarker);
+        // State 7-9 Are Collecting Jinjo States
+        if(!(jinjo->state < 7)){
+            local->jinjoMarker = NULL;
         }else{
-            other->pitch = sp5C[0];
-            other->roll = sp5C[2];
-            TUPLE_ASSIGN(sp5C, 0.0f, 48.0f, 0.0f);
-            ml_vec3f_pitch_rotate_copy(sp5C, sp5C, this->pitch);
-            ml_vec3f_yaw_rotate_copy(sp5C, sp5C, this->yaw);
+            jinjo->pitch = new_rotation[0];
+            jinjo->roll = new_rotation[2];
+            TUPLE_ASSIGN(new_rotation, 0.0f, 48.0f, 0.0f);
+            ml_vec3f_pitch_rotate_copy(new_rotation, new_rotation, this->pitch);
+            ml_vec3f_yaw_rotate_copy(new_rotation, new_rotation, this->yaw);
         
-            other->position_x = sp5C[0] + this->position_x;
-            other->position_y = sp5C[1] + this->position_y;
-            other->position_z = sp5C[2] + this->position_z;
+            jinjo->position_x = new_rotation[0] + this->position_x;
+            jinjo->position_y = new_rotation[1] + this->position_y;
+            jinjo->position_z = new_rotation[2] + this->position_z;
         }
     }//L8038E39C
 }

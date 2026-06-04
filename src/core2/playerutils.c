@@ -153,20 +153,20 @@ bool dummy_player_withinIdealYaw(void) {
     }
 }
 
-bool func_8028AED4(f32 arg0[3], f32 arg1) {
-    f32 position[3];
-    f32 sp28;
+bool func_8028AED4(f32 src_position[3], f32 arg1) {
+    f32 player_position[3];
+    f32 yaw;
     u16 sp26;
     u16 sp24;
     s32 temp_v1;
     s32 phi_a0;
 
-    playerPosition_get(position);
-    func_80257F18(arg0, position, &sp28);
-    sp26 = (u16) (sp28 * 182.044444);
+    playerPosition_get(player_position);
+    func_80257F18(src_position, player_position, &yaw);
+    sp26 = (u16) (yaw * 182.044444);
     sp24 = (u16) (player_getYaw() * 182.044444);
     sp26 = (u16)((sp26 - sp24));
-    temp_v1 = 0x8000 - sp26;
+    temp_v1 = 0x8000 - sp26; // Flip sign?
     phi_a0 = (temp_v1 >= 0) ? temp_v1 : -temp_v1;
     return (phi_a0 < arg1 * 182.044444);
 }

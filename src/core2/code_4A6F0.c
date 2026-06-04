@@ -90,7 +90,6 @@ static s32 __transformation_getCost(enum transformation_e trans_id){
     return 0;
 }
 
-
 static enum file_progress_e __bkProgId_from_transformationId(enum transformation_e trans_id){
     return (trans_id - TRANSFORM_2_TERMITE) + FILEPROG_90_PAID_TERMITE_COST;
 }

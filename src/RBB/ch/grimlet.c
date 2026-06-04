@@ -13,27 +13,34 @@ typedef struct {
     f32 unk14;
 }ActorLocal_RBB_1FC0;
 
-Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_80388620(Actor *this);
+Actor *chGrimlet_draw(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chGrimlet_update(Actor *this);
 
 /* .data */ 
-ActorInfo D_80390380 = {
-    MARKER_2E_GRIMLET, ACTOR_1C6_GRIMLET, ASSET_419_MODEL_GRIMLET, 0x0, NULL,
-    func_80388620, NULL, func_8038846C,
+ActorInfo chGrimlet = {
+    MARKER_2E_GRIMLET, ACTOR_1C6_GRIMLET, ASSET_419_MODEL_GRIMLET,
+    0x0, NULL,
+    chGrimlet_update, NULL, chGrimlet_draw,
     0, 0, 0.0f, 0
 };
 
+enum chgrimlet_state_e {
+    CH_GRIMLET_STATE_0_NOT_INIT,
+    CH_GRIMLET_STATE_1_UNK,
+    CH_GRIMLET_STATE_2_UNK
+};
+
 /* .code */
-void func_803883B0(Actor *this, s32 arg1){
+void chGrimlet_setState(Actor *this, s32 next_state){
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *)&this->local;
     
     local->unk5 = 0;
-    if(arg1 == 2){
+    if(next_state == CH_GRIMLET_STATE_2_UNK){
         FUNC_8030E624(SFX_66_BIRD_AUUGHH, 0.6f, 32675);
-        skeletalAnim_set(this->unk148, 0x137, 0.0f, 0.8f);
+        skeletalAnim_set(this->unk148, ASSET_137_ANIM_GRIMLET_ATTACK, 0.0f, 0.8f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
     }
-    this->state = arg1;
+    this->state = next_state;
 }
 
 void RBB_func_80388430(ActorMarker * marker, ActorMarker *other_marker){
@@ -43,7 +50,7 @@ void RBB_func_80388430(ActorMarker * marker, ActorMarker *other_marker){
     local->unk5 = 1;
 }
 
-Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
+Actor *chGrimlet_draw(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *) &actor->local;
     BoneTransformList *sp5C;
@@ -52,7 +59,7 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     f32 sp40[3];
     f32 sp34[3];
     
-    if(actor->state == 0){
+    if(actor->state == CH_GRIMLET_STATE_0_NOT_INIT){
         return actor;
     }
 
@@ -83,15 +90,15 @@ Actor *func_8038846C(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
     return actor;
 }
 
-void func_80388620(Actor *this){
+void chGrimlet_update(Actor *this){
     f32 plyr_pos[3];
-    f32 sp60;
-    f32 sp5C;
-    f32 sp58;
+    f32 horizontal_distance;
+    f32 distance_in_front;
+    f32 side_angle_radian;
     ActorLocal_RBB_1FC0 *local = (ActorLocal_RBB_1FC0 *)&this->local;
-    f32 sp50 = time_getDelta();
-    f32 sp4C;
-    f32 sp48;
+    f32 time_delta = time_getDelta();
+    f32 prev_anim_progress;
+    f32 curr_anim_progress;
     f32 tmp_f2;
 
     if(!this->volatile_initialized){
@@ -104,80 +111,84 @@ void func_80388620(Actor *this){
         local->unkC = 0.0f;
         local->unk10 = 0.0f;
         local->unk14 = 0.0f;
-        func_803883B0(this, 1);
+        chGrimlet_setState(this, CH_GRIMLET_STATE_1_UNK);
     }
     player_getPosition(plyr_pos);
-    func_80258A4C(this->position, this->yaw + -90.0f, plyr_pos, &sp60, &sp5C, &sp58);
-    if(sp60 < 600.0f)
+    func_80258A4C(
+        this->position, this->yaw + -90.0f, plyr_pos,
+        &horizontal_distance, &distance_in_front, &side_angle_radian);
+    if(horizontal_distance < 600.0f)
         local->unk8 = 1.0f;
     else{
-        local->unk8 -=  sp50;
+        local->unk8 -=  time_delta;
         local->unk8 = MAX(0.0f, local->unk8);
     }
 
     if( 500.0f <= local->unk10
-        && sp60 < 500.0f
-        && (sp58 < -0.2 || 0.2 < sp58)
+        && horizontal_distance < 500.0f
+        && (side_angle_radian < -0.2 || 0.2 < side_angle_radian)
     ){
         FUNC_8030E624(SFX_C4_TWINKLY_MUNCHER_GRR, 0.8f, 32675);
     }
 
-    local->unk10 = sp60;
-    local->unk14 = local->unk14 + sp50;
+    local->unk10 = horizontal_distance;
+    local->unk14 = local->unk14 + time_delta;
 
-    if( sp60 < 600.0f 
-        && -1.0f < sp58
-        && sp58 < 1.0f
+    if( horizontal_distance < 600.0f 
+        && -1.0f < side_angle_radian
+        && side_angle_radian < 1.0f
         && plyr_pos[1] < this->position_y + this->scale*200.0f
     ){
-        func_80258A4C(this->position, (this->yaw + -90.0f) + local->unk0, plyr_pos, &sp60, &sp5C, &sp58);
-        local->unk0 += (sp58*200.0f)*sp50;
-        if(1.0f < local->unk14 && (sp58 < -0.1 || 0.1 < sp58)){
-                gcsfx_playWithPitch(SFX_D0_GRIMLET_SQUEAK, mlAbsF(sp58) * 0.1 + 0.9, 0x4e20);
+        func_80258A4C(
+            this->position, (this->yaw + -90.0f) + local->unk0, plyr_pos,
+            &horizontal_distance, &distance_in_front, &side_angle_radian);
+        local->unk0 += (side_angle_radian * 200.0f) * time_delta;
+        if(1.0f < local->unk14 && (side_angle_radian < -0.1 || 0.1 < side_angle_radian)){
+                gcsfx_playWithPitch(SFX_D0_GRIMLET_SQUEAK, mlAbsF(side_angle_radian) * 0.1 + 0.9, 0x4e20);
                 local->unk14 = 0.0f;
         }
     }
     else{//L80388964
         if(0.0f < local->unk0){
-            local->unk0 -=  30.0f*sp50;
+            local->unk0 -=  30.0f * time_delta;
             local->unk0 = MAX(0.0f, local->unk0);
         }//L803889B4
         else{
             if(local->unk0 < 0.0f){
-                local->unk0 +=  30.0f*sp50;
+                local->unk0 +=  30.0f * time_delta;
                 local->unk0 = MIN(0.0f, local->unk0);
             }
         }
     }//L803889F8
 
-    if(this->state == 1){
-        if( sp60 < 400.0f
-            && -0.8 <= sp58
-            && sp58  <= 0.8
+    if(this->state == CH_GRIMLET_STATE_1_UNK){
+        if( horizontal_distance < 400.0f
+            && -0.8 <= side_angle_radian
+            && side_angle_radian  <= 0.8
             && (plyr_pos[1] - this->position_y) < 100.0f
             && -100.0f < (plyr_pos[1] - this->position_y)
         ){
-            func_803883B0(this, 2);
+            chGrimlet_setState(this, CH_GRIMLET_STATE_2_UNK);
         }
     }//L80388AB8
 
-    if(this->state == 2){
-        skeletalAnim_getProgressRange(this->unk148, &sp4C, &sp48);
-        if(0.6 <= sp48)
-            tmp_f2 = 1.0 - 2*(sp48 - 0.6);
+    if(this->state == CH_GRIMLET_STATE_2_UNK){
+        skeletalAnim_getProgressRange(this->unk148, &prev_anim_progress, &curr_anim_progress);
+        if(0.6 <= curr_anim_progress)
+            tmp_f2 = 1.0 - 2 * (curr_anim_progress - 0.6);
         else
-            tmp_f2 = sp48*1.6666666666666667;
+            tmp_f2 = curr_anim_progress * 1.6666666666666667;
         //L80388B34
-        local->unkC = tmp_f2*sp60;
+        local->unkC = tmp_f2 * horizontal_distance;
         
-        if( sp4C < 0.55
-            && 0.55 <= sp48
+        if( prev_anim_progress < 0.55
+            && 0.55 <= curr_anim_progress
             && !local->unk5
         ){
             sfx_playFadeShorthandDefault(SFX_20_METAL_CLANK_1, 1.0f, 32000, this->position, 500, 2500);
         }
 
         if(skeletalAnim_getLoopCount(this->unk148) > 0)
-            func_803883B0(this, 1);
+            chGrimlet_setState(this, CH_GRIMLET_STATE_1_UNK);
     }//L80388BB0
 }

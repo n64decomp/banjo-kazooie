@@ -93,6 +93,13 @@ ActorInfo gameSelect_banjoCooking = {
     0, 0, 0.0f, 0
 };
 
+// Yes, Gaming Chair is before Kitchen
+enum chgameselect_savefile_e {
+    CH_GAME_SELECT_SAVEFILE_0_BED,
+    CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR,
+    CH_GAME_SELECT_SAVEFILE_2_KITCHEN
+};
+
 /* .bss */
 // Fun level specific things- why would the devs define these here?
 s32 mmhut_smashCount;
@@ -232,13 +239,13 @@ void setGameInformationZoombox(s32 gamenum) {
 
         // Game number to human readable. Interestingly, gamenumber 1 is Banjo playing gameboy as opposed to cooking
         switch (gamenum) {
-            case 0: //L802C4820
+            case CH_GAME_SELECT_SAVEFILE_0_BED: //L802C4820
                 strIToA(upperTextLine, 1);
                 break;
-            case 1: //L802C4838
+            case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR: //L802C4838
                 strIToA(upperTextLine, 3);
                 break;
-            case 2: //L802C484C
+            case CH_GAME_SELECT_SAVEFILE_2_KITCHEN: //L802C484C
                 strIToA(upperTextLine, 2);
                 break;
         } //L802C4858
@@ -271,13 +278,13 @@ void setGameInformationZoombox(s32 gamenum) {
 
         // Game number to human readable
         switch (gamenum){
-            case 0:
+            case CH_GAME_SELECT_SAVEFILE_0_BED:
                 strIToA(upperTextLine, 1);
                 break;
-            case 1:
+            case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR:
                 strIToA(upperTextLine, 3);
                 break;
-            case 2:
+            case CH_GAME_SELECT_SAVEFILE_2_KITCHEN:
                 strIToA(upperTextLine, 2);
                 break;
         } //L802C4A40
@@ -378,7 +385,7 @@ void gameSelect_update(Actor *this) {
         func_802C7318(this);
         this->unk130 = func_802C71F0;
 
-        if (game_number == 0) {
+        if (game_number == CH_GAME_SELECT_SAVEFILE_0_BED) {
             func_802C75A0(this, 1);
             func_802C74F4(this, 0, 1.0f);
             func_802C74F4(this, 1, 1.0f);
@@ -405,7 +412,7 @@ void gameSelect_update(Actor *this) {
         case GAME_SELECT_IDLE:
         case GAME_SELECT_ERASE_CONFIRMATION:
             switch (game_number) {
-                case 0: // Sleeping Banjo; cycle his snoring sfx
+                case CH_GAME_SELECT_SAVEFILE_0_BED: // Sleeping Banjo; cycle his snoring sfx
                     if (actor_animationIsAt(this, 0.1f)) {
                         gcsfx_playAtSampleRate(SFX_5D_BANJO_RAAOWW, 8000);
                     }
@@ -416,14 +423,14 @@ void gameSelect_update(Actor *this) {
 
                     break;
 
-                case 1: // Gaming Banjo; randomly play some game low bloop sounds
+                case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR: // Gaming Banjo; randomly play some game low bloop sounds
                     if (randf() < 0.1) {
                         gcsfx_playWithPitch(MIN(2.0f, randf() * 3.0f) + SFX_137_GAMEBOY_BOIN, 1.0f, 12000);
                     }
 
                     break;
 
-                case 2: // Cooking Banjo; randomly play bubble popping at random pitch
+                case CH_GAME_SELECT_SAVEFILE_2_KITCHEN: // Cooking Banjo; randomly play bubble popping at random pitch
                     if (randf() < 0.03) {
                         gcsfx_playWithPitch(SFX_3ED_BUBBLE_POP, randf() * 0.3 + 0.7, 15000);
                     }
@@ -436,7 +443,7 @@ void gameSelect_update(Actor *this) {
     if (!func_8038AAB0()) {
         switch (this->state) {
             case GAME_SELECT_INITIALIZE:
-                if (game_number == 1) {
+                if (game_number == CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR) {
                     gcsfx_playAtSampleRate(SFX_136_GAMEBOY_STARTUP, 15000);
                     timedFunc_set_3(0.25f, (GenFunction_3)comusic_8025AB44, COMUSIC_73_GAMEBOY, -1, 2000);
                     func_8025A58C(0, 2000);
@@ -445,7 +452,7 @@ void gameSelect_update(Actor *this) {
                     func_8025A58C(-1, 2000);
                 }
 
-                if (game_number == 2) {
+                if (game_number == CH_GAME_SELECT_SAVEFILE_2_KITCHEN) {
                     cookingSoundEffectIndex = func_802F9AA8(SFX_12B_BOILING_AND_BUBBLING);
                     func_802F9F80(cookingSoundEffectIndex, 0.5f, 9000000000.0f, 0.5f);
                     func_802F9DB8(cookingSoundEffectIndex, 0.9f, 0.9f, 0.0f);
@@ -488,7 +495,8 @@ void gameSelect_update(Actor *this) {
                         function_time = 0.0f;
 
                         // Add a little extra time for the silly animation
-                        if (this->state == GAME_SELECT_STARTING_SILLY && (game_number == 0 || game_number == 1)) {
+                        if (this->state == GAME_SELECT_STARTING_SILLY
+                            && (game_number == CH_GAME_SELECT_SAVEFILE_0_BED || game_number == CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR)) {
                             function_time = 0.25f;
                         }
 
@@ -520,19 +528,19 @@ void gameSelect_update(Actor *this) {
                     if (gameFile_isNotEmpty(game_number)) {
                         if (randf() < 0.1) { // Rarely activate "silly" animations
                             switch (game_number) {
-                                case 0: // Sleeping Banjo; Out the window
+                                case CH_GAME_SELECT_SAVEFILE_0_BED: // Sleeping Banjo; Out the window
                                     gcsfx_playAtSampleRate(SFX_31_BANJO_OHHWAAOOO, 28000);
                                     gcsfx_play(SFX_135_CARTOONY_SPRING);
                                     timedFunc_set_2(0.4f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_13A_GLASS_BREAKING_7, 0x7FFF);
                                     timedFunc_set_2(0.9f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_150_PORCELAIN_CRASH, 0x7FFF);
                                     timedFunc_set_2(1.0f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_151_CAT_MEOW, 0x7FFF);
                                     break;
-                                case 1: // Gaming Banjo; Springy chair
+                                case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR: // Gaming Banjo; Springy chair
                                     timedFunc_set_2(0.4f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_31_BANJO_OHHWAAOOO, 28000);
                                     timedFunc_set_2(0.2f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_E_SHOCKSPRING_BOING, 28000);
                                     gcsfx_play(SFX_2D_KABOING);
                                     break;
-                                case 2: // Cooking Banjo; Spin the kitchen
+                                case CH_GAME_SELECT_SAVEFILE_2_KITCHEN: // Cooking Banjo; Spin the kitchen
                                     timedFunc_set_2(0.15f, (GenFunction_2)gcsfx_playAtSampleRate, SFX_32_BANJO_EGHEE, 28000);
                                     gcsfx_playAtSampleRate(SFX_3F6_RUBBING, 28000);
                                     gcsfx_play(SFX_8F_SNOWBALL_FLYING);
@@ -550,11 +558,11 @@ void gameSelect_update(Actor *this) {
                         subaddie_set_state(this, GAME_SELECT_STARTING);
                     }
 
-                    if (game_number == 0) {
+                    if (game_number == CH_GAME_SELECT_SAVEFILE_0_BED) {
                         func_802C75A0(this, 2);
                     }
 
-                    if (game_number == 1) {
+                    if (game_number == CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR) {
                         comusic_8025AB44(COMUSIC_73_GAMEBOY, 0, 4000);
                     }
                     
@@ -571,16 +579,16 @@ void gameSelect_update(Actor *this) {
 
                             // Switch to file to the left
                             switch (gameNumber) {
-                                case 0:
+                                case CH_GAME_SELECT_SAVEFILE_0_BED:
                                     isFileMoving = FALSE;
                                     break;
 
-                                case 1:
-                                    gameNumber = 2;
+                                case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR:
+                                    gameNumber = CH_GAME_SELECT_SAVEFILE_2_KITCHEN;
                                     break;
 
-                                case 2:
-                                    gameNumber = 0;
+                                case CH_GAME_SELECT_SAVEFILE_2_KITCHEN:
+                                    gameNumber = CH_GAME_SELECT_SAVEFILE_0_BED;
                                     break;
                             }
                         } else { // Joystick went right
@@ -588,14 +596,14 @@ void gameSelect_update(Actor *this) {
 
                             // Switch to file to the right
                             switch (gameNumber) {
-                                case 0:
-                                    gameNumber = 2;
+                                case CH_GAME_SELECT_SAVEFILE_0_BED:
+                                    gameNumber = CH_GAME_SELECT_SAVEFILE_2_KITCHEN;
                                     break;
-                                case 1:
+                                case CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR:
                                     isFileMoving = FALSE;
                                     break;
-                                case 2:
-                                    gameNumber = 1;
+                                case CH_GAME_SELECT_SAVEFILE_2_KITCHEN:
+                                    gameNumber = CH_GAME_SELECT_SAVEFILE_1_GAMING_CHAIR;
                                     break;
                             }
                         }
@@ -674,8 +682,8 @@ void gameSelect_initAndUpdate(Actor * this){
         isFileMoving = FALSE;
         debugScoreStates();
         clearScoreStates();
-        previousGameNumber = 0;
-        gameNumber = 0;
+        previousGameNumber = CH_GAME_SELECT_SAVEFILE_0_BED;
+        gameNumber = CH_GAME_SELECT_SAVEFILE_0_BED;
         cameraPositions[1][0] = INITIAL_CAMERA_POSITIONS[0][0];
         cameraPositions[1][1] = INITIAL_CAMERA_POSITIONS[0][1];
         cameraPositions[1][2] = INITIAL_CAMERA_POSITIONS[0][2];

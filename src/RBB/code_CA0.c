@@ -4,14 +4,14 @@
 
 
 /* typedefs and declarations */
-void func_803878B0(Actor *this);
-void func_8038756C(Actor *this, s32 arg1);
+void chCageUpSwitch_update(Actor *this);
+void chCageUpSwitch_setState(Actor *this, s32 arg1);
 
 /* .data */
-ActorInfo D_80390200 = {
-    MARKER_183_RBB_EGG_TOLL, 0x173, ASSET_402_MODEL_EGG_TOLL,
+ActorInfo chCageUpSwitch = {
+    MARKER_183_RBB_CAGE_UP_SWITCH, ACTOR_173_RBB_CAGE_UP_SWITCH, ASSET_402_MODEL_EGG_TOLL,
     0x0, NULL,
-    func_803878B0, NULL, func_80325340,
+    chCageUpSwitch_update, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
 
@@ -22,16 +22,24 @@ s32 D_80390254[4] = { 0xff, 0, 0, 0xff};
 
 f32 D_80390264[3] = {-4900.0f, 0.0f, 0.0f};
 
+enum chcageupswitch_state_e {
+    CH_CAGE_UP_SWITCH_STATE_0_NOT_INIT,
+    CH_CAGE_UP_SWITCH_STATE_1_NOT_PRESSED,
+    CH_CAGE_UP_SWITCH_STATE_2_RAISING_CAGE,
+    CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE,
+    CH_CAGE_UP_SWITCH_STATE_4_LOWER_CAGE
+};
+
 /* .code */
-void func_80387090(ActorMarker *marker, s32 arg1){
-    func_8038756C(marker_getActor(marker), arg1);
+void chCageUpSwitch_setStateByMarker(ActorMarker *marker, s32 next_state){
+    chCageUpSwitch_setState(marker_getActor(marker), next_state);
 }
 
 void func_803870BC(s32 arg0, s32 arg1){
     Struct6Ds *temp_v0;
 
     if(temp_v0 = &func_8034C528(arg0)->type_6D)
-        func_8034DFB0(temp_v0, D_80390224, D_80390234, (f64)arg1/1000.0);
+        func_8034DFB0(temp_v0, D_80390224, D_80390234, (f64)arg1 / 1000.0);
 }
 
 void func_8038711C(s32 arg0, s32 arg1){
@@ -39,7 +47,7 @@ void func_8038711C(s32 arg0, s32 arg1){
 
     func_8030E6D4(SFX_90_SWITCH_PRESS);
     if(temp_v0 = &func_8034C528(arg0)->type_6D)
-        func_8034DFB0(temp_v0, D_80390244, D_80390254, (f64)arg1/1000.0);
+        func_8034DFB0(temp_v0, D_80390244, D_80390254, (f64)arg1 / 1000.0);
 }
 
 void func_8038718C(ActorMarker *marker){
@@ -65,7 +73,7 @@ void func_8038718C(ActorMarker *marker){
     timed_playSfx(4.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);\
     timed_exitStaticCamera(5.0f);
     func_80324E38(5.0f, 0);
-    timedFunc_set_2(5.0f, (GenFunction_2) func_80387090, (s32) marker, 3);
+    timedFunc_set_2(5.0f, (GenFunction_2) chCageUpSwitch_setStateByMarker, (s32) marker, CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE);
 }
 
 void func_80387308(ActorMarker *marker){
@@ -87,22 +95,21 @@ void func_80387308(ActorMarker *marker){
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.8f, 19000);
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 0.9f, 19000);
     timed_playSfx(0.5f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 19000);
-    timedFunc_set_2(0.5f, (GenFunction_2) func_80387090, (s32) actor->marker, 1);
+    timedFunc_set_2(0.5f, (GenFunction_2) chCageUpSwitch_setStateByMarker, (s32) actor->marker, CH_CAGE_UP_SWITCH_STATE_1_NOT_PRESSED);
     
     timedFunc_set_2(1.5f, (GenFunction_2) func_803870BC, 0x19d, 0x1f4);
     timed_exitStaticCamera(1.5f);
     func_80324E38(1.5f, 0);
-
 }
 
 void func_80387488(ActorMarker *marker){
-    f32 sp1C[3];
+    f32 player_position[3];
     Actor *actor = marker_getActor(marker);
 
-    player_getPosition(sp1C);
-    if(-50.0f < sp1C[1] && sp1C[1] < 600.0f){
-        sp1C[1] = 0;
-        if(ml_vec3f_distance(sp1C, D_80390264) < 500.0f){
+    player_getPosition(player_position);
+    if(-50.0f < player_position[1] && player_position[1] < 600.0f){
+        player_position[1] = 0;
+        if(ml_vec3f_distance(player_position, D_80390264) < 500.0f){
             timedFunc_set_1(1.0f, (GenFunction_1) func_80387488, (s32)actor->marker);
             return;
         }
@@ -112,7 +119,7 @@ void func_80387488(ActorMarker *marker){
     timedFunc_set_1(0.5f, (GenFunction_1) func_80387308, (s32) actor->marker);
 }
 
-void func_8038756C(Actor *this, s32 arg1){
+void chCageUpSwitch_setState(Actor *this, s32 next_state){
     f32 sp6C[3];
     f32 sp60[3];
     void * temp_v0;
@@ -123,7 +130,7 @@ void func_8038756C(Actor *this, s32 arg1){
     f32 sp30[3];
     f32 sp24[3];
     
-    if(arg1 == 1){
+    if(next_state == CH_CAGE_UP_SWITCH_STATE_1_NOT_PRESSED){
         if(this->state != 0){
             sp6C[0] = 0.0f;
             sp6C[1] = 0.0f;
@@ -138,7 +145,7 @@ void func_8038756C(Actor *this, s32 arg1){
         }
     }//L80387610
 
-    if(arg1 == 2){
+    if(next_state == CH_CAGE_UP_SWITCH_STATE_2_RAISING_CAGE){
         sp50[0] = sp50[1] = sp50[2] = 0.0f;
         sp44[0] =  0.0f;
         sp44[1] = 0.0f;
@@ -156,16 +163,16 @@ void func_8038756C(Actor *this, s32 arg1){
         timedFunc_set_1(1.1f, (GenFunction_1)func_8038718C, (s32)this->marker);
     }//L80387704
 
-    if(arg1 == 3){
+    if(next_state == CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE){
         item_set(ITEM_6_HOURGLASS, 1);
         item_set(ITEM_0_HOURGLASS_TIMER, 0x3bf);
     }
 
-    if(this->state == 3){
+    if(this->state == CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE){
         item_set(ITEM_6_HOURGLASS, 0);
     }
 
-    if(arg1 == 4){
+    if(next_state == CH_CAGE_UP_SWITCH_STATE_4_LOWER_CAGE){
         sp3C = func_8034C528(0x19a);
         if(sp3C){
             sp30[0] = 0.0f;
@@ -184,32 +191,32 @@ void func_8038756C(Actor *this, s32 arg1){
         timedFunc_set_1(4.0f, (GenFunction_1)func_80387488, (s32)this->marker);
     }//L80387828
 
-    this->state = arg1;
+    this->state = next_state;
 }
 
-void func_80387850(ActorMarker *marker, ActorMarker *arg1){
+void chCageUpSwitch_pushSwitch(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->state == 1){
-        func_8038756C(actor, 2);
+    if(actor->state == CH_CAGE_UP_SWITCH_STATE_1_NOT_PRESSED){
+        chCageUpSwitch_setState(actor, CH_CAGE_UP_SWITCH_STATE_2_RAISING_CAGE);
     }
 }
 
-void func_80387890(Actor *this){
-    func_8038756C(this, 0);
+void chCageUpSwitch_free(Actor *this){
+    chCageUpSwitch_setState(this, CH_CAGE_UP_SWITCH_STATE_0_NOT_INIT);
 }
 
-void func_803878B0(Actor *this){
+void chCageUpSwitch_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        this->marker->actorFreeFunc = func_80387890;
-        marker_setCollisionScripts(this->marker, NULL, func_80387850, NULL);
+        this->marker->actorFreeFunc = chCageUpSwitch_free;
+        marker_setCollisionScripts(this->marker, NULL, chCageUpSwitch_pushSwitch, NULL);
         suSetSpriteScale(this, 1.1f);
-        func_8038756C(this, 1);
+        chCageUpSwitch_setState(this, CH_CAGE_UP_SWITCH_STATE_1_NOT_PRESSED);
     }
 
-    if(this->state == 3){
+    if(this->state == CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE){
         if(item_empty(ITEM_0_HOURGLASS_TIMER)){
-            func_8038756C(this, 4);
+            chCageUpSwitch_setState(this, CH_CAGE_UP_SWITCH_STATE_4_LOWER_CAGE);
         }
     }
 }
