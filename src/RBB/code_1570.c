@@ -4,17 +4,15 @@
 #include "core2/particle.h"
 
 
-
-
 /* typedefs and declarations */
-void func_803881E8(Actor *this, s32 arg1);
-void RBB_func_803882F4(Actor *this);
+void chTNTDownSwitch_setState(Actor *this, s32 arg1);
+void chTNTDownSwitch_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390270 = {
-    MARKER_184_RBB_EGG_TOLL, 0x174, ASSET_402_MODEL_EGG_TOLL,
+ActorInfo chTNTDownSwitch = {
+    MARKER_184_RBB_TNT_DOWN_SWITCH, ACTOR_174_RBB_TNT_DOWN_SWITCH, ASSET_402_MODEL_EGG_TOLL,
     0x0, NULL,
-    RBB_func_803882F4, NULL, func_80325340,
+    chTNTDownSwitch_update, NULL, func_80325340,
     0, 0, 0.0f, 0
 };
 
@@ -23,11 +21,11 @@ s32 D_803902A4[4] = { 0x76, 0, 0, 0xff};
 s32 D_803902B4[4] = { 0x76, 0, 0, 0xff};
 s32 D_803902C4[4] = { 0xff, 0, 0, 0xff};
 
-
 f32 D_803902D4[3] = {4500.0f, 0.0f, 500.0f};
 f32 D_803902E0[3] = {4500.0f, 0.0f, 500.0f}; 
 f32 D_803902EC[3] = {4000.0f, -600.0f, 0.0f};
 f32 D_803902F8[3] = {4500.0f, 0.0f, 500.0f};
+
 ParticleScaleAndLifetimeRanges D_80390304 = {
     { 5.0f, 5.0f},
     { 5.0f, 5.0f},
@@ -39,9 +37,16 @@ ParticleScaleAndLifetimeRanges D_80390304 = {
 
 f32 D_8039032C[3] = {3700.0f, -300.0f, -300.0f};  
 f32 D_80390338[3] = {4500.0f, 100.0f, 400.0f}; 
+
 ParticleSettingsVelocityAcceleration D_80390344= {
     {{-700.0f, 200.0f, -700.0f}, {700.0f, 500.0f, 700.0f}}, 
     {{ 0.0f, -800.0f, 0.0f}, { 0.0f, -800.0f, 0.0f}}
+};
+
+enum chtntdownswitch_state_e {
+    CH_TNT_DOWN_SWITCH_STATE_0_NOT_INIT,
+    CH_TNT_DOWN_SWITCH_STATE_1_NOT_PRESSED,
+    CH_TNT_DOWN_SWITCH_STATE_2_PRESSED
 };
 
 /*.code */
@@ -110,7 +115,7 @@ void func_80387B24(void){
 void func_80387B8C(s32 arg0, s32 arg1){
     Struct6Ds *v0 = &func_8034C528(arg0)->type_6D;
     if(v0){
-        func_8034DFB0(v0, D_80390294, D_803902A4, (f64)arg1/1000.0);
+        func_8034DFB0(v0, D_80390294, D_803902A4, (f64)arg1 / 1000.0);
     }
 }
 
@@ -118,11 +123,11 @@ void func_80387BEC(s32 arg0, s32 arg1){
     Struct6Ds *v0;
     func_8030E6D4(SFX_90_SWITCH_PRESS);
     if(v0 = &func_8034C528(arg0)->type_6D){
-        func_8034DFB0(v0, D_803902B4, D_803902C4, (f64)arg1/1000.0);
+        func_8034DFB0(v0, D_803902B4, D_803902C4, (f64)arg1 / 1000.0);
     }
 }
 
-void func_80387C5C(void){
+void chTNTDownSwitch_emitExplosion(void){
     ParticleEmitter *actor;
 
     func_802BB3DC(0, 60.0f, 0.9f);
@@ -139,7 +144,7 @@ void func_80387C5C(void){
     particleEmitter_emitInVolume(actor, D_803902D4, D_803902E0, 1);
 }
 
-void func_80387D80(void){
+void chTNTDownSwitch_emitSmoke(void){
     ParticleEmitter *actor = partEmitMgr_newEmitter(3);
     particleEmitter_setSprite(actor, ASSET_70E_SPRITE_SMOKE_2);
     particleEmitter_setStartingFrameRange(actor, 0, 7);
@@ -148,11 +153,11 @@ void func_80387D80(void){
     particleEmitter_emitInVolume(actor, D_803902EC, D_803902F8, 3);
 }
 
-void func_80387E20(void){
+void chTNTDownSwitch_emitWoodenPlank(void){
     ParticleEmitter *actor = partEmitMgr_newEmitter(0x19);
     particleEmitter_func_802EF9F8(actor, 0.6f);
     particleEmitter_func_802EFA18(actor, 3);
-    particleEmitter_setModel(actor, 0x427);
+    particleEmitter_setModel(actor, ASSET_427_MODEL_WOODEN_PLANK);
     particleEmitter_setStartingScaleRange(actor, 0.05f, 0.4f);
     particleEmitter_setAngularVelocityRange(actor, -600.0f, -600.0f, -600.0f, 600.0f, 600.0f, 600.0f);
     particleEmitter_setSpawnIntervalRange(actor, 0.0f, 0.01f);
@@ -161,67 +166,67 @@ void func_80387E20(void){
     particleEmitter_emitInVolume(actor, D_8039032C, D_80390338, 0x19);
 }
 
-void RBB_func_80387F18(ActorMarker *marker, s32 arg1){
-    func_803881E8(marker_getActor(marker), arg1);
+void chTNTDownSwitch_setStateByMarker(ActorMarker *marker, s32 next_state){
+    chTNTDownSwitch_setState(marker_getActor(marker), next_state);
 }
 
 void RBB_func_80387F44(void){
     baMotor_80250E94(0.5f, 1.0f, 1.5f, 0.0f, 1.0f, 1.5f);
 }
 
-void func_80387F88(ActorMarker *marker){
+void chTNTDownSwitch_emits(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
 
-    timedFunc_set_0(0.0f, func_80387C5C);
+    timedFunc_set_0(0.0f, chTNTDownSwitch_emitExplosion);
     timed_playSfx(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
     timed_playSfx(0.1f, SFX_1B_EXPLOSION_1, 1.0f, 22000);
-    timedFunc_set_0(0.3f, func_80387E20);
+    timedFunc_set_0(0.3f, chTNTDownSwitch_emitWoodenPlank);
     timedFunc_set_0(0.5f, func_80387A54);
     timedFunc_set_0(0.4f, func_80387B24);
     timed_playSfx(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
     timed_playSfx(0.41f, SFX_1B_EXPLOSION_1, 0.8f, 22000);
-    timedFunc_set_0(0.55f, func_80387D80);
+    timedFunc_set_0(0.55f, chTNTDownSwitch_emitSmoke);
     timed_playSfx(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
     timed_playSfx(0.71f, SFX_1B_EXPLOSION_1, 0.6f, 22000);
-    timedFunc_set_0(0.8f, func_80387D80);
+    timedFunc_set_0(0.8f, chTNTDownSwitch_emitSmoke);
     timed_playSfx(1.0f, SFX_1A_BIG_THINGS_FALL_OVER, 1.0f, 22000);
     timed_playSfx(2.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.8f, 22000);
     timed_playSfx(3.0f, SFX_1A_BIG_THINGS_FALL_OVER, 0.6f, 22000);
     timed_exitStaticCamera(4.0f);
     func_80324E38(4.0f, 0);
-    timedFunc_set_2(4.0f, (GenFunction_2) RBB_func_80387F18, (s32) actor->marker, 3);
+    timedFunc_set_2(4.0f, (GenFunction_2) chTNTDownSwitch_setStateByMarker, (s32) actor->marker, 3);
 }
 
-void func_80388154(ActorMarker *marker){
+void chTNTDownSwitch_dropTNTActions(ActorMarker *marker){
     Actor *actor = marker_getActor(marker);
     func_803879F0();
     timedFunc_set_0(0.0f, (GenFunction_0) RBB_func_80387F44);
-    timed_playSfx(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 0x7fc6);
+    timed_playSfx(0.0f, SFX_7F_HEAVYDOOR_SLAM, 1.0f, 32710);
     timedFunc_set_2(1.2f, (GenFunction_2) func_80387B8C, 0x19f, 0);
     timed_setStaticCameraToNode(1.2f, 8);
-    timedFunc_set_1(1.5f, (GenFunction_1) func_80387F88, (s32) actor->marker);
+    timedFunc_set_1(1.5f, (GenFunction_1) chTNTDownSwitch_emits, (s32) actor->marker);
 }
 
-void func_803881E8(Actor *this, s32 arg1){
-    this->state = arg1;
-    if(this->state == 2){
+void chTNTDownSwitch_setState(Actor *this, s32 next_state){
+    this->state = next_state;
+    if(this->state == CH_TNT_DOWN_SWITCH_STATE_2_PRESSED){
         RBB_func_80387960(0.05f);
         timedFunc_set_2(0.05f, (GenFunction_2)func_80387BEC, 0x19f, 0x1f4);
         timedFunc_set_2(0.1f, (GenFunction_2)coMusicPlayer_playMusic, COMUSIC_2B_DING_B, 28000);
         func_80324E38(0.2f, 3);
         timed_setStaticCameraToNode(1.1f, 7);
-        timedFunc_set_1(1.6f, (GenFunction_1)func_80388154, (s32)this->marker);
+        timedFunc_set_1(1.6f, (GenFunction_1)chTNTDownSwitch_dropTNTActions, (s32)this->marker);
         levelSpecificFlags_set(LEVEL_FLAG_2D_RBB_UNKNOWN, TRUE);
     }
 }
 
-void func_803882B4(ActorMarker *marker, ActorMarker *arg1){
+void chTNTDownSwitch_pushSwitch(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
-    if(actor->state == 1)
-        func_803881E8(actor, 2);
+    if(actor->state == CH_TNT_DOWN_SWITCH_STATE_1_NOT_PRESSED)
+        chTNTDownSwitch_setState(actor, CH_TNT_DOWN_SWITCH_STATE_2_PRESSED);
 }
 
-void RBB_func_803882F4(Actor *this){
+void chTNTDownSwitch_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
 
@@ -229,12 +234,12 @@ void RBB_func_803882F4(Actor *this){
             func_80387AC0();
             RBB_func_80387960(0.0f);
             func_80387B24();
-            func_803881E8(this, 3);
+            chTNTDownSwitch_setState(this, 3);
         }
         else {
-            marker_setCollisionScripts(this->marker, NULL, func_803882B4, NULL);
+            marker_setCollisionScripts(this->marker, NULL, chTNTDownSwitch_pushSwitch, NULL);
             suSetSpriteScale(this, 1.1f);
-            func_803881E8(this, 1);
+            chTNTDownSwitch_setState(this, 1);
         }
     }
 }

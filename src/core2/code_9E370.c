@@ -1531,14 +1531,14 @@ bool subaddie_playerIsWithinSphereAndActive(Actor *this, s32 dist) {
 
 bool subaddie_playerIsWithinSphere(Actor *this, s32 dist){
     f32 sp24[3];
-    f32 sp18[3];
+    f32 player_position[3];
 
     func_8028E964(sp24);
-    playerPosition_get(sp18);
-    sp24[1] = sp18[1];
-    if( ( (this->position_x - sp24[0])*(this->position_x - sp24[0]) 
-          + (this->position_y - sp24[1])*(this->position_y - sp24[1])
-          + (this->position_z - sp24[2])*(this->position_z - sp24[2]) 
+    playerPosition_get(player_position);
+    sp24[1] = player_position[1];
+    if( ( (this->position_x - sp24[0]) * (this->position_x - sp24[0])
+          + (this->position_y - sp24[1]) * (this->position_y - sp24[1])
+          + (this->position_z - sp24[2]) * (this->position_z - sp24[2]) 
         ) < dist*dist
     ){
         return TRUE;

@@ -5,19 +5,20 @@
 /* typedefs and declarations */
 typedef struct {
     f32 unk0;
-    f32 unk4[3];
-    f32 unk10[3];
-    f32 unk1C[3];
-    f32 unk28;
-    f32 unk2C;
+    f32 playerInfluencedRotationDelta[3]; // something about rotation
+    f32 position[3];
+    f32 rotation[3];
+    f32 timeDelta;
+    f32 creakingSFXTimer;
 }ActorLocal_RBB_7FD0;
 
-void func_8038E3D8(Actor *this);
+void chRowboat_update(Actor *this);
 
 /* .data */
-ActorInfo D_80390D50 = {
-    0x1ab, 0x297, 0x43C, 0x0, NULL,
-    func_8038E3D8, NULL, actor_draw,
+ActorInfo chRowboat = {
+    MARKER_1AB_ROWBOAT, ACTOR_297_ROWBOAT, ASSET_43C_MODEL_ROWBOAT,
+    0x0, NULL,
+    chRowboat_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
@@ -27,84 +28,86 @@ void func_8038E3C0(Actor *this, s32 arg1){
     this->state = arg1;
 }
 
-void func_8038E3D8(Actor *this){
-    f32 sp74[3];
-    f32 sp68[3];
+void chRowboat_update(Actor *this){
+    f32 rotation_delta[3];
+    f32 position_delta[3];
     ActorLocal_RBB_7FD0 *local = (ActorLocal_RBB_7FD0 *) &this->local;
-    int i;
-    f32 sp5C = time_getDelta();
-    f32 sp50[3];
-    f32 sp44[3];
+    int rotation_parameter;
+    f32 time_delta = time_getDelta();
+    f32 new_rotation[3];
+    f32 player_position[3];
     
     if(!this->volatile_initialized){
         this->marker->propPtr->unk8_3 = 1;
         this->volatile_initialized = TRUE;
         local->unk0 = randf2(80.0f, 100.0f);
-        local->unk28 = 0.0f;
-        local->unk2C = 0.5f;
+        local->timeDelta = 0.0f;
+        local->creakingSFXTimer = 0.5f;
         this->position_y -= 10.0f;
-        local->unk4[0] = 0.0f;
-        local->unk4[1] = 0.0f;
-        local->unk4[2] = 0.0f;
-        local->unk10[0] = this->position_x;
-        local->unk10[1] = this->position_y;
-        local->unk10[2] = this->position_z;
-        local->unk1C[0] = this->pitch;
-        local->unk1C[1] = this->yaw;
-        local->unk1C[2] = this->roll;
+        local->playerInfluencedRotationDelta[0] = 0.0f;
+        local->playerInfluencedRotationDelta[1] = 0.0f;
+        local->playerInfluencedRotationDelta[2] = 0.0f;
+        local->position[0] = this->position_x;
+        local->position[1] = this->position_y;
+        local->position[2] = this->position_z;
+        local->rotation[0] = this->pitch;
+        local->rotation[1] = this->yaw;
+        local->rotation[2] = this->roll;
         func_8038E3C0(this, 1);
     }//L8038E4C8
 
-    if(ml_timer_update(&local->unk2C, sp5C)){
-        local->unk2C = randf2(3.5f, 5.5f);
+    if(ml_timer_update(&local->creakingSFXTimer, time_delta)){
+        local->creakingSFXTimer = randf2(3.5f, 5.5f);
         func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, this->position, 500.0f, 1500.0f);
     }//L8038E544
 
     if(func_8032DCAC() == (int)this->marker && func_8028F20C()){
-        player_getPosition(sp44);
-        if(sp44[0] < this->position_x - 10.0f && local->unk4[2] < 3.0f)
-            local->unk4[2] += 5.0f*sp5C;
+        player_getPosition(player_position);
+        if(player_position[0] < this->position_x - 10.0f && local->playerInfluencedRotationDelta[2] < 3.0f)
+            local->playerInfluencedRotationDelta[2] += 5.0f * time_delta;
 
-        if(this->position_x + 10.0f < sp44[0] && -3.0f < local->unk4[2])
-            local->unk4[2] -= 5.0f*sp5C;
+        if(this->position_x + 10.0f < player_position[0] && -3.0f < local->playerInfluencedRotationDelta[2])
+            local->playerInfluencedRotationDelta[2] -= 5.0f * time_delta;
 
-        if(this->position_z + 10.0f < sp44[2] &&  local->unk4[0] < 5.0f)
-            local->unk4[0] += 5.0f*sp5C;
+        if(this->position_z + 10.0f < player_position[2] &&  local->playerInfluencedRotationDelta[0] < 5.0f)
+            local->playerInfluencedRotationDelta[0] += 5.0f * time_delta;
         
-        if(sp44[2] < this->position_z - 10.0f &&  -5.0f < local->unk4[0])
-            local->unk4[0] -= 5.0f*sp5C;
+        if(player_position[2] < this->position_z - 10.0f &&  -5.0f < local->playerInfluencedRotationDelta[0])
+            local->playerInfluencedRotationDelta[0] -= 5.0f * time_delta;
     }
     else{ 
-        for(i= 0; i< 3; i++){
-            if(0.0f < local->unk4[i]){
-                local->unk4[i] -= 2.5*sp5C;
-                if(local->unk4[i] < 0.0f)
-                    local->unk4[i] = 0.0f;
-            } else if(local->unk4[i] < 0.0f) { //L8038E710
-                local->unk4[i] += 2.5*sp5C;
-                if(0.0f < local->unk4[i])
-                    local->unk4[i] = 0.0f;
+        for(rotation_parameter = 0; rotation_parameter < 3; rotation_parameter++){
+            if(0.0f < local->playerInfluencedRotationDelta[rotation_parameter]){
+                local->playerInfluencedRotationDelta[rotation_parameter] -= 2.5 * time_delta;
+                if(local->playerInfluencedRotationDelta[rotation_parameter] < 0.0f)
+                    local->playerInfluencedRotationDelta[rotation_parameter] = 0.0f;
+            } else if(local->playerInfluencedRotationDelta[rotation_parameter] < 0.0f) { //L8038E710
+                local->playerInfluencedRotationDelta[rotation_parameter] += 2.5 * time_delta;
+                if(0.0f < local->playerInfluencedRotationDelta[rotation_parameter])
+                    local->playerInfluencedRotationDelta[rotation_parameter] = 0.0f;
             }//L8038E74C
         }
     }//L8038E754
 
-    local->unk28 += sp5C;
-    sp68[0] = 0.0f;
-    sp68[1] = 5.0f * sinf((((local->unk28*0.8)*local->unk0)/180.0)*3.141592654);
-    sp68[2] = 0.0f;
-    sp74[0] = 4.5 * cosf(((local->unk28*local->unk0)/180.0) * 3.141592654);
-    sp74[1] = 1.5 * sinf((((local->unk28*0.9)*local->unk0)/180.0)*3.141592654);
-    sp74[2] = 0.0f;
+    local->timeDelta += time_delta;
 
-    this->position_x = local->unk10[0] + sp68[0];
-    this->position_y = local->unk10[1] + sp68[1];
-    this->position_z = local->unk10[2] + sp68[2];
+    position_delta[0] = 0.0f;
+    position_delta[1] = 5.0f * sinf((((local->timeDelta * 0.8) * local->unk0) / 180.0) * BAD_PI);
+    position_delta[2] = 0.0f;
 
-    sp50[0] = local->unk1C[0] + sp74[0];
-    sp50[1] = local->unk1C[1] + sp74[1];
-    sp50[2] = local->unk1C[2] + sp74[2];
+    rotation_delta[0] = 4.5 * cosf(((local->timeDelta * local->unk0) / 180.0) * BAD_PI);
+    rotation_delta[1] = 1.5 * sinf((((local->timeDelta * 0.9) * local->unk0) / 180.0) * BAD_PI);
+    rotation_delta[2] = 0.0f;
 
-    this->pitch = sp50[0] + local->unk4[0];
-    this->yaw = sp50[1] + local->unk4[1];
-    this->roll = sp50[2] + local->unk4[2];
+    this->position_x = local->position[0] + position_delta[0];
+    this->position_y = local->position[1] + position_delta[1];
+    this->position_z = local->position[2] + position_delta[2];
+
+    new_rotation[0] = local->rotation[0] + rotation_delta[0];
+    new_rotation[1] = local->rotation[1] + rotation_delta[1];
+    new_rotation[2] = local->rotation[2] + rotation_delta[2];
+
+    this->pitch = new_rotation[0] + local->playerInfluencedRotationDelta[0];
+    this->yaw = new_rotation[1] + local->playerInfluencedRotationDelta[1];
+    this->roll = new_rotation[2] + local->playerInfluencedRotationDelta[2];
 }

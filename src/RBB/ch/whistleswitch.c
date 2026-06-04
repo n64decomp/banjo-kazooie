@@ -4,109 +4,114 @@
 
 /* typedefs and declarations */
 typedef struct {
-    s16 unk0;
-    f32 unk4[3];
-    s16 unk10;
-    u8  pad12[2];
-}Struct_RBB_47D0;
+    s16 actorId;
+    f32 position[3];
+    s16 mapSpecificFlag;
+} Struct_ChWhistleSwitchInfo;
 
 typedef struct {
     u8 unk0;
     u8 pad1[3];
-    Struct_RBB_47D0 *unk4;
+    Struct_ChWhistleSwitchInfo *whistleSwitchInfo;
     f32 unk8;
     BKVertexList *unkC;
-}ActorLocal_RBB_47D0;
+} ActorLocal_RBB_47D0;
 
-Actor *func_8038AD9C(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3);
-void func_8038AEB8(Actor *this);
+Actor *chRBBWhistleSwitch_draw(ActorMarker *marker, Gfx** gdl, Mtx** mptr, Vtx **arg3);
+void chRBBWhistleSwitch_update(Actor *this);
 
 
 /* .data */
-Struct_RBB_47D0 D_80390870[4] = {
-    {0x1BF, {-3950.0f, 690.0f, -350.0f}, 1},
-    {0x1C0, {-3950.0f, 690.0f, 0.0f}, 2},
-    {0x1C1, {-3950.0f, 690.0f, 350.0f}, 3},
-    0
+Struct_ChWhistleSwitchInfo chWhistleSwitchTable[4] = {
+    {ACTOR_1BF_WHISTLE_SWITCH_1, {-3950.0f, 690.0f, -350.0f}, RBB_MAIN_SPECIFIC_FLAG_1_WHISTLE_SWITCH_1},
+    {ACTOR_1C0_WHISTLE_SWITCH_2, {-3950.0f, 690.0f, 0.0f},    RBB_MAIN_SPECIFIC_FLAG_2_WHISTLE_SWITCH_2},
+    {ACTOR_1C1_WHISTLE_SWITCH_3, {-3950.0f, 690.0f, 350.0f},  RBB_MAIN_SPECIFIC_FLAG_3_WHISTLE_SWITCH_3},
+    NULL
 };
 
-extern ActorInfo D_803908C0 = {
-    MARKER_195_WHISTLE_SWITCH_1, 0x1BF, ASSET_413_MODEL_WHISTLE_SWITCH_1,
+extern ActorInfo chRBBWhistleSwitch1 = {
+    MARKER_195_WHISTLE_SWITCH_1, ACTOR_1BF_WHISTLE_SWITCH_1, ASSET_413_MODEL_WHISTLE_SWITCH_1,
     0x0, NULL,
-    func_8038AEB8, NULL, func_8038AD9C,
-    0, 0, 0.0f, 0
-};
-extern ActorInfo D_803908E4 = {
-    MARKER_196_WHISTLE_SWITCH_2, 0x1C0, ASSET_414_MODEL_WHISTLE_SWITCH_2,
-    0x0, NULL,
-    func_8038AEB8, NULL, func_8038AD9C,
+    chRBBWhistleSwitch_update, NULL, chRBBWhistleSwitch_draw,
     0, 0, 0.0f, 0
 };
 
-extern ActorInfo D_80390908 = {
-    MARKER_197_WHISTLE_SWITCH_3, 0x1C1, ASSET_415_MODEL_WHISTLE_SWITCH_3,
+extern ActorInfo chRBBWhistleSwitch2 = {
+    MARKER_196_WHISTLE_SWITCH_2, ACTOR_1C0_WHISTLE_SWITCH_2, ASSET_414_MODEL_WHISTLE_SWITCH_2,
     0x0, NULL,
-    func_8038AEB8, NULL, func_8038AD9C,
+    chRBBWhistleSwitch_update, NULL, chRBBWhistleSwitch_draw,
+    0, 0, 0.0f, 0
+};
+
+extern ActorInfo chRBBWhistleSwitch3 = {
+    MARKER_197_WHISTLE_SWITCH_3, ACTOR_1C1_WHISTLE_SWITCH_3, ASSET_415_MODEL_WHISTLE_SWITCH_3,
+    0x0, NULL,
+    chRBBWhistleSwitch_update, NULL, chRBBWhistleSwitch_draw,
     0, 0, 0.0f, 0
 };
 
 s32 D_8039092C[3] = { 0, 0xFF, 0};
 s32 D_80390938[3] = { 0xFF, 0, 0};
 
+enum chrbbwhistleswitch_state_e {
+    CH_RBB_WHISTLE_SWITCH_STATE_0_NOT_INIT,
+    CH_RBB_WHISTLE_SWITCH_STATE_1_UNK,
+    CH_RBB_WHISTLE_SWITCH_STATE_2_UNK
+};
+
 /* .code */
-Struct_RBB_47D0 *RBB_func_8038ABC0(Actor *arg0){
-    Struct_RBB_47D0 *iPtr = D_80390870;
-    while(iPtr->unk0 != 0){
-        if(iPtr->unk0 == arg0->modelCacheIndex)
+Struct_ChWhistleSwitchInfo *chWhistleSwitch_getInfoPointer(Actor *this){
+    Struct_ChWhistleSwitchInfo *iPtr = chWhistleSwitchTable;
+    while(iPtr->actorId != NULL){
+        if(iPtr->actorId == this->modelCacheIndex)
             return iPtr;
         iPtr++;
     }
     return NULL;
 }   
 
-void func_8038AC18(Actor *this, s32 new_state){
+void chRBBWhistleSwitch_setState(Actor *this, s32 new_state){
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&this->local;
     Actor *whistle_ctrl;
     local->unk8 = 0.0f;
-    if(new_state == 2){
+    if(new_state == CH_RBB_WHISTLE_SWITCH_STATE_2_UNK){
         func_8030E6D4(SFX_90_SWITCH_PRESS);
         local->unkC = vtxList_clone(modelbin_getVtxList(marker_loadModelBin(this->marker)));
         
-        mapSpecificFlags_set(local->unk4->unk10, TRUE);
+        mapSpecificFlags_set(local->whistleSwitchInfo->mapSpecificFlag, TRUE);
         this->position_y -= 30.0f;
         local->unk8 = 1.0f;
-        whistle_ctrl = actorArray_findActorFromActorId(0x1c5);
+        whistle_ctrl = actorArray_findActorFromActorId(ACTOR_1C5_WHISTLE_CTRL);
         if(whistle_ctrl){
-            local->unk0 = chWhistleCtrl_newEvent(whistle_ctrl, this->modelCacheIndex - 0x1be, this);
+            local->unk0 = chWhistleCtrl_newEvent(whistle_ctrl, this->modelCacheIndex - ACTOR_1BE_RBB_GREY_PROPELLOR_SWITCH, this);
         }
     }//L8038ACD0
 
-    if(this->state == 2){
-        this->position_x = local->unk4->unk4[0];
-        this->position_y = local->unk4->unk4[1];
-        this->position_z = local->unk4->unk4[2];
+    if(this->state == CH_RBB_WHISTLE_SWITCH_STATE_2_UNK){
+        this->position_x = local->whistleSwitchInfo->position[0];
+        this->position_y = local->whistleSwitchInfo->position[1];
+        this->position_z = local->whistleSwitchInfo->position[2];
         vtxList_free(local->unkC);
     }
     this->state = new_state;
 }
 
-void func_8038AD3C(ActorMarker *marker, ActorMarker *arg1){
+void chRBBWhistleSwitch_press(ActorMarker *marker, ActorMarker *arg1){
     Actor *actor = marker_getActor(marker);
     if(actor->state == 1)
-        func_8038AC18(actor, 2);
+        chRBBWhistleSwitch_setState(actor, 2);
 }
 
-void func_8038AD7C(Actor *this){
-    func_8038AC18(this, 0);
+void chRBBWhistleSwitch_free(Actor *this){
+    chRBBWhistleSwitch_setState(this, CH_RBB_WHISTLE_SWITCH_STATE_0_NOT_INIT);
 }
 
-Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
+Actor *chRBBWhistleSwitch_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     Actor * actor = marker_getActor(marker);
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&actor->local;
     BKModelBin *temp_v0;
     f32 pad0;
     s32 *sp1C;
-    
 
     if(actor->state == 0)
         return actor;
@@ -117,7 +122,7 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
         temp_v0 = marker_loadModelBin(marker);
         sp1C = (local->unk0 == 2) ? D_80390938 : D_8039092C;
         vtxList_tintColorsFrom(local->unkC, sp1C, 
-            (local->unk4->unk4[1] - actor->position_y)/30.0, 
+            (local->whistleSwitchInfo->position[1] - actor->position_y) / 30.0,
             modelbin_getVtxList(temp_v0)
         );
         modelRender_setVertexList(local->unkC);
@@ -125,37 +130,37 @@ Actor *func_8038AD9C(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
     return actor_draw(marker, gdl, mptr, arg3);
 }
 
-void func_8038AEB8(Actor *this){
+void chRBBWhistleSwitch_update(Actor *this){
     ActorLocal_RBB_47D0 *local = (ActorLocal_RBB_47D0 *)&this->local;
-    f32 sp20 = time_getDelta();
-    s32 tmp;
+    f32 time_delta = time_getDelta();
+    s32 y_position;
     
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = 1;
-        this->marker->actorFreeFunc = func_8038AD7C;
-        marker_setCollisionScripts(this->marker, NULL, func_8038AD3C, NULL);
-        local->unk4 = RBB_func_8038ABC0(this);
-        mapSpecificFlags_set(local->unk4->unk10, FALSE);
-        this->position_x = local->unk4->unk4[0];
-        this->position_y = local->unk4->unk4[1];
-        this->position_z = local->unk4->unk4[2];
+        this->marker->actorFreeFunc = chRBBWhistleSwitch_free;
+        marker_setCollisionScripts(this->marker, NULL, chRBBWhistleSwitch_press, NULL);
+        local->whistleSwitchInfo = chWhistleSwitch_getInfoPointer(this);
+        mapSpecificFlags_set(local->whistleSwitchInfo->mapSpecificFlag, FALSE);
+        this->position_x = local->whistleSwitchInfo->position[0];
+        this->position_y = local->whistleSwitchInfo->position[1];
+        this->position_z = local->whistleSwitchInfo->position[2];
         this->yaw = -90.0f;
-        func_8038AC18(this, 1);
+        chRBBWhistleSwitch_setState(this, CH_RBB_WHISTLE_SWITCH_STATE_1_UNK);
     }//L8038AF88
 
-    if(ml_timer_update(&local->unk8, sp20))
-        func_8038AC18(this, 1);
+    if(ml_timer_update(&local->unk8, time_delta))
+        chRBBWhistleSwitch_setState(this, CH_RBB_WHISTLE_SWITCH_STATE_1_UNK);
 
-    if(this->state == 2){
-        tmp = (s32)this->position_y;
-        if(this->position_y < local->unk4->unk4[1])
-            this->position_y += 60.0f*sp20;
+    if(this->state == CH_RBB_WHISTLE_SWITCH_STATE_2_UNK){
+        y_position = (s32)this->position_y;
+        if(this->position_y < local->whistleSwitchInfo->position[1])
+            this->position_y += 60.0f * time_delta;
         
-        if( tmp <  local->unk4->unk4[1] - 15.0f
-            && local->unk4->unk4[1] - 15.0f <= this->position_y
+        if( y_position <  local->whistleSwitchInfo->position[1] - 15.0f
+            && local->whistleSwitchInfo->position[1] - 15.0f <= this->position_y
         ){
-            mapSpecificFlags_set(local->unk4->unk10, FALSE);
+            mapSpecificFlags_set(local->whistleSwitchInfo->mapSpecificFlag, FALSE);
         }
     }//L8038B044
 }

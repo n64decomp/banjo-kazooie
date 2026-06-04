@@ -13,27 +13,32 @@ typedef struct {
 void chPropellor_update(Actor *this);
 
 /* .data */
-ActorInfo D_803906E0 = {
-    MARKER_185_RBB_REAR_PROPELLER, ACTOR_175_MODEL_RUSTY_BUCKET_REAR_PROPELLER, ASSET_403_MODEL_RUSTY_BUCKET_REAR_PROPELLER,
+ActorInfo chRBBRearPropeller = {
+    MARKER_185_RBB_REAR_PROPELLER, ACTOR_175_RUSTY_BUCKET_REAR_PROPELLER, ASSET_403_MODEL_RUSTY_BUCKET_REAR_PROPELLER,
     0x0, NULL,
     chPropellor_update, NULL, actor_draw,
     0, 0, 0.0f, 0
 };
 
-s32 D_80390704[4] = {0x258, 0x12C, 0x12C, 0};
+s32 chRBBRearPropellerSpeed[4] = {600, 300, 300, 0};
+
+enum chrbbrearpropeller_state_e {
+    CH_RBB_REAR_PROPELLER_STATE_0_NOT_INIT,
+    CH_RBB_REAR_PROPELLER_STATE_1_UNK
+};
 
 /*.code */
 f32 __chPropellor_getSpeed(void) {
-    return (f32) D_80390704[2 * levelSpecificFlags_get(LEVEL_FLAG_27_RBB_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_28_RBB_UNKNOWN)];
+    return (f32) chRBBRearPropellerSpeed[2 * levelSpecificFlags_get(LEVEL_FLAG_27_RBB_UNKNOWN) + levelSpecificFlags_get(LEVEL_FLAG_28_RBB_UNKNOWN)];
 }
 
-void __chPropellor_setState(Actor *this, s32 arg1){
+void __chPropellor_setState(Actor *this, s32 next_state){
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&this->local;
-    if(arg1 == 1){
+    if(next_state == CH_RBB_REAR_PROPELLER_STATE_1_UNK){
         local->unkC = __chPropellor_getSpeed();
         local->unk4 = __chPropellor_getSpeed();
     }
-    this->state = arg1;
+    this->state = next_state;
 }
 
 int func_80389B44(ActorMarker* marker, s32 arg1){
@@ -49,10 +54,10 @@ void func_80389B80(Actor *this, f32 arg1){
     local->unk0 = func_802F9AA8(0x400);
     func_802F9DB8(local->unk0, arg1, arg1, 0.0f);
     func_802F9F80(local->unk0, 0.0f, 8999999488.0f, 0.0f);
-    func_802FA060(local->unk0, 0x4650, 0x4650, 0.0f);
+    func_802FA060(local->unk0, 18000, 18000, 0.0f);
 
     if (!levelSpecificFlags_get(LEVEL_FLAG_3_RBB_UNKNOWN) && !levelSpecificFlags_get(LEVEL_FLAG_4_RBB_UNKNOWN)) {
-        func_802F9EC4(local->unk0, &this->position, 0x1f4, 0x7d0);
+        func_802F9EC4(local->unk0, &this->position, 500, 2000);
         func_802FA0B0(local->unk0, 1);
     }
 }
@@ -64,10 +69,10 @@ void __chPropellor_free(Actor *actor){
 }
 
 
-void chPropellor_update(Actor *this){ 
+void chPropellor_update(Actor *this){
     ActorLocal_RBB_36A0 * local = (ActorLocal_RBB_36A0 *)&this->local;
-    f32 tmp;
-    f32 sp34 = time_getDelta();
+    f32 prev_pitch;
+    f32 time_delta = time_getDelta();
 
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
@@ -90,7 +95,7 @@ void chPropellor_update(Actor *this){
         }//L80389D7C
         local->unk4 = 0.0f;
         local->unkC = 0.0f;
-        __chPropellor_setState(this, 1);
+        __chPropellor_setState(this, CH_RBB_REAR_PROPELLER_STATE_1_UNK);
 
         if (levelSpecificFlags_get(local->unk8 ? LEVEL_FLAG_4_RBB_UNKNOWN : LEVEL_FLAG_3_RBB_UNKNOWN)) {
             ncStaticCamera_setToNode(9);
@@ -104,10 +109,10 @@ void chPropellor_update(Actor *this){
         }
     }//L80389EA8
     
-    tmp = this->pitch;
-    this->pitch -= local->unkC*sp34;
-    if( (0.0f < tmp && this->pitch <= 0.0f)
-        || (180.0f < tmp && this->pitch <= 180.0f)
+    prev_pitch = this->pitch;
+    this->pitch -= local->unkC * time_delta;
+    if( (0.0f < prev_pitch && this->pitch <= 0.0f)
+        || (180.0f < prev_pitch && this->pitch <= 180.0f)
     ){
         if (levelSpecificFlags_get(LEVEL_FLAG_3_RBB_UNKNOWN) || levelSpecificFlags_get(LEVEL_FLAG_4_RBB_UNKNOWN)) {
             func_8030E760(SFX_2_CLAW_SWIPE, 0.4f, 20000);
@@ -122,11 +127,11 @@ void chPropellor_update(Actor *this){
     if(this->state == 1){
         local->unk4 = __chPropellor_getSpeed();
         if(local->unkC < local->unk4){
-            local->unkC += 75*sp34;
+            local->unkC += 75 * time_delta;
             local->unkC = MIN(local->unk4, local->unkC);
         }//L8038A03C
         if(local->unk4 < local->unkC){
-            local->unkC -= 75*sp34;
+            local->unkC -= 75 * time_delta;
             local->unkC = MAX(local->unk4, local->unkC);
         }
     }//L8038A08C
