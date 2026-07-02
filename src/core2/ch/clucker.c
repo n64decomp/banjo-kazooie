@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_8033A45C(s32, s32);
+extern void modelRender_setAppendageVisibility(s32, s32);
 
 typedef struct{
     u8 unk0;
@@ -130,8 +130,8 @@ void chClucker_die(ActorMarker *this_marker, ActorMarker *other_marker){
 Actor *chClucker_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
 
-    func_8033A45C(3, (this->state == CLUCKER_STATE_5_DIE)? 1 : 0);
-    func_8033A45C(4, (this->state == CLUCKER_STATE_UNK_0 || this->state == CLUCKER_STATE_1_IDLE || this->state == CLUCKER_STATE_6_DEAD)? 0 : 1);
+    modelRender_setAppendageVisibility(3, (this->state == CLUCKER_STATE_5_DIE)? 1 : 0);
+    modelRender_setAppendageVisibility(4, (this->state == CLUCKER_STATE_UNK_0 || this->state == CLUCKER_STATE_1_IDLE || this->state == CLUCKER_STATE_6_DEAD)? 0 : 1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

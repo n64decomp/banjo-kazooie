@@ -69,7 +69,7 @@ Actor *chMudHut_draw(ActorMarker *this, Gfx** gdl, Mtx** mtx, Vtx **vtx){
     Actor *thisActor;
 
     thisActor = marker_getActor(this);
-    func_8033A45C(1, thisActor->state == 1);
+    modelRender_setAppendageVisibility(1, thisActor->state == 1);
     if(thisActor->state == 3)
         return thisActor;
     

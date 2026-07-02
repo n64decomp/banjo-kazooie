@@ -54,10 +54,10 @@ void bsturn_update(void){
         sp2C = BS_4_WALK_FAST;
 
     if(bakey_held(BUTTON_Z))
-        sp2C = BS_CROUCH;
+        sp2C = BS_7_CROUCH;
 
     if(bakey_pressed(BUTTON_B))
-        sp2C = BS_CLAW;
+        sp2C = BS_6_CLAW;
 
     if(bakey_pressed(BUTTON_A))
         sp2C = bs_getTypeOfJump();

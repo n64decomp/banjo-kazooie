@@ -435,8 +435,8 @@ Actor *chWarpCauldron_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
 
     this = marker_getActor(marker);
     if(this->modelCacheIndex == ACTOR_23B_WARP_CAULDRON) {
-        func_8033A45C(3, BOOL(this->unk38_0));
-        func_8033A45C(4, this->unk38_0 ? FALSE : TRUE);
+        modelRender_setAppendageVisibility(3, BOOL(this->unk38_0));
+        modelRender_setAppendageVisibility(4, this->unk38_0 ? FALSE : TRUE);
     }
     this = actor_draw(marker, gfx, mtx, vtx);
     if (marker->unk14_21 && this->unk38_0 && (getGameMode() != GAME_MODE_4_PAUSED)) {

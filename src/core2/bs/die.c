@@ -53,7 +53,7 @@ void bsdie_init(void){
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1400.0f);
     pitch_setAngVel(1000.0f, 12.0f);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_8029151C(0xd);
     ncbadie_func_802BF2C0(30.0f);
     func_8029C984();
@@ -127,7 +127,7 @@ void bsdie_update(void){
 void bsdie_end(void){
     core1_ce60_incOrDecCounter(FALSE);
     baphysics_reset_gravity();
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_80291548();

@@ -37,7 +37,7 @@ Actor *chhut_draw(ActorMarker *this, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 is_intact_or_destroyed  = actorPtr->state == HUT_STATE_0_INTACT || actorPtr->state == HUT_STATE_2_DESTROYED;
 
     this->propPtr->unk8_3 = is_intact_or_destroyed;
-    func_8033A45C(1, is_not_destroyed);
+    modelRender_setAppendageVisibility(1, is_not_destroyed);
     return actor_draw(this, gfx, mtx, vtx);
 }
 

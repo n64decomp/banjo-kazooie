@@ -3,7 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
-
+#include "core2/yaw.h"
 
 /* .bss */
 u8 bsdronetogo_substate;
@@ -55,7 +55,7 @@ void func_802AEC78(void){
     badrone_get_position_and_duration(target_position, &duration_s);
     baphysics_set_goto_position(target_position);
     baphysics_set_goto_duration(duration_s);
-    func_8029C7F4(1,1,3,BA_PHYSICS_GOTO);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_GOTO);
     func_8029436C(1);
     D_8037D441 = 0;
 }

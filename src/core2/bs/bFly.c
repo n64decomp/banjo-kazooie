@@ -4,7 +4,7 @@
 #include "variables.h"
 
 #include "core2/abilityprogress.h"
-
+#include "core2/yaw.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/flap.h"
 #include "core2/ba/timer.h"
@@ -68,7 +68,7 @@ void func_802A34C8(void){
     if(!bsbfly_inSet(bs_getNextState())){
         baphysics_reset_gravity();
         baphysics_reset_terminal_velocity();
-        func_8029E070(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
         baModel_setYDisplacement(0.0f);
         func_8029CB84();
         yaw_setUpdateState(1);
@@ -124,11 +124,11 @@ void func_802A36D0(void){
 }
 
 int bsbfly_inSet(enum bs_e arg0){
-    return arg0 == BS_BOMB
+    return arg0 == BS_2A_BOMB
         || arg0 == BS_57_BOMB_END
         || arg0 == BS_18_FLY_KNOCKBACK
         || arg0 == BS_59_BFLY_UNK59
-        || arg0 == BS_FLY_OW
+        || arg0 == BS_91_FLY_OW
         || arg0 == BS_76_BFLY_LOCKED
         || arg0 == BS_24_FLY
         || arg0 == BS_99_BFLY_DRONE;
@@ -140,7 +140,7 @@ int func_802A37F8(void){
 
 void bsbfly_enter_init(void){
     baanim_playForDuration_onceSmooth(ASSET_45_ANIM_BSBFLY_ENTER, 1.4f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f)
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
@@ -148,7 +148,7 @@ void bsbfly_enter_init(void){
     baphysics_set_velocity(0);
     baphysics_set_target_horizontal_velocity(0.0f);
     baphysics_set_gravity(-1200.0f);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     basfx_80299BD4();
     D_8037D344 = 0;
     D_8037D346 = 0;
@@ -179,12 +179,12 @@ void bsbfly_enter_update(void){
 
 void bsbfly_enter_end(void) {
     ability_use(ABILITY_USED_FLY);
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
 }
 
 void bsbfly_init(void){
     baanim_playForDuration_loopSmooth(ASSET_38_ANIM_BSBFLY, 0.62f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_LOCKED_ROTATION);
     if(baflag_isTrue(BA_FLAG_9)){
         baphysics_set_target_horizontal_velocity(0.0f);
     }else{
@@ -193,7 +193,7 @@ void bsbfly_init(void){
 
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
     baphysics_set_target_yaw(yaw_getIdeal());
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     baphysics_set_gravity(-300.0f);
     baphysics_set_terminal_velocity(-99.9f);
     func_802914CC(4);
@@ -301,7 +301,7 @@ void bsbfly_update(void){
         sp2C = 0;
         func_80346C10(&sp2C, 0, 1, ITEM_F_RED_FEATHER, 1);
         if(sp2C)
-            sp54 = BS_BOMB;
+            sp54 = BS_2A_BOMB;
     }
 
     if(player_inWater())
@@ -314,7 +314,7 @@ void bsbfly_update(void){
     bs_setState(sp54);
 }
 
-void func_802A3F70(void){
+void bsbfly_end(void){
     func_802A34C8();
 }
 
@@ -324,17 +324,17 @@ int bsbfly_bombHitboxActive(void){
 }
 
 //bsbfly_bomb_init
-void func_802A3F9C(void){
+void bsbfly_bomb_init(void){
     f32 sp1C[3];
     baanim_playForDuration_once(ASSET_43_ANIM_BSBFLY_BEAKBOMB_START, 1.0f);
-    func_8029C7F4(1,1,3,BA_PHYSICS_FREEZE);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_FREEZE);
     func_802A339C(D_8037D338, sp1C, 4200.0f);
     yaw_setIdeal(sp1C[1] + 180.0f);
     pitch_setIdeal(sp1C[0]);
     roll_setIdeal(0.0f);
     baphysics_set_velocity(D_8037D338);
     pitch_setIdeal(sp1C[0]);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_802914CC(4);
     ncbafly_func_802BFE74(1);
     func_802A3430();
@@ -365,7 +365,7 @@ s32 func_802A40E0(void){
         return BS_41_DIE;
 }
 
-void func_802A411C(void) {
+void bsbfly_bomb_update(void) {
     s32 next_state;
     AnimCtrl *sp58;
     BKCollisionTriangle *phi_v0;
@@ -443,13 +443,13 @@ void func_802A411C(void) {
     bs_setState(next_state);
 }
 
-void func_802A4404(void){
+void bsbfly_bomb_end(void){
     basfx_80299E6C();
     D_8037D345 = 0;
     func_802A34C8();
 }
 
-void func_802A4430(void){
+void bsbfly_beakbombend_init(void){
     AnimCtrl *plyr_anctrl;
 
     plyr_anctrl = baanim_getAnimCtrlPtr();
@@ -459,8 +459,8 @@ void func_802A4430(void){
     anctrl_setDuration(plyr_anctrl, 0.38f);
     anctrl_setPlaybackType(plyr_anctrl, ANIMCTRL_LOOP);
     anctrl_start(plyr_anctrl, "bsbfly.c", 0x38a);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
-    func_8029E070(1);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_LOCKED_ROTATION);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_802A3430();
     func_80293D74();
     func_80294378(1);
@@ -475,7 +475,7 @@ void func_802A4430(void){
     D_8037D344 = 0;
 }
 
-void func_802A4548(void){
+void bsbfly_beakbombend_update(void){
     s32 next_state = 0;
     f32 velocity[3];
     baphysics_get_velocity(velocity);
@@ -511,7 +511,7 @@ void func_802A4548(void){
     bs_setState(next_state);
 }
 
-void func_802A4664(void){
+void bsbfly_beakbombend_end(void){
     s32 next_state;
     basfx_80299E6C();
     basfx_80299E90();
@@ -520,7 +520,7 @@ void func_802A4664(void){
         sfxsource_playHighPriority(SFX_3EA_BANJO_GUH_HUH);
     }
     func_802A34C8();
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
 }
 
 void func_802A46C8(void) {
@@ -534,8 +534,8 @@ void func_802A46C8(void) {
 
 void bsbfly_beakbomb_crash_init(void) {
     baanim_playForDuration_once(ASSET_3E_ANIM_BSBFLY_BEAKBOMB_CRASH, 1.4f);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
-    func_8029E070(1);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_LOCKED_ROTATION);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     FUNC_8030E624(SFX_1F_HITTING_AN_ENEMY_3, 0.8f, 32750);
     basfx_80299CF4(SFX_36_BANJO_DOH, 1.0f, 28000);
     baMotor_80250D94(1.0f, 0.5f, 0.5f);
@@ -617,7 +617,7 @@ void func_802A48B4(void) {
 void func_802A4A40(void) {
     func_80291548();
     func_8029CB84();
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     baMarker_collisionOn();
 }
 
@@ -652,11 +652,11 @@ void func_802A4A78(s32 arg0) {
         yaw_setIdeal(mlNormalizeAngle(sp28));
         yaw_applyIdeal();
     }
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(800.0f);
     baphysics_set_gravity(gravity);
     baphysics_set_terminal_velocity(-4000.0f);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_802914CC(4);
     ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
     baMarker_collisionOff();
@@ -680,7 +680,7 @@ void func_802A4C88(s32 arg0) {
     baphysics_reset();
     baMarker_collisionOn();
     baiFrame_start();
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     func_80291548();
     func_802A34C8();
 }
@@ -697,19 +697,19 @@ void func_802A4D10(void){
     func_802A4C88(0);
 }
 
-void func_802A4D30(void){
+void bsbfly_ow_init(void){
     func_802A4A78(1);
 }
 
-void func_802A4D50(void){
+void bsbfly_ow_update(void){
     func_802A4C34(1);
 }
 
-void func_802A4D70(void){
+void bsbfly_ow_end(void){
     func_802A4C88(1);
 }
 
-void func_802A4D90(void) {
+void bsbfly_knockback_init(void) {
     f32 sp34;
     f32 player_position[3];
     f32 sp1C[3];
@@ -729,7 +729,7 @@ void func_802A4D90(void) {
         yaw_setIdeal(mlNormalizeAngle(sp34));
         yaw_applyIdeal();
     }
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(400.0f);
     baphysics_set_gravity(-1800.0f);
     baMarker_collisionOff();
@@ -737,7 +737,7 @@ void func_802A4D90(void) {
     ncbafly_func_802BFE50(12.0f, 10000.0f, 800.0f);
 }
 
-void func_802A4EC8(void) {
+void bsbfly_knockback_update(void) {
     s32 next_state;
     AnimCtrl *p_anim;
 
@@ -753,21 +753,21 @@ void func_802A4EC8(void) {
     bs_setState(next_state);
 }
 
-void func_802A4F44(void){
+void bsbfly_knockback_end(void){
     baphysics_reset_gravity();
     baMarker_collisionOn();
     func_802A34C8();
 }
 
-void func_802A4F74(void) {
+void bsbfly_locked_init(void) {
     baanim_playForDuration_loopSmooth(ASSET_38_ANIM_BSBFLY, 0.62f);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_FREEZE);
-    func_8029E070(1);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_FREEZE);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_802914CC(4);
     func_802A3430();
 }
 
-void func_802A4FC8(void) {
+void bsbfly_locked_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -780,7 +780,7 @@ void func_802A4FC8(void) {
     bs_setState(next_state);
 }
 
-void func_802A503C(void){
+void bsbfly_locked_end(void){
     func_802A34C8();
 }
 
@@ -798,32 +798,32 @@ void func_802A505C(void){
 extern void baanim_playForDuration_loop(s32, f32);
 
 /* .code */
-void func_802A50B0(void){
+void bsbfly_drone_init(void){
     func_802A3430();
     bsdrone_init();
 }
 
-void func_802A50D8(void){
+void bsbfly_drone_update(void){
     bsdrone_update();
 }
 
-void func_802A50F8(void){
+void bsbfly_drone_end(void){
     bsdrone_end();
     func_802A34C8();
 }
 
-void func_802A5120(void){
+void bsfly_dingpotLaunch_init(void){
     baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     baphysics_set_target_horizontal_velocity(0.0f);
     baphysics_set_velocity(0);
     baphysics_set_vertical_velocity(2000.0f);
     basfx_80299CF4(SFX_63_BANJO_UWAAAAOOH, 1.0f, 32000);
 }
 
-void func_802A5190(void){
+void bsfly_dingpotLaunch_update(void){
     baphysics_set_vertical_velocity(2000.0f);
     bs_setState(0);
 }
 
-void func_802A51C0(void){}
+void bsfly_dingpotLaunch_end(void){}

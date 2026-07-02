@@ -90,20 +90,20 @@ Actor *__chAutumnOutsideNabnut_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, V
     f32 temp_f2;
 
     this = marker_getActor(marker);
-    func_8033A45C(3, 0);
-    func_8033A45C(4, 0);
-    func_8033A45C(5, 1);
-    func_8033A45C(6, 0);
-    func_8033A45C(7, 1);
-    func_8033A45C(8, 1);
-    func_8033A45C(9, 0);
-    func_8033A45C(0xA, 1);
+    modelRender_setAppendageVisibility(3, 0);
+    modelRender_setAppendageVisibility(4, 0);
+    modelRender_setAppendageVisibility(5, 1);
+    modelRender_setAppendageVisibility(6, 0);
+    modelRender_setAppendageVisibility(7, 1);
+    modelRender_setAppendageVisibility(8, 1);
+    modelRender_setAppendageVisibility(9, 0);
+    modelRender_setAppendageVisibility(0xA, 1);
     if (this->state == CH_AUTUMN_OUTDOOR_NABNUT_STATE_1_SAD) {
         temp_f2 = skeletalAnim_getProgress(this->unk148);
         if ((0.116 <= temp_f2) && (temp_f2 <= 0.32)) {
             sp24 = this->unk130;
             this->unk130 = NULL;
-            func_8033A45C(1, 4);
+            modelRender_setAppendageVisibility(1, 4);
             out = actor_draw(marker, gfx, mtx, vtx);
             out->unk130 = sp24;
             return out;

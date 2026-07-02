@@ -83,7 +83,7 @@ Actor *chGrilleChompa_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
         return actor;
     }
     else{
-        func_8033A45C(3, (actor->state == CHOMPA_STATE_1_IDLE || actor->state == CHOMPA_STATE_6_DEAD)? 0:1);
+        modelRender_setAppendageVisibility(3, (actor->state == CHOMPA_STATE_1_IDLE || actor->state == CHOMPA_STATE_6_DEAD)? 0:1);
         return actor_draw(marker, gfx, mtx, vtx);
     }
     

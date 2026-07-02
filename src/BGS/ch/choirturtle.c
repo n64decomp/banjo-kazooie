@@ -67,7 +67,7 @@ void chChoirTurtle_ow2(ActorMarker *marker, ActorMarker *other_marker){
 }
 
 Actor *chChoirTurtle_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
-    func_8033A45C(4, marker->id - 0x19A);
+    modelRender_setAppendageVisibility(4, marker->id - 0x19A);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

@@ -68,7 +68,7 @@ static Actor *__chNipper_animFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx
     Actor *this;
     
     this = marker_getActor(marker);
-    func_8033A45C(3, (this->state == 7)? 0 : 1);
+    modelRender_setAppendageVisibility(3, (this->state == 7)? 0 : 1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

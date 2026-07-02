@@ -5,6 +5,7 @@
 #include "core2/statetimer.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 /* .data */
 const f32  D_80364AF0 = 30.0f;
@@ -35,7 +36,7 @@ void bscarry_idle_init(void){
     anctrl_setIndex(aCtrl, ASSET_72_ANIM_BSCARRY_IDLE);
     anctrl_setDuration(aCtrl, 1.2f);
     anctrl_start(aCtrl, "bscarry.c", 0x6f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
@@ -64,7 +65,7 @@ void bscarry_walk_init(void){
     anctrl_setDuration(aCtrl, 0.8f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_LOOP);
     anctrl_start(aCtrl, "bscarry.c", 0xac);
-    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364AF0, D_80364AF4, D_80364AF8, D_80364AFC);
 }
 
@@ -105,7 +106,7 @@ void bscarry_interrupt(void){
             break;
         case BS_INTR_16_THROW_CARRIED_OBJ:
             if(stateTimer_isDone(STATE_TIMER_1_THROW)){
-                bs_setState(BS_CARRY_THROW);
+                bs_setState(BS_5B_CARRY_THROW);
                 bs_setInterruptResponse(2);
             }
             else{

@@ -61,8 +61,8 @@ s32 D_8037C284;
 /* .code */
 void func_80293440(void){
      f32 sp34[3];
-     f32 bottomY = climbGetBottomY();
-     f32 topY = climbGetTopY();
+     f32 bottomY = climb_getBottomY();
+     f32 topY = climb_getTopY();
      f32 sp28;
      f32 diff;
 
@@ -72,7 +72,7 @@ void func_80293440(void){
      if(D_8037C218[1] < bottomY)
           D_8037C218[1] = bottomY;
 
-     climbGetBottom(sp34);
+     climb_getBottom(sp34);
      func_80257F18(D_8037C218, sp34, &sp28);
      diff = mlDiffDegF(sp28, yaw_get());
      diff = mlAbsF(diff);

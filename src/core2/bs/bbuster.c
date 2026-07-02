@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 /*.data*/
 const f32 D_80364990 = 400.0f;
@@ -64,12 +65,12 @@ void bsbbuster_init(void){
     anctrl_setSubRange(aCtrl, 0.0f, 0.35f);
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsbbuster.c", 0x81);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     baphysics_set_gravity(0.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
     ml_vec3f_clear(sp20);
     baphysics_set_velocity(sp20);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     func_802A02B4(0);
     D_8037D2B9 = 0;
     D_8037D2B7 = 0;
@@ -149,7 +150,7 @@ void bsbbuster_update(void){
                 playerPosition_get(player_position);
                 func_8032728C(player_position, 150.0f, 2, func_8029FB20);
                 if(bafalldamage_get_damage(&sp3C)){
-                    sp44 = BS_SPLAT;
+                    sp44 = BS_72_SPLAT;
                 }
             }
             break;
@@ -200,7 +201,7 @@ void bsbbuster_update(void){
 void bsbbuster_end(void){
     baphysics_reset_gravity();
     baphysics_reset_terminal_velocity();
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     D_8037D2B7 = 0;
     D_8037D2B8 = 0;
 }

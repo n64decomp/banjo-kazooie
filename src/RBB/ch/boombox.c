@@ -299,10 +299,10 @@ Actor * chBoomBox_draw(ActorMarker *marker, Gfx **gdl, Mtx **mptr, Vtx **arg3){
 
     actor = marker_getActor(marker);
     local = (ActorLocal_RBB_8520 *)&actor->local;
-    func_8033A45C(1,2);
-    func_8033A45C(3,1);
-    func_8033A45C(6,1);
-    func_8033A45C(7,1);
+    modelRender_setAppendageVisibility(1,2);
+    modelRender_setAppendageVisibility(3,1);
+    modelRender_setAppendageVisibility(6,1);
+    modelRender_setAppendageVisibility(7,1);
     if(local->unk30 > 0.0f && local->unk30 <= 1.0){
         temp_f2 = 2*(3*local->unk30 - (s32)(3*local->unk30));
         if (temp_f2 > 1.0f) 

@@ -94,7 +94,7 @@ void baModel_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     if(baModelBin){
         baanim_80289F30();
-        func_8029DD6C();
+        modelAppendages_loadAppendage();
         modelRender_setEnvColor(env_color[0], env_color[1], env_color[2], baModelEnvAlpha);
         modelRender_func_8033A280(2.0f);
         modelRender_setPreDrawCallback((GenFunction_1)_baModel_preDraw, 0);

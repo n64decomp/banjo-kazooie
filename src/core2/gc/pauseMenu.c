@@ -1446,9 +1446,9 @@ void gcpausemenu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
                 sp80[2] = 0.0f;
 
                 for (var_s0_2 = 0; var_s0_2 < 7; var_s0_2++) {
-                    func_8033A45C(var_s0_2 + 1, 0);
+                    modelRender_setAppendageVisibility(var_s0_2 + 1, 0);
                 }
-                func_8033A45C(i, 1);
+                modelRender_setAppendageVisibility(i, 1);
                 modelRender_setDepthMode(MODEL_RENDER_DEPTH_NONE);
                 modelRender_setAlpha(D_80383010.sns_alpha);
                 modelRender_draw(gfx, mtx, sp98, sp8C, 0.8f, sp80, D_80383010.sns_egg_model);

@@ -13,9 +13,9 @@ BaEyes baEyes[4];
 f32 baeyes_getEyePosition(s32 id){
     switch (id) {
         case 0:
-            return func_8029DFC8();
+            return modelAppendages_showBanjosLeftEye();
         case 1:
-            return func_8029DFD4();
+            return modelAppendages_showBanjosRightEye();
         case 2:
             return 0.0f;
         case 3:
@@ -29,10 +29,10 @@ f32 baeyes_getEyePosition(s32 id){
 void baeyes_setEyePosition(s32 id, f32 position){
     switch(id){
         case 0:
-            func_8029E0C4(position);
+            modelAppendages_setBanjosLeftEyeVisibility(position);
             break;
         case 1:
-            func_8029E0D0(position);
+            modelAppendages_setBanjosRightEyeVisibility(position);
             break;
         case 2:
             break;
@@ -99,7 +99,7 @@ void baeyes_update(void){
                 break; 
             case 3://L80292FBC
             case 4://L80292FBC
-                eye_position -= dt/baEyes[i].duration;
+                eye_position -= dt / baEyes[i].duration;
                 if(eye_position < 0.0){
                     eye_position = 0.0f;
                     baEyes[i].state = 0;

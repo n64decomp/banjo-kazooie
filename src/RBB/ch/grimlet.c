@@ -83,8 +83,8 @@ Actor *chGrimlet_draw(ActorMarker * marker, Gfx **gdl, Mtx **mptr, Vtx **vtx){
         func_8033A968(sp5C, 0x12, sp34);
         skeletalAnim_func_80335918(actor->unk148);
     }
-    func_8033A45C(3, (0.0f < local->unk8)? 1 : 0);
-    func_8033A45C(4, (0.0f < local->unk8)? 1 : 0);
+    modelRender_setAppendageVisibility(3, (0.0f < local->unk8)? 1 : 0);
+    modelRender_setAppendageVisibility(4, (0.0f < local->unk8)? 1 : 0);
     actor_draw(marker, gdl, mptr, vtx);
     local->unk4 = actor->marker->unk14_21;
     return actor;

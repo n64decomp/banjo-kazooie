@@ -172,13 +172,13 @@ void func_803255FC(Actor *this) {
         }
         break;
     }
-    func_8033A45C(1, this->unk124_3 + 1);
-    func_8033A45C(2, this->unk124_3 + 1);
+    modelRender_setAppendageVisibility(1, this->unk124_3 + 1);
+    modelRender_setAppendageVisibility(2, this->unk124_3 + 1);
 }
 
 void func_80325760(Actor *this) {
-    func_8033A45C(1, 4);
-    func_8033A45C(2, 4);
+    modelRender_setAppendageVisibility(1, 4);
+    modelRender_setAppendageVisibility(2, 4);
 }
 
 void actor_postdrawMethod(ActorMarker *marker){

@@ -4,7 +4,7 @@
 #include <ultra64.h>
 
 void batimer_incrementBy(s32 id, f32 inc_value_sec);
-int batimer_decrement(s32 id);
+bool batimer_decrement(s32 id);
 void batimer_increment(s32 id);
 f32 batimer_get(s32 id);
 int batimer_isAt(s32 id, f32 value_sec);

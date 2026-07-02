@@ -147,7 +147,7 @@ extern ActorInfo gChFireFxInfo; //fire
 extern ActorInfo gChDripsInfo;//water_drops
 extern ActorInfo chIcecubeA;
 extern ActorInfo chIcecubeB;//ice_cube
-extern ActorInfo D_80372C18; //teehee
+extern ActorInfo chTeeHee; //teehee
 extern ActorInfo chFlotsam; //floatsam
 extern ActorInfo chSkeleton; //limbo
 extern ActorInfo chSeamanGrublin; //grublin_hood
@@ -337,7 +337,7 @@ void spawnQueue_reset(void){
     spawnableActorList_add(&chChumpFish, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_addIfMapVisited(&chTermite, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25, MAP_2_MM_MUMBOS_MOUNTAIN); //ticker
     spawnableActorList_addIfMapVisited(&chFlotsam, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25, MAP_31_RBB_RUSTY_BUCKET_BAY); //floatsam
-    spawnableActorList_addIfMapVisited(&D_80372C18, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17, MAP_1B_MMM_MAD_MONSTER_MANSION); //teehee
+    spawnableActorList_addIfMapVisited(&chTeeHee, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17, MAP_1B_MMM_MAD_MONSTER_MANSION); //teehee
     spawnableActorList_addIfMapVisited(&D_80372FC0, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25, MAP_1B_MMM_MAD_MONSTER_MANSION);
     spawnableActorList_addIfMapVisited(&D_80372FE4, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_25, MAP_1B_MMM_MAD_MONSTER_MANSION);
     spawnableActorList_addIfMapVisited(&gChBat, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_21 |ACTOR_FLAG_UNKNOWN_25, MAP_1B_MMM_MAD_MONSTER_MANSION); //nibbly

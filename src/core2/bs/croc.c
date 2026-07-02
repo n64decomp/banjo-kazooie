@@ -5,6 +5,7 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
+#include "core2/yaw.h"
 
 int bscroc_inSet(enum bs_e state);
 
@@ -54,7 +55,7 @@ void __bscroc_update_turbo_talon_trainers(void){
         baflag_clear(BA_FLAG_10_TOUCHING_TURBO_TRAINERS);
         stateTimer_set(STATE_TIMER_3_TURBO_TALON, get_turbo_duration());
         coMusicPlayer_playMusic(COMUSIC_8A_GETTING_TURBO_TRAINERS, -1);
-        func_8029E0DC(1);
+        modelAppendages_setTurboTrainersVisibility(TRUE);
     }
 
     if(sp1C != 0.0f ){
@@ -62,7 +63,7 @@ void __bscroc_update_turbo_talon_trainers(void){
     }
 
     if(stateTimer_isAt(STATE_TIMER_3_TURBO_TALON, 0.01f)){
-        func_8029E0DC(0);
+        modelAppendages_setTurboTrainersVisibility(FALSE);
         func_8030E58C(SFX_3EB_UNKNOWN, 1.35f);
     }
 }
@@ -80,8 +81,8 @@ void __bscroc_update_velocity(void){
 void __bscroc_end(void){
     if(!bscroc_inSet(bs_getNextState())){
         bastick_resetZones();
-        func_8029E070(0);
-        func_8029E064(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
+        modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
         baflag_clear(BA_FLAG_3);
         baflag_clear(BA_FLAG_4);
         func_80293D74();
@@ -91,13 +92,13 @@ void __bscroc_end(void){
 
 int bscroc_inSet(enum bs_e state){
     return state == BS_5E_CROC_IDLE
-        || state == BS_CROC_WALK
-        || state == BS_CROC_JUMP
+        || state == BS_5F_CROC_WALK
+        || state == BS_60_CROC_JUMP
         || state == BS_61_CROC_FALL
-        || state == BS_CROC_OW
-        || state == BS_CROC_DIE
+        || state == BS_63_CROC_OW
+        || state == BS_64_CROC_DIE
         || state == BS_6E_CROC_BITE
-        || state == BS_CROC_EAT_BAD
+        || state == BS_6F_CROC_EAT_BAD
         || state == BS_70_CROC_EAT_GOOD
         || state == BS_8D_CROC_LOCKED
         || state == BS_94_CROC_DRONE;
@@ -105,7 +106,7 @@ int bscroc_inSet(enum bs_e state){
 
 void bscroc_idle_init(void){
     baanim_playForDuration_loopSmooth(0xe1, 1.0f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
@@ -126,13 +127,13 @@ void bscroc_idle_update(void){
         next_state = badrone_look();
 
     if(bastick_getZone() > 0)
-        next_state = BS_CROC_WALK;
+        next_state = BS_5F_CROC_WALK;
 
     if(bakey_pressed(BUTTON_B))
         next_state = BS_6E_CROC_BITE;
 
     if(bakey_pressed(BUTTON_A))
-        next_state = BS_CROC_JUMP;
+        next_state = BS_60_CROC_JUMP;
 
     next_state = func_8029CA94(next_state);
     bs_setState(next_state);
@@ -146,7 +147,7 @@ void bscroc_idle_end(void){
 
 void bscroc_walk_init(void){
     baanim_playForDuration_loopStartingAt(ASSET_E0_ANIM_BSCROC_WALK, 0.8f, 0.4f);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ, 1, 1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(bsCrocMinWalkVelocity, bsCrocMaxWalkVelocity, bsCrocSlowestWalkDuration, bsCrocFastestWalkDuration);
     func_802900B4();
 }
@@ -170,7 +171,7 @@ void bscroc_walk_update(void){
         next_state = BS_6E_CROC_BITE;
 
     if(bakey_pressed(BUTTON_A))
-        next_state = BS_CROC_JUMP;
+        next_state = BS_60_CROC_JUMP;
 
     bs_setState(next_state);
 }
@@ -191,7 +192,7 @@ void bscroc_jump_init(void){
     anctrl_setStart(aCtrl, 0.1f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bscroc.c", 0x1ac);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f){
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
@@ -253,10 +254,10 @@ void bscroc_jump_update(void){
 
     if(player_isStable()){
         if(bastick_getZone() > 0)
-            sp2C = BS_CROC_WALK;
+            sp2C = BS_5F_CROC_WALK;
         
         if(bakey_pressed(BUTTON_A))
-            sp2C = BS_CROC_JUMP;
+            sp2C = BS_60_CROC_JUMP;
     }
 
     if(bakey_pressed(BUTTON_B))
@@ -279,7 +280,7 @@ void bscroc_fall_init(void){
     anctrl_setDuration(aCtrl, 0.7f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
     anctrl_start(aCtrl, "bscroc.c", 0x235);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     D_8037D3EC = 0;
 }
 
@@ -353,7 +354,7 @@ static void __bscroc_recoil_init(s32 damage){
     baphysics_set_target_horizontal_velocity(200.0f);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
@@ -429,7 +430,7 @@ void bscroc_die_init(void){
     anctrl_setDuration(aCtrl, 1.7f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bscroc.c", 0x32b);
-    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     playerPosition_get(player_position);
     func_80294980(sp20);
     func_80257F18(sp20, player_position, &sp38);
@@ -514,7 +515,7 @@ static void func_802ACF58(void){
 
 void bscroc_bite_init(void){
     baanim_playForDuration_loopStartingAt(ASSET_122_ANIM_BSCROC_BITE, 0.25f, 0.2f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_LOCKED_ROTATION);
     func_802ACF58();
     D_8037D3F4 = 0;
     _bscrocHitboxActive = TRUE;
@@ -547,11 +548,11 @@ void bscroc_bite_update(void){
         if(player_shouldFall())
             next_state =  BS_61_CROC_FALL;
         else
-            next_state = BS_CROC_WALK;
+            next_state = BS_5F_CROC_WALK;
     }
 
     if(player_isStable() && bakey_pressed(BUTTON_A))
-        next_state = BS_CROC_JUMP;
+        next_state = BS_60_CROC_JUMP;
 
     bs_setState(next_state);
 }
@@ -563,7 +564,7 @@ void bscroc_bite_end(void){
 
 void bscroc_eat_bad_init(void){
     baanim_playForDuration_once(ASSET_123_ANIM_BSCROC_EAT_BAD, 2.41f);
-    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_horizontal_velocity(0.0f);
 }
 
@@ -614,7 +615,7 @@ void bscroc_set_ate_wrong_thing(void){
 
 void bscroc_eat_good_init(void){
     baanim_playForDuration_loopSmooth(ASSET_122_ANIM_BSCROC_BITE, 0.25f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baModel_setPostDraw(func_802AD2A8);
     D_8037D3E8 = assetcache_get(func_80294974());
     D_8037D3F0 = 1.0f;
@@ -645,7 +646,7 @@ void bscroc_eat_good_update(void){
                 break;
             case 3:
                 if(s_ate_wrong)
-                    next_state = BS_CROC_EAT_BAD;
+                    next_state = BS_6F_CROC_EAT_BAD;
                 else
                     next_state = BS_5E_CROC_IDLE;
                 break;
@@ -670,7 +671,7 @@ void bscroc_eat_good_end(void){
 
 void bscroc_locked_enter(void){
     baanim_playForDuration_loopSmooth(ASSET_E1_ANIM_BSCROC_IDLE, 1.0f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();

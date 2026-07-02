@@ -4,6 +4,7 @@
 #include "animation.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 void baanim_setDurationRange(f32, f32);
 void func_802927E0(f32, f32);
@@ -96,10 +97,10 @@ s32 func_802B6F20(s32 arg0){
     if(bakey_pressed(BUTTON_B)){
         if( bsWalkWalkFastWalkVelocityThreshold < baphysics_get_target_horizontal_velocity()){
             if(can_roll())
-                arg0 = BS_ROLL;
+                arg0 = BS_31_ROLL;
         }else{//L802B6F74
             if(can_claw())
-                arg0 = BS_CLAW;
+                arg0 = BS_6_CLAW;
         }
     }
     return arg0;
@@ -128,7 +129,7 @@ void bswalk_creep_init(void){
     anctrl_setStart(anim_ctrl, start_position);
     anctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     anctrl_start(anim_ctrl, "bswalk.c", 0xe4);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkMinCreepVelocity, bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowestCreepDuration, bsWalkFastestCreepDuration);
 }
@@ -152,14 +153,14 @@ void bswalk_creep_update(void){
             next_state = BS_2_WALK_SLOW;
             break;
         case 3://L802B7188
-            next_state = BS_WALK;
+            next_state = BS_3_WALK;
             break;
         case 4:
             next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(player_isOnDangerousGround())
-        next_state = BS_WALK_MUD;
+        next_state = BS_7A_WALK_MUD;
 
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
@@ -168,7 +169,7 @@ void bswalk_creep_update(void){
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
-        next_state = BS_CROUCH;
+        next_state = BS_7_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
@@ -176,7 +177,7 @@ void bswalk_creep_update(void){
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
-        next_state = BS_SLIDE;
+        next_state = BS_32_SLIDE;
     
     next_state = func_8029CA94(next_state);
 
@@ -201,7 +202,7 @@ void bswalk_slow_init(void){
     anctrl_setStart(anim_ctrl, start_position);
     anctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     anctrl_start(anim_ctrl, "bswalk.c", 0x168);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkCreepSlowWalkVelocityThreshold, bsWalkSlowWalkWalkVelocityThreshold, bsWalkSlowestSlowWalkDuration, bsWalkFastestSlowWalkDuration);
 }
@@ -222,17 +223,17 @@ void bswalk_slow_upate(void){
                 next_state = BS_1_IDLE;
             break;
         case 1://L802B7180
-            next_state = BS_WALK_CREEP;
+            next_state = BS_1F_WALK_CREEP;
             break;
         case 3://L802B7188
-            next_state = BS_WALK;
+            next_state = BS_3_WALK;
             break;
         case 4:
             next_state = BS_4_WALK_FAST;
             break;
     }//L802B7194
     if(player_isOnDangerousGround())
-        next_state = BS_WALK_MUD;
+        next_state = BS_7A_WALK_MUD;
 
     if(bainput_should_look_first_person_camera())
         next_state = badrone_look();
@@ -241,7 +242,7 @@ void bswalk_slow_upate(void){
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
-        next_state = BS_CROUCH;
+        next_state = BS_7_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
@@ -249,7 +250,7 @@ void bswalk_slow_upate(void){
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
-        next_state = BS_SLIDE;
+        next_state = BS_32_SLIDE;
     
     next_state = func_8029CA94(next_state);
 
@@ -279,7 +280,7 @@ void bswalk_init(void){
     anctrl_setStart(anim_ctrl, start_position);
     anctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     anctrl_start(anim_ctrl, "bswalk.c", 0x1ed);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkSlowWalkWalkVelocityThreshold, bsWalkWalkFastWalkVelocityThreshold, bsWalkSlowestWalkDuration, bsWalkFastestWalkDuration);
     func_802B6EB0(0.3f);
@@ -304,10 +305,10 @@ void bswalk_update(void){
             break;
     }//L802B76B8
     if(player_isOnDangerousGround())
-        next_state = BS_WALK_MUD;
+        next_state = BS_7A_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
-        next_state = BS_SKID;
+        next_state = BS_C_SKID;
     }
 
     if(bainput_should_look_first_person_camera())
@@ -317,7 +318,7 @@ void bswalk_update(void){
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
-        next_state = BS_CROUCH;
+        next_state = BS_7_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
@@ -325,7 +326,7 @@ void bswalk_update(void){
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
-        next_state = BS_SLIDE;
+        next_state = BS_32_SLIDE;
     
     next_state = func_8029CA94(next_state);
 
@@ -363,7 +364,7 @@ void bswalk_fast_init(void){
     anctrl_setStart(anim_ctrl, sp28);
     anctrl_setPlaybackType(anim_ctrl,  ANIMCTRL_LOOP);
     anctrl_start(anim_ctrl, "bswalk.c", 0x27d);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkWalkFastWalkVelocityThreshold, bsWalkMaxFastWalkVelocity, bsWalkSlowestFastWalkDuration, bsWalkFastestFastWalkDuration);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -400,24 +401,24 @@ void bswalk_fast_update(void){
             break;
         case 3://L802B7A60
             if(baphysics_is_slower_than(bsWalkWalkFastWalkVelocityThreshold) && func_802B6EF4())
-                next_state = BS_WALK;
+                next_state = BS_3_WALK;
 
             if(bainput_should_look_first_person_camera())
                 next_state = badrone_look();
             break;
     }//L802B7AA4
     if(player_isOnDangerousGround())
-        next_state = BS_WALK_MUD;
+        next_state = BS_7A_WALK_MUD;
 
     if(func_8028B4C4() && bsWalkSkidVelocity < baphysics_get_horizontal_velocity()){
-        next_state = BS_SKID;
+        next_state = BS_C_SKID;
     }
 
     if(player_shouldFall())
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
-        next_state = BS_CROUCH;
+        next_state = BS_7_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
@@ -425,7 +426,7 @@ void bswalk_fast_update(void){
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
-        next_state = BS_SLIDE;
+        next_state = BS_32_SLIDE;
     
     next_state = func_8029CA94(next_state);
 
@@ -442,7 +443,7 @@ void bswalk_fast_end(void){
 
 void bswalk_mud_init(void){
     baanim_playForDuration_loopSmooth(ASSET_B_ANIM_BSWALK_MUD, 0.43f);
-    func_8029C7F4(BAANIM_UPDATE_2_SCALE_HORZ,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(BAANIM_UPDATE_2_SCALE_HORZ, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setDurationRange(0.3f, 1.5f);
     baanim_setVelocityMapRanges(bsWalkMinMudVelocity, bsWalkMaxMudVelocity, bsWalkSlowestMudDuration, bsWalkFastestMudDuration);
 }
@@ -466,7 +467,7 @@ void bswalk_mud_update(void){
         next_state = BS_2F_FALL;
 
     if(bakey_held(BUTTON_Z))
-        next_state = BS_CROUCH;
+        next_state = BS_7_CROUCH;
 
     next_state = func_802B6F20(next_state);
 
@@ -474,7 +475,7 @@ void bswalk_mud_update(void){
         next_state = bs_getTypeOfJump();
 
     if(player_isSliding())
-        next_state = BS_SLIDE;
+        next_state = BS_32_SLIDE;
     
     next_state = func_8029CA94(next_state);
 

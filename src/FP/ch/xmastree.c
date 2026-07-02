@@ -17,8 +17,8 @@ ActorInfo chXmasTree = {
 /* .code */
 Actor *chXmasTree_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(marker);
-    func_8033A45C(5, this->unk38_31);
-    func_8033A45C(6, fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !modelRender_func_8033A0F0(5));
+    modelRender_setAppendageVisibility(5, this->unk38_31);
+    modelRender_setAppendageVisibility(6, fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME) && !modelRender_func_8033A0F0(5));
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

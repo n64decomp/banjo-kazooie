@@ -14,7 +14,7 @@
 extern bool player_isInHorizontalRadius(f32[3], f32);
 extern bool player_isInVerticalRange(f32[3], f32);
 extern void func_80295A8C(void);
-extern void climbSet(f32[3], f32[3], f32, u32);
+extern void climb_set(f32[3], f32[3], f32, u32);
 extern void func_80296C90(f32);
 extern void func_80296C9C(f32);
 extern void func_8029B73C(f32 arg0[3], f32 arg1, f32 arg2, f32 arg3, f32 arg4);
@@ -184,7 +184,7 @@ void func_8028E4B0(void) {
 
     D_8037BFBA = TRUE;
     D_8037BFB9 = FALSE;
-    func_80295914();
+    bsmethods_reset();
     sp20 = gsworld_getExit();
     D_8037BFB8 = 0;
     playerPosition_set(D_803636C0);
@@ -270,7 +270,7 @@ u32 player_getTransformation(void){
 }
 
 void func_8028E7EC(f32 arg0[3]){
-    climbGetBottom(arg0);
+    climb_getBottom(arg0);
 }
 
 f32 player_stateTimer_get(enum state_timer_e timer_id){
@@ -397,12 +397,12 @@ void func_8028E9C4(s32 arg0, f32 arg1[3]) {
 }
 
 
-void player_getPosition_s32(s32 arg0[3]){
+void player_getPosition_s32(s32 position_s32[3]){
     f32 plyr_pos[3];
     player_getPosition(plyr_pos);
-    arg0[0] = (s32)plyr_pos[0];
-    arg0[1] = (s32)plyr_pos[1];
-    arg0[2] = (s32)plyr_pos[2];
+    position_s32[0] = (s32)plyr_pos[0];
+    position_s32[1] = (s32)plyr_pos[1];
+    position_s32[2] = (s32)plyr_pos[2];
 }
 
 f32 player_getYaw(void){
@@ -466,7 +466,7 @@ enum bsgroup_e player_movementGroup(void) {
         case BS_E_OW: //L8028EE00
         case BS_34_JIG_NOTEDOOR: //L8028EE00
         case BS_3C_TALK: //L8028EE00
-        case BS_3F: //L8028EE00
+        case BS_3F_UNKNOWN: //L8028EE00
         case BS_41_DIE: //L8028EE00
         case BS_44_JIG_JIGGY: //L8028EE00
             return BSGROUP_1_INTR;
@@ -588,7 +588,7 @@ bool func_8028F098(void){
     }
 }
 
-bool func_8028F0D4(void){
+bool player_isBanjoOrWishywashy(void){
     enum transformation_e xform_id;
     
     xform_id = bsStoredState_getTransformation();
@@ -776,7 +776,7 @@ void player_stateTimer_set(enum state_timer_e timer_id, f32 value){
 }
 
 void player_setClimbParams(f32 bottom[3], f32 top[3], f32 radius, u32 arg3){
-    climbSet(bottom, top, radius, arg3);
+    climb_set(bottom, top, radius, arg3);
 }
 
 void func_8028F760(s32 arg0, f32 arg1, f32 arg2){
@@ -916,7 +916,7 @@ void func_8028FB68(void){
     func_80295D74();
 }
 
-bool func_8028FB88(enum transformation_e xform_id) {
+bool player_transform(enum transformation_e xform_id) {
     if (wishyWashyFlag_get() && xform_id == TRANSFORM_1_BANJO) {
         xform_id = TRANSFORM_7_WISHWASHY;
     }

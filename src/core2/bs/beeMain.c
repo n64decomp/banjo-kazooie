@@ -4,6 +4,7 @@
 
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
+#include "core2/yaw.h"
 
 f32 func_8029B41C(void);
 void func_80299628(s32);
@@ -56,15 +57,15 @@ void func_802A1020(void){
     }
 }
 
-void func_802A1080(void){
+void bsbeemain_idle_init(void){
     func_802A0340();
     baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE,3.0f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802900B4();
 }
 
-void func_802A10D4(void){
+void bsbeemain_idle_update(void){
     s32 s0;
 
     s0 = 0;
@@ -76,31 +77,31 @@ void func_802A10D4(void){
         s0 = badrone_look();
     
     if(bastick_getZone() > 0)
-        s0 = BS_BEE_WALK;
+        s0 = BS_86_BEE_WALK;
 
     if(bakey_pressed(BUTTON_A))
-        s0 = BS_BEE_JUMP;
+        s0 = BS_87_BEE_JUMP;
 
     if(player_inWater())
-        s0 = BS_BEE_FLY;
+        s0 = BS_8C_BEE_FLY;
 
     bs_setState(func_8029CA94(s0));
 }
 
-void func_802A117C(void){
+void bsbeemain_idle_end(void){
     func_802900FC();
     func_802A02C0();
 }
 
-void func_802A11A4(void){
+void bsbeemain_walk_init(void){
     func_802A0340();
     baanim_playForDuration_loopSmooth(ASSET_1DD_ANIM_BEE_WALK, 0.38f);
-    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_803649E0, D_803649E4, D_803649E8, D_803649EC);
     func_802900B4();
 }
 
-void func_802A1214(void){
+void bsbeemain_walk_update(void){
     s32 s0;
 
     s0 = 0;
@@ -115,20 +116,20 @@ void func_802A1214(void){
         s0 = BS_88_BEE_FALL;
 
     if(bakey_pressed(BUTTON_A))
-        s0 = BS_BEE_JUMP;
+        s0 = BS_87_BEE_JUMP;
 
     if(player_inWater())
-        s0 = BS_BEE_FLY;
+        s0 = BS_8C_BEE_FLY;
 
     bs_setState(s0);
 }
 
-void func_802A12D4(void){
+void bsbeemain_walk_end(void){
     func_802900FC();
     func_802A02C0();
 }
 
-void func_802A12FC(void){
+void bsbeemain_jump_init(void){
     AnimCtrl * s0;
 
     s0 = baanim_getAnimCtrlPtr();
@@ -141,7 +142,7 @@ void func_802A12FC(void){
     anctrl_setDuration(s0, 1.2f);
     anctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
     anctrl_start(s0, "bsbeemain.c", 0x15b);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f){
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
@@ -154,7 +155,7 @@ void func_802A12FC(void){
     D_8037D2D4 = 0;
 }
 
-void func_802A1438(void){
+void bsbeemain_jump_update(void){
     s32 sp2c;
     AnimCtrl * sp28;
     f32 sp1c[3];
@@ -203,27 +204,27 @@ void func_802A1438(void){
     }
     if(player_isStable()){
         if(bastick_getZone() > 0)
-            sp2c = BS_BEE_WALK;
+            sp2c = BS_86_BEE_WALK;
         if(bakey_pressed(BUTTON_A)){
-            sp2c = BS_BEE_JUMP;
+            sp2c = BS_87_BEE_JUMP;
         }
     }
     else{
         if(bakey_pressed(BUTTON_A)){
-            sp2c = BS_BEE_FLY;
+            sp2c = BS_8C_BEE_FLY;
         }
     }
     if(player_inWater())
-        sp2c = BS_BEE_FLY;
+        sp2c = BS_8C_BEE_FLY;
     bs_setState(sp2c);
 }
 
-void func_802A163C(void){
+void bsbeemain_jump_end(void){
     func_802A02C0();
     baphysics_reset_gravity();
 }
 
-void func_802A1664(void){
+void bsbeemain_fall_init(void){
     AnimCtrl * s0;
 
     s0 = baanim_getAnimCtrlPtr();
@@ -235,11 +236,11 @@ void func_802A1664(void){
     anctrl_setSubRange(s0, 0, 0.51f);
     anctrl_setPlaybackType(s0,  ANIMCTRL_ONCE);
     anctrl_start(s0, "bsbeemain.c", 0x1e2);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     D_8037D2D4 = 0;
 }
 
-void func_802A170C(void){
+void bsbeemain_fall_update(void){
     s32 sp2c; //next state
     AnimCtrl * sp28;
     f32 sp1c[3];
@@ -278,22 +279,22 @@ void func_802A170C(void){
             sp2c = badrone_transform();
         }else{
             if(bastick_getZone() > 0)
-                sp2c = BS_BEE_WALK;
+                sp2c = BS_86_BEE_WALK;
             if(bakey_pressed(BUTTON_A))
-                sp2c = BS_BEE_JUMP;
+                sp2c = BS_87_BEE_JUMP;
             sp2c = func_8029CA94(sp2c);
         }
     }
     else{
         if(baflag_isFalse(BA_FLAG_F) && bakey_pressed(BUTTON_A))
-            sp2c = BS_BEE_FLY;
+            sp2c = BS_8C_BEE_FLY;
     }//L802A189C
     if(player_inWater())
-        sp2c = BS_BEE_FLY;
+        sp2c = BS_8C_BEE_FLY;
     bs_setState(sp2c);
 }
 
-void func_802A18C8(void){
+void bsbeemain_fall_end(void){
     func_802A02C0();
 }
 
@@ -326,7 +327,7 @@ void func_802A18E8(s32 arg0){
     baphysics_set_target_horizontal_velocity(200.0f);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
@@ -367,27 +368,27 @@ void func_802A1B28(void){
     func_802A02C0();
 }
 
-void func_802A1B68(void){
+void bsbeemain_ow_init(void){
     func_802A18E8(1);
 }
 
-void func_802A1B88(void){
+void bsbeemain_ow_update(void){
     func_802A1A50();
 }
 
-void func_802A1BA8(void){
+void bsbeemain_ow_end(void){
     func_802A1B28();
 }
 
-void func_802A1BC8(void){
+void bsbeemain_bounce_init(void){
     func_802A18E8(2);
 }
 
-void func_802A1BE8(void){
+void bsbeemain_bounce_update(void){
     func_802A1A50();
 }
 
-void func_802A1C08(void){
+void bsbeemain_bounce_end(void){
     func_802A1B28();
 }
 
@@ -407,7 +408,7 @@ void bsbeemain_die_init(void){
     anctrl_setDuration(sp3C, 1.7f);
     anctrl_setPlaybackType(sp3C,  ANIMCTRL_ONCE);
     anctrl_start(sp3C, "bsbeemain.c", 0x2ef);
-    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     playerPosition_get(sp2C);
     func_80294980(sp20);
     func_80257F18(sp20, sp2C, &sp38);
@@ -430,7 +431,7 @@ void bsbeemain_die_init(void){
     D_8037D2D4 = 0;
 }
 
-void func_802A1DD8(void){
+void bsbeemain_die_update(void){
     baphysics_set_target_horizontal_velocity(D_8037D2D0);
     func_80299628(0);
     switch(D_8037D2D4){
@@ -467,7 +468,7 @@ void func_802A1DD8(void){
 
 }
 
-void func_802A1F2C(void){
+void bsbeemain_die_end(void){
     core1_ce60_incOrDecCounter(FALSE);
     baphysics_reset_gravity();
     func_80291548();
@@ -475,16 +476,16 @@ void func_802A1F2C(void){
     func_802A02C0();
 }
 
-void func_802A1F6C(void){
+void bsbee_locked_init(void){
     func_802A0340();
     baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }
 
-void func_802A1FC8(void){
+void bsbee_locked_update(void){
     s32 sp1C;
 
     sp1C = 0;
@@ -497,7 +498,7 @@ void func_802A1FC8(void){
     bs_setState(sp1C);
 }
 
-void func_802A2014(void){
+void bsbee_locked_end(void){
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     func_8029C748();
@@ -516,7 +517,7 @@ void func_802A2098(void){
     baflag_clear(BA_FLAG_1A_OPEN_NOTEDOOR);
     baanim_playForDuration_loopSmooth(ASSET_1DE_ANIM_BEE_IDLE, 3.0f);
     yaw_setIdeal(func_8029B41C());
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A2FC(0, 0xFA0);

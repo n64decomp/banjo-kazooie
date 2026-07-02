@@ -51,8 +51,8 @@ Actor *chEyrieEgg_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if (this->state == CH_EYRIE_EGG_STATE_0_NOT_INIT)
         return this;
 
-    func_8033A45C(3, (this->state < CH_EYRIE_EGG_STATE_2_BREAKING) ? 1 : 0);
-    func_8033A45C(4, (this->state < CH_EYRIE_EGG_STATE_2_BREAKING) ? 0 : 1);
+    modelRender_setAppendageVisibility(3, (this->state < CH_EYRIE_EGG_STATE_2_BREAKING) ? 1 : 0);
+    modelRender_setAppendageVisibility(4, (this->state < CH_EYRIE_EGG_STATE_2_BREAKING) ? 0 : 1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

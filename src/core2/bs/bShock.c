@@ -3,7 +3,7 @@
 #include "variables.h"
 
 #include "core2/abilityprogress.h"
-
+#include "core2/yaw.h"
 #include "core2/ba/physics.h"
 
 /* .data */
@@ -25,7 +25,7 @@ void bsbshock_charge_init(void){
     anctrl_setSubRange(aCtrl, 0.0f, 0.1061f);
     anctrl_setPlaybackType(aCtrl,1);
     anctrl_start(aCtrl, "bsbshock.c", 0x61);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
 
     if(bastick_distance() != 0.0f)
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
@@ -33,8 +33,8 @@ void bsbshock_charge_init(void){
     baphysics_set_target_yaw(yaw_getIdeal());
     func_802B6FA8();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
-    func_8029E064(1);
-    func_8029E070(1);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(TRUE);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     basfx_80299BD4();
     D_8037D382 = sfxsource_createSfxsourceAndReturnIndex();
     sfxsource_setSfxId(D_8037D382, SFX_2C_PULLING_NOISE);
@@ -98,13 +98,13 @@ void bsbshock_charge_update(void){
     }
     else{//L802A6D18
         if(bainput_should_feathery_flap())
-            sp2C = BS_BFLAP;
+            sp2C = BS_10_BFLAP;
         
         if(bainput_should_beak_bust())
             sp2C = BS_F_BBUSTER;
     }//L802A6D44
     if(anctrl_isAt( aCtrl, 0.3637f) && D_8037D380)
-        sp2C = BS_BSHOCK_JUMP;
+        sp2C = BS_22_BSHOCK_JUMP;
     
     if(anctrl_isAt(aCtrl, 0.5551f)){
         baphysics_set_vertical_velocity(180.0f);
@@ -119,8 +119,8 @@ void bsbshock_charge_update(void){
 
 void bsbshock_charge_end(void){
     sfxsource_freeSfxsourceByIndex(D_8037D382);
-    func_8029E064(0);
-    func_8029E070(0);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     if(baModel_80292230() != 0.0f){
         baModel_80292158(0.0f);
         playerPosition_addY(50.0f);
@@ -137,7 +137,7 @@ void bsbshock_init(void){
     anctrl_setSubRange(aCtrl, 0.0f, 1.0f);
     anctrl_setPlaybackType(aCtrl,1);
     anctrl_start(aCtrl, "bsbshock.c", 0x13a);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
 
     if(bastick_distance() != 0.0f)
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
@@ -148,8 +148,8 @@ void bsbshock_init(void){
     baphysics_set_vertical_velocity(D_80364A70);
     baphysics_set_gravity(D_80364A74);
     sfxsource_playHighPriority(SFX_E_SHOCKSPRING_BOING);
-    func_8029E064(1);
-    func_8029E070(1);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(TRUE);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     ability_use(ABILITY_USED_SHOCK);
     baModel_80292158(-50.0f);
     playerPosition_addY(-50.0f);
@@ -180,7 +180,7 @@ void bsbshock_update(void){
             sp2C = BS_3D_FALL_TUMBLING;
 
         if(bainput_should_feathery_flap())
-            sp2C = BS_BFLAP;
+            sp2C = BS_10_BFLAP;
 
         if(bainput_should_beak_bust())
             sp2C =BS_F_BBUSTER;
@@ -193,8 +193,8 @@ void bsbshock_end(void){
     if(bs_getNextState() != BS_11_BPECK)
         baphysics_reset_gravity();
 
-    func_8029E064(0);
-    func_8029E070(0);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     baModel_80292158(0.0f);
     playerPosition_addY(50.0f);
 }

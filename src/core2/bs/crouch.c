@@ -159,7 +159,7 @@ void bscrouch_update(void){
     }//L802ADC50
 
     if(player_isSliding())
-        sp34 = BS_SLIDE;
+        sp34 = BS_32_SLIDE;
 
     if(player_shouldFall())
         sp34 = BS_2F_FALL;
@@ -181,7 +181,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
         arg0 = BS_1_IDLE;
         
         if(bakey_pressed(BUTTON_B) && can_claw())
-            arg0 = BS_CLAW;
+            arg0 = BS_6_CLAW;
 
         if(bakey_pressed(BUTTON_A))
             arg0 = bs_getTypeOfJump();
@@ -203,7 +203,7 @@ enum bs_e func_802ADCD4(enum bs_e arg0){
             arg0 = BS_12_BFLIP;
 
         if(bainput_should_beak_barge())
-            arg0 = BS_BBARGE;
+            arg0 = BS_13_BBARGE;
 
 
     }

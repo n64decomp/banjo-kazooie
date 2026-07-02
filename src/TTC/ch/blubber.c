@@ -256,6 +256,6 @@ static void __chBlubber_update2Func(Actor *this){
 }
 
 static Actor *__chBlubber_drawFunc(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    func_8033A45C(4, 0);
+    modelRender_setAppendageVisibility(4, 0);
     return actor_draw(marker, gfx, mtx, vtx);
 }

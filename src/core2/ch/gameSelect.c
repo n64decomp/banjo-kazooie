@@ -140,16 +140,16 @@ Actor *gameSelect_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     // Get the game number from the actor. The actor ids start at 0xE4 so this will turn into 0 - 2.
     s32 game_number = marker->id - 0xE4;
 
-    func_8033A45C(3, game_number);
-    func_8033A45C(1, 1);
-    func_8033A45C(4, 1);
-    func_8033A45C(9, 1);
-    func_8033A45C(5, 0);
-    func_8033A45C(8, 0);
-    func_8033A45C(6, 0);
-    func_8033A45C(7, 0);
-    func_8033A45C(0xC, 1);
-    func_8033A45C(0xF, 1);
+    modelRender_setAppendageVisibility(3, game_number);
+    modelRender_setAppendageVisibility(1, 1);
+    modelRender_setAppendageVisibility(4, 1);
+    modelRender_setAppendageVisibility(9, 1);
+    modelRender_setAppendageVisibility(5, 0);
+    modelRender_setAppendageVisibility(8, 0);
+    modelRender_setAppendageVisibility(6, 0);
+    modelRender_setAppendageVisibility(7, 0);
+    modelRender_setAppendageVisibility(0xC, 1);
+    modelRender_setAppendageVisibility(0xF, 1);
 
     // If this is the actor for the selected game, make Banjo normal- otherwise grey him out
     if (game_number == gameNumber) {

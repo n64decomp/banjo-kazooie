@@ -4,6 +4,7 @@
 
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 const f32 D_80364AD0 = 80.0f;
 const f32 D_80364AD4 = 425.0f;
@@ -37,7 +38,7 @@ static void __bsbwhirl_end(void){
         )
     ){
         bastick_resetZones();
-        func_8029E070(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
         func_8025A55C(-1, 0xfa0, 0xd);
         core1_ce60_incOrDecCounter(TRUE);
         func_8025A7DC(COMUSIC_25_USING_GOLD_FEATHERS);
@@ -80,11 +81,11 @@ void func_802AA58C(enum bs_e *arg0){
 
 void bsbwhirl_enter_init(void){
     baanim_playForDuration_onceSmooth(ASSET_22_ANIM_BSWHIRL_EXIT, 0.5f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     bastick_setZoneMax(0, 0.03f);
     bastick_setZoneMax(1, 1.0f);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     D_8037D3B0 = 0.0f;
     core1_ce60_incOrDecCounter(FALSE);
     func_8025A55C(0, 0xfa0, 0xd);
@@ -108,7 +109,7 @@ void bsbwhirl_enter_end(void){
 
 void bsbwhirl_stand_init(void){
     baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
 }
 
@@ -119,7 +120,7 @@ void bsbwhirl_stand_update(void){
     func_802AA58C(&sp1C);
 
     if(player_isSliding())
-        sp1C = BS_SLIDE;
+        sp1C = BS_32_SLIDE;
 
     if(player_inWater())
         sp1C = BS_4C_LANDING_IN_WATER;
@@ -135,7 +136,7 @@ void bsbwhirl_stand_end(void){
 void bsbwhirl_walk_init(void){
     baanim_playForDuration_loopSmooth(ASSET_11_ANIM_BSWHIRL_WALK, 0.53f);
     baanim_setVelocityMapRanges(D_80364AD0, D_80364AD4, D_80364AD8, D_80364ADC);
-    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
 }
 
 void bsbwhirl_walk_update(void){
@@ -160,7 +161,7 @@ void bsbwhirl_walk_update(void){
     func_802AA58C(&sp1C);
 
     if(player_isSliding())
-        sp1C = BS_SLIDE;
+        sp1C = BS_32_SLIDE;
 
     bs_setState(sp1C);
 }
@@ -180,7 +181,7 @@ void bsbwhirl_jump_init(void){
     anctrl_setSubRange(aCtrl, 0.0f, 0.4495f);
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsbwhirl.c", 0x181);
-    func_8029C7F4(1,1,3,BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f)
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     
@@ -283,14 +284,14 @@ void bsbwhirl_drone_end(void){
     __bsbwhirl_end();
 }
 
-void func_802AADBC(void){
+void bsbwhirl_bsA5unknown_init(void){
     baanim_playForDuration_loopSmooth(ASSET_23_ANIM_BSWONDERWING_IDLE, 1.0f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
 }
 
-void func_802AAE08(void){
+void bsbwhirl_bsA5unknown_update(void){
     enum bs_e sp1C =0;
     __bsbwhirl_spawnSparkle();
     func_8029C6D0();
@@ -300,7 +301,7 @@ void func_802AAE08(void){
     bs_setState(sp1C);
 }
 
-void func_802AAE4C(void){
+void bsbwhirl_bsA5unknown_end(void){
     func_8029C748();
     __bsbwhirl_end();
 }

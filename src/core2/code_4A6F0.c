@@ -54,17 +54,17 @@ static bool __chMumbo_actorExists(enum actor_e actorId) {
 enum transformation_e func_802D16AC(void) {
     s32 ret = TRANSFORM_2_TERMITE;
 
-    __chMumbo_actorExists(0x1F);
-    if (__chMumbo_actorExists(0x20)) {
+    __chMumbo_actorExists(ACTOR_1F_UNUSED);
+    if (__chMumbo_actorExists(ACTOR_20_TRANSFORM_PUMPKIN)) {
         ret = TRANSFORM_3_PUMPKIN;
     }
-    if (__chMumbo_actorExists(0x21)) {
+    if (__chMumbo_actorExists(ACTOR_21_TRANSFORM_CROC)) {
         ret = TRANSFORM_5_CROC;
     }
-    if (__chMumbo_actorExists(0x22)) {
+    if (__chMumbo_actorExists(ACTOR_22_TRANSFORM_WALRUS)) {
         ret = TRANSFORM_4_WALRUS;
     }
-    if (__chMumbo_actorExists(0x23)) {
+    if (__chMumbo_actorExists(ACTOR_23_TRANSFORM_BEE)) {
         ret = TRANSFORM_6_BEE;
     }
     return ret;
@@ -389,8 +389,8 @@ void chMumbo_update(Actor *this) {
                         && (player_getTransformation() != TRANSFORM_1_BANJO) 
                         && (player_getTransformation() != TRANSFORM_7_WISHWASHY))
                 ) {
-                    func_8028FB88(TRANSFORM_1_BANJO);
-                } else if (func_8028FB88(D_8037DDF0)) {
+                    player_transform(TRANSFORM_1_BANJO);
+                } else if (player_transform(D_8037DDF0)) {
                     if (D_8037DDF0 != TRANSFORM_7_WISHWASHY) {
                         if (fileProgressFlag_getAndSet(__bkProgId_from_transformationId(D_8037DDF0), TRUE)) {
                             this->velocity[0] = 1.0f;
@@ -482,12 +482,12 @@ Actor *chMumbo_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     f32 sp44[3];
     f32 sp38[3] = D_80367510;
 
-    func_8033A45C(4, (this->lifetime_value == 0.0f));
-    func_8033A45C(5, (this->lifetime_value == 1.0f));
-    func_8033A45C(6, (this->lifetime_value == 0.0f));
-    func_8033A45C(7, (this->lifetime_value == 1.0f));
-    func_8033A45C(8, (this->lifetime_value == 2.0f));
-    func_8033A45C(9, 0);
+    modelRender_setAppendageVisibility(4, (this->lifetime_value == 0.0f));
+    modelRender_setAppendageVisibility(5, (this->lifetime_value == 1.0f));
+    modelRender_setAppendageVisibility(6, (this->lifetime_value == 0.0f));
+    modelRender_setAppendageVisibility(7, (this->lifetime_value == 1.0f));
+    modelRender_setAppendageVisibility(8, (this->lifetime_value == 2.0f));
+    modelRender_setAppendageVisibility(9, 0);
     out = actor_draw(marker, gfx, mtx, vtx);
     if( marker->unk14_21 && out->state == 8){
         if( actor_animationIsAt(out, 0.2f)
@@ -521,7 +521,7 @@ void chMumbo_detransformTrigger(NodeProp *arg0, ActorMarker *arg1){
         return;
     gcdialog_showDialog(fileProgressFlag_getAndSet(FILEPROG_84_MAGIC_ALL_GONE_TEXT, TRUE) ? ASSET_F5E_DIALOG_MUMBO_MAGIC_RUN_OUT_ABREV: ASSET_F5D_DIALOG_MUMBO_MAGIC_RUN_OUT_FULL, 0xe, NULL, NULL, NULL, NULL);
     D_8037DDF1++;
-    func_8028FB88(TRANSFORM_1_BANJO);
+    player_transform(TRANSFORM_1_BANJO);
 }
 
 void func_802D2CB8(void){

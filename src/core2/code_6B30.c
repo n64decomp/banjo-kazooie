@@ -38,13 +38,13 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
         case BS_F_BBUSTER: //8028DBA4
             return __maybe(bsbbuster_hitboxActive(),HITBOX_1_BEAK_BUSTER);
             break;
-        case BS_BBARGE://8028DBC0
+        case BS_13_BBARGE://8028DBC0
             return __maybe(bsbbarge_hitboxActive(),HITBOX_2_BEAK_BARGE);
             break;
-        case BS_BOMB://8028DBDC
+        case BS_2A_BOMB://8028DBDC
             return __maybe(bsbfly_bombHitboxActive(),HITBOX_3_BEAK_BOMB);
             break;
-        case BS_CLAW://8028DBF8
+        case BS_6_CLAW://8028DBF8
             if(arg0 && !func_8028AED4(marker_getActor(arg0)->position, 90.0f))
                 return HITBOX_0_NONE;
             
@@ -68,7 +68,7 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
             return HITBOX_6_WONDERWING;
             break;
         //8028DCA0
-        case BS_ROLL:
+        case BS_31_ROLL:
             return __maybe(bstwirl_hitboxActive(),HITBOX_7_ROLL);
             break;
         case BS_6E_CROC_BITE://L8028DCBC

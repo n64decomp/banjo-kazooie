@@ -36,7 +36,7 @@ void modelRender_setEnvColor(s32 r, s32 g, s32 b, s32 a);
 void modelRender_setAlpha(s32 a);
 void modelRender_func_8033A444(AnimMtxList *arg0);
 void modelRender_setRefPoints(Vec3fArray *ref_points);
-void func_8033A45C(s32 arg0, s32 arg1);
+void modelRender_setAppendageVisibility(s32 arg0, s32 arg1);
 void modelRender_func_8033A470(s32 arg0, s32 arg1);
 void modelRender_setTextureList(BKTextureList *texture_list);
 void modelRender_setAnimatedTexturesCacheId(s32 arg0);

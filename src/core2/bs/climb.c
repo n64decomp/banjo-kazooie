@@ -75,7 +75,7 @@ void bsclimb_idle_init(void){
     f32 pole_pos[3];
 
     player_getPosition(plyr_pos);
-    climbGetBottom(pole_pos);
+    climb_getBottom(pole_pos);
     if(!bsclimb_inSet(bs_getPrevState())){
         func_80257F18(plyr_pos, pole_pos, &angle_towards_pole);
         yaw_setIdeal(angle_towards_pole);
@@ -168,12 +168,12 @@ void bsclimb_move_update(void){
         next_state = BS_4F_CLIMB_IDLE;
 
     playerPosition_get(plyr_pos);
-    if(baphysics_get_target_vertical_velocity() < 0.0f && climbGetBottomY() == plyr_pos[1])
+    if(baphysics_get_target_vertical_velocity() < 0.0f && climb_getBottomY() == plyr_pos[1])
         next_state = BS_1_IDLE;
 
     if( func_8029825C() == 2
         && 0.0f < baphysics_get_target_vertical_velocity()
-        && climbGetTopY() == plyr_pos[1]
+        && climb_getTopY() == plyr_pos[1]
     ){
         next_state = BS_51_CLIMB_EXIT;
     }
@@ -194,7 +194,7 @@ void bsclimb_move_end(void){
 }
 
 //bsclimb_unknown_9E_init
-void func_802ABCCC(void){
+void bsclimb_locked_init(void){
     baanim_playForDuration_loopSmooth(ASSET_B2_ANIM_BSCLIMB_IDLE_2, 2.64f);
     baanim_setUpdateType(BAANIM_UPDATE_1_NORMAL);
     func_802AB654();
@@ -202,7 +202,7 @@ void func_802ABCCC(void){
 }
 
 //bsclimb_unknown_9E_update
-void func_802ABD0C(void){
+void bsclimb_locked_update(void){
     s32 next_state = 0;
     if(!balookat_getState())
         next_state = BS_4F_CLIMB_IDLE;
@@ -211,7 +211,7 @@ void func_802ABD0C(void){
 }
 
 //bsclimb_unknown_9E_end
-void func_802ABD40(void){
+void bsclimb_locked_end(void){
     func_802AB6F0();
 }
 

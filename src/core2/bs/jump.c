@@ -6,7 +6,7 @@
 
 #include "core2/ba/model.h"
 #include "core2/ba/anim.h"
-
+#include "core2/yaw.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
 
@@ -41,7 +41,7 @@ void bsjump_init(void){
     D_8037D4C2 = baflag_isTrue(BA_FLAG_2_ON_SPRING_PAD);
     sp30 = bs_getPrevState();
     if(bsclimb_inSet(sp30)){
-        climbRelease();
+        climb_release();
     }
 
     if(sp30 == BS_11_BPECK){
@@ -61,7 +61,7 @@ void bsjump_init(void){
         anctrl_setSubRange(aCtrl, 0.0f, 0.5042f);
         anctrl_setPlaybackType(aCtrl,  ANIMCTRL_ONCE);
         anctrl_start(aCtrl, "bsjump.c", 0x95);
-        func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+        code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
         if(bastick_distance() != 0.0f){
             yaw_setIdeal(bastick_getAngleRelativeToBanjo());
         }
@@ -124,7 +124,7 @@ void bsjump_update(void){
             }
             if(D_8037D4C2){
                 D_8037D4C2 = 0;
-                sp34 = BS_BSHOCK_CHARGE;
+                sp34 = BS_21_BSHOCK_CHARGE;
             }
             if(func_8028B254(0x5A)){
                 anctrl_setSubRange(aCtrl, 0.0, 1.0f);
@@ -144,7 +144,7 @@ void bsjump_update(void){
         D_8037D4C2 = 0;
 
     if(bainput_should_feathery_flap())
-        sp34 = BS_BFLAP;
+        sp34 = BS_10_BFLAP;
 
     if(bainput_should_peck())
         sp34 = BS_11_BPECK;
@@ -187,7 +187,7 @@ void bsjump_fall_init(void){
     anctrl_setTransitionDuration(aCtrl, 0.3f);
     anctrl_setDuration(aCtrl, 0.38f);
     anctrl_start(aCtrl, "bsjump.c", 0x188);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     D_8037D4C0 = 0;
 }
 
@@ -223,7 +223,7 @@ void bsjump_fall_update(void){
             sp2C = BS_3D_FALL_TUMBLING;
 
         if(bainput_should_feathery_flap() && baflag_isFalse(BA_FLAG_5_HAS_PECKED))
-            sp2C = BS_BFLAP;
+            sp2C = BS_10_BFLAP;
 
         if(bainput_should_peck())
             sp2C = BS_11_BPECK;
@@ -237,7 +237,7 @@ void bsjump_fall_update(void){
     else if(player_inWater()){
         func_8029CCC4();
         if(baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)){
-            sp2C = BS_D_TIMEOUT;
+            sp2C = BS_D_TIMEOUT_TRANSFORMATION;
         }
 
     }//L802B18E8
@@ -252,11 +252,11 @@ void bsjump_fall_update(void){
 
 void bsjump_fall_end(void){}
 
-void func_802B1928(void) {
+void bsjump_climbExit_init(void) {
     AnimCtrl *anim_ctrl;
 
     anim_ctrl = baanim_getAnimCtrlPtr();
-    climbRelease();
+    climb_release();
     anctrl_reset(anim_ctrl);
     anctrl_setIndex(anim_ctrl, ASSET_8_ANIM_BSJUMP);
     anctrl_setDuration(anim_ctrl, 1.9f);
@@ -279,7 +279,7 @@ void func_802B1928(void) {
     func_802B1100();
 }
 
-void func_802B1A54(void) {
+void bsjump_climbExit_update(void) {
     s32 next_state;
     AnimCtrl *anim_ctrl;
     f32 velocity[3];
@@ -323,7 +323,7 @@ void func_802B1A54(void) {
     bs_setState(next_state);
 }
 
-void func_802B1BCC(void){
+void bsjump_climbExit_end(void){
     func_80294378(1);
     baphysics_reset_gravity();
 }
@@ -392,7 +392,7 @@ bool bsjump_jumpingFromWater(void){
 
 void bsjump_tumble_init(void){
     baanim_playForDuration_loop(ASSET_68_ANIM_BSJUMP_TUMBLE, 0.35f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     baModel_setYDisplacement(60.0f);
     if(bafalldamage_get_state() == 1){
         batimer_set(0, 0.5f);
@@ -417,7 +417,7 @@ void bsjump_tumble_update(void){
     }
     if(batimer_isNonzero(0)){
         if(bainput_should_feathery_flap())
-            sp1C = BS_BFLAP;
+            sp1C = BS_10_BFLAP;
 
         if(bainput_should_peck())
             sp1C = BS_11_BPECK;
@@ -430,7 +430,7 @@ void bsjump_tumble_update(void){
         sp1C = BS_4C_LANDING_IN_WATER;
 
     if(player_isStable())
-        sp1C = BS_SPLAT;
+        sp1C = BS_72_SPLAT;
 
     bs_setState(sp1C);
 }
@@ -438,7 +438,7 @@ void bsjump_tumble_update(void){
 void bsjump_tumble_end(void){
     enum bs_e next_state = bs_getNextState();
     if( next_state == BS_F_BBUSTER
-        || next_state == BS_BFLAP
+        || next_state == BS_10_BFLAP
         || next_state == BS_11_BPECK
     ){
         bafalldamage_set_state(3);

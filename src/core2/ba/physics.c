@@ -3,7 +3,7 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 
-extern f32 climbGetRadius(void);
+extern f32 climb_getRadius(void);
 extern f32 func_8029CED0(void);
 
 /* .data */
@@ -151,10 +151,10 @@ void __baphysics_update_climb(void){
     f32 sp34[3];
     f32 sp28[3];
 
-    climbGetBottom(sp28);
+    climb_getBottom(sp28);
     s_next_position[0] = sp28[0];
     s_next_position[2] = sp28[2];
-    func_80256E24(sp34, 0.0f, yaw_get(), 0.0f, 0.0f, -climbGetRadius());
+    func_80256E24(sp34, 0.0f, yaw_get(), 0.0f, 0.0f, -climb_getRadius());
 
     s_player_velocity[2] = 0.0f;
     s_next_position[0] += sp34[0];\
@@ -223,8 +223,8 @@ void __baphysics_update_transform(void){
 
     D_8037C500 += time_getDelta();
     temp_f0 = func_80257A44(D_8037C500, 1.2f);
-    temp_f0 = ml_sin_deg(temp_f0*360.0f);
-    s_next_position[1] = 5.0*temp_f0 + D_8037C4FC;
+    temp_f0 = ml_sin_deg(temp_f0 * 360.0f);
+    s_next_position[1] = 5.0 * temp_f0 + D_8037C4FC;
 }
 
 void baphysics_get_position_change(f32 arg0[3]){
