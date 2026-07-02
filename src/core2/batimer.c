@@ -15,10 +15,10 @@ void batimer_incrementBy(s32 id, f32 inc_value_sec){
     s_batimer.value[id] += inc_value_sec;
 }
 
-int batimer_decrement(s32 id){
+bool batimer_decrement(s32 id){
     s_batimer.last[id] = s_batimer.value[id];
     if(0.0f == s_batimer.value[id]){
-        return 0;
+        return FALSE;
     }
     s_batimer.value[id] = ml_max_f(0.0f, s_batimer.value[id] - time_getDelta());
     return s_batimer.value[id] == 0.0f;

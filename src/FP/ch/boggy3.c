@@ -29,8 +29,8 @@ Actor *func_80390290(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(gcdialog_getCurrentTextId() == 0xC1F || gcdialog_getCurrentTextId() == 0xC1E){
         sp18 = 1;
     }
-    func_8033A45C(1, 0);
-    func_8033A45C(3, sp18);
+    modelRender_setAppendageVisibility(1, 0);
+    modelRender_setAppendageVisibility(3, sp18);
     actor_draw(marker, gfx, mtx, vtx);
 }
 

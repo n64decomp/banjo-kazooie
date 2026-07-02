@@ -4,6 +4,7 @@
 
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 extern void bainput_setDiveCooldown(s32, f32);
 
@@ -139,7 +140,7 @@ void bsswim_idle_init(void) {
         anctrl_setDuration(anim_ctrl, 1.2f);
         anctrl_start(anim_ctrl, "bsswim.c", 0xFD);
     }
-    func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_3_BOUNDED, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
     __bsswim_enteredWater();
@@ -181,7 +182,7 @@ void bsswim_idle_update(void) {
         next_state = BS_5_JUMP;
     }
     if (baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
-        next_state = BS_D_TIMEOUT;
+        next_state = BS_D_TIMEOUT_TRANSFORMATION;
     }
     bs_setState(next_state);
 }
@@ -258,7 +259,7 @@ void bsswim_swim_update(void) {
         next_state = BS_5_JUMP;
     }
     if (baflag_isTrue(BA_FLAG_6) || baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE)) {
-        next_state = BS_D_TIMEOUT;
+        next_state = BS_D_TIMEOUT_TRANSFORMATION;
     }
     bs_setState(next_state);
 }
@@ -282,7 +283,7 @@ void __bsswim_update_rotation(void) {
 
 void bsswim_lookat_init(void) {
     baanim_playForDuration_loopSmooth(ASSET_57_ANIM_BSSWIM_IDLE, 1.2f);
-    func_8029C7F4(1, 3, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_3_BOUNDED, 3, BA_PHYSICS_NORMAL);
     yaw_setVelocityBounded(500.0f, 5.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
     __bsswim_enteredWater();

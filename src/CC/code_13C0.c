@@ -35,15 +35,15 @@ void func_803877B0(Struct_CC_13C0_1* arg0, void* arg1, f32 position[3], f32 rota
         return;
 
     if (temp_v0 == 0) {
-        func_8033A45C(1, 1);
+        modelRender_setAppendageVisibility(1, 1);
     } else if (temp_v0 == 1) {
-        func_8033A45C(1, 2);
+        modelRender_setAppendageVisibility(1, 2);
     } else if (temp_v0 == 2) {
-        func_8033A45C(1, 2);
+        modelRender_setAppendageVisibility(1, 2);
         rotation[2] += (arg0->unkC * 20.0f);
         arg4 = arg4*(1.0f - arg0->unkC);
     }
-    func_8033A45C(2, 0);
+    modelRender_setAppendageVisibility(2, 0);
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     modelRender_draw(gfx, mtx, position, rotation, arg4, NULL, modeL_ptr);
 }

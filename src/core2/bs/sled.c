@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 #include "core2/ba/physics.h"
-
+#include "core2/yaw.h"
 
 ActorMarker *bssled_gSledMarker;
 
@@ -27,7 +27,7 @@ void __bssled_unlinkSledMarker(void){
 void bssled_init(void){
     __bssled_linkSledMarker();
     baanim_playForDuration_loopSmooth(ASSET_228_ANIM_BANJO_SLED, 1.8f);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_FREEZE);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_FREEZE);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_80294A8C(0);
     func_80294378(6);

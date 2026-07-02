@@ -6,6 +6,7 @@
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
 #include "core2/statetimer.h"
+#include "core2/yaw.h"
 
 /* .data */
 f32 gBsbTrotMinWalkVelocity = 30.0f;
@@ -102,8 +103,8 @@ void bsbtrot_walkUpdateTargetVelocity(void){
 void func_802A8A40(void){
     bastick_setZoneMax(0, 0.03f);
     bastick_setZoneMax(1, 1.0f);
-    func_8029E070(1);
-    func_8029E064(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(TRUE);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     baflag_set(BA_FLAG_3);
@@ -120,14 +121,14 @@ void func_802A8AD8(void){
     }
 
     if(stateTimer_isDone(STATE_TIMER_3_TURBO_TALON)){
-        if(func_8029DFE0()){
-            func_8029E0DC(0);
+        if(modelAppendages_hideTurboTrainers()){
+            modelAppendages_setTurboTrainersVisibility(FALSE);
             if(baflag_isFalse(BA_FLAG_14_LOSE_BOGGY_RACE))
-                sfxsource_playHighPriority(0x3eb);
+                sfxsource_playHighPriority(SFX_3EB_UNKNOWN);
             func_803219F4(1);
         }
     }else{
-        func_8029E0DC(1);
+        modelAppendages_setTurboTrainersVisibility(TRUE);
     }
 }
 
@@ -139,8 +140,8 @@ void func_802A8BB0(void){
     
     baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
     bastick_resetZones();
-    func_8029E070(0);
-    func_8029E064(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
     pitch_setIdeal(0.0f);
     roll_setIdeal(0.0f);
     baflag_clear(BA_FLAG_3);
@@ -214,7 +215,7 @@ enum bs_e func_802A8D84(enum bs_e arg0){
 void bsbtrot_enter_init(void){
     func_802A8AD8();
     baanim_playForDuration_onceSmooth(ASSET_16_ANIM_BSBTROT_ENTER, 1.0f);
-    func_8029C7F4(1,1,2, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
     basfx_80299BD4();
@@ -243,7 +244,7 @@ void bsbtrot_enter_end(void){
 
 void bsbtrot_stand_init(void){
     baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
-    func_8029C7F4(1,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
 }
@@ -283,7 +284,7 @@ void func_802A9054(void){
 
 void bsbtrot_walk_init(void){
     baanim_playForDuration_loopSmooth(func_802A9030(), 0.53f);
-    func_8029C7F4(2,1,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     func_802A8A40();
     func_802A9054();
 }
@@ -505,11 +506,11 @@ void bsbtrot_slide_init(void){
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     anctrl_start(aCtrl, "bsbtrot.c", 0x382);
     func_802A8A40();
-    func_8029C7F4(1,1,3, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_target_yaw(yaw_getIdeal());
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
-    func_8029E070(1);
-    func_8029E064(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
+    modelAppendages_setKazooiesFeetAndShoesVisibility(TRUE);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
     baphysics_set_target_horizontal_velocity(0.0f);
@@ -559,7 +560,7 @@ int bsbtrot_inSet(s32 move_indx){
     || (move_indx == BS_45_BTROT_SLIDE)
     || (move_indx == BS_14_BTROT_ENTER)
     || (move_indx == 0x79)
-    || (move_indx == BS_BTROT_OW)
+    || (move_indx == BS_7B_BTROT_OW)
     || (move_indx == BS_71_BTROT_FALL)
     || (move_indx == 0x9a);
 }
@@ -573,7 +574,7 @@ void bsbtrot_fall_init(void){
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_STOPPED);
     anctrl_start(aCtrl, "bsbtrot.c", 0x400);
     func_802A8A40();
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     baphysics_set_target_yaw(yaw_getIdeal());
     bsbtrot_walkUpdateTargetVelocity();
     baphysics_set_horizontal_velocity(yaw_getIdeal(), baphysics_get_target_horizontal_velocity());
@@ -678,16 +679,16 @@ void bsbtrot_fall_end(void){
     func_802A8BB0();
 }
 
-void bsbtrot_unk79_init(void){
+void bsbtrot_locked_init(void){
     baanim_playForDuration_loopSmooth(ASSET_26_ANIM_BSBTROT_IDLE, 1.2f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802A8A40();
     baModel_setDirection(PLAYER_MODEL_DIR_KAZOOIE);
     func_8029C674();
 }
 
-void bsbtrot_unk79_update(void){
+void bsbtrot_locked_update(void){
     enum bs_e sp1C = 0;
     func_8029C6D0();
     func_802A8AD8();
@@ -697,7 +698,7 @@ void bsbtrot_unk79_update(void){
     bs_setState(sp1C);
 }
 
-void bsbtrot_unk79_end(void){
+void bsbtrot_locked_end(void){
     func_8029C748();
     func_802A8BB0();
 }
@@ -719,7 +720,7 @@ void bsbtrot_ow_init(void){
     baphysics_set_target_horizontal_velocity(barebound_get_horizontal_velocity());
     baphysics_set_target_yaw(sp3C);
     baphysics_set_horizontal_velocity(sp3C, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1,1,2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     if(barebound_802987B4() == 2)
         baphysics_set_type(BA_PHYSICS_AIRBORN);
     baphysics_set_vertical_velocity(barebound_get_vertical_velocity());

@@ -4,7 +4,7 @@
 
 #include "core2/ba/physics.h"
 #include "core2/ba/flap.h"
-
+#include "core2/yaw.h"
 
 void func_80354030(f32*, f32);
 f32  bastick_distance(void);
@@ -40,10 +40,10 @@ void func_802A04F0(void){
 
 }
 
-void func_802A0590(void){
+void bsbeefly_bs8Bunknown_init(void){
     func_802A0340();
     baanim_playForDuration_onceSmooth(0x1df, 1.5f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f){
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
@@ -53,7 +53,7 @@ void func_802A0590(void){
     D_8037D2C0 = 0;
 }
 
-void func_802A0630(void){
+void bsbeefly_bs8Bunknown_update(void){
     s32 next_state = 0;
     AnimCtrl * mvmnt; //sp1C
 
@@ -71,13 +71,13 @@ void func_802A0630(void){
             if(anctrl_isStopped(mvmnt))
                 baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38f);
             if(baphysics_get_vertical_velocity() < 0.0f)
-                next_state = BS_BEE_FLY;
+                next_state = BS_8C_BEE_FLY;
             break;
     }
     bs_setState(next_state);
 }
 
-void func_802A0704(void){
+void bsbeefly_bs8Bunknown_end(void){
     func_802A02C0();
 }
 
@@ -151,7 +151,7 @@ void bsbeefly_enter(void){
 
     mvmnt = bs_getPrevState();
     baanim_playForDuration_loopSmooth(ASSET_1DC_ANIM_BEE_FLY, 0.38);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_LOCKED_ROTATION);
     if(baflag_isTrue(BA_FLAG_9))
         baphysics_set_target_horizontal_velocity(0.0f);
     else

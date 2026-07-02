@@ -81,15 +81,15 @@ enum bs_e func_80295EE0(enum bs_e arg0){
 enum bs_e __get_rebound_state_id(void){
     switch(bsStoredState_getTransformation()){
         case TRANSFORM_3_PUMPKIN:// L8029606C
-            return BS_PUMPKIN_BOUNCE;
+            return BS_A0_ANT_BOUNCE;
         case TRANSFORM_2_TERMITE:// L80296074
-            return BS_ANT_BOUNCE;
+            return BS_9F_ANT_BOUNCE;
         case TRANSFORM_5_CROC:// L8029607C
-            return  BS_CROC_BOUNCE;
+            return  BS_A1_CROC_BOUNCE;
         case TRANSFORM_4_WALRUS:// L80296084
-            return BS_WALRUS_BOUNCE;
+            return BS_A2_WALRUS_BOUNCE;
         case TRANSFORM_6_BEE:// L8029608C
-            return BS_BEE_BOUNCE;
+            return BS_A3_BEE_BOUNCE;
         case TRANSFORM_1_BANJO:// L80296094
         default:
             if(player_movementGroup() == BSGROUP_A_FLYING)
@@ -174,29 +174,29 @@ enum bs_e func_802962BC(u32 arg0){
                 return BS_4E_PUMPKIN_DIE; 
         case TRANSFORM_5_CROC: //L80296344
             if(sp1C)
-                return BS_CROC_OW;
+                return BS_63_CROC_OW;
             else
-                return BS_CROC_DIE; 
+                return BS_64_CROC_DIE; 
         case TRANSFORM_4_WALRUS: //L8029635C
             if(sp1C)
-                return BS_WALRUS_OW;
+                return BS_6C_WALRUS_OW;
             else
-                return BS_WALRUS_DIE; 
+                return BS_6D_WALRUS_DIE; 
         case TRANSFORM_6_BEE: //L80296374
             if(sp1C)
-                return BS_BEE_OW;
-            return BS_BEE_DIE; 
+                return BS_89_BEE_OW;
+            return BS_8A_BEE_DIE; 
         case TRANSFORM_1_BANJO: //L8029638C
         default:
             if(sp1C){
                 if(bsbtrot_inSet(bs_getState()))
-                    return BS_BTROT_OW;
+                    return BS_7B_BTROT_OW;
 
                 if(player_getWaterState() == BSWATERGROUP_2_UNDERWATER)
                     return BS_7F_DIVE_OW;
                 
                 if(player_movementGroup() == BSGROUP_A_FLYING)
-                    return BS_FLY_OW;
+                    return BS_91_FLY_OW;
                 return BS_E_OW;
             }
             return BS_41_DIE;

@@ -109,7 +109,7 @@ void __chMinigame_textCallback1(ActorMarker *marker, enum asset_e text_id, s32 a
 
 void __chMinigame_transformToCroc(ActorMarker *marker, enum asset_e text_id, s32 arg2){
     if(arg2 == 1){
-        func_8028FB88(TRANSFORM_5_CROC);
+        player_transform(TRANSFORM_5_CROC);
     }
 }
 

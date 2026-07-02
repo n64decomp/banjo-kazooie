@@ -40,7 +40,7 @@ s32 can_climb(void){
     return ability_hasLearned(ABILITY_5_CLIMB);
 }
 
-int can_dive(void){
+bool can_dive(void){
     return ability_hasLearned(ABILITY_F_DIVE) 
         && !isPlayerInHazard() 
         && 100.0f < floor_getCurrentFloorYPosition() - func_80294438();
@@ -50,7 +50,7 @@ s32 can_egg(void){
     return ability_hasLearned(ABILITY_6_EGGS);
 }
 
-int can_feathery_flap(void){
+bool can_feathery_flap(void){
     return baflag_isFalse(BA_FLAG_12_HAS_FLAPPED) 
         && baflag_isFalse(BA_FLAG_5_HAS_PECKED) 
         && ability_hasLearned(ABILITY_7_FEATHERY_FLAP);
@@ -68,18 +68,18 @@ s32 can_control_jump_height(void){
     return ability_hasLearned(ABILITY_A_HOLD_A_JUMP_HIGHER);
 }
 
-int can_peck(void){
+bool can_peck(void){
     return baflag_isFalse(BA_FLAG_5_HAS_PECKED)
         && baflag_isFalse(BA_FLAG_12_HAS_FLAPPED)
         && ability_hasLearned(ABILITY_B_RATATAT_RAP);
 }
 
-int func_8028ABB8(void){
+bool func_8028ABB8(void){
     if(baflag_isTrue(BA_FLAG_14_LOSE_BOGGY_RACE) || baflag_isTrue(BA_FLAG_19_SHOULD_TRANSFORM))
-        return 0;
+        return FALSE;
     if(bs_getState() == BS_56_RECOIL)
-        return 0;
-    return 1;
+        return FALSE;
+    return TRUE;
 }
 
 s32 can_roll(void){
@@ -106,32 +106,32 @@ s32 can_wonderwing(void){
     return ability_hasLearned(ABILITY_12_WONDERWING);
 }
 
-int can_view_first_person(void){
+bool can_view_first_person(void){
     if( gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK && mapSpecificFlags_get(0xd)){
-        return 0;
+        return FALSE;
     }
 
     if(ncba1p_getState() == FIRSTPERSON_STATE_3_EXIT)
-        return 0;
+        return FALSE;
 
     if(!player_isStable() && !player_inWater())
-        return 0;
-    return 1;
+        return FALSE;
+    return TRUE;
 }
 
-int dummy_player_is_ant(void){
+bool dummy_player_is_ant(void){
     return bsant_inSet(bs_getState());
 }
 
-int dummy_player_is_pumpkin(void){
+bool dummy_player_is_pumpkin(void){
     return bspumpkin_inSet(bs_getState());
 }
 
-int func_8028ADB4(void){
+bool func_8028ADB4(void){
     return func_8032190C() && gsworld_getMap() != MAP_1_SM_SPIRAL_MOUNTAIN;
 }
 
-int wishyWashyFlag_get(void){
+bool wishyWashyFlag_get(void){
     return volatileFlag_get(VOLATILE_FLAG_9D_SANDCASTLE_WISHY_WASHY);
 }
 
@@ -171,11 +171,11 @@ bool func_8028AED4(f32 src_position[3], f32 arg1) {
     return (phi_a0 < arg1 * 182.044444);
 }
 
-int player_shouldFall(void){
+bool player_shouldFall(void){
     return (60.0f < playerPosition_getY() - func_80294438());
 }
 
-int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
+bool player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
     f32 sp1C[3];
     playerPosition_get(sp1C);
     return ml_vec3f_point_within_horizontal_distance(sp1C, arg0[0], arg0[2], arg1);
@@ -183,7 +183,7 @@ int player_isInHorizontalRadius(f32 arg0[3], f32 arg1){
 
 s32 func_8028B120(void){return 0;}
 
-int player_isOnDangerousGround(void){
+bool player_isOnDangerousGround(void){
     return baflag_isTrue(BA_FLAG_13_TOUCHING_DANGEROUS_GROUND);
 }
 
@@ -198,7 +198,7 @@ bool player_isInVerticalRange(f32 position[3], f32 range) {
     return (((position[1] - range) <= plyr_pos[1]) && (plyr_pos[1] <= (position[1] + range)));
 }
 
-int player_shouldSlideTrot(void){
+bool player_shouldSlideTrot(void){
     return stateTimer_isActive(STATE_TIMER_6_UNKNOWN)
         || (1.0 == get_slope_timer() && func_80294610(0x40));
 }
@@ -207,16 +207,16 @@ bool func_8028B254(s32 arg0) {
     return (player_isStable() || (baphysics_get_vertical_velocity() < 0.0f && (playerPosition_getY() - func_80294438()) < (f32) arg0));
 }
 
-int player_isStable(void){
+bool player_isStable(void){
     return D_8037BF60 && baphysics_get_vertical_velocity() < 0.0f;
 }
 
-int player_isSliding(void){
+bool player_isSliding(void){
     return stateTimer_isActive(STATE_TIMER_5_UNKNOWN) 
         || 1.0 == get_slope_timer();
 }
 
-int func_8028B394(void){
+bool func_8028B394(void){
     return func_8029CF20(4);
 }
 
@@ -261,15 +261,15 @@ bool player_isSwimming(void){
     return out;
 }
 
-int func_8028B4C4(void){
+bool func_8028B4C4(void){
     return 135.0f < mlAbsF(mlDiffDegF(yaw_getIdeal(), yaw_get()));
 }
 
-int player_inWater(void){
+bool player_inWater(void){
     return D_8037BF61;
 }
 
-int func_8028B528(void){
+bool func_8028B528(void){
     return D_8037BF62;
 }
 

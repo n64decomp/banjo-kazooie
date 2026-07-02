@@ -61,8 +61,8 @@ Actor *func_80388740(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     ActorLocal_FP_2350 * local = (ActorLocal_FP_2350 *) &this->local;
     f32 sp2C[3];
 
-    func_8033A45C(1, 1);
-    func_8033A45C(3, 1);
+    modelRender_setAppendageVisibility(1, 1);
+    modelRender_setAppendageVisibility(3, 1);
     this = actor_draw(marker, gfx, mtx, vtx);
     if(this->volatile_initialized && marker->unk14_21){
         if( this->state == 4

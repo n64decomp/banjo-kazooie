@@ -242,7 +242,7 @@ Actor *chEyrieBaby_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     ) {
         return this;
     }
-    func_8033A45C(3, (this->state == CH_EYRIE_BABY_STATE_4_SLEEPING) ? 2 : 1);
+    modelRender_setAppendageVisibility(3, (this->state == CH_EYRIE_BABY_STATE_4_SLEEPING) ? 2 : 1);
     actor_draw(marker, gfx, mtx, vtx);
     vec3fArray_get_vec3f(func_80329934(), 5, chEyrieBabyThrowPosition);
     return this;

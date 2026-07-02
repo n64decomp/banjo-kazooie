@@ -74,14 +74,14 @@ Actor *chnapper_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     ActorLocal_Napper *local = (ActorLocal_Napper *)&this->local;
 
     if(this->state == 1){
-        func_8033A45C(1, TRUE);
-        func_8033A45C(2, FALSE);
-        func_8033A45C(3, FALSE);
+        modelRender_setAppendageVisibility(1, TRUE);
+        modelRender_setAppendageVisibility(2, FALSE);
+        modelRender_setAppendageVisibility(3, FALSE);
     }
     else {
-        func_8033A45C(1, FALSE);
-        func_8033A45C(2, BOOL(local->unk10));
-        func_8033A45C(3, (local->unk10) ? FALSE : TRUE);
+        modelRender_setAppendageVisibility(1, FALSE);
+        modelRender_setAppendageVisibility(2, BOOL(local->unk10));
+        modelRender_setAppendageVisibility(3, (local->unk10) ? FALSE : TRUE);
     }
 
     if(this->state == 1){ //set model alpha

@@ -3,6 +3,7 @@
 #include "variables.h"
 
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 void func_802B3A50(void) {
     f32 sp34;
@@ -22,7 +23,7 @@ void func_802B3AAC(enum asset_e anim_id, f32 anim_duration) {
 
     anim_ctrl = baanim_getAnimCtrlPtr();
     if (anim_id == ASSET_14A_ANIM_BSREST_LISTEN) {
-        func_8029E070(1);
+        modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
         switch (anctrl_getIndex(baanim_getAnimCtrlPtr())) {
         case ASSET_14A_ANIM_BSREST_LISTEN:
             baanim_playForDuration_loopSmooth(anim_id, anim_duration);
@@ -41,7 +42,7 @@ void func_802B3AAC(enum asset_e anim_id, f32 anim_duration) {
     } else {
         baanim_playForDuration_loopSmooth(anim_id, anim_duration);
     }
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_802B3A50();
 }
@@ -85,10 +86,10 @@ bool func_802B3BB0(void) {
 }
 
 void func_802B3CCC(void){ 
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
 }
 
-void func_802B3CEC(void){ 
+void bsrest_bs73unknown_init(void){ 
     enum asset_e anim_id;
     f32 anim_duration;
     
@@ -96,7 +97,7 @@ void func_802B3CEC(void){
     func_802B3AAC(anim_id, anim_duration);
 }
 
-void func_802B3D1C(void) {
+void bsrest_bs73unknown_update(void) {
     enum bs_e next_state;
 
     next_state = 0;
@@ -109,11 +110,11 @@ void func_802B3D1C(void) {
     bs_setState(next_state);
 }
 
-void func_802B3D6C(void){ 
+void bsrest_bs73unknown_end(void){ 
     func_802B3CCC();
 }
 
-void func_802B3D8C(void){ 
+void bsrest_bs75unknown_init(void){ 
     enum asset_e anim_id;
     f32 anim_duration;
     
@@ -122,7 +123,7 @@ void func_802B3D8C(void){
 }
 
 
-void func_802B3DBC(void) {
+void bsrest_bs75unknown_update(void) {
     enum bs_e next_state;
 
     next_state = 0;
@@ -136,11 +137,11 @@ void func_802B3DBC(void) {
 }
 
 
-void func_802B3E0C(void){ 
+void bsrest_bs75unknown_end(void){ 
     func_802B3CCC();
 }
 
-void func_802B3E2C(void){ 
+void bsrest_bs74unknown_init(void){ 
     enum asset_e anim_id;
     f32 anim_duration;
     
@@ -149,7 +150,7 @@ void func_802B3E2C(void){
     func_8029C674();
 }
 
-void func_802B3E64(void) {
+void bsrest_bs74unknown_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -167,7 +168,7 @@ void func_802B3E64(void) {
 }
 
 
-void func_802B3EF4(void){
+void bsrest_bs74unknown_end(void){
     func_802B3CCC();
     func_8029C748();
 }

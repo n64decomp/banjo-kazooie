@@ -17,8 +17,8 @@ void func_802A02C0(void){
         pitch_setIdeal(0.0f); //pitch_setIdeal
         roll_setIdeal(0.0f);
         bastick_resetZones();
-        func_8029E070(0);
-        func_8029E064(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
+        modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
         baflag_clear(BA_FLAG_3);
         baflag_clear(BA_FLAG_4);
         func_80293D74();

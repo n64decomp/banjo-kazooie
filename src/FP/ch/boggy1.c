@@ -37,8 +37,8 @@ Actor *func_803875E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     if(!this->unk38_31 || this->state == 5)
         return this;
     
-    func_8033A45C(1, 0);
-    func_8033A45C(3, 1);
+    modelRender_setAppendageVisibility(1, 0);
+    modelRender_setAppendageVisibility(3, 1);
     this = actor_draw(marker, gfx, mtx, vtx);
     if(marker->unk14_21){
         vec3fArray_get_vec3f(func_80329934(), 5, this->velocity);

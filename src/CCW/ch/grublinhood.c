@@ -4,7 +4,7 @@
 #include "actor.h"
 
 extern void func_802DABA0(ParticleEmitter *, f32[3], f32, enum asset_e);
-extern void func_8033A45C(s32, s32);
+extern void modelRender_setAppendageVisibility(s32, s32);
 extern void humanoidBaddie_ow(void);
 
 void chgrublinhood_update(Actor *this);
@@ -69,18 +69,18 @@ Actor *chgrublinhood_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 
     this = marker_getActor(marker);
     local = (Humanoid_Baddies_Actor *)&this->local;
-    func_8033A45C(3,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 2);
-    func_8033A45C(4,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 2);
-    func_8033A45C(5,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(6,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(7,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(8,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(9,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 0);
-    func_8033A45C(10, (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 0 : (local->baddieSpecific == CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(11, (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 0 : (local->baddieSpecific == CCW_SEASON_2_AUTUMN) ? 1 : 2);
-    func_8033A45C(12, (local->baddieSpecific == CCW_SEASON_3_WINTER) ? 2 : 1);
-    func_8033A45C(13, (local->baddieSpecific == CCW_SEASON_3_WINTER) ? 1 : 0);
-    func_8033A45C(14, (this->has_met_before)? FALSE : TRUE);
+    modelRender_setAppendageVisibility(3,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 2);
+    modelRender_setAppendageVisibility(4,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 2);
+    modelRender_setAppendageVisibility(5,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(6,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(7,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(8,  (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(9,  (local->baddieSpecific == CCW_SEASON_1_SUMMER) ? 1 : 0);
+    modelRender_setAppendageVisibility(10, (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 0 : (local->baddieSpecific == CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(11, (local->baddieSpecific <  CCW_SEASON_2_AUTUMN) ? 0 : (local->baddieSpecific == CCW_SEASON_2_AUTUMN) ? 1 : 2);
+    modelRender_setAppendageVisibility(12, (local->baddieSpecific == CCW_SEASON_3_WINTER) ? 2 : 1);
+    modelRender_setAppendageVisibility(13, (local->baddieSpecific == CCW_SEASON_3_WINTER) ? 1 : 0);
+    modelRender_setAppendageVisibility(14, (this->has_met_before)? FALSE : TRUE);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

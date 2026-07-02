@@ -172,8 +172,8 @@ Actor *chCCWBeanstalk_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
         sp18 = 0;
     }
     sp18 = (skeletalAnim_getAnimId(this->unk148) == 0x183)? 1  : sp18;
-    func_8033A45C(3, sp18);
-    func_8033A45C(4, sp18);
+    modelRender_setAppendageVisibility(3, sp18);
+    modelRender_setAppendageVisibility(4, sp18);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

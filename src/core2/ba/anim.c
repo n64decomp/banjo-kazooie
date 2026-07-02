@@ -123,10 +123,10 @@ void __baanim_applyBottlesBonus(s32 arg0, s32 arg1) {
     }
     if (gsworld_getMap() == MAP_A_TTC_SANDCASTLE) {
         if ((D_8037BF4C & BAANIM_WISHYWASHY) && (player_getTransformation() != TRANSFORM_7_WISHWASHY)) {
-            func_8028FB88(TRANSFORM_7_WISHWASHY);
+            player_transform(TRANSFORM_7_WISHWASHY);
         }
         if (!(D_8037BF4C & BAANIM_WISHYWASHY) && (player_getTransformation() == TRANSFORM_7_WISHWASHY)) {
-            func_8028FB88(TRANSFORM_1_BANJO);
+            player_transform(TRANSFORM_1_BANJO);
         }
     }
     if (baAnimModifyFunction != NULL) {

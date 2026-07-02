@@ -133,8 +133,8 @@ Actor *func_802D94B4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *actor = marker_getActor(marker);
 
     if(actor->state != MOLE_STATE_1_AWAITING_PLAYER && actor->state != MOLE_STATE_5_REFRESHER){
-        func_8033A45C(3, 0);
-        func_8033A45C(4, 0);
+        modelRender_setAppendageVisibility(3, 0);
+        modelRender_setAppendageVisibility(4, 0);
         actor = actor_draw(marker, gfx, mtx, vtx);
     }
 
@@ -393,7 +393,7 @@ void chmole_update(Actor *this){
         case MOLE_STATE_1_AWAITING_PLAYER://L802D9F70
             this->yaw_ideal = subaddie_getYawToPlayer(this);
             subaddie_turnToYaw(this, 4.0f);
-            if(func_8028F20C() && func_8028F0D4() && !func_8028EC04()){
+            if(func_8028F20C() && player_isBanjoOrWishywashy() && !func_8028EC04()){
                 if( this->actorTypeSpecificField == CH_MOLE_ID_12_OPEN_NOTEDOORS 
                     && !ability_isUnlocked(moleTable[this->actorTypeSpecificField - MOLE_ID_TO_TABLE_SHIFT].ability)
                     && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)

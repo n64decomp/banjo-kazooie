@@ -9,11 +9,11 @@ typedef struct {
     f32 unk4;
 } ActorLocal_Core2_D4050;
 
-void func_8035B900(Actor *this);
-void func_8035BD48(Actor *this);
+void chTeehee_update(Actor *this);
+void chPurpleTeehee_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80372BE0[] ={
+ActorAnimationInfo chTeeheeAnimations[] ={
     {0x00, 0.0f},
     {ASSET_9E_ANIM_TEEHEE_IDLE, 2.0f},
     {ASSET_9F_ANIM_TEEHEE_ALERTED, 1.5f},
@@ -23,17 +23,17 @@ ActorAnimationInfo D_80372BE0[] ={
     {ASSET_2AB_ANIM_TEEHEE_DIE, 1.0f}
 };
 
-ActorInfo D_80372C18 = { //TEEHEE
+ActorInfo chTeeHee = { //TEEHEE
     MARKER_99_TEEHEE, ACTOR_CA_TEEHEE, ASSET_3CB_MODEL_TEEHEE, 
-    0x1, D_80372BE0, 
-    func_8035B900, actor_update_func_80326224, actor_draw, 
+    0x1, chTeeheeAnimations,
+    chTeehee_update, actor_update_func_80326224, actor_draw, 
     6500, 0, 0.9f, 0
 };
 
-ActorInfo D_80372C3C = { //PURPLE_TEEHEE (inside tumblar)
+ActorInfo chPurpleTeeHee = { //PURPLE_TEEHEE (inside tumblar)
     MARKER_296_TEEHEE_PURPLE, ACTOR_3C1_PURPLE_TEEHEE, ASSET_564_MODEL_PURPLE_TEEHEE, 
-    0x1, D_80372BE0, 
-    func_8035B900, func_8035BD48, actor_draw, 
+    0x1, chTeeheeAnimations,
+    chTeehee_update, chPurpleTeehee_update, actor_draw, 
     6500, 0, 0.9f, 0
 };
 
@@ -41,27 +41,48 @@ s32 D_80372C60[3] = {0x46, 0xFE, 0x46};
 
 s32 D_80372C6C[3] = {0xFE, 0x46, 0xFE};
 
+enum chteehee_state_e {
+    CH_TEEHEE_STATE_0_NOT_INIT,
+    CH_TEEHEE_STATE_1_IDLE,
+    CH_TEEHEE_STATE_2_ALERT,
+    CH_TEEHEE_STATE_3_CHASE,
+    CH_TEEHEE_STATE_4_UNK,
+    CH_TEEHEE_STATE_5_UNK,
+    CH_TEEHEE_STATE_6_DIE
+};
+
+enum chpurpleteehee_state_e {
+    CH_PURPLE_TEEHEE_STATE_0_NOT_INIT,
+    CH_PURPLE_TEEHEE_STATE_1_UNK,
+    CH_PURPLE_TEEHEE_STATE_2_UNUSED,
+    CH_PURPLE_TEEHEE_STATE_3_ROAMING,
+    CH_PURPLE_TEEHEE_STATE_4_UNUSED,
+    CH_PURPLE_TEEHEE_STATE_5_UNUSED,
+    CH_PURPLE_TEEHEE_STATE_6_DIE
+};
+
 /* .code */
-void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 arg4[3]){
+void chTeehee_emitDust(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 arg4[3])
+{
     ParticleEmitter *pCtrl = partEmitMgr_newEmitter(cnt);
 
     particleEmitter_setSprite(pCtrl, sprite_id);
     particleEmitter_setRGB(pCtrl, arg4);
     particleEmitter_setPosition(pCtrl, pos);
     particleEmitter_setSpawnPositionRange(pCtrl,
-        -100.0f*scale, 20.0f*scale, -100.0f*scale,
-        100.0f*scale, 200.0f*scale, 100.0f*scale
+        -100.0f * scale, 20.0f * scale, -100.0f * scale,
+        100.0f * scale, 200.0f * scale, 100.0f * scale
     );
     particleEmitter_setAccelerationRange(pCtrl,
-        0.0f, -10.0f*scale, 0.0f,
-        0.0f, -10.0f*scale, 0.0f
+        0.0f, -10.0f * scale, 0.0f,
+        0.0f, -10.0f * scale, 0.0f
     );
     particleEmitter_setParticleVelocityRange(pCtrl,
-        -100.0f*scale, -20.0f*scale, -100.0f*scale,
-        100.0f*scale, 100.0f*scale, 100.0f*scale
+        -100.0f * scale, -20.0f * scale, -100.0f * scale,
+        100.0f * scale, 100.0f * scale, 100.0f * scale
     );
-    particleEmitter_setStartingScaleRange(pCtrl, scale*0.4, scale*0.6);
-    particleEmitter_setFinalScaleRange(pCtrl, scale*1.0, scale*1.4);
+    particleEmitter_setStartingScaleRange(pCtrl, scale * 0.4, scale * 0.6);
+    particleEmitter_setFinalScaleRange(pCtrl, scale * 1.0, scale * 1.4);
     particleEmitter_setSpawnIntervalRange(pCtrl, 0.0f, 0.01f);
     particleEmitter_setParticleLifeTimeRange(pCtrl, 1.0f, 1.4f);
     particleEmitter_setFade(pCtrl, 0.0f, 0.01f);
@@ -69,49 +90,54 @@ void func_8035AFE0(f32 scale, f32 pos[3], s32 cnt, enum asset_e sprite_id, s32 a
     particleEmitter_emitN(pCtrl, cnt);
 }
 
-void func_8035B1CC(ActorMarker *this_marker, ActorMarker *other_marker){
+void chTeehee_die(ActorMarker *this_marker, ActorMarker *other_marker)
+{
     Actor *this = marker_getActor(this_marker);
-    f32 sp30;
+    f32 scale;
 
-    sp30 = this->scale;
-    func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    subaddie_set_state_with_direction(this, 6, 0.01f, 1);
+    scale = this->scale;
+    func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
+    func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
+    subaddie_set_state_with_direction(this, CH_TEEHEE_STATE_6_DIE, 0.01f, 1);
     actor_playAnimationOnce(this);
     actor_collisionOff(this);
     func_80326310(this);
-    func_8035AFE0(sp30, this->position, 8, ASSET_700_SPRITE_DUST, D_80372C60);
+    chTeehee_emitDust(scale, this->position, 8, ASSET_700_SPRITE_DUST, D_80372C60);
 }
 
-void func_8035B2C4(ActorMarker *this_marker, ActorMarker *other_marker){
+void chTeeheePurple_die(ActorMarker *this_marker, ActorMarker *other_marker)
+{
     Actor *this = marker_getActor(this_marker);
-    f32 sp30 = this->scale;
-    func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
-    subaddie_set_state_with_direction(this, 6, 0.01f, 1);
+    f32 scale = this->scale;
+    func_8030E878(SFX_121_AWAWAU, 1.3f, 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
+    func_8030E878(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
+    subaddie_set_state_with_direction(this, CH_PURPLE_TEEHEE_STATE_6_DIE, 0.01f, 1);
     actor_playAnimationOnce(this);
     actor_collisionOff(this);
-    func_8035AFE0(sp30, this->position, 8, ASSET_700_SPRITE_DUST, D_80372C6C);
+    chTeehee_emitDust(scale, this->position, 8, ASSET_700_SPRITE_DUST, D_80372C6C);
 }
 
-void func_8035B3B4(ActorMarker *this_marker, ActorMarker *other_marker){
+void chTeehee_hitPlayer(ActorMarker *this_marker, ActorMarker *other_marker)
+{
     Actor *this = marker_getActor(this_marker);
     this->lifetime_value = 1.0f;
 }
 
-int func_8035B3E4(Actor *this){
-    if(subaddie_playerIsWithinSphereAndActive(this, (s32)(this->scale*600.0f)) && func_803292E0(this))
-        return 1;
-    return 0;
+bool func_8035B3E4(Actor *this)
+{
+    if(subaddie_playerIsWithinSphereAndActive(this, (s32)(this->scale * 600.0f)) && func_803292E0(this))
+        return TRUE;
+    return FALSE;
 }
 
-int func_8035B444(Actor *this, f32 arg1){
+bool func_8035B444(Actor *this, f32 arg1)
+{
     int out;
-    subaddie_turnToYaw(this, arg1);
 
+    subaddie_turnToYaw(this, arg1);
     if(!func_80329054(this, 2) && func_80329480(this))
-        return 0;
-    return 1;
+        return FALSE;
+    return TRUE;
 }
 
 void func_8035B49C(Actor *this){
@@ -127,16 +153,16 @@ void func_8035B49C(Actor *this){
 }
 
 void func_8035B56C(Actor *this){
-    f32 sp2C;
+    f32 scale_doubled;
     f32 plyr_pos[3];
     
-    sp2C = 2*(f64)this->scale;
+    scale_doubled = 2 * (f64)this->scale;
     player_getPosition(plyr_pos);
 
     if(this->position_y < plyr_pos[1]){
-        if(this->position_y + sp2C < plyr_pos[1]){
-            this->position_y = this->position_y + sp2C;
-            this->velocity_x += sp2C;
+        if(this->position_y + scale_doubled < plyr_pos[1]){
+            this->position_y = this->position_y + scale_doubled;
+            this->velocity_x += scale_doubled;
         }
         else{
             this->velocity_x += plyr_pos[1] - this->position_y;
@@ -144,9 +170,9 @@ void func_8035B56C(Actor *this){
         }
     }
     else if(plyr_pos[1] < this->position_y){
-        if(plyr_pos[1] < this->position_y - sp2C){
-            this->position_y = this->position_y - sp2C;
-            this->velocity_x -= sp2C;
+        if(plyr_pos[1] < this->position_y - scale_doubled){
+            this->position_y = this->position_y - scale_doubled;
+            this->velocity_x -= scale_doubled;
         }
         else{
              this->velocity_x -= (this->position_y - plyr_pos[1]);
@@ -170,14 +196,14 @@ void func_8035B6CC(Actor *this){
     subaddie_set_state_with_direction(this, 2, 0.01f, 1);
     actor_playAnimationOnce(this);
     this->actor_specific_1_f = 1.0f;
-    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
+    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
 }
 
 void func_8035B75C(Actor *this){
     subaddie_set_state_with_direction(this, 3, 0.01f, 1);
     actor_loopAnimation(this);
     this->actor_specific_1_f = volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE) ? 0.0 : 12.0;
-    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
+    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
 }
 
 void func_8035B824(Actor *this){
@@ -196,78 +222,78 @@ void func_8035B8A8(Actor *this){
     func_80328CEC(this, (s32)this->yaw_ideal, 0xE1, 0x87);
 }  
 
-void func_8035B900(Actor *this){
+void chTeehee_update(Actor *this){
     ActorLocal_Core2_D4050 *local = (ActorLocal_Core2_D4050 *)&this->local;
-    s32 sp30 = globalTimer_getTime();
-    f32 sp2C = time_getDelta();
+    s32 global_time = globalTimer_getTime();
+    f32 time_delta = time_getDelta();
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
-        marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B1CC);
+        marker_setCollisionScripts(this->marker, NULL, chTeehee_hitPlayer, chTeehee_die);
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
         this->velocity_z = 0.0f;
         this->lifetime_value = 0.0f;
-        this->unk1C[0] = this->position_y + this->scale*100.0f;
-        this->velocity_y = this->scale*2.0;
+        this->unk1C[0] = this->position_y + this->scale * 100.0f;
+        this->velocity_y = this->scale * 2.0;
         this->velocity_x = this->unk1C[0];
         local->unk0 = randf2(1.0f, 4.5f);
         anctrl_setTransitionDuration(this->anctrl, 0.8f);
     }//L8035B9D4
     
-    if(0.0 < this->lifetime_value - sp2C){
-        this->lifetime_value -= sp2C;
+    if(0.0 < this->lifetime_value - time_delta){
+        this->lifetime_value -= time_delta;
     }
     else{//L8035BA08
         switch(this->state){
-            case 1: //L8035BA30
+            case CH_TEEHEE_STATE_1_IDLE: //L8035BA30
                 func_8035B49C(this);
                 if(func_8035B3E4(this)){
                     func_8035B6CC(this);
                 }
-                else if(0.0 < local->unk0 - sp2C){
-                    local->unk0 = local->unk0 - sp2C;
+                else if(0.0 < local->unk0 - time_delta){
+                    local->unk0 = local->unk0 - time_delta;
                 }
                 else{
                     func_8035B824(this);
                 }
                 break;
-            case 2: //L8035BA98
+            case CH_TEEHEE_STATE_2_ALERT: //L8035BA98
                 this->yaw_ideal = subaddie_getYawToPlayer(this);
                 func_8035B444(this, 4.0f);
                 if(actor_animationIsAt(this, 0.99f)){
                     func_8035B75C(this);
                 }
                 break;
-            case 3: //L8035BAE0
+            case CH_TEEHEE_STATE_3_CHASE: //L8035BAE0
                 func_8035B56C(this);
-                if((sp30 & 0x3F) == 7 && randf() < 0.7){
-                    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
+                if((global_time & 0x3F) == 7 && randf() < 0.7){
+                    func_8030E878(0x3F4, randf2(1.0f, 1.2f), 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
                 }//L8035BB6C
                 this->yaw_ideal = subaddie_getYawToPlayer(this);
                 if(!func_8035B3E4(this) || !func_8035B444(this, 5.0f)){
                     func_8035B674(this);
                 }
                 break;
-            case 4: //L8035BBB0
+            case CH_TEEHEE_STATE_4_UNK: //L8035BBB0
                 func_8035B49C(this);
                 if(!func_8035B444(this, 2.0f)){
                     func_8035B8A8(this);
                 }
-                else if(local->unk4 - sp2C <= 0.0){
+                else if(local->unk4 - time_delta <= 0.0){
                     func_8035B674(this);
                 }
                 else{
-                    local->unk4 = local->unk4 - sp2C;
+                    local->unk4 = local->unk4 - time_delta;
                 }
                 break;
-            case 5: //L8035BC1C
+            case CH_TEEHEE_STATE_5_UNK: //L8035BC1C
                 func_8035B49C(this);
                 subaddie_turnToYaw(this, 3.0f);
                 if(func_80329480(this)){
                     func_8035B674(this);
                 }
                 break;
-            case 6: //L8035BC48
+            case CH_TEEHEE_STATE_6_DIE: //L8035BC48
                 break;
         }
     }//L8035BC48
@@ -297,12 +323,12 @@ int func_8035BC5C(Actor *this, s32 target, s32 delta){
     return done;
 }
 
-void func_8035BD48(Actor *this){
+void chPurpleTeehee_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         this->marker->propPtr->unk8_3 = FALSE;
         actor_collisionOn(this);
-        marker_setCollisionScripts(this->marker, NULL, func_8035B3B4, func_8035B2C4);
+        marker_setCollisionScripts(this->marker, NULL, chTeehee_hitPlayer, chTeeheePurple_die);
         mapSpecificFlags_set(3, FALSE);
         mapSpecificFlags_set(4, FALSE);
         if(gsworld_getMap() == MAP_24_MMM_TUMBLARS_SHED){
@@ -312,32 +338,32 @@ void func_8035BD48(Actor *this){
                 marker_despawn(this->marker);
             }
             else{//L8035BE04
-                subaddie_set_state_with_direction(this, 1, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CH_PURPLE_TEEHEE_STATE_1_UNK, 0.01f, 1);
                 actor_setOpacity(this, 0);
             }
         }
         else{//L8035BE2C
-            subaddie_set_state_with_direction(this, 3, 0.01f, 1);
+            subaddie_set_state_with_direction(this, CH_PURPLE_TEEHEE_STATE_3_ROAMING, 0.01f, 1);
             actor_setOpacity(this, 0xff);
         }
     }//L8035BE50
 
     switch(this->state){
-        case 1: //L8035BE78
+        case CH_PURPLE_TEEHEE_STATE_1_UNK: //L8035BE78
             actor_collisionOff(this);
             if(mapSpecificFlags_getClear(4)){
                 marker_despawn(this->marker);
             }
             else if(mapSpecificFlags_getClear(3)){
-                subaddie_set_state_with_direction(this, 3, 0.01f, 1);
+                subaddie_set_state_with_direction(this, CH_PURPLE_TEEHEE_STATE_3_ROAMING, 0.01f, 1);
             }
             break;
-        case 3: //L8035BECC
+        case CH_PURPLE_TEEHEE_STATE_3_ROAMING: //L8035BECC
             this->unk58_0 = TRUE;
             actor_collisionOn(this);
             if(mapSpecificFlags_getClear(4)){
                 this->unk38_0 = TRUE;
-                func_8035B2C4(this->marker, NULL);
+                chTeeheePurple_die(this->marker, NULL);
             }
             else{//L8035BF14
                 if(this->alpha_124_19 == 0xFF || func_8035BC5C(this, 0xff, 0xA)){
@@ -345,11 +371,11 @@ void func_8035BD48(Actor *this){
                 }
 
                 if((globalTimer_getTime() &0x3F) == 7 && randf() < 0.7){
-                    func_8030E878(0x3f4, randf2(1.0f, 1.2f), 32000, this->position, this->scale*400.0f, this->scale*1800.0f);
+                    func_8030E878(0x3f4, randf2(1.0f, 1.2f), 32000, this->position, this->scale * 400.0f, this->scale * 1800.0f);
                 }
             }
             break;
-        case 6: //L8035BFD4
+        case CH_PURPLE_TEEHEE_STATE_6_DIE: //L8035BFD4
             if(func_8035BC5C(this, 0, -7)){
                 this->unk58_0 = FALSE;
                 this->unk48 = 0.0f;
@@ -358,7 +384,7 @@ void func_8035BD48(Actor *this){
                     marker_despawn(this->marker);
                 }
                 else{
-                    subaddie_set_state_with_direction(this, 1, 0.01f, 1);
+                    subaddie_set_state_with_direction(this, CH_PURPLE_TEEHEE_STATE_1_UNK, 0.01f, 1);
                     timedFunc_set_2(randf2(5.0f, 10.0f), mapSpecificFlags_set, 3, TRUE);
                 }
             }

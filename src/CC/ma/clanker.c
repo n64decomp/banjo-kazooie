@@ -19,7 +19,7 @@ extern int func_80340020(s32, f32[3], s32, f32, s32, BKVertexList *, f32[3], f32
 extern void boneTransformList_getBoneScale(s32, s32, f32[3]);
 extern void boneTransformList_setBoneScale(s32, s32, f32[3]);
 extern void func_8033A9A8(s32, s32, f32[3]);
-extern void func_8033A45C(s32, s32);
+extern void modelRender_setAppendageVisibility(s32, s32);
 extern void modelRender_setBoneTransformList(s32);
 extern void func_8028FAB0(f32[3]);
 extern void baModel_802921D4(f32[3]);
@@ -192,19 +192,19 @@ void maClanker_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     maClanker.vertexList1 = maClanker.vertexList2;
     maClanker.vertexList2 = tmp_vertex_list;
 
-    func_8033A45C(1, (maClanker.currentState == MACLANKER_STATE_3_IDLE_RAISED) ? 1 : 0);
+    modelRender_setAppendageVisibility(1, (maClanker.currentState == MACLANKER_STATE_3_IDLE_RAISED) ? 1 : 0);
     tmp_s0 = (viewport_position[0] < 100.0f)? 0 : 1;
-    func_8033A45C(2, 1);
-    func_8033A45C(3, 1);
-    func_8033A45C(4, tmp_s0);
-    func_8033A45C(5, tmp_s0);
-    func_8033A45C(6, tmp_s0);
-    func_8033A45C(7, tmp_s0);
-    func_8033A45C(8, tmp_s0);
+    modelRender_setAppendageVisibility(2, 1);
+    modelRender_setAppendageVisibility(3, 1);
+    modelRender_setAppendageVisibility(4, tmp_s0);
+    modelRender_setAppendageVisibility(5, tmp_s0);
+    modelRender_setAppendageVisibility(6, tmp_s0);
+    modelRender_setAppendageVisibility(7, tmp_s0);
+    modelRender_setAppendageVisibility(8, tmp_s0);
     if(tmp_s0){
         tmp_s0 = (s32)(maClanker.unk4C * 3.99 + 1.0);
-        func_8033A45C(2, tmp_s0);
-        func_8033A45C(3, tmp_s0);
+        modelRender_setAppendageVisibility(2, tmp_s0);
+        modelRender_setAppendageVisibility(3, tmp_s0);
     }
     modelRender_setBoneTransformList(bone_transform_list);
     modelRender_setRefPoints(maClanker.unk34);

@@ -121,14 +121,14 @@ void code_5BF0_setState(Actor *this, s32 next_state) {
 }
 
 Actor *func_8038C380(ActorMarker* marker, Gfx** gfx, Mtx** mtx, Vtx** vtx) {
-    func_8033A45C(3, 0);
-    func_8033A45C(4, 0);
-    func_8033A45C(5, 0);
-    func_8033A45C(6, 1);
-    func_8033A45C(7, 0);
-    func_8033A45C(8, 0);
-    func_8033A45C(9, 0);
-    func_8033A45C(0xA, 1);
+    modelRender_setAppendageVisibility(3, 0);
+    modelRender_setAppendageVisibility(4, 0);
+    modelRender_setAppendageVisibility(5, 0);
+    modelRender_setAppendageVisibility(6, 1);
+    modelRender_setAppendageVisibility(7, 0);
+    modelRender_setAppendageVisibility(8, 0);
+    modelRender_setAppendageVisibility(9, 0);
+    modelRender_setAppendageVisibility(0xA, 1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

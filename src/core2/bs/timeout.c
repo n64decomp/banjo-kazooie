@@ -3,27 +3,27 @@
 #include "variables.h"
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
-
+#include "core2/yaw.h"
 
 void baeyes_openSingleEye(s32, f32);
 f32 func_8029B41C(void);
 void ncbadie_func_802BF2C0(f32);
 
-void func_802B6270(void){
+void timeout_banjo_init(void){
     baanim_playForDuration_once(ASSET_77_ANIM_BSTIMEOUT, 3.2f);
-    func_8029C7F4(1,1,3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_802914CC(0xd);
+    func_802914CC(0xD);
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncbadie_func_802BF2C0(80.0f);
-    func_8025A58C(0,0xfa0);
+    func_8025A58C(0, 4000);
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     core1_ce60_incOrDecCounter(FALSE);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     baMarker_collisionOff();
 }
 
-void func_802B6314(void){
+void timeout_banjo_update(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     if(anctrl_isAt(aCtrl, 0.0625f))
         baeyes_close();
@@ -40,37 +40,37 @@ void func_802B6314(void){
         func_8029B6F0();
 }
 
-void func_802B63C8(void){
+void timeout_banjo_end(void){
     baeyes_open();
     func_80291548();
     core1_ce60_incOrDecCounter(TRUE);
 }
 
-void func_802B63F8(void){
+void timeout_transformation_init(void){
     AnimCtrl *aCtrl = baanim_getAnimCtrlPtr();
     anctrl_reset(aCtrl);
     func_8029C848(aCtrl);
     anctrl_setPlaybackType(aCtrl,  ANIMCTRL_LOOP);
-    anctrl_start(aCtrl, "bstimeout.c", 0x7e);
-    func_8029C7F4(1,1,3,BA_PHYSICS_FREEZE);
+    anctrl_start(aCtrl, "bstimeout.c", 0x7E);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_FREEZE);
     baphysics_set_target_horizontal_velocity(0.0f);
-    func_802914CC(0xd);
+    func_802914CC(0xD);
     yaw_setIdeal(func_8029B41C() + 35.0f);
     ncbadie_func_802BF2C0(80.0f);
-    func_8025A58C(0,0xfa0);
+    func_8025A58C(0, 4000);
     comusic_playTrack(COMUSIC_3C_MINIGAME_LOSS);
     core1_ce60_incOrDecCounter(FALSE);
     baMarker_collisionOff();
     batimer_set(0, 2.9f);
 }
 
-void func_802B64D0(void){
+void timeout_transformation_update(void){
     if(batimer_decrement(0))
         func_8029B6F0();
 }
 
-void func_802B6500(void){
-    func_8029E070(0);
+void timeout_transformation_end(void){
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     func_80291548();
     core1_ce60_incOrDecCounter(TRUE);
     func_8025A904();

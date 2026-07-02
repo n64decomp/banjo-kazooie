@@ -33,7 +33,7 @@ extern ActorInfo chPortraitTeeHee;
 extern ActorInfo chPortraitMinion;
 
 extern ActorInfo D_80367E70;
-extern ActorInfo D_80372C3C;
+extern ActorInfo chPurpleTeeHee;
 
 extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 extern void func_8025AE0C(s32, f32);
@@ -422,5 +422,5 @@ void MMM_func_803890E0(void){
     spawnableActorList_add(&chPortraitTreeAndMoon, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_23);
     spawnableActorList_add(&chPortraitTeeHee, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_23);
     spawnableActorList_add(&chPortraitMinion, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_23);
-    spawnableActorList_add(&D_80372C3C, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17 | ACTOR_FLAG_UNKNOWN_19);
+    spawnableActorList_add(&chPurpleTeeHee, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_12 | ACTOR_FLAG_UNKNOWN_17 | ACTOR_FLAG_UNKNOWN_19);
 }

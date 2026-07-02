@@ -217,6 +217,7 @@ bool func_802E74A0(f32 arg0[3], f32 arg1, f32 arg2[3], f32 arg3[3]) {
     return TRUE;
 }
 
+// Unused
 bool func_802E7588(f32 arg0[3], f32 arg1, f32 arg2[3], f32 arg3) {
     return (ml_vec3f_distance(arg0, arg2) < (arg1 + arg3));
 }

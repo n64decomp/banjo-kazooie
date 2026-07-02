@@ -10,7 +10,7 @@ extern UNK_TYPE(s32) func_802E92AC(BKCollisionList *, BKVertexList *, f32[3], f3
 extern s32 bkmodelunk14list_func_802EC394(BKModelUnk14List *arg0, s32 arg1, s32 arg2, f32 arg3, s32 arg4, s32 arg5, s32 arg6);
 extern void vtxList_getBounds_s32(BKVertexList *, s32[3], s32[3]);
 extern void func_802F7BC0(Gfx **, Mtx **, Vtx **);
-extern void func_8033A45C(s32, s32);
+extern void modelRender_setAppendageVisibility(s32, s32);
 
 
 BKCollisionTriangle *func_80309B48(f32 arg0[3], f32 arg1[3], f32 arg2[3], s32 arg3) ;
@@ -240,100 +240,100 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     if (func_80320708() && levelSpecificFlags_validateCRC2() && dummy_func_80320248()) {
         if (mapModel_getOpaModelId() == ASSET_14CF_MODEL_SM_SPIRAL_MOUNTAIN_OPA) {
-            func_8033A45C(1, 0);
-            func_8033A45C(2, 1);
+            modelRender_setAppendageVisibility(1, 0);
+            modelRender_setAppendageVisibility(2, 1);
         }
         switch (gsworld_getMap()) {                          /* irregular */
         case MAP_88_CS_SPIRAL_MOUNTAIN_6:
             if (mapSpecificFlags_get(0) != 0) {
-                func_8033A45C(1, 1);
-                func_8033A45C(2, 0);
+                modelRender_setAppendageVisibility(1, 1);
+                modelRender_setAppendageVisibility(2, 0);
             }
             break;
 
         case MAP_12_GV_GOBIS_VALLEY:
-            func_8033A45C(1, levelSpecificFlags_get(LEVEL_FLAG_6_GV_UNKNOWN) ? 1 : 0);
-            func_8033A45C(2, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 0 : 1);
-            func_8033A45C(5, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 1 : 0);
+            modelRender_setAppendageVisibility(1, levelSpecificFlags_get(LEVEL_FLAG_6_GV_UNKNOWN) ? 1 : 0);
+            modelRender_setAppendageVisibility(2, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 0 : 1);
+            modelRender_setAppendageVisibility(5, jiggyscore_isCollected(JIGGY_42_GV_WATER_PYRAMID) ? 1 : 0);
             break;
 
         case MAP_14_GV_SANDYBUTTS_MAZE:
-            func_8033A45C(5, (player_movementGroup() == BSGROUP_4_LOOK) ? 1 : 0);
+            modelRender_setAppendageVisibility(5, (player_movementGroup() == BSGROUP_4_LOOK) ? 1 : 0);
             break;
 
         case MAP_E_MM_MUMBOS_SKULL:
-            func_8033A45C(1, 1);
-            func_8033A45C(5, 1);
+            modelRender_setAppendageVisibility(1, 1);
+            modelRender_setAppendageVisibility(5, 1);
             break;
 
         case MAP_47_BGS_MUMBOS_SKULL:
-            func_8033A45C(1, 2);
-            func_8033A45C(5, 2);
+            modelRender_setAppendageVisibility(1, 2);
+            modelRender_setAppendageVisibility(5, 2);
             break;
 
         case MAP_48_FP_MUMBOS_SKULL:
-            func_8033A45C(1, 3);
-            func_8033A45C(5, 3);
+            modelRender_setAppendageVisibility(1, 3);
+            modelRender_setAppendageVisibility(5, 3);
             break;
 
         case MAP_30_MMM_MUMBOS_SKULL:
-            func_8033A45C(1, 4);
-            func_8033A45C(5, 4);
+            modelRender_setAppendageVisibility(1, 4);
+            modelRender_setAppendageVisibility(5, 4);
             break;
             
         case MAP_4A_CCW_SPRING_MUMBOS_SKULL:
-            func_8033A45C(1, 5);
-            func_8033A45C(5, 5);
+            modelRender_setAppendageVisibility(1, 5);
+            modelRender_setAppendageVisibility(5, 5);
             break;
         case MAP_4B_CCW_SUMMER_MUMBOS_SKULL:
-            func_8033A45C(1, 6);
-            func_8033A45C(5, 6);
+            modelRender_setAppendageVisibility(1, 6);
+            modelRender_setAppendageVisibility(5, 6);
             break;
         case MAP_4C_CCW_AUTUMN_MUMBOS_SKULL:
-            func_8033A45C(1, 7);
-            func_8033A45C(5, 7);
+            modelRender_setAppendageVisibility(1, 7);
+            modelRender_setAppendageVisibility(5, 7);
             break;
         case MAP_4D_CCW_WINTER_MUMBOS_SKULL:
-            func_8033A45C(1, 8);
-            func_8033A45C(5, 8);
+            modelRender_setAppendageVisibility(1, 8);
+            modelRender_setAppendageVisibility(5, 8);
             break;
         case MAP_5E_CCW_SPRING_NABNUTS_HOUSE:
         case MAP_5F_CCW_SUMMER_NABNUTS_HOUSE:
         case MAP_60_CCW_AUTUMN_NABNUTS_HOUSE:
-            func_8033A45C(1, 1);
-            func_8033A45C(2, 0);
+            modelRender_setAppendageVisibility(1, 1);
+            modelRender_setAppendageVisibility(2, 0);
             break;
         case MAP_61_CCW_WINTER_NABNUTS_HOUSE:
-            func_8033A45C(1, 0);
-            func_8033A45C(2, 1);
+            modelRender_setAppendageVisibility(1, 0);
+            modelRender_setAppendageVisibility(2, 1);
             break;
         case MAP_1D_MMM_CELLAR:
-            func_8033A45C(1, actorArray_findActorFromActorId(0x191) ?  0 : 1);
+            modelRender_setAppendageVisibility(1, actorArray_findActorFromActorId(0x191) ?  0 : 1);
             break;
         case MAP_7C_CS_INTRO_BANJOS_HOUSE_1:
         case MAP_89_CS_INTRO_BANJOS_HOUSE_2:
         case MAP_8A_CS_INTRO_BANJOS_HOUSE_3:
         case MAP_8C_SM_BANJOS_HOUSE:
         case MAP_91_FILE_SELECT:
-            func_8033A45C(5, 1);
+            modelRender_setAppendageVisibility(5, 1);
             break;
         case MAP_7B_CS_INTRO_GL_DINGPOT_1:
         case MAP_81_CS_INTRO_GL_DINGPOT_2:
-            func_8033A45C(4, 0);
-            func_8033A45C(5, 0);
-            func_8033A45C(6, 0);
+            modelRender_setAppendageVisibility(4, 0);
+            modelRender_setAppendageVisibility(5, 0);
+            modelRender_setAppendageVisibility(6, 0);
             break;
         case MAP_82_CS_ENTERING_GL_MACHINE_ROOM:
         case MAP_83_CS_GAME_OVER_MACHINE_ROOM:
         case MAP_84_CS_UNUSED_MACHINE_ROOM:
-            func_8033A45C(4, 1);
-            func_8033A45C(5, 1);
-            func_8033A45C(6, 1);
+            modelRender_setAppendageVisibility(4, 1);
+            modelRender_setAppendageVisibility(5, 1);
+            modelRender_setAppendageVisibility(6, 1);
             break;
         case MAP_93_GL_DINGPOT:
-            func_8033A45C(4, 1);
-            func_8033A45C(5, 1);
-            func_8033A45C(6, (jigsawPicture_isJigsawPictureComplete(0xA) || fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)));
+            modelRender_setAppendageVisibility(4, 1);
+            modelRender_setAppendageVisibility(5, 1);
+            modelRender_setAppendageVisibility(6, (jigsawPicture_isJigsawPictureComplete(0xA) || fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) || volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)));
             break;
         }
         modelRender_setRefPoints(mapModel.unk24);
@@ -355,7 +355,7 @@ void mapModel_xlu_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 
     if (mapModel.model_bin_xlu != NULL) {
         if (gsworld_getMap() == MAP_1D_MMM_CELLAR) {
-            func_8033A45C(1, (actorArray_findActorFromActorId(0x191) != NULL) ? 0 : 1);
+            modelRender_setAppendageVisibility(1, (actorArray_findActorFromActorId(0x191) != NULL) ? 0 : 1);
         }
         modelRender_setDepthMode(MODEL_RENDER_DEPTH_COMPARE);
         temp_a0 = mapModel.unk4;

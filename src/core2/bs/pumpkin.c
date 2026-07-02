@@ -5,6 +5,7 @@
 #include "core2/ba/model.h"
 #include "core2/ba/anim.h"
 #include "core2/ba/physics.h"
+#include "core2/yaw.h"
 
 extern void baanim_playForDuration_loop(s32, f32);
 extern void func_8029AD68(f32, s32);
@@ -53,8 +54,8 @@ void func_802B223C(void) {
 void func_802B229C(void) {
     if (!bspumpkin_inSet(bs_getNextState())) {
         bastick_resetZones();
-        func_8029E070(0);
-        func_8029E064(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
+        modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
         baflag_clear(BA_FLAG_3);
         baflag_clear(BA_FLAG_4);
         func_80293D74();
@@ -75,7 +76,7 @@ int bspumpkin_inSet(s32 move_indx){
 
 void bspumpkin_idle_init(void) {
     baanim_playForDuration_loop(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
-    func_8029C7F4(1, 1, 1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
@@ -119,7 +120,7 @@ void bspumpkin_walk_init(void) {
     anctrl_setDuration(anim_ctrl, 0.8f);
     anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_LOOP);
     anctrl_start(anim_ctrl, "bspumpkin.c", 0x11D);
-    func_8029C7F4(2, 1, 1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364CF0, D_80364CF4, D_80364CF8, D_80364CFC);
     func_802900B4();
 }
@@ -158,7 +159,7 @@ void bspumpkin_jump_init(void) {
     anctrl_setDuration(anim_ctrl, 1.2f);
     anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_ONCE);
     anctrl_start(anim_ctrl, "bspumpkin.c", 0x16C);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if (bastick_distance() != 0.0f) {
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     }
@@ -252,7 +253,7 @@ void bspumpkin_fall_init(void) {
     anctrl_setDuration(anim_ctrl, 0.7f);
     anctrl_setPlaybackType(anim_ctrl, ANIMCTRL_STOPPED);
     anctrl_start(anim_ctrl, "bspumpkin.c", 0x1F1);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     D_8037D4E0 = 0;
 }
 
@@ -303,16 +304,16 @@ void bspumpkin_fall_end(void){
     func_802B229C();
 }
 
-void func_802B2BF0(void) {
+void bspumpkin_flush_init(void) {
     func_8029656C(D_8037D4E8);
     func_8028FAB0(D_8037D4E8);
     baanim_playForDuration_loop(ASSET_A0_ANIM_BSPUMPKIN_WALK, 0.8f);
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_FREEZE);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_FREEZE);
     func_80294378(6);
     batimer_set(0, 0.0f);
 }
 
-void func_802B2C58(void) {
+void bspumpkin_flush_update(void) {
     f32 sp3C;
     f32 sp38;
     f32 sp34;
@@ -330,7 +331,7 @@ void func_802B2C58(void) {
     func_8028FAB0(sp28);
 }
 
-void func_802B2D50(void) {
+void bspumpkin_flush_end(void) {
     func_80294378(1);
     baModel_setScale(1.0f);
 }
@@ -361,7 +362,7 @@ void __bspumpkin_bounce_init(s32 arg0) {
     baphysics_set_target_horizontal_velocity(200.0f);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
@@ -450,7 +451,7 @@ void bspumpkin_die_init(void) {
     baphysics_set_target_horizontal_velocity(D_8037D4F4);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1, 1, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -532,15 +533,15 @@ void bspumpkin_die_end(void) {
     func_80291548();
 }
 
-void func_802B34A0(void) {
+void bspumpkin_locked_init(void) {
     baanim_playForDuration_loopSmooth(0xA0, 0.8f);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }
 
-void func_802B34F8(void) {
+void bspumpkin_locked_update(void) {
     s32 next_state;
 
     next_state = 0;
@@ -552,7 +553,7 @@ void func_802B34F8(void) {
     bs_setState(next_state);
 }
 
-void func_802B353C(void) {
+void bspumpkin_locked_end(void) {
     func_8029C748();
     func_802B229C();
 }

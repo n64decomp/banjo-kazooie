@@ -413,7 +413,7 @@ Actor *func_802D3F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     phi_s2 = this->actorTypeSpecificField;
     for(i = 0; i < 9; i++){
-        func_8033A45C(i + 1, i+1 == phi_s2);
+        modelRender_setAppendageVisibility(i + 1, i+1 == phi_s2);
     }
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
@@ -478,9 +478,9 @@ Actor *func_802D41C4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     sp2C = this->actorTypeSpecificField;
     for(i = 0; i < 6; i++){
-        func_8033A45C(i+1, FALSE);
+        modelRender_setAppendageVisibility(i+1, FALSE);
     }
-    func_8033A45C(sp2C, TRUE);
+    modelRender_setAppendageVisibility(sp2C, TRUE);
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
@@ -555,7 +555,7 @@ Actor *func_802D4588(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_a1;
 
     phi_a1 = (marker_getActor(marker)->unk38_0) ? ((globalTimer_getTime() & 4) != 0) ? 1 : 2 : 2;
-    func_8033A45C(1, phi_a1);
+    modelRender_setAppendageVisibility(1, phi_a1);
     return actor_draw(marker, gfx, mtx, vtx);
 }
 

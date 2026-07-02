@@ -164,9 +164,9 @@ Actor *chfinalboss_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this = marker_getActor(marker);
     ActorLocal_FinalBoss *local = (ActorLocal_FinalBoss *)&this->local;
 
-    func_8033A45C(3, local->unkD);
-    func_8033A45C(4, local->unkE);
-    func_8033A45C(5, local->unkC);
+    modelRender_setAppendageVisibility(3, local->unkD);
+    modelRender_setAppendageVisibility(4, local->unkE);
+    modelRender_setAppendageVisibility(5, local->unkC);
 
     if (local->phase == FINALBOSS_PHASE_1_BROOMSTICK) {
         modelRender_func_8033A25C(FALSE);

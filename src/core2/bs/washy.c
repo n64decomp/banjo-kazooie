@@ -4,6 +4,7 @@
 
 #include "core2/ba/physics.h"
 #include "core2/ba/timer.h"
+#include "core2/yaw.h"
 
 /* .bss */
 u8 D_8037D5D0;
@@ -42,18 +43,18 @@ void func_802B9980(s32 arg0){
     D_8037D5D0 = arg0;
 }
 
-void func_802B9AAC(void){
+void bswashy_end(void){
     func_802900FC();
 }
 
-void func_802B9ACC(void){
+void bswashy_init(void){
     baanim_playForDuration_once(ASSET_281_ANIM_WISHYWASHY_DOOOH, 40.0f);
-    func_8029C7F4(1, 1, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     func_802900B4();
     func_802B9980(0);
 }
 
-void func_802B9B14(void){
+void bswashy_update(void){
     s32 next_state = 0;
     s32 sp18;
 

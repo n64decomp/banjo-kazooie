@@ -42,9 +42,9 @@ void bsbpeck_init(void){
         bafalldamage_set_state(2);
 
     baanim_playForDuration_onceSmooth(ASSET_1A_ANIM_BSBPECK, 0.2f);
-    func_8029C7F4(1,YAW_STATE_3_BOUNDED, 1, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_3_BOUNDED, 1, BA_PHYSICS_AIRBORN);
     yaw_setVelocityBounded(1200.0f, 10.0f);
-    func_8029E070(1);
+    modelAppendages_setKazooiesUpperHalfVisibility(TRUE);
     baphysics_set_gravity(D_80364A60);
     baphysics_set_vertical_velocity(D_80364A64);
     baModel_80292048(1, -38.0f, 0.0f, 105.0f);
@@ -137,6 +137,6 @@ void bsbpeck_end(void){
     baModel_80292048(1, 0.0f, 0.0f, 0.0f);
     baModel_80292048(0, 0.0f, 0.0f, 0.0f);
     baMarker_8028D638(0, 0);
-    func_8029E070(0);
+    modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
     baphysics_reset_gravity();
 }

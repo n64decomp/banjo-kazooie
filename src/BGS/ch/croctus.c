@@ -238,6 +238,6 @@ void BGS_func_803885DC(void){
 Actor *chCroctus_draw(ActorMarker *this, Gfx** gdl, Mtx ** mptr, Vtx **vtx){
     Actor *thisActor; 
     thisActor = marker_getActor(this);
-    func_8033A45C(1, thisActor->actorTypeSpecificField);
+    modelRender_setAppendageVisibility(1, thisActor->actorTypeSpecificField);
     return actor_draw(this, gdl, mptr, vtx);
 }

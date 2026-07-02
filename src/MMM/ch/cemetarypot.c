@@ -38,11 +38,11 @@ void chFlowerpot_setRemaining(s32 arg0) {
 void MMM_func_803871FC(Actor *this) {
     switch (this->state) {
         case FLOWER_POT_STATE_1_IDLE:
-            func_8033A45C(3, FALSE);
+            modelRender_setAppendageVisibility(3, FALSE);
             break;
 
         case FLOWER_POT_STATE_2_FLOWERED:
-            func_8033A45C(3, TRUE);
+            modelRender_setAppendageVisibility(3, TRUE);
             break;
     }
 

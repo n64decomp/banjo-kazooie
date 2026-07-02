@@ -555,8 +555,8 @@ void modelRender_reset(void){
     D_803837B0.unk0 = 0;
     sSecondaryModelData.model_id = NULL;
     modelRenderDepthMode = MODEL_RENDER_DEPTH_NONE;
-    func_8033A45C(1,1);
-    func_8033A45C(2,0);
+    modelRender_setAppendageVisibility(1,1);
+    modelRender_setAppendageVisibility(2,0);
     if(D_80383758.unk18){
         viewport_setPosition_vec3f(D_80383758.unk1C);
         viewport_setRotation_vec3f(D_80383758.unk28);
@@ -1348,8 +1348,8 @@ void modelRender_setRefPoints(Vec3fArray *ref_points) {
     modelRenderRefPoints = ref_points;
 }
 
-void func_8033A45C(s32 arg0, s32 arg1){
-    D_80383658[arg0] = arg1;
+void modelRender_setAppendageVisibility(s32 appendage_id, s32 appendage_visibility){
+    D_80383658[appendage_id] = appendage_visibility;
 }
 
 void modelRender_func_8033A470(s32 arg0, s32 arg1){

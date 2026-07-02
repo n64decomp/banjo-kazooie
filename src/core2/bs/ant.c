@@ -50,11 +50,11 @@ void func_8029E48C(void){
     }
 }
 
-void func_8029E4EC(void){
+void bsant_end(void){
     if(!bsant_inSet(bs_getNextState())){
         bastick_resetZones();
-        func_8029E070(0);
-        func_8029E064(0);
+        modelAppendages_setKazooiesUpperHalfVisibility(FALSE);
+        modelAppendages_setKazooiesFeetAndShoesVisibility(FALSE);
         baflag_clear(BA_FLAG_3);
         baflag_clear(BA_FLAG_4);
         func_80293D74();
@@ -69,8 +69,8 @@ void func_8029E554(void){
 
 int bsant_inSet(s32 move_indx){
     return (move_indx == BS_35_ANT_IDLE)
-    || (move_indx == BS_ANT_WALK)
-    || (move_indx == BS_ANT_JUMP)
+    || (move_indx == BS_36_ANT_WALK)
+    || (move_indx == BS_37_ANT_WALK)
     || (move_indx == BS_38_ANT_FALL)
     || (move_indx == BS_3E_ANT_OW)
     || (move_indx == BS_43_ANT_DIE)
@@ -81,7 +81,7 @@ int bsant_inSet(s32 move_indx){
 void bsant_idle_init(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 1.2f);
-    func_8029C7F4(1,YAW_STATE_1_DEFAULT,1,BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 1, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     pitch_setAngVel(1000.0f, 12.0f);
     roll_setAngularVelocity(1000.0f, 12.0f);
@@ -101,23 +101,23 @@ void bsant_idle_update(void){
         new_state = badrone_look();
 
     if(bastick_getZone() > 0)
-        new_state = BS_ANT_WALK;
+        new_state = BS_36_ANT_WALK;
 
     if(bakey_pressed(BUTTON_A))
-        new_state = BS_ANT_JUMP;
+        new_state = BS_37_ANT_WALK;
 
     bs_setState(new_state);
 }
 
 void bsant_idle_end(void){
     func_802900FC();
-    func_8029E4EC();
+    bsant_end();
 }
 
 void bsant_walk_init(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5F_ANIM_BSANT_WALK, 0.8f);
-    func_8029C7F4(2, YAW_STATE_1_DEFAULT,1, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(2, YAW_STATE_1_DEFAULT,1, BA_PHYSICS_NORMAL);
     baanim_setVelocityMapRanges(D_80364960, D_80364964, D_80364968, D_8036496C);
     func_802900B4();
 }
@@ -142,13 +142,13 @@ void bsant_walk_update(void){
         sp1C = BS_38_ANT_FALL;
 
     if(bakey_pressed(BUTTON_A))
-        sp1C = BS_ANT_JUMP;
+        sp1C = BS_37_ANT_WALK;
 
     bs_setState(sp1C);
 }
 
 void bsant_walk_end(void){
-    func_8029E4EC();
+    bsant_end();
     func_802900FC();
 }
 
@@ -163,7 +163,7 @@ void bsant_jump_init(void){
     anctrl_setSubRange(aCtrl, 0.0f, 0.4423f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_ONCE);
     anctrl_start(aCtrl, "bsant.c", 0x17c);
-    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     if(bastick_distance() != 0.0f)
         yaw_setIdeal(bastick_getAngleRelativeToBanjo());
     baphysics_set_target_yaw(yaw_getIdeal());
@@ -217,10 +217,10 @@ void bsant_jump_update(void){
     if(player_isStable()){
         baphysics_set_target_horizontal_velocity(0.0f);
         if(bastick_getZone() > 0)
-            sp2C = BS_ANT_WALK;
+            sp2C = BS_36_ANT_WALK;
 
         if(bakey_pressed(BUTTON_A))
-            sp2C = BS_ANT_JUMP;
+            sp2C = BS_37_ANT_WALK;
     }
 
     bs_setState(sp2C);
@@ -228,7 +228,7 @@ void bsant_jump_update(void){
 
 void bsant_jump_end(void){
     baphysics_reset_gravity();
-    func_8029E4EC();
+    bsant_end();
 }
 
 void bsant_fall_init(void){
@@ -241,7 +241,7 @@ void bsant_fall_init(void){
     anctrl_setStart(aCtrl, 0.4423f);
     anctrl_setPlaybackType(aCtrl, ANIMCTRL_STOPPED);
     anctrl_start(aCtrl, "bsant.c", 0x208);
-    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_AIRBORN);
     bsant_substate = 0;
 }
 
@@ -276,7 +276,7 @@ void bsant_fall_update(void){
 }
 
 void bsant_fall_end(void){
-    func_8029E4EC();
+    bsant_end();
 }
 
 static void __bsant_recoil_init(int take_damage){
@@ -305,7 +305,7 @@ static void __bsant_recoil_init(int take_damage){
     baphysics_set_target_horizontal_velocity(200.0f);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     baMarker_collisionOff();
@@ -341,7 +341,7 @@ static void __bsant_recoil_end(void){
     baphysics_reset_gravity();
     baMarker_collisionOn();
     baeyes_open();
-    func_8029E4EC();
+    bsant_end();
 }
 
 void bsant_ow_init(void){
@@ -392,7 +392,7 @@ void bsant_die_init(void){
     baphysics_set_target_horizontal_velocity(D_8037D290);
     baphysics_set_target_yaw(sp38);
     baphysics_set_horizontal_velocity(sp38, baphysics_get_target_horizontal_velocity());
-    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 2, BA_PHYSICS_LOCKED_ROTATION);
     baphysics_set_vertical_velocity(510.0f);
     baphysics_set_gravity(-1200.0f);
     pitch_setAngVel(1000.0f, 12.0f);
@@ -449,16 +449,16 @@ void bsant_die_end(void){
     baeyes_open();
 }
 
-void func_8029F398(void){
+void bsant_locked_init(void){
     func_8029E554();
     baanim_playForDuration_loopSmooth(ASSET_5E_ANIM_BSANT_IDLE, 2.0f);
-    func_8029C7F4(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
+    code_14420_setUpdateTypes(1, YAW_STATE_1_DEFAULT, 3, BA_PHYSICS_NORMAL);
     baphysics_set_target_horizontal_velocity(0.0f);
     func_8029C674();
     func_802B3A50();
 }
 
-void func_8029F3F4(void){
+void bsant_locked_update(void){
     enum bs_e sp1C = 0;
     func_802B3A50();
     func_80299628(0);
@@ -469,9 +469,9 @@ void func_8029F3F4(void){
     bs_setState(sp1C);
 }
 
-void func_8029F440(void){
+void bsant_locked_end(void){
     func_8029C748();
-    func_8029E4EC();
+    bsant_end();
 }
 
 void bsant_drone_init(void){
@@ -485,5 +485,5 @@ void bsant_drone_update(void){
 
 void bsant_drone_end(void){
     bsdrone_end();
-    func_8029E4EC();
+    bsant_end();
 }

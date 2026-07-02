@@ -241,7 +241,7 @@ static Actor* __chVegetables_draw(ActorMarker* marker, Gfx **gdl, Mtx **mptr, Vt
     if (actor->has_met_before)
         modelRender_func_8033A470(3, 7);
     else
-        func_8033A45C(3, 0);
+        modelRender_setAppendageVisibility(3, 0);
 
     return actor_draw(marker, gdl, mptr, arg3);
 }

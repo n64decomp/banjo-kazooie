@@ -69,7 +69,7 @@ u32 bakey_held(s32);
 void pitch_setIdeal(f32);
 f32 pitch_get(void);
 
-void climbGetBottom(f32 dst[3]);
+void climb_getBottom(f32 dst[3]);
 
 void yaw_setIdeal(f32);
 
@@ -291,11 +291,11 @@ f32  func_8029B41C(void);
 ParticleEmitter *func_8029B950(f32[3],f32);
 void func_8029C3E8(f32, f32);
 void func_8029CF48(s32, s32, f32);
-f32  func_8029DFC8(void);
-f32  func_8029DFD4(void);
-void func_8029E090(bool, f32);
-void func_8029E0C4(f32);
-void func_8029E0D0(f32);
+f32  modelAppendages_showBanjosLeftEye(void);
+f32  modelAppendages_showBanjosRightEye(void);
+void modelAppendages_setKazooiesUpperHalfVisibilityAndTimer(bool, f32);
+void modelAppendages_setBanjosLeftEyeVisibility(f32);
+void modelAppendages_setBanjosRightEyeVisibility(f32);
 void func_802BD8A4(f32, f32, f32);
 f32  func_802BD8D4(void);
 void func_802BE244(f32, f32);
@@ -463,8 +463,8 @@ void actor_update_func_80326224(Actor *this);
 void func_802F9FD0(s32, f32, f32, f32);
 void func_80324D54(f32, enum sfx_e, f32, s32, f32 [3], f32, f32);
 
-f32 climbGetBottomY(void);
-f32 climbGetTopY(void);
+f32 climb_getBottomY(void);
+f32 climb_getTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void controller_copyFaceButtons(s32, s32 [6]);

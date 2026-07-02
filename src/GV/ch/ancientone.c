@@ -225,8 +225,8 @@ Actor *chAncientOne_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **v
     s32 tmp_v0;
 
     sp58 = (this->state == 3) ? 0 : 1;
-    func_8033A45C(3, sp58);
-    func_8033A45C(4, sp58);
+    modelRender_setAppendageVisibility(3, sp58);
+    modelRender_setAppendageVisibility(4, sp58);
     actor_draw(this_marker, gfx, mtx, vtx);
     if( !this->initialized && this_marker->unk14_21){
         vec3fArray_get_vec3i(func_80329934(), 5, sp4C);

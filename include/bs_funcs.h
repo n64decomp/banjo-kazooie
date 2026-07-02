@@ -42,9 +42,9 @@ void bsturn_init(void);
 void bsturn_update(void);
 void bsturn_end(void);
 //0xd
-void func_802B63F8(void);
-void func_802B64D0(void);
-void func_802B6500(void);
+void timeout_transformation_init(void);
+void timeout_transformation_update(void);
+void timeout_transformation_end(void);
 //bsow
 void bsow_init(void);
 void bsow_update(void);
@@ -86,9 +86,9 @@ void bsbtrot_exit_init(void);
 void bsbtrot_exit_update(void);
 void bsbtrot_exit_end(void);
 //bsfly_knockback
-void func_802A4D90(void);
-void func_802A4EC8(void);
-void func_802A4F44(void);
+void bsbfly_knockback_init(void);
+void bsbfly_knockback_update(void);
+void bsbfly_knockback_end(void);
 //BS_1A_WONDERWING_ENTER
 void bsbwhirl_enter_init(void);
 void bsbwhirl_enter_update(void);
@@ -117,17 +117,17 @@ void bsegghead_end(void);
 void bseggass_init(void);
 void bseggass_update(void);
 void bseggass_end(void);
-//BS_WALK_CREEP(void);
+//BS_1F_WALK_CREEP(void);
 void bswalk_creep_init(void);
 void bswalk_creep_update(void);
 //BS_20_LANDING(void);
 void bsstand_landing_init(void);
 void bsstand_landing_update(void);
-//BS_BSHOCK_CHARGE(void);
+//BS_21_BSHOCK_CHARGE(void);
 void bsbshock_charge_init(void);
 void bsbshock_charge_update(void);
 void bsbshock_charge_end(void);
-//BS_BSHOCK_JUMP(void);
+//BS_22_BSHOCK_JUMP(void);
 void bsbshock_init(void);
 void bsbshock_update(void);
 void bsbshock_end(void);
@@ -139,7 +139,7 @@ void func_802A505C(void);
 //BS_FLY(void);
 void bsbfly_init(void);
 void bsbfly_update(void);
-void func_802A3F70(void);
+void bsbfly_end(void);
 //BS_25_LONGLEG_ENTER(void);
 void bsblongleg_enter_init(void);
 void bsblongleg_enter_update(void);
@@ -148,30 +148,30 @@ void bsblongleg_enter_end(void);
 void bsblongleg_stand_enter(void);
 void bsblongleg_stand_update(void);
 void bsblongleg_stand_end(void);
-//BS_LONGLEG_WALK(void);
+//BS_27_LONGLEG_WALK(void);
 void bsblongleg_walk_init(void);
 void bsblongleg_walk_update(void);
 void bsblongleg_walk_end(void);
-//BS_LONGLEG_JUMP(void);
+//BS_28_LONGLEG_JUMP(void);
 void bsblongleg_jump_init(void);
 void bsblongleg_jump_update(void);
 void bsblongleg_jump_end(void);
-//BS_LONGLEG_EXIT(void);
+//BS_29_LONGLEG_EXIT(void);
 void bsblongleg_exit_init(void);
 void bsblongleg_exit_update(void);
 void bsblongleg_exit_end(void);
-//BS_BOMB(void);
-void func_802A3F9C(void);
-void func_802A411C(void);
-void func_802A4404(void);
+//BS_2A_BOMB(void);
+void bsbfly_bomb_init(void);
+void bsbfly_bomb_update(void);
+void bsbfly_bomb_end(void);
 //BS_2B_DIVE_IDLE(void);
-void func_802A762C(void);
-void func_802A7674(void);
-void func_802A7718(void);
+void bsbdive_idle_init(void);
+void bsbdive_idle_update(void);
+void bsbdive_idle_end(void);
 //BS_2C_DIVE_B(void);
-void func_802A7738(void);
-void func_802A7838(void);
-void func_802A7A2C(void);
+void bsbdiveb_init(void);
+void bsbdiveb_update(void);
+void bsbdiveb_end(void);
 //BS_2D_SWIM_IDLE,  
 void bsswim_idle_init(void);
 void bsswim_idle_update(void);
@@ -186,21 +186,21 @@ void bsjump_fall_update(void);
 void bsjump_fall_end(void);
 //BS_30_DIVE_ENTER
 void bsSwim_dive_init(void);
-void func_802A7E2C(void);
-void func_802A7F4C(void);
-//BS_ROLL(void);
+void bsSwim_dive_update(void);
+void bsSwim_dive_end(void);
+//BS_31_ROLL(void);
 int bstwirl_hitboxActive(void);
 void bstwirl_init(void);
 void bstwirl_update(void);
 void bstwirl_end(void);
-//BS_SLIDE
+//BS_32_SLIDE
 void bsslide_init(void);
 void bsslide_update(void);
 void bsslide_end(void);
 //0x33(void);
-void func_802B9ACC(void);
-void func_802B9B14(void);
-void func_802B9AAC(void);
+void bswashy_init(void);
+void bswashy_update(void);
+void bswashy_end(void);
 void func_802B9D00(void);
 //BS_34_JIG_NOTEDOOR(void);
 void bsjig_notedoor_init(void);
@@ -210,18 +210,18 @@ void bsjig_notedoor_end(void);
 void bsant_idle_init(void);
 void bsant_idle_update(void);
 void bsant_idle_end(void);
-//BS_ANT_WALK
+//BS_36_ANT_WALK
 void bsant_walk_init(void);
 void bsant_walk_update(void);
 void bsant_walk_end(void);
-//BS_ANT_JUMP
+//BS_37_ANT_WALK
 void bsant_jump_init(void);
 void bsant_jump_update(void);
 void bsant_jump_end(void);
 //BS_39_DIVE_A
-void func_802A7A54(void);
-void func_802A7AB0(void);
-void func_802A7BA8(void);
+void bsswim_divea_init(void);
+void bsswim_divea_update(void);
+void bsswim_divea_end(void);
 //BS_3A_CARRY_IDLE(void);
 void bscarry_idle_init(void);
 void bscarry_idle_update(void);
@@ -253,17 +253,17 @@ void func_802B1BF4(void);
 void func_802B1CF8(void);
 void func_802B1DA4(void);
     //0x40
-void func_802B2BF0(void);
-void func_802B2C58(void);
-void func_802B2D50(void);
+void bspumpkin_flush_init(void);
+void bspumpkin_flush_update(void);
+void bspumpkin_flush_end(void);
     //BS_41_DIE
 void bsdie_init(void);
 void bsdie_update(void);
 void bsdie_end(void);
     //BS_42_DINGPOT
-void func_802A5120(void);
-void func_802A5190(void);
-void func_802A51C0(void);
+void bsfly_dingpotLaunch_init(void);
+void bsfly_dingpotLaunch_update(void);
+void bsfly_dingpotLaunch_end(void);
     //BS_43_ANT_DIE
 void bsant_die_init(void);
 void bsant_die_update(void);
@@ -298,9 +298,9 @@ void bspumpkin_fall_init(void);
 void bspumpkin_fall_update(void);
 void bspumpkin_fall_end(void);
 //BS_4C_LANDING_IN_WATER
-void func_802A846C(void);
-void func_802A85EC(void);
-void func_802A872C(void);
+void bsbswim_landingInWater_init(void);
+void bsbswim_landingInWater_update(void);
+void bsbswim_landingInWater_end(void);
 //BS_4D_PUMPKIN_OW
 void __bspumpkin_ow_init(void);
 void __bspumpkin_ow_update(void);
@@ -319,18 +319,18 @@ void bsclimb_move_init(void);
 void bsclimb_move_update(void);
 void bsclimb_move_end(void);
 //BS_51_CLIMB_EXIT
-void func_802B1928(void);
-void func_802B1A54(void);
-void func_802B1BCC(void);
+void bsjump_climbExit_init(void);
+void bsjump_climbExit_update(void);
+void bsjump_climbExit_end(void);
 //0x52
-void func_802B5FD0(void);
-void func_802B6064(void);
-void func_802B60D0(void);
+void bssurf_init(void);
+void bssurf_update(void);
+void bssurf_end(void);
 void func_802B60D8(void);
     //0x53
-void func_802B6270(void);
-void func_802B6314(void);
-void func_802B63C8(void);
+void timeout_banjo_init(void);
+void timeout_banjo_update(void);
+void timeout_banjo_end(void);
 
     //0x55
 void bsblongleg_slide_init(void);
@@ -338,14 +338,14 @@ void bsblongleg_slide_update(void);
 void bsblongleg_slide_end(void);
 
     //0x56
-void func_802B3868(void);
-void func_802B3954(void);
-void func_802B3A20(void);
+void rebound_init(void);
+void rebound_update(void);
+void rebound_end(void);
 
     //0x57
-void func_802A4430(void);
-void func_802A4548(void);
-void func_802A4664(void);
+void bsbfly_beakbombend_init(void);
+void bsbfly_beakbombend_update(void);
+void bsbfly_beakbombend_end(void);
 void func_802A505C(void);
     //0x58
 void bsbfly_beakbomb_crash_init(void);
@@ -358,9 +358,9 @@ void func_802A4CF0(void);
 void func_802A4D10(void);
 void func_802A505C(void);
     //0x54
-void func_802A7F6C(void);
-void func_802A8098(void);
-void func_802A82D4(void);
+void bsbswim_die_init(void);
+void bsbswim_die_update(void);
+void bsbswim_die_end(void);
 
     //0x5B
 void bsthrow_init(void);
@@ -388,9 +388,9 @@ void bscroc_fall_update(void);
 void bscroc_fall_end(void);
 
     //0x62
-void func_802A6394(void);
-void func_802A63F0(void);
-void func_802A6450(void);
+void bsblongleg_locked_init(void);
+void bsblongleg_locked_update(void);
+void bsblongleg_locked_end(void);
     //0x63
 void bscroc_ow_init(void);
 void bscroc_ow_update(void);
@@ -422,9 +422,9 @@ void bswalrus_fall_update(void);
 void bswalrus_fall_end(void);
 
     //0x6B
-void func_802A1F6C(void);
-void func_802A1FC8(void);
-void func_802A2014(void);
+void bsbee_locked_init(void);
+void bsbee_locked_update(void);
+void bsbee_locked_end(void);
 //0x0000006C
 void bswalrus_ow_init(void);
 void bswalrus_ow_update(void);
@@ -460,23 +460,23 @@ void bssplat_update(void);
 void bssplat_end(void);
 
 //0x00000073
-void func_802B3CEC(void);
-void func_802B3D1C(void);
-void func_802B3D6C(void);
+void bsrest_bs73unknown_init(void);
+void bsrest_bs73unknown_update(void);
+void bsrest_bs73unknown_end(void);
 //0x00000074
-void func_802B3E2C(void);
-void func_802B3E64(void);
-void func_802B3EF4(void);
+void bsrest_bs74unknown_init(void);
+void bsrest_bs74unknown_update(void);
+void bsrest_bs74unknown_end(void);
 
 //0x00000075
-void func_802B3D8C(void);
-void func_802B3DBC(void);
-void func_802B3E0C(void);
+void bsrest_bs75unknown_init(void);
+void bsrest_bs75unknown_update(void);
+void bsrest_bs75unknown_end(void);
 
 //0x00000076
-void func_802A4F74(void);
-void func_802A4FC8(void);
-void func_802A503C(void);
+void bsbfly_locked_init(void);
+void bsbfly_locked_update(void);
+void bsbfly_locked_end(void);
 
 //0x00000077
 void bsswim_lookat_init(void);
@@ -489,9 +489,9 @@ void bsbswim_lookat_update(void);
 void bsbswim_lookat_end(void);
 
 //0x00000079
-void bsbtrot_unk79_init(void);
-void bsbtrot_unk79_update(void);
-void bsbtrot_unk79_end(void);
+void bsbtrot_locked_init(void);
+void bsbtrot_locked_update(void);
+void bsbtrot_locked_end(void);
 
 //0x0000007A
 void bswalk_mud_init(void);
@@ -517,59 +517,59 @@ void bswalrus_sled_jump_update(void);
 void bswalrus_sled_jump_end(void);
 void func_802B98C0(void);
 //0x0000007F
-void func_802A7BD0(void);
-void func_802A7CA8(void);
-void func_802A7D74(void);
+void bsbswim_ow_init(void);
+void bsbswim_ow_update(void);
+void bsbswim_ow_end(void);
 
 //0x00000080
 void bswalrus_timeout_init(void);
-void func_802B9830(void);
-void func_802B9880(void);
+void bswalrus_timeout_update(void);
+void bswalrus_timeout_end(void);
 
 //0x00000081
-void func_802B90D0(void);
-void func_802B9130(void);
-void func_802B917C(void);
+void bswalrus_sledlocked_init(void);
+void bswalrus_sledlocked_update(void);
+void bswalrus_sledlocked_end(void);
 void func_802B98C0(void);
 //0x00000082
-void func_802B95A0(void);
-void func_802B963C(void);
-void func_802B976C(void);
+void bswalrus_sledloseinair_init(void);
+void bswalrus_sledloseinair_update(void);
+void bswalrus_sledloseinair_end(void);
 void func_802B98C0(void);
 //0x00000085
-void func_802A1080(void);
-void func_802A10D4(void);
-void func_802A117C(void);
+void bsbeemain_idle_init(void);
+void bsbeemain_idle_update(void);
+void bsbeemain_idle_end(void);
 
 //0x00000086
-void func_802A11A4(void);
-void func_802A1214(void);
-void func_802A12D4(void);
+void bsbeemain_walk_init(void);
+void bsbeemain_walk_update(void);
+void bsbeemain_walk_end(void);
 
 //0x00000087
-void func_802A12FC(void);
-void func_802A1438(void);
-void func_802A163C(void);
+void bsbeemain_jump_init(void);
+void bsbeemain_jump_update(void);
+void bsbeemain_jump_end(void);
 
 //0x00000088
-void func_802A1664(void);
-void func_802A170C(void);
-void func_802A18C8(void);
+void bsbeemain_fall_init(void);
+void bsbeemain_fall_update(void);
+void bsbeemain_fall_end(void);
 
 //0x00000089
-void func_802A1B68(void);
-void func_802A1B88(void);
-void func_802A1BA8(void);
+void bsbeemain_ow_init(void);
+void bsbeemain_ow_update(void);
+void bsbeemain_ow_end(void);
 
 //0x0000008A
 void bsbeemain_die_init(void);
-void func_802A1DD8(void);
-void func_802A1F2C(void);
+void bsbeemain_die_update(void);
+void bsbeemain_die_end(void);
 
 //0x0000008B
-void func_802A0590(void);
-void func_802A0630(void);
-void func_802A0704(void);
+void bsbeefly_bs8Bunknown_init(void);
+void bsbeefly_bs8Bunknown_update(void);
+void bsbeefly_bs8Bunknown_end(void);
 
 //0x0000008C
 void bsbeefly_enter(void);
@@ -582,19 +582,19 @@ void bscroc_locked_update(void);
 void bscroc_locked_end(void);
 
 //0x0000008E
-void func_8029F398(void);
-void func_8029F3F4(void);
-void func_8029F440(void);
+void bsant_locked_init(void);
+void bsant_locked_update(void);
+void bsant_locked_end(void);
 
 //0x0000008F
-void func_802B34A0(void);
-void func_802B34F8(void);
-void func_802B353C(void);
+void bspumpkin_locked_init(void);
+void bspumpkin_locked_update(void);
+void bspumpkin_locked_end(void);
 
 //0x00000091
-void func_802A4D30(void);
-void func_802A4D50(void);
-void func_802A4D70(void);
+void bsbfly_ow_init(void);
+void bsbfly_ow_update(void);
+void bsbfly_ow_end(void);
 void func_802A505C(void);
 //0x00000092
 void bsant_drone_init(void);
@@ -632,9 +632,9 @@ void bswalk_drone_update(void);
 void bswalk_drone_end(void);
 void bsdrone_interrupt(void);
 //0x00000099
-void func_802A50B0(void);
-void func_802A50D8(void);
-void func_802A50F8(void);
+void bsbfly_drone_init(void);
+void bsbfly_drone_update(void);
+void bsbfly_drone_end(void);
 void bsdrone_interrupt(void);
 //0x0000009A
 void bsbtrot_drone_init(void);
@@ -657,9 +657,9 @@ void bsbee_drone_update(void);
 void bsbee_drone_end(void);
 void bsdrone_interrupt(void);
 //0x0000009E
-void func_802ABCCC(void);
-void func_802ABD0C(void);
-void func_802ABD40(void);
+void bsclimb_locked_init(void);
+void bsclimb_locked_update(void);
+void bsclimb_locked_end(void);
 void func_802ABD60(void);
 //0x0000009F
 void bsant_bounce_init(void);
@@ -682,9 +682,9 @@ void bswalrus_bounce_update(void);
 void bswalrus_bounce_end(void);
 
 //0x000000A3
-void func_802A1BC8(void);
-void func_802A1BE8(void);
-void func_802A1C08(void);
+void bsbeemain_bounce_init(void);
+void bsbeemain_bounce_update(void);
+void bsbeemain_bounce_end(void);
 
 //0x000000A4
 void bsbwhirl_drone_init(void);
@@ -692,9 +692,9 @@ void bsbwhirl_drone_update(void);
 void bsbwhirl_drone_end(void);
 
 //0x000000A5
-void func_802AADBC(void);
-void func_802AAE08(void);
-void func_802AAE4C(void);
+void bsbwhirl_bsA5unknown_init(void);
+void bsbwhirl_bsA5unknown_update(void);
+void bsbwhirl_bsA5unknown_end(void);
 
 void bsDroneGoTo_init(void);
 void bsDroneGoTo_update(void);
