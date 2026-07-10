@@ -17,8 +17,10 @@ ActorAnimationInfo D_80368150[] ={
     {0x286, 1.1f},
     {0x287, 1.6f}
 };
+
 f32 D_80368168[3] = {0.0f, 0.0f, 0.0f};
-ActorInfo D_80368174 = { 
+
+ActorInfo chOverlayNoController = { 
     MARKER_178_NO_CONTROLLER_OVERLAY, ACTOR_1DF_NO_CONTROLLER_OVERLAY, ASSET_55D_MODEL_NO_CONTROLLER_OVERLAY, 
     0x0, D_80368150,
     chOverlayNoController_update, actor_update_func_80326224, chOverlayNoController_draw,

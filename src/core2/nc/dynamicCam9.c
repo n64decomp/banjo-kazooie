@@ -36,7 +36,7 @@ void ncDynamicCam9_func_802C0A60(f32 arg0[3]) {
     f32 sp30[3];
 
     func_802BD4C0(sp54);
-    func_8025727C(sp54[0], sp54[1], sp54[2], D_8037DBB0[0], D_8037DBB0[1], D_8037DBB0[2], &sp30[0], &sp30[1]);
+    ml_horizontal_and_vertical_angles(sp54[0], sp54[1], sp54[2], D_8037DBB0[0], D_8037DBB0[1], D_8037DBB0[2], &sp30[0], &sp30[1]);
     sp30[1] = mlNormalizeAngle(sp30[1] - 60.0f);
     func_80256E24(sp48, 0.0f, sp30[1], 0.0f, 0.0f, D_8037DBC0);
     ml_vec3f_add(arg0, D_8037DBB0, sp48);
@@ -58,9 +58,9 @@ void ncDynamicCam9_func_802C0B70(f32 arg0[3], f32 arg1[3]) {
     sp3C[0] *= dt * 1.5;
     sp3C[1] *= dt * 1.0;
     sp3C[2] *= dt * 1.5;
-    sp3C[0] = func_80259198(sp3C[0], dt * 1000.0);
-    sp3C[1] = func_80259198(sp3C[1], dt * 1000.0);
-    sp3C[2] = func_80259198(sp3C[2], dt * 1000.0);
+    sp3C[0] = ml_clamp_abs_f(sp3C[0], dt * 1000.0);
+    sp3C[1] = ml_clamp_abs_f(sp3C[1], dt * 1000.0);
+    sp3C[2] = ml_clamp_abs_f(sp3C[2], dt * 1000.0);
     ml_vec3f_add(arg0, sp30, sp3C);
     ncDynamicCamera_setPosition(arg0);
 }
@@ -78,7 +78,7 @@ void ncDynamicCam9_func_802C0C5C(f32 arg0[3], f32 arg1[3]) {
     ml_vec3f_scale(sp3C, ml_map_f(sp38, 0.4f, 0.75f, 0.5f, 1.0f));
     ml_vec3f_add(sp54, D_8037DBB0, sp3C);
     sp54[1] = sp48[1] + (sp54[1] - sp48[1]) * 0.4;
-    func_8025727C(sp54[0], sp54[1], sp54[2], arg1[0], arg1[1], arg1[2], &arg0[0], &arg0[1]);
+    ml_horizontal_and_vertical_angles(sp54[0], sp54[1], sp54[2], arg1[0], arg1[1], arg1[2], &arg0[0], &arg0[1]);
     arg0[0] = mlNormalizeAngle(-arg0[0]);
     arg0[2] = 0.0f;
 }

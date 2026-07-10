@@ -5,8 +5,8 @@
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
 
 /* .h */
-Actor *func_80358344(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_80358684(Actor *this);
+Actor *chScarabBeetle_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chScarabBeetle_update(Actor *this);
 
 typedef struct {
     u8 sfxsourceIdx;
@@ -24,13 +24,13 @@ typedef struct {
 }ActorLocal_core2_D0CA0;
 
 /* .data */
-ActorInfo D_803728A0 = { 
+// Scabby
+ActorInfo chScarabBeetle = {
     MARKER_253_SCARAB_BEETLE, ACTOR_380_SCARAB_BEETLE, ASSET_51B_MODEL_SCARAB_BEETLE, 
     0, NULL, 
-    func_80358684, NULL, func_80358344, 
+    chScarabBeetle_update, NULL, chScarabBeetle_draw, 
     0, 0, 1.0f, 0
 };
-
 
 /* .code */
 bool func_80357C30(Actor *this) {
@@ -195,7 +195,7 @@ void func_80358304(ActorMarker *marker, ActorMarker *other_marker){
     }
 }
 
-Actor *func_80358344(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chScarabBeetle_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Actor *this;
     ActorLocal_core2_D0CA0 *local;
 
@@ -266,7 +266,7 @@ void func_80358610(Actor *this) {
     func_80358524(this->position, 4, 0x520);
 }
 
-void func_80358684(Actor *this) {
+void chScarabBeetle_update(Actor *this) {
     f32 sp94[3];
     ActorLocal_core2_D0CA0 *local; //sp90
     s32 next_state; //sp8C

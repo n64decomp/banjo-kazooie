@@ -14,16 +14,16 @@ Actor *func_802DA560(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802DA740(Actor *this);
 
 /*.data */
-ActorAnimationInfo D_80367E00[] = {
+ActorAnimationInfo chMolehillAnimations[] = {
     {0x000, 0.0f}, 
-    {0x13D, 2000000000.0f},
-    {0x13D, 4.5f}, 
-    {0x13C, 1.7f}
+    {ASSET_13D_ANIM_MOLEHILL_UNKNOWN, 2000000000.0f},
+    {ASSET_13D_ANIM_MOLEHILL_UNKNOWN, 4.5f}, 
+    {ASSET_13C_ANIM_MOLEHILL_UNKNOWN, 1.7f}
 };
 
-ActorInfo D_80367E20= {
+ActorInfo chMolehill = {
     MARKER_B8_MOLEHILL, ACTOR_12C_MOLEHILL, ASSET_388_MODEL_MOLEHILL, 
-    0, D_80367E00, 
+    0, chMolehillAnimations, 
     func_802DA740, actor_update_func_80326224, func_802DA560,
     0, 0, 0.0f, 0
 }; 

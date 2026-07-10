@@ -356,7 +356,7 @@ void chfinalboss_func_80386CF8(Actor *actor) {
     sp4C[0] = sp28[0] + sp34[0];
     sp4C[1] = sp28[1] + sp34[1];
     sp4C[2] = sp28[2] + sp34[2];
-    func_8025727C(sp28[0], sp28[1], sp28[2], sp4C[0], sp4C[1], sp4C[2], &sp40[0], &sp40[1]);
+    ml_horizontal_and_vertical_angles(sp28[0], sp28[1], sp28[2], sp4C[0], sp4C[1], sp4C[2], &sp40[0], &sp40[1]);
     sp40[0] = 360.0f - sp40[0];
     sp40[2] = 0.0f;
     ncStaticCamera_setPositionAndRotation(sp4C, sp40);

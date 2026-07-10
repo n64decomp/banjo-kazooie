@@ -34,12 +34,49 @@ f32 D_80366330 = 0.5f;
 f32 D_80366334 = 30.0f;
 f32 D_80366338 = 150.0f;
 f32 D_8036633C = 25.0f;
-ActorInfo D_80366340 = { 0x56,  0x4A,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_80366364 = { 0x56,  0x4B,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_80366388 = { 0x56,   0xD,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663AC = { 0x56, 0x11F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663D0 = { 0x56, 0x14F,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
-ActorInfo D_803663F4 = { 0x56, 0x3AD,   0x0, 0x2, 0x0, func_802C8C5C, actor_update_func_80326224, func_802C8484, 0, 0, 0.0f, 0};
+
+ActorInfo D_80366340 = {
+    MARKER_56_UNKNOWN, 0x4A, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_80366364 = {
+    MARKER_56_UNKNOWN, 0x4B, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_80366388 = {
+    MARKER_56_UNKNOWN, 0xD, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_803663AC = {
+    MARKER_56_UNKNOWN, 0x11F, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_803663D0 = {
+    MARKER_56_UNKNOWN, 0x14F, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_803663F4 = {
+    MARKER_56_UNKNOWN, 0x3AD, 0x0,
+    0x2, NULL,
+    func_802C8C5C, actor_update_func_80326224, func_802C8484,
+    0, 0, 0.0f, 0
+};
+
 s32 D_80366418[3] = {0,0,0};
 
 /* .bss */
@@ -71,13 +108,13 @@ void func_802C83F0(Actor *actor) {
 Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     Struct25s *temp_s1;
     Struct24s *phi_s0;
-    f32 sp5C;
-    Actor *sp58;
+    f32 rotation;
+    Actor *this;
     u32 phi_v1;
     s32 phi_s4;
 
-    sp58 = marker_getActorAndRotation(marker, &sp5C);
-    temp_s1 = (Struct25s*)sp58->unk40;
+    this = marker_getActorAndRotation(marker, &rotation);
+    temp_s1 = (Struct25s*)this->unk40;
     phi_s4 = FALSE;
     for(phi_s0 = temp_s1->begin; phi_s0 < temp_s1->current; phi_s0++){
         if ((phi_s0->unk0 != 0) && (phi_s0->model_bin != NULL)) {
@@ -89,7 +126,7 @@ Actor *func_802C8484(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     if (phi_s4 == FALSE) {
         marker_despawn(marker);
     }
-    return sp58;
+    return this;
 }
 
 Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
@@ -123,44 +160,44 @@ Actor *func_802C8580(s32 position[3], s32 yaw, ActorInfo* actorInfo, u32 flags){
         s0->unk8[1] = 0.0f;
         s0->unk8[2] = 0.0f;
         switch(D_8037DD94){
-        case 1: // 802C8740
-            s0->unk30[0] = randf2(125.0f, 175.0f);
-            s0->unk30[1] = randf2(400.0f, 600.0f);
-            s0->unk30[2] = randf2(125.0f, 175.0f);
-            s0->model_bin = (BKModelBin *) assetcache_get(0x2e7);
-            s0->unk2C = 18.0f;
-            break; 
-        case 2: // 802C87A8
-            s0->model_bin = (BKModelBin *) assetcache_get(0x344);
-            s0->unk2C = 2.0f;
-            break; 
-        case 4: // 802C87C4
-            s0->model_bin = (BKModelBin *) assetcache_get(0x345);
-            s0->unk2C = 1.0f;
-            s0->unk30[0] = randf2(20.0f, 100.0f);
-            s0->unk30[1] = randf2(400.0f, 740.0f);
-            s0->unk30[2] = randf2(20.0f, 100.0f);
+            case 1: // 802C8740
+                s0->unk30[0] = randf2(125.0f, 175.0f);
+                s0->unk30[1] = randf2(400.0f, 600.0f);
+                s0->unk30[2] = randf2(125.0f, 175.0f);
+                s0->model_bin = (BKModelBin *) assetcache_get(0x2e7);
+                s0->unk2C = 18.0f;
+                break; 
+            case 2: // 802C87A8
+                s0->model_bin = (BKModelBin *) assetcache_get(0x344);
+                s0->unk2C = 2.0f;
+                break; 
+            case 4: // 802C87C4
+                s0->model_bin = (BKModelBin *) assetcache_get(0x345);
+                s0->unk2C = 1.0f;
+                s0->unk30[0] = randf2(20.0f, 100.0f);
+                s0->unk30[1] = randf2(400.0f, 740.0f);
+                s0->unk30[2] = randf2(20.0f, 100.0f);
 
-            s0->unk8[0] = randf2(0.0f, 30.0f);
-            s0->unk8[1] = 0.0f;
-            s0->unk8[2] = 0.0f;
-            break; 
-        case 0: // 802C883C
-            if(0.5 < randf())
-                s0->model_bin = (BKModelBin *) assetcache_get(MODEL_ASSET_OFFSET);
-            else
-                s0->model_bin = (BKModelBin *) assetcache_get(0x2e5);
+                s0->unk8[0] = randf2(0.0f, 30.0f);
+                s0->unk8[1] = 0.0f;
+                s0->unk8[2] = 0.0f;
+                break; 
+            case 0: // 802C883C
+                if(0.5 < randf())
+                    s0->model_bin = (BKModelBin *) assetcache_get(MODEL_ASSET_OFFSET);
+                else
+                    s0->model_bin = (BKModelBin *) assetcache_get(0x2e5);
 
-            s0->unk2C = randf2(5.0f, 12.0f);
-            break;
-        case 3: // 802C88A0
-            s0->model_bin = (BKModelBin *) assetcache_get(0x30e);
-            s0->unk2C = randf2(9.0f, 15.0f);
-            break;
-        case 5: // 802C88C8
-            s0->model_bin = (BKModelBin *) assetcache_get(0x8a2);
-            s0->unk2C = 2.0f;
-            break;
+                s0->unk2C = randf2(5.0f, 12.0f);
+                break;
+            case 3: // 802C88A0
+                s0->model_bin = (BKModelBin *) assetcache_get(0x30e);
+                s0->unk2C = randf2(9.0f, 15.0f);
+                break;
+            case 5: // 802C88C8
+                s0->model_bin = (BKModelBin *) assetcache_get(0x8a2);
+                s0->unk2C = 2.0f;
+                break;
         }//L802C88E0
         s0->unk3C = 0;
         sp68[0] = (f32)position[0];

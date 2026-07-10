@@ -2,64 +2,85 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_80361870(Actor *this);
+void lairBottlesDialog_update(Actor *this);
 
 /* .data */
-ActorInfo D_803731B0 = {
+ActorInfo lairBottlesDialog = {
     0x1E4, 0x373, 0, 
     0, NULL, 
-    func_80361870, actor_update_func_80326224, func_80325340,
+    lairBottlesDialog_update, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
-}; 
+};
+
+enum lairbottlesdialog_specificfield_e {
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_1_MM = 1,
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_2_TTC,
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_3_CC,
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_4_BGS,
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_5_FP,
+    LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_6_GV
+};
 
 /* .code */
-int func_803616F0(Actor *this){
+bool lairBottlesDialog_levelOpenedAndNotLearnedAllMoves(Actor *this){
     switch(this->actorTypeSpecificField){
-        case 1:// L80361728
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_1_MM:// L80361728
             return fileProgressFlag_get(FILEPROG_31_MM_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_1_MUMBOS_MOUNTAIN);
-        case 2:// L80361750
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_2_TTC:// L80361750
             return fileProgressFlag_get(FILEPROG_32_TTC_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_2_TREASURE_TROVE_COVE);
-        case 3:// L80361778
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_3_CC:// L80361778
             return fileProgressFlag_get(FILEPROG_33_CC_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_3_CLANKERS_CAVERN);
-        case 4:// L803617A0
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_4_BGS:// L803617A0
             return fileProgressFlag_get(FILEPROG_34_BGS_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_4_BUBBLEGLOOP_SWAMP);
-        case 5:// L803617C8
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_5_FP:// L803617C8
             return fileProgressFlag_get(FILEPROG_35_FP_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_5_FREEZEEZY_PEAK);
-        case 6:// L803617F0
+        case LAIR_BOTTLES_DIALOG_SPECIFIC_FIELD_6_GV:// L803617F0
             return fileProgressFlag_get(FILEPROG_36_GV_OPEN) && !chmole_learnedAllLevelAbilities(LEVEL_7_GOBIS_VALLEY);
         default:
             return FALSE;
     }
 }
 
-void func_80361828(Actor *this){
-    if(volatileFlag_get(VOLATILE_FLAG_16) && level_get() == LEVEL_6_LAIR){
+void lairBottlesDialog_free(Actor *this){
+    if(volatileFlag_get(VOLATILE_FLAG_16)
+        && level_get() == LEVEL_6_LAIR)
+    {
         volatileFlag_set(VOLATILE_FLAG_16, 0);
     }
 }
 
-void func_80361870(Actor *this){
-    s32 text_id;
-    s32 sp28;
+void lairBottlesDialog_update(Actor *this){
+    s32 podium_text_id;
+    s32 didnt_learn_moves_text_id;
     if(!this->volatile_initialized){
-        marker_setFreeMethod(this->marker, func_80361828);
+        marker_setFreeMethod(this->marker, lairBottlesDialog_free);
         this->volatile_initialized = TRUE;
     }
 
-    if(!this->has_met_before && subaddie_playerIsWithinSphereAndActive(this, 400) && !subaddie_playerIsWithinSphereAndActive(this, 50)){
-        if(this->actorTypeSpecificField == 1 && !fileProgressFlag_get(FILEPROG_31_MM_OPEN) && level_get() == LEVEL_6_LAIR){
-            text_id = fileProgressFlag_get(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT)? 0xF80 : 0xF7F;
-            if(gcdialog_showDialog(text_id, 0, 0, 0, 0, 0)){
+    if(!this->has_met_before
+        && subaddie_playerIsWithinSphereAndActive(this, 400)
+        && !subaddie_playerIsWithinSphereAndActive(this, 50))
+    {
+        if(this->actorTypeSpecificField == 1
+            && !fileProgressFlag_get(FILEPROG_31_MM_OPEN)
+            && level_get() == LEVEL_6_LAIR)
+        {
+            podium_text_id = fileProgressFlag_get(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT) ?
+                ASSET_F80_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_AFTER_PODIUM : ASSET_F7F_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_BEFORE_PODIUM;
+            if(gcdialog_showDialog(podium_text_id, 0, 0, 0, 0, 0)){
                 this->has_met_before = TRUE;
             }
         }
-        else if(func_803616F0(this)){
-            sp28 = (volatileFlag_get(VOLATILE_FLAG_16)?0xf6e:0xf68) + this->actorTypeSpecificField - 1;
-            if(!volatileFlag_get(VOLATILE_FLAG_16) && level_get() == LEVEL_6_LAIR){
+        else if(lairBottlesDialog_levelOpenedAndNotLearnedAllMoves(this)){
+            didnt_learn_moves_text_id = (volatileFlag_get(VOLATILE_FLAG_16) ? ASSET_F6E_DIALOG_DIDNT_LEARN_ALL_MOVES_FROM_MM : ASSET_F68_DIALOG_MM_THREE_NEW_MOVES_TO_LEARN) + this->actorTypeSpecificField - 1;
+            if(!volatileFlag_get(VOLATILE_FLAG_16)
+                && level_get() == LEVEL_6_LAIR)
+            {
                 this->has_met_before = TRUE;
             }
-            else{ 
-                if(gcdialog_showDialog(sp28, 0, 0, 0, 0, 0)){
+            else{
+                if(gcdialog_showDialog(didnt_learn_moves_text_id, 0, 0, 0, 0, 0))
+                {
                     this->has_met_before = TRUE;
                     volatileFlag_set(VOLATILE_FLAG_16, 0);
                 }

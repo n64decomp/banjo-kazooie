@@ -3,10 +3,10 @@
 #include "variables.h"
 
 /* .bss */
-void *D_8037C5D0;
+void *PlayerModelAssetId;
 
 /* .code */
-s32 func_802985F0(void){
+enum asset_e playerModel_get(void){
     switch(bsStoredState_getTransformation())
     {
         case TRANSFORM_2_TERMITE: //80298624
@@ -67,21 +67,22 @@ s32 func_802985F0(void){
     }
 }
 
-void func_802986D0(void){
-    if(D_8037C5D0){
-        assetcache_release(D_8037C5D0);
+void playerModel_free(void){
+    if(PlayerModelAssetId){
+        assetcache_release(PlayerModelAssetId);
     }
 }
 
-void func_80298700(void){
-    s32 sp1C = func_802985F0();
+void playerModel_set(void){
+    enum asset_e model_id = playerModel_get();
+
     if(func_8028ADB4()){
-        D_8037C5D0 = 0;
+        PlayerModelAssetId = 0;
     }
-    else if(sp1C){
-            D_8037C5D0 = assetcache_get(sp1C);
+    else if(model_id){
+            PlayerModelAssetId = assetcache_get(model_id);
     }
     else{
-        D_8037C5D0 = NULL;
+        PlayerModelAssetId = NULL;
     }
 }

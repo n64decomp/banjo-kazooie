@@ -325,7 +325,7 @@ void func_8032417C(struct56s *arg0, f32 arg1, f32 arg2[3], f32 arg3[3]) {
     func_80341180(var_f0, sp64, 3, sp60, sp44);
     ml_vec3f_diff_copy(arg2, sp44, sp50);
     ml_vec3f_normalize(arg2);
-    func_8025727C(sp44[0], sp44[1], sp44[2], sp50[0], sp50[1], sp50[2], &arg3[0], &arg3[1]);
+    ml_horizontal_and_vertical_angles(sp44[0], sp44[1], sp44[2], sp50[0], sp50[1], sp50[2], &arg3[0], &arg3[1]);
     arg3[0] = mlNormalizeAngle(-arg3[0]);
     arg3[2] = 0.0f;
 }

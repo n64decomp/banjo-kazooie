@@ -13,24 +13,24 @@ extern void func_802EE2E8(Actor *arg0, s32 arg1, s32 cnt, s32 arg3, f32 arg4, f3
 extern void gcquiz_func_80319EA4(void);
 extern void fileProgressFlag_set(enum file_progress_e, bool);
 
-void func_802D3D54(Actor *this);
-void func_802D3DA4(Actor *this);
-Actor *func_802D3F48(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_802D3FD4(Actor *this);
-Actor *func_802D41C4(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_802D4250(Actor *this);
-void func_802D4388(Actor *this);
-Actor *func_802D4588(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
-void func_802D4680(Actor *this);
-void func_802D4B94(Actor *this);
-void func_802D4BBC(Actor *this);
-void func_802D4BE4(Actor *this);
-void func_802D4C0C(Actor *this);
-void func_802D4C34(Actor *this);
-void func_802D4C5C(Actor *this);
-void func_802D4C84(Actor *this);
-void func_802D4CAC(Actor *this);
-void func_802D4CD4(Actor *this);
+void chMMMBreakableWooden_update(Actor *this);
+void gWorldExitPad_update(Actor *this);
+Actor *gWorldExitPad_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chSnsEgg_update(Actor *this);
+Actor *chSnsEgg_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chIceKey_update(Actor *this);
+void chMumboSwitch_update(Actor *this);
+Actor *chMumboSwitch_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
+void chFFTeleportPad_Update(Actor *this);
+void chMMWitchSwitch_update(Actor *this);
+void chCCWitchSwitch_update(Actor *this);
+void chBGSWitchSwitch_update(Actor *this);
+void chGVWitchSwitch_update(Actor *this);
+void chMMMWitchSwitch_update(Actor *this);
+void chTTCWitchSwitch_update(Actor *this);
+void chRBBWitchSwitch_update(Actor *this);
+void chCCWWitchSwitch_update(Actor *this);
+void chFPWitchSwitch_update(Actor *this);
 void code_4C020_setHourglassTimer(s32 seconds);
 
 typedef struct {
@@ -54,7 +54,7 @@ f32 D_803676A4 = 0.0f;
 s32 D_803676A8 = 0;
 u8  D_803676AC = 0;
 
-ActorAnimationInfo D_803676B0[] = {
+ActorAnimationInfo gSwitchAnimations[] = {
     {0x000, 0.0f},
     {0x000, 0.0f},
     {ASSET_D4_ANIM_SWITCH_DOWN, 0.15f},
@@ -79,24 +79,67 @@ ActorAnimationInfo D_803676B0[] = {
     {ASSET_217_ANIM_UNKNOWN, 0.3f}
 };
 
-ActorInfo D_80367760 = { 0x26E, 0x2D9, 0x3B4,  0x1, NULL,       func_802D3D54, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
-ActorInfo D_80367784 = { 0x26F, 0x2DA, 0x3B5,  0x1, NULL,       func_802D3D54, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
-ActorInfo D_803677A8 = { MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,  0x1, NULL,       func_802D4250, actor_update_func_80326224, actor_drawFullDepth, 0, 0, 0.0f, 0};
-ActorInfo D_803677CC = { MARKER_233_MUMBO_SWITCH, ACTOR_23D_MUMBO_SWITCH, ASSET_4DD_MODEL_MUMBO_SWITCH, 0x12, D_803676B0, func_802D4388, actor_update_func_80326224, func_802D4588, 0, 0, 0.0f, 0};
-ActorInfo D_803677F0 = { 0x16A, 0x242,   0x0,  0x0, NULL,       func_802D4680,          NULL, func_80325340, 0, 0, 0.0f, 0};
-ActorInfo D_80367814 = { MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,  0x1, NULL,       func_802D3FD4,          NULL, func_802D41C4, 0, 0, 0.0f, 0};
-ActorInfo gWorldExitPad = { MARKER_265_WORLD_EXIT_PAD, ACTOR_2E4_WORLD_EXIT_PAD, ASSET_55A_MODEL_WORLD_EXIT_PAD,  0x1, NULL,       func_802D3DA4,          NULL, func_802D3F48, 0, 0, 0.0f, 0};
-ActorInfo D_8036785C = { MARKER_103_MM_WITCH_SWITCH, ACTOR_204_MM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4B94, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_80367880 = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C34, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_803678A4 = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C5C, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_803678C8 = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C84, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_803678EC = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CAC, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_80367910 = { MARKER_22B_FP_WITCH_SWITCH, ACTOR_239_FP_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4CD4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_80367934 = { MARKER_166_CC_WITCH_SWITCH, ACTOR_25B_CC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BBC, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_80367958 = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4BE4, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
-ActorInfo D_8036797C = { MARKER_161_GV_WITCH_SWITCH, ACTOR_256_GV_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, D_803676B0, func_802D4C0C, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo D_80367760 = {
+    MARKER_26E_UNKNOWN, ACTOR_2D9_UNKNOWN, ASSET_3B4_MODEL_UNUSED,
+    0x1, NULL,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo D_80367784 = {
+    MARKER_26F_UNKNOWN, ACTOR_2DA_UNKNOWN, ASSET_3B5_MODEL_UNUSED,
+    0x1, NULL,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo chIceKey = {
+    MARKER_168_ICE_KEY, ACTOR_25D_ICE_KEY, ASSET_50C_MODEL_ICE_KEY,
+    0x1, NULL,
+    chIceKey_update, actor_update_func_80326224, actor_drawFullDepth,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo chMumboSwitch = {
+    MARKER_233_MUMBO_SWITCH, ACTOR_23D_MUMBO_SWITCH, ASSET_4DD_MODEL_MUMBO_SWITCH,
+    0x12, gSwitchAnimations,
+    chMumboSwitch_update, actor_update_func_80326224, chMumboSwitch_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo chFFTeleportPad = {
+    MARKER_16A_FF_TELEPORT_PAD, ACTOR_242_FF_TELEPORT_PAD, 0x0,
+    0x0, NULL,
+    chFFTeleportPad_Update, NULL, func_80325340,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo chSnsEgg = {
+    MARKER_169_SNS_EGG, ACTOR_25E_SNS_EGG, ASSET_50D_MODEL_SNS_EGG,
+    0x1, NULL,
+    chSnsEgg_update, NULL, chSnsEgg_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo gWorldExitPad = {
+    MARKER_265_WORLD_EXIT_PAD, ACTOR_2E4_WORLD_EXIT_PAD, ASSET_55A_MODEL_WORLD_EXIT_PAD,
+    0x1, NULL,
+    gWorldExitPad_update, NULL, gWorldExitPad_draw,
+    0, 0, 0.0f, 0
+};
+
+ActorInfo chMMWitchSwitch =  { MARKER_103_MM_WITCH_SWITCH,  ACTOR_204_MM_WITCH_SWITCH,  ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chMMWitchSwitch_update,  actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chMMMWitchSwitch = { MARKER_104_MMM_WITCH_SWITCH, ACTOR_206_MMM_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chMMMWitchSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chTTCWitchSwitch = { MARKER_105_TTC_WITCH_SWITCH, ACTOR_208_TTC_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chTTCWitchSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chRBBWitchSwitch = { MARKER_106_RBB_WITCH_SWITCH, ACTOR_20B_RBB_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chRBBWitchSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chCCWWitchSwitch = { MARKER_22A_CCW_WITCH_SWITCH, ACTOR_237_CCW_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chCCWWitchSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chFPWitchSwitch =  { MARKER_22B_FP_WITCH_SWITCH,  ACTOR_239_FP_WITCH_SWITCH,  ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chFPWitchSwitch_update,  actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chCCWitchSwitch =  { MARKER_166_CC_WITCH_SWITCH,  ACTOR_25B_CC_WITCH_SWITCH,  ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chCCWitchSwitch_update,  actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chBGSWitchSwitch = { MARKER_162_BGS_WITCH_SWITCH, ACTOR_257_BGS_WITCH_SWITCH, ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chBGSWitchSwitch_update, actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
+ActorInfo chGVWitchSwitch =  { MARKER_161_GV_WITCH_SWITCH,  ACTOR_256_GV_WITCH_SWITCH,  ASSET_4DC_MODEL_WITCH_SWITCH,  0x1, gSwitchAnimations, chGVWitchSwitch_update,  actor_update_func_80326224, actor_draw, 0, 0, 0.0f, 0};
 
 s32 D_803679A0[4] = {0x87, 0x87, 0x87, 0xA0};
+
 s16 D_803679B0[] = {
     FILEPROG_5_BLUE_EGG_TEXT,
     FILEPROG_90_PAID_TERMITE_COST,
@@ -116,6 +159,7 @@ Struct_core2_4C020_0 D_803679C8[] = {
     {-580, 0, 1550, 2200}, 
     {150, 460, 1625, 2100},
 };
+
 s16 D_803679E0[] = {-50, -100, 200};
 
 /* .bss */
@@ -149,226 +193,228 @@ void func_802D2FB0(Actor *this, s32 arg1, s32 arg2, s32 arg3, f32 arg4, s32 arg5
 
 // collision function if player shoots egg at spider webs
 void func_802D3138(ActorMarker *marker, ActorMarker *other_marker) {
-    if(marker->id == MARKER_224_BREAKABLE_FLOOR_COBWEB || marker->id == MARKER_225_BREAKABLE_WALL_COBWEB) {
+    if(marker->id == MARKER_224_BREAKABLE_FLOOR_COBWEB
+       || marker->id == MARKER_225_BREAKABLE_WALL_COBWEB)
+    {
         comusic_playTrack(COMUSIC_2B_DING_B);
     }
 }
 
 // called from collision die function below, set according file flag and despawns object
-void func_802D317C(ActorMarker *marker, enum file_progress_e prog_flag_id) {
+void code_4C020_breakableObjectSetFlag(ActorMarker *marker, enum file_progress_e prog_flag_id) {
     fileProgressFlag_set(prog_flag_id, TRUE);
     marker_despawn(marker);
 }
 
-// collision die function for several objects in Lair
-void func_802D31AC(ActorMarker *arg0, ActorMarker * arg1) {
-    Actor *sp2C;
+void code_4C020_breakableObjectSfx(ActorMarker *marker, ActorMarker *other_marker) {
+    Actor *actor;
 
-    sp2C = marker_getActor(arg0);
-    arg0->collidable = FALSE;
-    switch (arg0->id) {
-        case 0x9F:
-        case 0xA0:
-        case 0xFF:
+    actor = marker_getActor(marker);
+    marker->collidable = FALSE;
+    switch (marker->id) {
+        case MARKER_9F_CHURCH_GATE_LEFT_LOCK:
+        case MARKER_A0_HEDGE_GATE_RIGHT_LOCK_1:
+        case MARKER_FF_HEDGE_GATE_RIGHT_LOCK_2:
             gcsfx_play(SFX_82_METAL_BREAK);
-            subaddie_set_state(sp2C, 4);
+            subaddie_set_state(actor, 4);
             break;
 
-        case 0x17D:
+        case MARKER_17D_IRON_GATE_NO_LOCK:
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.7f, 32736);
             FUNC_8030E624(SFX_82_METAL_BREAK, 0.6f, 32736);
-            func_802D2FB0(sp2C, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
-            sp2C->lifetime_value = 1.0f;
+            func_802D2FB0(actor, 0x14, -0x1E, 0x190, 3.0f, 0x15E, 0x50, 0x96);
+            actor->lifetime_value = 1.0f;
             fileProgressFlag_set(FILEPROG_A5_LAIR_CRYPT_GATE_OPEN, 1);
             break;
 
         case MARKER_109_BREAKABLE_BRICK_WALL:
             func_8030E6D4(SFX_114_BRICKWALL_BREAKING);
             gcsfx_playAtSampleRate(SFX_11_WOOD_BREAKING_1, 28000);
-            subaddie_set_state_looped(sp2C, 9);
-            fileProgressFlag_set((sp2C->actorTypeSpecificField == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
+            subaddie_set_state_looped(actor, 9);
+            fileProgressFlag_set((actor->actorTypeSpecificField == 1) ? FILEPROG_C8_LAIR_BRICKWALL_TO_WADINGBOOTS_BROKEN : FILEPROG_C9_LAIR_BRICKWALL_TO_SHOCKJUMP_PAD_BROKEN, TRUE);
             break;
 
-        case 0x107:
+        case MARKER_107_ENGINE_ROOM_DOOR:
             gcsfx_play(SFX_82_METAL_BREAK);
-            func_802EE278(sp2C, 0xE, 0xF, 0x46, 0.8f, 0.7f);
-            marker_despawn(arg0);
+            func_802EE278(actor, 0xE, 0xF, 0x46, 0.8f, 0.7f);
+            marker_despawn(marker);
             break;
 
         case MARKER_224_BREAKABLE_FLOOR_COBWEB:
             comusic_playTrack(COMUSIC_2B_DING_B);
-            gcsfx_playWithPitch(SFX_129_SWOOSH, (sp2C->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
-            subaddie_set_state_looped(sp2C, 0xC);
-            func_802D2FB0(sp2C, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
-            fileProgressFlag_set((sp2C->actorTypeSpecificField== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
+            gcsfx_playWithPitch(SFX_129_SWOOSH, (actor->scale < 0.45) ? 1.0 : 0.8, 0x7FF8);
+            subaddie_set_state_looped(actor, 0xC);
+            func_802D2FB0(actor, 8, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
+            fileProgressFlag_set((actor->actorTypeSpecificField== 1) ? FILEPROG_CB_LAIR_COBWEB_OVER_FLIGHTPAD_BROKEN : FILEPROG_CC_LAIR_COBWEB_OVER_GREEN_CAULDRON_BROKEN, 1);
             break;
 
         case MARKER_225_BREAKABLE_WALL_COBWEB:
             comusic_playTrack(COMUSIC_2B_DING_B);
             gcsfx_play(SFX_129_SWOOSH);
-            subaddie_set_state_looped(sp2C, 0xF);
-            func_802D2FB0(sp2C, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
+            subaddie_set_state_looped(actor, 0xF);
+            func_802D2FB0(actor, 0xE, -0x3C, 0xC8, 2.0f, 0xFA, 0x3C, 0x64);
             fileProgressFlag_set(FILEPROG_CA_COBWEB_BLOCKING_PURPLE_CAULDRON_BROKEN, 1);
             break;
 
-        case 0x163:
-            if (sp2C->unk10_12 == 0) {
-                sp2C->unk10_12 = TRUE;
+        case MARKER_163_CRYPT_COFFIN_LID:
+            if (actor->unk10_12 == 0) {
+                actor->unk10_12 = TRUE;
                 timed_playSfx(0.5f, SFX_3F9_UNKNOWN, 1.0f, 32000);
                 FUNC_8030E624(SFX_114_BRICKWALL_BREAKING, 0.8f, 32000);
             }
             break;
 
-        case 0x9A: 
-        case 0x9C: 
-        case 0x9D: 
-        case 0x9E: 
-        case 0xA1: 
-        case 0xE7: 
-        case 0xEA: 
-        case 0x108:
-        case 0x263:
-            if ((arg0->id == 0x9D) || (arg0->id == 0xE7)) {
+        case MARKER_9A_1881_BARREL_TOP: 
+        case MARKER_9C_SHACK_DOOR: 
+        case MARKER_9D_MANSION_DOOR: 
+        case MARKER_9E_CELLAR_HATCH: 
+        case MARKER_A1_BLUBBER_SHIP_TOP_HATCH: 
+        case MARKER_E7_DINING_DOOR: 
+        case MARKER_EA_LIGHTHOUSE_DOOR: 
+        case MARKER_108_CABIN_CLOSET_DOOR:
+        case MARKER_263_CCW_WHIPCRACK_ROOM_DOOR:
+            if ((marker->id == MARKER_9D_MANSION_DOOR) || (marker->id == MARKER_E7_DINING_DOOR)) {
                 levelSpecificFlags_set(LEVEL_FLAG_2E_MMM_UNKNOWN, 1);
             }
-            if (arg0->id == 0x263) {
+            if (marker->id == MARKER_263_CCW_WHIPCRACK_ROOM_DOOR) {
                 levelSpecificFlags_set(LEVEL_FLAG_38_CCW_UNKNOWN, 1);
             }
-            func_802D2FB0(sp2C, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
+            func_802D2FB0(actor, 5, -0x28, 0xC8, 0.85f, 0xDC, 0x3C, 0x64);
             gcsfx_play(SFX_D_EGGSHELL_BREAKING);
             gcsfx_play(SFX_11_WOOD_BREAKING_1);
-            switch (arg0->id) {
-                case 0x9E:
-                    func_802EE278(sp2C, 0xD, 9, 0x82, 0.34f, 1.0f);
+            switch (marker->id) {
+                case MARKER_9E_CELLAR_HATCH:
+                    func_802EE278(actor, 0xD, 9, 0x82, 0.34f, 1.0f);
                     break;
 
-                case 0x9D:
-                case 0xE7:
-                case 0x108:
-                    func_802EE278(sp2C, 7, 6, 0x32, 0.4f, 1.1f);
-                    func_802EE278(sp2C, 7, 6, 0xB4, 0.4f, 1.1f);
+                case MARKER_9D_MANSION_DOOR:
+                case MARKER_E7_DINING_DOOR:
+                case MARKER_108_CABIN_CLOSET_DOOR:
+                    func_802EE278(actor, 7, 6, 0x32, 0.4f, 1.1f);
+                    func_802EE278(actor, 7, 6, 0xB4, 0.4f, 1.1f);
                     break;
 
-                case 0x9A:
-                case 0x9C:
-                case 0x263:
-                    func_802EE278(sp2C, 7, 0xA, 0x82, 0.3f, 0.8f);
+                case MARKER_9A_1881_BARREL_TOP:
+                case MARKER_9C_SHACK_DOOR:
+                case MARKER_263_CCW_WHIPCRACK_ROOM_DOOR:
+                    func_802EE278(actor, 7, 0xA, 0x82, 0.3f, 0.8f);
                     break;
 
-                case 0xA1:
-                    func_802EE278(sp2C, 7, 9, 0x82, 0.3f, 0.6f);
+                case MARKER_A1_BLUBBER_SHIP_TOP_HATCH:
+                    func_802EE278(actor, 7, 9, 0x82, 0.3f, 0.6f);
                     break;
 
-                case 0xEA:
-                    func_802EE278(sp2C, 3, 9, 0x82, 0.21f, 0.8f);
+                case MARKER_EA_LIGHTHOUSE_DOOR:
+                    func_802EE278(actor, 3, 9, 0x82, 0.21f, 0.8f);
                     break;
 
                 default:
-                    func_802EE278(sp2C, 7, 0x19, 0x82, 0.17f, 0.8f);
+                    func_802EE278(actor, 7, 0x19, 0x82, 0.17f, 0.8f);
                     break;
             }
-            marker_despawn(arg0);
+            marker_despawn(marker);
             break;
 
-        case 0x11F:
+        case MARKER_11F_RAREWARE_BOX:
             gcsfx_play(SFX_D9_WOODEN_CRATE_BREAKING_1);
-            func_802EE2E8(sp2C, 7, 9, 0x78, 0.43f, 1.3f, 3.0f);
-            func_802EE2E8(sp2C, 3, 6, 0x78, 0.43f, 1.3f, 3.0f);
-            func_802D317C(arg0, FILEPROG_C5_RAREWARE_BOX_BROKEN);
+            func_802EE2E8(actor, 7, 9, 0x78, 0.43f, 1.3f, 3.0f);
+            func_802EE2E8(actor, 3, 6, 0x78, 0.43f, 1.3f, 3.0f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_C5_RAREWARE_BOX_BROKEN);
             break;
 
-        case 0x11A:
+        case MARKER_11A_GRATE_TO_RBB_PUZZLE:
             gcsfx_play(SFX_82_METAL_BREAK);
-            func_802EE278(sp2C, 0xE, 0xD, 0x32, 0.8f, 0.9f);
-            func_802EE278(sp2C, 0xE, 0xD, 0xAA, 0.8f, 0.9f);
-            func_802D317C(arg0, FILEPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN);
+            func_802EE278(actor, 0xE, 0xD, 0x32, 0.8f, 0.9f);
+            func_802EE278(actor, 0xE, 0xD, 0xAA, 0.8f, 0.9f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_C2_GRATE_TO_RBB_PUZZLE_OPEN);
             break;
 
-        case 0x118:
+        case MARKER_118_GRATE_TO_LEVEL_3_WATER_SWITCH:
             gcsfx_play(SFX_82_METAL_BREAK);
-            func_802EE278(sp2C, 0xE, 0xD, 0x50, 1.2f, 0.9f);
-            func_802EE278(sp2C, 0xE, 0xD, 0xB4, 1.2f, 0.9f);
-            func_802D317C(arg0, FILEPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
+            func_802EE278(actor, 0xE, 0xD, 0x50, 1.2f, 0.9f);
+            func_802EE278(actor, 0xE, 0xD, 0xB4, 1.2f, 0.9f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_CD_GRATE_TO_WATER_SWITCH_3_OPEN);
             break;
 
-        case 0x119:
+        case MARKER_119_GRATE_BETWEEN_MMM_AND_RBB_PUZZLES:
             gcsfx_play(SFX_82_METAL_BREAK);
-            func_802EE278(sp2C, 0xE, 9, 0x50,  1.2f, 0.9f);
-            func_802EE278(sp2C, 0xE, 9, 0xAA,  1.2f, 0.9f);
-            func_802EE278(sp2C, 0xE, 9, 0x104, 1.2f, 0.9f);
-            func_802D317C(arg0, FILEPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
+            func_802EE278(actor, 0xE, 9, 0x50,  1.2f, 0.9f);
+            func_802EE278(actor, 0xE, 9, 0xAA,  1.2f, 0.9f);
+            func_802EE278(actor, 0xE, 9, 0x104, 1.2f, 0.9f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
             break;
 
-        case 0x22D:
-        case 0x22E:
+        case MARKER_22D_SHIP_SHADOW_WINDOW:
+        case MARKER_22E_SHIP_SUNNY_WINDOW:
             gcsfx_play(SFX_82_METAL_BREAK);
             gcsfx_play(SFX_B6_GLASS_BREAKING_1);
-            func_802EE278(sp2C, 4, 0x23, 0x1E, 0.7f, 0.6f);
-            marker_despawn(arg0);
+            func_802EE278(actor, 4, 0x23, 0x1E, 0.7f, 0.6f);
+            marker_despawn(marker);
             break;
 
-        case 0x123:
-        case 0x1F2:
-        case 0x1F3:
-        case 0x235:
-        case 0x236:
-        case 0x237:
-        case 0x238:
-        case 0x239:
+        case MARKER_123_WINDOW:
+        case MARKER_1F2_WIDE_WINDOW:
+        case MARKER_1F3_TALL_WINDOW:
+        case MARKER_235_CRACKED_SKYLIGHT:
+        case MARKER_236_CCW_UNKNOWN_NABNUT_WINDOW:
+        case MARKER_237_CCW_AUTUMN_NABNUT_WINDOW:
+        case MARKER_238_CCW_WINTER_NABNUT_WINDOW:
+        case MARKER_239_CCW_UNKNOWN_NABNUT_WINDOW:
             gcsfx_play(SFX_13A_GLASS_BREAKING_7);
-            func_802EE278(sp2C, 4, 0x2D, 0x82, 1.0f, 1.0f);
-            if (arg0->id == 0x1F3) {
-                func_802EE278(sp2C, 4, 0x2D, 0x104, 1.0f, 1.0f);
+            func_802EE278(actor, 4, 0x2D, 0x82, 1.0f, 1.0f);
+            if (marker->id == MARKER_1F3_TALL_WINDOW) {
+                func_802EE278(actor, 4, 0x2D, 0x104, 1.0f, 1.0f);
             }
-            marker_despawn(arg0);
+            marker_despawn(marker);
             break;
 
-        case 0x11E:
+        case MARKER_11E_ICE_BALL_TO_CHEATO:
             gcsfx_play(SFX_B6_GLASS_BREAKING_1);
-            func_802EE278(sp2C, 4, 0x32, 0x50, 1.0f, 1.4f);
-            func_802EE278(sp2C, 4, 0x32, 0xA0, 1.0f, 1.4f);
-            func_802EE278(sp2C, 4, 0x1E, 0xF0, 0.8f, 1.1f);
-            func_802D317C(arg0, FILEPROG_C3_ICE_BALL_TO_CHEATO_BROKEN);
+            func_802EE278(actor, 4, 0x32, 0x50, 1.0f, 1.4f);
+            func_802EE278(actor, 4, 0x32, 0xA0, 1.0f, 1.4f);
+            func_802EE278(actor, 4, 0x1E, 0xF0, 0.8f, 1.1f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_C3_ICE_BALL_TO_CHEATO_BROKEN);
             break;
 
         case MARKER_121_GLASS_EYE:
             gcsfx_play(SFX_B6_GLASS_BREAKING_1);
-            func_802EE2E8(sp2C, 1, 0x32, 0x14, 1.2f, 1.4f, 2.2f);
-            func_802EE2E8(sp2C, 1, 0x3C, 0x64, 1.6f, 1.8f, 2.2f);
-            func_802EE2E8(sp2C, 1, 0x32, 0xB4, 1.2f, 1.4f, 2.2f);
-            func_802D317C(arg0, FILEPROG_C4_STATUE_EYE_BROKEN);
+            func_802EE2E8(actor, 1, 0x32, 0x14, 1.2f, 1.4f, 2.2f);
+            func_802EE2E8(actor, 1, 0x3C, 0x64, 1.6f, 1.8f, 2.2f);
+            func_802EE2E8(actor, 1, 0x32, 0xB4, 1.2f, 1.4f, 2.2f);
+            code_4C020_breakableObjectSetFlag(marker, FILEPROG_C4_STATUE_EYE_BROKEN);
             break;
 
-        case 0x164:
-        case 0x165:
-            if (sp2C->unk1C[1] == sp2C->position[1]) {
+        case MARKER_164_GL_GRUNTY_FLOOR_PICTURE_EYE_1:
+        case MARKER_165_GL_GRUNTY_FLOOR_PICTURE_EYE_2:
+            if (actor->unk1C[1] == actor->position[1]) {
                 gcsfx_playAtSampleRate(SFX_9B_BOULDER_BREAKING_1, 25000);
-                sp2C->unk1C[0] = 1.0f;
+                actor->unk1C[0] = 1.0f;
             }
             break;
 
         default:   
             gcsfx_play(SFX_D_EGGSHELL_BREAKING);
             gcsfx_play(SFX_11_WOOD_BREAKING_1);
-            marker_despawn(arg0);
+            marker_despawn(marker);
             break;
     }
 }
 
-void func_802D3CC8(ActorMarker *marker){
-    func_802D31AC(marker, NULL);
+// unused
+void code_4C020_unusedBreakableObjectSfx(ActorMarker *marker){
+    code_4C020_breakableObjectSfx(marker, NULL);
 }
 
 // used as init function
 void func_802D3CE8(Actor *this){
     if(!this->initialized){
-        marker_setCollisionScripts(this->marker, NULL, func_802D3138, func_802D31AC);
+        marker_setCollisionScripts(this->marker, NULL, func_802D3138, code_4C020_breakableObjectSfx);
         this->marker->propPtr->unk8_3 = TRUE;
         this->initialized = TRUE;
     }
 }
 
-void func_802D3D54(Actor *this){
+void chMMMBreakableWooden_update(Actor *this){
     func_802D3CE8(this);
 }
 
@@ -378,8 +424,8 @@ void func_802D3D74(Actor *this){
     actor_collisionOff(this);
 }
 
-void func_802D3DA4(Actor *this) {
-    f32 sp24[3];
+void gWorldExitPad_update(Actor *this) {
+    f32 player_position[3];
     s32 phi_v0;
 
     if ((*(s32*)OS_PHYSICAL_TO_K1(0x22C) - 0x12600004)) {
@@ -392,9 +438,18 @@ void func_802D3DA4(Actor *this) {
         this->marker->propPtr->unk8_3 = TRUE;
         this->unk38_31 = 0;
     }
-    player_getPosition(sp24);
-    phi_v0 = ((this->position[1] - 5.0f) <= sp24[1]) && (sp24[1] <= (this->position[1] + 30.0f))
-        && (((sp24[0] - this->position[0])*(sp24[0] - this->position[0]) + (sp24[2] - this->position[2])*(sp24[2] - this->position[2])) < 3025.0f);
+    player_getPosition(player_position);
+    phi_v0 =
+        (
+            (this->position[1] - 5.0f) <= player_position[1])
+            && (player_position[1] <= (this->position[1] + 30.0f)
+        )
+        && ((
+            (player_position[0] - this->position[0])
+            * (player_position[0] - this->position[0])
+            + (player_position[2] - this->position[2])
+            * (player_position[2] - this->position[2])
+        ) < 3025.0f);
 
     if ((this->unk38_31 == 0) && (phi_v0 == 0)) {
         this->unk38_31 = 1;
@@ -405,7 +460,7 @@ void func_802D3DA4(Actor *this) {
     }
 }
 
-Actor *func_802D3F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *gWorldExitPad_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     s32 phi_s2;
     Actor *this;
     s32 i;
@@ -413,12 +468,12 @@ Actor *func_802D3F48(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     this = marker_getActor(marker);
     phi_s2 = this->actorTypeSpecificField;
     for(i = 0; i < 9; i++){
-        modelRender_setAppendageVisibility(i + 1, i+1 == phi_s2);
+        modelRender_setAppendageVisibility(i + 1, i + 1 == phi_s2);
     }
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
-void func_802D3FD4(Actor *this){
+void chSnsEgg_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         func_802D3CE8(this);
@@ -470,21 +525,21 @@ void func_802D3FD4(Actor *this){
     }
 }
 
-Actor *func_802D41C4(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    s32 sp2C;
+Actor *chSnsEgg_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+    s32 actor_type_specific_field;
     Actor *this;
     s32 i;
 
     this = marker_getActor(marker);
-    sp2C = this->actorTypeSpecificField;
+    actor_type_specific_field = this->actorTypeSpecificField;
     for(i = 0; i < 6; i++){
-        modelRender_setAppendageVisibility(i+1, FALSE);
+        modelRender_setAppendageVisibility(i + 1, FALSE);
     }
-    modelRender_setAppendageVisibility(sp2C, TRUE);
+    modelRender_setAppendageVisibility(actor_type_specific_field, TRUE);
     return actor_drawFullDepth(marker, gfx, mtx, vtx);
 }
 
-void func_802D4250(Actor *this){
+void chIceKey_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         func_802D3CE8(this);
@@ -504,8 +559,7 @@ void func_802D4250(Actor *this){
 bool func_802D42F8(Actor *this) {
     s32 i;
 
-    for(i = 0; D_803679B0[i] != -1 && this->actorTypeSpecificField != D_803679B0[i]; i+=2){
-    }
+    for(i = 0; D_803679B0[i] != -1 && this->actorTypeSpecificField != D_803679B0[i]; i+=2){}
 
     if (D_803679B0[i] == -1) {
         return FALSE;
@@ -516,7 +570,7 @@ bool func_802D42F8(Actor *this) {
 }
 
 
-void func_802D4388(Actor *this){
+void chMumboSwitch_update(Actor *this){
     func_802D3CE8(this);
     this->unk38_0 = BOOL(gsworld_getMap() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->actorTypeSpecificField || func_802D42F8(this));
     mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || player_movementGroup() == BSGROUP_D_TRANSFORMING);
@@ -551,7 +605,7 @@ void func_802D4388(Actor *this){
     mapSpecificFlags_set(0x1F, FALSE);
 }
 
-Actor *func_802D4588(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chMumboSwitch_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 phi_a1;
 
     phi_a1 = (marker_getActor(marker)->unk38_0) ? ((globalTimer_getTime() & 4) != 0) ? 1 : 2 : 2;
@@ -572,7 +626,7 @@ void func_802D4614(enum map_e map_id){
     timedFunc_set_2(1.0f, (GenFunction_2) func_8031CC40, map_id, 2);
 }
 
-void func_802D4680(Actor *this){
+void chFFTeleportPad_Update(Actor *this){
     f32 sp1C[3];
 
     player_getPosition(sp1C);
@@ -679,39 +733,39 @@ void func_802D4AC0(Actor *this, s32 arg1, enum file_progress_e arg2) {
 }
 
 
-void func_802D4B94(Actor *this){
+void chMMWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000b6, FILEPROG_18_MM_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4BBC(Actor *this){
+void chCCWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000bc, FILEPROG_9A_CC_WITCH_SWITCH_PRESSED);
 }
 
-void func_802D4BE4(Actor *this){
+void chBGSWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000bd, FILEPROG_9F_BGS_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4C0C(Actor *this){
+void chGVWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000be, FILEPROG_A0_GV_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4C34(Actor *this){
+void chMMMWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000b7, FILEPROG_19_MMM_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4C5C(Actor *this){
+void chTTCWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000b8, FILEPROG_1A_TTC_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4C84(Actor *this){
+void chRBBWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000b9, FILEPROG_1C_RBB_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4CAC(Actor *this){
+void chCCWWitchSwitch_update(Actor *this){
     func_802D4AC0(this, 0x4000ba, FILEPROG_46_CCW_WITCH_SWITCH_JIGGY_PRESSED);
 }
 
-void func_802D4CD4(Actor *this){
+void chFPWitchSwitch_update(Actor *this){
     if(gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK){
         if(maSlalom_isActive()){
             this->unk58_0 = FALSE;
@@ -1038,7 +1092,7 @@ void func_802D5628(void){
         func_802D5178(LEVEL_FLAG_22_MMM_OPEN, 0x2E, 0x36, MAP_75_GL_MMM_LOBBY, 0xC, 0x6, ACTOR_228_MMM_ENTRANCE_DOOR,    0xA);
         func_802D5178(LEVEL_FLAG_24_CCW_OPEN, 0x30, 0x37, MAP_79_GL_CCW_LOBBY, 0xF, 0xB, ACTOR_234_CCW_ENTRANCE_DOOR, 0xA);
         func_802D5178(LEVEL_FLAG_20_FP_OPEN, 0x2C, 0x38, MAP_6F_GL_FP_LOBBY, 0x11, 0xA, ACTOR_235_FP_ENTRANCE_DOOR_LEFT,   0xA);
-        func_802D5178(LEVEL_FLAG_3F_LAIR_GRUNTY_DOOR_OPEN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_DOOR_OF_GRUNTY,   0x28);
+        func_802D5178(LEVEL_FLAG_3F_LAIR_GRUNTY_DOOR_OPEN, 0xE2, 0x40, MAP_93_GL_DINGPOT,  0x10, 0xA, ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE,   0x28);
         if(volatileFlag_get(VOLATILE_FLAG_18)){
             if(!fileProgressFlag_get(FILEPROG_99_PAST_50_NOTE_DOOR_TEXT)){
                 gcdialog_showDialogConditional(0xF75, 0xE, NULL, NULL, NULL, NULL, func_802D5140);
@@ -1224,7 +1278,7 @@ void func_802D6494(void){
     if( (!D_80367684 || (D_80367684 && (gsworld_getMap() == D_80367684)))
     ){
         switch(D_803676A0){
-            case ACTOR_2E5_DOOR_OF_GRUNTY:
+            case ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE:
                 break;
             case ACTOR_20E_MM_ENTRANCE_DOOR:// L802D6510
                 FUNC_8030E624(SFX_6B_LOCKUP_OPENING, 0.6f, 32000);

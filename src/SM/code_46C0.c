@@ -35,7 +35,7 @@ int func_8038AAB0(void){return 0;}
 //         D_8038BFC8->unk4 = (s32) D_8038BD3C;
 //         D_8038BFC8->unk10 = (s32) D_8038BD40;
 //         D_8038BFC8->unk20 = (s32) D_8038BD44;
-//         D_8038BFC8->unk30 = (s32) D_8038BD48;
+//         D_8038BFC8->unk30 = (s32) chMMMWideWindow;
 //         func_8031A5E4(&D_8038BD30, &D_8038BD34, (void *)0x8038BFC8, 0xA, &D_8038B490);
 //         break;
 //     case 3:

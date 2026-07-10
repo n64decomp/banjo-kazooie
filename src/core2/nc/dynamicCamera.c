@@ -29,10 +29,33 @@ void func_802BD8EC(f32 arg0);
 f32 D_80365CD0[] = {0.0f};
 f32 D_80365CD4[] = {0.0f, -25.0f, 25.0f, -50.0f, 50.0f, -80.0f, 80.0f, -120.0f, 120.0f, -140.0f, 140.0f};
 f32 D_80365D00[] = {0.0f, 20.0f, 40.0f, 60.0f, 80.0f, 100.0f, 120.0f, 140.0f, 160.0f, 180.0f, 200.0f, 220.0f, 240.0f, 260.0f, 280.0f, 300.0f, 320.0f, 340.0f};
+
 Struct_core2_356B0_0 D_80365D48 = {D_80365CD0, 1};
 Struct_core2_356B0_0 D_80365D50 = {D_80365CD4, 11};
 Struct_core2_356B0_0 D_80365D58 = {D_80365D00, 18};
 
+enum ncdynamiccamera_state_e {
+    NCDYNAMICCAMERA_STATE_0_NOT_INIT,
+    NCDYNAMICCAMERA_STATE_1_UNK,
+    NCDYNAMICCAMERA_STATE_2_UNK,
+    NCDYNAMICCAMERA_STATE_3_UNK,
+    NCDYNAMICCAMERA_STATE_4_UNK,
+    NCDYNAMICCAMERA_STATE_5_UNK,
+    NCDYNAMICCAMERA_STATE_6_UNK,
+    NCDYNAMICCAMERA_STATE_7_UNK,
+    NCDYNAMICCAMERA_STATE_8_UNK,
+    NCDYNAMICCAMERA_STATE_9_UNK,
+    NCDYNAMICCAMERA_STATE_A_UNK,
+    NCDYNAMICCAMERA_STATE_B_UNK,
+    NCDYNAMICCAMERA_STATE_C_UNK,
+    NCDYNAMICCAMERA_STATE_D_UNK,
+    NCDYNAMICCAMERA_STATE_E_UNK,
+    NCDYNAMICCAMERA_STATE_F_UNK,
+    NCDYNAMICCAMERA_STATE_10_UNK,
+    NCDYNAMICCAMERA_STATE_11_UNK,
+    NCDYNAMICCAMERA_STATE_12_UNK,
+    NCDYNAMICCAMERA_STATE_13_UNK
+};
 
 /* .bss */
 s32 D_8037D940;
@@ -274,8 +297,8 @@ void func_802BCE94(void){
 }
 
 void ncDynamicCamera_update(void){
-    f32 sp24[3];
-    f32 sp18[3];
+    f32 position[3];
+    f32 rotation[3];
 
     if(!cameraUpdateEnabled)
         return;
@@ -287,84 +310,84 @@ void ncDynamicCamera_update(void){
     func_802BCA58();
 
     switch(dynamicCameraState){
-        case 1:// L802BCF3C
+        case NCDYNAMICCAMERA_STATE_1_UNK:// L802BCF3C
             ncDynamicCam1_update();
             func_802BCE94();
             break;
 
-        case 3:// L802BCF54
+        case NCDYNAMICCAMERA_STATE_3_UNK:// L802BCF54
             ncDynamicCam3_update();
             break;
         
-        case 4:// L802BCF64
+        case NCDYNAMICCAMERA_STATE_4_UNK:// L802BCF64
             ncbafly_update();
             func_802BCE94();
             break;
 
-        case 5:// L802BCF7C
+        case NCDYNAMICCAMERA_STATE_5_UNK:// L802BCF7C
             ncDynamicCam5_update();
             func_802BCE94();
             break;
 
-        case 6:// L802BCF94
+        case NCDYNAMICCAMERA_STATE_6_UNK:// L802BCF94
             func_802BCE94();
             break;
 
-        case 8:// L802BCFA4
+        case NCDYNAMICCAMERA_STATE_8_UNK:// L802BCFA4
             ncDynamicCam8_update();
             break;
 
-        case 9:// L802BCFB4
+        case NCDYNAMICCAMERA_STATE_9_UNK:// L802BCFB4
             ncDynamicCam9_update();
             func_802BCE94();
             break;
 
-        case 0xA:// L802BCFCC
+        case NCDYNAMICCAMERA_STATE_A_UNK:// L802BCFCC
             ncDynamicCamA_update();
             break;
 
-        case 0xB:// L802BCFDC
+        case NCDYNAMICCAMERA_STATE_B_UNK:// L802BCFDC
             ncDynamicCamB_update();
             break;
 
-        case 0xC:// L802BCFEC
+        case NCDYNAMICCAMERA_STATE_C_UNK:// L802BCFEC
             ncDynamicCamC_update();
             func_802BCE94();
             break;
 
-        case 0xD:// L802BD004
+        case NCDYNAMICCAMERA_STATE_D_UNK:// L802BD004
             ncbadie_update();
             func_802BCE94();
             break;
 
-        case 0xF:// L802BD01C
+        case NCDYNAMICCAMERA_STATE_F_UNK:// L802BD01C
             ncDynamicCamF_update();
             break;
 
-        case 0x10:// L802BD02C
+        case NCDYNAMICCAMERA_STATE_10_UNK:// L802BD02C
             ncDynamicCam10_update();
             break;
 
-        case 0x11:// L802BD03C
+        case NCDYNAMICCAMERA_STATE_11_UNK:// L802BD03C
             ncDynamicCam11_update();
             break;
 
-        case 0x12:// L802BD04C
+        case NCDYNAMICCAMERA_STATE_12_UNK:// L802BD04C
             ncDynamicCam12_update();
             break;
 
-        case 0x13:// L802BD05C
+        case NCDYNAMICCAMERA_STATE_13_UNK:// L802BD05C
             ncDynamicCam13_update();
             break;
     }//// L802BD064
-    ml_vec3f_copy(sp24, cameraPosition);
-    ml_vec3f_copy(sp18, cameraRotation);
-    func_802C22C0(sp24, sp18);
+    ml_vec3f_copy(position, cameraPosition);
+    ml_vec3f_copy(rotation, cameraRotation);
+    func_802C22C0(position, rotation);
     if(dynamicCameraInFirstPerson){
-        ncba1p_getPositionAndRotation(sp24, sp18);
+        ncba1p_getPositionAndRotation(position, rotation);
     }
-    viewport_setPosition_vec3f(sp24);
-    viewport_setRotation_vec3f(sp18);
+    viewport_setPosition_vec3f(position);
+    viewport_setRotation_vec3f(rotation);
 }
 
 int ncDynamicCamera_getState(void){
@@ -376,126 +399,126 @@ void ncDynamicCamera_setState(s32 state){
         return;
 
     switch(dynamicCameraState){
-        case 0x1://L802BD114
+        case NCDYNAMICCAMERA_STATE_1_UNK://L802BD114
             ncDynamicCam1_end();
             break;
 
-        case 0x3://L802BD124
+        case NCDYNAMICCAMERA_STATE_3_UNK://L802BD124
             ncDynamicCam3_end();
             break;
 
-        case 0x4://L802BD134
+        case NCDYNAMICCAMERA_STATE_4_UNK://L802BD134
             ncbafly_end();
             break;
 
-        case 0x5://L802BD144
+        case NCDYNAMICCAMERA_STATE_5_UNK://L802BD144
             ncDynamicCam5_end();
             break;
 
-        case 0x8://L802BD154
+        case NCDYNAMICCAMERA_STATE_8_UNK://L802BD154
             ncDynamicCam8_end();
             break;
 
-        case 0x9://L802BD164
+        case NCDYNAMICCAMERA_STATE_9_UNK://L802BD164
             ncDynamicCam9_end();
             break;
 
-        case 0xa://L802BD174
+        case NCDYNAMICCAMERA_STATE_A_UNK://L802BD174
             ncDynamicCamA_end();
             break;
 
-        case 0xb://L802BD184
+        case NCDYNAMICCAMERA_STATE_B_UNK://L802BD184
             ncDynamicCamB_end();
             break;
 
-        case 0xc://L802BD194
+        case NCDYNAMICCAMERA_STATE_C_UNK://L802BD194
             ncDynamicCamC_end();
             break;
 
-        case 0xd://L802BD1A4
+        case NCDYNAMICCAMERA_STATE_D_UNK://L802BD1A4
             ncbadie_end();
             break;
 
-        case 0xf://L802BD1B4
+        case NCDYNAMICCAMERA_STATE_F_UNK://L802BD1B4
             ncDynamicCamF_end();
             break;
 
-        case 0x10://L802BD1C4
+        case NCDYNAMICCAMERA_STATE_10_UNK://L802BD1C4
             ncDynamicCam10_end();
             break;
 
-        case 0x11://L802BD1D4
+        case NCDYNAMICCAMERA_STATE_11_UNK://L802BD1D4
             ncDynamicCam11_end();
             break;
 
-        case 0x12://L802BD1E4
+        case NCDYNAMICCAMERA_STATE_12_UNK://L802BD1E4
             ncDynamicCam12_end();
             break;
 
-        case 0x13://L802BD1F4
+        case NCDYNAMICCAMERA_STATE_13_UNK://L802BD1F4
             ncDynamicCam13_end();
             break;
     }//L802BD1FC
 
     switch (state)
     {
-        case 0x1: //L802BD224
+        case NCDYNAMICCAMERA_STATE_1_UNK: //L802BD224
             ncDynamicCam1_init();
             break;
 
-        case 0x3: //L802BD234
+        case NCDYNAMICCAMERA_STATE_3_UNK: //L802BD234
             ncDynamicCam3_init();
             break;
 
-        case 0x4: //L802BD244
+        case NCDYNAMICCAMERA_STATE_4_UNK: //L802BD244
             ncbafly_init();
             break;
 
-        case 0x5: //L802BD254
+        case NCDYNAMICCAMERA_STATE_5_UNK: //L802BD254
             ncDynamicCam5_init();
             break;
 
-        case 0x8: //L802BD264
+        case NCDYNAMICCAMERA_STATE_8_UNK: //L802BD264
             ncDynamicCam8_init();
             break;
 
-        case 0x9: //L802BD274
+        case NCDYNAMICCAMERA_STATE_9_UNK: //L802BD274
             ncDynamicCam9_init();
             break;
 
-        case 0xa: //L802BD284
+        case NCDYNAMICCAMERA_STATE_A_UNK: //L802BD284
             ncDynamicCamA_init();
             break;
 
-        case 0xb: //L802BD294
+        case NCDYNAMICCAMERA_STATE_B_UNK: //L802BD294
             ncDynamicCamB_init();
             break;
 
-        case 0xc: //L802BD2A4
+        case NCDYNAMICCAMERA_STATE_C_UNK: //L802BD2A4
             ncDynamicCamC_init();
             break;
 
-        case 0xd: //L802BD2B4
+        case NCDYNAMICCAMERA_STATE_D_UNK: //L802BD2B4
             ncbadie_init();
             break;
 
-        case 0xf: //L802BD2C4
+        case NCDYNAMICCAMERA_STATE_F_UNK: //L802BD2C4
             ncDynamicCamF_init();
             break;
 
-        case 0x10: //L802BD2D4
+        case NCDYNAMICCAMERA_STATE_10_UNK: //L802BD2D4
             ncDynamicCam10_init();
             break;
 
-        case 0x11: //L802BD2E4
+        case NCDYNAMICCAMERA_STATE_11_UNK: //L802BD2E4
             ncDynamicCam11_init();
             break;
 
-        case 0x12: //L802BD2F4
+        case NCDYNAMICCAMERA_STATE_12_UNK: //L802BD2F4
             dynamicCam12_init();
             break;
 
-        case 0x13: //L802BD304
+        case NCDYNAMICCAMERA_STATE_13_UNK: //L802BD304
             ncDynamicCam13_init();
             break;
     }
@@ -578,8 +601,8 @@ void func_802BD610(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3, f32 arg4, f32 a
     sp24[1] = mlDiffDegF(arg0[1], arg1[1]);
     sp24[0] *= 0.003333 * D_8037D984;
     sp24[1] *= 0.003333 * D_8037D988;
-    sp24[0] = func_80259198(sp24[0], D_8037D98C * 0.003333);
-    sp24[1] = func_80259198(sp24[1], D_8037D990 * 0.003333);
+    sp24[0] = ml_clamp_abs_f(sp24[0], D_8037D98C * 0.003333);
+    sp24[1] = ml_clamp_abs_f(sp24[1], D_8037D990 * 0.003333);
     sp24[2] = 0.0f;
     arg1[0] = mlNormalizeAngle(arg1[0] + sp24[0]);
     arg1[1] = mlNormalizeAngle(arg1[1] + sp24[1]);

@@ -28,7 +28,7 @@ Actor *func_802CCA7C(ActorMarker *, Gfx **, Mtx **, Vtx **);
 void func_802CCC5C(Actor *this);
 
 /* .data */
-ActorInfo D_80367130 = { 
+ActorInfo chBuzzbomb = {
     MARKER_C2_BUZZBOMB, ACTOR_134_BUZZBOMB, ASSET_3ED_MODEL_BUZZBOMB, 
     0, NULL, 
     func_802CCC5C, NULL, func_802CCA7C, 

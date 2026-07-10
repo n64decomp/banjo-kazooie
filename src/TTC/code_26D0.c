@@ -25,7 +25,7 @@ extern ActorInfo gChTreasurehuntRedQuestionMark;
 extern ActorInfo gChTreasurehuntRedX;
 extern ActorInfo gChTreasure;
 
-extern void func_802D3D54(Actor *this);
+extern void chMMMBreakableWooden_update(Actor *this);
 
 static void __code26D0_genericUpdateFunc(Actor *this);
 static void __code26D0_palmTreeUpdateFunc(Actor *this);
@@ -36,14 +36,14 @@ static void __code26D0_sharkfoodIslandUpdateFunc(Actor *this);
 ActorInfo gBlubberShipTopHatch = {
      MARKER_A1_BLUBBER_SHIP_TOP_HATCH, ACTOR_10E_BLUBBER_SHIP_TOP_HATCH, ASSET_3D2_MODEL_BLUBBER_SHIP_TOP_HATCH,
      0x1, NULL, 
-     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+     chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 
 ActorInfo gLighthouseDoor = {
      MARKER_EA_LIGHTHOUSE_DOOR, ACTOR_13E_LIGHTHOUSE_DOOR, ASSET_3D6_MODEL_LIGHTHOUSE_DOOR,
      0x1, NULL, 
-     func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+     chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
      0, 0, 0.0f, 0
 };
 

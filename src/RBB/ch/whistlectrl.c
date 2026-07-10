@@ -2,8 +2,6 @@
 #include "functions.h"
 #include "variables.h"
 
-extern ActorInfo D_80390FD0;
-
 typedef struct {
     s16 currentIndex;
     s16 unk2;

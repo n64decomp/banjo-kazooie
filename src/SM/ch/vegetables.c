@@ -47,7 +47,7 @@ ActorInfo gChVegetablesTopperA = {
 };
 
 ActorInfo gChVegetablesTopperB = {
-    MARKER_1E6_TOPPER_THE_CARROT_B, ACTOR_TOPPER_THE_CARROT_B, ASSET_4ED_MODEL_TOPPER,
+    MARKER_1E6_TOPPER_THE_CARROT_B, ACTOR_36F_TOPPER_THE_CARROT_B, ASSET_4ED_MODEL_TOPPER,
     1, sChCarrotAnimations, __chVegetables_update, actor_update_func_80326224, __chVegetables_draw,
     2000, 0, 1.0f, 0
 };
@@ -67,7 +67,7 @@ ActorInfo gChVegetablesBawlA = {
 };
 
 ActorInfo gChVegetablesBawlB = {
-    MARKER_1E7_BAWL_THE_ONION_B, ACTOR_BAWL_THE_ONION_B, ASSET_4EF_MODEL_BAWL,
+    MARKER_1E7_BAWL_THE_ONION_B, ACTOR_36E_BAWL_THE_ONION_B, ASSET_4EF_MODEL_BAWL,
     1, sChOnionAnimations, __chVegetables_update, actor_update_func_80326224, __chVegetables_draw,
     0, 0, 1.0f, 0
 };
@@ -87,7 +87,7 @@ ActorInfo gChVegetablesCollywobbleA = {
 };
 
 ActorInfo gChVegetablesCollywobbleB = {
-    MARKER_1E8_COLLYWOBBLE_THE_CAULIFLOWER_B, ACTOR_COLLYWOBBLE_B, ASSET_4EE_MODEL_COLLYWOBBLE,
+    MARKER_1E8_COLLYWOBBLE_THE_CAULIFLOWER_B, ACTOR_36D_COLLYWOBBLE_B, ASSET_4EE_MODEL_COLLYWOBBLE,
     1, sChCauliflowerAnimations, __chVegetables_update, actor_update_func_80326224, __chVegetables_draw,
     0, 0, 2.0f, 0
 };

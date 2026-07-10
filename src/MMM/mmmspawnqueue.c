@@ -6,20 +6,20 @@
 
 #include "core2/dustemitter.h"
 
-extern ActorInfo D_8038BC28;
-extern ActorInfo D_8038BCDC;
-extern ActorInfo D_8038BC4C;
-extern ActorInfo D_8038BDB4;
-extern ActorInfo D_8038BDD8;
-extern ActorInfo D_8038BDFC;
-extern ActorInfo D_8038BC94;
-extern ActorInfo D_8038BC70;
-extern ActorInfo D_8038BD00;
-extern ActorInfo D_8038BD24;
-extern ActorInfo D_8038BD48;
-extern ActorInfo D_8038BD6C;
-extern ActorInfo D_8038BCB8;
-extern ActorInfo D_8038BD90;
+extern ActorInfo chShackDoor;
+extern ActorInfo chMansionDoor;
+extern ActorInfo chCellarHatch;
+extern ActorInfo chChuchGateLeftLock;
+extern ActorInfo chHedgeGateRightLock1;
+extern ActorInfo chHedgeGateRightLock2;
+extern ActorInfo chChuchDoor;
+extern ActorInfo ch1881BarrelTop;
+extern ActorInfo chXBarrelTop;
+extern ActorInfo chMMMWindow;
+extern ActorInfo chMMMWideWindow;
+extern ActorInfo chMMMTallWindow;
+extern ActorInfo chDiningDoor;
+extern ActorInfo chMMMClockSwitch;
 extern ActorInfo chNapper;
 extern ActorInfo chCemetaryPot;
 extern ActorInfo chMotzhand;
@@ -39,14 +39,14 @@ extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 extern void func_8025AE0C(s32, f32);
 extern void *func_80309B48(f32[3], f32[3], f32[3], u32);
 
-void func_802D3D54(Actor *this);
-void func_803888B8(Actor *this);
-Actor *func_80388994(ActorMarker *marker, Gfx ** gfx, Mtx **mtx, Vtx **vtx);
-void func_80388BDC(Actor *this);
-void func_80388FE4(Actor *this);
-void func_80389004(Actor *this);
-void func_80389060(Actor *this);
-void func_803890B8(Actor *this);
+void chMMMBreakableWooden_update(Actor *this);
+void chMMMGate_update(Actor *this);
+Actor *chMMMGate_draw(ActorMarker *marker, Gfx ** gfx, Mtx **mtx, Vtx **vtx);
+void chChurchDoor_update(Actor *this);
+void chMMMClockSwitch_update(Actor *this);
+void chMMMWoodenDoor_update(Actor *this);
+void chXBarrelTop_update(Actor *this);
+void chMMMWindow_update(Actor *this);
 
 /* .data */
 ActorAnimationInfo D_8038BBE0[] = {
@@ -61,101 +61,101 @@ ActorAnimationInfo D_8038BBE0[] = {
     {0x00, 0.0f}
 };
 
-ActorInfo D_8038BC28 = {
+ActorInfo chShackDoor = {
     MARKER_9C_SHACK_DOOR, ACTOR_109_SHACK_DOOR, ASSET_3CD_MODEL_SHACK_DOOR,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BC4C = {
+ActorInfo chCellarHatch = {
     MARKER_9E_CELLAR_HATCH, ACTOR_10B_CELLAR_HATCH, ASSET_3CF_MODEL_CELLAR_HATCH,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BC70 = {
+ActorInfo ch1881BarrelTop = {
     MARKER_9A_1881_BARREL_TOP,  ACTOR_CB_1881_BARREL_TOP, ASSET_3CC_MODEL_1881_BARREL_TOP,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BC94 = {
+ActorInfo chChuchDoor = {
     MARKER_A2_CHURCH_DOOR, ACTOR_114_CHURCH_DOOR, ASSET_3D3_MODEL_CHURCH_DOOR,
     0x1, NULL,
-    func_80388BDC, actor_update_func_80326224, actor_drawFullDepth,
+    chChurchDoor_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BCB8 = {
+ActorInfo chDiningDoor = {
     MARKER_E7_DINING_DOOR, ACTOR_265_DINING_DOOR, ASSET_4DA_MODEL_DINING_DOOR,
     0x1, NULL,
-    func_80389004, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMWoodenDoor_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BCDC = {
+ActorInfo chMansionDoor = {
     MARKER_9D_MANSION_DOOR, ACTOR_10A_MANSION_DOOR, ASSET_3CE_MODEL_MANSION_DOOR,
     0x1, NULL,
-    func_80389004, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMWoodenDoor_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BD00 = {
+ActorInfo chXBarrelTop = {
     MARKER_D3_X_BARREL_TOP, ACTOR_191_X_BARREL_TOP, ASSET_50B_MODEL_X_BARREL_TOP,
     0x1, NULL,
-    func_80389060, actor_update_func_80326224, actor_drawFullDepth,
+    chXBarrelTop_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BD24 = {
+ActorInfo chMMMWindow = {
     MARKER_123_WINDOW, ACTOR_2E8_WINDOW, ASSET_4C0_MODEL_WINDOW,
     0x1, NULL,
-    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMWindow_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BD48 = {
+ActorInfo chMMMWideWindow = {
     MARKER_1F2_WIDE_WINDOW, ACTOR_2E9_WIDE_WINDOW, ASSET_4C1_MODEL_WIDE_WINDOW,
     0x1, NULL,
-    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMWindow_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BD6C = {
+ActorInfo chMMMTallWindow = {
     MARKER_1F3_TALL_WINDOW, ACTOR_2EA_TALL_WINDOW, ASSET_4C2_MODEL_TALL_WINDOW,
     0x1, NULL,
-    func_803890B8, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMWindow_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BD90 = {
+ActorInfo chMMMClockSwitch = {
     MARKER_FE_MMM_CLOCK_SWITCH, ACTOR_1FD_MMM_CLOCK_SWITCH, ASSET_43D_MODEL_MMM_CLOCK_SWITCH, 
     0x1, D_8038BBE0,
-    func_80388FE4, actor_update_func_80326224, actor_draw,
+    chMMMClockSwitch_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BDB4 = {
+ActorInfo chChuchGateLeftLock = {
     MARKER_9F_CHURCH_GATE_LEFT_LOCK, ACTOR_10C_CHURCH_GATE_LEFT_LOCK, ASSET_3D0_MODEL_CHURCH_GATE_LEFT_LOCK,
     0x1, NULL,
-    func_803888B8, actor_update_func_80326224, func_80388994,
+    chMMMGate_update, actor_update_func_80326224, chMMMGate_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BDD8 = {
+ActorInfo chHedgeGateRightLock1 = {
     MARKER_A0_HEDGE_GATE_RIGHT_LOCK_1, ACTOR_10D_HEDGE_GATE_RIGHT_LOCK_1, ASSET_3D1_MODEL_HEDGE_GATE_RIGHT_LOCK_1,
     0x1, NULL,
-    func_803888B8, actor_update_func_80326224, func_80388994,
+    chMMMGate_update, actor_update_func_80326224, chMMMGate_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8038BDFC = {
+ActorInfo chHedgeGateRightLock2 = {
     MARKER_FF_HEDGE_GATE_RIGHT_LOCK_2, ACTOR_1FE_HEDGE_GATE_RIGHT_LOCK_2, ASSET_43E_MODEL_HEDGE_GATE_RIGHT_LOCK_2,
     0x1, NULL,
-    func_803888B8, actor_update_func_80326224, func_80388994,
+    chMMMGate_update, actor_update_func_80326224, chMMMGate_draw,
     0, 0, 0.0f, 0
 };
 
@@ -206,25 +206,28 @@ f32 MMM_func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
 
 bool func_80388670(ActorMarker * this_marker, ActorMarker * other_marker){
     Actor *this = marker_getActor(this_marker);
-    f32 sp20[3];
+    f32 player_position[3];
 
-    player_getPosition(sp20);
+    player_getPosition(player_position);
     switch(this->marker->id){
-        case 0x9f: //L803886D0
-            return (-335.0f < sp20[0] &&  sp20[0] < -200.0f) && (-2730.0f < sp20[2] &&  sp20[2] < -2400.0f);
+        case MARKER_9F_CHURCH_GATE_LEFT_LOCK: //L803886D0
+            return (-335.0f < player_position[0] &&  player_position[0] < -200.0f)
+                && (-2730.0f < player_position[2] &&  player_position[2] < -2400.0f);
 
-        case 0xa0: //L80388770
-            return (-2915.0f < sp20[0] &&  sp20[0] < -2584.0f) && ( -500.0f < sp20[2] &&  sp20[2] < -355.0f);
+        case MARKER_A0_HEDGE_GATE_RIGHT_LOCK_1: //L80388770
+            return (-2915.0f < player_position[0] &&  player_position[0] < -2584.0f)
+                && ( -500.0f < player_position[2] &&  player_position[2] < -355.0f);
 
-        case 0xFF: //L80388810
-            return (5470.0f < sp20[0] &&  sp20[0] < 5920.0f) && ( -850.0f < sp20[2] &&  sp20[2] < -780.0f);
+        case MARKER_FF_HEDGE_GATE_RIGHT_LOCK_2: //L80388810
+            return (5470.0f < player_position[0] &&  player_position[0] < 5920.0f)
+                && ( -850.0f < player_position[2] &&  player_position[2] < -780.0f);
         
         default:
             return FALSE;
     }
 }
 
-void func_803888B8(Actor *this){
+void chMMMGate_update(Actor *this){
     func_803300C0(this->marker, func_80388670);
     func_802D3CE8(this);
     this->lifetime_value = 0.0f;
@@ -246,7 +249,7 @@ void func_803888B8(Actor *this){
     }
 }
 
-Actor *func_80388994(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
+Actor *chMMMGate_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     
     static s32 i;
     Actor *this;
@@ -284,7 +287,7 @@ void func_80388B2C(Actor *this, f32 arg1) {
     }
 }
 
-void func_80388BDC(Actor *this) {
+void chChurchDoor_update(Actor *this) {
     f64 phi_f0;
 
     func_802D3D74(this);
@@ -365,11 +368,11 @@ void func_80388BDC(Actor *this) {
     }
 }
 
-void func_80388FE4(Actor *this) { 
+void chMMMClockSwitch_update(Actor *this) { 
     func_802D4A9C(this,0);
 }
 
-void func_80389004(Actor *this){
+void chMMMWoodenDoor_update(Actor *this){
     func_802D3CE8(this);
 
     if (!this->volatile_initialized) {
@@ -381,7 +384,7 @@ void func_80389004(Actor *this){
     }
 }
 
-void func_80389060(Actor *this){
+void chXBarrelTop_update(Actor *this){
     if(!this->initialized && sns_get_item_state(SNS_ITEM_EGG_CYAN, TRUE)){
         marker_despawn(this->marker);
     }
@@ -390,26 +393,26 @@ void func_80389060(Actor *this){
     }
 }
 
-void func_803890B8(Actor *this) {
-    func_802D3D54(this);
+void chMMMWindow_update(Actor *this) {
+    chMMMBreakableWooden_update(this);
     chTumblar_checkMMMChecksums();
 }
 
 void MMM_func_803890E0(void){
-    spawnableActorList_add(&D_8038BC28, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BCDC, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BC4C, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BDB4, actor_new, ACTOR_FLAG_UNKNOWN_6);
-    spawnableActorList_add(&D_8038BDD8, actor_new, ACTOR_FLAG_UNKNOWN_6);
-    spawnableActorList_add(&D_8038BDFC, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10);
-    spawnableActorList_add(&D_8038BC94, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BC70, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BD00, actor_new, ACTOR_FLAG_NONE);
-    spawnableActorList_add(&D_8038BD24, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_8038BD48, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_8038BD6C, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_8038BCB8, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
-    spawnableActorList_add(&D_8038BD90, actor_new, ACTOR_FLAG_UNKNOWN_3);
+    spawnableActorList_add(&chShackDoor, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chMansionDoor, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chCellarHatch, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chChuchGateLeftLock, actor_new, ACTOR_FLAG_UNKNOWN_6);
+    spawnableActorList_add(&chHedgeGateRightLock1, actor_new, ACTOR_FLAG_UNKNOWN_6);
+    spawnableActorList_add(&chHedgeGateRightLock2, actor_new, ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10);
+    spawnableActorList_add(&chChuchDoor, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&ch1881BarrelTop, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chXBarrelTop, actor_new, ACTOR_FLAG_NONE);
+    spawnableActorList_add(&chMMMWindow, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&chMMMWideWindow, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&chMMMTallWindow, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&chDiningDoor, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);
+    spawnableActorList_add(&chMMMClockSwitch, actor_new, ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&chNapper,   actor_new, ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_12);
     spawnableActorList_add(&chCemetaryPot, actor_new, ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chMotzhand, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_17);

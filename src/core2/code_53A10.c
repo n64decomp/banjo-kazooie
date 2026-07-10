@@ -5,8 +5,9 @@
 void func_802DAA14(Actor *this);
 /* .data */
 //000E0EE0
-ActorInfo D_80367E70= {
-    0x21B, 0x351, 0, 
+// lair dialog object?
+ActorInfo D_80367E70 = {
+    MARKER_21B_UNKNOWN, ACTOR_351_UNKNOWN, 0,
     0, NULL, 
     func_802DAA14, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
@@ -16,16 +17,17 @@ ActorInfo D_80367E70= {
 /* .code */
 void func_802DA9A0(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     enum file_progress_e flag;
-    enum file_progress_e tmp;
+    enum file_progress_e flag_tmp;
+
     if(level_get() == LEVEL_A_MAD_MONSTER_MANSION){
         flag = FILEPROG_15_ENTER_MMM_TEXT;
     }
     else{
         if(gsworld_getMap() == MAP_69_GL_MM_LOBBY)
-            tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
+            flag_tmp = FILEPROG_97_ENTERED_LAIR_TEXT;
         else
-            tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
-        flag = tmp;
+            flag_tmp = FILEPROG_98_EXITED_LEVEL_TEXT;
+        flag = flag_tmp;
     }
     fileProgressFlag_set(flag, 1);
     FUNC_8030E624(SFX_EA_GRUNTY_LAUGH_1, 1.0f, 30000);

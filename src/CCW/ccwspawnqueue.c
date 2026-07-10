@@ -4,7 +4,7 @@
 #include "prop.h"
 #include "actor.h"
 
-extern void func_802D3D54(Actor *);
+extern void chMMMBreakableWooden_update(Actor *);
 extern void func_802D3D74(Actor *);
 extern void func_80325F84(Actor *);
 
@@ -69,7 +69,7 @@ void code_76C0_ccwWhipcrackRoomDoorUpdate(Actor *this);
 ActorInfo chNabnutWindowSpring = {
     MARKER_239_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_25F_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4FC_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
@@ -77,28 +77,28 @@ ActorInfo chNabnutWindowSpring = {
 ActorInfo chNabnutWindowSummer = {
     MARKER_236_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_260_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4F9_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutWindowAutumn = {
     MARKER_237_CCW_AUTUMN_NABNUT_WINDOW, ACTOR_261_CCW_AUTUMN_NABNUT_WINDOW, ASSET_4FA_MODEL_CCW_AUTUMN_NABNUT_WINDOW,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutWindowWinter = {
     MARKER_238_CCW_WINTER_NABNUT_WINDOW, ACTOR_262_CCW_WINTER_NABNUT_WINDOW, ASSET_4FB_MODEL_CCW_WINTER_NABNUT_WINDOW,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutDoor = {
     MARKER_243_NABNUT_DOOR, ACTOR_2E6_NABNUT_DOOR, ASSET_533_MODEL_NABNUT_DOOR,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 

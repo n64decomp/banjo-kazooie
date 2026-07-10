@@ -11,21 +11,21 @@ Actor *chCollectible_draw(ActorMarker *this, Gfx **gdl, Mtx **mptr, Vtx **arg3);
 void chCollectible_update(Actor *this);
 
 /* .data */
-extern ActorInfo D_80367D00 = {
+extern ActorInfo chBlueEgg = {
     MARKER_60_BLUE_EGG_COLLECTIBLE, ACTOR_52_BLUE_EGG, ASSET_36D_SPRITE_BLUE_EGG,
     0, NULL, 
     chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.7f, 0
 };
 
-extern ActorInfo D_80367D24 = {
+extern ActorInfo chRedFeather = {
     MARKER_B5_RED_FEATHER_COLLECTIBLE, ACTOR_129_RED_FEATHER, ASSET_580_SPRITE_RED_FEATHER,
     0, NULL, 
     chCollectible_update, actor_update_func_80326224, chCollectible_draw, 
     0, 0, 0.5f, 0
 };
 
-extern ActorInfo D_80367D48 = {
+extern ActorInfo chGoldFeather = {
     MARKER_1E5_GOLD_FEATHER_COLLECTIBLE, ACTOR_370_GOLD_FEATHER, ASSET_6D1_SPRITE_GOLDFEATHER,
     0, NULL, 
     chCollectible_update, actor_update_func_80326224, chCollectible_draw, 

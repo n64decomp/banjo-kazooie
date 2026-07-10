@@ -8,43 +8,43 @@ extern void actor_postdrawMethod(ActorMarker *);
 
 Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void func_802E07E0(Actor *this);
-void func_802E08F0(Actor *this);
+void chFireSparkle_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80368440[] = {
+ActorAnimationInfo chFireSparkleAnimations[] = {
     {0, 0.0f},
     {ASSET_98_ANIM_FIRE_SPARKLE, 1.2f}
 };
 
-ActorInfo D_80368450 = {
+ActorInfo chFireSparkle = {
     MARKER_72_FIRE_SPARKLE, ACTOR_A2_FIRE_SPARKLE, ASSET_3AD_FIRE_SPARKLE, 
-    0x1, D_80368440, 
-    func_802E08F0, actor_update_func_80326224, actor_draw, 
+    0x1, chFireSparkleAnimations,
+    chFireSparkle_update, actor_update_func_80326224, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80368474 = {
+ActorInfo chBanjoCurtains = {
     MARKER_8C_BANJOS_CURTAINS, ACTOR_BC_BANJOS_CURTAINS, ASSET_45C_MODEL_BANJOS_CURTAINS,
     0, NULL,
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80368498 = {
+ActorInfo chBanjoHouseDoor = {
     MARKER_8D_BANJOS_HOUSE_DOOR, ACTOR_BD_BANJOS_HOUSE_DOOR, ASSET_45E_MODEL_BANJOS_HOUSE_DOOR,
     0, NULL,
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_803684BC = {
+ActorInfo chFishbowl = {
     MARKER_13D_FISHBOWL, ACTOR_2F4_FISHBOWL, ASSET_46E_MODEL_FISHBOWL,
     0, NULL,
     NULL, func_802E07E0, func_802E0738, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_803684E0 = {
+ActorInfo chCuckooClock = {
     MARKER_13E_CUCKOO_CLOCK, ACTOR_2F5_CUCKOO_CLOCK, ASSET_46F_MODEL_CUCKOO_CLOCK,
     0, NULL,
     NULL, func_802E07E0, func_802E0738, 
@@ -86,13 +86,13 @@ void func_802E0710(Actor *this){
 }
 
 Actor *func_802E0738(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
-    f32 sp34[3];
+    f32 rotation[3];
     Actor *this;
 
-    this = marker_getActorAndRotation(marker, &sp34);
+    this = marker_getActorAndRotation(marker, &rotation);
     modelRender_setPreDrawCallback( (GenFunction_1)func_802E0710, (s32)this);
     modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);
-    modelRender_draw(gfx, mtx, this->position, sp34, this->scale, NULL, marker_loadModelBin(marker));
+    modelRender_draw(gfx, mtx, this->position, rotation, this->scale, NULL, marker_loadModelBin(marker));
     return this;
 }
 
@@ -109,9 +109,9 @@ void func_802E07E0(Actor *this) {
             sp24 = 0; 
             break;
 
-        case 0x451: 
-        case 0x458: 
-        case 0x532: 
+        case ASSET_451_MODEL_GRUNTILDA: 
+        case ASSET_458_MODEL_BANJO_TOP_SLEEPING: 
+        case ASSET_532_MODEL_BANJO_KAZOOIE_CUTSCENES: 
             sp24 = 1; 
             break;
     }
@@ -137,8 +137,8 @@ void func_802E07E0(Actor *this) {
     func_80361EE0(this);
 }
 
-void func_802E08F0(Actor *this) {
-    f32 sp24[3];
+void chFireSparkle_update(Actor *this) {
+    f32 rotation[3];
 
     this->marker->collidable = FALSE;
     anctrl_setDuration(this->anctrl, this->unk5C);
@@ -146,6 +146,6 @@ void func_802E08F0(Actor *this) {
     if (actor_animationIsAt(this, 0.99f) != 0) {
         marker_despawn(this->marker);
     }
-    viewport_getRotation_vec3f(sp24);
-    this->yaw = sp24[1];
+    viewport_getRotation_vec3f(rotation);
+    this->yaw = rotation[1];
 }

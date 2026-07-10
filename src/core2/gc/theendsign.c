@@ -3,14 +3,15 @@
 #include "variables.h"
 
 Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DC67C(Actor *this);
+void gcTheEndSign_update(Actor *this);
 
 /* .data */
 f32 D_80368070[3] = {0.0f, 0.0f, 0.0f};
-ActorInfo D_8036807C = { 
+
+ActorInfo gcTheEndSign = { 
     MARKER_17C_MODEL_THE_END_SIGN, ACTOR_19C_MODEL_THE_END_SIGN, ASSET_56C_MODEL_THE_END_SIGN,
     0x1, NULL, 
-    func_802DC67C, actor_update_func_80326224, func_802DC320, 
+    gcTheEndSign_update, actor_update_func_80326224, func_802DC320, 
     0, 0, 0.0f, 0
 };
 
@@ -23,7 +24,7 @@ void func_802DC650(Actor * this){
     func_8025A7DC(COMUSIC_AC_GOOD_ENDING);
 }
 
-void func_802DC67C(Actor *this){
+void gcTheEndSign_update(Actor *this){
     if(!this->initialized){
 
         this->initialized = TRUE;

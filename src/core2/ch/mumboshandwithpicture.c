@@ -6,25 +6,25 @@ extern void actor_postdrawMethod(ActorMarker *);
 extern void chBottlesBonus_func_802DD080(Gfx **, Mtx **);
 extern void func_80311714(s32);
 
-Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DEE1C(Actor *this);
+Actor *chMumbosHandWithPicture_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chMumbosHandWithPicture_update(Actor *this);
 
 /* .data */
-ActorAnimationInfo D_80368300[] ={
+ActorAnimationInfo chMumbosHandWithPictureAnimations[] ={
     {0x000, 0.0f},
-    {0x2C7, 0.6f},
-    {0x2C6, 3.0f},
-    {0x2C8, 0.6f},
-    {0x2C8, 0.6f},
-    {0x2C6, 9e+09},
+    {ASSET_2C7_ANIM_MUMBOS_HAND_WITH_PICTURE, 0.6f},
+    {ASSET_2C6_ANIM_MUMBOS_HAND_WITH_PICTURE, 3.0f},
+    {ASSET_2C8_ANIM_MUMBOS_HAND_WITH_PICTURE, 0.6f},
+    {ASSET_2C8_ANIM_MUMBOS_HAND_WITH_PICTURE, 0.6f},
+    {ASSET_2C6_ANIM_MUMBOS_HAND_WITH_PICTURE, 9e+09},
 };
 
 f32 D_80368330[3] = {0.0f, 0.0f, 0.0f};
 
-ActorInfo D_8036833C = { 
-    0x294, 0x19B, ASSET_56D_MUMBOS_HAND_WITH_PICTURE, 
-    0x1, D_80368300, 
-    func_802DEE1C, actor_update_func_80326224, func_802DEC00, 
+ActorInfo chMumbosHandWithPicture = {
+    MARKER_294_MUMBOS_HAND_WITH_PICTURE, ACTOR_19B_MUMBOS_HAND_WITH_PICTURE, ASSET_56D_MUMBOS_HAND_WITH_PICTURE, 
+    0x1, chMumbosHandWithPictureAnimations, 
+    chMumbosHandWithPicture_update, actor_update_func_80326224, chMumbosHandWithPicture_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -35,7 +35,7 @@ BKModelBin *D_8037DFE8;
 f32 D_8037DFF0[3];
 
 /* .code */
-Actor *func_802DEC00(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chMumbosHandWithPicture_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this;
     f32 sp58[3];
     f32 sp4C[3];
@@ -83,11 +83,11 @@ void func_802DEDDC(Actor *this){
 }
 
 
-void func_802DEE1C(Actor *this) {
-    s32 sp4C;
-    s32 sp48;
-    s32 sp44;
-    f32 sp38;
+void chMumbosHandWithPicture_update(Actor *this) {
+    enum level_e level_id_1;
+    enum asset_e text_id;
+    enum level_e level_id_2;
+    f32 time;
 
     if (!this->initialized) {
         this->initialized = TRUE;
@@ -95,33 +95,33 @@ void func_802DEE1C(Actor *this) {
         marker_setFreeMethod(this->marker, func_802DEDDC);
         actor_playAnimationOnce(this);
         if (D_8037DFE8 == NULL) {
-            D_8037DFE8 = assetcache_get(0x56E);
+            D_8037DFE8 = assetcache_get(ASSET_56E_HAMMERHEAD_BEACH_SCENERY);
         }
-        sp4C = map_getLevel(gsworld_getMap());
-        sp44 = sp4C == D_8037DFE4;
-        if (sp44) {
+        level_id_1 = map_getLevel(gsworld_getMap());
+        level_id_2 = level_id_1 == D_8037DFE4;
+        if (level_id_2) {
             subaddie_set_state_with_direction(this, 2, 0.0f, 1);
             actor_loopAnimation(this);
         }
-        switch(sp4C){
+        switch(level_id_1){
             case LEVEL_2_TREASURE_TROVE_COVE:
-                sp48 = sp44 + 0xE39;
+                text_id = level_id_2 + 0xE39; // 0xE3B
                 break;
 
             case LEVEL_5_FREEZEEZY_PEAK:
-                sp48 = sp44 + 0xE3B;
+                text_id = level_id_2 + 0xE3B; // 0xE40
                 break;
 
             case LEVEL_7_GOBIS_VALLEY:
             default:
-                sp48 = sp44 + 0xE3D;
+                text_id = level_id_2 + 0xE3D; // 0xE44
                 break;
         }
-        sp38 = (f32) ((f64) (sp44 + 1) * 0.75);
-        timedFunc_set_1(sp38, func_80311714, 0);
-        func_80324DBC(sp38, sp48, 0x80, NULL, NULL, NULL, NULL);
-        timedFunc_set_1(sp38, func_80311714, 1);
-        D_8037DFE4 = sp4C;
+        time = (f32) ((f64) (level_id_2 + 1) * 0.75);
+        timedFunc_set_1(time, func_80311714, 0);
+        func_80324DBC(time, text_id, 0x80, NULL, NULL, NULL, NULL);
+        timedFunc_set_1(time, func_80311714, 1);
+        D_8037DFE4 = level_id_1;
     }
     switch(this->state){
         case 1:

@@ -107,7 +107,7 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     func_8038685C(other_marker);
                     break;
 
-                case MARKER_BB_UNKNOWN: //L803533E4 //"BIG_JINXYHEAD"
+                case MARKER_BB_JINXY_HEAD_SANDYBUTT: //L803533E4
                     other_actor = marker_getActor(other_marker);
                     *(s32 *)&other_actor->local = 1;
                     commonParticle_setCurrentInUseFalse();
