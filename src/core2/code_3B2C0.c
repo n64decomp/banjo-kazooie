@@ -29,7 +29,7 @@ void func_802C22B4(void){
     s_state = 0;
 }
 
-
+// something for dynamic camera
 void func_802C22C0(f32 target_position[3], f32 target_rotation[3]){
     f32 tmpf_1[3];
     f32 tmpf_2[3];

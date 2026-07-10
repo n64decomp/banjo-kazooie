@@ -16,37 +16,49 @@ typedef struct {
     f32 unk24;
 }ActorLocal_GV_6370;
 
-void func_8038C8A0(Actor *this, s32 next_state);
-void func_8038CC98(Actor *this);
-Actor *func_8038CC40(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chJinxyHeadSandybutt_setState(Actor *this, s32 next_state);
+void chJinxyHeadSandybutt_update(Actor *this);
+Actor *chJinxyHeadSandybutt_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-u8 D_803911F0[3] =  {0, 1, 2};
+u8 chJinxyHeadSandybuttIndices[3] =  {0, 1, 2};
 
 // Jinxy Head 2
-ActorInfo D_803911F4 = {
-    0xBB, 0x285, 0x3E6, 
+ActorInfo chJinxyHeadSandybutt1 = {
+    MARKER_BB_JINXY_HEAD_SANDYBUTT, ACTOR_285_JINXY_HEAD_SANDYBUTT_1, ASSET_3E6_JINXY_HEAD_KING_SANDYBUTT, 
     0, NULL,
-    func_8038CC98, actor_update_func_80326224, func_8038CC40,
+    chJinxyHeadSandybutt_update, actor_update_func_80326224, chJinxyHeadSandybutt_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80391218 = {
-    0xBB, 0x286, 0x3E6, 
+ActorInfo chJinxyHeadSandybutt2 = {
+    MARKER_BB_JINXY_HEAD_SANDYBUTT, ACTOR_286_JINXY_HEAD_SANDYBUTT_2, ASSET_3E6_JINXY_HEAD_KING_SANDYBUTT, 
     0, NULL,
-    func_8038CC98, actor_update_func_80326224, func_8038CC40,
+    chJinxyHeadSandybutt_update, actor_update_func_80326224, chJinxyHeadSandybutt_draw,
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_8039123C = {
-    0xBB, 0x287, 0x3E6, 
+ActorInfo chJinxyHeadSandybutt3 = {
+    MARKER_BB_JINXY_HEAD_SANDYBUTT, ACTOR_287_JINXY_HEAD_SANDYBUTT_3, ASSET_3E6_JINXY_HEAD_KING_SANDYBUTT, 
     0, NULL,
-    func_8038CC98, actor_update_func_80326224, func_8038CC40,
+    chJinxyHeadSandybutt_update, actor_update_func_80326224, chJinxyHeadSandybutt_draw,
     0, 0, 0.0f, 0
+};
+
+enum chjinxyheadsandybutt_state_e {
+    CHJINXYHEADSANDYBUTT_STATE_0_NOT_INIT,
+    CHJINXYHEADSANDYBUTT_STATE_1_UNK,
+    CHJINXYHEADSANDYBUTT_STATE_2_UNK,
+    CHJINXYHEADSANDYBUTT_STATE_3_UNK,
+    CHJINXYHEADSANDYBUTT_STATE_4_UNK,
+    CHJINXYHEADSANDYBUTT_STATE_5_UNK,
+    CHJINXYHEADSANDYBUTT_STATE_6_FED,
+    CHJINXYHEADSANDYBUTT_STATE_7_GO_AWAY,
+    CHJINXYHEADSANDYBUTT_STATE_8_COMPLETED
 };
 
 /* .code */
-void func_8038C760(Actor *this, s32 arg1){
+void chJinxyHeadSandybutt_raisePyramid(Actor *this, s32 arg1){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
     chBuriedPyramid_setRaisedAmount(local->unk14, arg1);
     FUNC_8030E624(SFX_3F6_RUBBING, 0.7f, 28000);
@@ -67,21 +79,26 @@ void func_8038C760(Actor *this, s32 arg1){
     }
 }
 
-void func_8038C880(Actor *this){
-    func_8038C8A0(this, 0);
+void chJinxyHeadSandybutt_free(Actor *this){
+    chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_0_NOT_INIT);
 }
 
-void func_8038C8A0(Actor *this, s32 next_state){
+void chJinxyHeadSandybutt_setState(Actor *this, s32 next_state){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
     
     local->unk0 = 0;
     local->unk24 = 0.0f;
-    this->marker->propPtr->unk8_3 = (next_state == 1) ? FALSE : TRUE;
-    this->marker->collidable = (next_state == 1) ? FALSE : TRUE;
-    if(this->state == 4 || this->state == 5)
+    this->marker->propPtr->unk8_3 = (next_state == CHJINXYHEADSANDYBUTT_STATE_1_UNK) ? FALSE : TRUE;
+    this->marker->collidable = (next_state == CHJINXYHEADSANDYBUTT_STATE_1_UNK) ? FALSE : TRUE;
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_4_UNK
+       || this->state == CHJINXYHEADSANDYBUTT_STATE_5_UNK)
+    {
         sfxsource_freeSfxsourceByIndex(local->sfxsourceIdx);
+    }
     
-    if(next_state == 4 || next_state == 5){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_4_UNK
+       || next_state == CHJINXYHEADSANDYBUTT_STATE_5_UNK)
+    {
         local->sfxsourceIdx = sfxsource_createSfxsourceAndReturnIndex();
         sfxsource_setSfxId(local->sfxsourceIdx, SFX_3EC_CCW_DOOR_OPENING);
         sfxSource_setunk43_7ByIndex(local->sfxsourceIdx, 3);
@@ -90,7 +107,7 @@ void func_8038C8A0(Actor *this, s32 next_state){
         sfxSource_func_8030E2C4(local->sfxsourceIdx);
     }//L8038C9B8
 
-    if(next_state == 2){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_2_UNK){
         skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
         skeletalAnim_setProgress(this->unk148, 0.27f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
@@ -104,28 +121,31 @@ void func_8038C8A0(Actor *this, s32 next_state){
         }
     }//L8038CA6C
 
-    if(next_state == 3){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_3_UNK){
         local->unk24 = 3.0f;
         skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 1.0f, 3.0f);
         skeletalAnim_setProgress(this->unk148, 0.27f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_4_STOPPED);
     }//L8038CAB4
 
-    if(this->state == 3){
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_3_UNK){
         skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.5f, 3.0f);
         skeletalAnim_setProgress(this->unk148, 0.99f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        if(next_state == 4 || next_state == 5)
+        if(next_state == CHJINXYHEADSANDYBUTT_STATE_4_UNK
+           || next_state == CHJINXYHEADSANDYBUTT_STATE_5_UNK)
+        {
             sfx_playFadeShorthandDefault(SFX_DE_WOOD_SQUEAK, 1.0f, 32675, this->position, 500, 1500);
+        }
     }//L8038CB20
 
-    if(next_state == 6){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_6_FED){
         func_80324E38(0.0f, 3);
         skeletalAnim_set(this->unk148, ASSET_F0_ANIM_MINI_SHPYNX_EATING, 0.0f, 3.0f);
         coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);
     }
 
-    if(next_state == 7){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_7_GO_AWAY){
         local->unkC = 0.0f;
         local->unk18[0] = this->position_x;
         local->unk18[1] = this->position_y;
@@ -134,26 +154,26 @@ void func_8038C8A0(Actor *this, s32 next_state){
         FUNC_8030E624(SFX_3F6_RUBBING, 0.8f, 30000);
     }
 
-    if(next_state == 8){
-        if(this->state == 7){
+    if(next_state == CHJINXYHEADSANDYBUTT_STATE_8_COMPLETED){
+        if(this->state == CHJINXYHEADSANDYBUTT_STATE_7_GO_AWAY){
             baMotor_80250D94(0.8f, 0.7f, 3.0f);
-            func_8038C760(this, *local->unk8 + 1);
+            chJinxyHeadSandybutt_raisePyramid(this, *local->unk8 + 1);
         }
         marker_despawn(this->marker);
     }
     this->state = next_state;
 }
 
-Actor *func_8038CC40(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chJinxyHeadSandybutt_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     Actor *this = marker_getActor(this_marker);
-    if(this->state == 1) return this;
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_1_UNK) return this;
     return actor_draw(this_marker, gfx, mtx, vtx);
 }
 
-void func_8038CC98(Actor *this){
+void chJinxyHeadSandybutt_update(Actor *this){
     ActorLocal_GV_6370 *local = (ActorLocal_GV_6370 *)&this->local;
-    f32 sp80 = time_getDelta();
-    s32 sp7C;
+    f32 time_delta = time_getDelta();
+    s32 pyramid_file_progress;
     f32 pad70;
     f32 sp6C[3];
     f32 f12;
@@ -163,24 +183,24 @@ void func_8038CC98(Actor *this){
     f32 sp48[3];
 
     if(!this->volatile_initialized){
-        sp7C = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
+        pyramid_file_progress = fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2);
         this->volatile_initialized = TRUE;
-        this->marker->actorFreeFunc = func_8038C880;
-        local->unk8 = &D_803911F0[this->modelCacheIndex - 0x285];
+        this->marker->actorFreeFunc = chJinxyHeadSandybutt_free;
+        local->unk8 = &chJinxyHeadSandybuttIndices[this->modelCacheIndex - 0x285];
         local->unk10 = 0;
         local->unk14 = 0;
         local->unkC = 0.0f;
         local->unk18[0] = this->position_x;
         local->unk18[1] = this->position_y;
         local->unk18[2] = this->position_z;
-        if(*local->unk8 < sp7C){
-            func_8038C8A0(this, 8);
+        if(*local->unk8 < pyramid_file_progress){
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_8_COMPLETED);
         }
-        else if(sp7C == *local->unk8){
-            func_8038C8A0(this, 2);
+        else if(pyramid_file_progress == *local->unk8){
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_2_UNK);
         }
         else{
-            func_8038C8A0(this, 1);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_1_UNK);
         }
         return;
     }
@@ -189,17 +209,17 @@ void func_8038CC98(Actor *this){
         local->unk14 = actorArray_findActorFromActorId(ACTOR_31D_SANDYBUTT_PYRAMID)->marker;
     }
 
-    if(this->state == 1){
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_1_UNK){
         if(fileProgressFlag_getN(FILEPROG_F8_KING_SANDYBUTT_PYRAMID_STATE, 2) == *local->unk8){
-            func_8038C8A0(this, 2);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_2_UNK);
         }
     }
 
-    if(this->state == 2){
-        local->unkC += 0.5*sp80;
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_2_UNK){
+        local->unkC += 0.5 * time_delta;
         if(1.0f <= local->unkC){
             local->unkC = 1.0f;
-            func_8038C8A0(this, 3);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_3_UNK);
         }
         sp6C[0] = 0.0f;
         sp6C[1] = 0.0f;
@@ -210,26 +230,28 @@ void func_8038CC98(Actor *this){
         this->position_z = local->unk18[2] +  sp6C[2];
     }//L8038CECC
 
-    if(this->state == 3){
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_3_UNK){
         if(0.0f < local->unk24){
-            local->unk24 -= sp80;
+            local->unk24 -= time_delta;
         }
         else{
             if(func_8038D388())
-                func_8038C8A0(this, 5);
+                chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_5_UNK);
         }
     }//L8038CF1C
 
-    if(this->state == 4 || this->state == 5){
-        local->unkC += ((this->state == 4)? -1 : 1) * sp80;
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_4_UNK
+       || this->state == CHJINXYHEADSANDYBUTT_STATE_5_UNK)
+    {
+        local->unkC += ((this->state == 4)? -1 : 1) * time_delta;
         if(1.0f < local->unkC){
             local->unkC = 1.0f;
-            func_8038C8A0(this, 4);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_4_UNK);
             return;
         }
         else if(local->unkC < -1.0f){
             local->unkC = -1.0f;
-            func_8038C8A0(this, 5);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_5_UNK);
             return;
         }
         sp5C[0] = local->unkC*300.0f;
@@ -240,21 +262,21 @@ void func_8038CC98(Actor *this){
         this->position_y = local->unk18[1] + sp5C[1];
         this->position_z = local->unk18[2] + sp5C[2];
         if(0.8 <= local->unkC){
-            f12 = 1.0 - (local->unkC - 0.8)/0.2;
+            f12 = 1.0 - (local->unkC - 0.8) / 0.2;
         }
         else if(local->unkC <= -0.8){
-            f12 = 1.0 - (-local->unkC - 0.8)/0.2;
+            f12 = 1.0 - (-local->unkC - 0.8) / 0.2;
         }
         else{
             f12 = 1.0f;
         }
-        func_8030DB04(local->sfxsourceIdx, f12*24000.0f, this->position, 200.0f, 1500.0f);
+        func_8030DB04(local->sfxsourceIdx, f12 * 24000.0f, this->position, 200.0f, 1500.0f);
         if(!func_8038D388()){
-            func_8038C8A0(this, 3);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_3_UNK);
         }
     }//L8038D110
 
-    if(this->state == 6){
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_6_FED){
         skeletalAnim_getProgressRange(this->unk148, &sp58, &sp54);
         if(sp58 < 0.28 && 0.28 <= sp54){
             FUNC_8030E624(SFX_4C_LIP_SMACK, 1.0f, 28000);
@@ -267,18 +289,18 @@ void func_8038CC98(Actor *this){
         }
         if(0.81 <= sp54){
             FUNC_8030E624(SFX_97_BLUBBER_BURPS, 1.0f, 28000);
-            func_8038C8A0(this, 7);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_7_GO_AWAY);
         }
     }//L8038D228
 
-    if(this->state == 7){
-        local->unkC += 0.5*sp80;
+    if(this->state == CHJINXYHEADSANDYBUTT_STATE_7_GO_AWAY){
+        local->unkC += 0.5 * time_delta;
         if(1.0f < local->unkC){
-            func_8038C8A0(this, 8);
+            chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_8_COMPLETED);
         }
         sp48[0] = 0.0f;
         sp48[1] = 0.0f;
-        sp48[2] = local->unkC*-600.0f;
+        sp48[2] = local->unkC * -600.0f;
         ml_vec3f_yaw_rotate_copy(sp48, sp48, this->yaw);
         this->position_x = local->unk18[0] + sp48[0];
         this->position_y = local->unk18[1] + sp48[1];
@@ -286,11 +308,13 @@ void func_8038CC98(Actor *this){
     }//L8038D2F0
 
     if(local->unk0){
-        if(this->state == 4 || this->state == 5){
+        if(this->state == CHJINXYHEADSANDYBUTT_STATE_4_UNK
+           || this->state == CHJINXYHEADSANDYBUTT_STATE_5_UNK)
+        {
             local->unk0 = 0;
             local->unk10++;
             if(local->unk10 == 3){
-                func_8038C8A0(this, 6);
+                chJinxyHeadSandybutt_setState(this, CHJINXYHEADSANDYBUTT_STATE_6_FED);
             }
             else{
                 coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 28000);

@@ -179,7 +179,7 @@ void gsworld_free(void) {
         itemPrint_free();
     }
     dialogBin_terminate();
-    func_802986D0();
+    playerModel_free();
     if (!func_80322914()) {
         func_8024F7C4(func_803226E8(sGsWorldData.map));
     }
@@ -211,7 +211,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     func_8034C97C();
     func_8030A078();
     func_8031B718();
-    func_80298700();
+    playerModel_set();
     if (!func_802E4A08()) {
         itemPrint_init();
     }

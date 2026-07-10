@@ -2,13 +2,13 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8038D3AC(Actor *this);
+void chSandybuttEggToll_update(Actor *this);
 
 /* .data */
-ActorInfo D_80391260 = {
+ActorInfo chSandybuttEggToll = {
     MARKER_1A5_SANDYBUTT_EGG_TOLL, 0x288, ASSET_402_MODEL_EGG_TOLL,
     0, NULL, 
-    func_8038D3AC, NULL, func_80325340, 
+    chSandybuttEggToll_update, NULL, func_80325340, 
     0, 0, 0.0f, 0
 };
 
@@ -20,11 +20,11 @@ void func_8038D370(ActorMarker *this_marker, ActorMarker *other_marker){
     D_80391AA0 = 5;
 }
 
-int func_8038D388(void){
+bool func_8038D388(void){
     return D_80391AA0 ? 1 : 0;
 }
 
-void func_8038D3AC(Actor *this){
+void chSandybuttEggToll_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         marker_setCollisionScripts(this->marker, func_8038D370, NULL, NULL);

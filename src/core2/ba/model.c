@@ -115,7 +115,7 @@ void baModel_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 void baModel_updateModel(void){
-    baModel_set(func_802985F0());
+    baModel_set(playerModel_get());
 }
 
 void baModel_reset(void){

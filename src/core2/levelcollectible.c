@@ -9,7 +9,7 @@ extern ActorMarker *bacarry_getMarkerWithExtraSteps(void);
 extern void timed_mapSpecificFlags_setTrue(f32, s32);
 extern void progressDialog_showDialogMaskFour(s32);
 
-ActorAnimationInfo D_80367B50[] = {
+ActorAnimationInfo chPresentCollectibleAnimations[] = {
     {0, 0.0f},
     {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
     {ASSET_18A_ANIM_XMAS_GIFT, 1.5f},
@@ -18,37 +18,37 @@ ActorAnimationInfo D_80367B50[] = {
     {ASSET_18A_ANIM_XMAS_GIFT, 1.5f}
 };
 
-ActorInfo D_80367B80 = {
+ActorInfo chOrangeCollectible = {
     MARKER_36_ORANGE_COLLECTIBLE, ACTOR_29_ORANGE_COLLECTIBLE, ASSET_2D2_MODEL_ORANGE,
     0x5, NULL,
     chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.6f,0
 };
 
-ActorInfo D_80367BA4 = {
+ActorInfo chGoldBullion = {
     MARKER_37_GOLD_BULLION, ACTOR_2A_GOLD_BULLION, ASSET_3C7_MODEL_GOLD_BULLION,
     0x5, NULL,
     chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 0.6f, 0
 };
 
-ActorInfo D_80367BC8 = {
+ActorInfo chBluePresentCollectible = {
     MARKER_1FD_BLUE_PRESENT_COLLECTIBLE, ACTOR_1ED_BLUE_PRESENT_COLLECTIBLE, ASSET_47F_MODEL_XMAS_GIFT_BLUE,
-    0x5, D_80367B50,
+    0x5, chPresentCollectibleAnimations,
     chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.8f, 0
 };
 
-ActorInfo D_80367BEC = {
+ActorInfo chGreenPresentCollectible = {
     MARKER_1FE_GREEN_PRESENT_COLLECTIBLE, ACTOR_1EF_GREEN_PRESENT_COLLECTIBLE, ASSET_480_MODEL_XMAS_GIFT_GREEN,
-    0x5, D_80367B50,
+    0x5, chPresentCollectibleAnimations,
     chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };
 
-ActorInfo D_80367C10 = {
+ActorInfo chRedPresentCollectible = {
     MARKER_1FF_RED_PRESENT_COLLECTIBLE, ACTOR_1F1_RED_PRESENT_COLLECTIBLE, ASSET_481_MODEL_XMAS_GIFT_RED,
-    0x5, D_80367B50,
+    0x5, chPresentCollectibleAnimations,
     chLevelCollectible_update, actor_update_func_80326224, actor_draw,
     0, 0, 1.4f, 0
 };

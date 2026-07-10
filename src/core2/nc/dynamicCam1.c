@@ -14,33 +14,36 @@ void ncDynamicCam1_end(void){}
 
 void ncDynamicCam1_update(void) {
     f32 sp8C[3];
-    f32 sp80[3];
-    f32 sp74[3];
-    f32 sp68[3];
-    f32 sp5C[3];
+    f32 new_camera_position[3];
+    f32 current_camera_position[3];
+    f32 dst[3];
+    f32 angles[3];
     f32 sp50[3];
-    f32 sp4C;
-    f32 sp48;
-    f32 temp_f20;
+    f32 position_z;
+    f32 phi;
+    f32 time_delta;
     f32 sp40;
     f32 sp3C;
 
-    ncDynamicCamera_getPosition(sp74);
+    ncDynamicCamera_getPosition(current_camera_position);
     func_802BD4C0(sp8C);
     sp3C = func_802BD8D4();
-    temp_f20 = time_getDelta();
-    ml_vec3f_diff_copy(sp50, sp74, sp8C);
-    sp4C = sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
-    sp4C += func_80259198((sp3C - sp4C) * temp_f20 * 2, temp_f20 * 120.0f);
-    func_8025801C(sp50, &sp48);
-    sp40 = func_80259198(mlDiffDegF(mlNormalizeAngle(180.0f + player_getYaw()), sp48) * (temp_f20 * 1), temp_f20 * 50.0f);
-    sp48 = mlNormalizeAngle(sp48 + sp40);
-    func_80256E24(sp68, 0.0f, sp48, 0.0f, 0.0f, sp4C);
-    ml_vec3f_add(sp80, sp8C, sp68);
-    sp80[1] = sp74[1] + ((func_802BD51C() - sp74[1]) * temp_f20 * 2);
-    ncDynamicCamera_setPosition(sp80);
-    func_8025727C(sp8C[0], sp8C[1], sp8C[2], sp80[0], sp80[1], sp80[2], &sp5C[0], &sp5C[1]);
-    sp5C[0] = -sp5C[0];
-    sp5C[2] = 0.0f;
-    func_802BD720(sp5C);
+    time_delta = time_getDelta();
+    ml_vec3f_diff_copy(sp50, current_camera_position, sp8C);
+    position_z = sqrtf((sp50[0] * sp50[0]) + (sp50[2] * sp50[2]));
+    position_z += ml_clamp_abs_f((sp3C - position_z) * time_delta * 2, time_delta * 120.0f);
+    func_8025801C(sp50, &phi);
+    sp40 = ml_clamp_abs_f(mlDiffDegF(mlNormalizeAngle(180.0f + player_getYaw()), phi) * (time_delta * 1), time_delta * 50.0f);
+    phi = mlNormalizeAngle(phi + sp40);
+    func_80256E24(dst, 0.0f, phi, 0.0f, 0.0f, position_z);
+    ml_vec3f_add(new_camera_position, sp8C, dst);
+    new_camera_position[1] = current_camera_position[1] + ((func_802BD51C() - current_camera_position[1]) * time_delta * 2);
+    ncDynamicCamera_setPosition(new_camera_position);
+    ml_horizontal_and_vertical_angles(
+        sp8C[0], sp8C[1], sp8C[2],
+        new_camera_position[0], new_camera_position[1], new_camera_position[2],
+        &angles[0], &angles[1]);
+    angles[0] = -angles[0];
+    angles[2] = 0.0f;
+    func_802BD720(angles);
 }

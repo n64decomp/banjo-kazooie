@@ -10,8 +10,11 @@ void func_802DF2C4(Actor *this);
 f32 D_80368360[3] = {0.0f, 0.0f, 0.0f};
 s32 D_8036836C[4] = {0x60, 0x60, 0x60, 0xFF};
 s32 D_8036837C[4] = {0xFF, 0xFF, 0xFF, 0xFF};
+
+// Asset is blank white rectangle
+// Appears during Bottles Bonus
 ActorInfo D_8036838C = { 
-    0x17B, 0x2B5, 0x472,
+    MARKER_17B_UNKNOWN, ACTOR_2B5_UNKNOWN, ASSET_472_UNKNOWN,
     0, NULL, 
     func_802DF2C4, actor_update_func_80326224, func_80325340, 
     0, 0, 0.0f, 0
@@ -41,22 +44,23 @@ Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
 void func_802DF270(void){
     Actor *this;
     if(D_8037E000 == NULL){
-        this = actor_spawnWithYaw_f32(0x2B5, D_80368360, 0);
+        this = actor_spawnWithYaw_f32(ACTOR_2B5_UNKNOWN, D_80368360, 0);
         D_8037E000 = this->marker;
     }
 }
 
+// free
 void func_802DF2B4(Actor *this){
     D_8037E000 = NULL;
 }
 
+// update
 void func_802DF2C4(Actor *this) {
     s32 temp_fp;
     s32 i;
     s32 prev_val;
     s32 temp_v0;
     s32 val;
-
 
     temp_fp = chBottlesBonusCursor_func_802E06B4() - 0x15;
     if (!this->initialized) {

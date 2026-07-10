@@ -19,7 +19,7 @@ void ncStaticCamera_init(void){
 void ncStaticCamera_end(void){}
 
 void ncStaticCamera_rotateToTarget(f32 target[3]){
-    func_8025727C(
+    ml_horizontal_and_vertical_angles(
         target[0], target[1], target[2],
         ncStaticCameraPosition[0], ncStaticCameraPosition[1], ncStaticCameraPosition[2],
         &ncStaticCameraRotation[0], &ncStaticCameraRotation[1]

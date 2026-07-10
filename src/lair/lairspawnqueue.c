@@ -9,7 +9,7 @@
 extern void func_8028F918(s32);
 extern void func_802D2FB0(Actor *, s32, s32, s32, f32, s32, s32, s32);
 extern void func_802D3CE8(Actor *);
-extern void func_802D3D54(Actor *);
+extern void chMMMBreakableWooden_update(Actor *);
 extern void func_802D3D74(Actor *this);
 extern void func_802D4830(Actor *, s32, f32);
 extern void func_80324CFC(f32, enum comusic_e, s32);
@@ -118,7 +118,7 @@ ActorAnimationInfo D_80392CB0[] = {
 ActorInfo lair_D_80392D90 = {
     MARKER_270_TWO_ICE_POLES_NEAR_CHEATO_3, ACTOR_2D8_TWO_ICE_POLES_NEAR_CHEATO_3, ASSET_3B2_MODEL_TWO_ICE_POLES_NEAR_CHEATO_3,
     0x1, NULL,
-    func_802D3D54, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
     0, 0, 0.0f, 0
 };
 
@@ -1300,7 +1300,7 @@ void func_80388524(Actor *this) {
     if (!this->initialized) {
         if (!sp34) {
             switch(this->modelCacheIndex){
-                case ACTOR_2E5_DOOR_OF_GRUNTY://L80388630
+                case ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE://L80388630
                     if (!fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) && jigsawPicture_isJigsawPictureComplete(0xA)) {
                         fileProgressFlag_set(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN, TRUE);
                     }
@@ -1366,7 +1366,7 @@ void func_80388524(Actor *this) {
     if (!this->volatile_initialized) {
         this->volatile_initialized = TRUE;
         switch(this->modelCacheIndex){
-            case ACTOR_2E5_DOOR_OF_GRUNTY: //L80388880
+            case ACTOR_2E5_LARGE_DOOR_TO_FINAL_BATTLE: //L80388880
                 if (fileProgressFlag_get(FILEPROG_E2_DOOR_OF_GRUNTY_OPEN) && (this->state == 0x19)) {
                     subaddie_set_state_with_direction(this, 0x1B, 0.999f, 1);
                 }
@@ -2088,7 +2088,7 @@ void func_80389FA8(Actor *this, enum file_progress_e flag)
 {
     if (!this->initialized)
     {
-        func_802D3D54(this);
+        chMMMBreakableWooden_update(this);
 
         if (fileProgressFlag_get(flag))
             marker_despawn(this->marker);

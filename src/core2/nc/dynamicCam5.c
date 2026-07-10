@@ -36,7 +36,7 @@ void ncDynamicCam5_update(void) {
     ml_vec3f_diff_copy(sp68, sp74, sp50);
     func_802BE190(sp68);
     ncDynamicCamera_getPosition(sp68);
-    func_8025727C(sp74[0], sp74[1], sp74[2], sp68[0], sp68[1], sp68[2], &sp38[0], &sp38[1]);
+    ml_horizontal_and_vertical_angles(sp74[0], sp74[1], sp74[2], sp68[0], sp68[1], sp68[2], &sp38[0], &sp38[1]);
     sp38[0] = -sp38[0];
     sp38[2] = 0.0f;
     func_802BD904(sp38);

@@ -36,19 +36,19 @@ enum hitbox_e hitbox_getHitboxForActor(ActorMarker *arg0){
     switch(bs_getState()){
 
         case BS_F_BBUSTER: //8028DBA4
-            return __maybe(bsbbuster_hitboxActive(),HITBOX_1_BEAK_BUSTER);
+            return __maybe(bsbbuster_hitboxActive(), HITBOX_1_BEAK_BUSTER);
             break;
         case BS_13_BBARGE://8028DBC0
-            return __maybe(bsbbarge_hitboxActive(),HITBOX_2_BEAK_BARGE);
+            return __maybe(bsbbarge_hitboxActive(), HITBOX_2_BEAK_BARGE);
             break;
         case BS_2A_BOMB://8028DBDC
-            return __maybe(bsbfly_bombHitboxActive(),HITBOX_3_BEAK_BOMB);
+            return __maybe(bsbfly_bombHitboxActive(), HITBOX_3_BEAK_BOMB);
             break;
         case BS_6_CLAW://8028DBF8
             if(arg0 && !func_8028AED4(marker_getActor(arg0)->position, 90.0f))
                 return HITBOX_0_NONE;
             
-            retVal = __maybe(bsclaw_hitboxActive(),HITBOX_4_CLAW);
+            retVal = __maybe(bsclaw_hitboxActive(), HITBOX_4_CLAW);
             if(retVal != 0)
                 return retVal;
             return HITBOX_8_CLAW_DOWN;

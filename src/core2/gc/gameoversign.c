@@ -7,14 +7,15 @@
 extern void actor_postdrawMethod(ActorMarker *);
 
 Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DC45C(Actor *this);
+void gcGameOverSign_update(Actor *this);
 
 /* .data */
 f32 D_80368040[3] = {0.0f, 0.0f, 0.0f};
-ActorInfo D_8036804C = {
+
+ActorInfo gcGameOverSign = {
     MARKER_174_GAME_OVER, ACTOR_1DB_GAME_OVER, ASSET_54C_MODEL_GAME_OVER, 
     0x1, NULL, 
-    func_802DC45C, actor_update_func_80326224, func_802DC320,
+    gcGameOverSign_update, actor_update_func_80326224, func_802DC320,
     0, 0, 0.0f, 0
 };
 
@@ -56,23 +57,23 @@ Actor *func_802DC320(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
 }
 
 
-void func_802DC430(Actor * this){
+void gcGameOverSign_free(Actor * this){
     D_8037DE40 = NULL;
     func_8025A7DC(COMUSIC_31_GAME_OVER);
 }
 
-void func_802DC45C(Actor *this){
+void gcGameOverSign_update(Actor *this){
     if(!this->initialized){
 
         this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         func_803262E4(this);
         actor_collisionOff(this);
-        marker_setFreeMethod(this->marker, func_802DC430);
+        marker_setFreeMethod(this->marker, gcGameOverSign_free);
     }
 }
 
-void func_802DC4C4(void) {
+void gcGameOverSign_spawn(void) {
     Actor *actor;
     if (D_8037DE40 == 0) {
         actor = actor_spawnWithYaw_f32(ACTOR_1DB_GAME_OVER, D_80368040, 0);
@@ -85,7 +86,7 @@ void func_802DC4C4(void) {
 
 void func_802DC528(NodeProp *arg0, ActorMarker *arg1){
     if(D_8037DE40 == NULL){
-        __spawnQueue_add_0(func_802DC4C4);
+        __spawnQueue_add_0(gcGameOverSign_spawn);
     }
 }
 
@@ -99,7 +100,7 @@ void func_802DC560(s32 arg0, s32 arg1){
 
 void func_802DC5B8(void){
     if(D_8037DE40 != NULL){
-        func_802DC45C(marker_getActor(D_8037DE40));
+        gcGameOverSign_update(marker_getActor(D_8037DE40));
         func_80326894(marker_getActor(D_8037DE40));
     }
 }

@@ -8,14 +8,14 @@ typedef struct {
     enum mumbotoken_e uid;
 }ActorLocal_MumboToken;
 
-void func_802E0B10(Actor *this);
+void chMumboToken_update(Actor *this);
 enum mumbotoken_e func_802E0CB0(Actor *this);
 
 /* .data */
- ActorInfo D_803685A0 = { 
+ ActorInfo chMumboToken = {
     MARKER_39_MUMBO_TOKEN, ACTOR_2D_MUMBO_TOKEN, ASSET_41A_SPRITE_MUMBO_TOKEN,
-    0, NULL, 
-    func_802E0B10, actor_update_func_80326224, fxTouchSparkle_draw,
+    0, NULL,
+    chMumboToken_update, actor_update_func_80326224, fxTouchSparkle_draw,
     2000, 0, 0.0f, 0
 };
 
@@ -53,7 +53,7 @@ enum mumbotoken_e func_802E0A90(Actor *this){
     }
 }
 
-void func_802E0B10(Actor *this){
+void chMumboToken_update(Actor *this){
     ActorLocal_MumboToken *local;
     f32 sp28[3];
 

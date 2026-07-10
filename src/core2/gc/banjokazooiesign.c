@@ -6,19 +6,20 @@
 extern void actor_postdrawMethod(ActorMarker *);
 
 Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
-void func_802DC900(Actor *this);
+void gcBanjoKazooieSign_update(Actor *this);
 
 /* .data */
-f32 D_803680A0[3] = {0.0f, 0.0f, 0.0f};
-ActorInfo D_803680AC = { 
+f32 gcBanjoKazooieSignPosition[3] = {0.0f, 0.0f, 0.0f};
+
+ActorInfo gcBanjoKazooieSign = { 
     MARKER_175_BANJO_KAZOOIE_SIGN, ACTOR_1DC_BANJO_KAZOOIE_SIGN, ASSET_54D_MODEL_BANJO_KAZOOIE_SIGN, 
     0x1, NULL, 
-    func_802DC900, actor_update_func_80326224, func_802DC7E0, 
+    gcBanjoKazooieSign_update, actor_update_func_80326224, func_802DC7E0, 
     0, 0, 0.0f, 0
 };
 
 /* .bss */
-ActorMarker *D_8037DE60;
+ActorMarker *gcBanjoKazooieSignMarker;
 
 /* .code */
 Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -54,35 +55,35 @@ Actor *func_802DC7E0(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void func_802DC8F0(Actor *this){
-    D_8037DE60 = NULL;
+void gcBanjoKazooieSign_free(Actor *this){
+    gcBanjoKazooieSignMarker = NULL;
 }
 
-void func_802DC900(Actor *this){
+void gcBanjoKazooieSign_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         this->depth_mode = MODEL_RENDER_DEPTH_NONE;
         actor_collisionOff(this);
-        marker_setFreeMethod(this->marker, func_802DC8F0);
+        marker_setFreeMethod(this->marker, gcBanjoKazooieSign_free);
     }
 }
 
-void func_802DC960(void) {
+void gcBanjoKazooieSign_spawn(void) {
     Actor *actor;
-    if (D_8037DE60 == 0) {
-        actor = actor_spawnWithYaw_f32(0x1DC, D_803680A0, 0);
-        D_8037DE60 = actor->marker;
+    if (gcBanjoKazooieSignMarker == NULL) {
+        actor = actor_spawnWithYaw_f32(ACTOR_1DC_BANJO_KAZOOIE_SIGN, gcBanjoKazooieSignPosition, 0);
+        gcBanjoKazooieSignMarker = actor->marker;
     }
 }
 
 void func_802DC9A4(s32 arg0, s32 arg1){
-    if(D_8037DE60 == NULL){
-        __spawnQueue_add_0(func_802DC960);
+    if(gcBanjoKazooieSignMarker == NULL){
+        __spawnQueue_add_0(gcBanjoKazooieSign_spawn);
     }
 }
 
 void func_802DC9DC(s32 arg0, s32 arg1){
-    if(D_8037DE60 != NULL){
-        func_80326310(marker_getActor(D_8037DE60));
+    if(gcBanjoKazooieSignMarker != NULL){
+        func_80326310(marker_getActor(gcBanjoKazooieSignMarker));
     }
 }

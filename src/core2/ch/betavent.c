@@ -8,22 +8,22 @@ typedef struct {
     f32 unk4;
 } ActorLocal_Core2_DA3A0;
 
-void func_8036158C(Actor *this);
+void chBetaVent_update(Actor *this);
 
 /* .data */
 u8 D_80373130[] = {0, 1, 0, 0};
 
-ActorInfo D_80373134 = { 
+ActorInfo chBetaVent1 = {
     MARKER_1A6_BETA_VENT, ACTOR_289_BETA_VENT, ASSET_431_MODEL_BETA_VENT, 
     0x0, NULL, 
-    func_8036158C, NULL, actor_draw, 
+    chBetaVent_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
-ActorInfo D_80373158 = { 
+ActorInfo chBetaVent2 = {
     MARKER_1A6_BETA_VENT, ACTOR_28F_BETA_VENT, ASSET_431_MODEL_BETA_VENT, 
     0x0, NULL, 
-    func_8036158C, NULL, actor_draw, 
+    chBetaVent_update, NULL, actor_draw, 
     0, 0, 0.0f, 0
 };
 
@@ -76,7 +76,7 @@ void func_80361330(Actor *this, s32 next_state){
     this->state = next_state;
 }
 
-void func_8036158C(Actor *this){
+void chBetaVent_update(Actor *this){
     ActorLocal_Core2_DA3A0 *local = (ActorLocal_Core2_DA3A0 *)&this->local;
     f32 sp30;
     f32 sp24[3];

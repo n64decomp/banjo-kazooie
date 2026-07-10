@@ -480,7 +480,7 @@ void __bsbswim_update_rotation(void) {
 
     if (balookat_getState() && balookat_try_get_position(sp2C)) {
         playerPosition_get(sp44);
-        func_8025727C(sp44[0], sp44[1], sp44[2], sp2C[0], sp2C[1], sp2C[2], &sp38[0], &sp38[1]);
+        ml_horizontal_and_vertical_angles(sp44[0], sp44[1], sp44[2], sp2C[0], sp2C[1], sp2C[2], &sp38[0], &sp38[1]);
         pitch_setIdeal(sp38[0]);
         yaw_setIdeal(sp38[1]);
         roll_setIdeal(0.0f);

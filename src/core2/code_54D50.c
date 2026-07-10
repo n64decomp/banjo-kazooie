@@ -16,13 +16,14 @@ void func_802DC018(Actor *this);
 
 /* .data */
 ActorInfo D_80367F30= {
-    0x1F5, 0x1E5, 0, 
+    MARKER_1F5_UNKNOWN, ACTOR_1E5_UNKNOWN, 0, 
     0, NULL, 
     func_802DC018, actor_update_func_80326224, func_80325340,
     0, 0, 0.0f, 0
 }; 
 
 s32 D_80367F54[3] = {0xff, 0xff, 0xff};
+
 ParticleSettingsScaleAndLifetimeDrawModeEmitCount D_80367F60 = {
     { {0.1f, 0.5f}, {1.0f, 1.5f}, {0.0f, 0.01f}, {0.5f, 1.4f}, 
       0.0f, 0.01f

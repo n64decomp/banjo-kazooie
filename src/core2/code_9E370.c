@@ -1596,7 +1596,7 @@ void func_803297FC(Actor *arg0, f32 *o1, f32 *o2){
     f32 player_pos[3];
 
     playerPosition_get(player_pos);
-    func_8025727C(
+    ml_horizontal_and_vertical_angles(
         arg0->position[0], arg0->position[1], arg0->position[2],
         player_pos[0], player_pos[1], player_pos[2],
         o1, o2

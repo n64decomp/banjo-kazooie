@@ -17,7 +17,9 @@ f32 D_80367A84 = 30.0f;
 f32 D_80367A88 = 150.0f;
 f32 D_80367A8C = 25.0f;
 s32 D_80367A90[4] = {250, 250, 250, 120};
+
 enum dust_emitter_type_e D_80367AA0 = DUST_EMITTER_TYPE_DUST;
+
 f32 D_80367AA4[3] = {0.0f, 0.0f, 0.0f};
 
 ActorInfo D_80367AB0 = {

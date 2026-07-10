@@ -118,37 +118,39 @@ f32 ml_vec3f_distance(f32 vec1[3], f32 vec2[3]) {
     return LENGTH_VEC3F(diff);
 }
 
-f32 ml_func_802560D0(f32 arg0[3], f32 arg1[3], f32 arg2[3]) {
-    f32 sp4C[3];
-    f32 pad48;
-    f32 sp3C[3];
-    f32 sp38;
-    f32 sp34;
-    f32 sp30;
-    f32 sp24[3];
-    f32 sp20;
-    f32 pad58;
+f32 ml_vec3f_distance_to_point(f32 line_start_position[3], f32 line_end_position[3], f32 point_position[3]) {
+    f32 closestPointOnLine[3];
+    f32 pad48; // unused
+    f32 pointOffsetFromLineStart[3];
+    f32 pointDistanceFromLineStart;
+    f32 projectionFactor;
+    f32 projectionDistance;
+    f32 lineDirection[3];
+    f32 lineLength;
+    f32 pad58; // unused
 
-    TUPLE_DIFF_COPY(sp24, arg1, arg0)
-    sp20 = LENGTH_VEC3F(sp24);
+    TUPLE_DIFF_COPY(lineDirection, line_end_position, line_start_position)
+    lineLength = LENGTH_VEC3F(lineDirection);
 
-    if (sp20 < 0.01) {
-        return ml_vec3f_distance(arg0, arg2);
+    if (lineLength < 0.01) {
+        return ml_vec3f_distance(line_start_position, point_position);
     }
 
-    TUPLE_DIFF_COPY(sp3C, arg2, arg0)
-    sp38 = LENGTH_VEC3F(sp3C);
+    TUPLE_DIFF_COPY(pointOffsetFromLineStart, point_position, line_start_position)
+    pointDistanceFromLineStart = LENGTH_VEC3F(pointOffsetFromLineStart);
 
-    if (sp38 < 0.01) {
-        return sp38;
+    if (pointDistanceFromLineStart < 0.01) {
+        return pointDistanceFromLineStart;
     }
 
-    sp34 = ((sp24[0]*sp3C[0] + sp24[1]*sp3C[1] + sp24[2]*sp3C[2]) / (sp20 * sp38));
-    sp30 = (sp34 *sp38) / sp20;
-    sp4C[0] = arg0[0] + (sp24[0] * sp30);
-    sp4C[1] = arg0[1] + (sp24[1] * sp30);
-    sp4C[2] = arg0[2] + (sp24[2] * sp30);
-    return ml_vec3f_distance(sp4C, arg2);
+    projectionFactor = ((lineDirection[0] * pointOffsetFromLineStart[0]
+            + lineDirection[1] * pointOffsetFromLineStart[1]
+            + lineDirection[2] * pointOffsetFromLineStart[2]) / (lineLength * pointDistanceFromLineStart));
+    projectionDistance = (projectionFactor * pointDistanceFromLineStart) / lineLength;
+    closestPointOnLine[0] = line_start_position[0] + (lineDirection[0] * projectionDistance);
+    closestPointOnLine[1] = line_start_position[1] + (lineDirection[1] * projectionDistance);
+    closestPointOnLine[2] = line_start_position[2] + (lineDirection[2] * projectionDistance);
+    return ml_vec3f_distance(closestPointOnLine, point_position);
 }
 
 f32 ml_distanceSquared_vec3f(f32 vec1[3], f32 vec2[3])
@@ -457,7 +459,7 @@ f32 func_80257248(f32 vec1[3], f32 vec2[3])
     return func_8025715C(vec2[0] - vec1[0], vec2[2] - vec1[2]);
 }
 
-void func_8025727C(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2)
+void ml_horizontal_and_vertical_angles(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2, f32 *o1, f32 *o2)
 {
     f32 dz;
     f32 dy; // unused
@@ -1191,15 +1193,15 @@ void func_8025901C(f32 arg0, f32 arg1[3], f32 arg2[3], f32 arg3){
     }//L80259184
 }
 
-f32 func_80259198(f32 arg0, f32 arg1)
+f32 ml_clamp_abs_f(f32 value, f32 max_abs_value)
 {
-    if (arg0 > arg1)
-        return arg1;
+    if (value > max_abs_value)
+        return max_abs_value;
 
-    if (arg0 < -arg1)
-        return -arg1;
+    if (value < -max_abs_value)
+        return -max_abs_value;
 
-    return arg0;
+    return value;
 }
 
 f32 mlDiffDegF(f32 arg0, f32 arg1)
@@ -1266,48 +1268,51 @@ void ml_sub_delta_time(f32 *x) {
         *x = 0;
 }
 
-void func_8025947C(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3])
+// Perpendicular projection of point onto line using xz coordinates
+void ml_project_point_onto_vecf3(
+    f32 closest_point_on_line[3], f32 line_start_position[3],
+    f32 line_end_position[3], f32 point_to_project[3])
 {
-    f32 f0;
-    f32 f12;
-    f32 f16;
-    f32 f8;
-    f32 f18;
-    f32 f4;
+    f32 line_dx_xz;
+    f32 line_dz_xz;
+    f32 line_slope_xz;
+    f32 intersection_x_xz;
+    f32 line_intercept_xz;
+    f32 perpendicular_intercept_xz;
 
-    a0[1] = a1[1];
+    closest_point_on_line[1] = line_start_position[1];
 
-    f0 = a2[0] - a1[0];
+    line_dx_xz = line_end_position[0] - line_start_position[0];
 
-    if (f0 == 0)
+    if (line_dx_xz == 0)
     {
-        a0[0] = a1[0];
-        a0[2] = a3[2];
+        closest_point_on_line[0] = line_start_position[0];
+        closest_point_on_line[2] = point_to_project[2];
 
         return;
     }
 
-    f12 = a2[2] - a1[2];
+    line_dz_xz = line_end_position[2] - line_start_position[2];
 
-    if (f12 == 0)
+    if (line_dz_xz == 0)
     {
-        a0[0] = a3[0];
-        a0[2] = a1[2];
+        closest_point_on_line[0] = point_to_project[0];
+        closest_point_on_line[2] = line_start_position[2];
 
         return;
     }
 
-    f16 = f12 / f0;
-    f18 = a1[2] - (a1[0] * f16);
+    line_slope_xz = line_dz_xz / line_dx_xz;
+    line_intercept_xz = line_start_position[2] - (line_start_position[0] * line_slope_xz);
 
-    f8 = -1.0 / f16;
+    intersection_x_xz = -1.0 / line_slope_xz;
 
-    f4 = a3[2] - (a3[0] * f8);
+    perpendicular_intercept_xz = point_to_project[2] - (point_to_project[0] * intersection_x_xz);
 
-    f8 = (f4 - f18) / (f16 - f8);
+    intersection_x_xz = (perpendicular_intercept_xz - line_intercept_xz) / (line_slope_xz - intersection_x_xz);
 
-    a0[0] = f8;
-    a0[2] = f8 * f16 + f18;
+    closest_point_on_line[0] = intersection_x_xz;
+    closest_point_on_line[2] = intersection_x_xz * line_slope_xz + line_intercept_xz;
 }
 
 

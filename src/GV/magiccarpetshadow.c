@@ -2,24 +2,24 @@
 #include "functions.h"
 #include "variables.h"
 
-void func_8038938C(Actor *this);
-Actor *func_803892D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void chMagicCarpetShadow_update(Actor *this);
+Actor *chMagicCarpetShadow_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 
 /* .data */
-extern ActorAnimationInfo D_80390DC0[]={
+extern ActorAnimationInfo chMagicCarpetShadowAnimations[] = {
     {0, 0.0f},
     {ASSET_F1_ANIM_MAGIC_CARPET, 2.0f}
 };
 
-extern ActorInfo GV_D_80390DD0 = {
+extern ActorInfo chMagicCarpetShadow = {
     MARKER_AF_MAGIC_CARPET_SHADOW, ACTOR_122_MAGIC_CARPET_SHADOW, ASSET_3E7_MODEL_MAGIC_CARPET_SHADOW, 
-    0x1, D_80390DC0, 
-    func_8038938C, actor_update_func_80326224, func_803892D0, 
+    0x1, chMagicCarpetShadowAnimations, 
+    chMagicCarpetShadow_update, actor_update_func_80326224, chMagicCarpetShadow_draw,
     2500, 0, 0.0f, 0
 };
 
 /* .code */
-Actor *func_803892D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
+Actor *chMagicCarpetShadow_draw(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     f32 rotation[3];
     f32 position[3];
     Actor *this;
@@ -36,7 +36,7 @@ Actor *func_803892D0(ActorMarker *this_marker, Gfx **gfx, Mtx **mtx, Vtx **vtx){
     return this;
 }
 
-void func_8038938C(Actor *this){
+void chMagicCarpetShadow_update(Actor *this){
     if(!this->initialized){
         this->initialized = TRUE;
         this->unk124_11 = 3;

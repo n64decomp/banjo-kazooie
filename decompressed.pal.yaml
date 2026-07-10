@@ -548,7 +548,7 @@ segments:
   - [0xF8A230, c, code_11040]
   - [0xF8A440, c, climb]
   - [0xF8A650, c, playerposition]
-  - [0xF8A850, c, code_11660]
+  - [0xF8A850, c, playermodel]
   - [0xF8A9C0, c, code_117D0]
   - [0xF8AA60, c, balookat]
   - [0xF8AD30, c, roll]
@@ -651,7 +651,7 @@ segments:
   # - [0xF90F20, c, nc/ba/1p] #DONE
   # - [0xF914E0, c, spawnqueue] #DONE
   # - [0xF92D30, c, ch/gameSelect] #DONE
-  # - [0xF94430, c, code_3EAD0] #DONE
+  # - [0xF94430, c, fx/shoesparkle] #DONE
   # - [0xF94590, c, ch/explosionripple] #DONE
   # - [0xF94640, c, ch/bubble] #DONE
   # - [0xF94850, c, ch/bigbutt] #DONE
@@ -673,19 +673,19 @@ segments:
   # - [0xF9C240, c, ch/code_468E0] #DONE
   # - [0xF9C520, c, ch/jinjo]   #DONE
   # - [0xF9D1B0, c, ch/beehive] #DONE
-  # - [0xF9D530, c, code_47BD0] #DONE
+  # - [0xF9D530, c, ch/beeswarm] #DONE
   # - [0xF9EED0, c, ch/soundsource] #DONE
   # - [0xF9F3D0, c, ch/shrapnel] #DONE
   # - [0xF9FD80, c, ch/gloop] #DONE
-  # - [0xFA0050, c, code_4A6F0] #DONE
-  # - [0xFA16D0, c, code_4BD70] #DONE
+  # - [0xFA0050, c, ch/mumbo] #DONE
+  # - [0xFA16D0, c, mumbosign] #DONE
   # - [0xFA1770, c, code_4BE10] #DONE
   # - [0xFA1980, c, code_4C020] #DONE
   # - [0xFA54E0, c, ch/wadingboots] #DONE
   # - [0xFA5870, c, ch/badShad] #DONE
   # - [0xFA5DF0, c, code_50490] #DONE
   # - [0xFA60B0, c, ch/climbBase] #DONE
-  # - [0xFA6330, c, code_509D0] #DONE
+  # - [0xFA6330, c, levelcollectible] #DONE
   # - [0xFA7100, c, ch/piranhaWaterParticles] #DONE
   # - [0xFA72B0, c, code_51950] #DONE
   # - [0xFA75F0, c, ch/collectible] #DONE
@@ -695,19 +695,19 @@ segments:
   # - [0xFA9570, c, code_53C10] #DONE
   # - [0xFAA6B0, c, code_54D50] #DONE
   # - [0xFAAAE0, c, code_55180] #DONE
-  # - [0xFAACF0, c, code_55390] #DONE
-  # - [0xFAB020, c, code_556C0] #DONE
-  # - [0xFAB1B0, c, code_55850] #DONE
+  # - [0xFAACF0, c, gc/gameoversign] #DONE
+  # - [0xFAB020, c, gc/theendsign] #DONE
+  # - [0xFAB1B0, c, gc/banjokazooiesign] #DONE
   # - [0xFAB3F0, c, ch/overlaycopyright] #DONE
   # - [0xFAB520, c, ch/overlaypressstart] #DONE
   # - [0xFAB780, c, ch/overlaynocontroller] #DONE
   # - [0xFABA50, c, ch/bottlesbonus] #DONE
-  # - [0xFAD5D0, c, code_57C70] #DONE
+  # - [0xFAD5D0, c, ch/mumboshandwithpicture] #DONE
   # - [0xFADB30, c, code_581D0] #DONE
   # - [0xFADE30, c, ch/bottlesbonuscursor] #DONE
   # - [0xFAF0E0, c, code_59780] #DONE
   # - [0xFAF340, c, code_599E0] #DONE
-  # - [0xFAF3E0, c, code_59A80] #DONE
+  # - [0xFAF3E0, c, ch/mumbotoken] #DONE
   # - [0xFAF6A0, c, ch/snacker] #DONE
   # - [0xFB0490, c, ch/snowman] #DONE
   # - [0xFB1000, c, ch/snowball] #DONE
@@ -782,7 +782,7 @@ segments:
   # - [0xFE3580, c, code_8DC20] #DONE
   # - [0xFE3BD0, c, gc/zoombox] #DONE
   # - [0xFE7770, c, code_91E10] #DONE
-  # - [0xFE8F50, c, code_935F0] #DONE #chminigmae
+  # - [0xFE8F50, c, minigame] #DONE #chminigmae
   # - [0xFE9570, c, gc/parade] #DONE
   # - [0xFE9F80, c, code_94620] #DONE
   # - [0xFEA0E0, c, code_94780] #DONE
@@ -841,7 +841,7 @@ segments:
   # - [0x1016650, c, code_C0CF0] #DONE
   # - [0x10167C0, c, code_C0E60] #DONE
   # - [0x1018580, c, animtexturecache] #DONE
-  # - [0x1018890, c, code_C2F30] #DONE
+  # - [0x1018890, c, demo] #DONE
   # - [0x1018B00, c, code_C31A0] #DONE
   # - [0x1018D60, c, rand]       #DONE
   # - [0x10193A0, c, code_C3A40] #DONE
@@ -880,7 +880,7 @@ segments:
   # - [0x1025140, c, ch/clankerwhipcrack] #DONE
   # - [0x10253C0, c, ch/grillechompa] #DONE
   # - [0x1025B20, c, ch/clucker] #DONE
-  # - [0x1026600, c, code_D0CA0] #DONE
+  # - [0x1026600, c, ch/scarabbeetle] #DONE
   # - [0x1027AE0, c, code_D2180] #DONE
   # - [0x1027E60, c, ch/firefx]  #DONE
   # - [0x1028410, c, ch/drips]   #DONE
@@ -895,7 +895,7 @@ segments:
   # - [0x102D670, c, ch/gravestone] #DONE
   # - [0x102E340, c, ch/bat]
   # - [0x102F700, c, ch/whipcrack] #DONE
-  # - [0x102FD00, c, code_DA3A0] #DONE
+  # - [0x102FD00, c, ch/betavent] #DONE
   # - [0x10300C0, c, code_DA760] #DONE
   # - [0x1030400, c, code_DAAA0] #DONE
   # - [0x1030970, c, code_DB010] #DONE
@@ -950,7 +950,7 @@ segments:
   # - [0x1034770, .data, nc/dynamicCamA]
   # - [0x1034790, .data, spawnqueue]
   # - [0x10347A0, .data, ch/gameSelect]
-  # - [0x1034900, .data, code_3EAD0]
+  # - [0x1034900, .data, fx/shoesparkle]
   # - [0x1034980, .data, ch/explosionripple]
   # - [0x10349B0, .data, ch/bubble]
   # - [0x10349E0, .data, ch/bigbutt]
@@ -972,19 +972,19 @@ segments:
   # - [0x1035B30, .data, ch/code_468E0]
   # - [0x1035B80, .data, ch/jinjo]
   # - [0x1035C90, .data, ch/beehive]
-  # - [0x1035CE0, .data, code_47BD0]
+  # - [0x1035CE0, .data, ch/beeswarm]
   # - [0x1035D10, .data, ch/soundsource]
   # - [0x1035D90, .data, ch/shrapnel]
   # - [0x1035E00, .data, ch/gloop]
-  # - [0x1035E60, .data, code_4A6F0]
-  # - [0x1035F00, .data, code_4BD70]
+  # - [0x1035E60, .data, ch/mumbo]
+  # - [0x1035F00, .data, mumbosign]
   # - [0x1035FC0, .data, code_4BE10]
   # - [0x1036050, .data, code_4C020]
   # - [0x10363D0, .data, ch/wadingboots]
   # - [0x1036420, .data, ch/badShad]
   # - [0x1036450, .data, code_50490]
   # - [0x10364F0, .data, ch/climbBase]
-  # - [0x1036520, .data, code_509D0]
+  # - [0x1036520, .data, levelcollectible]
   # - [0x1036630, .data, ch/piranhaWaterParticles]
   # - [0x1036660, .data, code_51950]
   # - [0x10366D0, .data, ch/collectible]
@@ -994,18 +994,18 @@ segments:
   # - [0x1036870, .data, code_53C10]
   # - [0x1036900, .data, code_54D50]
   # - [0x10369B0, .data, code_55180]
-  # - [0x1036A10, .data, code_55390]
-  # - [0x1036A40, .data, code_556C0]
-  # - [0x1036A70, .data, code_55850]
+  # - [0x1036A10, .data, gc/gameoversign]
+  # - [0x1036A40, .data, gc/theendsign]
+  # - [0x1036A70, .data, gc/banjokazooiesign]
   # - [0x1036AA0, .data, ch/overlaycopyright]
   # - [0x1036AD0, .data, ch/overlaypressstart]
   # - [0x1036B20, .data, ch/overlaynocontroller]
   # - [0x1036B70, .data, ch/bottlesbonus]
-  # - [0x1036CD0, .data, code_57C70]
+  # - [0x1036CD0, .data, ch/mumboshandwithpicture]
   # - [0x1036D30, .data, code_581D0]
   # - [0x1036D80, .data, ch/bottlesbonuscursor]
   # - [0x1036E10, .data, code_59780]
-  # - [0x1036F70, .data, code_59A80]
+  # - [0x1036F70, .data, ch/mumbotoken]
   # - [0x1036FA0, .data, ch/snacker]
   # - [0x1037020, .data, ch/snowman]
   # - [0x10370E0, .data, ch/snowball]
@@ -1056,7 +1056,7 @@ segments:
   # - [0x103B000, .data, code_8DC20]
   # - [0x103B090, .data, gc/zoombox]
   # - [0x103C310, .data, code_91E10]
-  # - [0x103C340, .data, code_935F0]
+  # - [0x103C340, .data, minigame]
   # - [0x103C370, .data, gc/parade]
   # - [0x103C790, .data, code_94A20]
   # - [0x103C7A0, .data, code_956B0]
@@ -1085,7 +1085,7 @@ segments:
   # - [0x1040890, .data, code_BD100]
   # - [0x10408A0, .data, code_BE2C0]
   # - [0x10408B0, bin, data_EAF40] #unreferenced
-  # - [0x10408C0, .data, code_C2F30]
+  # - [0x10408C0, .data, demo]
   # - [0x10408D0, .data, code_C4320]
   # - [0x1040990, .data, code_C4F40]
   # - [0x1040A00, .data, code_C5440]
@@ -1102,7 +1102,7 @@ segments:
   # - [0x10411E0, .data, ch/clankerwhipcrack]
   # - [0x1041210, .data, ch/grillechompa]
   # - [0x1041240, .data, ch/clucker]
-  # - [0x1041270, .data, code_D0CA0]
+  # - [0x1041270, .data, ch/scarabbeetle]
   # - [0x1041310, .data, code_D2180]
   # - [0x1041460, .data, ch/firefx]
   # - [0x1041490, .data, ch/drips]
@@ -1117,7 +1117,7 @@ segments:
   # - [0x1041950, .data, ch/gravestone]
   # - [0x1041A60, .data, ch/bat]
   # - [0x1041AD0, .data, ch/whipcrack]
-  # - [0x1041B00, .data, code_DA3A0]
+  # - [0x1041B00, .data, ch/betavent]
   # - [0x1041B80, .data, code_DA760]
   # - [0x1041BB0, .data, code_DAAA0]
   # - [0x1041CB0, .data, code_DB010]
@@ -1148,7 +1148,7 @@ segments:
   - [0x1067390, .rodata, pitch]
   - [0x10673C0, .rodata, code_11040]
   - [0x10673D0, .rodata, climb]
-  - [0x10673E0, .rodata, code_11660]
+  - [0x10673E0, .rodata, playermodel]
   - [0x10675A0, .rodata, balookat]
   - [0x10675B0, .rodata, roll]
   - [0x10675D0, .rodata, yaw]
@@ -1240,29 +1240,29 @@ segments:
   # - [0x1044EB0, .rodata, code_45310]
   # - [0x1044F30, .rodata, ch/jinjo]
   # - [0x1044FA0, .rodata, ch/beehive]
-  # - [0x1044FB0, .rodata, code_47BD0]
+  # - [0x1044FB0, .rodata, ch/beeswarm]
   # - [0x1045010, .rodata, ch/shrapnel]
   # - [0x1045030, .rodata, ch/gloop]
-  # - [0x1045040, .rodata, code_4A6F0]
+  # - [0x1045040, .rodata, ch/mumbo]
   # - [0x10450F0, .rodata, code_4C020]
   # - [0x1045710, .rodata, ch/badShad]
   # - [0x1045720, .rodata, code_50490]
-  # - [0x1045730, .rodata, code_509D0]
+  # - [0x1045730, .rodata, levelcollectible]
   # - [0x1045770, .rodata, ch/piranhaWaterParticles]
   # - [0x1045780, .rodata, code_51950]
   # - [0x1045790, .rodata, ch/mole]
   # - [0x1045830, .rodata, code_53C10]
   # - [0x10458A0, .rodata, code_54D50]
   # - [0x10458C0, .rodata, code_55180]
-  # - [0x10458D0, .rodata, code_55390]
+  # - [0x10458D0, .rodata, gc/gameoversign]
   # - [0x10458E0, .rodata, ch/overlaypressstart]
   # - [0x10458F0, .rodata, ch/overlaynocontroller]
   # - [0x1045900, .rodata, ch/bottlesbonus]
-  # - [0x1045970, .rodata, code_57C70]
+  # - [0x1045970, .rodata, ch/mumboshandwithpicture]
   # - [0x1045990, .rodata, code_581D0]
   # - [0x10459A0, .rodata, ch/bottlesbonuscursor]
   # - [0x1045A00, .rodata, code_599E0]
-  # - [0x1045A10, .rodata, code_59A80]
+  # - [0x1045A10, .rodata, ch/mumbotoken]
   # - [0x1045A20, .rodata, ch/snacker]
   # - [0x1045A70, .rodata, ch/snowman]
   # - [0x1045AA0, .rodata, ch/snowball]
@@ -1303,7 +1303,7 @@ segments:
   # - [0x1046F10, .rodata, gc/pauseMenu]
   # - [0x1047250, .rodata, gc/zoombox] 
   # - [0x1047320, .rodata, code_91E10]
-  # - [0x1047360, .rodata, code_935F0]
+  # - [0x1047360, .rodata, minigame]
   # - [0x1047380, .rodata, gc/parade]
   # - [0x1047700, .rodata, code_94A20]
   # - [0x1047710, .rodata, code_956B0]
@@ -1356,7 +1356,7 @@ segments:
   # - [0x1047EC0, .rodata, ch/clankerwhipcrack]
   # - [0x1047EE0, .rodata, ch/grillechompa]
   # - [0x1047F30, .rodata, ch/clucker]
-  # - [0x1047FD0, .rodata, code_D0CA0]
+  # - [0x1047FD0, .rodata, ch/scarabbeetle]
   # - [0x1048050, .rodata, code_D2180]
   # - [0x1048060, .rodata, ch/firefx]
   # - [0x10480A0, .rodata, ch/drips]
@@ -1371,7 +1371,7 @@ segments:
   # - [0x1048390, .rodata, ch/bat]
   # - [0x10483C0, .rodata, ch/bat]
   # - [0x1048430, .rodata, ch/whipcrack]
-  # - [0x1048450, .rodata, code_DA3A0]
+  # - [0x1048450, .rodata, ch/betavent]
   # - [0x1048460, .rodata, code_DA760]
   # - [0x1048480, .rodata, code_DB010]
   - [0x0106C980, .bss, anim/sprite]
@@ -1413,7 +1413,7 @@ segments:
   - [0x0106C980, .bss, code_11040]
   - [0x0106C980, .bss, climb]
   - [0x0106C980, .bss, playerposition]
-  - [0x0106C980, .bss, code_11660]
+  - [0x0106C980, .bss, playermodel]
   - [0x0106C980, .bss, code_117D0]
   - [0x0106C980, .bss, balookat]
   - [0x0106C980, .bss, roll]
@@ -1504,22 +1504,22 @@ segments:
   # - [0x0106C980, .bss, code_41FB0]
   # - [0x0106C980, .bss, code_42CB0]
   # - [0x0106C980, .bss, mapspecificflags]
-  # - [0x0106C980, .bss, code_47BD0]
-  # - [0x0106C980, .bss, code_4A6F0]
+  # - [0x0106C980, .bss, ch/beeswarm]
+  # - [0x0106C980, .bss, ch/mumbo]
   # - [0x0106C980, .bss, code_4C020]
   # - [0x0106C980, .bss, ch/badShad]
   # - [0x0106C980, .bss, ch/climbBase]
-  # - [0x0106C980, .bss, code_55390]
-  # - [0x0106C980, .bss, code_556C0]
-  # - [0x0106C980, .bss, code_55850]
+  # - [0x0106C980, .bss, gc/gameoversign]
+  # - [0x0106C980, .bss, gc/theendsign]
+  # - [0x0106C980, .bss, gc/banjokazooiesign]
   # - [0x0106C980, .bss, ch/overlaycopyright]
   # - [0x0106C980, .bss, ch/overlaypressstart]
   # - [0x0106C980, .bss, ch/overlaynocontroller]
   # - [0x0106C980, .bss, ch/bottlesbonus]
-  # - [0x0106C980, .bss, code_57C70]
+  # - [0x0106C980, .bss, ch/mumboshandwithpicture]
   # - [0x0106C980, .bss, code_581D0]
   # - [0x0106C980, .bss, ch/bottlesbonuscursor]
-  # - [0x0106C980, .bss, code_59A80]
+  # - [0x0106C980, .bss, ch/mumbotoken]
   # - [0x0106C980, .bss, ch/snacker]
   # - [0x0106C980, .bss, ch/snowball]
   # - [0x0106C980, .bss, mapsavestate]
@@ -1616,7 +1616,7 @@ segments:
   # - [0x0106C980, .bss, code_BEF20]
   # - [0x0106C980, .bss, code_C0E60]
   # - [0x0106C980, .bss, animtexturecache]
-  # - [0x0106C980, .bss, code_C2F30]
+  # - [0x0106C980, .bss, demo]
   # - [0x0106C980, .bss, rand]
   # - [0x0106C980, .bss, code_C4320]
   # - [0x0106C980, .bss, code_C4F40]
@@ -1681,25 +1681,25 @@ segments:
 #   # - [0x104E5B0, c, ch/gobirope] #DONE
 #   # - [0x104E810, c, ch/gobirock] #DONE
 #   # - [0x104EC60, c, ch/trunker] #DONE
-#   # - [0x104EFC0, c, code_2EE0] #DONE
+#   # - [0x104EFC0, c, magiccarpetshadow] #DONE
 #   # - [0x104F1A0, c, ch/sarcophagus] #DONE
 #   # - [0x104F710, c, code_3630] #DONE
 #   # - [0x104FB80, c, ch/eggpot] #DONE
-#   # - [0x104FBF0, c, code_3B10] #DONE
+#   # - [0x104FBF0, c, crc] #DONE
 #   # - [0x104FC90, c, code_3BB0] #DONE
-#   # - [0x104FE70, c, code_3D90] #DONE
+#   # - [0x104FE70, c, magiccarpet2] #DONE
 #   # - [0x1050490, c, code_43B0] #DONE
 #   # - [0x1050820, c, ch/slappa] #DONE
 #   # - [0x1051650, c, ch/grabba] #DONE
 #   # - [0x10522C0, c, code_61E0] #DONE
 #   # - [0x1052450, c, code_6370] #DONE
-#   # - [0x1053060, c, code_6F80] #DONE
+#   # - [0x1053060, c, sandybutteggtoll] #DONE
 #   # - [0x1053140, c, code_7060] #DONE
 #   # - [0x1053610, c, ch/histup] #DONE
 #   # - [0x1053E30, c, code_7D50] #DONE
 #   # - [0x1053E90, c, code_7DB0] #DONE
 #   # - [0x10540A0, c, code_7FC0] #DONE
-#   # - [0x10540D0, c, code_7FF0] #DONE
+#   # - [0x10540D0, c, gvspawnqueue] #DONE
 #   # - [0x1055210, c, ch/mazectrl] #DONE
 #   # - [0x1055940, c, ch/buriedpyramid] #DONE
 #   # - [0x1055C50, c, code_9B70] #DONE
@@ -1714,24 +1714,24 @@ segments:
 #   # - [0x1056A20, .data, ch/gobirope]
 #   # - [0x1056A50, .data, ch/gobirock]
 #   # - [0x1056A80, .data, ch/trunker]
-#   # - [0x1056AB0, .data, code_2EE0]
+#   # - [0x1056AB0, .data, magiccarpetshadow]
 #   # - [0x1056AF0, .data, ch/sarcophagus]
 #   # - [0x1056B90, .data, code_3630]
 #   # - [0x1056BF0, .data, ch/eggpot]
-#   # - [0x1056C20, .data, code_3B10]
+#   # - [0x1056C20, .data, crc]
 #   # - [0x1056C30, .data, code_3BB0]
-#   # - [0x1056C90, .data, code_3D90]
+#   # - [0x1056C90, .data, magiccarpet2]
 #   # - [0x1056CF0, .data, code_43B0]
 #   # - [0x1056D30, .data, ch/slappa]
 #   # - [0x1056E10, .data, ch/grabba]
 #   # - [0x1056E80, .data, code_61E0]
 #   # - [0x1056EE0, .data, code_6370]
-#   # - [0x1056F50, .data, code_6F80]
+#   # - [0x1056F50, .data, sandybutteggtoll]
 #   # - [0x1056F80, .data, code_7060]
 #   # - [0x1056FD0, .data, ch/histup]
 #   # - [0x1057030, .data, code_7DB0]
 #   # - [0x1057070, .data, code_7FC0]
-#   # - [0x10570D0, .data, code_7FF0]
+#   # - [0x10570D0, .data, gvspawnqueue]
 #   # - [0x10572B0, .data, ch/mazectrl]
 #   # - [0x1057310, .data, ch/buriedpyramid]
 #   # - [0x1057340, .data, matchinggame]
@@ -1742,14 +1742,14 @@ segments:
 #   # - [0x1057470, .rodata, ch/gobirock]
 #   # - [0x1057480, .rodata, ch/sarcophagus]
 #   # - [0x1057490, .rodata, code_3BB0]
-#   # - [0x10574A0, .rodata, code_3D90]
+#   # - [0x10574A0, .rodata, magiccarpet2]
 #   # - [0x10574B0, .rodata, code_43B0]
 #   # - [0x10574C0, .rodata, ch/slappa]
 #   # - [0x1057530, .rodata, ch/grabba]
 #   # - [0x1057580, .rodata, code_6370]
 #   # - [0x10575E0, .rodata, code_7060]
 #   # - [0x1057600, .rodata, ch/histup]
-#   # - [0x1057630, .rodata, code_7FF0]
+#   # - [0x1057630, .rodata, gvspawnqueue]
 #   # - [0x1057690, .rodata, ch/mazectrl]
 #   # - [0x10576B0, .rodata, ch/buriedpyramid]
 #   # - [0x10576F0, .rodata, matchinggame]
@@ -1762,9 +1762,9 @@ segments:
 #   # - [0x1057710, .bss, ch/slappa]
 #   # - [0x1057710, .bss, ch/grabba]
 #   # - [0x1057710, .bss, code_61E0]
-#   # - [0x1057710, .bss, code_6F80]
+#   # - [0x1057710, .bss, sandybutteggtoll]
 #   # - [0x1057710, .bss, code_7D50]
-#   # - [0x1057710, .bss, code_7FF0]
+#   # - [0x1057710, .bss, gvspawnqueue]
 #   # - [0x1057710, .bss, code_9C10]
 #   # - [0x1057710, .bss, matchinggame]
 #   # - [0x1057710, .bss, waterctrl]
@@ -1781,7 +1781,7 @@ segments:
 #   # - [0x10584D0, c, ch/cemetarypot]  #DONE
 #   # - [0x1058730, c, ch/motzhand] #DONE
 #   # - [0x1058DC0, c, ch/portraitchompa]  #DONE
-#   # - [0x1059750, c, code_2040] #DONE
+#   # - [0x1059750, c, mmmspawnqueue] #DONE
 #   # - [0x105A670, c, ch/portrait] #DONE
 #   # - [0x105A830, c, code_3120] #DONE
 #   # - [0x105AB30, c, code_3420] #DONE
@@ -1794,7 +1794,7 @@ segments:
 #   # - [0x105CD70, .data, ch/cemetarypot]
 #   # - [0x105CDB0, .data, ch/motzhand]
 #   # - [0x105CDF0, .data, ch/portraitchompa]
-#   # - [0x105CF00, .data, code_2040]
+#   # - [0x105CF00, .data, mmmspawnqueue]
 #   # - [0x105D150, .data, ch/portrait]
 #   # - [0x105D240, .data, code_3420]
 #   # - [0x105D510, .data, code_3D50]
@@ -1804,14 +1804,14 @@ segments:
 #   # - [0x105D690, .rodata, ch/napper]
 #   # - [0x105D6B0, .rodata, ch/motzhand]
 #   # - [0x105D6D0, .rodata, ch/portraitchompa]
-#   # - [0x105D720, .rodata, code_2040]
+#   # - [0x105D720, .rodata, mmmspawnqueue]
 #   # - [0x105D760, .rodata, code_3120]
 #   # - [0x105D770, .rodata, code_3420]
 #   # - [0x105D780, .rodata, code_3D50]
 #   # - [0x105D7A0, .rodata, ch/tumblar]
 #   # - [0x105D7D0, .rodata, code_5000]
 #   # - [0x105D7E0, .bss, bss_pad]
-#   # - [0x105D7E0, .bss, code_2040]
+#   # - [0x105D7E0, .bss, mmmspawnqueue]
 #   # - [0x105D7E0, .bss, code_3120]
 #   # - [0x105D7E0, .bss, code_3420]
 #   # - [0x105D7E0, .bss, code_3D50]
@@ -1870,7 +1870,7 @@ segments:
 #   # - [0x10665B0, c, crc]
 #   # - [0x1066680, c, ch/orange]
 #   # - [0x10669F0, c, ch/lmonkey] #chimpy
-#   # - [0x1066FA0, c, code_24C0]
+#   # - [0x1066FA0, c, mmspawnqueue]
 #   # - [0x1067090, c, ch/grublin]
 #   # - [0x1067220, c, ch/jujuhitbox]
 #   # - [0x10676C0, c, ch/juju]
@@ -1962,7 +1962,7 @@ segments:
 #   # exclusive_ram_id: overlay
 #   # subsegments:
 #   # - [0x10731B0, c, ch/eggtoll1]
-#   # - [0x10737F0, c, code_640]
+#   # - [0x10737F0, c, rbbspawnqueue]
 #   # - [0x1073E50, c, code_CA0]
 #   # - [0x1074720, c, code_1570]
 #   # - [0x1075170, c, ch/grimlet]
@@ -1990,7 +1990,7 @@ segments:
 #   # - [0x107C9F0, c, code_9840]
 #   # - [0x107CBA0, c, propellorctrl]
 #   # - [0x107CE10, .data, ch/eggtoll1]
-#   # - [0x107CE90, .data, code_640]
+#   # - [0x107CE90, .data, rbbspawnqueue]
 #   # - [0x107CFC0, .data, code_CA0]
 #   # - [0x107D030, .data, code_1570]
 #   # - [0x107D140, .data, ch/grimlet]
@@ -2016,7 +2016,7 @@ segments:
 #   # - [0x107DB40, .data, ch/boombox]
 #   # - [0x107DBC0, .data, code_9670]
 #   # - [0x107DBF0, .data, code_9840]
-#   # - [0x107DC40, .rodata, code_640]
+#   # - [0x107DC40, .rodata, rbbspawnqueue]
 #   # - [0x107DC50, .rodata, code_CA0]
 #   # - [0x107DC70, .rodata, code_1570]
 #   # - [0x107DCD0, .rodata, ch/grimlet]
@@ -2073,7 +2073,7 @@ segments:
 #   # - [0x1088270, c, ch/cavewozza] #DONE
 #   # - [0x1088530, c, ch/xmastreeice] #DONE
 #   # - [0x10888B0, c, ch/xmastreeeggtoll] #DONE
-#   # - [0x1088C00, c, code_ABD0] #DONE
+#   # - [0x1088C00, c, fpspawnqueue] #DONE
 #   # - [0x1089500, c, code_B4D0] #DONE
 #   # - [0x1089630, .data, ch/scarfsled]
 #   # - [0x1089680, .data, ch/racesled]
@@ -2100,7 +2100,7 @@ segments:
 #   # - [0x108A330, .data, ch/cavewozza]
 #   # - [0x108A370, .data, ch/xmastreeice]
 #   # - [0x108A480, .data, ch/xmastreeeggtoll]
-#   # - [0x108A520, .data, code_ABD0]
+#   # - [0x108A520, .data, fpspawnqueue]
 #   # - [0x108A7C0, .rodata, ch/scarfsled]
 #   # - [0x108A7D0, .rodata, ch/xmastree]
 #   # - [0x108A830, .rodata, ch/boggy1]
@@ -2133,7 +2133,7 @@ segments:
 #   # exclusive_ram_id: overlay
 #   # subsegments:
 #   # - [0x108AB50, c, code_0]
-#   # - [0x108AC40, c, code_F0]
+#   # - [0x108AC40, c, smspawnqueue]
 #   # - [0x108B100, c, code_5B0]
 #   # - [0x108B740, c, code_BF0]
 #   # - [0x108B8B0, c, ch/attacktutorial]
@@ -2145,7 +2145,7 @@ segments:
 #   # - [0x108F020, c, code_44D0]
 #   # - [0x108F210, c, code_46C0]
 #   # - [0x108F220, .data, code_0]
-#   # - [0x108F240, .data, code_F0]
+#   # - [0x108F240, .data, smspawnqueue]
 #   # - [0x108F250, .data, code_5B0]
 #   # - [0x108F350, .data, code_BF0]
 #   # - [0x108F380, .data, ch/attacktutorial]
@@ -2159,7 +2159,7 @@ segments:
 #   # - [0x108F930, .rodata, ch/vegetables]
 #   # - [0x108F960, .rodata, code_2990]
 #   # - [0x108FA70, .rodata, code_44D0]
-#   # - [0x108FA80, .bss, code_F0]
+#   # - [0x108FA80, .bss, smspawnqueue]
 # - name: cutscenes
 #   dir: cutscenes
 #   type: bin
@@ -2169,12 +2169,12 @@ segments:
 #   # exclusive_ram_id: overlay
 #   # subsegments:
 #   # - [0x108FA80, c, code_0]
-#   # - [0x1095B70, c, code_60F0] #DONE
+#   # - [0x1095B70, c, cutscenesspawnqueue] #DONE
 #   # - [0x10961B0, c, code_6730] #DONE
 #   # - [0x1096470, c, code_69F0] #DONE
 #   # - [0x1096710, c, code_6C90] #DONE
 #   # - [0x10969E0, .data, code_0]
-#   # - [0x1097320, .data, code_60F0]
+#   # - [0x1097320, .data, cutscenesspawnqueue]
 #   # - [0x1097D90, .data, code_6730]
 #   # - [0x1097E30, .data, code_69F0]
 #   # - [0x1097F20, .data, code_6C90]
@@ -2191,7 +2191,7 @@ segments:
 #   # follows_vram: core2
 #   # exclusive_ram_id: overlay
 #   # subsegments:
-#   # - [0x1098070, c, code_0] #DONE
+#   # - [0x1098070, c, lairspawnqueue] #DONE
 #   # - [0x109C310, c, ch/cauldron] #DONE
 #   # - [0x109D6B0, c, ch/brentilda] #DONE
 #   # - [0x109DF40, c, code_5ED0] #DONE
@@ -2205,7 +2205,7 @@ segments:
 #   # - [0x10A3C40, c, ch/furnacefunprizes] #DONE
 #   # - [0x10A4230, c, ch/lairgruntilda] #DONE
 #   # - [0x10A4730, c, code_C6C0] #DONE
-#   # - [0x10A4930, .data, code_0]
+#   # - [0x10A4930, .data, lairspawnqueue]
 #   # - [0x10A51A0, .data, ch/cauldron]
 #   # - [0x10A5390, .data, ch/brentilda]
 #   # - [0x10A53E0, .data, code_5ED0]
@@ -2219,7 +2219,7 @@ segments:
 #   # - [0x10A6860, .data, ch/furnacefunprizes]
 #   # - [0x10A6940, .data, ch/lairgruntilda]
 #   # - [0x10A69A0, .data, code_C6C0]
-#   # - [0x10A69D0, .rodata, code_0]
+#   # - [0x10A69D0, .rodata, lairspawnqueue]
 #   # - [0x10A6C80, .rodata, ch/cauldron]
 #   # - [0x10A6D10, .rodata, ch/brentilda]
 #   # - [0x10A6D40, .rodata, code_5ED0]
@@ -2232,7 +2232,7 @@ segments:
 #   # - [0x10A6FB0, .rodata, ch/lairgruntilda]
 #   # - [0x10A6FC0, .rodata, code_C6C0]
 #   # - [0x10A6FD0, .bss, bss_pad]
-#   # - [0x10A6FD0, .bss, code_0]
+#   # - [0x10A6FD0, .bss, lairspawnqueue]
 #   # - [0x10A6FD0, .bss, code_A810]
 # - name: fight
 #   dir: fight
@@ -2308,7 +2308,7 @@ segments:
   # - [0x10BA1E0, c, ch/indoorsgnawty] #DONE
   # - [0x10BA440, c, ch/gnawtyboulder] #DONE
   # - [0x10BA890, c, ch/snore] #DONE
-  # - [0x10BA9E0, c, code_76C0] #DONE
+  # - [0x10BA9E0, c, ccwspawnqueue] #DONE
   # - [0x10BAEE0, c, ch/deadsnarebear] #DONE
   # - [0x10BAF10, c, ch/snarebear] #DONE
   # - [0x10BB370, c, ch/grublinhood] #DONE
@@ -2336,7 +2336,7 @@ segments:
   # - [0x10BC530, .data, ch/indoorsgnawty]
   # - [0x10BC570, .data, ch/gnawtyboulder]
   # - [0x10BC620, .data, ch/snore]
-  # - [0x10BC650, .data, code_76C0]
+  # - [0x10BC650, .data, ccwspawnqueue]
   # - [0x10BC7E0, .data, ch/deadsnarebear]
   # - [0x10BC820, .data, ch/snarebear]
   # - [0x10BC860, .data, ch/grublinhood]
@@ -2357,7 +2357,7 @@ segments:
   # - [0x10BCBF0, .rodata, ch/acorn]
   # - [0x10BCC10, .rodata, ch/swimminggnawty]
   # - [0x10BCC20, .rodata, ch/summeroutsidegnawty]
-  # - [0x10BCC40, .rodata, code_76C0]
+  # - [0x10BCC40, .rodata, ccwspawnqueue]
   # - [0x10BCC50, .rodata, ch/snarebear]
   # - [0x10BCC60, .rodata, ch/grublinhood]
   # - [0x10BCD00, .bss, bss_pad]
