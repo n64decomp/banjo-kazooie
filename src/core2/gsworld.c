@@ -300,7 +300,7 @@ void gsworld_setUnk0(s32 value) {
 s32 gsworld_update(void) {
     u32 time_mask, time, delay;
 
-    codeCF5F0_forgetAllAbilitiesExceptClawSwipeIfChecksumsFail();
+    codeCF5F0_triggerAntiTamperMeasurement();
     func_802D5628();
     itemPrint_update();
     if (getGameMode() != GAME_MODE_4_PAUSED) {

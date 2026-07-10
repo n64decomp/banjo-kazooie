@@ -17,7 +17,7 @@ D_8000E800 = 0x8000E800;
 gHeapBase = 0x8002D500;
 D_8023DA00 = 0x8023DA00; /* confirm */
 gGlobalHuffTable = 0x803FBE00;
-gCore1CRCs = 0x803FFE00;
+gChecksumsCore1 = 0x803FFE00;
 gOverlayTable = 0x803FFE10;
 gFramebuffers = 0x803A5D00; /* framebuffers */
 
@@ -25,7 +25,7 @@ gFramebuffers = 0x803A5D00; /* framebuffers */
 boot_gHeapBase = gHeapBase;
 boot_core1_VRAM = core1_VRAM;
 boot_gGlobalHuffTable = gGlobalHuffTable;
-boot_gCore1CRCs = gCore1CRCs;
+boot_gChecksumsCore1 = gChecksumsCore1;
 boot_gOverlayTable = gOverlayTable;
 boot_core1_main = core1_main;
 

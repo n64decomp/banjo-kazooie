@@ -3,11 +3,11 @@
 
 #include "functions.h"
 #include "variables.h"
+#include "checksums.h"
 
 
 
 /* .bss */
-u8 D_80379B90[0x10];
 static AnimSprite s_animsprite_list[40];
 
 /* .code */

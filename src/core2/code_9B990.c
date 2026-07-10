@@ -360,7 +360,7 @@ void leveloverlay_init(void) {
     int i;
     enum overlay_e overlay_id;
 
-    func_80356714();
+    codeCF5F0_init();
     overlay_id = overlayManager_getLoadedID();
     sActiveCallbacks.init = sActiveCallbacks.update = sActiveCallbacks.release = NULL;
     sActiveCallbacks.draw = NULL;

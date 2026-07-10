@@ -6,11 +6,9 @@
 extern void player_stateTimer_set(s32, f32);
 extern f32 player_stateTimer_get(enum state_timer_e);
 
-/* .data */
-//TODO Implement CRC calculation in Makefile(?)
-u32 D_80390F30 = 0x00274530; //GV.code CRC1
-u32 D_80390F34 = 0xAA18BBF3; //GV.code CRC2
-u32 D_80390F38 = 0x0003031C; //GV.data CRC1 (with this value = 0)
+s32 D_80390F30 = VER_SELECT(0x00274530, 0, 0, 0); // GV_TEXT_CRC1
+s32 D_80390F34 = VER_SELECT(0xAA18BBF3, 0, 0, 0); // GV_TEXT_CRC2
+s32 D_80390F38 = VER_SELECT(0x0003031C, 0, 0, 0); // GV_DATA_CRC1
 
 
 /* .code */
