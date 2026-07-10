@@ -3,10 +3,10 @@
 #include "variables.h"
 #include "prop.h"
 #include "actor.h"
+#include "checksums.h"
 
 int ability_hasLearned(s32);
 
-extern s32 D_80275650;
 
 
 extern ActorInfo gQuarrie;
@@ -26,24 +26,10 @@ extern ActorInfo gBanjosChair;
 extern ActorInfo gBanjosStove;
 extern ActorInfo gRockTrappingGrunty;
 
-extern u32 gCore1CRCs[4];
-
-/* .data */
-s32 D_8038AAE0 = 0x000FE2C1; //compiled SM_code_crc_1
-s32 D_8038AAE4 = 0x8C0992D1; //compiled SM_code_crc_2
-union {
-    u8 byte[4];
-    s32 word;
-} D_8038AAE8 = {0x00, 0x01, 0xEB, 0x56}; //compiled SM_data_crc_1 (with this disabled out)
+s32 D_8038AAE0 = VER_SELECT(0x000FE2C1, 0, 0, 0); // SM_TEXT_CRC1
+s32 D_8038AAE4 = VER_SELECT(0x8C0992D1, 0, 0, 0); // SM_TEXT_CRC2
+s32 D_8038AAE8 = VER_SELECT(0x0001EB56, 0, 0, 0); // SM_DATA_CRC1
 s32 D_8038AAEC = 0;
-
-/* .bss */
-struct {
-    s32 unk0; //calculated SM_code_crc1
-    s32 unk4; //calculated SM_code_crc2
-    s32 unk8; //calculated SM_data_crc1
-    s32 unkC; //calculated SM_data_crc2
-} D_8038B320;
 
 
 /* .code */
@@ -114,16 +100,14 @@ void __codeF0_pad_func_80386614(u8 *arg0, u8 *arg1, s32 *arg2, s32 *arg3){
     *arg3 = temp_v1;
 }
 
-extern u8 crc_ROM_START[];
-
 #if ANTI_TAMPER
 static bool __codeF0_areRomCrcsCorrect(){
     u32 sp24;
 
-    if( (osPiReadIo((u32)crc_ROM_START + 8, &sp24), sp24 == gCore1CRCs[0])
-        && (osPiReadIo((u32)crc_ROM_START + 12, &sp24), sp24 == gCore1CRCs[1])
-        && (osPiReadIo((u32)crc_ROM_START + 16, &sp24), sp24 == gCore1CRCs[2])
-        && (osPiReadIo((u32)crc_ROM_START + 20, &sp24), sp24 == gCore1CRCs[3])
+    if( (osPiReadIo((u32)crc_ROM_START + CRC_CORE1_TEXT_CHECKSUM1, &sp24), sp24 == gChecksumsCore1.text_checksum1)
+        && (osPiReadIo((u32)crc_ROM_START + CRC_CORE1_TEXT_CHECKSUM2, &sp24), sp24 == gChecksumsCore1.text_checksum2)
+        && (osPiReadIo((u32)crc_ROM_START + CRC_CORE1_DATA_CHECKSUM1, &sp24), sp24 == gChecksumsCore1.data_checksum1)
+        && (osPiReadIo((u32)crc_ROM_START + CRC_CORE1_DATA_CHECKSUM2, &sp24), sp24 == gChecksumsCore1.data_checksum2)
     ){
         return TRUE;
     }
@@ -132,10 +116,10 @@ static bool __codeF0_areRomCrcsCorrect(){
 }
 
 static bool __codeF0_areCrcsValid(){
-    if( D_8038B320.unk0 == D_8038AAE0
-        && D_8038B320.unk4 == D_8038AAE4 
-        && D_8038B320.unkC == D_80275650 
-        && D_8038B320.unk8 == D_8038AAE8.word + D_8038AAE8.byte[0] + D_8038AAE8.byte[1] + D_8038AAE8.byte[2] + D_8038AAE8.byte[3]
+    if( gChecksumsSM.text_checksum1 == D_8038AAE0
+        && gChecksumsSM.text_checksum2 == D_8038AAE4 
+        && gChecksumsSM.data_checksum2 == D_80275650 
+        && gChecksumsSM.data_checksum1 == D_8038AAE8 + ((u8 *) &D_8038AAE8)[0] + ((u8 *) &D_8038AAE8)[1] + ((u8 *) &D_8038AAE8)[2] + ((u8 *) &D_8038AAE8)[3]
     ){
         return TRUE;
     }

@@ -19,7 +19,6 @@ void chjuju_update(Actor *this);
 Actor *chjuju_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
 
 /* .bss */
-u8 MM_pad_80389C80[0x10];
 s32 mm_juju_count;
 
 /* .data */

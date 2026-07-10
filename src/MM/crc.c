@@ -3,11 +3,9 @@
 #include "functions.h"
 #include "variables.h"
 
-/* .data */
-//TODO Implement CRC calculation in Makefile(?)
-u32 D_803899C0 = 0x000C740C; //MM.code CRC1
-u32 D_803899C4 = 0xCD249CB3; //MM.code CRC2
-u32 D_803899C8 = 0x0000D44F; //MM.data CRC1 (with this value = 0)
+s32 D_803899C0 = VER_SELECT(0x000C740C, 0, 0, 0); // MM_TEXT_CRC1
+s32 D_803899C4 = VER_SELECT(0xCD249CB3, 0, 0, 0); // MM_TEXT_CRC2
+s32 D_803899C8 = VER_SELECT(0x0000D44F, 0, 0, 0); // MM_DATA_CRC1
 
 void chmumbo_func_802D1724(void);
 

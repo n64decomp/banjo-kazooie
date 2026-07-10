@@ -5,8 +5,6 @@
 #include "fight.h"
 #include "actor.h"
 
-u8 sFightPadding[0x10];
-
 void fight_addSpawnableActors(void)
 {
     spawnableActorList_add(&chSpellFireball, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15 | ACTOR_FLAG_UNKNOWN_20);

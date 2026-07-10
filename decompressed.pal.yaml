@@ -366,14 +366,12 @@ segments:
   - [0xF747D0, .data, code_0]
   - [0xF74830, .data, code_660]
   - [0xF74930, .data, code_1D00]
-  - [0xF74A10, bin, data_37E30] #unreferenced
-  - [0xF74A20, .data, stub_2FA0]
+  - [0xF74A10, .data, stub_2FA0]
   - [0xF74A30, .data, code_3250]
   - [0xF74A40, .data, stub_3A70]
   - [0xF74A80, .data, code_5650]
   - [0xF74AA0, .data, code_7090]
-  - [0xF74AB0, bin, data_37ED0] #unreferenced
-  - [0xF74AC0, .data, code_7F60]
+  - [0xF74AB0, .data, code_7F60]
   - [0xF74AD0, .data, code_8C50]
   - [0xF74C60, .data, framebufferdraw]
   - [0xF74C70, .data, code_CE60]
@@ -1374,6 +1372,7 @@ segments:
   # - [0x1048450, .rodata, ch/betavent]
   # - [0x1048460, .rodata, code_DA760]
   # - [0x1048480, .rodata, code_DB010]
+  - [0x0106C980, .bss, checksums]
   - [0x0106C980, .bss, anim/sprite]
   - [0x0106C980, .bss, animcache]
   - [0x0106C980, .bss, code_1550]
@@ -1661,7 +1660,7 @@ segments:
 #   # - [0x104C080, .rodata, ch/tooth]
 #   # - [0x104C090, .rodata, ma/clankerrings]
 #   # - [0x104C0A0, .rodata, ma/clanker]
-#   # - [0x104C0E0, .bss, bss_pad]
+#   # - [0x104C0E0, .bss, checksums]
 #   # - [0x104C0E0, .bss, ch/clankertoothext]
 #   # - [0x104C0E0, .bss, ma/clankerrings]
 #   # - [0x104C0E0, .bss, ma/clanker]
@@ -1754,7 +1753,7 @@ segments:
 #   # - [0x10576B0, .rodata, ch/buriedpyramid]
 #   # - [0x10576F0, .rodata, matchinggame]
 #   # - [0x1057700, .rodata, waterctrl]
-#   # - [0x1057710, .bss, bss_pad]
+#   # - [0x1057710, .bss, checksums]
 #   # - [0x1057710, .bss, ch/toots]
 #   # - [0x1057710, .bss, ch/gobi1]
 #   # - [0x1057710, .bss, ch/gobi2]
@@ -1810,7 +1809,7 @@ segments:
 #   # - [0x105D780, .rodata, code_3D50]
 #   # - [0x105D7A0, .rodata, ch/tumblar]
 #   # - [0x105D7D0, .rodata, code_5000]
-#   # - [0x105D7E0, .bss, bss_pad]
+#   # - [0x105D7E0, .bss, checksums]
 #   # - [0x105D7E0, .bss, mmmspawnqueue]
 #   # - [0x105D7E0, .bss, code_3120]
 #   # - [0x105D7E0, .bss, code_3420]
@@ -1852,6 +1851,7 @@ segments:
 #   # - [0x1064210, .rodata, ch/treasurehunt]
 #   # - [0x1064240, .rodata, ma/castle]
 #   # - [0x1064A90, .rodata, ch/treasure]
+#   # - [0x1064AE0, .bss, checksums]
 #   # - [0x1064AE0, .bss, code_3040]
 #   # - [0x1064AE0, .bss, ch/treasurehunt]
 #   # - [0x1064AE0, .bss, ma/castle]
@@ -1892,6 +1892,7 @@ segments:
 #   # - [0x1068340, .rodata, ch/grublin]
 #   # - [0x1068350, .rodata, ch/jujuhitbox]
 #   # - [0x1068360, .rodata, ch/juju]
+#   # - [0x1068370, .bss, checksums]
 #   # - [0x1068370, .bss, ch/hut]
 #   # - [0x1068370, .bss, ch/juju]
 # - name: BGS
@@ -1951,7 +1952,7 @@ segments:
 #   # - [0x1073130, .rodata, ch/tanktup]
 #   # - [0x1073140, .rodata, ch/tanktuplegs]
 #   # - [0x1073150, .rodata, ch/leafboat]
-#   # - [0x10731B0, .bss, bss_pad]
+#   # - [0x10731B0, .bss, checksums]
 #   # - [0x10731B0, .bss, ch/frogminigame]
 # - name: RBB
 #   dir: RBB
@@ -2034,7 +2035,7 @@ segments:
 #   # - [0x107DF60, .rodata, ch/rowboat]
 #   # - [0x107DFB0, .rodata, ch/boombox]
 #   # - [0x107E020, .rodata, code_9670]
-#   # - [0x107E030, .bss, bss_pad]
+#   # - [0x107E030, .bss, checksums]
 #   # - [0x107E030, .bss, ch/bossboombox]
 #   # - [0x107E030, .bss, ch/boombox]
 #   # - [0x107E030, .bss, ch/boombox]
@@ -2117,7 +2118,7 @@ segments:
 #   # - [0x108AB10, .rodata, ch/wozzasjig]
 #   # - [0x108AB30, .rodata, ch/xmastreeice]
 #   # - [0x108AB40, .rodata, ch/xmastreeeggtoll]
-#   # - [0x108AB50, .bss, bss_pad]
+#   # - [0x108AB50, .bss, checksums]
 #   # - [0x108AB50, .bss, ch/boggy2]
 #   # - [0x108AB50, .bss, ma/snowy]
 #   # - [0x108AB50, .bss, ma/snowbutton]
@@ -2159,6 +2160,7 @@ segments:
 #   # - [0x108F930, .rodata, ch/vegetables]
 #   # - [0x108F960, .rodata, code_2990]
 #   # - [0x108FA70, .rodata, code_44D0]
+#   # - [0x108FA80, .bss, checksums]
 #   # - [0x108FA80, .bss, smspawnqueue]
 # - name: cutscenes
 #   dir: cutscenes
@@ -2182,7 +2184,7 @@ segments:
 #   # - [0x1098040, .rodata, code_6730]
 #   # - [0x1098050, .rodata, code_69F0]
 #   # - [0x1098060, .rodata, code_6C90]
-#   # - [0x1098070, .bss, bss_pad]
+#   # - [0x1098070, .bss, checksums]
 # - name: lair
 #   dir: lair
 #   type: code
@@ -2231,7 +2233,7 @@ segments:
 #   # - [0x10A6F70, .rodata, ch/furnacefunprizes]
 #   # - [0x10A6FB0, .rodata, ch/lairgruntilda]
 #   # - [0x10A6FC0, .rodata, code_C6C0]
-#   # - [0x10A6FD0, .bss, bss_pad]
+#   # - [0x10A6FD0, .bss, checksums]
 #   # - [0x10A6FD0, .bss, lairspawnqueue]
 #   # - [0x10A6FD0, .bss, code_A810]
 # - name: fight
@@ -2273,6 +2275,7 @@ segments:
 #   # - [0x10B31F0, .rodata, code_9850]
 #   # - [0x10B3200, .rodata, chjinjonator]
 #   # - [0x10B3310, .rodata, chbossshadow]
+#   # - [0x10B3320, .bss, checksums]
 #   # - [0x10B3320, .bss, fight]
 #   # - [0x10B3320, .bss, chfinalboss]
 #   # - [0x10B3320, .bss, chspellfireball]
@@ -2360,7 +2363,7 @@ segments:
   # - [0x10BCC40, .rodata, ccwspawnqueue]
   # - [0x10BCC50, .rodata, ch/snarebear]
   # - [0x10BCC60, .rodata, ch/grublinhood]
-  # - [0x10BCD00, .bss, bss_pad]
+  # - [0x10BCD00, .bss, checksums]
   # - [0x10BCD00, .bss, code_3310]
 - name: emptyLvl
   dir: emptyLvl
@@ -2372,5 +2375,6 @@ segments:
   subsegments:
   - [0x010E1470, c, code_0]
   - [0x010E1480, .data, code_0]
+  - [0x010E1490, .bss, checksums]
   - [0x010E1490, .bss, code_0]
 - [0x010E1490] # end of ROM
