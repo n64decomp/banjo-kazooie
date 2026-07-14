@@ -82,7 +82,7 @@ void func_8038A140(UNK_TYPE(s32) arg0) {
         if (MMM_D_8038C510.unk8 == 1) {
             mapSpecificFlags_set(MMM_SPECIFIC_FLAG_3_UNKNOWN, 1);
         }
-        item_set(ITEM_0_HOURGLASS_TIMER, 75*60 - 1);
+        item_set(ITEM_0_HOURGLASS_TIMER, 75*FRAMERATE - 1);
         item_set(6, 1);
     }
     if (MMM_D_8038C510.unk8 == 3) {

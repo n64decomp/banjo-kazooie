@@ -135,9 +135,9 @@ void maClankerTooth_update(Actor *this){
             gcdialog_showDialog(
                 (local->unk0 == 1)?
                     ((flagCnt == 0)?
-                        ASSET_D30_DIALOG_CLANKER_RIGHT_TOOTH_FIRST : ASSET_D31_DIALOG_CLANKER_RIGHT_TOOTH_SECOND) :
+                        VER_SELECT(ASSET_D30_DIALOG_CLANKER_RIGHT_TOOTH_FIRST, 0xA03, 0, 0) : VER_SELECT(ASSET_D31_DIALOG_CLANKER_RIGHT_TOOTH_SECOND, 0xA04, 0, 0)) :
                     ((flagCnt == 0)?
-                        ASSET_D2E_DIALOG_CLANKER_LEFT_TOOTH_FIRST : ASSET_D2F_DIALOG_CLANKER_LEFT_TOOTH_SECOND),
+                        VER_SELECT(ASSET_D2E_DIALOG_CLANKER_LEFT_TOOTH_FIRST, 0xA01, 0, 0) : VER_SELECT(ASSET_D2F_DIALOG_CLANKER_LEFT_TOOTH_SECOND, 0xA02, 0, 0)),
                 4,
                 NULL,
                 NULL,

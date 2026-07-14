@@ -108,7 +108,7 @@ void chNabnutBellyFull_update(Actor *this) {
     }
     if (!this->has_met_before && func_803292E0(this)) {
         this->has_met_before = TRUE;
-        gcdialog_showDialog(ASSET_CC9_DIALOG_NABNUT_MEET_SUMMER, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_CC9_DIALOG_NABNUT_MEET_SUMMER, 0x09DE, 0, 0), 0, NULL, NULL, NULL, NULL);
     }
     func_8028E668(this->position, 300.0f, -50.0f, 120.0f);
 }

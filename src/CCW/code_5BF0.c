@@ -166,7 +166,7 @@ void func_8038C41C(Actor *this) {
         player_getPosition(player_position);
         if (!this->has_met_before && (ml_vec3f_distance(this->position, player_position) < 400.0f)) {
             this->has_met_before = TRUE;
-            gcdialog_showDialog(ASSET_CCD_DIALOG_NABNUT_MEET_WINTER, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CCD_DIALOG_NABNUT_MEET_WINTER, 0x09E2, 0, 0), 0, NULL, NULL, NULL, NULL);
         }
     }
 }

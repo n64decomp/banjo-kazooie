@@ -58,7 +58,7 @@ void chAutumnOutsideNabnut_setState(Actor *this, s32 next_state) {
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 0xB);
         gcdialog_showDialog(
-            ASSET_CCC_DIALOG_NABNUT_ACORN_COMPLETE,
+            VER_SELECT(ASSET_CCC_DIALOG_NABNUT_ACORN_COMPLETE, 0x09E1, 0, 0),
             0x20, this->position,
             NULL, NULL, NULL);
     }
@@ -149,7 +149,7 @@ void chAutumnOutsideNabnut_update(Actor *this) {
         {
             this->has_met_before = TRUE;
             gcdialog_showDialog(
-                ASSET_CCA_DIALOG_NABNUT_MEET_FALL,
+                VER_SELECT(ASSET_CCA_DIALOG_NABNUT_MEET_FALL, 0x09DF, 0, 0),
                 0xE, this->position,
                 NULL, NULL, NULL);
         }
@@ -175,7 +175,7 @@ void chAutumnOutsideNabnut_update(Actor *this) {
                     chAutumnOutsideNabnut_setState(this, CH_AUTUMN_OUTDOOR_NABNUT_STATE_2_WAIT);
                 } else if (item_getCount(ITEM_23_ACORNS) == 1) {
                     gcdialog_showDialog(
-                        ASSET_CCB_DIALOG_NABNUT_ACORN_CHECK,
+                        VER_SELECT(ASSET_CCB_DIALOG_NABNUT_ACORN_CHECK, 0x09E0, 0, 0),
                         0x20, this->position,
                         NULL, NULL, NULL);
                 }

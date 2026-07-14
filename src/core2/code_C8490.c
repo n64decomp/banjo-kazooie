@@ -14,7 +14,7 @@ void func_8034F434(Struct76s *arg0, s32 arg1) {
         arg0->alpha = 0;
         arg0->unk2 = randi2(200, 255);
         arg0->unk4 = (s32) (arg0->unk4 + 1);
-         arg0->unk14 = arg0->unk10 = randf2(0.08f, 0.12f);
+         arg0->unk14 = arg0->unk10 = randf2(VER_SELECT(0.08f, 0.12f, 0.0f, 0.0f), VER_SELECT(0.12f, 0.18f, 0.0f, 0.0f));
         if ((arg0->unk4 == 1) && func_8034C4CC()) {
             gcsfx_playWithPitch(SFX_B5_THUNDERBOLT,  randf2(0.9f, 1.1f), randi2(10000, 20000));
         }
@@ -54,13 +54,13 @@ void func_8034F5B0(Struct76s *arg0, BKModel *arg1, s32 arg2){
         func_8034F434(arg0, 1);
     }
     if (arg0->unkC == 1) {
-        if (arg0->unk10 <= 0.04) {
-            arg0->alpha = (arg0->unk10 / 0.04) * arg0->unk2;
+        if (arg0->unk10 <= VER_SELECT(0.04, 0.06, 0.0, 0.0)) {
+            arg0->alpha = (arg0->unk10 / VER_SELECT(0.04, 0.06, 0.0, 0.0)) * arg0->unk2;
         } else {
-            if (arg0->unk10 < (arg0->unk14 - 0.04)) {
+            if (arg0->unk10 < (arg0->unk14 - VER_SELECT(0.04, 0.06, 0.0, 0.0))) {
                 arg0->alpha = arg0->unk2;
             } else {
-                arg0->alpha = ((arg0->unk14 - arg0->unk10) / 0.04) * arg0->unk2;
+                arg0->alpha = ((arg0->unk14 - arg0->unk10) / VER_SELECT(0.04, 0.06, 0.0, 0.0)) * arg0->unk2;
             }
         }
         if (ml_timer_update(&arg0->unk10, sp24)) {

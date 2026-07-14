@@ -126,12 +126,12 @@ segments:
   start: 0x5E90
   subsegments:
   - [0x5E90, bin, assets]
-# - name: soundfont1ctl
-#   type: bin
-#   start: 0xD846C0
-# - name: soundfont1tbl
-#   type: bin
-#   start: 0xD954B0
+- name: soundfont1ctl
+  type: bin
+  start: 0xDA8DF0
+- name: soundfont1tbl
+  type: bin
+  start: 0xDB9BE0
 
 - name: soundfont2ctl
   type: bin
@@ -614,40 +614,39 @@ segments:
   - [0xFAA090, c, bs/walrus]
   - [0xFABC10, c, bs/washy]
   - [0xFABFD0, c, nc/cameranodelist]
-  - [0xFAC720, c, code_33250] # address / size incorrect
-  - [0xFAC720, c, code_33310]
-  - [0xFACBC0, c, code_336F0]
-  - [0xFACD40, c, code_33AB0]
-  - [0xFACE50, textbin, core2_untouched]
-  # - [0xF89590, c, code_33C30] #DONE
-  # - [0xF896A0, c, nc/staticCamera] #DONE
-  # - [0xF898F0, c, code_33F90] #DONE
-  # - [0xF89C70, c, code_34310] #DONE
-  # - [0xF8A0F0, c, code_34790] #DONE
-  # - [0xF8AE80, c, code_35520] #DONE
-  # - [0xF8B010, c, nc/dynamicCamera] #DONE
-  # - [0xF8D310, c, code_379B0] #DONE
-  # - [0xF8D630, c, nc/randomCamera] #DONE
-  # - [0xF8D7B0, c, code_37E50] #DONE
-  # - [0xF8DAB0, c, nc/dynamicCam10] #DONE
-  # - [0xF8DC40, c, nc/ba/die] #DONE
-  # - [0xF8DDC0, c, nc/dynamicCam5] #DONE
-  # - [0xF8DF90, c, nc/dynamicCam11] #DONE
-  # - [0xF8E240, c, nc/dynamicCam8] #DONE
-  # - [0xF8E430, c, nc/ba/fly] #DONE
-  # - [0xF8E8A0, c, nc/dynamicCamC] #DONE
-  # - [0xF8EAF0, c, code_F8EAF0] #DONE
-  # - [0xF8ED40, c, nc/dynamicCamB] #DONE
-  # - [0xF8F010, c, nc/dynamicCam13] #DONE
-  # - [0xF8F370, c, nc/dynamicCam9] #DONE
-  # - [0xF8F850, c, nc/dynamicCam12] #DONE
-  # - [0xF90280, c, nc/dynamicCam1] #DONE
-  # - [0xF904A0, c, nc/dynamicCam3] #DONE
-  # - [0xF90770, c, nc/dynamicCamA] #DONE
-  # - [0xF90C20, c, code_3B2C0] #DONE
-  # - [0xF90E30, c, nc/dynamicCamF] #DONE
-  # - [0xF90F20, c, nc/ba/1p] #DONE
-  # - [0xF914E0, c, spawnqueue] #DONE
+  - [0xFAC470, c, code_33250]
+  - [0xFAC530, c, code_33310]
+  - [0xFAC910, c, code_336F0]
+  - [0xFACCD0, c, code_33AB0]
+  - [0xFACE50, c, code_33C30]
+  - [0xFACF60, c, nc/staticCamera]
+  - [0xFAD1B0, c, code_33F90]
+  - [0xFAD530, c, code_34310]
+  - [0xFAD9B0, c, code_34790]
+  - [0xFAE740, c, code_35520]
+  - [0xFAE8D0, textbin, nc/dynamicCamera_untouched] #DONE
+  - [0xFB0BE0, c, code_379B0] #DONE
+  - [0xFB0F00, c, nc/randomCamera] #DONE
+  - [0xFB1080, c, code_37E50] #DONE
+  - [0xFB1380, c, nc/dynamicCam10] #DONE
+  - [0xFB1510, c, nc/ba/die] #DONE
+  - [0xFB1690, c, nc/dynamicCam5] #DONE
+  - [0xFB1860, c, nc/dynamicCam11] #DONE
+  - [0xFB1B10, c, nc/dynamicCam8] #DONE
+  - [0xFB1D00, c, nc/ba/fly] #DONE
+  - [0xFB2170, c, nc/dynamicCamC] #DONE
+  - [0xFB23C0, c, code_F8EAF0] #DONE
+  - [0xFB2610, c, nc/dynamicCamB] #DONE
+  - [0xFB28E0, c, nc/dynamicCam13] #DONE
+  - [0xFB2C40, c, nc/dynamicCam9] #DONE
+  - [0xFB3120, c, nc/dynamicCam12] #DONE
+  - [0xFB3B50, c, nc/dynamicCam1] #DONE
+  - [0xFB3D70, c, nc/dynamicCam3] #DONE
+  - [0xFB4040, c, nc/dynamicCamA] #DONE
+  - [0xFB44F0, c, code_3B2C0] #DONE
+  - [0xFB4700, c, nc/dynamicCamF] #DONE
+  - [0xFB47F0, textbin, nc/ba/1p_untouched] #DONE
+  #- [0xFB4DB0, c, spawnqueue] #DONE
   # - [0xF92D30, c, ch/gameSelect] #DONE
   # - [0xF94430, c, fx/shoesparkle] #DONE
   # - [0xF94590, c, ch/explosionripple] #DONE
@@ -665,8 +664,8 @@ segments:
   # - [0xF98CF0, c, ch/trainers]   #DONE
   # - [0xF99160, c, code_43800]    #DONE
   # - [0xF993A0, c, code_43A40]    #DONE
-  # - [0xF99630, c, mapspecificflags] #DONE
-  # - [0xF99A10, c, ch/crab]    #DONE
+  # - [0xFBD240, textbin, mapspecificflags_untouched] #DONE
+  # - [FBD620??, c, ch/crab]    #DONE
   # - [0xF9AC70, c, code_45310]    #DONE
   # - [0xF9C240, c, ch/code_468E0] #DONE
   # - [0xF9C520, c, ch/jinjo]   #DONE
@@ -710,194 +709,194 @@ segments:
   # - [0xFB0490, c, ch/snowman] #DONE
   # - [0xFB1000, c, ch/snowball] #DONE
   # - [0xFB16F0, c, ch/snowmanhat] #DONE
-  # - [0xFB1810, c, mapsavestate]
-  # - [0xFB1BA0, c, code_5C240] #DONE
-  # - [0xFB21D0, c, code_5C870] #DONE
-  # - [0xFB3520, c, code_5DBC0] #DONE
-  # - [0xFB5460, c, code_5FB00] #DONE
-  # - [0xFB56E0, c, code_5FD80] #DONE
-  # - [0xFB56F0, c, code_5FD90] #DONE
-  # - [0xFB8930, c, code_62FD0] #DONE
-  # - [0xFB8A30, c, code_630D0] #DONE
-  # - [0xFB8D70, c, code_63410] #DONE
-  # - [0xFB8FF0, c, code_63690] #DONE
-  # - [0xFB9130, c, code_637D0] #DONE
-  # - [0xFBAE20, c, code_654C0] #DONE
-  # - [0xFBBDF0, c, code_66490] #DONE
-  # - [0xFBBFF0, c, vla]        #DONE
-  # - [0xFBC410, c, fla]        #DONE
-  # - [0xFBC6F0, c, code_66D90] #DONE
-  # - [0xFBC910, c, code_66FB0] #DONE
-  # - [0xFBCDF0, c, gc/bound]   #DONE
-  # - [0xFBCFB0, c, dustemitter] #DONE
-  # - [0xFBD300, c, particle] #DONE
-  # - [0xFBF8C0, c, particleemittermanager] #DONE
-  # - [0xFBFE10, c, code_6A4B0]
-  # - [0xFC0850, c, code_6AEF0] #DONE
-  # - [0xFC0990, c, code_6B030] #DONE
-  # - [0xFC1D40, c, fx/ripple] #DONE
-  # - [0xFC2040, c, fx/sparkle] #DONE
-  # - [0xFC2680, c, code_6CD20] #DONE
-  # - [0xFC2820, c, code_6CEC0] #DONE
-  # - [0xFC2990, c, code_6D030] #DONE
-  # - [0xFC2BD0, c, code_6D270] #DONE
-  # - [0xFC2DF0, c, code_6D490] #DONE
-  # - [0xFC3390, c, print]
-  # - [0xFC6590, c, code_70C30] #DONE
-  # - [0xFC6880, c, code_70F20] #DONE
-  # - [0xFC7180, c, code_71820] #DONE
-  # - [0xFC79C0, c, code_72060] #DONE
-  # - [0xFC8470, c, code_72B10] #DONE
-  # - [0xFC8FA0, c, code_73640] #DONE
-  # - [0xFC99F0, c, code_74090] #DONE
-  # - [0xFC9BF0, c, code_74290] #DONE
-  # - [0xFC9D80, c, code_74420] #DONE
-  # - [0xFCA270, c, code_74910] #DONE
-  # - [0xFCA830, c, code_74ED0] #DONE
-  # - [0xFCADE0, c, code_75480] #DONE
-  # - [0xFCB290, c, code_75930] #DONE
-  # - [0xFCB7F0, c, code_75E90] #DONE
-  # - [0xFCBCF0, c, fx/common1score] #DONE
-  # - [0xFCBD30, c, fx/common2score] #DONE
-  # - [0xFCC6F0, c, fx/honeycarrierscore] #DONE
-  # - [0xFCD7B0, c, code_77E50] #DONE
-  # - [0xFCDA60, c, fx/jinjoscore] #DONE
-  # - [0xFCE7B0, c, fx/lifescore] #DONE
-  # - [0xFCF190, c, fx/common3score] #DONE
-  # - [0xFCF5E0, c, fx/healthscore] #DONE
-  # - [0xFD00C0, c, fx/airscore] #DONE
-  # - [0xFD08E0, c, gccube]
-  # - [0xFD7960, c, mapModel] #DONE
-  # - [0xFD8CA0, c, propModelList] #DONE
-  # - [0xFD96D0, c, gc/section] #DONE
-  # - [0xFD9A30, c, gc/sky] #DONE
-  # - [0xFD9DD0, c, gc/transition] #DONE
-  # - [0xFDAB30, c, code_851D0] #DONE
-  # - [0xFDB110, c, code_857B0] #DONE
-  # - [0xFDB160, c, code_85800] #DONE
-  # - [0xFDD790, c, gc/dialog]
-  # - [0xFE0110, c, gc/pauseMenu] #DONE
-  # - [0xFE3580, c, code_8DC20] #DONE
-  # - [0xFE3BD0, c, gc/zoombox] #DONE
-  # - [0xFE7770, c, code_91E10] #DONE
-  # - [0xFE8F50, c, minigame] #DONE #chminigmae
-  # - [0xFE9570, c, gc/parade] #DONE
-  # - [0xFE9F80, c, code_94620] #DONE
-  # - [0xFEA0E0, c, code_94780] #DONE
-  # - [0xFEA380, c, code_94A20] #DONE
-  # - [0xFEB010, c, code_956B0] #DONE
-  # - [0xFEE610, c, code_98CB0]
-  # - [0xFEF1C0, c, quizquestionaskedbitfield] #DONE
-  # - [0xFEF300, c, code_999A0] #DONE
-  # - [0xFEF8E0, c, jiggyscore] #DONE
-  # - [0xFEFC80, c, honeycombscore] #DONE
-  # - [0xFEFEE0, c, mumboscore] #DONE
-  # - [0xFF00A0, c, code_9A740] #DONE
-  # - [0xFF0330, c, code_9A9D0] #DONE
-  # - [0xFF0660, c, levelspecificflags] #DONE
-  # - [0xFF0AE0, c, code_9B180] #DONE
-  # - [0xFF0FB0, c, code_9B650] #DONE
-  # - [0xFF12F0, c, code_9B990] #DONE
-  # - [0xFF1AD0, c, code_9C170] #DONE
-  # - [0xFF2FA0, c, code_9D640] #DONE
-  # - [0xFF30C0, c, code_9D760] #DONE
-  # - [0xFF31C0, c, timedfuncqueue] #DONE
-  # - [0xFF3CD0, c, code_9E370]
-  # - [0xFFA660, c, code_A4D00] #DONE
-  # - [0xFFB520, c, code_A5BC0]
-  # - [0x1001560, c, code_ABC00] #DONE
-  # - [0x1001E80, c, gclights] #DONE
-  # - [0x1002A70, c, code_AD110] #DONE
-  # - [0x1002F10, c, gsworld] #DONE
-  # - [0x1003BF0, c, code_AE290] #DONE
-  # - [0x1003F30, c, skeletalanim] #DONE
-  # - [0x1004700, c, code_AEDA0]
-  # - [0x1006D60, c, modelRender]
-  # - [0x1008EE0, c, code_B3580] #DONE
-  # - [0x10093E0, c, code_B3A80] #DONE
-  # - [0x100A9A0, c, code_B5040] #DONE
-  # - [0x100B760, c, code_B5E00] #DONE
-  # - [0x100BC10, c, code_B62B0] #DONE
-  # - [0x100BFA0, c, code_B6640] #DONE
-  # - [0x100C030, c, string]     #DONE
-  # - [0x100C5C0, c, code_B6C60] #DONE
-  # - [0x100C640, c, time] #DONE
-  # - [0x100C800, c, commonParticle] #DONE
-  # - [0x100D480, c, coords] #DONE
-  # - [0x100D8A0, c, code_B7F40] #DONE
-  # - [0x100D980, c, code_B8020] #DONE
-  # - [0x100D9D0, c, ultra/debug/assert] #DONE
-  # - [0x100D9E0, c, code_B8080] #DONE
-  # - [0x100E1C0, c, code_B8860] #DONE
-  # - [0x100E9F0, c, code_B9090] #DONE
-  # - [0x100F0D0, c, code_B9770]
-  # - [0x1012A60, c, code_BD100] #DONE
-  # - [0x1013620, c, code_BDCC0] #DONE
-  # - [0x1013C20, c, code_BE2C0] #DONE
-  # - [0x1014880, c, code_BEF20]
-  # - [0x10164E0, c, code_C0B80] #DONE
-  # - [0x1016650, c, code_C0CF0] #DONE
-  # - [0x10167C0, c, code_C0E60] #DONE
-  # - [0x1018580, c, animtexturecache] #DONE
-  # - [0x1018890, c, demo] #DONE
-  # - [0x1018B00, c, code_C31A0] #DONE
-  # - [0x1018D60, c, rand]       #DONE
-  # - [0x10193A0, c, code_C3A40] #DONE
-  # - [0x1019480, c, file] #DONE
-  # - [0x1019C80, c, code_C4320] #DONE
-  # - [0x101A8A0, c, code_C4F40] #DONE
-  # - [0x101ADA0, c, code_C5440] #DONE
-  # - [0x101B450, c, code_C5AF0] #DONE
-  # - [0x101B620, c, code_C5CC0] #DONE
-  # - [0x101B860, c, code_C5F00] #DONE
-  # - [0x101BB20, c, code_C61C0] #DONE
-  # - [0x101BC10, c, code_C62B0] #DONE
-  # - [0x101D030, c, code_C76D0] #DONE
-  # - [0x101D620, c, code_C7CC0] #DONE
-  # - [0x101DB90, c, code_C8230] #DONE
-  # - [0x101DCC0, c, code_C8360] #DONE
-  # - [0x101DDF0, c, code_C8490] #DONE
-  # - [0x101E0C0, c, code_C8760] #DONE
-  # - [0x101E320, c, code_C89C0] #DONE
-  # - [0x101F150, c, code_C97F0] #DONE
-  # - [0x101F7D0, c, code_C9E70] #DONE
-  # - [0x101F860, c, code_C9F00] #DONE
-  # - [0x10209B0, c, code_CB050] #DONE
-  # - [0x1020F70, c, code_CB610] #DONE
-  # - [0x1021200, c, commonParticleTypeMap] #DONE
-  # - [0x1021550, c, code_CBBF0] #DONE
-  # - [0x1021670, c, code_CBD10] #DONE
-  # - [0x1021B40, c, code_CC1E0] #DONE
-  # - [0x1022A00, c, code_CD0A0] #DONE
-  # - [0x1022D50, c, code_CD3F0] #DONE
-  # - [0x1023040, c, code_CD6E0] #DONE
-  # - [0x1024630, c, code_CECD0] #DONE
-  # - [0x10249F0, c, code_CF090] #DONE
-  # - [0x1024D40, c, progressDialog] #DONE
-  # - [0x1024F50, c, code_CF5F0] #DONE
-  # - [0x1025140, c, ch/clankerwhipcrack] #DONE
-  # - [0x10253C0, c, ch/grillechompa] #DONE
-  # - [0x1025B20, c, ch/clucker] #DONE
-  # - [0x1026600, c, ch/scarabbeetle] #DONE
-  # - [0x1027AE0, c, code_D2180] #DONE
-  # - [0x1027E60, c, ch/firefx]  #DONE
-  # - [0x1028410, c, ch/drips]   #DONE
-  # - [0x1028770, c, ch/icecube] #DONE
-  # - [0x10299B0, c, ch/ghost]   #DONE
-  # - [0x102AA50, c, ch/flotsam] #DONE
-  # - [0x102B670, c, ch/skeleton] #DONE
-  # - [0x102B930, c, ch/seamangrublin] #DONE
-  # - [0x102BAE0, c, ch/mummum] #DONE
-  # - [0x102BF60, c, ch/chumpfish] #DONE
-  # - [0x102C9A0, c, ch/termite] #DONE
-  # - [0x102D670, c, ch/gravestone] #DONE
-  # - [0x102E340, c, ch/bat]
-  # - [0x102F700, c, ch/whipcrack] #DONE
-  # - [0x102FD00, c, ch/betavent] #DONE
-  # - [0x10300C0, c, code_DA760] #DONE
-  # - [0x1030400, c, code_DAAA0] #DONE
-  # - [0x1030970, c, code_DB010] #DONE
-  # - [0x1031E10, c, code_DC4B0] #DONE
+  # - [0xFD5440, c, mapsavestate]
+  # - [0xFD57D0, c, code_5C240] #DONE
+  # - [0xFD5E00, c, code_5C870] #DONE
+  # - [0xFD7150, c, code_5DBC0] #DONE
+  - [0xFD9090, c, code_5FB00] #DONE
+  - [0xFD9310, c, code_5FD80] #DONE
+  - [0xFD9320, c, code_5FD90] #DONE
+  - [0xFDC560, c, code_62FD0] #DONE
+  - [0xFDC660, c, code_630D0] #DONE
+  - [0xFDC9A0, c, code_63410] #DONE
+  - [0xFDCC20, c, code_63690] #DONE
+  - [0xFDCD60, c, code_637D0] #DONE
+  - [0xFDEA50, c, code_654C0] #DONE
+  - [0xFDFA20, c, code_66490] #DONE
+  - [0xFDFC20, c, vla]        #DONE
+  - [0xFE0040, c, fla]        #DONE
+  - [0xFE0320, c, code_66D90] #DONE
+  - [0xFE0540, c, code_66FB0] #DONE
+  - [0xFE0A20, c, gc/bound]   #DONE
+  - [0xFE0BE0, c, dustemitter] #DONE
+  - [0xFE0F30, c, particle] #DONE
+  - [0xFE34F0, c, particleemittermanager] #DONE
+  - [0xFE3A40, c, code_6A4B0]
+  - [0xFE4480, c, code_6AEF0] #DONE
+  - [0xFE45C0, c, code_6B030] #DONE
+  - [0xFE5970, c, fx/ripple] #DONE
+  - [0xFE5C70, c, fx/sparkle] #DONE
+  - [0xFE62B0, c, code_6CD20] #DONE
+  - [0xFE6450, c, code_6CEC0] #DONE
+  - [0xFE65C0, c, code_6D030] #DONE
+  - [0xFE6800, c, code_6D270] #DONE
+  - [0xFE6A20, c, code_6D490] #DONE
+  - [0xFE6FC0, c, print]
+  - [0xFEA1C0, c, code_70C30] #DONE
+  - [0xFEA4B0, c, code_70F20] #DONE
+  - [0xFEADB0, c, code_71820] #DONE
+  - [0xFEB5F0, c, code_72060] #DONE
+  - [0xFEC0A0, c, code_72B10] #DONE
+  - [0xFECBD0, textbin, code_73640_untouched] #DONE
+  - [0xFED620, textbin, code_74090_untouched] #DONE
+  - [0xFED820, textbin, code_74290_untouched] #DONE
+  - [0xFED9B0, textbin, code_74420_untouched] #DONE
+  - [0xFEDEA0, textbin, code_74910_untouched] #DONE
+  - [0xFEE460, textbin, code_74ED0_untouched] #DONE
+  - [0xFEEA10, textbin, code_75480_untouched] #DONE
+  - [0xFEEEC0, textbin, code_75930_untouched] #DONE
+  - [0xFEF420, textbin, code_75E90_untouched] #DONE
+  - [0xFEF920, c, fx/common1score] #DONE
+  - [0xFEF960, c, fx/common2score] #DONE
+  - [0xFF0320, c, fx/honeycarrierscore] #DONE
+  - [0xFF13E0, c, code_77E50] #DONE
+  - [0xFF1690, c, fx/jinjoscore] #DONE
+  - [0xFF23E0, c, fx/lifescore] #DONE
+  - [0xFF2DC0, c, fx/common3score] #DONE
+  - [0xFF3210, c, fx/healthscore] #DONE
+  - [0xFF3CF0, textbin, fx/airscore_untouched] # PAL change??
+  - [0xFF44D0, textbin, gccube_untouched] # address is correct!!
+  - [0xFFB550, textbin, mapModel_untouched] # address is correct!!
+  - [0xFFC890, c, propModelList] #DONE
+  - [0xFFD2C0, c, gc/section] #DONE
+  - [0xFFD620, c, gc/sky] #DONE
+  - [0xFFD9C0, c, gc/transition] #DONE
+  - [0xFFE720, c, code_851D0] #DONE
+  - [0xFFED00, c, code_857B0] #DONE
+  - [0xFFED50, c, code_85800] #DONE
+  - [0x1001380, textbin, gc/dialog_untouched]
+  # - [??100 3EB0, c, gc/pauseMenu] #DONE
+  # - [??100 7320, c, code_8DC20] #DONE
+  # - [??1007970, c, gc/zoombox] #DONE
+  #- [0x100B570, c, code_91E10] #DONE
+  #- [0x100CD50, textbin, minigame_untouched] # PAL change
+  #- [0x100D3A0, textbin, gc/parade_untouched] # PAL change
+  - [0x100DDB0, c, code_94620] #DONE
+  - [0x100DF10, c, code_94780] #DONE
+  - [0x100E1B0, c, code_94A20] #DONE
+  - [0x100EE40, textbin, code_956B0_untouched] # PAL change
+  - [0x1012450, c, code_98CB0]
+  - [0x1013000, c, quizquestionaskedbitfield] #DONE
+  - [0x1013140, c, code_999A0] #DONE
+  - [0x1013720, c, jiggyscore] #DONE
+  - [0x1013AC0, c, honeycombscore] #DONE
+  - [0x1013D20, c, mumboscore] #DONE
+  - [0x1013EE0, c, code_9A740] #DONE
+  - [0x1014170, c, code_9A9D0] #DONE
+  - [0x10144A0, c, levelspecificflags] #DONE
+  - [0x1014920, textbin, code_9B180_untouched] #DONE
+  # - [??, c, code_9B650] #DONE
+  - [0x1015190, textbin, code_9B990_untouched] #DONE
+  - [0x1015970, c, code_9C170] #DONE
+  - [0x1016E40, c, code_9D640] #DONE
+  - [0x1016F60, c, code_9D760] #DONE
+  - [0x1017060, c, timedfuncqueue] #DONE
+  - [0x1017B70, textbin, code_9E370_untouched]
+  - [0x101E500, textbin, code_A4D00_untouched] #DONE
+  - [0x101F3C0, textbin, code_A5BC0_untouched]
+  - [0x1025400, textbin, code_ABC00_untouched] #DONE
+  - [0x1025D20, c, gclights] #DONE
+  - [0x1026910, textbin, code_AD110_untouched] #DONE
+  - [0x1026DB0, textbin, gsworld_untouched] #DONE
+  - [0x1027A90, c, code_AE290] #DONE
+  - [0x1027DD0, c, skeletalanim] #DONE
+  - [0x10285A0, c, code_AEDA0]
+  - [0x102AC00, textbin, modelRender_untouched]
+  - [0x102CD80, c, code_B3580] #DONE
+  - [0x102D280, textbin, code_B3A80_untouched] #DONE
+  - [0x102E840, c, code_B5040] #DONE
+  - [0x102F600, c, code_B5E00] #DONE
+  - [0x102FAB0, c, code_B62B0] #DONE
+  - [0x102FE40, c, code_B6640] #DONE
+  - [0x102FED0, c, string]
+  - [0x1030460, c, code_B6C60] #DONE
+  - [0x10304E0, c, time] #DONE
+  - [0x10306A0, textbin, commonParticle_untouched] # PAL change
+  - [0x1031320, c, coords] #DONE
+  - [0x1031740, c, code_B7F40] #DONE
+  - [0x1031820, c, code_B8020] #DONE
+  - [0x1031870, c, ultra/debug/assert] #DONE
+  - [0x1031880, c, code_B8080] #DONE
+  - [0x1032060, c, code_B8860] #DONE
+  - [0x1032890, c, code_B9090] #DONE
+  - [0x1032F70, c, code_B9770]
+  - [0x1036900, c, code_BD100] #DONE
+  - [0x10374C0, c, code_BDCC0] #DONE
+  - [0x1037AC0, c, code_BE2C0] #DONE
+  - [0x1038720, c, code_BEF20]
+  - [0x103A380, c, code_C0B80] #DONE
+  - [0x103A4F0, c, code_C0CF0] #DONE
+  - [0x103A660, c, code_C0E60] #DONE
+  - [0x103C420, c, animtexturecache] #DONE
+  - [0x103C730, textbin, demo_untouched] # PAL change
+  - [0x103C9A0, c, code_C31A0] #DONE
+  - [0x103CC00, c, rand]       #DONE
+  - [0x103D240, c, code_C3A40] #DONE
+  - [0x103D320, c, file] #DONE
+  - [0x103DB20, textbin, code_C4320_untouched] # PAL change
+  - [0x103E750, c, code_C4F40] #DONE
+  - [0x103EC50, c, code_C5440] #DONE
+  - [0x103F300, c, code_C5AF0] #DONE
+  - [0x103F4D0, c, code_C5CC0] #DONE
+  - [0x103F710, c, code_C5F00] #DONE
+  - [0x103F9D0, c, code_C61C0] #DONE
+  - [0x103FAC0, c, code_C62B0] #DONE
+  - [0x1040EE0, c, code_C76D0] #DONE
+  - [0x10414D0, c, code_C7CC0] #DONE
+  - [0x1041A40, c, code_C8230] #DONE
+  - [0x1041B70, c, code_C8360] #DONE
+  - [0x1041CA0, c, code_C8490] #DONE
+  - [0x1041F70, c, code_C8760] #DONE
+  - [0x10421D0, c, code_C89C0] #DONE
+  - [0x1043000, c, code_C97F0] #DONE
+  - [0x1043680, c, code_C9E70] #DONE
+  - [0x1043710, c, code_C9F00] #DONE
+  - [0x1044860, c, code_CB050] #DONE
+  - [0x1044E20, c, code_CB610] #DONE
+  - [0x10450B0, c, commonParticleTypeMap] #DONE
+  - [0x1045400, c, code_CBBF0] #DONE
+  - [0x1045520, c, code_CBD10] #DONE
+  - [0x10459F0, textbin, code_CC1E0_untouched] #DONE
+  - [0x10468B0, c, code_CD0A0] #DONE
+  - [0x1046C00, c, code_CD3F0] #DONE
+  - [0x1046EF0, c, code_CD6E0] #DONE
+  - [0x10484E0, c, code_CECD0] #DONE
+  - [0x10488A0, c, code_CF090] #DONE
+  - [0x1048BF0, c, progressDialog] #DONE
+  - [0x1048E00, textbin, code_CF5F0_untouched_untouched] #DONE
+  - [0x1048FF0, textbin, ch/clankerwhipcrack_untouched] #DONE
+  - [0x1049270, textbin, ch/grillechompa_untouched] #DONE
+  - [0x10499D0, textbin, ch/clucker_untouched] #DONE
+  - [0x104A4B0, textbin, ch/scarabbeetle_untouched] #DONE
+  - [0x104B990, textbin, code_D2180_untouched] #DONE
+  - [0x104BD10, textbin, ch/firefx_untouched]  #DONE
+  - [0x104C2C0, textbin, ch/drips_untouched]   #DONE
+  - [0x104C620, textbin, ch/icecube_untouched] #DONE
+  - [0x104D860, textbin, ch/ghost_untouched]   #DONE
+  - [0x104E900, textbin, ch/flotsam_untouched] #DONE
+  - [0x104F520, textbin, ch/skeleton_untouched] #DONE
+  - [0x104F7E0, textbin, ch/seamangrublin_untouched] # PAL change
+  - [0x104F9A0, textbin, ch/mummum_untouched] #DONE
+  - [0x104FE10, textbin, ch/chumpfish_untouched] #DONE
+  - [0x1050860, textbin, ch/termite_untouched] #DONE
+  - [0x1051530, textbin, ch/gravestone_untouched] #DONE
+  - [0x1052200, c, ch/bat]
+  - [0x10535C0, c, ch/whipcrack] #DONE
+  - [0x1053BC0, c, ch/betavent] #DONE
+  - [0x1053F80, c, code_DA760] #DONE
+  - [0x10542C0, c, code_DAAA0] #DONE
+  - [0x1054830, c, code_DB010] #DONE
+  - [0x1055CD0, c, code_DC4B0]
   - [0x1055E20, bin, data_DC600] #unreferenced
   - [0x1055E50, .data, code_1550]
   - [0x1055E70, .data, ba/anim]
@@ -937,189 +936,187 @@ segments:
   - [0x10575D0, .data, bs/swim]
   - [0x1057600, .data, bs/walk]
   - [0x1057650, .data, bs/walrus]
-  - [0x1057690, bin, core2_untouched_data]
-  # - [0x10337D0, .data, code_33F90]
-  # - [0x1034160, .data, code_34310]
-  # - [0x10341B0, .data, code_34790]
-  # - [0x1034200, .data, code_35520]
-  # - [0x10346A0, .data, nc/dynamicCamera]
-  # - [0x1034730, .data, code_37E50]
-  # - [0x1034760, .data, nc/ba/die]
-  # - [0x1034770, .data, nc/dynamicCamA]
-  # - [0x1034790, .data, spawnqueue]
-  # - [0x10347A0, .data, ch/gameSelect]
-  # - [0x1034900, .data, fx/shoesparkle]
-  # - [0x1034980, .data, ch/explosionripple]
-  # - [0x10349B0, .data, ch/bubble]
-  # - [0x10349E0, .data, ch/bigbutt]
-  # - [0x1034AC0, .data, code_400F0]
-  # - [0x1034C60, .data, ch/jiggy]
-  # - [0x1034CA0, .data, ch/jigsawdance]
-  # - [0x1034D00, .data, code_41460]
-  # - [0x1034E00, .data, code_41F30]
-  # - [0x1034E30, .data, code_41FB0]
-  # - [0x1035620, .data, ch/musicnote]
-  # - [0x1035650, .data, code_42CB0]
-  # - [0x10356A0, .data, code_43250]
-  # - [0x1035870, .data, ch/trainers]
-  # - [0x10358C0, .data, code_43800]
-  # - [0x10358F0, .data, code_43A40]
-  # - [0x10359D0, .data, mapspecificflags]
-  # - [0x10359E0, .data, ch/crab]
-  # - [0x1035B00, .data, code_45310]
-  # - [0x1035B30, .data, ch/code_468E0]
-  # - [0x1035B80, .data, ch/jinjo]
-  # - [0x1035C90, .data, ch/beehive]
-  # - [0x1035CE0, .data, ch/beeswarm]
-  # - [0x1035D10, .data, ch/soundsource]
-  # - [0x1035D90, .data, ch/shrapnel]
-  # - [0x1035E00, .data, ch/gloop]
-  # - [0x1035E60, .data, ch/mumbo]
-  # - [0x1035F00, .data, mumbosign]
-  # - [0x1035FC0, .data, code_4BE10]
-  # - [0x1036050, .data, code_4C020]
-  # - [0x10363D0, .data, ch/wadingboots]
-  # - [0x1036420, .data, ch/badShad]
-  # - [0x1036450, .data, code_50490]
-  # - [0x10364F0, .data, ch/climbBase]
-  # - [0x1036520, .data, levelcollectible]
-  # - [0x1036630, .data, ch/piranhaWaterParticles]
-  # - [0x1036660, .data, code_51950]
-  # - [0x10366D0, .data, ch/collectible]
-  # - [0x1036740, .data, ch/mole]
-  # - [0x10367D0, .data, ch/molehill]
-  # - [0x1036840, .data, code_53A10]
-  # - [0x1036870, .data, code_53C10]
-  # - [0x1036900, .data, code_54D50]
-  # - [0x10369B0, .data, code_55180]
-  # - [0x1036A10, .data, gc/gameoversign]
-  # - [0x1036A40, .data, gc/theendsign]
-  # - [0x1036A70, .data, gc/banjokazooiesign]
-  # - [0x1036AA0, .data, ch/overlaycopyright]
-  # - [0x1036AD0, .data, ch/overlaypressstart]
-  # - [0x1036B20, .data, ch/overlaynocontroller]
-  # - [0x1036B70, .data, ch/bottlesbonus]
-  # - [0x1036CD0, .data, ch/mumboshandwithpicture]
-  # - [0x1036D30, .data, code_581D0]
-  # - [0x1036D80, .data, ch/bottlesbonuscursor]
-  # - [0x1036E10, .data, code_59780]
-  # - [0x1036F70, .data, ch/mumbotoken]
-  # - [0x1036FA0, .data, ch/snacker]
-  # - [0x1037020, .data, ch/snowman]
-  # - [0x10370E0, .data, ch/snowball]
-  # - [0x1037190, .data, ch/snowmanhat]
-  # - [0x10371C0, .data, code_5C870]
-  # - [0x1037200, .data, code_5DBC0]
-  # - [0x1037220, .data, code_66D90]
-  # - [0x1037230, .data, code_66FB0]
-  # - [0x10372B0, .data, gc/bound]
-  # - [0x1037300, .data, dustemitter]
-  # - [0x1037310, .data, particle]
-  # - [0x10373A0, .data, code_6A4B0]
-  # - [0x1037470, .data, code_6AEF0]
-  # - [0x1037480, .data, code_6B030]
-  # - [0x1037500, .data, fx/ripple]
-  # - [0x10375A0, .data, fx/sparkle]
-  # - [0x1037750, .data, code_6CD20]
-  # - [0x10377A0, .data, code_6D030]
-  # - [0x10377B0, .data, code_6D270]
-  # - [0x10377C0, .data, code_6D490]
-  # - [0x10379D0, .data, print]
-  # - [0x1037C50, .data, code_72060]
-  # - [0x1037CB0, .data, code_73640]
-  # - [0x10380F0, .data, code_74090]
-  # - [0x10381A0, .data, code_74290]
-  # - [0x10381D0, .data, code_74420]
-  # - [0x1038200, .data, code_74910]
-  # - [0x1038230, .data, code_74ED0]
-  # - [0x1038260, .data, code_75480]
-  # - [0x1038290, .data, code_75930]
-  # - [0x10382C0, .data, code_75E90]
-  # - [0x10382F0, .data, fx/common2score]
-  # - [0x10389E0, .data, fx/honeycarrierscore]
-  # - [0x1038A40, .data, fx/jinjoscore]
-  # - [0x1038C30, .data, fx/lifescore]
-  # - [0x1038C80, .data, fx/common3score]
-  # - [0x10392E0, .data, fx/healthscore]
-  # - [0x1039330, .data, fx/airscore]
-  # - [0x1039380, .data, gccube]
-  # - [0x10395B0, .data, mapModel]
-  # - [0x103A1D0, .data, propModelList]
-  # - [0x103A1E0, .data, gc/section]
-  # - [0x103A710, .data, gc/sky]
-  # - [0x103AB20, .data, gc/transition]
-  # - [0x103AE20, .data, code_851D0]
-  # - [0x103AEA0, .data, gc/dialog]
-  # - [0x103AEB0, .data, gc/pauseMenu]
-  # - [0x103B000, .data, code_8DC20]
-  # - [0x103B090, .data, gc/zoombox]
-  # - [0x103C310, .data, code_91E10]
-  # - [0x103C340, .data, minigame]
-  # - [0x103C370, .data, gc/parade]
-  # - [0x103C790, .data, code_94A20]
-  # - [0x103C7A0, .data, code_956B0]
-  # - [0x103C7C0, .data, code_98CB0]
-  # - [0x103C7D0, .data, code_9B180]
-  # - [0x103C850, .data, code_9B650]
-  # - [0x103CC90, .data, code_9B990]
-  # - [0x103CDF0, .data, code_9D640]
-  # - [0x103CF30, .data, code_9E370]
-  # - [0x103CFA0, .data, code_A4D00]
-  # - [0x103D180, .data, code_A5BC0] #(file needs to be broken?)
-  # - [0x103D1D0, .data, code_A5BC0]
-  # - [0x103D200, .data, code_ABC00]
-  # - [0x103E340, .data, gclights]
-  # - [0x103E350, .data, code_AD110]
-  # - [0x103EC20, .data, gsworld]
-  # - [0x103EC30, .data, code_AEDA0]
-  # - [0x103ED10, .data, modelRender]
-  # - [0x103F3B0, .data, code_B3A80]
-  # - [0x103F3F0, .data, code_B5040]
-  # - [0x103F490, .data, code_B62B0]
-  # - [0x10407F0, .data, time]
-  # - [0x1040800, .data, commonParticle]
-  # - [0x1040830, .data, code_B7F40]
-  # - [0x1040840, .data, code_B9770]
-  # - [0x1040890, .data, code_BD100]
-  # - [0x10408A0, .data, code_BE2C0]
-  # - [0x10408B0, bin, data_EAF40] #unreferenced
-  # - [0x10408C0, .data, demo]
-  # - [0x10408D0, .data, code_C4320]
-  # - [0x1040990, .data, code_C4F40]
-  # - [0x1040A00, .data, code_C5440]
-  # - [0x1040A70, .data, code_C8760]
-  # - [0x1040A80, .data, code_C97F0]
-  # - [0x1040F90, .data, code_C9F00]
-  # - [0x1041040, .data, code_CBD10]
-  # - [0x1041070, .data, code_CC1E0]
-  # - [0x1041090, .data, code_CD6E0]
-  # - [0x10410C0, .data, code_CECD0]
-  # - [0x10410D0, .data, code_CF090]
-  # - [0x1041100, .data, progressDialog]
-  # - [0x10411C0, .data, code_CF5F0]
-  # - [0x10411E0, .data, ch/clankerwhipcrack]
-  # - [0x1041210, .data, ch/grillechompa]
-  # - [0x1041240, .data, ch/clucker]
-  # - [0x1041270, .data, ch/scarabbeetle]
-  # - [0x1041310, .data, code_D2180]
-  # - [0x1041460, .data, ch/firefx]
-  # - [0x1041490, .data, ch/drips]
-  # - [0x1041520, .data, ch/icecube]
-  # - [0x10415B0, .data, ch/ghost]
-  # - [0x1041650, .data, ch/flotsam]
-  # - [0x10416F0, .data, ch/skeleton]
-  # - [0x1041770, .data, ch/seamangrublin]
-  # - [0x10417F0, .data, ch/mummum]
-  # - [0x1041870, .data, ch/chumpfish]
-  # - [0x10418E0, .data, ch/termite]
-  # - [0x1041950, .data, ch/gravestone]
-  # - [0x1041A60, .data, ch/bat]
-  # - [0x1041AD0, .data, ch/whipcrack]
-  # - [0x1041B00, .data, ch/betavent]
-  # - [0x1041B80, .data, code_DA760]
-  # - [0x1041BB0, .data, code_DAAA0]
-  # - [0x1041CB0, .data, code_DB010]
-  # - [0x1042790, .data, code_DC4B0]
+  - [0x1057690, .data, code_33F90]
+  - [0x1058020, .data, code_34310]
+  - [0x1058070, .data, code_34790]
+  - [0x10580C0, .data, code_35520]
+  - [0x1058560, .data, nc/dynamicCamera]
+  - [0x10585F0, .data, code_37E50]
+  - [0x1058620, .data, nc/ba/die]
+  - [0x1058630, .data, nc/dynamicCamA]
+  - [0x1058650, .data, spawnqueue]
+  - [0x1058660, databin, ch/gameSelect_untouched_data]
+  - [0x10587D0, databin, fx/shoesparkle_untouched_data]
+  - [0x1058850, databin, ch/explosionripple_untouched_data]
+  - [0x1058880, databin, ch/bubble_untouched_data]
+  - [0x10588B0, databin, ch/bigbutt_untouched_data]
+  - [0x1058990, databin, code_400F0_untouched_data]
+  - [0x1058B30, databin, ch/jiggy_untouched_data]
+  - [0x1058B70, databin, ch/jigsawdance_untouched_data]
+  - [0x1058BD0, databin, code_41460_untouched_data]
+  - [0x1058CD0, databin, code_41F30_untouched_data]
+  - [0x1058D00, databin, code_41FB0_untouched_data]
+  - [0x10594F0, databin, ch/musicnote_untouched_data]
+  - [0x1059520, databin, code_42CB0_untouched_data]
+  - [0x1059570, databin, code_43250_untouched_data]
+  - [0x1059740, databin, ch/trainers_untouched_data]
+  - [0x1059790, databin, code_43800_untouched_data]
+  - [0x10597C0, databin, code_43A40_untouched_data]
+  - [0x10598A0, databin, mapspecificflags_untouched_data]
+  - [0x10598B0, databin, ch/crab_untouched_data]
+  - [0x10599D0, databin, code_45310_untouched_data]
+  - [0x1059A00, databin, ch/code_468E0_untouched_data]
+  - [0x1059A50, databin, ch/jinjo_untouched_data]
+  - [0x1059B60, databin, ch/beehive_untouched_data]
+  - [0x1059BB0, databin, ch/beeswarm_untouched_data]
+  - [0x1059BE0, databin, ch/soundsource_untouched_data]
+  - [0x1059C60, databin, ch/shrapnel_untouched_data]
+  - [0x1059CD0, databin, ch/gloop_untouched_data]
+  - [0x1059D30, databin, ch/mumbo_untouched_data]
+  - [0x1059DD0, databin, mumbosign_untouched_data]
+  - [0x1059E90, databin, code_4BE10_untouched_data]
+  - [0x1059F20, databin, code_4C020_untouched_data]
+  - [0x105A2A0, databin, ch/wadingboots_untouched_data]
+  - [0x105A2F0, databin, ch/badShad_untouched_data]
+  - [0x105A320, databin, code_50490_untouched_data]
+  - [0x105A3C0, databin, ch/climbBase_untouched_data]
+  - [0x105A3F0, databin, levelcollectible_untouched_data_untouched_data]
+  - [0x105A500, databin, ch/piranhaWaterParticles_untouched_data]
+  - [0x105A530, databin, code_51950_untouched_data]
+  - [0x105A5A0, databin, ch/collectible_untouched_data]
+  - [0x105A610, databin, ch/mole_untouched_data]
+  - [0x105A6A0, databin, ch/molehill_untouched_data]
+  - [0x105A710, databin, code_53A10_untouched_data]
+  - [0x105A740, databin, code_53C10_untouched_data]
+  - [0x105A7D0, databin, code_54D50_untouched_data]
+  - [0x105A880, databin, code_55180_untouched_data]
+  - [0x105A8E0, databin, gc/gameoversign_untouched_data]
+  - [0x105A910, databin, gc/theendsign_untouched_data]
+  - [0x105A940, databin, gc/banjokazooiesign_untouched_data]
+  - [0x105A970, databin, ch/overlaycopyright_untouched_data]
+  - [0x105A9A0, databin, ch/overlaypressstart_untouched_data]
+  - [0x105A9F0, databin, ch/overlaynocontroller_untouched_data]
+  - [0x105AA40, databin, ch/bottlesbonus_untouched_data]
+  - [0x105ABA0, databin, ch/mumboshandwithpicture_untouched_data]
+  - [0x105AC00, databin, code_581D0_untouched_data]
+  - [0x105AC50, databin, ch/bottlesbonuscursor_untouched_data]
+  - [0x105ACE0, databin, code_59780_untouched_data]
+  - [0x105AE40, databin, ch/mumbotoken_untouched_data]
+  - [0x105AE70, databin, ch/snacker_untouched_data]
+  - [0x105AEF0, databin, ch/snowman_untouched_data]
+  - [0x105AFB0, databin, ch/snowball_untouched_data]
+  - [0x105B060, databin, ch/snowmanhat_untouched_data]
+  - [0x105B090, databin, code_5C870_untouched_data]
+  - [0x105B0D0, .data, code_5DBC0]
+  - [0x105B0F0, .data, code_66D90]
+  - [0x105B100, .data, code_66FB0]
+  - [0x105B180, .data, gc/bound]
+  - [0x105B1D0, .data, dustemitter]
+  - [0x105B1E0, .data, particle]
+  - [0x105B270, .data, code_6A4B0]
+  - [0x105B340, .data, code_6AEF0]
+  - [0x105B350, .data, code_6B030]
+  - [0x105B3D0, .data, fx/ripple]
+  - [0x105B470, .data, fx/sparkle]
+  - [0x105B620, .data, code_6CD20]
+  - [0x105B670, .data, code_6D030]
+  - [0x105B680, .data, code_6D270]
+  - [0x105B690, .data, code_6D490]
+  - [0x105B8A0, .data, print]
+  - [0x105BB20, .data, code_72060]
+  - [0x105BB80, .data, code_73640]
+  - [0x105BFC0, databin, code_74090_untouched]
+  - [0x105C070, .data, code_74290]
+  - [0x105C0A0, .data, code_74420]
+  - [0x105C0D0, .data, code_74910]
+  - [0x105C100, .data, code_74ED0]
+  - [0x105C130, .data, code_75480]
+  - [0x105C160, .data, code_75930]
+  - [0x105C190, .data, code_75E90]
+  - [0x105C1C0, .data, fx/common2score]
+  - [0x105C8B0, .data, fx/honeycarrierscore]
+  - [0x105C910, .data, fx/jinjoscore]
+  - [0x105CB00, .data, fx/lifescore]
+  - [0x105CB50, .data, fx/common3score]
+  - [0x105D1B0, .data, fx/healthscore]
+  - [0x105D200, .data, fx/airscore]
+  - [0x105D250, .data, gccube]
+  - [0x105D480, databin, mapModel_untouched]
+  - [0x105E0A0, .data, propModelList]
+  - [0x105E0B0, .data, gc/section]
+  - [0x105E5E0, .data, gc/sky]
+  - [0x105E9F0, .data, gc/transition]
+  - [0x105ECF0, .data, code_851D0]
+  - [0x105ED70, .data, gc/dialog]
+  - [0x105ED80, databin, gc/pauseMenu_untouched]
+  - [0x105EFD0, .data, code_8DC20]
+  - [0x105F060, .data, gc/zoombox]
+  - [0x10602E0, .data, code_91E10]
+  - [0x1060310, .data, minigame]
+  - [0x1060340, databin, gc/parade_untouched]
+  - [0x1060760, .data, code_94A20]
+  - [0x1060770, .data, code_956B0]
+  - [0x1060790, .data, code_98CB0]
+  - [0x10607A0, databin, code_9B180_untouched]
+  - [0x1060820, .data, code_9B650]
+  - [0x1060C60, databin, code_9B990_untouched]
+  - [0x1060DC0, .data, code_9D640]
+  - [0x1060F00, .data, code_9E370]
+  - [0x1060F70, databin, code_A4D00_untouched]
+  - [0x1061150, .data, code_A5BC0]
+  - [0x10611D0, databin, code_ABC00_untouched]
+  - [0x1062310, .data, gclights]
+  - [0x1062320, databin, code_AD110_untouched]
+  - [0x1062BF0, .data, gsworld]
+  - [0x1062C00, .data, code_AEDA0]
+  - [0x1062CE0, .data, modelRender]
+  - [0x1063380, .data, code_B3A80]
+  - [0x10633C0, .data, code_B5040]
+  - [0x1063460, .data, code_B62B0]
+  - [0x10647C0, .data, time]
+  - [0x10647D0, .data, commonParticle]
+  - [0x1064800, .data, code_B7F40]
+  - [0x1064810, .data, code_B9770]
+  - [0x1064860, .data, code_BD100]
+  - [0x1064870, .data, code_BE2C0]
+  - [0x1064880, bin, data_EAF40] #unreferenced
+  - [0x1064890, .data, demo]
+  - [0x10648A0, .data, code_C4320]
+  - [0x1064960, .data, code_C4F40]
+  - [0x10649D0, .data, code_C5440]
+  - [0x1064A40, .data, code_C8760]
+  - [0x1064A50, .data, code_C97F0]
+  - [0x1064F60, .data, code_C9F00]
+  - [0x1065010, .data, code_CBD10]
+  - [0x1065040, .data, code_CC1E0]
+  - [0x1065060, .data, code_CD6E0]
+  - [0x1065090, .data, code_CECD0]
+  - [0x10650A0, .data, code_CF090]
+  - [0x10650D0, .data, progressDialog]
+  - [0x1065190, .data, code_CF5F0]
+  - [0x10651B0, .data, ch/clankerwhipcrack]
+  - [0x10651E0, .data, ch/grillechompa]
+  - [0x1065210, .data, ch/clucker]
+  - [0x1065240, .data, ch/scarabbeetle]
+  - [0x10652E0, .data, code_D2180]
+  - [0x1065430, .data, ch/firefx]
+  - [0x1065460, .data, ch/drips]
+  - [0x10654F0, .data, ch/icecube]
+  - [0x1065580, .data, ch/ghost]
+  - [0x1065620, .data, ch/flotsam]
+  - [0x10656C0, .data, ch/skeleton]
+  - [0x1065740, .data, ch/seamangrublin]
+  - [0x10657C0, .data, ch/mummum]
+  - [0x1065840, .data, ch/chumpfish]
+  - [0x10658B0, .data, ch/termite]
+  - [0x1065920, .data, ch/gravestone]
+  - [0x1065A30, .data, ch/bat]
+  - [0x1065AA0, .data, ch/whipcrack]
+  - [0x1065AD0, .data, ch/betavent]
+  - [0x1065B50, .data, code_DA760]
+  - [0x1065B80, .data, code_DAAA0]
+  - [0x1065C80, .data, code_DB010]
+  - [0x1066760, .data, code_DC4B0]
   - [0x1066790, .rodata, anctrl]
   - [0x10667C0, .rodata, anim/sprite]
   - [0x10667D0, .rodata, anseq]
@@ -1203,175 +1200,171 @@ segments:
   - [0x10685A0, .rodata, bs/walrus]
   - [0x1068600, .rodata, bs/washy]
   - [0x1068660, .rodata, nc/cameranodelist]
-  - [0x10686B0, rodatabin, core2_untouched]
-  # - [0x10446E0, .rodata, code_33F90]
-  # - [0x1044700, .rodata, code_34310]
-  # - [0x1044710, .rodata, code_34790]
-  # - [0x1044740, .rodata, nc/dynamicCamera]
-  # - [0x1044890, .rodata, code_37E50]
-  # - [0x10448B0, .rodata, nc/dynamicCam10]
-  # - [0x10448C0, .rodata, nc/ba/die]
-  # - [0x10448D0, .rodata, nc/dynamicCam5]
-  # - [0x10448E0, .rodata, nc/ba/fly]
-  # - [0x10448F0, .rodata, nc/dynamicCamC]
-  # - [0x1044900, .rodata, code_F8EAF0]
-  # - [0x1044910, .rodata, nc/dynamicCamB]
-  # - [0x1044920, .rodata, nc/dynamicCam13]
-  # - [0x1044930, .rodata, nc/dynamicCam9]
-  # - [0x1044950, .rodata, nc/dynamicCam12]
-  # - [0x1044980, .rodata, nc/dynamicCam3]
-  # - [0x1044990, .rodata, nc/dynamicCamA]
-  # - [0x10449A0, .rodata, spawnqueue]
-  # - [0x10449F0, .rodata, ch/gameSelect]
-  # - [0x1044B70, .rodata, ch/bubble]
-  # - [0x1044B80, .rodata, ch/bigbutt]
-  # - [0x1044C60, .rodata, code_400F0]
-  # - [0x1044CC0, .rodata, ch/jiggy]
-  # - [0x1044D40, .rodata, ch/jigsawdance]
-  # - [0x1044DB0, .rodata, code_41460]
-  # - [0x1044DE0, .rodata, code_41FB0]
-  # - [0x1044E20, .rodata, ch/musicnote]
-  # - [0x1044E30, .rodata, code_42CB0]
-  # - [0x1044E40, .rodata, ch/trainers]
-  # - [0x1044E50, .rodata, code_43800]
-  # - [0x1044E60, .rodata, ch/crab]
-  # - [0x1044EB0, .rodata, code_45310]
-  # - [0x1044F30, .rodata, ch/jinjo]
-  # - [0x1044FA0, .rodata, ch/beehive]
-  # - [0x1044FB0, .rodata, ch/beeswarm]
-  # - [0x1045010, .rodata, ch/shrapnel]
-  # - [0x1045030, .rodata, ch/gloop]
-  # - [0x1045040, .rodata, ch/mumbo]
-  # - [0x10450F0, .rodata, code_4C020]
-  # - [0x1045710, .rodata, ch/badShad]
-  # - [0x1045720, .rodata, code_50490]
-  # - [0x1045730, .rodata, levelcollectible]
-  # - [0x1045770, .rodata, ch/piranhaWaterParticles]
-  # - [0x1045780, .rodata, code_51950]
-  # - [0x1045790, .rodata, ch/mole]
-  # - [0x1045830, .rodata, code_53C10]
-  # - [0x10458A0, .rodata, code_54D50]
-  # - [0x10458C0, .rodata, code_55180]
-  # - [0x10458D0, .rodata, gc/gameoversign]
-  # - [0x10458E0, .rodata, ch/overlaypressstart]
-  # - [0x10458F0, .rodata, ch/overlaynocontroller]
-  # - [0x1045900, .rodata, ch/bottlesbonus]
-  # - [0x1045970, .rodata, ch/mumboshandwithpicture]
-  # - [0x1045990, .rodata, code_581D0]
-  # - [0x10459A0, .rodata, ch/bottlesbonuscursor]
-  # - [0x1045A00, .rodata, code_599E0]
-  # - [0x1045A10, .rodata, ch/mumbotoken]
-  # - [0x1045A20, .rodata, ch/snacker]
-  # - [0x1045A70, .rodata, ch/snowman]
-  # - [0x1045AA0, .rodata, ch/snowball]
-  # - [0x1045AD0, .rodata, code_5C240]
-  # - [0x1045AE0, .rodata, code_5C870]
-  # - [0x1045B50, .rodata, code_5FD90]
-  # - [0x1045B60, .rodata, code_66FB0]
-  # - [0x1045B70, .rodata, dustemitter]
-  # - [0x1045B80, .rodata, particle]
-  # - [0x1045BA0, .rodata, code_6A4B0]
-  # - [0x1045BB0, .rodata, code_6B030]
-  # - [0x1045BC0, .rodata, fx/ripple]
-  # - [0x1045BD0, .rodata, fx/sparkle]
-  # - [0x1045BE0, .rodata, code_6CEC0]
-  # - [0x1045BF0, .rodata, code_6D030]
-  # - [0x1045C00, .rodata, code_6D270]
-  # - [0x1045C10, .rodata, print]
-  # - [0x1045C90, .rodata, code_70F20]
-  # - [0x1045CF0, .rodata, code_71820]
-  # - [0x1045D10, .rodata, code_72060]
-  # - [0x1045D30, .rodata, code_73640]
-  # - [0x1045D60, .rodata, code_74420]
-  # - [0x1045D70, .rodata, fx/common2score]
-  # - [0x1045D80, .rodata, fx/honeycarrierscore]
-  # - [0x1045DD0, .rodata, fx/jinjoscore]
-  # - [0x1045E00, .rodata, fx/jinjoscore]
-  # - [0x1045E30, .rodata, fx/common3score]
-  # - [0x1045E50, .rodata, fx/healthscore]
-  # - [0x1045E60, .rodata, fx/airscore]
-  # - [0x1045E80, .rodata, gccube]
-  # - [0x1045F40, .rodata, mapModel]
-  # - [0x1046100, .rodata, propModelList]
-  # - [0x1046110, .rodata, gc/section]
-  # - [0x1046E10, .rodata, gc/sky]
-  # - [0x1046E20, .rodata, gc/transition]
-  # - [0x1046E80, .rodata, code_85800]
-  # - [0x1046EA0, .rodata, gc/dialog]
-  # - [0x1046F10, .rodata, gc/pauseMenu]
-  # - [0x1047250, .rodata, gc/zoombox] 
-  # - [0x1047320, .rodata, code_91E10]
-  # - [0x1047360, .rodata, minigame]
-  # - [0x1047380, .rodata, gc/parade]
-  # - [0x1047700, .rodata, code_94A20]
-  # - [0x1047710, .rodata, code_956B0]
-  # - [0x1047720, .rodata, code_9A9D0]
-  # - [0x1047750, .rodata, code_9B180]
-  # - [0x1047770, .rodata, code_9C170]
-  # - [0x10477C0, .rodata, code_9E370] 
-  # - [0x1047840, .rodata, code_A4D00]
-  # - [0x1047870, .rodata, code_A5BC0]
-  # - [0x1047890, .rodata, code_AD110]
-  # - [0x10478B0, .rodata, skeletalanim]
-  # - [0x10478C0, .rodata, code_AEDA0]
-  # - [0x1047910, .rodata, modelRender]
-  # - [0x1047920, .rodata, code_B3A80]
-  # - [0x1047930, .rodata, string]
-  # - [0x1047950, .rodata, code_B6C60]
-  # - [0x1047960, .rodata, time]
-  # - [0x1047990, .rodata, code_B9090]
-  # - [0x10479C0, .rodata, code_B9770]
-  # - [0x1047A50, .rodata, code_BD100]
-  # - [0x1047A70, .rodata, code_BDCC0]
-  # - [0x1047A90, .rodata, code_BE2C0]
-  # - [0x1047AD0, .rodata, code_BEF20]
-  # - [0x1047B10, .rodata, code_C0E60]
-  # - [0x1047B20, .rodata, rand]
-  # - [0x1047B40, .rodata, code_C3A40]
-  # - [0x1047B50, .rodata, code_C4320]
-  # - [0x1047B70, .rodata, code_C5AF0]
-  # - [0x1047B90, .rodata, code_C5CC0]
-  # - [0x1047BA0, .rodata, code_C5F00]
-  # - [0x1047BD0, .rodata, code_C62B0]
-  # - [0x1047C00, .rodata, code_C76D0]
-  # - [0x1047C40, .rodata, code_C7CC0]
-  # - [0x1047C80, .rodata, code_C8230]
-  # - [0x1047C90, .rodata, code_C8360]
-  # - [0x1047CA0, .rodata, code_C8490]
-  # - [0x1047CC0, .rodata, code_C8760]
-  # - [0x1047CD0, .rodata, code_C89C0]
-  # - [0x1047D10, .rodata, code_C97F0]
-  # - [0x1047D20, .rodata, code_C9F00]
-  # - [0x1047D50, .rodata, code_CB050]
-  # - [0x1047DC0, .rodata, code_CB610]
-  # - [0x1047DE0, .rodata, code_CBD10]
-  # - [0x1047E00, .rodata, code_CC1E0]
-  # - [0x1047E20, .rodata, code_CD0A0]
-  # - [0x1047E40, .rodata, code_CD3F0]
-  # - [0x1047E50, .rodata, code_CD6E0]
-  # - [0x1047E90, .rodata, code_CECD0]
-  # - [0x1047EB0, .rodata, code_CF090]
-  # - [0x1047EC0, .rodata, ch/clankerwhipcrack]
-  # - [0x1047EE0, .rodata, ch/grillechompa]
-  # - [0x1047F30, .rodata, ch/clucker]
-  # - [0x1047FD0, .rodata, ch/scarabbeetle]
-  # - [0x1048050, .rodata, code_D2180]
-  # - [0x1048060, .rodata, ch/firefx]
-  # - [0x10480A0, .rodata, ch/drips]
-  # - [0x10480C0, .rodata, ch/icecube]
-  # - [0x1048170, .rodata, ch/ghost]
-  # - [0x10481E0, .rodata, ch/flotsam]
-  # - [0x1048220, .rodata, ch/skeleton]
-  # - [0x1048230, .rodata, ch/mummum]
-  # - [0x1048240, .rodata, ch/chumpfish]
-  # - [0x1048280, .rodata, ch/termite]
-  # - [0x10482F0, .rodata, ch/gravestone]
-  # - [0x1048390, .rodata, ch/bat]
-  # - [0x10483C0, .rodata, ch/bat]
-  # - [0x1048430, .rodata, ch/whipcrack]
-  # - [0x1048450, .rodata, ch/betavent]
-  # - [0x1048460, .rodata, code_DA760]
-  # - [0x1048480, .rodata, code_DB010]
+  - [0x10686B0, .rodata, code_33F90]
+  - [0x10686D0, .rodata, code_34310]
+  - [0x10686E0, .rodata, code_34790]
+  - [0x1068710, rodatabin, nc/dynamicCamera_untouched]
+  - [0x1068860, .rodata, code_37E50]
+  - [0x1068880, .rodata, nc/dynamicCam10]
+  - [0x1068890, .rodata, nc/ba/die]
+  - [0x10688A0, .rodata, nc/dynamicCam5]
+  - [0x10688B0, .rodata, nc/ba/fly]
+  - [0x10688C0, .rodata, nc/dynamicCamC]
+  - [0x10688D0, .rodata, code_F8EAF0]
+#  - [???, .rodata, nc/dynamicCamB]
+  - [0x10688F0, .rodata, nc/dynamicCam13]
+  - [0x1068900, .rodata, nc/dynamicCam9]
+  - [0x1068920, .rodata, nc/dynamicCam12]
+  - [0x1068950, .rodata, nc/dynamicCam3]
+  - [0x1068960, .rodata, nc/dynamicCamA]
+  - [0x1068970, rodatabin, spawnqueue_untouched]
+  - [0x10689C0, rodatabin, ch/gameSelect_untouched2]
+  - [0x1068D00, .rodata, ch/bubble]
+  - [0x1068D10, rodatabin, ch/bigbutt_untouched]
+  - [0x1068DF0, rodatabin, code_400F0_untouched]
+  - [0x1068E50, rodatabin, ch/jiggy_untouched]
+  - [0x1068ED0, rodatabin, ch/jigsawdance_untouched]
+  - [0x1068F40, rodatabin, code_41460_untouched]
+  - [0x1068F70, .rodata, code_41FB0]
+  - [0x1068FB0, .rodata, ch/musicnote]
+  - [0x1068FC0, .rodata, code_42CB0]
+  - [0x1068FD0, .rodata, ch/trainers]
+  - [0x1068FE0, .rodata, code_43800]
+  - [0x1068FF0, rodatabin, ch/crab_untouched]
+  - [0x1069040, .rodata, code_45310]
+  - [0x10690C0, rodatabin, ch/jinjo_untouched]
+  - [0x1069130, .rodata, ch/beehive]
+  - [0x1069140, rodatabin, ch/beeswarm_untouched]
+  - [0x10691A0, .rodata, ch/shrapnel]
+  - [0x10691C0, .rodata, ch/gloop]
+  - [0x10691D0, rodatabin, ch/mumbo_untouched]
+  - [0x1069280, rodatabin, code_4C020_untouched]
+  - [0x10698A0, .rodata, ch/badShad]
+  - [0x10698B0, .rodata, code_50490]
+  - [0x10698C0, rodatabin, levelcollectible_untouched]
+  - [0x1069900, .rodata, ch/piranhaWaterParticles]
+  - [0x1069910, .rodata, code_51950]
+  - [0x1069920, rodatabin, ch/mole_untouched]
+  - [0x10699C0, rodatabin, code_53C10_untouched]
+  - [0x1069A30, .rodata, code_54D50]
+  - [0x1069A50, .rodata, code_55180]
+  - [0x1069A60, .rodata, gc/gameoversign]
+  - [0x1069A70, .rodata, ch/overlaypressstart]
+  - [0x1069A80, .rodata, ch/overlaynocontroller]
+  - [0x1069A90, rodatabin, ch/bottlesbonus_untouched]
+  - [0x1069B00, rodatabin, ch/mumboshandwithpicture_untouched]
+  - [0x1069B20, .rodata, code_581D0]
+  - [0x1069B30, rodatabin, ch/bottlesbonuscursor_untouched]
+  - [0x1069B90, .rodata, code_599E0]
+  - [0x1069BA0, .rodata, ch/mumbotoken]
+  - [0x1069BB0, rodatabin, ch/snacker_untouched]
+  - [0x1069C00, .rodata, ch/snowman]
+  - [0x1069C30, .rodata, ch/snowball]
+  - [0x1069C60, .rodata, code_5C240]
+  - [0x1069C70, rodatabin, code_5C870_untouched]
+  - [0x1069CE0, .rodata, code_5FD90]
+  - [0x1069CF0, .rodata, code_66FB0]
+  - [0x1069D00, .rodata, dustemitter]
+  - [0x1069D10, .rodata, particle]
+  - [0x1069D30, .rodata, code_6A4B0]
+  - [0x1069D40, .rodata, code_6B030]
+  - [0x1069D50, .rodata, fx/sparkle]
+  - [0x1069D70, .rodata, code_6CEC0]
+  - [0x1069D80, .rodata, code_6D030]
+  - [0x1069D90, .rodata, code_6D270]
+  - [0x1069DA0, .rodata, print]
+  - [0x1069E20, .rodata, code_70F20]
+  - [0x1069E80, .rodata, code_71820]
+  - [0x1069EA0, .rodata, code_72060]
+  - [0x1069EC0, rodatabin, code_73640_untouched]
+  - [0x1069EF0, rodatabin, code_74420_untouched]
+  - [0x1069F00, .rodata, fx/common2score]
+  - [0x1069F10, .rodata, fx/honeycarrierscore]
+  - [0x1069F60, .rodata, fx/jinjoscore]
+  - [0x1069FC0, .rodata, fx/common3score]
+  - [0x1069FE0, .rodata, fx/healthscore]
+  - [0x1069FF0, rodatabin, fx/airscore_untouched]
+  - [0x106A010, rodatabin, gccube_untouched]
+  - [0x106A0D0, rodatabin, mapModel_untouched]
+  - [0x106A290, .rodata, propModelList]
+  - [0x106A2A0, .rodata, gc/section]
+  - [0x106AFA0, .rodata, gc/sky]
+  - [0x106AFB0, .rodata, gc/transition]
+  - [0x106B010, .rodata, code_85800]
+  - [0x106B030, rodatabin, gc/dialog_untouched]
+  - [0x106B0A0, rodatabin, gc/pauseMenu_untouched2]
+  - [0x106B640, rodatabin, gc/zoombox_untouched] 
+  - [0x106B710, rodatabin, code_91E10_untouched]
+  - [0x106B750, rodatabin, minigame_untouched]
+  - [0x106B770, rodatabin, gc/parade_untouched2]
+  - [0x106BB20, .rodata, code_94A20]
+  - [0x106BB30, .rodata, code_956B0]
+  - [0x106BB40, .rodata, code_9A9D0]
+  - [0x106BB70, .rodata, code_9B180]
+  - [0x106BB80, .rodata, code_9C170]
+  - [0x106BBE0, .rodata, code_9E370] 
+  - [0x106BC60, .rodata, code_A4D00]
+  - [0x106BC90, .rodata, code_A5BC0]
+  - [0x106BCB0, rodatabin, code_AD110_untouched2]
+  - [0x106BCD0, .rodata, skeletalanim]
+  - [0x106BCE0, .rodata, code_AEDA0]
+  - [0x106BD30, .rodata, modelRender]
+  - [0x106BD40, .rodata, code_B3A80]
+  - [0x106BD50, .rodata, string]
+  - [0x106BD70, .rodata, code_B6C60]
+  - [0x106BD80, .rodata, time]
+  - [0x106BDB0, .rodata, code_B9090]
+  - [0x106BDE0, .rodata, code_B9770]
+  - [0x106BE70, .rodata, code_BD100]
+  - [0x106BE90, .rodata, code_BDCC0]
+  - [0x106BEB0, .rodata, code_BE2C0]
+  - [0x106BEF0, .rodata, code_BEF20]
+  - [0x106BEF0, .rodata, code_C0E60]
+  - [0x106BF40, .rodata, rand]
+  - [0x106BF60, .rodata, code_C3A40]
+  - [0x106BF70, rodatabin, code_C4320_untouched]
+  - [0x106BF90, .rodata, code_C5AF0]
+  - [0x106BFB0, .rodata, code_C5CC0]
+  - [0x106BFC0, .rodata, code_C5F00]
+  - [0x106BFF0, .rodata, code_C62B0]
+  - [0x106C020, .rodata, code_C76D0]
+  - [0x106C060, .rodata, code_C7CC0]
+  - [0x106C0A0, .rodata, code_C8230]
+  - [0x106C0B0, .rodata, code_C8360]
+  - [0x106C0C0, .rodata, code_C8490]
+  - [0x106C0E0, .rodata, code_C8760]
+  - [0x106C0F0, .rodata, code_C89C0]
+  - [0x106C130, .rodata, code_C97F0]
+  - [0x106C140, .rodata, code_C9F00]
+  - [0x106C170, .rodata, code_CB050]
+  - [0x106C1E0, .rodata, code_CB610]
+  - [0x106C200, .rodata, code_CBD10]
+  - [0x106C220, .rodata, code_CC1E0]
+  - [0x106C240, .rodata, code_CD0A0]
+  - [0x106C260, .rodata, code_CD3F0]
+  - [0x106C270, .rodata, code_CD6E0]
+  - [0x106C2B0, .rodata, code_CECD0]
+  - [0x106C2D0, .rodata, code_CF090]
+  - [0x0106C2E0, .rodata, ch/clankerwhipcrack]
+  - [0x0106C300, .rodata, ch/grillechompa]
+  - [0x0106C350, .rodata, ch/clucker]
+  - [0x0106C3F0, .rodata, ch/scarabbeetle]
+  - [0x0106C470, .rodata, code_D2180]
+  - [0x0106C480, .rodata, ch/firefx]
+  - [0x0106C4C0, .rodata, ch/drips]
+  - [0x0106C4E0, rodatabin, ch/icecube_untouched]
+  - [0x0106C590, rodatabin, ch/ghost_untouched]
+  - [0x0106C600, .rodata, ch/flotsam]
+  - [0x0106C640, .rodata, ch/skeleton]
+  - [0x0106C650, .rodata, ch/mummum]
+  - [0x0106C660, rodatabin, ch/chumpfish_untouched]
+  - [0x0106C6A0, .rodata, ch/termite]
+  - [0x0106C710, rodatabin, ch/gravestone]
+  - [0x0106C7B0, .rodata, ch/bat]
+  - [0x0106C850, .rodata, ch/whipcrack]
+  - [0x0106C870, .rodata, ch/betavent]
+  - [0x0106C880, .rodata, code_DA760]
+  - [0x0106C8A0, .rodata, code_DB010]
   - [0x0106C980, .bss, checksums]
   - [0x0106C980, .bss, anim/sprite]
   - [0x0106C980, .bss, animcache]
@@ -1474,897 +1467,897 @@ segments:
   - [0x0106C980, .bss, bs/walrus]
   - [0x0106C980, .bss, bs/washy]
   - [0x0106C980, .bss, nc/cameranodelist]
-  # - [0x0106C980, .bss, code_33C30]
-  # - [0x0106C980, .bss, nc/staticCamera]
-  # - [0x0106C980, .bss, code_34310]
-  # - [0x0106C980, .bss, code_34790]
-  # - [0x0106C980, .bss, code_35520]
-  # - [0x0106C980, .bss, nc/dynamicCamera]
-  # - [0x0106C980, .bss, code_379B0]
-  # - [0x0106C980, .bss, nc/randomCamera]
-  # - [0x0106C980, .bss, code_37E50]
-  # - [0x0106C980, .bss, nc/dynamicCam10]
-  # - [0x0106C980, .bss, nc/dynamicCam5]
-  # - [0x0106C980, .bss, nc/dynamicCam11]
-  # - [0x0106C980, .bss, nc/dynamicCam8]
-  # - [0x0106C980, .bss, nc/ba/fly]
-  # - [0x0106C980, .bss, nc/dynamicCamC]
-  # - [0x0106C980, .bss, code_F8EAF0]
-  # - [0x0106C980, .bss, nc/dynamicCamB]
-  # - [0x0106C980, .bss, nc/dynamicCam13]
-  # - [0x0106C980, .bss, nc/dynamicCam9]
-  # - [0x0106C980, .bss, nc/dynamicCam12]
-  # - [0x0106C980, .bss, nc/dynamicCam3]
-  # - [0x0106C980, .bss, code_3B2C0]
-  # - [0x0106C980, .bss, nc/dynamicCamF]
-  # - [0x0106C980, .bss, nc/ba/1p]
-  # - [0x0106C980, .bss, ch/gameSelect]
-  # - [0x0106C980, .bss, code_41460]
-  # - [0x0106C980, .bss, code_41FB0]
-  # - [0x0106C980, .bss, code_42CB0]
-  # - [0x0106C980, .bss, mapspecificflags]
-  # - [0x0106C980, .bss, ch/beeswarm]
-  # - [0x0106C980, .bss, ch/mumbo]
-  # - [0x0106C980, .bss, code_4C020]
-  # - [0x0106C980, .bss, ch/badShad]
-  # - [0x0106C980, .bss, ch/climbBase]
-  # - [0x0106C980, .bss, gc/gameoversign]
-  # - [0x0106C980, .bss, gc/theendsign]
-  # - [0x0106C980, .bss, gc/banjokazooiesign]
-  # - [0x0106C980, .bss, ch/overlaycopyright]
-  # - [0x0106C980, .bss, ch/overlaypressstart]
-  # - [0x0106C980, .bss, ch/overlaynocontroller]
-  # - [0x0106C980, .bss, ch/bottlesbonus]
-  # - [0x0106C980, .bss, ch/mumboshandwithpicture]
-  # - [0x0106C980, .bss, code_581D0]
-  # - [0x0106C980, .bss, ch/bottlesbonuscursor]
-  # - [0x0106C980, .bss, ch/mumbotoken]
-  # - [0x0106C980, .bss, ch/snacker]
-  # - [0x0106C980, .bss, ch/snowball]
-  # - [0x0106C980, .bss, mapsavestate]
-  # - [0x0106C980, .bss, code_5C240]
-  # - [0x0106C980, .bss, code_5C870]
-  # - [0x0106C980, .bss, code_5DBC0]
-  # - [0x0106C980, .bss, code_5FD90]
-  # - [0x0106C980, .bss, code_637D0]
-  # - [0x0106C980, .bss, code_654C0]
-  # - [0x0106C980, .bss, code_66D90]
-  # - [0x0106C980, .bss, gc/bound]
-  # - [0x0106C980, .bss, dustemitter]
-  # - [0x0106C980, .bss, particle]
-  # - [0x0106C980, .bss, particleemittermanager]
-  # - [0x0106C980, .bss, code_6AEF0]
-  # - [0x0106C980, .bss, code_6B030]
-  # - [0x0106C980, .bss, fx/ripple]
-  # - [0x0106C980, .bss, code_6CD20]
-  # - [0x0106C980, .bss, code_6CEC0]
-  # - [0x0106C980, .bss, code_6D030]
-  # - [0x0106C980, .bss, code_6D270]
-  # - [0x0106C980, .bss, print]
-  # - [0x0106C980, .bss, print]
-  # - [0x0106C980, .bss, code_70C30]
-  # - [0x0106C980, .bss, code_72060]
-  # - [0x0106C980, .bss, code_72B10]
-  # - [0x0106C980, .bss, code_73640]
-  # - [0x0106C980, .bss, code_74420]
-  # - [0x0106C980, .bss, code_74910]
-  # - [0x0106C980, .bss, code_74ED0]
-  # - [0x0106C980, .bss, code_75480]
-  # - [0x0106C980, .bss, code_75930]
-  # - [0x0106C980, .bss, code_75E90]
-  # - [0x0106C980, .bss, fx/common1score]
-  # - [0x0106C980, .bss, fx/honeycarrierscore]
-  # - [0x0106C980, .bss, fx/jinjoscore]
-  # - [0x0106C980, .bss, fx/lifescore]
-  # - [0x0106C980, .bss, fx/healthscore]
-  # - [0x0106C980, .bss, fx/airscore]
-  # - [0x0106C980, .bss, gccube]
-  # - [0x0106C980, .bss, mapModel]
-  # - [0x0106C980, .bss, propModelList]
-  # - [0x0106C980, .bss, gc/section]
-  # - [0x0106C980, .bss, gc/sky]
-  # - [0x0106C980, .bss, gc/transition]
-  # - [0x0106C980, .bss, code_851D0]
-  # - [0x0106C980, .bss, code_857B0]
-  # - [0x0106C980, .bss, code_85800]
-  # - [0x0106C980, .bss, gc/dialog]
-  # - [0x0106C980, .bss, gc/pauseMenu]
-  # - [0x0106C980, .bss, code_8DC20]
-  # - [0x0106C980, .bss, gc/zoombox]
-  # - [0x0106C980, .bss, code_91E10]
-  # - [0x0106C980, .bss, gc/parade]
-  # - [0x0106C980, .bss, code_94620]
-  # - [0x0106C980, .bss, code_94780]
-  # - [0x0106C980, .bss, code_956B0]
-  # - [0x0106C980, .bss, code_98CB0]
-  # - [0x0106C980, .bss, quizquestionaskedbitfield]
-  # - [0x0106C980, .bss, code_999A0]
-  # - [0x0106C980, .bss, jiggyscore]
-  # - [0x0106C980, .bss, honeycombscore]
-  # - [0x0106C980, .bss, mumboscore]
-  # - [0x0106C980, .bss, code_9A740]
-  # - [0x0106C980, .bss, code_9A9D0]
-  # - [0x0106C980, .bss, levelspecificflags]
-  # - [0x0106C980, .bss, code_9B180]
-  # - [0x0106C980, .bss, code_9B650]
-  # - [0x0106C980, .bss, code_9B990]
-  # - [0x0106C980, .bss, code_9C170]
-  # - [0x0106C980, .bss, timedfuncqueue]
-  # - [0x0106C980, .bss, code_9E370]
-  # - [0x0106C980, .bss, code_A4D00]
-  # - [0x0106C980, .bss, code_A5BC0]
-  # - [0x0106C980, .bss, code_ABC00]
-  # - [0x0106C980, .bss, gclights]
-  # - [0x0106C980, .bss, code_AD110]
-  # - [0x0106C980, .bss, gsworld]
-  # - [0x0106C980, .bss, code_AE290]
-  # - [0x0106C980, .bss, code_AEDA0]
-  # - [0x0106C980, .bss, modelRender]
-  # - [0x0106C980, .bss, code_B3A80]
-  # - [0x0106C980, .bss, code_B5040]
-  # - [0x0106C980, .bss, code_B5E00]
-  # - [0x0106C980, .bss, code_B62B0]
-  # - [0x0106C980, .bss, code_B6C60]
-  # - [0x0106C980, .bss, time]
-  # - [0x0106C980, .bss, commonParticle]
-  # - [0x0106C980, .bss, code_B8020]
-  # - [0x0106C980, .bss, code_B8860]
-  # - [0x0106C980, .bss, code_B9770]
-  # - [0x0106C980, .bss, code_BD100]
-  # - [0x0106C980, .bss, code_BDCC0]
-  # - [0x0106C980, .bss, code_BEF20]
-  # - [0x0106C980, .bss, code_C0E60]
-  # - [0x0106C980, .bss, animtexturecache]
-  # - [0x0106C980, .bss, demo]
-  # - [0x0106C980, .bss, rand]
-  # - [0x0106C980, .bss, code_C4320]
-  # - [0x0106C980, .bss, code_C4F40]
-  # - [0x0106C980, .bss, code_C5440]
-  # - [0x0106C980, .bss, code_C89C0]
-  # - [0x0106C980, .bss, code_C97F0]
-  # - [0x0106C980, .bss, code_C9E70]
-  # - [0x0106C980, .bss, code_C9F00]
-  # - [0x0106C980, .bss, commonParticleTypeMap]
-  # - [0x0106C980, .bss, code_CBBF0]
-  # - [0x0106C980, .bss, code_CD0A0]
-  # - [0x0106C980, .bss, code_CD6E0]
+  - [0x0106C980, .bss, code_33C30]
+  - [0x0106C980, .bss, nc/staticCamera]
+  - [0x0106C980, .bss, code_34310]
+  - [0x0106C980, .bss, code_34790]
+  - [0x0106C980, .bss, code_35520]
+  - [0x0106C980, .bss, nc/dynamicCamera]
+  - [0x0106C980, .bss, code_379B0]
+  - [0x0106C980, .bss, nc/randomCamera]
+  - [0x0106C980, .bss, code_37E50]
+  - [0x0106C980, .bss, nc/dynamicCam10]
+  - [0x0106C980, .bss, nc/dynamicCam5]
+  - [0x0106C980, .bss, nc/dynamicCam11]
+  - [0x0106C980, .bss, nc/dynamicCam8]
+  - [0x0106C980, .bss, nc/ba/fly]
+  - [0x0106C980, .bss, nc/dynamicCamC]
+  - [0x0106C980, .bss, code_F8EAF0]
+  - [0x0106C980, .bss, nc/dynamicCamB]
+  - [0x0106C980, .bss, nc/dynamicCam13]
+  - [0x0106C980, .bss, nc/dynamicCam9]
+  - [0x0106C980, .bss, nc/dynamicCam12]
+  - [0x0106C980, .bss, nc/dynamicCam3]
+  - [0x0106C980, .bss, code_3B2C0]
+  - [0x0106C980, .bss, nc/dynamicCamF]
+  - [0x0106C980, .bss, nc/ba/1p]
+  - [0x0106C980, .bss, ch/gameSelect]
+  - [0x0106C980, .bss, code_41460]
+  - [0x0106C980, .bss, code_41FB0]
+  - [0x0106C980, .bss, code_42CB0]
+  - [0x0106C980, .bss, mapspecificflags]
+  - [0x0106C980, .bss, ch/beeswarm]
+  - [0x0106C980, .bss, ch/mumbo]
+  - [0x0106C980, .bss, code_4C020]
+  - [0x0106C980, .bss, ch/badShad]
+  - [0x0106C980, .bss, ch/climbBase]
+  - [0x0106C980, .bss, gc/gameoversign]
+  - [0x0106C980, .bss, gc/theendsign]
+  - [0x0106C980, .bss, gc/banjokazooiesign]
+  - [0x0106C980, .bss, ch/overlaycopyright]
+  - [0x0106C980, .bss, ch/overlaypressstart]
+  - [0x0106C980, .bss, ch/overlaynocontroller]
+  - [0x0106C980, .bss, ch/bottlesbonus]
+  - [0x0106C980, .bss, ch/mumboshandwithpicture]
+  - [0x0106C980, .bss, code_581D0]
+  - [0x0106C980, .bss, ch/bottlesbonuscursor]
+  - [0x0106C980, .bss, ch/mumbotoken]
+  - [0x0106C980, .bss, ch/snacker]
+  - [0x0106C980, .bss, ch/snowball]
+  - [0x0106C980, .bss, mapsavestate]
+  - [0x0106C980, .bss, code_5C240]
+  - [0x0106C980, .bss, code_5C870]
+  - [0x0106C980, .bss, code_5DBC0]
+  - [0x0106C980, .bss, code_5FD90]
+  - [0x0106C980, .bss, code_637D0]
+  - [0x0106C980, .bss, code_654C0]
+  - [0x0106C980, .bss, code_66D90]
+  - [0x0106C980, .bss, gc/bound]
+  - [0x0106C980, .bss, dustemitter]
+  - [0x0106C980, .bss, particle]
+  - [0x0106C980, .bss, particleemittermanager]
+  - [0x0106C980, .bss, code_6AEF0]
+  - [0x0106C980, .bss, code_6B030]
+  - [0x0106C980, .bss, fx/ripple]
+  - [0x0106C980, .bss, code_6CD20]
+  - [0x0106C980, .bss, code_6CEC0]
+  - [0x0106C980, .bss, code_6D030]
+  - [0x0106C980, .bss, code_6D270]
+  - [0x0106C980, .bss, print]
+  - [0x0106C980, .bss, code_70C30]
+  - [0x0106C980, .bss, code_72060]
+  - [0x0106C980, .bss, code_72B10]
+  - [0x0106C980, .bss, code_73640]
+  - [0x0106C980, .bss, code_74420]
+  - [0x0106C980, .bss, code_74910]
+  - [0x0106C980, .bss, code_74ED0]
+  - [0x0106C980, .bss, code_75480]
+  - [0x0106C980, .bss, code_75930]
+  - [0x0106C980, .bss, code_75E90]
+  - [0x0106C980, .bss, fx/common1score]
+  - [0x0106C980, .bss, fx/honeycarrierscore]
+  - [0x0106C980, .bss, fx/jinjoscore]
+  - [0x0106C980, .bss, fx/lifescore]
+  - [0x0106C980, .bss, fx/healthscore]
+  - [0x0106C980, .bss, fx/airscore]
+  - [0x0106C980, .bss, gccube]
+  - [0x0106C980, .bss, mapModel]
+  - [0x0106C980, .bss, propModelList]
+  - [0x0106C980, .bss, gc/section]
+  - [0x0106C980, .bss, gc/sky]
+  - [0x0106C980, .bss, gc/transition]
+  - [0x0106C980, .bss, code_851D0]
+  - [0x0106C980, .bss, code_857B0]
+  - [0x0106C980, .bss, code_85800]
+  - [0x0106C980, .bss, gc/dialog]
+  - [0x0106C980, .bss, gc/pauseMenu]
+  - [0x0106C980, .bss, code_8DC20]
+  - [0x0106C980, .bss, gc/zoombox]
+  - [0x0106C980, .bss, code_91E10]
+  - [0x0106C980, .bss, gc/parade]
+  - [0x0106C980, .bss, bss_pad_pal] # needs to be moved
+  - [0x0106C980, .bss, code_94620]
+  - [0x0106C980, .bss, code_94780]
+  - [0x0106C980, .bss, code_956B0]
+  - [0x0106C980, .bss, code_98CB0]
+  - [0x0106C980, .bss, quizquestionaskedbitfield]
+  - [0x0106C980, .bss, code_999A0]
+  - [0x0106C980, .bss, jiggyscore]
+  - [0x0106C980, .bss, honeycombscore]
+  - [0x0106C980, .bss, mumboscore]
+  - [0x0106C980, .bss, code_9A740]
+  - [0x0106C980, .bss, code_9A9D0]
+  - [0x0106C980, .bss, levelspecificflags]
+  - [0x0106C980, .bss, code_9B180]
+  - [0x0106C980, .bss, code_9B650]
+  - [0x0106C980, .bss, code_9B990]
+  - [0x0106C980, .bss, code_9C170]
+  - [0x0106C980, .bss, timedfuncqueue]
+  - [0x0106C980, .bss, code_9E370]
+  - [0x0106C980, .bss, code_A4D00]
+  - [0x0106C980, .bss, code_A5BC0]
+  - [0x0106C980, .bss, code_ABC00]
+  - [0x0106C980, .bss, gclights]
+  - [0x0106C980, .bss, code_AD110]
+  - [0x0106C980, .bss, gsworld]
+  - [0x0106C980, .bss, code_AE290]
+  - [0x0106C980, .bss, code_AEDA0]
+  - [0x0106C980, .bss, modelRender]
+  - [0x0106C980, .bss, code_B3A80]
+  - [0x0106C980, .bss, code_B5040]
+  - [0x0106C980, .bss, code_B5E00]
+  - [0x0106C980, .bss, code_B62B0]
+  - [0x0106C980, .bss, code_B6C60]
+  - [0x0106C980, .bss, time]
+  - [0x0106C980, .bss, commonParticle]
+  - [0x0106C980, .bss, code_B8020]
+  - [0x0106C980, .bss, code_B8860]
+  - [0x0106C980, .bss, code_B9770]
+  - [0x0106C980, .bss, code_BD100]
+  - [0x0106C980, .bss, code_BDCC0]
+  - [0x0106C980, .bss, code_BEF20]
+  - [0x0106C980, .bss, code_C0E60]
+  - [0x0106C980, .bss, animtexturecache]
+  - [0x0106C980, .bss, demo]
+  - [0x0106C980, .bss, rand]
+  - [0x0106C980, .bss, code_C4320]
+  - [0x0106C980, .bss, code_C4F40]
+  - [0x0106C980, .bss, code_C5440]
+  - [0x0106C980, .bss, code_C89C0]
+  - [0x0106C980, .bss, code_C97F0]
+  - [0x0106C980, .bss, code_C9E70]
+  - [0x0106C980, .bss, code_C9F00]
+  - [0x0106C980, .bss, commonParticleTypeMap ]
+  - [0x0106C980, .bss, code_CBBF0 ]
+  - [0x0106C980, .bss, code_CD0A0 ]
+  - [0x0106C980, .bss, code_CD6E0 ]
 - name: CC
   dir: CC
-  type: bin
+  type: code
   start: 0x0106C980
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x0106C980, c, ch/clankerscrew]
-#   # - [0x1048A90, c, ch/clankerkey] #Done
-#   # - [0x1049150, c, ch/clankertoothext] #Done
-#   # - [0x1049680, c, ch/tooth] #Done
-#   # - [0x1049920, c, code_13C0] #DONE
-#   # - [0x1049F10, c, ccspawnqueue] #Done
-#   # - [0x104A0F0, c, ma/clankerrings] #Done
-#   # - [0x104A4D0, c, ma/clanker] #DONE
-#   # - [0x104B690, c, ch/sawblade] #Done
-#   # - [0x104B960, c, ch/ccgrates] #Done
-#   # - [0x104BC10, .data, ch/clankerscrew]
-#   # - [0x104BC40, .data, ch/clankerkey]
-#   # - [0x104BC70, .data, ch/clankertoothext]
-#   # - [0x104BCC0, .data, ch/tooth]
-#   # - [0x104BD50, .data, crc]
-#   # - [0x104BD60, .data, ma/clankerrings]
-#   # - [0x104BD70, .data, ma/clanker]
-#   # - [0x104BDA0, .data, ch/sawblade]
-#   # - [0x104BFB0, .data, ch/ccgrates]
-#   # - [0x104C020, .rodata, ch/clankerscrew]
-#   # - [0x104C070, .rodata, ch/clankerkey]
-#   # - [0x104C080, .rodata, ch/tooth]
-#   # - [0x104C090, .rodata, ma/clankerrings]
-#   # - [0x104C0A0, .rodata, ma/clanker]
-#   # - [0x104C0E0, .bss, checksums]
-#   # - [0x104C0E0, .bss, ch/clankertoothext]
-#   # - [0x104C0E0, .bss, ma/clankerrings]
-#   # - [0x104C0E0, .bss, ma/clanker]
-# - name: GV
-#   dir: GV
-#   type: bin
-#   start: 0x01070500
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x104C0E0, c, ch/toots]       #DONE
-#   # - [0x104C310, c, ch/ancientone]   #DONE
-#   # - [0x104CE40, c, ch/gobi1]   #DONE
-#   # - [0x104D650, c, ch/gobi2] #DONE
-#   # - [0x104DF60, c, ch/gobi3] #DONE
-#   # - [0x104E5B0, c, ch/gobirope] #DONE
-#   # - [0x104E810, c, ch/gobirock] #DONE
-#   # - [0x104EC60, c, ch/trunker] #DONE
-#   # - [0x104EFC0, c, magiccarpetshadow] #DONE
-#   # - [0x104F1A0, c, ch/sarcophagus] #DONE
-#   # - [0x104F710, c, code_3630] #DONE
-#   # - [0x104FB80, c, ch/eggpot] #DONE
-#   # - [0x104FBF0, c, crc] #DONE
-#   # - [0x104FC90, c, code_3BB0] #DONE
-#   # - [0x104FE70, c, magiccarpet2] #DONE
-#   # - [0x1050490, c, code_43B0] #DONE
-#   # - [0x1050820, c, ch/slappa] #DONE
-#   # - [0x1051650, c, ch/grabba] #DONE
-#   # - [0x10522C0, c, code_61E0] #DONE
-#   # - [0x1052450, c, code_6370] #DONE
-#   # - [0x1053060, c, sandybutteggtoll] #DONE
-#   # - [0x1053140, c, code_7060] #DONE
-#   # - [0x1053610, c, ch/histup] #DONE
-#   # - [0x1053E30, c, code_7D50] #DONE
-#   # - [0x1053E90, c, code_7DB0] #DONE
-#   # - [0x10540A0, c, code_7FC0] #DONE
-#   # - [0x10540D0, c, gvspawnqueue] #DONE
-#   # - [0x1055210, c, ch/mazectrl] #DONE
-#   # - [0x1055940, c, ch/buriedpyramid] #DONE
-#   # - [0x1055C50, c, code_9B70] #DONE
-#   # - [0x1055CF0, c, code_9C10] #DONE
-#   # - [0x1055E90, c, matchinggame] #DONE
-#   # - [0x1056570, c, waterctrl] #DONE
-#   # - [0x10568C0, .data, ch/toots]
-#   # - [0x1056910, .data, ch/ancientone]
-#   # - [0x1056970, .data, ch/gobi1]
-#   # - [0x10569A0, .data, ch/gobi2]
-#   # - [0x10569F0, .data, ch/gobi3]
-#   # - [0x1056A20, .data, ch/gobirope]
-#   # - [0x1056A50, .data, ch/gobirock]
-#   # - [0x1056A80, .data, ch/trunker]
-#   # - [0x1056AB0, .data, magiccarpetshadow]
-#   # - [0x1056AF0, .data, ch/sarcophagus]
-#   # - [0x1056B90, .data, code_3630]
-#   # - [0x1056BF0, .data, ch/eggpot]
-#   # - [0x1056C20, .data, crc]
-#   # - [0x1056C30, .data, code_3BB0]
-#   # - [0x1056C90, .data, magiccarpet2]
-#   # - [0x1056CF0, .data, code_43B0]
-#   # - [0x1056D30, .data, ch/slappa]
-#   # - [0x1056E10, .data, ch/grabba]
-#   # - [0x1056E80, .data, code_61E0]
-#   # - [0x1056EE0, .data, code_6370]
-#   # - [0x1056F50, .data, sandybutteggtoll]
-#   # - [0x1056F80, .data, code_7060]
-#   # - [0x1056FD0, .data, ch/histup]
-#   # - [0x1057030, .data, code_7DB0]
-#   # - [0x1057070, .data, code_7FC0]
-#   # - [0x10570D0, .data, gvspawnqueue]
-#   # - [0x10572B0, .data, ch/mazectrl]
-#   # - [0x1057310, .data, ch/buriedpyramid]
-#   # - [0x1057340, .data, matchinggame]
-#   # - [0x10573E0, .rodata, ch/ancientone]
-#   # - [0x1057400, .rodata, ch/gobi1]
-#   # - [0x1057410, .rodata, ch/gobi2]
-#   # - [0x1057430, .rodata, ch/gobi3]
-#   # - [0x1057470, .rodata, ch/gobirock]
-#   # - [0x1057480, .rodata, ch/sarcophagus]
-#   # - [0x1057490, .rodata, code_3BB0]
-#   # - [0x10574A0, .rodata, magiccarpet2]
-#   # - [0x10574B0, .rodata, code_43B0]
-#   # - [0x10574C0, .rodata, ch/slappa]
-#   # - [0x1057530, .rodata, ch/grabba]
-#   # - [0x1057580, .rodata, code_6370]
-#   # - [0x10575E0, .rodata, code_7060]
-#   # - [0x1057600, .rodata, ch/histup]
-#   # - [0x1057630, .rodata, gvspawnqueue]
-#   # - [0x1057690, .rodata, ch/mazectrl]
-#   # - [0x10576B0, .rodata, ch/buriedpyramid]
-#   # - [0x10576F0, .rodata, matchinggame]
-#   # - [0x1057700, .rodata, waterctrl]
-#   # - [0x1057710, .bss, checksums]
-#   # - [0x1057710, .bss, ch/toots]
-#   # - [0x1057710, .bss, ch/gobi1]
-#   # - [0x1057710, .bss, ch/gobi2]
-#   # - [0x1057710, .bss, ch/gobirock]
-#   # - [0x1057710, .bss, ch/slappa]
-#   # - [0x1057710, .bss, ch/grabba]
-#   # - [0x1057710, .bss, code_61E0]
-#   # - [0x1057710, .bss, sandybutteggtoll]
-#   # - [0x1057710, .bss, code_7D50]
-#   # - [0x1057710, .bss, gvspawnqueue]
-#   # - [0x1057710, .bss, code_9C10]
-#   # - [0x1057710, .bss, matchinggame]
-#   # - [0x1057710, .bss, waterctrl]
-# - name: MMM
-#   dir: MMM
-#   type: bin
-#   start: 0x0107BB30
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x1057710, c, ch/loggo]  #DONE
-#   # - [0x1057C80, c, ch/napper] #DONE
-#   # - [0x10584D0, c, ch/cemetarypot]  #DONE
-#   # - [0x1058730, c, ch/motzhand] #DONE
-#   # - [0x1058DC0, c, ch/portraitchompa]  #DONE
-#   # - [0x1059750, c, mmmspawnqueue] #DONE
-#   # - [0x105A670, c, ch/portrait] #DONE
-#   # - [0x105A830, c, code_3120] #DONE
-#   # - [0x105AB30, c, code_3420] #DONE
-#   # - [0x105B460, c, crc] #DONE
-#   # - [0x105B460, c, code_3D50] #DONE
-#   # - [0x105BEE0, c, ch/tumblar] #DONE
-#   # - [0x105C710, c, code_5000] #DONE
-#   # - [0x105CD00, .data, ch/loggo]
-#   # - [0x105CD40, .data, ch/napper]
-#   # - [0x105CD70, .data, ch/cemetarypot]
-#   # - [0x105CDB0, .data, ch/motzhand]
-#   # - [0x105CDF0, .data, ch/portraitchompa]
-#   # - [0x105CF00, .data, mmmspawnqueue]
-#   # - [0x105D150, .data, ch/portrait]
-#   # - [0x105D240, .data, code_3420]
-#   # - [0x105D510, .data, code_3D50]
-#   # - [0x105D620, .data, crc]
-#   # - [0x105D630, .data, code_5000]
-#   # - [0x105D660, .rodata, ch/loggo]
-#   # - [0x105D690, .rodata, ch/napper]
-#   # - [0x105D6B0, .rodata, ch/motzhand]
-#   # - [0x105D6D0, .rodata, ch/portraitchompa]
-#   # - [0x105D720, .rodata, mmmspawnqueue]
-#   # - [0x105D760, .rodata, code_3120]
-#   # - [0x105D770, .rodata, code_3420]
-#   # - [0x105D780, .rodata, code_3D50]
-#   # - [0x105D7A0, .rodata, ch/tumblar]
-#   # - [0x105D7D0, .rodata, code_5000]
-#   # - [0x105D7E0, .bss, checksums]
-#   # - [0x105D7E0, .bss, mmmspawnqueue]
-#   # - [0x105D7E0, .bss, code_3120]
-#   # - [0x105D7E0, .bss, code_3420]
-#   # - [0x105D7E0, .bss, code_3D50]
-# - name: TTC
-#   dir: TTC
-#   type: bin
-#   start: 0x01081C00
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x105D7E0, c, ch/clam]       #DONE
-#   # - [0x105E880, c, ch/blubber] #DONE
-#   # - [0x105F1B0, c, ch/nipper] #DONE
-#   # - [0x105FEB0, c, code_26D0] #DONE
-#   # - [0x1060360, c, ch/leaky] #DONE
-#   # - [0x1060820, c, code_3040] #DONE
-#   # - [0x10608B0, c, ch/lockup] #DONE
-#   # - [0x1060DB0, c, ch/treasurehunt] #DONE
-#   # - [0x1061610, c, ma/castle] #DONE
-#   # - [0x10633B0, c, ch/treasure] #DONE
-#   # - [0x10637A0, .data, ch/clam]
-#   # - [0x10638D0, .data, ch/blubber]
-#   # - [0x1063930, .data, ch/nipper]
-#   # - [0x10639D0, .data, code_26D0]
-#   # - [0x1063AF0, .data, ch/leaky]
-#   # - [0x1063B40, .data, code_3040]
-#   # - [0x1063B50, .data, ch/lockup]
-#   # - [0x1063C10, .data, ch/treasurehunt]
-#   # - [0x1063D70, .data, ma/castle]
-#   # - [0x1064080, .data, ch/treasure]
-#   # - [0x10640D0, .rodata, ch/clam]
-#   # - [0x1064130, .rodata, ch/blubber]
-#   # - [0x1064160, .rodata, ch/nipper]
-#   # - [0x1064180, .rodata, code_26D0]
-#   # - [0x10641C0, .rodata, ch/leaky]
-#   # - [0x10641E0, .rodata, ch/lockup]
-#   # - [0x1064210, .rodata, ch/treasurehunt]
-#   # - [0x1064240, .rodata, ma/castle]
-#   # - [0x1064A90, .rodata, ch/treasure]
-#   # - [0x1064AE0, .bss, checksums]
-#   # - [0x1064AE0, .bss, code_3040]
-#   # - [0x1064AE0, .bss, ch/treasurehunt]
-#   # - [0x1064AE0, .bss, ma/castle]
-# - name: MM
-#   dir: MM
-#   type: code
-#   start: 0x01088F00
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x1064AE0, c, ch/orangepad]
-#   # - [0x1065050, c, ch/hut]
-#   # - [0x1065390, c, ch/chimpystump]
-#   # - [0x10655C0, c, ch/conga]
-#   # - [0x10665B0, c, crc]
-#   # - [0x1066680, c, ch/orange]
-#   # - [0x10669F0, c, ch/lmonkey] #chimpy
-#   # - [0x1066FA0, c, mmspawnqueue]
-#   # - [0x1067090, c, ch/grublin]
-#   # - [0x1067220, c, ch/jujuhitbox]
-#   # - [0x10676C0, c, ch/juju]
-#   # - [0x1067F80, .data, ch/orangepad]
-#   # - [0x1067FB0, .data, ch/hut]
-#   # - [0x1068010, .data, ch/chimpystump]
-#   # - [0x1068040, .data, ch/conga]
-#   # - [0x10680B0, .data, crc]
-#   # - [0x10680C0, .data, ch/orange]
-#   # - [0x1068100, .data, ch/lmonkey]
-#   # - [0x1068150, .data, ch/grublin]
-#   # - [0x10681D0, .data, ch/jujuhitbox]
-#   # - [0x1068200, .data, ch/juju]
-#   # - [0x1068230, .rodata, ch/orangepad]
-#   # - [0x1068240, .rodata, ch/hut]
-#   # - [0x1068250, .rodata, ch/conga]
-#   # - [0x10682D0, .rodata, ch/orange]
-#   # - [0x10682F0, .rodata, ch/lmonkey]
-#   # - [0x1068340, .rodata, ch/grublin]
-#   # - [0x1068350, .rodata, ch/jujuhitbox]
-#   # - [0x1068360, .rodata, ch/juju]
-#   # - [0x1068370, .bss, checksums]
-#   # - [0x1068370, .bss, ch/hut]
-#   # - [0x1068370, .bss, ch/juju]
-# - name: BGS
-#   dir: BGS
-#   type: code
-#   start: 0x0108C790
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # # after: core2-data
-#   # subsegments:
-#   # - [0x1068370, c, ch/flibbit] #DONE
-#   # - [0x1069960, c, ch/pinkegg] #DONE
-#   # - [0x1069C10, c, ch/croctus] #DONE
-#   # - [0x106A5E0, c, ch/tiptup] #DONE
-#   # - [0x106B3A0, c, ch/choirturtle] #DONE
-#   # - [0x106B790, c, mrvileminigame]
-#   # - [0x106D0E0, c, ch/yumblie] #DONE
-#   # - [0x106D970, c, ch/mrvile] #DONE
-#   # - [0x106EAA0, c, ch/frogminigame] #DONE
-#   # - [0x106F160, c, ch/yellowflibbit] #DONE
-#   # - [0x10709B0, c, ch/mudhut] #DONE
-#   # - [0x1070DD0, c, ch/swampswitch] #DONE
-#   # - [0x1071160, c, bgsspawnqueue] #DONE
-#   # - [0x10713F0, c, ch/tanktup]
-#   # - [0x1071AC0, c, ch/tanktuplegs] #DONE
-#   # - [0x1071C30, c, ch/bigalligator] #DONE
-#   # - [0x1071C90, c, ch/leafboat] #DONE
-#   # - [0x1072610, .data, ch/flibbit]
-#   # - [0x1072640, .data, ch/pinkegg]
-#   # - [0x1072730, .data, ch/croctus]
-#   # - [0x10727B0, .data, ch/tiptup]
-#   # - [0x1072800, .data, ch/choirturtle]
-#   # - [0x10728E0, .data, mrvileminigame]
-#   # - [0x10729C0, .data, ch/yumblie]
-#   # - [0x10729F0, .data, ch/mrvile]
-#   # - [0x1072A30, .data, ch/frogminigame]
-#   # - [0x1072A60, .data, ch/yellowflibbit]
-#   # - [0x1072AA0, .data, crc]
-#   # - [0x1072AB0, .data, ch/mudhut]
-#   # - [0x1072B10, .data, ch/swampswitch]
-#   # - [0x1072BA0, .data, ch/tanktup]
-#   # - [0x1072BD0, .data, ch/tanktuplegs]
-#   # - [0x1072CF0, .data, ch/bigalligator]
-#   # - [0x1072D20, .data, ch/leafboat]
-#   # - [0x1072D50, .rodata, ch/flibbit]
-#   # - [0x1072E60, .rodata, ch/croctus]
-#   # - [0x1072EF0, .rodata, ch/tiptup]
-#   # - [0x1072F60, .rodata, ch/choirturtle]
-#   # - [0x1072F70, .rodata, mrvileminigame]
-#   # - [0x1072F90, .rodata, ch/yumblie]
-#   # - [0x1072FC0, .rodata, ch/mrvile]
-#   # - [0x1073010, .rodata, ch/frogminigame]
-#   # - [0x1073020, .rodata, ch/yellowflibbit]
-#   # - [0x1073110, .rodata, ch/mudhut]
-#   # - [0x1073120, .rodata, ch/swampswitch]
-#   # - [0x1073130, .rodata, ch/tanktup]
-#   # - [0x1073140, .rodata, ch/tanktuplegs]
-#   # - [0x1073150, .rodata, ch/leafboat]
-#   # - [0x10731B0, .bss, checksums]
-#   # - [0x10731B0, .bss, ch/frogminigame]
-# - name: RBB
-#   dir: RBB
-#   type: code
-#   start: 0x010975D0
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x10731B0, c, ch/eggtoll1]
-#   # - [0x10737F0, c, rbbspawnqueue]
-#   # - [0x1073E50, c, code_CA0]
-#   # - [0x1074720, c, code_1570]
-#   # - [0x1075170, c, ch/grimlet]
-#   # - [0x1075990, c, ch/cog]
-#   # - [0x1075C20, c, ch/axle]
-#   # - [0x1076040, c, ch/enginefan]
-#   # - [0x1076660, c, ch/enginefanswitch]
-#   # - [0x1076850, c, ch/propellor]
-#   # - [0x1076E60, c, ch/propellorswitch]
-#   # - [0x10772A0, c, ch/engineparts]
-#   # - [0x1077980, c, ch/whistleswitch]
-#   # - [0x1077E20, c, ch/whistle]
-#   # - [0x1078210, c, ch/whistlectrl]
-#   # - [0x10784A0, c, ch/anchorswitch]
-#   # - [0x1078640, c, ch/dolphin]
-#   # - [0x1078C60, c, ch/anchor]
-#   # - [0x1078DC0, c, ch/anchorctrl]
-#   # - [0x10790C0, c, ch/rarewareflag]
-#   # - [0x1079130, c, ch/bossboombox]
-#   # - [0x107AC10, c, ch/bossboomboxctrl]
-#   # - [0x107ACD0, c, ch/bellbuoy]
-#   # - [0x107B180, c, ch/rowboat]
-#   # - [0x107B6D0, c, ch/boombox]
-#   # - [0x107C820, c, code_9670]
-#   # - [0x107C9F0, c, code_9840]
-#   # - [0x107CBA0, c, propellorctrl]
-#   # - [0x107CE10, .data, ch/eggtoll1]
-#   # - [0x107CE90, .data, rbbspawnqueue]
-#   # - [0x107CFC0, .data, code_CA0]
-#   # - [0x107D030, .data, code_1570]
-#   # - [0x107D140, .data, ch/grimlet]
-#   # - [0x107D170, .data, ch/cog]
-#   # - [0x107D1F0, .data, ch/axle]
-#   # - [0x107D2F0, .data, ch/enginefan]
-#   # - [0x107D470, .data, ch/enginefanswitch]
-#   # - [0x107D4A0, .data, ch/propellor]
-#   # - [0x107D4E0, .data, ch/propellorswitch]
-#   # - [0x107D520, .data, ch/engineparts]
-#   # - [0x107D630, .data, ch/whistleswitch]
-#   # - [0x107D710, .data, ch/whistle]
-#   # - [0x107D810, .data, ch/whistlectrl]
-#   # - [0x107D840, .data, ch/anchorswitch]
-#   # - [0x107D870, .data, ch/dolphin]
-#   # - [0x107D8A0, .data, ch/anchor]
-#   # - [0x107D8D0, .data, ch/anchorctrl]
-#   # - [0x107D900, .data, ch/rarewareflag]
-#   # - [0x107D930, .data, ch/bossboombox]
-#   # - [0x107DAB0, .data, ch/bossboomboxctrl]
-#   # - [0x107DAE0, .data, ch/bellbuoy]
-#   # - [0x107DB10, .data, ch/rowboat]
-#   # - [0x107DB40, .data, ch/boombox]
-#   # - [0x107DBC0, .data, code_9670]
-#   # - [0x107DBF0, .data, code_9840]
-#   # - [0x107DC40, .rodata, rbbspawnqueue]
-#   # - [0x107DC50, .rodata, code_CA0]
-#   # - [0x107DC70, .rodata, code_1570]
-#   # - [0x107DCD0, .rodata, ch/grimlet]
-#   # - [0x107DD30, .rodata, ch/axle]
-#   # - [0x107DD40, .rodata, ch/enginefanswitch]
-#   # - [0x107DD50, .rodata, ch/propellor]
-#   # - [0x107DD70, .rodata, ch/propellorswitch]
-#   # - [0x107DD80, .rodata, ch/whistle]
-#   # - [0x107DD90, .rodata, ch/whistlectrl]
-#   # - [0x107DDB0, .rodata, ch/dolphin]
-#   # - [0x107DE80, .rodata, ch/anchor]
-#   # - [0x107DE90, .rodata, ch/anchorctrl]
-#   # - [0x107DEA0, .rodata, ch/bossboombox]
-#   # - [0x107DF30, .rodata, ch/bellbuoy]
-#   # - [0x107DF60, .rodata, ch/rowboat]
-#   # - [0x107DFB0, .rodata, ch/boombox]
-#   # - [0x107E020, .rodata, code_9670]
-#   # - [0x107E030, .bss, checksums]
-#   # - [0x107E030, .bss, ch/bossboombox]
-#   # - [0x107E030, .bss, ch/boombox]
-#   # - [0x107E030, .bss, ch/boombox]
-#   # - [0x107E030, .bss, code_9670]
-#   # - [0x107E030, .bss, propellorctrl]
-# - name: FP
-#   dir: FP
-#   type: code
-#   start: 0x010A2470
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x107E030, c, ch/scarfsled]       #DONE
-#   # - [0x107E500, c, ch/racesled]   #DONE
-#   # - [0x107E7C0, c, ch/snowmanbutton]   #DONE
-#   # - [0x107EA70, c, ch/xmastree]   #DONE
-#   # - [0x107F220, c, ch/boggy1] #DONE
-#   # - [0x107FA10, c, ch/boggyraceflag1] #DONE
-#   # - [0x1080020, c, ch/boggyraceflag2] #DONE
-#   # - [0x1080380, c, ch/boggy2] #DONE
-#   # - [0x1081E30, c, ch/bearcub] #DONE
-#   # - [0x1082430, c, ma/snowy] #DONE
-#   # - [0x1082600, c, ma/snowbutton] #DONE
-#   # - [0x10827A0, c, ma/slalom] #DONE
-#   # - [0x1083CF0, c, ch/twinkly] 
-#   # - [0x1084B10, c, ch/twinklybox] #DONE
-#   # - [0x10859B0, c, ch/twinklymuncher] #DONE
-#   # - [0x1086360, c, ch/xmastreeswitch] #DONE
-#   # - [0x1086810, c, ch/xmastreestar] #DONE
-#   # - [0x1086D30, c, ch/present] #DONE
-#   # - [0x1086E50, c, ch/wozza] #DONE
-#   # - [0x1087B40, c, ch/wozzasjig] #DONE
-#   # - [0x1087ED0, c, ch/boggy3] #DONE
-#   # - [0x10881F0, c, code_A1C0] #DONE
-#   # - [0x1088270, c, ch/cavewozza] #DONE
-#   # - [0x1088530, c, ch/xmastreeice] #DONE
-#   # - [0x10888B0, c, ch/xmastreeeggtoll] #DONE
-#   # - [0x1088C00, c, fpspawnqueue] #DONE
-#   # - [0x1089500, c, code_B4D0] #DONE
-#   # - [0x1089630, .data, ch/scarfsled]
-#   # - [0x1089680, .data, ch/racesled]
-#   # - [0x10896D0, .data, ch/snowmanbutton]
-#   # - [0x1089790, .data, ch/xmastree]
-#   # - [0x10897C0, .data, ch/boggy1]
-#   # - [0x1089840, .data, ch/boggyraceflag1]
-#   # - [0x1089880, .data, ch/boggyraceflag2]
-#   # - [0x10898C0, .data, ch/boggy2]
-#   # - [0x1089A30, .data, ch/bearcub]
-#   # - [0x1089AF0, .data, ma/snowy]
-#   # - [0x1089B00, .data, ma/snowbutton]
-#   # - [0x1089B10, .data, ma/slalom]
-#   # - [0x1089B90, .data, ch/twinkly]
-#   # - [0x1089D00, .data, ch/twinklybox]
-#   # - [0x1089FD0, .data, ch/twinklymuncher]
-#   # - [0x108A040, .data, ch/xmastreeswitch]
-#   # - [0x108A0B0, .data, ch/xmastreestar]
-#   # - [0x108A0E0, .data, ch/present]
-#   # - [0x108A160, .data, ch/wozza]
-#   # - [0x108A200, .data, ch/wozzasjig]
-#   # - [0x108A2C0, .data, ch/boggy3]
-#   # - [0x108A300, .data, code_A1C0]
-#   # - [0x108A330, .data, ch/cavewozza]
-#   # - [0x108A370, .data, ch/xmastreeice]
-#   # - [0x108A480, .data, ch/xmastreeeggtoll]
-#   # - [0x108A520, .data, fpspawnqueue]
-#   # - [0x108A7C0, .rodata, ch/scarfsled]
-#   # - [0x108A7D0, .rodata, ch/xmastree]
-#   # - [0x108A830, .rodata, ch/boggy1]
-#   # - [0x108A850, .rodata, ch/boggyraceflag1]
-#   # - [0x108A860, .rodata, ch/boggyraceflag2]
-#   # - [0x108A870, .rodata, ch/boggy2]
-#   # - [0x108A950, .rodata, ch/bearcub]
-#   # - [0x108A970, .rodata, ma/slalom]
-#   # - [0x108A9C0, .rodata, ch/twinkly]
-#   # - [0x108AA40, .rodata, ch/twinklybox]
-#   # - [0x108AA80, .rodata, ch/twinklymuncher]
-#   # - [0x108AAB0, .rodata, ch/xmastreestar]
-#   # - [0x108AAC0, .rodata, ch/wozza]
-#   # - [0x108AB10, .rodata, ch/wozzasjig]
-#   # - [0x108AB30, .rodata, ch/xmastreeice]
-#   # - [0x108AB40, .rodata, ch/xmastreeeggtoll]
-#   # - [0x108AB50, .bss, checksums]
-#   # - [0x108AB50, .bss, ch/boggy2]
-#   # - [0x108AB50, .bss, ma/snowy]
-#   # - [0x108AB50, .bss, ma/snowbutton]
-#   # - [0x108AB50, .bss, ma/slalom]
-#   # - [0x108AB50, .bss, ch/xmastreestar]
-#   # - [0x108AB50, .bss, code_B4D0]
-# - name: SM
-#   dir: SM
-#   type: bin
-#   start: 0x010AEF90
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x108AB50, c, code_0]
-#   # - [0x108AC40, c, smspawnqueue]
-#   # - [0x108B100, c, code_5B0]
-#   # - [0x108B740, c, code_BF0]
-#   # - [0x108B8B0, c, ch/attacktutorial]
-#   # - [0x108C070, c, ch/vegetables]
-#   # - [0x108D450, c, code_2900]
-#   # - [0x108D4E0, c, code_2990]
-#   # - [0x108EB10, c, code_3FC0]
-#   # - [0x108EBC0, c, ch/jumptutorial]
-#   # - [0x108F020, c, code_44D0]
-#   # - [0x108F210, c, code_46C0]
-#   # - [0x108F220, .data, code_0]
-#   # - [0x108F240, .data, smspawnqueue]
-#   # - [0x108F250, .data, code_5B0]
-#   # - [0x108F350, .data, code_BF0]
-#   # - [0x108F380, .data, ch/attacktutorial]
-#   # - [0x108F3B0, .data, ch/vegetables]
-#   # - [0x108F6C0, .data, code_2990]
-#   # - [0x108F750, .data, code_3FC0]
-#   # - [0x108F810, .data, ch/jumptutorial]
-#   # - [0x108F840, .data, code_44D0]
-#   # - [0x108F870, .rodata, code_5B0]
-#   # - [0x108F890, .rodata, ch/attacktutorial]
-#   # - [0x108F930, .rodata, ch/vegetables]
-#   # - [0x108F960, .rodata, code_2990]
-#   # - [0x108FA70, .rodata, code_44D0]
-#   # - [0x108FA80, .bss, checksums]
-#   # - [0x108FA80, .bss, smspawnqueue]
-# - name: cutscenes
-#   dir: cutscenes
-#   type: bin
-#   start: 0x010B4170
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x108FA80, c, code_0]
-#   # - [0x1095B70, c, cutscenesspawnqueue] #DONE
-#   # - [0x10961B0, c, code_6730] #DONE
-#   # - [0x1096470, c, code_69F0] #DONE
-#   # - [0x1096710, c, code_6C90] #DONE
-#   # - [0x10969E0, .data, code_0]
-#   # - [0x1097320, .data, cutscenesspawnqueue]
-#   # - [0x1097D90, .data, code_6730]
-#   # - [0x1097E30, .data, code_69F0]
-#   # - [0x1097F20, .data, code_6C90]
-#   # - [0x1097FC0, .rodata, code_0]
-#   # - [0x1098040, .rodata, code_6730]
-#   # - [0x1098050, .rodata, code_69F0]
-#   # - [0x1098060, .rodata, code_6C90]
-#   # - [0x1098070, .bss, checksums]
-# - name: lair
-#   dir: lair
-#   type: code
-#   start: 0x010BC760
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x1098070, c, lairspawnqueue] #DONE
-#   # - [0x109C310, c, ch/cauldron] #DONE
-#   # - [0x109D6B0, c, ch/brentilda] #DONE
-#   # - [0x109DF40, c, code_5ED0] #DONE
-#   # - [0x10A0760, c, jigsawpicture] #DONE
-#   # - [0x10A1CB0, c, ch/cheato] #DONE
-#   # - [0x10A21E0, c, ch/refillpillow] #DONE
-#   # - [0x10A24A0, c, code_A430] #DONE
-#   # - [0x10A2510, c, ch/gruntling] #DONE
-#   # - [0x10A2880, c, code_A810] #DONE
-#   # - [0x10A2DE0, c, code_AD70] #DONE
-#   # - [0x10A3C40, c, ch/furnacefunprizes] #DONE
-#   # - [0x10A4230, c, ch/lairgruntilda] #DONE
-#   # - [0x10A4730, c, code_C6C0] #DONE
-#   # - [0x10A4930, .data, lairspawnqueue]
-#   # - [0x10A51A0, .data, ch/cauldron]
-#   # - [0x10A5390, .data, ch/brentilda]
-#   # - [0x10A53E0, .data, code_5ED0]
-#   # - [0x10A6430, .data, jigsawpicture]
-#   # - [0x10A64E0, .data, ch/cheato]
-#   # - [0x10A6560, .data, ch/refillpillow]
-#   # - [0x10A6600, .data, code_A430]
-#   # - [0x10A6630, .data, ch/gruntling]
-#   # - [0x10A6700, .data, code_A810]
-#   # - [0x10A6730, .data, code_AD70]
-#   # - [0x10A6860, .data, ch/furnacefunprizes]
-#   # - [0x10A6940, .data, ch/lairgruntilda]
-#   # - [0x10A69A0, .data, code_C6C0]
-#   # - [0x10A69D0, .rodata, lairspawnqueue]
-#   # - [0x10A6C80, .rodata, ch/cauldron]
-#   # - [0x10A6D10, .rodata, ch/brentilda]
-#   # - [0x10A6D40, .rodata, code_5ED0]
-#   # - [0x10A6E50, .rodata, jigsawpicture]
-#   # - [0x10A6EC0, .rodata, ch/cheato]
-#   # - [0x10A6EF0, .rodata, ch/gruntling]
-#   # - [0x10A6F30, .rodata, code_A810]
-#   # - [0x10A6F50, .rodata, code_AD70]
-#   # - [0x10A6F70, .rodata, ch/furnacefunprizes]
-#   # - [0x10A6FB0, .rodata, ch/lairgruntilda]
-#   # - [0x10A6FC0, .rodata, code_C6C0]
-#   # - [0x10A6FD0, .bss, checksums]
-#   # - [0x10A6FD0, .bss, lairspawnqueue]
-#   # - [0x10A6FD0, .bss, code_A810]
-# - name: fight
-#   dir: fight
-#   type: bin
-#   start: 0x010CB6C0
-#   # vram: 0x803863F0
-#   # follows_vram: core2
-#   # exclusive_ram_id: overlay
-#   # subsegments:
-#   # - [0x10A6FD0, c, fight] #DONE
-#   # - [0x10A7150, c, chfinalboss] 
-#   # - [0x10ACEA0, c, chbossjinjo] #DONE
-#   # - [0x10ADE60, c, chbossjinjobase] #DONE
-#   # - [0x10AE550, c, chstonejinjo] #DONE
-#   # - [0x10AEBB0, c, chjinjonatorbase] #DONE
-#   # - [0x10AF360, c, chspellbarrier] #DONE
-#   # - [0x10AF770, c, chspellfireball] #DONE
-#   # - [0x10B0820, c, code_9850] #DONE
-#   # - [0x10B0D10, c, chjinjonator] #DONE
-#   # - [0x10B1EA0, c, chbossshadow] #DONE
-#   # - [0x10B1F60, .data, chfinalboss]
-#   # - [0x10B23F0, .data, chbossjinjo]
-#   # - [0x10B2570, .data, chbossjinjobase]
-#   # - [0x10B25D0, .data, chstonejinjo]
-#   # - [0x10B2620, .data, chjinjonatorbase]
-#   # - [0x10B26B0, .data, chspellbarrier]
-#   # - [0x10B26E0, .data, chspellfireball]
-#   # - [0x10B29A0, .data, code_9850]
-#   # - [0x10B2B90, .data, chjinjonator]
-#   # - [0x10B2C70, .data, chbossshadow]
-#   # - [0x10B2CA0, .rodata, chfinalboss]
-#   # - [0x10B3060, .rodata, chbossjinjo]
-#   # - [0x10B3110, .rodata, chbossjinjobase]
-#   # - [0x10B3120, .rodata, chstonejinjo]
-#   # - [0x10B3160, .rodata, chjinjonatorbase]
-#   # - [0x10B3190, .rodata, chspellbarrier]
-#   # - [0x10B31A0, .rodata, chspellfireball]
-#   # - [0x10B31F0, .rodata, code_9850]
-#   # - [0x10B3200, .rodata, chjinjonator]
-#   # - [0x10B3310, .rodata, chbossshadow]
-#   # - [0x10B3320, .bss, checksums]
-#   # - [0x10B3320, .bss, fight]
-#   # - [0x10B3320, .bss, chfinalboss]
-#   # - [0x10B3320, .bss, chspellfireball]
-#   # - [0x10B3320, .bss, chjinjonator]
-# - name: CCW
-#   dir: CCW
-#   type: bin
-#   start: 0x010D7A90
-#   vram: 0x803863F0
-#   # follows_vram: core2
-#   exclusive_ram_id: overlay
-#   subsegments:
-  # - [0x10B3320, c, ch/zubbadoor] #DONE
-  # - [0x10B3480, c, ch/zubbahoneylump] #DONE
-  # - [0x10B3C70, c, code_950] #DONE
-  # - [0x10B47D0, c, code_14B0] #DONE
-  # - [0x10B4E40, c, ch/beanstalk] #DONE
-  # - [0x10B54C0, c, ch/deadbeanstalk] #DONE
-  # - [0x10B5590, c, ch/ccwgobi] #DONE
-  # - [0x10B5E20, c, ch/seasonswitchdoors] #DONE
-  # - [0x10B6370, c, ch/eyrieegg] #DONE
-  # - [0x10B6630, c, code_3310] #DONE
-  # - [0x10B70C0, c, ch/caterpillar] #DONE
-  # - [0x10B7850, c, ch/adulteyrie] #DONE
-  # - [0x10B7C80, c, ch/cutsceneadulteyrie] #DONE
-  # - [0x10B8020, c, ch/springnabnut] #DONE
-  # - [0x10B83F0, c, ch/bellyfullnabnut] #DONE
-  # - [0x10B8860, c, ch/outsideautumnnabnut] #DONE
-  # - [0x10B8F10, c, code_5BF0] #DONE
-  # - [0x10B9500, c, ch/acorn] #DONE
-  # - [0x10B9940, c, ch/swimminggnawty] #DONE
-  # - [0x10B9DE0, c, ch/summeroutsidegnawty] #DONE
-  # - [0x10BA1E0, c, ch/indoorsgnawty] #DONE
-  # - [0x10BA440, c, ch/gnawtyboulder] #DONE
-  # - [0x10BA890, c, ch/snore] #DONE
-  # - [0x10BA9E0, c, ccwspawnqueue] #DONE
-  # - [0x10BAEE0, c, ch/deadsnarebear] #DONE
-  # - [0x10BAF10, c, ch/snarebear] #DONE
-  # - [0x10BB370, c, ch/grublinhood] #DONE
-  # - [0x10BB990, c, ch/vacationtexttrigger] #DONE
-  # - [0x10BBA80, .data, ch/zubbadoor]
-  # - [0x10BBAD0, .data, ch/zubbahoneylump]
-  # - [0x10BBB00, .data, code_950]
-  # - [0x10BBB30, .data, code_14B0]
-  # - [0x10BBB70, .data, ch/beanstalk]
-  # - [0x10BBBD0, .data, ch/deadbeanstalk]
-  # - [0x10BBC00, .data, ch/ccwgobi]
-  # - [0x10BBC40, .data, ch/seasonswitchdoors]
-  # - [0x10BBDA0, .data, ch/eyrieegg]
-  # - [0x10BBDD0, .data, code_3310]
-  # - [0x10BC090, .data, ch/caterpillar]
-  # - [0x10BC0C0, .data, ch/adulteyrie]
-  # - [0x10BC160, .data, ch/cutsceneadulteyrie]
-  # - [0x10BC1A0, .data, ch/springnabnut]
-  # - [0x10BC230, .data, ch/bellyfullnabnut]
-  # - [0x10BC280, .data, ch/outsideautumnnabnut]
-  # - [0x10BC2B0, .data, code_5BF0]
-  # - [0x10BC390, .data, ch/acorn]
-  # - [0x10BC3C0, .data, ch/swimminggnawty]
-  # - [0x10BC400, .data, ch/summeroutsidegnawty]
-  # - [0x10BC530, .data, ch/indoorsgnawty]
-  # - [0x10BC570, .data, ch/gnawtyboulder]
-  # - [0x10BC620, .data, ch/snore]
-  # - [0x10BC650, .data, ccwspawnqueue]
-  # - [0x10BC7E0, .data, ch/deadsnarebear]
-  # - [0x10BC820, .data, ch/snarebear]
-  # - [0x10BC860, .data, ch/grublinhood]
-  # - [0x10BC930, .data, ch/vacationtexttrigger]
-  # - [0x10BC960, .rodata, ch/zubbahoneylump]
-  # - [0x10BC980, .rodata, code_950]
-  # - [0x10BC9E0, .rodata, ch/beanstalk]
-  # - [0x10BCA10, .rodata, ch/ccwgobi]
-  # - [0x10BCA40, .rodata, ch/seasonswitchdoors]
-  # - [0x10BCA70, .rodata, code_3310]
-  # - [0x10BCA90, .rodata, ch/caterpillar]
-  # - [0x10BCAD0, .rodata, ch/adulteyrie]
-  # - [0x10BCB10, .rodata, ch/cutsceneadulteyrie]
-  # - [0x10BCB20, .rodata, ch/springnabnut]
-  # - [0x10BCB50, .rodata, ch/bellyfullnabnut]
-  # - [0x10BCB90, .rodata, ch/outsideautumnnabnut]
-  # - [0x10BCBB0, .rodata, code_5BF0]
-  # - [0x10BCBF0, .rodata, ch/acorn]
-  # - [0x10BCC10, .rodata, ch/swimminggnawty]
-  # - [0x10BCC20, .rodata, ch/summeroutsidegnawty]
-  # - [0x10BCC40, .rodata, ccwspawnqueue]
-  # - [0x10BCC50, .rodata, ch/snarebear]
-  # - [0x10BCC60, .rodata, ch/grublinhood]
-  # - [0x10BCD00, .bss, checksums]
-  # - [0x10BCD00, .bss, code_3310]
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  subsegments:
+  - [0x0106C980, c, ch/clankerscrew]
+  - [0x0106C980, c, ch/clankerkey] #Done
+  - [0x0106C980, c, ch/clankertoothext] #Done
+  - [0x0106C980, c, ch/tooth] #Done
+  - [0x0106C980, c, code_13C0] #DONE
+  - [0x0106C980, c, ccspawnqueue] #Done
+  - [0x0106C980, c, ma/clankerrings] #Done
+  - [0x0106C980, c, ma/clanker] #DONE
+  - [0x0106C980, c, ch/sawblade] #Done
+  - [0x0106C980, c, ch/ccgrates] #Done
+  - [0x01070030, .data, ch/clankerscrew]
+  - [0x01070030, .data, ch/clankerkey]
+  - [0x01070030, .data, ch/clankertoothext]
+  - [0x01070030, .data, ch/tooth]
+  - [0x01070030, .data, crc]
+  - [0x01070030, .data, ma/clankerrings]
+  - [0x01070030, .data, ma/clanker]
+  - [0x01070030, .data, ch/sawblade]
+  - [0x01070030, .data, ch/ccgrates]
+  - [0x01070440, .rodata, ch/clankerscrew]
+  - [0x01070440, .rodata, ch/clankerkey]
+  - [0x01070440, .rodata, ch/tooth]
+  - [0x01070440, .rodata, ma/clankerrings]
+  - [0x01070440, .rodata, ma/clanker]
+  - [0x01070500, .bss, checksums]
+  - [0x01070500, .bss, ch/clankertoothext]
+  - [0x01070500, .bss, ma/clankerrings]
+  - [0x01070500, .bss, ma/clanker]
+- name: GV
+  dir: GV
+  type: bin
+  start: 0x01070500
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x104C0E0, c, ch/toots]       #DONE
+  # - [0x104C310, c, ch/ancientone]   #DONE
+  # - [0x104CE40, c, ch/gobi1]   #DONE
+  # - [0x104D650, c, ch/gobi2] #DONE
+  # - [0x104DF60, c, ch/gobi3] #DONE
+  # - [0x104E5B0, c, ch/gobirope] #DONE
+  # - [0x104E810, c, ch/gobirock] #DONE
+  # - [0x104EC60, c, ch/trunker] #DONE
+  # - [0x104EFC0, c, magiccarpetshadow] #DONE
+  # - [0x104F1A0, c, ch/sarcophagus] #DONE
+  # - [0x104F710, c, code_3630] #DONE
+  # - [0x104FB80, c, ch/eggpot] #DONE
+  # - [0x104FBF0, c, crc] #DONE
+  # - [0x104FC90, c, code_3BB0] #DONE
+  # - [0x104FE70, c, magiccarpet2] #DONE
+  # - [0x1050490, c, code_43B0] #DONE
+  # - [0x1050820, c, ch/slappa] #DONE
+  # - [0x1051650, c, ch/grabba] #DONE
+  # - [0x10522C0, c, code_61E0] #DONE
+  # - [0x1052450, c, code_6370] #DONE
+  # - [0x1053060, c, sandybutteggtoll] #DONE
+  # - [0x1053140, c, code_7060] #DONE
+  # - [0x1053610, c, ch/histup] #DONE
+  # - [0x1053E30, c, code_7D50] #DONE
+  # - [0x1053E90, c, code_7DB0] #DONE
+  # - [0x10540A0, c, code_7FC0] #DONE
+  # - [0x10540D0, c, gvspawnqueue] #DONE
+  # - [0x1055210, c, ch/mazectrl] #DONE
+  # - [0x1055940, c, ch/buriedpyramid] #DONE
+  # - [0x1055C50, c, code_9B70] #DONE
+  # - [0x1055CF0, c, code_9C10] #DONE
+  # - [0x1055E90, c, matchinggame] #DONE
+  # - [0x1056570, c, waterctrl] #DONE
+  # - [0x10568C0, .data, ch/toots]
+  # - [0x1056910, .data, ch/ancientone]
+  # - [0x1056970, .data, ch/gobi1]
+  # - [0x10569A0, .data, ch/gobi2]
+  # - [0x10569F0, .data, ch/gobi3]
+  # - [0x1056A20, .data, ch/gobirope]
+  # - [0x1056A50, .data, ch/gobirock]
+  # - [0x1056A80, .data, ch/trunker]
+  # - [0x1056AB0, .data, magiccarpetshadow]
+  # - [0x1056AF0, .data, ch/sarcophagus]
+  # - [0x1056B90, .data, code_3630]
+  # - [0x1056BF0, .data, ch/eggpot]
+  # - [0x1056C20, .data, crc]
+  # - [0x1056C30, .data, code_3BB0]
+  # - [0x1056C90, .data, magiccarpet2]
+  # - [0x1056CF0, .data, code_43B0]
+  # - [0x1056D30, .data, ch/slappa]
+  # - [0x1056E10, .data, ch/grabba]
+  # - [0x1056E80, .data, code_61E0]
+  # - [0x1056EE0, .data, code_6370]
+  # - [0x1056F50, .data, sandybutteggtoll]
+  # - [0x1056F80, .data, code_7060]
+  # - [0x1056FD0, .data, ch/histup]
+  # - [0x1057030, .data, code_7DB0]
+  # - [0x1057070, .data, code_7FC0]
+  # - [0x10570D0, .data, gvspawnqueue]
+  # - [0x10572B0, .data, ch/mazectrl]
+  # - [0x1057310, .data, ch/buriedpyramid]
+  # - [0x1057340, .data, matchinggame]
+  # - [0x10573E0, .rodata, ch/ancientone]
+  # - [0x1057400, .rodata, ch/gobi1]
+  # - [0x1057410, .rodata, ch/gobi2]
+  # - [0x1057430, .rodata, ch/gobi3]
+  # - [0x1057470, .rodata, ch/gobirock]
+  # - [0x1057480, .rodata, ch/sarcophagus]
+  # - [0x1057490, .rodata, code_3BB0]
+  # - [0x10574A0, .rodata, magiccarpet2]
+  # - [0x10574B0, .rodata, code_43B0]
+  # - [0x10574C0, .rodata, ch/slappa]
+  # - [0x1057530, .rodata, ch/grabba]
+  # - [0x1057580, .rodata, code_6370]
+  # - [0x10575E0, .rodata, code_7060]
+  # - [0x1057600, .rodata, ch/histup]
+  # - [0x1057630, .rodata, gvspawnqueue]
+  # - [0x1057690, .rodata, ch/mazectrl]
+  # - [0x10576B0, .rodata, ch/buriedpyramid]
+  # - [0x10576F0, .rodata, matchinggame]
+  # - [0x1057700, .rodata, waterctrl]
+  # - [0x1057710, .bss, checksums]
+  # - [0x1057710, .bss, ch/toots]
+  # - [0x1057710, .bss, ch/gobi1]
+  # - [0x1057710, .bss, ch/gobi2]
+  # - [0x1057710, .bss, ch/gobirock]
+  # - [0x1057710, .bss, ch/slappa]
+  # - [0x1057710, .bss, ch/grabba]
+  # - [0x1057710, .bss, code_61E0]
+  # - [0x1057710, .bss, sandybutteggtoll]
+  # - [0x1057710, .bss, code_7D50]
+  # - [0x1057710, .bss, gvspawnqueue]
+  # - [0x1057710, .bss, code_9C10]
+  # - [0x1057710, .bss, matchinggame]
+  # - [0x1057710, .bss, waterctrl]
+- name: MMM
+  dir: MMM
+  type: code
+  start: 0x0107bb30
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  subsegments:
+  - [0x0107bb30, c, ch/loggo]  #DONE
+  - [0x0107bb30, c, ch/napper] #DONE
+  - [0x0107bb30, c, ch/cemetarypot]  #DONE
+  - [0x0107bb30, c, ch/motzhand] #DONE
+  - [0x0107bb30, c, ch/portraitchompa]  #DONE
+  - [0x0107bb30, c, mmmspawnqueue] #DONE
+  - [0x0107bb30, c, ch/portrait] #DONE
+  - [0x0107bb30, c, code_3120] #DONE
+  - [0x0107bb30, c, code_3420] #DONE
+  - [0x0107bb30, c, crc] #DONE
+  - [0x0107bb30, c, code_3D50] #DONE
+  - [0x0107bb30, c, ch/tumblar] #DONE
+  - [0x0107bb30, c, code_5000] #DONE
+  - [0x0107bb30, .data, ch/loggo]
+  - [0x0107bb30, .data, ch/napper]
+  - [0x0107bb30, .data, ch/cemetarypot]
+  - [0x0107bb30, .data, ch/motzhand]
+  - [0x0107bb30, .data, ch/portraitchompa]
+  - [0x0107bb30, .data, mmmspawnqueue]
+  - [0x0107bb30, .data, ch/portrait]
+  - [0x0107bb30, .data, code_3420]
+  - [0x0107bb30, .data, code_3D50]
+  - [0x0107bb30, .data, crc]
+  - [0x0107bb30, .data, code_5000]
+  - [0x0107bb30, .rodata, ch/loggo]
+  - [0x0107bb30, .rodata, ch/napper]
+  - [0x0107bb30, .rodata, ch/motzhand]
+  - [0x0107bb30, .rodata, ch/portraitchompa]
+  - [0x0107bb30, .rodata, mmmspawnqueue]
+  - [0x0107bb30, .rodata, code_3120]
+  - [0x0107bb30, .rodata, code_3420]
+  - [0x0107bb30, .rodata, code_3D50]
+  - [0x0107bb30, .rodata, ch/tumblar]
+  - [0x0107bb30, .rodata, code_5000]
+  - [0x0107bb30, .bss, checksums]
+  - [0x0107bb30, .bss, mmmspawnqueue]
+  - [0x0107bb30, .bss, code_3120]
+  - [0x0107bb30, .bss, code_3420]
+  - [0x0107bb30, .bss, code_3D50]
+- name: TTC
+  dir: TTC
+  type: bin
+  start: 0x01081c00
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x105D7E0, c, ch/clam]       #DONE
+  # - [0x105E880, c, ch/blubber] #DONE
+  # - [0x105F1B0, c, ch/nipper] #DONE
+  # - [0x105FEB0, c, code_26D0] #DONE
+  # - [0x1060360, c, ch/leaky] #DONE
+  # - [0x1060820, c, code_3040] #DONE
+  # - [0x10608B0, c, ch/lockup] #DONE
+  # - [0x1060DB0, c, ch/treasurehunt] #DONE
+  # - [0x1061610, c, ma/castle] #DONE
+  # - [0x10633B0, c, ch/treasure] #DONE
+  # - [0x10637A0, .data, ch/clam]
+  # - [0x10638D0, .data, ch/blubber]
+  # - [0x1063930, .data, ch/nipper]
+  # - [0x10639D0, .data, code_26D0]
+  # - [0x1063AF0, .data, ch/leaky]
+  # - [0x1063B40, .data, code_3040]
+  # - [0x1063B50, .data, ch/lockup]
+  # - [0x1063C10, .data, ch/treasurehunt]
+  # - [0x1063D70, .data, ma/castle]
+  # - [0x1064080, .data, ch/treasure]
+  # - [0x10640D0, .rodata, ch/clam]
+  # - [0x1064130, .rodata, ch/blubber]
+  # - [0x1064160, .rodata, ch/nipper]
+  # - [0x1064180, .rodata, code_26D0]
+  # - [0x10641C0, .rodata, ch/leaky]
+  # - [0x10641E0, .rodata, ch/lockup]
+  # - [0x1064210, .rodata, ch/treasurehunt]
+  # - [0x1064240, .rodata, ma/castle]
+  # - [0x1064A90, .rodata, ch/treasure]
+  # - [0x1064AE0, .bss, checksums]
+  # - [0x1064AE0, .bss, code_3040]
+  # - [0x1064AE0, .bss, ch/treasurehunt]
+  # - [0x1064AE0, .bss, ma/castle]
+- name: MM
+  dir: MM
+  type: bin
+  start: 0x01088f00
+  # vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x1064AE0, c, ch/orangepad]
+  # - [0x1065050, c, ch/hut]
+  # - [0x1065390, c, ch/chimpystump]
+  # - [0x10655C0, c, ch/conga]
+  # - [0x10665B0, c, crc]
+  # - [0x1066680, c, ch/orange]
+  # - [0x10669F0, c, ch/lmonkey] #chimpy
+  # - [0x1066FA0, c, mmspawnqueue]
+  # - [0x1067090, c, ch/grublin]
+  # - [0x1067220, c, ch/jujuhitbox]
+  # - [0x10676C0, c, ch/juju]
+  # - [0x1067F80, .data, ch/orangepad]
+  # - [0x1067FB0, .data, ch/hut]
+  # - [0x1068010, .data, ch/chimpystump]
+  # - [0x1068040, .data, ch/conga]
+  # - [0x10680B0, .data, crc]
+  # - [0x10680C0, .data, ch/orange]
+  # - [0x1068100, .data, ch/lmonkey]
+  # - [0x1068150, .data, ch/grublin]
+  # - [0x10681D0, .data, ch/jujuhitbox]
+  # - [0x1068200, .data, ch/juju]
+  # - [0x1068230, .rodata, ch/orangepad]
+  # - [0x1068240, .rodata, ch/hut]
+  # - [0x1068250, .rodata, ch/conga]
+  # - [0x10682D0, .rodata, ch/orange]
+  # - [0x10682F0, .rodata, ch/lmonkey]
+  # - [0x1068340, .rodata, ch/grublin]
+  # - [0x1068350, .rodata, ch/jujuhitbox]
+  # - [0x1068360, .rodata, ch/juju]
+  # - [0x1068370, .bss, checksums]
+  # - [0x1068370, .bss, ch/hut]
+  # - [0x1068370, .bss, ch/juju]
+- name: BGS
+  dir: BGS
+  type: bin
+  start: 0x0108c790
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # # after: core2-data
+  # subsegments:
+  # - [0x1068370, c, ch/flibbit] #DONE
+  # - [0x1069960, c, ch/pinkegg] #DONE
+  # - [0x1069C10, c, ch/croctus] #DONE
+  # - [0x106A5E0, c, ch/tiptup] #DONE
+  # - [0x106B3A0, c, ch/choirturtle] #DONE
+  # - [0x106B790, c, mrvileminigame]
+  # - [0x106D0E0, c, ch/yumblie] #DONE
+  # - [0x106D970, c, ch/mrvile] #DONE
+  # - [0x106EAA0, c, ch/frogminigame] #DONE
+  # - [0x106F160, c, ch/yellowflibbit] #DONE
+  # - [0x10709B0, c, ch/mudhut] #DONE
+  # - [0x1070DD0, c, ch/swampswitch] #DONE
+  # - [0x1071160, c, bgsspawnqueue] #DONE
+  # - [0x10713F0, c, ch/tanktup]
+  # - [0x1071AC0, c, ch/tanktuplegs] #DONE
+  # - [0x1071C30, c, ch/bigalligator] #DONE
+  # - [0x1071C90, c, ch/leafboat] #DONE
+  # - [0x1072610, .data, ch/flibbit]
+  # - [0x1072640, .data, ch/pinkegg]
+  # - [0x1072730, .data, ch/croctus]
+  # - [0x10727B0, .data, ch/tiptup]
+  # - [0x1072800, .data, ch/choirturtle]
+  # - [0x10728E0, .data, mrvileminigame]
+  # - [0x10729C0, .data, ch/yumblie]
+  # - [0x10729F0, .data, ch/mrvile]
+  # - [0x1072A30, .data, ch/frogminigame]
+  # - [0x1072A60, .data, ch/yellowflibbit]
+  # - [0x1072AA0, .data, crc]
+  # - [0x1072AB0, .data, ch/mudhut]
+  # - [0x1072B10, .data, ch/swampswitch]
+  # - [0x1072BA0, .data, ch/tanktup]
+  # - [0x1072BD0, .data, ch/tanktuplegs]
+  # - [0x1072CF0, .data, ch/bigalligator]
+  # - [0x1072D20, .data, ch/leafboat]
+  # - [0x1072D50, .rodata, ch/flibbit]
+  # - [0x1072E60, .rodata, ch/croctus]
+  # - [0x1072EF0, .rodata, ch/tiptup]
+  # - [0x1072F60, .rodata, ch/choirturtle]
+  # - [0x1072F70, .rodata, mrvileminigame]
+  # - [0x1072F90, .rodata, ch/yumblie]
+  # - [0x1072FC0, .rodata, ch/mrvile]
+  # - [0x1073010, .rodata, ch/frogminigame]
+  # - [0x1073020, .rodata, ch/yellowflibbit]
+  # - [0x1073110, .rodata, ch/mudhut]
+  # - [0x1073120, .rodata, ch/swampswitch]
+  # - [0x1073130, .rodata, ch/tanktup]
+  # - [0x1073140, .rodata, ch/tanktuplegs]
+  # - [0x1073150, .rodata, ch/leafboat]
+  # - [0x10731B0, .bss, checksums]
+  # - [0x10731B0, .bss, ch/frogminigame]
+- name: RBB
+  dir: RBB
+  type: bin
+  start: 0x010975d0
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x10731B0, c, ch/eggtoll1]
+  # - [0x10737F0, c, rbbspawnqueue]
+  # - [0x1073E50, c, code_CA0]
+  # - [0x1074720, c, code_1570]
+  # - [0x1075170, c, ch/grimlet]
+  # - [0x1075990, c, ch/cog]
+  # - [0x1075C20, c, ch/axle]
+  # - [0x1076040, c, ch/enginefan]
+  # - [0x1076660, c, ch/enginefanswitch]
+  # - [0x1076850, c, ch/propellor]
+  # - [0x1076E60, c, ch/propellorswitch]
+  # - [0x10772A0, c, ch/engineparts]
+  # - [0x1077980, c, ch/whistleswitch]
+  # - [0x1077E20, c, ch/whistle]
+  # - [0x1078210, c, ch/whistlectrl]
+  # - [0x10784A0, c, ch/anchorswitch]
+  # - [0x1078640, c, ch/dolphin]
+  # - [0x1078C60, c, ch/anchor]
+  # - [0x1078DC0, c, ch/anchorctrl]
+  # - [0x10790C0, c, ch/rarewareflag]
+  # - [0x1079130, c, ch/bossboombox]
+  # - [0x107AC10, c, ch/bossboomboxctrl]
+  # - [0x107ACD0, c, ch/bellbuoy]
+  # - [0x107B180, c, ch/rowboat]
+  # - [0x107B6D0, c, ch/boombox]
+  # - [0x107C820, c, code_9670]
+  # - [0x107C9F0, c, code_9840]
+  # - [0x107CBA0, c, propellorctrl]
+  # - [0x107CE10, .data, ch/eggtoll1]
+  # - [0x107CE90, .data, rbbspawnqueue]
+  # - [0x107CFC0, .data, code_CA0]
+  # - [0x107D030, .data, code_1570]
+  # - [0x107D140, .data, ch/grimlet]
+  # - [0x107D170, .data, ch/cog]
+  # - [0x107D1F0, .data, ch/axle]
+  # - [0x107D2F0, .data, ch/enginefan]
+  # - [0x107D470, .data, ch/enginefanswitch]
+  # - [0x107D4A0, .data, ch/propellor]
+  # - [0x107D4E0, .data, ch/propellorswitch]
+  # - [0x107D520, .data, ch/engineparts]
+  # - [0x107D630, .data, ch/whistleswitch]
+  # - [0x107D710, .data, ch/whistle]
+  # - [0x107D810, .data, ch/whistlectrl]
+  # - [0x107D840, .data, ch/anchorswitch]
+  # - [0x107D870, .data, ch/dolphin]
+  # - [0x107D8A0, .data, ch/anchor]
+  # - [0x107D8D0, .data, ch/anchorctrl]
+  # - [0x107D900, .data, ch/rarewareflag]
+  # - [0x107D930, .data, ch/bossboombox]
+  # - [0x107DAB0, .data, ch/bossboomboxctrl]
+  # - [0x107DAE0, .data, ch/bellbuoy]
+  # - [0x107DB10, .data, ch/rowboat]
+  # - [0x107DB40, .data, ch/boombox]
+  # - [0x107DBC0, .data, code_9670]
+  # - [0x107DBF0, .data, code_9840]
+  # - [0x107DC40, .rodata, rbbspawnqueue]
+  # - [0x107DC50, .rodata, code_CA0]
+  # - [0x107DC70, .rodata, code_1570]
+  # - [0x107DCD0, .rodata, ch/grimlet]
+  # - [0x107DD30, .rodata, ch/axle]
+  # - [0x107DD40, .rodata, ch/enginefanswitch]
+  # - [0x107DD50, .rodata, ch/propellor]
+  # - [0x107DD70, .rodata, ch/propellorswitch]
+  # - [0x107DD80, .rodata, ch/whistle]
+  # - [0x107DD90, .rodata, ch/whistlectrl]
+  # - [0x107DDB0, .rodata, ch/dolphin]
+  # - [0x107DE80, .rodata, ch/anchor]
+  # - [0x107DE90, .rodata, ch/anchorctrl]
+  # - [0x107DEA0, .rodata, ch/bossboombox]
+  # - [0x107DF30, .rodata, ch/bellbuoy]
+  # - [0x107DF60, .rodata, ch/rowboat]
+  # - [0x107DFB0, .rodata, ch/boombox]
+  # - [0x107E020, .rodata, code_9670]
+  # - [0x107E030, .bss, checksums]
+  # - [0x107E030, .bss, ch/bossboombox]
+  # - [0x107E030, .bss, ch/boombox]
+  # - [0x107E030, .bss, ch/boombox]
+  # - [0x107E030, .bss, code_9670]
+  # - [0x107E030, .bss, propellorctrl]
+- name: FP
+  dir: FP
+  type: bin
+  start: 0x010a2470
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x107E030, c, ch/scarfsled]       #DONE
+  # - [0x107E500, c, ch/racesled]   #DONE
+  # - [0x107E7C0, c, ch/snowmanbutton]   #DONE
+  # - [0x107EA70, c, ch/xmastree]   #DONE
+  # - [0x107F220, c, ch/boggy1] #DONE
+  # - [0x107FA10, c, ch/boggyraceflag1] #DONE
+  # - [0x1080020, c, ch/boggyraceflag2] #DONE
+  # - [0x1080380, c, ch/boggy2] #DONE
+  # - [0x1081E30, c, ch/bearcub] #DONE
+  # - [0x1082430, c, ma/snowy] #DONE
+  # - [0x1082600, c, ma/snowbutton] #DONE
+  # - [0x10827A0, c, ma/slalom] #DONE
+  # - [0x1083CF0, c, ch/twinkly] 
+  # - [0x1084B10, c, ch/twinklybox] #DONE
+  # - [0x10859B0, c, ch/twinklymuncher] #DONE
+  # - [0x1086360, c, ch/xmastreeswitch] #DONE
+  # - [0x1086810, c, ch/xmastreestar] #DONE
+  # - [0x1086D30, c, ch/present] #DONE
+  # - [0x1086E50, c, ch/wozza] #DONE
+  # - [0x1087B40, c, ch/wozzasjig] #DONE
+  # - [0x1087ED0, c, ch/boggy3] #DONE
+  # - [0x10881F0, c, code_A1C0] #DONE
+  # - [0x1088270, c, ch/cavewozza] #DONE
+  # - [0x1088530, c, ch/xmastreeice] #DONE
+  # - [0x10888B0, c, ch/xmastreeeggtoll] #DONE
+  # - [0x1088C00, c, fpspawnqueue] #DONE
+  # - [0x1089500, c, code_B4D0] #DONE
+  # - [0x1089630, .data, ch/scarfsled]
+  # - [0x1089680, .data, ch/racesled]
+  # - [0x10896D0, .data, ch/snowmanbutton]
+  # - [0x1089790, .data, ch/xmastree]
+  # - [0x10897C0, .data, ch/boggy1]
+  # - [0x1089840, .data, ch/boggyraceflag1]
+  # - [0x1089880, .data, ch/boggyraceflag2]
+  # - [0x10898C0, .data, ch/boggy2]
+  # - [0x1089A30, .data, ch/bearcub]
+  # - [0x1089AF0, .data, ma/snowy]
+  # - [0x1089B00, .data, ma/snowbutton]
+  # - [0x1089B10, .data, ma/slalom]
+  # - [0x1089B90, .data, ch/twinkly]
+  # - [0x1089D00, .data, ch/twinklybox]
+  # - [0x1089FD0, .data, ch/twinklymuncher]
+  # - [0x108A040, .data, ch/xmastreeswitch]
+  # - [0x108A0B0, .data, ch/xmastreestar]
+  # - [0x108A0E0, .data, ch/present]
+  # - [0x108A160, .data, ch/wozza]
+  # - [0x108A200, .data, ch/wozzasjig]
+  # - [0x108A2C0, .data, ch/boggy3]
+  # - [0x108A300, .data, code_A1C0]
+  # - [0x108A330, .data, ch/cavewozza]
+  # - [0x108A370, .data, ch/xmastreeice]
+  # - [0x108A480, .data, ch/xmastreeeggtoll]
+  # - [0x108A520, .data, fpspawnqueue]
+  # - [0x108A7C0, .rodata, ch/scarfsled]
+  # - [0x108A7D0, .rodata, ch/xmastree]
+  # - [0x108A830, .rodata, ch/boggy1]
+  # - [0x108A850, .rodata, ch/boggyraceflag1]
+  # - [0x108A860, .rodata, ch/boggyraceflag2]
+  # - [0x108A870, .rodata, ch/boggy2]
+  # - [0x108A950, .rodata, ch/bearcub]
+  # - [0x108A970, .rodata, ma/slalom]
+  # - [0x108A9C0, .rodata, ch/twinkly]
+  # - [0x108AA40, .rodata, ch/twinklybox]
+  # - [0x108AA80, .rodata, ch/twinklymuncher]
+  # - [0x108AAB0, .rodata, ch/xmastreestar]
+  # - [0x108AAC0, .rodata, ch/wozza]
+  # - [0x108AB10, .rodata, ch/wozzasjig]
+  # - [0x108AB30, .rodata, ch/xmastreeice]
+  # - [0x108AB40, .rodata, ch/xmastreeeggtoll]
+  # - [0x108AB50, .bss, checksums]
+  # - [0x108AB50, .bss, ch/boggy2]
+  # - [0x108AB50, .bss, ma/snowy]
+  # - [0x108AB50, .bss, ma/snowbutton]
+  # - [0x108AB50, .bss, ma/slalom]
+  # - [0x108AB50, .bss, ch/xmastreestar]
+  # - [0x108AB50, .bss, code_B4D0]
+- name: SM
+  dir: SM
+  type: bin
+  start: 0x010aef90
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x108AB50, c, code_0]
+  # - [0x108AC40, c, smspawnqueue]
+  # - [0x108B100, c, code_5B0]
+  # - [0x108B740, c, code_BF0]
+  # - [0x108B8B0, c, ch/attacktutorial]
+  # - [0x108C070, c, ch/vegetables]
+  # - [0x108D450, c, code_2900]
+  # - [0x108D4E0, c, code_2990]
+  # - [0x108EB10, c, code_3FC0]
+  # - [0x108EBC0, c, ch/jumptutorial]
+  # - [0x108F020, c, code_44D0]
+  # - [0x108F210, c, code_46C0]
+  # - [0x108F220, .data, code_0]
+  # - [0x108F240, .data, smspawnqueue]
+  # - [0x108F250, .data, code_5B0]
+  # - [0x108F350, .data, code_BF0]
+  # - [0x108F380, .data, ch/attacktutorial]
+  # - [0x108F3B0, .data, ch/vegetables]
+  # - [0x108F6C0, .data, code_2990]
+  # - [0x108F750, .data, code_3FC0]
+  # - [0x108F810, .data, ch/jumptutorial]
+  # - [0x108F840, .data, code_44D0]
+  # - [0x108F870, .rodata, code_5B0]
+  # - [0x108F890, .rodata, ch/attacktutorial]
+  # - [0x108F930, .rodata, ch/vegetables]
+  # - [0x108F960, .rodata, code_2990]
+  # - [0x108FA70, .rodata, code_44D0]
+  # - [0x108FA80, .bss, checksums]
+  # - [0x108FA80, .bss, smspawnqueue]
+- name: cutscenes
+  dir: cutscenes
+  type: code
+  start: 0x010B4170
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  subsegments:
+  - [0x010B4170, c, code_0]
+  - [0x010B4170, c, cutscenesspawnqueue] #DONE
+  - [0x010B4170, c, code_6730] #DONE
+  - [0x010B4170, c, code_69F0] #DONE
+  - [0x010B4170, c, code_6C90] #DONE
+  - [0x010BB0D0, .data, code_0]
+  - [0x010BB0D0, .data, cutscenesspawnqueue]
+  - [0x010BB0D0, .data, code_6730]
+  - [0x010BB0D0, .data, code_69F0]
+  - [0x010BB0D0, .data, code_6C90]
+  - [0x010BC6B0, .rodata, code_0]
+  - [0x010BC6B0, .rodata, code_6730]
+  - [0x010BC6B0, .rodata, code_69F0]
+  - [0x010BC6B0, .rodata, code_6C90]
+  - [0x010BC760, .bss, checksums]
+- name: lair
+  dir: lair
+  type: bin
+  start: 0x010BC760
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x1098070, c, lairspawnqueue] #DONE
+  # - [0x109C310, c, ch/cauldron] #DONE
+  # - [0x109D6B0, c, ch/brentilda] #DONE
+  # - [0x109DF40, c, code_5ED0] #DONE
+  # - [0x10A0760, c, jigsawpicture] #DONE
+  # - [0x10A1CB0, c, ch/cheato] #DONE
+  # - [0x10A21E0, c, ch/refillpillow] #DONE
+  # - [0x10A24A0, c, code_A430] #DONE
+  # - [0x10A2510, c, ch/gruntling] #DONE
+  # - [0x10A2880, c, code_A810] #DONE
+  # - [0x10A2DE0, c, code_AD70] #DONE
+  # - [0x10A3C40, c, ch/furnacefunprizes] #DONE
+  # - [0x10A4230, c, ch/lairgruntilda] #DONE
+  # - [0x10A4730, c, code_C6C0] #DONE
+  # - [0x10A4930, .data, lairspawnqueue]
+  # - [0x10A51A0, .data, ch/cauldron]
+  # - [0x10A5390, .data, ch/brentilda]
+  # - [0x10A53E0, .data, code_5ED0]
+  # - [0x10A6430, .data, jigsawpicture]
+  # - [0x10A64E0, .data, ch/cheato]
+  # - [0x10A6560, .data, ch/refillpillow]
+  # - [0x10A6600, .data, code_A430]
+  # - [0x10A6630, .data, ch/gruntling]
+  # - [0x10A6700, .data, code_A810]
+  # - [0x10A6730, .data, code_AD70]
+  # - [0x10A6860, .data, ch/furnacefunprizes]
+  # - [0x10A6940, .data, ch/lairgruntilda]
+  # - [0x10A69A0, .data, code_C6C0]
+  # - [0x10A69D0, .rodata, lairspawnqueue]
+  # - [0x10A6C80, .rodata, ch/cauldron]
+  # - [0x10A6D10, .rodata, ch/brentilda]
+  # - [0x10A6D40, .rodata, code_5ED0]
+  # - [0x10A6E50, .rodata, jigsawpicture]
+  # - [0x10A6EC0, .rodata, ch/cheato]
+  # - [0x10A6EF0, .rodata, ch/gruntling]
+  # - [0x10A6F30, .rodata, code_A810]
+  # - [0x10A6F50, .rodata, code_AD70]
+  # - [0x10A6F70, .rodata, ch/furnacefunprizes]
+  # - [0x10A6FB0, .rodata, ch/lairgruntilda]
+  # - [0x10A6FC0, .rodata, code_C6C0]
+  # - [0x10A6FD0, .bss, checksums]
+  # - [0x10A6FD0, .bss, lairspawnqueue]
+  # - [0x10A6FD0, .bss, code_A810]
+- name: fight
+  dir: fight
+  type: bin
+  start: 0x010CB6C0
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  # subsegments:
+  # - [0x10A6FD0, c, fight] #DONE
+  # - [0x10A7150, c, chfinalboss] 
+  # - [0x10ACEA0, c, chbossjinjo] #DONE
+  # - [0x10ADE60, c, chbossjinjobase] #DONE
+  # - [0x10AE550, c, chstonejinjo] #DONE
+  # - [0x10AEBB0, c, chjinjonatorbase] #DONE
+  # - [0x10AF360, c, chspellbarrier] #DONE
+  # - [0x10AF770, c, chspellfireball] #DONE
+  # - [0x10B0820, c, code_9850] #DONE
+  # - [0x10B0D10, c, chjinjonator] #DONE
+  # - [0x10B1EA0, c, chbossshadow] #DONE
+  # - [0x10B1F60, .data, chfinalboss]
+  # - [0x10B23F0, .data, chbossjinjo]
+  # - [0x10B2570, .data, chbossjinjobase]
+  # - [0x10B25D0, .data, chstonejinjo]
+  # - [0x10B2620, .data, chjinjonatorbase]
+  # - [0x10B26B0, .data, chspellbarrier]
+  # - [0x10B26E0, .data, chspellfireball]
+  # - [0x10B29A0, .data, code_9850]
+  # - [0x10B2B90, .data, chjinjonator]
+  # - [0x10B2C70, .data, chbossshadow]
+  # - [0x10B2CA0, .rodata, chfinalboss]
+  # - [0x10B3060, .rodata, chbossjinjo]
+  # - [0x10B3110, .rodata, chbossjinjobase]
+  # - [0x10B3120, .rodata, chstonejinjo]
+  # - [0x10B3160, .rodata, chjinjonatorbase]
+  # - [0x10B3190, .rodata, chspellbarrier]
+  # - [0x10B31A0, .rodata, chspellfireball]
+  # - [0x10B31F0, .rodata, code_9850]
+  # - [0x10B3200, .rodata, chjinjonator]
+  # - [0x10B3310, .rodata, chbossshadow]
+  # - [0x10B3320, .bss, checksums]
+  # - [0x10B3320, .bss, fight]
+  # - [0x10B3320, .bss, chfinalboss]
+  # - [0x10B3320, .bss, chspellfireball]
+  # - [0x10B3320, .bss, chjinjonator]
+- name: CCW
+  dir: CCW
+  type: code
+  start: 0x010D7A90
+  vram: 0x80386DD0
+  # follows_vram: core2
+  exclusive_ram_id: overlay
+  subsegments:
+  - [0x010D7A90, c, ch/zubbadoor]
+  - [0x010D7BF0, c, ch/zubbahoneylump]
+  - [0x010D83E0, c, code_950]
+  - [0x010D8F40, c, code_14B0]
+  - [0x010D95B0, c, ch/beanstalk] #DONE
+  - [0x010D95B0, c, ch/deadbeanstalk] #DONE
+  - [0x010D95B0, c, ch/ccwgobi] #DONE
+  - [0x010D95B0, c, ch/seasonswitchdoors] #DONE
+  - [0x010D95B0, c, ch/eyrieegg] #DONE
+  - [0x010D95B0, c, code_3310] #DONE
+  - [0x010D95B0, c, ch/caterpillar] #DONE
+  - [0x010D95B0, c, ch/adulteyrie] #DONE
+  - [0x010D95B0, c, ch/cutsceneadulteyrie] #DONE
+  - [0x010D95B0, c, ch/springnabnut] #DONE
+  - [0x010D95B0, c, ch/bellyfullnabnut] #DONE
+  - [0x010D95B0, c, ch/outsideautumnnabnut] #DONE
+  - [0x010D95B0, c, code_5BF0] #DONE
+  - [0x010D95B0, c, ch/acorn] #DONE
+  - [0x010D95B0, c, ch/swimminggnawty] #DONE
+  - [0x010D95B0, c, ch/summeroutsidegnawty] #DONE
+  - [0x010D95B0, c, ch/indoorsgnawty] #DONE
+  - [0x010D95B0, c, ch/gnawtyboulder] #DONE
+  - [0x010D95B0, c, ch/snore] #DONE
+  - [0x010D95B0, c, ccwspawnqueue] #DONE
+  - [0x010D95B0, c, ch/deadsnarebear] #DONE
+  - [0x010D95B0, c, ch/snarebear] #DONE
+  - [0x010D95B0, c, ch/grublinhood] #DONE
+  - [0x010D95B0, c, ch/vacationtexttrigger] #DONE
+  - [0x010E01F0, .data, ch/zubbadoor]
+  - [0x010E0240, .data, ch/zubbahoneylump]
+  - [0x010E0270, .data, code_950]
+  - [0x010E02A0, .data, code_14B0]
+  - [0x010E02E0, .data, ch/beanstalk]
+  - [0x010E0340, .data, ch/deadbeanstalk]
+  - [0x010E0370, .data, ch/ccwgobi]
+  - [0x010E03B0, .data, ch/seasonswitchdoors]
+  - [0x010E0510, .data, ch/eyrieegg]
+  - [0x010E0510, .data, code_3310]
+  - [0x010E0510, .data, ch/caterpillar]
+  - [0x010E0510, .data, ch/adulteyrie]
+  - [0x010E0510, .data, ch/cutsceneadulteyrie]
+  - [0x010E0510, .data, ch/springnabnut]
+  - [0x010E0510, .data, ch/bellyfullnabnut]
+  - [0x010E0510, .data, ch/outsideautumnnabnut]
+  - [0x010E0510, .data, code_5BF0]
+  - [0x010E0510, .data, ch/acorn]
+  - [0x010E0510, .data, ch/swimminggnawty]
+  - [0x010E0510, .data, ch/summeroutsidegnawty]
+  - [0x010E0510, .data, ch/indoorsgnawty]
+  - [0x010E0510, .data, ch/gnawtyboulder]
+  - [0x010E0510, .data, ch/snore]
+  - [0x010E0510, .data, ccwspawnqueue]
+  - [0x010E0510, .data, ch/deadsnarebear]
+  - [0x010E0510, .data, ch/snarebear]
+  - [0x010E0510, .data, ch/grublinhood]
+  - [0x010E0510, .data, ch/vacationtexttrigger]
+  - [0x010E10D0, .rodata, ch/zubbahoneylump]
+  - [0x010E10D0, .rodata, code_950]
+  - [0x010E10D0, .rodata, ch/beanstalk]
+  - [0x010E10D0, .rodata, ch/ccwgobi]
+  - [0x010E10D0, .rodata, ch/seasonswitchdoors]
+  - [0x010E10D0, .rodata, code_3310]
+  - [0x010E10D0, .rodata, ch/caterpillar]
+  - [0x010E10D0, .rodata, ch/adulteyrie]
+  - [0x010E10D0, .rodata, ch/cutsceneadulteyrie]
+  - [0x010E10D0, .rodata, ch/springnabnut]
+  - [0x010E10D0, .rodata, ch/bellyfullnabnut]
+  - [0x010E10D0, .rodata, ch/outsideautumnnabnut]
+  - [0x010E10D0, .rodata, code_5BF0]
+  - [0x010E10D0, .rodata, ch/acorn]
+  - [0x010E10D0, .rodata, ch/swimminggnawty]
+  - [0x010E10D0, .rodata, ch/summeroutsidegnawty]
+  - [0x010E10D0, .rodata, ccwspawnqueue]
+  - [0x010E10D0, .rodata, ch/snarebear]
+  - [0x010E10D0, .rodata, ch/grublinhood]
+  - [0x010E1470, .bss, checksums]
+  - [0x010E1470, .bss, code_3310]
 - name: emptyLvl
   dir: emptyLvl
   type: code
