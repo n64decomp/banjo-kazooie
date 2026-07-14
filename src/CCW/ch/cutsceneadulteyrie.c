@@ -37,7 +37,7 @@ enum chCutsceneAdultEyrie_State_e {
 /* .code */
 void chCutsceneAdultEyrie_setNextState(Actor *this, s32 next_state) {
     if (next_state == CH_CUTSCENE_ADULT_EYRIE_STATE_2_UNK) {
-        gcdialog_showDialog(ASSET_CDD_DIALOG_ADULT_EYRIE_COMPLETE_WINTER, 0, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_CDD_DIALOG_ADULT_EYRIE_COMPLETE_WINTER, 0x09F2, 0, 0), 0, NULL, NULL, NULL, NULL);
         if (this->state == CH_CUTSCENE_ADULT_EYRIE_STATE_1_UNK) {
             mapSpecificFlags_set(CCW_WINTER_SPECIFIC_FLAG_6_CUTSCENE_EEYRIE_ADULT, 0);
             timed_setStaticCameraToNode(0.0f, 1);

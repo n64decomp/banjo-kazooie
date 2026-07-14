@@ -44,9 +44,9 @@ extern Struct_core2_C4320_0 D_80371F44[] = {
 extern Struct_core2_C4320_0 D_80371F70 = {MAP_41_FP_BOGGYS_IGLOO, 6, 0x5D, 7, 8, 3};
 
 extern Struct_core2_C4320_0 D_80371F78[] ={
-    {MAP_7_TTC_TREASURE_TROVE_COVE, 0, 0x5F, 6, 9, 9},
-    {MAP_27_FP_FREEZEEZY_PEAK,      0, 0x5F, 9, 9, 9},
-    {MAP_12_GV_GOBIS_VALLEY,        0, 0x5F, 9, 5, 9}
+    {MAP_7_TTC_TREASURE_TROVE_COVE, 0, VER_SELECT(0x5F, 0x5E, 0, 0), 6, 9, 9},
+    {MAP_27_FP_FREEZEEZY_PEAK,      0, VER_SELECT(0x5F, 0x5E, 0, 0), 9, 9, 9},
+    {MAP_12_GV_GOBIS_VALLEY,        0, VER_SELECT(0x5F, 0x5E, 0, 0), 9, 5, 9}
 };
 
 extern s32 D_80371F8C = 0xA; //attract demo count

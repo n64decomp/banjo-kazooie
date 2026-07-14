@@ -127,7 +127,7 @@ void maClanker_raiseClankerCutscene(void) {
     timedFunc_set_0(13.0f, &maClanker_spawnJiggy);
     timed_setStaticCameraToNode(16.0f, 1);
     if (jiggyscore_isCollected(JIGGY_17_CC_CLANKER_RAISED) == FALSE) {
-        func_80324DBC(18.0f, ASSET_D2C_DIALOG_CLANKER_KEY_COMPLETE, 4, NULL, NULL, NULL, 0);
+        func_80324DBC(18.0f, VER_SELECT(ASSET_D2C_DIALOG_CLANKER_KEY_COMPLETE, 0x9FF, 0, 0), 4, NULL, NULL, NULL, 0);
     }
     timed_exitStaticCamera(18.0f);
     func_80324E38(18.0f, 0);
@@ -367,7 +367,7 @@ void maClanker_update(void){
             if(maClanker.triggerMeetDialog && skeletalAnim_getAnimId(maClanker.skeletonAnim) != ASSET_C4_ANIM_CLANKER_BITE){
                 skeletalAnim_set(maClanker.skeletonAnim, ASSET_C4_ANIM_CLANKER_BITE, 1.0f, 10.0f);
                 if(!maClanker.hasMetPlayer){
-                    gcdialog_showDialog(ASSET_D2B_DIALOG_CLANKER_MEET, 0xE, maClanker.position, NULL, NULL, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_D2B_DIALOG_CLANKER_MEET, 0x9FE, 0, 0), 0xE, maClanker.position, NULL, NULL, NULL);
                     maClanker.hasMetPlayer = TRUE;
                 }
             }//L8038918C

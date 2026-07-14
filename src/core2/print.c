@@ -541,7 +541,7 @@ void _printbuffer_draw_letter(char letter, f32* xPtr, f32* yPtr, f32 scale, Gfx 
 
     switch(print_sCurrentFont){
         case FONTS_0_DIALOG: //L802F5678
-            if(letter >= '\x21' && letter < '\x5f'){
+            if(letter >= '\x21' && letter < VER_SELECT('\x5f', '\x6c', 0, 0)){
                 letter_id = letter - '\x21';
                 valid_letter = 1;
             }

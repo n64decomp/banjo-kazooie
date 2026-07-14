@@ -122,7 +122,7 @@ Eyrie_Baby_Dialog chEyrieBabyProgression[] = {
         2, // Camera Node
         5, // Caterpillar Requirement
         0x21A, // Eating Animation
-        ASSET_CD7_DIALOG_BABY_EYRIE_MEET_SUMMER // Meet Dialog
+        VER_SELECT(ASSET_CD7_DIALOG_BABY_EYRIE_MEET_SUMMER, 0x09EC, 0, 0) // Meet Dialog
     },
     {
         MAP_45_CCW_AUTUMN, // Map
@@ -135,7 +135,7 @@ Eyrie_Baby_Dialog chEyrieBabyProgression[] = {
         4, // Camera Node
         10, // Caterpillar Requirement
         0x21B, // Eating Animation
-        ASSET_CDA_DIALOG_BABY_EYRIE_MEET_FALL // Meet Dialog
+        VER_SELECT(ASSET_CDA_DIALOG_BABY_EYRIE_MEET_FALL, 0x09EF, 0, 0) // Meet Dialog
     },
     NULL
 };
@@ -204,14 +204,14 @@ void chEyrieBaby_setState(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, local->progression->goingToSleepAnimation, 0.5f, 8.5f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
         if (local->progression->map_id == MAP_43_CCW_SPRING) {
-            gcdialog_showDialog(ASSET_CD6_DIALOG_BABY_EYRIE_HATCH, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CD6_DIALOG_BABY_EYRIE_HATCH, 0x09EB, 0, 0), 4, NULL, NULL, NULL, NULL);
             skeletalAnim_setCallback_0(this->unk148, 0.65f, &chEyrieBaby_saysMama);
         }
         if (local->progression->map_id == MAP_44_CCW_SUMMER) {
-            gcdialog_showDialog(ASSET_CD9_DIALOG_BABY_EYRIE_COMPLETE_SUMMER, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CD9_DIALOG_BABY_EYRIE_COMPLETE_SUMMER, 0x09EE, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
         if (local->progression->map_id == MAP_45_CCW_AUTUMN) {
-            gcdialog_showDialog(ASSET_CDB_DIALOG_BABY_EYRIE_COMPLETE_FALL, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CDB_DIALOG_BABY_EYRIE_COMPLETE_FALL, 0x09F0, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
         local->sfx = local->progression->goingToSleepSFX;
     }
@@ -336,7 +336,7 @@ void chEyrieBaby_update(Actor *this) {
                 if ((local->progression->map_id == MAP_44_CCW_SUMMER)
                     && (local->eatenCount == 0))
                 {
-                    gcdialog_showDialog(ASSET_CD8_DIALOG_BABY_EYRIE_CHECK_SUMMER, 4, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_CD8_DIALOG_BABY_EYRIE_CHECK_SUMMER, 0x09ED, 0, 0), 4, NULL, NULL, NULL, NULL);
                 }
                 local->eatenCount++;
                 if (local->eatenCount < local->progression->caterpillarRequirement) {

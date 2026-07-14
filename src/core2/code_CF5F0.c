@@ -7,7 +7,7 @@ extern u8 boot_bk_boot_ROM_START[]; // bk_boot segment start (skipping entry fun
 extern u8 boot_bk_boot_ROM_END[]; // bk_boot segment end
 
 s32 D_803727F0 = 0;
-s32 D_803727F4 = VER_SELECT(0x9E44C2DC, 0, 0, 0); // CORE2_TEXT_CRC2
+s32 D_803727F4 = VER_SELECT(0x9E44C2DC, 0xC1A6FD58, 0, 0); // CORE2_TEXT_CRC2
 s32 D_803727F8 = 0;
 
 s32 sBootROMOffset = 0;

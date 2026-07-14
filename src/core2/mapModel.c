@@ -239,7 +239,7 @@ void mapModel_opa_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 temp_a0;
 
     if (func_80320708() && levelSpecificFlags_validateCRC2() && dummy_func_80320248()) {
-        if (mapModel_getOpaModelId() == ASSET_14CF_MODEL_SM_SPIRAL_MOUNTAIN_OPA) {
+        if (mapModel_getOpaModelId() == VER_SELECT(ASSET_14CF_MODEL_SM_SPIRAL_MOUNTAIN_OPA, 0xD2D, 0, 0)) {
             modelRender_setAppendageVisibility(1, 0);
             modelRender_setAppendageVisibility(2, 1);
         }

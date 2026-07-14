@@ -29,10 +29,14 @@ ActorAnimationInfo chSeasonSwitchAnimations[] = {
     {ASSET_D4_ANIM_SWITCH_DOWN, 100000000.0f}
 };
 
+#if VERSION == VERSION_PAL
+Actor* cc_pal_unk_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
+#endif
+
 ActorInfo chCCWSpringSwitchDoor = {
     MARKER_133_CCW_SPRING_SEASON_DOOR, ACTOR_1E3_CCW_SPRING_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
     0x1, NULL,
-    chSeasonSwitchDoors_update, actor_update_func_80326224, actor_drawFullDepth,
+    chSeasonSwitchDoors_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0x4000, 0.0f, 0
 };
 
@@ -46,7 +50,7 @@ ActorInfo chCCWSpringSwitch = {
 ActorInfo chCCWSummerSwitchDoor = {
     MARKER_131_CCW_SUMMER_SEASON_DOOR, ACTOR_16D_CCW_SUMMER_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
     0x1, NULL,
-    chSeasonSwitchDoors_update, actor_update_func_80326224, actor_drawFullDepth,
+    chSeasonSwitchDoors_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0x4000, 0.0f, 0
 };
 
@@ -60,7 +64,7 @@ ActorInfo chCCWSummerSwitch = {
 ActorInfo chCCWAutumnSwitchDoor = {
     MARKER_12F_CCW_AUTUMN_SEASON_DOOR, ACTOR_16B_CCW_AUTUMN_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
     0x1, NULL,
-    chSeasonSwitchDoors_update, actor_update_func_80326224, actor_drawFullDepth,
+    chSeasonSwitchDoors_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0x4000, 0.0f, 0
 };
 
@@ -74,7 +78,7 @@ ActorInfo chCCWAutumnSwitch = {
 ActorInfo chCCWWinterSwitchDoor = {
     MARKER_12D_CCW_WINTER_SEASON_DOOR, ACTOR_169_CCW_WINTER_SEASON_DOOR, ASSET_52E_MODEL_CCW_SEASON_DOOR,
     0x1, NULL,
-    chSeasonSwitchDoors_update, actor_update_func_80326224, actor_drawFullDepth,
+    chSeasonSwitchDoors_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0x4000, 0.0f, 0
 };
 

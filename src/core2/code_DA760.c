@@ -66,13 +66,13 @@ void lairBottlesDialog_update(Actor *this){
             && level_get() == LEVEL_6_LAIR)
         {
             podium_text_id = fileProgressFlag_get(FILEPROG_A7_NEAR_PUZZLE_PODIUM_TEXT) ?
-                ASSET_F80_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_AFTER_PODIUM : ASSET_F7F_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_BEFORE_PODIUM;
+                VER_SELECT(ASSET_F80_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_AFTER_PODIUM, 0x0AE6, 0, 0) : VER_SELECT(ASSET_F7F_DIALOG_BOTTLES_MM_ENTRANCE_BEFORE_OPENING_BEFORE_PODIUM, 0x0AE5, 0, 0);
             if(gcdialog_showDialog(podium_text_id, 0, 0, 0, 0, 0)){
                 this->has_met_before = TRUE;
             }
         }
         else if(lairBottlesDialog_levelOpenedAndNotLearnedAllMoves(this)){
-            didnt_learn_moves_text_id = (volatileFlag_get(VOLATILE_FLAG_16) ? ASSET_F6E_DIALOG_DIDNT_LEARN_ALL_MOVES_FROM_MM : ASSET_F68_DIALOG_MM_THREE_NEW_MOVES_TO_LEARN) + this->actorTypeSpecificField - 1;
+            didnt_learn_moves_text_id = (volatileFlag_get(VOLATILE_FLAG_16) ? VER_SELECT(ASSET_F6E_DIALOG_DIDNT_LEARN_ALL_MOVES_FROM_MM, 0xAD4, 0, 0) : VER_SELECT(ASSET_F68_DIALOG_MM_THREE_NEW_MOVES_TO_LEARN, 0x0ACE, 0, 0)) + this->actorTypeSpecificField - 1;
             if(!volatileFlag_get(VOLATILE_FLAG_16)
                 && level_get() == LEVEL_6_LAIR)
             {

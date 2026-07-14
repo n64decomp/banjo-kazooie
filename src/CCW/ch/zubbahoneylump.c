@@ -61,9 +61,9 @@ void chZubbaFight_setState(Actor *this, s32 next_state) {
     if (next_state == CH_ZUBBA_FIGHT_STATE_2_DIALOG) {
         if (!volatileFlag_getAndSet(VOLATILE_FLAG_B5, 1)) {
             gcdialog_showDialog(
-                ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 4, NULL, this->marker, chZubbaFight_startFightDialog, NULL);
+                VER_SELECT(ASSET_CE2_DIALOG_ZUBBA_MEET_SUMMER, 0x09F7, 0, 0), 4, NULL, this->marker, chZubbaFight_startFightDialog, NULL);
         } else {
-            gcdialog_showDialog(ASSET_CE3_DIALOG_ZUBBA_RETURN, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CE3_DIALOG_ZUBBA_RETURN, 0x09F8, 0, 0), 4, NULL, NULL, NULL, NULL);
             chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_3_FIGHT);
             return;
         }
@@ -81,7 +81,7 @@ void chZubbaFight_setState(Actor *this, s32 next_state) {
             volatileFlag_set(VOLATILE_FLAG_3, 0);
             volatileFlag_set(VOLATILE_FLAG_5_FF_MINIGAME_WON, 1);
         } else {
-            gcdialog_showDialog(ASSET_CE4_DIALOG_ZUBBA_COMPLETE, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_CE4_DIALOG_ZUBBA_COMPLETE, 0x09F9, 0, 0), 4, NULL, NULL, NULL, NULL);
             func_8025A58C(-1, 400);
             comusic_8025AB44(COMUSIC_4B_CCW_ZUBBA_FIGHT, 0, 400);
             func_8025AABC(COMUSIC_4B_CCW_ZUBBA_FIGHT);
@@ -221,7 +221,7 @@ void chZubbaFight_update(Actor *this) {
             && volatileFlag_get(VOLATILE_FLAG_3))
         {
             item_set(ITEM_6_HOURGLASS, 1);
-            item_set(ITEM_0_HOURGLASS_TIMER, 1800 - 1);
+            item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(1800, 1500, 1, 1) - 1);
             chZubbaFight_setState(this, CH_ZUBBA_FIGHT_STATE_3_FIGHT);
         } else if ((local->jiggyMarker != NULL) && (gsworld_getMap() == MAP_5A_CCW_SUMMER_ZUBBA_HIVE)) {
             player_getPosition(player_position_2);

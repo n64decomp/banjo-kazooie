@@ -70,7 +70,7 @@ void chGnawtySummer_setState(Actor *this, s32 next_state) {
         this->marker->propPtr->unk8_3 = FALSE;
         skeletalAnim_set(this->unk148, ASSET_1A7_ANIM_GNAWTY_CHEERING, 0.2f, 3.0f);
         skeletalAnim_setBehavior(this->unk148, SKELETAL_ANIM_2_ONCE);
-        gcdialog_showDialog(ASSET_CD0_DIALOG_GNAWTY_COMPLETE_SUMMER, 0x24, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_CD0_DIALOG_GNAWTY_COMPLETE_SUMMER, 0x9E5, 0, 0), 0x24, NULL, NULL, NULL, NULL);
     }
     if (next_state == CH_GNAWTY_SUMMER_STATE_3_RUNNING) {
         skeletalAnim_set(this->unk148, ASSET_1A8_ANIM_GNAWTY_RUNNING, 0.2f, 0.5f);
@@ -134,7 +134,7 @@ void chGnawtySummer_update(Actor *this) {
         if (!this->has_met_before) {
             player_getPosition(player_position);
             if (ml_vec3f_distance(this->position, player_position) < 900.0f) {
-                gcdialog_showDialog(ASSET_CCF_DIALOG_GNAWTY_MEET_SUMMER, 4, NULL, NULL, NULL, NULL);
+                gcdialog_showDialog(VER_SELECT(ASSET_CCF_DIALOG_GNAWTY_MEET_SUMMER, 0x9E4, 0, 0), 4, NULL, NULL, NULL, NULL);
                 this->has_met_before = TRUE;
             }
         }

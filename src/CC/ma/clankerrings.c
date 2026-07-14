@@ -6,7 +6,7 @@
 /* .data */
 f32 maClankerRingsJiggyPosition[3] = {0.0f, 1300.0f, -2800.0f};
 
-#define RINGS_TIMER 48 // Seconds
+#define RINGS_TIMER VER_SELECT(48, 40, 0, 0) // Seconds
 #define RING_COUNT   9
 
 /* .bss */

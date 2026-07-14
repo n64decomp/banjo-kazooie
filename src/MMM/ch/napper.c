@@ -63,7 +63,7 @@ void func_80386ACC(ActorMarker *this_marker, ActorMarker *other_marker){
     Actor *this = marker_getActor(this_marker);
 
     if(!this->has_met_before){
-        if(gcdialog_showDialog(0xad8, 0, NULL, NULL, NULL, NULL)){
+        if(gcdialog_showDialog(VER_SELECT(0xAD8, 0x94A, 0, 0), 0, NULL, NULL, NULL, NULL)){
             this->has_met_before = TRUE;
         }
     }

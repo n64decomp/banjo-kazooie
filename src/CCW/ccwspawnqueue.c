@@ -65,11 +65,16 @@ void code_76C0_ccwGnawtysStuffUpdate(Actor *this);
 void code_76C0_ccwWhipcrackRoomDoorUpdate(Actor *this);
 
 /* .data */
+
+#if VERSION == VERSION_PAL
+Actor* cc_pal_unk_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
+#endif
+
 // Unused
 ActorInfo chNabnutWindowSpring = {
     MARKER_239_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_25F_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4FC_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
-    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
@@ -77,63 +82,63 @@ ActorInfo chNabnutWindowSpring = {
 ActorInfo chNabnutWindowSummer = {
     MARKER_236_CCW_UNKNOWN_NABNUT_WINDOW, ACTOR_260_CCW_UNKNOWN_NABNUT_WINDOW, ASSET_4F9_MODEL_CCW_UNKNOWN_NABNUT_WINDOW,
     0x1, NULL,
-    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutWindowAutumn = {
     MARKER_237_CCW_AUTUMN_NABNUT_WINDOW, ACTOR_261_CCW_AUTUMN_NABNUT_WINDOW, ASSET_4FA_MODEL_CCW_AUTUMN_NABNUT_WINDOW,
     0x1, NULL,
-    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutWindowWinter = {
     MARKER_238_CCW_WINTER_NABNUT_WINDOW, ACTOR_262_CCW_WINTER_NABNUT_WINDOW, ASSET_4FB_MODEL_CCW_WINTER_NABNUT_WINDOW,
     0x1, NULL,
-    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chNabnutDoor = {
     MARKER_243_NABNUT_DOOR, ACTOR_2E6_NABNUT_DOOR, ASSET_533_MODEL_NABNUT_DOOR,
     0x1, NULL,
-    chMMMBreakableWooden_update, actor_update_func_80326224, actor_drawFullDepth,
+    chMMMBreakableWooden_update, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chCCWWhipcrackRoomDoor = {
     MARKER_263_CCW_WHIPCRACK_ROOM_DOOR, ACTOR_2E7_WHIPCRACK_ROOM_DOOR, ASSET_518_MODEL_CCW_WHIPCRACK_ROOM_DOOR,
     0x1, NULL,
-    code_76C0_ccwWhipcrackRoomDoorUpdate, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwWhipcrackRoomDoorUpdate, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chCCWMumbosHut = {
     MARKER_21E_CCW_MUMBOS_HUT, ACTOR_233_CCW_MUMBOS_HUT, ASSET_3B3_MODEL_CCW_MUMBOS_HUT,
     0x1, NULL,
-    func_802D3D74, actor_update_func_80326224, actor_drawFullDepth,
+    func_802D3D74, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chGnawtysDen = {
     MARKER_26B_GNAWTYS_DEN, ACTOR_2DE_GNAWTYS_DEN, ASSET_531_MODEL_GNAWTYS_DEN,
     0x1, NULL,
-    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chGnawtysBed = {
     MARKER_26C_GNAWTYS_BED, ACTOR_2DD_GNAWTYS_BED, ASSET_53E_MODEL_GNAWTY_BED,
     0x1, NULL,
-    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 
 ActorInfo chGnawtysShelves = {
     MARKER_26D_GNAWTYS_SHELVES, ACTOR_2DC_GNAWTYS_SHELVES, ASSET_53F_MODEL_GNAWTY_SHELVES,
     0x1, NULL,
-    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, actor_drawFullDepth,
+    code_76C0_ccwGnawtysStuffUpdate, actor_update_func_80326224, VER_SELECT(actor_drawFullDepth, cc_pal_unk_draw, 0, 0),
     0, 0, 0.0f, 0
 };
 

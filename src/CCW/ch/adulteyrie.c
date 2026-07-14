@@ -53,7 +53,7 @@ void chEyrieAdult_setNextState(Actor *this, s32 next_state) {
         skeletalAnim_set(this->unk148, ASSET_199_ANIM_EEYRIE_ADULT_UNK, 0.0f, 6.5f);
     }
     if (next_state == CH_EERYIE_ADULT_STATE_2_MEET_DIALOG) {
-        gcdialog_showDialog(ASSET_CDC_DIALOG_ADULT_EYRIE_MEET_WINTER, 0xA, this->position, this->marker, chEyrieAdult_setMarkerToState3, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_CDC_DIALOG_ADULT_EYRIE_MEET_WINTER, 0x09F1, 0, 0), VER_SELECT(0xA, 0xE, 0, 0), this->position, this->marker, chEyrieAdult_setMarkerToState3, NULL);
     }
     if (next_state == CH_EERYIE_ADULT_STATE_3_FLIGHT_TAKE_OFF) {
         skeletalAnim_set(this->unk148, ASSET_19A_ANIM_EEYRIE_ADULT_UNK, 0.0f, 7.0f);
