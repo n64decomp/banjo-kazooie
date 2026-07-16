@@ -616,7 +616,7 @@ void maCastle_update(void)
         }
         if ((sMapState.banjoKazooieCodeEnteredState == 0) || (sMapState.banjoKazooieCodeEnteredState == 3))
         {
-            if ((levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_3)) && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) && func_8028F20C())
+            if ((levelSpecificFlags_get(LEVEL_FLAG_2_TTC_UNKNOWN) || volatileFlag_get(VOLATILE_FLAG_3)) && (player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER) && player_isStableWithExtraSteps())
             {
                 mesh_id_closest_to_player = model_func_8033F3C0(sMapState.model1, player_position);
                 if (mesh_id_closest_to_player != 0)

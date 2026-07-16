@@ -64,7 +64,7 @@ void func_80352114(Struct_core2_CB050_0 *arg0, s32 arg1, f32 arg2) {
     arg0->unk64 = (f32) (arg0->unk64 + arg2);
     player_getPosition(player_position);
     if( (func_80294660() == 0x100) 
-        && func_8028F20C()
+        && player_isStableWithExtraSteps()
         && (ml_vec3f_length_sq(player_position, arg0->unk4C) < 50000.0f)
     ) {
         sp58 = arg0->unk4C[0] - player_position[0];

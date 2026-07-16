@@ -156,7 +156,7 @@ void gv_matchingGame_update(void){
     }
 
     if(matchingGame.tile_a == NULL || matchingGame.tile_b == NULL){
-        if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && func_8028F20C()){
+        if( player_getActiveHitbox(0) == HITBOX_1_BEAK_BUSTER && player_isStableWithExtraSteps()){
             player_getPosition(player_position);
             sp4C = model_func_8033F3E8(mapModel_getModel(0), player_position, 0x190, 0x1a0);
             if(sp4C){

@@ -485,8 +485,7 @@ enum transformation_e
     TRANSFORM_4_WALRUS,
     TRANSFORM_5_CROC,
     TRANSFORM_6_BEE,
-    TRANSFORM_7_WISHWASHY,
-    TRANSFORM_8_GHOST
+    TRANSFORM_7_WISHWASHY
 };
 
 enum ability_e

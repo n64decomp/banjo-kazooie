@@ -472,7 +472,7 @@ void func_803896FC(Actor *this){
             }
             else if( subaddie_playerIsWithinSphereAndActive(this, 0x1C2)
                 && player_movementGroup() == BSGROUP_0_NONE
-                && func_8028F20C()
+                && player_isStableWithExtraSteps()
                 && func_8028EFC8()
                 && sp3C[FACE_BUTTON(BUTTON_B)] == 1
                 && !gcdialog_hasCurrentTextId()

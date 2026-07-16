@@ -455,7 +455,7 @@ void gWorldExitPad_update(Actor *this) {
         this->unk38_31 = 1;
     }
     if ((this->unk38_31 == 1) && (phi_v0 == 1) 
-        && func_8028F20C() && (func_8028F66C(BS_INTR_37) == 2)) {
+        && player_isStableWithExtraSteps() && (func_8028F66C(BS_INTR_37) == 2)) {
         this->unk38_31 = 2;
     }
 }
@@ -573,7 +573,7 @@ bool func_802D42F8(Actor *this) {
 void chMumboSwitch_update(Actor *this){
     func_802D3CE8(this);
     this->unk38_0 = BOOL(gsworld_getMap() == MAP_7A_GL_CRYPT || item_getCount(ITEM_1C_MUMBO_TOKEN) >= this->actorTypeSpecificField || func_802D42F8(this));
-    mapSpecificFlags_set(0x1F, (func_8028F20C() && func_8028FB48(0x78000000)) || player_movementGroup() == BSGROUP_D_TRANSFORMING);
+    mapSpecificFlags_set(0x1F, (player_isStableWithExtraSteps() && func_8028FB48(0x78000000)) || player_movementGroup() == BSGROUP_D_TRANSFORMING);
     switch(this->state){
         case 0x12: //L802D4468
             if(this->unk38_0 && mapSpecificFlags_get(0x1F)){
@@ -638,7 +638,7 @@ void chFFTeleportPad_Update(Actor *this){
             }
             break;
         case 1:
-            if(ml_vec3f_horizontal_distance_zero_likely(this->position, sp1C) < 150.0f && func_8028F20C()){
+            if(ml_vec3f_horizontal_distance_zero_likely(this->position, sp1C) < 150.0f && player_isStableWithExtraSteps()){
                 if(player_movementGroup() == BSGROUP_0_NONE ||  player_movementGroup() == BSGROUP_8_TROT){
                     if(gsworld_getMap() == MAP_8E_GL_FURNACE_FUN){
                         volatileFlag_set(VOLATILE_FLAG_0_IN_FURNACE_FUN_QUIZ, 0);

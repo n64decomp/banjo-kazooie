@@ -106,7 +106,7 @@ void chMudHut_update(Actor *this){
                 diffPos[2] = plyrPos[2] - this->position_z;
                 if( (150.0f < diffPos[1]) 
                     && (player_getActiveHitbox(this->marker) == HITBOX_1_BEAK_BUSTER) 
-                    && (func_8028F20C())
+                    && (player_isStableWithExtraSteps())
                     && (LENGTH_VEC3F(diffPos) < 350.f)
                 ){
                     hut_id = (s32)( (this->position_y - 600.f)/430.0f);

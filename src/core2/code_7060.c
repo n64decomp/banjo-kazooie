@@ -559,15 +559,15 @@ bool func_8028EFEC(void){
     return bakey_getAndSetState(BUTTON_A, 2);
 }
 
-void func_8028F010(enum actor_e actor_id){
+void bacarriedobj_decWithExtraSteps(enum actor_e actor_id){
     bacarriedobj_dec(actor_id);
 }
 
-void func_8028F030(enum actor_e actor_id){
+void bacarriedobj_incWithExtraSteps(enum actor_e actor_id){
     bacarriedobj_inc(actor_id);
 }
 
-void func_8028F050(enum actor_e actor_id){
+void bacarriedobj_displayOnHudWithExtraSteps(enum actor_e actor_id){
     bacarriedobj_displayOnHud(actor_id);
 }
 
@@ -608,11 +608,11 @@ bool func_8028F150(void){
     return baModel_isVisible();
 }
 
-bool func_8028F170(void){
+bool player_isInFirstPersonView(void){
     return baflag_isTrue(BA_FLAG_17_FIRST_PERSON_VIEW);
 }
 
-int ability_isUnlocked(enum ability_e uid){
+bool ability_isUnlocked(enum ability_e uid){
     return ability_hasLearned(uid);
 }
 
@@ -628,7 +628,7 @@ bool func_8028F1E0(void){
     return bsList_getInterruptMethod(bs_getState()) != NULL;
 }
 
-bool func_8028F20C(void){
+bool player_isStableWithExtraSteps(void){
     return player_isStable();
 }
 

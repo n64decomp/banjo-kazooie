@@ -6,6 +6,7 @@
 void GV_func_8038A084(Actor *this);
 
 /* .data */
+// Hot Sand Smoke Emitter?
 ActorInfo D_80390F40 = {
     0x24F, 0x37C, 0x0, 
     0, NULL, 

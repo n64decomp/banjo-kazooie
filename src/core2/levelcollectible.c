@@ -149,7 +149,7 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
         if (dialog_id != 0) {
             timedFunc_set_1(0.5f, (GenFunction_1)__chLevelCollectible_callDialog, dialog_id);
         }
-        func_8028F030(this->modelCacheIndex);
+        bacarriedobj_incWithExtraSteps(this->modelCacheIndex);
         marker_despawn(marker);
     }
 }
@@ -172,7 +172,7 @@ void func_802D7DE8(ActorMarker *marker, f32 arg1[3]) {
             mapSpecificFlags_set(0, TRUE);
         }
     }
-    func_8028F010(this->modelCacheIndex);
+    bacarriedobj_decWithExtraSteps(this->modelCacheIndex);
     subaddie_set_state(this, 4);
     var_f12 = this->position[1];
     var_f14 = 28.0f;
@@ -278,7 +278,7 @@ void func_802D8374(Actor *this){
     f32 sp20[3];
 
     if(bacarry_getMarkerWithExtraSteps() != this->marker){
-        func_8028F050(this->modelCacheIndex);
+        bacarriedobj_displayOnHudWithExtraSteps(this->modelCacheIndex);
         marker_despawn(this->marker);
     }
     else{

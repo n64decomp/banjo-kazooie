@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool func_8028F170(f32, f32);
+extern bool player_isInFirstPersonView(f32, f32);
 
 typedef struct {
     f32 unk0;
@@ -207,7 +207,7 @@ void func_80350CA4(void) {
         sp24[0] = sp30[0] + sp48[0];
         sp24[1] = sp30[1] + sp48[1];
         sp24[2] = sp30[2] + sp48[2];
-        if (func_8028F170(sp48[1], sp48[2])) {
+        if (player_isInFirstPersonView(sp48[1], sp48[2])) {
             var_v0 = func_80320B98(&sp30, &sp24, &sp3C, 0x01000000);
         } else {
             var_v0 = func_80309B48(&sp30, &sp24, &sp3C, 0x01000000);

@@ -124,7 +124,7 @@ void onJigsawPodiumCollide(ActorMarker *marker, ActorMarker *_) {
 }
 
 bool isBanjoOnPodium(ActorMarker *marker) {
-    return func_8028F20C() && func_8028FB48(0x08000000) && marker->isBanjoOnTop;
+    return player_isStableWithExtraSteps() && func_8028FB48(0x08000000) && marker->isBanjoOnTop;
 }
 
 s32 isPicturePiecePlaced(Actor *this, s32 position) {
@@ -555,7 +555,7 @@ void updateJigsawPictureActor(Actor *this) {
 
     switch (this->state) {
         case JIGSAW_PICTURE_LEAVE_PODIUM:
-            if (!this->has_met_before && (!func_8028F20C() || !func_8028FB48(0x08000000))) {
+            if (!this->has_met_before && (!player_isStableWithExtraSteps() || !func_8028FB48(0x08000000))) {
                 this->has_met_before = TRUE;
             }
 
