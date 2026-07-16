@@ -22,7 +22,7 @@ extern ActorInfo chTrunker;
 extern ActorInfo chMagicCarpetShadow;
 extern ActorInfo chSarcophagus;
 extern ActorInfo chSNSSarcophagus;
-extern ActorInfo D_80390ED0;
+extern ActorInfo chRubee;
 extern ActorInfo D_80390F00;
 extern ActorInfo chMagicCarpet2;
 extern ActorInfo D_80391010;
@@ -478,7 +478,7 @@ void GV_func_8038F154(void)
     spawnableActorList_add(&chMagicCarpetShadow, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_14);
     spawnableActorList_add(&chSarcophagus, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&chSNSSarcophagus, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6);
-    spawnableActorList_add(&D_80390ED0, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
+    spawnableActorList_add(&chRubee, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&D_80390F00, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&chMagicCarpet2, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);
     spawnableActorList_add(&D_80391010, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_14);

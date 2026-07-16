@@ -80,7 +80,7 @@ void chhut_update(Actor *this) {
 
             if (150.0f < diff_pos[1]
                 && player_getActiveHitbox(this->marker) == HITBOX_1_BEAK_BUSTER
-                && func_8028F20C()
+                && player_isStableWithExtraSteps()
                 && LENGTH_VEC3F(diff_pos) < 350.0f
             ){
                 diff_pos[0] = this->position_x;

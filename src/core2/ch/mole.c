@@ -393,7 +393,7 @@ void chmole_update(Actor *this){
         case MOLE_STATE_1_AWAITING_PLAYER://L802D9F70
             this->yaw_ideal = subaddie_getYawToPlayer(this);
             subaddie_turnToYaw(this, 4.0f);
-            if(func_8028F20C() && player_isBanjoOrWishywashy() && !func_8028EC04()){
+            if(player_isStableWithExtraSteps() && player_isBanjoOrWishywashy() && !func_8028EC04()){
                 if( this->actorTypeSpecificField == CH_MOLE_ID_12_OPEN_NOTEDOORS 
                     && !ability_isUnlocked(moleTable[this->actorTypeSpecificField - MOLE_ID_TO_TABLE_SHIFT].ability)
                     && (player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT)

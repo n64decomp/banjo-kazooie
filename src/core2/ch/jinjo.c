@@ -65,17 +65,8 @@ void __chJinjo_collected(ActorMarker *this, ActorMarker *other){
         }
         subaddie_set_state_with_direction(actorPtr, CH_JINJO_STATE_6_COLLECTED, 0.0f , -1);
         /*
-        ROM Hack Glitch:
         If multiple Jinjos of a color are collected, it overflows into the next Jinjo.
         Example, two Green Jinjos -> Orange Jinjo collected & no Green Jinjo collected
-        
-        Fix:
-        extern s32 D_80385F30[0x2C];
-        if(!(D_80385F30[ITEM_12_JINJOS] & (1 << (this->id + 6)))){
-            if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->id + 6) ) == 0x1f){
-                localPtr->unk4 = 1;
-            }
-        }
         */
         if(item_adjustByDiffWithHud(ITEM_12_JINJOS, 1 << (this->id + 6) ) == 0x1f)
             localPtr->unk4 = 1;

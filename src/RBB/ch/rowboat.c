@@ -61,7 +61,7 @@ void chRowboat_update(Actor *this){
         func_8030E878(SFX_69_WHIPCRACK_CREAKING, randf2(1.1f, 1.2f), 22000, this->position, 500.0f, 1500.0f);
     }//L8038E544
 
-    if(func_8032DCAC() == (int)this->marker && func_8028F20C()){
+    if(func_8032DCAC() == (int)this->marker && player_isStableWithExtraSteps()){
         player_getPosition(player_position);
         if(player_position[0] < this->position_x - 10.0f && local->playerInfluencedRotationDelta[2] < 3.0f)
             local->playerInfluencedRotationDelta[2] += 5.0f * time_delta;

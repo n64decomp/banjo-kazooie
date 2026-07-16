@@ -149,7 +149,7 @@ void chJumpTutorial_update(Actor *this) {
             plyr_pos[2] = this->velocity_z;
             func_8028FAB0(plyr_pos);
 
-            if (func_8028EFC8() && face_buttons[FACE_BUTTON(BUTTON_B)] == TRUE && func_8028F20C()) {
+            if (func_8028EFC8() && face_buttons[FACE_BUTTON(BUTTON_B)] == TRUE && player_isStableWithExtraSteps()) {
                 if (this->sm_4070.dialog_id) {
                     gcdialog_showDialog(dialog_id = this->sm_4070.dialog_id, 0, NULL, NULL, NULL, NULL);
                 }

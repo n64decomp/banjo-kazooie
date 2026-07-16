@@ -510,7 +510,7 @@ void chSmBottles_update(Actor *this) {
                 (this->actorTypeSpecificField == CH_SM_MOLE_ID_8_BRIDGE && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_2)) ||
                 (this->actorTypeSpecificField == CH_SM_MOLE_ID_8_BRIDGE && mapSpecificFlags_get(SM_SPECIFIC_FLAG_3_ALL_SM_ABILITIES_LEARNED) && !mapSpecificFlags_get(SM_SPECIFIC_FLAG_F))
             ) {//L80389C50
-                if (((ml_vec3f_distance(plyr_pos, this->unk1C) < this->actor_specific_1_f) && func_8028F20C()) ||
+                if (((ml_vec3f_distance(plyr_pos, this->unk1C) < this->actor_specific_1_f) && player_isStableWithExtraSteps()) ||
                     mapSpecificFlags_get(SM_SPECIFIC_FLAG_10)
                 ) {//L80389C8C
                     if (subaddie_playerIsWithinSphereAndActive(this, 150)) {
@@ -522,7 +522,7 @@ void chSmBottles_update(Actor *this) {
                 }
             }
             else {//L80389CBC
-                if (!subaddie_playerIsWithinSphereAndActive(this, 250) || player_movementGroup() || !func_8028F20C() || func_8028EC04()) {
+                if (!subaddie_playerIsWithinSphereAndActive(this, 250) || player_movementGroup() || !player_isStableWithExtraSteps() || func_8028EC04()) {
                     break;
                 }
 

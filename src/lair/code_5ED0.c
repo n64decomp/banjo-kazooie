@@ -1241,7 +1241,7 @@ void lair_func_8038E0B0(void) {
         }
         // If you see FFTT_8_JOKER in the table, use FFTT_7_JOKER instead
         ff_tile_type = MIN((ffStorage->currentTileId != 0) ? ffStorage->currentBoardTile->tileType : -1, FFTT_7_JOKER);
-        if ((ffStorage->currentTileId != 0) && (ffStorage->currentBoardTile->unk9 == 0) && func_8028F20C()) {
+        if ((ffStorage->currentTileId != 0) && (ffStorage->currentBoardTile->unk9 == 0) && player_isStableWithExtraSteps()) {
             ffStorage->currentBoardTile->unk9 = 2;
             if (ffStorage->unk11) {
                 switch(ff_tile_type){

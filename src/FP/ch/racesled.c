@@ -56,7 +56,7 @@ void __chRaceSled_touch(ActorMarker *this_marker, ActorMarker *other_marker){
     if(this->state == 2){
         player_getPosition(plyr_pos);
         if( this->position_y + 20.0f < plyr_pos[1] 
-            && func_8028F20C()
+            && player_isStableWithExtraSteps()
             && player_getTransformation() == TRANSFORM_4_WALRUS
             && func_8028F68C(BS_INTR_27_WALRUS_SLED, this->marker)
         ){

@@ -182,7 +182,7 @@ void chBrentilda_update(Actor *this) {
         }
         if( (phi_f2 < 300.0) 
             && (player_movementGroup() == BSGROUP_0_NONE) 
-            && func_8028F20C()
+            && player_isStableWithExtraSteps()
             && !gcdialog_hasCurrentTextId()) {
             if (!fileProgressFlag_get(FILEPROG_96_MET_BRENTILDA)) {
                 gcdialog_showDialog(ASSET_10A1_DIALOG_BRENTILDA_MEET, 0xA, this->position, this->marker, func_8038BADC, NULL);

@@ -310,7 +310,7 @@ void chMumbo_update(Actor *this) {
              sp48 = (gsworld_getMap() == MAP_7A_GL_CRYPT) ? chMumbo_withinHorzDistToPlayer(0x442, 0, 0x3C) :  chMumbo_withinHorzDistToPlayer(0, -0x5A, 0x3C);
             if( sp48 
                 && player_movementGroup() == BSGROUP_0_NONE 
-                && func_8028F20C()
+                && player_isStableWithExtraSteps()
                 && func_8028EFC8()
             ){
                 controller_copyFaceButtons(0, face_buttons);

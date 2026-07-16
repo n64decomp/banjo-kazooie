@@ -27,10 +27,10 @@ ActorInfo D_80391318 = { MARKER_AA_HISTUP, ACTOR_11C_HISTUP, ASSET_3DE_MODEL_HIS
 
 /* .bss */
 extern struct {
-    s32 unk0;
+    s32 eggCount;
     s32 unk4;
     s32 unk8;
-}GV_D_80391AB0;
+} rubeeEggPot;
 
 /* .code */
 int func_8038D920(Actor *this, f32 arg1){
@@ -75,19 +75,19 @@ void GV_func_8038DB0C(Actor *this){
 }
 
 void func_8038DB4C(s32 arg0){
-    GV_D_80391AB0.unk0 = arg0;
+    rubeeEggPot.eggCount = arg0;
 }
 
 void func_8038DB58(s32 arg0){
-    GV_D_80391AB0.unk4 = arg0;
+    rubeeEggPot.unk4 = arg0;
 }
 
 s32 func_8038DB64(void){
-    return GV_D_80391AB0.unk4;
+    return rubeeEggPot.unk4;
 }
 
 void func_8038DB70(void){
-    GV_D_80391AB0.unk4++;
+    rubeeEggPot.unk4++;
 }
 
 
@@ -114,7 +114,7 @@ void func_8038DBDC(Actor *this){
                 actor_collisionOff(this);
                 subaddie_set_state_with_direction(this, 1, 0.99f, 0);
                 anctrl_setPlaybackType(this->anctrl, ANIMCTRL_STOPPED);
-                GV_D_80391AB0.unk8 = 0;
+                rubeeEggPot.unk8 = 0;
                 func_8038DB4C(0);
                 this->unk1C[0] = 0.0f;
             }//L8038DC90
@@ -134,7 +134,7 @@ void func_8038DBDC(Actor *this){
         case 2: //8038DD3C
             if(!(func_8038E178() < 5)){
                 func_8038DB88(this);
-                if(GV_D_80391AB0.unk8){
+                if(rubeeEggPot.unk8){
                     subaddie_set_state_with_direction(this, 3, 0.99f, 0);
                     anctrl_setPlaybackType(this->anctrl, ANIMCTRL_STOPPED);
                     this->unk1C[0] = 0.0f;
@@ -196,7 +196,7 @@ void func_8038DBDC(Actor *this){
                 anctrl_setDuration(this->anctrl, 1.6f);
                 func_80386608();
                 func_8038DB4C(0);
-                GV_D_80391AB0.unk8 = FALSE;
+                rubeeEggPot.unk8 = FALSE;
                 func_8025A58C(-1, 0x190);
                 func_8025A7DC(COMUSIC_27_GV_RUBEES_SONG);
                 if(!this->unk44_31){

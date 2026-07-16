@@ -161,7 +161,7 @@ void chSnowball_update(Actor *this) {
         }
         break;
     case 2:
-        this->marker->unk40_22 = NOT(func_8028F170());
+        this->marker->unk40_22 = NOT(player_isInFirstPersonView());
         this->velocity[0] *= 0.7;
         this->velocity[1] *= 0.7;
         this->velocity[2] *= 0.7;

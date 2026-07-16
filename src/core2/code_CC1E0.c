@@ -120,9 +120,9 @@ s32 func_803531C8(u8 projectile_indx, s32 arg1){
                     break;
 
                 case MARKER_AB_RUBEES_EGG_POT: //L80353434
-                    if (collisionTri_isHitFromAbove_marker(egg_position, other_marker, 0x1E) && (func_8038E178() < func_8038E184())) {
+                    if (collisionTri_isHitFromAbove_marker(egg_position, other_marker, 0x1E) && (func_8038E178() < rubeeEggPot_getEggGoal())) {
                         commonParticle_setCurrentInUseFalse();
-                        func_8038E140();
+                        rubeeEggPot_addedEggToPot();
                     }
                     break;
 
