@@ -143,7 +143,7 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
             ){
                 func_8038708C(actorPtr, 2);
                 if(actorPtr->unk38_31 == 1){
-                    gcdialog_showDialog(ASSET_B39_DIALOG_CONGA_HIT_BY_EGG, 4, actorPtr->position, 0, 0, 0);
+                    gcdialog_showDialog(VER_SELECT(ASSET_B39_DIALOG_CONGA_HIT_BY_EGG, 0x957, 0, 0), 4, actorPtr->position, 0, 0, 0);
                 }
             }
         }
@@ -153,10 +153,10 @@ void func_80387168(ActorMarker *marker, ActorMarker *other_marker){
 int func_803872EC(void){
     s32 text_id = gcdialog_getCurrentTextId();
 
-    return text_id == ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE
-        || text_id == ASSET_B38_DIALOG_CONGA_DEFEAT
+    return text_id == VER_SELECT(ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE, 0x955, 0, 0)
+        || text_id == VER_SELECT(ASSET_B38_DIALOG_CONGA_DEFEAT, 0x956, 0, 0)
         || volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE)
-        || text_id == ASSET_B3B_DIALOG_CONGA_ORANGE_PAD_JIGGY
+        || text_id == VER_SELECT(ASSET_B3B_DIALOG_CONGA_ORANGE_PAD_JIGGY, 0x959, 0, 0)
         || text_id == ASSET_B45_DIALOG_JIGGY_COLLECT_10
         || text_id == ASSET_B51_DIALOG_BOTTLES_HOW_TO_EXIT_LEVEL;
 }
@@ -260,13 +260,13 @@ void chConga_update(Actor *this) {
 
     if (func_8032A9E4(((ActorLocal_Conga *)&this->local)->unk10, ((ActorLocal_Conga *)&this->local)->unk18, ((ActorLocal_Conga *)&this->local)->unk1C)
         && !this->unk138_23
-        && gcdialog_showDialog(ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE, 0, 0, 0, 0, 0)) {
+        && gcdialog_showDialog(VER_SELECT(ASSET_B37_DIALOG_CONGA_SAFE_UP_HERE, 0x955, 0, 0), 0, 0, 0, 0, 0)) {
         this->unk138_23 = 1;
         mapSpecificFlags_set(MM_SPECIFIC_FLAG_A_UNKNOWN, TRUE);
     }//L803878F8
 
     if (sp3C && !this->has_met_before) {
-        if (gcdialog_showDialog((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_DIALOG_CONGA_MEET_AS_TERMITE : ASSET_B3C_DIALOG_CONGA_MEET, 0, this->position, 0,0,0)) {
+        if (gcdialog_showDialog((player_getTransformation()== TRANSFORM_2_TERMITE) ? ASSET_B3E_DIALOG_CONGA_MEET_AS_TERMITE : VER_SELECT(ASSET_B3C_DIALOG_CONGA_MEET, 0x95A, 0, 0), 0, this->position, 0,0,0)) {
             this->has_met_before = TRUE;
         }
     } //L80387968
@@ -369,7 +369,7 @@ void chConga_update(Actor *this) {
 
             if (actor_animationIsAt(this, 0.99f)) {
                 subaddie_set_state_with_direction(this, CONGA_STATE_MOPEY, 0.0f, 1);
-                gcdialog_showDialog(ASSET_B38_DIALOG_CONGA_DEFEAT, 0xe, this->position, this->marker, func_80387370, NULL);
+                gcdialog_showDialog(VER_SELECT(ASSET_B38_DIALOG_CONGA_DEFEAT, 0x956, 0, 0), 0xe, this->position, this->marker, func_80387370, NULL);
             }
 
             break;

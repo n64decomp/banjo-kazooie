@@ -70,7 +70,7 @@ void chwadingboots_update(Actor *this){
             if(!subaddie_playerIsWithinSphereAndActive(this, 250)) break;
             if(player_getTransformation() != TRANSFORM_1_BANJO) break;
             
-            if(gcdialog_showDialog(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0, NULL, NULL, NULL, NULL)){
+            if(gcdialog_showDialog(VER_SELECT(ASSET_DA5_DIALOG_WADINGBOOTS_MEET, 0xA23, 0, 0), 0, NULL, NULL, NULL, NULL)){
                 volatileFlag_set(VOLATILE_FLAG_10_HAS_MEET_WADING_BOOTS, TRUE);
             }
 

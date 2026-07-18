@@ -70,9 +70,9 @@ void __matchingGame_setState(s32 next_state){
     if(next_state == 2){
         item_set(ITEM_6_HOURGLASS, 1);
         if(volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
-            item_set(ITEM_0_HOURGLASS_TIMER, 4499);
+            item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(4499, 0xea5, 0, 0));
         else
-            item_set(ITEM_0_HOURGLASS_TIMER, 5999);
+            item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(5999, 0x1387, 0, 0));
     }
     if(matchingGame.state == 2){
         item_set(ITEM_6_HOURGLASS, 0);

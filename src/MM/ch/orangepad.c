@@ -60,7 +60,7 @@ void handleOrangeCollision(ActorMarker *marker) {
         coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
 
         if (!jiggyscore_isCollected(JIGGY_8_MM_ORANGE_PADS)) {
-            gcdialog_showDialog(ASSET_B3B_DIALOG_CONGA_ORANGE_PAD_JIGGY, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_B3B_DIALOG_CONGA_ORANGE_PAD_JIGGY, 0x959, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
     }
 
@@ -112,7 +112,7 @@ void chOrangePad_update(Actor *this) {
         && !mapSpecificFlags_get(MM_SPECIFIC_FLAG_CONGA_WARNED_BLOCKS)
         && conga->state != CONGA_STATE_MOPEY) {
 
-        if (gcdialog_showDialog(ASSET_B3D_DIALOG_CONGA_TOUCH_PAD, 0, NULL, NULL, NULL, NULL)) {
+        if (gcdialog_showDialog(VER_SELECT(ASSET_B3D_DIALOG_CONGA_TOUCH_PAD, 0x95B, 0, 0), 0, NULL, NULL, NULL, NULL)) {
             mapSpecificFlags_set(MM_SPECIFIC_FLAG_CONGA_WARNED_BLOCKS, TRUE);
         }
     }

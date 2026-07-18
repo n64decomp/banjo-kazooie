@@ -208,7 +208,7 @@ void chjuju_update(Actor *this) {
     switch (jujuPtr->animation_state) {
         case JUJU_ANIMATION_STATE_1_YAWING: //L80389624
             previous_yaw = this->yaw;
-            this->yaw += ((11 - mm_juju_count * 2) * time_getDelta() * 60.0f) / 2;
+            this->yaw += ((11 - mm_juju_count * 2) * time_getDelta() * (float)FRAMERATE) / 2;
 
             if (360.0f < this->yaw) {
                 has_completed_full_turn = TRUE;

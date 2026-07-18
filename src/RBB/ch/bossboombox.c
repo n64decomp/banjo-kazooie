@@ -334,7 +334,7 @@ void chBossBoomBox_setState(Actor *this, s32 new_state){
         }
         else{//L8038CEFC
             timedFunc_set_3(2.4f, (GenFunction_3)comusic_8025AB44, COMUSIC_62_RBB_BOOMBOX, 8000, 300);
-            func_80324DBC(2.4f, ASSET_B9E_DIALOG_BOSS_BOOM_BOX_MEET, 4, NULL, this->marker, func_8038CB34, func_8038CB68);
+            func_80324DBC(2.4f, VER_SELECT(ASSET_B9E_DIALOG_BOSS_BOOM_BOX_MEET, 0x973, 0, 0), 4, NULL, this->marker, func_8038CB34, func_8038CB68);
         }
     }//L8038CF60
 
@@ -381,7 +381,7 @@ void chBossBoomBox_setState(Actor *this, s32 new_state){
                 }
                 else{//L8038D220
                     timedFunc_set_3(0.0f, (GenFunction_3)chbossboombox_respawnJiggy,  (s32)this->position_x, (s32)this->position_y, (s32)this->position_z);
-                    gcdialog_showDialog(ASSET_B9F_DIALOG_BOSS_BOOM_BOX_COMPLETE, 4, 0, 0, 0, 0);
+                    gcdialog_showDialog(VER_SELECT(ASSET_B9F_DIALOG_BOSS_BOOM_BOX_COMPLETE, 0x974, 0, 0), 4, 0, 0, 0, 0);
                 }
             }//L8038D278
         }

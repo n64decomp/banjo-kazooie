@@ -106,7 +106,7 @@ static bool __chClam_rotateTowardTarget(Actor *this, s32 arg1) {
 
 
     anctrl_setDuration(this->anctrl, 1.0f);
-    sp2C = (s32) ((f64) (60.0f / (f32) time_getDeltaReal_frames()) * 0.5);
+    sp2C = (s32) ((f64) ((float)FRAMERATE / (f32) time_getDeltaReal_frames()) * 0.5);
     if ((this->unk1C[0] != 0.0f) || !__chClam_updateFuncTarget(this, sp2C)) {
         if (((f64) anctrl_getAnimTimer(this->anctrl) < 0.1) && ((f64) randf() < 0.5)) {
             if (this->unk1C[0] != 0.0f) {
@@ -235,7 +235,7 @@ static void __chClam_takeDamage(ActorMarker *this_marker, ActorMarker *other_mar
     __chClam_emitLargeShellParticles(this->position, 2);
     __chClam_emitEyeParticles(this->position, 2);
     __chClam_emitSmallShellParticles(this->position, 0xC);
-    func_803115C4(0xa14);
+    func_803115C4(VER_SELECT(ASSET_A14_DIALOG_CLAM_TAUNT, 0x914, 0, 0));
     marker_despawn(this->marker);
 }
 
@@ -252,7 +252,7 @@ static void __chClam_attackOther(ActorMarker *this_marker, ActorMarker *other_ma
     
     if(baiFrame_getState() == 3) return;
 
-    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showDialog(ASSET_A14_DIALOG_CLAM_TAUNT, 0, NULL, NULL, NULL, NULL)){
+    if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN) && gcdialog_showDialog(VER_SELECT(ASSET_A14_DIALOG_CLAM_TAUNT, 0x914, 0, 0), 0, NULL, NULL, NULL, NULL)){
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_5_CLAM_FIRST_MEET_TEXT_SHOWN, TRUE);
     }
 

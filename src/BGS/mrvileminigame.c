@@ -44,50 +44,50 @@ ActorInfo gChVileGame = {
 
 enum asset_e chMrVileMinigamePlayerLosesDialog[] = {
     0,
-    ASSET_C66_DIALOG_MR_VILE_WINS_ROUND_1,
-    ASSET_C68_DIALOG_MR_VILE_WINS_ROUND_2,
-    ASSET_C6A_DIALOG_MR_VILE_WINS_ROUND_3,
-    ASSET_C92_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_2,
-    ASSET_C93_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_3,
-    ASSET_C94_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_4,
+    VER_SELECT(ASSET_C66_DIALOG_MR_VILE_WINS_ROUND_1, 0x9A9, 0, 0),
+    VER_SELECT(ASSET_C68_DIALOG_MR_VILE_WINS_ROUND_2, 0x9AB, 0, 0),
+    VER_SELECT(ASSET_C6A_DIALOG_MR_VILE_WINS_ROUND_3, 0x9AD, 0, 0),
+    VER_SELECT(ASSET_C92_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_2, 0x9D5, 0, 0),
+    VER_SELECT(ASSET_C93_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_3, 0x9D6, 0, 0),
+    VER_SELECT(ASSET_C94_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_4, 0x9D7, 0, 0),
     0
 };
 
 enum asset_e chMrVileMinigamePlayerWinsDialog[] = {
     0,
-    ASSET_C67_DIALOG_MR_VILE_ROUND_2_START,
-    ASSET_C69_DIALOG_MR_VILE_ROUND_3_START,
+    VER_SELECT(ASSET_C67_DIALOG_MR_VILE_ROUND_2_START, 0x9AA, 0, 0),
+    VER_SELECT(ASSET_C69_DIALOG_MR_VILE_ROUND_3_START, 0x9AC, 0, 0),
     0,
-    ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
-    ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
-    ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+    VER_SELECT(ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1, 0x9D8, 0, 0),
+    VER_SELECT(ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2, 0x9D9, 0, 0),
+    VER_SELECT(ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3, 0x9DA, 0, 0)
 };
 
 enum asset_e chMrVileMinigamePlayerWinsRematchDialog[] = {
     0,
-    ASSET_C6E_DIALOG_MR_VILE_LOSE_ROUND_2_REMATCH,
-    ASSET_C6F_DIALOG_MR_VILE_LOSE_ROUND_3_REMATCH,
+    VER_SELECT(ASSET_C6E_DIALOG_MR_VILE_LOSE_ROUND_2_REMATCH, 0x9B1, 0, 0),
+    VER_SELECT(ASSET_C6F_DIALOG_MR_VILE_LOSE_ROUND_3_REMATCH, 0x9B2, 0, 0),
     0,
-    ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1,
-    ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2,
-    ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3
+    VER_SELECT(ASSET_C95_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_1, 0x9D8, 0, 0),
+    VER_SELECT(ASSET_C96_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_2, 0x9D9, 0, 0),
+    VER_SELECT(ASSET_C97_DIALOG_MR_VILE_LOSES_EXTRA_CHALLENGE_3, 0x9DA, 0, 0)
 };
 
 enum asset_e chMrVileMinigamePlayerDeclinesDialog[] = {
-    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
-    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
-    ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES,
-    ASSET_C8F_DIALOG_MR_VILE_PLAYER_DECLINES_EXTRA_CHALLENGE,
+    VER_SELECT(ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES, 0x9A8, 0, 0),
+    VER_SELECT(ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES, 0x9A8, 0, 0),
+    VER_SELECT(ASSET_C65_DIALOG_MR_VILE_PLAYER_DECLINES, 0x9A8, 0, 0),
+    VER_SELECT(ASSET_C8F_DIALOG_MR_VILE_PLAYER_DECLINES_EXTRA_CHALLENGE, 0x9D2, 0, 0),
     0,
     0,
     0
 };
 
 enum asset_e chMrVileMinigameRound1AndChallengeDialog[] = {
-    ASSET_C64_DIALOG_MR_VILE_ROUND_1_START,
+    VER_SELECT(ASSET_C64_DIALOG_MR_VILE_ROUND_1_START, 0x9A7, 0, 0),
     0,
     0,
-    ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    VER_SELECT(ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1, 0x9D1, 0, 0),
     0,
     0,
     0,
@@ -95,10 +95,10 @@ enum asset_e chMrVileMinigameRound1AndChallengeDialog[] = {
 };
 
 enum asset_e chMrVileMinigameRematchDialog[] = {
-    ASSET_C6D_DIALOG_MR_VILE_LOSE_ROUND_1_REMATCH,
-    ASSET_C70_DIALOG_MR_VILE_WIN_ROUND_2_REMATCH,
-    ASSET_C71_DIALOG_MR_VILE_WIN_ROUND_3_REMATCH,
-    ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1,
+    VER_SELECT(ASSET_C6D_DIALOG_MR_VILE_LOSE_ROUND_1_REMATCH, 0x9B0, 0, 0),
+    VER_SELECT(ASSET_C70_DIALOG_MR_VILE_WIN_ROUND_2_REMATCH, 0x9B3, 0, 0),
+    VER_SELECT(ASSET_C71_DIALOG_MR_VILE_WIN_ROUND_3_REMATCH, 0x9B4, 0, 0),
+    VER_SELECT(ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1, 0x9D1, 0, 0),
     0,
     0,
     0,
@@ -128,7 +128,7 @@ enum MrVileMinigameMode {
     MR_VILE_MINIGAME_MODE_4_CHALLENGE_3
 };
 
-#define MR_VILE_MINIGAME_TIMER      3600
+#define MR_VILE_MINIGAME_TIMER      VER_SELECT(3600, 3000, 0, 0)
 #define TYPE_CHANGE_TIMER_REGULAR  10.0f
 #define TYPE_CHANGE_TIMER_FF        5.0f
 #define EXTRA_LIFE_SCORE              35
@@ -311,7 +311,7 @@ void chMrVileMinigame_vileDropsJiggy(ActorMarker *marker) {
 
     chMrVileMinigame_spawnJiggy(this, 1);
     gcdialog_showDialog(
-        ASSET_C6B_DIALOG_MR_VILE_PLAYER_WINS,
+        VER_SELECT(ASSET_C6B_DIALOG_MR_VILE_PLAYER_WINS, 0x9AE, 0, 0),
         0xF,
         chMrVile_getPostion(local->vile_marker),
         this->marker,
@@ -358,7 +358,7 @@ void chMrVileMinigame_vileDropsExtraLives(ActorMarker *marker) {
         }
     }
     gcdialog_showDialog(
-        ASSET_C98_DIALOG_MR_VILE_GIVES_PRIZE,
+        VER_SELECT(ASSET_C98_DIALOG_MR_VILE_GIVES_PRIZE, 0x9DB, 0, 0),
         0xF,
         chMrVile_getPostion(local->vile_marker),
         this->marker,
@@ -386,7 +386,7 @@ void chMrVileMinigame_setState(Actor *this, s32 next_state) {
         if (local->dialogIndex == 3) {
             if (local->mode >= MR_VILE_MINIGAME_MODE_4_CHALLENGE_2) {
                 gcdialog_showDialog(
-                    ASSET_C91_DIALOG_MR_VILE_EXTRA_CHALLENGE_REMATCH_2,
+                    VER_SELECT(ASSET_C91_DIALOG_MR_VILE_EXTRA_CHALLENGE_REMATCH_2, 0x9D4, 0, 0),
                     0xE,
                     chMrVile_getPostion(local->vile_marker),
                     this->marker,
@@ -396,8 +396,8 @@ void chMrVileMinigame_setState(Actor *this, s32 next_state) {
             } else {
                 gcdialog_showDialog(
                     (local->dialogIndex == local->mode) ?
-                        ASSET_C8D_DIALOG_MR_VILE_EXTRA_CHALLENGE_INTRO :
-                        ASSET_C90_DIALOG_MR_VILE_EXTRA_CHALLENGE_REMATCH_1,
+                        VER_SELECT(ASSET_C8D_DIALOG_MR_VILE_EXTRA_CHALLENGE_INTRO, 0x9D0, 0, 0) :
+                        VER_SELECT(ASSET_C90_DIALOG_MR_VILE_EXTRA_CHALLENGE_REMATCH_1, 0x9D3, 0, 0),
                     0xE,
                     chMrVile_getPostion(local->vile_marker),
                     this->marker,
@@ -408,8 +408,8 @@ void chMrVileMinigame_setState(Actor *this, s32 next_state) {
         } else {
             gcdialog_showDialog(
                 (local->dialogIndex == local->mode) ?
-                    ASSET_C63_DIALOG_MR_VILE_INTRO :
-                    ASSET_C6C_DIALOG_MR_VILE_TRY_AGAIN,
+                    VER_SELECT(ASSET_C63_DIALOG_MR_VILE_INTRO, 0x9A6, 0, 0) :
+                    VER_SELECT(ASSET_C6C_DIALOG_MR_VILE_TRY_AGAIN, 0x9AF, 0, 0),
                 0xE,
                 chMrVile_getPostion(local->vile_marker),
                 this->marker,
@@ -432,7 +432,7 @@ void chMrVileMinigame_setState(Actor *this, s32 next_state) {
         if (local->dialogIndex == local->mode) {
             gcdialog_showDialog(
                 chMrVileMinigameRound1AndChallengeDialog[local->dialogIndex],
-                0xE | ((chMrVileMinigameRound1AndChallengeDialog[local->dialogIndex] == ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1) ? 1 : 0) | 0xE,
+                0xE | ((chMrVileMinigameRound1AndChallengeDialog[local->dialogIndex] == VER_SELECT(ASSET_C8E_DIALOG_MR_VILE_WINS_EXTRA_CHALLENGE_1, 0x9D1, 0, 0)) ? 1 : 0) | 0xE,
                 chMrVile_getPostion(local->vile_marker),
                 this->marker,
                 chMrVileMinigame_setStatePlayingMinigame,

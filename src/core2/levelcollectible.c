@@ -126,21 +126,21 @@ void __chLevelCollectible_collide(ActorMarker *marker, ActorMarker *other_marker
                 levelSpecificFlags_set(LEVEL_FLAG_2A_FP_UNKNOWN, TRUE);
                 coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_711_SPRITE_SPARKLE_DARK_BLUE);
-                dialog_id = ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE;
+                dialog_id = VER_SELECT(ASSET_C20_DIALOG_PRESENT_COLLECTIBLE_MEET_BLUE, 0x99A, 0, 0);
                 break;
 
             case MARKER_1FE_GREEN_PRESENT_COLLECTIBLE:
                 levelSpecificFlags_set(LEVEL_FLAG_2B_FP_UNKNOWN, TRUE);
                 coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_712_SPRITE_SPARKLE_GREEN);
-                dialog_id = ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN;
+                dialog_id = VER_SELECT(ASSET_C21_DIALOG_PRESENT_COLLECTIBLE_MEET_GREEN, 0x99B, 0, 0);
                 break;
 
             case MARKER_1FF_RED_PRESENT_COLLECTIBLE:
                 levelSpecificFlags_set(LEVEL_FLAG_2C_FP_UNKNOWN, TRUE);
                 coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 0x7FFF);
                 __chLevelCollectible_presentCollectEmitSparkles(this->position, ASSET_715_SPRITE_SPARKLE_RED);
-                dialog_id = ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED;
+                dialog_id = VER_SELECT(ASSET_C22_DIALOG_PRESENT_COLLECTIBLE_MEET_RED, 0x99C, 0, 0);
                 break;
 
             default:

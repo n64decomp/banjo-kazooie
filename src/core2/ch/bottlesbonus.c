@@ -58,13 +58,13 @@ void chBottlesBonus_update(Actor *this);
 /* .data */
 Struct_core2_560F0_0 D_803681A0[] = {
     { 0, 0x000, 0, 0x211},
-    {99, 0xE27, 0, 0x2C1},
-    {99, 0xE29, 0, 0x2C2},
-    {99, 0xE2B, 0, 0x2C9},
-    {99, 0xE2D, 0, 0x2C3},
-    {99, 0xE2F, 0, 0x2C4},
-    {99, 0xE31, 0, 0x2C5},
-    {75, 0xE34, 0, 0x007}
+    {99, VER_SELECT(0xE27, 0xA69, 0, 0), 0, 0x2C1},
+    {99, VER_SELECT(0xE29, 0xA6B, 0, 0), 0, 0x2C2},
+    {99, VER_SELECT(0xE2B, 0xA6D, 0, 0), 0, 0x2C9},
+    {99, VER_SELECT(0xE2D, 0xA6F, 0, 0), 0, 0x2C3},
+    {99, VER_SELECT(0xE2F, 0xA71, 0, 0), 0, 0x2C4},
+    {99, VER_SELECT(0xE31, 0xA73, 0, 0), 0, 0x2C5},
+    {75, VER_SELECT(0xE34, 0xA76, 0, 0), 0, 0x007}
 };
 
 ActorAnimationInfo chBottlesBonusAnimations[] ={

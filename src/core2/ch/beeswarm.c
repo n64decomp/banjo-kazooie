@@ -445,7 +445,7 @@ void chBeeSwarm_update(Actor *this) {
         if (!fileProgressFlag_get(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE) && subaddie_playerIsWithinCylinder(this, 250, 300) 
             && ((player_movementGroup() == BSGROUP_0_NONE) || (player_movementGroup() == BSGROUP_8_TROT)) 
             && (player_getTransformation() == TRANSFORM_1_BANJO) 
-            && (gcdialog_showDialog(0xDA6, 0, NULL, NULL, NULL, NULL) != 0)
+            && (gcdialog_showDialog(VER_SELECT(0xDA6, 0xA24, 0, 0), 0, NULL, NULL, NULL, NULL) != 0)
         ) {
             fileProgressFlag_set(FILEPROG_8F_MET_BEE_INFESTED_BEEHIVE, TRUE);
         }

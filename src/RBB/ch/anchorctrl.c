@@ -54,7 +54,7 @@ void __chAnchorCtrl_setState(Actor *this, s32 next_state){
         timed_playSfx(2.1f, SFX_3F6_RUBBING, 0.6f, 32700);
         timedFunc_set_2(2.7f, (GenFunction_2)mapSpecificFlags_set, RBB_MAIN_SPECIFIC_FLAG_4_ANCHOR_LIFTING, TRUE);
         timedFunc_set_0(3.0f, func_8038C058);
-        func_80324DBC(3.0f, ASSET_B9C_DIALOG_SNORKEL_COMPLETE, 7, NULL, this->marker, __chAnchorCtrl_spawnJiggy, NULL);
+        func_80324DBC(3.0f, VER_SELECT(ASSET_B9C_DIALOG_SNORKEL_COMPLETE, 0x971, 0, 0), 7, NULL, this->marker, __chAnchorCtrl_spawnJiggy, NULL);
     }//L8038C1D8
     this->state = next_state;
 }

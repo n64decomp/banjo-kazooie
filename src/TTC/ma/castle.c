@@ -167,12 +167,12 @@ static void __maCastle_setupCheatCodeTimer(s32 new_timer_state)
         if (volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME))
         {
             // set timer to 50 seconds
-            item_set(ITEM_0_HOURGLASS_TIMER, 2999);
+            item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(2999, 2499, 0, 0));
         }
         else
         {
             // set timer to 100 seconds
-            item_set(ITEM_0_HOURGLASS_TIMER, 5999);
+            item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(5999, 4999, 0, 0));
         }
 
         item_set(ITEM_6_HOURGLASS, TRUE);
@@ -1031,7 +1031,7 @@ static void __maCastle_eraseGameplayDialogCallback(ActorMarker *caller, enum ass
     {
         __maCastle_setNumberOfBannedCheatcodesEntered(3);
         __maCastle_checkSecretCheatCodeIndex(sThirdForbiddenSecretCheatCodeIndex);
-        gcdialog_showDialog(ASSET_FBF_DIALOG_ERASED_SAVE, 0xC, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_FBF_DIALOG_ERASED_SAVE, 0xB25, 0, 0), 0xC, NULL, NULL, NULL, NULL);
         gameFile_clear(gameSelect_getGameNumber());
         gameFile_8033CFD4(gameSelect_getGameNumber());
         gameSelect_setGameNumber(-1);
@@ -1066,11 +1066,11 @@ static void __maCastle_checkIfBannedCheatCodeEntered(s32 secret_cheat_code_index
                         __maCastle_setNumberOfBannedCheatcodesEntered(2);
                         __maCastle_checkSecretCheatCodeIndex(secret_cheat_code_index);
                         __maCastle_resetSecretCheatCodeProgress();
-                        gcdialog_showDialog(ASSET_FBE_DIALOG_CHEATING_ERASE_SAVE_WARNING, 0xC, NULL, NULL, NULL, NULL);
+                        gcdialog_showDialog(VER_SELECT(ASSET_FBE_DIALOG_CHEATING_ERASE_SAVE_WARNING, 0xB24, 0, 0), 0xC, NULL, NULL, NULL, NULL);
                         return;
                     case 2:
                         sThirdForbiddenSecretCheatCodeIndex = secret_cheat_code_index;
-                        gcdialog_showDialog(ASSET_E38_DIALOG_CHEATING_ERASE_SAVE_CONFIRMATION, 0xC, NULL, NULL, __maCastle_eraseGameplayDialogCallback, NULL);
+                        gcdialog_showDialog(VER_SELECT(ASSET_E38_DIALOG_CHEATING_ERASE_SAVE_CONFIRMATION, 0xA7A, 0, 0), 0xC, NULL, NULL, __maCastle_eraseGameplayDialogCallback, NULL);
                         return;
                 }
                 return;

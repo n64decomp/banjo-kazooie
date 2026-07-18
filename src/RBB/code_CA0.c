@@ -165,7 +165,7 @@ void chCageUpSwitch_setState(Actor *this, s32 next_state){
 
     if(next_state == CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE){
         item_set(ITEM_6_HOURGLASS, 1);
-        item_set(ITEM_0_HOURGLASS_TIMER, 0x3bf);
+        item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(0x3bf, 0x31f, 0, 0));
     }
 
     if(this->state == CH_CAGE_UP_SWITCH_STATE_3_TIMED_RAISED_CAGE){

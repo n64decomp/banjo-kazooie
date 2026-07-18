@@ -69,14 +69,14 @@ void chCaveWozza_update(Actor *this){
         if (subaddie_playerIsWithinSphereAndActive(this, 350)) {
             if (player_getTransformation() == TRANSFORM_4_WALRUS) {
                 if (!levelSpecificFlags_get(LEVEL_FLAG_31_FP_WOZZA_WALRUS_TALKED)) {
-                    if (gcdialog_showDialog(ASSET_C27_DIALOG_WOZZA_CAVE_MEET_AS_WALRUS, 0x23, NULL, NULL, NULL, NULL)) {
+                    if (gcdialog_showDialog(VER_SELECT(ASSET_C27_DIALOG_WOZZA_CAVE_MEET_AS_WALRUS, 0x9A1, 0, 0), 0x23, NULL, NULL, NULL, NULL)) {
                         levelSpecificFlags_set(LEVEL_FLAG_31_FP_WOZZA_WALRUS_TALKED, TRUE);
                     }
                 }
             }
             else {
                 if (!levelSpecificFlags_get(LEVEL_FLAG_32_FP_WOZZA_BEAR_TALKED)) {
-                    if (gcdialog_showDialog(ASSET_C26_DIALOG_WOZZA_CAVE_MEET_AS_BEAR, 0x23, NULL, NULL, NULL, NULL)) {
+                    if (gcdialog_showDialog(VER_SELECT(ASSET_C26_DIALOG_WOZZA_CAVE_MEET_AS_BEAR, 0x9A0, 0, 0), 0x23, NULL, NULL, NULL, NULL)) {
                         levelSpecificFlags_set(LEVEL_FLAG_32_FP_WOZZA_BEAR_TALKED, TRUE);
                     }
                 }

@@ -127,7 +127,7 @@ void chXmasTree_update(Actor *this){
             this->lifetime_value = 2.0f;
             coMusicPlayer_playMusic(COMUSIC_61_XMAS_TREE_LIGHTS_UP, 28000);
             gcStaticCamera_activate(0x1A);
-            gcdialog_showDialog(ASSET_C14_DIALOG_TWINKLIE_MINIGAME_LIGHT_TREE, 0, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_C14_DIALOG_TWINKLIE_MINIGAME_LIGHT_TREE, 0x98E, 0, 0), 0, NULL, NULL, NULL, NULL);
             break;
 
         case 3: // L803872F0
@@ -150,7 +150,7 @@ void chXmasTree_update(Actor *this){
                 if(func_802BB270()){
                     subaddie_set_state(this, 4);
                     chXmasTree_setState(this, 1);
-                    item_set(ITEM_0_HOURGLASS_TIMER, 3600 - 1);
+                    item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(3600, 3000, 0, 0) - 1);
                     item_set(ITEM_6_HOURGLASS, TRUE);
 
                 }

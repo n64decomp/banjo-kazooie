@@ -16,7 +16,7 @@ void __propellorCtrl_setState(s32 arg0){
     }
 
     if(arg0 == 2){
-        item_set(ITEM_3_PROPELLOR_TIMER, 3900 - 1);
+        item_set(ITEM_3_PROPELLOR_TIMER, VER_SELECT(3900, 3250, 0, 0) - 1);
         item_set(ITEM_9_PROPELLOR, 1);
     }
 
@@ -26,7 +26,7 @@ void __propellorCtrl_setState(s32 arg0){
         item_set(ITEM_9_PROPELLOR,0);
         if(arg0 == 3 && !jiggyscore_isCollected(JIGGY_57_RBB_PROPELLOR)){
             timedFunc_set_1(0.5f, (GenFunction_1)func_802FAD64, 3);
-            func_80324DBC(1.0f, ASSET_B9D_DIALOG_GRUNTY_PROPELLER_MISS, 4, NULL, NULL, NULL, NULL);
+            func_80324DBC(1.0f, VER_SELECT(ASSET_B9D_DIALOG_GRUNTY_PROPELLER_MISS, 0x972, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
         else{
             func_802FAD64(3);

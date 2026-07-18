@@ -158,7 +158,7 @@ void chGobi1_update(Actor *this){
         timed_playSfx(1.0f, SFX_84_GOBI_CRYING, 1.1f, 30000);
         timed_playSfx(2.0f, SFX_84_GOBI_CRYING, 1.3f, 30000);
         timed_playSfx(2.5f, SFX_74_WALKING_NOISE_5, 0.5f, 30000);
-        func_80324DBC(3.0f, ASSET_A74_DIALOG_GOBI_HELPED, 0x2a, this->position, NULL, NULL, NULL);
+        func_80324DBC(3.0f, VER_SELECT(ASSET_A74_DIALOG_GOBI_HELPED, 0x930, 0, 0), 0x2a, this->position, NULL, NULL, NULL);
         timed_playSfx(5.0f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
         timed_playSfx(5.6f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
         timed_playSfx(6.5f, SFX_2E_BIGBUTT_RUNNING, 1.0f, 20000);
@@ -180,7 +180,7 @@ void chGobi1_update(Actor *this){
             && subaddie_playerIsWithinSphereAndActive(this, 250)
             && !subaddie_playerIsWithinSphereAndActive(this, 80)
             && func_8028F2A0()
-            && gcdialog_showDialog(0xa73, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showDialog(VER_SELECT(0xa73, 0x92F, 0, 0), 0, NULL, NULL, NULL, NULL)
         ){
             this->has_met_before = TRUE;
         }

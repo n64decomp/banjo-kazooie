@@ -177,7 +177,7 @@ void chTwinklyBox_destroyBox(ActorMarker *marker){
     chTwinklyBox_destroyBoxDust(this->position, 12, ASSET_700_SPRITE_DUST);
     this->velocity[1] = 0.0f;
     sfx_playFadeShorthandDefault(SFX_30_MAGIC_POOF, 1.0f, 32000, this->position, 1000, 3500);
-    gcdialog_showDialog(ASSET_C13_DIALOG_TWINKLIE_MINIGAME_COMPLETE, 0, NULL, NULL, NULL, NULL);
+    gcdialog_showDialog(VER_SELECT(ASSET_C13_DIALOG_TWINKLIE_MINIGAME_COMPLETE, 0x98D, 0, 0), 0, NULL, NULL, NULL, NULL);
 }
 
 void chTwinklyBox_openBox(Actor *this){
@@ -364,7 +364,7 @@ void chTwinklyBox_update(Actor *this){
         func_8028F784(0);
         subaddie_set_state_with_direction(this, 4, 0.999f, 1);
         actor_playAnimationOnce(this);
-        item_set(ITEM_0_HOURGLASS_TIMER, 80*60 - 1);
+        item_set(ITEM_0_HOURGLASS_TIMER, 80*FRAMERATE - 1);
         item_set(ITEM_6_HOURGLASS, TRUE);
         this->unk38_31 = 0xA;
         item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);

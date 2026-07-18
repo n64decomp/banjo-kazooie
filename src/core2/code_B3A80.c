@@ -222,8 +222,13 @@ void func_8033B1BC(void){
 }
 
 void func_8033B268(void){
+#if VERSION == VERSION_USA_1_0
     D_80383CE0[0] = (vector(struct21s) *)defrag(D_80383CE0[0]);
     D_80383CE0[1] = (vector(struct21s) *)defrag(D_80383CE0[1]);
+#else
+    D_80383CE0[0] = (vector(struct21s) *)vector_defrag(D_80383CE0[0]);
+    D_80383CE0[1] = (vector(struct21s) *)vector_defrag(D_80383CE0[1]);
+#endif
 }
 
 void func_8033B2A4(s32 arg0) {
