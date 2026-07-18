@@ -70,11 +70,11 @@ void chWozza_enterCaveFinal(Actor *this){
 void chWozza_textCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2){
     Actor *this = marker_getActor(caller);
     switch(text_id){
-        case ASSET_C1B_DIALOG_WOZZA_MEET_AS_BEAR:
+        case VER_SELECT(ASSET_C1B_DIALOG_WOZZA_MEET_AS_BEAR, 0x995, 0, 0):
             timed_exitStaticCamera(0.0f);
             break;
 
-        case ASSET_C1C_DIALOG_WOZZA_MEET_AS_WALRUS:
+        case VER_SELECT(ASSET_C1C_DIALOG_WOZZA_MEET_AS_WALRUS, 0x996, 0, 0):
             timed_exitStaticCamera(0.0f);
             chWozza_enterCaveFinal(this);
             break;
@@ -110,7 +110,7 @@ void chWozza_firstContact(Actor *this){
         subaddie_set_state(this, 2);
         actor_loopAnimation(this);
         timed_setStaticCameraToNode(0.0f, 0x2e);
-        func_80324DBC(0.0f, ASSET_C1B_DIALOG_WOZZA_MEET_AS_BEAR, 0x2a, this->position, this->marker, chWozza_textCallback, NULL);
+        func_80324DBC(0.0f, VER_SELECT(ASSET_C1B_DIALOG_WOZZA_MEET_AS_BEAR, 0x995, 0, 0), 0x2a, this->position, this->marker, chWozza_textCallback, NULL);
         timedFunc_set_1(2.5f, (GenFunction_1)chWozza_delayedRetreatToCave, (s32)this->marker);
     }
     else{
@@ -276,7 +276,7 @@ void chWozza_update(Actor *this){
             chWozza_checkForPlayer(this);
 
             if(!local->unk30){
-                if(gcdialog_showDialog(ASSET_C1D_DIALOG_WOZZA_RETURN, 0x20, NULL, NULL, NULL, NULL)){
+                if(gcdialog_showDialog(VER_SELECT(ASSET_C1D_DIALOG_WOZZA_RETURN, 0x997, 0, 0), 0x20, NULL, NULL, NULL, NULL)){
                     local->unk30 =  TRUE;
                 }
             }
@@ -303,7 +303,7 @@ void chWozza_update(Actor *this){
             }
 
             if(subaddie_playerIsWithinSphereAndActive(this, 500) && !this->has_met_before){
-                if(gcdialog_showDialog(ASSET_C1C_DIALOG_WOZZA_MEET_AS_WALRUS, 0xAA, this->position, this->marker, chWozza_textCallback, chWozza_checkCompletion)){
+                if(gcdialog_showDialog(VER_SELECT(ASSET_C1C_DIALOG_WOZZA_MEET_AS_WALRUS, 0x996, 0, 0), 0xAA, this->position, this->marker, chWozza_textCallback, chWozza_checkCompletion)){
                     timed_setStaticCameraToNode(0.0f, 0x2E);
                     this->has_met_before = TRUE;
                 }

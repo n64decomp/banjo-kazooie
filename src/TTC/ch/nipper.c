@@ -156,7 +156,7 @@ static void __chNipper_dieFunc(ActorMarker *this_marker, ActorMarker *other_mark
 
     __chNipper_playDeathAnimation(this);
     this->lifetime_value = 80.0f;
-    gcdialog_showDialog(ASSET_A10_DIALOG_NIPPER_HURT, 4, NULL, NULL, NULL, NULL);
+    gcdialog_showDialog(VER_SELECT(ASSET_A10_DIALOG_NIPPER_HURT, 0x910, 0, 0), 4, NULL, NULL, NULL, NULL);
     return;
 }
 
@@ -177,7 +177,7 @@ static void __chNipper_ow2Func(ActorMarker * this_marker, ActorMarker *other_mar
         this = marker_getActor(this_marker);
         if( !mapSpecificFlags_get(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN)
             && this->has_met_before
-            && gcdialog_showDialog(ASSET_A0F_DIALOG_NIPPER_HIT_BY_EGG, 0, NULL, NULL, NULL, NULL)
+            && gcdialog_showDialog(VER_SELECT(ASSET_A0F_DIALOG_NIPPER_HIT_BY_EGG, 0x90F, 0, 0), 0, NULL, NULL, NULL, NULL)
         ){
             mapSpecificFlags_set(TTC_SPECIFIC_FLAG_7_NIPPER_FIRST_MEET_TEXT_SHOWN, TRUE);
         }
@@ -188,7 +188,7 @@ static void __chNipper_owFunc(ActorMarker * this_marker, ActorMarker *other_mark
     Actor *this = marker_getActor(this_marker);
     if( !this->unk138_23
         && this->has_met_before
-        && gcdialog_showDialog(ASSET_A11_DIALOG_NIPPER_ATTACK, 0, NULL, NULL, NULL, NULL)
+        && gcdialog_showDialog(VER_SELECT(ASSET_A11_DIALOG_NIPPER_ATTACK, 0x911, 0, 0), 0, NULL, NULL, NULL, NULL)
     ){
         this->unk138_23 = TRUE;
     }
@@ -243,7 +243,7 @@ static void __chNipper_updateFunc(Actor *this){
                     && player_movement_group != BSGROUP_A_FLYING
                 ){
                     subaddie_set_state_with_direction(this, CH_NIPPER_STATE_5_SPAWNED, 0.01f, 1);
-                    if(gcdialog_showDialog(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
+                    if(gcdialog_showDialog(VER_SELECT(ASSET_A0E_DIALOG_NIPPER_SPAWNED, 0x90E, 0, 0), 0xf, this->position, this->marker, __chNipper_spawnedShowTextCallback, NULL)){
                         this->has_met_before = TRUE;
                     }
                     comusic_8025AB44(COMUSIC_12_TTC_NIPPER, 5000, 300);

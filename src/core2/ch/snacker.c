@@ -80,7 +80,7 @@ static void __chsnacker_start_dialog(Actor *this) {
             text_index = mapSpecificFlags_getN(8, 3);
             if( !this->has_met_before ) {
                 if(text_index < 4) {
-                    if(gcdialog_showDialog(ASSET_A1B_DIALOG_SNACKER_SPAWNED_1 + text_index, 0, NULL, NULL, NULL, NULL)){
+                    if(gcdialog_showDialog(VER_SELECT(ASSET_A1B_DIALOG_SNACKER_SPAWNED_1, 0x91B, 0, 0) + text_index, 0, NULL, NULL, NULL, NULL)){
                         text_index++;
                         mapSpecificFlags_setN(8, text_index, 3);
                         this->has_met_before = TRUE;

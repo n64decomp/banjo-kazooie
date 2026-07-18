@@ -249,23 +249,23 @@ void maSlalom_dialogCallback(ActorMarker *caller, enum asset_e text_id, s32 arg2
     }
     
     switch(text_id){
-        case ASSET_C04_DIALOG_BOGGY_SLED_WALRUS_MISS: //8038B318
+        case VER_SELECT(ASSET_C04_DIALOG_BOGGY_SLED_WALRUS_MISS, 0x97E, 0, 0): //8038B318
             __maSlalom_loseDialogCallback();
             break;
 
-        case ASSET_C07_DIALOG_BOGGY_SLED_WALRUS_COMPLETE: //8038B328
+        case VER_SELECT(ASSET_C07_DIALOG_BOGGY_SLED_WALRUS_COMPLETE, 0x981, 0, 0): //8038B328
             __maSlalom_winDialogCallback(JIGGY_30_FP_BOGGY_2);
             break;
 
-        case ASSET_C0B_DIALOG_BOGGY_SLED_BEAR_MISS: //8038B338
+        case VER_SELECT(ASSET_C0B_DIALOG_BOGGY_SLED_BEAR_MISS, 0x985, 0, 0): //8038B338
             __maSlalom_loseDialogCallback();
             break;
 
-        case ASSET_C0D_DIALOG_BOGGY_SLED_BEAR_COMPLETE: //8038B348
+        case VER_SELECT(ASSET_C0D_DIALOG_BOGGY_SLED_BEAR_COMPLETE, 0x987, 0, 0): //8038B348
             __maSlalom_winDialogCallback(JIGGY_2C_FP_BOGGY_3);
             break;
 
-        case ASSET_C10_DIALOG_BOGGY_SLED_EITHER_GIVE_UP: //8038B358
+        case VER_SELECT(ASSET_C10_DIALOG_BOGGY_SLED_EITHER_GIVE_UP, 0x98A, 0, 0): //8038B358
             func_8038ABDC();
             code_7060_setVoidOutLocation(gsworld_getMap(), 0x11);
             func_8028F66C(BS_INTR_2A);
@@ -299,12 +299,12 @@ void maSlalom_lose(void){
     if(!jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
         timed_setStaticCameraToNode(0.0f, 1);
         timed_playSfx(1.0f, SFX_8C_BOGGY_WAHEY, 1.0f, 32000);
-        func_80324DBC(2.0f, ASSET_C04_DIALOG_BOGGY_SLED_WALRUS_MISS, 0x2b, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
+        func_80324DBC(2.0f, VER_SELECT(ASSET_C04_DIALOG_BOGGY_SLED_WALRUS_MISS, 0x97E, 0, 0), 0x2b, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
     }//L8038B4E0
     else{
         timed_setStaticCameraToNode(0.0f, 1);
         timed_playSfx(1.0f, SFX_8C_BOGGY_WAHEY, 1.0f, 32000);
-        func_80324DBC(2.0f, ASSET_C0B_DIALOG_BOGGY_SLED_BEAR_MISS, 0x2b, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
+        func_80324DBC(2.0f, VER_SELECT(ASSET_C0B_DIALOG_BOGGY_SLED_BEAR_MISS, 0x985, 0, 0), 0x2b, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
 
     }
 }
@@ -358,10 +358,10 @@ void maSlalom_update(void){
             pntBoggy->unk38_31 = 2;
             timed_playSfx(1.0f, SFX_8D_BOGGY_OHWW, 1.0f, 32000);
             if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2) || jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2)){
-                func_80324DBC(2.0f, ASSET_C0D_DIALOG_BOGGY_SLED_BEAR_COMPLETE, 0x2a, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
+                func_80324DBC(2.0f, VER_SELECT(ASSET_C0D_DIALOG_BOGGY_SLED_BEAR_COMPLETE, 0x987, 0, 0), 0x2a, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
             }
             else{
-                func_80324DBC(2.0f, ASSET_C07_DIALOG_BOGGY_SLED_WALRUS_COMPLETE, 0x22, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
+                func_80324DBC(2.0f, VER_SELECT(ASSET_C07_DIALOG_BOGGY_SLED_WALRUS_COMPLETE, 0x981, 0, 0), 0x22, pntBoggy->position, NULL, maSlalom_dialogCallback, NULL);
             }
             Me.state = MA_SLALOM_STATE_4_LOSE;
             break;
@@ -538,7 +538,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
                 FP_func_8038AB60(0);
                 if(!player_isDead()){
                     func_8028F918(2);
-                    gcdialog_showDialog(ASSET_C10_DIALOG_BOGGY_SLED_EITHER_GIVE_UP, 0x20, NULL, NULL, maSlalom_dialogCallback, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_C10_DIALOG_BOGGY_SLED_EITHER_GIVE_UP, 0x98A, 0, 0), 0x20, NULL, NULL, maSlalom_dialogCallback, NULL);
                 }//L8038BD40
                 Me.state = MA_SLALOM_STATE_4_LOSE;
                 break;
@@ -546,7 +546,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
             case 3:
                 if(!Me.hasBeenThreeBehind && !player_isDead()){
                     Me.hasBeenThreeBehind = 1;
-                    gcdialog_showDialog(ASSET_C0F_DIALOG_BOGGY_SLED_EITHER_TAUNT_2, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_C0F_DIALOG_BOGGY_SLED_EITHER_TAUNT_2, 0x989, 0, 0), 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BD94
                 func_8025AEA0(0x3a, 0x411aa);
                 break;
@@ -554,7 +554,7 @@ void maSlalom_setBoggyGate(s32 gate_num){
             case 2:
                 if(!Me.hasBeenTwoBehind && !player_isDead()){
                     Me.hasBeenTwoBehind = 1;
-                    gcdialog_showDialog(ASSET_C0E_DIALOG_BOGGY_SLED_EITHER_TAUNT_1, 0x20, NULL, NULL, NULL, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_C0E_DIALOG_BOGGY_SLED_EITHER_TAUNT_1, 0x988, 0, 0), 0x20, NULL, NULL, NULL, NULL);
                 }//L8038BDF0
                 func_8025AEA0(0x3a, 0x493e0);
                 break;

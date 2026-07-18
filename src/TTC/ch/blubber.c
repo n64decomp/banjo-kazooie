@@ -63,7 +63,7 @@ static void __chBlubber_showTextCallback(ActorMarker *caller, enum asset_e text_
     Actor *this = marker_getActor(caller);
     ActorLocal_Blubber *local =  (ActorLocal_Blubber*)&this->local;
 
-    if(text_id == ASSET_A0D_DIALOG_BLUBBER_COMPLETE || text_id == ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED){
+    if(text_id == VER_SELECT(ASSET_A0D_DIALOG_BLUBBER_COMPLETE, 0x90D, 0, 0) || text_id == ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED){
         local->unk24 = 0;
     }
     else{
@@ -89,7 +89,7 @@ static void __chBlubber_showJiggySpawnedText(ActorMarker *marker){
     this->actor_specific_1_f = 0.0f;
 
     if(!mapSpecificFlags_get(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN)) {
-        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED : ASSET_A0D_DIALOG_BLUBBER_COMPLETE;
+        text_id = jiggyscore_isCollected(JIGGY_14_TTC_BLUBBER) ? ASSET_A2A_DIALOG_BLUBBER_COMPLETE_JIGGY_COLLECTED : VER_SELECT(ASSET_A0D_DIALOG_BLUBBER_COMPLETE, 0x90D, 0, 0);
         gcdialog_showDialog(text_id, 0xf, this->position, this->marker, __chBlubber_showTextCallback, __chBlubber_showTextCallback2);
         mapSpecificFlags_set(TTC_SPECIFIC_FLAG_2_BLUBBER_JIGGY_SPAWNED_TEXT_SHOWN, TRUE);
     }
@@ -157,7 +157,7 @@ static void __chBlubber_updateFunc(Actor *this){
         && !this->has_met_before
         && item_getCount(ITEM_18_GOLD_BULLIONS) == 0
     ){
-        gcdialog_showDialog(ASSET_A0B_DIALOG_BLUBBER_FIRST_MEET, 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_A0B_DIALOG_BLUBBER_FIRST_MEET, 0x90B, 0, 0), 0xe, this->position, this->marker, __chBlubber_showTextCallback, NULL);
         this->has_met_before = TRUE;
         subaddie_set_state_forward(this, CH_BLUBBER_STATE_3_UNKNOWN);
     }
@@ -166,7 +166,7 @@ static void __chBlubber_updateFunc(Actor *this){
         && !this->unk138_23
     ){
         if (item_getCount(ITEM_18_GOLD_BULLIONS) == 0) {
-            gcdialog_showDialog(ASSET_A0C_DIALOG_BLUBBER_HALF_GOLD, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_A0C_DIALOG_BLUBBER_HALF_GOLD, 0x90C, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
         
         this->unk138_23 = TRUE;

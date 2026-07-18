@@ -74,7 +74,7 @@ void chTrucker_update(Actor *this){
         && !subaddie_playerIsWithinSphereAndActive(this, 80)
         && func_8028F2A0()
     ){
-        gcdialog_showDialog(ASSET_A71_DIALOG_TRUNKER_MEET, 0xe, this->position, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_A71_DIALOG_TRUNKER_MEET, 0x92D, 0, 0), 0xe, this->position, NULL, NULL, NULL);
         this->has_met_before = TRUE;
     }//L80389254
 

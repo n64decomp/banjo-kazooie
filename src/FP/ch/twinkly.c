@@ -336,11 +336,11 @@ void chTwinkly_update(Actor *this){
             if(this->unk1C[1] <= this->position_y){
                 this->position_y = this->unk1C[1];
                 if(!fileProgressFlag_get(FILEPROG_82_MET_TWINKLIES)){
-                    gcdialog_showDialog(ASSET_C12_DIALOG_TWINKLIE_MINIGAME_START, 0x2a, this->position, this->marker, chTwinkly_setUpMinigame, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_C12_DIALOG_TWINKLIE_MINIGAME_START, 0x98C, 0, 0), 0x2a, this->position, this->marker, chTwinkly_setUpMinigame, NULL);
                     fileProgressFlag_set(FILEPROG_82_MET_TWINKLIES, TRUE);
                 }
                 else{
-                    gcdialog_showDialog(ASSET_C25_DIALOG_TWINKLIE_MINIGAME_RETRY, 0x2b, this->position, this->marker, chTwinkly_setUpMinigame, NULL);
+                    gcdialog_showDialog(VER_SELECT(ASSET_C25_DIALOG_TWINKLIE_MINIGAME_RETRY, 0x99F, 0, 0), 0x2b, this->position, this->marker, chTwinkly_setUpMinigame, NULL);
                 }
                 subaddie_set_state(this, 5);
                 this->pitch -= 3.0f;

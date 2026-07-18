@@ -116,10 +116,10 @@ static void __chTreasurehunt_spawnActorForNextStep(void) {
 static void __chTreasurehunt_checkStepProgress(s32 currentStep){
     if(chtreasureHunt_puzzleCurrentStep == currentStep && __chTreasurehunt_isActiveHitboxBeakBusterHitbox()){
         if(currentStep == 0 && !jiggyscore_isCollected(JIGGY_11_TTC_RED_X)){
-            gcdialog_showDialog(ASSET_A18_DIALOG_TREASUREHUNT_FOLLOW_CLUES, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_A18_DIALOG_TREASUREHUNT_FOLLOW_CLUES, 0x918, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
         else if(currentStep == 4){
-            gcdialog_showDialog(ASSET_A19_DIALOG_TREASUREHUNT_SECOND_STEP, 4, NULL, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_A19_DIALOG_TREASUREHUNT_SECOND_STEP, 0x919, 0, 0), 4, NULL, NULL, NULL, NULL);
         }
 
         chtreasureHunt_puzzleCurrentStep++;
@@ -170,7 +170,7 @@ void chTreasurehunt_checkStepProgress5(NodeProp *this, ActorMarker *arg1){
         gcpausemenu_80314AC8(0);
         timedFunc_set_2(0.1f, (GenFunction_2) func_8028F45C, 9, (s32)&particleTargetPosition);
         timedFunc_set_1(0.1f, (GenFunction_1) gcpausemenu_80314AC8, 1);
-        gcdialog_showDialog(ASSET_A17_DIALOG_BURIED_TREASURE_SPAWNED, 4, NULL, NULL, NULL, NULL);
+        gcdialog_showDialog(VER_SELECT(ASSET_A17_DIALOG_BURIED_TREASURE_SPAWNED, 0x917, 0, 0), 4, NULL, NULL, NULL, NULL);
         chtreasureHunt_puzzleCurrentStep++;
     }
 }

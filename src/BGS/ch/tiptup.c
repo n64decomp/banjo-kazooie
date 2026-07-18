@@ -31,16 +31,16 @@ ActorInfo gChTiptup = {
 
 s16 chTiptupRepeatDialogs[] = {
     NULL,
-    ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT,
-    ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT,
-    ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT
+    VER_SELECT(ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT, 0x9BB, 0, 0),
+    VER_SELECT(ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT, 0x9BD, 0, 0),
+    VER_SELECT(ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT, 0x9BF, 0, 0)
 };
 
 s16 chTiptupSuccessDialogs[] = {
     NULL,
-    ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE,
-    ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE,
-    ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE
+    VER_SELECT(ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE, 0x9BA, 0, 0),
+    VER_SELECT(ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE, 0x9BC, 0, 0),
+    VER_SELECT(ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE, 0x9BE, 0, 0)
 };
 
 u8  chTiptupSequenceLength[] = {3, 3, 5, 7};
@@ -98,7 +98,7 @@ void chTiptup_activateTimer(ActorMarker *this){
     
     thisActor = marker_getActor(this);
     item_set(ITEM_6_HOURGLASS, 1);
-    item_set(ITEM_0_HOURGLASS_TIMER, TIPTUP_TIMER * 60 - 1);
+    item_set(ITEM_0_HOURGLASS_TIMER, VER_SELECT(TIPTUP_TIMER, 25, 0, 0) * 60 - 1);
     chTiptup_setState(thisActor, CH_TIPTUP_STATE_5_WIN_MINIGAME);
 }
 
@@ -115,21 +115,21 @@ void chTiptup_textEvent(ActorMarker *this, enum asset_e text_id, s32 arg2){
 
     thisActor = marker_getActor(this);
     switch(text_id){
-        case ASSET_C72_DIALOG_TIPTUP_MEET_1:
-        case ASSET_C74_DIALOG_TIPTUP_MEET_3:
+        case VER_SELECT(ASSET_C72_DIALOG_TIPTUP_MEET_1, 0x9B5, 0, 0):
+        case VER_SELECT(ASSET_C74_DIALOG_TIPTUP_MEET_3, 0x9B7, 0, 0):
             chTiptup_setState(thisActor, CH_TIPTUP_STATE_3_FF_GIVE_SEQUENCE);
             break;
-        case ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT:
-        case ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT:
-        case ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT:
+        case VER_SELECT(ASSET_C78_DIALOG_TIPTUP_LESSON_1_REPEAT, 0x9BB, 0, 0):
+        case VER_SELECT(ASSET_C7A_DIALOG_TIPTUP_LESSON_2_REPEAT, 0x9BD, 0, 0):
+        case VER_SELECT(ASSET_C7C_DIALOG_TIPTUP_LESSON_3_REPEAT, 0x9BF, 0, 0):
             chTiptup_setState(thisActor, CH_TIPTUP_STATE_4_AWAIT_SEQUENCE_COMPLETION);
             break;
-        case ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE:
-        case ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE:
+        case VER_SELECT(ASSET_C77_DIALOG_TIPTUP_LESSON_1_COMPLETE, 0x9BA, 0, 0):
+        case VER_SELECT(ASSET_C79_DIALOG_TIPTUP_LESSON_2_COMPLETE, 0x9BC, 0, 0):
             func_80324E38(0.0f, 0);
             chTiptup_setState(thisActor, CH_TIPTUP_STATE_3_FF_GIVE_SEQUENCE);
             break;
-        case ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE:
+        case VER_SELECT(ASSET_C7B_DIALOG_TIPTUP_LESSON_3_COMPLETE, 0x9BE, 0, 0):
             timedFunc_set_0(0.0f, chTiptup_jiggySpawn);
             timed_exitStaticCamera(2.5f);
             func_80324E38(2.5f, 0);
@@ -185,7 +185,7 @@ void chTiptup_setState(Actor *this, s32 next_state){
 
             if (unqPtr->round == TIPTUP_ROUND_1) {
                 gcdialog_showDialog(
-                    ASSET_C72_DIALOG_TIPTUP_MEET_1,
+                    VER_SELECT(ASSET_C72_DIALOG_TIPTUP_MEET_1, 0x9B5, 0, 0),
                     0xe,
                     this->position,
                     this->marker,
@@ -194,7 +194,7 @@ void chTiptup_setState(Actor *this, s32 next_state){
             }
             else {
                 gcdialog_showDialog(
-                    ASSET_C74_DIALOG_TIPTUP_MEET_3,
+                    VER_SELECT(ASSET_C74_DIALOG_TIPTUP_MEET_3, 0x9B7, 0, 0),
                     0xf,
                     this->position,
                     this->marker,
@@ -242,7 +242,7 @@ void chTiptup_setState(Actor *this, s32 next_state){
         if(!unqPtr->round && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)){
             func_80324DBC(
                 sequence_time + 0.5,
-                ASSET_C73_DIALOG_TIPTUP_MEET_2,
+                VER_SELECT(ASSET_C73_DIALOG_TIPTUP_MEET_2, 0x9B6, 0, 0),
                 0xe,
                 this->position,
                 this->marker,
@@ -325,7 +325,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
     unqPtr = (ActorLocal_Tiptup *)&thisActor->local;
     if((s32)unqPtr->unk0 >= (s32) vector_size(unqPtr->unk4)){
         if(!mapSpecificFlags_get(CH_TIPTUP_SPECIFIC_FLAG_0_CHOIR_MEMBER_HIT_AFTER_JIGGY)
-            && gcdialog_showDialog(ASSET_C76_DIALOG_CHOIR_MEMBER_HIT_AFTER_JIGGY, 0, 0, 0, 0, 0))
+            && gcdialog_showDialog(VER_SELECT(ASSET_C76_DIALOG_CHOIR_MEMBER_HIT_AFTER_JIGGY, 0x9B9, 0, 0), 0, 0, 0, 0, 0))
         {
             mapSpecificFlags_set(CH_TIPTUP_SPECIFIC_FLAG_0_CHOIR_MEMBER_HIT_AFTER_JIGGY, 1);
         }
@@ -339,7 +339,7 @@ void chTiptup_choirHitReaction(ActorMarker *this, s32 arg1){
             timedFunc_set_0(0.5f, chTiptup_sfxIncorrectHit);
             if(!mapSpecificFlags_get(CH_TIPTUP_SPECIFIC_FLAG_1_TIPTUP_MISS)
                 && !volatileFlag_get(VOLATILE_FLAG_2_FF_IN_MINIGAME)
-                && gcdialog_showDialog(ASSET_C75_DIALOG_TIPTUP_MISS, 0, NULL, NULL, NULL, NULL))
+                && gcdialog_showDialog(VER_SELECT(ASSET_C75_DIALOG_TIPTUP_MISS, 0x9B8, 0, 0), 0, NULL, NULL, NULL, NULL))
             {
                 mapSpecificFlags_set(CH_TIPTUP_SPECIFIC_FLAG_1_TIPTUP_MISS, TRUE);
             }
@@ -446,7 +446,7 @@ void chTiptup_update(Actor *this){
         if(this->state == CH_TIPTUP_STATE_6_AFTER_JIGGY_DIALOG){
             if(ml_vec3f_distance(this->position, player_position) < 300.0f && !unqPtr->unk8){
                 unqPtr->unk8 = 1;
-                gcdialog_showDialog(ASSET_C7D_DIALOG_TIPTUP_MEET_AFTER_JIGGY, 4, 0, 0, 0, 0);
+                gcdialog_showDialog(VER_SELECT(ASSET_C7D_DIALOG_TIPTUP_MEET_AFTER_JIGGY, 0x9C0, 0, 0), 4, 0, 0, 0, 0);
             }
         }
     }

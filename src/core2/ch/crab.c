@@ -156,7 +156,7 @@ void __chCrab_spawn_mutant_crab_jiggy(void) {
 }
 
 void __chCrab_mutantTextCallback(ActorMarker *caller, enum asset_e text_id, s32 model_id){
-    if (text_id == ASSET_D33_DIALOG_MUTANT_CRAB_DEFEAT) {
+    if (text_id == VER_SELECT(ASSET_D33_DIALOG_MUTANT_CRAB_DEFEAT, 0xA06, 0, 0)) {
         func_80324E38(0.0f, 3);
         timed_setStaticCameraToNode(0.0f, 4);
         timedFunc_set_0(0.1f, __chCrab_spawn_mutant_crab_jiggy);
@@ -206,7 +206,7 @@ void __chCrab_die(ActorMarker *marker, ActorMarker *other){
             jiggy_spawn_position[1] = 3812.0f;
             jiggy_spawn_position[2] = 0.0f;
             coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7FFF);
-            func_80324DBC(2.25f, ASSET_D33_DIALOG_MUTANT_CRAB_DEFEAT, 0xF, jiggy_spawn_position, NULL, __chCrab_mutantTextCallback, NULL);
+            func_80324DBC(2.25f, VER_SELECT(ASSET_D33_DIALOG_MUTANT_CRAB_DEFEAT, 0xA06, 0, 0), 0xF, jiggy_spawn_position, NULL, __chCrab_mutantTextCallback, NULL);
         }
     }
     p_ctrl = partEmitMgr_newEmitter(2);
@@ -282,7 +282,7 @@ void chCrab_update(Actor *this) {
         && !player_movementGroup()
     ) {
         if ((this->state != CRAB_STATE_6_FLIP_UPSIDE_DOWN) && (this->state != CRAB_STATE_5_UPSIDE_DOWN)) {
-            gcdialog_showDialog(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_D32_DIALOG_MUTANT_CRAB_MEET, 0xA05, 0, 0), 0xF, this->position, NULL, __chCrab_mutantTextCallback, NULL);
             mapSpecificFlags_set(0, TRUE);
             levelSpecificFlags_set(LEVEL_FLAG_E_CC_MUTIE_SNIPPETS, TRUE);
             this->has_met_before = TRUE;
@@ -295,10 +295,10 @@ void chCrab_update(Actor *this) {
             && !jiggyscore_isCollected(JIGGY_10_TTC_SANDCASTLE)
             && subaddie_playerIsWithinSphereAndActive(this, 1600)
         ) {
-            gcdialog_showDialog(ASSET_A12_DIALOG_BLACK_SNIPPET_SPAWNED, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_A12_DIALOG_BLACK_SNIPPET_SPAWNED, 0x912, 0, 0), 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(0, TRUE);
         } else if (mapSpecificFlags_get(1)) {
-            gcdialog_showDialog(ASSET_A13_DIALOG_BLACK_SNIPPET_DEFEATED, 4, this->position, NULL, NULL, NULL);
+            gcdialog_showDialog(VER_SELECT(ASSET_A13_DIALOG_BLACK_SNIPPET_DEFEATED, 0x913, 0, 0), 4, this->position, NULL, NULL, NULL);
             mapSpecificFlags_set(1, FALSE);
         }
     }

@@ -95,7 +95,7 @@ void func_803867F4(void){
 
 void func_80386850(ActorMarker *caller_marker, enum asset_e text_id, s32 arg2){
     Actor *caller = marker_getActor(caller_marker); 
-    if(text_id == 0xA80){
+    if(text_id == VER_SELECT(0xA80, 0x93C, 0, 0)){
         subaddie_set_state_with_direction(caller, 2, 0.0f, 1);
         actor_playAnimationOnce(caller);
         coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 0x7fff);
@@ -149,16 +149,16 @@ void chAncientOne_update(Actor *this){
                             mapSpecificFlags_set(sp38, TRUE);
                             if(sp38== 0xB){
                                 if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                    gcdialog_showDialog(ASSET_A80_DIALOG_ANCIENT_ONES_DONE, 0xE, NULL, this->marker, func_80386850, NULL);
+                                    gcdialog_showDialog(VER_SELECT(ASSET_A80_DIALOG_ANCIENT_ONES_DONE, 0x93C, 0, 0), 0xE, NULL, this->marker, func_80386850, NULL);
                                 }
                                 else{
-                                    func_80386850(this->marker, 0xA80, -1);
+                                    func_80386850(this->marker, VER_SELECT(ASSET_A80_DIALOG_ANCIENT_ONES_DONE, 0x93C, 0, 0), -1);
                                 }
                             }//L80386B98
                             else {   
                                 if(sp38== 7){
                                     if(!jiggyscore_isCollected(JIGGY_46_GV_ANCIENT_ONES)){
-                                        gcdialog_showDialog(ASSET_A7F_DIALOG_ANCIENT_ONES_MEET, 0x4, NULL, NULL, NULL, NULL);
+                                        gcdialog_showDialog(VER_SELECT(ASSET_A7F_DIALOG_ANCIENT_ONES_MEET, 0x93B, 0, 0), 0x4, NULL, NULL, NULL, NULL);
                                     }
                                 }
                                 

@@ -35,8 +35,8 @@ void chBeehive_die(ActorMarker *this, ActorMarker *other){
     __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4A_WOOD_EXPLOSION, reinterpret_cast(s32, actor->position[0]), reinterpret_cast(s32, actor->position[1]), reinterpret_cast(s32, actor->position[2]));
     actor->marker->propPtr->unk8_3 = 0;
-    func_803115C4(ASSET_D96_DIALOG_BEEHIVE_MEET);
-    func_803115C4(ASSET_DA6_DIALOG_BEEHIVE_WITH_BEES);
+    func_803115C4(VER_SELECT(ASSET_D96_DIALOG_BEEHIVE_MEET, 0x0A14, 0, 0));
+    func_803115C4(VER_SELECT(ASSET_DA6_DIALOG_BEEHIVE_WITH_BEES, 0x0A24, 0, 0));
 }
 
 void chBeehive_update(Actor *this){
@@ -63,7 +63,7 @@ void chBeehive_update(Actor *this){
             ){
                 if(player_movementGroup() == BSGROUP_0_NONE || player_movementGroup() == BSGROUP_8_TROT){
                     if( player_getTransformation() == TRANSFORM_1_BANJO
-                        && gcdialog_showDialog(ASSET_D96_DIALOG_BEEHIVE_MEET, 0, NULL, NULL, NULL, 0)
+                        && gcdialog_showDialog(VER_SELECT(ASSET_D96_DIALOG_BEEHIVE_MEET, 0xA14, 0, 0), 0, NULL, NULL, NULL, 0)
                     ){
                         fileProgressFlag_set(FILEPROG_D_BEEHIVE_TEXT, 1);
                     }

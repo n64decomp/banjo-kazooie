@@ -422,7 +422,7 @@ void func_802E4384(void){
     else{
         func_8033DC18();
         ;
-        time_setDeltaReal_frames((s32)(func_8033DC20()*60.0f + 0.5));
+        time_setDeltaReal_frames((s32)(func_8033DC20()*(float)FRAMERATE + 0.5));
     }
     func_8033DC10();
     
