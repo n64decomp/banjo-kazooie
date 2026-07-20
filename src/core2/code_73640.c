@@ -182,13 +182,13 @@ void itemPrint_update(void) {
 }
 
 
-void itemPrint_draw(Gfx **gdl, Mtx ** mptr, Vtx **vptr){
+void itemPrint_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     s32 i;
     if(D_803810B0 && level_get() != LEVEL_D_CUTSCENE){
         for(i = 0; i < 0x2C; i++){
             if(!func_802E4A08() || i < 6){
                 if(func_802FB0D4(D_803692F8[i].unk14)){
-                    D_803692F8[i].unk8(i, D_803692F8[i].unk14, gdl, mptr, vptr);
+                    D_803692F8[i].unk8(i, D_803692F8[i].unk14, gfx, mtx, vtx);
                 }
             }
         }

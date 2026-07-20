@@ -231,16 +231,14 @@ void ml_vec3f_set_length_copy(f32 dst[3], f32 src[3], f32 len)
         ml_vec3f_copy(dst, src);
 }
 
-void func_80256664(f32 ptr[3])
-{
-    u32 i;
+void ml_vec3f_clamp_deg360(f32 ptr[3]) {
+    int i;
 
-    for (i = 0; i < 3; i++)
-    {
+    for (i = 0; i < 3; i++) {
         if (ptr[i] >= 0)
-            ptr[i] = (s32)ptr[i] % 360;
+            ptr[i] = (s32) ptr[i] % 360;
         else
-            ptr[i] += ((360 - (s32)ptr[i]) / 360) * 360;
+            ptr[i] += ((360 - (s32) ptr[i]) / 360) * 360;
     }
 }
 

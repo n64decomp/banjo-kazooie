@@ -31,19 +31,19 @@ void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
 
     if (!sEnableDraw) {
         drawRectangle2D(gfx, 0, 0, gFramebufferWidth, gFramebufferHeight, 0, 0, 0);
-        func_802BBD2C(&near, &far);
+        core2_34790_getClipDistances(&near, &far);
         viewport_setNearAndFar(near, far);
         viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
         return;
     }
 
     if (!func_80320708()) {
-        eeprom_writeBlocks(0, 0, (void *) 0x80BC7230, EEPROM_MAXBLOCKS);
+        eeprom_writeBlocks(0, 0, (void *) PHYS_TO_K0(0x00BC7230), EEPROM_MAXBLOCKS);
     }
 
     spawnQueue_unlock();
     sky_draw(gfx, mtx, vtx);
-    func_802BBD2C(&near, &far);
+    core2_34790_getClipDistances(&near, &far);
     viewport_setNearAndFar(near, far);
     viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
 
@@ -74,7 +74,7 @@ void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
             mapModel_xlu_draw(gfx, mtx, vtx);
         }
         if (!game_is_frozen()) {
-            func_8032D3D8(gfx, mtx, vtx);
+            core2_A5BC0_drawUnknownMarkers(gfx, mtx, vtx);
         }
         if (!game_is_frozen()) {
             partEmitMgr_drawPass1(gfx, mtx, vtx);
@@ -89,7 +89,7 @@ void gsworld_draw(Gfx** gfx, Mtx **mtx, Vtx **vtx) {
         func_8034F6F0(gfx, mtx, vtx);
         player_draw(gfx, mtx, vtx);
         func_80302C94(gfx, mtx, vtx);
-        func_8032D3D8(gfx, mtx, vtx);
+        core2_A5BC0_drawUnknownMarkers(gfx, mtx, vtx);
         jiggylist_draw(gfx, mtx, vtx);
         func_803500D8(gfx, mtx, vtx);
         func_802F2ED0(func_8032994C(), gfx, mtx, vtx);

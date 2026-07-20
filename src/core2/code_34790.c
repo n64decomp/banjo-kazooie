@@ -180,9 +180,9 @@ void func_802BBD0C(Gfx **gdl, Mtx **mptr, Vtx **vptr){
     func_802BEE2C(gdl, mptr, vptr);
 }
 
-void func_802BBD2C(f32 *arg0, f32 *arg1){
-    *arg0 = D_8037D8C8;
-    *arg1 = D_8037D8CC;
+void core2_34790_getClipDistances(f32 *near, f32 *far) {
+    *near = D_8037D8C8;
+    *far = D_8037D8CC;
 }
 
 f32 func_802BBD48(void) {

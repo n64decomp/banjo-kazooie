@@ -59,7 +59,7 @@ void func_80314BB0(Gfx **gfx, Mtx **mtx, Vtx **vtx, void * frame_buffer_1, void 
 void func_80315084(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     gsworld_setEnableDraw(FALSE);
     D_803830A0 = 2;
-    func_80314BB0(gfx, mtx, vtx, zBuffer_get(), gFramebuffers[getActiveFramebuffer()]);
+    func_80314BB0(gfx, mtx, vtx, depthbuffer_getDataPtr(), gFramebuffers[getActiveFramebuffer()]);
 }
 
 void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
@@ -72,7 +72,7 @@ void func_80315110(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     else{
         D_803830A0--;
     }
-    func_80314BB0(gfx, mtx, vtx, gFramebuffers[getActiveFramebuffer()], zBuffer_get());
+    func_80314BB0(gfx, mtx, vtx, gFramebuffers[getActiveFramebuffer()], depthbuffer_getDataPtr());
 }
 
 void func_803151D0(Gfx **gfx, Mtx **mtx, Vtx **vtx){

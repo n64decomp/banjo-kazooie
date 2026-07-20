@@ -23,7 +23,7 @@ void ml_vec3f_normalize(f32 vec[3]);
 void ml_vec2f_normalize(f32 vec[2]);
 void ml_3f_normalize(f32 *x, f32 *y, f32 *z);
 void ml_vec3f_set_length_copy(f32 dst[3], f32 src[3], f32 len);
-void func_80256664(f32 ptr[3]);
+void ml_vec3f_clamp_deg360(f32 ptr[3]);
 void func_80256740(f32 vec[3]);
 void ml_vec3f_pitch_rotate_copy(f32 dst[3], f32 src[3], f32 pitch);
 void ml_vec3f_yaw_rotate_copy(f32 dst[3], f32 src[3], f32 yaw);
