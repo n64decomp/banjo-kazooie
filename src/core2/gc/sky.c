@@ -67,30 +67,30 @@ MapSkyInfo * sky_getMapSkyInfo(enum map_e map_id){
     return v1;
 }
 
-void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
+void sky_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     int i;
     f32 position[3];
     f32 rotation[3];
-    BKModelBin *iAsset;
+    BKModelBin *sky_model_bin;
 
     viewport_setNearAndFar(5.0f, 15000.0f);
-    if(gcSky.model_bins[0]){
-        drawRectangle2D(gfx, 0, 0, (s32)(f32) gFramebufferWidth, (s32)(f32)gFramebufferHeight,0, 0, 0); //fill screen with black
+
+    if (gcSky.model_bins[0]) {
+        drawRectangle2D(gfx, 0, 0, (f32) gFramebufferWidth, (f32) gFramebufferHeight, 0, 0, 0);
         viewport_setRenderViewportAndPerspectiveMatrix(gfx, mtx);
         viewport_getPosition_vec3f(position);
-        for(i = 0; i < 3; i++){
-            iAsset = gcSky.model_bins[i];
-            if(iAsset){
+        for (i = 0; i < 3; i++) {
+            sky_model_bin = gcSky.model_bins[i];
+            if (sky_model_bin) {
                 rotation[0] = 0.0f;
                 rotation[1] = gcSky.sky_info->sky_list[i].rotation_speed * gcSky.timer;
                 rotation[2] = 0.0f;
-                modelRender_draw(gfx, mtx, position, rotation, gcSky.sky_info->sky_list[i].scale, NULL, iAsset);
+                modelRender_draw(gfx, mtx, position, rotation, gcSky.sky_info->sky_list[i].scale, NULL, sky_model_bin);
             }
         }
+    } else {
+        drawRectangle2D(gfx, 0, 0, (f32) gFramebufferWidth, (f32) gFramebufferHeight, 0, 0, 0);
     }
-    else{//L8030B200
-        drawRectangle2D(gfx, 0, 0, (s32)(f32) gFramebufferWidth, (s32)(f32)gFramebufferHeight, 0, 0, 0);
-    }//L8030B254
 }
 
 void sky_free(void){

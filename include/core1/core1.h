@@ -149,17 +149,17 @@ void core1_ce60_func_8024BD40(s32 arg0, s32 arg1);
 
 /* src/core1/depthbuffer.c */
 
-extern u8 D_8000E800;
+extern u8 D_8000E800[];
 
-void func_80253190(Gfx **gfx);
-void func_80253208(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
-bool func_80253400(void);
-bool depthBuffer_isPointerSet(void);
-void depthBuffer_stub(void);
-void func_80253428(int arg0);
-void func_802534A8(int arg0);
-void zBuffer_set(Gfx **gfx);
-void *zBuffer_get(void);
+void depthbuffer_clear(Gfx **gfx);
+void depthbuffer_clearRegion(Gfx **gfx, s32 x, s32 y, s32 w, s32 h, void *color_buffer);
+bool depthbuffer_getUnk4(void);
+bool depthbuffer_isDataPtrSet(void);
+void depthbuffer_stub(void);
+void depthbuffer_enable(bool enable);
+void depthbuffer_setUnk4(bool value);
+void depthbuffer_set(Gfx **gfx);
+void *depthbuffer_getDataPtr(void);
 
 
 
@@ -189,9 +189,9 @@ extern u16 gFramebuffers[2][DEFAULT_FRAMEBUFFER_WIDTH * DEFAULT_FRAMEBUFFER_HEIG
 void core1_15B30_requestLockForTaskDataID(void);
 void core1_15B30_requestReleaseForTaskDataID(void);
 void core1_15B30_addAudioTaskData(Acmd *start, Acmd *end, OSMesgQueue *mesg_queue, OSMesg msg);
-void func_80253640(Gfx ** gdl, void *arg1);
-void scissorBox_SetForGameMode(Gfx **gdl, s32 framebuffer_idx);
-void setupScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_address);
+void setupFramebuffer(Gfx **gfx, void *color_buffer);
+void setupFramebufferForGamemode(Gfx **gfx, s32 framebuffer_idx);
+void setupScissorBoxAndFramebuffer(Gfx **gfx, void *color_buffer);
 void setupDefaultScissorBoxAndFramebuffer(Gfx **gfx, s32 framebuffer_idx);
 void core1_15B30_finishDList_renderThread(Gfx **gfx);
 void core1_15B30_finishDList(Gfx **gfx);
@@ -211,8 +211,8 @@ void graphicsCache_init(void);
 void scissorBox_set(s32 left, s32 top, s32 right, s32 bottom);
 void scissorBox_setDefault(void);
 void core1_15B30_addTask7TaskData(s32 framebuffer_id);
-void toggleTextureFilterPoint(void);
-void getGraphicsStacks(Gfx **gfx, Mtx **mtx, Vtx **vtx);
+void core1_15B30_toggleTexturePointFilter(void);
+void graphicscache_swapAndGetStacks(Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void dummy_func_80254464(void);
 
 /* src/core1/defragmanager.c */

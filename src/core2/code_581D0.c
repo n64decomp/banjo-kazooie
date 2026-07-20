@@ -30,7 +30,7 @@ Actor *func_802DF160(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     void *sp38;
 
     this = marker_getActor(D_8037E000);
-    sp38 = func_8030C704();
+    sp38 = picturebox_getColorBuffer();
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp38));

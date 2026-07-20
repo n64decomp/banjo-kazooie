@@ -43,7 +43,7 @@ Actor *chMumbosHandWithPicture_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, V
 
 
     this = marker_getActor(marker);
-    sp48 = func_8030C704();
+    sp48 = picturebox_getColorBuffer();
 
     if ((sp48 == 0) || (getGameMode() != GAME_MODE_A_SNS_PICTURE))
         return this;
@@ -63,7 +63,7 @@ Actor *chMumbosHandWithPicture_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, V
     modelRender_setDepthMode(MODEL_RENDER_DEPTH_FULL);
     modelRender_draw(gfx, mtx, sp58, NULL, 1.0f, sp4C, D_8037DFE8);
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
-    func_80253190(gfx);
+    depthbuffer_clear(gfx);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp48));
     modelRender_setPreDrawCallback((GenFunction_1)actor_predrawMethod,  (s32)this);
     modelRender_setPostDrawCallback((GenFunction_1)actor_postdrawMethod, (s32)marker);

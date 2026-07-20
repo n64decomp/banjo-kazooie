@@ -343,17 +343,19 @@ void func_8032D3A8(void){
     vector_clear(D_80383554);
 }
 
-void func_8032D3D8(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+void core2_A5BC0_drawUnknownMarkers(Gfx **gfx, Mtx **mtx, Vtx **vtx) { // further investigation needed what's drawn here
     int i;
-    for(i = 0; i < vector_size(D_80383550); i++){
-       __marker_draw(*(ActorMarker **) vector_at(D_80383550, i), gdl, mptr, vptr);
+
+    for (i = 0; i < vector_size(D_80383550); i++) {
+       __marker_draw(*(ActorMarker **) vector_at(D_80383550, i), gfx, mtx, vtx);
     }
 }
 
-void func_8032D474(Gfx **gdl, Mtx **mptr, Vtx **vptr){
+void core2_A5BC0_drawScreenOverlayMarkers(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     int i;
-    for(i = 0; i < vector_size(D_80383554); i++){
-       __marker_draw(*(ActorMarker **) vector_at(D_80383554, i), gdl, mptr, vptr);
+
+    for (i = 0; i < vector_size(D_80383554); i++) {
+       __marker_draw(*(ActorMarker **) vector_at(D_80383554, i), gfx, mtx, vtx);
     }
 }
 

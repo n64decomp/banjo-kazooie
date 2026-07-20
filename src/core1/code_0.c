@@ -151,7 +151,7 @@ void mainLoop(void){
 
     #if ANTI_TAMPER
     if(!mapSpecificFlags_validateCRC1()){
-        eeprom_writeBlocks(0, 0, 0x80397AD0, 0x40);
+        eeprom_writeBlocks(0, 0, (void *) PHYS_TO_K0(0x00397AD0), EEPROM_MAXBLOCKS);
     }
     #endif
 
@@ -164,7 +164,7 @@ void mainLoop(void){
             func_80255ACC();
             spawnQueue_func_802C3A18();
             if(func_802E4424())
-                game_draw(0);
+                game_draw(FALSE);
             spawnQueue_flush();
             break;
     }//L8023DE34

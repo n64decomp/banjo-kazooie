@@ -50,7 +50,7 @@ typedef struct{
 extern void item_set(enum item_e, s32);
 extern void actor_postdrawMethod(ActorMarker *);
 extern void viewport_setNearAndFar(f32, f32);
-extern s16 *func_8030C704(void);
+extern s16 *picturebox_getColorBuffer(void);
 
 Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx);
 void chBottlesBonus_update(Actor *this);
@@ -157,7 +157,7 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     void *sp50;
 
     sp6C = marker_getActor(marker);
-    sp50 = func_8030C704(); //grabs frame as texture?
+    sp50 = picturebox_getColorBuffer(); //grabs frame as texture?
     if ((sp50 == NULL) || (getGameMode() != GAME_MODE_8_BOTTLES_BONUS))
         return sp6C;
 
@@ -171,7 +171,7 @@ Actor *chBottlesBonus_draw(ActorMarker *marker, Gfx **gfx, Mtx **mtx, Vtx **vtx)
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gDPSetColorDither((*gfx)++, G_CD_DISABLE);
     func_802DF160(gfx, mtx, vtx);
-    func_80253190(gfx);
+    depthbuffer_clear(gfx);
     
     gDPSetTextureFilter((*gfx)++, G_TF_POINT);
     gSPSegment((*gfx)++, 0x04, osVirtualToPhysical(sp50));

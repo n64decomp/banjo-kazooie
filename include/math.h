@@ -9,6 +9,8 @@
     out[2] = c;\
 }
 
+#define TUPLE_SET(dst, value) { dst[0] = dst[1] = dst[2] = value; }
+
 #define TUPLE_COPY(dst, src) {\
     dst[0] = src[0];\
     dst[1] = src[1];\

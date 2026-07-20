@@ -153,7 +153,7 @@ void chBottlesBonusCursor_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx) {
     actor_setOpacity(this, 0xB9);
     viewport_func_8024E030(this->position, D_8037E5C0.unk18);
     sp3C = (this->scale * 650.0f);
-    func_80253208(gfx, 
+    depthbuffer_clearRegion(gfx, 
         (s32)(D_8037E5C0.unk18[0]  - sp3C/2), (s32)(D_8037E5C0.unk18[1] - sp3C/2),
         (s32)sp3C, (s32)sp3C,
         gFramebuffers[getActiveFramebuffer()]

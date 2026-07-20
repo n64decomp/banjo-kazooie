@@ -136,7 +136,7 @@ typedef struct actorMarker_s{
     u32         unk40_22:1;
     u32         unk40_21:1;
     u32         unk40_20:1;
-    u32         unk40_19:1;
+    u32         unk40_19:1; // set for screen overlay sprites
     u32         pad40_18:19;
     Vec3fArray * unk44;
     BKModel *   unk48;
