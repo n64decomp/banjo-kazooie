@@ -13,7 +13,7 @@
 
 s32 D_80275610 = 0;
 s32 D_80275614 = 0;
-u32 gGlobalTimer = 0;
+s32 gGlobalTimer = 0;
 u32 sDebugVar_8027561C[] = { 0x9, 0x4, 0xA, 0x3, 0xB, 0x2, 0xC, 0x5, 0x0,  0x1, 0x6, 0xD,  -1 }; // never used
 s32 D_80275650 = VER_SELECT(0xAD019D3C, 0xA371A8F3, 0, 0); //SM_DATA_CRC2
 s32 D_80275654 = VER_SELECT(0xD381B72F, 0xD0709154, 0, 0); //MM_DATA_CRC2
@@ -65,15 +65,15 @@ void func_8023DA9C(s32 arg0){
     ucode_stub1();
 }
 
-u32 globalTimer_getTimeMasked(u32 mask){
+s32 globalTimer_getTimeMasked(s32 mask) {
     return gGlobalTimer & mask;
 }
 
-s32 globalTimer_getTime(void){
+s32 globalTimer_getTime(void) {
     return gGlobalTimer;
 }
 
-void globalTimer_reset(void){
+void globalTimer_reset(void) {
     gGlobalTimer = 0;
 }
 
@@ -121,11 +121,11 @@ void core1_init(void) {
     func_8023DA9C(3);
 }
 
-void globalTimer_incTimer(void){
+void globalTimer_incTimer(void) {
     gGlobalTimer++;
 }
 
-void globalTimer_decTimer(void){
+void globalTimer_decTimer(void) {
     gGlobalTimer--;
 }
 
@@ -136,15 +136,20 @@ void mainLoop(void){
     u16 rgba;
     s32 offset;
 
-    if((globalTimer_getTime() & 0x7f) == 0x11)
+    if ((globalTimer_getTime() & 0x7F) == 0x11) {
         sns_write_payload_over_heap();
+    }
+
     func_8023DA74();
 
-    if(D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED)
+    if (D_8027A130 != 3 || getGameMode() != GAME_MODE_4_PAUSED) {
         globalTimer_incTimer();
+    }
     
-    if (!sDisableInput)
+    if (!sDisableInput) {
         pfsManager_update();
+    }
+
     sDisableInput = FALSE;
 
     baMotor_80250C08();
@@ -181,7 +186,7 @@ void mainLoop(void){
         //render weird CRC failure image
         for(y= 0x1e; y < gFramebufferHeight - 0x1e; y++){//L8023DEB4
             for(x = 0x14; x < 0xeb; x++){
-                tmp = ((8 * globalTimer_getTime()) + ((x*x) + (y*y)));
+                tmp = ((globalTimer_getTime() << 3) + x * x + y * y);
                 
                 r = _SHIFTL(x>>3, 11, 5);
                 g = _SHIFTL(y>>3, 6, 5);

@@ -201,7 +201,7 @@ void func_8032CD60(Prop *prop) {
     bool sp3C;
     s32 frame_count;
     bool sp34;
-    bool sp30;
+    s32 sp30;
     s32 sp2C;
     bool var_t5;
     s32 var_v1;
@@ -218,7 +218,7 @@ void func_8032CD60(Prop *prop) {
         sp30 = (sp44 == 3) ? frame_count : (frame_count - sp34) * 2;
 
         sp2C = (s32)((((u32)(((u16*)prop)[5]) << 0x15) >> 0x1B) * sp30) / 32;
-        var_v1 = (((globalTimer_getTime(sp34, sp30, prop, sp40) % (sp30 * sp48)) / sp48) + sp2C) % sp30; // TODO: globalTimer_getTime has no parameters, but if we remove them here (to forward declare them in include/core1/main.h, it doesn't match anymore)
+        var_v1 = (((globalTimer_getTime() % (sp30 * sp48)) / sp48) + sp2C) % sp30;
         var_t5 = 0;
         switch (sp40) {                          /* irregular */
             default:
@@ -260,8 +260,7 @@ void func_8032CD60(Prop *prop) {
                         } else {
                             sp3C = (((u32)(((u16*)prop)[1]) << 0x1e) >> 0x1f);
                         }
-                      if (1);
-                        break;
+                      if (1) break;
                 }
                 break;
 
