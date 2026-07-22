@@ -7,8 +7,8 @@
 void core1_main(s32 arg0);
 void func_8023DA74(void);
 void func_8023DA9C(s32 arg0);
-u32 globalTimer_getTimeMasked(u32 mask);
-//s32 globalTimer_getTime(void);
+s32 globalTimer_getTimeMasked(s32 mask);
+s32 globalTimer_getTime(void);
 void globalTimer_reset(void);
 enum map_e getSpecialBootMap(void);
 enum map_e getDefaultBootMap(void);
