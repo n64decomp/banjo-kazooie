@@ -75,8 +75,8 @@ void midichannel_func_8024AAB0(void) {
     player_getPosition_s32(sPlayerPosition);
     player_getPosition(player_position);
 
-    sTrackId[0] = func_8032274C();
-    sTrackId[1] = func_80322758();
+    sTrackId[0] = core2_9B650_getCurrentMusicTrack();
+    sTrackId[1] = core2_9B650_getCurrentSecondaryMusicTrack();
     sTrackId[2] = sTrackId[3] = 0;
 
     if (0 <= sTrackId[0])

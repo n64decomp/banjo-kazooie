@@ -24,8 +24,8 @@ typedef struct bk_model_header_s {
     s32 mesh_list_offset;
     s32 anim_vertices_list_offset;
     s32 animated_texture_list_offset;
-    u16 unk30;
-    u16 vertex_count;
+    u16 tri_count;      // number of triangles drawn by the gfx list (G_TRI1 + 2 * G_TRI2)
+    u16 vertex_count;   // same as the vertex list's count
     f32 unk34;
 } BKModelBin;
 
@@ -300,20 +300,48 @@ typedef struct bk_collision_geometry_s {
     s16 tri_count; //tri_cnt
 } BKCollisionGeometry;
 
+/* Collision triangle
+ * unk0 holds three indices into the model's vertex list. The normal is
+ * cross(v1 - v0, v2 - v0).
+ * unk6 bit 1 (0x2): standing on this floor doesn't tint the player (see core2_12F30_getFloorTint).
+ *
+ * A collision query's flag filter skips every triangle with any of the filter's bits set.
+ *
+ * Known flag bits:
+ * - 0x00000080  knocks the player back when they fly into it (bsbfly)
+ * - 0x00001F00  surface type, used to pick footstep sounds (see func_803246B4). With 0x80000000
+ *               set it is looked up in a global table, otherwise bits 0x200-0x1000 pick an
+ *               entry from a per-map table.
+ * - 0x00004000  hurts the player on contact; only checked in Gobi's Valley (see hazards_update)
+ *               and only used by the cactus model (asset 0x424)
+ * - 0x00010000  two-sided: the normal is flipped to face the tested point
+ * - 0x001E0000  water surface: always in the player's floor/wall collision filter
+ * - 0x00400000  always in the player's collision filter (see baMarker_8028D694)
+ * - 0x08000000 << n  added to the player's filter while touching an actor whose marker has
+ *               unk40_31 == 0xB + n and bit n of unk40_27 set (see baMarker_8028D694)
+ */
 typedef struct bk_collision_triangle_s {
     s16 unk0[3]; //vtx_indx
     s16 unk6;
     s32 flags;
 } BKCollisionTriangle;
 
+/* Collision list
+ * The model is divided into a grid of cubic cells `scale` units wide. Each
+ * BKCollisionGeometry is one cell and lists the triangles touching it; a
+ * triangle spanning several cells is stored once per cell. Cell (x, y, z)
+ * (relative to `min`) is at index x + y * y_stride + z * z_stride.
+ * A scale of 0 means a single cell that holds every triangle.
+ * Moving-sphere tests process at most 100 triangles per query (sActiveCollTris).
+ */
 typedef struct bk_collision_list_s {
-    s16 min[3];
-    s16 max[3];
-    s16 y_stride;
-    s16 z_stride;
-    s16 geo_count;
-    s16 scale;
-    s16 tri_count;
+    s16 min[3];     // first cell, in cell units
+    s16 max[3];     // last cell (inclusive), in cell units
+    s16 y_stride;   // number of cells along x
+    s16 z_stride;   // number of cells in one x-y layer
+    s16 geo_count;  // total number of cells
+    s16 scale;      // cell size in world units
+    s16 tri_count;  // number of triangle entries (including per-cell duplicates)
     u8 pad16[0x2];
     u8 data[];
     // BKCollisionGeometry[geo_count];

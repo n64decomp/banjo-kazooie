@@ -81,7 +81,7 @@ void baModel_draw(Gfx **gfx, Mtx **mtx, Vtx **vtx){
     playerPosition_get(plyr_pos);
     plyr_pos[1] += 2.0f;
     ml_vec3f_assign(rotation, baModelPitch, baModelYaw, baModelRoll);
-    func_8029A47C(env_color);
+    core2_12F30_getPlayerTint(env_color);
     ml_vec3f_copy(sp38, D_8037C100);
 
     plyr_pos[0] += baModelDisplacement[0];\
@@ -140,7 +140,7 @@ void baModel_reset(void){
     baModel_setScale(1.0f);
     baModelDirection = 0;
     baModel_setDirection(PLAYER_MODEL_DIR_BANJO);
-    if(!func_8028ADB4())
+    if(!player_shouldPlayLevelEntrance())
         baModel_updateModel();
     player_getPosition(plyr_pos);
     __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32,

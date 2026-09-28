@@ -136,7 +136,7 @@ void func_802F83AC(struct3s *arg0) {
     arg0->unk4[0] = sp3C[0];
     arg0->unk4[1] = sp3C[1];
     arg0->unk4[2] = sp3C[2];
-    if (func_802BEF64()) {
+    if (core2_37E50_isCameraUnderwater()) {
         vector_clear(arg0->unk20);
     }
     if (vector_size(arg0->unk20) > 0) {
@@ -196,7 +196,7 @@ void func_802F83AC(struct3s *arg0) {
         }
     }
     if (ml_timer_update(&arg0->unk30, temp_f20)) {
-        if ((arg0->unk28 == 1) && !func_802BEF64() && (arg0->unk34 != 4)) {
+        if ((arg0->unk28 == 1) && !core2_37E50_isCameraUnderwater() && (arg0->unk34 != 4)) {
             func_802F7EB0(arg0);
         }
         arg0->unk30 = (arg0->unk34 != 0) ? arg0->unk3C : 0.01;

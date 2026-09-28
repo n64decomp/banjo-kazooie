@@ -1941,7 +1941,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
 {
     // defs
     f32   randf2(f32, f32);
-    void *func_80309B48(f32 *, f32 *, f32 *, u32);
+    void *mapModel_intersectLine(f32 *, f32 *, f32 *, u32);
 
     f32 vec3[3]; // $sp + 54
     f32 vec2[3]; // $sp + 48
@@ -1965,7 +1965,7 @@ f32 func_80389AAC(Actor *this, f32 a1)
 
     vec1[1] = this->position_y - 400;
 
-    if (this->unk1C[1] < 0 && func_80309B48(vec3, vec1, vec2, 0) && this->position_y <= vec1[1])
+    if (this->unk1C[1] < 0 && mapModel_intersectLine(vec3, vec1, vec2, 0) && this->position_y <= vec1[1])
     {
         this->position_y = vec1[1] + 6;
 

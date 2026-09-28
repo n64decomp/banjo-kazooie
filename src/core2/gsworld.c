@@ -209,7 +209,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     func_80320B84();
     AnimTextureListCache_init();
     func_8034C97C();
-    func_8030A078();
+    mapModel_init();
     func_8031B718();
     playerModel_set();
     if (!func_802E4A08()) {
@@ -252,7 +252,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
     func_803411B0();
     spawnQueue_reset();
     leveloverlay_initCallback_NotFP();
-    func_8028E4B0();
+    player_spawnAtMapExit();
     leveloverlay_initCallback_OnlyFP();
     func_80323120();
     func_803223AC();
@@ -352,7 +352,7 @@ s32 gsworld_update(void) {
         func_80310D2C();
         gcparade_update();
         leveloverlay_updateCallback();
-        func_80321924();
+        level_update();
         func_80334428();
         cutscenetrigger_update();
         func_802D2CDC();

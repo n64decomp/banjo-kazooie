@@ -99,7 +99,7 @@ void func_80392700(Actor *this) {
 
 void func_80392918(Actor *this) {
     if (!this->volatile_initialized) {
-        if (fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE) && (func_8028E4A4() == 2)) {
+        if (fileProgressFlag_get(FILEPROG_F4_ENTER_FF_CUTSCENE) && (player_getExitId() == 2)) {
             mapSpecificFlags_set(4, 1);
         }
         this->unk4C = 400.0f;

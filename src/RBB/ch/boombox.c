@@ -5,7 +5,7 @@
 
 
 extern void bundle_setYaw(f32);
-extern int  func_80309EB0(f32(*)[3], f32, f32 (*)[3], s32);
+extern int  mapModel_intersectSphere(f32(*)[3], f32, f32 (*)[3], s32);
 extern int func_803342AC(f32(*)[3], f32(*)[3],f32);
 
 /* typedefs and declarations */
@@ -186,7 +186,7 @@ bool chBoombox_isValidMovePosition(Actor *this, f32 position[3], f32 speed_multi
     ceiling_check_position[1] = local->targetPosition[1] + this->scale * 100.0f;
     ceiling_check_position[2] = local->targetPosition[2];
     collision_radius = this->scale * 60.0f;
-    if(func_80309EB0(&ceiling_check_position, collision_radius, &ceiling_collision_output, 0)){
+    if(mapModel_intersectSphere(&ceiling_check_position, collision_radius, &ceiling_collision_output, 0)){
         ceiling_exists = TRUE;
     }else{
         ceiling_exists = FALSE;

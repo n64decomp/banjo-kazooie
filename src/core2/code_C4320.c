@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern void func_802E40A8(enum map_e, s32 exit);
+extern void game_setNextMapResettingLevel(enum map_e, s32 exit);
 
 typedef struct {
     u8 unk0;
@@ -82,30 +82,30 @@ void func_8034B2B0(s32 arg0) {
     Struct_core2_C4320_0 *sp18;
 
     sp18 = &D_80371F00[arg0];
-    func_802E40A8(sp18->unk0, sp18->unk2);
+    game_setNextMapResettingLevel(sp18->unk0, sp18->unk2);
     if ((map_getLevel(sp18->unk0) == LEVEL_D_CUTSCENE) || (arg0 == D_80371F8C)) {
-        func_802E40C4(1);
+        game_setMapChangeRequest(1);
     } else {
-        func_802E40C4(6);
+        game_setMapChangeRequest(6);
     }
-    func_802E40E8(1);
+    game_setMapTransition(1);
 }
 
 void func_8034B33C(s32 arg0) {
     Struct_core2_C4320_0 *sp18;
 
     sp18 = &D_80371F44[arg0];
-    func_802E40A8(sp18->unk0, sp18->unk2);
-    func_802E412C(1, 0xB);
-    func_802E40C4(7);
+    game_setNextMapResettingLevel(sp18->unk0, sp18->unk2);
+    game_setMapTransitionWithStyle(1, 0xB);
+    game_setMapChangeRequest(7);
     D_80386114 = sp18;
     D_80386124 = gameSelect_getGameNumber();
 }
 
 void func_8034B3A4(enum map_e map_id, s32 exit_id) {
-    func_802E40A8(map_id, exit_id);
-    func_802E412C(1, 8);
-    func_802E40C4(8);
+    game_setNextMapResettingLevel(map_id, exit_id);
+    game_setMapTransitionWithStyle(1, 8);
+    game_setMapChangeRequest(8);
     D_80386114 = &D_80371F70;
     D_80386124 = gameSelect_getGameNumber();
 }
@@ -115,13 +115,13 @@ void func_8034B3F0(s32 arg0) {
     Struct_core2_C4320_0 *temp_s0;
 
     temp_s0 = &D_80371F78[arg0];
-    func_802E40A8(temp_s0->unk0, temp_s0->unk2);
+    game_setNextMapResettingLevel(temp_s0->unk0, temp_s0->unk2);
     if (temp_s0 == &D_80371F78[0]) {
-        func_802E412C(1, 5);
+        game_setMapTransitionWithStyle(1, 5);
     } else {
-        func_802E40E8(0);
+        game_setMapTransition(0);
     }
-    func_802E40C4(0xC);
+    game_setMapChangeRequest(0xC);
     D_80386114 = temp_s0;
     D_80386124 = gameSelect_getGameNumber();
 }
@@ -219,7 +219,7 @@ void func_8034B8C0(enum map_e map_id, s32 demo_id) {
     D_80386118 = D_8038611C = 0;
     if (D_80386114->unk1 == 6) {
         volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 1);
-        func_802E4A70();
+        game_setKeepLevelState();
     }
     if ((demo_id == 0x5B) || (demo_id == 0x5F)) {
         sns_backup_items_and_unlock_all();
@@ -254,9 +254,9 @@ void func_8034B9E4(void){
 
 void func_8034BA20(void) {
     func_803219F4(5);
-    func_802E412C(1, 5);
-    func_802E40A8(MAP_97_CS_END_BEACH_2, 0);
-    func_802E40C4(1);
+    game_setMapTransitionWithStyle(1, 5);
+    game_setNextMapResettingLevel(MAP_97_CS_END_BEACH_2, 0);
+    game_setMapChangeRequest(1);
     if (comusic_isTrackQueued(5)) {
         func_8025A7DC(5);
     }
@@ -283,9 +283,9 @@ s32 func_8034BAFC(void){
 
 void func_8034BB08(bool arg0) {
     D_80386120 = arg0;
-    func_802E412C(1, 3);
-    func_802E40A8(MAP_8C_SM_BANJOS_HOUSE, WARP_SM_BANJOS_HOUSE_2_BOTTLES);
-    func_802E40C4(1);
+    game_setMapTransitionWithStyle(1, 3);
+    game_setNextMapResettingLevel(MAP_8C_SM_BANJOS_HOUSE, WARP_SM_BANJOS_HOUSE_2_BOTTLES);
+    game_setMapChangeRequest(1);
 }
 
 bool func_8034BB48(void) {
@@ -329,10 +329,10 @@ void func_8034BB90(void) {
                 func_802DF0C8();
             }
         } else if (volatileFlag_get(VOLATILE_FLAG_64_DEMO_FINISHED_VIA_START_BTN)) {
-            func_802E412C(1, D_80386114->unk5);
+            game_setMapTransitionWithStyle(1, D_80386114->unk5);
             func_8034B994();
         } else {
-            func_802E412C(1, D_80386114->unk4);
+            game_setMapTransitionWithStyle(1, D_80386114->unk4);
             func_8034B2B0(D_80386110);
             func_8034B474();
         }

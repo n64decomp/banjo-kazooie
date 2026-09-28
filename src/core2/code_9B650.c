@@ -3,12 +3,15 @@
 #include "functions.h"
 #include "variables.h"
 
+/* Music for one map. Negative map ids are the pseudo maps used by
+ * sCore2_9B650SnsMusicOverrides. */
 typedef struct{
-    s16 unk0;
-    s16 unk2;
-    s16 unk4;
-    s16 unk6;
-}Struct_Core2_9B650_1s;
+    s16 map_id;
+    s16 track_id;           // enum comusic_e, -1 for none
+    s16 secondary_track_id; // a second track that midichannel_func_8024AAB0 fades against the first
+                            // (e.g. Treasure Trove Cove's seagulls, by height), -1 for none
+    s16 flags;              // bit 0: skip func_8025A9D4 when the music starts (see func_8032278C)
+}MapMusicInfo;
 
 typedef struct{
     s16 map_id;
@@ -17,7 +20,7 @@ typedef struct{
 }Struct_Core2_9B650_0s;
 
 /* .data */
-Struct_Core2_9B650_1s D_8036DE80[0x84] = {
+MapMusicInfo sCore2_9B650MapMusicList[0x84] = {
     {MAP_1_SM_SPIRAL_MOUNTAIN,      COMUSIC_10_SM,  COMUSIC_56_SM_HANGBRIDGE, 0},
     {MAP_2_MM_MUMBOS_MOUNTAIN,      COMUSIC_2_MM, -1, 1},
     {MAP_5_TTC_BLUBBERS_SHIP,       COMUSIC_5_TTC_VACATION_VERSION, -1, 1},
@@ -152,7 +155,9 @@ Struct_Core2_9B650_1s D_8036DE80[0x84] = {
     {0, 0, 0, 0}
 };
 
-s16 D_8036E2A0[9] =
+/* {map, pseudo map, Stop 'n' Swop egg}: once the egg has been collected, the map
+ * uses the pseudo map's entry in sCore2_9B650MapMusicList instead of its own */
+s16 sCore2_9B650SnsMusicOverrides[9] =
 {
     MAP_61_CCW_WINTER_NABNUTS_HOUSE, -1, SNS_ITEM_EGG_YELLOW,
     MAP_3F_RBB_CAPTAINS_CABIN, -2, SNS_ITEM_EGG_RED,
@@ -160,60 +165,62 @@ s16 D_8036E2A0[9] =
 };
 
 /* .bss */
+/* music of the current map, filled in by func_8032278C */
 struct {
-    s16 unk0;
-    s16 unk2;
-    s16 unk4;
-} D_80383340;
+    s16 track_id;
+    s16 secondary_track_id;
+    s16 flags;
+} sCore2_9B650CurrentMusic;
 int D_80383348;
 
 /* .code */
-s32 func_803225E0(enum map_e map_id){
+/* index of the map's entry in sCore2_9B650MapMusicList (entry 0 when the map has none) */
+s32 core2_9B650_getMapMusicIndex(enum map_e map_id){
     u32 i;
     s32 pad;
 
     pad = map_id;
-    for(i = 0; D_8036E2A0[i] != 0 && D_8036E2A0[i] != pad; i+=3){}
+    for(i = 0; sCore2_9B650SnsMusicOverrides[i] != 0 && sCore2_9B650SnsMusicOverrides[i] != pad; i+=3){}
     
-    if( D_8036E2A0[i] != 0 && sns_get_item_state(D_8036E2A0[i + 2], 1)){
-        pad = D_8036E2A0[i + 1];
+    if( sCore2_9B650SnsMusicOverrides[i] != 0 && sns_get_item_state(sCore2_9B650SnsMusicOverrides[i + 2], 1)){
+        pad = sCore2_9B650SnsMusicOverrides[i + 1];
     }
 
-    for(i = 0; D_8036DE80[i].unk0 != 0; i++){
-        if( D_8036DE80[i].unk0 == pad)
+    for(i = 0; sCore2_9B650MapMusicList[i].map_id != 0; i++){
+        if( sCore2_9B650MapMusicList[i].map_id == pad)
             return i;
     }
 
     return 0;
 }
 
-s32 func_803226BC(enum map_e map_id){
-    return D_8036DE80[func_803225E0(map_id)].unk6;
+s32 core2_9B650_getMusicFlagsFromMap(enum map_e map_id){
+    return sCore2_9B650MapMusicList[core2_9B650_getMapMusicIndex(map_id)].flags;
 }
 
 s32 core2_9B650_getMusicTrackFromMap(enum map_e map_id) {
-    return D_8036DE80[func_803225E0(map_id)].unk2;
+    return sCore2_9B650MapMusicList[core2_9B650_getMapMusicIndex(map_id)].track_id;
 }
 
-s32 func_80322714(enum map_e map_id){
-    return D_8036DE80[func_803225E0(map_id)].unk4;
+s32 core2_9B650_getSecondaryMusicTrackFromMap(enum map_e map_id){
+    return sCore2_9B650MapMusicList[core2_9B650_getMapMusicIndex(map_id)].secondary_track_id;
 }
 
-s32 func_80322740(void){
-    return D_80383340.unk4;
+s32 core2_9B650_getCurrentMusicFlags(void){
+    return sCore2_9B650CurrentMusic.flags;
 }
 
-s32 func_8032274C(void){
-    return D_80383340.unk0;
+s32 core2_9B650_getCurrentMusicTrack(void){
+    return sCore2_9B650CurrentMusic.track_id;
 }
 
-s32 func_80322758(void){
-    return D_80383340.unk2;
+s32 core2_9B650_getCurrentSecondaryMusicTrack(void){
+    return sCore2_9B650CurrentMusic.secondary_track_id;
 }
 
 void func_80322764(void){
     D_80383348 = FALSE;
-     D_80383340.unk0 = D_80383340.unk2 = D_80383340.unk4 = 0;
+     sCore2_9B650CurrentMusic.track_id = sCore2_9B650CurrentMusic.secondary_track_id = sCore2_9B650CurrentMusic.flags = 0;
 }
 
 void func_8032278C(s32 arg0, s32 arg1) {
@@ -221,14 +228,14 @@ void func_8032278C(s32 arg0, s32 arg1) {
     static s32 D_8036E2B4 = 1;
 
 
-    D_80383340.unk4 = func_803226BC(gsworld_getMap());
-    D_80383340.unk0 = core2_9B650_getMusicTrackFromMap(gsworld_getMap());
-    D_80383340.unk2 = func_80322714(gsworld_getMap());
+    sCore2_9B650CurrentMusic.flags = core2_9B650_getMusicFlagsFromMap(gsworld_getMap());
+    sCore2_9B650CurrentMusic.track_id = core2_9B650_getMusicTrackFromMap(gsworld_getMap());
+    sCore2_9B650CurrentMusic.secondary_track_id = core2_9B650_getSecondaryMusicTrackFromMap(gsworld_getMap());
     if (arg1 == 3) {
         D_8036E2B4 = 1;
         return;
     }
-    temp_v0 = func_80322740();
+    temp_v0 = core2_9B650_getCurrentMusicFlags();
     if ((arg1 == 2) && ((D_8036E2B4 != 0) || (arg0 != 1))) {
         D_8036E2B4 = 0;
         if (D_80383348 == 0) {

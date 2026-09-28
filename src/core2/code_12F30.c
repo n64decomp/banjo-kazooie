@@ -7,7 +7,9 @@ extern BKCollisionTriangle *func_8029463C(void);
 extern BKModelBin *func_802946A8(void);
 
 /* .data */
-s16 D_80364580[] = {
+/* Maps where the floor tint can darken the player down to a brightness of 50
+ * (elsewhere the minimum is 200, or 250 in water) */
+s16 sCore2_12F30StrongTintMaps[] = {
     MAP_7_TTC_TREASURE_TROVE_COVE,
     MAP_2_MM_MUMBOS_MOUNTAIN,
     MAP_1B_MMM_MAD_MONSTER_MANSION,
@@ -88,14 +90,18 @@ s16 D_80364580[] = {
 };
 
 /*.bss*/
+/* The player model is tinted by the vertex colours of the floor below it,
+ * so Banjo darkens in shadowy areas */
 struct {
-    u8 unk0;
-    f32 unk4[3]; 
+    u8 strong_tint;
+    f32 color[3];
 }
-D_8037C6F0;
+sCore2_12F30PlayerTint;
 
 /*.code */
-void func_80299EC0(f32 arg0[3]) {
+/* Greyscale tint from the floor triangle's vertex colours at the player's position, fading
+ * to white with height above the floor. Floors with collision unk6 bit 1 set give no tint. */
+void core2_12F30_getFloorTint(f32 arg0[3]) {
     f32 spEC[3]; //player_pos
     f32 spE0[3];
     f32 spD4[3];
@@ -120,7 +126,7 @@ void func_80299EC0(f32 arg0[3]) {
     arg0[1] = 
     arg0[0] = 255;
 
-    if (D_8037C6F0.unk0 == 1) {
+    if (sCore2_12F30PlayerTint.strong_tint == 1) {
         sp78 = 50;
     } else if (player_getWaterState() == BSWATERGROUP_0_NONE) {
         sp78 = 200;
@@ -217,22 +223,22 @@ void func_80299EC0(f32 arg0[3]) {
     arg0[2] = arg0[0];
 }
 
-void func_8029A47C(s32 arg0[3]){
-    arg0[0] = (s32)(D_8037C6F0.unk4[0] + 0.5);
-    arg0[1] = (s32)(D_8037C6F0.unk4[1] + 0.5);
-    arg0[2] = (s32)(D_8037C6F0.unk4[2] + 0.5);
+void core2_12F30_getPlayerTint(s32 arg0[3]){
+    arg0[0] = (s32)(sCore2_12F30PlayerTint.color[0] + 0.5);
+    arg0[1] = (s32)(sCore2_12F30PlayerTint.color[1] + 0.5);
+    arg0[2] = (s32)(sCore2_12F30PlayerTint.color[2] + 0.5);
 }
 
-void func_8029A4D0(void){
+void core2_12F30_reset(void){
     int i;
     s32 map_id = gsworld_getMap();
-    D_8037C6F0.unk0 = 0;
-    D_8037C6F0.unk4[0] = 255.0f;
-    D_8037C6F0.unk4[1] = 255.0f;
-    D_8037C6F0.unk4[2] = 255.0f;
-    for(i = 0; D_80364580[i] != 0; i++){
-        if(map_id == D_80364580[i]){
-            D_8037C6F0.unk0 = 1;
+    sCore2_12F30PlayerTint.strong_tint = 0;
+    sCore2_12F30PlayerTint.color[0] = 255.0f;
+    sCore2_12F30PlayerTint.color[1] = 255.0f;
+    sCore2_12F30PlayerTint.color[2] = 255.0f;
+    for(i = 0; sCore2_12F30StrongTintMaps[i] != 0; i++){
+        if(map_id == sCore2_12F30StrongTintMaps[i]){
+            sCore2_12F30PlayerTint.strong_tint = 1;
             break;
         }
     }
@@ -240,21 +246,22 @@ void func_8029A4D0(void){
 
 void func_8029A54C(void){}
 
-void func_8029A554(void){
+/* moves the current tint towards the floor tint by up to 40 per frame */
+void core2_12F30_update(void){
     int i;
     f32 sp28[3];
-    func_80299EC0(sp28);
+    core2_12F30_getFloorTint(sp28);
     for(i = 0; i < 3; i++){
-        if(D_8037C6F0.unk4[i] < sp28[i]){
-            D_8037C6F0.unk4[i] += 40.0f;
-            if(sp28[i] < D_8037C6F0.unk4[i])
-                D_8037C6F0.unk4[i] = sp28[i];
+        if(sCore2_12F30PlayerTint.color[i] < sp28[i]){
+            sCore2_12F30PlayerTint.color[i] += 40.0f;
+            if(sp28[i] < sCore2_12F30PlayerTint.color[i])
+                sCore2_12F30PlayerTint.color[i] = sp28[i];
 
         }
         else{//L8029A5C0
-            D_8037C6F0.unk4[i] -= 40.0f;
-            if( D_8037C6F0.unk4[i] < sp28[i])
-                 D_8037C6F0.unk4[i] = sp28[i];
+            sCore2_12F30PlayerTint.color[i] -= 40.0f;
+            if( sCore2_12F30PlayerTint.color[i] < sp28[i])
+                 sCore2_12F30PlayerTint.color[i] = sp28[i];
         }
     }
 }

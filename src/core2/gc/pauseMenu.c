@@ -24,7 +24,7 @@ typedef struct struct_1A_s {
 } struct1As;
 
 extern void gameSelect_saveAndExit(void);
-extern void func_802E412C(s32, s32);
+extern void game_setMapTransitionWithStyle(s32, s32);
 f32 func_8024DE1C(f32, f32, f32 *, f32 *);
 void func_80310D2C(void);
 
@@ -1086,7 +1086,7 @@ s32 gcPauseMenu_update(void) {
                         gcPauseMenu_setState(PAUSE_STATE_14_EXIT_GAME);
                     }
                     else {
-                        func_802E412C(1, 0);
+                        game_setMapTransitionWithStyle(1, 0);
                         transitionToMap(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
                         gcPauseMenu_setState(PAUSE_STATE_13_EXIT_PAUSE);
                     }
@@ -1279,7 +1279,7 @@ s32 gcPauseMenu_update(void) {
             if (5.0 < D_80383010.unkC) {
                 if (!D_80383010.unk3_6) {
                     func_802DC560(0, 0);
-                    func_802E412C(1, 0);
+                    game_setMapTransitionWithStyle(1, 0);
                     transitionToMap(MAP_1F_CS_START_RAREWARE, 0, 1);
                     D_80383010.unk3_6 = 1;
                 }

@@ -13,7 +13,7 @@ extern void func_80320ED8(ActorMarker *, f32, s32);
 
 extern f32 func_8033229C(ActorMarker *marker);
 
-extern f32 func_80309B24(f32 [3]);
+extern f32 mapModel_getWaterSurfaceY(f32 [3]);
 
 extern BKCollisionTriangle *func_80320C94(f32 arg0[3], f32 arg1[3], f32 arg2, f32 arg3[3], s32 arg4, u32 arg5);
 
@@ -280,7 +280,7 @@ bool func_8032C4AC(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
         sp40[1] += arg0->unk170;
         arg0->unk170 = (-sp30 < time_getDelta() * (arg0->unk170 * 40.0)) ? time_getDelta() * (arg0->unk170 * 40.0)
                                                                          : -sp30;
-        if (func_80309B48(sp4C, sp40, sp34, 0x5E0000)) {
+        if (mapModel_intersectLine(sp4C, sp40, sp34, 0x5E0000)) {
             arg0->unk170 = -10.0f;
             arg0->position[0] = sp40[0];
             arg0->position[1] = sp40[1];
@@ -297,7 +297,7 @@ bool func_8032C660(Actor *arg0, f32 arg1[3], s32 arg2, s32 arg3) {
     f32 temp_f12;
     f32 temp_f2;
 
-    temp_f2 = func_80309B24(arg0->position) - 130.0f;
+    temp_f2 = mapModel_getWaterSurfaceY(arg0->position) - 130.0f;
     arg0->position[1] = (temp_f2 > arg0->position[1]) ? arg0->position[1] : temp_f2;
     return (temp_f2 == arg0->position[1]);
 }

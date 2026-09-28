@@ -40,31 +40,32 @@ f32 D_8037BFB0[2];
 u8  D_8037BFB8;
 u8  D_8037BFB9; //player_locked
 u8  D_8037BFBA; //player_present
-s32 D_8037BFBC;
+s32 sPlayerExitId;
 f32 D_8037BFC0[3];
 f32 D_8037BFCC;
 f32 D_8037BFD0;
 
 /* .code */
-bool func_8028DFF0(s32 arg0, s32 position[3]) {
-    if (arg0 >= 0x80) {
-        position[0] = func_802E4A98(arg0);
-        position[1] = func_802E4AAC(arg0);
-        position[2] = func_802E4AC0(arg0);
+/* position of an exit: exits below 0x80 come from the map's setup file (see nodeprop_getExitActorId) */
+bool player_getExitPosition(s32 exitId, s32 position[3]) {
+    if (exitId >= 0x80) {
+        position[0] = game_getHardcodedExitX(exitId);
+        position[1] = game_getHardcodedExitY(exitId);
+        position[2] = game_getHardcodedExitZ(exitId);
         return TRUE;
     }
     else{
-        return nodeprop_findPositionFromActorId(func_803084F0(arg0), position);
+        return nodeprop_findPositionFromActorId(nodeprop_getExitActorId(exitId), position);
     }
 }
 
-bool func_8028E060(s32 arg0, s32 *arg1){
-    if(arg0 >= 0x80){
-        *arg1 = func_802E4AD4();
+bool player_getExitYaw(s32 exitId, s32 *yaw){
+    if(exitId >= 0x80){
+        *yaw = game_getHardcodedExitYaw(); // called without exitId in the original code
         return TRUE;
     }
     else{
-        return func_80305344(func_803084F0(arg0), arg1);
+        return nodeprop_findYawFromActorId(nodeprop_getExitActorId(exitId), yaw);
     }
 }
 
@@ -75,7 +76,10 @@ void func_8028E0B0(ActorMarker *arg0){
     baflag_clear(BA_FLAG_18_UNDERWATER);
 }
 
-void func_8028E0F0(s32 arg0, s32 arg1[3]) {
+/* moves the player to an exit and faces them along its yaw. If the setup has a walk-in start
+ * point for the exit (the nearest node prop with actor id exitId + 0x19D), the player is placed
+ * there instead and walks to the exit (except right after entering a level from the lair). */
+void player_placeAtExit(s32 exitId, s32 position[3]) {
     f32 sp7C[3];
     f32 sp70[3];
     s32 sp6C;
@@ -91,9 +95,9 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     D_8037BFB8 = TRUE;
     sp64 = FALSE;
     sp68 = FALSE;
-    sp7C[0] = (f32) arg1[0];
-    sp7C[1] = (f32) arg1[1];
-    sp7C[2] = (f32) arg1[2];
+    sp7C[0] = (f32) position[0];
+    sp7C[1] = (f32) position[1];
+    sp7C[2] = (f32) position[2];
     switch (D_80363690) {
         case 1:
             sp68 = 1;
@@ -117,24 +121,24 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     D_80363690 = 0;
     switch (gsworld_getMap()) {
         case MAP_27_FP_FREEZEEZY_PEAK:
-            if (arg0 == 0xD) {
+            if (exitId == 0xD) {
                 baflag_set(BA_FLAG_16_FLYING);
             }
             break;
         case MAP_77_GL_RBB_LOBBY:
-            if ((arg0 == 2) && func_802D6088()) {
+            if ((exitId == 2) && func_802D6088()) {
                 baflag_set(BA_FLAG_18_UNDERWATER);
             }
             break;
         case MAP_76_GL_640_NOTE_DOOR:
-            if ((arg0 == 1) && func_802D60C4()) {
+            if ((exitId == 1) && func_802D60C4()) {
                 baflag_set(BA_FLAG_18_UNDERWATER);
             }
             break;
     }
 
-    D_8037BFBC = arg0;
-    if (func_80305248(sp70, func_8033452C(arg0), sp7C) && !func_8028ADB4()) {
+    sPlayerExitId = exitId;
+    if (func_80305248(sp70, func_8033452C(exitId), sp7C) && !player_shouldPlayLevelEntrance()) {
         func_8028F85C(sp7C);
         func_80295A8C();
         if (sp68) {
@@ -145,7 +149,7 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
             sp70[1] = sp7C[1];
         }
         func_8028F85C(sp70);
-        func_8028E060(arg0, &sp6C);
+        player_getExitYaw(exitId, &sp6C);
         yaw_setIdeal((f32) sp6C);
         yaw_applyIdeal();
         bs_setState(badrone_goto(sp7C, 1.0f, func_8028E0B0, NULL));
@@ -156,17 +160,18 @@ void func_8028E0F0(s32 arg0, s32 arg1[3]) {
     bsStoredState_setTrot(FALSE);
     baflag_clear(BA_FLAG_16_FLYING);
     baflag_clear(BA_FLAG_18_UNDERWATER);
-    func_8028E060(arg0, &sp6C);
+    player_getExitYaw(exitId, &sp6C);
     yaw_setIdeal((f32) sp6C);
     yaw_applyIdeal();
 }
 
-s32 func_8028E440(s32 arg0[3]) {
+/* finds the lowest numbered exit that exists in the map; returns -1 if there is none */
+s32 player_findFirstExit(s32 position[3]) {
     s32 phi_s0;
 
     phi_s0 = 0;
     for(phi_s0 = 0; phi_s0 < 0x1E; phi_s0++){
-        if (func_8028DFF0(phi_s0, arg0)) {
+        if (player_getExitPosition(phi_s0, position)) {
             return phi_s0;
         }
     }
@@ -174,11 +179,15 @@ s32 func_8028E440(s32 arg0[3]) {
 }
 
 
-s32 func_8028E4A4(void){
-    return D_8037BFBC;
+/* the exit the player entered the current map through */
+s32 player_getExitId(void){
+    return sPlayerExitId;
 }
 
-void func_8028E4B0(void) {
+/* places the player when a map loads: exit 0x63 restores a saved position, exit 0x65 skips
+ * placement (something else positions the player), and a missing exit falls back to
+ * player_findFirstExit */
+void player_spawnAtMapExit(void) {
     s32 sp24[3];
     s32 sp20;
 
@@ -194,19 +203,19 @@ void func_8028E4B0(void) {
     if (sp20 == 0x63) {
         func_8028F85C(D_8037BFC0);
         yaw_set(D_8037BFCC);
-        D_8037BFBC = (s32) D_8037BFD0;
+        sPlayerExitId = (s32) D_8037BFD0;
         D_8037BFB8 = 1;
         func_80295A8C();
         bsStoredState_setTrot(FALSE);
         baflag_clear(BA_FLAG_16_FLYING);
         yaw_setIdeal(D_8037BFCC);
         yaw_applyIdeal();
-    } else if (func_8028DFF0(sp20, sp24)) {
-            func_8028E0F0(sp20, sp24);
+    } else if (player_getExitPosition(sp20, sp24)) {
+            player_placeAtExit(sp20, sp24);
     } else {
-        sp20 = func_8028E440(sp24);
+        sp20 = player_findFirstExit(sp24);
         if (sp20 != -1) {
-            func_8028E0F0(sp20, sp24);
+            player_placeAtExit(sp20, sp24);
         }
     }
     if (D_80363694 != 0) {
@@ -961,5 +970,5 @@ void player_setModelVisible(bool visible) {
 void func_8028FCE8(void) {
     player_getPosition(D_8037BFC0);
     D_8037BFCC = yaw_get();
-    D_8037BFD0 = D_8037BFBC;
+    D_8037BFD0 = sPlayerExitId;
 }

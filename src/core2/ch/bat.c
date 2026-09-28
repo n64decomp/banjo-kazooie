@@ -135,7 +135,7 @@ bool func_8035FC98(Actor *this, f32 arg1){
     TUPLE_COPY(sp1C, sp28);
     sp1C[1] += arg1;
 
-    if (func_80309B48(sp28, sp1C, sp34, 0x5E0000) != NULL)
+    if (mapModel_intersectLine(sp28, sp1C, sp34, 0x5E0000) != NULL)
         return TRUE;
     return FALSE;
 

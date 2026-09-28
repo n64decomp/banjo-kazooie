@@ -72,11 +72,11 @@ void func_80349FB0(DemoInput *input_ptr, u32 size, int arg2){
     if(input_ptr);
 
     func_8030AFD8(0);
-    func_80321854();
+    level_unload();
     debugScoreStates();
     clearScoreStates();
-    func_803216D0(gsworld_getMap());
-    func_8030AFA0(gsworld_getMap());
+    level_load(gsworld_getMap());
+    gcsection_setJiggyListForMap(gsworld_getMap());
     volatileFlag_set(VOLATILE_FLAG_C4_WOZZA_HIDE_IN_SNS_PARADE, 1);
     joy_reset();
     rand_reset();

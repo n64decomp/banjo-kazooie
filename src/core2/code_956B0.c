@@ -128,9 +128,9 @@ void func_8031CB50(enum map_e map_id, s32 exit_id, s32 arg2) {
             midichannel_incOrDecCounter(FALSE);
         }
         if (func_802E4A08()) {
-            func_802E40D0(map_id, exit_id);
-            func_802E40E8(1);
-            func_802E40C4(0xB);
+            game_setNextMap(map_id, exit_id);
+            game_setMapTransition(1);
+            game_setMapChangeRequest(0xB);
         } else {
             transitionToMap(map_id, exit_id, 1);
         }
@@ -249,7 +249,7 @@ void func_8031D09C(s32 arg0, s32 arg1) {
 
 void func_8031D0C0(s32 arg0, s32 arg1) {
     if (controller_getStartButtonSafe(0) == 1) {
-        func_802E412C(1, 2);
+        game_setMapTransitionWithStyle(1, 2);
         func_8025A2FC(0, 0x320);
         func_8025AB00();
         func_8031D09C(arg0, arg1);

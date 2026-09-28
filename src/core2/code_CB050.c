@@ -43,7 +43,7 @@ void func_80351FE0(Struct_core2_CB050_0 *arg0, Struct68s *arg1) {
         sp30[1] = arg0->unk4C[1] - 200.0f;
         sp30[2] = arg0->unk4C[2];
 
-        if (func_80309B48(sp3C, sp30, sp24, 0xF800FF0F)) {
+        if (mapModel_intersectLine(sp3C, sp30, sp24, 0xF800FF0F)) {
             arg0->unk68 = arg0->unk4C[1] - sp30[1];
         }
     }
@@ -104,7 +104,7 @@ void func_80352114(Struct_core2_CB050_0 *arg0, s32 arg1, f32 arg2) {
         sp34[0] = arg0->unk4C[0];
         sp34[1] = arg0->unk4C[1] - 200.0f;
         sp34[2] = arg0->unk4C[2];
-        if (func_80309B48(sp40, sp34, sp28, 0xF800FF0F)) {
+        if (mapModel_intersectLine(sp40, sp34, sp28, 0xF800FF0F)) {
             arg0->unk4C[1] = sp34[1] + arg0->unk68;
         }
     }

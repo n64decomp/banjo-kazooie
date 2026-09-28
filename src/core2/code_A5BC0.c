@@ -1367,7 +1367,8 @@ void code_A5BC0_initCubePropActorProp(Cube *cube) {
     }
 }
 
-void func_80330208(Cube *cube) {
+/* spawns the actors (category 6 node props) placed in the cube */
+void cube_spawnActors(Cube *cube) {
     s32 position[3];
     Actor *actor;
     NodeProp *end_prop;

@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_80328FF0(Actor *, f32);
-extern f32 func_80309B24(f32[3]);
+extern f32 mapModel_getWaterSurfaceY(f32[3]);
 extern ParticleEmitter *func_802EDD8C(f32[3], f32, f32);
 
 typedef struct {
@@ -122,7 +122,7 @@ void func_8035D95C(ActorMarker *marker) {
 
     if (marker->unk14_21) {
         vec3fArray_get_vec3f(marker->unk44, 5, sp34);
-        pCtrl = func_802EDD8C(sp34, 20.0f, func_80309B24(sp34));
+        pCtrl = func_802EDD8C(sp34, 20.0f, mapModel_getWaterSurfaceY(sp34));
         particleEmitter_setParticleVelocityRange(pCtrl, -50.0f, -50.0f, -50.0f, 50.0f, 50.0f, 50.0f);
         particleEmitter_setStartingScaleRange(pCtrl, 0.1f, 0.2f);
         particleEmitter_setFinalScaleRange(pCtrl, 0.1f, 0.2f);

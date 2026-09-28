@@ -112,7 +112,7 @@ void func_802F919C(void) {
 
 
     if (D_80369280 != NULL) {
-        if (func_802BEF64() != 0) {
+        if (core2_37E50_isCameraUnderwater() != 0) {
             D_80369284 = 0;
             return;
         }

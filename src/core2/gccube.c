@@ -1234,7 +1234,7 @@ bool func_80305290(bool (* arg0)(NodeProp *), bool (* arg1)(Prop *)){
     return TRUE;
 }
 
-bool func_80305344(s32 arg0, u32 *arg1) {
+bool nodeprop_findYawFromActorId(s32 arg0, u32 *arg1) {
     NodeProp *temp_v0;
 
     temp_v0 = cubeList_findNodePropByActorIdAndPosition_s32(arg0, NULL);
@@ -1326,7 +1326,8 @@ Actor *__actor_spawnWithYaw_s32(enum actor_e arg0, s32 pos[3], s32 rot) {
   return NULL;
 }
 
-void func_8030578C(void){
+/* spawns the actors of every cube */
+void cubeList_spawnActors(void){
     int i;
     u32 sp40;
     Cube *iCube;
@@ -1352,7 +1353,7 @@ void func_8030578C(void){
 #endif
 
     for(iCube = sCubeList.cubes; iCube < sCubeList.cubes + sCubeList.cubeCnt; iCube++){
-        func_80330208(iCube);
+        cube_spawnActors(iCube);
     }
 }
 
@@ -2281,9 +2282,12 @@ s32 cubeList_getOrSetNextProp2Flags(s32 op) {
     return flag_value;
 }
 
-enum actor_e func_803084F0(s32 arg0){
+/* Map exits (the exit number passed to transitionToMap) are marked in the setup
+ * file by an actor NodeProp with this actor id; the player spawns at its position,
+ * facing its yaw (see player_spawnAtMapExit). */
+enum actor_e nodeprop_getExitActorId(s32 exitId){
     s32 var_v1;
-    switch (arg0) {
+    switch (exitId) {
         case 0x1: var_v1 = ACTOR_1_UNKNOWN; break;
         case 0x2: var_v1 = ACTOR_2_UNKNOWN; break;
         case 0x3: var_v1 = ACTOR_15_UNKNOWN; break;

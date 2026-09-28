@@ -138,7 +138,7 @@ void func_802F8CD0(struct6s * this){
     this->unk0 = plyr_pos[0];
     this->unk4 = plyr_pos[1];
     this->unk8 = plyr_pos[2];
-    if(func_802BEF64()){
+    if(core2_37E50_isCameraUnderwater()){
         vector_clear(this->unk1C);
     }
 
@@ -177,7 +177,7 @@ void func_802F8CD0(struct6s * this){
     }
     
     if(ml_timer_update(&this->unk38, f20)){
-        if(this->unk22 == 1 && !func_802BEF64())
+        if(this->unk22 == 1 && !core2_37E50_isCameraUnderwater())
             func_802F87B0(this);
         this->unk38 = 0.1f;
     }

@@ -2201,7 +2201,7 @@ void chfinalboss_update(Actor *this){
         sp34[1] = this->position[1];
         sp34[2] = this->position[2];
         sp34[1] = -50.0f;
-        if(func_80309B48(sp4C, sp34, sp40, 0)){
+        if(mapModel_intersectLine(sp4C, sp34, sp40, 0)){
             sp34[1] += 6.0f;
             shadow->position[0] = sp34[0];
             shadow->position[1] = sp34[1];

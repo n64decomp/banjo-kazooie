@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern s32 bkmodelunk14list_func_802EA760(BKModelUnk14List *, s32, f32[3], f32[3], f32, s32, f32*, f32*);
-extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
+extern bool mapModel_intersectMovingSphere(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 void func_80351954(Struct68s *arg);
 void func_80351AD0(Struct68s *arg0, enum asset_e model_id);
 typedef struct {
@@ -410,7 +410,7 @@ void func_80351B28(Struct68s *arg0, f32 arg1[3]) {
         if(sp34 != NULL){
             if(bkmodelunk14list_func_802EA760(sp34, 0, arg0->position, arg0->unk20, arg0->unk2C, 0, sp48, &sp38)){
                 bkmodelunk14list_func_802EA760(sp34, 0, arg1, arg0->unk20, arg0->unk2C, 0, sp3C, &sp38);
-                if(func_80309DBC(sp48, sp3C, sp38, sp54, 3, 0)){
+                if(mapModel_intersectMovingSphere(sp48, sp3C, sp38, sp54, 3, 0)){
                     return;
                 }
             }

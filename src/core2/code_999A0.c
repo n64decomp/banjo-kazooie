@@ -69,9 +69,9 @@ bool func_803209F8(f32 arg0[3], f32 arg1[3], f32 *arg2, f32 arg3[3]) {
     sp34[1] = arg3[1] + 1.0f;
     arg0[2] = sp34[2] = arg3[2];
     arg0[1] = arg3[1] - 100.0f;
-    if (!func_80309B48(sp34, arg0, sp28, 0)) {
+    if (!mapModel_intersectLine(sp34, arg0, sp28, 0)) {
         arg0[1] = arg3[1] - 2000.0f;
-        if (!func_80309B48(&sp34, arg0, sp28, 0)) {
+        if (!mapModel_intersectLine(&sp34, arg0, sp28, 0)) {
             return 0;
         }
     }

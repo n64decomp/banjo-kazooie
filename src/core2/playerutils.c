@@ -127,8 +127,10 @@ bool dummy_player_is_pumpkin(void){
     return bspumpkin_inSet(bs_getState());
 }
 
-bool func_8028ADB4(void){
-    return func_8032190C() && gsworld_getMap() != MAP_1_SM_SPIRAL_MOUNTAIN;
+/* after entering a level from the lair (anywhere but Spiral Mountain) the player does the
+ * scripted level entrance (badrone_enter) instead of starting idle */
+bool player_shouldPlayLevelEntrance(void){
+    return level_enteredFromLair() && gsworld_getMap() != MAP_1_SM_SPIRAL_MOUNTAIN;
 }
 
 bool wishyWashyFlag_get(void){

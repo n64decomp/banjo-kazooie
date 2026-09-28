@@ -402,7 +402,7 @@ void spawnQueue_reset(void){
     }
 
     if(ucode_stub3() == 0 || loaded_asm_file == 0 ){
-        func_8030578C();
+        cubeList_spawnActors();
     }
     func_80305990(1);
     func_8032A5F8();

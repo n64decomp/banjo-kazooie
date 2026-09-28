@@ -37,7 +37,7 @@ extern ActorInfo chPurpleTeeHee;
 
 extern void core1_7090_initSfxSource(s32, s32, s32, f32);
 extern void func_8025AE0C(s32, f32);
-extern void *func_80309B48(f32[3], f32[3], f32[3], u32);
+extern void *mapModel_intersectLine(f32[3], f32[3], f32[3], u32);
 
 void chMMMBreakableWooden_update(Actor *this);
 void chMMMGate_update(Actor *this);
@@ -181,7 +181,7 @@ f32 MMM_func_80388430(Actor *this, s32 arg1, s32 arg2, f32 arg3) {
     this->unk1C[1] -= 8.0;
     sp34[1] = this->position[1] - 400.0f;
     if (this->unk1C[1] < 0.0f) {
-        if (func_80309B48(sp4C, sp34, sp40, 0) && (this->position[1] <= sp34[1])) {
+        if (mapModel_intersectLine(sp4C, sp34, sp40, 0) && (this->position[1] <= sp34[1])) {
             this->position[1] = sp34[1] + 6.0f;
             switch (this->unk38_31) {
             case 1:
