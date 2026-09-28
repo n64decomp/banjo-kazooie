@@ -93,14 +93,14 @@ void func_8023DA9C(s32 next_state) {
     }
 
     if (D_8027A130 == 3) {
-        func_802E4170();
+        game_free();
     }
 
     func_8023DA74();
     D_8027A130 = next_state;
     
     if (D_8027A130 == 3) {
-        func_802E4214(gBootMap);
+        game_init(gBootMap);
     }
 
     if (D_8027A130 == 4) {
@@ -218,7 +218,7 @@ void mainLoop(void) {
             func_80255524();
             func_80255ACC();
             spawnQueue_func_802C3A18();
-            if (func_802E4424()) {
+            if (game_update()) {
                 game_draw(FALSE);
             }
             spawnQueue_flush();
@@ -230,7 +230,7 @@ void mainLoop(void) {
      * never execute:
      * - func_8023DBAC and func_8023DBDC: Never gets called
      * - func_802E35D8: Only would be called in the above switch block if D_8027A130 was 4 (never happens, see above)
-     * - func_802E4424: When D_8037E8E0.transition was 2 or 3, which is never the case
+     * - game_update: When sGameState.transition was 2 or 3, which is never the case
      */
     if (D_80275610) {
         func_8023DA9C(D_80275610 - 1);

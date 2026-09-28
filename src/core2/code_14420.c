@@ -287,7 +287,7 @@ f32 func_8029B56C(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 
 void func_8029B5EC(void){
     func_802DC560(0, 0);
-    func_802E412C(1, 0);
+    game_setMapTransitionWithStyle(1, 0);
     transitionToMap(MAP_1F_CS_START_RAREWARE, 0, 1);
 }
 
@@ -301,13 +301,13 @@ void func_8029B62C(void){
             timedFunc_set_0(5.0f, func_8029B5EC);
         }
         else{
-            func_802E412C(1, 0);
+            game_setMapTransitionWithStyle(1, 0);
             transitionToMap(MAP_83_CS_GAME_OVER_MACHINE_ROOM, 0, 1);
 
         }
     }
     else{
-        func_802E4048(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
+        game_transitionToMapResettingLevel(gVoidOutReturnLocation[0], gVoidOutReturnLocation[1], 1);
     }
 }
 

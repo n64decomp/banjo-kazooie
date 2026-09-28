@@ -76,7 +76,7 @@ void playerModel_free(void){
 void playerModel_set(void){
     enum asset_e model_id = playerModel_get();
 
-    if(func_8028ADB4()){
+    if(player_shouldPlayLevelEntrance()){
         PlayerModelAssetId = 0;
     }
     else if(model_id){

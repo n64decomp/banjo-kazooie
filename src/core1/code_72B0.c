@@ -216,7 +216,7 @@ BKCollisionTriangle *func_8024549C(f32 arg0[3], f32 arg1){
 
     ml_vec3f_diff_copy(sp2C, arg0, sp20);
     ml_vec3f_add(sp38, arg0, sp20);
-    sp1C = (BKCollisionTriangle *) func_80309B48(sp2C, sp38, sp44, 0xf800ff0f);
+    sp1C = (BKCollisionTriangle *) mapModel_intersectLine(sp2C, sp38, sp44, 0xf800ff0f);
     if(sp1C){
         ml_vec3f_copy(arg0, sp38);
     }

@@ -21,17 +21,20 @@ enum transition_e {
 };
 
 void func_802E3BD0(s32 frame_buffer_indx);
-void func_802E40A8(s32 map, s32 exit);
-void func_802E40C4( s32 arg0);
-void func_802E40D0(s32 map, s32 exit);
-void func_802E40E8(s32 transition);
+void game_setNextMapResettingLevel(s32 map, s32 exit);
+void game_setMapChangeRequest( s32 arg0);
+void game_setNextMap(s32 map, s32 exit);
+void game_setMapTransition(s32 transition);
 int  func_802E4A08(void);
 
 f32 func_8033DC20(void);
 extern void func_80324C58(void);
 
 /* .data */
-s16 D_803687F0[] = {
+/* Exit 0x80 isn't in a setup file; it comes from here as 8 shorts: player x, y, z, yaw, then
+ * camera x, y, z, yaw (see game_getHardcodedExitX etc.). Only exit 0x80 has real data: the
+ * rest of the array is a copyright string. */
+s16 sGameHardcodedExits[] = {
     0x159A, 0x02BC, 0x21C8, 0x00C8, 0x14ED, 0x03A2, 0x1951, 0x0003,
     '**', ' B', 'AN', 'JO', ' K', 'AZ', 'OO', 'IE',
     ' (', 'c)', ' R', 'AR', 'E ', 'Lt', 'd ', '19',
@@ -46,16 +49,16 @@ struct{
     f32 unk8; 
     s32 unkC; //freeze_scene_flag (used for pause menu)
     f32 unk10;
-    u8 transition;
-    u8 map;
-    u8 exit;
-    u8 unk17; //reset_on_map_load
-    u8 unk18;
-    u8 unk19;
+    u8 transition;           // pending request handled by game_update (1 = change map, 6/7/8/12 = demo modes, ...)
+    u8 map;                  // map to change to
+    u8 exit;                 // exit to arrive at
+    u8 map_transition;       // passed to game_setMode after the map changes: nonzero plays a transition in
+    u8 reset_level;          // reload the level state even if the new map is in the same level
+    u8 map_transition_style; // style passed to gctransition_8030BEA4
     u8 unk1A;
     u8 unk1B;
-    u8 unk1C;
-} D_8037E8E0;
+    u8 keep_level_state;     // don't reset the level state on the next level change (see level_load)
+} sGameState;
 
 void func_802E3800(void){
     viewport_setPosition_f3(0.0f, 0.0f, 0.0f);
@@ -83,16 +86,18 @@ void func_802E3854(void){
     }
 }
 
-void func_802E38E8(enum map_e map, s32 exit, s32 reset_on_load){
+/* Loads a map. The level's code and state are only reloaded when the level changes
+ * (or when reset_on_load is set). */
+void game_loadMap(enum map_e map, s32 exit, s32 reset_on_load){
     if(reset_on_load || level_get() != map_getLevel(map)){
         func_8030AFD8(1);
-        func_80321854();
-        func_803216D0(map); //load_map_asm
-        func_8030AFA0(map);
+        level_unload();
+        level_load(map); //load_map_asm
+        gcsection_setJiggyListForMap(map);
     }
     else{
         func_8030AFD8(1);
-        func_8030AFA0(map);
+        gcsection_setJiggyListForMap(map);
     }
     func_802FA508();
     gsworld_set(map, exit, 0);
@@ -114,7 +119,7 @@ void func_802E39D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 framebuffer_idx, bool ar
     Vtx* vtx_start = *vtx;
 
     setupFramebufferForGamemode(gfx, framebuffer_idx);
-    D_8037E8E0.unkC = FALSE;
+    sGameState.unkC = FALSE;
     gsworld_draw(gfx, mtx, vtx);
 
     if (!arg4) { // related to framebufferdraw_ functions
@@ -124,11 +129,11 @@ void func_802E39D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 framebuffer_idx, bool ar
         func_802E5F10(gfx);
     }
 
-    if ((D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE) && (D_8037E8E0.unk19 != 6) && (D_8037E8E0.unk19 != 5)) {
+    if ((sGameState.game_mode == GAME_MODE_A_SNS_PICTURE) && (sGameState.map_transition_style != 6) && (sGameState.map_transition_style != 5)) {
         gctransition_draw(gfx, mtx, vtx);
     }
     
-    if ((D_8037E8E0.game_mode == GAME_MODE_8_BOTTLES_BONUS) || (D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE)) {
+    if ((sGameState.game_mode == GAME_MODE_8_BOTTLES_BONUS) || (sGameState.game_mode == GAME_MODE_A_SNS_PICTURE)) {
         picturebox_resetScissorBoxAndFramebuffer(gfx, mtx, vtx);
     }
 
@@ -150,7 +155,7 @@ void func_802E39D0(Gfx **gfx, Mtx **mtx, Vtx **vtx, s32 framebuffer_idx, bool ar
 
     printbuffer_draw(gfx, mtx, vtx);
 
-    if ((D_8037E8E0.game_mode != GAME_MODE_A_SNS_PICTURE) || (D_8037E8E0.unk19 == 6) || (D_8037E8E0.unk19 == 5)) {
+    if ((sGameState.game_mode != GAME_MODE_A_SNS_PICTURE) || (sGameState.map_transition_style == 6) || (sGameState.map_transition_style == 5)) {
         gctransition_draw(gfx, mtx, vtx);
     }
 
@@ -169,19 +174,19 @@ void func_802E3BF0(void){
 
 //_set_game_mode
 void game_setMode(enum game_mode_e next_mode, s32 arg1){
-    s32 prev_mode = D_8037E8E0.game_mode;
+    s32 prev_mode = sGameState.game_mode;
     s32 sp20;
     s32 sp1C;
 
-    if( ( ( D_8037E8E0.game_mode == GAME_MODE_3_NORMAL || func_802E4A08())
+    if( ( ( sGameState.game_mode == GAME_MODE_3_NORMAL || func_802E4A08())
             && next_mode != GAME_MODE_4_PAUSED
           )
-          || ( D_8037E8E0.game_mode == GAME_MODE_4_PAUSED && next_mode != GAME_MODE_3_NORMAL )
+          || ( sGameState.game_mode == GAME_MODE_4_PAUSED && next_mode != GAME_MODE_3_NORMAL )
         ){
         func_80324C58();
     }
 
-    if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED && next_mode != GAME_MODE_4_PAUSED ){
+    if(sGameState.game_mode == GAME_MODE_4_PAUSED && next_mode != GAME_MODE_4_PAUSED ){
         gcpausemenu_free();
     }
 
@@ -193,7 +198,7 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
         picturebox_free();
     }//L802E3CB4
 
-    D_8037E8E0.game_mode = next_mode;
+    sGameState.game_mode = next_mode;
 
     if(next_mode == 2){
         gsworld_setUnk0(3);
@@ -209,7 +214,7 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
                     sp20 = TRUE;
                     sp1C = 7;
                 }
-                else if(func_8032190C()
+                else if(level_enteredFromLair()
                     && level_get() != LEVEL_C_BOSS
                     && level_get() != LEVEL_B_SPIRAL_MOUNTAIN
                     && level_get() != LEVEL_6_LAIR
@@ -221,7 +226,7 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
             }
             else if(func_802E4A08()){//L802E3DBC
                 sp20 = TRUE;
-                sp1C = func_8034BDA4(D_8037E8E0.map, D_8037E8E0.exit);
+                sp1C = func_8034BDA4(sGameState.map, sGameState.exit);
             }
 
             if(sp20)
@@ -230,7 +235,7 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
                 gctransition_8030BD4C();
         }
         func_80346CA8();
-        D_8037E8E0.unk10 = 0.0f; 
+        sGameState.unk10 = 0.0f; 
     }
     else if(next_mode == GAME_MODE_4_PAUSED){//L802E3E24
         gsworld_setEnableUpdate(FALSE);
@@ -242,7 +247,8 @@ void game_setMode(enum game_mode_e next_mode, s32 arg1){
     }//L802E3E6C
 }
 
-void func_802E3E7C(enum game_mode_e mode){
+/* Applies the pending map change: saves the current map's state, loads the new map and switches to `mode` */
+void game_changeMap(enum game_mode_e mode){
     s32 sp34;
     s32 sp30;
     s32 map;
@@ -250,27 +256,27 @@ void func_802E3E7C(enum game_mode_e mode){
     s32 prev_mode;
 
     core1_15B30_sendMesg3ToRenderThread();
-    sp34 = D_8037E8E0.unk18;
-    sp30 = D_8037E8E0.unk17;
-    map = D_8037E8E0.map;
-    sp28 = D_8037E8E0.exit;
-    prev_mode = D_8037E8E0.unk0;
+    sp34 = sGameState.reset_level;
+    sp30 = sGameState.map_transition;
+    map = sGameState.map;
+    sp28 = sGameState.exit;
+    prev_mode = sGameState.unk0;
     game_setMode(GAME_MODE_2_UNKNOWN, 0);
-    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(gsworld_getMap()) == map_getLevel(D_8037E8E0.map)){
+    if(!volatileFlag_getAndSet(VOLATILE_FLAG_21, 0) || map_getLevel(gsworld_getMap()) == map_getLevel(sGameState.map)){
         if(!volatileFlag_get(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE))
             mapSavestate_save(gsworld_getMap());
     }
     func_802E398C(1);
-    func_802E38E8(map, sp28, sp34);
+    game_loadMap(map, sp28, sp34);
     mapSavestate_apply(map);
-    D_8037E8E0.unk0 = prev_mode;
+    sGameState.unk0 = prev_mode;
     game_setMode(mode, sp30);
     jiggylist_map_actors();
     func_80346CA8();
 }
 
 s32 func_802E3F80(void){
-    return D_8037E8E0.unk0;
+    return sGameState.unk0;
 }
 
 void game_draw(bool arg0) {
@@ -284,14 +290,14 @@ void game_draw(bool arg0) {
 
     graphicscache_swapAndGetStacks(&gfx, &mtx, &vtx);
 
-    if (D_8037E8E0.unkC == TRUE) { // BUG: Compares explicit for integral value of TRUE, instead for true-ness
+    if (sGameState.unkC == TRUE) { // BUG: Compares explicit for integral value of TRUE, instead for true-ness
         graphicscache_swapAndGetStacks(&gfx, &mtx, &vtx);
     }
 
     gfx_start = gfx;
     func_802E39D0(&gfx, &mtx, &vtx, getActiveFramebuffer(), arg0);
 
-    if (!D_8037E8E0.unkC) {
+    if (!sGameState.unkC) {
         gfx_end = gfx;
         viMgr_func_8024C1DC();
         core1_15B30_addF3DEXTaskData_40000000(gfx_start, gfx_end);
@@ -302,53 +308,54 @@ void game_draw(bool arg0) {
     }
 }
 
-void func_802E4048(s32 map, s32 exit, s32 transition){
-    func_802E40A8(map, exit);
-    func_802E40E8(transition);
-    func_802E40C4(1);
+/* like transitionToMap, but the level state is reset even inside the same level */
+void game_transitionToMapResettingLevel(s32 map, s32 exit, s32 transition){
+    game_setNextMapResettingLevel(map, exit);
+    game_setMapTransition(transition);
+    game_setMapChangeRequest(1);
 }
 
 //take me there
 void transitionToMap(enum map_e map, s32 exit, s32 transition){
-    func_802E40D0(map, exit);
-    func_802E40E8(transition);
-    func_802E40C4(1);
+    game_setNextMap(map, exit);
+    game_setMapTransition(transition);
+    game_setMapChangeRequest(1);
 }
 
-void func_802E40A8(s32 map, s32 exit){
-    D_8037E8E0.unk18 = 1;
-    D_8037E8E0.map = map;
-    D_8037E8E0.exit = exit;
+void game_setNextMapResettingLevel(s32 map, s32 exit){
+    sGameState.reset_level = 1;
+    sGameState.map = map;
+    sGameState.exit = exit;
 }
 
-void func_802E40C4( s32 arg0){
-    D_8037E8E0.transition = arg0;   
+void game_setMapChangeRequest( s32 arg0){
+    sGameState.transition = arg0;   
 }
 
-void func_802E40D0(s32 map, s32 exit){
-    D_8037E8E0.unk18 = 0;
-    D_8037E8E0.map = map;
-    D_8037E8E0.exit = exit;
+void game_setNextMap(s32 map, s32 exit){
+    sGameState.reset_level = 0;
+    sGameState.map = map;
+    sGameState.exit = exit;
 }
 
-void func_802E40E8(s32 transition){
-    D_8037E8E0.unk17 = transition;
-    D_8037E8E0.unk19 = 0;
+void game_setMapTransition(s32 transition){
+    sGameState.map_transition = transition;
+    sGameState.map_transition_style = 0;
     if(transition && !gctransition_8030BDC0()){
         gctransition_8030BE60();
     }
     
 }
 
-void func_802E412C(s32 arg0, s32 arg1){
-    D_8037E8E0.unk17 = arg0;
-    D_8037E8E0.unk19 = arg1;
+void game_setMapTransitionWithStyle(s32 arg0, s32 arg1){
+    sGameState.map_transition = arg0;
+    sGameState.map_transition_style = arg1;
     if(arg0 && !gctransition_8030BDC0()){
         gctransition_8030BEA4(arg1);
     }
 }
 
-void func_802E4170(void){
+void game_free(void){
     game_setMode(GAME_MODE_2_UNKNOWN,0);
     defragthread_free();
     func_802E5F68();
@@ -360,20 +367,20 @@ void func_802E4170(void){
     depthbuffer_stub();
     func_802E398C(0);
     func_8030AFD8(0);
-    func_80321854();
+    level_unload();
     debugScoreStates();
     animCache_free();
     coMusicPlayer_free();
     func_8030D8DC();
 }
 
-void func_802E4214(enum map_e map_id){
-    D_8037E8E0.transition = TRANSITION_0_NONE;
-    D_8037E8E0.unk19 = D_8037E8E0.unk18 = 0;
-    D_8037E8E0.map = D_8037E8E0.exit = D_8037E8E0.unk17 = 0;
-    D_8037E8E0.unk1B = D_8037E8E0.unk1A = 0;
-    D_8037E8E0.unkC = FALSE;
-    D_8037E8E0.unk1C = 0;
+void game_init(enum map_e map_id){
+    sGameState.transition = TRANSITION_0_NONE;
+    sGameState.map_transition_style = sGameState.reset_level = 0;
+    sGameState.map = sGameState.exit = sGameState.map_transition = 0;
+    sGameState.unk1B = sGameState.unk1A = 0;
+    sGameState.unkC = FALSE;
+    sGameState.keep_level_state = 0;
     savedata_init();
     sns_load_global_data();
     func_8030D86C();
@@ -397,20 +404,20 @@ void func_802E4214(enum map_e map_id){
     time_reset();
     func_8033DC04();
     clearScoreStates();
-    D_8037E8E0.game_mode = GAME_MODE_2_UNKNOWN;
-    D_8037E8E0.unk8 = 0.0f;
+    sGameState.game_mode = GAME_MODE_2_UNKNOWN;
+    sGameState.unk8 = 0.0f;
     time_setDeltaReal_sec(0.0f);
     time_setDeltaReal_frames(0);
-    func_803216D0(map_id);
-    func_8030AFA0(map_id);
+    level_load(map_id);
+    gcsection_setJiggyListForMap(map_id);
     func_802E3854();
-    func_802E38E8(map_id, 0, 0);
-    D_8037E8E0.unk0 = 0;
+    game_loadMap(map_id, 0, 0);
+    sGameState.unk0 = 0;
     game_setMode(GAME_MODE_3_NORMAL,1);
 }
 
 void func_802E4384(void){
-    if(D_8037E8E0.unk8 == 0.0f){
+    if(sGameState.unk8 == 0.0f){
         time_setDeltaReal_sec(0.0f);
     }
     else{
@@ -420,76 +427,78 @@ void func_802E4384(void){
     }
     func_8033DC10();
     
-    D_8037E8E0.unk8 += time_getDelta();
+    sGameState.unk8 += time_getDelta();
 }
 
-bool func_802E4424(void) {
+/* Runs one frame of the game: handles a pending map change request, then updates the world.
+ * Returns whether the frame should be drawn. */
+bool game_update(void) {
     s32 sp1C;
     u8 temp_v0;
 
     viewport_debug();
     rand_shuffle();
     if (!gctransition_8030BDC0()) {
-        temp_v0 = D_8037E8E0.transition;
-        D_8037E8E0.transition = TRANSITION_0_NONE;
+        temp_v0 = sGameState.transition;
+        sGameState.transition = TRANSITION_0_NONE;
         switch (temp_v0) {                          /* switch 1 */
             case 9:                                     /* switch 1 */
-                if( (D_8037E8E0.game_mode == GAME_MODE_7_ATTRACT_DEMO)
-                    || (D_8037E8E0.game_mode == GAME_MODE_8_BOTTLES_BONUS)
-                    || (D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE)
-                    || (D_8037E8E0.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
+                if( (sGameState.game_mode == GAME_MODE_7_ATTRACT_DEMO)
+                    || (sGameState.game_mode == GAME_MODE_8_BOTTLES_BONUS)
+                    || (sGameState.game_mode == GAME_MODE_A_SNS_PICTURE)
+                    || (sGameState.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
                 ) {
                     func_8034B940();
                 }
                 gcparade_8031ABF8();
-                func_802E3E7C(GAME_MODE_3_NORMAL);
+                game_changeMap(GAME_MODE_3_NORMAL);
                 return FALSE;
 
             case 10:                                    /* switch 1 */
-                if( (D_8037E8E0.game_mode == GAME_MODE_7_ATTRACT_DEMO)
-                    || (D_8037E8E0.game_mode == GAME_MODE_8_BOTTLES_BONUS)
-                    || (D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE)
-                    || (D_8037E8E0.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
+                if( (sGameState.game_mode == GAME_MODE_7_ATTRACT_DEMO)
+                    || (sGameState.game_mode == GAME_MODE_8_BOTTLES_BONUS)
+                    || (sGameState.game_mode == GAME_MODE_A_SNS_PICTURE)
+                    || (sGameState.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
                 ) {
                     func_8034B940();
                 }
                 gcparade_8031ABA0();
-                func_802E3E7C(GAME_MODE_3_NORMAL);
+                game_changeMap(GAME_MODE_3_NORMAL);
                 return FALSE;
 
             case 1:                                     /* switch 1 */
-                if( (D_8037E8E0.game_mode == GAME_MODE_7_ATTRACT_DEMO)
-                    || (D_8037E8E0.game_mode == GAME_MODE_8_BOTTLES_BONUS)
-                    || (D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE)
-                    || (D_8037E8E0.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
+                if( (sGameState.game_mode == GAME_MODE_7_ATTRACT_DEMO)
+                    || (sGameState.game_mode == GAME_MODE_8_BOTTLES_BONUS)
+                    || (sGameState.game_mode == GAME_MODE_A_SNS_PICTURE)
+                    || (sGameState.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
                 ) {
                     func_8034B940();
                 }
-                func_802E3E7C(GAME_MODE_3_NORMAL);
+                game_changeMap(GAME_MODE_3_NORMAL);
                 return FALSE;
 
             case 6:                                     /* switch 1 */
-                func_8034B8C0(D_8037E8E0.map, D_8037E8E0.exit);
-                func_802E3E7C(GAME_MODE_7_ATTRACT_DEMO);
+                func_8034B8C0(sGameState.map, sGameState.exit);
+                game_changeMap(GAME_MODE_7_ATTRACT_DEMO);
                 return FALSE;
 
             case 12:                                    /* switch 1 */
-                func_8034B8C0(D_8037E8E0.map, D_8037E8E0.exit);
-                func_802E3E7C(GAME_MODE_A_SNS_PICTURE);
+                func_8034B8C0(sGameState.map, sGameState.exit);
+                game_changeMap(GAME_MODE_A_SNS_PICTURE);
                 return FALSE;
 
             case 7:                                     /* switch 1 */
-                func_8034B8C0(D_8037E8E0.map, D_8037E8E0.exit);
-                func_802E3E7C(GAME_MODE_8_BOTTLES_BONUS);
+                func_8034B8C0(sGameState.map, sGameState.exit);
+                game_changeMap(GAME_MODE_8_BOTTLES_BONUS);
                 return FALSE;
 
             case 8:                                     /* switch 1 */
-                func_8034B8C0(D_8037E8E0.map, D_8037E8E0.exit);
-                func_802E3E7C(GAME_MODE_9_BANJO_AND_KAZOOIE);
+                func_8034B8C0(sGameState.map, sGameState.exit);
+                game_changeMap(GAME_MODE_9_BANJO_AND_KAZOOIE);
                 return FALSE;
 
             case 11:                                    /* switch 1 */
-                func_802E3E7C(D_8037E8E0.game_mode);
+                game_changeMap(sGameState.game_mode);
                 return FALSE;
 
             case 2:                                     /* switch 1 */
@@ -503,15 +512,15 @@ bool func_802E4424(void) {
                 break;
         }
     }
-    if (D_8037E8E0.unk1A != 0) {
-        game_setMode(D_8037E8E0.unk1A - 1, D_8037E8E0.unk1B);
-        D_8037E8E0.unk1A = 0;
+    if (sGameState.unk1A != 0) {
+        game_setMode(sGameState.unk1A - 1, sGameState.unk1B);
+        sGameState.unk1A = 0;
     }
     sp1C = gsworld_update();
     func_80321C34();
     func_8030ED0C();
     coMusicPlayer_update();
-    switch (D_8037E8E0.game_mode) {
+    switch (sGameState.game_mode) {
         case GAME_MODE_8_BOTTLES_BONUS:
         case GAME_MODE_A_SNS_PICTURE:
             picturebox_spawn();
@@ -519,19 +528,19 @@ bool func_802E4424(void) {
         case GAME_MODE_7_ATTRACT_DEMO:
         case GAME_MODE_9_BANJO_AND_KAZOOIE:
             func_8034BB90();
-            if ((controller_getStartButton(0) == 1) && (D_8037E8E0.unk0 != 0)) {
+            if ((controller_getStartButton(0) == 1) && (sGameState.unk0 != 0)) {
                 game_setMode(GAME_MODE_1_UNKNOWN, 0U);
             }
             break;
         case GAME_MODE_3_NORMAL:                                     /* switch 2 */
-            D_8037E8E0.unk10 += time_getDelta();
+            sGameState.unk10 += time_getDelta();
             if( (controller_getStartButtonSafe(0) == 1)
                 && func_8028F070()
                 && (func_8028EC04() == 0)
                 && !gctransition_8030BDC0()
                 && gctransition_done()
                 && (level_get() != 0)
-                && (0.6 < D_8037E8E0.unk10)
+                && (0.6 < sGameState.unk10)
                 && gcpausemenu_80314B00()
                 && !player_isDead()
                 && volatileflag_func_8032056C()
@@ -539,7 +548,7 @@ bool func_802E4424(void) {
                 && volatileflag_stub2()
             ) {
                 game_setMode(GAME_MODE_4_PAUSED, 0U);
-            } else if ((controller_getStartButton(0) == 1) && (D_8037E8E0.unk0 != 0)) {
+            } else if ((controller_getStartButton(0) == 1) && (sGameState.unk0 != 0)) {
                 game_setMode(GAME_MODE_1_UNKNOWN, 0U);
             } else if (sp1C == 0) {
                 game_setMode(GAME_MODE_3_NORMAL, 1U);
@@ -557,7 +566,7 @@ bool func_802E4424(void) {
             }
             break;
     }
-    if ((D_8037E8E0.game_mode == GAME_MODE_3_NORMAL) || (func_802E4A08() != 0)) {
+    if ((sGameState.game_mode == GAME_MODE_3_NORMAL) || (func_802E4A08() != 0)) {
         timedFuncQueue_update();
         func_802FA0F8();
     }
@@ -591,7 +600,7 @@ s32 game_defrag(void){
     func_802F3300();
     printbuffer_defrag();
     gcdialog_defrag();
-    if(D_8037E8E0.game_mode == GAME_MODE_4_PAUSED)
+    if(sGameState.game_mode == GAME_MODE_4_PAUSED)
         gcpausemenu_defrag();
     switch(overlayManager_getLoadedID()){
         case OVERLAY_2_WHALE:
@@ -605,70 +614,70 @@ s32 game_defrag(void){
 }
 
 void func_802E49E0(void){
-    D_8037E8E0.unkC = TRUE;
+    sGameState.unkC = TRUE;
 }
 
 int game_is_frozen(void){
-    return D_8037E8E0.unkC;
+    return sGameState.unkC;
 }
 
 s32 getGameMode(void){
-    return D_8037E8E0.game_mode;
+    return sGameState.game_mode;
 }
 
 bool func_802E4A08(void){
-    return (D_8037E8E0.game_mode == GAME_MODE_6_FILE_PLAYBACK) 
-        || (D_8037E8E0.game_mode == GAME_MODE_5_UNKNOWN)
-        || (D_8037E8E0.game_mode == GAME_MODE_7_ATTRACT_DEMO)
-        || (D_8037E8E0.game_mode == GAME_MODE_8_BOTTLES_BONUS)
-        || (D_8037E8E0.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
-        || (D_8037E8E0.game_mode == GAME_MODE_A_SNS_PICTURE);
+    return (sGameState.game_mode == GAME_MODE_6_FILE_PLAYBACK) 
+        || (sGameState.game_mode == GAME_MODE_5_UNKNOWN)
+        || (sGameState.game_mode == GAME_MODE_7_ATTRACT_DEMO)
+        || (sGameState.game_mode == GAME_MODE_8_BOTTLES_BONUS)
+        || (sGameState.game_mode == GAME_MODE_9_BANJO_AND_KAZOOIE)
+        || (sGameState.game_mode == GAME_MODE_A_SNS_PICTURE);
 }
 
-void func_802E4A70(void){
-    D_8037E8E0.unk1C = 1;
+void game_setKeepLevelState(void){
+    sGameState.keep_level_state = 1;
 }
 
-void func_802E4A80(void){
-    D_8037E8E0.unk1C = 0;
+void game_clearKeepLevelState(void){
+    sGameState.keep_level_state = 0;
 }
 
-u8 func_802E4A8C(void){
-    return D_8037E8E0.unk1C;
+u8 game_getKeepLevelState(void){
+    return sGameState.keep_level_state;
 }
 
-s32 func_802E4A98(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 0];
+s32 game_getHardcodedExitX(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 0];
 }
 
-s32 func_802E4AAC(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 1];
+s32 game_getHardcodedExitY(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 1];
 }
 
-s32 func_802E4AC0(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 2];
+s32 game_getHardcodedExitZ(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 2];
 }
 
-s32 func_802E4AD4(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 3];
+s32 game_getHardcodedExitYaw(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 3];
 }
 
-s32 func_802E4AE8(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 4];
+s32 game_getHardcodedExitCameraX(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 4];
 }
 
-s32 func_802E4AFC(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 5];
+s32 game_getHardcodedExitCameraY(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 5];
 }
 
-s32 func_802E4B10(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 6];
+s32 game_getHardcodedExitCameraZ(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 6];
 }
 
-s32 func_802E4B24(s32 arg0){
-    return D_803687F0[8*(arg0 - 0x80) + 7];
+s32 game_getHardcodedExitCameraYaw(s32 arg0){
+    return sGameHardcodedExits[8*(arg0 - 0x80) + 7];
 }
 
 f32 func_802E4B38(void){
-    return D_8037E8E0.unk8;
+    return sGameState.unk8;
 }

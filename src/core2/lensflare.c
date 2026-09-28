@@ -262,7 +262,7 @@ void lensflare_update(void)
         if (player_isInFirstPersonView(sp48[1], sp48[2]))
             var_v0 = func_80320B98(&sp30, &sp24, &sp3C, 0x01000000);
         else
-            var_v0 = func_80309B48(&sp30, &sp24, &sp3C, 0x01000000);
+            var_v0 = mapModel_intersectLine(&sp30, &sp24, &sp3C, 0x01000000);
 
         if (var_v0)
         {

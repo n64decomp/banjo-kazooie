@@ -49,11 +49,11 @@ bool func_802BB720(s32 arg0, f32 arg1[3], f32 arg2[3], s32 *arg3) {
         arg0 = 0x1A;
     }
     if (arg0 >= 0x80) {
-        arg1[0] = (f32) func_802E4AE8(arg0);
-        arg1[1] = (f32) func_802E4AFC(arg0);
-        arg1[2] = (f32) func_802E4B10(arg0);
+        arg1[0] = (f32) game_getHardcodedExitCameraX(arg0);
+        arg1[1] = (f32) game_getHardcodedExitCameraY(arg0);
+        arg1[2] = (f32) game_getHardcodedExitCameraZ(arg0);
         arg2[0] = 0.0f;
-        arg2[1] = mlNormalizeAngle((f32) func_802E4B24(arg0) - 180.0f);
+        arg2[1] = mlNormalizeAngle((f32) game_getHardcodedExitCameraYaw(arg0) - 180.0f);
         arg2[2] = 0.0f;
         return TRUE;
     }
@@ -177,7 +177,7 @@ void camera_setType(enum camera_type_e camera_type) {
 
 
 void func_802BBD0C(Gfx **gdl, Mtx **mptr, Vtx **vptr){
-    func_802BEE2C(gdl, mptr, vptr);
+    core2_37E50_draw(gdl, mptr, vptr);
 }
 
 void core2_34790_getClipDistances(f32 *near, f32 *far) {
@@ -260,7 +260,7 @@ void nccamera_init(void) {
     func_802BAC10();
     func_802BE940();
     func_802BCBD4();
-    func_802BEF78();
+    core2_37E50_reset();
     func_802BB2A8();
     ncCameraType = 0;
     camera_setType(2);
@@ -303,7 +303,7 @@ void ncCamera_update(void){
     viewport_setPosition_vec3f(sp2C);
     viewport_setRotation_vec3f(sp20);
     viewport_update();
-    func_802BEFB0();
+    core2_37E50_update();
     func_802BBA84();
 }
 

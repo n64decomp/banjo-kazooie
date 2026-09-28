@@ -3,7 +3,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern f32 func_80309B24(f32[3]);
+extern f32 mapModel_getWaterSurfaceY(f32[3]);
 extern void sfxsource_playSfxAtVolume(u8, f32);
 extern void func_802CC340(Actor *, f32[3]);
 extern bool func_80320DB0(f32[3], f32, f32[3], u32);
@@ -128,7 +128,7 @@ bool func_802CC57C(Actor *this, f32 arg1[3]) {
         local->unk39--;
         return 0;
     }
-    sp24 = func_80309B48(sp28, sp40, sp34, 0);
+    sp24 = mapModel_intersectLine(sp28, sp40, sp34, 0);
     if (sp24 != 0) {
         local->unk39 = randi2(5, 0xA);
     } else {
@@ -313,7 +313,7 @@ void func_802CCC5C(Actor *this) {
         local->unk30[1] = (s16) this->position[1];
         local->unk30[2] = (s16) this->position[2];
         local->unk30[1] = (s16) mapModel_getFloorY(this->position);
-        temp_f0 = func_80309B24(this->position);
+        temp_f0 = mapModel_getWaterSurfaceY(this->position);
         if (local->unk30[1] < temp_f0) {
             local->unk30[1] = (s16) (s32) temp_f0;
         }

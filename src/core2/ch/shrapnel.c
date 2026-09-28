@@ -5,7 +5,7 @@
 
 #define ABS(s) (((s) >= 0) ? (s) : -(s))
 
-extern f32 func_80309B24(f32[3]);
+extern f32 mapModel_getWaterSurfaceY(f32[3]);
 
 /* .h */
 void chshrapnel_update(Actor *this);
@@ -160,7 +160,7 @@ void chshrapnel_update(Actor *this) {
     this->unk1C[0] = this->position[0];
     this->unk1C[1] = this->position[1];
     this->unk1C[2] = this->position[2];
-    this->unk1C[1] = func_80309B24(this->position) - 15.0f;
+    this->unk1C[1] = mapModel_getWaterSurfaceY(this->position) - 15.0f;
     this->position[1] = this->unk1C[1] - (sinf(this->lifetime_value * 4.0f) * 10.0f);
     playerPosition_get(player_position);
     switch (this->state) {

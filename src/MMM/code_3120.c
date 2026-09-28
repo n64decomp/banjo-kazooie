@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-BKCollisionTriangle * func_80309B48(f32[3], f32[3], f32[3], u32);
+BKCollisionTriangle * mapModel_intersectLine(f32[3], f32[3], f32[3], u32);
 
 /* .bss */
 struct{
@@ -98,7 +98,7 @@ void func_8038966C(void){
     sp48[2] = sp54[2];
     sp3C[2] = sp54[2];
 
-    tmp_v0 = func_80309B48(sp48, sp3C, sp30, 0);
+    tmp_v0 = mapModel_intersectLine(sp48, sp3C, sp30, 0);
 
     if(tmp_v0 != NULL){
         if((s32)(tmp_v0->flags << 4) < 0){

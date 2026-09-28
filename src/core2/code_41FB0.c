@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
+extern bool mapModel_intersectMovingSphere(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern bool func_80320C94(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern f32 func_8033229C(ActorMarker *);
 extern bool func_80309D58(f32[3], s32);
@@ -226,9 +226,9 @@ bool func_802C939C(Actor *actor, f32 arg1[3], f32 arg2[3], f32 arg3[3], bool arg
     arg1[1] += sp60;
     arg2[1] += sp60;
     if (arg4) {
-        var_v1 = func_80309DBC(arg1, arg2, sp60, arg3, 3, actor->unk154);
+        var_v1 = mapModel_intersectMovingSphere(arg1, arg2, sp60, arg3, 3, actor->unk154);
         if (!var_v1) {
-            var_v1 = func_80309B48(arg1, arg2, arg3, actor->unk154);
+            var_v1 = mapModel_intersectLine(arg1, arg2, arg3, actor->unk154);
             if (var_v1) {
                 arg2[0] += arg3[0];
                 arg2[1] += arg3[1];

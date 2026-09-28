@@ -225,7 +225,7 @@ void bsmethods_reset(void){
     baModel_reset();
     baMarker_init();
     basfx_reset();
-    func_8029A4D0();
+    core2_12F30_reset();
     func_8029ADCC();
     hazards_reset();
     bsmethods_setMethods();
@@ -235,7 +235,7 @@ void func_80295A8C(void)
 {
     stateTimer_set(STATE_TIMER_2_LONGLEG, bsStoredState_getLongLegTimer());
     stateTimer_set(STATE_TIMER_3_TURBO_TALON, bsStoredState_getTurboTimer());
-    if(func_8028ADB4())
+    if(player_shouldPlayLevelEntrance())
         bs_setState(badrone_enter());
     else
         bs_setState(bs_getIdleState());
@@ -299,7 +299,7 @@ void func_80295C14(void){
     func_802993C8();//yaw update
     func_802906D8();
     baAnim_update();
-    func_8029A554();
+    core2_12F30_update();
     climb_regrab_update();
     func_80290108();
     eggShatter_update();

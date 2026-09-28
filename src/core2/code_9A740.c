@@ -5,47 +5,51 @@
 extern void rbb_propellorCtrl_stop(void); //rbb
 
 typedef struct {
-    u8 unk0;
+    u8 entered_from_lair;
     u8 level;
 } struct_9A740;
 
 /* .bss */
 struct {
-    u8 unk0;
+    u8 entered_from_lair; // set when the last map change went from the lair into a level
     u8 level;
-}D_80383300;
+}sLevelState;
 
 /* .code */
-void func_803216D0(enum map_e map){
-    s32 prev_lvl = D_80383300.level;
-    D_80383300.level = map_getLevel(map);
-    overlayManager_load(leveloverlay_getOverlayFromLevel(D_80383300.level));
-    D_80383300.unk0 = 0;
-    if(func_802E4A8C()){
-        func_802E4A80();
+/* Enters the level of `map`: called by game_loadMap when the new map is in a different level
+ * (or a level reset was requested), and by game_init and the demo player. Loads the overlay for
+ * the map's level, then resets the per-level state (item scores, spawned jiggies, level flags,
+ * level-specific props) unless game_getKeepLevelState() asks to keep it (cleared here). */
+void level_load(enum map_e map){
+    s32 prev_lvl = sLevelState.level;
+    sLevelState.level = map_getLevel(map);
+    overlayManager_load(leveloverlay_getOverlayFromLevel(sLevelState.level));
+    sLevelState.entered_from_lair = 0;
+    if(game_getKeepLevelState()){
+        game_clearKeepLevelState();
     }else{
-        if( D_80383300.level != LEVEL_6_LAIR 
-            && D_80383300.level != LEVEL_C_BOSS
+        if( sLevelState.level != LEVEL_6_LAIR 
+            && sLevelState.level != LEVEL_C_BOSS
             && prev_lvl == LEVEL_6_LAIR
         ){
-            D_80383300.unk0 = 1;
+            sLevelState.entered_from_lair = 1;
         }
     
         mapSavestate_init();
-        itemscore_levelReset(D_80383300.level);
+        itemscore_levelReset(sLevelState.level);
         jiggyscore_clearAllSpawned();
         levelSpecificFlags_clear();
         bsStoredState_clearTimers();
         func_803219A8();
         if( volatileFlag_getAndSet(VOLATILE_FLAG_17, FALSE) 
             && getGameMode() != 0
-            && D_80383300.level != LEVEL_D_CUTSCENE
+            && sLevelState.level != LEVEL_D_CUTSCENE
             && map != MAP_91_FILE_SELECT
         ){
             volatileFlag_set(VOLATILE_FLAG_18, TRUE);
         }
 
-        if(D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
+        if(sLevelState.level == LEVEL_9_RUSTY_BUCKET_BAY){
             rbb_propellorCtrl_reset();
         }
 
@@ -63,13 +67,15 @@ void func_803216D0(enum map_e map){
     }
 }
 
-void func_80321854(void){
-    if(!func_802E4A8C()){
-        if( D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
+/* Leaves the current level: called by game_loadMap before level_load, and by game_free and the
+ * demo player */
+void level_unload(void){
+    if(!game_getKeepLevelState()){
+        if( sLevelState.level == LEVEL_9_RUSTY_BUCKET_BAY){
             rbb_propellorCtrl_stop();
         }
 
-        if( D_80383300.level == LEVEL_1_MUMBOS_MOUNTAIN
+        if( sLevelState.level == LEVEL_1_MUMBOS_MOUNTAIN
             && getGameMode() != 0
             && fileProgressFlag_get(FILEPROG_31_MM_OPEN)
             && !fileProgressFlag_get(FILEPROG_C1_BADDIES_ESCAPE_TEXT)
@@ -84,19 +90,19 @@ void func_80321854(void){
 }
 
 enum level_e level_get(void){
-    return D_80383300.level;
+    return sLevelState.level;
 }
 
-int func_8032190C(void){
-    return D_80383300.unk0;
+int level_enteredFromLair(void){
+    return sLevelState.entered_from_lair;
 }
 
-void func_80321918(int arg0){
-    D_80383300.unk0 = arg0;
+void level_setEnteredFromLair(int arg0){
+    sLevelState.entered_from_lair = arg0;
 }
 
-void func_80321924(void){
-    if(D_80383300.level == LEVEL_9_RUSTY_BUCKET_BAY){
+void level_update(void){
+    if(sLevelState.level == LEVEL_9_RUSTY_BUCKET_BAY){
         rbb_propellorCtrl_update();
     }
 }

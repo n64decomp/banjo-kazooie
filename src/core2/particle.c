@@ -63,7 +63,7 @@ void func_802EE930(ParticleEmitter *this){
 
 int func_802EE974(ParticleEmitter *this, f32 (*arg1)[3], f32 (*arg2)[3], f32 (*arg3)[3], s32 arg4){
     if(-100000.0 == this->unk74 && 100000.0 == this->unk78){
-        return func_80309B48(arg1, arg2, arg3, 0);
+        return mapModel_intersectLine(arg1, arg2, arg3, 0);
     }
 
     if(100000.0 != this->unk78 && this->unk78 < (*arg2)[1]){

@@ -876,7 +876,7 @@ void func_8038D48C(void)
 void ff_setupMinigame(void)
 {
     volatileFlag_set(VOLATILE_FLAG_2_FF_IN_MINIGAME, TRUE);
-    func_802E4A70();
+    game_setKeepLevelState();
 
     // restore moves after a delay
     timedFunc_set_1(0.25f,

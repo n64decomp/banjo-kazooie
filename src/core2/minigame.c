@@ -137,7 +137,7 @@ void __chMinigame_setState(Actor *this, u32 arg1) {
             func_8028F918(2);
             func_8025AB00();
             comusic_playTrack((volatileFlag_get(VOLATILE_FLAG_5_FF_MINIGAME_WON)) ? COMUSIC_3B_MINIGAME_VICTORY : COMUSIC_3C_MINIGAME_LOSS);
-            func_802E4A70();
+            game_setKeepLevelState();
             volatileFlag_set(VOLATILE_FLAG_21, TRUE);
             timedFunc_set_3(2.0f, (GenFunction_3)transitionToMap, MAP_8E_GL_FURNACE_FUN, WARP_GL_FURNACE_FUN_1_AFTER_PAD, 1);
             break;

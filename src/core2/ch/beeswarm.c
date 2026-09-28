@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void func_8030DBFC(u32, f32, f32, f32);
-extern bool func_80309DBC(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
+extern bool mapModel_intersectMovingSphere(f32[3], f32[3], f32, f32 sp54[3], s32, s32);
 extern void sfxsource_set_fade_distances(u8, f32, f32);
 extern void sfxsource_set_position(u8, f32[3]);
 extern void sfxSource_func_8030E2C4(u8);
@@ -346,7 +346,7 @@ void chBeeSwarm_update(Actor *this) {
         
         position[1] += 50.0f;
         next_position[1] -= 500.0f;
-        if (func_80309B48(position, next_position, sp7C, 0x5E0000)) {
+        if (mapModel_intersectLine(position, next_position, sp7C, 0x5E0000)) {
             local->unk18 = next_position[1];
         }
     }
@@ -400,7 +400,7 @@ void chBeeSwarm_update(Actor *this) {
     next_position[1] = this->position[1] + (this->velocity[1] * dt);
     next_position[2] = this->position[2] + (this->velocity[2] * dt);
     if (this->state != 7) {
-        if (func_80309DBC(position, next_position, 75.0f, sp7C, 3, 0)) {
+        if (mapModel_intersectMovingSphere(position, next_position, 75.0f, sp7C, 3, 0)) {
             ml_vec3f_normalize(sp7C);
             temp_f0 = (this->velocity[0]*sp7C[0] + this->velocity[1]*sp7C[1] + this->velocity[2]*sp7C[2]) * -1.5;
             this->velocity[0] = this->velocity[0] + (sp7C[0] * temp_f0);
@@ -424,7 +424,7 @@ void chBeeSwarm_update(Actor *this) {
             next_position[2] = this->position[2];
             position[1] += 1000.0f;
             next_position[1] -= 1000.0f;
-            if (func_80309B48(position, next_position, sp7C, 0xF800FF0F)) {
+            if (mapModel_intersectLine(position, next_position, sp7C, 0xF800FF0F)) {
                 local->unk1C = next_position[1];
             } else {
                 local->unk1C = -16000.0f;

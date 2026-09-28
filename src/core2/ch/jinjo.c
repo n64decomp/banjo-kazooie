@@ -3,7 +3,7 @@
 #include "variables.h"
 
 extern void subaddie_set_state_with_direction(Actor *, s32, f32 , s32);
-extern f32 func_80309B24(f32*);
+extern f32 mapModel_getWaterSurfaceY(f32*);
 extern void func_80329904(ActorMarker*, s32, f32*);
 extern void func_8032BB88(Actor *, s32, s32);
 
@@ -125,7 +125,7 @@ void chJinjo_update(Actor * this){
         this->initialized = TRUE;
         local->unk0 = 1;
         local->unk4 = 0;
-        local->unk8 = (this->position_y < func_80309B24(this->position));
+        local->unk8 = (this->position_y < mapModel_getWaterSurfaceY(this->position));
         this->marker->collisionFunc = __chJinjo_collected;
         marker_setFreeMethod(this->marker, __chJinjo_free);
         if(volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){

@@ -170,22 +170,22 @@ void gcparade_8031ABF8(void) {
         volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, TRUE);
     }
     musicKeepsPlaying();
-    func_802E4A70();
+    game_setKeepLevelState();
 }
 
 void gcparade_8031AC8C(void) {
 
     musicKeepsPlaying();
     if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
-        func_802E4A70();
+        game_setKeepLevelState();
     }
 
     if (D_803830F0.parade_element->exit < 0) {
         func_8034BA7C(D_803830F0.parade_element->map, 0x5A - D_803830F0.parade_element->exit);
     } else {
-        func_802E40D0(D_803830F0.parade_element->map, 0x65);
-        func_802E412C(1, 8);
-        func_802E40C4(9);
+        game_setNextMap(D_803830F0.parade_element->map, 0x65);
+        game_setMapTransitionWithStyle(1, 8);
+        game_setMapChangeRequest(9);
     }
     D_803830F0.unk5 = 1;
 }
@@ -216,14 +216,14 @@ void gcparade_setState(enum parade_state_e next_state) {
         case PARADE_STATE_3_WARP:
             musicKeepsPlaying();
             if (map_getLevel(D_803830F0.parade_element->map) != level_get()) {
-                func_802E4A70();
+                game_setKeepLevelState();
             }
             if (D_803830F0.parade_element->exit < 0) {
                 func_8034BA7C(D_803830F0.parade_element->map, 0x5A - D_803830F0.parade_element->exit);
             } else {
-                func_802E412C(1, 8);
-                func_802E40D0(D_803830F0.parade_element->map, 0x65);
-                func_802E40C4(1);
+                game_setMapTransitionWithStyle(1, 8);
+                game_setNextMap(D_803830F0.parade_element->map, 0x65);
+                game_setMapChangeRequest(1);
             }
             D_803830F0.unk5 = 1;
             break;
@@ -244,14 +244,14 @@ void gcparade_setState(enum parade_state_e next_state) {
         case PARADE_STATE_8_END:
             volatileFlag_set(VOLATILE_FLAG_1F_IN_CHARACTER_PARADE, 0);
             volatileFlag_set(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE, FALSE);
-            func_802E412C(1, 8);
-            func_802E40C4(0xA);
+            game_setMapTransitionWithStyle(1, 8);
+            game_setMapChangeRequest(0xA);
             if (D_803830F0.parade_id == 0) {
-                func_802E40D0(MAP_94_CS_INTRO_SPIRAL_7, 0);
+                game_setNextMap(MAP_94_CS_INTRO_SPIRAL_7, 0);
             } else if (D_803830F0.jiggyscore < 100) {
-                func_802E40D0(MAP_20_CS_END_NOT_100, 0);
+                game_setNextMap(MAP_20_CS_END_NOT_100, 0);
             } else {
-                func_802E40D0(MAP_95_CS_END_ALL_100, 0);
+                game_setNextMap(MAP_95_CS_END_ALL_100, 0);
             }
             comusic_8025AB44(COMUSIC_8E_CREDITS, 0, 1000);
             func_8025AABC(COMUSIC_8E_CREDITS);

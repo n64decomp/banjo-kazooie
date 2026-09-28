@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "variables.h"
 
-BKCollisionTriangle *func_80309B48(f32 *, f32 *, f32 *, u32);
+BKCollisionTriangle *mapModel_intersectLine(f32 *, f32 *, f32 *, u32);
 void func_8031C608(struct0 *this);
 void func_8031BD98(struct0 *, f32, s32, s32, f32 *, void *, BKCollisionTriangle *);
 
@@ -65,7 +65,7 @@ BKCollisionTriangle *func_8031BABC(f32 *arg0, f32 arg1, f32 arg2, u32 arg3, stru
     ml_vec3f_copy(sp28, arg0);
     sp28[1] = sp28[1] + arg2;
     if (arg3 == 0xF800FF0F) {
-        sp24 = func_80309B48(&sp34, &sp28, arg4->unk0, arg3);
+        sp24 = mapModel_intersectLine(&sp34, &sp28, arg4->unk0, arg3);
     } else {
         sp24 = func_80320B98(&sp34, &sp28, arg4->unk0, arg3);
     }
