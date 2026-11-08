@@ -116,7 +116,7 @@ void chstonejinjo_breakOpen(ActorMarker *marker) {
         subaddie_set_state_with_direction(actor_stonejinjo, STONEJINJO_STATE_2_BREAK_OPEN, 0.0f, 1);
         actor_playAnimationOnce(actor_stonejinjo);
         anctrl_setDuration(actor_stonejinjo->anctrl, actor_stonejinjo->unk1C[0]);
-        SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, actor_stonejinjo->marker);
+        SPAWNQUEUE_ADD_1(chstonejinjo_spawnJinjo, reinterpret_cast(s32, actor_stonejinjo->marker));
 
         if (!fileProgressFlag_get(FILEPROG_D1_HAS_ACTIVATED_A_JINJO_STATUE_IN_FINAL_FIGHT) && actor_stonejinjo->actorTypeSpecificField != BOSSJINJO_5_JINJONATOR) {
             camera_node = 48 + actor_stonejinjo->actorTypeSpecificField * 2;

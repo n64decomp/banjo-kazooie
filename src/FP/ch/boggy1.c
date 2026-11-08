@@ -125,7 +125,7 @@ void func_8038794C(Actor *this){
 
         if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
             if(!jiggyscore_isCollected(JIGGY_2C_FP_BOGGY_3) && !jiggyscore_isSpawned(JIGGY_2C_FP_BOGGY_3)){
-                __spawnQueue_add_1((GenFunction_1)func_80387760, reinterpret_cast(s32, this->marker));
+                SPAWNQUEUE_ADD_1(func_80387760, reinterpret_cast(s32, this->marker));
             }
             this->unk38_31 = 0;
             actor_collisionOff(this);
@@ -195,7 +195,7 @@ void func_8038794C(Actor *this){
         case 5://L80387D90
             if(jiggyscore_isCollected(JIGGY_2A_FP_BOGGY_1)){
                 this->unk38_31 = 0;
-                __spawnQueue_add_1((GenFunction_1)func_80387760, reinterpret_cast(s32, this->marker));
+                SPAWNQUEUE_ADD_1(func_80387760, reinterpret_cast(s32, this->marker));
             }
             break;
     }

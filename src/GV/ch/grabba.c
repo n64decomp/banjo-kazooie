@@ -210,9 +210,7 @@ void chGrabba_update(Actor *this){
                     this->unk38_31 = 0;
                     D_80391A80 = this->state;
                     func_802BB3DC(0, 14.0f, 0.92f);
-                    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x11f,
-                        reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, this->position_y), reinterpret_cast(s32, this->position_z)
-                    );
+                    SPAWNQUEUE_ADD_ACTOR_F32(0x11f, this->position[0], this->position[1], this->position[2]);
                 }
                 break;
 

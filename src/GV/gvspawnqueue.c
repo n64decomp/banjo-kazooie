@@ -448,7 +448,7 @@ void func_8038F028(UNK_TYPE(s32) arg0, ActorMarker *arg1, s32 arg2, s32 arg3){
         sp24[0] = (f32)arg1->propPtr->position_x;
         sp24[1] = (f32)arg1->propPtr->position_y;
         sp24[2] = (f32)arg1->propPtr->position_z;
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x4e, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        SPAWNQUEUE_ADD_ACTOR_F32(0x4e, sp24[0], sp24[1], sp24[2]);
         coMusicPlayer_playMusic(COMUSIC_2B_DING_B, 22000);
         if(mapSpecificFlags_get(arg3)){
             timedFunc_set_0(2.0f, func_8038F004);
@@ -465,8 +465,7 @@ void func_8038F130(UNK_TYPE(s32) arg0, ActorMarker *arg1){
     func_8038F028(arg0, arg1, 1, 0); //JINXY egg flags?
 }
 
-void GV_func_8038F154(void)
-{
+void GV_addSpawnableActors(void) {
     spawnableActorList_add(&chToots, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);
     spawnableActorList_add(&chAncientOne, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_10);
     spawnableActorList_add(&Gobi1, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11);

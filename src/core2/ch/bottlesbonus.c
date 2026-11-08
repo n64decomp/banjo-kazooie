@@ -550,7 +550,7 @@ void __chBottlesBonus_spawn(void){
 
 void chBottlesBonus_spawn(s32 arg0, s32 arg1){
     if(chBottlesBonusMarker == NULL){
-        __spawnQueue_add_0(__chBottlesBonus_spawn);
+        SPAWNQUEUE_ADD_0(__chBottlesBonus_spawn);
     }
 }
 

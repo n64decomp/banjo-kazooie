@@ -76,7 +76,7 @@ static void __chBlubber_showTextCallback2(ActorMarker *caller, enum asset_e text
 
     if(nodeProp_findPositionFromActorId(ACTOR_14B_TTC_BLUBBER_UNKNOWN, sp24)){
         jiggy_spawn(JIGGY_14_TTC_BLUBBER, sp24);
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, sp24[0], sp24[1], sp24[2]);
     }
 }
 

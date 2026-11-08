@@ -8,7 +8,6 @@ extern void player_stateTimer_set(enum state_timer_e, f32);
 extern f32 player_stateTimer_get(enum state_timer_e);
 
 
-Actor *spawnQueue_bundle_f32(u32,f32,f32,f32);
 void subaddie_set_state(Actor *, u32);
 
 /* local declarations */
@@ -122,10 +121,10 @@ void chMudHut_update(Actor *this){
                     if(hut_id == 5){
                         coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);
                     }
-                    __spawnQueue_add_1((GenFunction_1)chMudHut_spawnExplosion, reinterpret_cast(s32, this->marker));
+                    SPAWNQUEUE_ADD_1(chMudHut_spawnExplosion, reinterpret_cast(s32, this->marker));
 
                     if (hut_id < 5) {
-                        __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, chBGSMudHutDrops[hut_id], reinterpret_cast(s32, diffPos[0]), reinterpret_cast(s32, diffPos[1]), reinterpret_cast(s32, diffPos[2]));
+                        SPAWNQUEUE_ADD_BUNDLE_F32(chBGSMudHutDrops[hut_id], diffPos[0], diffPos[1], diffPos[2]);
                     }
                     else {
                         jiggy_spawn(JIGGY_23_BGS_HUTS, diffPos);

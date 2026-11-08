@@ -172,8 +172,7 @@ void code_76C0_ccwGnawtysStuffUpdate(Actor *this){
     }
 }
 
-void CCW_func_8038DB6C(void)
-{
+void CCW_addSpawnableActors(void) {
     spawnableActorList_add(&chZubbaDoorSummer, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&chZubbaDoorAutumn, actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&chZubbaHoneyLump, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8);

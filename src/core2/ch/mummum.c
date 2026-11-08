@@ -47,7 +47,7 @@ void chMumMum_die(ActorMarker *arg0, s32 arg1) {
     func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4C8_MODEL_MUMMUM_ARM);
     chMumMum_deathParticles(partEmitMgr_newEmitter(1), this, ASSET_4CB_MODEL_MUMMUM_BODY);
     sfx_playFadeShorthandDefault(SFX_119_FISH_DEATH, 0.8f, 32000, this->position, 1250, 2500);
-    __spawnQueue_add_4((GenFunction_4) spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, this->position[0], this->position[1], this->position[2]);
     marker_despawn(arg0);
 }
 

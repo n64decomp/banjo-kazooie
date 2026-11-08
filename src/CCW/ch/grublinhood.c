@@ -58,7 +58,7 @@ void __chgrublinhood_die(ActorMarker* marker, s32 arg1) {
     sfx_playFadeShorthandDefault(SFX_C2_GRUBLIN_EGH, 1.0f, 32000, actor->position, 1250, 2500);
     pCtrl = partEmitMgr_newEmitter(1);
     __chgrublinhood_emitHat(pCtrl, actor, ASSET_52D_MODEL_GRUBLIN_HOOD_HAT);
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32,actor->position_x), reinterpret_cast(s32,actor->position_y), reinterpret_cast(s32,actor->position_z));
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, actor->position[0], actor->position[1], actor->position[2]);
     actor_collisionOff(actor);
     actor->has_met_before = TRUE;
 }

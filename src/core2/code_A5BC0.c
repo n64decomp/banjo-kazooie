@@ -13,7 +13,6 @@ extern Cube *func_8030364C(void);
 extern NodeProp *func_803080C8(s32);
 extern Cube *func_80308224(void);
 
-extern void spawnQueue_func_802C39D4(void);
 extern bool func_80340020(s32, f32[3], f32[3], f32, s32, BKVertexList *, f32[3], f32[3]);
 extern void func_80340200(s32, f32[3], f32[3], f32, s32, s32, BKVertexList *, s32);
 extern void *bkmodelunk14list_func_802EBAE0(UNK_TYPE(s32), f32 position[3], f32 rotation[3], f32 scale, UNK_TYPE(s32), UNK_TYPE(s32), UNK_TYPE(s32), f32, UNK_TYPE(s32));

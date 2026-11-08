@@ -52,8 +52,8 @@ void playJiggyDestroyedSoundsAndReset(ActorMarker *marker, u32 resetSwitchFlag) 
 }
 
 void spawnJiggyDestroyedEffects(u32 x, u32 y, u32 z, u32 resetSwitchFlag) {
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s32, ACTOR_4C_STEAM, x, y, z);
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_s32, ACTOR_14F_DESTROYED_JIGGY, x, y, z);
+    SPAWNQUEUE_ADD_ACTOR_S32(ACTOR_4C_STEAM, x, y, z);
+    SPAWNQUEUE_ADD_ACTOR_S32(ACTOR_14F_DESTROYED_JIGGY, x, y, z);
     mapSpecificFlags_set(resetSwitchFlag, TRUE);
 }
 

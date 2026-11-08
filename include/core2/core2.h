@@ -15,6 +15,7 @@
 #include "core2/mapspecificflags.h"
 #include "core2/picturebox.h"
 #include "core2/playerposition.h"
+#include "core2/spawnqueue.h"
 #include "core2/vla.h"
 
 

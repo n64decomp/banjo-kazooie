@@ -427,7 +427,7 @@ void func_803896FC(Actor *this){
         maSlalom_linkBoggy(this->marker);
         this->unk38_31 = 0;
         func_80388C88(this);
-        __spawnQueue_add_0(func_803895E0);
+        SPAWNQUEUE_ADD_0(func_803895E0);
         if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
             local->unk19 = 2;
             this->unk4C = 900.0f;
@@ -585,7 +585,7 @@ void func_803896FC(Actor *this){
                     case 1: //L80389F78
                         if(this->unk38_31 == 2){
                             if(jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-                                __spawnQueue_add_1((GenFunction_1)func_80388F54, reinterpret_cast(s32, this->marker));
+                                SPAWNQUEUE_ADD_1(func_80388F54, reinterpret_cast(s32, this->marker));
                                 maSlalom_unlinkBoggy();
                                 marker_despawn(this->marker);
                             }

@@ -160,8 +160,6 @@ void particleEmitter_setSprite(ParticleEmitter *, enum asset_e);
 void particleEmitter_setPosition(ParticleEmitter *, f32[3]);
 ParticleEmitter *partEmitMgr_newEmitter(u32);
 void func_802BB3DC(s32, f32, f32);
-void __spawnQueue_add_4(GenFunction_4, s32, s32, s32, s32);
-Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z);
 void sfxsource_freeSfxsourceByIndex(u8);
 
 
@@ -440,9 +438,6 @@ f32 climb_getTopY(void);
 void func_802596AC(f32 a0[3], f32 a1[3], f32 a2[3], f32 a3[3]);
 
 void controller_copyFaceButtons(s32, s32 [6]);
-
-void __spawnQueue_add_1(GenFunction_1, s32);
-#define SPAWNQUEUE_ADD_1(method, arg0) __spawnQueue_add_1((GenFunction_1) (method), reinterpret_cast(s32, (arg0)))
 
 void func_802FAD64(enum item_e);
 void nodeprop_getPosition(NodeProp *, f32[3]);

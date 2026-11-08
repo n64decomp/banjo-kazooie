@@ -211,7 +211,7 @@ void chZubbaFight_update(Actor *this) {
                     break;
 
             }
-            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_29B_ZUBBA, reinterpret_cast(s32, sp4C[0]), reinterpret_cast(s32, sp4C[1]), reinterpret_cast(s32, sp4C[2]));
+            SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_29B_ZUBBA, sp4C[0], sp4C[1], sp4C[2]);
             local->spawnedZubbaCount++;
         }
         local->unkC = randf2(0.5 - ((local->zubbasDefeated / 10) * 0.4), 1.0 - ((local->zubbasDefeated / 10) * 0.8));

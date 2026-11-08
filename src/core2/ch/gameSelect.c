@@ -381,7 +381,7 @@ void gameSelect_update(Actor *this) {
     }
 
     if (!this->initialized) {
-        __spawnQueue_add_1((GenFunction_1)spawnGameSelectProps, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(spawnGameSelectProps, reinterpret_cast(s32, this->marker));
         func_802C7318(this);
         this->unk130 = func_802C71F0;
 

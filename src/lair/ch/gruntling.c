@@ -58,7 +58,7 @@ void chGruntling_die(ActorMarker *marker, ActorMarker *other_marker) {
         this->position,
         1250.0f,
         2500.0f);
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, this->position[0], this->position[1], this->position[2]);
     actor_collisionOff(this);
     this->has_met_before = TRUE;
 }

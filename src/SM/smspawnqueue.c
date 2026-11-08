@@ -125,8 +125,7 @@ static bool __codeF0_areCrcsValid(){
 }
 #endif
 
-void SM_resetSpawnableActors()
-{
+void SM_addSpawnableActors() {
     spawnableActorList_add(&gQuarrie,  actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_25);
     spawnableActorList_add(&gCodeBF0,  actor_new, ACTOR_FLAG_UNKNOWN_7);
     spawnableActorList_add(&gChAttackTutorial,  actor_new, ACTOR_FLAG_NONE);

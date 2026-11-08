@@ -25,9 +25,7 @@ extern ActorInfo chCCGrate1;
 extern ActorInfo chCCGrate2;
 extern ActorInfo chCCGrate3;
 
-/* .code */
-void CC_func_80387DA0(void)
-{
+void CC_addSpawnableActors(void) {
     spawnableActorList_add(&maClankersScrew, actor_new, ACTOR_FLAG_UNKNOWN_14 | ACTOR_FLAG_UNKNOWN_7 );
     spawnableActorList_add(&chCCGrate1, actor_new, ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_7 );
     spawnableActorList_add(&chCCGrate2, actor_new, ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_7 );

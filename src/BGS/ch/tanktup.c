@@ -9,7 +9,6 @@ void timed_exitStaticCamera(f32);
 void timedFunc_set_2(f32, void(*)(s32, s32), s32, s32);
 
 void func_8028E668(f32[3], f32, f32, f32);
-extern void __spawnQueue_add_3(GenFunction_3, s32, s32, s32);
 
 void chTanktup_update(Actor *);
 
@@ -130,7 +129,7 @@ void chTanktup_update(Actor *this)
         {
             if (local->unk0[sp44] == 0)
             {
-                __spawnQueue_add_3((GenFunction_3)func_8038F470, *((s32 *) (&this->marker)), local->unk0[sp44], sp44);
+                SPAWNQUEUE_ADD_3(func_8038F470, reinterpret_cast(s32, this->marker), local->unk0[sp44], sp44);
             }
         }
 

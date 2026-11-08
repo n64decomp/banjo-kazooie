@@ -216,7 +216,7 @@ void gsworld_set(enum map_e map, s32 exit, bool reload) {
         itemPrint_init();
     }
     dialogBin_initialize();
-    spawnQueue_malloc();
+    spawnQueue_init();
     func_803329AC();
     lensflare_init();
     func_80323190();

@@ -126,7 +126,7 @@ void __maSlalom_spawnGate(s32 indx, s32 arg1){
 }
 
 void maSlalom_spawnGate(s32 indx, s32 arg1){
-    __spawnQueue_add_2((GenFunction_2)__maSlalom_spawnGate, indx, arg1);
+    SPAWNQUEUE_ADD_2(__maSlalom_spawnGate, indx, arg1);
 }
 
 void __maSlalom_despawnGate(s32 indx){
@@ -175,7 +175,7 @@ void __maSlalom_spawnBridge(s32 indx){
 }
 
 void maSlalom_spawnBridge(s32 indx){
-    __spawnQueue_add_1((GenFunction_1)__maSlalom_spawnBridge, indx);
+    SPAWNQUEUE_ADD_1(__maSlalom_spawnBridge, indx);
 }
 
 void maSlalom_spawnAllBridges(void){
@@ -449,7 +449,7 @@ void maSlalom_start(void){
     maSlalom_spawnGate(NUM_GATES - 1, 2);
     maSlalom_spawnAllBridges();
     if(jiggyscore_isSpawned(JIGGY_30_FP_BOGGY_2) || jiggyscore_isCollected(JIGGY_30_FP_BOGGY_2)){
-        __spawnQueue_add_0(__maSlalom_spawnTrainers);
+        SPAWNQUEUE_ADD_0(__maSlalom_spawnTrainers);
     }
 
     Me.playerGate = -1;

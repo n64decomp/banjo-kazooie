@@ -163,7 +163,7 @@ void func_802DF04C(void){
 
 void func_802DF090(s32 arg0, s32 arg1){
     if(D_8037DFE0 == NULL){
-        __spawnQueue_add_0(func_802DF04C);
+        SPAWNQUEUE_ADD_0(func_802DF04C);
     }
 }
 

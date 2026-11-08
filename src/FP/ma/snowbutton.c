@@ -58,11 +58,7 @@ void maSnowButton_update(void){
                 if(Me.jiggySpawnerExists){
                     gcStaticCamera_activate(0x11);
                     jiggy_spawn(JIGGY_2D_FP_SNOWMAN_BUTTONS, Me.spawn_pos);
-                    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM,
-                        reinterpret_cast(s32, Me.spawn_pos[0]),
-                        reinterpret_cast(s32, Me.spawn_pos[1]),
-                        reinterpret_cast(s32, Me.spawn_pos[2])
-                    );
+                    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, Me.spawn_pos[0], Me.spawn_pos[1], Me.spawn_pos[2]);
                 }
                 // * WARNING * :maSnowButton.c: Jigsaw 45 CANNOT find it's bootup marker point
 

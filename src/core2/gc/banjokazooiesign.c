@@ -78,7 +78,7 @@ void gcBanjoKazooieSign_spawn(void) {
 
 void func_802DC9A4(s32 arg0, s32 arg1){
     if(gcBanjoKazooieSignMarker == NULL){
-        __spawnQueue_add_0(gcBanjoKazooieSign_spawn);
+        SPAWNQUEUE_ADD_0(gcBanjoKazooieSign_spawn);
     }
 }
 

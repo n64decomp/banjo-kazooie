@@ -109,9 +109,9 @@ void chBossJinjoBase_update(Actor *this) {
             this->velocity_y = 100.0f;
         
         func_802BB3DC(0, 8.0f, 0.92f);
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_3AD_JINJONATOR_STATUE_BASE_ACTIVATOR, *(s32*)&this->unk1C[0], *(s32*)&this->unk1C[1], *(s32*)&this->unk1C[2]);
+        SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_3AD_JINJONATOR_STATUE_BASE_ACTIVATOR, this->unk1C[0], this->unk1C[1], this->unk1C[2]);
         chBossJinjoBase_createSmokeParticles(this->unk1C, 0x10);
-        SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, this->marker);
+        SPAWNQUEUE_ADD_1(chbossjinjobase_spawnStoneJinjo, reinterpret_cast(s32, this->marker));
     }
     else {
         if(this->state == CHBOSSJINJOBASE_STATE_1_RAISE) {

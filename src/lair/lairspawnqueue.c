@@ -1107,8 +1107,7 @@ void func_80387F1C(void)
     if (nodeProp_findPositionFromActorId(400, tmp))
     {
         jiggy_spawn(JIGGY_35_LAIR_CC_WITCH_SWITCH, tmp);
-        // FIXME: macro?
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, *(s32 *)&tmp[0], *(s32 *)&tmp[1], *(s32 *)&tmp[2]);
+        SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, tmp[0], tmp[1], tmp[2]);
     }
 }
 
@@ -1157,7 +1156,7 @@ void func_803880BC(Actor *this)
         this->position_y -= 51.f;
         this->unk1C[0] = 0;
 
-        __spawnQueue_add_1((GenFunction_1)func_80387E94, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(func_80387E94, reinterpret_cast(s32, this->marker));
 
         if (volatileFlag_get(VOLATILE_FLAG_BC_WITCH_SWITCH_PRESSED_CC) && !fileProgressFlag_get(FILEPROG_9A_CC_WITCH_SWITCH_PRESSED))
             FUNC_8030E624(SFX_3F6_RUBBING, 0.75f, 30000);
@@ -1849,7 +1848,7 @@ void func_8038982C(Actor *this)
         this->initialized = TRUE;
 
         if (!fileProgressFlag_get(FILEPROG_9E_CRYPT_COFFIN_LID_OPEN))
-            __spawnQueue_add_1((GenFunction_1)func_803897D4, reinterpret_cast(s32, this->marker));
+            SPAWNQUEUE_ADD_1(func_803897D4, reinterpret_cast(s32, this->marker));
     }
 }
 
@@ -2128,8 +2127,7 @@ void func_8038A0A4(Actor *this)
     func_80389FA8(this, FILEPROG_CE_GRATE_TO_MMM_PUZZLE_OPEN);
 }
 
-void lair_func_8038A0C4(void)
-{
+void lair_addSpawnableActors(void) {
     spawnableActorList_add(&D_80392F40, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15 | ACTOR_FLAG_UNKNOWN_16);
     spawnableActorList_add(&D_80392F64, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15 | ACTOR_FLAG_UNKNOWN_16);
     spawnableActorList_add(&D_803932E8, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_15);

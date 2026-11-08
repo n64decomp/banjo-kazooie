@@ -109,7 +109,7 @@ void __chjuju_spawnJiggy(s32 x, s32 y, s32 z, s32 yaw) {
 }
 
 void __chjuju_solvePuzzle(s32 x, s32 y, s32 z, s32 yaw) {
-    __spawnQueue_add_4((GenFunction_4) __chjuju_spawnJiggy, x, y, z, yaw);
+    SPAWNQUEUE_ADD_4(__chjuju_spawnJiggy, x, y, z, yaw);
     func_802BB3DC(0, 10.0f, 0.8f);
     gcpausemenu_80314AC8(1);
 }

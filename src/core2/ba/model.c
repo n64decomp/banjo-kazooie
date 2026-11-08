@@ -143,12 +143,7 @@ void baModel_reset(void){
     if(!player_shouldPlayLevelEntrance())
         baModel_updateModel();
     player_getPosition(plyr_pos);
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32,
-        ACTOR_17_PLAYER_SHADOW, 
-        reinterpret_cast(s32, plyr_pos[0]), 
-        reinterpret_cast(s32, plyr_pos[1]), 
-        reinterpret_cast(s32, plyr_pos[2])
-    );
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_17_PLAYER_SHADOW, plyr_pos[0], plyr_pos[1], plyr_pos[2]);
 }
 
 void baModel_free(void){

@@ -94,7 +94,7 @@ void __chOverlayPressStart_spawn(void){
 
 void chOverlayPressStart_spawn(s32 arg0, s32 arg1){
     if(D_8037DE80 == NULL){
-        __spawnQueue_add_0(__chOverlayPressStart_spawn);
+        SPAWNQUEUE_ADD_0(__chOverlayPressStart_spawn);
     }
 }
 

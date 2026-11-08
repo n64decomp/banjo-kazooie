@@ -49,7 +49,7 @@ void bacarriedobj_spawn(enum actor_e actor_id){
         bacarry_set_marker(marker);
     }
     else{
-        __spawnQueue_add_1((GenFunction_1)__bscarriedobj_spawnMethod, baMarker_getCarriedObjectActorId());
+        SPAWNQUEUE_ADD_1(__bscarriedobj_spawnMethod, baMarker_getCarriedObjectActorId());
     }
 }
 

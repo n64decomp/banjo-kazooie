@@ -82,7 +82,7 @@ void chmagiccarpet2_update(Actor *this){
     if(!this->volatile_initialized){
         this->volatile_initialized = TRUE;
         actor_collisionOff(this);
-        __spawnQueue_add_1((GenFunction_1)func_8038A2C0, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(func_8038A2C0, reinterpret_cast(s32, this->marker));
         this->velocity[0] = 0.0f;
     }
 

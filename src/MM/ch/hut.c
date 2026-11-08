@@ -8,7 +8,6 @@
 /* extern function declarations */
 
 void bundle_setYaw(f32);
-Actor *spawnQueue_bundle_f32(s32, s32, s32, s32);
 
 /* public function declarations */
 Actor *chhut_draw(ActorMarker *, Gfx **, Mtx **, Vtx **);
@@ -91,11 +90,11 @@ void chhut_update(Actor *this) {
                 sfxsource_playHighPriority(SFX_5B_HEAVY_STUFF_FALLING);
                 subaddie_set_state(this, HUT_STATE_1_DAMAGED);
                 actor_playAnimationOnce(this);
-                __spawnQueue_add_1((GenFunction_1) __chhut_spawnExplosion, (s32) this->marker);
+                SPAWNQUEUE_ADD_1(__chhut_spawnExplosion, reinterpret_cast(s32, this->marker));
                 bundle_setYaw(this->yaw);
 
                 if (mmhut_smashCount < 5) {
-                    __spawnQueue_add_4((GenFunction_4) spawnQueue_bundle_f32, D_803898D8[mmhut_smashCount], *(s32 * )(&diff_pos[0]), *(s32 * )(&diff_pos[1]), *(s32 * )(&diff_pos[2]));
+                    SPAWNQUEUE_ADD_BUNDLE_F32(D_803898D8[mmhut_smashCount], diff_pos[0], diff_pos[1], diff_pos[2]);
                 }
                 else {
                     jiggy_spawn(JIGGY_5_MM_HUTS, diff_pos);
