@@ -185,7 +185,7 @@ void __chSnowman_deathCallback(ActorMarker *marker, ActorMarker *other_marker){
     sfx_playFadeShorthandDefault(SFX_3EA_BANJO_GUH_HUH, 1.0f, 30000, actor->position, 1500, 4500);
     sfx_playFadeShorthandDefault(SFX_2F_ORANGE_SPLAT, 1.0f, 30000, actor->position, 1500, 4500);
 
-    __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnHat, (s32)actor->marker);
+    SPAWNQUEUE_ADD_1(__chSnowman_spawnHat, reinterpret_cast(s32, actor->marker));
     if(gsworld_getMap() == MAP_27_FP_FREEZEEZY_PEAK)
         maSnowy_decRemaining();
     __chSnowman_spawnSnowballParticles(actor->position, 0xC);
@@ -311,7 +311,7 @@ void chSnowman_update(Actor *this){
                     && local->unkB
                 ){
                     func_8030E878(SFX_8F_SNOWBALL_FLYING, randf2(0.95f, 1.05f), 30000, this->position, 800.0f, 3050.0f);
-                    __spawnQueue_add_1((GenFunction_1)__chSnowman_spawnSnowball, (s32)this->marker);
+                    SPAWNQUEUE_ADD_1(__chSnowman_spawnSnowball, reinterpret_cast(s32, this->marker));
                     local->unk9 = FALSE;
                 }
                 

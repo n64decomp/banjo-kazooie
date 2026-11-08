@@ -83,7 +83,7 @@ void func_80390D3C(Actor *this, s32 val)
                 this->unk1C[2] = this->position_z;
             }
 
-            __spawnQueue_add_1((GenFunction_1)func_80390C00, reinterpret_cast(s32, this->marker));
+            SPAWNQUEUE_ADD_1(func_80390C00, reinterpret_cast(s32, this->marker));
 
             break;
         }
@@ -93,7 +93,7 @@ void func_80390D3C(Actor *this, s32 val)
             this->unk1C[1] = this->position_y;
             this->unk1C[2] = this->position_z;
 
-            __spawnQueue_add_1((GenFunction_1)func_80390CB4, reinterpret_cast(s32, this->marker));
+            SPAWNQUEUE_ADD_1(func_80390CB4, reinterpret_cast(s32, this->marker));
 
             break;
         }

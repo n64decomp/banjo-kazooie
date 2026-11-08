@@ -244,7 +244,7 @@ void chTwinkly_setUpMinigame(ActorMarker *caller, enum asset_e text_id, s32 arg2
     Actor *this = marker_getActor(caller);
     if(!volatileFlag_get(VOLATILE_FLAG_C1_IN_FINAL_CHARACTER_PARADE)){
         subaddie_set_state(this, 6);
-        __spawnQueue_add_1((GenFunction_1)chTwinkly_spawnFirstMuncher, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(chTwinkly_spawnFirstMuncher, reinterpret_cast(s32, this->marker));
     }
 }
 

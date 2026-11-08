@@ -355,7 +355,7 @@ void chTwinklyBox_update(Actor *this){
             chTwinklyBox_openBox(this);
         
         if(actor_animationIsAt(this, 0.999f))
-            __spawnQueue_add_1((GenFunction_1)chTwinklyBox_spawnTwinkly, (s32)this->marker);
+            SPAWNQUEUE_ADD_1(chTwinklyBox_spawnTwinkly, reinterpret_cast(s32, this->marker));
         
         if(this->velocity[0] != 0.0f)
             break;
@@ -368,7 +368,7 @@ void chTwinklyBox_update(Actor *this){
         item_set(ITEM_6_HOURGLASS, TRUE);
         this->unk38_31 = 0xA;
         item_set(ITEM_24_TWINKLY_SCORE, this->unk38_31);
-        __spawnQueue_add_1((GenFunction_1)chTwinklyBox_spawnSecondAndThirdMuncher, (s32)this->marker);
+        SPAWNQUEUE_ADD_1(chTwinklyBox_spawnSecondAndThirdMuncher, reinterpret_cast(s32, this->marker));
         this->lifetime_value = 0.0f;
         func_80347A14(0);
         func_802FAD64(ITEM_14_HEALTH);
@@ -408,7 +408,7 @@ void chTwinklyBox_update(Actor *this){
 
         if(0.96 < anctrl_getAnimTimer(this->anctrl)){
             if(this->lifetime_value <= 0.0){
-                __spawnQueue_add_1((GenFunction_1)chTwinklyBox_spawnTwinkly, (s32)this->marker);
+                SPAWNQUEUE_ADD_1(chTwinklyBox_spawnTwinkly, reinterpret_cast(s32, this->marker));
                 this->lifetime_value = 2.9f;
             }
             else{

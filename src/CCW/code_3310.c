@@ -159,7 +159,7 @@ void func_80389700(ActorMarker *marker, enum asset_e text_id, s32 arg2) {
 void func_80389740(ActorMarker *marker) {
     Actor *this = marker_getActor(marker);
     if (this->marker->unk14_21) {
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x30C, reinterpret_cast(s32, chEyrieBabyThrowPosition[0]), reinterpret_cast(s32, chEyrieBabyThrowPosition[1]), reinterpret_cast(s32, chEyrieBabyThrowPosition[2]));
+        SPAWNQUEUE_ADD_ACTOR_F32(0x30C, chEyrieBabyThrowPosition[0], chEyrieBabyThrowPosition[1], chEyrieBabyThrowPosition[2]);
     }
 }
 

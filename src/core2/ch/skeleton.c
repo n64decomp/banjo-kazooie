@@ -48,7 +48,7 @@ void chLimbo_die(ActorMarker *marker, s32 arg1) {
     func_802DAD8C(partEmitMgr_newEmitter(2), this, ASSET_4CD_MODEL_LIMBO_ARM);
     func_8035CCA0(partEmitMgr_newEmitter(4), this, ASSET_4D0_MODEL_LIMBO_BONE);
     sfx_playFadeShorthandDefault(SFX_119_FISH_DEATH, 1.0f, 32000, this->position, 1250, 2500);
-    __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, ACTOR_4C_STEAM, reinterpret_cast(s32, this->position[0]), reinterpret_cast(s32, this->position[1]), reinterpret_cast(s32, this->position[2]));
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, this->position[0], this->position[1], this->position[2]);
     marker_despawn(marker);
 }
 

@@ -84,7 +84,7 @@ void __chOverlayNoController_spawn(void){
 
 void chOverlayNoController_spawn(s32 arg0, s32 arg1){
     if(chOverlayNoController_marker == NULL){
-        __spawnQueue_add_0(__chOverlayNoController_spawn);
+        SPAWNQUEUE_ADD_0(__chOverlayNoController_spawn);
     }
 }
 

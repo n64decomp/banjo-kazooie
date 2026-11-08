@@ -34,7 +34,7 @@ extern ActorInfo gChLargeCrocodile;
 extern ActorInfo gChLongSwampSwitch;
 extern ActorInfo gChShortSwampSwitch;
 
-void bgs_updateSpawnableActors(void){
+void BGS_addSpawnableActors(void) {
     spawnableActorList_add(&gChCroctus, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&gChFlibbit, actor_new, ACTOR_FLAG_UNKNOWN_25 | ACTOR_FLAG_UNKNOWN_16 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_0);
     spawnableActorList_add(&gChPinkEggLargest, actor_new, ACTOR_FLAG_UNKNOWN_10);
@@ -65,5 +65,3 @@ void bgs_updateSpawnableActors(void){
     spawnableActorList_add(&gChLongSwampSwitch, actor_new, ACTOR_FLAG_UNKNOWN_3);
     spawnableActorList_add(&gChShortSwampSwitch, actor_new, ACTOR_FLAG_UNKNOWN_3);
 }
-
-

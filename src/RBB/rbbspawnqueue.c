@@ -178,7 +178,7 @@ void func_80386BF8(Actor *arg0){
     func_802D4A9C(arg0, 0);
 }
 
-void RBB_func_80386C48(void){
+void RBB_addSpawnableActors(void) {
     spawnableActorList_add(&chBellBuoy, actor_new, ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_14);
     spawnableActorList_add(&chRBBEggToll, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chCageUpSwitch, actor_new, ACTOR_FLAG_UNKNOWN_7);

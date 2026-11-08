@@ -41,7 +41,7 @@ void __chOverlayCopyright_spawn(void) {
 
 void chOverlayCopyright_spawn(s32 arg0, s32 arg1){
     if(chOverlayCopyrightMarker == NULL){
-        __spawnQueue_add_0(__chOverlayCopyright_spawn);
+        SPAWNQUEUE_ADD_0(__chOverlayCopyright_spawn);
     }
 }
 

@@ -357,7 +357,7 @@ void func_802BC2CC(s32 arg0) {
     viewport_setPosition_vec3f(D_8037D908);
     viewport_setRotation_vec3f(D_8037D918);
     viewport_update();
-    __spawnQueue_add_2((GenFunction_2)func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
+    SPAWNQUEUE_ADD_2(func_802BC2A0, reinterpret_cast(s32, sp24), reinterpret_cast(s32, sp20));
     if (ncCameraType == CAMERA_TYPE_2_DYNAMIC) {
         func_802BE720();
         if (sp1C != 0x63) {

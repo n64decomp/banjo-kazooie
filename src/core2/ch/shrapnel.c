@@ -118,7 +118,7 @@ void chShrapnel_explode(ActorMarker *marker, ActorMarker *other_marker) {
 
     this = marker_getActor(marker);
     sfx_playFadeShorthandDefault(SFX_1B_EXPLOSION_1, 1.0f, 32736, this->position, 1250, 2500);
-    __spawnQueue_add_1((GenFunction_1)chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
+    SPAWNQUEUE_ADD_1(chShrapnel_spawnExplodeActor, reinterpret_cast(s32, this));
     chShrapnel_emitExplosion(this);
     chShrapnel_emitSmoke(this);
     chShrapnel_emitBodyParts(this, ASSET_53A_MODEL_SHRAPNAL_PIECE_EYE, 2);

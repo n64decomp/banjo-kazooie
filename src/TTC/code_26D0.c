@@ -89,9 +89,7 @@ ActorInfo gPalmTree = {
     0, 0, 0.0f, 0
 };
 
-/* .code */
-void code26D0_resetSpawnableActorsForTTC(void)
-{
+void TTC_addSpawnableActors(void) {
     spawnableActorList_add(&gBlubberShipTopHatch, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gLighthouseDoor, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&gChNipper, actor_new, ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_20 | ACTOR_FLAG_UNKNOWN_26);
@@ -137,7 +135,7 @@ static void __code26D0_spawnLighthouseB(s32 arg0){
 static void __code26D0_lighthouseAUpdateFunc(Actor *this){
     __code26D0_genericUpdateFunc(this);
     if(!this->volatile_initialized){
-        __spawnQueue_add_1((GenFunction_1)__code26D0_spawnLighthouseB, (s32)this->marker);
+        SPAWNQUEUE_ADD_1(__code26D0_spawnLighthouseB, reinterpret_cast(s32, this->marker));
         this->volatile_initialized = TRUE;
     }
 }

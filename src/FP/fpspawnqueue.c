@@ -152,8 +152,7 @@ void func_803912EC(Actor *this){
 
 }
 
-void FP_func_80391324(void)
-{
+void FP_addSpawnableActors(void) {
       spawnableActorList_add(&gSnowmanButton, actor_new, ACTOR_FLAG_UNKNOWN_9 | ACTOR_FLAG_UNKNOWN_10);
       spawnableActorList_add(&D_80391BB0, actor_new, ACTOR_FLAG_UNKNOWN_1 | ACTOR_FLAG_UNKNOWN_3 | ACTOR_FLAG_UNKNOWN_5);
       spawnableActorList_add(&D_80391C18, actor_new, ACTOR_FLAG_UNKNOWN_2 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_19 | ACTOR_FLAG_UNKNOWN_20);

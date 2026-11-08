@@ -108,7 +108,7 @@ void chPinkEgg_collision(ActorMarker *this, ActorMarker *other_marker){
     this->collidable = FALSE;
     thisActor->unk124_6 = 0;
     if(D_803906C4[(tmp = (ActorLocal_PinkEgg *) &thisActor->local)->actorId] != 0){
-        __spawnQueue_add_2(chPinkEgg_spawnNext, thisActor->marker, tmp->actorId);
+        SPAWNQUEUE_ADD_2(chPinkEgg_spawnNext, reinterpret_cast(s32, thisActor->marker), tmp->actorId);
     } else {
         jiggy_spawn(JIGGY_21_BGS_PINKEGG, thisActor->position);
         coMusicPlayer_playMusic(COMUSIC_2D_PUZZLE_SOLVED_FANFARE, 28000);

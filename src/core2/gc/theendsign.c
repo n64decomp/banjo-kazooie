@@ -48,7 +48,7 @@ void func_802DC6E4(void) {
 
 void func_802DC748(s32 arg0, s32 arg1){
     if(D_8037DE50 == NULL){
-        __spawnQueue_add_0(func_802DC6E4);
+        SPAWNQUEUE_ADD_0(func_802DC6E4);
     }
 }
 

@@ -74,7 +74,7 @@ void chjinjonatorbase_spawnActivator(ActorMarker *marker) {
     Actor *sp24 = marker_getActor(marker);
 
     func_802BB3DC(0, 18.0f, 0.92f);
-    __spawnQueue_add_4((GenFunction_4) spawnQueue_actor_f32, ACTOR_3AD_JINJONATOR_STATUE_BASE_ACTIVATOR, *(u32 *)(&sp24->unk1C_x), *(u32 *)(&sp24->unk1C_y), *(u32 *)(&sp24->unk1C_z));
+    SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_3AD_JINJONATOR_STATUE_BASE_ACTIVATOR, sp24->unk1C[0], sp24->unk1C[1], sp24->unk1C[2]);
     chjinjonatorbase_createSmokeParticles(sp24->unk1C, 16);
 }
 
@@ -135,7 +135,7 @@ void chjinjonatorbase_update(Actor *this){
         timedFunc_set_1(this->lifetime_value* 0.28, (GenFunction_1) chjinjonatorbase_spawnActivator, reinterpret_cast(s32,this->marker));
         timedFunc_set_1(this->lifetime_value* 0.46, (GenFunction_1) chjinjonatorbase_spawnActivator, reinterpret_cast(s32,this->marker));
         timedFunc_set_1(this->lifetime_value* 0.58, (GenFunction_1) chjinjonatorbase_spawnActivator, reinterpret_cast(s32,this->marker));
-        SPAWNQUEUE_ADD_1(chjinjonatorbase_spawnStoneJinjo, this->marker);
+        SPAWNQUEUE_ADD_1(chjinjonatorbase_spawnStoneJinjo, reinterpret_cast(s32, this->marker));
     }
     else {
         if(this->state == CHBOSSJINJOBASE_STATE_1_RAISE) {

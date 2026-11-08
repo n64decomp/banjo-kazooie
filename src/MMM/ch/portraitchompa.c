@@ -205,7 +205,7 @@ void chChompa_update(Actor *this) {
         this->volatile_initialized = TRUE;
         this->unk16C_0 = TRUE;
         marker_setCollisionScripts(this->marker, NULL, __chChompa_hit, __chChompa_die);
-        __spawnQueue_add_1((GenFunction_1) __chChompa_spawnPortrait, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_1(__chChompa_spawnPortrait, reinterpret_cast(s32, this->marker));
         chChompa_setState(this, this->state < CHOMPA_STATE_5_DYING ? CHOMPA_STATE_1_IDLE : CHOMPA_STATE_6_DEAD);
     }//L803880B4
 

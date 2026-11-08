@@ -1,26 +1,20 @@
 #include <ultra64.h>
-#include "core1/core1.h"
 #include "functions.h"
-#include "variables.h"
+#include "core1/core1.h"
+#include "core2/core2.h"
 #include "actor.h"
 #include "prop.h"
-#include "functions.h"
 #include "core2/ch/snacker.h"
-
-void spawnQueue_unlock(void);
-void spawnQueue_lock(void);
 
 extern Actor *actor_spawnWithYaw_s16(enum actor_e id, s16 pos[3], s32 yaw);
 extern Actor *actor_spawnWithYaw_s32(enum actor_e id, s32 pos[3], s32 yaw);
 extern Actor *bundle_spawn_s32(enum bundle_e bundle_id, s32 position[3]);
 extern Actor *bundle_spawn_f32(enum bundle_e bundle_id, f32 position[3]);
 
-
 Actor *func_802D7558(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D75B4(s32 *, s32, ActorInfo*, u32);
 Actor *func_802D7610(s32 *, s32, ActorInfo*, u32);
 Actor *chBottlesBonus_new(s32 *, s32, ActorInfo*, u32);
-
 
 extern ActorInfo gameSelect_banjoSleeping; //banjo.without_right_hand
 extern ActorInfo gameSelect_banjoGameboy; //banjo.playing_gameboy
@@ -164,56 +158,45 @@ extern ActorInfo lairBottlesDialog;
 extern ActorInfo D_803732E0;
 extern ActorInfo D_80373DC0;
 
-
-typedef struct function_queue_s{
-    union { 
-        void (* func0)(void);
-        void (* func1)(s32);
-        void (* func2)(s32, s32);
-        void (* func3)(s32, s32, s32);
-        void (* func4)(s32, s32, s32, s32);
-        void (* func5)(s32, s32, s32, s32, s32);
-    };
-    s32  arg[5];
-    s32  arg_cnt;
-}FunctionQueue;
-
-/* .data */
-u8 spawnQueueLock = 0;
+u8 spawnQueueLock = FALSE;
 u8 spawnQueueLength = 0;
-FunctionQueue *spawnQueue = NULL;
+SpawnQueueFunction *spawnQueue = NULL;
 
-/* .code */
-void spawnQueue_malloc(void){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50: 15;
-    spawnQueue = (FunctionQueue *) bk_malloc(tmp * sizeof(FunctionQueue));
+void spawnQueue_init(void) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    spawnQueue = (SpawnQueueFunction *) bk_malloc(max_length * sizeof(SpawnQueueFunction));
 }
 
-void spawnQueue_reset(void){
-    enum overlay_e loaded_asm_file = overlayManager_getLoadedID();
+void spawnQueue_reset(void) {
+    enum overlay_e overlay_id = overlayManager_getLoadedID();
+
     spawnQueue_lock();
     spawnQueueLength = 0;
+
     chmumbo_func_802D1724();
     chSnacker_initialize();
-    switch(loaded_asm_file){
+
+    switch (overlay_id) {
         case OVERLAY_2_WHALE:
             CC_func_803870E0();
             break;
+
         case OVERLAY_4_DESERT:
             GV_func_80387118();
             break;
+
         case OVERLAY_5_BEACH:
             break;
+
         case OVERLAY_7_SWAMP:
             BGS_func_803885DC();
-            break;
-        default:
             break;
     }
 
     func_80305D38(); 
     func_803062D0();
     func_80325F8C();
+
     spawnableActorList_new();
     spawnableActorList_add(&D_80367160, actor_new, ACTOR_FLAG_NONE); //cutscene Trigger?
     spawnableActorList_add(&D_803675F0, actor_new, ACTOR_FLAG_UNKNOWN_6);
@@ -354,110 +337,133 @@ void spawnQueue_reset(void){
     spawnableActorList_addIfMapVisited(&chClucker, actor_new, ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_23 |ACTOR_FLAG_UNKNOWN_25, MAP_40_CCW_HUB); //clucker
     spawnableActorList_addIfMapVisited(&chScarabBeetle, actor_new, ACTOR_FLAG_UNKNOWN_0 | ACTOR_FLAG_UNKNOWN_7 | ACTOR_FLAG_UNKNOWN_8 | ACTOR_FLAG_UNKNOWN_11 | ACTOR_FLAG_UNKNOWN_25, MAP_12_GV_GOBIS_VALLEY); //scarab
     spawnableActorList_addIfMapVisited(&chSnowman, actor_new, ACTOR_FLAG_UNKNOWN_5 | ACTOR_FLAG_UNKNOWN_6 | ACTOR_FLAG_UNKNOWN_10 | ACTOR_FLAG_UNKNOWN_25, MAP_27_FP_FREEZEEZY_PEAK); //sirslush
-    switch(loaded_asm_file){
-        default:
-            break;
+
+    switch (overlay_id) {
         case OVERLAY_D_WITCH:
-            lair_func_8038A0C4();
+            lair_addSpawnableActors();
             break;
+
         case OVERLAY_E_BATTLE:
             fight_addSpawnableActors();
             break;
+
         case OVERLAY_C_INTRO:
-            cutscene_func_8038C4E0();
+            cutscene_addSpawnableActors();
             break;
+
         case OVERLAY_B_TRAINING:
-            SM_resetSpawnableActors();
+            SM_addSpawnableActors();
             break;
+
         case OVERLAY_3_HAUNTED:
-            MMM_func_803890E0();
+            MMM_addSpawnableActors();
             break;
+
         case OVERLAY_2_WHALE:
-            CC_func_80387DA0();
+            CC_addSpawnableActors();
             break;
+
         case OVERLAY_4_DESERT:
-            GV_func_8038F154();
+            GV_addSpawnableActors();
             break;
+
         case OVERLAY_5_BEACH:
-            code26D0_resetSpawnableActorsForTTC();
+            TTC_addSpawnableActors();
             break;
+
         case OVERLAY_6_JUNGLE:
-            MM_func_803888B0();
+            MM_addSpawnableActors();
             break;
+
         case OVERLAY_7_SWAMP:
-            bgs_updateSpawnableActors();
+            BGS_addSpawnableActors();
             break;
+
         case OVERLAY_8_SHIP:
-            RBB_func_80386C48();
+            RBB_addSpawnableActors();
             break;
+
         case OVERLAY_9_SNOW:
-            FP_func_80391324();
+            FP_addSpawnableActors();
             spawnableActorList_add(&chBluePresentCollectible, actor_new, ACTOR_FLAG_UNKNOWN_3);
             spawnableActorList_add(&chGreenPresentCollectible, actor_new, ACTOR_FLAG_UNKNOWN_3);
             spawnableActorList_add(&chRedPresentCollectible, actor_new, ACTOR_FLAG_UNKNOWN_3);
             break;
+
         case OVERLAY_A_TREE:
-            CCW_func_8038DB6C();
+            CCW_addSpawnableActors();
             break;
     }
 
-    if(ucode_stub3() == 0 || loaded_asm_file == 0 ){
+    if (!ucode_stub3() || (overlay_id == OVERLAY_0_CORE2)) {
         cubeList_spawnActors();
     }
+
     func_80305990(1);
     func_8032A5F8();
+
     spawnQueue_unlock();
 }
 
-void spawnQueue_free(void){
+void spawnQueue_free(void) {
     spawnableActorList_free();
     actorArray_free();
     func_80305D94();
     bk_free(spawnQueue);
     spawnQueue = NULL;
     spawnQueueLength = 0;
-    
 }
 
-void spawnQueue_func_802C39D4(void){
+void spawnQueue_func_802C39D4(void) {
     func_803268B4();
-    if(!levelSpecificFlags_validateCRC2()){
+
+#if ANTI_TAMPER
+    if (!levelSpecificFlags_validateCRC2()) {
         eeprom_writeBlocks(0, 0, (void *) PHYS_TO_K0(0x00749530), EEPROM_MAXBLOCKS);
     }
+#endif
 }
 
-void spawnQueue_func_802C3A18(void){
+void spawnQueue_func_802C3A18(void) {
     func_803283BC();
 }
 
-void spawnQueue_flush(void){
-    s32 i;
+void spawnQueue_flush(void) {
+    int i;
 
     spawnQueue_lock();
-    for(i = 0; i < spawnQueueLength; i++){
-        switch(spawnQueue[i].arg_cnt){
+
+    for (i = 0; i < spawnQueueLength; i++) {
+        switch (spawnQueue[i].arg_count) {
             case 0:
                 spawnQueue[i].func0();
                 break;
+
             case 1:
-                spawnQueue[i].func1(spawnQueue[i].arg[0]);
+                spawnQueue[i].func1(spawnQueue[i].args[0]);
                 break;
+
             case 2:
-                spawnQueue[i].func2(spawnQueue[i].arg[0], spawnQueue[i].arg[1]);
+                spawnQueue[i].func2(spawnQueue[i].args[0], spawnQueue[i].args[1]);
                 break;
+
             case 3:
-                spawnQueue[i].func3(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2]);
+                spawnQueue[i].func3(spawnQueue[i].args[0], spawnQueue[i].args[1], spawnQueue[i].args[2]);
                 break;
+
             case 4:
-                spawnQueue[i].func4(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2], spawnQueue[i].arg[3]);
+                spawnQueue[i].func4(spawnQueue[i].args[0], spawnQueue[i].args[1], spawnQueue[i].args[2], spawnQueue[i].args[3]);
                 break;
+
             case 5:
-                spawnQueue[i].func5(spawnQueue[i].arg[0], spawnQueue[i].arg[1], spawnQueue[i].arg[2], spawnQueue[i].arg[3], spawnQueue[i].arg[4]);
+                spawnQueue[i].func5(spawnQueue[i].args[0], spawnQueue[i].args[1], spawnQueue[i].args[2], spawnQueue[i].args[3], spawnQueue[i].args[4]);
                 break;
+
             default:
                 break;
         }
     }
+
     spawnQueueLength = 0;
     func_803283D4();
 }
@@ -470,76 +476,82 @@ void spawnQueue_lock(void) {
     spawnQueueLock = TRUE;
 }
 
-void __spawnQueue_add_0(void (* arg0)(void)){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = arg0;
-        spawnQueue[spawnQueueLength].arg_cnt = 0;
+void spawnQueue_add_0(spawnqueue_add_0_callback_f func) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func0 = func;
+        spawnQueue[spawnQueueLength].arg_count = 0;
         spawnQueueLength++;
     }
 }
 
-void __spawnQueue_add_1(GenFunction_1 arg0, s32 arg1){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
-        spawnQueue[spawnQueueLength].arg[0] = arg1;
-        spawnQueue[spawnQueueLength].arg_cnt = 1;
+void spawnQueue_add_1(spawnqueue_add_1_callback_f func, s32 arg1) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func1 = func;
+        spawnQueue[spawnQueueLength].args[0] = arg1;
+        spawnQueue[spawnQueueLength].arg_count = 1;
         spawnQueueLength++;
     }
 }
 
-void __spawnQueue_add_2(void (* arg0)(void), s32 arg1, s32 arg2){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = arg0;
-        spawnQueue[spawnQueueLength].arg[0] = arg1;
-        spawnQueue[spawnQueueLength].arg[1] = arg2;
-        spawnQueue[spawnQueueLength].arg_cnt = 2;
+void spawnQueue_add_2(spawnqueue_add_2_callback_f func, s32 arg1, s32 arg2) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func2 = func;
+        spawnQueue[spawnQueueLength].args[0] = arg1;
+        spawnQueue[spawnQueueLength].args[1] = arg2;
+        spawnQueue[spawnQueueLength].arg_count = 2;
         spawnQueueLength++;
     }
 }
 
-void __spawnQueue_add_3(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = arg0;
-        spawnQueue[spawnQueueLength].arg[0] = arg1;
-        spawnQueue[spawnQueueLength].arg[1] = arg2;
-        spawnQueue[spawnQueueLength].arg[2] = arg3;
-        spawnQueue[spawnQueueLength].arg_cnt = 3;
+void spawnQueue_add_3(spawnqueue_add_3_callback_f func, s32 arg1, s32 arg2, s32 arg3) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func3 = func;
+        spawnQueue[spawnQueueLength].args[0] = arg1;
+        spawnQueue[spawnQueueLength].args[1] = arg2;
+        spawnQueue[spawnQueueLength].args[2] = arg3;
+        spawnQueue[spawnQueueLength].arg_count = 3;
         spawnQueueLength++;
     }
 }
 
-void __spawnQueue_add_4(GenFunction_4 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = (void (*)(void))arg0;
-        spawnQueue[spawnQueueLength].arg[0] = arg1;
-        spawnQueue[spawnQueueLength].arg[1] = arg2;
-        spawnQueue[spawnQueueLength].arg[2] = arg3;
-        spawnQueue[spawnQueueLength].arg[3] = arg4;
-        spawnQueue[spawnQueueLength].arg_cnt = 4;
+void spawnQueue_add_4(spawnqueue_add_4_callback_f func, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func4 = func;
+        spawnQueue[spawnQueueLength].args[0] = arg1;
+        spawnQueue[spawnQueueLength].args[1] = arg2;
+        spawnQueue[spawnQueueLength].args[2] = arg3;
+        spawnQueue[spawnQueueLength].args[3] = arg4;
+        spawnQueue[spawnQueueLength].arg_count = 4;
         spawnQueueLength++;
     }
 }
 
-void __spawnQueue_add_5(void (* arg0)(void), s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5){
-    u32 tmp = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 0x32: 0xF;
-    if(tmp != spawnQueueLength){
-        spawnQueue[spawnQueueLength].func0 = arg0;
-        spawnQueue[spawnQueueLength].arg[0] = arg1;
-        spawnQueue[spawnQueueLength].arg[1] = arg2;
-        spawnQueue[spawnQueueLength].arg[2] = arg3;
-        spawnQueue[spawnQueueLength].arg[3] = arg4;
-        spawnQueue[spawnQueueLength].arg[4] = arg5;
-        spawnQueue[spawnQueueLength].arg_cnt = 5;
+void spawnQueue_add_5(spawnqueue_add_5_callback_f func, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    u32 max_length = (gsworld_getMap() == MAP_90_GL_BATTLEMENTS)? 50 : 15;
+    
+    if (max_length != spawnQueueLength) {
+        spawnQueue[spawnQueueLength].func5 = func;
+        spawnQueue[spawnQueueLength].args[0] = arg1;
+        spawnQueue[spawnQueueLength].args[1] = arg2;
+        spawnQueue[spawnQueueLength].args[2] = arg3;
+        spawnQueue[spawnQueueLength].args[3] = arg4;
+        spawnQueue[spawnQueueLength].args[4] = arg5;
+        spawnQueue[spawnQueueLength].arg_count = 5;
         spawnQueueLength++;
     }
 }
 
-Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_actor_f32(s32 actor_id, s32 x, s32 y, s32 z) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
@@ -547,7 +559,7 @@ Actor *spawnQueue_actor_f32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     return actor_spawnWithYaw_f32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *spawnQueue_actor_s16(enum actor_e actor_id, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_actor_s16(s32 actor_id, s32 x, s32 y, s32 z) {
     s16 position[3];
     position[0] = reinterpret_cast(s16, x);
     position[1] = reinterpret_cast(s16, y);
@@ -555,7 +567,7 @@ Actor *spawnQueue_actor_s16(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     return actor_spawnWithYaw_s16(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *spawnQueue_actor_s32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_actor_s32(s32 actor_id, s32 x, s32 y, s32 z) {
     s32 position[3];
     position[0] = reinterpret_cast(s32, x);
     position[1] = reinterpret_cast(s32, y);
@@ -563,29 +575,29 @@ Actor *spawnQueue_actor_s32(enum actor_e actor_id, s32 x, s32 y, s32 z) {
     return actor_spawnWithYaw_s32(reinterpret_cast(enum actor_e, actor_id), position, 0);
 }
 
-Actor *spawnQueue_bundle_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_bundle_f32(s32 bundle_id, s32 x, s32 y, s32 z) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
-    return bundle_spawn_f32(reinterpret_cast(s32, bundle_id), position);
+    return bundle_spawn_f32(reinterpret_cast(enum bundle_e, bundle_id), position);
 }
 
-Actor *spawnQueue_bundleWithYaw_f32(enum bundle_e bundle_id, s32 x, s32 y, s32 z, s32 yaw) {
+Actor *spawnQueue_bundleWithYaw_f32(s32 bundle_id, s32 x, s32 y, s32 z, s32 yaw) {
     f32 position[3];
     position[0] = reinterpret_cast(f32, x);
     position[1] = reinterpret_cast(f32, y);
     position[2] = reinterpret_cast(f32, z);
     bundle_setYaw(reinterpret_cast(f32, yaw));
-    return bundle_spawn_f32(reinterpret_cast(s32, bundle_id), position);
+    return bundle_spawn_f32(reinterpret_cast(enum bundle_e, bundle_id), position);
 }
 
-Actor *spawnQueue_bundle_s32(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
+Actor *spawnQueue_bundle_s32(s32 bundle_id, s32 x, s32 y, s32 z) {
     s32 position[3];
     position[0] = reinterpret_cast(s32, x);
     position[1] = reinterpret_cast(s32, y);
     position[2] = reinterpret_cast(s32, z);
-    return bundle_spawn_s32(reinterpret_cast(s32, bundle_id), position);
+    return bundle_spawn_s32(reinterpret_cast(enum bundle_e, bundle_id), position);
 }
 
 Actor *spawnQueue_bundle_s32_2(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
@@ -596,8 +608,8 @@ Actor *spawnQueue_bundle_s32_2(enum bundle_e bundle_id, s32 x, s32 y, s32 z) {
     return bundle_spawn_s32(bundle_id, position);
 }
 
-void spawnQueue_defrag(FunctionQueue *arg0) {
-    if ((arg0 = spawnQueue) != NULL) {
-        spawnQueue = (FunctionQueue *) defrag(arg0);
+void spawnQueue_defrag(void) {
+    if (spawnQueue) {
+        spawnQueue = (SpawnQueueFunction *) defrag(spawnQueue);
     }
 }

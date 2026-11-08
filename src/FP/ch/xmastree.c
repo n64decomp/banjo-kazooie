@@ -97,8 +97,8 @@ void chXmasTree_update(Actor *this){
             sfxSource_setunk43_7ByIndex(this->unk44_31, 3);
             sfxsource_setSampleRate(this->unk44_31, 28000);
         }
-        __spawnQueue_add_0(chXmasTree_spawnSwitch);
-        __spawnQueue_add_1((GenFunction_1)chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
+        SPAWNQUEUE_ADD_0(chXmasTree_spawnSwitch);
+        SPAWNQUEUE_ADD_1(chXmasTree_spawnStar, reinterpret_cast(s32, this->marker));
         if(fileProgressFlag_get(FILEPROG_13_COMPLETED_TWINKLIES_MINIGAME)){
             chXmasTree_setLightsOn(this);
             mapSpecificFlags_set(FP_SPECIFIC_FLAG_2_XMAS_TREE_SWITCH, FALSE);

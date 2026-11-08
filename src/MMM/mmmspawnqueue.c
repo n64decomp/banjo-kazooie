@@ -398,7 +398,7 @@ void chMMMWindow_update(Actor *this) {
     chTumblar_checkMMMChecksums();
 }
 
-void MMM_func_803890E0(void){
+void MMM_addSpawnableActors(void) {
     spawnableActorList_add(&chShackDoor, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chMansionDoor, actor_new, ACTOR_FLAG_NONE);
     spawnableActorList_add(&chCellarHatch, actor_new, ACTOR_FLAG_NONE);

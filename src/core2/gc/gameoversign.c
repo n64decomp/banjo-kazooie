@@ -86,7 +86,7 @@ void gcGameOverSign_spawn(void) {
 
 void func_802DC528(NodeProp *arg0, ActorMarker *arg1){
     if(D_8037DE40 == NULL){
-        __spawnQueue_add_0(gcGameOverSign_spawn);
+        SPAWNQUEUE_ADD_0(gcGameOverSign_spawn);
     }
 }
 

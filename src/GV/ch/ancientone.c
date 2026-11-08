@@ -89,7 +89,7 @@ void func_803867F4(void){
     gcStaticCamera_activate(4);
     if(nodeProp_findPositionFromActorId(0x148, sp24)){
         jiggy_spawn(JIGGY_46_GV_ANCIENT_ONES, sp24);
-        __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x4C, reinterpret_cast(s32, sp24[0]), reinterpret_cast(s32, sp24[1]), reinterpret_cast(s32, sp24[2]));
+        SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, sp24[0], sp24[1], sp24[2]);
     }
 }
 
@@ -184,10 +184,10 @@ void chAncientOne_update(Actor *this){
                     this->position_z += (sp38 & 2) ? 0xC : -0xC;
                     if(this->actorTypeSpecificField != 1){
                         if(sp38 == 6){
-                            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x4C, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
+                            SPAWNQUEUE_ADD_ACTOR_F32(ACTOR_4C_STEAM, this->position[0], sp34, this->position[2]);
                         }
                         if(sp38 == 4 && this->position_y < LOCAL_CH_ANCIENT_ONE(this)->unk1C - 600.0f){
-                            __spawnQueue_add_4((GenFunction_4)spawnQueue_actor_f32, 0x11f, reinterpret_cast(s32, this->position_x), reinterpret_cast(s32, sp34), reinterpret_cast(s32, this->position_z));
+                            SPAWNQUEUE_ADD_ACTOR_F32(0x11F, this->position[0], sp34, this->position[2]);
                         }//L80386D80
                     }
                     if(LOCAL_CH_ANCIENT_ONE(this)->unk1C <= this->position_y){

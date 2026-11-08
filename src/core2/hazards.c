@@ -60,7 +60,7 @@ void spawnPiranhaParticles(void) {
 }
 
 void triggerSwampHazardEffects(void) {
-    __spawnQueue_add_0(&spawnPiranhaParticles);
+    SPAWNQUEUE_ADD_0(spawnPiranhaParticles);
     FUNC_8030E624(SFX_A_BANJO_LANDING_05, 1.0f, 28000);
     sfxSource_triggerCallbackByIndex(hazardSfxId);
     sfxsource_setSfxId(hazardSfxId, SFX_6D_CROC_BITE);
